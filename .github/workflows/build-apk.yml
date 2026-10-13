@@ -1,56 +1,65 @@
 name: Build Warrior rus APK
 
 on:
-workflow_dispatch:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
 
 permissions:
-contents: read
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
-          uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
-      - name: Show repository files
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Find Android project
+        shell: bash
         run: |
+          echo "Repository root:"
           pwd
+          echo "Files:"
           ls -la
-          find . -maxdepth 4 -type f
+          echo "Gradle build files:"
+          find . -maxdepth 4 \( -name settings.gradle -o -name settings.gradle.kts -o -name build.gradle -o -name build.gradle.kts \) -print
 
-  - name: Set up Java
-    uses: actions/setup-java@v4
-    with:
-      distribution: temurin
-      java-version: '17'
+      - name: Build debug APK
+        shell: bash
+        run: |
+          if [ -f ./gradlew ]; then
+            chmod +x ./gradlew
+            ./gradlew assembleDebug
+          elif [ -f ./WarriorRus/gradlew ]; then
+            cd WarriorRus
+            chmod +x ./gradlew
+            ./gradlew assembleDebug
+          else
+            echo "Gradle wrapper not found. Check the project directory."
+            exit 1
+          fi
 
-  - name: Set up Gradle
-    uses: gradle/actions/setup-gradle@v4
-    with:
-      gradle-version: '8.9'
-
-  - name: Set up Android SDK
-    uses: android-actions/setup-android@v3
-
-  - name: Install Android SDK
-    run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
-
-  - name: Locate source archive
-    run: |
-      find . -name 'WarriorRus-private-v2-source.zip'
-      test -f WarriorRus-private-v2-source.zip
-
-  - name: Extract source archive
-    run: unzip WarriorRus-private-v2-source.zip -d source
-
-  - name: Build APK
-    working-directory: source/WarriorRus
-    run: gradle assembleDebug
-
-  - name: Upload APK
-    uses: actions/upload-artifact@v4
-    with:
-      name: Warrior-rus-debug-apk
-      path: source/WarriorRus/app/build/outputs/apk/debug/app-debug.apk
-      if-no-files-found: error
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: WarriorRus-debug-APK
+          path: '**/build/outputs/apk/debug/*.apk'
+          if-no-files-found: error
