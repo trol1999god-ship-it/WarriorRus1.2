@@ -13,6 +13,12 @@ steps:
 - name: Checkout repository
 uses: actions/checkout@v4
 
+  - name: Show repository files
+    run: |
+      pwd
+      ls -la
+      find . -maxdepth 4 -type f
+
   - name: Set up Java
     uses: actions/setup-java@v4
     with:
@@ -29,6 +35,11 @@ uses: actions/checkout@v4
 
   - name: Install Android SDK
     run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+
+  - name: Locate source archive
+    run: |
+      find . -name 'WarriorRus-private-v2-source.zip'
+      test -f WarriorRus-private-v2-source.zip
 
   - name: Extract source archive
     run: unzip WarriorRus-private-v2-source.zip -d source
