@@ -1,0 +1,18 @@
+plugins { id "com.android.application" }
+
+android {
+    namespace "ru.warriorrus.app"
+    compileSdk 35
+    defaultConfig {
+        applicationId "ru.warriorrus.app"
+        minSdk 23
+        targetSdk 28
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+
+dependencies {
+    implementation "org.osmdroid:osmdroid-android:6.1.20"
+}
