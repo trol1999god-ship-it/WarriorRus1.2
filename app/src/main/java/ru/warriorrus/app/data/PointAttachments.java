@@ -26,6 +26,8 @@ public final class PointAttachments {
     this.store=store;
     directory=new File(context.getFilesDir(), "point-attachments");
     if (!directory.isDirectory() && !directory.mkdirs()) throw new IllegalStateException("Cannot create media directory");
+    // On a new process undo history is gone; remove orphaned files left by deleted points.
+    store.cleanupUnreferencedMedia();
   }
   private void requirePoint(long id) {
     MapItem point=store.get(id);
