@@ -12,7 +12,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
   private List<ContentValues> undo;
 
   public ObjectStore(Context context) {
-    super(context, "warrior2.db", null, 2);
+    super(context, "warrior2.db", null, 3);
   }
 
   @Override
@@ -30,12 +30,20 @@ public final class ObjectStore extends SQLiteOpenHelper {
             + " 0,color INTEGER NOT NULL DEFAULT -12627531,opacity REAL NOT NULL DEFAULT 1,icon"
             + " TEXT NOT NULL DEFAULT 'builtin:pin')");
     db.execSQL("CREATE INDEX objects_parent ON objects(parent)");
+    createMediaTables(db);
   }
 
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     if (oldVersion < 2)
       db.execSQL("ALTER TABLE objects ADD COLUMN icon TEXT NOT NULL DEFAULT 'builtin:pin'");
+    if (oldVersion < 3) createMediaTables(db);
+  }
+
+  private void createMediaTables(SQLiteDatabase db) {
+    db.execSQL("CREATE TABLE point_notes(point_id INTEGER PRIMARY KEY REFERENCES objects(id) ON DELETE CASCADE,note TEXT NOT NULL DEFAULT '')");
+    db.execSQL("CREATE TABLE point_attachments(id INTEGER PRIMARY KEY AUTOINCREMENT,point_id INTEGER NOT NULL REFERENCES objects(id) ON DELETE CASCADE,display_name TEXT NOT NULL,mime TEXT NOT NULL,filename TEXT NOT NULL UNIQUE)");
+    db.execSQL("CREATE INDEX point_attachments_point ON point_attachments(point_id)");
   }
 
   public List<MapItem> all() {
