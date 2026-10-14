@@ -29,6 +29,9 @@ public final class MainActivity extends Activity {
   private TextView coordinates;
   private boolean cards, onScreenOnly, gridEnabled;
   private long selectedPoint;
+  private PointAttachments attachments;
+  private long pendingAttachmentPoint;
+  private static final int PICK_POINT_MEDIA = 103;
 
   private final android.os.Handler iconHandler =
       new android.os.Handler(android.os.Looper.getMainLooper());
@@ -86,8 +89,12 @@ public final class MainActivity extends Activity {
   public void onCreate(Bundle state) {
     super.onCreate(state);
     store = new ObjectStore(this);
+    attachments = new PointAttachments(this, store);
     explorer = new ExplorerController(store);
-    if (state != null) explorer.folder = state.getLong("folder");
+    if (state != null) {
+      explorer.folder = state.getLong("folder");
+      pendingAttachmentPoint = state.getLong("pendingAttachmentPoint");
+    }
     map = new MapWorkspace(this, p -> edit(null, p));
     if (state != null) {
       map.view
@@ -543,20 +550,88 @@ public final class MainActivity extends Activity {
   }
 
   private void pointDetails(MapItem i) {
-    new AlertDialog.Builder(this)
-        .setTitle(i.name)
-        .setMessage(
-            String.format(
-                Locale.ROOT,
-                "Координаты: %.6f, %.6f\nЗначок: %s\nЦвет: #%06X",
-                i.latitude,
-                i.longitude,
-                i.icon,
-                i.color & 0xffffff))
-        .setPositiveButton(
-            "Редактировать", (d, w) -> edit(i, new GeoPoint(i.latitude, i.longitude)))
-        .setNegativeButton("Закрыть", null)
-        .show();
+    LinearLayout content = new LinearLayout(this);
+    content.setOrientation(LinearLayout.VERTICAL);
+    content.addView(label(String.format(Locale.ROOT, "Координаты: %.6f, %.6f", i.latitude, i.longitude), 14));
+    content.addView(label("Заметка: " + attachments.note(i.id), 14));
+    content.addView(button("Редактировать заметку", () -> editNote(i)));
+    content.addView(button("Добавить фото / видео / аудио", () -> pickMedia(i.id)));
+    List<PointAttachments.Entry> files = attachments.list(i.id);
+    content.addView(label("Вложения (" + files.size() + ")", 16));
+    for (PointAttachments.Entry entry : files) {
+      content.addView(button(entry.name + "  (" + entry.mime + ")", () ->
+          sheet(entry.name, new String[]{"Открыть", "Удалить"}, choice -> {
+            if (choice == 0) openMedia(entry);
+            else new AlertDialog.Builder(this).setTitle("Удалить вложение?")
+                .setMessage(entry.name)
+                .setPositiveButton("Удалить", (d,w) -> run(() -> {
+                  attachments.remove(i.id, entry.id);
+                  pointDetails(i);
+                }))
+                .setNegativeButton("Отмена", null).show();
+          })));
+    }
+    ScrollView scroll = new ScrollView(this);
+    scroll.addView(content);
+    new AlertDialog.Builder(this).setTitle(i.name).setView(scroll)
+        .setPositiveButton("Закрыть", null).show();
+  }
+
+  private void editNote(MapItem i) {
+    EditText text = new EditText(this);
+    text.setMinLines(4);
+    text.setText(attachments.note(i.id));
+    new AlertDialog.Builder(this).setTitle("Заметка: " + i.name).setView(text)
+        .setPositiveButton("Сохранить", (d,w) -> run(() ->
+            attachments.saveNote(i.id, text.getText().toString())))
+        .setNegativeButton("Отмена", null).show();
+  }
+
+  private void pickMedia(long pointId) {
+    pendingAttachmentPoint = pointId;
+    android.content.Intent intent = new android.content.Intent(android.content.Intent.ACTION_OPEN_DOCUMENT);
+    intent.addCategory(android.content.Intent.CATEGORY_OPENABLE);
+    intent.setType("*/*");
+    intent.putExtra(android.content.Intent.EXTRA_MIME_TYPES,
+        new String[]{"image/*", "video/*", "audio/*"});
+    intent.putExtra(android.content.Intent.EXTRA_ALLOW_MULTIPLE, true);
+    startActivityForResult(intent, PICK_POINT_MEDIA);
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, android.content.Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode != PICK_POINT_MEDIA || resultCode != RESULT_OK || data == null) return;
+    long pointId = pendingAttachmentPoint;
+    pendingAttachmentPoint = 0;
+    run(() -> {
+      try {
+        if (data.getClipData() != null) {
+          for (int n = 0; n < data.getClipData().getItemCount(); n++)
+            attachments.importUri(pointId, data.getClipData().getItemAt(n).getUri());
+        } else if (data.getData() != null) {
+          attachments.importUri(pointId, data.getData());
+        }
+      } catch (java.io.IOException e) {
+        throw new IllegalStateException("Не удалось добавить вложение: " + e.getMessage(), e);
+      }
+      MapItem point = store.get(pointId);
+      if (point != null) pointDetails(point);
+    });
+  }
+
+  private void openMedia(PointAttachments.Entry entry) {
+    try {
+      android.net.Uri uri = androidx.core.content.FileProvider.getUriForFile(this,
+          getPackageName() + ".attachments", attachments.file(entry));
+      android.content.Intent intent = new android.content.Intent(android.content.Intent.ACTION_VIEW);
+      intent.setDataAndType(uri, entry.mime);
+      intent.addFlags(android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION);
+      startActivity(android.content.Intent.createChooser(intent, "Открыть вложение"));
+    } catch (Exception e) {
+      new AlertDialog.Builder(this).setMessage("Нет приложения для открытия файла: " + e.getMessage())
+          .setPositiveButton("ОК", null).show();
+    }
   }
 
   private List<MapItem> visibleEntries() {
@@ -947,6 +1022,7 @@ public final class MainActivity extends Activity {
   protected void onSaveInstanceState(Bundle state) {
     super.onSaveInstanceState(state);
     state.putLong("folder", explorer.folder);
+    state.putLong("pendingAttachmentPoint", pendingAttachmentPoint);
     state.putDouble("mapLat", map.view.getMapCenter().getLatitude());
     state.putDouble("mapLon", map.view.getMapCenter().getLongitude());
     state.putDouble("mapZoom", map.view.getZoomLevelDouble());

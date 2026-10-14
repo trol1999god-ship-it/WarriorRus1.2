@@ -10,9 +10,12 @@ import java.util.*;
 /** Single transactional owner of the local working database. No network or exchange files. */
 public final class ObjectStore extends SQLiteOpenHelper {
   private List<ContentValues> undo;
+  private List<ContentValues> undoNotes, undoAttachments;
+  private final java.io.File mediaDirectory;
 
   public ObjectStore(Context context) {
-    super(context, "warrior2.db", null, 2);
+    super(context, "warrior2.db", null, 3);
+    mediaDirectory = new java.io.File(context.getFilesDir(), "point-attachments");
   }
 
   @Override
@@ -30,12 +33,20 @@ public final class ObjectStore extends SQLiteOpenHelper {
             + " 0,color INTEGER NOT NULL DEFAULT -12627531,opacity REAL NOT NULL DEFAULT 1,icon"
             + " TEXT NOT NULL DEFAULT 'builtin:pin')");
     db.execSQL("CREATE INDEX objects_parent ON objects(parent)");
+    createMediaTables(db);
   }
 
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     if (oldVersion < 2)
       db.execSQL("ALTER TABLE objects ADD COLUMN icon TEXT NOT NULL DEFAULT 'builtin:pin'");
+    if (oldVersion < 3) createMediaTables(db);
+  }
+
+  private void createMediaTables(SQLiteDatabase db) {
+    db.execSQL("CREATE TABLE point_notes(point_id INTEGER PRIMARY KEY REFERENCES objects(id) ON DELETE CASCADE,note TEXT NOT NULL DEFAULT '')");
+    db.execSQL("CREATE TABLE point_attachments(id INTEGER PRIMARY KEY AUTOINCREMENT,point_id INTEGER NOT NULL REFERENCES objects(id) ON DELETE CASCADE,display_name TEXT NOT NULL,mime TEXT NOT NULL,filename TEXT NOT NULL UNIQUE)");
+    db.execSQL("CREATE INDEX point_attachments_point ON point_attachments(point_id)");
   }
 
   public List<MapItem> all() {
@@ -104,6 +115,8 @@ public final class ObjectStore extends SQLiteOpenHelper {
     SQLiteDatabase db = getWritableDatabase();
     List<ContentValues> before = new ArrayList<>();
     for (MapItem i : all()) before.add(values(i, true));
+    List<ContentValues> notesBefore = snapshot("point_notes");
+    List<ContentValues> mediaBefore = snapshot("point_attachments");
     db.beginTransaction();
     try {
       action.run();
@@ -112,6 +125,56 @@ public final class ObjectStore extends SQLiteOpenHelper {
       db.endTransaction();
     }
     undo = before;
+    undoNotes = notesBefore;
+    undoAttachments = mediaBefore;
+  }
+
+  private List<ContentValues> snapshot(String table) {
+    List<ContentValues> result = new ArrayList<>();
+    try (Cursor c = getReadableDatabase().query(table, null, null, null, null, null, null)) {
+      while (c.moveToNext()) {
+        ContentValues v = new ContentValues();
+        for (int n = 0; n < c.getColumnCount(); n++) {
+          if (c.isNull(n)) v.putNull(c.getColumnName(n));
+          else if (c.getType(n) == Cursor.FIELD_TYPE_INTEGER) v.put(c.getColumnName(n), c.getLong(n));
+          else v.put(c.getColumnName(n), c.getString(n));
+        }
+        result.add(v);
+      }
+    }
+    return result;
+  }
+
+  private void copyMedia(long from, long to) {
+    SQLiteDatabase db = getWritableDatabase();
+    try (Cursor c = db.rawQuery("SELECT note FROM point_notes WHERE point_id=?", new String[]{""+from})) {
+      if (c.moveToFirst()) {
+        ContentValues note = new ContentValues(); note.put("point_id", to); note.put("note", c.getString(0));
+        db.insertOrThrow("point_notes", null, note);
+      }
+    }
+    try (Cursor c = db.rawQuery("SELECT display_name,mime,filename FROM point_attachments WHERE point_id=?", new String[]{""+from})) {
+      while (c.moveToNext()) {
+        String original = c.getString(2);
+        String next = java.util.UUID.randomUUID().toString() + ".bin";
+        java.io.File src = new java.io.File(mediaDirectory, original);
+        java.io.File dst = new java.io.File(mediaDirectory, next);
+        try {
+          try (java.io.InputStream input = new java.io.FileInputStream(src);
+              java.io.OutputStream output = new java.io.FileOutputStream(dst)) {
+            byte[] buffer = new byte[65536];
+            int count;
+            while ((count = input.read(buffer)) != -1) output.write(buffer, 0, count);
+          }
+        } catch (java.io.IOException e) {
+          throw new IllegalStateException("Не удалось скопировать вложение", e);
+        }
+        ContentValues v = new ContentValues();
+        v.put("point_id", to); v.put("display_name", c.getString(0));
+        v.put("mime", c.getString(1)); v.put("filename", next);
+        db.insertOrThrow("point_attachments", null, v);
+      }
+    }
   }
 
   private void requireFolder(long parent) {
@@ -218,6 +281,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
     if (parent == 0) v.putNull("parent");
     else v.put("parent", parent);
     long next = getWritableDatabase().insertOrThrow("objects", null, v);
+    if (!source.isFolder()) copyMedia(id, next);
     for (MapItem i : snapshot) if (i.parent == id) cloneTree(i.id, next, snapshot);
   }
 
@@ -323,6 +387,22 @@ public final class ObjectStore extends SQLiteOpenHelper {
 
   public void clearUndo() {
     undo = null;
+    undoNotes = null;
+    undoAttachments = null;
+    cleanupUnreferencedMedia();
+  }
+
+  /** Never remove a file still referenced by any point. */
+  public void cleanupUnreferencedMedia() {
+    if (undo != null) return;
+    java.io.File[] files = mediaDirectory.listFiles();
+    if (files == null) return;
+    Set<String> referenced = new HashSet<>();
+    try (Cursor c = getReadableDatabase().rawQuery("SELECT filename FROM point_attachments", null)) {
+      while (c.moveToNext()) referenced.add(c.getString(0));
+    }
+    for (java.io.File file : files)
+      if (file.isFile() && file.getName().matches("[a-fA-F0-9-]{36}\\.bin") && !referenced.contains(file.getName())) file.delete();
   }
 
   public boolean canUndo() {
@@ -337,8 +417,12 @@ public final class ObjectStore extends SQLiteOpenHelper {
       db.execSQL("PRAGMA defer_foreign_keys=ON");
       db.delete("objects", null, null);
       for (ContentValues v : undo) db.insertOrThrow("objects", null, v);
+      for (ContentValues v : undoNotes) db.insertOrThrow("point_notes", null, v);
+      for (ContentValues v : undoAttachments) db.insertOrThrow("point_attachments", null, v);
       db.setTransactionSuccessful();
       undo = null;
+      undoNotes = null;
+      undoAttachments = null;
     } finally {
       db.endTransaction();
     }

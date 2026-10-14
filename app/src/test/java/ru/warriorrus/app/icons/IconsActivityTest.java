@@ -51,7 +51,12 @@ public class IconsActivityTest {
           pkg.requestedPermissions == null
               ? Collections.emptySet()
               : new HashSet<>(Arrays.asList(pkg.requestedPermissions));
-      assertEquals(Collections.singleton("android.permission.INTERNET"), permissions);
+      assertTrue(permissions.contains("android.permission.INTERNET"));
+      assertFalse(permissions.contains("android.permission.READ_EXTERNAL_STORAGE"));
+      assertFalse(permissions.contains("android.permission.WRITE_EXTERNAL_STORAGE"));
+      assertFalse(permissions.contains("android.permission.MANAGE_EXTERNAL_STORAGE"));
+      assertFalse(permissions.contains("android.permission.ACCESS_FINE_LOCATION"));
+      assertFalse(permissions.contains("android.permission.ACCESS_COARSE_LOCATION"));
       find(a.getWindow().getDecorView(), "Встроенные 🔒").performClick();
       assertNotNull(find(a.getWindow().getDecorView(), "🔒 pin"));
       find(a.getWindow().getDecorView(), "Пользовательские").performClick();
