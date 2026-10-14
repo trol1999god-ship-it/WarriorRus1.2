@@ -27,7 +27,7 @@ public final class MainActivity extends Activity {
   private long dragged;
   private Dialog explorerDialog;
   private TextView coordinates;
-  private boolean cards, onScreenOnly, gridEnabled;
+  private boolean cards, onScreenOnly, allPointsOnly, gridEnabled;
   private long selectedPoint;
   private PointAttachments attachments;
   private long pendingAttachmentPoint;
@@ -295,7 +295,7 @@ public final class MainActivity extends Activity {
     root.requestApplyInsets();
     explorerDialog = new Dialog(this);
     explorerDialog.setContentView(drawer);
-    explorerDialog.setOnDismissListener(d -> onScreenOnly = false);
+    explorerDialog.setOnDismissListener(d -> { onScreenOnly = false; allPointsOnly = false; });
     refresh();
     updateCoordinates();
   }
@@ -356,6 +356,7 @@ public final class MainActivity extends Activity {
 
   private void openExplorer(boolean visibleOnly) {
     onScreenOnly = visibleOnly;
+    allPointsOnly = false;
     explorer.folder = 0;
     explorer.query = "";
     refresh();
@@ -378,6 +379,8 @@ public final class MainActivity extends Activity {
           switch (n) {
             case 0:
               openExplorer(false);
+              allPointsOnly = true;
+              refresh();
               break;
             case 1:
               openExplorer(true);
@@ -673,6 +676,14 @@ public final class MainActivity extends Activity {
   }
 
   private List<MapItem> visibleEntries() {
+    if (allPointsOnly) {
+      List<MapItem> points = new ArrayList<>();
+      String filter = explorer.query.toLowerCase(Locale.ROOT);
+      for (MapItem i : store.all())
+        if (!i.isFolder() && i.name.toLowerCase(Locale.ROOT).contains(filter))
+          points.add(i);
+      return points;
+    }
     if (!onScreenOnly) return explorer.entries();
     List<MapItem> visible = new ArrayList<>();
     org.osmdroid.util.BoundingBox box = map.view.getBoundingBox();
