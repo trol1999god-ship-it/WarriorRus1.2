@@ -7,20 +7,20 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import androidx.test.core.app.ApplicationProvider;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 
 /** Regression guard: map networking must never introduce location permissions. */
 @RunWith(RobolectricTestRunner.class)
 public final class LocationPermissionTest {
   @Test
   public void appRequestsInternetButNoLocationPermissions() throws Exception {
-    Context context = ApplicationProvider.getApplicationContext();
+    Context context = RuntimeEnvironment.getApplication();
     PackageInfo info = context.getPackageManager().getPackageInfo(
         context.getPackageName(), PackageManager.GET_PERMISSIONS);
     List<String> permissions = info.requestedPermissions == null
