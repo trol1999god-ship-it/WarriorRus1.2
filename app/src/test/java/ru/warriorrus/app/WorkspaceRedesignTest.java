@@ -40,7 +40,8 @@ public class WorkspaceRedesignTest {
         assertNotNull(find(root,"▱ Области"));
         find(root,"◇ Маршруты").performClick();
         AlertDialog dialog=ShadowAlertDialog.getLatestAlertDialog();
-        assertTrue(dialog.getMessage().toString().contains("Редактор геометрии"));
+        assertNotNull(dialog);
+        assertTrue(((TextView) dialog.findViewById(android.R.id.message)).getText().toString().contains("Редактор геометрии"));
         dialog.dismiss();
         assertEquals(2,store.all().size());
       }
