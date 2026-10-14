@@ -2,6 +2,9 @@
     <!-- Internet is used only to fetch map tiles. No GPS/location permissions are declared. -->
     <uses-permission android:name="android.permission.INTERNET" />
     <application android:allowBackup="false" android:label="Warrior rus" android:theme="@style/AppTheme" android:icon="@mipmap/ic_launcher" android:usesCleartextTraffic="false">
+        <provider android:name="androidx.core.content.FileProvider" android:authorities="${applicationId}.attachments" android:exported="false" android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/attachment_paths" />
+        </provider>
         <activity android:name=".icons.IconsActivity" android:exported="false" />
         <activity android:name=".MainActivity" android:exported="true">
             <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
