@@ -49,3 +49,7 @@ GitHub Actions: **Build Warrior rus APK** → выбрать успешный з
 Реализован менеджер пользовательских SVG: [инструкция, доступ Android/media и ограничения](WARRIOR_ICONS.md). Кнопка **Значки** открывает библиотеку; выделенные в Explorer метки можно оформить одним SVG и цветом. SQLite обновляется без потери данных первого этапа.
 
 [Скачать APK с Warrior Icons](https://github.com/trol1999god-ship-it/WarriorRus1.2/raw/refs/heads/main/downloads/Warrior-rus-2.0-icons-debug.apk). [Результаты проверок](VALIDATION_ICONS.md).
+
+## Полноэкранная карта — следующий этап
+
+[Изменения интерфейса, сохранность данных и оставшиеся этапы](MAP_UI_STAGE.md). [Проверки](VALIDATION_MAP_UI.md). [Скачать APK](https://github.com/trol1999god-ship-it/WarriorRus1.2/raw/refs/heads/main/downloads/Warrior-rus-2.0-map-ui-debug.apk).

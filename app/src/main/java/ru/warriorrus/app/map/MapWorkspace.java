@@ -14,6 +14,8 @@ import ru.warriorrus.app.data.*;
 
 public final class MapWorkspace {
   public final MapView view;
+  public java.util.function.Consumer<MapItem> onPointClick;
+  public final CoordinateGrid grid = new CoordinateGrid();
   private final Activity activity;
   private ru.warriorrus.app.icons.IconLibrary icons;
 
@@ -40,6 +42,7 @@ public final class MapWorkspace {
             new String[] {"https://tile.openstreetmap.org/"},
             "© OpenStreetMap contributors"));
     view.setMultiTouchControls(true);
+    view.setBuiltInZoomControls(false);
     view.getController().setZoom(5.0);
     view.getController().setCenter(new GeoPoint(55.75, 37.62));
     view.getOverlays()
@@ -65,7 +68,15 @@ public final class MapWorkspace {
       if (!i.isFolder()) {
         float opacity = store.effectiveOpacity(i);
         if (opacity == 0) continue;
-        Marker m = new Marker(view);
+        Marker m = new NamedMarker(view, opacity);
+        m.setOnMarkerClickListener(
+            (marker, mapView) -> {
+              if (onPointClick != null) {
+                onPointClick.accept(i);
+                return true;
+              }
+              return false;
+            });
         m.setPosition(new GeoPoint(i.latitude, i.longitude));
         m.setTitle(i.name);
         m.setSnippet(i.latitude + ", " + i.longitude);
@@ -104,6 +115,13 @@ public final class MapWorkspace {
         m.setIcon(rendered);
         view.getOverlays().add(m);
       }
+    view.invalidate();
+  }
+
+  public void showGrid(boolean enabled) {
+    grid.setEnabled(enabled);
+    if (enabled && !view.getOverlays().contains(grid)) view.getOverlays().add(0, grid);
+    if (!enabled) view.getOverlays().remove(grid);
     view.invalidate();
   }
 

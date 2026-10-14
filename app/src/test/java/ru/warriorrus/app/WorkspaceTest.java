@@ -27,9 +27,24 @@ public class WorkspaceTest {
     try (ActivityController<MainActivity> c =
         Robolectric.buildActivity(MainActivity.class).setup()) {
       MainActivity a = c.get();
-      View button = find(a.getWindow().getDecorView(), "Папка +");
+      assertNull(find(a.getWindow().getDecorView(), "Warrior Explorer"));
+      find(a.getWindow().getDecorView(), "Метки").performClick();
+      android.app.AlertDialog marks =
+          org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
+      marks
+          .getListView()
+          .performItemClick(
+              marks.getListView().getAdapter().getView(0, null, marks.getListView()), 0, 0);
+      android.app.Dialog explorerDialog = org.robolectric.shadows.ShadowDialog.getLatestDialog();
+      View explorerView = explorerDialog.getWindow().getDecorView();
+      assertNotNull(find(explorerView, "Warrior Explorer"));
+      find(explorerView, "Операции").performClick();
+      android.widget.PopupMenu operations =
+          org.robolectric.shadows.ShadowPopupMenu.getLatestPopupMenu();
+      operations.getMenu().performIdentifierAction(0, 0);
+      View button = find(explorerView, "Операции");
       assertNotNull(button);
-      button.performClick();
+
       org.robolectric.shadows.ShadowLooper.idleMainLooper();
       android.app.AlertDialog dialog =
           org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
@@ -41,11 +56,11 @@ public class WorkspaceTest {
       try (ObjectStore s = new ObjectStore(a)) {
         assertEquals("Operations", s.all().get(0).name);
       }
-      assertNotNull(find(a.getWindow().getDecorView(), "Warrior Explorer"));
-      find(a.getWindow().getDecorView(), "📁 Operations").performClick();
-      assertNotNull(find(a.getWindow().getDecorView(), "› Operations"));
-      find(a.getWindow().getDecorView(), "Warrior").performClick();
-      assertNotNull(find(a.getWindow().getDecorView(), "📁 Operations"));
+      assertNotNull(find(explorerView, "Warrior Explorer"));
+      find(explorerView, "📁 Operations").performClick();
+      assertNotNull(find(explorerView, "› Operations"));
+      find(explorerView, "Warrior").performClick();
+      assertNotNull(find(explorerView, "📁 Operations"));
     }
   }
 
