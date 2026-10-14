@@ -112,20 +112,25 @@ public final class MainActivity extends Activity {
         new FrameLayout.LayoutParams(-2, -2, Gravity.TOP | Gravity.START);
     hud.setMargins(dp(8), dp(8), dp(8), 0);
     root.addView(coordinates, hud);
+    // Map-first, scrollable tool strip: keep controls accessible on narrow phones.
+    HorizontalScrollView toolStrip = new HorizontalScrollView(this);
+    toolStrip.setHorizontalScrollBarEnabled(false);
+    toolStrip.setFillViewport(false);
+    toolStrip.setBackground(plate());
+    toolStrip.setContentDescription("Панель картографических инструментов");
     LinearLayout toolbar = new LinearLayout(this);
-    toolbar.setOrientation(LinearLayout.VERTICAL);
-    toolbar.setBackground(plate());
-    toolbar.setContentDescription("Панель картографических инструментов");
+    toolbar.setOrientation(LinearLayout.HORIZONTAL);
     toolbar.addView(compact("Карты", () -> mapsMenu()));
     toolbar.addView(compact("Слои", () -> openExplorer(false)));
     toolbar.addView(compact("Метки", () -> marksMenu()));
     toolbar.addView(compact("◇ Маршруты", () -> drawingNotice("Маршруты")));
     toolbar.addView(compact("▱ Области", () -> drawingNotice("Области")));
     toolbar.addView(compact("Инструменты", () -> toolsMenu()));
+    toolStrip.addView(toolbar);
     FrameLayout.LayoutParams bottom =
-        new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.START);
-    bottom.setMargins(dp(8), 0, 0, dp(24));
-    root.addView(toolbar, bottom);
+        new FrameLayout.LayoutParams(-1, -2, Gravity.BOTTOM);
+    bottom.setMargins(dp(8), 0, dp(8), dp(24));
+    root.addView(toolStrip, bottom);
     LinearLayout zoom = new LinearLayout(this);
     zoom.setOrientation(LinearLayout.VERTICAL);
     zoom.setBackground(plate());
