@@ -108,6 +108,7 @@ public final class MainActivity extends Activity {
     LinearLayout toolbar = new LinearLayout(this);
     toolbar.setOrientation(LinearLayout.VERTICAL);
     toolbar.setBackground(plate());
+    toolbar.addView(compact("＋ Метка", () -> edit(null, (GeoPoint) map.view.getMapCenter())));
     toolbar.addView(compact("Карты", () -> mapsMenu()));
     toolbar.addView(compact("Слои", () -> openExplorer(false)));
     toolbar.addView(compact("Метки", () -> marksMenu()));
@@ -519,7 +520,7 @@ public final class MainActivity extends Activity {
   private void pointActions(MapItem i) {
     sheet(
         i.name,
-        new String[] {"Подробнее", "Редактировать", "Выбрать значок", "Выделить в Explorer"},
+        new String[] {"Подробнее", "Редактировать", "Выбрать значок", "Выделить в Explorer", "Переместить в…", "Копировать в…"},
         n -> {
           switch (n) {
             case 0:
@@ -539,6 +540,12 @@ public final class MainActivity extends Activity {
               openExplorer(false);
               explorer.folder = i.parent;
               refresh();
+              break;
+            case 4:
+            case 5:
+              explorer.selected.clear();
+              explorer.selected.add(i.id);
+              chooseDestination(n == 5);
               break;
           }
         });
