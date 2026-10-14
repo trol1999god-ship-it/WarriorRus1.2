@@ -28,6 +28,27 @@ public class WorkspaceRedesignTest {
     }
     return null;
   }
+  @Test public void creatingTwoPointsRefreshesTwoMapMarkersAndPersistsAcrossReopen() {
+    RuntimeEnvironment.getApplication().deleteDatabase("warrior2.db");
+    try (ObjectStore store = new ObjectStore(RuntimeEnvironment.getApplication())) {
+      try (org.robolectric.android.controller.ActivityController<MainActivity> controller =
+          Robolectric.buildActivity(MainActivity.class).setup()) {
+        store.create(0, "Точка один", "point", 50.1, 30.1);
+        store.create(0, "Точка два", "point", 50.2, 30.2);
+        ru.warriorrus.app.map.MapWorkspace workspace =
+            new ru.warriorrus.app.map.MapWorkspace(controller.get(), p -> {});
+        workspace.refresh(store);
+        int markers = 0;
+        for (org.osmdroid.views.overlay.Overlay overlay : workspace.view.getOverlays())
+          if (overlay instanceof org.osmdroid.views.overlay.Marker) markers++;
+        assertEquals(2, markers);
+      }
+    }
+    try (ObjectStore reopened = new ObjectStore(RuntimeEnvironment.getApplication())) {
+      assertEquals(2, reopened.all().size());
+    }
+  }
+
   @Test public void newMapToolsAreReachableAndDoNotAlterObjects() {
     RuntimeEnvironment.getApplication().deleteDatabase("warrior2.db");
     try(ObjectStore store=new ObjectStore(RuntimeEnvironment.getApplication())) {
