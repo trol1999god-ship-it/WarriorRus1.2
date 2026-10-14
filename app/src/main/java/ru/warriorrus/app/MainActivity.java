@@ -95,7 +95,7 @@ public final class MainActivity extends Activity {
       explorer.folder = state.getLong("folder");
       pendingAttachmentPoint = state.getLong("pendingAttachmentPoint");
     }
-    map = new MapWorkspace(this, p -> edit(null, p));
+    map = new MapWorkspace(this, p -> mapContext(p));
     if (state != null) {
       map.view
           .getController()
@@ -115,10 +115,13 @@ public final class MainActivity extends Activity {
     LinearLayout toolbar = new LinearLayout(this);
     toolbar.setOrientation(LinearLayout.VERTICAL);
     toolbar.setBackground(plate());
-    toolbar.addView(compact("Карты", () -> mapsMenu()));
-    toolbar.addView(compact("Слои", () -> openExplorer(false)));
-    toolbar.addView(compact("Метки", () -> marksMenu()));
-    toolbar.addView(compact("Инструменты", () -> toolsMenu()));
+    toolbar.setContentDescription("Панель картографических инструментов");
+    toolbar.addView(compact("◈ Карты", () -> mapsMenu()));
+    toolbar.addView(compact("▤ Слои", () -> openExplorer(false)));
+    toolbar.addView(compact("● Метки", () -> marksMenu()));
+    toolbar.addView(compact("◇ Маршруты", () -> drawingNotice("Маршруты")));
+    toolbar.addView(compact("▱ Области", () -> drawingNotice("Области")));
+    toolbar.addView(compact("⚙ Инструменты", () -> toolsMenu()));
     FrameLayout.LayoutParams bottom =
         new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.START);
     bottom.setMargins(dp(8), 0, 0, dp(24));
@@ -316,6 +319,27 @@ public final class MainActivity extends Activity {
         .setItems(names, (d, index) -> action.accept(index))
         .setNegativeButton("Закрыть", null)
         .show();
+  }
+
+  private void drawingNotice(String tool) {
+    new AlertDialog.Builder(this).setTitle(tool)
+        .setMessage("Редактор геометрии будет подключён после добавления хранения маршрутов и областей. Текущие данные меток и папок не изменяются.")
+        .setPositiveButton("ОК", null).show();
+  }
+
+  private void mapContext(GeoPoint position) {
+    sheet("Действия на карте",
+        new String[]{"Создать метку", "Метки и папки", "Слои", "Карты", "Маршруты", "Области"},
+        index -> {
+          switch(index) {
+            case 0: edit(null, position); break;
+            case 1: openExplorer(false); break;
+            case 2: openExplorer(false); break;
+            case 3: mapsMenu(); break;
+            case 4: drawingNotice("Маршруты"); break;
+            case 5: drawingNotice("Области"); break;
+          }
+        });
   }
 
   private void mapsMenu() {
@@ -553,7 +577,16 @@ public final class MainActivity extends Activity {
     LinearLayout content = new LinearLayout(this);
     content.setOrientation(LinearLayout.VERTICAL);
     content.addView(label(String.format(Locale.ROOT, "Координаты: %.6f, %.6f", i.latitude, i.longitude), 14));
-    content.addView(label("Заметка: " + attachments.note(i.id), 14));
+    content.addView(label("Значок: " + i.icon, 14));
+    content.addView(label(String.format(Locale.ROOT, "Цвет: #%08X", i.color), 14));
+    content.addView(button("Редактировать название и координаты", () ->
+        edit(i, new GeoPoint(i.latitude, i.longitude))));
+    content.addView(button("Выбрать значок и цвет", () -> {
+      explorer.selected.clear();
+      explorer.selected.add(i.id);
+      openIcons();
+    }));
+    content.addView(label("Описание: " + attachments.note(i.id), 14));
     content.addView(button("Редактировать заметку", () -> editNote(i)));
     content.addView(button("Добавить фото / видео / аудио", () -> pickMedia(i.id)));
     List<PointAttachments.Entry> files = attachments.list(i.id);
