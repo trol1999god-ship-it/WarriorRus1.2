@@ -397,7 +397,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
       while (c.moveToNext()) referenced.add(c.getString(0));
     }
     for (java.io.File file : files)
-      if (file.isFile() && file.getName().matches("[a-fA-F0-9-]{36}\\\\.bin") && !referenced.contains(file.getName())) file.delete();
+      if (file.isFile() && file.getName().matches("[a-fA-F0-9-]{36}\\.bin") && !referenced.contains(file.getName())) file.delete();
   }
 
   public boolean canUndo() {
