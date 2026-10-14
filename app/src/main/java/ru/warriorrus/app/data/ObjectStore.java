@@ -160,7 +160,12 @@ public final class ObjectStore extends SQLiteOpenHelper {
         java.io.File src = new java.io.File(mediaDirectory, original);
         java.io.File dst = new java.io.File(mediaDirectory, next);
         try {
-          java.nio.file.Files.copy(src.toPath(), dst.toPath());
+          try (java.io.InputStream input = new java.io.FileInputStream(src);
+              java.io.OutputStream output = new java.io.FileOutputStream(dst)) {
+            byte[] buffer = new byte[65536];
+            int count;
+            while ((count = input.read(buffer)) != -1) output.write(buffer, 0, count);
+          }
         } catch (java.io.IOException e) {
           throw new IllegalStateException("Не удалось скопировать вложение", e);
         }
