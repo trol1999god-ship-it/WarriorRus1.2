@@ -26,6 +26,23 @@ public final class MainActivity extends Activity {
   private boolean refreshing;
   private long dragged;
 
+  private final android.os.Handler iconHandler =
+      new android.os.Handler(android.os.Looper.getMainLooper());
+  private long iconRevision = Long.MIN_VALUE;
+  private final Runnable iconPoll =
+      new Runnable() {
+        public void run() {
+          if (map != null) {
+            long next = map.iconRevision();
+            if (next != iconRevision) {
+              iconRevision = next;
+              map.refresh(store);
+            }
+            iconHandler.postDelayed(this, 3000);
+          }
+        }
+      };
+
   private int dp(int n) {
     return (int) (n * getResources().getDisplayMetrics().density);
   }
@@ -94,7 +111,26 @@ public final class MainActivity extends Activity {
                     .setPositiveButton("Онлайн", (d, w) -> map.view.setUseDataConnection(true))
                     .setNegativeButton("Только кэш", (d, w) -> map.view.setUseDataConnection(false))
                     .show()));
-    root.addView(bar);
+    bar.addView(
+        button(
+            "Значки",
+            () -> {
+              java.util.List<Long> ids = new java.util.ArrayList<>();
+              for (long id : explorer.selected) {
+                MapItem i = store.get(id);
+                if (i != null && !i.isFolder()) ids.add(id);
+              }
+              long[] selectedIds = new long[ids.size()];
+              for (int n = 0; n < ids.size(); n++) selectedIds[n] = ids.get(n);
+              android.content.Intent intent =
+                  new android.content.Intent(this, ru.warriorrus.app.icons.IconsActivity.class);
+              intent.putExtra(ru.warriorrus.app.icons.IconsActivity.POINT_IDS, selectedIds);
+              store.clearUndo();
+              startActivity(intent);
+            }));
+    HorizontalScrollView barScroll = new HorizontalScrollView(this);
+    barScroll.addView(bar);
+    root.addView(barScroll);
     LinearLayout body = new LinearLayout(this);
     body.setOrientation(
         getResources().getConfiguration().screenWidthDp >= 700
@@ -564,17 +600,24 @@ public final class MainActivity extends Activity {
   @Override
   protected void onResume() {
     super.onResume();
-    if (map != null) map.view.onResume();
+    if (map != null) {
+      map.view.onResume();
+      refresh();
+      iconRevision = map.iconRevision();
+      iconHandler.postDelayed(iconPoll, 3000);
+    }
   }
 
   @Override
   protected void onPause() {
+    iconHandler.removeCallbacksAndMessages(null);
     if (map != null) map.view.onPause();
     super.onPause();
   }
 
   @Override
   protected void onDestroy() {
+    iconHandler.removeCallbacksAndMessages(null);
     if (map != null) map.view.onDetach();
     if (store != null) store.close();
     super.onDestroy();

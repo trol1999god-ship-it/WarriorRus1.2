@@ -15,9 +15,14 @@ import ru.warriorrus.app.data.*;
 public final class MapWorkspace {
   public final MapView view;
   private final Activity activity;
+  private ru.warriorrus.app.icons.IconLibrary icons;
 
   public MapWorkspace(Activity activity, Consumer<GeoPoint> create) {
     this.activity = activity;
+    try {
+      icons = ru.warriorrus.app.icons.IconLibrary.open(activity);
+    } catch (java.io.IOException unavailable) {
+    }
     org.osmdroid.config.Configuration.getInstance()
         .setUserAgentValue(activity.getPackageName() + "/2.0");
     org.osmdroid.config.Configuration.getInstance()
@@ -54,6 +59,8 @@ public final class MapWorkspace {
 
   public void refresh(ObjectStore store) {
     view.getOverlays().removeIf(o -> o instanceof Marker);
+    java.util.Map<String, android.graphics.drawable.Drawable.ConstantState> renderedCache =
+        new java.util.HashMap<>();
     for (MapItem i : store.renderItems())
       if (!i.isFolder()) {
         float opacity = store.effectiveOpacity(i);
@@ -70,10 +77,43 @@ public final class MapWorkspace {
         int size = (int) (24 * activity.getResources().getDisplayMetrics().density);
         icon.setSize(size, size);
         icon.setAlpha(Math.round(255 * opacity));
-        m.setIcon(icon);
+        android.graphics.drawable.Drawable rendered = icon;
+        try {
+          String cacheKey = i.icon + ":" + i.color;
+          android.graphics.drawable.Drawable.ConstantState cached = renderedCache.get(cacheKey);
+          if (cached != null) rendered = cached.newDrawable(activity.getResources()).mutate();
+          else {
+            String svg;
+            if (i.icon.startsWith("builtin:"))
+              svg = ru.warriorrus.app.icons.IconLibrary.builtinText(i.icon);
+            else {
+              if (icons == null) icons = ru.warriorrus.app.icons.IconLibrary.open(activity);
+              svg = icons.text(i.icon);
+            }
+            rendered =
+                ru.warriorrus.app.icons.SvgPreview.render(
+                        activity.getResources(), svg, i.color, size)
+                    .mutate();
+            if (rendered.getConstantState() != null)
+              renderedCache.put(cacheKey, rendered.getConstantState());
+          }
+          rendered.setAlpha(Math.round(255 * opacity));
+        } catch (Exception missingOrInvalid) {
+          /* Keep the point visible with its fallback. */
+        }
+        m.setIcon(rendered);
         view.getOverlays().add(m);
       }
     view.invalidate();
+  }
+
+  public long iconRevision() {
+    try {
+      if (icons == null) icons = ru.warriorrus.app.icons.IconLibrary.open(activity);
+      return icons.fingerprint();
+    } catch (java.io.IOException unavailable) {
+      return Long.MIN_VALUE;
+    }
   }
 
   public void center(MapItem i) {

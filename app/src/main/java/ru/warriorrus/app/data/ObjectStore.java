@@ -12,7 +12,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
   private List<ContentValues> undo;
 
   public ObjectStore(Context context) {
-    super(context, "warrior2.db", null, 1);
+    super(context, "warrior2.db", null, 2);
   }
 
   @Override
@@ -27,13 +27,15 @@ public final class ObjectStore extends SQLiteOpenHelper {
             + " objects(id),name TEXT NOT NULL,kind TEXT NOT NULL CHECK(kind IN"
             + " ('folder','point')),latitude REAL NOT NULL DEFAULT 0,longitude REAL NOT NULL"
             + " DEFAULT 0,visible INTEGER NOT NULL DEFAULT 1,position INTEGER NOT NULL DEFAULT"
-            + " 0,color INTEGER NOT NULL DEFAULT -12627531,opacity REAL NOT NULL DEFAULT 1)");
+            + " 0,color INTEGER NOT NULL DEFAULT -12627531,opacity REAL NOT NULL DEFAULT 1,icon"
+            + " TEXT NOT NULL DEFAULT 'builtin:pin')");
     db.execSQL("CREATE INDEX objects_parent ON objects(parent)");
   }
 
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    throw new IllegalStateException("Unsupported database upgrade");
+    if (oldVersion < 2)
+      db.execSQL("ALTER TABLE objects ADD COLUMN icon TEXT NOT NULL DEFAULT 'builtin:pin'");
   }
 
   public List<MapItem> all() {
@@ -49,6 +51,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
                 : c.getLong(c.getColumnIndexOrThrow("parent"));
         i.name = c.getString(c.getColumnIndexOrThrow("name"));
         i.kind = c.getString(c.getColumnIndexOrThrow("kind"));
+        i.icon = c.getString(c.getColumnIndexOrThrow("icon"));
         i.latitude = c.getDouble(c.getColumnIndexOrThrow("latitude"));
         i.longitude = c.getDouble(c.getColumnIndexOrThrow("longitude"));
         i.visible = c.getInt(c.getColumnIndexOrThrow("visible")) != 0;
@@ -87,6 +90,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
     else v.put("parent", i.parent);
     v.put("name", i.name);
     v.put("kind", i.kind);
+    v.put("icon", i.icon);
     v.put("latitude", i.latitude);
     v.put("longitude", i.longitude);
     v.put("visible", i.visible ? 1 : 0);
@@ -253,6 +257,50 @@ public final class ObjectStore extends SQLiteOpenHelper {
         });
   }
 
+  public void assignIcon(Collection<Long> ids, String icon, int color) {
+    if (icon == null || icon.isEmpty()) throw new IllegalArgumentException("Выберите значок");
+    for (long id : ids)
+      if (get(id) == null || get(id).isFolder())
+        throw new IllegalArgumentException("Выберите только метки");
+    mutate(
+        () -> {
+          for (long id : ids) {
+            ContentValues v = new ContentValues();
+            v.put("icon", icon);
+            v.put("color", color);
+            getWritableDatabase().update("objects", v, "id=?", new String[] {"" + id});
+          }
+        });
+  }
+
+  /** Only references change after library moves. Missing files never delete map objects. */
+  public void relocateIcons(Map<String, String> moves) {
+    SQLiteDatabase db = getWritableDatabase();
+    db.beginTransaction();
+    try {
+      for (MapItem i : all()) {
+        String next = relocated(i.icon, moves);
+        if (!next.equals(i.icon)) {
+          ContentValues v = new ContentValues();
+          v.put("icon", next);
+          db.update("objects", v, "id=?", new String[] {"" + i.id});
+        }
+      }
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+    if (undo != null)
+      for (ContentValues v : undo) v.put("icon", relocated(v.getAsString("icon"), moves));
+  }
+
+  private String relocated(String key, Map<String, String> moves) {
+    for (Map.Entry<String, String> move : moves.entrySet())
+      if (key.equals(move.getKey()) || key.startsWith(move.getKey() + "/"))
+        return move.getValue() + key.substring(move.getKey().length());
+    return key;
+  }
+
   public void reorder(long id, int delta) {
     MapItem item = get(id);
     if (item == null) return;
@@ -271,6 +319,10 @@ public final class ObjectStore extends SQLiteOpenHelper {
             getWritableDatabase().update("objects", v, "id=?", new String[] {"" + peers.get(n).id});
           }
         });
+  }
+
+  public void clearUndo() {
+    undo = null;
   }
 
   public boolean canUndo() {

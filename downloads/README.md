@@ -5,3 +5,7 @@
 [Скачать APK](https://github.com/trol1999god-ship-it/WarriorRus1.2/raw/refs/heads/main/downloads/Warrior-rus-2.0-stage1-debug.apk)
 
 SHA-256 указан в файле `Warrior-rus-2.0-stage1-debug.apk.sha256`. Исходники и ограничения этапа описаны в README в корне репозитория. Автоматическая миграция данных прежней реализации не выполняется.
+
+## Warrior Icons
+
+[Скачать текущую сборку с SVG-библиотекой](https://github.com/trol1999god-ship-it/WarriorRus1.2/raw/refs/heads/main/downloads/Warrior-rus-2.0-icons-debug.apk). Версия `2.0-icons`, versionCode 3. SHA-256 находится рядом в `.apk.sha256`.
