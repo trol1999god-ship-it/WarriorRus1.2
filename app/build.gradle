@@ -13,8 +13,9 @@ android {
         applicationId "ru.warriorrus.app"
         minSdk 23
         targetSdk 35
-        versionCode 4
-        versionName "2.0-map-ui"
+        // GitHub Actions run numbers increase across builds; local builds retain a stable fallback.
+        versionCode (System.getenv("GITHUB_RUN_NUMBER")?.toInteger() ?: 5)
+        versionName "2.0-map-ui." + (System.getenv("GITHUB_RUN_NUMBER") ?: "5")
     }
 }
 
