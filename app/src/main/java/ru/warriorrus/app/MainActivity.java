@@ -116,12 +116,12 @@ public final class MainActivity extends Activity {
     toolbar.setOrientation(LinearLayout.VERTICAL);
     toolbar.setBackground(plate());
     toolbar.setContentDescription("Панель картографических инструментов");
-    toolbar.addView(compact("◈ Карты", () -> mapsMenu()));
-    toolbar.addView(compact("▤ Слои", () -> openExplorer(false)));
-    toolbar.addView(compact("● Метки", () -> marksMenu()));
+    toolbar.addView(compact("Карты", () -> mapsMenu()));
+    toolbar.addView(compact("Слои", () -> openExplorer(false)));
+    toolbar.addView(compact("Метки", () -> marksMenu()));
     toolbar.addView(compact("◇ Маршруты", () -> drawingNotice("Маршруты")));
     toolbar.addView(compact("▱ Области", () -> drawingNotice("Области")));
-    toolbar.addView(compact("⚙ Инструменты", () -> toolsMenu()));
+    toolbar.addView(compact("Инструменты", () -> toolsMenu()));
     FrameLayout.LayoutParams bottom =
         new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.START);
     bottom.setMargins(dp(8), 0, 0, dp(24));
