@@ -106,31 +106,26 @@ public final class MainActivity extends Activity {
     FrameLayout root = new FrameLayout(this);
     root.setBackgroundColor(0xfff3f5f9);
     root.addView(map.view, new FrameLayout.LayoutParams(-1, -1));
-    coordinates = label("", 13);
+    coordinates = label("", 12);
     coordinates.setBackground(plate());
+    coordinates.setTextColor(0xffeaf5ff);
     FrameLayout.LayoutParams hud =
         new FrameLayout.LayoutParams(-2, -2, Gravity.TOP | Gravity.START);
-    hud.setMargins(dp(8), dp(8), dp(8), 0);
+    hud.setMargins(dp(12), dp(12), dp(8), 0);
     root.addView(coordinates, hud);
-    // Map-first, scrollable tool strip: keep controls accessible on narrow phones.
-    HorizontalScrollView toolStrip = new HorizontalScrollView(this);
-    toolStrip.setHorizontalScrollBarEnabled(false);
-    toolStrip.setFillViewport(false);
-    toolStrip.setBackground(plate());
-    toolStrip.setContentDescription("Панель картографических инструментов");
+    // Compact, four-entry map workspace dock. Feature-specific actions live inside panels.
     LinearLayout toolbar = new LinearLayout(this);
     toolbar.setOrientation(LinearLayout.HORIZONTAL);
-    toolbar.addView(compact("Карты", () -> mapsMenu()));
-    toolbar.addView(compact("Слои", () -> openExplorer(false)));
-    toolbar.addView(compact("Метки", () -> marksMenu()));
-    toolbar.addView(compact("◇ Маршруты", () -> drawingNotice("Маршруты")));
-    toolbar.addView(compact("▱ Области", () -> drawingNotice("Области")));
-    toolbar.addView(compact("Инструменты", () -> toolsMenu()));
-    toolStrip.addView(toolbar);
+    toolbar.setPadding(dp(4), dp(4), dp(4), dp(4));
+    toolbar.setBackground(plate());
+    toolbar.addView(compact("☰\\nМеню", () -> workspaceMenu()));
+    toolbar.addView(compact("◎\\nОбъекты", () -> openExplorer(false)));
+    toolbar.addView(compact("▤\\nСлои", () -> layersMenu()));
+    toolbar.addView(compact("▧\\nКарты", () -> mapsMenu()));
     FrameLayout.LayoutParams bottom =
-        new FrameLayout.LayoutParams(-1, -2, Gravity.BOTTOM);
-    bottom.setMargins(dp(8), 0, dp(8), dp(24));
-    root.addView(toolStrip, bottom);
+        new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.START);
+    bottom.setMargins(dp(12), 0, 0, dp(18));
+    root.addView(toolbar, bottom);
     LinearLayout zoom = new LinearLayout(this);
     zoom.setOrientation(LinearLayout.VERTICAL);
     zoom.setBackground(plate());
@@ -302,8 +297,8 @@ public final class MainActivity extends Activity {
 
   private android.graphics.drawable.Drawable plate() {
     GradientDrawable bg = new GradientDrawable();
-    bg.setColor(0xddeff3f8);
-    bg.setCornerRadius(dp(12));
+    bg.setColor(0xe51a283d);
+    bg.setCornerRadius(dp(16));
     return bg;
   }
 
@@ -313,6 +308,7 @@ public final class MainActivity extends Activity {
     b.setMinimumWidth(0);
     b.setPadding(dp(8), 0, dp(8), 0);
     b.setBackgroundColor(Color.TRANSPARENT);
+    b.setTextColor(0xffc9e7ff);
     b.setAllCaps(false);
     b.setContentDescription(name);
     return b;
@@ -344,6 +340,35 @@ public final class MainActivity extends Activity {
             case 4: drawingNotice("Маршруты"); break;
             case 5: drawingNotice("Области"); break;
           }
+        });
+  }
+
+  private void workspaceMenu() {
+    sheet("Warrior rus · Меню",
+        new String[]{"Объекты", "Слои", "Карты", "Загрузка карт", "Импорт / Экспорт", "Настройки", "Bluetooth", "Файлы", "О программе"},
+        n -> {
+          switch (n) {
+            case 0: openExplorer(false); break;
+            case 1: layersMenu(); break;
+            case 2: mapsMenu(); break;
+            case 3: drawingNotice("Загрузка карт"); break;
+            case 4: drawingNotice("Импорт / Экспорт"); break;
+            case 5: toolsMenu(); break;
+            case 6: drawingNotice("Bluetooth"); break;
+            case 7: openExplorer(false); break;
+            case 8: new AlertDialog.Builder(this).setTitle("Warrior rus 2.0")
+                .setMessage("Предварительная версия интерфейса. Данные хранятся локально.")
+                .setPositiveButton("ОК", null).show(); break;
+          }
+        });
+  }
+
+  private void layersMenu() {
+    sheet("Отображаемые слои",
+        new String[]{"OpenStreetMap — основной слой", "Загрузить участок карты"},
+        n -> {
+          if (n == 0) mapsMenu();
+          else drawingNotice("Загрузка карт");
         });
   }
 
