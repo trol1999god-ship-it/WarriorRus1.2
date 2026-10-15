@@ -113,28 +113,89 @@ public final class MainActivity extends Activity {
         new FrameLayout.LayoutParams(-2, -2, Gravity.TOP | Gravity.START);
     hud.setMargins(dp(12), dp(12), dp(8), 0);
     root.addView(coordinates, hud);
-    // Compact, four-entry map workspace dock. Feature-specific actions live inside panels.
+    // Independently collapsible HUD, bottom dock and right-side tools.
+    android.content.SharedPreferences ui = getPreferences(MODE_PRIVATE);
     LinearLayout toolbar = new LinearLayout(this);
     toolbar.setOrientation(LinearLayout.HORIZONTAL);
     toolbar.setPadding(dp(4), dp(4), dp(4), dp(4));
     toolbar.setBackground(plate());
-    toolbar.addView(compact("☰\\nМеню", () -> workspaceMenu()));
-    toolbar.addView(compact("◎\\nОбъекты", () -> openExplorer(false)));
-    toolbar.addView(compact("▤\\nСлои", () -> layersMenu()));
-    toolbar.addView(compact("▧\\nКарты", () -> mapsMenu()));
-    FrameLayout.LayoutParams bottom =
-        new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.START);
+    toolbar.addView(compact("◈\nМеню", () -> workspaceMenu()));
+    toolbar.addView(compact("●\nОбъекты", () -> openExplorer(false)));
+    toolbar.addView(compact("▤\nСлои", () -> layersMenu()));
+    toolbar.addView(compact("▧\nКарты", () -> mapsMenu()));
+    LinearLayout bottomDock = new LinearLayout(this);
+    bottomDock.setOrientation(LinearLayout.HORIZONTAL);
+    bottomDock.setGravity(Gravity.BOTTOM);
+    Button dockToggle = compact("⌃", () -> {});
+    bottomDock.addView(toolbar);
+    bottomDock.addView(dockToggle);
+    FrameLayout.LayoutParams bottom = new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.START);
     bottom.setMargins(dp(12), 0, 0, dp(18));
-    root.addView(toolbar, bottom);
-    LinearLayout zoom = new LinearLayout(this);
-    zoom.setOrientation(LinearLayout.VERTICAL);
-    zoom.setBackground(plate());
-    zoom.addView(compact("＋", () -> map.view.getController().zoomIn()));
-    zoom.addView(compact("−", () -> map.view.getController().zoomOut()));
-    FrameLayout.LayoutParams right =
-        new FrameLayout.LayoutParams(dp(48), -2, Gravity.END | Gravity.CENTER_VERTICAL);
+    root.addView(bottomDock, bottom);
+    Runnable syncDock = () -> {
+      boolean open = ui.getBoolean("dockExpanded", true);
+      toolbar.setVisibility(open ? View.VISIBLE : View.GONE);
+      dockToggle.setText(open ? "⌄" : "◈");
+    };
+    dockToggle.setOnClickListener(v -> {
+      ui.edit().putBoolean("dockExpanded", !ui.getBoolean("dockExpanded", true)).apply();
+      syncDock.run();
+    });
+    syncDock.run();
+
+    LinearLayout rightTools = new LinearLayout(this);
+    rightTools.setOrientation(LinearLayout.VERTICAL);
+    rightTools.setBackground(plate());
+    Button rightToggle = compact("⌃", () -> {});
+    LinearLayout rightActions = new LinearLayout(this);
+    rightActions.setOrientation(LinearLayout.VERTICAL);
+    rightActions.addView(compact("N", () -> map.view.getController().setZoom(map.view.getZoomLevelDouble())));
+    rightActions.addView(compact("▤", () -> layersMenu()));
+    rightActions.addView(compact("＋", () -> map.view.getController().zoomIn()));
+    rightActions.addView(compact("−", () -> map.view.getController().zoomOut()));
+    rightTools.addView(rightToggle);
+    rightTools.addView(rightActions);
+    FrameLayout.LayoutParams right = new FrameLayout.LayoutParams(dp(48), -2, Gravity.END | Gravity.CENTER_VERTICAL);
     right.setMargins(0, 0, dp(8), 0);
-    root.addView(zoom, right);
+    root.addView(rightTools, right);
+    Runnable syncRight = () -> {
+      boolean open = ui.getBoolean("rightExpanded", true);
+      rightActions.setVisibility(open ? View.VISIBLE : View.GONE);
+      rightToggle.setText(open ? "⌃" : "▤");
+    };
+    rightToggle.setOnClickListener(v -> {
+      ui.edit().putBoolean("rightExpanded", !ui.getBoolean("rightExpanded", true)).apply();
+      syncRight.run();
+    });
+    syncRight.run();
+
+    TextView hudToggle = label("⌃", 15);
+    hudToggle.setTextColor(0xffc9e7ff);
+    hudToggle.setBackground(plate());
+    FrameLayout.LayoutParams hudControl = new FrameLayout.LayoutParams(dp(44), dp(44), Gravity.TOP | Gravity.START);
+    hudControl.setMargins(dp(12), dp(12), 0, 0);
+    root.addView(hudToggle, hudControl);
+    // When expanded, the toggle is attached to the right edge of the HUD.
+    coordinates.post(() -> {
+      FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) hudToggle.getLayoutParams();
+      lp.leftMargin = ui.getBoolean("hudExpanded", true) ? dp(12) + coordinates.getWidth() : dp(12);
+      hudToggle.setLayoutParams(lp);
+    });
+    Runnable syncHud = () -> {
+      boolean open = ui.getBoolean("hudExpanded", true);
+      coordinates.setVisibility(open ? View.VISIBLE : View.GONE);
+      hudToggle.setText(open ? "⌃" : "◆");
+      hudToggle.post(() -> {
+        FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) hudToggle.getLayoutParams();
+        lp.leftMargin = open ? dp(12) + coordinates.getWidth() : dp(12);
+        hudToggle.setLayoutParams(lp);
+      });
+    };
+    hudToggle.setOnClickListener(v -> {
+      ui.edit().putBoolean("hudExpanded", !ui.getBoolean("hudExpanded", true)).apply();
+      syncHud.run();
+    });
+    syncHud.run();
     TextView attribution = label("© OpenStreetMap", 11);
     FrameLayout.LayoutParams credit =
         new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.END);
