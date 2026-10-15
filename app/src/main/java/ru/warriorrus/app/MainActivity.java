@@ -106,40 +106,96 @@ public final class MainActivity extends Activity {
     FrameLayout root = new FrameLayout(this);
     root.setBackgroundColor(0xfff3f5f9);
     root.addView(map.view, new FrameLayout.LayoutParams(-1, -1));
-    coordinates = label("", 13);
+    coordinates = label("", 12);
     coordinates.setBackground(plate());
+    coordinates.setTextColor(0xffeaf5ff);
     FrameLayout.LayoutParams hud =
         new FrameLayout.LayoutParams(-2, -2, Gravity.TOP | Gravity.START);
-    hud.setMargins(dp(8), dp(8), dp(8), 0);
+    hud.setMargins(dp(12), dp(12), dp(8), 0);
     root.addView(coordinates, hud);
-    // Map-first, scrollable tool strip: keep controls accessible on narrow phones.
-    HorizontalScrollView toolStrip = new HorizontalScrollView(this);
-    toolStrip.setHorizontalScrollBarEnabled(false);
-    toolStrip.setFillViewport(false);
-    toolStrip.setBackground(plate());
-    toolStrip.setContentDescription("Панель картографических инструментов");
+    // Independently collapsible HUD, bottom dock and right-side tools.
+    android.content.SharedPreferences ui = getPreferences(MODE_PRIVATE);
     LinearLayout toolbar = new LinearLayout(this);
     toolbar.setOrientation(LinearLayout.HORIZONTAL);
-    toolbar.addView(compact("Карты", () -> mapsMenu()));
-    toolbar.addView(compact("Слои", () -> openExplorer(false)));
-    toolbar.addView(compact("Метки", () -> marksMenu()));
-    toolbar.addView(compact("◇ Маршруты", () -> drawingNotice("Маршруты")));
-    toolbar.addView(compact("▱ Области", () -> drawingNotice("Области")));
-    toolbar.addView(compact("Инструменты", () -> toolsMenu()));
-    toolStrip.addView(toolbar);
-    FrameLayout.LayoutParams bottom =
-        new FrameLayout.LayoutParams(-1, -2, Gravity.BOTTOM);
-    bottom.setMargins(dp(8), 0, dp(8), dp(24));
-    root.addView(toolStrip, bottom);
-    LinearLayout zoom = new LinearLayout(this);
-    zoom.setOrientation(LinearLayout.VERTICAL);
-    zoom.setBackground(plate());
-    zoom.addView(compact("＋", () -> map.view.getController().zoomIn()));
-    zoom.addView(compact("−", () -> map.view.getController().zoomOut()));
-    FrameLayout.LayoutParams right =
-        new FrameLayout.LayoutParams(dp(48), -2, Gravity.END | Gravity.CENTER_VERTICAL);
+    toolbar.setPadding(dp(4), dp(4), dp(4), dp(4));
+    toolbar.setBackground(plate());
+    toolbar.addView(compact("◈\nМеню", () -> workspaceMenu()));
+    toolbar.addView(compact("●\nОбъекты", () -> openExplorer(false)));
+    toolbar.addView(compact("▤\nСлои", () -> layersMenu()));
+    toolbar.addView(compact("▧\nКарты", () -> mapsMenu()));
+    LinearLayout bottomDock = new LinearLayout(this);
+    bottomDock.setOrientation(LinearLayout.HORIZONTAL);
+    bottomDock.setGravity(Gravity.BOTTOM);
+    Button dockToggle = compact("⌃", () -> {});
+    bottomDock.addView(toolbar);
+    bottomDock.addView(dockToggle);
+    FrameLayout.LayoutParams bottom = new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.START);
+    bottom.setMargins(dp(12), 0, 0, dp(18));
+    root.addView(bottomDock, bottom);
+    Runnable syncDock = () -> {
+      boolean open = ui.getBoolean("dockExpanded", true);
+      toolbar.setVisibility(open ? View.VISIBLE : View.GONE);
+      dockToggle.setText(open ? "⌄" : "◈");
+    };
+    dockToggle.setOnClickListener(v -> {
+      ui.edit().putBoolean("dockExpanded", !ui.getBoolean("dockExpanded", true)).apply();
+      syncDock.run();
+    });
+    syncDock.run();
+
+    LinearLayout rightTools = new LinearLayout(this);
+    rightTools.setOrientation(LinearLayout.VERTICAL);
+    rightTools.setBackground(plate());
+    Button rightToggle = compact("⌃", () -> {});
+    LinearLayout rightActions = new LinearLayout(this);
+    rightActions.setOrientation(LinearLayout.VERTICAL);
+    rightActions.addView(compact("N", () -> map.view.getController().setZoom(map.view.getZoomLevelDouble())));
+    rightActions.addView(compact("▤", () -> layersMenu()));
+    rightActions.addView(compact("＋", () -> map.view.getController().zoomIn()));
+    rightActions.addView(compact("−", () -> map.view.getController().zoomOut()));
+    rightTools.addView(rightToggle);
+    rightTools.addView(rightActions);
+    FrameLayout.LayoutParams right = new FrameLayout.LayoutParams(dp(48), -2, Gravity.END | Gravity.CENTER_VERTICAL);
     right.setMargins(0, 0, dp(8), 0);
-    root.addView(zoom, right);
+    root.addView(rightTools, right);
+    Runnable syncRight = () -> {
+      boolean open = ui.getBoolean("rightExpanded", true);
+      rightActions.setVisibility(open ? View.VISIBLE : View.GONE);
+      rightToggle.setText(open ? "⌃" : "▤");
+    };
+    rightToggle.setOnClickListener(v -> {
+      ui.edit().putBoolean("rightExpanded", !ui.getBoolean("rightExpanded", true)).apply();
+      syncRight.run();
+    });
+    syncRight.run();
+
+    TextView hudToggle = label("⌃", 15);
+    hudToggle.setTextColor(0xffc9e7ff);
+    hudToggle.setBackground(plate());
+    FrameLayout.LayoutParams hudControl = new FrameLayout.LayoutParams(dp(44), dp(44), Gravity.TOP | Gravity.START);
+    hudControl.setMargins(dp(12), dp(12), 0, 0);
+    root.addView(hudToggle, hudControl);
+    // When expanded, the toggle is attached to the right edge of the HUD.
+    coordinates.post(() -> {
+      FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) hudToggle.getLayoutParams();
+      lp.leftMargin = ui.getBoolean("hudExpanded", true) ? dp(12) + coordinates.getWidth() : dp(12);
+      hudToggle.setLayoutParams(lp);
+    });
+    Runnable syncHud = () -> {
+      boolean open = ui.getBoolean("hudExpanded", true);
+      coordinates.setVisibility(open ? View.VISIBLE : View.GONE);
+      hudToggle.setText(open ? "⌃" : "◆");
+      hudToggle.post(() -> {
+        FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) hudToggle.getLayoutParams();
+        lp.leftMargin = open ? dp(12) + coordinates.getWidth() : dp(12);
+        hudToggle.setLayoutParams(lp);
+      });
+    };
+    hudToggle.setOnClickListener(v -> {
+      ui.edit().putBoolean("hudExpanded", !ui.getBoolean("hudExpanded", true)).apply();
+      syncHud.run();
+    });
+    syncHud.run();
     TextView attribution = label("© OpenStreetMap", 11);
     FrameLayout.LayoutParams credit =
         new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.END);
@@ -302,8 +358,8 @@ public final class MainActivity extends Activity {
 
   private android.graphics.drawable.Drawable plate() {
     GradientDrawable bg = new GradientDrawable();
-    bg.setColor(0xddeff3f8);
-    bg.setCornerRadius(dp(12));
+    bg.setColor(0xe51a283d);
+    bg.setCornerRadius(dp(16));
     return bg;
   }
 
@@ -313,6 +369,7 @@ public final class MainActivity extends Activity {
     b.setMinimumWidth(0);
     b.setPadding(dp(8), 0, dp(8), 0);
     b.setBackgroundColor(Color.TRANSPARENT);
+    b.setTextColor(0xffc9e7ff);
     b.setAllCaps(false);
     b.setContentDescription(name);
     return b;
@@ -344,6 +401,35 @@ public final class MainActivity extends Activity {
             case 4: drawingNotice("Маршруты"); break;
             case 5: drawingNotice("Области"); break;
           }
+        });
+  }
+
+  private void workspaceMenu() {
+    sheet("Warrior rus · Меню",
+        new String[]{"Объекты", "Слои", "Карты", "Загрузка карт", "Импорт / Экспорт", "Настройки", "Bluetooth", "Файлы", "О программе"},
+        n -> {
+          switch (n) {
+            case 0: openExplorer(false); break;
+            case 1: layersMenu(); break;
+            case 2: mapsMenu(); break;
+            case 3: drawingNotice("Загрузка карт"); break;
+            case 4: drawingNotice("Импорт / Экспорт"); break;
+            case 5: toolsMenu(); break;
+            case 6: drawingNotice("Bluetooth"); break;
+            case 7: openExplorer(false); break;
+            case 8: new AlertDialog.Builder(this).setTitle("Warrior rus 2.0")
+                .setMessage("Предварительная версия интерфейса. Данные хранятся локально.")
+                .setPositiveButton("ОК", null).show(); break;
+          }
+        });
+  }
+
+  private void layersMenu() {
+    sheet("Отображаемые слои",
+        new String[]{"OpenStreetMap — основной слой", "Загрузить участок карты"},
+        n -> {
+          if (n == 0) mapsMenu();
+          else drawingNotice("Загрузка карт");
         });
   }
 
