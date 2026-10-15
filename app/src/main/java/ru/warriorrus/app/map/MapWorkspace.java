@@ -17,6 +17,16 @@ public final class MapWorkspace {
   public java.util.function.Consumer<MapItem> onPointClick;
   public final CoordinateGrid grid = new CoordinateGrid();
   private final Activity activity;
+  private final org.osmdroid.views.overlay.Overlay centerDot = new org.osmdroid.views.overlay.Overlay() {
+    private final android.graphics.Paint paint = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+    @Override public void draw(android.graphics.Canvas canvas, MapView map, boolean shadow) {
+      if (shadow) return;
+      paint.setColor(Color.RED);
+      paint.setStyle(android.graphics.Paint.Style.FILL);
+      float density = activity.getResources().getDisplayMetrics().density;
+      canvas.drawCircle(map.getWidth() / 2f, map.getHeight() / 2f, 2f * density, paint);
+    }
+  };
   private ru.warriorrus.app.icons.IconLibrary icons;
 
   public MapWorkspace(Activity activity, Consumer<GeoPoint> create) {
@@ -58,6 +68,7 @@ public final class MapWorkspace {
                     return true;
                   }
                 }));
+    view.getOverlays().add(centerDot);
   }
 
   public void refresh(ObjectStore store) {
@@ -115,6 +126,8 @@ public final class MapWorkspace {
         m.setIcon(rendered);
         view.getOverlays().add(m);
       }
+    view.getOverlays().remove(centerDot);
+    view.getOverlays().add(centerDot);
     view.invalidate();
   }
 
