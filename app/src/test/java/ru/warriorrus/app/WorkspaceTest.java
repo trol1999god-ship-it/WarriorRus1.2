@@ -28,7 +28,7 @@ public class WorkspaceTest {
         Robolectric.buildActivity(MainActivity.class).setup()) {
       MainActivity a = c.get();
       assertNull(find(a.getWindow().getDecorView(), "Warrior Explorer"));
-      find(a.getWindow().getDecorView(), "Метки").performClick();
+      find(a.getWindow().getDecorView(), "⌖ Объекты").performClick();
       android.app.AlertDialog marks =
           org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
       marks
@@ -37,7 +37,7 @@ public class WorkspaceTest {
               marks.getListView().getAdapter().getView(0, null, marks.getListView()), 0, 0);
       android.app.Dialog explorerDialog = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       View explorerView = explorerDialog.getWindow().getDecorView();
-      assertNotNull(find(explorerView, "Warrior Explorer"));
+      assertNotNull(find(explorerView, "Объекты карты"));
       find(explorerView, "Операции").performClick();
       android.widget.PopupMenu operations =
           org.robolectric.shadows.ShadowPopupMenu.getLatestPopupMenu();
@@ -56,10 +56,10 @@ public class WorkspaceTest {
       try (ObjectStore s = new ObjectStore(a)) {
         assertEquals("Operations", s.all().get(0).name);
       }
-      assertNotNull(find(explorerView, "Warrior Explorer"));
+      assertNotNull(find(explorerView, "Объекты карты"));
       find(explorerView, "📁 Operations").performClick();
       assertNotNull(find(explorerView, "› Operations"));
-      find(explorerView, "Warrior").performClick();
+      find(explorerView, "Рабочая карта").performClick();
       assertNotNull(find(explorerView, "📁 Operations"));
     }
   }

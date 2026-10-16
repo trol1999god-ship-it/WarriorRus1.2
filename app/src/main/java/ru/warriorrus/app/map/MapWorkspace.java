@@ -90,16 +90,17 @@ public final class MapWorkspace {
         icon.setAlpha(Math.round(255 * opacity));
         android.graphics.drawable.Drawable rendered = icon;
         try {
-          String cacheKey = i.icon + ":" + i.color;
+          String iconKey = i.icon == null || i.icon.isEmpty() ? "builtin:pin" : i.icon;
+          String cacheKey = iconKey + ":" + i.color;
           android.graphics.drawable.Drawable.ConstantState cached = renderedCache.get(cacheKey);
           if (cached != null) rendered = cached.newDrawable(activity.getResources()).mutate();
           else {
             String svg;
-            if (i.icon.startsWith("builtin:"))
-              svg = ru.warriorrus.app.icons.IconLibrary.builtinText(i.icon);
+            if (iconKey.startsWith("builtin:"))
+              svg = ru.warriorrus.app.icons.IconLibrary.builtinText(iconKey);
             else {
               if (icons == null) icons = ru.warriorrus.app.icons.IconLibrary.open(activity);
-              svg = icons.text(i.icon);
+              svg = icons.text(iconKey);
             }
             rendered =
                 ru.warriorrus.app.icons.SvgPreview.render(

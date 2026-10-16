@@ -2,7 +2,9 @@ name: Build Warrior rus APK
 on:
   workflow_dispatch:
   push:
-    branches: [ main, master ]
+    branches: [ main, master, rename-rabochaya-karta ]
+  pull_request:
+    branches: [ main ]
 permissions:
   contents: read
 jobs:

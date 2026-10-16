@@ -88,7 +88,7 @@ public final class MainActivity extends Activity {
     store = new ObjectStore(this);
     explorer = new ExplorerController(store);
     if (state != null) explorer.folder = state.getLong("folder");
-    map = new MapWorkspace(this, p -> edit(null, p));
+    map = new MapWorkspace(this, this::mapContextMenu);
     if (state != null) {
       map.view
           .getController()
@@ -99,33 +99,71 @@ public final class MainActivity extends Activity {
     FrameLayout root = new FrameLayout(this);
     root.setBackgroundColor(0xfff3f5f9);
     root.addView(map.view, new FrameLayout.LayoutParams(-1, -1));
-    coordinates = label("", 13);
-    coordinates.setBackground(plate());
+    // Reference mockup: independently collapsible coordinate, right and bottom panels.
+    LinearLayout coordinatePanel = new LinearLayout(this);
+    coordinatePanel.setOrientation(LinearLayout.VERTICAL);
+    coordinatePanel.setBackground(plate());
+    TextView coordinateHeader = hudText("📍  WGS84   ⌄", 12);
+    coordinatePanel.addView(coordinateHeader);
+    LinearLayout coordinateDetails = new LinearLayout(this);
+    coordinateDetails.setOrientation(LinearLayout.VERTICAL);
+    coordinates = hudText("", 12);
+    coordinateDetails.addView(coordinates);
+    coordinateDetails.addView(hudText("▦  MGRS  ·  координаты карты", 11));
+    coordinateDetails.addView(hudText("▲  Высота  ·  нет данных", 11));
+    coordinatePanel.addView(coordinateDetails);
+    coordinateHeader.setOnClickListener(v -> coordinateDetails.setVisibility(
+        coordinateDetails.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE));
     FrameLayout.LayoutParams hud =
         new FrameLayout.LayoutParams(-2, -2, Gravity.TOP | Gravity.START);
     hud.setMargins(dp(8), dp(8), dp(8), 0);
-    root.addView(coordinates, hud);
+    root.addView(coordinatePanel, hud);
+
+    LinearLayout bottomContainer = new LinearLayout(this);
+    bottomContainer.setOrientation(LinearLayout.VERTICAL);
+    bottomContainer.setGravity(Gravity.CENTER_HORIZONTAL);
     LinearLayout toolbar = new LinearLayout(this);
-    toolbar.setOrientation(LinearLayout.VERTICAL);
+    toolbar.setOrientation(LinearLayout.HORIZONTAL);
     toolbar.setBackground(plate());
-    toolbar.addView(compact("Карты", () -> mapsMenu()));
-    toolbar.addView(compact("Слои", () -> openExplorer(false)));
-    toolbar.addView(compact("Метки", () -> marksMenu()));
-    toolbar.addView(compact("Инструменты", () -> toolsMenu()));
+    toolbar.addView(compact("▦ Меню", () -> mainMenu()));
+    toolbar.addView(compact("⌖ Объекты", () -> objectsMenu()));
+    toolbar.addView(compact("▧ Слои", () -> layersMenu()));
+    toolbar.addView(compact("▤ Карты", () -> mapsMenu()));
+    bottomContainer.addView(toolbar);
+    Button bottomToggle = compact("▧  ⌃", () -> {
+      toolbar.setVisibility(toolbar.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+    });
+    bottomContainer.addView(bottomToggle);
     FrameLayout.LayoutParams bottom =
         new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.START);
-    bottom.setMargins(dp(8), 0, 0, dp(24));
-    root.addView(toolbar, bottom);
-    LinearLayout zoom = new LinearLayout(this);
-    zoom.setOrientation(LinearLayout.VERTICAL);
-    zoom.setBackground(plate());
-    zoom.addView(compact("＋", () -> map.view.getController().zoomIn()));
-    zoom.addView(compact("−", () -> map.view.getController().zoomOut()));
+    bottom.setMargins(dp(8), 0, dp(8), dp(10));
+    root.addView(bottomContainer, bottom);
+
+    LinearLayout rightPanel = new LinearLayout(this);
+    rightPanel.setOrientation(LinearLayout.VERTICAL);
+    rightPanel.setBackground(plate());
+    Button compass = compact("🧭", () -> {
+      map.view.setMapOrientation(0f);
+    });
+    rightPanel.addView(compass);
+    rightPanel.addView(compact("▱", () -> layersMenu()));
+    rightPanel.addView(compact("⊕", () -> toolsMenu()));
+    rightPanel.addView(compact("＋", () -> map.view.getController().zoomIn()));
+    rightPanel.addView(compact("−", () -> map.view.getController().zoomOut()));
+    // This button opens map actions; it never requests GPS or device location.
+    rightPanel.addView(compact("➤", () -> toolsMenu()));
     FrameLayout.LayoutParams right =
-        new FrameLayout.LayoutParams(dp(48), -2, Gravity.END | Gravity.CENTER_VERTICAL);
-    right.setMargins(0, 0, dp(8), 0);
-    root.addView(zoom, right);
-    TextView attribution = label("© OpenStreetMap", 11);
+        new FrameLayout.LayoutParams(dp(50), -2, Gravity.END | Gravity.TOP);
+    right.setMargins(0, dp(8), dp(8), 0);
+    root.addView(rightPanel, right);
+    rightPanel.getChildAt(0).setOnLongClickListener(v -> {
+      for (int i = 1; i < rightPanel.getChildCount(); i++) {
+        View child = rightPanel.getChildAt(i);
+        child.setVisibility(child.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+      }
+      return true;
+    });
+    TextView attribution = label("© OpenStreetMap", 10);
     FrameLayout.LayoutParams credit =
         new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.END);
     root.addView(attribution, credit);
@@ -156,7 +194,7 @@ public final class MainActivity extends Activity {
     drawer = new LinearLayout(this);
     drawer.setOrientation(LinearLayout.VERTICAL);
     drawer.setBackgroundColor(0xfff4f6fa);
-    TextView title = label("Warrior Explorer", 20);
+    TextView title = label("Объекты карты", 20);
     title.setTypeface(null, Typeface.BOLD);
     drawer.addView(title);
     path = label("", 14);
@@ -285,9 +323,52 @@ public final class MainActivity extends Activity {
     updateCoordinates();
   }
 
+  private TextView hudText(String value, int size) {
+    TextView view = label(value, size);
+    view.setTextColor(0xffe4f2ff);
+    view.setPadding(dp(10), dp(6), dp(10), dp(6));
+    return view;
+  }
+
+  private void mainMenu() {
+    sheet("Меню", new String[] {
+      "Объекты", "Слои", "Карты", "Загрузка карт",
+      "Импорт / Экспорт", "Настройки", "Значки", "О программе"
+    }, n -> {
+      switch (n) {
+        case 0: objectsMenu(); break;
+        case 1: layersMenu(); break;
+        case 2: mapsMenu(); break;
+        case 3: mapsMenu(); break;
+        case 4: toolsMenu(); break;
+        case 5: toolsMenu(); break;
+        case 6: openIcons(); break;
+        default: new AlertDialog.Builder(this)
+          .setTitle("Рабочая карта")
+          .setMessage("Локальная картографическая рабочая область без GPS.")
+          .setPositiveButton("ОК", null).show();
+      }
+    });
+  }
+
+  private void objectsMenu() {
+    sheet("Объекты", new String[] {
+      "Все объекты", "Маршруты", "Области", "Треки", "Метки на экране"
+    }, n -> {
+      if (n == 0) openExplorer(false);
+      else if (n == 4) openExplorer(true);
+      else openExplorer(false);
+    });
+  }
+
+  private void layersMenu() {
+    openExplorer(false);
+  }
+
   private android.graphics.drawable.Drawable plate() {
     GradientDrawable bg = new GradientDrawable();
-    bg.setColor(0xddeff3f8);
+    bg.setColor(0xee071b2c);
+    bg.setStroke(dp(1), 0xff2e6387);
     bg.setCornerRadius(dp(12));
     return bg;
   }
@@ -296,7 +377,10 @@ public final class MainActivity extends Activity {
     Button b = button(name, action);
     b.setMinWidth(0);
     b.setMinimumWidth(0);
-    b.setPadding(dp(8), 0, dp(8), 0);
+    b.setMinHeight(dp(44));
+    b.setTextSize(11);
+    b.setTextColor(0xffe4f2ff);
+    b.setPadding(dp(9), 0, dp(9), 0);
     b.setBackgroundColor(Color.TRANSPARENT);
     b.setAllCaps(false);
     b.setContentDescription(name);
@@ -308,6 +392,29 @@ public final class MainActivity extends Activity {
         .setTitle(title)
         .setItems(names, (d, index) -> action.accept(index))
         .setNegativeButton("Закрыть", null)
+        .show();
+  }
+
+  /** Long press opens map actions without creating an object until the user confirms. */
+  private void mapContextMenu(GeoPoint point) {
+    String location =
+        String.format(Locale.ROOT, "%.6f, %.6f", point.getLatitude(), point.getLongitude());
+    new AlertDialog.Builder(this)
+        .setTitle("Точка на карте")
+        .setMessage("Координаты: " + location)
+        .setItems(
+            new String[] {"Создать метку", "Скопировать координаты"},
+            (dialog, which) -> {
+              if (which == 0) edit(null, point);
+              else {
+                android.content.ClipboardManager clipboard =
+                    (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                if (clipboard != null)
+                  clipboard.setPrimaryClip(ClipData.newPlainText("Координаты", location));
+                Toast.makeText(this, "Координаты скопированы", Toast.LENGTH_SHORT).show();
+              }
+            })
+        .setNegativeButton("Отмена", null)
         .show();
   }
 
@@ -355,7 +462,7 @@ public final class MainActivity extends Activity {
             case 4:
               sheet(
                   "Опции меток",
-                  new String[] {"Список / карточки Explorer", "Warrior Icons"},
+                  new String[] {"Список / карточки Explorer", "Значки"},
                   k -> {
                     if (k == 0) {
                       cards = !cards;
@@ -376,8 +483,8 @@ public final class MainActivity extends Activity {
         "Инструменты",
         new String[] {
           gridEnabled ? "Выключить координатную сетку" : "Включить координатную сетку",
-          "Warrior Explorer",
-          "Warrior Icons",
+          "Объекты карты",
+          "Значки",
           "Отмена последней операции"
         },
         n -> {
@@ -404,14 +511,14 @@ public final class MainActivity extends Activity {
     List<Long> ids = new ArrayList<>();
     List<String> names = new ArrayList<>();
     ids.add(0L);
-    names.add("Warrior");
+    names.add("Рабочая карта");
     for (MapItem i : store.renderItems())
       if (i.isFolder()) {
         List<String> chain = new ArrayList<>();
         for (MapItem p = i; p != null; p = store.get(p.parent)) chain.add(p.name);
         Collections.reverse(chain);
         ids.add(i.id);
-        names.add("Warrior / " + android.text.TextUtils.join(" / ", chain));
+        names.add("Рабочая карта / " + android.text.TextUtils.join(" / ", chain));
       }
     sheet(
         "Папки",
@@ -586,7 +693,7 @@ public final class MainActivity extends Activity {
     path.setText("‹");
     path.setContentDescription("На уровень выше");
     crumbs.addView(path);
-    TextView rootCrumb = label("Warrior", 14);
+    TextView rootCrumb = label("Рабочая карта", 14);
     rootCrumb.setOnClickListener(
         v -> {
           explorer.folder = 0;

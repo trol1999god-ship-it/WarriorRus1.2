@@ -65,16 +65,23 @@ public final class ObjectStore extends SQLiteOpenHelper {
   }
 
   public List<MapItem> renderItems() {
+    List<MapItem> snapshot = all();
     List<MapItem> result = new ArrayList<>();
-    appendChildren(0, all(), result);
+    Set<Long> visited = new HashSet<>();
+    appendChildren(0, snapshot, result, visited);
+    // Preserve legacy records even if a parent folder was deleted or corrupted.
+    for (MapItem item : snapshot)
+      if (!visited.contains(item.id))
+        appendChildren(item.parent, snapshot, result, visited);
     return result;
   }
 
-  private void appendChildren(long parent, List<MapItem> snapshot, List<MapItem> result) {
+  private void appendChildren(
+      long parent, List<MapItem> snapshot, List<MapItem> result, Set<Long> visited) {
     for (MapItem i : snapshot)
-      if (i.parent == parent) {
+      if (i.parent == parent && visited.add(i.id)) {
         result.add(i);
-        if (i.isFolder()) appendChildren(i.id, snapshot, result);
+        if (i.isFolder()) appendChildren(i.id, snapshot, result, visited);
       }
   }
 
@@ -141,6 +148,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
     i.parent = parent;
     i.name = name.trim();
     i.kind = kind;
+    i.icon = "builtin:pin";
     i.latitude = lat;
     i.longitude = lon;
     i.visible = true;
@@ -346,7 +354,8 @@ public final class ObjectStore extends SQLiteOpenHelper {
 
   public float effectiveOpacity(MapItem item) {
     float alpha = 1;
-    for (MapItem i = item; i != null; i = get(i.parent)) {
+    Set<Long> visited = new HashSet<>();
+    for (MapItem i = item; i != null && visited.add(i.id); i = get(i.parent)) {
       if (!i.visible) return 0;
       alpha *= i.opacity;
     }
