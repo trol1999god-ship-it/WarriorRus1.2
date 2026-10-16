@@ -34,16 +34,16 @@ public class MapUiTest {
       assertEquals(-1, map.getLayoutParams().width);
       assertEquals(-1, map.getLayoutParams().height);
       assertNull(find(a.getWindow().getDecorView(), "Warrior Explorer"));
-      find(a.getWindow().getDecorView(), "Метки").performClick();
+      find(a.getWindow().getDecorView(), "⌖ Метки").performClick();
       AlertDialog d = org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
       assertEquals(5, d.getListView().getAdapter().getCount());
       assertEquals("Метки на экране", d.getListView().getAdapter().getItem(1));
       d.dismiss();
-      find(a.getWindow().getDecorView(), "Инструменты").performClick();
+      find(a.getWindow().getDecorView(), "⚙").performClick();
       d = org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
       item(d, 0);
       assertTrue(map.getOverlays().stream().anyMatch(o -> o instanceof CoordinateGrid));
-      find(a.getWindow().getDecorView(), "Инструменты").performClick();
+      find(a.getWindow().getDecorView(), "⚙").performClick();
       item(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog(), 0);
       assertFalse(map.getOverlays().stream().anyMatch(o -> o instanceof CoordinateGrid));
     }
@@ -63,7 +63,7 @@ public class MapUiTest {
     }
     try (ActivityController<MainActivity> c =
         Robolectric.buildActivity(MainActivity.class).setup()) {
-      find(c.get().getWindow().getDecorView(), "Слои").performClick();
+      find(c.get().getWindow().getDecorView(), "▧ Слои").performClick();
       Dialog explorer = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       find(explorer.getWindow().getDecorView(), "Вид").performClick();
       assertNotNull(find(explorer.getWindow().getDecorView(), "● Existing\n55.70000, 37.60000"));
