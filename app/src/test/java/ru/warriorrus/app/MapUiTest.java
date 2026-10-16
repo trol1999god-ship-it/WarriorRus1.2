@@ -41,9 +41,12 @@ public class MapUiTest {
       d.dismiss();
       find(a.getWindow().getDecorView(), "▦ Меню").performClick();
       d = org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
+      item(d, 5); // Settings opens the tools containing the grid toggle.
+      d = org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
       item(d, 0);
       assertTrue(map.getOverlays().stream().anyMatch(o -> o instanceof CoordinateGrid));
       find(a.getWindow().getDecorView(), "▦ Меню").performClick();
+      item(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog(), 5);
       item(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog(), 0);
       assertFalse(map.getOverlays().stream().anyMatch(o -> o instanceof CoordinateGrid));
     }
