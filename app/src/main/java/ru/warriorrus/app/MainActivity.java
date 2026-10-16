@@ -156,7 +156,7 @@ public final class MainActivity extends Activity {
     drawer = new LinearLayout(this);
     drawer.setOrientation(LinearLayout.VERTICAL);
     drawer.setBackgroundColor(0xfff4f6fa);
-    TextView title = label("Warrior Explorer", 20);
+    TextView title = label("Объекты карты", 20);
     title.setTypeface(null, Typeface.BOLD);
     drawer.addView(title);
     path = label("", 14);
@@ -355,7 +355,7 @@ public final class MainActivity extends Activity {
             case 4:
               sheet(
                   "Опции меток",
-                  new String[] {"Список / карточки Explorer", "Warrior Icons"},
+                  new String[] {"Список / карточки Explorer", "Значки"},
                   k -> {
                     if (k == 0) {
                       cards = !cards;
@@ -376,8 +376,8 @@ public final class MainActivity extends Activity {
         "Инструменты",
         new String[] {
           gridEnabled ? "Выключить координатную сетку" : "Включить координатную сетку",
-          "Warrior Explorer",
-          "Warrior Icons",
+          "Объекты карты",
+          "Значки",
           "Отмена последней операции"
         },
         n -> {
@@ -404,14 +404,14 @@ public final class MainActivity extends Activity {
     List<Long> ids = new ArrayList<>();
     List<String> names = new ArrayList<>();
     ids.add(0L);
-    names.add("Warrior");
+    names.add("Рабочая карта");
     for (MapItem i : store.renderItems())
       if (i.isFolder()) {
         List<String> chain = new ArrayList<>();
         for (MapItem p = i; p != null; p = store.get(p.parent)) chain.add(p.name);
         Collections.reverse(chain);
         ids.add(i.id);
-        names.add("Warrior / " + android.text.TextUtils.join(" / ", chain));
+        names.add("Рабочая карта / " + android.text.TextUtils.join(" / ", chain));
       }
     sheet(
         "Папки",
@@ -586,7 +586,7 @@ public final class MainActivity extends Activity {
     path.setText("‹");
     path.setContentDescription("На уровень выше");
     crumbs.addView(path);
-    TextView rootCrumb = label("Warrior", 14);
+    TextView rootCrumb = label("Рабочая карта", 14);
     rootCrumb.setOnClickListener(
         v -> {
           explorer.folder = 0;
