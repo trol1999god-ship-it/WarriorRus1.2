@@ -1,4 +1,4 @@
-name: Build Warrior rus APK
+name: Build Рабочая карта APK
 on:
   workflow_dispatch:
   push:
@@ -32,13 +32,13 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Warrior-rus-test-reports
+          name: Rabochaya-karta-test-reports
           path: |
             app/build/reports/tests/
             app/build/reports/lint-results-debug.html
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Warrior-rus-debug-apk
+          name: Rabochaya-karta-debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
