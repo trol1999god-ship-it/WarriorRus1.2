@@ -35,6 +35,32 @@ public class ObjectStoreTest {
     return store.create(parent, name, "point", 55.75, 37.62);
   }
 
+
+  @Test
+  public void bulkMovePersistsAfterReopen() {
+    long source = folder(0, "Source"), destination = folder(0, "Destination");
+    long first = point(source, "First"), second = point(source, "Second");
+    store.transfer(Arrays.asList(first, second), destination, false);
+    store.close();
+    store = new ObjectStore(RuntimeEnvironment.getApplication());
+    assertEquals(destination, store.get(first).parent);
+    assertEquals(destination, store.get(second).parent);
+    assertEquals(4, store.all().size());
+  }
+
+  @Test
+  public void bulkCopyRetainsOriginalsAndCopiesToDestination() {
+    long source = folder(0, "Source"), destination = folder(0, "Destination");
+    long first = point(source, "First"), second = point(source, "Second");
+    store.transfer(Arrays.asList(first, second), destination, true);
+    assertEquals(source, store.get(first).parent);
+    assertEquals(source, store.get(second).parent);
+    int copies = 0;
+    for (MapItem item : store.all())
+      if (!item.isFolder() && item.parent == destination) copies++;
+    assertEquals(2, copies);
+  }
+
   @Test
   public void survivesDatabaseReopen() {
     long f = folder(0, "Field"), p = point(f, "Checkpoint");

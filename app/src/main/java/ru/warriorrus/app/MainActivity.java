@@ -108,6 +108,7 @@ public final class MainActivity extends Activity {
     LinearLayout toolbar = new LinearLayout(this);
     toolbar.setOrientation(LinearLayout.VERTICAL);
     toolbar.setBackground(plate());
+    toolbar.addView(compact("＋ Метка", () -> edit(null, (GeoPoint) map.view.getMapCenter())));
     toolbar.addView(compact("Карты", () -> mapsMenu()));
     toolbar.addView(compact("Слои", () -> openExplorer(false)));
     toolbar.addView(compact("Метки", () -> marksMenu()));
@@ -214,6 +215,8 @@ public final class MainActivity extends Activity {
     actions.addView(button("Копировать", () -> run(() -> explorer.clipboard(false))));
     actions.addView(button("Вырезать", () -> run(() -> explorer.clipboard(true))));
     actions.addView(button("Вставить", () -> run(() -> explorer.paste())));
+    actions.addView(button("Переместить в…", () -> chooseDestination(false))); 
+    actions.addView(button("Копировать в…", () -> chooseDestination(true)));
     actions.addView(button("Удалить", () -> delete()));
     actions.addView(button("Слои", () -> style()));
     actions.addView(
@@ -517,7 +520,7 @@ public final class MainActivity extends Activity {
   private void pointActions(MapItem i) {
     sheet(
         i.name,
-        new String[] {"Подробнее", "Редактировать", "Выбрать значок", "Выделить в Explorer"},
+        new String[] {"Подробнее", "Редактировать", "Выбрать значок", "Выделить в Explorer", "Переместить в…", "Копировать в…"},
         n -> {
           switch (n) {
             case 0:
@@ -537,6 +540,12 @@ public final class MainActivity extends Activity {
               openExplorer(false);
               explorer.folder = i.parent;
               refresh();
+              break;
+            case 4:
+            case 5:
+              explorer.selected.clear();
+              explorer.selected.add(i.id);
+              chooseDestination(n == 5);
               break;
           }
         });
@@ -753,6 +762,8 @@ public final class MainActivity extends Activity {
       "Копировать",
       "Вырезать",
       "Вставить сюда",
+      "Переместить в…",
+      "Копировать в…",
       "Удалить",
       "Стиль слоя",
       "Выше",
@@ -788,6 +799,12 @@ public final class MainActivity extends Activity {
                     explorer.paste();
                   });
               break;
+            case "Переместить в…":
+              chooseDestination(false);
+              break;
+            case "Копировать в…":
+              chooseDestination(true);
+              break;
             case "Удалить":
               delete();
               break;
@@ -804,6 +821,52 @@ public final class MainActivity extends Activity {
           return true;
         });
     menu.show();
+  }
+
+
+  /** Move or copy the current multi-selection directly, without using the clipboard. */
+  private void chooseDestination(boolean copy) {
+    if (explorer.selected.isEmpty()) {
+      new AlertDialog.Builder(this)
+          .setMessage("Сначала выделите точки или папки.")
+          .setPositiveButton("ОК", null).show();
+      return;
+    }
+    final List<Long> selected = new ArrayList<>(explorer.selected);
+    final List<Long> targets = new ArrayList<>();
+    final List<String> labels = new ArrayList<>();
+    targets.add(0L);
+    labels.add("Warrior / Все объекты");
+    for (MapItem folder : store.renderItems()) {
+      if (!folder.isFolder()) continue;
+      boolean invalid = false;
+      for (long id : selected) {
+        if (store.descendant(folder.id, id)) {
+          invalid = true;
+          break;
+        }
+      }
+      if (invalid) continue;
+      List<String> parts = new ArrayList<>();
+      for (MapItem parent = folder; parent != null; parent = store.get(parent.parent))
+        parts.add(parent.name);
+      Collections.reverse(parts);
+      targets.add(folder.id);
+      labels.add("Warrior / " + android.text.TextUtils.join(" / ", parts));
+    }
+    new AlertDialog.Builder(this)
+        .setTitle((copy ? "Копировать" : "Переместить") + " объектов: " + selected.size())
+        .setItems(labels.toArray(new String[0]), (dialog, index) ->
+            run(() -> {
+              long destination = targets.get(index);
+              store.transfer(selected, destination, copy);
+              explorer.selected.clear();
+              explorer.folder = destination;
+              explorer.query = "";
+              onScreenOnly = false;
+            }))
+        .setNegativeButton("Отмена", null)
+        .show();
   }
 
   private void newFolder() {
