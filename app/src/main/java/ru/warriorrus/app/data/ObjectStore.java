@@ -141,6 +141,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
     i.parent = parent;
     i.name = name.trim();
     i.kind = kind;
+    i.icon = "builtin:pin";
     i.latitude = lat;
     i.longitude = lon;
     i.visible = true;
