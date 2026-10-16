@@ -101,6 +101,7 @@ public final class MainActivity extends Activity {
     root.addView(map.view, new FrameLayout.LayoutParams(-1, -1));
     coordinates = label("", 13);
     coordinates.setBackground(plate());
+    coordinates.setTextColor(0xffe4f2ff);
     FrameLayout.LayoutParams hud =
         new FrameLayout.LayoutParams(-2, -2, Gravity.TOP | Gravity.START);
     hud.setMargins(dp(8), dp(8), dp(8), 0);
@@ -109,13 +110,13 @@ public final class MainActivity extends Activity {
     LinearLayout toolbar = new LinearLayout(this);
     toolbar.setOrientation(LinearLayout.HORIZONTAL);
     toolbar.setBackground(plate());
-    toolbar.addView(compact("▤ Карты", () -> mapsMenu()));
+    toolbar.addView(compact("▦ Меню", () -> toolsMenu()));
+    toolbar.addView(compact("⌖ Объекты", () -> marksMenu()));
     toolbar.addView(compact("▧ Слои", () -> openExplorer(false)));
-    toolbar.addView(compact("⌖ Метки", () -> marksMenu()));
-    toolbar.addView(compact("⚙", () -> toolsMenu()));
+    toolbar.addView(compact("▤ Карты", () -> mapsMenu()));
     FrameLayout.LayoutParams bottom =
         new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.START);
-    bottom.setMargins(dp(8), 0, dp(8), dp(24));
+    bottom.setMargins(dp(8), 0, dp(8), dp(10));
     root.addView(toolbar, bottom);
     LinearLayout zoom = new LinearLayout(this);
     zoom.setOrientation(LinearLayout.VERTICAL);
@@ -123,8 +124,8 @@ public final class MainActivity extends Activity {
     zoom.addView(compact("＋", () -> map.view.getController().zoomIn()));
     zoom.addView(compact("−", () -> map.view.getController().zoomOut()));
     FrameLayout.LayoutParams right =
-        new FrameLayout.LayoutParams(dp(48), -2, Gravity.END | Gravity.CENTER_VERTICAL);
-    right.setMargins(0, 0, dp(8), 0);
+        new FrameLayout.LayoutParams(dp(48), -2, Gravity.END | Gravity.TOP);
+    right.setMargins(0, dp(92), dp(8), 0);
     root.addView(zoom, right);
     TextView attribution = label("© OpenStreetMap", 11);
     FrameLayout.LayoutParams credit =
@@ -288,7 +289,8 @@ public final class MainActivity extends Activity {
 
   private android.graphics.drawable.Drawable plate() {
     GradientDrawable bg = new GradientDrawable();
-    bg.setColor(0xddeff3f8);
+    bg.setColor(0xee071b2c);
+    bg.setStroke(dp(1), 0xff2e6387);
     bg.setCornerRadius(dp(12));
     return bg;
   }
@@ -299,7 +301,8 @@ public final class MainActivity extends Activity {
     b.setMinimumWidth(0);
     b.setMinHeight(dp(44));
     b.setTextSize(11);
-    b.setPadding(dp(7), 0, dp(7), 0);
+    b.setTextColor(0xffe4f2ff);
+    b.setPadding(dp(9), 0, dp(9), 0);
     b.setBackgroundColor(Color.TRANSPARENT);
     b.setAllCaps(false);
     b.setContentDescription(name);
