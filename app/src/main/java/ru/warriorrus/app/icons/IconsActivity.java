@@ -92,7 +92,7 @@ public final class IconsActivity extends Activity {
 
   private void error(Exception e) {
     new AlertDialog.Builder(this)
-        .setTitle("Warrior Icons")
+        .setTitle("Значки — Рабочая карта")
         .setMessage(e.getMessage())
         .setPositiveButton("ОК", null)
         .show();
@@ -116,7 +116,7 @@ public final class IconsActivity extends Activity {
     LinearLayout root = new LinearLayout(this);
     root.setOrientation(LinearLayout.VERTICAL);
     root.setBackgroundColor(0xfff4f6fa);
-    root.addView(text("Warrior Icons", 22));
+    root.addView(text("Значки — Рабочая карта", 22));
     HorizontalScrollView nav = new HorizontalScrollView(this);
     crumbs = new LinearLayout(this);
     nav.addView(crumbs);

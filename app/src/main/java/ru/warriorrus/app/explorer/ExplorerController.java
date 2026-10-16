@@ -61,7 +61,7 @@ public final class ExplorerController {
     List<String> names = new ArrayList<>();
     for (MapItem i = store.get(folder); i != null; i = store.get(i.parent)) names.add(i.name);
     Collections.reverse(names);
-    StringBuilder path = new StringBuilder("Warrior");
+    StringBuilder path = new StringBuilder("Рабочая карта");
     for (String name : names) path.append(" / ").append(name);
     return path.toString();
   }
