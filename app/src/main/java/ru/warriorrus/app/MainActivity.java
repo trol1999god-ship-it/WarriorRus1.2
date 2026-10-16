@@ -88,7 +88,7 @@ public final class MainActivity extends Activity {
     store = new ObjectStore(this);
     explorer = new ExplorerController(store);
     if (state != null) explorer.folder = state.getLong("folder");
-    map = new MapWorkspace(this, p -> edit(null, p));
+    map = new MapWorkspace(this, this::mapContextMenu);
     if (state != null) {
       map.view
           .getController()
@@ -311,6 +311,29 @@ public final class MainActivity extends Activity {
         .setTitle(title)
         .setItems(names, (d, index) -> action.accept(index))
         .setNegativeButton("Закрыть", null)
+        .show();
+  }
+
+  /** Long press opens map actions without creating an object until the user confirms. */
+  private void mapContextMenu(GeoPoint point) {
+    String location =
+        String.format(Locale.ROOT, "%.6f, %.6f", point.getLatitude(), point.getLongitude());
+    new AlertDialog.Builder(this)
+        .setTitle("Точка на карте")
+        .setMessage("Координаты: " + location)
+        .setItems(
+            new String[] {"Создать метку", "Скопировать координаты"},
+            (dialog, which) -> {
+              if (which == 0) edit(null, point);
+              else {
+                android.content.ClipboardManager clipboard =
+                    (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                if (clipboard != null)
+                  clipboard.setPrimaryClip(ClipData.newPlainText("Координаты", location));
+                Toast.makeText(this, "Координаты скопированы", Toast.LENGTH_SHORT).show();
+              }
+            })
+        .setNegativeButton("Отмена", null)
         .show();
   }
 
