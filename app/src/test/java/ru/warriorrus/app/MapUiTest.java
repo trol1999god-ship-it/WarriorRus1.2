@@ -37,7 +37,7 @@ public class MapUiTest {
       find(a.getWindow().getDecorView(), "⌖ Объекты").performClick();
       AlertDialog d = org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
       assertEquals(5, d.getListView().getAdapter().getCount());
-      assertEquals("Метки на экране", d.getListView().getAdapter().getItem(1));
+      assertEquals("Метки на экране", d.getListView().getAdapter().getItem(4));
       d.dismiss();
       find(a.getWindow().getDecorView(), "▦ Меню").performClick();
       d = org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
