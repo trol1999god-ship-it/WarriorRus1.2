@@ -105,16 +105,17 @@ public final class MainActivity extends Activity {
         new FrameLayout.LayoutParams(-2, -2, Gravity.TOP | Gravity.START);
     hud.setMargins(dp(8), dp(8), dp(8), 0);
     root.addView(coordinates, hud);
+    // Compact map-first controls: the map remains visible behind the toolbars.
     LinearLayout toolbar = new LinearLayout(this);
-    toolbar.setOrientation(LinearLayout.VERTICAL);
+    toolbar.setOrientation(LinearLayout.HORIZONTAL);
     toolbar.setBackground(plate());
-    toolbar.addView(compact("Карты", () -> mapsMenu()));
-    toolbar.addView(compact("Слои", () -> openExplorer(false)));
-    toolbar.addView(compact("Метки", () -> marksMenu()));
-    toolbar.addView(compact("Инструменты", () -> toolsMenu()));
+    toolbar.addView(compact("▤ Карты", () -> mapsMenu()));
+    toolbar.addView(compact("▧ Слои", () -> openExplorer(false)));
+    toolbar.addView(compact("⌖ Метки", () -> marksMenu()));
+    toolbar.addView(compact("⚙", () -> toolsMenu()));
     FrameLayout.LayoutParams bottom =
         new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.START);
-    bottom.setMargins(dp(8), 0, 0, dp(24));
+    bottom.setMargins(dp(8), 0, dp(8), dp(24));
     root.addView(toolbar, bottom);
     LinearLayout zoom = new LinearLayout(this);
     zoom.setOrientation(LinearLayout.VERTICAL);
@@ -296,7 +297,9 @@ public final class MainActivity extends Activity {
     Button b = button(name, action);
     b.setMinWidth(0);
     b.setMinimumWidth(0);
-    b.setPadding(dp(8), 0, dp(8), 0);
+    b.setMinHeight(dp(44));
+    b.setTextSize(11);
+    b.setPadding(dp(7), 0, dp(7), 0);
     b.setBackgroundColor(Color.TRANSPARENT);
     b.setAllCaps(false);
     b.setContentDescription(name);
