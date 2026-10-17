@@ -650,7 +650,7 @@ public final class MainActivity extends Activity {
     modes.addView(offline, new LinearLayout.LayoutParams(0, dp(48), 1));
     panel.addView(modes);
     TextView source = hudText("© OpenStreetMap\nhttps://www.openstreetmap.org/copyright", 13);
-    source.setAutoLinkMask(android.text.util.Linkify.WEB_URLS);
+    android.text.util.Linkify.addLinks(source, android.text.util.Linkify.WEB_URLS);
     source.setMovementMethod(android.text.method.LinkMovementMethod.getInstance());
     source.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ui_map, 0, 0, 0);
     source.setCompoundDrawablePadding(dp(12));

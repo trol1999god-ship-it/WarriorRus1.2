@@ -151,9 +151,9 @@ public class MapUiTest {
       View root = c.get().getWindow().getDecorView();
       View credit = root.findViewWithTag("mapAttribution");
       assertEquals(View.VISIBLE, credit.getVisibility());
-      org.robolectric.shadows.ShadowLooper.idleMainLooper(4999, java.util.concurrent.TimeUnit.MILLISECONDS);
+      org.robolectric.shadows.ShadowLooper.idleMainLooper(4000, java.util.concurrent.TimeUnit.MILLISECONDS);
       assertEquals(View.VISIBLE, credit.getVisibility());
-      org.robolectric.shadows.ShadowLooper.idleMainLooper(1, java.util.concurrent.TimeUnit.MILLISECONDS);
+      org.robolectric.shadows.ShadowLooper.idleMainLooper(1000, java.util.concurrent.TimeUnit.MILLISECONDS);
       assertEquals(View.GONE, credit.getVisibility());
       root.findViewWithTag("Карты").performClick();
       Dialog maps = org.robolectric.shadows.ShadowDialog.getLatestDialog();

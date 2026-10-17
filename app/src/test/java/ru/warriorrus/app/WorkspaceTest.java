@@ -89,6 +89,7 @@ public class WorkspaceTest {
   }
 
   private View find(View v, String text) {
+    if (text.equals(v.getTag())) return v;
     if (v instanceof TextView && ((TextView) v).getText().toString().equals(text)) return v;
     if (v instanceof ViewGroup) {
       ViewGroup g = (ViewGroup) v;
