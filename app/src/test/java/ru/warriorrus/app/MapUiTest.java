@@ -80,7 +80,7 @@ public class MapUiTest {
       assertEquals("Existing", s.get(id).name);
       assertEquals("user.svg", s.get(id).icon);
       assertEquals(0xff123456, s.get(id).color);
-      assertEquals(2, s.getReadableDatabase().getVersion());
+      assertEquals(3, s.getReadableDatabase().getVersion());
       assertTrue(file.exists());
     }
   }

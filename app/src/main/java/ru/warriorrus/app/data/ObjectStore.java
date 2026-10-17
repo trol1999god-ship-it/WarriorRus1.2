@@ -12,7 +12,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
   private List<ContentValues> undo;
 
   public ObjectStore(Context context) {
-    super(context, "warrior2.db", null, 2);
+    super(context, "warrior2.db", null, 3);
   }
 
   @Override
@@ -30,19 +30,24 @@ public final class ObjectStore extends SQLiteOpenHelper {
             + " 0,color INTEGER NOT NULL DEFAULT -12627531,opacity REAL NOT NULL DEFAULT 1,icon"
             + " TEXT NOT NULL DEFAULT 'builtin:pin')");
     db.execSQL("CREATE INDEX objects_parent ON objects(parent)");
+    addGeometryColumns(db);
   }
 
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     if (oldVersion < 2)
       db.execSQL("ALTER TABLE objects ADD COLUMN icon TEXT NOT NULL DEFAULT 'builtin:pin'");
+    if (oldVersion < 3) addGeometryColumns(db);
   }
 
-  public List<MapItem> all() {
-    List<MapItem> items = new ArrayList<>();
-    try (Cursor c =
-        getReadableDatabase().query("objects", null, null, null, null, null, "position,id")) {
-      while (c.moveToNext()) {
+  private void addGeometryColumns(SQLiteDatabase db) {
+    // Keep the legacy kind constraint and IDs intact; subtype identifies extended placemarks.
+    db.execSQL("ALTER TABLE objects ADD COLUMN subtype TEXT NOT NULL DEFAULT ''");
+    db.execSQL("ALTER TABLE objects ADD COLUMN geometry TEXT NOT NULL DEFAULT '[]'");
+    db.execSQL("ALTER TABLE objects ADD COLUMN description TEXT NOT NULL DEFAULT ''");
+  }
+
+  private MapItem readItem(Cursor c) {
         MapItem i = new MapItem();
         i.id = c.getLong(c.getColumnIndexOrThrow("id"));
         i.parent =
@@ -51,6 +56,10 @@ public final class ObjectStore extends SQLiteOpenHelper {
                 : c.getLong(c.getColumnIndexOrThrow("parent"));
         i.name = c.getString(c.getColumnIndexOrThrow("name"));
         i.kind = c.getString(c.getColumnIndexOrThrow("kind"));
+        String subtype = c.getString(c.getColumnIndexOrThrow("subtype"));
+        if (!subtype.isEmpty()) i.kind = subtype;
+        i.description = c.getString(c.getColumnIndexOrThrow("description"));
+        i.segments.addAll(ru.warriorrus.app.geometry.Geometry.decode(c.getString(c.getColumnIndexOrThrow("geometry"))));
         i.icon = c.getString(c.getColumnIndexOrThrow("icon"));
         i.latitude = c.getDouble(c.getColumnIndexOrThrow("latitude"));
         i.longitude = c.getDouble(c.getColumnIndexOrThrow("longitude"));
@@ -58,8 +67,13 @@ public final class ObjectStore extends SQLiteOpenHelper {
         i.position = c.getInt(c.getColumnIndexOrThrow("position"));
         i.color = c.getInt(c.getColumnIndexOrThrow("color"));
         i.opacity = c.getFloat(c.getColumnIndexOrThrow("opacity"));
-        items.add(i);
-      }
+    return i;
+  }
+
+  public List<MapItem> all() {
+    List<MapItem> items = new ArrayList<>();
+    try (Cursor c = getReadableDatabase().query("objects", null, null, null, null, null, "position,id")) {
+      while (c.moveToNext()) items.add(readItem(c));
     }
     return items;
   }
@@ -86,8 +100,9 @@ public final class ObjectStore extends SQLiteOpenHelper {
   }
 
   public MapItem get(long id) {
-    for (MapItem i : all()) if (i.id == id) return i;
-    return null;
+    try (Cursor c = getReadableDatabase().query("objects", null, "id=?", new String[]{""+id}, null, null, null)) {
+      return c.moveToFirst() ? readItem(c) : null;
+    }
   }
 
   private ContentValues values(MapItem i, boolean withId) {
@@ -96,7 +111,10 @@ public final class ObjectStore extends SQLiteOpenHelper {
     if (i.parent == 0) v.putNull("parent");
     else v.put("parent", i.parent);
     v.put("name", i.name);
-    v.put("kind", i.kind);
+    v.put("kind", i.isFolder() ? "folder" : "point");
+    v.put("subtype", i.isGeometry() ? i.kind : "");
+    v.put("description", i.description);
+    v.put("geometry", ru.warriorrus.app.geometry.Geometry.encode(i.segments));
     v.put("icon", i.icon);
     v.put("latitude", i.latitude);
     v.put("longitude", i.longitude);
@@ -177,6 +195,52 @@ public final class ObjectStore extends SQLiteOpenHelper {
         () ->
             getWritableDatabase()
                 .update("objects", values(i, false), "id=?", new String[] {"" + id}));
+  }
+
+  /** Save a complete placemark atomically, including its ordered vertices and notes. */
+  public long save(MapItem item) {
+    requireFolder(item.parent);
+    name(item.name);
+    new Vertex(item.latitude, item.longitude);
+    if (!Arrays.asList("folder", "point", "route", "path", "track", "area").contains(item.kind))
+      throw new IllegalArgumentException("Тип не поддерживается");
+    if (item.isGeometry()) ru.warriorrus.app.geometry.Geometry.validate(item);
+    if (item.id != 0 && get(item.id) == null) throw new IllegalArgumentException("Объект не найден");
+    if (item.id == 0) item.position = all().size();
+    long[] id = {item.id};
+    mutate(() -> {
+      if (item.id == 0) id[0] = getWritableDatabase().insertOrThrow("objects", null, values(item, false));
+      else getWritableDatabase().update("objects", values(item, false), "id=?", new String[] {"" + item.id});
+    });
+    return id[0];
+  }
+
+  /** A failed import leaves the existing workspace unchanged; one undo reverses the import. */
+  public void importItems(List<MapItem> items, long parent) {
+    requireFolder(parent);
+    for (MapItem i : items) {
+      name(i.name); new Vertex(i.latitude, i.longitude);
+      if (i.isGeometry()) ru.warriorrus.app.geometry.Geometry.validate(i);
+    }
+    mutate(() -> {
+      Map<Long, Long> imported = new HashMap<>();
+      for (MapItem item : items) {
+        ContentValues v = values(item, false);
+        Long nextParent = item.parent == 0 ? parent : imported.get(item.parent);
+        if (nextParent == null) throw new IllegalArgumentException("Неверная структура папок");
+        if (nextParent == 0) v.putNull("parent"); else v.put("parent", nextParent);
+        long id = getWritableDatabase().insertOrThrow("objects", null, v);
+        imported.put(item.id, id);
+      }
+    });
+  }
+
+  public List<MapItem> exportItems(Collection<Long> selection) {
+    if (selection.isEmpty()) return renderItems();
+    List<Long> top = roots(selection);
+    List<MapItem> result = new ArrayList<>();
+    for (MapItem i : renderItems()) for (long id : top) if (descendant(i.id, id)) { result.add(i); break; }
+    return result;
   }
 
   public boolean descendant(long id, long ancestor) {

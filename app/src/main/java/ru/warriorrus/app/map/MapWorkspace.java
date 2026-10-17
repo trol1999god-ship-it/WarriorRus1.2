@@ -17,6 +17,10 @@ public final class MapWorkspace {
   public java.util.function.Consumer<MapItem> onPointClick;
   public final CoordinateGrid grid = new CoordinateGrid();
   private final Activity activity;
+  public boolean labelsVisible = true;
+  public int markerSize = 24, lineWidth = 3;
+  public java.util.function.Consumer<GeoPoint> onMapTap;
+  private final java.util.List<org.osmdroid.views.overlay.Overlay> geometryOverlays = new java.util.ArrayList<>();
   private ru.warriorrus.app.icons.IconLibrary icons;
 
   public MapWorkspace(Activity activity, Consumer<GeoPoint> create) {
@@ -50,6 +54,7 @@ public final class MapWorkspace {
             new MapEventsOverlay(
                 new MapEventsReceiver() {
                   public boolean singleTapConfirmedHelper(GeoPoint p) {
+                    if (onMapTap != null) { onMapTap.accept(p); return true; }
                     return false;
                   }
 
@@ -68,13 +73,16 @@ public final class MapWorkspace {
         ((Marker) overlay).closeInfoWindow();
         view.getOverlays().remove(overlay);
       }
+    for (org.osmdroid.views.overlay.Overlay overlay : geometryOverlays) view.getOverlays().remove(overlay);
+    geometryOverlays.clear();
     java.util.Map<String, android.graphics.drawable.Drawable.ConstantState> renderedCache =
         new java.util.HashMap<>();
     for (MapItem i : store.renderItems())
       if (!i.isFolder()) {
         float opacity = store.effectiveOpacity(i);
         if (opacity == 0) continue;
-        Marker m = new NamedMarker(view, opacity);
+        if (i.isGeometry()) { drawGeometry(i, opacity); continue; }
+        Marker m = new NamedMarker(view, opacity, labelsVisible);
         m.setOnMarkerClickListener(
             (marker, mapView) -> {
               if (onPointClick != null) {
@@ -91,7 +99,7 @@ public final class MapWorkspace {
         icon.setShape(GradientDrawable.OVAL);
         icon.setColor(i.color);
         icon.setStroke(3, Color.WHITE);
-        int size = (int) (24 * activity.getResources().getDisplayMetrics().density);
+        int size = (int) (markerSize * activity.getResources().getDisplayMetrics().density);
         icon.setSize(size, size);
         icon.setAlpha(Math.round(255 * opacity));
         android.graphics.drawable.Drawable rendered = icon;
@@ -125,6 +133,38 @@ public final class MapWorkspace {
     view.invalidate();
   }
 
+  private java.util.List<GeoPoint> points(java.util.List<Vertex> vertices) {
+    java.util.List<GeoPoint> result=new java.util.ArrayList<>();
+    for (Vertex v:vertices)result.add(new GeoPoint(v.latitude,v.longitude));return result;
+  }
+  private void drawGeometry(MapItem item,float opacity) {
+    if(item.segments.isEmpty())return;
+    int color=(item.color&0x00ffffff)|(Math.round(android.graphics.Color.alpha(item.color)*opacity)<<24);
+    if("area".equals(item.kind)) {
+      org.osmdroid.views.overlay.Polygon polygon=new org.osmdroid.views.overlay.Polygon(view);
+      polygon.setPoints(points(item.segments.get(0)));
+      java.util.List<java.util.List<GeoPoint>> holes=new java.util.ArrayList<>();
+      for(int n=1;n<item.segments.size();n++)holes.add(points(item.segments.get(n)));polygon.setHoles(holes);
+      polygon.getOutlinePaint().setColor(color);polygon.getOutlinePaint().setStrokeWidth(lineWidth*activity.getResources().getDisplayMetrics().density);
+      polygon.getFillPaint().setColor((color&0x00ffffff)|(Math.round(android.graphics.Color.alpha(color)*0.2f)<<24));
+      polygon.setOnClickListener((shape,mapView,p)->{if(onPointClick!=null)onPointClick.accept(item);return true;});
+      geometryOverlays.add(polygon);view.getOverlays().add(polygon);
+    } else for(java.util.List<Vertex> segment:item.segments) {
+      org.osmdroid.views.overlay.Polyline line=new org.osmdroid.views.overlay.Polyline(view);
+      line.setPoints(points(segment));line.getOutlinePaint().setColor(color);
+      line.getOutlinePaint().setStrokeWidth(lineWidth*activity.getResources().getDisplayMetrics().density);
+      line.setOnClickListener((shape,mapView,p)->{if(onPointClick!=null)onPointClick.accept(item);return true;});
+      geometryOverlays.add(line);view.getOverlays().add(line);
+    }
+    if(labelsVisible) {
+      NamedMarker name=new NamedMarker(view,opacity,true);
+      name.setPosition(new GeoPoint(item.latitude,item.longitude));name.setTitle(item.name);
+      android.graphics.drawable.ColorDrawable transparent=new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT);
+      name.setIcon(transparent);name.setOnMarkerClickListener((m,v)->{if(onPointClick!=null)onPointClick.accept(item);return true;});
+      geometryOverlays.add(name);view.getOverlays().add(name);
+    }
+  }
+
   public void showGrid(boolean enabled) {
     grid.setEnabled(enabled);
     if (enabled && !view.getOverlays().contains(grid)) view.getOverlays().add(0, grid);
@@ -143,6 +183,9 @@ public final class MapWorkspace {
 
   public void center(MapItem i) {
     view.getController().setCenter(new GeoPoint(i.latitude, i.longitude));
-    view.getController().setZoom(15.0);
+    if(i.isGeometry()) {
+      java.util.List<GeoPoint> all=new java.util.ArrayList<>();for(java.util.List<Vertex> s:i.segments)all.addAll(points(s));
+      if(!all.isEmpty())view.post(()->view.zoomToBoundingBox(org.osmdroid.util.BoundingBox.fromGeoPoints(all),true,48));
+    } else view.getController().setZoom(15.0);
   }
 }

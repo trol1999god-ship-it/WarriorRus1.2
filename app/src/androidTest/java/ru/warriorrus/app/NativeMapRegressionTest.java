@@ -66,6 +66,41 @@ public class NativeMapRegressionTest {
     }
   }
 
+  @Test public void manualGeometryCreationDrawingAndRestart() throws Exception {
+    android.content.Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+    context.deleteDatabase("warrior2.db");
+    context.getSharedPreferences("MainActivity", 0).edit().clear().putBoolean("mapOnline", false).commit();
+    try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
+      for (String kind : new String[]{"Создать маршрут", "Создать область"}) {
+        click(By.desc("Действия в центре карты")); click(By.text(kind));
+        device.swipe(device.getDisplayWidth()/2, device.getDisplayHeight()/2,
+            device.getDisplayWidth()/2+100, device.getDisplayHeight()/2+60, 10);
+        click(By.desc("+ Точка"));
+        if (kind.equals("Создать область")) {
+          device.swipe(device.getDisplayWidth()/2, device.getDisplayHeight()/2,
+              device.getDisplayWidth()/2-50, device.getDisplayHeight()/2+90, 10);
+          click(By.desc("+ Точка"));
+        }
+        click(By.desc("Сохранить"));
+        UiObject2 name = device.wait(Until.findObject(By.clazz(EditText.class)), 8000);
+        assertNotNull(name); name.setText(kind); click(By.res("android:id/button1"));
+        assertTrue(device.wait(Until.gone(By.res("android:id/button1")), 8000));
+      }
+      scenario.recreate(); device.waitForIdle();
+      scenario.onActivity(activity -> {
+        try (ru.warriorrus.app.data.ObjectStore store = new ru.warriorrus.app.data.ObjectStore(activity)) {
+          assertEquals(2,store.all().size());
+          assertEquals("route",store.all().get(0).kind); assertEquals("area",store.all().get(1).kind);
+          MapView map = findMapView(activity.getWindow().getDecorView());
+          assertEquals(1,map.getOverlays().stream().filter(o -> o instanceof org.osmdroid.views.overlay.Polygon).count());
+          assertEquals(1,map.getOverlays().stream().filter(o -> o instanceof org.osmdroid.views.overlay.Polyline).count());
+        }
+      });
+      device.executeShellCommand("mkdir -p /data/local/tmp/rabochaya-screens");
+      capture("manual-route-area");
+    }
+  }
+
   @Test @androidx.test.filters.SdkSuppress(minSdkVersion = 30)
   public void systemNavigationDoesNotCoverPanelsOrAddButton() throws Exception {
     android.content.Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();

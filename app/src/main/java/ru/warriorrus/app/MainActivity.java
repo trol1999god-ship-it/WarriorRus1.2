@@ -14,6 +14,11 @@ import org.osmdroid.util.GeoPoint;
 import ru.warriorrus.app.data.*;
 import ru.warriorrus.app.explorer.*;
 import ru.warriorrus.app.map.*;
+import ru.warriorrus.app.geometry.*;
+import ru.warriorrus.app.settings.Coordinates;
+import ru.warriorrus.app.exchange.PlacemarkFiles;
+import android.content.Intent;
+import java.io.*;
 
 /** Touch workspace: persistent map plus Explorer drawer; all mutations go through ObjectStore. */
 public final class MainActivity extends Activity {
@@ -26,7 +31,13 @@ public final class MainActivity extends Activity {
   private boolean refreshing;
   private long dragged;
   private Dialog explorerDialog;
-  private TextView coordinates;
+  private TextView coordinates, coordinateSystem, coordinateAdditional;
+  private DrawingController drawing;
+  private Dialog settingsDialog;
+  private static final int IMPORT_FILE = 701, EXPORT_FILE = 702;
+  private String exportFormat = "kmz";
+  private long importParent;
+  private ArrayList<Long> exportSelection = new ArrayList<>();
   private boolean cards, onScreenOnly, gridEnabled;
   private long selectedPoint;
   private boolean coordinatesCollapsed, mapLayerVisible, rightCollapsed;
@@ -128,12 +139,14 @@ public final class MainActivity extends Activity {
     coordinateDetails.setOrientation(LinearLayout.VERTICAL);
     coordinateDetails.setTag("coordinateDetails");
     TextView system = hudText("WGS84", 10);
+    coordinateSystem = system;
     system.setPadding(dp(8), dp(3), dp(4), 0);
     coordinateDetails.addView(system);
     coordinates = hudText("", 11);
     coordinates.setPadding(dp(8), dp(2), 0, dp(2));
     coordinateDetails.addView(coordinates);
-    TextView additional = hudText("MGRS —  ·  Высота —", 10);
+    TextView additional = hudText("", 10);
+    coordinateAdditional = additional;
     additional.setPadding(dp(8), 0, 0, dp(3));
     coordinateDetails.addView(additional);
     coordinatePanel.addView(coordinateDetails, new LinearLayout.LayoutParams(0, -2, 1));
@@ -254,6 +267,7 @@ public final class MainActivity extends Activity {
         });
     map.onPointClick =
         i -> {
+          if (drawing != null && drawing.active()) return;
           boolean repeat = selectedPoint == i.id;
           selectedPoint = i.id;
           updateCoordinates();
@@ -273,18 +287,20 @@ public final class MainActivity extends Activity {
     objectHeader.addView(closeObjects, new LinearLayout.LayoutParams(dp(48), dp(48)));
     drawer.addView(objectHeader);
     LinearLayout filters = new LinearLayout(this);
-    String[] filterNames = {"Все", "Метки", "Папки"};
-    String[] filterKinds = {"all", "point", "folder"};
+    String[] filterNames = {"Все", "Метки", "Папки", "Маршруты", "Линии", "Области", "Треки"};
+    String[] filterKinds = {"all", "point", "folder", "route", "path", "area", "track"};
     for (int i = 0; i < filterNames.length; i++) {
       final String kind = filterKinds[i];
       Button tab = compact(filterNames[i], () -> { objectFilter = kind; refresh(); });
       tab.setTag("filter:" + kind);
       objectTabs.add(tab);
-      filters.addView(tab, new LinearLayout.LayoutParams(0, dp(48), 1));
+      filters.addView(tab, new LinearLayout.LayoutParams(-2, dp(48)));
     }
+    HorizontalScrollView filterScroll = new HorizontalScrollView(this);
+    filterScroll.addView(filters);
     if (getResources().getConfiguration().orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE)
-      objectHeader.addView(filters, 1, new LinearLayout.LayoutParams(dp(240), dp(48)));
-    else drawer.addView(filters);
+      objectHeader.addView(filterScroll, 1, new LinearLayout.LayoutParams(dp(240), dp(48)));
+    else drawer.addView(filterScroll);
     path = hudText("", 14);
     path.setOnClickListener(
         v -> {
@@ -354,6 +370,9 @@ public final class MainActivity extends Activity {
               explorer.alphabetical = !explorer.alphabetical;
               refresh();
             }));
+    actions.addView(button("Импорт KML/KMZ/GPX", this::importFile));
+    actions.addView(button("Экспорт выбранного / всех", this::exportFile));
+    actions.addView(button("Передать по Bluetooth", this::bluetoothExport));
     LinearLayout explorerToolbar = new LinearLayout(this);
     explorerToolbar.addView(
         compact(
@@ -410,6 +429,14 @@ public final class MainActivity extends Activity {
       menu.getMenu().add("Метка в центре карты").setOnMenuItemClickListener(item -> {
         edit(null, (GeoPoint) map.view.getMapCenter()); return true;
       });
+      String[] kinds = {"route", "path", "area"};
+      String[] names = {"Маршрут", "Линия", "Область"};
+      for (int n = 0; n < kinds.length; n++) {
+        final String kind = kinds[n];
+        menu.getMenu().add(names[n]).setOnMenuItemClickListener(item -> {
+          explorerDialog.dismiss(); startDrawing(kind, (GeoPoint) map.view.getMapCenter()); return true;
+        });
+      }
       menu.getMenu().add("Папка").setOnMenuItemClickListener(item -> { newFolder(); return true; });
       menu.show();
     });
@@ -421,6 +448,15 @@ public final class MainActivity extends Activity {
     SystemInsets.protect(root, 0);
     setContentView(root);
     root.requestApplyInsets();
+    drawing = new DrawingController(this, root, map, item -> { store.save(item); refresh(); });
+    if (state != null) {
+      drawing.restore(state);
+      exportFormat = state.getString("exportFormat", "kmz");
+      importParent = state.getLong("importParent", 0);
+      long[] ids = state.getLongArray("exportSelection");
+      if (ids != null) for (long id : ids) exportSelection.add(id);
+    }
+    applySettings();
     explorerDialog = new Dialog(this);
     explorerDialog.setOnDismissListener(d -> onScreenOnly = false);
     refresh();
@@ -603,15 +639,21 @@ public final class MainActivity extends Activity {
 
   /** Long press opens map actions without creating an object until the user confirms. */
   private void mapContextMenu(GeoPoint point) {
-    String location =
-        String.format(Locale.ROOT, "%.6f, %.6f", point.getLatitude(), point.getLongitude());
+    if (drawing != null && drawing.active()) { drawing.add(point); return; }
+    String location = String.format(Locale.ROOT, "%.6f, %.6f", point.getLatitude(), point.getLongitude());
     new AlertDialog.Builder(this)
         .setTitle("Точка на карте: " + location)
         .setItems(
-            new String[] {"Создать метку", "Скопировать координаты"},
+            new String[] {"Создать метку", "Скопировать координаты", "Создать маршрут", "Нарисовать линию", "Создать область", "Поиск по координатам / названию", "Импорт KML/KMZ/GPX"},
             (dialog, which) -> {
               if (which == 0) edit(null, point);
-              else {
+              else if (which >= 2) {
+                if (which == 2) startDrawing("route", point);
+                else if (which == 3) startDrawing("path", point);
+                else if (which == 4) startDrawing("area", point);
+                else if (which == 5) searchMap();
+                else importFile();
+              } else {
                 android.content.ClipboardManager clipboard =
                     (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                 if (clipboard != null)
@@ -715,12 +757,16 @@ public final class MainActivity extends Activity {
 
   private void toolsMenu() {
     sheet(
-        "Инструменты",
+        "Настройки",
         new String[] {
           gridEnabled ? "Выключить координатную сетку" : "Включить координатную сетку",
           "Объекты карты",
           "Значки",
-          "Отмена последней операции"
+          "Отмена последней операции",
+          "Параметры карты и координат",
+          "Импорт KML/KMZ/GPX",
+          "Экспорт выбранного / всех",
+          "Передать по Bluetooth"
         },
         n -> {
           switch (n) {
@@ -738,6 +784,10 @@ public final class MainActivity extends Activity {
             case 3:
               run(() -> store.undo());
               break;
+            case 4: settingsMenu(); break;
+            case 5: importFile(); break;
+            case 6: exportFile(); break;
+            case 7: bluetoothExport(); break;
           }
         });
   }
@@ -770,7 +820,7 @@ public final class MainActivity extends Activity {
     List<Long> ids = new ArrayList<>();
     for (long id : explorer.selected) {
       MapItem i = store.get(id);
-      if (i != null && !i.isFolder()) ids.add(id);
+      if (i != null && "point".equals(i.kind)) ids.add(id);
     }
     long[] selectedIds = new long[ids.size()];
     for (int n = 0; n < ids.size(); n++) selectedIds[n] = ids.get(n);
@@ -785,17 +835,17 @@ public final class MainActivity extends Activity {
     if (coordinates == null) return;
     double lat = map.view.getMapCenter().getLatitude(),
         lon = map.view.getMapCenter().getLongitude();
-    coordinates.setText(
-        String.format(
-            Locale.ROOT,
-            "%.6f° %s   %.6f° %s",
-            Math.abs(lat), lat < 0 ? "S" : "N",
-            Math.abs(lon), lon < 0 ? "W" : "E"));
+    int primary = getPreferences(MODE_PRIVATE).getInt("primaryCoordinates", 0);
+    int secondary = getPreferences(MODE_PRIVATE).getInt("secondaryCoordinates", 4);
+    coordinateSystem.setText(Coordinates.NAMES[Math.max(0, Math.min(4, primary))]);
+    coordinates.setText(Coordinates.format(primary, lat, lon));
+    coordinateAdditional.setVisibility(secondary < 0 ? View.GONE : View.VISIBLE);
+    coordinateAdditional.setText(secondary < 0 ? "" : Coordinates.format(secondary, lat, lon));
   }
 
   private void searchMap() {
     EditText input = new EditText(this);
-    input.setHint("Название или широта, долгота");
+    input.setHint("Название, широта и долгота, UTM или MGRS");
     new AlertDialog.Builder(this)
         .setTitle("Поиск на карте — локально")
         .setView(input)
@@ -803,23 +853,11 @@ public final class MainActivity extends Activity {
             "Найти",
             (d, w) -> {
               String query = input.getText().toString().trim();
-              String[] pair = query.split(",");
-              if (pair.length == 2) {
-                try {
-                  double lat = Double.parseDouble(pair[0].trim()),
-                      lon = Double.parseDouble(pair[1].trim());
-                  if (Double.isNaN(lat)
-                      || Double.isNaN(lon)
-                      || Math.abs(lat) > 90
-                      || Math.abs(lon) > 180) {
-                    throw new IllegalArgumentException();
-                  }
-                  map.view.getController().setCenter(new GeoPoint(lat, lon));
-                  updateCoordinates();
-                  return;
-                } catch (Exception invalid) {
-                }
-              }
+              try {
+                Vertex location = Coordinates.parse(query);
+                map.view.getController().setCenter(new GeoPoint(location.latitude, location.longitude));
+                updateCoordinates(); return;
+              } catch (IllegalArgumentException invalid) { /* Search names below. */ }
               List<MapItem> results = new ArrayList<>();
               for (MapItem i : store.all()) {
                 if (!i.isFolder()
@@ -853,7 +891,7 @@ public final class MainActivity extends Activity {
   private void pointActions(MapItem i) {
     sheet(
         i.name,
-        new String[] {"Подробнее", "Редактировать", "Выбрать значок", "Выделить в Explorer"},
+        new String[] {"Подробнее", "Редактировать", i.isGeometry() ? "Вершины" : "Выбрать значок", "Выделить в Explorer"},
         n -> {
           switch (n) {
             case 0:
@@ -863,6 +901,7 @@ public final class MainActivity extends Activity {
               edit(i, new GeoPoint(i.latitude, i.longitude));
               break;
             case 2:
+              if (i.isGeometry()) { edit(i, new GeoPoint(i.latitude, i.longitude)); drawing.vertices(); break; }
               explorer.selected.clear();
               explorer.selected.add(i.id);
               openIcons();
@@ -884,11 +923,11 @@ public final class MainActivity extends Activity {
         .setMessage(
             String.format(
                 Locale.ROOT,
-                "Координаты: %.6f, %.6f\nЗначок: %s\nЦвет: #%06X",
+                "Координаты: %.6f, %.6f\nЗначок: %s\nЦвет: #%06X\n%s\n%s",
                 i.latitude,
                 i.longitude,
                 i.icon,
-                i.color & 0xffffff))
+                i.color & 0xffffff, i.description, Geometry.summary(i)))
         .setPositiveButton(
             "Редактировать", (d, w) -> edit(i, new GeoPoint(i.latitude, i.longitude)))
         .setNegativeButton("Закрыть", null)
@@ -1004,7 +1043,7 @@ public final class MainActivity extends Activity {
         row.addView(thumbnail, new LinearLayout.LayoutParams(dp(48), dp(48)));
       }
       TextView name = hudText(i.name, 15);
-      name.setContentDescription((i.isFolder() ? "Папка " : "Метка ") + i.name);
+      name.setContentDescription(i.typeName() + " " + i.name);
       name.setCompoundDrawablesRelativeWithIntrinsicBounds(i.isFolder() ? R.drawable.ui_folder : R.drawable.ui_pin, 0, 0, 0);
       name.setCompoundDrawablePadding(dp(8));
       name.setMaxLines(3);
@@ -1185,6 +1224,10 @@ public final class MainActivity extends Activity {
   }
 
   private void edit(MapItem item, GeoPoint point) {
+    if (item != null && item.isGeometry()) {
+      if (explorerDialog != null) explorerDialog.dismiss();
+      drawing.start(item, item.kind, item.parent, null); return;
+    }
     LinearLayout form = new LinearLayout(this);
     form.setOrientation(LinearLayout.VERTICAL);
     EditText name = new EditText(this);
@@ -1200,6 +1243,11 @@ public final class MainActivity extends Activity {
       form.addView(lat);
       form.addView(lon);
     }
+    EditText description = new EditText(this);
+    description.setHint("Описание / заметка");
+    description.setMinLines(2);
+    if (item != null) description.setText(item.description);
+    form.addView(description);
     AlertDialog d =
         new AlertDialog.Builder(this)
             .setTitle(item == null ? "Новая точка" : "Редактор объекта")
@@ -1215,9 +1263,14 @@ public final class MainActivity extends Activity {
                       try {
                         double a = Double.parseDouble(lat.getText().toString()),
                             b = Double.parseDouble(lon.getText().toString());
-                        if (item == null)
-                          store.create(explorer.folder, name.getText().toString(), "point", a, b);
-                        else store.edit(item.id, name.getText().toString(), a, b);
+                        MapItem saved = item == null ? new MapItem() : item;
+                        if (item == null) {
+                          saved.parent = explorer.folder; saved.kind = "point"; saved.visible = true;
+                          saved.opacity = 1; saved.color = 0xff3f6db5;
+                        }
+                        saved.name = name.getText().toString(); saved.latitude = a; saved.longitude = b;
+                        saved.description = description.getText().toString();
+                        store.save(saved);
                         d.dismiss();
                         refresh();
                       } catch (Exception e) {
@@ -1295,10 +1348,166 @@ public final class MainActivity extends Activity {
         .show();
   }
 
+  private void startDrawing(String kind, GeoPoint point) {
+    if (explorerDialog != null) explorerDialog.dismiss();
+    drawing.start(null, kind, explorer.folder, point);
+  }
+
+  private void applySettings() {
+    android.content.SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+    map.labelsVisible = prefs.getBoolean("placemarkLabels", true);
+    map.markerSize = prefs.getInt("markerSize", 24);
+    map.lineWidth = prefs.getInt("lineWidth", 3);
+    if (prefs.getBoolean("keepScreenOn", false)) getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    else getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    updateCoordinates();
+    if (drawer != null && rows != null) refresh();
+  }
+
+  private void settingsMenu() {
+    settingsDialog = new Dialog(this);
+    LinearLayout form = new LinearLayout(this); form.setOrientation(LinearLayout.VERTICAL);
+    form.setPadding(dp(12), dp(8), dp(12), dp(8)); form.setBackground(plate());
+    form.addView(hudText("Параметры карты и координат", 18));
+    form.addView(hudText("Основные координаты", 13));
+    Spinner primary = new Spinner(this);
+    primary.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Coordinates.NAMES));
+    primary.setSelection(getPreferences(MODE_PRIVATE).getInt("primaryCoordinates", 0)); form.addView(primary);
+    form.addView(hudText("Дополнительные координаты", 13));
+    String[] secondaryNames = new String[6]; secondaryNames[0] = "Не показывать";
+    System.arraycopy(Coordinates.NAMES, 0, secondaryNames, 1, 5);
+    Spinner secondary = new Spinner(this);
+    secondary.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, secondaryNames));
+    secondary.setSelection(getPreferences(MODE_PRIVATE).getInt("secondaryCoordinates", 4)+1); form.addView(secondary);
+    CheckBox labels = new CheckBox(this); labels.setText("Подписи объектов"); labels.setTextColor(0xffe4f2ff);
+    labels.setChecked(getPreferences(MODE_PRIVATE).getBoolean("placemarkLabels", true)); form.addView(labels);
+    CheckBox screen = new CheckBox(this); screen.setText("Не выключать экран"); screen.setTextColor(0xffe4f2ff);
+    screen.setChecked(getPreferences(MODE_PRIVATE).getBoolean("keepScreenOn", false)); form.addView(screen);
+    TextView markerValue = hudText("Размер значков: "+map.markerSize+" dp", 13); form.addView(markerValue);
+    SeekBar marker = new SeekBar(this); marker.setMax(40); marker.setProgress(map.markerSize-16); form.addView(marker);
+    TextView lineValue = hudText("Толщина линий: "+map.lineWidth+" dp", 13); form.addView(lineValue);
+    SeekBar line = new SeekBar(this); line.setMax(11); line.setProgress(map.lineWidth-1); form.addView(line);
+    marker.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+      public void onProgressChanged(SeekBar bar,int value,boolean user){markerValue.setText("Размер значков: "+(value+16)+" dp");}
+      public void onStartTrackingTouch(SeekBar bar){} public void onStopTrackingTouch(SeekBar bar){}
+    });
+    line.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+      public void onProgressChanged(SeekBar bar,int value,boolean user){lineValue.setText("Толщина линий: "+(value+1)+" dp");}
+      public void onStartTrackingTouch(SeekBar bar){} public void onStopTrackingTouch(SeekBar bar){}
+    });
+    form.addView(compact("Применить", () -> {
+      getPreferences(MODE_PRIVATE).edit().putInt("primaryCoordinates", primary.getSelectedItemPosition())
+          .putInt("secondaryCoordinates", secondary.getSelectedItemPosition()-1).putBoolean("placemarkLabels", labels.isChecked())
+          .putBoolean("keepScreenOn", screen.isChecked()).putInt("markerSize", marker.getProgress()+16).putInt("lineWidth", line.getProgress()+1).apply();
+      applySettings(); settingsDialog.dismiss();
+    }));
+    form.addView(compact("Закрыть", () -> settingsDialog.dismiss()));
+    ScrollView scroll = new ScrollView(this); scroll.addView(form); showPanel(settingsDialog, scroll, dp(360), false);
+  }
+
+  private void importFile() {
+    importParent = explorer.folder;
+    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE)
+        .setType("*/*").putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+    try { startActivityForResult(intent, IMPORT_FILE); }
+    catch (android.content.ActivityNotFoundException missing) { fileError("На устройстве нет файлового менеджера"); }
+  }
+
+  private void exportFile() {
+    exportSelection = new ArrayList<>(explorer.selected);
+    sheet("Формат экспорта", new String[]{"KMZ", "KML", "GPX"}, n -> {
+      exportFormat = new String[]{"kmz", "kml", "gpx"}[n];
+      List<MapItem> snapshot = store.exportItems(exportSelection);
+      if (snapshot.isEmpty()) { fileError("Нет объектов для экспорта"); return; }
+      if ("gpx".equals(exportFormat)) for (MapItem i : snapshot) if ("area".equals(i.kind)) {
+        fileError("GPX не поддерживает области. Выберите KMZ или KML."); return;
+      }
+      Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE)
+          .setType("kmz".equals(exportFormat) ? "application/vnd.google-earth.kmz" : "gpx".equals(exportFormat) ? "application/gpx+xml" : "application/vnd.google-earth.kml+xml")
+          .putExtra(Intent.EXTRA_TITLE, "Rabochaya-karta."+exportFormat).putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+      try { startActivityForResult(intent, EXPORT_FILE); }
+      catch (android.content.ActivityNotFoundException missing) { fileError("На устройстве нет файлового менеджера"); }
+    });
+  }
+
+  private void fileError(String message) {
+    if (isFinishing() || isDestroyed()) return;
+    new AlertDialog.Builder(this).setTitle("Файлы объектов").setMessage(message == null ? "Не удалось обработать файл" : message)
+        .setPositiveButton("ОК", null).show();
+  }
+
+  @Override protected void onActivityResult(int request, int result, Intent data) {
+    super.onActivityResult(request, result, data);
+    if (result != RESULT_OK || data == null || data.getData() == null) return;
+    android.net.Uri uri = data.getData();
+    if (request == IMPORT_FILE) {
+      final long destination = importParent;
+      Toast.makeText(this, "Чтение файла…", Toast.LENGTH_SHORT).show();
+      new Thread(() -> {
+        try (InputStream input = getContentResolver().openInputStream(uri)) {
+          if (input == null) throw new IOException("Файл недоступен");
+          List<MapItem> imported = PlacemarkFiles.read(input);
+          runOnUiThread(() -> {
+            if (isFinishing() || isDestroyed()) return;
+            new AlertDialog.Builder(this).setTitle("Импорт объектов: "+imported.size())
+                .setMessage("Добавить объекты в выбранную папку? Текущие объекты сохранятся.")
+                .setPositiveButton("Импортировать", (d,w) -> run(() -> {store.importItems(imported,destination);refresh();}))
+                .setNegativeButton("Отмена",null).show();
+          });
+        } catch (Exception e) {runOnUiThread(() -> fileError(e.getMessage()));}
+      }, "local-placemark-import").start();
+    } else if (request == EXPORT_FILE) {
+      final List<MapItem> snapshot = store.exportItems(exportSelection);
+      final String format = exportFormat;
+      new Thread(() -> {
+        try (OutputStream output = getContentResolver().openOutputStream(uri, "wt")) {
+          if (output == null) throw new IOException("Файл недоступен");
+          PlacemarkFiles.write(snapshot, output, format);
+          runOnUiThread(() -> {if (!isFinishing() && !isDestroyed()) Toast.makeText(this,"Экспорт завершён",Toast.LENGTH_LONG).show();});
+        } catch (Exception e) {runOnUiThread(() -> fileError(e.getMessage()));}
+      }, "local-placemark-export").start();
+    }
+  }
+
+  private void bluetoothExport() {
+    final List<MapItem> snapshot = store.exportItems(explorer.selected);
+    if (snapshot.isEmpty()) {fileError("Нет объектов для передачи"); return;}
+    new AlertDialog.Builder(this).setTitle("Передать по Bluetooth")
+        .setMessage("Подготовить KMZ выбранных объектов для системной передачи по Bluetooth?")
+        .setPositiveButton("Подготовить", (d,w) -> {
+          new Thread(() -> {
+            try {
+              File directory = new File(getFilesDir(), "shared"); if (!directory.isDirectory() && !directory.mkdirs()) throw new IOException("Не удалось создать файл");
+              File file = new File(directory, "Rabochaya-karta-"+java.util.UUID.randomUUID()+".kmz");
+              try (OutputStream output = new FileOutputStream(file)) {PlacemarkFiles.write(snapshot, output, "kmz");}
+              runOnUiThread(() -> {
+                if (isFinishing() || isDestroyed()) return;
+                android.net.Uri uri = android.net.Uri.parse("content://"+getPackageName()+".localfiles/"+file.getName());
+                Intent send = new Intent(Intent.ACTION_SEND).setType("application/vnd.google-earth.kmz").setPackage("com.android.bluetooth")
+                    .putExtra(Intent.EXTRA_STREAM,uri).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                send.setClipData(ClipData.newRawUri("KMZ",uri));
+                try {startActivity(send);}catch(android.content.ActivityNotFoundException unavailable){fileError("Системная передача Bluetooth недоступна. Сохраните KMZ через экспорт и передайте его из файлового менеджера.");}
+              });
+            } catch (Exception e) {runOnUiThread(() -> fileError(e.getMessage()));}
+          },"bluetooth-file").start();
+        }).setNegativeButton("Отмена",null).show();
+  }
+
+  @Override public void onBackPressed() {
+    if (drawing != null && drawing.active()) { drawing.confirmCancel(); return; }
+    super.onBackPressed();
+  }
+
   @Override
   protected void onSaveInstanceState(Bundle state) {
     super.onSaveInstanceState(state);
     state.putLong("folder", explorer.folder);
+    if (drawing != null) drawing.saveState(state);
+    state.putString("exportFormat", exportFormat);
+    state.putLong("importParent", importParent);
+    long[] selected = new long[exportSelection.size()];
+    for (int n=0; n<selected.length; n++) selected[n]=exportSelection.get(n);
+    state.putLongArray("exportSelection", selected);
     state.putDouble("mapLat", map.view.getMapCenter().getLatitude());
     state.putDouble("mapLon", map.view.getMapCenter().getLongitude());
     state.putDouble("mapZoom", map.view.getZoomLevelDouble());
@@ -1328,6 +1537,7 @@ public final class MainActivity extends Activity {
     if (menuDialog != null) menuDialog.dismiss();
     if (layersDialog != null) layersDialog.dismiss();
     if (mapsDialog != null) mapsDialog.dismiss();
+    if (settingsDialog != null) settingsDialog.dismiss();
     if (explorerDialog != null && explorerDialog.isShowing()) explorerDialog.dismiss();
     if (map != null) map.view.onDetach();
     if (store != null) store.close();
