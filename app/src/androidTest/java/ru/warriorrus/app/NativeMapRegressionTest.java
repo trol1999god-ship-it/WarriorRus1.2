@@ -72,8 +72,7 @@ public class NativeMapRegressionTest {
   public void systemNavigationDoesNotCoverPanelsOrAddButton() throws Exception {
     android.content.Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
     context.getSharedPreferences("MainActivity", 0).edit().clear().putBoolean("mapOnline", false).commit();
-    java.io.File screenshots = new java.io.File(context.getFilesDir(), "native-screens");
-    screenshots.mkdirs();
+    device.executeShellCommand("mkdir -p /data/local/tmp/rabochaya-screens");
     try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
       for (int orientation = 0; orientation < 2; orientation++) {
         if (orientation == 0) device.setOrientationNatural(); else device.setOrientationLeft();
@@ -81,7 +80,7 @@ public class NativeMapRegressionTest {
         String prefix = orientation == 0 ? "portrait" : "landscape";
         scenario.onActivity(activity -> assertWithinSafeArea(activity,
             activity.getWindow().getDecorView().findViewWithTag("bottomPanel")));
-        device.takeScreenshot(new java.io.File(screenshots, prefix + "-map.png"));
+        capture(prefix + "-map");
         String[] labels = {"Меню", "Слои", "Карты", "Объекты"};
         String[] fields = {"menuDialog", "layersDialog", "mapsDialog", "explorerDialog"};
         for (int index = 0; index < labels.length; index++) {
@@ -99,7 +98,7 @@ public class NativeMapRegressionTest {
                 assertWithinSafeArea(activity, described(host, "Создать объект"));
             } catch (ReflectiveOperationException error) { throw new AssertionError(error); }
           });
-          device.takeScreenshot(new java.io.File(screenshots, prefix + "-" + fieldName + ".png"));
+          capture(prefix + "-" + fieldName);
           if (fieldName.equals("explorerDialog")) {
             click(By.desc("Создать объект"));
             assertNotNull(device.wait(Until.findObject(By.text("Метка в центре карты")), 8000));
@@ -114,6 +113,10 @@ public class NativeMapRegressionTest {
       device.setOrientationNatural();
       device.unfreezeRotation();
     }
+  }
+
+  private void capture(String name) throws Exception {
+    device.executeShellCommand("screencap -p /data/local/tmp/rabochaya-screens/" + name + ".png");
   }
 
   @android.annotation.TargetApi(30)

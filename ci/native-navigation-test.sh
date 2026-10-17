@@ -5,8 +5,7 @@ adb shell cmd overlay enable-exclusive --category "com.android.internal.systemui
 gradle connectedDebugAndroidTest
 native_test_status=$?
 mkdir -p app/build/native-screens
-adb exec-out run-as ru.warriorrus.app tar -C files -cf - native-screens > app/build/native-screens.tar
-if [ -s app/build/native-screens.tar ]; then
-  tar -xf app/build/native-screens.tar -C app/build
+if ! adb pull /data/local/tmp/rabochaya-screens app/build/native-screens; then
+  if [ "$native_test_status" -eq 0 ]; then native_test_status=1; fi
 fi
 exit "$native_test_status"
