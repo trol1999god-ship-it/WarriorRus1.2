@@ -127,9 +127,10 @@ public class MapUiTest {
         described(root, "Действия в центре карты").performClick();
         item(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog(), 0);
         AlertDialog editor = org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
+        org.robolectric.shadows.ShadowLooper.idleMainLooper();
         ((EditText) findType(editor.getWindow().getDecorView(), EditText.class)).setText("Point " + n);
         editor.getButton(-1).performClick();
-        assertFalse(editor.isShowing());
+        assertFalse("Point editor must save: " + ((EditText) findType(editor.getWindow().getDecorView(), EditText.class)).getError(), editor.isShowing());
       }
       org.osmdroid.views.MapView map = (org.osmdroid.views.MapView) findType(root, org.osmdroid.views.MapView.class);
       assertEquals(2, map.getOverlays().stream().filter(o -> o instanceof org.osmdroid.views.overlay.Marker).count());

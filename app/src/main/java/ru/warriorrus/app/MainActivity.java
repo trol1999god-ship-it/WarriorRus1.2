@@ -139,7 +139,8 @@ public final class MainActivity extends Activity {
       coordinateDetails.setVisibility(coordinatesCollapsed ? View.GONE : View.VISIBLE);
       getPreferences(MODE_PRIVATE).edit().putBoolean("coordinatesCollapsed", coordinatesCollapsed).apply();
     });
-    FrameLayout.LayoutParams hud = new FrameLayout.LayoutParams(-2, -2, Gravity.TOP | Gravity.START);
+    int coordinateWidth = Math.min(getResources().getDisplayMetrics().widthPixels - dp(72), dp(360));
+    FrameLayout.LayoutParams hud = new FrameLayout.LayoutParams(coordinateWidth, -2, Gravity.TOP | Gravity.START);
     hud.setMargins(dp(8), dp(8), dp(64), 0);
     root.addView(coordinatePanel, hud);
 
@@ -160,6 +161,7 @@ public final class MainActivity extends Activity {
     }
     bottomContainer.addView(toolbar);
     Button bottomToggle = compact(bottomCollapsed ? "⌃" : "⌄", () -> {});
+    bottomToggle.setBackground(plate());
     bottomToggle.setContentDescription("Свернуть или раскрыть панель инструментов");
     bottomToggle.setOnClickListener(v -> {
       bottomCollapsed = !bottomCollapsed;
@@ -168,7 +170,7 @@ public final class MainActivity extends Activity {
       bottomToggle.setText(bottomCollapsed ? "⌃" : "⌄");
       getPreferences(MODE_PRIVATE).edit().putBoolean("bottomCollapsed", bottomCollapsed).apply();
     });
-    bottomContainer.addView(bottomToggle, new LinearLayout.LayoutParams(dp(48), dp(32)));
+    bottomContainer.addView(bottomToggle, new LinearLayout.LayoutParams(dp(48), dp(48)));
     int toolbarWidth = Math.min(getResources().getDisplayMetrics().widthPixels - dp(72), dp(360));
     FrameLayout.LayoutParams bottom = new FrameLayout.LayoutParams(toolbarWidth, -2, Gravity.BOTTOM | Gravity.START);
     bottom.setMargins(dp(8), 0, dp(8), dp(8));
@@ -534,8 +536,7 @@ public final class MainActivity extends Activity {
     String location =
         String.format(Locale.ROOT, "%.6f, %.6f", point.getLatitude(), point.getLongitude());
     new AlertDialog.Builder(this)
-        .setTitle("Точка на карте")
-        .setMessage("Координаты: " + location)
+        .setTitle("Точка на карте: " + location)
         .setItems(
             new String[] {"Создать метку", "Скопировать координаты"},
             (dialog, which) -> {

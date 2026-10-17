@@ -47,6 +47,10 @@ public class WorkspaceRenderTest {
     root.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
         View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY));
     root.layout(0, 0, width, height);
+    org.robolectric.shadows.ShadowLooper.idleMainLooper();
+    root.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
+        View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY));
+    root.layout(0, 0, width, height);
     Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
     root.draw(new Canvas(bitmap));
     File file = new File("build/reports/ui/" + name + ".png");
