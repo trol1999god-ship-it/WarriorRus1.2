@@ -120,7 +120,7 @@ public final class PlacemarkFiles {
       if("point".equals(i.kind)) {Vertex v=gpxPoint(n);i.latitude=v.latitude;i.longitude=v.longitude;}
       else {
         if("route".equals(i.kind)) {List<Vertex> line=new ArrayList<>();for(Node p:n.named("rtept"))line.add(gpxPoint(p));i.segments.add(line);}
-        else for(Node seg:n.named("trkseg")) {List<Vertex> line=new ArrayList<>();for(Node p:seg.named("trkpt"))line.add(gpxPoint(p));if(line.size()>=2)i.segments.add(line);}
+        else for(Node seg:n.named("trkseg")) {List<Vertex> line=new ArrayList<>();for(Node p:seg.named("trkpt"))line.add(gpxPoint(p));if(!line.isEmpty())i.segments.add(line);}
         Geometry.validate(i);Vertex v=i.segments.get(0).get(0);i.latitude=v.latitude;i.longitude=v.longitude;
       }
     }

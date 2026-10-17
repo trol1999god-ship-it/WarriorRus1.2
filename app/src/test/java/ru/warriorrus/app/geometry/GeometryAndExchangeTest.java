@@ -23,6 +23,17 @@ public class GeometryAndExchangeTest {
     i.segments.add(new ArrayList<>(Arrays.asList(new Vertex(0,0,120.0,"2026-10-17T00:00:00Z"),new Vertex(0,1,121.0,"2026-10-17T00:01:00Z"),new Vertex(1,1,122.0,"2026-10-17T00:02:00Z"))));return i;
   }
   private List<MapItem> read(String xml)throws Exception{return PlacemarkFiles.read(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)));}
+  @Test public void migratesVersionTwoPreservingFolderIdsIconsAndStyle() {
+    store.close();android.content.Context context=RuntimeEnvironment.getApplication();context.deleteDatabase("warrior2.db");
+    java.io.File path=context.getDatabasePath("warrior2.db");path.getParentFile().mkdirs();
+    try(android.database.sqlite.SQLiteDatabase db=android.database.sqlite.SQLiteDatabase.openOrCreateDatabase(path,null)) {
+      db.execSQL("CREATE TABLE objects(id INTEGER PRIMARY KEY,parent INTEGER REFERENCES objects(id),name TEXT NOT NULL,kind TEXT NOT NULL CHECK(kind IN ('folder','point')),latitude REAL,longitude REAL,visible INTEGER,position INTEGER,color INTEGER,opacity REAL,icon TEXT)");
+      db.execSQL("INSERT INTO objects VALUES(7,NULL,'Folder','folder',0,0,1,0,-12627531,1,'builtin:pin')");
+      db.execSQL("INSERT INTO objects VALUES(8,7,'Point','point',55,37,0,1,-15584170,0.5,'custom.svg')");db.setVersion(2);
+    }
+    store=new ObjectStore(context);MapItem p=store.get(8);assertEquals(7,p.parent);assertEquals("custom.svg",p.icon);assertFalse(p.visible);assertEquals(0.5,p.opacity,0.0001);assertEquals(-15584170,p.color);assertEquals("",p.description);assertTrue(p.segments.isEmpty());
+    MapItem route=shape("route");route.parent=7;store.save(route);assertEquals(3,store.all().size());assertEquals("Point",store.get(8).name);
+  }
   @Test public void geometryNotesCopyReopenDeleteUndo() {
     long folder=store.create(0,"Контуры","folder",0,0);MapItem area=shape("area");area.parent=folder;long id=store.save(area);
     store.close();store=new ObjectStore(RuntimeEnvironment.getApplication());assertEquals(3,Geometry.count(store.get(id)));assertEquals(area.description,store.get(id).description);
@@ -54,6 +65,7 @@ public class GeometryAndExchangeTest {
     ByteArrayOutputStream out=new ByteArrayOutputStream();PlacemarkFiles.write(Collections.singletonList(track),out,"gpx");
     MapItem actual=PlacemarkFiles.read(new ByteArrayInputStream(out.toByteArray())).get(0);assertEquals("track",actual.kind);assertEquals(2,actual.segments.size());
     assertEquals(Geometry.encode(track.segments),Geometry.encode(actual.segments));assertEquals(track.description,actual.description);
+    MapItem one=read("<gpx><trk><name>Single</name><trkseg><trkpt lat='1' lon='2'><ele>4</ele></trkpt></trkseg></trk></gpx>").get(0);assertEquals(1,Geometry.count(one));
   }
   @Test public void distanceAndAreaHandleAntimeridianAndDoNotJoinTrackGaps() {
     assertEquals(111195,Geometry.distance(new Vertex(0,0),new Vertex(0,1)),10);

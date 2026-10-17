@@ -42,7 +42,7 @@ public final class Geometry {
     if (!Arrays.asList("route", "path", "track", "area").contains(item.kind)) throw new IllegalArgumentException("Тип геометрии не поддерживается");
     if (item.segments.isEmpty()) throw new IllegalArgumentException("Добавьте точки");
     for (List<Vertex> s : item.segments)
-      if (s.size() < ("area".equals(item.kind) ? 3 : 2)) throw new IllegalArgumentException("area".equals(item.kind) ? "Для области нужны минимум 3 точки" : "Нужны минимум 2 точки");
+      if (s.size() < ("area".equals(item.kind) ? 3 : "track".equals(item.kind) ? 1 : 2)) throw new IllegalArgumentException("area".equals(item.kind) ? "Для области нужны минимум 3 точки" : "Нужны минимум 2 точки");
     if (count(item)>100000) throw new IllegalArgumentException("Слишком много точек в объекте");
   }
   public static double distance(Vertex a, Vertex b) {
