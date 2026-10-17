@@ -29,6 +29,9 @@ public final class MainActivity extends Activity {
   private TextView coordinates;
   private boolean cards, onScreenOnly, gridEnabled;
   private long selectedPoint;
+  private boolean bottomCollapsed, coordinatesCollapsed, mapLayerVisible;
+  private int mapLayerOpacity;
+  private Dialog menuDialog, layersDialog;
 
   private final android.os.Handler iconHandler =
       new android.os.Handler(android.os.Looper.getMainLooper());
@@ -99,73 +102,105 @@ public final class MainActivity extends Activity {
     FrameLayout root = new FrameLayout(this);
     root.setBackgroundColor(0xfff3f5f9);
     root.addView(map.view, new FrameLayout.LayoutParams(-1, -1));
-    // Reference mockup: independently collapsible coordinate, right and bottom panels.
+    bottomCollapsed = getPreferences(MODE_PRIVATE).getBoolean("bottomCollapsed", false);
+    coordinatesCollapsed = getPreferences(MODE_PRIVATE).getBoolean("coordinatesCollapsed", false);
+    mapLayerVisible = getPreferences(MODE_PRIVATE).getBoolean("mapLayerVisible", true);
+    mapLayerOpacity = getPreferences(MODE_PRIVATE).getInt("mapLayerOpacity", 100);
+    applyMapLayer();
+
+    // Map focus is a single dot, independent of user objects and map movement.
+    View focus = new View(this);
+    GradientDrawable dot = new GradientDrawable();
+    dot.setShape(GradientDrawable.OVAL);
+    dot.setColor(0xffff4545);
+    focus.setBackground(dot);
+    focus.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+    root.addView(focus, new FrameLayout.LayoutParams(dp(7), dp(7), Gravity.CENTER));
+
     LinearLayout coordinatePanel = new LinearLayout(this);
     coordinatePanel.setOrientation(LinearLayout.VERTICAL);
     coordinatePanel.setBackground(plate());
-    TextView coordinateHeader = hudText("📍  WGS84   ⌄", 12);
+    coordinatePanel.setTag("coordinatePanel");
+    Button coordinateHeader = compact("WGS84  ⌄", () -> {});
+    coordinateHeader.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ui_pin, 0, 0, 0);
+    coordinateHeader.setContentDescription("Свернуть или раскрыть координаты");
     coordinatePanel.addView(coordinateHeader);
     LinearLayout coordinateDetails = new LinearLayout(this);
     coordinateDetails.setOrientation(LinearLayout.VERTICAL);
+    coordinateDetails.setTag("coordinateDetails");
     coordinates = hudText("", 12);
     coordinateDetails.addView(coordinates);
-    coordinateDetails.addView(hudText("▦  MGRS  ·  координаты карты", 11));
-    coordinateDetails.addView(hudText("▲  Высота  ·  нет данных", 11));
+    coordinateDetails.addView(hudText("MGRS  ·  нет данных", 11));
+    coordinateDetails.addView(hudText("Высота  ·  нет данных", 11));
+    coordinateDetails.setVisibility(coordinatesCollapsed ? View.GONE : View.VISIBLE);
     coordinatePanel.addView(coordinateDetails);
-    coordinateHeader.setOnClickListener(v -> coordinateDetails.setVisibility(
-        coordinateDetails.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE));
-    FrameLayout.LayoutParams hud =
-        new FrameLayout.LayoutParams(-2, -2, Gravity.TOP | Gravity.START);
-    hud.setMargins(dp(8), dp(8), dp(8), 0);
+    coordinateHeader.setOnClickListener(v -> {
+      coordinatesCollapsed = !coordinatesCollapsed;
+      coordinateDetails.setVisibility(coordinatesCollapsed ? View.GONE : View.VISIBLE);
+      getPreferences(MODE_PRIVATE).edit().putBoolean("coordinatesCollapsed", coordinatesCollapsed).apply();
+    });
+    FrameLayout.LayoutParams hud = new FrameLayout.LayoutParams(-2, -2, Gravity.TOP | Gravity.START);
+    hud.setMargins(dp(8), dp(8), dp(64), 0);
     root.addView(coordinatePanel, hud);
 
     LinearLayout bottomContainer = new LinearLayout(this);
     bottomContainer.setOrientation(LinearLayout.VERTICAL);
-    bottomContainer.setGravity(Gravity.CENTER_HORIZONTAL);
     LinearLayout toolbar = new LinearLayout(this);
     toolbar.setOrientation(LinearLayout.HORIZONTAL);
     toolbar.setBackground(plate());
-    toolbar.addView(compact("▦ Меню", () -> mainMenu()));
-    toolbar.addView(compact("⌖ Объекты", () -> objectsMenu()));
-    toolbar.addView(compact("▧ Слои", () -> layersMenu()));
-    toolbar.addView(compact("▤ Карты", () -> mapsMenu()));
+    String[] tabNames = {"Меню", "Объекты", "Слои", "Карты"};
+    int[] tabIcons = {R.drawable.ui_menu, R.drawable.ui_pin, R.drawable.ui_layers, R.drawable.ui_map};
+    Runnable[] tabActions = {this::mainMenu, this::objectsMenu, this::layersMenu, this::mapsMenu};
+    for (int i = 0; i < tabNames.length; i++) {
+      Button tab = iconButton(tabNames[i], tabIcons[i], tabActions[i]);
+      tab.setTag(tabNames[i]);
+      tab.setText(bottomCollapsed ? "" : tabNames[i]);
+      if (i == 0) tab.setBackground(selectedPlate());
+      toolbar.addView(tab, new LinearLayout.LayoutParams(0, -2, 1));
+    }
     bottomContainer.addView(toolbar);
-    Button bottomToggle = compact("▧  ⌃", () -> {
-      toolbar.setVisibility(toolbar.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+    Button bottomToggle = compact(bottomCollapsed ? "⌃" : "⌄", () -> {});
+    bottomToggle.setContentDescription("Свернуть или раскрыть панель инструментов");
+    bottomToggle.setOnClickListener(v -> {
+      bottomCollapsed = !bottomCollapsed;
+      for (int i = 0; i < toolbar.getChildCount(); i++)
+        ((Button) toolbar.getChildAt(i)).setText(bottomCollapsed ? "" : tabNames[i]);
+      bottomToggle.setText(bottomCollapsed ? "⌃" : "⌄");
+      getPreferences(MODE_PRIVATE).edit().putBoolean("bottomCollapsed", bottomCollapsed).apply();
     });
-    bottomContainer.addView(bottomToggle);
-    FrameLayout.LayoutParams bottom =
-        new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.START);
-    bottom.setMargins(dp(8), 0, dp(8), dp(10));
+    bottomContainer.addView(bottomToggle, new LinearLayout.LayoutParams(dp(48), dp(32)));
+    int toolbarWidth = Math.min(getResources().getDisplayMetrics().widthPixels - dp(72), dp(360));
+    FrameLayout.LayoutParams bottom = new FrameLayout.LayoutParams(toolbarWidth, -2, Gravity.BOTTOM | Gravity.START);
+    bottom.setMargins(dp(8), 0, dp(8), dp(8));
     root.addView(bottomContainer, bottom);
 
     LinearLayout rightPanel = new LinearLayout(this);
     rightPanel.setOrientation(LinearLayout.VERTICAL);
     rightPanel.setBackground(plate());
-    Button compass = compact("🧭", () -> {
-      map.view.setMapOrientation(0f);
-    });
+    Button compass = iconButton("Север сверху", R.drawable.ui_compass, () -> map.view.setMapOrientation(0f));
+    compass.setText("");
     rightPanel.addView(compass);
-    rightPanel.addView(compact("▱", () -> layersMenu()));
-    rightPanel.addView(compact("⊕", () -> toolsMenu()));
-    rightPanel.addView(compact("＋", () -> map.view.getController().zoomIn()));
-    rightPanel.addView(compact("−", () -> map.view.getController().zoomOut()));
-    // This button opens map actions; it never requests GPS or device location.
-    rightPanel.addView(compact("➤", () -> toolsMenu()));
-    FrameLayout.LayoutParams right =
-        new FrameLayout.LayoutParams(dp(50), -2, Gravity.END | Gravity.TOP);
+    String[] rightNames = {"Слои карт", "Действия в центре карты", "Увеличить", "Уменьшить"};
+    int[] rightIcons = {R.drawable.ui_layers, R.drawable.ui_focus, R.drawable.ui_plus, R.drawable.ui_minus};
+    Runnable[] rightActions = {this::layersMenu, () -> mapContextMenu((GeoPoint) map.view.getMapCenter()),
+        () -> map.view.getController().zoomIn(), () -> map.view.getController().zoomOut()};
+    for (int i = 0; i < rightNames.length; i++) {
+      Button control = iconButton(rightNames[i], rightIcons[i], rightActions[i]);
+      control.setText("");
+      rightPanel.addView(control);
+    }
+    FrameLayout.LayoutParams right = new FrameLayout.LayoutParams(dp(48), -2, Gravity.END | Gravity.TOP);
     right.setMargins(0, dp(8), dp(8), 0);
     root.addView(rightPanel, right);
-    rightPanel.getChildAt(0).setOnLongClickListener(v -> {
-      for (int i = 1; i < rightPanel.getChildCount(); i++) {
-        View child = rightPanel.getChildAt(i);
-        child.setVisibility(child.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
-      }
+    compass.setOnLongClickListener(v -> {
+      boolean hide = rightPanel.getChildAt(1).getVisibility() == View.VISIBLE;
+      for (int i = 1; i < rightPanel.getChildCount(); i++)
+        rightPanel.getChildAt(i).setVisibility(hide ? View.GONE : View.VISIBLE);
       return true;
     });
-    TextView attribution = label("© OpenStreetMap", 10);
-    FrameLayout.LayoutParams credit =
-        new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.END);
+    TextView attribution = hudText("© OpenStreetMap", 10);
+    attribution.setBackground(plate());
+    FrameLayout.LayoutParams credit = new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.END);
     root.addView(attribution, credit);
     cards = getPreferences(MODE_PRIVATE).getBoolean("explorerCards", false);
     gridEnabled = getPreferences(MODE_PRIVATE).getBoolean("coordinateGrid", false);
@@ -331,24 +366,70 @@ public final class MainActivity extends Activity {
   }
 
   private void mainMenu() {
-    sheet("Меню", new String[] {
-      "Объекты", "Слои", "Карты", "Загрузка карт",
-      "Импорт / Экспорт", "Настройки", "Значки", "О программе"
-    }, n -> {
-      switch (n) {
-        case 0: objectsMenu(); break;
-        case 1: layersMenu(); break;
-        case 2: mapsMenu(); break;
-        case 3: mapsMenu(); break;
-        case 4: toolsMenu(); break;
-        case 5: toolsMenu(); break;
-        case 6: openIcons(); break;
-        default: new AlertDialog.Builder(this)
-          .setTitle("Рабочая карта")
-          .setMessage("Локальная картографическая рабочая область без GPS.")
-          .setPositiveButton("ОК", null).show();
+    menuDialog = new Dialog(this);
+    LinearLayout panel = new LinearLayout(this);
+    panel.setOrientation(LinearLayout.VERTICAL);
+    panel.setPadding(dp(10), dp(10), dp(10), dp(10));
+    panel.setBackground(plate());
+    LinearLayout heading = new LinearLayout(this);
+    heading.addView(hudText("Рабочая карта", 19), new LinearLayout.LayoutParams(0, -2, 1));
+    heading.addView(compact("×", () -> menuDialog.dismiss()));
+    panel.addView(heading);
+    String[] names = {"Объекты", "Слои", "Карты", "Значки", "Настройки", "О программе"};
+    int[] icons = {R.drawable.ui_pin, R.drawable.ui_layers, R.drawable.ui_map,
+        R.drawable.ui_menu, R.drawable.ui_settings, R.drawable.ui_info};
+    Runnable[] actions = {this::objectsMenu, this::layersMenu, this::mapsMenu, this::openIcons,
+        this::toolsMenu, () -> new AlertDialog.Builder(this).setTitle("Рабочая карта")
+            .setMessage("Локальная картографическая рабочая область без GPS.")
+            .setPositiveButton("ОК", null).show()};
+    for (int row = 0; row < 2; row++) {
+      LinearLayout line = new LinearLayout(this);
+      for (int col = 0; col < 3; col++) {
+        final int index = row * 3 + col;
+        Button tile = iconButton(names[index], icons[index], () -> {
+          menuDialog.dismiss();
+          actions[index].run();
+        });
+        tile.setBackground(selectedPlate());
+        LinearLayout.LayoutParams size = new LinearLayout.LayoutParams(0, dp(88), 1);
+        size.setMargins(dp(3), dp(3), dp(3), dp(3));
+        line.addView(tile, size);
       }
-    });
+      panel.addView(line);
+    }
+    menuDialog.setContentView(panel);
+    showPanel(menuDialog, dp(360));
+  }
+
+  private void showPanel(Dialog dialog, int width) {
+    dialog.show();
+    Window window = dialog.getWindow();
+    if (window != null) {
+      window.setBackgroundDrawableResource(android.R.color.transparent);
+      window.setGravity(Gravity.BOTTOM | Gravity.START);
+      window.setLayout(Math.min(getResources().getDisplayMetrics().widthPixels - dp(16), width), -2);
+      WindowManager.LayoutParams attributes = window.getAttributes();
+      attributes.x = dp(8);
+      attributes.y = dp(8);
+      window.setAttributes(attributes);
+    }
+  }
+
+  private android.graphics.drawable.Drawable selectedPlate() {
+    GradientDrawable background = new GradientDrawable();
+    background.setColor(0xcc073b65);
+    background.setStroke(dp(1), 0xff087ddd);
+    background.setCornerRadius(dp(10));
+    return background;
+  }
+
+  private Button iconButton(String name, int icon, Runnable action) {
+    Button button = compact(name, action);
+    button.setCompoundDrawablesRelativeWithIntrinsicBounds(0, icon, 0, 0);
+    button.setCompoundDrawablePadding(dp(4));
+    button.setPadding(dp(4), dp(9), dp(4), dp(7));
+    button.setGravity(Gravity.CENTER);
+    return button;
   }
 
   private void objectsMenu() {
@@ -362,7 +443,60 @@ public final class MainActivity extends Activity {
   }
 
   private void layersMenu() {
-    openExplorer(false);
+    layersDialog = new Dialog(this);
+    LinearLayout panel = new LinearLayout(this);
+    panel.setOrientation(LinearLayout.VERTICAL);
+    panel.setPadding(dp(12), dp(12), dp(12), dp(12));
+    panel.setBackground(plate());
+    LinearLayout heading = new LinearLayout(this);
+    heading.addView(hudText("Слои карт", 19), new LinearLayout.LayoutParams(0, -2, 1));
+    heading.addView(compact("×", () -> layersDialog.dismiss()));
+    panel.addView(heading);
+    Switch visible = new Switch(this);
+    visible.setText("OpenStreetMap");
+    visible.setTextColor(0xffe4f2ff);
+    visible.setMinHeight(dp(48));
+    visible.setChecked(mapLayerVisible);
+    visible.setOnCheckedChangeListener((button, checked) -> {
+      mapLayerVisible = checked;
+      applyMapLayer();
+      saveMapLayer();
+    });
+    panel.addView(visible);
+    TextView opacity = hudText("Непрозрачность: " + mapLayerOpacity + "%", 13);
+    panel.addView(opacity);
+    SeekBar slider = new SeekBar(this);
+    slider.setMax(100);
+    slider.setProgress(mapLayerOpacity);
+    slider.setContentDescription("Непрозрачность OpenStreetMap");
+    slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+      public void onProgressChanged(SeekBar bar, int progress, boolean user) {
+        mapLayerOpacity = progress;
+        opacity.setText("Непрозрачность: " + progress + "%");
+        applyMapLayer();
+        saveMapLayer();
+      }
+      public void onStartTrackingTouch(SeekBar bar) {}
+      public void onStopTrackingTouch(SeekBar bar) { saveMapLayer(); }
+    });
+    panel.addView(slider);
+    panel.addView(compact("Карты", () -> { layersDialog.dismiss(); mapsMenu(); }));
+    layersDialog.setContentView(panel);
+    showPanel(layersDialog, dp(360));
+  }
+
+  private void applyMapLayer() {
+    org.osmdroid.views.overlay.TilesOverlay tiles = map.view.getOverlayManager().getTilesOverlay();
+    tiles.setEnabled(mapLayerVisible);
+    android.graphics.ColorMatrix matrix = new android.graphics.ColorMatrix();
+    matrix.setScale(1f, 1f, 1f, mapLayerOpacity / 100f);
+    tiles.setColorFilter(new android.graphics.ColorMatrixColorFilter(matrix));
+    map.view.invalidate();
+  }
+
+  private void saveMapLayer() {
+    getPreferences(MODE_PRIVATE).edit().putBoolean("mapLayerVisible", mapLayerVisible)
+        .putInt("mapLayerOpacity", mapLayerOpacity).apply();
   }
 
   private android.graphics.drawable.Drawable plate() {
@@ -548,20 +682,14 @@ public final class MainActivity extends Activity {
 
   private void updateCoordinates() {
     if (coordinates == null) return;
-    MapItem chosen = store.get(selectedPoint);
-    double lat = chosen == null ? map.view.getMapCenter().getLatitude() : chosen.latitude,
-        lon = chosen == null ? map.view.getMapCenter().getLongitude() : chosen.longitude;
-    double z = map.view.getZoomLevelDouble();
-    double metres = 156543.03392 * Math.cos(Math.toRadians(lat)) / Math.pow(2, z);
+    double lat = map.view.getMapCenter().getLatitude(),
+        lon = map.view.getMapCenter().getLongitude();
     coordinates.setText(
         String.format(
             Locale.ROOT,
-            "%s  %.6f, %.6f\nZ %.1f · %.2f м/пкс",
-            chosen == null ? "Центр" : "Метка",
-            lat,
-            lon,
-            z,
-            metres));
+            "%.6f° %s   %.6f° %s",
+            Math.abs(lat), lat < 0 ? "S" : "N",
+            Math.abs(lon), lon < 0 ? "W" : "E"));
   }
 
   private void searchMap() {
@@ -1080,6 +1208,8 @@ public final class MainActivity extends Activity {
   @Override
   protected void onDestroy() {
     iconHandler.removeCallbacksAndMessages(null);
+    if (menuDialog != null) menuDialog.dismiss();
+    if (layersDialog != null) layersDialog.dismiss();
     if (explorerDialog != null && explorerDialog.isShowing()) explorerDialog.dismiss();
     if (map != null) map.view.onDetach();
     if (store != null) store.close();

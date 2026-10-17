@@ -20,6 +20,7 @@ public class MapUiTest {
   @Before
   public void cleanFixture() {
     RuntimeEnvironment.getApplication().deleteDatabase("warrior2.db");
+    RuntimeEnvironment.getApplication().getSharedPreferences("MainActivity", 0).edit().clear().commit();
   }
 
   @Test
@@ -34,19 +35,20 @@ public class MapUiTest {
       assertEquals(-1, map.getLayoutParams().width);
       assertEquals(-1, map.getLayoutParams().height);
       assertNull(find(a.getWindow().getDecorView(), "Warrior Explorer"));
-      find(a.getWindow().getDecorView(), "⌖ Объекты").performClick();
+      find(a.getWindow().getDecorView(), "Объекты").performClick();
       AlertDialog d = org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
       assertEquals(5, d.getListView().getAdapter().getCount());
       assertEquals("Метки на экране", d.getListView().getAdapter().getItem(4));
       d.dismiss();
-      find(a.getWindow().getDecorView(), "▦ Меню").performClick();
-      d = org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
-      item(d, 5); // Settings opens the tools containing the grid toggle.
+      find(a.getWindow().getDecorView(), "Меню").performClick();
+      Dialog menu = org.robolectric.shadows.ShadowDialog.getLatestDialog();
+      find(menu.getWindow().getDecorView(), "Настройки").performClick();
       d = org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
       item(d, 0);
       assertTrue(map.getOverlays().stream().anyMatch(o -> o instanceof CoordinateGrid));
-      find(a.getWindow().getDecorView(), "▦ Меню").performClick();
-      item(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog(), 5);
+      find(a.getWindow().getDecorView(), "Меню").performClick();
+      menu = org.robolectric.shadows.ShadowDialog.getLatestDialog();
+      find(menu.getWindow().getDecorView(), "Настройки").performClick();
       item(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog(), 0);
       assertFalse(map.getOverlays().stream().anyMatch(o -> o instanceof CoordinateGrid));
     }
@@ -66,7 +68,8 @@ public class MapUiTest {
     }
     try (ActivityController<MainActivity> c =
         Robolectric.buildActivity(MainActivity.class).setup()) {
-      find(c.get().getWindow().getDecorView(), "▧ Слои").performClick();
+      find(c.get().getWindow().getDecorView(), "Объекты").performClick();
+      item(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog(), 0);
       Dialog explorer = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       find(explorer.getWindow().getDecorView(), "Вид").performClick();
       assertNotNull(find(explorer.getWindow().getDecorView(), "● Existing\n55.70000, 37.60000"));
@@ -91,6 +94,79 @@ public class MapUiTest {
     assertTrue(CoordinateGrid.contains(-5, 5, 179, -179, 0, -179.5));
     assertTrue(CoordinateGrid.contains(-5, 5, 179, -179, 0, 179.5));
     assertFalse(CoordinateGrid.contains(-5, 5, 179, -179, 0, 0));
+  }
+
+  @Test
+  public void collapsedToolbarKeepsActionsAndSurvivesRestart() {
+    try (ActivityController<MainActivity> c = Robolectric.buildActivity(MainActivity.class).setup()) {
+      View root = c.get().getWindow().getDecorView();
+      described(root, "Свернуть или раскрыть панель инструментов").performClick();
+      Button objects = (Button) root.findViewWithTag("Объекты");
+      assertEquals("", objects.getText().toString());
+      assertNotNull(objects.getCompoundDrawablesRelative()[1]);
+      objects.performClick();
+      assertTrue(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog().isShowing());
+      org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog().dismiss();
+      described(root, "Свернуть или раскрыть координаты").performClick();
+      assertEquals(View.GONE, root.findViewWithTag("coordinateDetails").getVisibility());
+    }
+    try (ActivityController<MainActivity> c = Robolectric.buildActivity(MainActivity.class).setup()) {
+      View root = c.get().getWindow().getDecorView();
+      assertEquals("", ((Button) root.findViewWithTag("Объекты")).getText().toString());
+      assertEquals(View.GONE, root.findViewWithTag("coordinateDetails").getVisibility());
+      described(root, "Свернуть или раскрыть панель инструментов").performClick();
+      assertEquals("Объекты", ((Button) root.findViewWithTag("Объекты")).getText().toString());
+    }
+  }
+
+  @Test
+  public void twoPointsCreatedThroughUiStayVisibleAndMapLayersDoNotContainObjects() {
+    try (ActivityController<MainActivity> c = Robolectric.buildActivity(MainActivity.class).setup()) {
+      View root = c.get().getWindow().getDecorView();
+      for (int n = 1; n <= 2; n++) {
+        described(root, "Действия в центре карты").performClick();
+        item(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog(), 0);
+        AlertDialog editor = org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
+        ((EditText) findType(editor.getWindow().getDecorView(), EditText.class)).setText("Point " + n);
+        editor.getButton(-1).performClick();
+        assertFalse(editor.isShowing());
+      }
+      org.osmdroid.views.MapView map = (org.osmdroid.views.MapView) findType(root, org.osmdroid.views.MapView.class);
+      assertEquals(2, map.getOverlays().stream().filter(o -> o instanceof org.osmdroid.views.overlay.Marker).count());
+      find(root, "Слои").performClick();
+      Dialog layers = org.robolectric.shadows.ShadowDialog.getLatestDialog();
+      View layerRoot = layers.getWindow().getDecorView();
+      assertNotNull(find(layerRoot, "Слои карт"));
+      assertNull(find(layerRoot, "● Point 1"));
+      Switch visible = (Switch) find(layerRoot, "OpenStreetMap");
+      visible.setChecked(false);
+      assertFalse(map.getOverlayManager().getTilesOverlay().isEnabled());
+      SeekBar opacity = (SeekBar) findType(layerRoot, SeekBar.class);
+      opacity.setProgress(40);
+      assertEquals(2, map.getOverlays().stream().filter(o -> o instanceof org.osmdroid.views.overlay.Marker).count());
+    }
+    try (ActivityController<MainActivity> c = Robolectric.buildActivity(MainActivity.class).setup();
+        ObjectStore store = new ObjectStore(c.get())) {
+      org.osmdroid.views.MapView map = (org.osmdroid.views.MapView) findType(c.get().getWindow().getDecorView(), org.osmdroid.views.MapView.class);
+      assertEquals(2, store.all().size());
+      assertEquals(2, map.getOverlays().stream().filter(o -> o instanceof org.osmdroid.views.overlay.Marker).count());
+      assertFalse(map.getOverlayManager().getTilesOverlay().isEnabled());
+      find(c.get().getWindow().getDecorView(), "Слои").performClick();
+      Dialog layers = org.robolectric.shadows.ShadowDialog.getLatestDialog();
+      assertNotNull(find(layers.getWindow().getDecorView(), "Непрозрачность: 40%"));
+    }
+  }
+
+  private View described(View view, String text) {
+    if (text.equals(view.getContentDescription())) return view;
+    if (view instanceof ViewGroup) {
+      ViewGroup group = (ViewGroup) view;
+      for (int i = 0; i < group.getChildCount(); i++) {
+        View result = described(group.getChildAt(i), text);
+        if (result != null) return result;
+      }
+    }
+    return null;
   }
 
   private void item(AlertDialog d, int n) {

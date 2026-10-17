@@ -28,7 +28,7 @@ public class WorkspaceTest {
         Robolectric.buildActivity(MainActivity.class).setup()) {
       MainActivity a = c.get();
       assertNull(find(a.getWindow().getDecorView(), "Warrior Explorer"));
-      find(a.getWindow().getDecorView(), "⌖ Объекты").performClick();
+      find(a.getWindow().getDecorView(), "Объекты").performClick();
       android.app.AlertDialog marks =
           org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
       marks
