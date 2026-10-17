@@ -91,7 +91,7 @@ public class NativeMapRegressionTest {
         try (ru.warriorrus.app.data.ObjectStore store = new ru.warriorrus.app.data.ObjectStore(activity)) {
           assertEquals(2,store.all().size());
           assertEquals("route",store.all().get(0).kind); assertEquals("area",store.all().get(1).kind);
-          MapView map = findMapView(activity.getWindow().getDecorView());
+          MapView map = (MapView) type(activity.getWindow().getDecorView(), MapView.class);
           assertEquals(1,map.getOverlays().stream().filter(o -> o instanceof org.osmdroid.views.overlay.Polygon).count());
           assertEquals(1,map.getOverlays().stream().filter(o -> o instanceof org.osmdroid.views.overlay.Polyline).count());
         }

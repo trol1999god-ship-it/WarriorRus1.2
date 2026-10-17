@@ -226,7 +226,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
       Map<Long, Long> imported = new HashMap<>();
       for (MapItem item : items) {
         ContentValues v = values(item, false);
-        Long nextParent = item.parent == 0 ? parent : imported.get(item.parent);
+        Long nextParent = item.parent == 0 ? Long.valueOf(parent) : imported.get(item.parent);
         if (nextParent == null) throw new IllegalArgumentException("Неверная структура папок");
         if (nextParent == 0) v.putNull("parent"); else v.put("parent", nextParent);
         long id = getWritableDatabase().insertOrThrow("objects", null, v);

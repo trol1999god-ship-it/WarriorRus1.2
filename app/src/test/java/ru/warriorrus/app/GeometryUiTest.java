@@ -27,8 +27,8 @@ public class GeometryUiTest {
         org.osmdroid.views.MapView map=(org.osmdroid.views.MapView)type(root,org.osmdroid.views.MapView.class);
         map.getController().setCenter(new org.osmdroid.util.GeoPoint(56,38));desc(drawing,"+ Точка").performClick();
         if(title.equals("Создать область")){map.getController().setCenter(new org.osmdroid.util.GeoPoint(55,38));desc(drawing,"+ Точка").performClick();}
-        desc(drawing,"Сохранить").performClick();AlertDialog save=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
-        ((EditText)type(save.getWindow().getDecorView(),EditText.class)).setText(title);save.getButton(-1).performClick();assertFalse(save.isShowing());assertNull(root.findViewWithTag("drawingControls"));
+        desc(drawing,"Сохранить").performClick();org.robolectric.shadows.ShadowLooper.idleMainLooper();AlertDialog save=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
+        ((EditText)type(save.getWindow().getDecorView(),EditText.class)).setText(title);save.getButton(-1).performClick();assertFalse("Save error: "+((EditText)type(save.getWindow().getDecorView(),EditText.class)).getError(),save.isShowing());assertNull(root.findViewWithTag("drawingControls"));
       }
       try(ObjectStore store=new ObjectStore(c.get())){assertEquals(2,store.all().size());assertEquals("route",store.all().get(0).kind);assertEquals("area",store.all().get(1).kind);}
     }
