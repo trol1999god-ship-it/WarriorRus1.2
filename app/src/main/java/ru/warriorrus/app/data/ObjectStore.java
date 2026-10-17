@@ -231,6 +231,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
       throw new IllegalArgumentException("Тип не поддерживается");
     if (item.isGeometry()) ru.warriorrus.app.geometry.Geometry.validate(item);
     if (item.id != 0 && get(item.id) == null) throw new IllegalArgumentException("Объект не найден");
+    if("point".equals(item.kind)&&!item.segments.isEmpty()&&!item.segments.get(0).isEmpty()){Vertex v=item.segments.get(0).get(0);item.segments.get(0).set(0,new Vertex(item.latitude,item.longitude,v.elevation,v.time,v.name,v.description));}
     item.name=item.name.trim();item.updated=System.currentTimeMillis();
     if(item.id==0) {item.position=all().size();if(item.created==0)item.created=item.updated;}
     long[] id = {item.id};
@@ -317,6 +318,13 @@ public final class ObjectStore extends SQLiteOpenHelper {
     else v.put("parent", parent);
     long next = getWritableDatabase().insertOrThrow("objects", null, v);
     for (MapItem i : snapshot) if (i.parent == id) cloneTree(i.id, next, snapshot);
+  }
+
+  public void group(Collection<Long> ids,long parent,String name,boolean move) {
+    requireFolder(parent);name(name);List<Long> roots=roots(ids);if(roots.isEmpty())throw new IllegalArgumentException("Выберите объекты");
+    for(long id:roots)if(descendant(parent,id))throw new IllegalArgumentException("Нельзя группировать папку внутри неё самой");
+    List<MapItem> snapshot=all();MapItem group=new MapItem();group.kind="set";group.name=name.trim();group.parent=parent;group.visible=true;group.opacity=1;group.color=0xff3f6db5;group.position=snapshot.size();group.created=group.updated=System.currentTimeMillis();
+    mutate(()->{long target=getWritableDatabase().insertOrThrow("objects",null,values(group,false));for(long id:roots){if(move){ContentValues v=new ContentValues();v.put("parent",target);getWritableDatabase().update("objects",v,"id=?",new String[]{""+id});}else cloneTree(id,target,snapshot);}});
   }
 
   public void delete(Collection<Long> ids) {

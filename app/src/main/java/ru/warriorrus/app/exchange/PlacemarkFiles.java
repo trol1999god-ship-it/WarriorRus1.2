@@ -42,6 +42,8 @@ public final class PlacemarkFiles {
     if("kml".equals(root.name)) {
       Map<String,Node> styles=new HashMap<>();collectStyles(root,styles);kmlChildren(root,0,result,styles);
     } else if("gpx".equals(root.name)) gpx(root,result);
+    else if("loc".equals(root.name)){for(Node waypoint:root.named("waypoint")){Node coord=waypoint.child("coord");if(coord==null)continue;Vertex v=new Vertex(Double.parseDouble(coord.attributes.get("lat")),Double.parseDouble(coord.attributes.get("lon")));MapItem i=item(waypoint.value("name"),"point",0,result);i.latitude=v.latitude;i.longitude=v.longitude;}}
+
     else throw new IOException("Поддерживаются KML, KMZ и GPX");
     if(result.isEmpty())throw new IOException("В файле нет поддерживаемых объектов");
     return result;
@@ -117,15 +119,15 @@ public final class PlacemarkFiles {
     for(Node n:root.children) {
       if(!Arrays.asList("wpt","rte","trk").contains(n.name))continue;
       MapItem i=item(n.value("name"),"wpt".equals(n.name)?"point":"rte".equals(n.name)?"route":"track",0,all);i.description=n.value("desc");
-      if("point".equals(i.kind)) {Vertex v=gpxPoint(n);i.latitude=v.latitude;i.longitude=v.longitude;}
+      if("point".equals(i.kind)) {Vertex v=gpxPoint(n);i.latitude=v.latitude;i.longitude=v.longitude;i.segments.add(new ArrayList<>(Collections.singletonList(v)));Long created=ru.warriorrus.app.geometry.TrackStatistics.time(v.time);if(created!=null)i.created=i.updated=created;}
       else {
         if("route".equals(i.kind)) {List<Vertex> line=new ArrayList<>();for(Node p:n.named("rtept"))line.add(gpxPoint(p));i.segments.add(line);}
         else for(Node seg:n.named("trkseg")) {List<Vertex> line=new ArrayList<>();for(Node p:seg.named("trkpt"))line.add(gpxPoint(p));if(!line.isEmpty())i.segments.add(line);}
-        Geometry.validate(i);Vertex v=i.segments.get(0).get(0);i.latitude=v.latitude;i.longitude=v.longitude;
+        Geometry.validate(i);Vertex v=i.segments.get(0).get(0);i.latitude=v.latitude;i.longitude=v.longitude;ru.warriorrus.app.geometry.TrackStatistics stats=ru.warriorrus.app.geometry.TrackStatistics.of(i);if(stats.first!=Long.MAX_VALUE){i.created=stats.first;i.updated=stats.last;}
       }
     }
   }
-  private static Vertex gpxPoint(Node n) {return new Vertex(Double.parseDouble(n.attributes.get("lat")),Double.parseDouble(n.attributes.get("lon")),n.value("ele").isEmpty()?null:Double.valueOf(n.value("ele")),n.value("time").isEmpty()?null:n.value("time"));}
+  private static Vertex gpxPoint(Node n) {return new Vertex(Double.parseDouble(n.attributes.get("lat")),Double.parseDouble(n.attributes.get("lon")),n.value("ele").isEmpty()?null:Double.valueOf(n.value("ele")),n.value("time").isEmpty()?null:n.value("time"),n.value("name"),n.value("desc"));}
   public static void write(List<MapItem> items,OutputStream output,String format) throws Exception {
     if("kmz".equals(format)) {ZipOutputStream zip=new ZipOutputStream(output);zip.putNextEntry(new ZipEntry("doc.kml"));writeXml(items,zip,false,Collections.emptyMap(),Collections.emptyMap());zip.closeEntry();zip.finish();zip.flush();}
     else writeXml(items,output,"gpx".equals(format),Collections.emptyMap(),Collections.emptyMap());
@@ -138,9 +140,9 @@ public final class PlacemarkFiles {
       x.startTag(null,"gpx").attribute(null,"xmlns","http://www.topografix.com/GPX/1/1").attribute(null,"version","1.1").attribute(null,"creator","Рабочая карта");
       // GPX schema orders all waypoints before routes, and routes before tracks.
       for(String category:Arrays.asList("point","route","track"))for(MapItem i:items)if(category.equals(i.kind)||("track".equals(category)&&"path".equals(i.kind))) {
-        if("point".equals(i.kind)) {x.startTag(null,"wpt").attribute(null,"lat",""+i.latitude).attribute(null,"lon",""+i.longitude);tag(x,"name",i.name);tag(x,"desc",i.description);x.endTag(null,"wpt");}
+        if("point".equals(i.kind)) {x.startTag(null,"wpt").attribute(null,"lat",""+i.latitude).attribute(null,"lon",""+i.longitude);if(!i.segments.isEmpty()&&!i.segments.get(0).isEmpty()){Vertex v=i.segments.get(0).get(0);if(v.elevation!=null)tag(x,"ele",""+v.elevation);if(v.time!=null)tag(x,"time",v.time);}tag(x,"name",i.name);tag(x,"desc",i.description);x.endTag(null,"wpt");}
         else {boolean route="route".equals(i.kind);String container=route?"rte":"trk";x.startTag(null,container);tag(x,"name",i.name);tag(x,"desc",i.description);
-          for(List<Vertex> s:i.segments) {if(!route)x.startTag(null,"trkseg");for(Vertex v:s){String pt=route?"rtept":"trkpt";x.startTag(null,pt).attribute(null,"lat",""+v.latitude).attribute(null,"lon",""+v.longitude);if(v.elevation!=null)tag(x,"ele",""+v.elevation);if(v.time!=null)tag(x,"time",v.time);x.endTag(null,pt);}if(!route)x.endTag(null,"trkseg");}x.endTag(null,container);}
+          for(List<Vertex> s:i.segments) {if(!route)x.startTag(null,"trkseg");for(Vertex v:s){String pt=route?"rtept":"trkpt";x.startTag(null,pt).attribute(null,"lat",""+v.latitude).attribute(null,"lon",""+v.longitude);if(v.elevation!=null)tag(x,"ele",""+v.elevation);if(v.time!=null)tag(x,"time",v.time);if(!v.name.isEmpty())tag(x,"name",v.name);if(!v.description.isEmpty())tag(x,"desc",v.description);x.endTag(null,pt);}if(!route)x.endTag(null,"trkseg");}x.endTag(null,container);}
       }
       x.endTag(null,"gpx");
     } else {

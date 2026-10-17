@@ -15,7 +15,7 @@ import ru.warriorrus.app.media.LocalMedia;
 public final class BundleExchange {
   private BundleExchange() {}
   public static void write(Context context,List<MapItem> items,OutputStream out,String format)throws Exception {
-    if(!"kmz".equals(format)){PlacemarkFiles.write(items,out,format);return;}
+    if(!"kmz".equals(format)){if(TextFormats.supports(format))TextFormats.write(items,out,format);else PlacemarkFiles.write(items,out,format);return;}
     LocalMedia media=new LocalMedia(context);IconLibrary library=IconLibrary.open(context);
     ZipOutputStream zip=new ZipOutputStream(out);Map<Long,String> icons=new HashMap<>(),descriptions=new HashMap<>();
     List<MapItem> portable=ObjectJson.decode(ObjectJson.encode(items));Set<Long> ids=new HashSet<>();for(MapItem i:portable)ids.add(i.id);for(MapItem i:portable)if(!ids.contains(i.parent))i.parent=0;Set<String> included=new HashSet<>();
@@ -49,7 +49,7 @@ public final class BundleExchange {
   }
   public static List<MapItem> read(Context context,InputStream input)throws Exception {
     BufferedInputStream in=new BufferedInputStream(input);in.mark(4);int a=in.read(),b=in.read();in.reset();
-    if(a!='P'||b!='K')return PlacemarkFiles.read(in);
+    if(a!='P'||b!='K'){byte[] bytes=PlacemarkFiles.bounded(in,25*1024*1024);String start=new String(bytes,java.nio.charset.StandardCharsets.UTF_8).replaceFirst("^\\ufeff","").trim();return (start.startsWith("<")||(bytes.length>1&&((bytes[0]==(byte)0xff&&bytes[1]==(byte)0xfe)||(bytes[0]==(byte)0xfe&&bytes[1]==(byte)0xff))))?PlacemarkFiles.read(new ByteArrayInputStream(bytes)):TextFormats.read(bytes);}
     File staging=new File(context.getCacheDir(),"kmz-"+UUID.randomUUID());if(!staging.mkdirs())throw new IOException("Нет места для импорта");
     LocalMedia media=new LocalMedia(context);List<String> createdFiles=new ArrayList<>();boolean success=false;
     try {

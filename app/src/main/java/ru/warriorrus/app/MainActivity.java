@@ -375,10 +375,16 @@ public final class MainActivity extends Activity {
               explorer.alphabetical = !explorer.alphabetical;
               refresh();
             }));
-    actions.addView(button("Импорт KML/KMZ/GPX", this::importFile));
+    actions.addView(button("Импорт объектов", this::importFile));
     actions.addView(button("Экспорт выбранного / всех", this::exportFile));
     actions.addView(button("Передать по Bluetooth", this::bluetoothExport));
     actions.addView(button("Корзина", this::trashMenu));
+    actions.addView(button("Фильтры по имени и дате",this::filtersMenu));
+    actions.addView(button("Собрать в набор",this::groupSelected));
+    actions.addView(button("Объединить линии",this::mergeSelected));
+    actions.addView(button("Сохранить шаблон метки",()->templatesMenu(true)));
+    actions.addView(button("Создать из шаблона",()->templatesMenu(false)));
+    actions.addView(button("Умные подборки",this::smartSelections));
     actions.addView(button("Вложения", () -> { if(explorer.selected.size()==1)attachmentsMenu(explorer.selected.iterator().next()); else fileError("Выберите один объект"); }));
     LinearLayout explorerToolbar = new LinearLayout(this);
     explorerToolbar.addView(
@@ -444,6 +450,7 @@ public final class MainActivity extends Activity {
           explorerDialog.dismiss(); startDrawing(kind, (GeoPoint) map.view.getMapCenter()); return true;
         });
       }
+      menu.getMenu().add("Из шаблона").setOnMenuItemClickListener(item->{templatesMenu(false);return true;});
       menu.getMenu().add("Папка").setOnMenuItemClickListener(item -> { newFolder(); return true; });
       menu.show();
     });
@@ -641,7 +648,7 @@ public final class MainActivity extends Activity {
     new AlertDialog.Builder(this)
         .setTitle("Точка на карте: " + location)
         .setItems(
-            new String[] {"Создать метку", "Скопировать координаты", "Создать маршрут", "Нарисовать линию", "Создать область", "Поиск по координатам / названию", "Импорт KML/KMZ/GPX"},
+            new String[] {"Создать метку", "Скопировать координаты", "Создать маршрут", "Нарисовать линию", "Создать область", "Поиск по координатам / названию", "Импорт объектов"},
             (dialog, which) -> {
               if (which == 0) edit(null, point);
               else if (which >= 2) {
@@ -767,7 +774,7 @@ public final class MainActivity extends Activity {
           "Значки",
           "Отмена последней операции",
           "Параметры карты и координат",
-          "Импорт KML/KMZ/GPX",
+          "Импорт объектов",
           "Экспорт выбранного / всех",
           "Передать по Bluetooth",
           "Корзина"
@@ -932,10 +939,12 @@ public final class MainActivity extends Activity {
                 i.latitude,
                 i.longitude,
                 i.icon,
-                i.color & 0xffffff, i.description, Geometry.summary(i)))
+                i.color & 0xffffff, i.description, Geometry.summary(i)+(i.isGeometry()?"\n"+TrackStatistics.of(i).summary():"")))
         .setPositiveButton(
             "Редактировать", (d, w) -> edit(i, new GeoPoint(i.latitude, i.longitude)))
-        .setNeutralButton("Вложения ("+i.attachments.size()+")", (d,w) -> attachmentsMenu(i.id))
+        .setNeutralButton(i.isGeometry()?"Профиль / Вложения":"Вложения ("+i.attachments.size()+")", (d,w) -> {
+          if(i.isGeometry())sheet(i.name,new String[]{"Профиль высот и статистика","Вложения"},n->{if(n==0)profile(i);else attachmentsMenu(i.id);});else attachmentsMenu(i.id);
+        })
         .setNegativeButton("Закрыть", null)
         .show();
   }
@@ -1353,6 +1362,53 @@ public final class MainActivity extends Activity {
         .show();
   }
 
+  private long parseDate(String value,boolean end)throws Exception {
+    if(value.trim().isEmpty())return 0;java.text.SimpleDateFormat format=new java.text.SimpleDateFormat("dd.MM.yyyy",Locale.ROOT);format.setLenient(false);java.util.Date date=format.parse(value.trim());
+    Calendar calendar=Calendar.getInstance();calendar.setTime(date);if(end)calendar.add(Calendar.DAY_OF_MONTH,1);return calendar.getTimeInMillis();
+  }
+  private void filtersMenu() {
+    LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);EditText query=new EditText(this),from=new EditText(this),to=new EditText(this);query.setHint("Часть названия");query.setText(explorer.query);from.setHint("С даты · дд.мм.гггг");to.setHint("По дату включительно · дд.мм.гггг");
+    java.text.SimpleDateFormat format=new java.text.SimpleDateFormat("dd.MM.yyyy",Locale.ROOT);if(explorer.fromDate>0)from.setText(format.format(new Date(explorer.fromDate)));if(explorer.toDate>0)to.setText(format.format(new Date(explorer.toDate-1)));
+    CheckBox notes=new CheckBox(this);notes.setText("Искать также в описаниях");notes.setChecked(explorer.descriptions);form.addView(query);form.addView(from);form.addView(to);form.addView(notes);
+    TextView explanation=new TextView(this);explanation.setText("Диапазон применяется к дате создания. У объектов старых версий и некоторых импортированных файлов дата может отсутствовать.");form.addView(explanation);
+    AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Фильтры объектов").setView(form).setPositiveButton("Применить",null).setNeutralButton("Сбросить",(d,w)->{explorer.fromDate=explorer.toDate=0;explorer.query="";explorer.descriptions=false;refresh();}).setNegativeButton("Отмена",null).create();
+    dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try{long a=parseDate(from.getText().toString(),false),b=parseDate(to.getText().toString(),true);if(a>0&&b>0&&a>=b)throw new IllegalArgumentException("Начало диапазона позже конца");explorer.query=query.getText().toString();explorer.fromDate=a;explorer.toDate=b;explorer.descriptions=notes.isChecked();refresh();dialog.dismiss();}catch(Exception error){from.setError(error.getMessage());}}));dialog.show();
+  }
+  private void groupSelected() {
+    if(explorer.selected.isEmpty()){fileError("Выберите объекты");return;}
+    EditText name=new EditText(this);name.setHint("Название набора");CheckBox move=new CheckBox(this);move.setText("Переместить выбранные (иначе создать копии)");LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);form.addView(name);form.addView(move);
+    AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Собрать в набор меток").setView(form).setPositiveButton("Создать",null).setNegativeButton("Отмена",null).create();
+    dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try{store.group(explorer.selected,explorer.folder,name.getText().toString(),move.isChecked());explorer.selected.clear();refresh();dialog.dismiss();}catch(Exception e){name.setError(e.getMessage());}}));dialog.show();
+  }
+  private void mergeSelected() {
+    List<MapItem> sources=new ArrayList<>();for(long id:explorer.selected){MapItem i=store.get(id);if(i==null||!i.isGeometry()||"area".equals(i.kind)){fileError("Выберите только маршруты, линии или треки");return;}sources.add(i);}
+    if(sources.size()<2){fileError("Выберите минимум два объекта");return;}
+    EditText name=new EditText(this);name.setHint("Название объединённого трека");
+    AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Объединить, сохранив разрывы").setMessage("Исходные объекты сохранятся. Сегменты будут добавлены в порядке выделения.").setView(name).setPositiveButton("Объединить",null).setNegativeButton("Отмена",null).create();
+    dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try{MapItem result=new MapItem();result.kind="track";result.name=name.getText().toString();result.parent=explorer.folder;result.visible=true;result.opacity=1;result.color=sources.get(0).color;Set<String> media=new HashSet<>();StringBuilder notes=new StringBuilder();
+      for(MapItem i:sources){result.segments.addAll(Geometry.decode(Geometry.encode(i.segments)));notes.append(i.name).append("\n").append(i.description).append("\n");for(Attachment a:i.attachments)if(media.add(a.key))result.attachments.add(a);}
+      result.description=notes.toString();Vertex first=result.segments.get(0).get(0);result.latitude=first.latitude;result.longitude=first.longitude;store.save(result);refresh();dialog.dismiss();
+    }catch(Exception e){name.setError(e.getMessage());}}));dialog.show();
+  }
+  private void profile(MapItem item) {
+    Dialog dialog=new Dialog(this);LinearLayout panel=new LinearLayout(this);panel.setOrientation(LinearLayout.VERTICAL);panel.setBackground(plate());panel.setPadding(dp(12),dp(12),dp(12),dp(12));panel.addView(hudText(item.name,18));panel.addView(hudText(Geometry.summary(item)+"\n"+TrackStatistics.of(item).summary(),14));
+    panel.addView(new ElevationProfile(this,item),new LinearLayout.LayoutParams(-1,dp(190)));panel.addView(compact("Закрыть",dialog::dismiss));ScrollView scroll=new ScrollView(this);scroll.addView(panel);showPanel(dialog,scroll,dp(520),false);
+  }
+  private void templatesMenu(boolean save) {
+    if(save){if(explorer.selected.size()!=1){fileError("Выберите одну метку");return;}MapItem item=store.get(explorer.selected.iterator().next());if(item==null||!"point".equals(item.kind)){fileError("Шаблон создаётся из обычной метки");return;}
+      EditText name=new EditText(this);name.setHint("Имя шаблона");new AlertDialog.Builder(this).setTitle("Сохранить шаблон метки").setView(name).setPositiveButton("Сохранить",(d,w)->{try{org.json.JSONObject saved=new org.json.JSONObject(getPreferences(MODE_PRIVATE).getString("templates","{}"));MapItem template=ObjectJson.decode(ObjectJson.encode(Collections.singletonList(item))).get(0);template.attachments.clear();saved.put(name.getText().toString(),new org.json.JSONArray(ObjectJson.encode(Collections.singletonList(template))));getPreferences(MODE_PRIVATE).edit().putString("templates",saved.toString()).apply();}catch(Exception e){fileError(e.getMessage());}}).setNegativeButton("Отмена",null).show();return;}
+    try{org.json.JSONObject saved=new org.json.JSONObject(getPreferences(MODE_PRIVATE).getString("templates","{}"));List<String> names=new ArrayList<>();java.util.Iterator<String> keys=saved.keys();while(keys.hasNext())names.add(keys.next());if(names.isEmpty()){fileError("Сначала сохраните шаблон из выделенной метки");return;}
+      sheet("Шаблоны меток",names.toArray(new String[0]),n->{try{MapItem template=ObjectJson.decode(saved.getJSONArray(names.get(n)).toString()).get(0);template.id=0;template.parent=explorer.folder;template.created=template.updated=0;edit(template,(GeoPoint)map.view.getMapCenter());}catch(Exception e){fileError(e.getMessage());}});
+    }catch(Exception e){fileError(e.getMessage());}
+  }
+  private void smartSelections() {
+    try{org.json.JSONObject saved=new org.json.JSONObject(getPreferences(MODE_PRIVATE).getString("smartSelections","{}"));List<String> names=new ArrayList<>();names.add("Сохранить текущие фильтры");java.util.Iterator<String> keys=saved.keys();while(keys.hasNext())names.add(keys.next());
+      sheet("Умные подборки",names.toArray(new String[0]),n->{if(n==0){EditText name=new EditText(this);name.setHint("Название подборки");new AlertDialog.Builder(this).setTitle("Сохранить условия поиска").setView(name).setPositiveButton("Сохранить",(d,w)->{try{saved.put(name.getText().toString(),new org.json.JSONObject().put("query",explorer.query).put("from",explorer.fromDate).put("to",explorer.toDate).put("descriptions",explorer.descriptions).put("type",objectFilter));getPreferences(MODE_PRIVATE).edit().putString("smartSelections",saved.toString()).apply();}catch(Exception e){fileError(e.getMessage());}}).setNegativeButton("Отмена",null).show();}
+        else try{org.json.JSONObject query=saved.getJSONObject(names.get(n));explorer.folder=0;explorer.query=query.getString("query");explorer.fromDate=query.getLong("from");explorer.toDate=query.getLong("to");explorer.descriptions=query.getBoolean("descriptions");objectFilter=query.getString("type");refresh();}catch(Exception e){fileError(e.getMessage());}
+      });
+    }catch(Exception e){fileError(e.getMessage());}
+  }
+
   private void addOnlineMap() {
     LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);
     EditText name=new EditText(this),url=new EditText(this),credit=new EditText(this);
@@ -1561,8 +1617,8 @@ public final class MainActivity extends Activity {
 
   private void exportFile() {
     exportSelection = new ArrayList<>(explorer.selected);
-    sheet("Формат экспорта", new String[]{"KMZ", "KML", "GPX"}, n -> {
-      exportFormat = new String[]{"kmz", "kml", "gpx"}[n];
+    sheet("Формат экспорта", new String[]{"KMZ", "KML", "GPX", "GeoJSON", "CSV", "TSV", "DXF"}, n -> {
+      exportFormat = new String[]{"kmz", "kml", "gpx", "geojson", "csv", "tsv", "dxf"}[n];
       List<MapItem> snapshot = store.exportItems(exportSelection);
       if (snapshot.isEmpty()) { fileError("Нет объектов для экспорта"); return; }
       if(!"kmz".equals(exportFormat))for(MapItem i:snapshot)if(!i.attachments.isEmpty()){fileError("Для экспорта вложений выберите KMZ");return;}
@@ -1593,8 +1649,8 @@ public final class MainActivity extends Activity {
       try(android.database.Cursor c=getContentResolver().query(uri,new String[]{android.provider.OpenableColumns.DISPLAY_NAME},null,null,null)){if(c!=null&&c.moveToFirst())display=c.getString(0);}catch(Exception ignored){}
       final String name=display;Toast.makeText(this,"Проверка архива карты…",Toast.LENGTH_SHORT).show();
       new Thread(()->{try(InputStream input=getContentResolver().openInputStream(uri)) {
-        if(input==null)throw new IOException("Файл недоступен");RasterMaps.Imported result=RasterMaps.importFile(this,input,name);
-        runOnUiThread(()->{if(isFinishing()||isDestroyed())return;catalog.addOffline(result.file,result.name,result.min,result.max);if(result.bounds!=null)map.view.post(()->map.view.zoomToBoundingBox(new org.osmdroid.util.BoundingBox(result.bounds[3],result.bounds[2],result.bounds[1],result.bounds[0]),true,48));Toast.makeText(this,"Офлайн-карта добавлена",Toast.LENGTH_LONG).show();});
+        if(input==null)throw new IOException("Файл недоступен");RasterMaps.Imported importedMap=RasterMaps.importFile(this,input,name);
+        runOnUiThread(()->{if(isFinishing()||isDestroyed())return;catalog.addOffline(importedMap.file,importedMap.name,importedMap.min,importedMap.max);if(importedMap.bounds!=null)map.view.post(()->map.view.zoomToBoundingBox(new org.osmdroid.util.BoundingBox(importedMap.bounds[3],importedMap.bounds[2],importedMap.bounds[1],importedMap.bounds[0]),true,48));Toast.makeText(this,"Офлайн-карта добавлена",Toast.LENGTH_LONG).show();});
       }catch(Exception e){runOnUiThread(()->fileError(e.getMessage()));}},"offline-map-import").start();return;
     }
     if(request==EXPORT_MAP) {

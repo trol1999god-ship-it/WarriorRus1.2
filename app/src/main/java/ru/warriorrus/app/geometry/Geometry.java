@@ -15,7 +15,7 @@ public final class Geometry {
         for (Vertex v : segment) {
           JSONArray point = new JSONArray(); point.put(v.latitude); point.put(v.longitude);
           point.put(v.elevation == null ? JSONObject.NULL : v.elevation);
-          point.put(v.time == null ? JSONObject.NULL : v.time); line.put(point);
+          point.put(v.time == null ? JSONObject.NULL : v.time); point.put(v.name); point.put(v.description); line.put(point);
         }
         all.put(line);
       }
@@ -30,7 +30,7 @@ public final class Geometry {
         JSONArray line = all.getJSONArray(s); List<Vertex> vertices = new ArrayList<>();
         for (int p = 0; p < line.length(); p++) {
           JSONArray v = line.getJSONArray(p);
-          vertices.add(new Vertex(v.getDouble(0), v.getDouble(1), v.isNull(2) ? null : v.getDouble(2), v.isNull(3) ? null : v.getString(3)));
+          vertices.add(new Vertex(v.getDouble(0), v.getDouble(1), v.isNull(2) ? null : v.getDouble(2), v.isNull(3) ? null : v.getString(3),v.optString(4,""),v.optString(5,"")));
         }
         result.add(vertices);
       }

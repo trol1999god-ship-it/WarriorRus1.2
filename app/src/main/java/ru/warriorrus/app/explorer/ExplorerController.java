@@ -12,6 +12,8 @@ public final class ExplorerController {
   public long folder;
   public String query = "";
   public boolean alphabetical;
+  public long fromDate, toDate;
+  public boolean descriptions;
 
   public ExplorerController(ObjectStore store) {
     this.store = store;
@@ -39,9 +41,9 @@ public final class ExplorerController {
   public List<MapItem> entries() {
     List<MapItem> result = new ArrayList<>();
     for (MapItem i : store.all())
-      if (query.isEmpty()
-          ? i.parent == folder
-          : i.name.toLowerCase(Locale.ROOT).contains(query.toLowerCase(Locale.ROOT))) result.add(i);
+      if ((query.isEmpty() && fromDate==0 && toDate==0 ? i.parent==folder
+          : (i.name+(descriptions?" "+i.description:"")).toLowerCase(Locale.ROOT).contains(query.toLowerCase(Locale.ROOT)))
+          && (fromDate==0 || i.created>=fromDate) && (toDate==0 || (i.created>0 && i.created<toDate))) result.add(i);
     if (alphabetical)
       result.sort(
           Comparator.comparing((MapItem i) -> !i.isFolder())
