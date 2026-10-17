@@ -62,7 +62,7 @@ public final class IconsActivity extends Activity {
     TextView v = new TextView(this);
     v.setText(s);
     v.setTextSize(size);
-    v.setTextColor(0xff202632);
+    v.setTextColor(0xffe4f2ff);
     v.setPadding(dp(12), dp(10), dp(12), dp(10));
     return v;
   }
@@ -115,7 +115,7 @@ public final class IconsActivity extends Activity {
     }
     LinearLayout root = new LinearLayout(this);
     root.setOrientation(LinearLayout.VERTICAL);
-    root.setBackgroundColor(0xfff4f6fa);
+    root.setBackgroundColor(0xff071b2c);
     root.addView(text("Значки — Рабочая карта", 22));
     HorizontalScrollView nav = new HorizontalScrollView(this);
     crumbs = new LinearLayout(this);
@@ -222,7 +222,7 @@ public final class IconsActivity extends Activity {
         row.setGravity(Gravity.CENTER_VERTICAL);
         row.setMinimumHeight(dp(64));
         GradientDrawable bg = new GradientDrawable();
-        bg.setColor(selected.contains(e.key) ? 0xffdceaff : Color.WHITE);
+        bg.setColor(selected.contains(e.key) ? 0xff073b65 : 0xff10293b);
         bg.setCornerRadius(dp(10));
         row.setBackground(bg);
         CheckBox check = new CheckBox(this);
