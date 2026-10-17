@@ -25,8 +25,8 @@ public class GeometryUiTest {
         for(int n=0;n<context.getListView().getCount();n++)if(title.equals(context.getListView().getItemAtPosition(n).toString()))context.getListView().performItemClick(null,n,n);
         View drawing=root.findViewWithTag("drawingControls");assertNotNull(drawing);
         org.osmdroid.views.MapView map=(org.osmdroid.views.MapView)type(root,org.osmdroid.views.MapView.class);
-        map.getController().setCenter(new org.osmdroid.util.GeoPoint(56,38));desc(drawing,"+ Точка").performClick();
-        if(title.equals("Создать область")){map.getController().setCenter(new org.osmdroid.util.GeoPoint(55,38));desc(drawing,"+ Точка").performClick();}
+        map.getController().setCenter(new org.osmdroid.util.GeoPoint(56.0,38.0));desc(drawing,"+ Точка").performClick();
+        if(title.equals("Создать область")){map.getController().setCenter(new org.osmdroid.util.GeoPoint(55.0,38.0));desc(drawing,"+ Точка").performClick();}
         desc(drawing,"Сохранить").performClick();org.robolectric.shadows.ShadowLooper.idleMainLooper();AlertDialog save=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
         ((EditText)type(save.getWindow().getDecorView(),EditText.class)).setText(title);save.getButton(-1).performClick();assertFalse("Save error: "+((EditText)type(save.getWindow().getDecorView(),EditText.class)).getError(),save.isShowing());assertNull(root.findViewWithTag("drawingControls"));
       }

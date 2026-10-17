@@ -187,7 +187,7 @@ public class NativeMapRegressionTest {
         if(screen!=null){visible=screen.getPixel(pixel[0],pixel[1])==0xff1565c0;screen.recycle();}
       }
       assertTrue("Imported MBTiles must render actual raster pixels on the device screen",visible);capture("offline-mbtiles");
-      scenario.onActivity(activity->{MapView map=(MapView)type(activity.getWindow().getDecorView(),MapView.class);map.getController().setZoom(14.0);map.getController().setCenter(new org.osmdroid.util.GeoPoint(0,1));});device.waitForIdle();
+      scenario.onActivity(activity->{MapView map=(MapView)type(activity.getWindow().getDecorView(),MapView.class);map.getController().setZoom(14.0);map.getController().setCenter(new org.osmdroid.util.GeoPoint(0.0,1.0));});device.waitForIdle();
       scenario.onActivity(activity->{try{java.lang.reflect.Field field=MainActivity.class.getDeclaredField("mapTools");field.setAccessible(true);ru.warriorrus.app.map.MapTools tools=(ru.warriorrus.app.map.MapTools)field.get(activity);tools.start(new ru.warriorrus.app.data.Vertex(0,0));assertEquals(111195,tools.previewLength(),50);tools.add();tools.finish();}catch(Exception error){throw new AssertionError(error);}});
       scenario.recreate();device.waitForIdle();
     }

@@ -27,8 +27,9 @@ public class MapToolsTest {
   @Test public void measurementDraftAndTargetSurviveActivityRecreation()throws Exception {
     try(ActivityController<MainActivity> controller=Robolectric.buildActivity(MainActivity.class).setup().visible()){
       MainActivity activity=controller.get();java.lang.reflect.Field field=MainActivity.class.getDeclaredField("mapTools");field.setAccessible(true);MapTools tools=(MapTools)field.get(activity);
-      tools.target(new Vertex(1,1));tools.start(new Vertex(0,0));tools.add();tools.removeLast();assertTrue(tools.hasTarget());
-      // Live map-center movement is checked on Android, not Robolectric's scroll stub.
+      org.osmdroid.views.MapView map=find(activity.getWindow().getDecorView());
+      map.measure(View.MeasureSpec.makeMeasureSpec(400,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(800,View.MeasureSpec.EXACTLY));map.layout(0,0,400,800);map.getController().setZoom(14.0);map.getController().setCenter(new GeoPoint(0.0,1.0));
+      tools.target(new Vertex(1,1));tools.start(new Vertex(0,0));assertEquals(111195,tools.previewLength(),10);tools.add();tools.removeLast();assertTrue(tools.hasTarget());
 
     }
     try(ActivityController<MainActivity> controller=Robolectric.buildActivity(MainActivity.class).setup().visible()){
