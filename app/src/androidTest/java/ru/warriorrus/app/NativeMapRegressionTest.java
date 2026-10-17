@@ -61,7 +61,7 @@ public class NativeMapRegressionTest {
       click(By.desc("Свернуть или раскрыть правую панель"));
       click(By.desc("Увеличить"));
       click(By.desc("Свернуть или раскрыть координаты"));
-      click(By.desc("Объекты"));
+      click(By.desc("Метки"));click(By.desc("Проводник меток"));
       assertNotNull(device.wait(Until.findObject(By.text("Объекты карты")), 8000));
     }
   }
@@ -114,10 +114,11 @@ public class NativeMapRegressionTest {
         scenario.onActivity(activity -> assertWithinSafeArea(activity,
             activity.getWindow().getDecorView().findViewWithTag("bottomPanel")));
         capture(prefix + "-map");
-        String[] labels = {"Меню", "Слои", "Карты", "Объекты"};
-        String[] fields = {"menuDialog", "layersDialog", "mapsDialog", "explorerDialog"};
+        String[] labels = {"Меню", "Слои", "Карты и слои", "Метки", "Ориентация"};
+        String[] fields = {"menuDialog", "layersDialog", "mapsDialog", "explorerDialog", "orientationDialog"};
         for (int index = 0; index < labels.length; index++) {
-          click(By.desc(labels[index]));
+          if(labels[index].equals("Слои")){click(By.desc("Карты и слои"));click(By.desc("Отображаемые карты"));}
+          else {click(By.desc(labels[index]));if(labels[index].equals("Метки"))click(By.desc("Проводник меток"));}
           final String fieldName = fields[index];
           scenario.onActivity(activity -> {
             try {
@@ -141,7 +142,7 @@ public class NativeMapRegressionTest {
           device.pressBack();
           device.waitForIdle();
         }
-        click(By.desc("Меню")); click(By.desc("Настройки")); click(By.text("Параметры карты и координат"));
+        click(By.desc("Меню")); click(By.desc("Настройки"));
         scenario.onActivity(activity -> {
           try {
             java.lang.reflect.Field field=MainActivity.class.getDeclaredField("settingsDialog");field.setAccessible(true);

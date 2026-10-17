@@ -129,6 +129,7 @@ public final class IconsActivity extends Activity {
         button(
             "Папка +", () -> nameDialog("Новая папка", "", name -> library.mkdir(folder, name))));
     actions.addView(button("SVG +", () -> createSvg()));
+    actions.addView(button("Нарисовать", this::drawIcon));
     actions.addView(button("Импорт SVG", () -> importFiles()));
     actions.addView(button("Обновить", () -> execute(() -> thumbnails.evictAll())));
     actions.addView(
@@ -411,6 +412,15 @@ public final class IconsActivity extends Activity {
                     }))
         .setNegativeButton("Отмена", null)
         .show();
+  }
+
+  private void drawIcon() {
+    LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);EditText name=new EditText(this);name.setHint("Название значка.svg");form.addView(name);
+    SketchView sketch=new SketchView(this);form.addView(sketch,new LinearLayout.LayoutParams(-1,dp(240)));LinearLayout tools=new LinearLayout(this);tools.addView(button("Отменить штрих",sketch::undo));tools.addView(button("Очистить",sketch::clear));form.addView(tools);
+    AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Нарисовать значок").setView(form).setPositiveButton("Сохранить SVG",null).setNegativeButton("Отмена",null).create();
+    dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try{if(library==null)library=IconLibrary.open(this);String destination="Созданное от руки";if(!library.resolve(destination).isDirectory())library.mkdir("",destination);
+      library.importSvg(destination,name.getText().toString(),new ByteArrayInputStream(sketch.svg().getBytes(java.nio.charset.StandardCharsets.UTF_8)));folder=destination;dialog.dismiss();refresh();
+    }catch(Exception error){name.setError(error.getMessage());}}));dialog.show();
   }
 
   private void createSvg() {

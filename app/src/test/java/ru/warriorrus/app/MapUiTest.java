@@ -17,6 +17,11 @@ import ru.warriorrus.app.map.*;
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = {23, 35})
 public class MapUiTest {
+  private void openLayers(View root) {
+    root.findViewWithTag("Карты").performClick();
+    Dialog dialog=org.robolectric.shadows.ShadowDialog.getLatestDialog();
+    find(dialog.getWindow().getDecorView(),"Отображаемые карты").performClick();
+  }
   @Before
   public void cleanFixture() {
     RuntimeEnvironment.getApplication().deleteDatabase("warrior2.db");
@@ -35,23 +40,20 @@ public class MapUiTest {
       assertEquals(-1, map.getLayoutParams().width);
       assertEquals(-1, map.getLayoutParams().height);
       assertNull(find(a.getWindow().getDecorView(), "Warrior Explorer"));
-      find(a.getWindow().getDecorView(), "Объекты").performClick();
+      find(a.getWindow().getDecorView(), "Объекты").performLongClick();
       Dialog objects = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       assertNotNull(find(objects.getWindow().getDecorView(), "Объекты карты"));
       assertNotNull(objects.getWindow().getDecorView().findViewWithTag("filter:point"));
       objects.dismiss();
-      AlertDialog d;
-      find(a.getWindow().getDecorView(), "Меню").performClick();
-      Dialog menu = org.robolectric.shadows.ShadowDialog.getLatestDialog();
-      find(menu.getWindow().getDecorView(), "Настройки").performClick();
-      d = org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
-      item(d, 0);
-      assertTrue(map.getOverlays().stream().anyMatch(o -> o instanceof CoordinateGrid));
-      find(a.getWindow().getDecorView(), "Меню").performClick();
-      menu = org.robolectric.shadows.ShadowDialog.getLatestDialog();
-      find(menu.getWindow().getDecorView(), "Настройки").performClick();
-      item(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog(), 0);
-      assertFalse(map.getOverlays().stream().anyMatch(o -> o instanceof CoordinateGrid));
+      for(boolean expected:new boolean[]{true,false}) {
+        find(a.getWindow().getDecorView(), "Меню").performClick();
+        Dialog menu=org.robolectric.shadows.ShadowDialog.getLatestDialog();
+        find(menu.getWindow().getDecorView(), "Настройки").performClick();
+        Dialog settings=org.robolectric.shadows.ShadowDialog.getLatestDialog();
+        ((CheckBox)find(settings.getWindow().getDecorView(),"Координатная сетка")).setChecked(expected);
+        find(settings.getWindow().getDecorView(),"Применить").performClick();
+        assertEquals(expected,map.getOverlays().stream().anyMatch(o->o instanceof CoordinateGrid));
+      }
     }
   }
 
@@ -69,7 +71,7 @@ public class MapUiTest {
     }
     try (ActivityController<MainActivity> c =
         Robolectric.buildActivity(MainActivity.class).setup()) {
-      find(c.get().getWindow().getDecorView(), "Объекты").performClick();
+      find(c.get().getWindow().getDecorView(), "Объекты").performLongClick();
       Dialog explorer = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       find(explorer.getWindow().getDecorView(), "Вид").performClick();
       assertNotNull(find(explorer.getWindow().getDecorView(), "Existing\n55.70000, 37.60000"));
@@ -177,7 +179,7 @@ public class MapUiTest {
       }
       org.osmdroid.views.MapView map = (org.osmdroid.views.MapView) findType(root, org.osmdroid.views.MapView.class);
       assertEquals(2, map.getOverlays().stream().filter(o -> o instanceof org.osmdroid.views.overlay.Marker).count());
-      find(root, "Слои").performClick();
+      openLayers(root);
       Dialog layers = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       View layerRoot = layers.getWindow().getDecorView();
       assertNotNull(find(layerRoot, "Слои карт"));
@@ -195,7 +197,7 @@ public class MapUiTest {
       assertEquals(2, store.all().size());
       assertEquals(2, map.getOverlays().stream().filter(o -> o instanceof org.osmdroid.views.overlay.Marker).count());
       assertFalse(map.getOverlayManager().getTilesOverlay().isEnabled());
-      find(c.get().getWindow().getDecorView(), "Слои").performClick();
+      openLayers(c.get().getWindow().getDecorView());
       Dialog layers = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       assertNotNull(find(layers.getWindow().getDecorView(), "Непрозрачность: 40%"));
     }
@@ -211,7 +213,7 @@ public class MapUiTest {
     }
     try (ActivityController<MainActivity> c = Robolectric.buildActivity(MainActivity.class).setup()) {
       View root = c.get().getWindow().getDecorView();
-      root.findViewWithTag("Объекты").performClick();
+      root.findViewWithTag("Объекты").performLongClick();
       Dialog dialog = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       View objects = dialog.getWindow().getDecorView();
       objects.findViewWithTag("filter:point").performClick();

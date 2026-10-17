@@ -45,7 +45,9 @@ public final class MapCatalog {
     Layer l=new Layer();l.id=UUID.randomUUID().toString();l.name=name.trim();l.url=template.trim();l.credit=credit.trim();l.downloadAllowed=offlineAllowed;l.max=22;layers.add(l);save();rebuild();return l;
   }
   public Layer addOffline(File file,String name,int min,int max) {
-    Layer l=new Layer();l.id=UUID.randomUUID().toString();l.name=name;l.path=file.getName();l.min=min;l.max=max;l.credit="Локальный архив: "+name;layers.add(l);save();rebuild();return l;
+    Layer l=new Layer();l.id=UUID.randomUUID().toString();l.name=name;l.path=file.getName();l.min=min;l.max=max;l.credit="Локальный архив: "+name;
+    if(file.getName().endsWith(".mbtiles"))try(android.database.sqlite.SQLiteDatabase db=android.database.sqlite.SQLiteDatabase.openDatabase(file.getPath(),null,android.database.sqlite.SQLiteDatabase.OPEN_READONLY);android.database.Cursor c=db.rawQuery("SELECT value FROM metadata WHERE name='attribution' LIMIT 1",null)){if(c.moveToFirst()&&!c.getString(0).isEmpty())l.credit=c.getString(0);}catch(Exception ignored){}
+    layers.add(l);save();rebuild();return l;
   }
   public File file(Layer l)throws IOException {File root=new File(activity.getFilesDir(),"maps").getCanonicalFile(),file=new File(root,l.path).getCanonicalFile();if(!root.equals(file.getParentFile()))throw new IOException("Неверный архив карты");return file;}
   public void reorder(Layer l,int delta){int p=layers.indexOf(l),next=p+delta;if(next>=0&&next<layers.size()){Collections.swap(layers,p,next);save();rebuild();}}

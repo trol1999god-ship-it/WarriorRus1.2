@@ -48,5 +48,5 @@ public final class RasterMaps {
       }done=true;
     }finally{if(!done)output.delete();}
   }
-  public static void createMbtiles(SQLiteDatabase db,String name){db.execSQL("CREATE TABLE IF NOT EXISTS metadata(name TEXT PRIMARY KEY,value TEXT)");db.execSQL("CREATE TABLE IF NOT EXISTS tiles(zoom_level INTEGER,tile_column INTEGER,tile_row INTEGER,tile_data BLOB,UNIQUE(zoom_level,tile_column,tile_row))");db.execSQL("INSERT OR REPLACE INTO metadata(name,value) VALUES('name',?),('format','png'),('type','baselayer'),('version','1.3')",new Object[]{name});}
+  public static void createMbtiles(SQLiteDatabase db,String name){db.execSQL("CREATE TABLE IF NOT EXISTS metadata(name TEXT PRIMARY KEY,value TEXT)");db.execSQL("CREATE TABLE IF NOT EXISTS tiles(zoom_level INTEGER,tile_column INTEGER,tile_row INTEGER,tile_data BLOB,UNIQUE(zoom_level,tile_column,tile_row))");db.execSQL("INSERT OR IGNORE INTO metadata(name,value) VALUES('name',?),('format','png'),('type','baselayer'),('version','1.3')",new Object[]{name});}
 }

@@ -38,7 +38,7 @@ public final class MainActivity extends Activity {
   private static final int IMPORT_FILE = 701, EXPORT_FILE = 702, ATTACH_FILE = 703, IMPORT_MAP = 704, EXPORT_MAP = 705;
   private MapCatalog catalog;
   private String exportRasterPath="";
-  private Dialog downloadDialog;
+  private Dialog downloadDialog, attachmentsDialog;
   private long attachmentObject;
   private String exportFormat = "kmz";
   private long importParent;
@@ -47,7 +47,10 @@ public final class MainActivity extends Activity {
   private long selectedPoint;
   private boolean coordinatesCollapsed, mapLayerVisible, rightCollapsed;
   private int mapLayerOpacity;
-  private Dialog menuDialog, layersDialog, mapsDialog;
+  private Dialog menuDialog, layersDialog, mapsDialog, marksDialog, orientationDialog, compassDialog;
+  private CompassController compassController;
+  private CompassDial compassDial, mapCompass;
+  private TextView headingInfo, compassReadout;
   private String objectFilter = "all";
   private final List<Button> objectTabs = new ArrayList<>();
 
@@ -76,7 +79,7 @@ public final class MainActivity extends Activity {
     TextView v = new TextView(this);
     v.setText(value);
     v.setTextSize(size);
-    v.setTextColor(0xff202632);
+    v.setTextColor(0xffe4f2ff);
     v.setPadding(dp(12), dp(10), dp(12), dp(10));
     return v;
   }
@@ -187,12 +190,16 @@ public final class MainActivity extends Activity {
     LinearLayout toolbar = new LinearLayout(this);
     toolbar.setOrientation(LinearLayout.HORIZONTAL);
     toolbar.setTag("bottomToolbar");
-    String[] tabNames = {"Меню", "Объекты", "Слои", "Карты"};
-    int[] tabIcons = {R.drawable.ui_menu, R.drawable.ui_pin, R.drawable.ui_layers, R.drawable.ui_map};
-    Runnable[] tabActions = {this::mainMenu, this::objectsMenu, this::layersMenu, this::mapsMenu};
+    String[] tabNames = {"Меню", "Карты", "Объекты", "Ориентация"};
+    int[] tabIcons = {R.drawable.ui_menu, R.drawable.ui_map, R.drawable.ui_pin, R.drawable.ui_compass};
+    Runnable[] tabActions = {this::mainMenu, this::mapsMenu, this::marksMenu, this::orientationMenu};
     for (int i = 0; i < tabNames.length; i++) {
       Button tab = iconButton(tabNames[i], tabIcons[i], tabActions[i]);
       tab.setTag(tabNames[i]);
+      if(i==1)tab.setContentDescription("Карты и слои");
+      if(i==2)tab.setContentDescription("Метки");
+      final int category=i;
+      tab.setOnLongClickListener(v->{if(category==0)settingsMenu();else if(category==1)catalogMenu();else if(category==2)openExplorer(false);else toggleCompass();return true;});
       if (i == 0) tab.setBackground(selectedPlate());
       tab.setText("");
       tab.setCompoundDrawablesRelativeWithIntrinsicBounds(tabIcons[i], 0, 0, 0);
@@ -204,6 +211,11 @@ public final class MainActivity extends Activity {
     FrameLayout.LayoutParams bottom = new FrameLayout.LayoutParams(dp(192), dp(48), Gravity.BOTTOM | Gravity.START);
     bottom.setMargins(dp(8), 0, dp(8), dp(8));
     root.addView(bottomContainer, bottom);
+    headingInfo=hudText("",11);headingInfo.setVisibility(View.GONE);coordinateDetails.addView(headingInfo);
+    mapCompass=new CompassDial(this);mapCompass.setVisibility(View.GONE);
+    FrameLayout.LayoutParams compassPosition=new FrameLayout.LayoutParams(dp(96),dp(96),Gravity.BOTTOM|Gravity.END);compassPosition.setMargins(0,0,dp(8),dp(68));root.addView(mapCompass,compassPosition);
+    mapCompass.setOnClickListener(v->showCompass());
+    compassController=new CompassController(this,c->updateCompass());
 
     rightCollapsed = getPreferences(MODE_PRIVATE).getBoolean("rightCollapsed", false);
     LinearLayout rightPanel = new LinearLayout(this);
@@ -502,7 +514,7 @@ public final class MainActivity extends Activity {
     int[] icons = {R.drawable.ui_pin, R.drawable.ui_layers, R.drawable.ui_map,
         R.drawable.ui_menu, R.drawable.ui_settings, R.drawable.ui_info};
     Runnable[] actions = {this::objectsMenu, this::layersMenu, this::mapsMenu, this::openIcons,
-        this::toolsMenu, () -> new AlertDialog.Builder(this).setTitle("Рабочая карта")
+        this::settingsMenu, () -> new AlertDialog.Builder(this).setTitle("Рабочая карта")
             .setMessage("Локальная картографическая рабочая область без GPS.")
             .setPositiveButton("ОК", null).show()};
     for (int row = 0; row < 2; row++) {
@@ -676,7 +688,7 @@ public final class MainActivity extends Activity {
     panel.setPadding(dp(12), dp(12), dp(12), dp(12));
     panel.setBackground(plate());
     LinearLayout heading = new LinearLayout(this);
-    heading.addView(hudText("Карты", 19), new LinearLayout.LayoutParams(0, -2, 1));
+    heading.addView(hudText("Карты и слои", 19), new LinearLayout.LayoutParams(0, -2, 1));
     Button close = compact("×", () -> mapsDialog.dismiss());
     close.setContentDescription("Закрыть карты");
     heading.addView(close, new LinearLayout.LayoutParams(dp(48), dp(48)));
@@ -694,6 +706,9 @@ public final class MainActivity extends Activity {
     offline.setOnClickListener(v -> { setMapOnline(false); update.run(); });
     modes.addView(online, new LinearLayout.LayoutParams(0, dp(48), 1));
     modes.addView(offline, new LinearLayout.LayoutParams(0, dp(48), 1));
+    panel.addView(compact("Доступные карты",()->{mapsDialog.dismiss();catalogMenu();}));
+    Button displayedMaps=compact("Отображаемые карты",()->{mapsDialog.dismiss();layersMenu();});displayedMaps.setTag("displayedMaps");panel.addView(displayedMaps);
+    panel.addView(compact("Выбрать и сохранить область",this::chooseAreaDownload));
     panel.addView(modes);
     TextView source = hudText("© OpenStreetMap\nhttps://www.openstreetmap.org/copyright", 13);
     android.text.util.Linkify.addLinks(source, android.text.util.Linkify.WEB_URLS);
@@ -703,11 +718,8 @@ public final class MainActivity extends Activity {
     source.setMinHeight(dp(64));
     panel.addView(source);
     panel.addView(explanation);
-    panel.addView(compact("Слои карт", () -> { mapsDialog.dismiss(); layersMenu(); }));
-    panel.addView(compact("Доступные карты",()->{mapsDialog.dismiss();catalogMenu();}));
     panel.addView(compact("Открыть офлайн-архив",this::importMap));
     panel.addView(compact("Добавить HTTPS-источник",this::addOnlineMap));
-    panel.addView(compact("Скачать область",this::chooseAreaDownload));
     panel.addView(compact("Задание офлайн-загрузки",this::showDownloadStatus));
     update.run();
     ScrollView scroll=new ScrollView(this);scroll.addView(panel);showPanel(mapsDialog, scroll, dp(360), false);
@@ -729,40 +741,54 @@ public final class MainActivity extends Activity {
   }
 
   private void marksMenu() {
-    sheet(
-        "Метки",
-        new String[] {"Все метки", "Метки на экране", "Новая метка", "Поиск на карте", "Опции"},
-        n -> {
-          switch (n) {
-            case 0:
-              openExplorer(false);
-              break;
-            case 1:
-              openExplorer(true);
-              break;
-            case 2:
-              edit(null, (GeoPoint) map.view.getMapCenter());
-              break;
-            case 3:
-              searchMap();
-              break;
-            case 4:
-              sheet(
-                  "Опции меток",
-                  new String[] {"Список / карточки Explorer", "Значки"},
-                  k -> {
-                    if (k == 0) {
-                      cards = !cards;
-                      getPreferences(MODE_PRIVATE)
-                          .edit()
-                          .putBoolean("explorerCards", cards)
-                          .apply();
-                      openExplorer(false);
-                    } else openIcons();
-                  });
-              break;
-          }
-        });
+    marksDialog=new Dialog(this);LinearLayout panel=featurePanel("Метки",marksDialog);
+    panel.addView(compact("Проводник меток",()->{marksDialog.dismiss();openExplorer(false);}));
+    if(!store.renderItems().isEmpty())panel.addView(compact("Отображаемые метки",()->{marksDialog.dismiss();openExplorer(true);}));
+    panel.addView(compact("Создать метку",()->{marksDialog.dismiss();createPlacemark();}));
+    panel.addView(compact("Поиск местоположения",()->{marksDialog.dismiss();searchMap();}));
+    panel.addView(compact("Опции",()->{marksDialog.dismiss();placemarkOptions();}));
+    showFeature(marksDialog,panel);
+  }
+  private LinearLayout featurePanel(String title,Dialog dialog) {
+    LinearLayout panel=new LinearLayout(this);panel.setOrientation(LinearLayout.VERTICAL);panel.setPadding(dp(12),dp(8),dp(12),dp(8));panel.setBackground(plate());
+    LinearLayout header=new LinearLayout(this);header.addView(hudText(title,18),new LinearLayout.LayoutParams(0,-2,1));header.addView(compact("×",dialog::dismiss),new LinearLayout.LayoutParams(dp(48),dp(48)));panel.addView(header);return panel;
+  }
+  private void showFeature(Dialog dialog,LinearLayout panel){ScrollView scroll=new ScrollView(this);scroll.addView(panel);showPanel(dialog,scroll,dp(360),false);}
+  private void createPlacemark(){sheet("Создать метку",new String[]{"Точка","Набор точек","Маршрут","Линия","Область","Папка"},n->{GeoPoint p=(GeoPoint)map.view.getMapCenter();if(n==0)edit(null,p);else if(n==1||n==5){EditText name=new EditText(this);new AlertDialog.Builder(this).setTitle(n==1?"Набор точек":"Папка").setView(name).setPositiveButton("Создать",(d,w)->run(()->store.create(explorer.folder,name.getText().toString(),n==1?"set":"folder",0,0))).setNegativeButton("Отмена",null).show();}else startDrawing(n==2?"route":n==3?"path":"area",p);});}
+  private void placemarkOptions(){
+    Dialog dialog=new Dialog(this);LinearLayout panel=featurePanel("Опции меток",dialog);
+    CheckBox labels=new CheckBox(this);labels.setText("Подписи меток");labels.setTextColor(0xffe4f2ff);labels.setChecked(map.labelsVisible);labels.setOnCheckedChangeListener((v,on)->{getPreferences(MODE_PRIVATE).edit().putBoolean("placemarkLabels",on).apply();applySettings();});panel.addView(labels);
+    panel.addView(compact("Значки",()->{dialog.dismiss();openIcons();}));panel.addView(compact("Размер значков и толщина линий",()->{dialog.dismiss();settingsMenu();}));showFeature(dialog,panel);
+  }
+  private void orientationMenu(){
+    orientationDialog=new Dialog(this);LinearLayout panel=featurePanel("Ориентация",orientationDialog);
+    panel.addView(compact("Компас",()->{orientationDialog.dismiss();showCompass();}));
+    CheckBox enabled=new CheckBox(this);enabled.setText("Включить компас");enabled.setTextColor(0xffe4f2ff);enabled.setChecked(getPreferences(MODE_PRIVATE).getBoolean("compassEnabled",false));
+    enabled.setOnCheckedChangeListener((v,on)->{setCompass(on);if(on&&!compassController.enabled)enabled.setChecked(false);});panel.addView(enabled);
+    String[] labels={"Поворачивать карту по компасу","Показывать компас на карте","Текущий азимут"};String[] keys={"compassRotate","compassOnMap","compassInfo"};
+    for(int n=0;n<keys.length;n++){final String key=keys[n];CheckBox option=new CheckBox(this);option.setText(labels[n]);option.setTextColor(0xffe4f2ff);option.setChecked(getPreferences(MODE_PRIVATE).getBoolean(key,false));option.setOnCheckedChangeListener((v,on)->{getPreferences(MODE_PRIVATE).edit().putBoolean(key,on).apply();updateCompass();});panel.addView(option);}
+    panel.addView(compact("Север сверху",()->map.view.setMapOrientation(0)));showFeature(orientationDialog,panel);
+  }
+  private void toggleCompass(){setCompass(!getPreferences(MODE_PRIVATE).getBoolean("compassEnabled",false));}
+  private void setCompass(boolean on){
+    if(on){if(!compassController.start(getPreferences(MODE_PRIVATE).getString("compassSensor","rotation"))){on=false;fileError("Магнитный датчик недоступен. Компас не включён.");}}
+    else compassController.stop();getPreferences(MODE_PRIVATE).edit().putBoolean("compassEnabled",on).apply();updateCompass();
+  }
+  private void showCompass(){
+    compassDialog=new Dialog(this);LinearLayout panel=featurePanel("Компас",compassDialog);
+    compassDial=new CompassDial(this);panel.addView(compassDial,new LinearLayout.LayoutParams(-1,dp(240)));compassReadout=hudText("",14);panel.addView(compassReadout);
+    panel.addView(compact("Включить / выключить",this::toggleCompass));
+    CheckBox rose=new CheckBox(this);rose.setText("Подвижная шкала");rose.setTextColor(0xffe4f2ff);rose.setChecked(getPreferences(MODE_PRIVATE).getBoolean("compassRose",true));rose.setOnCheckedChangeListener((v,on)->{getPreferences(MODE_PRIVATE).edit().putBoolean("compassRose",on).apply();updateCompass();});panel.addView(rose);
+    panel.addView(compact("Датчик",()->sheet("Датчик компаса",new String[]{"Вектор вращения (если доступен)","Магнитометр и акселерометр"},n->{getPreferences(MODE_PRIVATE).edit().putString("compassSensor",n==0?"rotation":"magnetic").apply();if(compassController.enabled)setCompass(true);}))); 
+    panel.addView(hudText("Магнитный север. Местоположение не запрашивается. Для калибровки поверните телефон в разных направлениях.",12));showFeature(compassDialog,panel);updateCompass();
+  }
+  private void updateCompass(){
+    if(compassController==null||headingInfo==null)return;CompassController c=compassController;android.content.SharedPreferences prefs=getPreferences(MODE_PRIVATE);
+    String value=!c.enabled?"Компас выключен":!c.ready?"Ожидание показаний датчика":String.format(Locale.ROOT,"Азимут: %.1f° · %.0f mil\nНаклон: %.1f° · Крен: %.1f°%s",c.heading,c.heading*6400/360,c.pitch,c.roll,c.accuracy<=android.hardware.SensorManager.SENSOR_STATUS_ACCURACY_LOW?"\nТребуется калибровка":"");
+    if(compassReadout!=null)compassReadout.setText(value);headingInfo.setText(value);headingInfo.setVisibility(c.enabled&&prefs.getBoolean("compassInfo",false)?View.VISIBLE:View.GONE);
+    for(CompassDial dial:new CompassDial[]{compassDial,mapCompass})if(dial!=null){dial.heading=c.heading;dial.ready=c.ready;dial.movingRose=prefs.getBoolean("compassRose",true);dial.invalidate();}
+    mapCompass.setVisibility(c.enabled&&prefs.getBoolean("compassOnMap",false)?View.VISIBLE:View.GONE);
+    if(c.enabled&&c.ready&&prefs.getBoolean("compassRotate",false))map.view.setMapOrientation(-c.heading);
   }
 
   private void toolsMenu() {
@@ -1363,7 +1389,7 @@ public final class MainActivity extends Activity {
   }
 
   private long parseDate(String value,boolean end)throws Exception {
-    if(value.trim().isEmpty())return 0;java.text.SimpleDateFormat format=new java.text.SimpleDateFormat("dd.MM.yyyy",Locale.ROOT);format.setLenient(false);java.util.Date date=format.parse(value.trim());
+    if(value.trim().isEmpty())return 0;java.text.SimpleDateFormat format=new java.text.SimpleDateFormat("dd.MM.yyyy",Locale.ROOT);format.setLenient(false);java.text.ParsePosition position=new java.text.ParsePosition(0);java.util.Date date=format.parse(value.trim(),position);if(date==null||position.getIndex()!=value.trim().length())throw new IllegalArgumentException("Введите дату в формате дд.мм.гггг");
     Calendar calendar=Calendar.getInstance();calendar.setTime(date);if(end)calendar.add(Calendar.DAY_OF_MONTH,1);return calendar.getTimeInMillis();
   }
   private void filtersMenu() {
@@ -1459,7 +1485,7 @@ public final class MainActivity extends Activity {
     ScrollView scroll=new ScrollView(this);scroll.addView(form);
     AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Область и глубина · "+layer.name).setView(scroll).setPositiveButton("Проверить",null).setNegativeButton("Отмена",null).create();
     dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try {
-      ru.warriorrus.app.map.TileDownload.Spec spec=new ru.warriorrus.app.map.TileDownload.Spec();spec.name=layer.name+" · область";spec.url=layer.url;spec.south=Double.parseDouble(fields[0].getText().toString());spec.west=Double.parseDouble(fields[1].getText().toString());spec.north=Double.parseDouble(fields[2].getText().toString());spec.east=Double.parseDouble(fields[3].getText().toString());spec.min=Integer.parseInt(fields[4].getText().toString());spec.max=Integer.parseInt(fields[5].getText().toString());
+      ru.warriorrus.app.map.TileDownload.Spec spec=new ru.warriorrus.app.map.TileDownload.Spec();spec.name=layer.name+" · область";spec.credit=layer.credit;spec.url=layer.url;spec.south=Double.parseDouble(fields[0].getText().toString());spec.west=Double.parseDouble(fields[1].getText().toString());spec.north=Double.parseDouble(fields[2].getText().toString());spec.east=Double.parseDouble(fields[3].getText().toString());spec.min=Integer.parseInt(fields[4].getText().toString());spec.max=Integer.parseInt(fields[5].getText().toString());
       int count=ru.warriorrus.app.map.TileDownload.tiles(spec).size();
       new AlertDialog.Builder(this).setTitle("Скачать "+count+" тайлов?").setMessage("Карта сохранится в MBTiles. Уже сохранённые тайлы повторно не скачиваются. Задание можно приостановить и продолжить.")
           .setPositiveButton("Скачать",(d,b)->{
@@ -1491,7 +1517,7 @@ public final class MainActivity extends Activity {
 
   private void attachmentsMenu(long objectId) {
     MapItem object=store.get(objectId);if(object==null)return;
-    Dialog dialog=new Dialog(this);LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);
+    if(attachmentsDialog!=null)attachmentsDialog.dismiss();Dialog dialog=new Dialog(this);attachmentsDialog=dialog;LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);
     content.setPadding(dp(12),dp(8),dp(12),dp(8));content.setBackground(plate());content.addView(hudText("Вложения · "+object.name,18));
     if(object.attachments.isEmpty())content.addView(hudText("Пока нет вложений",14));
     for(Attachment attachment:object.attachments) {
@@ -1583,6 +1609,7 @@ public final class MainActivity extends Activity {
     secondary.setSelection(getPreferences(MODE_PRIVATE).getInt("secondaryCoordinates", 4)+1); form.addView(secondary);
     CheckBox labels = new CheckBox(this); labels.setText("Подписи объектов"); labels.setTextColor(0xffe4f2ff);
     labels.setChecked(getPreferences(MODE_PRIVATE).getBoolean("placemarkLabels", true)); form.addView(labels);
+    CheckBox grid=new CheckBox(this);grid.setText("Координатная сетка");grid.setTextColor(0xffe4f2ff);grid.setChecked(gridEnabled);form.addView(grid);
     CheckBox screen = new CheckBox(this); screen.setText("Не выключать экран"); screen.setTextColor(0xffe4f2ff);
     screen.setChecked(getPreferences(MODE_PRIVATE).getBoolean("keepScreenOn", false)); form.addView(screen);
     TextView markerValue = hudText("Размер значков: "+map.markerSize+" dp", 13); form.addView(markerValue);
@@ -1601,6 +1628,7 @@ public final class MainActivity extends Activity {
       getPreferences(MODE_PRIVATE).edit().putInt("primaryCoordinates", primary.getSelectedItemPosition())
           .putInt("secondaryCoordinates", secondary.getSelectedItemPosition()-1).putBoolean("placemarkLabels", labels.isChecked())
           .putBoolean("keepScreenOn", screen.isChecked()).putInt("markerSize", marker.getProgress()+16).putInt("lineWidth", line.getProgress()+1).apply();
+      gridEnabled=grid.isChecked();map.showGrid(gridEnabled);getPreferences(MODE_PRIVATE).edit().putBoolean("coordinateGrid",gridEnabled).apply();
       applySettings(); settingsDialog.dismiss();
     }));
     form.addView(compact("Закрыть", () -> settingsDialog.dismiss()));
@@ -1615,6 +1643,18 @@ public final class MainActivity extends Activity {
     catch (android.content.ActivityNotFoundException missing) { fileError("На устройстве нет файлового менеджера"); }
   }
 
+  private static String exportMime(String format) {
+    switch(format) {
+      case "kmz": return "application/vnd.google-earth.kmz";
+      case "kml": return "application/vnd.google-earth.kml+xml";
+      case "gpx": return "application/gpx+xml";
+      case "geojson": return "application/geo+json";
+      case "csv": return "text/csv";
+      case "tsv": return "text/tab-separated-values";
+      default: return "application/dxf";
+    }
+  }
+
   private void exportFile() {
     exportSelection = new ArrayList<>(explorer.selected);
     sheet("Формат экспорта", new String[]{"KMZ", "KML", "GPX", "GeoJSON", "CSV", "TSV", "DXF"}, n -> {
@@ -1626,7 +1666,7 @@ public final class MainActivity extends Activity {
         fileError("GPX не поддерживает области. Выберите KMZ или KML."); return;
       }
       Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE)
-          .setType("kmz".equals(exportFormat) ? "application/vnd.google-earth.kmz" : "gpx".equals(exportFormat) ? "application/gpx+xml" : "application/vnd.google-earth.kml+xml")
+          .setType(exportMime(exportFormat))
           .putExtra(Intent.EXTRA_TITLE, "Rabochaya-karta."+exportFormat).putExtra(Intent.EXTRA_LOCAL_ONLY, true);
       try { startActivityForResult(intent, EXPORT_FILE); }
       catch (android.content.ActivityNotFoundException missing) { fileError("На устройстве нет файлового менеджера"); }
@@ -1739,6 +1779,7 @@ public final class MainActivity extends Activity {
   @Override
   protected void onResume() {
     super.onResume();
+    if(compassController!=null&&getPreferences(MODE_PRIVATE).getBoolean("compassEnabled",false))setCompass(true);
     if (map != null) {
       map.view.onResume();
       refresh();
@@ -1750,6 +1791,7 @@ public final class MainActivity extends Activity {
   @Override
   protected void onPause() {
     iconHandler.removeCallbacksAndMessages(null);
+    if(compassController!=null)compassController.stop();
     if (map != null) map.view.onPause();
     super.onPause();
   }
@@ -1757,12 +1799,16 @@ public final class MainActivity extends Activity {
   @Override
   protected void onDestroy() {
     iconHandler.removeCallbacksAndMessages(null);
+    if(marksDialog!=null)marksDialog.dismiss();
+    if(orientationDialog!=null)orientationDialog.dismiss();
+    if(compassDialog!=null)compassDialog.dismiss();
     if (menuDialog != null) menuDialog.dismiss();
     if (layersDialog != null) layersDialog.dismiss();
     if (mapsDialog != null) mapsDialog.dismiss();
     if (settingsDialog != null) settingsDialog.dismiss();
     if (explorerDialog != null && explorerDialog.isShowing()) explorerDialog.dismiss();
     if(downloadDialog!=null)downloadDialog.dismiss();
+    if(attachmentsDialog!=null)attachmentsDialog.dismiss();
     if(catalog!=null)catalog.close();
     if (map != null) map.view.onDetach();
     if (store != null) store.close();

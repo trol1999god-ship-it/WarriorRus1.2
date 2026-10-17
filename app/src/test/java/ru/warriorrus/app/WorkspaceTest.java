@@ -28,7 +28,7 @@ public class WorkspaceTest {
         Robolectric.buildActivity(MainActivity.class).setup()) {
       MainActivity a = c.get();
       assertNull(find(a.getWindow().getDecorView(), "Warrior Explorer"));
-      find(a.getWindow().getDecorView(), "Объекты").performClick();
+      find(a.getWindow().getDecorView(), "Объекты").performLongClick();
       android.app.Dialog explorerDialog = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       View explorerView = explorerDialog.getWindow().getDecorView();
       assertNotNull(find(explorerView, "Объекты карты"));

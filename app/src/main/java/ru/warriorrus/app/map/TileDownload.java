@@ -15,9 +15,9 @@ public final class TileDownload {
   public static final int MAX_TILES=20000;
   public static final class Tile {public final int z,x,y;Tile(int z,int x,int y){this.z=z;this.x=x;this.y=y;}}
   public static final class Spec {
-    public String url,name,file;public double south,west,north,east;public int min,max;
-    public String json(){try{return new JSONObject().put("url",url).put("name",name).put("file",file).put("south",south).put("west",west).put("north",north).put("east",east).put("min",min).put("max",max).toString();}catch(JSONException e){throw new IllegalArgumentException(e);}}
-    public static Spec parse(String json)throws JSONException{JSONObject o=new JSONObject(json);Spec s=new Spec();s.url=o.getString("url");s.name=o.getString("name");s.file=o.getString("file");s.south=o.getDouble("south");s.west=o.getDouble("west");s.north=o.getDouble("north");s.east=o.getDouble("east");s.min=o.getInt("min");s.max=o.getInt("max");return s;}
+    public String url,name,file,credit="";public double south,west,north,east;public int min,max;
+    public String json(){try{return new JSONObject().put("url",url).put("credit",credit).put("name",name).put("file",file).put("south",south).put("west",west).put("north",north).put("east",east).put("min",min).put("max",max).toString();}catch(JSONException e){throw new IllegalArgumentException(e);}}
+    public static Spec parse(String json)throws JSONException{JSONObject o=new JSONObject(json);Spec s=new Spec();s.url=o.getString("url");s.credit=o.optString("credit","");s.name=o.getString("name");s.file=o.getString("file");s.south=o.getDouble("south");s.west=o.getDouble("west");s.north=o.getDouble("north");s.east=o.getDouble("east");s.min=o.getInt("min");s.max=o.getInt("max");return s;}
   }
   public interface Fetcher {byte[] get(String url)throws Exception;}
   private TileDownload(){}
@@ -38,7 +38,7 @@ public final class TileDownload {
   public static void run(Spec spec,File output,Fetcher fetch,BooleanSupplier cancelled,java.util.function.BiConsumer<Integer,Integer> progress)throws Exception {
     List<Tile> tiles=tiles(spec);
     try(SQLiteDatabase db=SQLiteDatabase.openOrCreateDatabase(output,null)) {
-      RasterMaps.createMbtiles(db,spec.name);db.execSQL("INSERT OR REPLACE INTO metadata VALUES('bounds',?)",new Object[]{spec.west+","+spec.south+","+spec.east+","+spec.north});
+      RasterMaps.createMbtiles(db,spec.name);db.execSQL("INSERT OR REPLACE INTO metadata VALUES('attribution',?)",new Object[]{spec.credit});db.execSQL("INSERT OR REPLACE INTO metadata VALUES('bounds',?)",new Object[]{spec.west+","+spec.south+","+spec.east+","+spec.north});
       db.execSQL("INSERT OR REPLACE INTO metadata VALUES('minzoom',?),('maxzoom',?)",new Object[]{""+spec.min,""+spec.max});
       int done=0;long bytes=output.length();
       for(Tile tile:tiles) {
@@ -48,6 +48,7 @@ public final class TileDownload {
         if(!exists) {
           byte[] image=fetch.get(MapCatalog.tileUrl(spec.url,tile.z,tile.x,tile.y));BitmapFactory.Options options=new BitmapFactory.Options();options.inJustDecodeBounds=true;BitmapFactory.decodeByteArray(image,0,image.length,options);
           if(options.outWidth<=0||options.outHeight<=0)throw new IOException("Сервер вернул не растровый тайл");
+          if(options.outMimeType!=null)db.execSQL("INSERT OR REPLACE INTO metadata VALUES('format',?)",new Object[]{options.outMimeType.equals("image/jpeg")?"jpg":options.outMimeType.substring(options.outMimeType.indexOf('/')+1)});
           bytes+=image.length;if(bytes>1024L*1024*1024)throw new IOException("Архив достиг 1 ГиБ");
           ContentValues v=new ContentValues();v.put("zoom_level",tile.z);v.put("tile_column",tile.x);v.put("tile_row",tms);v.put("tile_data",image);db.insertOrThrow("tiles",null,v);
         }progress.accept(++done,tiles.size());

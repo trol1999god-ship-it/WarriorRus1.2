@@ -33,7 +33,7 @@ public final class TileDownloadService extends Service {
         TileDownload.Spec spec=TileDownload.Spec.parse(specJson);File root=new File(getFilesDir(),"maps").getCanonicalFile();File output=new File(root,spec.file).getCanonicalFile();
         if(!root.equals(output.getParentFile()))throw new IOException("Неверный архив");
         TileDownload.run(spec,output,this::fetch,()->cancelled,(done,total)->{
-          if(done==total||System.currentTimeMillis()-lastNotification>1000){lastNotification=System.currentTimeMillis();String text="Тайлов: "+done+" / "+total;prefs.edit().putString("status",text).apply();getSystemService(NotificationManager.class).notify(1401,notification(text,done,total));}
+          if(done==total||System.currentTimeMillis()-lastNotification>1000){lastNotification=System.currentTimeMillis();String text="Тайлов: "+done+" / "+total;prefs.edit().putString("status",text).apply();startForeground(1401,notification(text,done,total));}
         });prefs.edit().putString("status","Готово: "+spec.name).putBoolean("finished",true).apply();
       }catch(Exception error){prefs.edit().putString("status",error.getMessage()==null?"Загрузка остановлена":error.getMessage()).apply();}
       finally{running=false;stopForeground(true);stopSelf();}

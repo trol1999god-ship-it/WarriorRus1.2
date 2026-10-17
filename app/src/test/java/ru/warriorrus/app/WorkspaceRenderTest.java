@@ -52,7 +52,8 @@ public class WorkspaceRenderTest {
       Dialog settings = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       snapshot(settings.getWindow().getDecorView(), name + "-settings", Math.min(360, width - 16), Math.min(650,height-24));
       settings.dismiss();
-      root.findViewWithTag("Слои").performClick();
+      root.findViewWithTag("Карты").performClick();
+      ((View) org.robolectric.shadows.ShadowDialog.getLatestDialog().getWindow().getDecorView().findViewWithTag("displayedMaps")).performClick();
       Dialog layers = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       snapshot(layers.getWindow().getDecorView(), name + "-layers", Math.min(360, width - 16), 250);
       layers.dismiss();
@@ -60,7 +61,7 @@ public class WorkspaceRenderTest {
       Dialog maps = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       snapshot(maps.getWindow().getDecorView(), name + "-maps", Math.min(360, width - 16), 300);
       maps.dismiss();
-      root.findViewWithTag("Объекты").performClick();
+      root.findViewWithTag("Объекты").performLongClick();
       Dialog objects = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       snapshot(objects.getWindow().getDecorView(), name + "-objects", Math.min(640, width - 16), height - 24);
       objects.dismiss();

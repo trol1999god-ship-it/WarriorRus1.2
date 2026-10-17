@@ -384,24 +384,24 @@ public final class ObjectStore extends SQLiteOpenHelper {
     SQLiteDatabase db = getWritableDatabase();
     db.beginTransaction();
     try {
-      for (MapItem i : all()) {
+      for (MapItem i : includingTrash()) {
         String next = relocated(i.icon, moves);
         if (!next.equals(i.icon)) {
-          ContentValues v = new ContentValues();
-          v.put("icon", next);
+          ContentValues v = new ContentValues();v.put("icon", next);
           db.update("objects", v, "id=?", new String[] {"" + i.id});
         }
       }
-      db.setTransactionSuccessful();
-    } finally {
-      db.endTransaction();
-    }
-    try(Cursor c=db.query("history",new String[]{"id","snapshot"},null,null,null,null,null)) {
-      while(c.moveToNext()) {
-        List<MapItem> items=ObjectJson.decode(c.getString(1));for(MapItem i:items)i.icon=relocated(i.icon,moves);
-        ContentValues v=new ContentValues();v.put("snapshot",ObjectJson.encode(items));db.update("history",v,"id=?",new String[]{c.getString(0)});
+      // Keep undo and recycled objects valid when a user moves their SVG files.
+      try(Cursor c=db.query("history",new String[]{"id","snapshot"},null,null,null,null,null)) {
+        while(c.moveToNext()) {
+          List<MapItem> items=ObjectJson.decode(c.getString(1));
+          for(MapItem i:items)i.icon=relocated(i.icon,moves);
+          ContentValues v=new ContentValues();v.put("snapshot",ObjectJson.encode(items));
+          db.update("history",v,"id=?",new String[]{c.getString(0)});
+        }
       }
-    }
+      db.setTransactionSuccessful();
+    } finally {db.endTransaction();}
   }
 
   private String relocated(String key, Map<String, String> moves) {
