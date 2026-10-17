@@ -743,6 +743,30 @@ public final class MainActivity extends Activity {
     if(c.enabled&&c.ready&&prefs.getBoolean("compassRotate",false))map.view.setMapOrientation(-heading);
   }
 
+  private void folderMenu() {
+    List<Long> ids = new ArrayList<>();
+    List<String> names = new ArrayList<>();
+    ids.add(0L);
+    names.add("Рабочая карта");
+    for (MapItem i : store.renderItems())
+      if (i.isFolder()) {
+        List<String> chain = new ArrayList<>();
+        for (MapItem p = i; p != null; p = store.get(p.parent)) chain.add(p.name);
+        Collections.reverse(chain);
+        ids.add(i.id);
+        names.add("Рабочая карта / " + android.text.TextUtils.join(" / ", chain));
+      }
+    sheet(
+        "Папки",
+        names.toArray(new String[0]),
+        n -> {
+          explorer.folder = ids.get(n);
+          explorer.query = "";
+          onScreenOnly = false;
+          refresh();
+        });
+  }
+
   private void openIcons() {
     List<Long> ids = new ArrayList<>();
     for (long id : explorer.selected) {
