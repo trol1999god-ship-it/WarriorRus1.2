@@ -22,7 +22,8 @@ public class SystemInsetsTest {
     if (Build.VERSION.SDK_INT >= 30) {
       insets = new WindowInsets.Builder().setInsets(WindowInsets.Type.systemBars(),
           android.graphics.Insets.of(0, 24, 0, 48)).setVisible(WindowInsets.Type.systemBars(), true).build();
-    } else insets = new WindowInsets(new Rect(0, 24, 0, 48));
+    } else insets = org.robolectric.util.ReflectionHelpers.callConstructor(WindowInsets.class,
+        org.robolectric.util.ReflectionHelpers.ClassParameter.from(Rect.class, new Rect(0, 24, 0, 48)));
     host.dispatchApplyWindowInsets(insets);
     layout(host, 360, 800);
     assertEquals(24 + gap, panel.getTop());
@@ -32,7 +33,8 @@ public class SystemInsetsTest {
     assertEquals(800 - 48 - gap, panel.getBottom()); // Padding must not accumulate.
     if (Build.VERSION.SDK_INT >= 30) insets = new WindowInsets.Builder()
         .setInsets(WindowInsets.Type.systemBars(), android.graphics.Insets.of(0, 24, 48, 0)).setVisible(WindowInsets.Type.systemBars(), true).build();
-    else insets = new WindowInsets(new Rect(0, 24, 48, 0));
+    else insets = org.robolectric.util.ReflectionHelpers.callConstructor(WindowInsets.class,
+        org.robolectric.util.ReflectionHelpers.ClassParameter.from(Rect.class, new Rect(0, 24, 48, 0)));
     host.dispatchApplyWindowInsets(insets);
     layout(host, 600, 360);
     assertTrue(panel.getRight() <= 600 - 48 - gap);
