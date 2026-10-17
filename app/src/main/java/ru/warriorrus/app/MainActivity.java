@@ -35,7 +35,10 @@ public final class MainActivity extends Activity {
   private TextView coordinates, coordinateSystem, coordinateAdditional;
   private DrawingController drawing;
   private Dialog settingsDialog;
-  private static final int IMPORT_FILE = 701, EXPORT_FILE = 702, ATTACH_FILE = 703;
+  private static final int IMPORT_FILE = 701, EXPORT_FILE = 702, ATTACH_FILE = 703, IMPORT_MAP = 704, EXPORT_MAP = 705;
+  private MapCatalog catalog;
+  private String exportRasterPath="";
+  private Dialog downloadDialog;
   private long attachmentObject;
   private String exportFormat = "kmz";
   private long importParent;
@@ -455,12 +458,15 @@ public final class MainActivity extends Activity {
     drawing = new DrawingController(this, root, map, item -> { store.save(item); refresh(); });
     if (state != null) {
       drawing.restore(state);
+      exportRasterPath=state.getString("exportRasterPath","");
       attachmentObject=state.getLong("attachmentObject",0);
       exportFormat = state.getString("exportFormat", "kmz");
       importParent = state.getLong("importParent", 0);
       long[] ids = state.getLongArray("exportSelection");
       if (ids != null) for (long id : ids) exportSelection.add(id);
     }
+    catalog = new MapCatalog(this,map.view);
+    map.view.setMaxZoomLevel(22.0);
     applySettings();
     explorerDialog = new Dialog(this);
     explorerDialog.setOnDismissListener(d -> onScreenOnly = false);
@@ -566,39 +572,25 @@ public final class MainActivity extends Activity {
     heading.addView(hudText("Слои карт", 19), new LinearLayout.LayoutParams(0, -2, 1));
     heading.addView(compact("×", () -> layersDialog.dismiss()));
     panel.addView(heading);
-    Switch visible = new Switch(this);
-    visible.setText("OpenStreetMap");
-    visible.setTextColor(0xffe4f2ff);
-    visible.setMinHeight(dp(48));
-    visible.setChecked(mapLayerVisible);
-    visible.setOnCheckedChangeListener((button, checked) -> {
-      mapLayerVisible = checked;
-      applyMapLayer();
-      saveMapLayer();
-    });
-    panel.addView(visible);
-    TextView opacity = hudText("Непрозрачность: " + mapLayerOpacity + "%", 13);
-    panel.addView(opacity);
-    SeekBar slider = new SeekBar(this);
-    slider.setMax(100);
-    slider.setProgress(mapLayerOpacity);
-    slider.setContentDescription("Непрозрачность OpenStreetMap");
-    slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-      public void onProgressChanged(SeekBar bar, int progress, boolean user) {
-        mapLayerOpacity = progress;
-        opacity.setText("Непрозрачность: " + progress + "%");
-        applyMapLayer();
-        saveMapLayer();
-      }
-      public void onStartTrackingTouch(SeekBar bar) {}
-      public void onStopTrackingTouch(SeekBar bar) { saveMapLayer(); }
-    });
-    panel.addView(slider);
+    for(MapCatalog.Layer layer:catalog.layers) {
+      LinearLayout row=new LinearLayout(this);Switch visible=new Switch(this);visible.setText(layer.name);visible.setTextColor(0xffe4f2ff);visible.setMinHeight(dp(48));visible.setChecked(layer.visible);
+      visible.setOnCheckedChangeListener((button,checked)->{layer.visible=checked;mapLayerVisible=catalog.find("osm").visible;catalog.save();catalog.updateAppearance();});
+      row.addView(visible,new LinearLayout.LayoutParams(0,-2,1));
+      row.addView(compact("↑",()->{catalog.reorder(layer,1);layersDialog.dismiss();layersMenu();}));
+      row.addView(compact("↓",()->{catalog.reorder(layer,-1);layersDialog.dismiss();layersMenu();}));panel.addView(row);
+      TextView opacity=hudText("Непрозрачность: "+layer.opacity+"%",13);panel.addView(opacity);SeekBar slider=new SeekBar(this);slider.setMax(100);slider.setProgress(layer.opacity);slider.setContentDescription("Непрозрачность "+layer.name);
+      slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+        public void onProgressChanged(SeekBar bar,int progress,boolean user){layer.opacity=progress;mapLayerOpacity=catalog.find("osm").opacity;opacity.setText("Непрозрачность: "+progress+"%");catalog.save();catalog.updateAppearance();}
+        public void onStartTrackingTouch(SeekBar bar){} public void onStopTrackingTouch(SeekBar bar){}
+      });panel.addView(slider);
+      if(!"osm".equals(layer.id))panel.addView(compact("Убрать слой · "+layer.name,()->{catalog.remove(layer);layersDialog.dismiss();layersMenu();}));
+    }
     panel.addView(compact("Карты", () -> { layersDialog.dismiss(); mapsMenu(); }));
-    showPanel(layersDialog, panel, dp(360), false);
+    ScrollView scroll=new ScrollView(this);scroll.addView(panel);showPanel(layersDialog, scroll, dp(360), false);
   }
 
   private void applyMapLayer() {
+    if(catalog!=null){MapCatalog.Layer osm=catalog.find("osm");osm.visible=mapLayerVisible;osm.opacity=mapLayerOpacity;catalog.save();catalog.updateAppearance();return;}
     org.osmdroid.views.overlay.TilesOverlay tiles = map.view.getOverlayManager().getTilesOverlay();
     tiles.setEnabled(mapLayerVisible);
     android.graphics.ColorMatrix matrix = new android.graphics.ColorMatrix();
@@ -705,12 +697,18 @@ public final class MainActivity extends Activity {
     panel.addView(source);
     panel.addView(explanation);
     panel.addView(compact("Слои карт", () -> { mapsDialog.dismiss(); layersMenu(); }));
+    panel.addView(compact("Доступные карты",()->{mapsDialog.dismiss();catalogMenu();}));
+    panel.addView(compact("Открыть офлайн-архив",this::importMap));
+    panel.addView(compact("Добавить HTTPS-источник",this::addOnlineMap));
+    panel.addView(compact("Скачать область",this::chooseAreaDownload));
+    panel.addView(compact("Задание офлайн-загрузки",this::showDownloadStatus));
     update.run();
-    showPanel(mapsDialog, panel, dp(360), false);
+    ScrollView scroll=new ScrollView(this);scroll.addView(panel);showPanel(mapsDialog, scroll, dp(360), false);
   }
 
   private void setMapOnline(boolean online) {
     map.view.setUseDataConnection(online);
+    if(catalog!=null)catalog.setOnline(online);
     getPreferences(MODE_PRIVATE).edit().putBoolean("mapOnline", online).apply();
   }
 
@@ -1355,6 +1353,86 @@ public final class MainActivity extends Activity {
         .show();
   }
 
+  private void addOnlineMap() {
+    LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);
+    EditText name=new EditText(this),url=new EditText(this),credit=new EditText(this);
+    name.setHint("Название карты");url.setHint("https://server/{z}/{x}/{y}.png");url.setSingleLine(true);credit.setHint("Источник и сведения об авторских правах");
+    CheckBox download=new CheckBox(this);download.setText("Сервер разрешает скачивание области для офлайн-работы");
+    form.addView(name);form.addView(url);form.addView(credit);form.addView(download);
+    AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Добавить HTTPS-источник").setView(form).setPositiveButton("Добавить",null).setNegativeButton("Отмена",null).create();
+    dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try{catalog.addOnline(name.getText().toString(),url.getText().toString(),credit.getText().toString(),download.isChecked());dialog.dismiss();}catch(Exception e){url.setError(e.getMessage());}}));dialog.show();
+  }
+
+  private void importMap() {
+    Intent intent=new Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("*/*").putExtra(Intent.EXTRA_LOCAL_ONLY,true);
+    try{startActivityForResult(intent,IMPORT_MAP);}catch(android.content.ActivityNotFoundException e){fileError("Нет файлового менеджера");}
+  }
+
+  private void catalogMenu() {
+    List<String> labels=new ArrayList<>();for(MapCatalog.Layer l:catalog.layers)labels.add((l.visible?"✓ ":"○ ")+l.name+(l.offline()?" · офлайн":""));
+    sheet("Доступные карты",labels.toArray(new String[0]),n->{MapCatalog.Layer l=catalog.layers.get(n);
+      sheet(l.name,new String[]{l.visible?"Скрыть":"Показать", "Сведения об источнике","Экспорт файла карты"},action->{
+        if(action==0){l.visible=!l.visible;catalog.save();catalog.updateAppearance();mapLayerVisible=catalog.find("osm").visible;}
+        else if(action==1)new AlertDialog.Builder(this).setTitle(l.name).setMessage(l.credit).setPositiveButton("ОК",null).show();
+        else exportRaster(l);
+      });
+    });
+  }
+
+  private void exportRaster(MapCatalog.Layer layer) {
+    if(!layer.offline()){fileError("Экспорт доступен для локальных архивов. Для онлайн-источника сначала скачайте разрешённую область.");return;}
+    if(ru.warriorrus.app.map.TileDownloadService.running){fileError("Сначала завершите или приостановите загрузку карты");return;}
+    exportRasterPath=layer.path;
+    Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("application/octet-stream").putExtra(Intent.EXTRA_TITLE,layer.name+"."+layer.path.substring(layer.path.lastIndexOf('.')+1)).putExtra(Intent.EXTRA_LOCAL_ONLY,true);
+    try{startActivityForResult(intent,EXPORT_MAP);}catch(android.content.ActivityNotFoundException e){fileError("Нет файлового менеджера");}
+  }
+
+  private void chooseAreaDownload() {
+    List<MapCatalog.Layer> candidates=new ArrayList<>();List<String> names=new ArrayList<>();
+    for(MapCatalog.Layer l:catalog.layers)if(!l.offline()&&l.downloadAllowed&&!l.url.isEmpty()){candidates.add(l);names.add(l.name);}
+    if(candidates.isEmpty()){fileError("Добавьте HTTPS-источник, который разрешает офлайн-загрузку области. Публичный сервер OSM не предоставляет такой режим.");return;}
+    sheet("Источник для загрузки",names.toArray(new String[0]),n->configureArea(candidates.get(n)));
+  }
+
+  private void configureArea(MapCatalog.Layer layer) {
+    org.osmdroid.util.BoundingBox box=map.view.getBoundingBox();
+    LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);
+    String[] hints={"Южная широта","Западная долгота","Северная широта","Восточная долгота","Минимальный масштаб (0…22)","Максимальный масштаб (0…22)"};
+    String[] values={""+Math.max(-85.05112878,box.getLatSouth()),""+box.getLonWest(),""+Math.min(85.05112878,box.getLatNorth()),""+box.getLonEast(),""+Math.max(layer.min,(int)map.view.getZoomLevelDouble()),""+Math.min(layer.max,(int)map.view.getZoomLevelDouble()+2)};
+    EditText[] fields=new EditText[6];for(int n=0;n<fields.length;n++){fields[n]=new EditText(this);fields[n].setHint(hints[n]);fields[n].setText(values[n]);form.addView(fields[n]);}
+    ScrollView scroll=new ScrollView(this);scroll.addView(form);
+    AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Область и глубина · "+layer.name).setView(scroll).setPositiveButton("Проверить",null).setNegativeButton("Отмена",null).create();
+    dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try {
+      ru.warriorrus.app.map.TileDownload.Spec spec=new ru.warriorrus.app.map.TileDownload.Spec();spec.name=layer.name+" · область";spec.url=layer.url;spec.south=Double.parseDouble(fields[0].getText().toString());spec.west=Double.parseDouble(fields[1].getText().toString());spec.north=Double.parseDouble(fields[2].getText().toString());spec.east=Double.parseDouble(fields[3].getText().toString());spec.min=Integer.parseInt(fields[4].getText().toString());spec.max=Integer.parseInt(fields[5].getText().toString());
+      int count=ru.warriorrus.app.map.TileDownload.tiles(spec).size();
+      new AlertDialog.Builder(this).setTitle("Скачать "+count+" тайлов?").setMessage("Карта сохранится в MBTiles. Уже сохранённые тайлы повторно не скачиваются. Задание можно приостановить и продолжить.")
+          .setPositiveButton("Скачать",(d,b)->{
+            try {
+              if(ru.warriorrus.app.map.TileDownloadService.running){fileError("Другая загрузка уже выполняется");return;}
+              File root=new File(getFilesDir(),"maps");if(!root.isDirectory()&&!root.mkdirs())throw new IOException("Хранилище карт недоступно");spec.file=UUID.randomUUID()+".mbtiles";
+              File file=new File(root,spec.file);try(android.database.sqlite.SQLiteDatabase db=android.database.sqlite.SQLiteDatabase.openOrCreateDatabase(file,null)){RasterMaps.createMbtiles(db,spec.name);}
+              catalog.addOffline(file,spec.name,spec.min,spec.max);startTileService(spec.json());dialog.dismiss();showDownloadStatus();
+            }catch(Exception e){fileError(e.getMessage());}
+          }).setNegativeButton("Назад",null).show();
+    }catch(Exception e){fields[0].setError(e.getMessage());}}));dialog.show();
+  }
+
+  private void startTileService(String spec) {
+    Intent service=new Intent(this,ru.warriorrus.app.map.TileDownloadService.class).putExtra("spec",spec);
+    if(android.os.Build.VERSION.SDK_INT>=26)startForegroundService(service);else startService(service);
+  }
+
+  private void showDownloadStatus() {
+    if(downloadDialog!=null)downloadDialog.dismiss();downloadDialog=new Dialog(this);Dialog dialog=downloadDialog;
+    LinearLayout panel=new LinearLayout(this);panel.setOrientation(LinearLayout.VERTICAL);panel.setBackground(plate());panel.setPadding(dp(12),dp(12),dp(12),dp(12));
+    panel.addView(hudText("Офлайн-загрузка",18));TextView status=hudText("",14);panel.addView(status);
+    panel.addView(compact("Приостановить",()->startService(new Intent(this,ru.warriorrus.app.map.TileDownloadService.class).setAction("cancel"))));
+    panel.addView(compact("Продолжить последнее задание",()->{if(!ru.warriorrus.app.map.TileDownloadService.running){String spec=getSharedPreferences("tileDownload",0).getString("spec","");if(spec.isEmpty())fileError("Нет сохранённого задания");else try{startTileService(spec);}catch(Exception e){fileError(e.getMessage());}}}));
+    panel.addView(compact("Закрыть",dialog::dismiss));android.os.Handler handler=new android.os.Handler(android.os.Looper.getMainLooper());
+    Runnable update=new Runnable(){public void run(){if(!dialog.isShowing())return;status.setText(getSharedPreferences("tileDownload",0).getString("status","Нет задания"));handler.postDelayed(this,1000);}};
+    dialog.setOnDismissListener(d->{handler.removeCallbacksAndMessages(null);catalog.rebuild();});showPanel(dialog,panel,dp(360),false);handler.post(update);
+  }
+
   private void attachmentsMenu(long objectId) {
     MapItem object=store.get(objectId);if(object==null)return;
     Dialog dialog=new Dialog(this);LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);
@@ -1510,6 +1588,23 @@ public final class MainActivity extends Activity {
     if (result != RESULT_OK || data == null || data.getData() == null) return;
     android.net.Uri uri = data.getData();
     if(request==ATTACH_FILE){attachFile(uri,attachmentObject);return;}
+    if(request==IMPORT_MAP) {
+      String display="map.mbtiles";
+      try(android.database.Cursor c=getContentResolver().query(uri,new String[]{android.provider.OpenableColumns.DISPLAY_NAME},null,null,null)){if(c!=null&&c.moveToFirst())display=c.getString(0);}catch(Exception ignored){}
+      final String name=display;Toast.makeText(this,"Проверка архива карты…",Toast.LENGTH_SHORT).show();
+      new Thread(()->{try(InputStream input=getContentResolver().openInputStream(uri)) {
+        if(input==null)throw new IOException("Файл недоступен");RasterMaps.Imported result=RasterMaps.importFile(this,input,name);
+        runOnUiThread(()->{if(isFinishing()||isDestroyed())return;catalog.addOffline(result.file,result.name,result.min,result.max);if(result.bounds!=null)map.view.post(()->map.view.zoomToBoundingBox(new org.osmdroid.util.BoundingBox(result.bounds[3],result.bounds[2],result.bounds[1],result.bounds[0]),true,48));Toast.makeText(this,"Офлайн-карта добавлена",Toast.LENGTH_LONG).show();});
+      }catch(Exception e){runOnUiThread(()->fileError(e.getMessage()));}},"offline-map-import").start();return;
+    }
+    if(request==EXPORT_MAP) {
+      final String key=exportRasterPath;
+      new Thread(()->{try {
+        File root=new File(getFilesDir(),"maps").getCanonicalFile(),file=new File(root,key).getCanonicalFile();if(!root.equals(file.getParentFile()))throw new IOException("Неверный архив");
+        try(InputStream input=new FileInputStream(file);OutputStream output=getContentResolver().openOutputStream(uri,"wt")){if(output==null)throw new IOException("Файл недоступен");byte[] b=new byte[65536];int n;while((n=input.read(b))!=-1)output.write(b,0,n);}
+        runOnUiThread(()->Toast.makeText(this,"Карта экспортирована",Toast.LENGTH_LONG).show());
+      }catch(Exception e){runOnUiThread(()->fileError(e.getMessage()));}},"offline-map-export").start();return;
+    }
     if (request == IMPORT_FILE) {
       final long destination = importParent;
       Toast.makeText(this, "Чтение файла…", Toast.LENGTH_SHORT).show();
@@ -1573,6 +1668,7 @@ public final class MainActivity extends Activity {
     super.onSaveInstanceState(state);
     state.putLong("folder", explorer.folder);
     if (drawing != null) drawing.saveState(state);
+    state.putString("exportRasterPath",exportRasterPath);
     state.putLong("attachmentObject",attachmentObject);
     state.putString("exportFormat", exportFormat);
     state.putLong("importParent", importParent);
@@ -1610,6 +1706,8 @@ public final class MainActivity extends Activity {
     if (mapsDialog != null) mapsDialog.dismiss();
     if (settingsDialog != null) settingsDialog.dismiss();
     if (explorerDialog != null && explorerDialog.isShowing()) explorerDialog.dismiss();
+    if(downloadDialog!=null)downloadDialog.dismiss();
+    if(catalog!=null)catalog.close();
     if (map != null) map.view.onDetach();
     if (store != null) store.close();
     super.onDestroy();

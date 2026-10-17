@@ -167,7 +167,7 @@ public final class MapWorkspace {
 
   public void showGrid(boolean enabled) {
     grid.setEnabled(enabled);
-    if (enabled && !view.getOverlays().contains(grid)) view.getOverlays().add(0, grid);
+    if (enabled && !view.getOverlays().contains(grid)) view.getOverlays().add(grid);
     if (!enabled) view.getOverlays().remove(grid);
     view.invalidate();
   }

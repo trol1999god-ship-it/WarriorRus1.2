@@ -14,7 +14,7 @@ import ru.warriorrus.app.exchange.*;
 import ru.warriorrus.app.icons.*;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(sdk={23,35})
+@Config(sdk={23,35},shadows=ru.warriorrus.app.icons.IconsActivityTest.MediaContext.class)
 public class MediaHistoryTest {
   private ObjectStore store;private LocalMedia media;private android.content.Context context;
   @Before public void setup()throws Exception{context=RuntimeEnvironment.getApplication();context.deleteDatabase("warrior2.db");store=new ObjectStore(context);media=new LocalMedia(context);}
