@@ -14,8 +14,8 @@ android {
         minSdk 23
         targetSdk 35
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        versionCode 12
-        versionName "2.1-local-geometry"
+        versionCode 13
+        versionName "2.2-local-workbench"
     }
 }
 

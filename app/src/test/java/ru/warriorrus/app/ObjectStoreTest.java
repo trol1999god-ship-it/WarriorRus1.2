@@ -79,7 +79,7 @@ public class ObjectStoreTest {
     store.undo();
     assertEquals(3, store.all().size());
     assertEquals(b, store.get(p).parent);
-    assertFalse(store.canUndo());
+    assertTrue(store.canUndo());
   }
 
   @Test

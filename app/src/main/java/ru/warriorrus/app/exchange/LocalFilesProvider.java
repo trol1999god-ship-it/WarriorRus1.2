@@ -13,7 +13,10 @@ public final class LocalFilesProvider extends ContentProvider {
   private File resolve(Uri uri) throws FileNotFoundException {
     try {
       String name=uri.getLastPathSegment();if(name==null||name.contains("/")||name.contains("\\")||name.equals(".")||name.equals(".."))throw new IOException();
-      File root=new File(getContext().getFilesDir(),"shared").getCanonicalFile();File file=new File(root,name).getCanonicalFile();
+      String folder="shared";
+      if(uri.getPathSegments().size()==2&&"media".equals(uri.getPathSegments().get(0)))folder="media";
+      else if(uri.getPathSegments().size()!=1)throw new IOException();
+      File root=new File(getContext().getFilesDir(),folder).getCanonicalFile();File file=new File(root,name).getCanonicalFile();
       if(!file.getParentFile().equals(root)||!file.isFile())throw new IOException();return file;
     }catch(IOException e){throw new FileNotFoundException("Файл недоступен");}
   }
@@ -25,7 +28,9 @@ public final class LocalFilesProvider extends ContentProvider {
       MatrixCursor c=new MatrixCursor(columns);Object[] row=new Object[columns.length];for(int n=0;n<columns.length;n++)row[n]=OpenableColumns.DISPLAY_NAME.equals(columns[n])?f.getName():OpenableColumns.SIZE.equals(columns[n])?f.length():null;c.addRow(row);return c;
     }catch(FileNotFoundException e){return null;}
   }
-  @Override public String getType(Uri uri){return "application/vnd.google-earth.kmz";}
+  @Override public String getType(Uri uri){if(uri.getPathSegments().size()==1)return "application/vnd.google-earth.kmz";
+    String extension=android.webkit.MimeTypeMap.getFileExtensionFromUrl(uri.toString());
+    String mime=android.webkit.MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);return mime==null?"application/octet-stream":mime;}
   @Override public Uri insert(Uri uri,ContentValues values){throw new UnsupportedOperationException();}
   @Override public int update(Uri uri,ContentValues values,String where,String[] args){throw new UnsupportedOperationException();}
   @Override public int delete(Uri uri,String where,String[] args){throw new UnsupportedOperationException();}

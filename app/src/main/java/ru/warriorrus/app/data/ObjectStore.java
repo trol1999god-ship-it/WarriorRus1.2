@@ -9,10 +9,10 @@ import java.util.*;
 
 /** Single transactional owner of the local working database. No network or exchange files. */
 public final class ObjectStore extends SQLiteOpenHelper {
-  private List<ContentValues> undo;
+
 
   public ObjectStore(Context context) {
-    super(context, "warrior2.db", null, 3);
+    super(context, "warrior2.db", null, 4);
   }
 
   @Override
@@ -31,6 +31,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
             + " TEXT NOT NULL DEFAULT 'builtin:pin')");
     db.execSQL("CREATE INDEX objects_parent ON objects(parent)");
     addGeometryColumns(db);
+    addMediaHistory(db);
   }
 
   @Override
@@ -38,6 +39,15 @@ public final class ObjectStore extends SQLiteOpenHelper {
     if (oldVersion < 2)
       db.execSQL("ALTER TABLE objects ADD COLUMN icon TEXT NOT NULL DEFAULT 'builtin:pin'");
     if (oldVersion < 3) addGeometryColumns(db);
+    if (oldVersion < 4) addMediaHistory(db);
+  }
+
+  private void addMediaHistory(SQLiteDatabase db) {
+    db.execSQL("ALTER TABLE objects ADD COLUMN attachments TEXT NOT NULL DEFAULT '[]'");
+    db.execSQL("ALTER TABLE objects ADD COLUMN created INTEGER NOT NULL DEFAULT 0");
+    db.execSQL("ALTER TABLE objects ADD COLUMN updated INTEGER NOT NULL DEFAULT 0");
+    db.execSQL("ALTER TABLE objects ADD COLUMN trashed INTEGER NOT NULL DEFAULT 0");
+    db.execSQL("CREATE TABLE history(id INTEGER PRIMARY KEY AUTOINCREMENT,snapshot TEXT NOT NULL,created INTEGER NOT NULL)");
   }
 
   private void addGeometryColumns(SQLiteDatabase db) {
@@ -59,6 +69,10 @@ public final class ObjectStore extends SQLiteOpenHelper {
         String subtype = c.getString(c.getColumnIndexOrThrow("subtype"));
         if (!subtype.isEmpty()) i.kind = subtype;
         i.description = c.getString(c.getColumnIndexOrThrow("description"));
+        i.attachments.addAll(ObjectJson.attachments(c.getString(c.getColumnIndexOrThrow("attachments"))));
+        i.created = c.getLong(c.getColumnIndexOrThrow("created"));
+        i.updated = c.getLong(c.getColumnIndexOrThrow("updated"));
+        i.trashed = c.getInt(c.getColumnIndexOrThrow("trashed")) != 0;
         i.segments.addAll(ru.warriorrus.app.geometry.Geometry.decode(c.getString(c.getColumnIndexOrThrow("geometry"))));
         i.icon = c.getString(c.getColumnIndexOrThrow("icon"));
         i.latitude = c.getDouble(c.getColumnIndexOrThrow("latitude"));
@@ -72,10 +86,17 @@ public final class ObjectStore extends SQLiteOpenHelper {
 
   public List<MapItem> all() {
     List<MapItem> items = new ArrayList<>();
-    try (Cursor c = getReadableDatabase().query("objects", null, null, null, null, null, "position,id")) {
+    try (Cursor c = getReadableDatabase().query("objects", null, "trashed=0", null, null, null, "position,id")) {
       while (c.moveToNext()) items.add(readItem(c));
     }
     return items;
+  }
+
+  public List<MapItem> includingTrash() {
+    List<MapItem> items = new ArrayList<>();
+    try (Cursor c = getReadableDatabase().query("objects", null, null, null, null, null, "position,id")) {
+      while(c.moveToNext())items.add(readItem(c));
+    }return items;
   }
 
   public List<MapItem> renderItems() {
@@ -100,7 +121,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
   }
 
   public MapItem get(long id) {
-    try (Cursor c = getReadableDatabase().query("objects", null, "id=?", new String[]{""+id}, null, null, null)) {
+    try (Cursor c = getReadableDatabase().query("objects", null, "id=? AND trashed=0", new String[]{""+id}, null, null, null)) {
       return c.moveToFirst() ? readItem(c) : null;
     }
   }
@@ -112,8 +133,12 @@ public final class ObjectStore extends SQLiteOpenHelper {
     else v.put("parent", i.parent);
     v.put("name", i.name);
     v.put("kind", i.isFolder() ? "folder" : "point");
-    v.put("subtype", i.isGeometry() ? i.kind : "");
+    v.put("subtype", i.isGeometry() || "set".equals(i.kind) ? i.kind : "");
     v.put("description", i.description);
+    v.put("attachments", ObjectJson.attachments(i.attachments));
+    v.put("created", i.created);
+    v.put("updated", i.updated);
+    v.put("trashed", i.trashed ? 1 : 0);
     v.put("geometry", ru.warriorrus.app.geometry.Geometry.encode(i.segments));
     v.put("icon", i.icon);
     v.put("latitude", i.latitude);
@@ -127,16 +152,15 @@ public final class ObjectStore extends SQLiteOpenHelper {
 
   private void mutate(Runnable action) {
     SQLiteDatabase db = getWritableDatabase();
-    List<ContentValues> before = new ArrayList<>();
-    for (MapItem i : all()) before.add(values(i, true));
+    String before = ObjectJson.encode(includingTrash());
     db.beginTransaction();
     try {
       action.run();
+      ContentValues entry=new ContentValues();entry.put("snapshot",before);entry.put("created",System.currentTimeMillis());
+      db.insertOrThrow("history",null,entry);
+      db.execSQL("DELETE FROM history WHERE id NOT IN (SELECT id FROM history ORDER BY id DESC LIMIT 16)");
       db.setTransactionSuccessful();
-    } finally {
-      db.endTransaction();
-    }
-    undo = before;
+    } finally { db.endTransaction(); }
   }
 
   private void requireFolder(long parent) {
@@ -152,7 +176,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
   public long create(long parent, String name, String kind, double lat, double lon) {
     requireFolder(parent);
     name(name);
-    if (!"folder".equals(kind) && !"point".equals(kind))
+    if (!"folder".equals(kind) && !"set".equals(kind) && !"point".equals(kind))
       throw new IllegalArgumentException("Тип не поддерживается");
     if (Double.isNaN(lat)
         || Double.isInfinite(lat)
@@ -173,6 +197,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
     i.opacity = 1;
     i.color = 0xff3f6db5;
     i.position = all().size();
+    i.created = i.updated = System.currentTimeMillis();
     long[] id = {0};
     mutate(() -> id[0] = getWritableDatabase().insertOrThrow("objects", null, values(i, false)));
     return id[0];
@@ -202,11 +227,12 @@ public final class ObjectStore extends SQLiteOpenHelper {
     requireFolder(item.parent);
     name(item.name);
     new Vertex(item.latitude, item.longitude);
-    if (!Arrays.asList("folder", "point", "route", "path", "track", "area").contains(item.kind))
+    if (!Arrays.asList("folder", "set", "point", "route", "path", "track", "area").contains(item.kind))
       throw new IllegalArgumentException("Тип не поддерживается");
     if (item.isGeometry()) ru.warriorrus.app.geometry.Geometry.validate(item);
     if (item.id != 0 && get(item.id) == null) throw new IllegalArgumentException("Объект не найден");
-    if (item.id == 0) item.position = all().size();
+    item.name=item.name.trim();item.updated=System.currentTimeMillis();
+    if(item.id==0) {item.position=all().size();if(item.created==0)item.created=item.updated;}
     long[] id = {item.id};
     mutate(() -> {
       if (item.id == 0) id[0] = getWritableDatabase().insertOrThrow("objects", null, values(item, false));
@@ -308,8 +334,8 @@ public final class ObjectStore extends SQLiteOpenHelper {
           Collections.reverse(
               remove); // foreign key references can be deferred within this transaction
           getWritableDatabase().execSQL("PRAGMA defer_foreign_keys=ON");
-          for (long id : remove)
-            getWritableDatabase().delete("objects", "id=?", new String[] {"" + id});
+          ContentValues values=new ContentValues();values.put("trashed",1);
+          for (long id : remove) getWritableDatabase().update("objects",values,"id=?",new String[]{""+id});
         });
   }
 
@@ -362,8 +388,12 @@ public final class ObjectStore extends SQLiteOpenHelper {
     } finally {
       db.endTransaction();
     }
-    if (undo != null)
-      for (ContentValues v : undo) v.put("icon", relocated(v.getAsString("icon"), moves));
+    try(Cursor c=db.query("history",new String[]{"id","snapshot"},null,null,null,null,null)) {
+      while(c.moveToNext()) {
+        List<MapItem> items=ObjectJson.decode(c.getString(1));for(MapItem i:items)i.icon=relocated(i.icon,moves);
+        ContentValues v=new ContentValues();v.put("snapshot",ObjectJson.encode(items));db.update("history",v,"id=?",new String[]{c.getString(0)});
+      }
+    }
   }
 
   private String relocated(String key, Map<String, String> moves) {
@@ -393,27 +423,52 @@ public final class ObjectStore extends SQLiteOpenHelper {
         });
   }
 
-  public void clearUndo() {
-    undo = null;
-  }
+  public void clearUndo() {getWritableDatabase().delete("history",null,null);}
 
   public boolean canUndo() {
-    return undo != null;
+    try(Cursor c=getReadableDatabase().rawQuery("SELECT 1 FROM history LIMIT 1",null)){return c.moveToFirst();}
   }
 
   public void undo() {
-    if (undo == null) return;
-    SQLiteDatabase db = getWritableDatabase();
-    db.beginTransaction();
-    try {
-      db.execSQL("PRAGMA defer_foreign_keys=ON");
-      db.delete("objects", null, null);
-      for (ContentValues v : undo) db.insertOrThrow("objects", null, v);
-      db.setTransactionSuccessful();
-      undo = null;
-    } finally {
-      db.endTransaction();
+    SQLiteDatabase db=getWritableDatabase();long id;String snapshot;
+    try(Cursor c=db.rawQuery("SELECT id,snapshot FROM history ORDER BY id DESC LIMIT 1",null)) {
+      if(!c.moveToFirst())return;id=c.getLong(0);snapshot=c.getString(1);
     }
+    List<MapItem> items=ObjectJson.decode(snapshot);db.beginTransaction();
+    try {
+      db.execSQL("PRAGMA defer_foreign_keys=ON");db.delete("objects",null,null);
+      for(MapItem i:items)db.insertOrThrow("objects",null,values(i,true));
+      db.delete("history","id=?",new String[]{""+id});db.setTransactionSuccessful();
+    }finally{db.endTransaction();}
+  }
+
+  public Set<String> referencedMedia() {
+    Set<String> keys=new HashSet<>();for(MapItem i:includingTrash())for(Attachment a:i.attachments)keys.add(a.key);
+    try(Cursor c=getReadableDatabase().query("history",new String[]{"snapshot"},null,null,null,null,null)) {
+      while(c.moveToNext())for(MapItem i:ObjectJson.decode(c.getString(0)))for(Attachment a:i.attachments)keys.add(a.key);
+    }return keys;
+  }
+
+  public void restoreTrash(Collection<Long> ids) {
+    List<MapItem> snapshot=includingTrash();Set<Long> restore=new HashSet<>();
+    for(MapItem i:snapshot)if(i.trashed)for(long id:ids) {
+      Set<Long> seen=new HashSet<>();MapItem p=i;
+      while(p!=null&&seen.add(p.id)) {
+        if(p.id==id){restore.add(i.id);break;}
+        long parent=p.parent;p=null;for(MapItem candidate:snapshot)if(candidate.id==parent){p=candidate;break;}
+      }
+    }
+    mutate(()->{for(MapItem i:snapshot)if(restore.contains(i.id)) {
+      boolean parentVisible=i.parent==0||restore.contains(i.parent);for(MapItem p:snapshot)if(p.id==i.parent&&!p.trashed)parentVisible=true;
+      i.trashed=false;if(!parentVisible)i.parent=0;
+      getWritableDatabase().update("objects",values(i,false),"id=?",new String[]{""+i.id});
+    }});
+  }
+
+  public void emptyTrash() {
+    SQLiteDatabase db=getWritableDatabase();db.beginTransaction();
+    try{db.execSQL("PRAGMA defer_foreign_keys=ON");db.delete("history",null,null);db.delete("objects","trashed=1",null);db.setTransactionSuccessful();}
+    finally{db.endTransaction();}
   }
 
   public float effectiveOpacity(MapItem item) {

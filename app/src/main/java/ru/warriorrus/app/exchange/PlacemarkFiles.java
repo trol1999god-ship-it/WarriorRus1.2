@@ -127,10 +127,11 @@ public final class PlacemarkFiles {
   }
   private static Vertex gpxPoint(Node n) {return new Vertex(Double.parseDouble(n.attributes.get("lat")),Double.parseDouble(n.attributes.get("lon")),n.value("ele").isEmpty()?null:Double.valueOf(n.value("ele")),n.value("time").isEmpty()?null:n.value("time"));}
   public static void write(List<MapItem> items,OutputStream output,String format) throws Exception {
-    if("kmz".equals(format)) {ZipOutputStream zip=new ZipOutputStream(output);zip.putNextEntry(new ZipEntry("doc.kml"));writeXml(items,zip,false);zip.closeEntry();zip.finish();zip.flush();}
-    else writeXml(items,output,"gpx".equals(format));
+    if("kmz".equals(format)) {ZipOutputStream zip=new ZipOutputStream(output);zip.putNextEntry(new ZipEntry("doc.kml"));writeXml(items,zip,false,Collections.emptyMap(),Collections.emptyMap());zip.closeEntry();zip.finish();zip.flush();}
+    else writeXml(items,output,"gpx".equals(format),Collections.emptyMap(),Collections.emptyMap());
   }
-  private static void writeXml(List<MapItem> items,OutputStream output,boolean gpx) throws Exception {
+  public static void writeKmlDocument(List<MapItem> items,OutputStream output,Map<Long,String> icons,Map<Long,String> descriptions)throws Exception {writeXml(items,output,false,icons,descriptions);}
+  private static void writeXml(List<MapItem> items,OutputStream output,boolean gpx,Map<Long,String> icons,Map<Long,String> descriptions) throws Exception {
     XmlSerializer x=Xml.newSerializer();x.setOutput(output,"UTF-8");x.startDocument("UTF-8",true);
     if(gpx) {
       for(MapItem i:items)if("area".equals(i.kind))throw new IOException("Для областей выберите KML или KMZ: GPX не поддерживает полигоны");
@@ -145,16 +146,18 @@ public final class PlacemarkFiles {
     } else {
       x.startTag(null,"kml").attribute(null,"xmlns","http://www.opengis.net/kml/2.2");x.startTag(null,"Document");tag(x,"name","Рабочая карта");
       Set<Long> ids=new HashSet<>();for(MapItem i:items)ids.add(i.id);Set<Long> written=new HashSet<>();
-      for(MapItem i:items)if(i.parent==0||!ids.contains(i.parent))writeKml(x,i,items,written);
+      for(MapItem i:items)if(i.parent==0||!ids.contains(i.parent))writeKml(x,i,items,written,icons,descriptions);
       x.endTag(null,"Document");x.endTag(null,"kml");
     }
     x.endDocument();x.flush();
   }
-  private static void writeKml(XmlSerializer x,MapItem i,List<MapItem> items,Set<Long> written) throws Exception {
-    if(!written.add(i.id))return;String element=i.isFolder()?"Folder":"Placemark";x.startTag(null,element);tag(x,"name",i.name);tag(x,"description",i.description);tag(x,"visibility",i.visible?"1":"0");
-    if(i.isFolder()) {for(MapItem child:items)if(child.parent==i.id)writeKml(x,child,items,written);}
+  private static void writeKml(XmlSerializer x,MapItem i,List<MapItem> items,Set<Long> written,Map<Long,String> icons,Map<Long,String> descriptions) throws Exception {
+    if(!written.add(i.id))return;String element=i.isFolder()?"Folder":"Placemark";x.startTag(null,element);tag(x,"name",i.name);tag(x,"description",descriptions.containsKey(i.id)?descriptions.get(i.id):i.description);tag(x,"visibility",i.visible?"1":"0");
+    if(i.isFolder()) {for(MapItem child:items)if(child.parent==i.id)writeKml(x,child,items,written,icons,descriptions);}
     else {
-      x.startTag(null,"Style");for(String style:Arrays.asList("LineStyle","IconStyle","PolyStyle")){x.startTag(null,style);int color=(i.color&0x00ffffff)|Math.round(255*i.opacity)<<24;int kml=(color&0xff00ff00)|((color&255)<<16)|((color>>16)&255);tag(x,"color",String.format(Locale.ROOT,"%08x",kml));if("LineStyle".equals(style))tag(x,"width","3");x.endTag(null,style);}x.endTag(null,"Style");
+      x.startTag(null,"Style");for(String style:Arrays.asList("LineStyle","IconStyle","PolyStyle")){x.startTag(null,style);int color=(i.color&0x00ffffff)|Math.round(255*i.opacity)<<24;int kml=(color&0xff00ff00)|((color&255)<<16)|((color>>16)&255);tag(x,"color","IconStyle".equals(style)&&icons.containsKey(i.id)?"ffffffff":String.format(Locale.ROOT,"%08x",kml));
+        if("IconStyle".equals(style)&&icons.containsKey(i.id)){x.startTag(null,"Icon");tag(x,"href",icons.get(i.id));x.endTag(null,"Icon");}
+        if("LineStyle".equals(style))tag(x,"width","3");x.endTag(null,style);}x.endTag(null,"Style");
       if(!i.isGeometry()){x.startTag(null,"Point");tag(x,"coordinates",i.longitude+","+i.latitude);x.endTag(null,"Point");}
       else {
         x.startTag(null,"ExtendedData");x.startTag(null,"Data").attribute(null,"name","workmap:kind");tag(x,"value",i.kind);x.endTag(null,"Data");x.endTag(null,"ExtendedData");

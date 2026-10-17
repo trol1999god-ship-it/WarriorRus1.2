@@ -31,7 +31,7 @@ public final class DrawingController {
     if(active()){Toast.makeText(activity,"Сначала сохраните или отмените рисунок",Toast.LENGTH_SHORT).show();return;}
     MapItem d=new MapItem();d.kind=kind;d.parent=parent;d.name="";d.visible=true;d.opacity=1;d.color=0xff3f6db5;
     if(existing!=null) {
-      d.position=existing.position;d.id=existing.id;d.kind=existing.kind;d.parent=existing.parent;d.name=existing.name;d.description=existing.description;
+      d.attachments.addAll(existing.attachments);d.created=existing.created;d.updated=existing.updated;d.position=existing.position;d.id=existing.id;d.kind=existing.kind;d.parent=existing.parent;d.name=existing.name;d.description=existing.description;
       d.visible=existing.visible;d.opacity=existing.opacity;d.color=existing.color;d.icon=existing.icon;
       d.segments.addAll(Geometry.decode(Geometry.encode(existing.segments)));
     } else {d.segments.add(new ArrayList<>());if(initial!=null)d.segments.get(0).add(new Vertex(initial.getLatitude(),initial.getLongitude()));}
@@ -107,9 +107,9 @@ public final class DrawingController {
     }map.view.invalidate();
   }
   public void saveState(Bundle state) {
-    if(!active())return;state.putString("draftGeometry",Geometry.encode(draft.segments));state.putString("draftKind",draft.kind);state.putString("draftName",draft.name);state.putString("draftDescription",draft.description);state.putInt("draftPosition",draft.position);state.putLong("draftId",draft.id);state.putLong("draftParent",draft.parent);state.putInt("draftColor",draft.color);state.putBoolean("draftVisible",draft.visible);state.putFloat("draftOpacity",draft.opacity);
+    if(!active())return;state.putString("draftMedia",ObjectJson.attachments(draft.attachments));state.putLong("draftCreated",draft.created);state.putString("draftGeometry",Geometry.encode(draft.segments));state.putString("draftKind",draft.kind);state.putString("draftName",draft.name);state.putString("draftDescription",draft.description);state.putInt("draftPosition",draft.position);state.putLong("draftId",draft.id);state.putLong("draftParent",draft.parent);state.putInt("draftColor",draft.color);state.putBoolean("draftVisible",draft.visible);state.putFloat("draftOpacity",draft.opacity);
   }
   public void restore(Bundle state) {
-    if(state==null||!state.containsKey("draftGeometry"))return;MapItem d=new MapItem();d.kind=state.getString("draftKind");d.name=state.getString("draftName");d.description=state.getString("draftDescription");d.position=state.getInt("draftPosition");d.id=state.getLong("draftId");d.parent=state.getLong("draftParent");d.color=state.getInt("draftColor");d.visible=state.getBoolean("draftVisible");d.opacity=state.getFloat("draftOpacity");d.segments.addAll(Geometry.decode(state.getString("draftGeometry")));start(d,d.kind,d.parent,null);
+    if(state==null||!state.containsKey("draftGeometry"))return;MapItem d=new MapItem();d.attachments.addAll(ObjectJson.attachments(state.getString("draftMedia","[]")));d.created=state.getLong("draftCreated");d.kind=state.getString("draftKind");d.name=state.getString("draftName");d.description=state.getString("draftDescription");d.position=state.getInt("draftPosition");d.id=state.getLong("draftId");d.parent=state.getLong("draftParent");d.color=state.getInt("draftColor");d.visible=state.getBoolean("draftVisible");d.opacity=state.getFloat("draftOpacity");d.segments.addAll(Geometry.decode(state.getString("draftGeometry")));start(d,d.kind,d.parent,null);
   }
 }

@@ -17,6 +17,7 @@ import ru.warriorrus.app.map.*;
 import ru.warriorrus.app.geometry.*;
 import ru.warriorrus.app.settings.Coordinates;
 import ru.warriorrus.app.exchange.PlacemarkFiles;
+import ru.warriorrus.app.exchange.BundleExchange;
 import android.content.Intent;
 import java.io.*;
 
@@ -34,7 +35,8 @@ public final class MainActivity extends Activity {
   private TextView coordinates, coordinateSystem, coordinateAdditional;
   private DrawingController drawing;
   private Dialog settingsDialog;
-  private static final int IMPORT_FILE = 701, EXPORT_FILE = 702;
+  private static final int IMPORT_FILE = 701, EXPORT_FILE = 702, ATTACH_FILE = 703;
+  private long attachmentObject;
   private String exportFormat = "kmz";
   private long importParent;
   private ArrayList<Long> exportSelection = new ArrayList<>();
@@ -373,6 +375,8 @@ public final class MainActivity extends Activity {
     actions.addView(button("Импорт KML/KMZ/GPX", this::importFile));
     actions.addView(button("Экспорт выбранного / всех", this::exportFile));
     actions.addView(button("Передать по Bluetooth", this::bluetoothExport));
+    actions.addView(button("Корзина", this::trashMenu));
+    actions.addView(button("Вложения", () -> { if(explorer.selected.size()==1)attachmentsMenu(explorer.selected.iterator().next()); else fileError("Выберите один объект"); }));
     LinearLayout explorerToolbar = new LinearLayout(this);
     explorerToolbar.addView(
         compact(
@@ -451,6 +455,7 @@ public final class MainActivity extends Activity {
     drawing = new DrawingController(this, root, map, item -> { store.save(item); refresh(); });
     if (state != null) {
       drawing.restore(state);
+      attachmentObject=state.getLong("attachmentObject",0);
       exportFormat = state.getString("exportFormat", "kmz");
       importParent = state.getLong("importParent", 0);
       long[] ids = state.getLongArray("exportSelection");
@@ -766,7 +771,8 @@ public final class MainActivity extends Activity {
           "Параметры карты и координат",
           "Импорт KML/KMZ/GPX",
           "Экспорт выбранного / всех",
-          "Передать по Bluetooth"
+          "Передать по Bluetooth",
+          "Корзина"
         },
         n -> {
           switch (n) {
@@ -788,6 +794,7 @@ public final class MainActivity extends Activity {
             case 5: importFile(); break;
             case 6: exportFile(); break;
             case 7: bluetoothExport(); break;
+            case 8: trashMenu(); break;
           }
         });
   }
@@ -930,6 +937,7 @@ public final class MainActivity extends Activity {
                 i.color & 0xffffff, i.description, Geometry.summary(i)))
         .setPositiveButton(
             "Редактировать", (d, w) -> edit(i, new GeoPoint(i.latitude, i.longitude)))
+        .setNeutralButton("Вложения ("+i.attachments.size()+")", (d,w) -> attachmentsMenu(i.id))
         .setNegativeButton("Закрыть", null)
         .show();
   }
@@ -1285,8 +1293,7 @@ public final class MainActivity extends Activity {
     new AlertDialog.Builder(this)
         .setTitle("Удалить выбранные объекты?")
         .setMessage(
-            "Вложенные объекты папок также будут удалены. Доступна отмена последней операции до"
-                + " закрытия приложения.")
+            "Объекты переместятся в корзину. Восстановление доступно после перезапуска приложения.")
         .setPositiveButton(
             "Удалить",
             (d, w) ->
@@ -1346,6 +1353,67 @@ public final class MainActivity extends Activity {
                             palette[colors.getSelectedItemPosition()])))
         .setNegativeButton("Отмена", null)
         .show();
+  }
+
+  private void attachmentsMenu(long objectId) {
+    MapItem object=store.get(objectId);if(object==null)return;
+    Dialog dialog=new Dialog(this);LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);
+    content.setPadding(dp(12),dp(8),dp(12),dp(8));content.setBackground(plate());content.addView(hudText("Вложения · "+object.name,18));
+    if(object.attachments.isEmpty())content.addView(hudText("Пока нет вложений",14));
+    for(Attachment attachment:object.attachments) {
+      content.addView(compact(attachment.name+" · "+String.format(Locale.ROOT,"%.1f МиБ",attachment.size/1048576.0),()->{
+        sheet(attachment.name,new String[]{"Открыть","Удалить вложение"},action->{
+          if(action==0) {
+            android.net.Uri uri=android.net.Uri.parse("content://"+getPackageName()+".localfiles/media/"+attachment.key);
+            Intent view=new Intent(Intent.ACTION_VIEW).setDataAndType(uri,attachment.mime).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            view.setClipData(ClipData.newRawUri("Вложение",uri));
+            try{startActivity(view);}catch(android.content.ActivityNotFoundException unavailable){fileError("Нет приложения для просмотра этого типа файла");}
+          } else new AlertDialog.Builder(this).setTitle("Удалить вложение из объекта?").setMessage("Копии других объектов останутся доступны. Операцию можно отменить.")
+              .setPositiveButton("Удалить",(d,w)->run(()->{
+                MapItem current=store.get(objectId);if(current==null)return;current.attachments.removeIf(a->a.key.equals(attachment.key));store.save(current);
+                try{new ru.warriorrus.app.media.LocalMedia(this).cleanup(store.referencedMedia());}catch(IOException ignored){}
+                dialog.dismiss();attachmentsMenu(objectId);
+              })).setNegativeButton("Отмена",null).show();
+        });
+      }));
+    }
+    content.addView(compact("Добавить фото / видео / аудио",()->{
+      attachmentObject=objectId;Intent choose=new Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("*/*")
+          .putExtra(Intent.EXTRA_MIME_TYPES,new String[]{"image/*","video/*","audio/*"}).putExtra(Intent.EXTRA_LOCAL_ONLY,true);
+      dialog.dismiss();try{startActivityForResult(choose,ATTACH_FILE);}catch(android.content.ActivityNotFoundException missing){fileError("Нет файлового менеджера");}
+    }));
+    content.addView(compact("Закрыть",dialog::dismiss));ScrollView scroll=new ScrollView(this);scroll.addView(content);showPanel(dialog,scroll,dp(420),false);
+  }
+
+  private void attachFile(android.net.Uri uri,long id) {
+    String mime=getContentResolver().getType(uri),name="Вложение";
+    try(android.database.Cursor cursor=getContentResolver().query(uri,new String[]{android.provider.OpenableColumns.DISPLAY_NAME},null,null,null)){
+      if(cursor!=null&&cursor.moveToFirst())name=cursor.getString(0);
+    }catch(Exception ignored){}
+    final String label=name,type=mime;
+    Toast.makeText(this,"Сохранение вложения…",Toast.LENGTH_SHORT).show();
+    new Thread(()->{
+      try {
+        ru.warriorrus.app.media.LocalMedia media=new ru.warriorrus.app.media.LocalMedia(this);Attachment file;
+        try(InputStream input=getContentResolver().openInputStream(uri)){if(input==null)throw new IOException("Файл недоступен");file=media.add(input,label,type);}
+        runOnUiThread(()->{
+          if(isFinishing()||isDestroyed()){try{media.resolve(file.key).delete();}catch(IOException ignored){}return;}
+          MapItem current=store.get(id);if(current==null){try{media.resolve(file.key).delete();}catch(IOException ignored){}fileError("Объект уже удалён");return;}
+          run(()->{current.attachments.add(file);store.save(current);});attachmentsMenu(id);
+        });
+      }catch(Exception error){runOnUiThread(()->fileError(error.getMessage()));}
+    },"local-media-copy").start();
+  }
+
+  private void trashMenu() {
+    List<MapItem> trash=new ArrayList<>();for(MapItem i:store.includingTrash())if(i.trashed)trash.add(i);
+    List<String> labels=new ArrayList<>();labels.add("Восстановить всё");labels.add("Очистить корзину");for(MapItem i:trash)labels.add(i.typeName()+" · "+i.name);
+    sheet("Корзина · объектов: "+trash.size(),labels.toArray(new String[0]),n->{
+      if(n==0)run(()->{List<Long> ids=new ArrayList<>();for(MapItem i:trash)ids.add(i.id);store.restoreTrash(ids);});
+      else if(n==1)new AlertDialog.Builder(this).setTitle("Очистить корзину навсегда?").setMessage("Удалятся объекты корзины и история отмены. Вложения, используемые другими объектами, сохранятся.")
+          .setPositiveButton("Очистить",(d,w)->run(()->{store.emptyTrash();try{new ru.warriorrus.app.media.LocalMedia(this).cleanup(store.referencedMedia());}catch(IOException ignored){}})).setNegativeButton("Отмена",null).show();
+      else {MapItem item=trash.get(n-2);new AlertDialog.Builder(this).setTitle(item.name).setPositiveButton("Восстановить",(d,w)->run(()->store.restoreTrash(Collections.singleton(item.id)))).setNegativeButton("Назад",(d,w)->trashMenu()).show();}
+    });
   }
 
   private void startDrawing(String kind, GeoPoint point) {
@@ -1419,6 +1487,7 @@ public final class MainActivity extends Activity {
       exportFormat = new String[]{"kmz", "kml", "gpx"}[n];
       List<MapItem> snapshot = store.exportItems(exportSelection);
       if (snapshot.isEmpty()) { fileError("Нет объектов для экспорта"); return; }
+      if(!"kmz".equals(exportFormat))for(MapItem i:snapshot)if(!i.attachments.isEmpty()){fileError("Для экспорта вложений выберите KMZ");return;}
       if ("gpx".equals(exportFormat)) for (MapItem i : snapshot) if ("area".equals(i.kind)) {
         fileError("GPX не поддерживает области. Выберите KMZ или KML."); return;
       }
@@ -1440,19 +1509,20 @@ public final class MainActivity extends Activity {
     super.onActivityResult(request, result, data);
     if (result != RESULT_OK || data == null || data.getData() == null) return;
     android.net.Uri uri = data.getData();
+    if(request==ATTACH_FILE){attachFile(uri,attachmentObject);return;}
     if (request == IMPORT_FILE) {
       final long destination = importParent;
       Toast.makeText(this, "Чтение файла…", Toast.LENGTH_SHORT).show();
       new Thread(() -> {
         try (InputStream input = getContentResolver().openInputStream(uri)) {
           if (input == null) throw new IOException("Файл недоступен");
-          List<MapItem> imported = PlacemarkFiles.read(input);
+          List<MapItem> imported = BundleExchange.read(this,input);
           runOnUiThread(() -> {
             if (isFinishing() || isDestroyed()) return;
             new AlertDialog.Builder(this).setTitle("Импорт объектов: "+imported.size())
                 .setMessage("Добавить объекты в выбранную папку? Текущие объекты сохранятся.")
                 .setPositiveButton("Импортировать", (d,w) -> run(() -> {store.importItems(imported,destination);refresh();}))
-                .setNegativeButton("Отмена",null).show();
+                .setNegativeButton("Отмена",(d,w)->{try{new ru.warriorrus.app.media.LocalMedia(this).cleanup(store.referencedMedia());}catch(IOException ignored){}}).show();
           });
         } catch (Exception e) {runOnUiThread(() -> fileError(e.getMessage()));}
       }, "local-placemark-import").start();
@@ -1462,7 +1532,7 @@ public final class MainActivity extends Activity {
       new Thread(() -> {
         try (OutputStream output = getContentResolver().openOutputStream(uri, "wt")) {
           if (output == null) throw new IOException("Файл недоступен");
-          PlacemarkFiles.write(snapshot, output, format);
+          BundleExchange.write(this,snapshot, output, format);
           runOnUiThread(() -> {if (!isFinishing() && !isDestroyed()) Toast.makeText(this,"Экспорт завершён",Toast.LENGTH_LONG).show();});
         } catch (Exception e) {runOnUiThread(() -> fileError(e.getMessage()));}
       }, "local-placemark-export").start();
@@ -1479,7 +1549,7 @@ public final class MainActivity extends Activity {
             try {
               File directory = new File(getFilesDir(), "shared"); if (!directory.isDirectory() && !directory.mkdirs()) throw new IOException("Не удалось создать файл");
               File file = new File(directory, "Rabochaya-karta-"+java.util.UUID.randomUUID()+".kmz");
-              try (OutputStream output = new FileOutputStream(file)) {PlacemarkFiles.write(snapshot, output, "kmz");}
+              try (OutputStream output = new FileOutputStream(file)) {BundleExchange.write(this,snapshot, output, "kmz");}
               runOnUiThread(() -> {
                 if (isFinishing() || isDestroyed()) return;
                 android.net.Uri uri = android.net.Uri.parse("content://"+getPackageName()+".localfiles/"+file.getName());
@@ -1503,6 +1573,7 @@ public final class MainActivity extends Activity {
     super.onSaveInstanceState(state);
     state.putLong("folder", explorer.folder);
     if (drawing != null) drawing.saveState(state);
+    state.putLong("attachmentObject",attachmentObject);
     state.putString("exportFormat", exportFormat);
     state.putLong("importParent", importParent);
     long[] selected = new long[exportSelection.size()];
