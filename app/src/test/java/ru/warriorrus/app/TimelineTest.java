@@ -31,4 +31,12 @@ public class TimelineTest {
   @Test public void timestampedPointsAndLongTimeRangesAreClamped(){
     MapItem i=track(Arrays.asList(vertex(0,0),vertex(1,120)));TimelineModel m=model(i);MapItem point=track(Collections.singletonList(vertex(3,100)));point.kind="point";m.seek(5000);assertNull(m.view(point));m.seek(10000);assertSame(point,m.view(point));m.windowMillis=10000;assertNull(m.view(point));m.first=-8000000000000000L;m.last=8000000000000000L;m.seek(5000);assertEquals(0,m.cursor);assertEquals(5000,m.progress());m.seek(-100);assertEquals(m.first,m.cursor);m.seek(20000);assertEquals(m.last,m.cursor);
   }
+  @Test public void removingLastTimedObjectClosesPlaybackAndRestoresNormalMap()throws Exception {
+    android.content.Context context=org.robolectric.RuntimeEnvironment.getApplication();context.deleteDatabase("warrior2.db");context.getSharedPreferences("MainActivity",0).edit().clear().putBoolean("mapOnline",false).commit();
+    try(org.robolectric.android.controller.ActivityController<MainActivity> activity=org.robolectric.Robolectric.buildActivity(MainActivity.class).setup()){
+      java.lang.reflect.Field field=MainActivity.class.getDeclaredField("store");field.setAccessible(true);ObjectStore store=(ObjectStore)field.get(activity.get());MapItem item=track(Arrays.asList(vertex(0,0),vertex(1,60)));long id=store.save(item);
+      java.lang.reflect.Method refresh=MainActivity.class.getDeclaredMethod("refresh");refresh.setAccessible(true);refresh.invoke(activity.get());field=MainActivity.class.getDeclaredField("timeline");field.setAccessible(true);TimelineController timeline=(TimelineController)field.get(activity.get());assertTrue(timeline.open());assertTrue(timeline.model.active);
+      store.style(Collections.singleton(id),false,null,null);refresh.invoke(activity.get());assertFalse(timeline.model.active);assertNull(activity.get().getWindow().getDecorView().findViewWithTag("timelineControls"));assertEquals(2,store.get(id).segments.get(0).size());
+    }
+  }
 }

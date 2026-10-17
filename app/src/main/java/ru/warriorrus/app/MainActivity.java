@@ -69,8 +69,7 @@ public final class MainActivity extends Activity {
             long next = map.iconRevision();
             if (next != iconRevision) {
               iconRevision = next;
-              if(timeline!=null)timeline.refreshBounds();
-    map.refresh(store);
+              map.refresh(store);
             }
             iconHandler.postDelayed(this, 3000);
           }
@@ -1037,6 +1036,7 @@ public final class MainActivity extends Activity {
       tab.setBackground(active ? selectedPlate() : null);
       tab.setSelected(active);
     }
+    if(timeline!=null)timeline.refreshBounds();
     map.refresh(store);
     crumbs.removeAllViews();
     path.setText("‹");
