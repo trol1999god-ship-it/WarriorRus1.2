@@ -141,6 +141,16 @@ public class NativeMapRegressionTest {
           device.pressBack();
           device.waitForIdle();
         }
+        click(By.desc("Меню")); click(By.desc("Настройки")); click(By.text("Параметры карты и координат"));
+        scenario.onActivity(activity -> {
+          try {
+            java.lang.reflect.Field field=MainActivity.class.getDeclaredField("settingsDialog");field.setAccessible(true);
+            android.app.Dialog dialog=(android.app.Dialog)field.get(activity);
+            ViewGroup host=(ViewGroup)dialog.getWindow().getDecorView().findViewWithTag("dialogSafeArea");
+            assertWithinSafeArea(activity,host.getChildAt(0));
+          }catch(ReflectiveOperationException error){throw new AssertionError(error);}
+        });
+        capture(prefix+"-settings");device.pressBack();device.waitForIdle();
       }
     } finally {
       device.setOrientationNatural();

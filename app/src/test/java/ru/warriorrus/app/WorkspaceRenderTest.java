@@ -47,6 +47,11 @@ public class WorkspaceRenderTest {
       Dialog menu = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       snapshot(menu.getWindow().getDecorView(), name + "-menu", Math.min(360, width - 16), 270);
       menu.dismiss();
+      java.lang.reflect.Method settingsMethod = MainActivity.class.getDeclaredMethod("settingsMenu");
+      settingsMethod.setAccessible(true); settingsMethod.invoke(controller.get());
+      Dialog settings = org.robolectric.shadows.ShadowDialog.getLatestDialog();
+      snapshot(settings.getWindow().getDecorView(), name + "-settings", Math.min(360, width - 16), Math.min(650,height-24));
+      settings.dismiss();
       root.findViewWithTag("Слои").performClick();
       Dialog layers = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       snapshot(layers.getWindow().getDecorView(), name + "-layers", Math.min(360, width - 16), 250);

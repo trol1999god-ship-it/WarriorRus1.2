@@ -40,6 +40,7 @@ public final class DrawingController {
   private int dp(int n){return Math.round(n*activity.getResources().getDisplayMetrics().density);}
   private Button button(String text,Runnable action) {
     Button b=new Button(activity);b.setText(text);b.setTextSize(12);b.setTextColor(0xffd9edf7);b.setMinHeight(dp(48));
+    GradientDrawable background=new GradientDrawable();background.setColor(0xff12344c);background.setCornerRadius(dp(6));background.setStroke(dp(1),0xff326b92);b.setBackground(background);
     b.setContentDescription(text);b.setOnClickListener(v->action.run());return b;
   }
   private void showControls() {

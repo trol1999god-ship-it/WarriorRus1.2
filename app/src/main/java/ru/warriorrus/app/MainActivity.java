@@ -1370,14 +1370,14 @@ public final class MainActivity extends Activity {
     form.setPadding(dp(12), dp(8), dp(12), dp(8)); form.setBackground(plate());
     form.addView(hudText("Параметры карты и координат", 18));
     form.addView(hudText("Основные координаты", 13));
-    Spinner primary = new Spinner(this);
-    primary.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Coordinates.NAMES));
+    Spinner primary = new Spinner(new android.view.ContextThemeWrapper(this, android.R.style.Theme_Material));
+    primary.setAdapter(new ArrayAdapter<>(primary.getContext(), android.R.layout.simple_spinner_dropdown_item, Coordinates.NAMES));
     primary.setSelection(getPreferences(MODE_PRIVATE).getInt("primaryCoordinates", 0)); form.addView(primary);
     form.addView(hudText("Дополнительные координаты", 13));
     String[] secondaryNames = new String[6]; secondaryNames[0] = "Не показывать";
     System.arraycopy(Coordinates.NAMES, 0, secondaryNames, 1, 5);
-    Spinner secondary = new Spinner(this);
-    secondary.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, secondaryNames));
+    Spinner secondary = new Spinner(new android.view.ContextThemeWrapper(this, android.R.style.Theme_Material));
+    secondary.setAdapter(new ArrayAdapter<>(secondary.getContext(), android.R.layout.simple_spinner_dropdown_item, secondaryNames));
     secondary.setSelection(getPreferences(MODE_PRIVATE).getInt("secondaryCoordinates", 4)+1); form.addView(secondary);
     CheckBox labels = new CheckBox(this); labels.setText("Подписи объектов"); labels.setTextColor(0xffe4f2ff);
     labels.setChecked(getPreferences(MODE_PRIVATE).getBoolean("placemarkLabels", true)); form.addView(labels);
