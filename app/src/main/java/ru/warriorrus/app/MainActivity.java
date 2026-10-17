@@ -481,7 +481,7 @@ public final class MainActivity extends Activity {
     root.requestApplyInsets();
     drawing = new DrawingController(this, root, map, item -> { store.save(item); refresh(); });
     mapTools=new MapTools(this,map.view,root);
-    timeline=new TimelineController(this,root,map,()->store.renderItems());
+    timeline=new TimelineController(this,root,map,this::timelineItems);
     timeline.restore(state);
     if (state != null) {
       drawing.restore(state);
@@ -774,6 +774,7 @@ public final class MainActivity extends Activity {
     panel.addView(compact("Опции",()->{marksDialog.dismiss();placemarkOptions();}));
     showFeature(marksDialog,panel);
   }
+  private List<MapItem> timelineItems(){List<MapItem> items=new ArrayList<>();for(MapItem item:store.renderItems())if(!item.isFolder()&&store.effectiveOpacity(item)>0)items.add(item);return items;}
   private void openTimeline(){if(drawing.active()||mapTools.measuring){fileError("Сначала завершите рисунок или измерение");return;}if(!timeline.open())fileError("Нет отображаемых меток со временем в файле");}
   private LinearLayout featurePanel(String title,Dialog dialog) {
     LinearLayout panel=new LinearLayout(this);panel.setOrientation(LinearLayout.VERTICAL);panel.setPadding(dp(12),dp(8),dp(12),dp(8));panel.setBackground(plate());
