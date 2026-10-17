@@ -29,7 +29,7 @@ public final class MainActivity extends Activity {
   private TextView coordinates;
   private boolean cards, onScreenOnly, gridEnabled;
   private long selectedPoint;
-  private boolean bottomCollapsed, coordinatesCollapsed, mapLayerVisible;
+  private boolean bottomCollapsed, coordinatesCollapsed, mapLayerVisible, rightCollapsed;
   private int mapLayerOpacity;
   private Dialog menuDialog, layersDialog, mapsDialog;
   private String objectFilter = "all";
@@ -121,70 +121,110 @@ public final class MainActivity extends Activity {
     root.addView(focus, new FrameLayout.LayoutParams(dp(7), dp(7), Gravity.CENTER));
 
     LinearLayout coordinatePanel = new LinearLayout(this);
-    coordinatePanel.setOrientation(LinearLayout.VERTICAL);
+    coordinatePanel.setOrientation(LinearLayout.HORIZONTAL);
+    coordinatePanel.setGravity(Gravity.CENTER_VERTICAL);
     coordinatePanel.setBackground(plate());
     coordinatePanel.setTag("coordinatePanel");
-    Button coordinateHeader = compact("WGS84  ⌄", () -> {});
-    coordinateHeader.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ui_pin, 0, 0, 0);
-    coordinateHeader.setContentDescription("Свернуть или раскрыть координаты");
-    coordinatePanel.addView(coordinateHeader);
     LinearLayout coordinateDetails = new LinearLayout(this);
     coordinateDetails.setOrientation(LinearLayout.VERTICAL);
     coordinateDetails.setTag("coordinateDetails");
-    coordinates = hudText("", 12);
+    TextView system = hudText("WGS84", 10);
+    system.setPadding(dp(8), dp(3), dp(4), 0);
+    coordinateDetails.addView(system);
+    coordinates = hudText("", 11);
+    coordinates.setPadding(dp(8), dp(2), 0, dp(2));
     coordinateDetails.addView(coordinates);
-    coordinateDetails.addView(hudText("MGRS  ·  нет данных", 11));
-    coordinateDetails.addView(hudText("Высота  ·  нет данных", 11));
-    coordinateDetails.setVisibility(coordinatesCollapsed ? View.GONE : View.VISIBLE);
-    coordinatePanel.addView(coordinateDetails);
-    coordinateHeader.setOnClickListener(v -> {
-      coordinatesCollapsed = !coordinatesCollapsed;
-      coordinateDetails.setVisibility(coordinatesCollapsed ? View.GONE : View.VISIBLE);
-      getPreferences(MODE_PRIVATE).edit().putBoolean("coordinatesCollapsed", coordinatesCollapsed).apply();
-    });
-    int coordinateWidth = Math.min(getResources().getDisplayMetrics().widthPixels - dp(72), dp(360));
+    TextView additional = hudText("MGRS —  ·  Высота —", 10);
+    additional.setPadding(dp(8), 0, 0, dp(3));
+    coordinateDetails.addView(additional);
+    coordinatePanel.addView(coordinateDetails, new LinearLayout.LayoutParams(0, -2, 1));
+    Button coordinateHeader = compact("", () -> {});
+    coordinateHeader.setTag("coordinateToggle");
+    coordinateHeader.setContentDescription("Свернуть или раскрыть координаты");
+    coordinatePanel.addView(coordinateHeader, new LinearLayout.LayoutParams(dp(48), dp(48)));
+    int coordinateWidth = Math.min(getResources().getDisplayMetrics().widthPixels - dp(72), dp(248));
     FrameLayout.LayoutParams hud = new FrameLayout.LayoutParams(coordinateWidth, -2, Gravity.TOP | Gravity.START);
     hud.setMargins(dp(8), dp(8), dp(64), 0);
     root.addView(coordinatePanel, hud);
+    Runnable renderCoordinates = () -> {
+      coordinateDetails.setVisibility(coordinatesCollapsed ? View.GONE : View.VISIBLE);
+      coordinateHeader.setText(coordinatesCollapsed ? "⌄" : "⌃");
+      coordinateHeader.setTextSize(20);
+      coordinateHeader.setSelected(!coordinatesCollapsed);
+      coordinatePanel.getLayoutParams().width = coordinatesCollapsed ? dp(48) : coordinateWidth;
+      coordinatePanel.requestLayout();
+    };
+    coordinateHeader.setOnClickListener(v -> {
+      coordinatesCollapsed = !coordinatesCollapsed;
+      renderCoordinates.run();
+      getPreferences(MODE_PRIVATE).edit().putBoolean("coordinatesCollapsed", coordinatesCollapsed).apply();
+    });
+    coordinateDetails.setOnClickListener(v -> coordinateHeader.performClick());
+    renderCoordinates.run();
 
     LinearLayout bottomContainer = new LinearLayout(this);
-    bottomContainer.setOrientation(LinearLayout.VERTICAL);
+    bottomContainer.setOrientation(LinearLayout.HORIZONTAL);
+    bottomContainer.setGravity(Gravity.CENTER_VERTICAL);
+    bottomContainer.setTag("bottomPanel");
+    bottomContainer.setBackground(plate());
     LinearLayout toolbar = new LinearLayout(this);
     toolbar.setOrientation(LinearLayout.HORIZONTAL);
-    toolbar.setBackground(plate());
+    toolbar.setTag("bottomToolbar");
     String[] tabNames = {"Меню", "Объекты", "Слои", "Карты"};
     int[] tabIcons = {R.drawable.ui_menu, R.drawable.ui_pin, R.drawable.ui_layers, R.drawable.ui_map};
     Runnable[] tabActions = {this::mainMenu, this::objectsMenu, this::layersMenu, this::mapsMenu};
     for (int i = 0; i < tabNames.length; i++) {
       Button tab = iconButton(tabNames[i], tabIcons[i], tabActions[i]);
       tab.setTag(tabNames[i]);
-      tab.setText(bottomCollapsed ? "" : tabNames[i]);
       if (i == 0) tab.setBackground(selectedPlate());
-      toolbar.addView(tab, new LinearLayout.LayoutParams(0, -2, 1));
+      toolbar.addView(tab, new LinearLayout.LayoutParams(0, dp(64), 1));
     }
-    bottomContainer.addView(toolbar);
-    Button bottomToggle = compact(bottomCollapsed ? "⌃" : "⌄", () -> {});
-    bottomToggle.setBackground(plate());
+    bottomContainer.addView(toolbar, new LinearLayout.LayoutParams(0, -2, 1));
+    Button bottomToggle = compact("", () -> {});
+    bottomToggle.setTag("bottomToggle");
+    bottomToggle.setTextSize(20);
     bottomToggle.setContentDescription("Свернуть или раскрыть панель инструментов");
-    bottomToggle.setOnClickListener(v -> {
-      bottomCollapsed = !bottomCollapsed;
-      for (int i = 0; i < toolbar.getChildCount(); i++)
-        ((Button) toolbar.getChildAt(i)).setText(bottomCollapsed ? "" : tabNames[i]);
-      bottomToggle.setText(bottomCollapsed ? "⌃" : "⌄");
-      getPreferences(MODE_PRIVATE).edit().putBoolean("bottomCollapsed", bottomCollapsed).apply();
-    });
     bottomContainer.addView(bottomToggle, new LinearLayout.LayoutParams(dp(48), dp(48)));
-    int toolbarWidth = Math.min(getResources().getDisplayMetrics().widthPixels - dp(72), dp(360));
+    int toolbarWidth = Math.min(getResources().getDisplayMetrics().widthPixels - dp(16), dp(408));
     FrameLayout.LayoutParams bottom = new FrameLayout.LayoutParams(toolbarWidth, -2, Gravity.BOTTOM | Gravity.START);
     bottom.setMargins(dp(8), 0, dp(8), dp(8));
     root.addView(bottomContainer, bottom);
+    Runnable renderBottom = () -> {
+      for (int i = 0; i < toolbar.getChildCount(); i++) {
+        Button tab = (Button) toolbar.getChildAt(i);
+        tab.setText(bottomCollapsed ? "" : tabNames[i]);
+        tab.setCompoundDrawablesRelativeWithIntrinsicBounds(bottomCollapsed ? tabIcons[i] : 0,
+            bottomCollapsed ? 0 : tabIcons[i], 0, 0);
+        tab.setCompoundDrawablePadding(bottomCollapsed ? 0 : dp(4));
+        tab.setPadding(dp(4), dp(4), dp(4), dp(4));
+        tab.getLayoutParams().height = dp(bottomCollapsed ? 48 : 64);
+      }
+      bottomToggle.setText(bottomCollapsed ? "›" : "‹");
+      bottomContainer.getLayoutParams().width = bottomCollapsed ? dp(240) : toolbarWidth;
+      bottomContainer.requestLayout();
+    };
+    bottomToggle.setOnClickListener(v -> {
+      bottomCollapsed = !bottomCollapsed;
+      renderBottom.run();
+      getPreferences(MODE_PRIVATE).edit().putBoolean("bottomCollapsed", bottomCollapsed).apply();
+    });
+    renderBottom.run();
 
+    rightCollapsed = getPreferences(MODE_PRIVATE).getBoolean("rightCollapsed", false);
     LinearLayout rightPanel = new LinearLayout(this);
+    rightPanel.setTag("rightPanel");
     rightPanel.setOrientation(LinearLayout.VERTICAL);
     rightPanel.setBackground(plate());
+    Button rightToggle = compact("", () -> {});
+    rightToggle.setTag("rightToggle");
+    rightToggle.setTextSize(20);
+    rightToggle.setContentDescription("Свернуть или раскрыть правую панель");
+    rightPanel.addView(rightToggle, new LinearLayout.LayoutParams(dp(48), dp(48)));
     Button compass = iconButton("Север сверху", R.drawable.ui_compass, () -> map.view.setMapOrientation(0f));
     compass.setText("");
-    rightPanel.addView(compass);
+    compass.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ui_compass, 0, 0, 0);
+    compass.setPadding(dp(12), 0, dp(12), 0);
+    rightPanel.addView(compass, new LinearLayout.LayoutParams(dp(48), dp(48)));
     String[] rightNames = {"Слои карт", "Действия в центре карты", "Увеличить", "Уменьшить"};
     int[] rightIcons = {R.drawable.ui_layers, R.drawable.ui_focus, R.drawable.ui_plus, R.drawable.ui_minus};
     Runnable[] rightActions = {this::layersMenu, () -> mapContextMenu((GeoPoint) map.view.getMapCenter()),
@@ -192,17 +232,25 @@ public final class MainActivity extends Activity {
     for (int i = 0; i < rightNames.length; i++) {
       Button control = iconButton(rightNames[i], rightIcons[i], rightActions[i]);
       control.setText("");
-      rightPanel.addView(control);
+      control.setCompoundDrawablesRelativeWithIntrinsicBounds(rightIcons[i], 0, 0, 0);
+      control.setPadding(dp(12), 0, dp(12), 0);
+      rightPanel.addView(control, new LinearLayout.LayoutParams(dp(48), dp(48)));
     }
     FrameLayout.LayoutParams right = new FrameLayout.LayoutParams(dp(48), -2, Gravity.END | Gravity.TOP);
     right.setMargins(0, dp(8), dp(8), 0);
     root.addView(rightPanel, right);
-    compass.setOnLongClickListener(v -> {
-      boolean hide = rightPanel.getChildAt(1).getVisibility() == View.VISIBLE;
+    Runnable renderRight = () -> {
       for (int i = 1; i < rightPanel.getChildCount(); i++)
-        rightPanel.getChildAt(i).setVisibility(hide ? View.GONE : View.VISIBLE);
-      return true;
+        rightPanel.getChildAt(i).setVisibility(rightCollapsed ? View.GONE : View.VISIBLE);
+      rightToggle.setText(rightCollapsed ? "⌄" : "⌃");
+    };
+    rightToggle.setOnClickListener(v -> {
+      rightCollapsed = !rightCollapsed;
+      renderRight.run();
+      getPreferences(MODE_PRIVATE).edit().putBoolean("rightCollapsed", rightCollapsed).apply();
     });
+    compass.setOnLongClickListener(v -> { rightToggle.performClick(); return true; });
+    renderRight.run();
     TextView attribution = hudText("© OpenStreetMap", 10);
     attribution.setBackground(plate());
     FrameLayout.LayoutParams credit = new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.END);

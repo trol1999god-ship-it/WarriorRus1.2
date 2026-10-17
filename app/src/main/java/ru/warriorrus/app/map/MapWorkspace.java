@@ -61,7 +61,13 @@ public final class MapWorkspace {
   }
 
   public void refresh(ObjectStore store) {
-    view.getOverlays().removeIf(o -> o instanceof Marker);
+    // Android's desugared removeIf may use iterator.remove(), which is unsupported
+    // by the CopyOnWriteArrayList returned by osmdroid. Remove by value instead.
+    for (org.osmdroid.views.overlay.Overlay overlay : new java.util.ArrayList<>(view.getOverlays()))
+      if (overlay instanceof Marker) {
+        ((Marker) overlay).closeInfoWindow();
+        view.getOverlays().remove(overlay);
+      }
     java.util.Map<String, android.graphics.drawable.Drawable.ConstantState> renderedCache =
         new java.util.HashMap<>();
     for (MapItem i : store.renderItems())

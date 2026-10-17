@@ -103,7 +103,7 @@ public class MapUiTest {
       described(root, "Свернуть или раскрыть панель инструментов").performClick();
       Button objects = (Button) root.findViewWithTag("Объекты");
       assertEquals("", objects.getText().toString());
-      assertNotNull(objects.getCompoundDrawablesRelative()[1]);
+      assertNotNull(objects.getCompoundDrawablesRelative()[0]);
       objects.performClick();
       assertTrue(org.robolectric.shadows.ShadowDialog.getLatestDialog().isShowing());
       org.robolectric.shadows.ShadowDialog.getLatestDialog().dismiss();
@@ -115,6 +115,32 @@ public class MapUiTest {
       assertEquals("", ((Button) root.findViewWithTag("Объекты")).getText().toString());
       assertEquals(View.GONE, root.findViewWithTag("coordinateDetails").getVisibility());
       described(root, "Свернуть или раскрыть панель инструментов").performClick();
+      assertEquals("Объекты", ((Button) root.findViewWithTag("Объекты")).getText().toString());
+    }
+  }
+
+  @Test
+  public void allPanelsActuallyShrinkAndRestoreTheirControls() {
+    try (ActivityController<MainActivity> c = Robolectric.buildActivity(MainActivity.class).setup()) {
+      View root = c.get().getWindow().getDecorView();
+      View coordinates = root.findViewWithTag("coordinatePanel"), bottom = root.findViewWithTag("bottomPanel");
+      int coordinateWidth = coordinates.getLayoutParams().width, bottomWidth = bottom.getLayoutParams().width;
+      root.findViewWithTag("coordinateToggle").performClick();
+      root.findViewWithTag("bottomToggle").performClick();
+      root.findViewWithTag("rightToggle").performClick();
+      assertTrue(coordinates.getLayoutParams().width < coordinateWidth);
+      assertTrue(bottom.getLayoutParams().width < bottomWidth);
+      assertEquals(View.GONE, described(root, "Увеличить").getVisibility());
+      root.findViewWithTag("rightToggle").performClick();
+      assertEquals(View.VISIBLE, described(root, "Увеличить").getVisibility());
+      root.findViewWithTag("rightToggle").performClick();
+    }
+    try (ActivityController<MainActivity> c = Robolectric.buildActivity(MainActivity.class).setup()) {
+      View root = c.get().getWindow().getDecorView();
+      assertEquals(View.GONE, described(root, "Увеличить").getVisibility());
+      root.findViewWithTag("coordinateToggle").performClick();
+      assertEquals(View.VISIBLE, root.findViewWithTag("coordinateDetails").getVisibility());
+      root.findViewWithTag("bottomToggle").performClick();
       assertEquals("Объекты", ((Button) root.findViewWithTag("Объекты")).getText().toString());
     }
   }

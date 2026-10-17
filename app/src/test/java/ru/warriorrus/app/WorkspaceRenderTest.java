@@ -38,6 +38,13 @@ public class WorkspaceRenderTest {
       org.osmdroid.views.MapView map = (org.osmdroid.views.MapView) type(root, org.osmdroid.views.MapView.class);
       map.setUseDataConnection(false);
       snapshot(root, name + "-map", width, height);
+      root.findViewWithTag("coordinateToggle").performClick();
+      root.findViewWithTag("bottomToggle").performClick();
+      root.findViewWithTag("rightToggle").performClick();
+      snapshot(root, name + "-collapsed", width, height);
+      root.findViewWithTag("coordinateToggle").performClick();
+      root.findViewWithTag("bottomToggle").performClick();
+      root.findViewWithTag("rightToggle").performClick();
       root.findViewWithTag("Меню").performClick();
       Dialog menu = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       snapshot(menu.getWindow().getDecorView(), name + "-menu", Math.min(360, width - 16), 270);
