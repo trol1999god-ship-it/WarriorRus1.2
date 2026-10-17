@@ -39,11 +39,9 @@ public class WorkspaceRenderTest {
       map.setUseDataConnection(false);
       snapshot(root, name + "-map", width, height);
       root.findViewWithTag("coordinateToggle").performClick();
-      root.findViewWithTag("bottomToggle").performClick();
       root.findViewWithTag("rightToggle").performClick();
       snapshot(root, name + "-collapsed", width, height);
       root.findViewWithTag("coordinateToggle").performClick();
-      root.findViewWithTag("bottomToggle").performClick();
       root.findViewWithTag("rightToggle").performClick();
       root.findViewWithTag("Меню").performClick();
       Dialog menu = org.robolectric.shadows.ShadowDialog.getLatestDialog();

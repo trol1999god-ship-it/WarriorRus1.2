@@ -29,7 +29,7 @@ public final class MainActivity extends Activity {
   private TextView coordinates;
   private boolean cards, onScreenOnly, gridEnabled;
   private long selectedPoint;
-  private boolean bottomCollapsed, coordinatesCollapsed, mapLayerVisible, rightCollapsed;
+  private boolean coordinatesCollapsed, mapLayerVisible, rightCollapsed;
   private int mapLayerOpacity;
   private Dialog menuDialog, layersDialog, mapsDialog;
   private String objectFilter = "all";
@@ -104,7 +104,6 @@ public final class MainActivity extends Activity {
     FrameLayout root = new FrameLayout(this);
     root.setBackgroundColor(0xfff3f5f9);
     root.addView(map.view, new FrameLayout.LayoutParams(-1, -1));
-    bottomCollapsed = getPreferences(MODE_PRIVATE).getBoolean("bottomCollapsed", false);
     coordinatesCollapsed = getPreferences(MODE_PRIVATE).getBoolean("coordinatesCollapsed", false);
     mapLayerVisible = getPreferences(MODE_PRIVATE).getBoolean("mapLayerVisible", true);
     mapLayerOpacity = getPreferences(MODE_PRIVATE).getInt("mapLayerOpacity", 100);
@@ -177,38 +176,16 @@ public final class MainActivity extends Activity {
       Button tab = iconButton(tabNames[i], tabIcons[i], tabActions[i]);
       tab.setTag(tabNames[i]);
       if (i == 0) tab.setBackground(selectedPlate());
-      toolbar.addView(tab, new LinearLayout.LayoutParams(0, dp(64), 1));
+      tab.setText("");
+      tab.setCompoundDrawablesRelativeWithIntrinsicBounds(tabIcons[i], 0, 0, 0);
+      tab.setCompoundDrawablePadding(0);
+      tab.setPadding(dp(12), 0, dp(12), 0);
+      toolbar.addView(tab, new LinearLayout.LayoutParams(dp(48), dp(48)));
     }
     bottomContainer.addView(toolbar, new LinearLayout.LayoutParams(0, -2, 1));
-    Button bottomToggle = compact("", () -> {});
-    bottomToggle.setTag("bottomToggle");
-    bottomToggle.setTextSize(20);
-    bottomToggle.setContentDescription("Свернуть или раскрыть панель инструментов");
-    bottomContainer.addView(bottomToggle, new LinearLayout.LayoutParams(dp(48), dp(48)));
-    int toolbarWidth = Math.min(getResources().getDisplayMetrics().widthPixels - dp(16), dp(408));
-    FrameLayout.LayoutParams bottom = new FrameLayout.LayoutParams(toolbarWidth, -2, Gravity.BOTTOM | Gravity.START);
+    FrameLayout.LayoutParams bottom = new FrameLayout.LayoutParams(dp(192), dp(48), Gravity.BOTTOM | Gravity.START);
     bottom.setMargins(dp(8), 0, dp(8), dp(8));
     root.addView(bottomContainer, bottom);
-    Runnable renderBottom = () -> {
-      for (int i = 0; i < toolbar.getChildCount(); i++) {
-        Button tab = (Button) toolbar.getChildAt(i);
-        tab.setText(bottomCollapsed ? "" : tabNames[i]);
-        tab.setCompoundDrawablesRelativeWithIntrinsicBounds(bottomCollapsed ? tabIcons[i] : 0,
-            bottomCollapsed ? 0 : tabIcons[i], 0, 0);
-        tab.setCompoundDrawablePadding(bottomCollapsed ? 0 : dp(4));
-        tab.setPadding(dp(4), dp(4), dp(4), dp(4));
-        tab.getLayoutParams().height = dp(bottomCollapsed ? 48 : 64);
-      }
-      bottomToggle.setText(bottomCollapsed ? "›" : "‹");
-      bottomContainer.getLayoutParams().width = bottomCollapsed ? dp(240) : toolbarWidth;
-      bottomContainer.requestLayout();
-    };
-    bottomToggle.setOnClickListener(v -> {
-      bottomCollapsed = !bottomCollapsed;
-      renderBottom.run();
-      getPreferences(MODE_PRIVATE).edit().putBoolean("bottomCollapsed", bottomCollapsed).apply();
-    });
-    renderBottom.run();
 
     rightCollapsed = getPreferences(MODE_PRIVATE).getBoolean("rightCollapsed", false);
     LinearLayout rightPanel = new LinearLayout(this);
@@ -252,10 +229,13 @@ public final class MainActivity extends Activity {
     compass.setOnLongClickListener(v -> { rightToggle.performClick(); return true; });
     renderRight.run();
     TextView attribution = hudText("© OpenStreetMap", 10);
+    attribution.setTag("mapAttribution");
     attribution.setBackground(plate());
     FrameLayout.LayoutParams credit = new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.END);
-    credit.bottomMargin = dp(76);
+    credit.setMargins(0, 0, dp(4), dp(8));
     root.addView(attribution, credit);
+    // Keep startup credit readable, then free the map. Licence remains in Maps.
+    attribution.postDelayed(() -> attribution.setVisibility(View.GONE), 5000);
     cards = getPreferences(MODE_PRIVATE).getBoolean("explorerCards", false);
     gridEnabled = getPreferences(MODE_PRIVATE).getBoolean("coordinateGrid", false);
     map.showGrid(gridEnabled);
@@ -669,7 +649,9 @@ public final class MainActivity extends Activity {
     modes.addView(online, new LinearLayout.LayoutParams(0, dp(48), 1));
     modes.addView(offline, new LinearLayout.LayoutParams(0, dp(48), 1));
     panel.addView(modes);
-    TextView source = hudText("OpenStreetMap", 17);
+    TextView source = hudText("© OpenStreetMap\nhttps://www.openstreetmap.org/copyright", 13);
+    source.setAutoLinkMask(android.text.util.Linkify.WEB_URLS);
+    source.setMovementMethod(android.text.method.LinkMovementMethod.getInstance());
     source.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ui_map, 0, 0, 0);
     source.setCompoundDrawablePadding(dp(12));
     source.setMinHeight(dp(64));

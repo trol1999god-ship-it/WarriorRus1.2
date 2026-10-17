@@ -46,7 +46,6 @@ public class NativeMapRegressionTest {
       }
       scenario.onActivity(activity -> assertEquals(8, markerCount(activity)));
       click(By.desc("Свернуть или раскрыть координаты"));
-      click(By.desc("Свернуть или раскрыть панель инструментов"));
       click(By.desc("Свернуть или раскрыть правую панель"));
       device.waitForIdle();
       scenario.onActivity(activity -> {
@@ -54,7 +53,7 @@ public class NativeMapRegressionTest {
         float density = activity.getResources().getDisplayMetrics().density;
         assertEquals(Math.round(48 * density), root.findViewWithTag("coordinatePanel").getWidth());
         assertEquals(View.GONE, root.findViewWithTag("coordinateDetails").getVisibility());
-        assertEquals(Math.round(240 * density), root.findViewWithTag("bottomPanel").getWidth());
+        assertEquals(Math.round(192 * density), root.findViewWithTag("bottomPanel").getWidth());
       });
       scenario.recreate();
       device.waitForIdle();
@@ -62,7 +61,6 @@ public class NativeMapRegressionTest {
       click(By.desc("Свернуть или раскрыть правую панель"));
       click(By.desc("Увеличить"));
       click(By.desc("Свернуть или раскрыть координаты"));
-      click(By.desc("Свернуть или раскрыть панель инструментов"));
       click(By.desc("Объекты"));
       assertNotNull(device.wait(Until.findObject(By.text("Объекты карты")), 8000));
     }

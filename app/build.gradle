@@ -14,8 +14,8 @@ android {
         minSdk 23
         targetSdk 35
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        versionCode 10
-        versionName "2.0-system-insets-fix"
+        versionCode 11
+        versionName "2.0-compact-toolbar"
     }
 }
 
