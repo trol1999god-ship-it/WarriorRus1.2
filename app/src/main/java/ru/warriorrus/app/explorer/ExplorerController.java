@@ -32,11 +32,13 @@ public final class ExplorerController {
     return !clipboard.isEmpty();
   }
 
-  public void paste() {
-    store.transfer(clipboard, folder, !cut);
-    if (cut) clipboard.clear();
-    selected.clear();
-  }
+  public List<Long> clipboardIds(){return new ArrayList<>(clipboard);}
+  public boolean isCut(){return cut;}
+  public void restoreClipboard(Collection<Long> ids,boolean cut){clipboard=new ArrayList<>();for(long id:ids)if(store.get(id)!=null)clipboard.add(id);this.cut=cut;}
+  public void clearClipboard(){clipboard.clear();}
+  public void paste(){paste(new ArrayList<>(clipboard));}
+  public void paste(Collection<Long> ids){if(!clipboard.containsAll(ids))throw new IllegalArgumentException("Объект отсутствует в буфере");store.transfer(ids,folder,!cut);if(cut)clipboard.removeAll(ids);selected.clear();}
+
 
   public List<MapItem> entries() {
     List<MapItem> result = new ArrayList<>();

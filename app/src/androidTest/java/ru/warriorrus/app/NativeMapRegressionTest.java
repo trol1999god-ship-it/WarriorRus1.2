@@ -20,7 +20,8 @@ public class NativeMapRegressionTest {
 
   private void click(BySelector selector) {
     UiObject2 object = device.wait(Until.findObject(selector), 8000);
-    assertNotNull("Missing UI control: " + selector, object);
+    if(object==null){try{device.executeShellCommand("mkdir -p /data/local/tmp/rabochaya-screens");device.takeScreenshot(new java.io.File("/data/local/tmp/rabochaya-screens/missing-control.png"));device.dumpWindowHierarchy(new java.io.File("/data/local/tmp/rabochaya-screens/missing-control.xml"));}catch(Exception ignored){}}
+    assertNotNull("Missing UI control: "+selector,object);
     object.click();
     device.waitForIdle();
   }
@@ -51,7 +52,7 @@ public class NativeMapRegressionTest {
       scenario.onActivity(activity -> assertEquals(8, markerCount(activity)));
       click(By.desc("Увеличить"));
       click(By.desc("Метки"));click(By.desc("Проводник меток"));
-      assertNotNull(device.wait(Until.findObject(By.text("Объекты карты")), 8000));
+      assertNotNull(device.wait(Until.findObject(By.text("Локальные метки")), 8000));
     }
   }
 
@@ -124,7 +125,7 @@ public class NativeMapRegressionTest {
           capture(prefix + "-" + fieldName);
           if (fieldName.equals("explorerDialog")) {
             click(By.desc("Создать объект"));
-            assertNotNull(device.wait(Until.findObject(By.text("Метка в центре карты")), 8000));
+            assertNotNull(device.wait(Until.findObject(By.text("Метка")), 8000));
             device.pressBack();
             device.waitForIdle();
           }

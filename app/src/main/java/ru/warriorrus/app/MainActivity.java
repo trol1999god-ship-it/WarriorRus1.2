@@ -39,8 +39,10 @@ public final class MainActivity extends Activity {
   private String screenshotPath="";
   private ExplorerController explorer;
   private MapWorkspace map;
-  private LinearLayout drawer, rows, tree, crumbs;
-  private TextView path, status;
+  private LinearLayout drawer,rows;
+  private TextView explorerSubtitle;private Button explorerClipboard,explorerMore,explorerAdd;
+  private boolean selectionMode;
+  private TextView status;
   private EditText search;
   private boolean refreshing;
   private long dragged;
@@ -58,7 +60,7 @@ public final class MainActivity extends Activity {
   private String exportFormat = "kmz";
   private long importParent;
   private ArrayList<Long> exportSelection = new ArrayList<>();
-  private boolean cards, onScreenOnly, gridEnabled;
+  private boolean cards, displayedOnly, gridEnabled;
   private long selectedPoint;
   private boolean coordinatesCollapsed, mapLayerVisible, rightCollapsed;
   private int mapLayerOpacity;
@@ -68,7 +70,7 @@ public final class MainActivity extends Activity {
   private CompassDial compassDial, mapCompass;
   private TextView headingInfo, compassReadout;
   private String objectFilter = "all";
-  private final List<Button> objectTabs = new ArrayList<>();
+
 
   private final android.os.Handler iconHandler =
       new android.os.Handler(android.os.Looper.getMainLooper());
@@ -128,7 +130,7 @@ public final class MainActivity extends Activity {
     referenceUi=new ReferenceMenu(this);mainCommands=new MainCommands(getPreferences(MODE_PRIVATE));
     store = new ObjectStore(this);
     explorer = new ExplorerController(store);
-    if (state != null) explorer.folder = state.getLong("folder");
+    if(state!=null){explorer.folder=state.getLong("folder");selectionMode=state.getBoolean("explorerSelectionMode");long[] selected=state.getLongArray("explorerSelected");if(selected!=null)for(long id:selected)explorer.selected.add(id);List<Long> clipboard=new ArrayList<>();long[] copied=state.getLongArray("explorerClipboard");if(copied!=null)for(long id:copied)clipboard.add(id);explorer.restoreClipboard(clipboard,state.getBoolean("explorerCut"));}
     map = new MapWorkspace(this, this::longPressMap);
     if (state != null) {
       map.view
@@ -146,8 +148,7 @@ public final class MainActivity extends Activity {
     map.view.setUseDataConnection(getPreferences(MODE_PRIVATE).getBoolean("mapOnline", true));
     applyMapLayer();
 
-    FrameLayout focusTarget=new FrameLayout(this);focusTarget.setContentDescription("Действия в центре карты");focusTarget.setOnClickListener(v->mapContextMenu((GeoPoint)map.view.getMapCenter()));
-    View focus=new View(this);GradientDrawable dot=new GradientDrawable();dot.setShape(GradientDrawable.OVAL);dot.setColor(0xffff4545);focus.setBackground(dot);focus.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);focusTarget.addView(focus,new FrameLayout.LayoutParams(dp(7),dp(7),Gravity.CENTER));root.addView(focusTarget,new FrameLayout.LayoutParams(dp(44),dp(44),Gravity.CENTER));
+    MapFocusTarget focusTarget=new MapFocusTarget(this,map.view,()->{selectedPoint=0;mapContextMenu((GeoPoint)map.view.getMapCenter());});root.addView(focusTarget,new FrameLayout.LayoutParams(dp(44),dp(44),Gravity.CENTER));
 
     LinearLayout coordinatePanel = new LinearLayout(this);
     coordinatePanel.setOrientation(LinearLayout.HORIZONTAL);
@@ -168,8 +169,9 @@ public final class MainActivity extends Activity {
     coordinateAdditional = additional;
     additional.setPadding(dp(8), 0, 0, dp(3));
     coordinateDetails.addView(additional);
-    coordinatePanel.addView(coordinateDetails, new LinearLayout.LayoutParams(0, -2, 1));
+    coordinatePanel.addView(coordinateDetails,new LinearLayout.LayoutParams(-2,-2));
     coordinateSystem.setVisibility(View.GONE);
+    coordinates.setSingleLine(true);coordinateAdditional.setSingleLine(true);coordinates.setMaxWidth(Math.max(dp(48),getResources().getDisplayMetrics().widthPixels-dp(64)));coordinateAdditional.setMaxWidth(Math.max(dp(48),getResources().getDisplayMetrics().widthPixels-dp(64)));
     coordinates.setTextSize(12);coordinateAdditional.setTextSize(11);coordinateAdditional.setTextColor(0xff086db3);
     FrameLayout.LayoutParams hud=new FrameLayout.LayoutParams(-2,-2,Gravity.TOP|Gravity.START);hud.setMargins(dp(4),dp(4),dp(56),0);root.addView(coordinatePanel,hud);
     coordinateDetails.setOnClickListener(v->coordinateFormats());
@@ -247,185 +249,7 @@ public final class MainActivity extends Activity {
           if (repeat) pointDetails(i);
           else pointActions(i);
         };
-    drawer = new LinearLayout(this);
-    drawer.setOrientation(LinearLayout.VERTICAL);
-    drawer.setBackground(plate());
-    drawer.setPadding(dp(8), dp(8), dp(8), dp(8));
-    LinearLayout objectHeader = new LinearLayout(this);
-    TextView title = hudText("Объекты карты", 20);
-    title.setTypeface(null, Typeface.BOLD);
-    objectHeader.addView(title, new LinearLayout.LayoutParams(0, -2, 1));
-    Button closeObjects = compact("×", () -> explorerDialog.dismiss());
-    closeObjects.setContentDescription("Закрыть объекты");
-    objectHeader.addView(closeObjects, new LinearLayout.LayoutParams(dp(48), dp(48)));
-    drawer.addView(objectHeader);
-    LinearLayout filters = new LinearLayout(this);
-    String[] filterNames = {"Все", "Метки", "Папки", "Маршруты", "Линии", "Области", "Треки"};
-    String[] filterKinds = {"all", "point", "folder", "route", "path", "area", "track"};
-    for (int i = 0; i < filterNames.length; i++) {
-      final String kind = filterKinds[i];
-      Button tab = compact(filterNames[i], () -> { objectFilter = kind; refresh(); });
-      tab.setTag("filter:" + kind);
-      objectTabs.add(tab);
-      filters.addView(tab, new LinearLayout.LayoutParams(-2, dp(48)));
-    }
-    HorizontalScrollView filterScroll = new HorizontalScrollView(this);
-    filterScroll.addView(filters);
-    if (getResources().getConfiguration().orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE)
-      objectHeader.addView(filterScroll, 1, new LinearLayout.LayoutParams(dp(240), dp(48)));
-    else drawer.addView(filterScroll);
-    path = hudText("", 14);
-    path.setOnClickListener(
-        v -> {
-          if (explorer.folder != 0) {
-            MapItem i = store.get(explorer.folder);
-            explorer.folder = i == null ? 0 : i.parent;
-            explorer.selected.clear();
-            refresh();
-          }
-        });
-    HorizontalScrollView breadcrumbScroll = new HorizontalScrollView(this);
-    crumbs = new LinearLayout(this);
-    breadcrumbScroll.addView(crumbs);
-    drawer.addView(breadcrumbScroll);
-    dropTarget(path, () -> explorer.folder == 0 ? 0 : store.get(explorer.folder).parent);
-    search = new EditText(this);
-    search.setSingleLine(true);
-    search.setTextSize(14);
-    search.setHint("Поиск по всем папкам");
-    search.setTextColor(ReferenceMenu.TEXT);
-    search.setHintTextColor(ReferenceMenu.MUTED);
-    search.setPadding(dp(12), dp(8), dp(12), dp(8));
-    search.setBackground(selectedPlate());
-    search.setMinHeight(dp(48));
-    drawer.addView(search);
-    search.addTextChangedListener(
-        new TextWatcher() {
-          public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-          public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (!refreshing) {
-              explorer.query = s.toString();
-              refresh();
-            }
-          }
-
-          public void afterTextChanged(Editable e) {}
-        });
-    HorizontalScrollView tools = new HorizontalScrollView(this);
-    LinearLayout actions = new LinearLayout(this);
-    tools.addView(actions);
-
-    actions.addView(button("Папка +", () -> newFolder()));
-    actions.addView(
-        button(
-            "Выделить всё",
-            () -> {
-              for (MapItem i : visibleEntries()) explorer.selected.add(i.id);
-              refresh();
-            }));
-    actions.addView(
-        button(
-            "Снять",
-            () -> {
-              explorer.selected.clear();
-              refresh();
-            }));
-    actions.addView(button("Копировать", () -> run(() -> explorer.clipboard(false))));
-    actions.addView(button("Вырезать", () -> run(() -> explorer.clipboard(true))));
-    actions.addView(button("Вставить", () -> run(() -> explorer.paste())));
-    actions.addView(button("Удалить", () -> delete()));
-    actions.addView(button("Оформление", () -> style()));
-    actions.addView(
-        button(
-            "Сортировка",
-            () -> {
-              explorer.alphabetical = !explorer.alphabetical;
-              refresh();
-            }));
-    actions.addView(button("Импорт объектов", this::importFile));
-    actions.addView(button("Экспорт выбранного / всех", this::exportFile));
-    actions.addView(button("Передать по Bluetooth", this::bluetoothExport));
-    actions.addView(button("Корзина", this::trashMenu));
-    actions.addView(button("Фильтры по имени и дате",this::filtersMenu));
-    actions.addView(button("Собрать в набор",this::groupSelected));
-    actions.addView(button("Объединить линии",this::mergeSelected));
-    actions.addView(button("Сохранить шаблон метки",()->templatesMenu(true)));
-    actions.addView(button("Создать из шаблона",()->templatesMenu(false)));
-    actions.addView(button("Умные подборки",this::smartSelections));
-    actions.addView(button("Вложения", () -> { if(explorer.selected.size()==1)attachmentsMenu(explorer.selected.iterator().next()); else fileError("Выберите один объект"); }));
-    LinearLayout explorerToolbar = new LinearLayout(this);
-    explorerToolbar.addView(
-        compact(
-            "Операции",
-            () -> {
-              PopupMenu menu = new PopupMenu(new android.view.ContextThemeWrapper(this, android.R.style.Theme_Material), explorerToolbar);
-              for (int n = 0; n < actions.getChildCount(); n++) {
-                final Button action = (Button) actions.getChildAt(n);
-                menu.getMenu()
-                    .add(0, n, 0, action.getText())
-                    .setOnMenuItemClickListener(
-                        item -> {
-                          action.performClick();
-                          return true;
-                        });
-              }
-              menu.show();
-            }));
-    explorerToolbar.addView(
-        compact(
-            "Вид",
-            () -> {
-              cards = !cards;
-              getPreferences(MODE_PRIVATE).edit().putBoolean("explorerCards", cards).apply();
-              refresh();
-            }));
-    explorerToolbar.addView(compact("Значки", () -> openIcons()));
-    explorerToolbar.addView(compact("Папки", () -> folderMenu()));
-    for (int i = 0; i < explorerToolbar.getChildCount(); i++)
-      explorerToolbar.getChildAt(i).setLayoutParams(new LinearLayout.LayoutParams(0, dp(48), 1));
-    drawer.addView(explorerToolbar);
-    LinearLayout lists = new LinearLayout(this);
-    drawer.addView(lists, new LinearLayout.LayoutParams(-1, 0, 1));
-    ScrollView folders = new ScrollView(this);
-    tree = new LinearLayout(this);
-    tree.setOrientation(LinearLayout.VERTICAL);
-    folders.addView(tree);
-    if (getResources().getConfiguration().screenWidthDp < 600) folders.setVisibility(View.GONE);
-    lists.addView(folders, new LinearLayout.LayoutParams(dp(120), -1));
-    ScrollView content = new ScrollView(this);
-    rows = new LinearLayout(this);
-    rows.setOrientation(LinearLayout.VERTICAL);
-    content.addView(rows);
-    lists.addView(content, new LinearLayout.LayoutParams(0, -1, 1));
-    LinearLayout objectFooter = new LinearLayout(this);
-    objectFooter.setGravity(Gravity.CENTER_VERTICAL);
-    objectFooter.setMinimumHeight(dp(48));
-    status = hudText("", 11);
-    status.setPadding(dp(10), 0, dp(10), 0);
-    status.setMaxLines(2);
-    objectFooter.addView(status, new LinearLayout.LayoutParams(0, -2, 1));
-    Button addObject = iconButton("Создать объект", R.drawable.ui_plus, () -> {
-      PopupMenu menu = new PopupMenu(new android.view.ContextThemeWrapper(this, android.R.style.Theme_Material), objectFooter);
-      menu.getMenu().add("Метка в центре карты").setOnMenuItemClickListener(item -> {
-        edit(null, (GeoPoint) map.view.getMapCenter()); return true;
-      });
-      String[] kinds = {"route", "path", "area"};
-      String[] names = {"Маршрут", "Линия", "Область"};
-      for (int n = 0; n < kinds.length; n++) {
-        final String kind = kinds[n];
-        menu.getMenu().add(names[n]).setOnMenuItemClickListener(item -> {
-          explorerDialog.dismiss(); startDrawing(kind, (GeoPoint) map.view.getMapCenter()); return true;
-        });
-      }
-      menu.getMenu().add("Из шаблона").setOnMenuItemClickListener(item->{templatesMenu(false);return true;});
-      menu.getMenu().add("Папка").setOnMenuItemClickListener(item -> { newFolder(); return true; });
-      menu.show();
-    });
-    addObject.setText("");
-    addObject.setBackground(selectedPlate());
-    objectFooter.addView(addObject, new LinearLayout.LayoutParams(dp(48), dp(48)));
-    drawer.addView(objectFooter);
+    buildExplorer();
     SystemInsets.edgeToEdge(getWindow());
     SystemInsets.protect(root, 0);
     setContentView(root);
@@ -448,7 +272,7 @@ public final class MainActivity extends Activity {
     map.view.setMaxZoomLevel(22.0);
     applySettings();
     explorerDialog = new Dialog(this);
-    explorerDialog.setOnDismissListener(d -> onScreenOnly = false);
+    explorerDialog.setOnDismissListener(d -> displayedOnly = false);
     refresh();
     updateCoordinates();screen.restore(state);
     if(state!=null)screenshotPath=state.getString("screenshotPath","");
@@ -481,10 +305,10 @@ public final class MainActivity extends Activity {
   private void mainMenu(){
     menuDialog=new Dialog(this);LinearLayout panel=referenceUi.panel();boolean editing=getPreferences(MODE_PRIVATE).getBoolean("expandedCategory0",false);
     referenceUi.heading(panel,"Рабочая карта","?",()->about());
-    List<String> commands=mainCommands.items();for(int n=0;n<commands.size();n++){final int position=n;final String id=commands.get(n);LinearLayout row=new LinearLayout(this);Button action=referenceUi.action(MainCommands.label(id),()->{menuDialog.dismiss();executeCommand(id);});row.addView(action,new LinearLayout.LayoutParams(0,-2,1));if(editing){Button edit=referenceUi.action("✎",()->editMainCommand(position));edit.setContentDescription("Изменить команду "+(position+1));row.addView(edit,new LinearLayout.LayoutParams(dp(44),dp(48)));}panel.addView(row);}
+    List<String> commands=mainCommands.items();for(int n=0;n<commands.size();n++){final int position=n;final String id=commands.get(n);LinearLayout row=new LinearLayout(this);Button action=referenceUi.action(MainCommands.label(id),()->{menuDialog.dismiss();executeCommand(id);});int icon=mainCommandIcon(id);if(icon!=0){action.setCompoundDrawablesRelativeWithIntrinsicBounds(icon,0,0,0);action.setCompoundDrawablePadding(dp(10));}row.addView(action,new LinearLayout.LayoutParams(0,-2,1));if(editing){Button edit=referenceUi.action("✎",()->editMainCommand(position));edit.setContentDescription("Изменить команду "+(position+1));row.addView(edit,new LinearLayout.LayoutParams(dp(44),dp(48)));}panel.addView(row);}
     if(editing)referenceUi.row(panel,"Пользовательская кнопка",R.drawable.ui_plus,()->editMainCommand(mainCommands.items().size()));
     referenceUi.row(panel,"Настройки",R.drawable.ui_settings,()->{menuDialog.dismiss();settingsMenu();});
-    referenceUi.row(panel,"Выход",0,()->{menuDialog.dismiss();requestExit();});
+    referenceUi.row(panel,"Выход",R.drawable.ui_exit,()->{menuDialog.dismiss();requestExit();});
     referenceUi.row(panel,"Ещё…",0,()->{menuDialog.dismiss();moreMenu();});
     referenceUi.heading(panel,"Опции",editing?"⌃":"⌄",()->categoryOptions(0));
     if(editing){
@@ -501,6 +325,7 @@ public final class MainActivity extends Activity {
       Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("image/jpeg").putExtra(Intent.EXTRA_LOCAL_ONLY,true).putExtra(Intent.EXTRA_TITLE,"Карта-"+new java.text.SimpleDateFormat("yyyy-MM-dd-HHmmss",Locale.ROOT).format(new Date())+".jpg");startActivityForResult(intent,EXPORT_SCREENSHOT);
     }catch(Exception error){fileError(error.getMessage());}});}
 
+  private int mainCommandIcon(String id){switch(id){case "hide":return R.drawable.ui_hide;case "lock":return R.drawable.ui_lock;case "capture":case "maps":return R.drawable.ui_map;case "point":case "quickPoint":return R.drawable.ui_pin;case "compass":case "north":return R.drawable.ui_compass;case "displayedMaps":return R.drawable.ui_layers;case "explorer":return R.drawable.ui_folder;case "settings":return R.drawable.ui_settings;default:return R.drawable.ui_info;}}
   private void editMainCommand(int position){String[] labels=new String[MainCommands.LABELS.length+1];labels[0]="Нет";System.arraycopy(MainCommands.LABELS,0,labels,1,MainCommands.LABELS.length);sheet("Пользовательская кнопка",labels,n->{mainCommands.replace(position,n==0?null:MainCommands.IDS[n-1]);if(menuDialog!=null)menuDialog.dismiss();mainMenu();});}
   private void runFirstCommand(){List<String> commands=mainCommands.items();if(!commands.isEmpty())executeCommand(commands.get(0));else mainMenu();}
   private void executeCommand(String id){GeoPoint center=(GeoPoint)map.view.getMapCenter();switch(id){
@@ -517,7 +342,7 @@ public final class MainActivity extends Activity {
   private void renderMenuVisibility(){if(mapRoot==null)return;ViewGroup bar=mapRoot.findViewWithTag("bottomToolbar");if(bar==null)return;boolean hidden=getPreferences(MODE_PRIVATE).getBoolean("menuHidden",false);for(int n=1;n<bar.getChildCount();n++)bar.getChildAt(n).setVisibility(hidden?View.GONE:View.VISIBLE);View container=mapRoot.findViewWithTag("bottomPanel");container.getLayoutParams().width=dp(hidden?48:192);container.requestLayout();}
   private void requestExit(){if(drawing!=null&&drawing.active()){drawing.confirmCancel();return;}if(getPreferences(MODE_PRIVATE).getBoolean("confirmExit",false))new AlertDialog.Builder(this).setTitle("Выйти из приложения?").setPositiveButton("Выход",(d,w)->finish()).setNegativeButton("Отмена",null).show();else finish();}
   private void about(){new AlertDialog.Builder(this).setTitle("Рабочая карта").setMessage("Версия 2.4"+"\nЛокальная картографическая рабочая область").setPositiveButton("ОК",null).show();}
-  private void moreMenu(){sheet("Ещё…",new String[]{"О программе","Импорт меток","Экспорт меток","Значки"},n->{if(n==0)about();else if(n==1)importFile();else if(n==2)exportFile();else openIcons();});}
+  private void moreMenu(){sheet("Ещё…",new String[]{"О программе"},n->about());}
 
   private void showPanel(Dialog dialog, View panel, int width, boolean fillHeight) {
     if (panel.getParent() instanceof ViewGroup) ((ViewGroup) panel.getParent()).removeView(panel);
@@ -628,8 +453,8 @@ public final class MainActivity extends Activity {
   private void mapContextMenu(GeoPoint point){
     if(drawing!=null&&drawing.active()){drawing.add(point);return;}
     AlertDialog dialog=new AlertDialog.Builder(this).create();LinearLayout panel=referenceUi.panel();referenceUi.row(panel,"Задать цель",R.drawable.ui_focus,()->{dialog.dismiss();mapTools.target(new Vertex(point.getLatitude(),point.getLongitude()));});
-    LinearLayout row=new LinearLayout(this);Button create=referenceUi.action("Новая метка…",()->{dialog.dismiss();createPlacemarkAt(point);});create.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ui_pin,0,0,0);create.setCompoundDrawablePadding(dp(10));row.addView(create,new LinearLayout.LayoutParams(0,dp(48),1));Button quick=referenceUi.action("!",()->{dialog.dismiss();run(()->store.create(explorer.folder,"Метка "+(store.all().size()+1),"point",point.getLatitude(),point.getLongitude()));});quick.setContentDescription("Быстрая метка");row.addView(quick,new LinearLayout.LayoutParams(dp(44),dp(48)));panel.addView(row);
-    LinearLayout tools=new LinearLayout(this);tools.addView(referenceUi.action("Инструменты…",()->{dialog.dismiss();mapToolsMenu(point);}),new LinearLayout.LayoutParams(0,dp(48),1));Button info=referenceUi.action("i",()->{dialog.dismiss();new AlertDialog.Builder(this).setTitle("Местоположение").setMessage(Coordinates.format(getPreferences(MODE_PRIVATE).getInt("primaryCoordinates",0),point.getLatitude(),point.getLongitude(),getPreferences(MODE_PRIVATE).getString("primaryEPSG","EPSG:32637"))).setPositiveButton("Копировать",(d,w)->{android.content.ClipboardManager clipboard=(android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);clipboard.setPrimaryClip(ClipData.newPlainText("Координаты",Coordinates.format(getPreferences(MODE_PRIVATE).getInt("primaryCoordinates",0),point.getLatitude(),point.getLongitude(),getPreferences(MODE_PRIVATE).getString("primaryEPSG","EPSG:32637"))));}).setNegativeButton("Закрыть",null).show();});info.setContentDescription("Сведения о местоположении");tools.addView(info,new LinearLayout.LayoutParams(dp(44),dp(48)));panel.addView(tools);dialog.setView(panel);dialog.show();
+    LinearLayout row=new LinearLayout(this);Button create=referenceUi.action("Новая метка…",()->{dialog.dismiss();createPlacemarkAt(point);});create.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ui_pin,0,0,0);create.setCompoundDrawablePadding(dp(10));row.addView(create,new LinearLayout.LayoutParams(0,dp(48),1));Button quick=referenceUi.action("!",()->{dialog.dismiss();edit(null,point);});quick.setContentDescription("Путевая точка");row.addView(quick,new LinearLayout.LayoutParams(dp(44),dp(48)));panel.addView(row);
+    LinearLayout tools=new LinearLayout(this);tools.addView(referenceUi.action("Инструменты…",()->{dialog.dismiss();mapToolsMenu(point);}),new LinearLayout.LayoutParams(0,dp(48),1));Button info=referenceUi.action("i",()->{dialog.dismiss();new AlertDialog.Builder(this).setTitle("Местоположение").setMessage(Coordinates.format(getPreferences(MODE_PRIVATE).getInt("primaryCoordinates",0),point.getLatitude(),point.getLongitude(),getPreferences(MODE_PRIVATE).getString("primaryEPSG","EPSG:32637"))).setPositiveButton("Копировать",(d,w)->{android.content.ClipboardManager clipboard=(android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);clipboard.setPrimaryClip(ClipData.newPlainText("Координаты",Coordinates.format(getPreferences(MODE_PRIVATE).getInt("primaryCoordinates",0),point.getLatitude(),point.getLongitude(),getPreferences(MODE_PRIVATE).getString("primaryEPSG","EPSG:32637"))));}).setNegativeButton("Закрыть",null).show();});info.setContentDescription("Сведения о местоположении");tools.addView(info,new LinearLayout.LayoutParams(dp(44),dp(48)));panel.addView(tools);MapItem selected=store.get(selectedPoint);if(selected!=null){View gap=new View(this);panel.addView(gap,new LinearLayout.LayoutParams(-1,dp(4)));referenceUi.row(panel,selected.name,R.drawable.ui_pin,()->{dialog.dismiss();pointDetails(selected);});}dialog.setView(panel);dialog.show();
   }
 
   private void mapToolsMenu(GeoPoint point){sheet("Инструменты",new String[]{"Измерить","Проекция точки по расстоянию и азимуту","Удалить измерения",mapTools.hasTarget()?"Убрать цель":"Задать цель","Перейти к цели"},n->{
@@ -669,8 +494,9 @@ public final class MainActivity extends Activity {
   }
 
   private void openExplorer(boolean visibleOnly) {
-    onScreenOnly = visibleOnly;
+    displayedOnly = visibleOnly;
     objectFilter = "all";
+    selectionMode=false;explorer.selected.clear();
     explorer.folder = 0;
     explorer.query = "";
     refresh();
@@ -747,7 +573,7 @@ public final class MainActivity extends Activity {
         n -> {
           explorer.folder = ids.get(n);
           explorer.query = "";
-          onScreenOnly = false;
+          displayedOnly = false;
           refresh();
         });
   }
@@ -825,34 +651,7 @@ public final class MainActivity extends Activity {
         .show();
   }
 
-  private void pointActions(MapItem i) {
-    sheet(
-        i.name,
-        new String[] {"Подробнее", "Редактировать", i.isGeometry() ? "Вершины" : "Выбрать значок", "Выделить в Explorer"},
-        n -> {
-          switch (n) {
-            case 0:
-              pointDetails(i);
-              break;
-            case 1:
-              edit(i, new GeoPoint(i.latitude, i.longitude));
-              break;
-            case 2:
-              if (i.isGeometry()) { edit(i, new GeoPoint(i.latitude, i.longitude)); drawing.vertices(); break; }
-              explorer.selected.clear();
-              explorer.selected.add(i.id);
-              openIcons();
-              break;
-            case 3:
-              explorer.selected.clear();
-              explorer.selected.add(i.id);
-              openExplorer(false);
-              explorer.folder = i.parent;
-              refresh();
-              break;
-          }
-        });
-  }
+  private void pointActions(MapItem item){mapContextMenu(new GeoPoint(item.latitude,item.longitude));}
 
   private void pointDetails(MapItem i) {
     new AlertDialog.Builder(this)
@@ -875,267 +674,53 @@ public final class MainActivity extends Activity {
   }
 
   private List<MapItem> visibleEntries() {
-    if (!onScreenOnly) {
+    if (!displayedOnly) {
       List<MapItem> entries = new ArrayList<>(explorer.entries());
       if (!objectFilter.equals("all")) entries.removeIf(item -> !objectFilter.equals(item.kind));
       return entries;
     }
     List<MapItem> visible = new ArrayList<>();
-    org.osmdroid.util.BoundingBox box = map.view.getBoundingBox();
     for (MapItem i : store.renderItems())
       if (!i.isFolder()
           && store.effectiveOpacity(i) > 0
-          && CoordinateGrid.contains(
-              box.getLatSouth(),
-              box.getLatNorth(),
-              box.getLonWest(),
-              box.getLonEast(),
-              i.latitude,
-              i.longitude)
           && i.name.toLowerCase(Locale.ROOT).contains(explorer.query.toLowerCase(Locale.ROOT))) {
         visible.add(i);
       }
     return visible;
   }
 
-  private void refresh() {
-    explorer.reconcile();
-    for (Button tab : objectTabs) {
-      boolean active = ("filter:" + objectFilter).equals(tab.getTag());
-      tab.setBackground(active ? selectedPlate() : null);
-      tab.setSelected(active);
-    }
-    if(timeline!=null)timeline.refreshBounds();
-    map.refresh(store);
-    crumbs.removeAllViews();
-    path.setText("‹");
-    path.setContentDescription("На уровень выше");
-    crumbs.addView(path);
-    TextView rootCrumb = hudText("Рабочая карта", 14);
-    rootCrumb.setOnClickListener(
-        v -> {
-          explorer.folder = 0;
-          explorer.query = "";
-          explorer.selected.clear();
-          refresh();
-        });
-    crumbs.addView(rootCrumb);
-    List<MapItem> ancestors = new ArrayList<>();
-    for (MapItem i = store.get(explorer.folder); i != null; i = store.get(i.parent))
-      ancestors.add(i);
-    Collections.reverse(ancestors);
-    for (MapItem i : ancestors) {
-      TextView crumb = hudText("› " + i.name, 14);
-      crumb.setOnClickListener(
-          v -> {
-            explorer.open(i.id);
-            refresh();
-          });
-      dropTarget(crumb, () -> i.id);
-      crumbs.addView(crumb);
-    }
-    refreshing = true;
-    if (!search.getText().toString().equals(explorer.query)) search.setText(explorer.query);
-    refreshing = false;
-    tree.removeAllViews();
-    TextView home = hudText("Все объекты", 13);
-    home.setOnClickListener(
-        v -> {
-          explorer.folder = 0;
-          explorer.selected.clear();
-          refresh();
-        });
-    tree.addView(home);
-    dropTarget(home, () -> 0);
-    addTree(0, 0);
-    rows.removeAllViews();
-    for (MapItem i : visibleEntries()) {
-      LinearLayout row = new LinearLayout(this);
-      row.setGravity(Gravity.CENTER_VERTICAL);
-      row.setMinimumHeight(dp(cards ? 96 : 48));
-      GradientDrawable bg = new GradientDrawable();
-      bg.setColor(explorer.selected.contains(i.id) ? 0xff114e7b : 0xff102c40);
-      bg.setCornerRadius(dp(8));
-      row.setBackground(bg);
-      CheckBox select = new CheckBox(this);
-      select.setChecked(explorer.selected.contains(i.id));
-      select.setButtonTintList(android.content.res.ColorStateList.valueOf(0xff4cb5ff));
-      select.setContentDescription("Выбрать " + i.name);
-      select.setMinWidth(dp(40));
-      select.setOnClickListener(
-          v -> {
-            explorer.toggle(i.id);
-            refresh();
-          });
-      row.addView(select);
-      if (cards && !i.isFolder()) {
-        ImageView thumbnail = new ImageView(this);
-        thumbnail.setContentDescription("Значок " + i.name);
-        try {
-          String svg =
-              i.icon.startsWith("builtin:")
-                  ? ru.warriorrus.app.icons.IconLibrary.builtinText(i.icon)
-                  : ru.warriorrus.app.icons.IconLibrary.open(this).text(i.icon);
-          thumbnail.setImageDrawable(
-              ru.warriorrus.app.icons.SvgPreview.render(getResources(), svg, i.color, dp(40)));
-        } catch (Exception unavailable) {
-          thumbnail.setImageResource(android.R.drawable.ic_dialog_alert);
-        }
-        row.addView(thumbnail, new LinearLayout.LayoutParams(dp(48), dp(48)));
-      }
-      TextView name = hudText(i.name, 15);
-      name.setContentDescription(i.typeName() + " " + i.name);
-      name.setCompoundDrawablesRelativeWithIntrinsicBounds(i.isFolder() ? R.drawable.ui_folder : R.drawable.ui_pin, 0, 0, 0);
-      name.setCompoundDrawablePadding(dp(8));
-      name.setMaxLines(3);
-      if (cards && !i.isFolder())
-        name.setText(
-            String.format(Locale.ROOT, "%s\n%.5f, %.5f", i.name, i.latitude, i.longitude));
-      row.addView(name, new LinearLayout.LayoutParams(0, -2, 1));
-      name.setOnClickListener(
-          v -> {
-            if (i.isFolder()) {
-              explorer.open(i.id);
-              refresh();
-            } else {
-              map.center(i);
-              context(i, name);
-            }
-          });
-      Switch visibility = new Switch(this);
-      visibility.setChecked(i.visible);
-      visibility.setContentDescription("Видимость " + i.name);
-      visibility.setButtonTintList(android.content.res.ColorStateList.valueOf(0xff4cb5ff));
-      visibility.setOnCheckedChangeListener(
-          (b, checked) -> run(() -> store.style(Collections.singleton(i.id), checked, null, null)));
-      row.addView(visibility);
-      name.setOnLongClickListener(
-          v -> {
-            explorer.selected.add(i.id);
-            context(i, name);
-            return true;
-          });
-      Button handle = compact("↕", () -> context(i, name));
-      handle.setContentDescription("Перетащить " + i.name);
-      handle.setOnLongClickListener(
-          v -> {
-            dragged = i.id;
-            ClipData data = ClipData.newPlainText("object", "" + i.id);
-            if (android.os.Build.VERSION.SDK_INT >= 24) {
-              v.startDragAndDrop(data, new View.DragShadowBuilder(v), null, 0);
-            } else {
-              v.startDrag(data, new View.DragShadowBuilder(v), null, 0);
-            }
-            return true;
-          });
-      row.addView(handle, new LinearLayout.LayoutParams(dp(48), dp(48)));
-      if (i.isFolder()) dropTarget(row, () -> i.id);
-      LinearLayout.LayoutParams rowSize = new LinearLayout.LayoutParams(-1, -2);
-      rowSize.setMargins(0, dp(3), 0, dp(3));
-      rows.addView(row, rowSize);
-    }
-    if (rows.getChildCount() == 0) rows.addView(hudText(explorer.query.isEmpty() ? "Нет объектов" : "Ничего не найдено", 15));
-    updateCoordinates();
-    status.setText("Объектов: " + visibleEntries().size() + "  ·  Выбрано: " + explorer.selected.size());
+  private int folderCount(long id){int n=0;for(MapItem item:store.all())if(item.parent==id)n++;return n;}
+  private void buildExplorer(){
+    drawer=new LinearLayout(this);drawer.setOrientation(LinearLayout.VERTICAL);drawer.setBackgroundColor(0xffd6ecff);LinearLayout header=new LinearLayout(this);header.setGravity(Gravity.CENTER_VERTICAL);header.setBackgroundColor(0xffb2d5f2);
+    Button places=referenceUi.action("☰",this::explorerPlaces);places.setContentDescription("Места хранения меток");header.addView(places,new LinearLayout.LayoutParams(dp(44),dp(52)));LinearLayout titles=new LinearLayout(this);titles.setOrientation(LinearLayout.VERTICAL);TextView name=new TextView(this);name.setText("Локальные метки");name.setTextColor(ReferenceMenu.TEXT);name.setTextSize(16);titles.addView(name);explorerSubtitle=new TextView(this);explorerSubtitle.setTextSize(11);explorerSubtitle.setTextColor(ReferenceMenu.MUTED);titles.addView(explorerSubtitle);titles.setOnClickListener(v->explorerParent());explorerSubtitle.setOnClickListener(v->explorerParent());header.addView(titles,new LinearLayout.LayoutParams(0,-2,1));
+    explorerClipboard=referenceUi.action("▣",this::clipboardMenu);explorerClipboard.setContentDescription("Буфер обмена");header.addView(explorerClipboard,new LinearLayout.LayoutParams(dp(44),dp(52)));Button close=referenceUi.action("×",()->{if(selectionMode){selectionMode=false;explorer.selected.clear();refresh();}else explorerDialog.dismiss();});close.setContentDescription("Закрыть метки");header.addView(close,new LinearLayout.LayoutParams(dp(44),dp(52)));explorerMore=referenceUi.action("⋮",()->explorerHeaderMenu(visibleEntries(),"Метки"));explorerMore.setContentDescription("Меню проводника");header.addView(explorerMore,new LinearLayout.LayoutParams(dp(44),dp(52)));drawer.addView(header);
+    search=new EditText(this);search.setTag("explorerSearch");search.setHint("Поиск");search.setSingleLine(true);search.setTextSize(14);search.setVisibility(View.GONE);search.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void afterTextChanged(Editable e){}public void onTextChanged(CharSequence s,int start,int before,int count){if(!refreshing){explorer.query=s.toString();refresh();}}});drawer.addView(search,new LinearLayout.LayoutParams(-1,dp(48)));
+    FrameLayout content=new FrameLayout(this);ScrollView scroll=new ScrollView(this);rows=new LinearLayout(this);rows.setOrientation(LinearLayout.VERTICAL);rows.setPadding(dp(4),dp(4),dp(4),dp(72));scroll.addView(rows);content.addView(scroll,new FrameLayout.LayoutParams(-1,-1));Button add=referenceUi.action("+",this::explorerCreate);explorerAdd=add;add.setTextSize(24);add.setGravity(Gravity.CENTER);add.setContentDescription("Создать объект");GradientDrawable circle=new GradientDrawable();circle.setShape(GradientDrawable.OVAL);circle.setColor(0xffb4daf7);circle.setStroke(dp(1),0xff77b1db);add.setBackground(circle);add.setElevation(dp(3));FrameLayout.LayoutParams fab=new FrameLayout.LayoutParams(dp(48),dp(48),Gravity.BOTTOM|Gravity.END);fab.setMargins(dp(12),dp(12),dp(12),dp(12));content.addView(add,fab);drawer.addView(content,new LinearLayout.LayoutParams(-1,0,1));status=new TextView(this);
+  }
+  private void explorerParent(){if(explorer.folder==0)return;MapItem folder=store.get(explorer.folder);explorer.folder=folder==null?0:folder.parent;explorer.query="";explorer.selected.clear();selectionMode=false;refresh();}
+  private void explorerPlaces(){sheet("Локальные метки",new String[]{"Мои метки","Мои загрузки"},n->{if(n==0){explorer.folder=0;explorer.query="";objectFilter="all";displayedOnly=false;selectionMode=false;explorer.selected.clear();refresh();}else importFile();});}
+  private void explorerCreate(){PopupMenu menu=new PopupMenu(this,explorerAdd);String[] names={"Метка","Набор меток","Маршрут","Линия","Область","Папка"};for(int n=0;n<names.length;n++){final int index=n;menu.getMenu().add(0,n,n,names[n]).setOnMenuItemClickListener(item->{if(index==5)newFolder();else if(index==1){EditText input=new EditText(this);new AlertDialog.Builder(this).setTitle("Набор меток").setView(input).setPositiveButton("ОК",(d,w)->run(()->store.create(explorer.folder,input.getText().toString(),"set",0,0))).setNegativeButton("Отмена",null).show();}else{explorerDialog.dismiss();if(index==0)edit(null,(GeoPoint)map.view.getMapCenter());else startDrawing(index==2?"route":index==3?"path":"area",(GeoPoint)map.view.getMapCenter());}return true;});}menu.show();}
+  private void clipboardMenu(){List<Long> ids=explorer.clipboardIds();List<String> names=new ArrayList<>();names.add("Вставить все");names.add("Очистить");for(long id:ids){MapItem item=store.get(id);names.add(item==null?"Удалённая метка":item.name);}sheet("Буфер обмена",names.toArray(new String[0]),n->{if(n==0)run(explorer::paste);else if(n==1){explorer.clearClipboard();refresh();}else run(()->explorer.paste(Collections.singleton(ids.get(n-2))));});}
+  private void explorerHeaderMenu(List<MapItem> group,String kind){List<Long> ids=new ArrayList<>();for(MapItem i:group)if(!selectionMode||explorer.selected.contains(i.id))ids.add(i.id);String suffix=selectionMode?"выбранные":"все";PopupMenu menu=new PopupMenu(this,explorerMore);String[] names={"Показать "+suffix,"Убрать "+suffix,"Экспортировать как…","Копировать "+suffix,"Вырезать "+suffix,"Изменить цвет","Удалить "+suffix,"Выбрать все","Снять выделение","Предпросмотр","Список","Поиск","Сортировать по имени","Импортировать метки"};for(int n=0;n<names.length;n++){final int index=n;menu.getMenu().add(0,n,n,names[n]).setOnMenuItemClickListener(item->{if(index<=6){explorer.selected.clear();explorer.selected.addAll(ids);if(index==0||index==1)run(()->store.style(ids,index==0,null,null));else if(index==2)exportFile();else if(index==3||index==4)run(()->explorer.clipboard(index==4));else if(index==5)style();else delete();}else if(index==7||index==8){selectionMode=true;explorer.selected.clear();if(index==7)for(MapItem i:group)explorer.selected.add(i.id);refresh();}else if(index==9||index==10){getPreferences(MODE_PRIVATE).edit().putBoolean("preview:"+kind,index==9).apply();cards=index==9;refresh();}else if(index==11){search.setVisibility(View.VISIBLE);search.requestFocus();}else if(index==12){explorer.alphabetical=!explorer.alphabetical;refresh();}else importFile();return true;});}menu.show();}
+  private void refresh(){
+    explorer.reconcile();if(timeline!=null)timeline.refreshBounds();map.refresh(store);if(rows==null)return;
+    MapItem folder=store.get(explorer.folder);explorerSubtitle.setText(selectionMode?"Выбрано: "+explorer.selected.size():displayedOnly?"Отображаемые метки":folder==null?"Мои метки":folder.name);explorerClipboard.setVisibility(explorer.hasClipboard()?View.VISIBLE:View.GONE);refreshing=true;if(!search.getText().toString().equals(explorer.query))search.setText(explorer.query);refreshing=false;
+    rows.removeAllViews();Map<String,List<MapItem>> groups=new LinkedHashMap<>();for(MapItem item:visibleEntries()){String kind=item.isFolder()?"Папки":item.kind.equals("point")?"Путевые точки":item.kind.equals("route")?"Маршруты":item.kind.equals("area")?"Области":"Линии и треки";if(!groups.containsKey(kind))groups.put(kind,new ArrayList<>());groups.get(kind).add(item);}
+    for(Map.Entry<String,List<MapItem>> group:groups.entrySet()){String kind=group.getKey();referenceUi.heading(rows,kind,"⋮",()->explorerHeaderMenu(group.getValue(),kind));boolean preview=getPreferences(MODE_PRIVATE).getBoolean("preview:"+kind,false);for(MapItem item:group.getValue()){
+      LinearLayout row=new LinearLayout(this);row.setGravity(Gravity.CENTER_VERTICAL);row.setMinimumHeight(dp(preview?88:48));row.setBackgroundColor(explorer.selected.contains(item.id)?0xff8bc5ef:Color.TRANSPARENT);
+      if(selectionMode){CheckBox select=new CheckBox(this);select.setContentDescription("Выбрать "+item.name);select.setChecked(explorer.selected.contains(item.id));select.setOnClickListener(v->{explorer.toggle(item.id);refresh();});row.addView(select,new LinearLayout.LayoutParams(dp(40),dp(48)));}
+      ImageView icon=new ImageView(this);icon.setPadding(dp(8),dp(8),dp(8),dp(8));if(item.isFolder())icon.setImageResource(R.drawable.ui_folder);else try{String svg=item.icon.startsWith("builtin:")?ru.warriorrus.app.icons.IconLibrary.builtinText(item.icon):ru.warriorrus.app.icons.IconLibrary.open(this).text(item.icon);icon.setImageDrawable(ru.warriorrus.app.icons.SvgPreview.render(getResources(),svg,item.color,dp(28)));}catch(Exception missing){icon.setImageResource(R.drawable.ui_pin);}icon.setContentDescription("Меню "+item.name);icon.setOnClickListener(v->context(item,icon));row.addView(icon,new LinearLayout.LayoutParams(dp(44),dp(44)));
+      LinearLayout labels=new LinearLayout(this);labels.setOrientation(LinearLayout.VERTICAL);TextView title=hudText(item.name,15);title.setPadding(dp(3),dp(2),dp(3),dp(2));title.setContentDescription(item.typeName()+" "+item.name);labels.addView(title);TextView info=hudText(item.isFolder()?folderCount(item.id)+" объектов":item.isGeometry()?Geometry.summary(item,DisplayUnits.load(this)):Coordinates.format(getPreferences(MODE_PRIVATE).getInt("primaryCoordinates",0),item.latitude,item.longitude,getPreferences(MODE_PRIVATE).getString("primaryEPSG","EPSG:32637")),10);info.setPadding(dp(3),0,dp(3),dp(3));labels.addView(info);row.addView(labels,new LinearLayout.LayoutParams(0,-2,1));Runnable open=()->{if(selectionMode){explorer.toggle(item.id);refresh();}else if(item.isFolder()){explorer.open(item.id);refresh();}else pointDetails(item);};labels.setOnClickListener(v->open.run());title.setOnClickListener(v->open.run());row.setOnClickListener(v->open.run());row.setOnLongClickListener(v->{if(preview){selectionMode=true;explorer.selected.add(item.id);refresh();}else context(item,row);return true;});title.setOnLongClickListener(v->{context(item,title);return true;});if(preview){Button more=referenceUi.action("⋮",()->context(item,row));more.setContentDescription("Меню "+item.name);row.addView(more,new LinearLayout.LayoutParams(dp(40),dp(48)));}rows.addView(row,new LinearLayout.LayoutParams(-1,-2));
+    }}if(groups.isEmpty())referenceUi.note(rows,explorer.query.isEmpty()?"Нет меток":"Ничего не найдено");updateCoordinates();
   }
 
-  private String indent(int depth) {
-    StringBuilder b = new StringBuilder();
-    for (int n = 0; n < Math.min(depth, 8); n++) b.append("  ");
-    return b.toString();
-  }
-
-  private void addTree(long parent, int depth) {
-    for (MapItem i : store.all())
-      if (i.parent == parent && i.isFolder()) {
-        TextView v = hudText(indent(depth) + i.name, 12);
-        v.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ui_folder, 0, 0, 0);
-        v.setSingleLine(true);
-        v.setEllipsize(android.text.TextUtils.TruncateAt.END);
-        v.setOnClickListener(
-            w -> {
-              explorer.open(i.id);
-              refresh();
-            });
-        dropTarget(v, () -> i.id);
-        tree.addView(v);
-        addTree(i.id, depth + 1);
-      }
-  }
-
-  private void dropTarget(View view, java.util.function.LongSupplier target) {
-    view.setOnDragListener(
-        (v, e) -> {
-          if (e.getAction() == DragEvent.ACTION_DRAG_STARTED)
-            return e.getClipDescription() != null
-                && "object".equals(e.getClipDescription().getLabel());
-          if (e.getAction() == DragEvent.ACTION_DROP) {
-            run(() -> store.transfer(Collections.singleton(dragged), target.getAsLong(), false));
-            return true;
-          }
-          return true;
-        });
-  }
-
-  private void context(MapItem i, View anchor) {
-    PopupMenu menu = new PopupMenu(new android.view.ContextThemeWrapper(this, android.R.style.Theme_Material), anchor);
-    String[] commands = {
-      "Открыть / на карте",
-      "Редактировать",
-      "Копировать",
-      "Вырезать",
-      "Вставить сюда",
-      "Удалить",
-      "Стиль слоя",
-      "Выше",
-      "Ниже"
-    };
-    for (String s : commands) menu.getMenu().add(s);
-    menu.setOnMenuItemClickListener(
-        m -> {
-          String s = m.getTitle().toString();
-          if (!explorer.selected.contains(i.id)) {
-            explorer.selected.clear();
-            explorer.selected.add(i.id);
-          }
-          switch (s) {
-            case "Открыть / на карте":
-              if (i.isFolder()) explorer.open(i.id);
-              else map.center(i);
-              refresh();
-              break;
-            case "Редактировать":
-              edit(i, new GeoPoint(i.latitude, i.longitude));
-              break;
-            case "Копировать":
-              run(() -> explorer.clipboard(false));
-              break;
-            case "Вырезать":
-              run(() -> explorer.clipboard(true));
-              break;
-            case "Вставить сюда":
-              run(
-                  () -> {
-                    if (i.isFolder()) explorer.folder = i.id;
-                    explorer.paste();
-                  });
-              break;
-            case "Удалить":
-              delete();
-              break;
-            case "Стиль слоя":
-              style();
-              break;
-            case "Выше":
-              run(() -> store.reorder(i.id, -1));
-              break;
-            case "Ниже":
-              run(() -> store.reorder(i.id, 1));
-              break;
-          }
-          return true;
-        });
-    menu.show();
+  private void context(MapItem item,View anchor){
+    AlertDialog dialog=new AlertDialog.Builder(this).setTitle(item.typeName()).create();LinearLayout panel=referenceUi.panel();ScrollView scroll=new ScrollView(this);scroll.addView(panel);Runnable select=()->{explorer.selected.clear();explorer.selected.add(item.id);};
+    referenceUi.row(panel,item.isFolder()?"Открыть":"Подробнее",0,()->{dialog.dismiss();if(item.isFolder()){explorer.open(item.id);refresh();}else pointDetails(item);});
+    referenceUi.row(panel,item.visible?"Убрать с карты":"Показать на карте",R.drawable.ui_map,()->{dialog.dismiss();run(()->store.style(Collections.singleton(item.id),!item.visible,null,null));});
+    referenceUi.heading(panel,"Буфер обмена","",null);referenceUi.row(panel,"Копировать",0,()->{dialog.dismiss();select.run();run(()->explorer.clipboard(false));});referenceUi.row(panel,"Вырезать",0,()->{dialog.dismiss();select.run();run(()->explorer.clipboard(true));});
+    referenceUi.heading(panel,"Множественный выбор","",null);referenceUi.row(panel,"Выбрать",0,()->{dialog.dismiss();selectionMode=true;explorer.toggle(item.id);refresh();});
+    referenceUi.heading(panel,"Редактирование","",null);referenceUi.row(panel,"Изменить цвет",0,()->{dialog.dismiss();select.run();style();});referenceUi.row(panel,"Редактировать параметры",0,()->{dialog.dismiss();edit(item,new GeoPoint(item.latitude,item.longitude));});if(item.isGeometry())referenceUi.row(panel,"Редактировать профиль",0,()->{dialog.dismiss();profile(item);});referenceUi.row(panel,"Удалить",0,()->{dialog.dismiss();select.run();delete();});dialog.setView(scroll);dialog.show();
   }
 
   private void newFolder() {
@@ -1634,7 +1219,7 @@ public final class MainActivity extends Activity {
   @Override
   protected void onSaveInstanceState(Bundle state) {
     super.onSaveInstanceState(state);
-    state.putLong("folder", explorer.folder);
+    state.putLong("folder",explorer.folder);state.putBoolean("explorerSelectionMode",selectionMode);long[] selectedObjects=new long[explorer.selected.size()];int offset=0;for(long id:explorer.selected)selectedObjects[offset++]=id;state.putLongArray("explorerSelected",selectedObjects);List<Long> clipboardObjects=explorer.clipboardIds();long[] clipboardIds=new long[clipboardObjects.size()];for(int n=0;n<clipboardIds.length;n++)clipboardIds[n]=clipboardObjects.get(n);state.putLongArray("explorerClipboard",clipboardIds);state.putBoolean("explorerCut",explorer.isCut());
     if(screen!=null)screen.save(state);state.putString("screenshotPath",screenshotPath);
     if (drawing != null) drawing.saveState(state);
     if(timeline!=null)timeline.saveState(state);
@@ -1675,7 +1260,7 @@ public final class MainActivity extends Activity {
   protected void onDestroy() {
     if(timeline!=null)timeline.pause();
     iconHandler.removeCallbacksAndMessages(null);
-    for(Dialog panel:openPanels)if(panel.isShowing())panel.dismiss();
+    for(Dialog panel:new ArrayList<>(openPanels))if(panel.isShowing())panel.dismiss();
     openPanels.clear();
     if(marksDialog!=null)marksDialog.dismiss();
     if(orientationDialog!=null)orientationDialog.dismiss();

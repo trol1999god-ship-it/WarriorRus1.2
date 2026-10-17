@@ -42,8 +42,8 @@ public class MapUiTest {
       assertNull(find(a.getWindow().getDecorView(), "Warrior Explorer"));
       find(a.getWindow().getDecorView(), "Объекты").performLongClick();
       Dialog objects = org.robolectric.shadows.ShadowDialog.getLatestDialog();
-      assertNotNull(find(objects.getWindow().getDecorView(), "Объекты карты"));
-      assertNotNull(objects.getWindow().getDecorView().findViewWithTag("filter:point"));
+      assertNotNull(find(objects.getWindow().getDecorView(), "Локальные метки"));
+      assertNull(objects.getWindow().getDecorView().findViewWithTag("filter:point"));
       objects.dismiss();
       c.get().getPreferences(0).edit().putBoolean("expandedCategory0",true).commit();
       for(boolean expected:new boolean[]{true,false}) {
@@ -68,8 +68,7 @@ public class MapUiTest {
         Robolectric.buildActivity(MainActivity.class).setup()) {
       find(c.get().getWindow().getDecorView(), "Объекты").performLongClick();
       Dialog explorer = org.robolectric.shadows.ShadowDialog.getLatestDialog();
-      find(explorer.getWindow().getDecorView(), "Вид").performClick();
-      assertNotNull(find(explorer.getWindow().getDecorView(), "Existing\n55.70000, 37.60000"));
+      assertNotNull(find(explorer.getWindow().getDecorView(),"Existing"));
     }
     try (ActivityController<MainActivity> c =
             Robolectric.buildActivity(MainActivity.class).setup();
@@ -179,22 +178,9 @@ public class MapUiTest {
       root.findViewWithTag("Объекты").performLongClick();
       Dialog dialog = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       View objects = dialog.getWindow().getDecorView();
-      objects.findViewWithTag("filter:point").performClick();
-      assertNull(described(objects, "Выбрать Trip"));
-      assertNotNull(described(objects, "Выбрать Alpha"));
-      EditText search = (EditText) findType(objects, EditText.class);
-      search.setText("Beta");
-      assertNotNull(described(objects, "Выбрать Beta"));
-      assertNull(described(objects, "Выбрать Alpha"));
-      search.setText("");
-      objects.findViewWithTag("filter:all").performClick();
-      described(objects, "Выбрать Alpha").performClick();
-      find(objects, "Операции").performClick();
-      org.robolectric.shadows.ShadowPopupMenu.getLatestPopupMenu().getMenu().performIdentifierAction(4, 0);
-      described(objects, "Папка Trip").performClick();
-      find(objects, "Операции").performClick();
-      org.robolectric.shadows.ShadowPopupMenu.getLatestPopupMenu().getMenu().performIdentifierAction(5, 0);
-      assertNotNull(described(objects, "Выбрать Alpha"));
+      described(objects,"Меню проводника").performClick();org.robolectric.shadows.ShadowPopupMenu.getLatestPopupMenu().getMenu().performIdentifierAction(11,0);
+      EditText search=(EditText)objects.findViewWithTag("explorerSearch");search.setText("Beta");assertNotNull(find(objects,"Beta"));assertNull(find(objects,"Alpha"));search.setText("");
+      described(objects,"Меню Alpha").performClick();Dialog itemDialog=org.robolectric.shadows.ShadowDialog.getLatestDialog();find(itemDialog.getWindow().getDecorView(),"Вырезать").performClick();described(objects,"Папка Trip").performClick();described(objects,"Буфер обмена").performClick();item(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog(),0);assertNotNull(find(objects,"Alpha"));
     }
     try (ObjectStore store = new ObjectStore(RuntimeEnvironment.getApplication())) {
       assertEquals(folder, store.get(point).parent);

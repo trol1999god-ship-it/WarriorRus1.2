@@ -22,7 +22,7 @@ public class MenuModelTest {
       bar.getChildAt(2).performClick();Dialog menu=org.robolectric.shadows.ShadowDialog.getLatestDialog();View options=menu.getWindow().getDecorView();
       assertNotNull(text(options,"Проводник меток"));assertNotNull(text(options,"Создать метку"));assertNotNull(text(options,"Поиск местоположения"));
       assertNull(text(options,"Отображаемые метки"));text(options,"Проводник меток").performClick();
-      assertNotNull(text(org.robolectric.shadows.ShadowDialog.getLatestDialog().getWindow().getDecorView(),"Объекты карты"));
+      assertNotNull(text(org.robolectric.shadows.ShadowDialog.getLatestDialog().getWindow().getDecorView(),"Локальные метки"));
     }
   }
   @Test public void mapMenuExposesMapsLayersAndAreaInOneCategoryAndSettingsOpenDirectly(){
