@@ -437,19 +437,11 @@ public final class MainActivity extends Activity {
     addObject.setBackground(selectedPlate());
     objectFooter.addView(addObject, new LinearLayout.LayoutParams(dp(48), dp(48)));
     drawer.addView(objectFooter);
-    root.setOnApplyWindowInsetsListener(
-        (v, insets) -> {
-          v.setPadding(
-              insets.getSystemWindowInsetLeft(),
-              insets.getSystemWindowInsetTop(),
-              insets.getSystemWindowInsetRight(),
-              insets.getSystemWindowInsetBottom());
-          return insets;
-        });
+    SystemInsets.edgeToEdge(getWindow());
+    SystemInsets.protect(root, 0);
     setContentView(root);
     root.requestApplyInsets();
     explorerDialog = new Dialog(this);
-    explorerDialog.setContentView(drawer);
     explorerDialog.setOnDismissListener(d -> onScreenOnly = false);
     refresh();
     updateCoordinates();
@@ -494,22 +486,32 @@ public final class MainActivity extends Activity {
       }
       panel.addView(line);
     }
-    menuDialog.setContentView(panel);
-    showPanel(menuDialog, dp(360));
+    showPanel(menuDialog, panel, dp(360), false);
   }
 
-  private void showPanel(Dialog dialog, int width) {
-    dialog.show();
+  private void showPanel(Dialog dialog, View panel, int width, boolean fillHeight) {
+    if (panel.getParent() instanceof ViewGroup) ((ViewGroup) panel.getParent()).removeView(panel);
+    SafePanelHost host = new SafePanelHost(this, panel, width, fillHeight);
+    host.setOnClickListener(v -> dialog.dismiss());
+    dialog.setContentView(host);
     Window window = dialog.getWindow();
     if (window != null) {
       window.setBackgroundDrawableResource(android.R.color.transparent);
-      window.setGravity(Gravity.BOTTOM | Gravity.START);
-      window.setLayout(Math.min(getResources().getDisplayMetrics().widthPixels - dp(16), width), -2);
+      SystemInsets.edgeToEdge(window);
+      window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+          | WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+    dialog.show();
+    if (window != null) {
+      window.setGravity(Gravity.FILL);
+      window.setLayout(-1, -1);
       WindowManager.LayoutParams attributes = window.getAttributes();
-      attributes.x = dp(8);
-      attributes.y = dp(8);
+      attributes.x = 0;
+      attributes.y = 0;
       window.setAttributes(attributes);
     }
+    host.requestFocus();
+    host.requestApplyInsets();
   }
 
   private android.graphics.drawable.Drawable selectedPlate() {
@@ -572,8 +574,7 @@ public final class MainActivity extends Activity {
     });
     panel.addView(slider);
     panel.addView(compact("Карты", () -> { layersDialog.dismiss(); mapsMenu(); }));
-    layersDialog.setContentView(panel);
-    showPanel(layersDialog, dp(360));
+    showPanel(layersDialog, panel, dp(360), false);
   }
 
   private void applyMapLayer() {
@@ -676,8 +677,7 @@ public final class MainActivity extends Activity {
     panel.addView(explanation);
     panel.addView(compact("Слои карт", () -> { mapsDialog.dismiss(); layersMenu(); }));
     update.run();
-    mapsDialog.setContentView(panel);
-    showPanel(mapsDialog, dp(360));
+    showPanel(mapsDialog, panel, dp(360), false);
   }
 
   private void setMapOnline(boolean online) {
@@ -691,15 +691,7 @@ public final class MainActivity extends Activity {
     explorer.folder = 0;
     explorer.query = "";
     refresh();
-    explorerDialog.show();
-    android.view.Window window = explorerDialog.getWindow();
-    if (window != null) {
-      window.setBackgroundDrawableResource(android.R.color.transparent);
-      window.setGravity(Gravity.BOTTOM);
-      window.setLayout(
-          Math.min(getResources().getDisplayMetrics().widthPixels - dp(16), dp(640)),
-          getResources().getDisplayMetrics().heightPixels - dp(24));
-    }
+    showPanel(explorerDialog, drawer, dp(640), true);
   }
 
   private void marksMenu() {

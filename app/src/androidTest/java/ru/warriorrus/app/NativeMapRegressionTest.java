@@ -68,6 +68,83 @@ public class NativeMapRegressionTest {
     }
   }
 
+  @Test @androidx.test.filters.SdkSuppress(minSdkVersion = 30)
+  public void systemNavigationDoesNotCoverPanelsOrAddButton() throws Exception {
+    android.content.Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+    context.getSharedPreferences("MainActivity", 0).edit().clear().putBoolean("mapOnline", false).commit();
+    java.io.File screenshots = new java.io.File(context.getFilesDir(), "native-screens");
+    screenshots.mkdirs();
+    try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
+      for (int orientation = 0; orientation < 2; orientation++) {
+        if (orientation == 0) device.setOrientationNatural(); else device.setOrientationLeft();
+        device.waitForIdle();
+        String prefix = orientation == 0 ? "portrait" : "landscape";
+        scenario.onActivity(activity -> assertWithinSafeArea(activity,
+            activity.getWindow().getDecorView().findViewWithTag("bottomPanel")));
+        device.takeScreenshot(new java.io.File(screenshots, prefix + "-map.png"));
+        String[] labels = {"Меню", "Слои", "Карты", "Объекты"};
+        String[] fields = {"menuDialog", "layersDialog", "mapsDialog", "explorerDialog"};
+        for (int index = 0; index < labels.length; index++) {
+          click(By.desc(labels[index]));
+          final String fieldName = fields[index];
+          scenario.onActivity(activity -> {
+            try {
+              java.lang.reflect.Field field = MainActivity.class.getDeclaredField(fieldName);
+              field.setAccessible(true);
+              android.app.Dialog dialog = (android.app.Dialog) field.get(activity);
+              View host = dialog.getWindow().getDecorView().findViewWithTag("dialogSafeArea");
+              assertNotNull(host);
+              assertWithinSafeArea(activity, ((ViewGroup) host).getChildAt(0));
+              if (fieldName.equals("explorerDialog"))
+                assertWithinSafeArea(activity, described(host, "Создать объект"));
+            } catch (ReflectiveOperationException error) { throw new AssertionError(error); }
+          });
+          device.takeScreenshot(new java.io.File(screenshots, prefix + "-" + fieldName + ".png"));
+          if (fieldName.equals("explorerDialog")) {
+            click(By.desc("Создать объект"));
+            assertNotNull(device.wait(Until.findObject(By.text("Метка в центре карты")), 8000));
+            device.pressBack();
+            device.waitForIdle();
+          }
+          device.pressBack();
+          device.waitForIdle();
+        }
+      }
+    } finally {
+      device.setOrientationNatural();
+      device.unfreezeRotation();
+    }
+  }
+
+  @android.annotation.TargetApi(30)
+  private void assertWithinSafeArea(MainActivity activity, View view) {
+    assertNotNull(view);
+    android.view.WindowMetrics metrics = activity.getWindowManager().getCurrentWindowMetrics();
+    android.graphics.Rect safe = new android.graphics.Rect(metrics.getBounds());
+    android.graphics.Insets bars = metrics.getWindowInsets().getInsets(
+        android.view.WindowInsets.Type.systemBars() | android.view.WindowInsets.Type.displayCutout());
+    safe.left += bars.left; safe.top += bars.top;
+    safe.right -= bars.right; safe.bottom -= bars.bottom;
+    int[] point = new int[2];
+    view.getLocationOnScreen(point);
+    android.graphics.Rect actual = new android.graphics.Rect(point[0], point[1],
+        point[0] + view.getWidth(), point[1] + view.getHeight());
+    assertTrue("Control " + actual + " overlaps Android system area outside " + safe,
+        safe.contains(actual));
+  }
+
+  private View described(View view, String description) {
+    if (description.equals(view.getContentDescription())) return view;
+    if (view instanceof ViewGroup) {
+      ViewGroup group = (ViewGroup) view;
+      for (int n = 0; n < group.getChildCount(); n++) {
+        View found = described(group.getChildAt(n), description);
+        if (found != null) return found;
+      }
+    }
+    return null;
+  }
+
   private int markerCount(MainActivity activity) {
     MapView map = (MapView) type(activity.getWindow().getDecorView(), MapView.class);
     int count = 0;

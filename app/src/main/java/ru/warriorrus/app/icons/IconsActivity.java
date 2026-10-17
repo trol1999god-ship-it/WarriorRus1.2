@@ -185,15 +185,8 @@ public final class IconsActivity extends Activity {
     root.addView(scroll, new LinearLayout.LayoutParams(-1, 0, 1));
     status = text("", 12);
     root.addView(status);
-    root.setOnApplyWindowInsetsListener(
-        (v, insets) -> {
-          v.setPadding(
-              insets.getSystemWindowInsetLeft(),
-              insets.getSystemWindowInsetTop(),
-              insets.getSystemWindowInsetRight(),
-              insets.getSystemWindowInsetBottom());
-          return insets;
-        });
+    ru.warriorrus.app.SystemInsets.edgeToEdge(getWindow());
+    ru.warriorrus.app.SystemInsets.protect(root, 0);
     setContentView(root);
     root.requestApplyInsets();
     refresh();

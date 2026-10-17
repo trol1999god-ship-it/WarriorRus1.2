@@ -9,6 +9,10 @@ jobs:
   native-ui:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        navigation: [threebutton, gestural]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -35,12 +39,13 @@ jobs:
           profile: pixel_2
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -camera-front none
-          script: gradle connectedDebugAndroidTest
+          script: bash ci/native-navigation-test.sh ${{ matrix.navigation }}
       - name: Native test reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Rabochaya-karta-android-regression
+          name: Rabochaya-karta-android-regression-${{ matrix.navigation }}
           path: |
             app/build/reports/androidTests/
             app/build/outputs/androidTest-results/
+            app/build/native-screens/
