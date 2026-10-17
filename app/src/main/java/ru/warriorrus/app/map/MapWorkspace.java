@@ -16,6 +16,7 @@ public final class MapWorkspace {
   public final MapView view;
   public java.util.function.Consumer<MapItem> onPointClick;
   public final CoordinateGrid grid = new CoordinateGrid();
+  public final org.osmdroid.views.overlay.gestures.RotationGestureOverlay rotation;
   private final Activity activity;
   public boolean labelsVisible = true;
   public int markerSize = 24, lineWidth = 3;
@@ -38,8 +39,8 @@ public final class MapWorkspace {
     org.osmdroid.config.Configuration.getInstance()
         .setOsmdroidBasePath(new java.io.File(activity.getCacheDir(), "maps"));
     org.osmdroid.config.Configuration.getInstance()
-        .setOsmdroidTileCache(new java.io.File(activity.getCacheDir(), "maps/tiles"));
-    view = new MapView(activity);
+        .setOsmdroidTileCache(new java.io.File(activity.getPreferences(Activity.MODE_PRIVATE).getString("tileCachePath",new java.io.File(activity.getCacheDir(), "maps/tiles").getAbsolutePath())));
+    view = new MapView(activity);rotation=new org.osmdroid.views.overlay.gestures.RotationGestureOverlay(view);view.getOverlays().add(rotation);
     view.setTileSource(
         new XYTileSource(
             "OpenStreetMap",

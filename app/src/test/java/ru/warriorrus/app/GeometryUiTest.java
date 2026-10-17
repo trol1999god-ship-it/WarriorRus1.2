@@ -20,13 +20,13 @@ public class GeometryUiTest {
   @Test public void manualRouteAndAreaSaveThroughRealUiAndSurviveReopen() {
     try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup().visible()) {
       View root=c.get().getWindow().getDecorView();
-      for(String title:new String[]{"Создать маршрут","Создать область"}) {
-        desc(root,"Действия в центре карты").performClick();AlertDialog context=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
+      for(String title:new String[]{"Маршрут","Область"}) {
+        desc(root,"Действия в центре карты").performClick();AlertDialog context=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();desc(context.getWindow().getDecorView(),"Новая метка…").performClick();context=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
         for(int n=0;n<context.getListView().getCount();n++)if(title.equals(context.getListView().getItemAtPosition(n).toString()))context.getListView().performItemClick(null,n,n);
         View drawing=root.findViewWithTag("drawingControls");assertNotNull(drawing);
         org.osmdroid.views.MapView map=(org.osmdroid.views.MapView)type(root,org.osmdroid.views.MapView.class);
         map.getController().setCenter(new org.osmdroid.util.GeoPoint(56.0,38.0));desc(drawing,"+ Точка").performClick();
-        if(title.equals("Создать область")){map.getController().setCenter(new org.osmdroid.util.GeoPoint(55.0,38.0));desc(drawing,"+ Точка").performClick();}
+        if(title.equals("Область")){map.getController().setCenter(new org.osmdroid.util.GeoPoint(55.0,38.0));desc(drawing,"+ Точка").performClick();}
         desc(drawing,"Сохранить").performClick();org.robolectric.shadows.ShadowLooper.idleMainLooper();AlertDialog save=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
         ((EditText)type(save.getWindow().getDecorView(),EditText.class)).setText(title);save.getButton(-1).performClick();assertFalse("Save error: "+((EditText)type(save.getWindow().getDecorView(),EditText.class)).getError(),save.isShowing());assertNull(root.findViewWithTag("drawingControls"));
       }
@@ -41,7 +41,7 @@ public class GeometryUiTest {
   @Test public void drawingDraftSurvivesActivityRecreation() {
     Bundle state=new Bundle();
     try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup().visible()) {
-      View root=c.get().getWindow().getDecorView();desc(root,"Действия в центре карты").performClick();AlertDialog context=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();context.getListView().performItemClick(null,2,2);
+      View root=c.get().getWindow().getDecorView();desc(root,"Действия в центре карты").performClick();AlertDialog context=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();desc(context.getWindow().getDecorView(),"Новая метка…").performClick();context=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();context.getListView().performItemClick(null,2,2);
       c.saveInstanceState(state);
     }
     try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup(state).visible()) {assertNotNull(c.get().getWindow().getDecorView().findViewWithTag("drawingControls"));}

@@ -31,12 +31,13 @@ public class SettingsAndProjectionTest {
   @Test public void settingsPersistPrimarySecondaryAndUnitsWithoutChangingObjects()throws Exception {
     try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup()){
       java.lang.reflect.Method method=MainActivity.class.getDeclaredMethod("settingsMenu");method.setAccessible(true);method.invoke(c.get());Dialog dialog=org.robolectric.shadows.ShadowDialog.getLatestDialog();View root=dialog.getWindow().getDecorView();
-      ((Spinner)root.findViewWithTag("primaryCoordinates")).setSelection(5);((Spinner)root.findViewWithTag("secondaryCoordinates")).setSelection(5);((Spinner)root.findViewWithTag("Формат расстояния")).setSelection(2);((Spinner)root.findViewWithTag("Азимут")).setSelection(6);text(root,"Применить").performClick();
+      select(root,"Формат местоположения",5);select(root,"Доп. формат местоположения",5);select(root,"Формат расстояния",2);select(root,"Азимут",6);
       assertEquals(5,c.get().getPreferences(0).getInt("primaryCoordinates",0));assertEquals(4,c.get().getPreferences(0).getInt("secondaryCoordinates",0));assertEquals(2,DisplayUnits.load(c.get()).distanceMode);
     }
     try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup()){
       assertEquals(6,DisplayUnits.load(c.get()).angleMode);try(ru.warriorrus.app.data.ObjectStore store=new ru.warriorrus.app.data.ObjectStore(c.get())){assertTrue(store.all().isEmpty());}
     }
   }
+  private void select(View root,String title,int position){root.findViewWithTag("setting:"+title).performClick();android.app.AlertDialog dialog=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();dialog.getListView().performItemClick(null,position,position);}
   private View text(View v,String value){if(v instanceof TextView&&value.contentEquals(((TextView)v).getText()))return v;if(v instanceof ViewGroup)for(int n=0;n<((ViewGroup)v).getChildCount();n++){View found=text(((ViewGroup)v).getChildAt(n),value);if(found!=null)return found;}return null;}
 }

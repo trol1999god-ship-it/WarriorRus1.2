@@ -28,9 +28,9 @@ public class MenuModelTest {
   @Test public void mapMenuExposesMapsLayersAndAreaInOneCategoryAndSettingsOpenDirectly(){
     try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup()){
       View root=c.get().getWindow().getDecorView();root.findViewWithTag("Карты").performClick();Dialog menu=org.robolectric.shadows.ShadowDialog.getLatestDialog();View options=menu.getWindow().getDecorView();
-      assertNotNull(text(options,"Доступные карты"));assertNotNull(text(options,"Отображаемые карты"));assertNotNull(text(options,"Выбрать и сохранить область"));menu.dismiss();
+      assertNotNull(text(options,"Доступные карты"));assertNotNull(text(options,"Карты на экране"));assertNotNull(text(options,"Сохранить участок карты"));menu.dismiss();
       root.findViewWithTag("Меню").performClick();text(org.robolectric.shadows.ShadowDialog.getLatestDialog().getWindow().getDecorView(),"Настройки").performClick();
-      assertNotNull(text(org.robolectric.shadows.ShadowDialog.getLatestDialog().getWindow().getDecorView(),"Основные координаты"));
+      assertNotNull(text(org.robolectric.shadows.ShadowDialog.getLatestDialog().getWindow().getDecorView(),"Формат местоположения"));
     }
   }
   private View text(View v,String value){if(v instanceof TextView&&value.contentEquals(((TextView)v).getText()))return v;if(v instanceof ViewGroup)for(int n=0;n<((ViewGroup)v).getChildCount();n++){View result=text(((ViewGroup)v).getChildAt(n),value);if(result!=null)return result;}return null;}

@@ -21,6 +21,7 @@ public final class MapCatalog {
     public String id,name,path="",url="",credit="";
     public boolean visible=true,downloadAllowed;
     public int opacity=100,min=0,max=19;
+    public float contrast=1,brightness=0,saturation=1,hue=0;public boolean inverted;
     public boolean offline(){return !path.isEmpty();}
   }
   public final List<Layer> layers=new ArrayList<>();
@@ -28,7 +29,7 @@ public final class MapCatalog {
   private final List<TilesOverlay> overlays=new ArrayList<>();private final List<MapTileProviderBase> ownedProviders=new ArrayList<>();
   public MapCatalog(Activity activity,MapView map) {
     this.activity=activity;this.map=map;prefs=activity.getPreferences(Activity.MODE_PRIVATE);
-    try{JSONArray saved=new JSONArray(prefs.getString("rasterLayers","[]"));for(int n=0;n<saved.length();n++){JSONObject o=saved.getJSONObject(n);Layer l=new Layer();l.id=o.getString("id");l.name=o.getString("name");l.path=o.optString("path");l.url=o.optString("url");l.credit=o.optString("credit");l.visible=o.optBoolean("visible",true);l.opacity=Math.max(0,Math.min(100,o.optInt("opacity",100)));l.min=o.optInt("min",0);l.max=o.optInt("max",19);l.downloadAllowed=o.optBoolean("download",false);layers.add(l);}}
+    try{JSONArray saved=new JSONArray(prefs.getString("rasterLayers","[]"));for(int n=0;n<saved.length();n++){JSONObject o=saved.getJSONObject(n);Layer l=new Layer();l.id=o.getString("id");l.name=o.getString("name");l.path=o.optString("path");l.url=o.optString("url");l.credit=o.optString("credit");l.visible=o.optBoolean("visible",true);l.opacity=Math.max(0,Math.min(100,o.optInt("opacity",100)));l.min=o.optInt("min",0);l.max=o.optInt("max",19);l.downloadAllowed=o.optBoolean("download",false);readAppearance(l,o);layers.add(l);}}
     catch(JSONException invalid){layers.clear();}
     if(find("osm")==null){Layer osm=new Layer();osm.id="osm";osm.name="OpenStreetMap";osm.credit="© OpenStreetMap contributors · https://www.openstreetmap.org/copyright";osm.visible=prefs.getBoolean("mapLayerVisible",true);osm.opacity=prefs.getInt("mapLayerOpacity",100);layers.add(0,osm);}
     rebuild();
@@ -51,16 +52,22 @@ public final class MapCatalog {
   }
   public File file(Layer l)throws IOException {File root=new File(activity.getFilesDir(),"maps").getCanonicalFile(),file=new File(root,l.path).getCanonicalFile();if(!root.equals(file.getParentFile()))throw new IOException("Неверный архив карты");return file;}
   public void reorder(Layer l,int delta){int p=layers.indexOf(l),next=p+delta;if(next>=0&&next<layers.size()){Collections.swap(layers,p,next);save();rebuild();}}
-  public void remove(Layer l){if("osm".equals(l.id))return;layers.remove(l);save();rebuild();}
+  public void remove(Layer l){l.visible=false;save();updateAppearance();}
   public void save() {
-    JSONArray all=new JSONArray();try{for(Layer l:layers)all.put(new JSONObject().put("id",l.id).put("name",l.name).put("path",l.path).put("url",l.url).put("credit",l.credit).put("visible",l.visible).put("opacity",l.opacity).put("min",l.min).put("max",l.max).put("download",l.downloadAllowed));}
+    JSONArray all=new JSONArray();try{for(Layer l:layers)all.put(encode(l));}
     catch(JSONException e){throw new IllegalArgumentException(e);}
     Layer osm=find("osm");prefs.edit().putString("rasterLayers",all.toString()).putBoolean("mapLayerVisible",osm.visible).putInt("mapLayerOpacity",osm.opacity).apply();
   }
+  private static void readAppearance(Layer l,JSONObject o){l.contrast=(float)Math.max(0,Math.min(3,o.optDouble("contrast",1)));l.brightness=(float)Math.max(-1,Math.min(1,o.optDouble("brightness",0)));l.saturation=(float)Math.max(0,Math.min(3,o.optDouble("saturation",1)));l.hue=(float)Math.max(-180,Math.min(180,o.optDouble("hue",0)));l.inverted=o.optBoolean("inverted",false);}
+  private static JSONObject encode(Layer l)throws JSONException{return new JSONObject().put("id",l.id).put("name",l.name).put("path",l.path).put("url",l.url).put("credit",l.credit).put("visible",l.visible).put("opacity",l.opacity).put("min",l.min).put("max",l.max).put("download",l.downloadAllowed).put("contrast",l.contrast).put("brightness",l.brightness).put("saturation",l.saturation).put("hue",l.hue).put("inverted",l.inverted);}
+  public JSONArray favoriteSets(){try{return new JSONArray(prefs.getString("favoriteMaps","[]"));}catch(JSONException e){return new JSONArray();}}
+  public void saveFavorite(String name){if(name.trim().isEmpty())throw new IllegalArgumentException("Введите название");try{JSONArray selected=new JSONArray();for(Layer l:layers)if(l.visible)selected.put(encode(l));if(selected.length()==0)throw new IllegalArgumentException("Нет карт на экране");JSONArray all=favoriteSets();all.put(new JSONObject().put("id",UUID.randomUUID().toString()).put("name",name.trim()).put("layers",selected));prefs.edit().putString("favoriteMaps",all.toString()).apply();}catch(JSONException e){throw new IllegalArgumentException(e);}}
+  public void editFavorite(String id,String name){try{JSONArray result=new JSONArray(),all=favoriteSets();for(int n=0;n<all.length();n++){JSONObject set=all.getJSONObject(n);if(id.equals(set.getString("id"))){if(name==null)continue;if(name.trim().isEmpty())throw new IllegalArgumentException("Введите название");set.put("name",name.trim());}result.put(set);}prefs.edit().putString("favoriteMaps",result.toString()).apply();}catch(JSONException e){throw new IllegalArgumentException(e);}}
+  public void applyFavorite(JSONObject favorite,boolean add){try{JSONArray a=favorite.getJSONArray("layers");List<Layer> selected=new ArrayList<>();for(int n=0;n<a.length();n++){JSONObject o=a.getJSONObject(n);Layer l=find(o.getString("id"));if(l==null)throw new IllegalArgumentException("Карта набора больше не установлена: "+o.optString("name"));selected.add(l);}if(!add)for(Layer l:layers)l.visible=false;for(int n=0;n<a.length();n++){Layer l=selected.get(n);JSONObject o=a.getJSONObject(n);l.visible=true;l.opacity=Math.max(0,Math.min(100,o.optInt("opacity",100)));readAppearance(l,o);}layers.removeAll(selected);layers.addAll(selected);save();rebuild();}catch(JSONException e){throw new IllegalArgumentException(e);}}
   public void updateAppearance() {
     for(int n=0;n<overlays.size();n++) {
-      Layer l=layers.get(n);TilesOverlay overlay=overlays.get(n);overlay.setEnabled(l.visible);
-      ColorMatrix matrix=new ColorMatrix();matrix.setScale(1,1,1,l.opacity/100f);overlay.setColorFilter(new ColorMatrixColorFilter(matrix));
+      Layer l=layers.get(n);TilesOverlay overlay=overlays.get(n);overlay.setEnabled(l.visible);boolean indicators=prefs.getBoolean("mapLoadingIndicators",false);overlay.setLoadingBackgroundColor(indicators?0x2273b9e9:Color.TRANSPARENT);overlay.setLoadingLineColor(indicators?0x5584b9dd:Color.TRANSPARENT);
+      ColorMatrix matrix=MapAppearance.matrix(l.contrast,l.brightness,l.saturation,l.hue,l.inverted,prefs.getBoolean("nightMode",false),l.opacity/100f);overlay.setColorFilter(new ColorMatrixColorFilter(matrix));
     }
     // The actual base is rendered as an ordered overlay, so it can move above other maps.
     TilesOverlay base=map.getOverlayManager().getTilesOverlay();Layer osm=find("osm");base.setEnabled(osm.visible);

@@ -20,7 +20,7 @@ public class MapUiTest {
   private void openLayers(View root) {
     root.findViewWithTag("Карты").performClick();
     Dialog dialog=org.robolectric.shadows.ShadowDialog.getLatestDialog();
-    find(dialog.getWindow().getDecorView(),"Отображаемые карты").performClick();
+    find(dialog.getWindow().getDecorView(),"Карты на экране").performClick();
   }
   @Before
   public void cleanFixture() {
@@ -45,14 +45,9 @@ public class MapUiTest {
       assertNotNull(find(objects.getWindow().getDecorView(), "Объекты карты"));
       assertNotNull(objects.getWindow().getDecorView().findViewWithTag("filter:point"));
       objects.dismiss();
+      c.get().getPreferences(0).edit().putBoolean("expandedCategory0",true).commit();
       for(boolean expected:new boolean[]{true,false}) {
-        find(a.getWindow().getDecorView(), "Меню").performClick();
-        Dialog menu=org.robolectric.shadows.ShadowDialog.getLatestDialog();
-        find(menu.getWindow().getDecorView(), "Настройки").performClick();
-        Dialog settings=org.robolectric.shadows.ShadowDialog.getLatestDialog();
-        ((CheckBox)find(settings.getWindow().getDecorView(),"Координатная сетка")).setChecked(expected);
-        find(settings.getWindow().getDecorView(),"Применить").performClick();
-        assertEquals(expected,map.getOverlays().stream().anyMatch(o->o instanceof CoordinateGrid));
+        find(a.getWindow().getDecorView(),"Меню").performClick();Dialog menu=org.robolectric.shadows.ShadowDialog.getLatestDialog();CheckBox grid=(CheckBox)findType(menu.getWindow().getDecorView(),CheckBox.class);assertNotNull(grid);grid.setChecked(expected);assertEquals(expected,map.getOverlays().stream().anyMatch(o->o instanceof CoordinateGrid));menu.dismiss();
       }
     }
   }
@@ -98,52 +93,17 @@ public class MapUiTest {
     assertFalse(CoordinateGrid.contains(-5, 5, 179, -179, 0, 0));
   }
 
-  @Test
-  public void compactToolbarKeepsActionsAndSurvivesRestart() {
-    try (ActivityController<MainActivity> c = Robolectric.buildActivity(MainActivity.class).setup()) {
-      View root = c.get().getWindow().getDecorView();
-      assertNull(root.findViewWithTag("bottomToggle"));
-      Button objects = (Button) root.findViewWithTag("Объекты");
-      assertEquals("", objects.getText().toString());
-      assertNotNull(objects.getCompoundDrawablesRelative()[0]);
-      objects.performClick();
-      assertTrue(org.robolectric.shadows.ShadowDialog.getLatestDialog().isShowing());
-      org.robolectric.shadows.ShadowDialog.getLatestDialog().dismiss();
-      described(root, "Свернуть или раскрыть координаты").performClick();
-      assertEquals(View.GONE, root.findViewWithTag("coordinateDetails").getVisibility());
+  @Test public void menuHideCommandKeepsMainButtonAndRestoresCategoriesAfterRestart(){
+    try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup()){
+      View root=c.get().getWindow().getDecorView();assertNull(root.findViewWithTag("bottomToggle"));Button main=root.findViewWithTag("Меню");main.performLongClick();assertEquals(View.GONE,root.findViewWithTag("Карты").getVisibility());assertEquals(Math.round(48*c.get().getResources().getDisplayMetrics().density),root.findViewWithTag("bottomPanel").getLayoutParams().width);
     }
-    try (ActivityController<MainActivity> c = Robolectric.buildActivity(MainActivity.class).setup()) {
-      View root = c.get().getWindow().getDecorView();
-      assertEquals("", ((Button) root.findViewWithTag("Объекты")).getText().toString());
-      assertEquals(View.GONE, root.findViewWithTag("coordinateDetails").getVisibility());
-      assertNull(root.findViewWithTag("bottomToggle"));
-      assertEquals("", ((Button) root.findViewWithTag("Объекты")).getText().toString());
+    try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup()){
+      View root=c.get().getWindow().getDecorView();assertEquals(View.GONE,root.findViewWithTag("Карты").getVisibility());root.findViewWithTag("Меню").performClick();assertEquals(View.VISIBLE,root.findViewWithTag("Карты").getVisibility());assertEquals(Math.round(192*c.get().getResources().getDisplayMetrics().density),root.findViewWithTag("bottomPanel").getLayoutParams().width);
     }
   }
-
-  @Test
-  public void topPanelsShrinkAndRestoreWhileToolbarStaysCompact() {
-    try (ActivityController<MainActivity> c = Robolectric.buildActivity(MainActivity.class).setup()) {
-      View root = c.get().getWindow().getDecorView();
-      View coordinates = root.findViewWithTag("coordinatePanel"), bottom = root.findViewWithTag("bottomPanel");
-      int coordinateWidth = coordinates.getLayoutParams().width, bottomWidth = bottom.getLayoutParams().width;
-      root.findViewWithTag("coordinateToggle").performClick();
-      assertNull(root.findViewWithTag("bottomToggle"));
-      root.findViewWithTag("rightToggle").performClick();
-      assertTrue(coordinates.getLayoutParams().width < coordinateWidth);
-      assertEquals(bottomWidth, bottom.getLayoutParams().width);
-      assertEquals(View.GONE, described(root, "Увеличить").getVisibility());
-      root.findViewWithTag("rightToggle").performClick();
-      assertEquals(View.VISIBLE, described(root, "Увеличить").getVisibility());
-      root.findViewWithTag("rightToggle").performClick();
-    }
-    try (ActivityController<MainActivity> c = Robolectric.buildActivity(MainActivity.class).setup()) {
-      View root = c.get().getWindow().getDecorView();
-      assertEquals(View.GONE, described(root, "Увеличить").getVisibility());
-      root.findViewWithTag("coordinateToggle").performClick();
-      assertEquals(View.VISIBLE, root.findViewWithTag("coordinateDetails").getVisibility());
-      assertNull(root.findViewWithTag("bottomToggle"));
-      assertEquals("", ((Button) root.findViewWithTag("Объекты")).getText().toString());
+  @Test public void mapControlsUseReferenceLayoutWithoutInheritedCollapseButtons(){
+    try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup()){
+      View root=c.get().getWindow().getDecorView();assertNull(root.findViewWithTag("coordinateToggle"));assertNull(root.findViewWithTag("rightToggle"));ViewGroup zoom=root.findViewWithTag("zoomControls");assertEquals(2,zoom.getChildCount());assertEquals("Увеличить",zoom.getChildAt(0).getContentDescription());assertEquals("Уменьшить",zoom.getChildAt(1).getContentDescription());assertEquals(View.VISIBLE,root.findViewWithTag("coordinatePanel").getVisibility());assertNotNull(root.findViewWithTag("mapInfoPanel"));
     }
   }
 
@@ -159,7 +119,8 @@ public class MapUiTest {
       assertEquals(View.GONE, credit.getVisibility());
       root.findViewWithTag("Карты").performClick();
       Dialog maps = org.robolectric.shadows.ShadowDialog.getLatestDialog();
-      assertNotNull(find(maps.getWindow().getDecorView(), "© OpenStreetMap\nhttps://www.openstreetmap.org/copyright"));
+      described(maps.getWindow().getDecorView(),"Карты").performClick();
+      assertNotNull(find(org.robolectric.shadows.ShadowDialog.getLatestDialog().getWindow().getDecorView(),"© OpenStreetMap contributors\nhttps://www.openstreetmap.org/copyright"));
       maps.dismiss();
     }
   }
@@ -170,7 +131,8 @@ public class MapUiTest {
       View root = c.get().getWindow().getDecorView();
       for (int n = 1; n <= 2; n++) {
         described(root, "Действия в центре карты").performClick();
-        item(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog(), 0);
+        find(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog().getWindow().getDecorView(),"Новая метка…").performClick();
+        item(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog(),0);
         AlertDialog editor = org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
         org.robolectric.shadows.ShadowLooper.idleMainLooper();
         ((EditText) findType(editor.getWindow().getDecorView(), EditText.class)).setText("Point " + n);
@@ -246,7 +208,8 @@ public class MapUiTest {
       View root = c.get().getWindow().getDecorView();
       root.findViewWithTag("Карты").performClick();
       Dialog maps = org.robolectric.shadows.ShadowDialog.getLatestDialog();
-      find(maps.getWindow().getDecorView(), "Офлайн").performClick();
+      maps.dismiss();c.get().getPreferences(0).edit().putBoolean("expandedCategory1",true).commit();root.findViewWithTag("Карты").performClick();maps=org.robolectric.shadows.ShadowDialog.getLatestDialog();
+      ((CheckBox)find(maps.getWindow().getDecorView(),"Использовать только сохранённый кэш карты")).setChecked(true);
       org.osmdroid.views.MapView map = (org.osmdroid.views.MapView) findType(root, org.osmdroid.views.MapView.class);
       assertFalse(map.useDataConnection());
     }
@@ -256,7 +219,7 @@ public class MapUiTest {
       assertFalse(map.useDataConnection());
       root.findViewWithTag("Карты").performClick();
       Dialog maps = org.robolectric.shadows.ShadowDialog.getLatestDialog();
-      find(maps.getWindow().getDecorView(), "Онлайн").performClick();
+      ((CheckBox)find(maps.getWindow().getDecorView(),"Использовать только сохранённый кэш карты")).setChecked(false);
       assertTrue(map.useDataConnection());
     }
   }

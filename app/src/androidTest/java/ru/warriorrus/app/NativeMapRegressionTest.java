@@ -32,7 +32,7 @@ public class NativeMapRegressionTest {
     try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
       for (int n = 1; n <= 8; n++) {
         click(By.desc("Действия в центре карты"));
-        click(By.text("Создать метку"));
+        click(By.text("Новая метка…"));click(By.text("Метка"));
         UiObject2 name = device.wait(Until.findObject(By.clazz(EditText.class)), 8000);
         assertNotNull(name);
         name.setText("Test point " + n);
@@ -45,22 +45,11 @@ public class NativeMapRegressionTest {
         device.waitForIdle();
       }
       scenario.onActivity(activity -> assertEquals(8, markerCount(activity)));
-      click(By.desc("Свернуть или раскрыть координаты"));
-      click(By.desc("Свернуть или раскрыть правую панель"));
-      device.waitForIdle();
-      scenario.onActivity(activity -> {
-        View root = activity.getWindow().getDecorView();
-        float density = activity.getResources().getDisplayMetrics().density;
-        assertEquals(Math.round(48 * density), root.findViewWithTag("coordinatePanel").getWidth());
-        assertEquals(View.GONE, root.findViewWithTag("coordinateDetails").getVisibility());
-        assertEquals(Math.round(192 * density), root.findViewWithTag("bottomPanel").getWidth());
-      });
+      scenario.onActivity(activity->{View root=activity.getWindow().getDecorView();assertNull(root.findViewWithTag("coordinateToggle"));assertNull(root.findViewWithTag("rightToggle"));assertEquals(2,((ViewGroup)root.findViewWithTag("zoomControls")).getChildCount());});
       scenario.recreate();
       device.waitForIdle();
       scenario.onActivity(activity -> assertEquals(8, markerCount(activity)));
-      click(By.desc("Свернуть или раскрыть правую панель"));
       click(By.desc("Увеличить"));
-      click(By.desc("Свернуть или раскрыть координаты"));
       click(By.desc("Метки"));click(By.desc("Проводник меток"));
       assertNotNull(device.wait(Until.findObject(By.text("Объекты карты")), 8000));
     }
@@ -71,12 +60,12 @@ public class NativeMapRegressionTest {
     context.deleteDatabase("warrior2.db");
     context.getSharedPreferences("MainActivity", 0).edit().clear().putBoolean("mapOnline", false).commit();
     try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
-      for (String kind : new String[]{"Создать маршрут", "Создать область"}) {
-        click(By.desc("Действия в центре карты")); click(By.text(kind));
+      for (String kind : new String[]{"Маршрут", "Область"}) {
+        click(By.desc("Действия в центре карты"));click(By.text("Новая метка…"));click(By.text(kind));
         device.swipe(device.getDisplayWidth()/2, device.getDisplayHeight()/2,
             device.getDisplayWidth()/2+100, device.getDisplayHeight()/2+60, 10);
         click(By.desc("+ Точка"));
-        if (kind.equals("Создать область")) {
+        if (kind.equals("Область")) {
           device.swipe(device.getDisplayWidth()/2, device.getDisplayHeight()/2,
               device.getDisplayWidth()/2-50, device.getDisplayHeight()/2+90, 10);
           click(By.desc("+ Точка"));
@@ -117,7 +106,7 @@ public class NativeMapRegressionTest {
         String[] labels = {"Меню", "Слои", "Карты и слои", "Метки", "Ориентация"};
         String[] fields = {"menuDialog", "layersDialog", "mapsDialog", "explorerDialog", "orientationDialog"};
         for (int index = 0; index < labels.length; index++) {
-          if(labels[index].equals("Слои")){click(By.desc("Карты и слои"));click(By.desc("Отображаемые карты"));}
+          if(labels[index].equals("Слои")){click(By.desc("Карты и слои"));click(By.desc("Карты на экране"));}
           else {click(By.desc(labels[index]));if(labels[index].equals("Метки"))click(By.desc("Проводник меток"));}
           final String fieldName = fields[index];
           scenario.onActivity(activity -> {
