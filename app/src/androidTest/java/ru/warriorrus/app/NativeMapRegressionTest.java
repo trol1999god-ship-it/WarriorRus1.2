@@ -36,8 +36,8 @@ public class NativeMapRegressionTest {
         UiObject2 name = device.wait(Until.findObject(By.clazz(EditText.class)), 8000);
         assertNotNull(name);
         name.setText("Test point " + n);
-        click(By.text("Сохранить"));
-        assertTrue(device.wait(Until.gone(By.text("Сохранить")), 8000));
+        click(By.res("android:id/button1"));
+        assertTrue(device.wait(Until.gone(By.res("android:id/button1")), 8000));
         click(By.desc("Увеличить"));
         click(By.desc("Уменьшить"));
         device.swipe(device.getDisplayWidth() / 2, device.getDisplayHeight() / 2,

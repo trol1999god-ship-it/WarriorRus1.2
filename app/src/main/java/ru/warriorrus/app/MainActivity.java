@@ -254,6 +254,7 @@ public final class MainActivity extends Activity {
     TextView attribution = hudText("© OpenStreetMap", 10);
     attribution.setBackground(plate());
     FrameLayout.LayoutParams credit = new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.END);
+    credit.bottomMargin = dp(76);
     root.addView(attribution, credit);
     cards = getPreferences(MODE_PRIVATE).getBoolean("explorerCards", false);
     gridEnabled = getPreferences(MODE_PRIVATE).getBoolean("coordinateGrid", false);
