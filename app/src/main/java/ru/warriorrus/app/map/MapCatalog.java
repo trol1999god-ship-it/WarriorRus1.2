@@ -87,6 +87,7 @@ public final class MapCatalog {
           provider=new MapTileProviderBasic(activity,source);provider.setUseDataConnection(map.useDataConnection());ownedProviders.add(provider);
         }
       }catch(Exception invalid){provider=new OfflineTileProvider(new SimpleRegisterReceiver(activity),new File[]{new File(activity.getFilesDir(),"missing.mbtiles")});ownedProviders.add(provider);l.visible=false;}
+      if(provider!=map.getTileProvider())provider.getTileRequestCompleteHandlers().add(map.getTileRequestCompleteHandler());
       TilesOverlay overlay=new TilesOverlay(provider,activity);overlay.setLoadingBackgroundColor(Color.TRANSPARENT);overlay.setLoadingLineColor(Color.TRANSPARENT);overlays.add(overlay);map.getOverlays().add(index++,overlay);
     }updateAppearance();
   }
