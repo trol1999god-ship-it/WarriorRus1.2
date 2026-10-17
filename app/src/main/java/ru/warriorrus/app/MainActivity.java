@@ -253,7 +253,9 @@ public final class MainActivity extends Activity {
       objectTabs.add(tab);
       filters.addView(tab, new LinearLayout.LayoutParams(0, dp(48), 1));
     }
-    drawer.addView(filters);
+    if (getResources().getConfiguration().orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE)
+      objectHeader.addView(filters, 1, new LinearLayout.LayoutParams(dp(240), dp(48)));
+    else drawer.addView(filters);
     path = hudText("", 14);
     path.setOnClickListener(
         v -> {
@@ -328,7 +330,7 @@ public final class MainActivity extends Activity {
         compact(
             "Операции",
             () -> {
-              PopupMenu menu = new PopupMenu(this, explorerToolbar);
+              PopupMenu menu = new PopupMenu(new android.view.ContextThemeWrapper(this, android.R.style.Theme_Material), explorerToolbar);
               for (int n = 0; n < actions.getChildCount(); n++) {
                 final Button action = (Button) actions.getChildAt(n);
                 menu.getMenu()
@@ -368,10 +370,14 @@ public final class MainActivity extends Activity {
     content.addView(rows);
     lists.addView(content, new LinearLayout.LayoutParams(0, -1, 1));
     LinearLayout objectFooter = new LinearLayout(this);
+    objectFooter.setGravity(Gravity.CENTER_VERTICAL);
+    objectFooter.setMinimumHeight(dp(48));
     status = hudText("", 11);
+    status.setPadding(dp(10), 0, dp(10), 0);
+    status.setMaxLines(2);
     objectFooter.addView(status, new LinearLayout.LayoutParams(0, -2, 1));
     Button addObject = iconButton("Создать объект", R.drawable.ui_plus, () -> {
-      PopupMenu menu = new PopupMenu(this, objectFooter);
+      PopupMenu menu = new PopupMenu(new android.view.ContextThemeWrapper(this, android.R.style.Theme_Material), objectFooter);
       menu.getMenu().add("Метка в центре карты").setOnMenuItemClickListener(item -> {
         edit(null, (GeoPoint) map.view.getMapCenter()); return true;
       });
@@ -1041,6 +1047,8 @@ public final class MainActivity extends Activity {
       if (i.parent == parent && i.isFolder()) {
         TextView v = hudText(indent(depth) + i.name, 12);
         v.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ui_folder, 0, 0, 0);
+        v.setSingleLine(true);
+        v.setEllipsize(android.text.TextUtils.TruncateAt.END);
         v.setOnClickListener(
             w -> {
               explorer.open(i.id);
@@ -1067,7 +1075,7 @@ public final class MainActivity extends Activity {
   }
 
   private void context(MapItem i, View anchor) {
-    PopupMenu menu = new PopupMenu(this, anchor);
+    PopupMenu menu = new PopupMenu(new android.view.ContextThemeWrapper(this, android.R.style.Theme_Material), anchor);
     String[] commands = {
       "Открыть / на карте",
       "Редактировать",
