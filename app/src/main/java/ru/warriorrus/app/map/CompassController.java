@@ -14,6 +14,7 @@ public final class CompassController implements SensorEventListener {
   private boolean haveGravity,haveMagnetic;
   public boolean enabled,ready;
   public float heading,pitch,roll;
+  public Float pressureHpa;
   public int accuracy=SensorManager.SENSOR_STATUS_UNRELIABLE;
   public String method="rotation";
   public CompassController(Activity activity,Consumer<CompassController> changed) {
@@ -30,11 +31,13 @@ public final class CompassController implements SensorEventListener {
       if(a!=null&&m!=null){boolean first=manager.registerListener(this,a,SensorManager.SENSOR_DELAY_UI);boolean second=manager.registerListener(this,m,SensorManager.SENSOR_DELAY_UI);enabled=first&&second;}
     }
     if(!enabled)manager.unregisterListener(this);
+    else {Sensor pressure=manager.getDefaultSensor(Sensor.TYPE_PRESSURE);if(pressure!=null)manager.registerListener(this,pressure,SensorManager.SENSOR_DELAY_UI);}
     changed.accept(this);return enabled;
   }
-  public void stop(){if(manager!=null)manager.unregisterListener(this);enabled=false;ready=false;}
+  public void stop(){if(manager!=null)manager.unregisterListener(this);enabled=false;ready=false;pressureHpa=null;}
   @Override public void onSensorChanged(SensorEvent event) {
     if(!enabled)return;
+    if(event.sensor.getType()==Sensor.TYPE_PRESSURE){if(event.values.length>0&&event.values[0]>0){pressureHpa=event.values[0];changed.accept(this);}return;}
     float[] matrix=new float[9];
     if(event.sensor.getType()==Sensor.TYPE_ROTATION_VECTOR)SensorManager.getRotationMatrixFromVector(matrix,event.values);
     else {

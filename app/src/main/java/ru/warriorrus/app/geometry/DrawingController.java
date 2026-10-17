@@ -27,6 +27,7 @@ public final class DrawingController {
   public DrawingController(Activity activity,FrameLayout host,MapWorkspace map,Consumer<MapItem> save) {
     this.activity=activity;this.host=host;this.map=map;this.save=save;
   }
+  public void updateUnits(){if(active())render();}
   public boolean active(){return draft!=null;}
   public void start(MapItem existing,String kind,long parent,GeoPoint initial) {
     if(active()){Toast.makeText(activity,"Сначала сохраните или отмените рисунок",Toast.LENGTH_SHORT).show();return;}
@@ -112,7 +113,7 @@ public final class DrawingController {
   public void cancel(){for(Overlay o:preview)map.view.getOverlays().remove(o);preview.clear();if(controls!=null)host.removeView(controls);controls=null;draft=null;map.view.invalidate();}
   private void render() {
     for(Overlay o:preview)map.view.getOverlays().remove(o);preview.clear();
-    caption.setText(draft.typeName()+" · контур "+(activeSegment+1)+" · точек: "+Geometry.count(draft)+String.format(Locale.ROOT," · %.3f км",Geometry.length(draft)/1000));
+    caption.setText(draft.typeName()+" · контур "+(activeSegment+1)+" · точек: "+Geometry.count(draft)+" · "+ru.warriorrus.app.settings.DisplayUnits.load(activity).distance(Geometry.length(draft)));
     for(List<Vertex> segment:draft.segments) {
       List<GeoPoint> pts=new ArrayList<>();for(Vertex v:segment)pts.add(new GeoPoint(v.latitude,v.longitude));
       if("area".equals(draft.kind)&&pts.size()>2)pts.add(pts.get(0));

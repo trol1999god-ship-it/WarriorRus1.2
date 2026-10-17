@@ -83,8 +83,11 @@ public final class Geometry {
     } return Math.max(0,total);
   }
   public static String summary(MapItem i) {
+    return summary(i,new ru.warriorrus.app.settings.DisplayUnits());
+  }
+  public static String summary(MapItem i,ru.warriorrus.app.settings.DisplayUnits units) {
     if(!i.isGeometry()) return "";
-    return String.format(Locale.ROOT, "%s · точек: %d\n%s: %.3f км%s", i.typeName(), count(i), "area".equals(i.kind)?"Периметр":"Длина",length(i)/1000,
-        "area".equals(i.kind)?String.format(Locale.ROOT,"\nПлощадь: %.3f км²",area(i)/1e6):"");
+    return String.format(Locale.ROOT, "%s · точек: %d\n%s: %s%s", i.typeName(), count(i), "area".equals(i.kind)?"Периметр":"Длина",units.distance(length(i)),
+        "area".equals(i.kind)?"\nПлощадь: "+units.area(area(i)):"");
   }
 }

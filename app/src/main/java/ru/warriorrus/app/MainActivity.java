@@ -16,6 +16,8 @@ import ru.warriorrus.app.explorer.*;
 import ru.warriorrus.app.map.*;
 import ru.warriorrus.app.geometry.*;
 import ru.warriorrus.app.settings.Coordinates;
+import ru.warriorrus.app.settings.DisplayUnits;
+import ru.warriorrus.app.settings.ProjectionMath;
 import ru.warriorrus.app.exchange.PlacemarkFiles;
 import ru.warriorrus.app.exchange.BundleExchange;
 import android.content.Intent;
@@ -798,15 +800,18 @@ public final class MainActivity extends Activity {
     panel.addView(compact("Включить / выключить",this::toggleCompass));
     CheckBox rose=new CheckBox(this);rose.setText("Подвижная шкала");rose.setTextColor(0xffe4f2ff);rose.setChecked(getPreferences(MODE_PRIVATE).getBoolean("compassRose",true));rose.setOnCheckedChangeListener((v,on)->{getPreferences(MODE_PRIVATE).edit().putBoolean("compassRose",on).apply();updateCompass();});panel.addView(rose);
     panel.addView(compact("Датчик",()->sheet("Датчик компаса",new String[]{"Вектор вращения (если доступен)","Магнитометр и акселерометр"},n->{getPreferences(MODE_PRIVATE).edit().putString("compassSensor",n==0?"rotation":"magnetic").apply();if(compassController.enabled)setCompass(true);}))); 
-    panel.addView(hudText("Магнитный север. Местоположение не запрашивается. Для калибровки поверните телефон в разных направлениях.",12));showFeature(compassDialog,panel);updateCompass();
+    panel.addView(hudText("Север выбирается в настройках. Склонение рассчитывается по центру карты; местоположение телефона не запрашивается. Давление доступно при наличии барометра.",12));showFeature(compassDialog,panel);updateCompass();
   }
   private void updateCompass(){
     if(compassController==null||headingInfo==null)return;CompassController c=compassController;android.content.SharedPreferences prefs=getPreferences(MODE_PRIVATE);
-    String value=!c.enabled?"Компас выключен":!c.ready?"Ожидание показаний датчика":String.format(Locale.ROOT,"Азимут: %.1f° · %.0f mil\nНаклон: %.1f° · Крен: %.1f°%s",c.heading,c.heading*6400/360,c.pitch,c.roll,c.accuracy<=android.hardware.SensorManager.SENSOR_STATUS_ACCURACY_LOW?"\nТребуется калибровка":"");
+    DisplayUnits units=DisplayUnits.load(this);double corrected=c.heading;int reference=prefs.getInt("northReference",2);
+    if(reference!=2){double lat=map.view.getMapCenter().getLatitude(),lon=map.view.getMapCenter().getLongitude();corrected+=new android.hardware.GeomagneticField((float)lat,(float)lon,0f,System.currentTimeMillis()).getDeclination();if(reference==1)try{int mode=prefs.getInt("primaryCoordinates",0);String code=Coordinates.system(mode,lat,lon,prefs.getString("primaryEPSG","EPSG:32637"));if(!ProjectionMath.geographic(code)){Vertex toward=Geometry.project(new Vertex(lat,lon),0,100);double[] a=ProjectionMath.project(code,lat,lon),b=ProjectionMath.project(code,toward.latitude,toward.longitude);corrected+=Math.toDegrees(Math.atan2(b[0]-a[0],b[1]-a[1]));}}catch(Exception ignored){}}
+    float heading=CompassController.normalize((float)corrected);
+    String value=!c.enabled?"Компас выключен":!c.ready?"Ожидание показаний датчика":"Азимут: "+units.bearing(heading)+"\nНаклон: "+units.slope(c.pitch)+" · Крен: "+units.slope(c.roll)+(c.pressureHpa==null?"":"\nДавление: "+units.pressure(c.pressureHpa))+(c.accuracy<=android.hardware.SensorManager.SENSOR_STATUS_ACCURACY_LOW?"\nТребуется калибровка":"");
     if(compassReadout!=null)compassReadout.setText(value);headingInfo.setText(value);headingInfo.setVisibility(c.enabled&&prefs.getBoolean("compassInfo",false)?View.VISIBLE:View.GONE);
-    for(CompassDial dial:new CompassDial[]{compassDial,mapCompass})if(dial!=null){dial.heading=c.heading;dial.ready=c.ready;dial.movingRose=prefs.getBoolean("compassRose",true);dial.invalidate();}
+    for(CompassDial dial:new CompassDial[]{compassDial,mapCompass})if(dial!=null){dial.heading=heading;dial.ready=c.ready;dial.movingRose=prefs.getBoolean("compassRose",true);dial.invalidate();}
     mapCompass.setVisibility(c.enabled&&prefs.getBoolean("compassOnMap",false)?View.VISIBLE:View.GONE);
-    if(c.enabled&&c.ready&&prefs.getBoolean("compassRotate",false))map.view.setMapOrientation(-c.heading);
+    if(c.enabled&&c.ready&&prefs.getBoolean("compassRotate",false))map.view.setMapOrientation(-heading);
   }
 
   private void toolsMenu() {
@@ -892,16 +897,16 @@ public final class MainActivity extends Activity {
         lon = map.view.getMapCenter().getLongitude();
     int primary = getPreferences(MODE_PRIVATE).getInt("primaryCoordinates", 0);
     int secondary = getPreferences(MODE_PRIVATE).getInt("secondaryCoordinates", 4);
-    coordinateSystem.setText(Coordinates.NAMES[Math.max(0, Math.min(4, primary))]);
-    coordinates.setText(Coordinates.format(primary, lat, lon));
+    coordinateSystem.setText(Coordinates.NAMES[Math.max(0, Math.min(Coordinates.NAMES.length-1, primary))]);
+    coordinates.setText(Coordinates.format(primary, lat, lon,getPreferences(MODE_PRIVATE).getString("primaryEPSG","EPSG:32637")));
     coordinateAdditional.setVisibility(secondary < 0 ? View.GONE : View.VISIBLE);
-    coordinateAdditional.setText(secondary < 0 ? "" : Coordinates.format(secondary, lat, lon));
+    coordinateAdditional.setText(secondary < 0 ? "" : Coordinates.format(secondary, lat, lon,getPreferences(MODE_PRIVATE).getString("secondaryEPSG","EPSG:32637")));
     if(mapTools!=null)mapTools.update();
   }
 
   private void searchMap() {
     EditText input = new EditText(this);
-    input.setHint("Название, широта и долгота, UTM или MGRS");
+    input.setHint("Название / широта, долгота / UTM / MGRS / СК42 X Y / EPSG:код E N");
     new AlertDialog.Builder(this)
         .setTitle("Поиск на карте — локально")
         .setView(input)
@@ -983,7 +988,7 @@ public final class MainActivity extends Activity {
                 i.latitude,
                 i.longitude,
                 i.icon,
-                i.color & 0xffffff, i.description, Geometry.summary(i)+(i.isGeometry()?"\n"+TrackStatistics.of(i).summary():"")))
+                i.color & 0xffffff, i.description, Geometry.summary(i,DisplayUnits.load(this))+(i.isGeometry()?"\n"+TrackStatistics.of(i).summary(DisplayUnits.load(this)):"")))
         .setPositiveButton(
             "Редактировать", (d, w) -> edit(i, new GeoPoint(i.latitude, i.longitude)))
         .setNeutralButton(i.isGeometry()?"Профиль / Вложения":"Вложения ("+i.attachments.size()+")", (d,w) -> {
@@ -1435,7 +1440,7 @@ public final class MainActivity extends Activity {
     }catch(Exception e){name.setError(e.getMessage());}}));dialog.show();
   }
   private void profile(MapItem item) {
-    Dialog dialog=new Dialog(this);LinearLayout panel=new LinearLayout(this);panel.setOrientation(LinearLayout.VERTICAL);panel.setBackground(plate());panel.setPadding(dp(12),dp(12),dp(12),dp(12));panel.addView(hudText(item.name,18));panel.addView(hudText(Geometry.summary(item)+"\n"+TrackStatistics.of(item).summary(),14));
+    Dialog dialog=new Dialog(this);LinearLayout panel=new LinearLayout(this);panel.setOrientation(LinearLayout.VERTICAL);panel.setBackground(plate());panel.setPadding(dp(12),dp(12),dp(12),dp(12));panel.addView(hudText(item.name,18));panel.addView(hudText(Geometry.summary(item,DisplayUnits.load(this))+"\n"+TrackStatistics.of(item).summary(DisplayUnits.load(this)),14));
     panel.addView(new ElevationProfile(this,item),new LinearLayout.LayoutParams(-1,dp(190)));panel.addView(compact("Закрыть",dialog::dismiss));ScrollView scroll=new ScrollView(this);scroll.addView(panel);showPanel(dialog,scroll,dp(520),false);
   }
   private void templatesMenu(boolean save) {
@@ -1602,6 +1607,7 @@ public final class MainActivity extends Activity {
 
   private void applySettings() {
     android.content.SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+    map.grid.coordinateMode=prefs.getInt("primaryCoordinates",0);map.grid.custom=prefs.getString("primaryEPSG","EPSG:32637");
     map.labelsVisible = prefs.getBoolean("placemarkLabels", true);
     map.markerSize = prefs.getInt("markerSize", 24);
     map.lineWidth = prefs.getInt("lineWidth", 3);
@@ -1611,21 +1617,31 @@ public final class MainActivity extends Activity {
     if (drawer != null && rows != null) refresh();
   }
 
+  private Spinner settingChoice(LinearLayout form,String title,String[] choices,int initial){form.addView(hudText(title,13));Spinner spinner=new Spinner(new android.view.ContextThemeWrapper(this,android.R.style.Theme_Material));spinner.setAdapter(new ArrayAdapter<>(spinner.getContext(),android.R.layout.simple_spinner_dropdown_item,choices));spinner.setTag(title);spinner.setSelection(Math.max(0,Math.min(choices.length-1,initial)));form.addView(spinner);return spinner;}
+  private void coordinateCodeField(Spinner spinner,EditText input,int selected){input.setVisibility(spinner.getSelectedItemPosition()==selected?View.VISIBLE:View.GONE);spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){public void onItemSelected(AdapterView<?> p,View v,int pos,long id){input.setVisibility(pos==selected?View.VISIBLE:View.GONE);}public void onNothingSelected(AdapterView<?> p){}});}
+
   private void settingsMenu() {
     settingsDialog = new Dialog(this);
     LinearLayout form = new LinearLayout(this); form.setOrientation(LinearLayout.VERTICAL);
     form.setPadding(dp(12), dp(8), dp(12), dp(8)); form.setBackground(plate());
-    form.addView(hudText("Параметры карты и координат", 18));
+    form.addView(hudText("Настройки", 18));
     form.addView(hudText("Основные координаты", 13));
     Spinner primary = new Spinner(new android.view.ContextThemeWrapper(this, android.R.style.Theme_Material));
+    primary.setTag("primaryCoordinates");
     primary.setAdapter(new ArrayAdapter<>(primary.getContext(), android.R.layout.simple_spinner_dropdown_item, Coordinates.NAMES));
-    primary.setSelection(getPreferences(MODE_PRIVATE).getInt("primaryCoordinates", 0)); form.addView(primary);
+    primary.setSelection(Math.max(0,Math.min(Coordinates.NAMES.length-1,getPreferences(MODE_PRIVATE).getInt("primaryCoordinates",0)))); form.addView(primary);
+    EditText primaryCode=new EditText(this);primaryCode.setHint("Код EPSG основной системы");primaryCode.setText(getPreferences(MODE_PRIVATE).getString("primaryEPSG","EPSG:32637"));form.addView(primaryCode);coordinateCodeField(primary,primaryCode,10);
     form.addView(hudText("Дополнительные координаты", 13));
-    String[] secondaryNames = new String[6]; secondaryNames[0] = "Не показывать";
-    System.arraycopy(Coordinates.NAMES, 0, secondaryNames, 1, 5);
+    String[] secondaryNames = new String[Coordinates.NAMES.length+1]; secondaryNames[0] = "Не показывать";
+    System.arraycopy(Coordinates.NAMES, 0, secondaryNames, 1, Coordinates.NAMES.length);
     Spinner secondary = new Spinner(new android.view.ContextThemeWrapper(this, android.R.style.Theme_Material));
+    secondary.setTag("secondaryCoordinates");
     secondary.setAdapter(new ArrayAdapter<>(secondary.getContext(), android.R.layout.simple_spinner_dropdown_item, secondaryNames));
-    secondary.setSelection(getPreferences(MODE_PRIVATE).getInt("secondaryCoordinates", 4)+1); form.addView(secondary);
+    secondary.setSelection(Math.max(0,Math.min(Coordinates.NAMES.length,getPreferences(MODE_PRIVATE).getInt("secondaryCoordinates",4)+1))); form.addView(secondary);
+    EditText secondaryCode=new EditText(this);secondaryCode.setHint("Код EPSG дополнительной системы");secondaryCode.setText(getPreferences(MODE_PRIVATE).getString("secondaryEPSG","EPSG:32637"));form.addView(secondaryCode);coordinateCodeField(secondary,secondaryCode,11);
+    DisplayUnits units=DisplayUnits.load(this);
+    Spinner distanceUnits=settingChoice(form,"Формат расстояния",DisplayUnits.DISTANCE,units.distanceMode),areaUnits=settingChoice(form,"Формат площади",DisplayUnits.AREA,units.areaMode),angleUnits=settingChoice(form,"Азимут",DisplayUnits.ANGLE,units.angleMode),slopeUnits=settingChoice(form,"Уклон",DisplayUnits.SLOPE,units.slopeMode),pressureUnits=settingChoice(form,"Давление",DisplayUnits.PRESSURE,units.pressureMode);
+    Spinner north=settingChoice(form,"Направление на север",new String[]{"Истинный (географический) север","Координатный север","Магнитный север"},getPreferences(MODE_PRIVATE).getInt("northReference",2));
     CheckBox labels = new CheckBox(this); labels.setText("Подписи объектов"); labels.setTextColor(0xffe4f2ff);
     labels.setChecked(getPreferences(MODE_PRIVATE).getBoolean("placemarkLabels", true)); form.addView(labels);
     CheckBox grid=new CheckBox(this);grid.setText("Координатная сетка");grid.setTextColor(0xffe4f2ff);grid.setChecked(gridEnabled);form.addView(grid);
@@ -1644,11 +1660,12 @@ public final class MainActivity extends Activity {
       public void onStartTrackingTouch(SeekBar bar){} public void onStopTrackingTouch(SeekBar bar){}
     });
     form.addView(compact("Применить", () -> {
-      getPreferences(MODE_PRIVATE).edit().putInt("primaryCoordinates", primary.getSelectedItemPosition())
+      try{if(primary.getSelectedItemPosition()==10)ProjectionMath.name(primaryCode.getText().toString());if(secondary.getSelectedItemPosition()==11)ProjectionMath.name(secondaryCode.getText().toString());}catch(Exception invalid){fileError(invalid.getMessage());return;}
+      getPreferences(MODE_PRIVATE).edit().putInt("distanceUnits",distanceUnits.getSelectedItemPosition()).putInt("areaUnits",areaUnits.getSelectedItemPosition()).putInt("angleUnits",angleUnits.getSelectedItemPosition()).putInt("slopeUnits",slopeUnits.getSelectedItemPosition()).putInt("pressureUnits",pressureUnits.getSelectedItemPosition()).putInt("northReference",north.getSelectedItemPosition()).putString("primaryEPSG",primaryCode.getText().toString().trim()).putString("secondaryEPSG",secondaryCode.getText().toString().trim()).putInt("primaryCoordinates", primary.getSelectedItemPosition())
           .putInt("secondaryCoordinates", secondary.getSelectedItemPosition()-1).putBoolean("placemarkLabels", labels.isChecked())
           .putBoolean("keepScreenOn", screen.isChecked()).putInt("markerSize", marker.getProgress()+16).putInt("lineWidth", line.getProgress()+1).apply();
       gridEnabled=grid.isChecked();map.showGrid(gridEnabled);getPreferences(MODE_PRIVATE).edit().putBoolean("coordinateGrid",gridEnabled).apply();
-      applySettings(); settingsDialog.dismiss();
+      applySettings();updateCompass();if(drawing!=null)drawing.updateUnits(); settingsDialog.dismiss();
     }));
     form.addView(compact("Закрыть", () -> settingsDialog.dismiss()));
     ScrollView scroll = new ScrollView(this); scroll.addView(form); showPanel(settingsDialog, scroll, dp(360), false);
