@@ -197,6 +197,28 @@ public class NativeMapRegressionTest {
     device.executeShellCommand("screencap -p /data/local/tmp/rabochaya-screens/" + name + ".png");
   }
 
+  @Test @androidx.test.filters.SdkSuppress(minSdkVersion=30)
+  public void timestampPlaybackSurvivesRotationAndNeverChangesImportedTrack() throws Exception {
+    android.content.Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();context.deleteDatabase("warrior2.db");context.getSharedPreferences("MainActivity",0).edit().clear().putBoolean("mapOnline",false).putInt("primaryCoordinates",5).putInt("distanceUnits",2).putInt("angleUnits",6).commit();
+    final long id;final String original;
+    try(ru.warriorrus.app.data.ObjectStore store=new ru.warriorrus.app.data.ObjectStore(context)){
+      ru.warriorrus.app.data.MapItem item=new ru.warriorrus.app.data.MapItem();item.name="Synthetic timed track";item.kind="track";item.latitude=55.75;item.longitude=37.62;item.visible=true;item.opacity=1;item.color=0xff3da5ff;
+      item.segments.add(java.util.Arrays.asList(new ru.warriorrus.app.data.Vertex(55.75,37.62,100.0,"2024-01-01T00:00:00Z"),new ru.warriorrus.app.data.Vertex(55.76,37.64,120.0,"2024-01-01T00:02:00Z")));id=store.save(item);original=ru.warriorrus.app.geometry.Geometry.encode(item.segments);
+    }
+    device.executeShellCommand("mkdir -p /data/local/tmp/rabochaya-screens");
+    try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
+      click(By.desc("Метки"));click(By.desc("Контроль времени"));
+      scenario.onActivity(a->{android.widget.SeekBar seek=a.getWindow().getDecorView().findViewWithTag("timelineSeek");assertNotNull(seek);android.os.Bundle args=new android.os.Bundle();args.putFloat(android.view.accessibility.AccessibilityNodeInfo.ACTION_ARGUMENT_PROGRESS_VALUE,5000);assertTrue(seek.performAccessibilityAction(android.view.accessibility.AccessibilityNodeInfo.AccessibilityAction.ACTION_SET_PROGRESS.getId(),args));});device.waitForIdle();
+      for(int orientation=0;orientation<2;orientation++){
+        if(orientation==0)device.setOrientationNatural();else device.setOrientationLeft();device.waitForIdle();
+        scenario.onActivity(a->{try{java.lang.reflect.Field field=MainActivity.class.getDeclaredField("timeline");field.setAccessible(true);ru.warriorrus.app.geometry.TimelineController time=(ru.warriorrus.app.geometry.TimelineController)field.get(a);assertTrue(time.model.active);assertEquals(5000,time.model.progress());assertWithinSafeArea(a,a.getWindow().getDecorView().findViewWithTag("timelineControls"));try(ru.warriorrus.app.data.ObjectStore store=new ru.warriorrus.app.data.ObjectStore(a)){assertEquals(original,ru.warriorrus.app.geometry.Geometry.encode(store.get(id).segments));assertEquals(37.63,time.model.head(store.get(id)).longitude,1e-6);}}catch(ReflectiveOperationException e){throw new AssertionError(e);}});
+        capture(orientation==0?"time-portrait":"time-landscape");
+      }
+      device.pressBack();device.waitForIdle();scenario.onActivity(a->assertNull(a.getWindow().getDecorView().findViewWithTag("timelineControls")));
+      try(ru.warriorrus.app.data.ObjectStore store=new ru.warriorrus.app.data.ObjectStore(context)){assertEquals(original,ru.warriorrus.app.geometry.Geometry.encode(store.get(id).segments));}
+    }finally{device.setOrientationNatural();device.unfreezeRotation();}
+  }
+
   @android.annotation.TargetApi(30)
   private void assertWithinSafeArea(MainActivity activity, View view) {
     assertNotNull(view);

@@ -36,6 +36,7 @@ public final class MainActivity extends Activity {
   private Dialog explorerDialog;
   private TextView coordinates, coordinateSystem, coordinateAdditional;
   private DrawingController drawing;
+  private TimelineController timeline;
   private MapTools mapTools;
   private Dialog settingsDialog;
   private static final int IMPORT_FILE = 701, EXPORT_FILE = 702, ATTACH_FILE = 703, IMPORT_MAP = 704, EXPORT_MAP = 705;
@@ -68,7 +69,8 @@ public final class MainActivity extends Activity {
             long next = map.iconRevision();
             if (next != iconRevision) {
               iconRevision = next;
-              map.refresh(store);
+              if(timeline!=null)timeline.refreshBounds();
+    map.refresh(store);
             }
             iconHandler.postDelayed(this, 3000);
           }
@@ -480,6 +482,8 @@ public final class MainActivity extends Activity {
     root.requestApplyInsets();
     drawing = new DrawingController(this, root, map, item -> { store.save(item); refresh(); });
     mapTools=new MapTools(this,map.view,root);
+    timeline=new TimelineController(this,root,map,()->store.renderItems());
+    timeline.restore(state);
     if (state != null) {
       drawing.restore(state);
       exportRasterPath=state.getString("exportRasterPath","");
@@ -691,13 +695,15 @@ public final class MainActivity extends Activity {
 
   private void mapToolsMenu(GeoPoint point){sheet("Инструменты",new String[]{"Измерить","Проекция точки по расстоянию и азимуту","Удалить измерения",mapTools.hasTarget()?"Убрать цель":"Задать цель","Перейти к цели"},n->{
     Vertex origin=new Vertex(point.getLatitude(),point.getLongitude());
-    if(n==0){if(drawing.active()){fileError("Сначала завершите рисунок");return;}mapTools.start(origin);}
+    if(n==0){if(drawing.active()){fileError("Сначала завершите рисунок");return;}timeline.close();mapTools.start(origin);}
     else if(n==1)projectPoint(origin);else if(n==2)new AlertDialog.Builder(this).setTitle("Удалить все измерения?").setPositiveButton("Удалить",(d,w)->mapTools.clear()).setNegativeButton("Отмена",null).show();
     else if(n==3)mapTools.target(mapTools.hasTarget()?null:origin);else mapTools.jumpTarget();
   });}
   private void projectPoint(Vertex origin){
-    LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);EditText distance=new EditText(this),bearing=new EditText(this);distance.setHint("Расстояние, метры");bearing.setHint("Азимут, градусы от севера");distance.setInputType(8194);bearing.setInputType(12290);form.addView(distance);form.addView(bearing);
-    AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Проекция точки").setView(form).setPositiveButton("Создать метку",null).setNegativeButton("Отмена",null).create();dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try{Vertex destination=Geometry.project(origin,Double.parseDouble(bearing.getText().toString().replace(',','.')),Double.parseDouble(distance.getText().toString().replace(',','.')));dialog.dismiss();edit(null,new GeoPoint(destination.latitude,destination.longitude));}catch(Exception error){distance.setError("Введите расстояние и азимут числами");}}));dialog.show();
+    DisplayUnits units=DisplayUnits.load(this);
+    LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);EditText distance=new EditText(this),bearing=new EditText(this);distance.setHint("Расстояние");bearing.setHint("Азимут, "+units.angleUnit());distance.setInputType(8194);bearing.setInputType(12290);form.addView(distance);
+    Spinner distanceUnit=new Spinner(this);String[] names={"Метры","Километры","Футы","Ярды","Мили","Морские мили"};double[] factors={1,1000,.3048,.9144,1609.344,1852};ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,names);adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);distanceUnit.setAdapter(adapter);distanceUnit.setSelection(units.distanceMode>=8||units.distanceMode==3?5:units.distanceMode>=2?2:0);form.addView(distanceUnit);form.addView(bearing);
+    AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Проекция точки").setView(form).setPositiveButton("Создать метку",null).setNegativeButton("Отмена",null).create();dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try{Vertex destination=Geometry.project(origin,units.degrees(Double.parseDouble(bearing.getText().toString().replace(',','.'))),Double.parseDouble(distance.getText().toString().replace(',','.'))*factors[distanceUnit.getSelectedItemPosition()]);dialog.dismiss();edit(null,new GeoPoint(destination.latitude,destination.longitude));}catch(Exception error){distance.setError("Введите расстояние и азимут числами");}}));dialog.show();
   }
 
   private void mapsMenu() {
@@ -763,11 +769,13 @@ public final class MainActivity extends Activity {
     marksDialog=new Dialog(this);LinearLayout panel=featurePanel("Метки",marksDialog);
     panel.addView(compact("Проводник меток",()->{marksDialog.dismiss();openExplorer(false);}));
     if(!store.renderItems().isEmpty())panel.addView(compact("Отображаемые метки",()->{marksDialog.dismiss();openExplorer(true);}));
+    if(timeline.available())panel.addView(compact("Контроль времени",()->{marksDialog.dismiss();openTimeline();}));
     panel.addView(compact("Создать метку",()->{marksDialog.dismiss();createPlacemark();}));
     panel.addView(compact("Поиск местоположения",()->{marksDialog.dismiss();searchMap();}));
     panel.addView(compact("Опции",()->{marksDialog.dismiss();placemarkOptions();}));
     showFeature(marksDialog,panel);
   }
+  private void openTimeline(){if(drawing.active()||mapTools.measuring){fileError("Сначала завершите рисунок или измерение");return;}if(!timeline.open())fileError("Нет отображаемых меток со временем в файле");}
   private LinearLayout featurePanel(String title,Dialog dialog) {
     LinearLayout panel=new LinearLayout(this);panel.setOrientation(LinearLayout.VERTICAL);panel.setPadding(dp(12),dp(8),dp(12),dp(8));panel.setBackground(plate());
     LinearLayout header=new LinearLayout(this);header.addView(hudText(title,18),new LinearLayout.LayoutParams(0,-2,1));header.addView(compact("×",dialog::dismiss),new LinearLayout.LayoutParams(dp(48),dp(48)));panel.addView(header);return panel;
@@ -1290,7 +1298,7 @@ public final class MainActivity extends Activity {
   private void edit(MapItem item, GeoPoint point) {
     if (item != null && item.isGeometry()) {
       if (explorerDialog != null) explorerDialog.dismiss();
-      drawing.start(item, item.kind, item.parent, null); return;
+      timeline.close();drawing.start(item, item.kind, item.parent, null); return;
     }
     LinearLayout form = new LinearLayout(this);
     form.setOrientation(LinearLayout.VERTICAL);
@@ -1602,6 +1610,7 @@ public final class MainActivity extends Activity {
   private void startDrawing(String kind, GeoPoint point) {
     if (explorerDialog != null) explorerDialog.dismiss();
     if(mapTools!=null&&mapTools.measuring){fileError("Сначала закройте измерение");return;}
+    if(timeline!=null)timeline.close();
     drawing.start(null, kind, explorer.folder, point);
   }
 
@@ -1792,6 +1801,7 @@ public final class MainActivity extends Activity {
 
   @Override public void onBackPressed() {
     if (drawing != null && drawing.active()) { drawing.confirmCancel(); return; }
+    if(timeline!=null&&timeline.model.active){timeline.close();return;}
     super.onBackPressed();
   }
 
@@ -1800,6 +1810,7 @@ public final class MainActivity extends Activity {
     super.onSaveInstanceState(state);
     state.putLong("folder", explorer.folder);
     if (drawing != null) drawing.saveState(state);
+    if(timeline!=null)timeline.saveState(state);
     state.putString("exportRasterPath",exportRasterPath);
     state.putLong("attachmentObject",attachmentObject);
     state.putString("exportFormat", exportFormat);
@@ -1826,6 +1837,7 @@ public final class MainActivity extends Activity {
 
   @Override
   protected void onPause() {
+    if(timeline!=null)timeline.pause();
     iconHandler.removeCallbacksAndMessages(null);
     if(compassController!=null)compassController.stop();
     if (map != null) map.view.onPause();
@@ -1834,6 +1846,7 @@ public final class MainActivity extends Activity {
 
   @Override
   protected void onDestroy() {
+    if(timeline!=null)timeline.pause();
     iconHandler.removeCallbacksAndMessages(null);
     for(Dialog panel:openPanels)if(panel.isShowing())panel.dismiss();
     openPanels.clear();

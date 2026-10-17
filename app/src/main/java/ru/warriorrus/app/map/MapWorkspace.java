@@ -22,6 +22,10 @@ public final class MapWorkspace {
   public java.util.function.Consumer<GeoPoint> onMapTap;
   private final java.util.List<org.osmdroid.views.overlay.Overlay> geometryOverlays = new java.util.ArrayList<>();
   private ru.warriorrus.app.icons.IconLibrary icons;
+  public ru.warriorrus.app.geometry.TimelineModel timeline;
+  private final java.util.List<MapItem> snapshot=new java.util.ArrayList<>();
+  private final java.util.Map<Long,Float> opacities=new java.util.HashMap<>();
+  private final java.util.Map<String,android.graphics.drawable.Drawable.ConstantState> renderedCache=new java.util.HashMap<>();
 
   public MapWorkspace(Activity activity, Consumer<GeoPoint> create) {
     this.activity = activity;
@@ -66,6 +70,9 @@ public final class MapWorkspace {
   }
 
   public void refresh(ObjectStore store) {
+    snapshot.clear();snapshot.addAll(store.renderItems());opacities.clear();for(MapItem i:snapshot)opacities.put(i.id,store.effectiveOpacity(i));renderedCache.clear();redraw();
+  }
+  public void redraw() {
     // Android's desugared removeIf may use iterator.remove(), which is unsupported
     // by the CopyOnWriteArrayList returned by osmdroid. Remove by value instead.
     for (org.osmdroid.views.overlay.Overlay overlay : new java.util.ArrayList<>(view.getOverlays()))
@@ -75,18 +82,17 @@ public final class MapWorkspace {
       }
     for (org.osmdroid.views.overlay.Overlay overlay : geometryOverlays) view.getOverlays().remove(overlay);
     geometryOverlays.clear();
-    java.util.Map<String, android.graphics.drawable.Drawable.ConstantState> renderedCache =
-        new java.util.HashMap<>();
-    for (MapItem i : store.renderItems())
+    for (MapItem original : snapshot) {
+      MapItem i=timeline==null?original:timeline.view(original);if(i==null)continue;
       if (!i.isFolder()) {
-        float opacity = store.effectiveOpacity(i);
+        float opacity = opacities.getOrDefault(i.id,1f);
         if (opacity == 0) continue;
-        if (i.isGeometry()) { drawGeometry(i, opacity); continue; }
+        if (i.isGeometry()) { drawGeometry(i, opacity,original); if(timeline!=null&&timeline.active&&timeline.showHeads){Vertex head=timeline.head(original);if(head!=null)drawTimeHead(original,head,opacity);}continue; }
         Marker m = new NamedMarker(view, opacity, labelsVisible);
         m.setOnMarkerClickListener(
             (marker, mapView) -> {
               if (onPointClick != null) {
-                onPointClick.accept(i);
+                onPointClick.accept(original);
                 return true;
               }
               return false;
@@ -130,6 +136,7 @@ public final class MapWorkspace {
         m.setIcon(rendered);
         view.getOverlays().add(m);
       }
+    }
     view.invalidate();
   }
 
@@ -137,7 +144,7 @@ public final class MapWorkspace {
     java.util.List<GeoPoint> result=new java.util.ArrayList<>();
     for (Vertex v:vertices)result.add(new GeoPoint(v.latitude,v.longitude));return result;
   }
-  private void drawGeometry(MapItem item,float opacity) {
+  private void drawGeometry(MapItem item,float opacity,MapItem original) {
     if(item.segments.isEmpty())return;
     int color=(item.color&0x00ffffff)|(Math.round(android.graphics.Color.alpha(item.color)*opacity)<<24);
     if("area".equals(item.kind)) {
@@ -147,22 +154,27 @@ public final class MapWorkspace {
       for(int n=1;n<item.segments.size();n++)holes.add(points(item.segments.get(n)));polygon.setHoles(holes);
       polygon.getOutlinePaint().setColor(color);polygon.getOutlinePaint().setStrokeWidth(lineWidth*activity.getResources().getDisplayMetrics().density);
       polygon.getFillPaint().setColor((color&0x00ffffff)|(Math.round(android.graphics.Color.alpha(color)*0.2f)<<24));
-      polygon.setOnClickListener((shape,mapView,p)->{if(onPointClick!=null)onPointClick.accept(item);return true;});
+      polygon.setOnClickListener((shape,mapView,p)->{if(onPointClick!=null)onPointClick.accept(original);return true;});
       geometryOverlays.add(polygon);view.getOverlays().add(polygon);
     } else for(java.util.List<Vertex> segment:item.segments) {
       org.osmdroid.views.overlay.Polyline line=new org.osmdroid.views.overlay.Polyline(view);
       line.setPoints(points(segment));line.getOutlinePaint().setColor(color);
       line.getOutlinePaint().setStrokeWidth(lineWidth*activity.getResources().getDisplayMetrics().density);
-      line.setOnClickListener((shape,mapView,p)->{if(onPointClick!=null)onPointClick.accept(item);return true;});
+      line.setOnClickListener((shape,mapView,p)->{if(onPointClick!=null)onPointClick.accept(original);return true;});
       geometryOverlays.add(line);view.getOverlays().add(line);
     }
     if(labelsVisible) {
       NamedMarker name=new NamedMarker(view,opacity,true);
       name.setPosition(new GeoPoint(item.latitude,item.longitude));name.setTitle(item.name);
       android.graphics.drawable.ColorDrawable transparent=new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT);
-      name.setIcon(transparent);name.setOnMarkerClickListener((m,v)->{if(onPointClick!=null)onPointClick.accept(item);return true;});
+      name.setIcon(transparent);name.setOnMarkerClickListener((m,v)->{if(onPointClick!=null)onPointClick.accept(original);return true;});
       geometryOverlays.add(name);view.getOverlays().add(name);
     }
+  }
+
+  private void drawTimeHead(MapItem original,Vertex vertex,float opacity){
+    Marker marker=new NamedMarker(view,opacity,false);marker.setPosition(new GeoPoint(vertex.latitude,vertex.longitude));marker.setTitle("По времени файла · "+original.name);marker.setSnippet(vertex.time);marker.setAnchor(.5f,.5f);
+    GradientDrawable dot=new GradientDrawable();dot.setShape(GradientDrawable.OVAL);dot.setColor(0xffffb84d);dot.setStroke(2,Color.WHITE);int size=Math.round(14*activity.getResources().getDisplayMetrics().density);dot.setSize(size,size);dot.setAlpha(Math.round(opacity*255));marker.setIcon(dot);marker.setOnMarkerClickListener((m,v)->{if(onPointClick!=null)onPointClick.accept(original);return true;});geometryOverlays.add(marker);view.getOverlays().add(marker);
   }
 
   public void showGrid(boolean enabled) {
