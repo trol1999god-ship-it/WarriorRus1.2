@@ -51,7 +51,7 @@ public class IconsActivityTest {
           pkg.requestedPermissions == null
               ? Collections.emptySet()
               : new HashSet<>(Arrays.asList(pkg.requestedPermissions));
-      assertEquals(Collections.singleton("android.permission.INTERNET"), permissions);
+      assertEquals(new HashSet<>(Arrays.asList("android.permission.INTERNET","android.permission.FOREGROUND_SERVICE","android.permission.FOREGROUND_SERVICE_DATA_SYNC")), permissions);
       find(a.getWindow().getDecorView(), "Встроенные 🔒").performClick();
       assertNotNull(find(a.getWindow().getDecorView(), "🔒 pin"));
       find(a.getWindow().getDecorView(), "Пользовательские").performClick();

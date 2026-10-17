@@ -28,39 +28,13 @@ public class WorkspaceTest {
         Robolectric.buildActivity(MainActivity.class).setup()) {
       MainActivity a = c.get();
       assertNull(find(a.getWindow().getDecorView(), "Warrior Explorer"));
-      find(a.getWindow().getDecorView(), "Метки").performClick();
-      android.app.AlertDialog marks =
-          org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
-      marks
-          .getListView()
-          .performItemClick(
-              marks.getListView().getAdapter().getView(0, null, marks.getListView()), 0, 0);
+      find(a.getWindow().getDecorView(), "Объекты").performLongClick();
       android.app.Dialog explorerDialog = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       View explorerView = explorerDialog.getWindow().getDecorView();
-      assertNotNull(find(explorerView, "Warrior Explorer"));
-      find(explorerView, "Операции").performClick();
-      android.widget.PopupMenu operations =
-          org.robolectric.shadows.ShadowPopupMenu.getLatestPopupMenu();
-      operations.getMenu().performIdentifierAction(0, 0);
-      View button = find(explorerView, "Операции");
-      assertNotNull(button);
+      assertNotNull(find(explorerView,"Локальные метки"));
+      desc(explorerView,"Создать объект").performClick();android.widget.PopupMenu menu=org.robolectric.shadows.ShadowPopupMenu.getLatestPopupMenu();menu.getMenu().performIdentifierAction(5,0);
+      org.robolectric.shadows.ShadowLooper.idleMainLooper();android.app.AlertDialog dialog=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();assertTrue(dialog.isShowing());EditText name=(EditText)findEdit(dialog.getWindow().getDecorView());name.setText("Operations");dialog.getButton(-1).performClick();try(ObjectStore store=new ObjectStore(a)){assertEquals("Operations",store.all().get(0).name);}find(explorerView,"Operations").performClick();assertNotNull(find(explorerView,"Operations"));find(explorerView,"Operations").performClick();assertNotNull(find(explorerView,"Мои метки"));
 
-      org.robolectric.shadows.ShadowLooper.idleMainLooper();
-      android.app.AlertDialog dialog =
-          org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
-      assertTrue(dialog.isShowing());
-      EditText name = (EditText) findEdit(dialog.getWindow().getDecorView());
-      assertNotNull(name);
-      name.setText("Operations");
-      dialog.getButton(-1).performClick();
-      try (ObjectStore s = new ObjectStore(a)) {
-        assertEquals("Operations", s.all().get(0).name);
-      }
-      assertNotNull(find(explorerView, "Warrior Explorer"));
-      find(explorerView, "📁 Operations").performClick();
-      assertNotNull(find(explorerView, "› Operations"));
-      find(explorerView, "Warrior").performClick();
-      assertNotNull(find(explorerView, "📁 Operations"));
     }
   }
 
@@ -76,7 +50,7 @@ public class WorkspaceTest {
       assertEquals(1, markers(map));
       store.edit(p, "Moved", 30, 40);
       map.refresh(store);
-      Marker marker = (Marker) map.view.getOverlays().get(1);
+      Marker marker=(Marker)map.view.getOverlays().stream().filter(o->o instanceof Marker).findFirst().get();
       assertEquals(new GeoPoint(30.0, 40.0), marker.getPosition());
       store.style(java.util.Collections.singleton(f), false, null, null);
       map.refresh(store);
@@ -94,7 +68,9 @@ public class WorkspaceTest {
     return count;
   }
 
+  private View desc(View v,String value){if(value.equals(v.getContentDescription()))return v;if(v instanceof ViewGroup)for(int n=0;n<((ViewGroup)v).getChildCount();n++){View found=desc(((ViewGroup)v).getChildAt(n),value);if(found!=null)return found;}return null;}
   private View find(View v, String text) {
+    if (text.equals(v.getTag())) return v;
     if (v instanceof TextView && ((TextView) v).getText().toString().equals(text)) return v;
     if (v instanceof ViewGroup) {
       ViewGroup g = (ViewGroup) v;

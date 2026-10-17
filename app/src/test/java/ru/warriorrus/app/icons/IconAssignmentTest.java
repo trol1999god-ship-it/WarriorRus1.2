@@ -62,7 +62,8 @@ public class IconAssignmentTest {
       MapWorkspace map = new MapWorkspace(activity.get(), p -> {});
       map.view.setUseDataConnection(false);
       map.refresh(store);
-      assertEquals(2, map.view.getOverlays().size());
+      assertEquals(1,map.view.getOverlays().stream().filter(o->o instanceof org.osmdroid.views.overlay.Marker).count());
+      assertNotNull(((org.osmdroid.views.overlay.Marker)map.view.getOverlays().stream().filter(o->o instanceof org.osmdroid.views.overlay.Marker).findFirst().get()).getIcon());
       assertNotNull(store.get(id));
       assertEquals("missing.svg", store.get(id).icon);
       map.view.onDetach();
@@ -87,6 +88,6 @@ public class IconAssignmentTest {
     store = new ObjectStore(context);
     assertEquals("Existing", store.get(7).name);
     assertEquals("builtin:pin", store.get(7).icon);
-    assertEquals(2, store.getReadableDatabase().getVersion());
+    assertEquals(4, store.getReadableDatabase().getVersion());
   }
 }

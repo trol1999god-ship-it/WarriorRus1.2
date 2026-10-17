@@ -12,9 +12,15 @@ public final class NamedMarker extends Marker {
   private final Point pixel = new Point();
   private final float gap;
   private final MapView map;
+  private final boolean showLabel;
 
   public NamedMarker(MapView map, float alpha) {
+    this(map, alpha, true);
+  }
+
+  public NamedMarker(MapView map, float alpha, boolean showLabel) {
     super(map);
+    this.showLabel = showLabel;
     this.map = map;
     gap = 18 * map.getResources().getDisplayMetrics().density;
     text.setTextSize(13 * map.getResources().getDisplayMetrics().scaledDensity);
@@ -30,7 +36,7 @@ public final class NamedMarker extends Marker {
   @Override
   public void draw(Canvas c, MapView map, boolean shadow) {
     super.draw(c, map, shadow);
-    if (shadow) return;
+    if (shadow || !showLabel) return;
     map.getProjection().toPixels(getPosition(), pixel);
     c.drawText(getTitle(), pixel.x + gap, pixel.y + text.getTextSize() / 3, outline);
     c.drawText(getTitle(), pixel.x + gap, pixel.y + text.getTextSize() / 3, text);
@@ -39,6 +45,7 @@ public final class NamedMarker extends Marker {
   @Override
   public boolean hitTest(MotionEvent event, MapView map) {
     if (super.hitTest(event, map)) return true;
+    if (!showLabel) return false;
     map.getProjection().toPixels(getPosition(), pixel);
     return event.getX() >= pixel.x + gap
         && event.getX() <= pixel.x + gap + text.measureText(getTitle())

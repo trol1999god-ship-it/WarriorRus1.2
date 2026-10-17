@@ -12,6 +12,8 @@ public final class ExplorerController {
   public long folder;
   public String query = "";
   public boolean alphabetical;
+  public long fromDate, toDate;
+  public boolean descriptions;
 
   public ExplorerController(ObjectStore store) {
     this.store = store;
@@ -30,18 +32,20 @@ public final class ExplorerController {
     return !clipboard.isEmpty();
   }
 
-  public void paste() {
-    store.transfer(clipboard, folder, !cut);
-    if (cut) clipboard.clear();
-    selected.clear();
-  }
+  public List<Long> clipboardIds(){return new ArrayList<>(clipboard);}
+  public boolean isCut(){return cut;}
+  public void restoreClipboard(Collection<Long> ids,boolean cut){clipboard=new ArrayList<>();for(long id:ids)if(store.get(id)!=null)clipboard.add(id);this.cut=cut;}
+  public void clearClipboard(){clipboard.clear();}
+  public void paste(){paste(new ArrayList<>(clipboard));}
+  public void paste(Collection<Long> ids){if(!clipboard.containsAll(ids))throw new IllegalArgumentException("Объект отсутствует в буфере");store.transfer(ids,folder,!cut);if(cut)clipboard.removeAll(ids);selected.clear();}
+
 
   public List<MapItem> entries() {
     List<MapItem> result = new ArrayList<>();
     for (MapItem i : store.all())
-      if (query.isEmpty()
-          ? i.parent == folder
-          : i.name.toLowerCase(Locale.ROOT).contains(query.toLowerCase(Locale.ROOT))) result.add(i);
+      if ((query.isEmpty() && fromDate==0 && toDate==0 ? i.parent==folder
+          : (i.name+(descriptions?" "+i.description:"")).toLowerCase(Locale.ROOT).contains(query.toLowerCase(Locale.ROOT)))
+          && (fromDate==0 || i.created>=fromDate) && (toDate==0 || (i.created>0 && i.created<toDate))) result.add(i);
     if (alphabetical)
       result.sort(
           Comparator.comparing((MapItem i) -> !i.isFolder())
@@ -61,7 +65,7 @@ public final class ExplorerController {
     List<String> names = new ArrayList<>();
     for (MapItem i = store.get(folder); i != null; i = store.get(i.parent)) names.add(i.name);
     Collections.reverse(names);
-    StringBuilder path = new StringBuilder("Warrior");
+    StringBuilder path = new StringBuilder("Рабочая карта");
     for (String name : names) path.append(" / ").append(name);
     return path.toString();
   }
