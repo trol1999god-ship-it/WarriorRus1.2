@@ -159,6 +159,35 @@ public class NativeMapRegressionTest {
     }
   }
 
+  @Test public void localMediaKmzHistoryAndOfflineRasterOnRealAndroid() throws Exception {
+    android.content.Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();context.deleteDatabase("warrior2.db");
+    context.getSharedPreferences("MainActivity",0).edit().clear().putBoolean("mapOnline",false).commit();
+    android.graphics.Bitmap image=android.graphics.Bitmap.createBitmap(256,256,android.graphics.Bitmap.Config.ARGB_8888);image.eraseColor(0xff1565c0);
+    java.io.ByteArrayOutputStream data=new java.io.ByteArrayOutputStream();image.compress(android.graphics.Bitmap.CompressFormat.PNG,100,data);image.recycle();byte[] png=data.toByteArray();
+    long original;String mediaKey;
+    try(ru.warriorrus.app.data.ObjectStore store=new ru.warriorrus.app.data.ObjectStore(context)){
+      original=store.create(0,"Photo point","point",55,37);ru.warriorrus.app.data.MapItem item=store.get(original);item.description="Local photo and note";
+      ru.warriorrus.app.data.Attachment photo=new ru.warriorrus.app.media.LocalMedia(context).add(new java.io.ByteArrayInputStream(png),"Photo.png","image/png");mediaKey=photo.key;item.attachments.add(photo);store.save(item);
+      java.io.ByteArrayOutputStream kmz=new java.io.ByteArrayOutputStream();ru.warriorrus.app.exchange.BundleExchange.write(context,store.all(),kmz,"kmz");
+      boolean icon=false;try(java.util.zip.ZipInputStream zip=new java.util.zip.ZipInputStream(new java.io.ByteArrayInputStream(kmz.toByteArray()))){java.util.zip.ZipEntry entry;while((entry=zip.getNextEntry())!=null)if(entry.getName().endsWith(".png")&&entry.getName().startsWith("icons/")){byte[] bytes=ru.warriorrus.app.exchange.PlacemarkFiles.bounded(zip,1024*1024);android.graphics.Bitmap rendered=android.graphics.BitmapFactory.decodeByteArray(bytes,0,bytes.length);assertNotNull(rendered);rendered.recycle();icon=true;}}assertTrue(icon);
+      java.util.List<ru.warriorrus.app.data.MapItem> back=ru.warriorrus.app.exchange.BundleExchange.read(context,new java.io.ByteArrayInputStream(kmz.toByteArray()));assertEquals(1,back.size());assertEquals("Local photo and note",back.get(0).description);assertEquals(1,back.get(0).attachments.size());
+      store.importItems(back,0);store.delete(java.util.Collections.singleton(original));assertNull(store.get(original));
+    }
+    try(ru.warriorrus.app.data.ObjectStore store=new ru.warriorrus.app.data.ObjectStore(context)){assertTrue(store.canUndo());store.undo();assertNotNull(store.get(original));assertTrue(new ru.warriorrus.app.media.LocalMedia(context).resolve(mediaKey).isFile());}
+    java.io.File dir=new java.io.File(context.getFilesDir(),"maps");dir.mkdirs();java.io.File file=new java.io.File(dir,"native-"+java.util.UUID.randomUUID()+".mbtiles");
+    try(android.database.sqlite.SQLiteDatabase db=android.database.sqlite.SQLiteDatabase.openOrCreateDatabase(file,null)){
+      ru.warriorrus.app.map.RasterMaps.createMbtiles(db,"Blue offline test");android.content.ContentValues tile=new android.content.ContentValues();tile.put("zoom_level",0);tile.put("tile_column",0);tile.put("tile_row",0);tile.put("tile_data",png);db.insertOrThrow("tiles",null,tile);
+    }
+    try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
+      scenario.onActivity(activity->{try{java.lang.reflect.Field field=MainActivity.class.getDeclaredField("catalog");field.setAccessible(true);ru.warriorrus.app.map.MapCatalog catalog=(ru.warriorrus.app.map.MapCatalog)field.get(activity);catalog.find("osm").visible=false;catalog.addOffline(file,"Blue offline test",0,0);catalog.save();catalog.updateAppearance();MapView map=(MapView)type(activity.getWindow().getDecorView(),MapView.class);map.getController().setCenter(new org.osmdroid.util.GeoPoint(0,0));map.getController().setZoom(0.0);map.invalidate();assertFalse(map.useDataConnection());}catch(Exception error){throw new AssertionError(error);}});
+      boolean[] visible={false};
+      for(int attempt=0;attempt<40&&!visible[0];attempt++){
+        android.os.SystemClock.sleep(200);scenario.onActivity(activity->{MapView map=(MapView)type(activity.getWindow().getDecorView(),MapView.class);android.graphics.Bitmap rendered=android.graphics.Bitmap.createBitmap(map.getWidth(),map.getHeight(),android.graphics.Bitmap.Config.ARGB_8888);map.draw(new android.graphics.Canvas(rendered));visible[0]=rendered.getPixel(map.getWidth()/2+30,map.getHeight()/2)==0xff1565c0;rendered.recycle();});
+      }
+      assertTrue("Imported MBTiles must render actual raster pixels offline",visible[0]);capture("offline-mbtiles");
+    }
+  }
+
   private void capture(String name) throws Exception {
     device.executeShellCommand("screencap -p /data/local/tmp/rabochaya-screens/" + name + ".png");
   }

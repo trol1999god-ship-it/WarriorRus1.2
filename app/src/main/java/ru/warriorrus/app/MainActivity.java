@@ -34,6 +34,7 @@ public final class MainActivity extends Activity {
   private Dialog explorerDialog;
   private TextView coordinates, coordinateSystem, coordinateAdditional;
   private DrawingController drawing;
+  private MapTools mapTools;
   private Dialog settingsDialog;
   private static final int IMPORT_FILE = 701, EXPORT_FILE = 702, ATTACH_FILE = 703, IMPORT_MAP = 704, EXPORT_MAP = 705;
   private MapCatalog catalog;
@@ -475,6 +476,7 @@ public final class MainActivity extends Activity {
     setContentView(root);
     root.requestApplyInsets();
     drawing = new DrawingController(this, root, map, item -> { store.save(item); refresh(); });
+    mapTools=new MapTools(this,map.view,root);
     if (state != null) {
       drawing.restore(state);
       exportRasterPath=state.getString("exportRasterPath","");
@@ -660,7 +662,7 @@ public final class MainActivity extends Activity {
     new AlertDialog.Builder(this)
         .setTitle("Точка на карте: " + location)
         .setItems(
-            new String[] {"Создать метку", "Скопировать координаты", "Создать маршрут", "Нарисовать линию", "Создать область", "Поиск по координатам / названию", "Импорт объектов"},
+            new String[] {"Создать метку", "Скопировать координаты", "Создать маршрут", "Нарисовать линию", "Создать область", "Поиск по координатам / названию", "Импорт объектов", "Задать цель", "Инструменты…"},
             (dialog, which) -> {
               if (which == 0) edit(null, point);
               else if (which >= 2) {
@@ -668,7 +670,9 @@ public final class MainActivity extends Activity {
                 else if (which == 3) startDrawing("path", point);
                 else if (which == 4) startDrawing("area", point);
                 else if (which == 5) searchMap();
-                else importFile();
+                else if(which==6)importFile();
+                else if(which==7)mapTools.target(new Vertex(point.getLatitude(),point.getLongitude()));
+                else mapToolsMenu(point);
               } else {
                 android.content.ClipboardManager clipboard =
                     (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
@@ -679,6 +683,17 @@ public final class MainActivity extends Activity {
             })
         .setNegativeButton("Отмена", null)
         .show();
+  }
+
+  private void mapToolsMenu(GeoPoint point){sheet("Инструменты",new String[]{"Измерить","Проекция точки по расстоянию и азимуту","Удалить измерения",mapTools.hasTarget()?"Убрать цель":"Задать цель","Перейти к цели"},n->{
+    Vertex origin=new Vertex(point.getLatitude(),point.getLongitude());
+    if(n==0){if(drawing.active()){fileError("Сначала завершите рисунок");return;}mapTools.start(origin);}
+    else if(n==1)projectPoint(origin);else if(n==2)new AlertDialog.Builder(this).setTitle("Удалить все измерения?").setPositiveButton("Удалить",(d,w)->mapTools.clear()).setNegativeButton("Отмена",null).show();
+    else if(n==3)mapTools.target(mapTools.hasTarget()?null:origin);else mapTools.jumpTarget();
+  });}
+  private void projectPoint(Vertex origin){
+    LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);EditText distance=new EditText(this),bearing=new EditText(this);distance.setHint("Расстояние, метры");bearing.setHint("Азимут, градусы от севера");distance.setInputType(8194);bearing.setInputType(12290);form.addView(distance);form.addView(bearing);
+    AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Проекция точки").setView(form).setPositiveButton("Создать метку",null).setNegativeButton("Отмена",null).create();dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try{Vertex destination=Geometry.project(origin,Double.parseDouble(bearing.getText().toString().replace(',','.')),Double.parseDouble(distance.getText().toString().replace(',','.')));dialog.dismiss();edit(null,new GeoPoint(destination.latitude,destination.longitude));}catch(Exception error){distance.setError("Введите расстояние и азимут числами");}}));dialog.show();
   }
 
   private void mapsMenu() {
@@ -758,6 +773,7 @@ public final class MainActivity extends Activity {
   private void placemarkOptions(){
     Dialog dialog=new Dialog(this);LinearLayout panel=featurePanel("Опции меток",dialog);
     CheckBox labels=new CheckBox(this);labels.setText("Подписи меток");labels.setTextColor(0xffe4f2ff);labels.setChecked(map.labelsVisible);labels.setOnCheckedChangeListener((v,on)->{getPreferences(MODE_PRIVATE).edit().putBoolean("placemarkLabels",on).apply();applySettings();});panel.addView(labels);
+    for(String key:new String[]{"targetLine","targetInfo"}){CheckBox option=new CheckBox(this);option.setText("targetLine".equals(key)?"Линия к цели":"Информация о цели");option.setTextColor(0xffe4f2ff);option.setChecked(getPreferences(MODE_PRIVATE).getBoolean(key,true));option.setOnCheckedChangeListener((v,on)->{getPreferences(MODE_PRIVATE).edit().putBoolean(key,on).apply();mapTools.update();});panel.addView(option);}
     panel.addView(compact("Значки",()->{dialog.dismiss();openIcons();}));panel.addView(compact("Размер значков и толщина линий",()->{dialog.dismiss();settingsMenu();}));showFeature(dialog,panel);
   }
   private void orientationMenu(){
@@ -879,6 +895,7 @@ public final class MainActivity extends Activity {
     coordinates.setText(Coordinates.format(primary, lat, lon));
     coordinateAdditional.setVisibility(secondary < 0 ? View.GONE : View.VISIBLE);
     coordinateAdditional.setText(secondary < 0 ? "" : Coordinates.format(secondary, lat, lon));
+    if(mapTools!=null)mapTools.update();
   }
 
   private void searchMap() {
@@ -1578,6 +1595,7 @@ public final class MainActivity extends Activity {
 
   private void startDrawing(String kind, GeoPoint point) {
     if (explorerDialog != null) explorerDialog.dismiss();
+    if(mapTools!=null&&mapTools.measuring){fileError("Сначала закройте измерение");return;}
     drawing.start(null, kind, explorer.folder, point);
   }
 

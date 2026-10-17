@@ -50,6 +50,17 @@ public final class Geometry {
     double h=Math.sin(p/2)*Math.sin(p/2)+Math.cos(Math.toRadians(a.latitude))*Math.cos(Math.toRadians(b.latitude))*Math.sin(l/2)*Math.sin(l/2);
     return 2*R*Math.asin(Math.sqrt(Math.max(0,Math.min(1,h))));
   }
+  public static double bearing(Vertex a,Vertex b) {
+    double p=Math.toRadians(a.latitude),q=Math.toRadians(b.latitude),d=Math.toRadians(b.longitude-a.longitude);
+    return (Math.toDegrees(Math.atan2(Math.sin(d)*Math.cos(q),Math.cos(p)*Math.sin(q)-Math.sin(p)*Math.cos(q)*Math.cos(d)))+360)%360;
+  }
+  public static Vertex project(Vertex from,double bearing,double meters) {
+    if(Double.isNaN(meters)||Double.isInfinite(meters)||meters<0||Double.isNaN(bearing)||Double.isInfinite(bearing))throw new IllegalArgumentException("Неверное расстояние или азимут");
+    double d=meters/R,b=Math.toRadians(bearing),p=Math.toRadians(from.latitude),l=Math.toRadians(from.longitude);
+    double q=Math.asin(Math.max(-1,Math.min(1,Math.sin(p)*Math.cos(d)+Math.cos(p)*Math.sin(d)*Math.cos(b))));
+    double lon=l+Math.atan2(Math.sin(b)*Math.sin(d)*Math.cos(p),Math.cos(d)-Math.sin(p)*Math.sin(q));
+    return new Vertex(Math.toDegrees(q),(Math.toDegrees(lon)+540)%360-180);
+  }
   public static double length(MapItem i) {
     double total=0; for(List<Vertex> s:i.segments) {
       for(int n=1;n<s.size();n++) total+=distance(s.get(n-1),s.get(n));
