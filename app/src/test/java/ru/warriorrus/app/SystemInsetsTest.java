@@ -17,7 +17,7 @@ public class SystemInsetsTest {
   @Test public void bottomNavigationAndSideNavigationBoundTheWholePanel() {
     LinearLayout panel = new LinearLayout(RuntimeEnvironment.getApplication());
     SafePanelHost host = new SafePanelHost(panel.getContext(), panel, 640, true);
-    int gap = (int) (8 * panel.getResources().getDisplayMetrics().density);
+    int gap = 0; // Full-screen lists meet the safe rectangle without floating-panel margins.
     WindowInsets insets;
     if (Build.VERSION.SDK_INT >= 30) {
       insets = new WindowInsets.Builder().setInsets(WindowInsets.Type.systemBars(),
@@ -51,7 +51,7 @@ public class SystemInsetsTest {
         .setInsets(WindowInsets.Type.ime(), android.graphics.Insets.of(0, 0, 0, 250))
         .setVisible(WindowInsets.Type.systemBars() | WindowInsets.Type.displayCutout() | WindowInsets.Type.ime(), true).build();
     host.dispatchApplyWindowInsets(insets);
-    int gap = (int) (8 * panel.getResources().getDisplayMetrics().density);
+    int gap = 0; // Full-screen lists meet the safe rectangle without floating-panel margins.
     assertEquals(40 + gap, host.getPaddingTop());
     assertEquals(30 + gap, host.getPaddingLeft());
     assertEquals(250 + gap, host.getPaddingBottom());

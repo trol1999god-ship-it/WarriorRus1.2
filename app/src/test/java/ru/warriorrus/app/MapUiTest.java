@@ -144,13 +144,14 @@ public class MapUiTest {
       openLayers(root);
       Dialog layers = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       View layerRoot = layers.getWindow().getDecorView();
-      assertNotNull(find(layerRoot, "Слои карт"));
+      assertNotNull(find(layerRoot,"Карты на экране"));
       assertNull(find(layerRoot, "● Point 1"));
-      Switch visible = (Switch) find(layerRoot, "OpenStreetMap");
+      Switch visible=(Switch)described(layerRoot,"Видимость OpenStreetMap");
       visible.setChecked(false);
       assertFalse(map.getOverlayManager().getTilesOverlay().isEnabled());
-      SeekBar opacity = (SeekBar) findType(layerRoot, SeekBar.class);
-      opacity.setProgress(40);
+      described(layerRoot,"Опции карты OpenStreetMap").performClick();android.app.AlertDialog actions=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();item(actions,4);Dialog opacityDialog=org.robolectric.shadows.ShadowDialog.getLatestDialog();
+      SeekBar opacity=(SeekBar)findType(opacityDialog.getWindow().getDecorView(),SeekBar.class);
+      opacity.setProgress(40);find(opacityDialog.getWindow().getDecorView(),"Закрыть").performClick();
       assertEquals(2, map.getOverlays().stream().filter(o -> o instanceof org.osmdroid.views.overlay.Marker).count());
     }
     try (ActivityController<MainActivity> c = Robolectric.buildActivity(MainActivity.class).setup();
@@ -161,7 +162,7 @@ public class MapUiTest {
       assertFalse(map.getOverlayManager().getTilesOverlay().isEnabled());
       openLayers(c.get().getWindow().getDecorView());
       Dialog layers = org.robolectric.shadows.ShadowDialog.getLatestDialog();
-      assertNotNull(find(layers.getWindow().getDecorView(), "Непрозрачность: 40%"));
+      assertNotNull(find(layers.getWindow().getDecorView(),"40 % непрозрачн."));
     }
   }
 

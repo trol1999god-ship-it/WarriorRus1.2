@@ -70,7 +70,7 @@ public class WorkspaceTest {
       assertEquals(1, markers(map));
       store.edit(p, "Moved", 30, 40);
       map.refresh(store);
-      Marker marker = (Marker) map.view.getOverlays().get(1);
+      Marker marker=(Marker)map.view.getOverlays().stream().filter(o->o instanceof Marker).findFirst().get();
       assertEquals(new GeoPoint(30.0, 40.0), marker.getPosition());
       store.style(java.util.Collections.singleton(f), false, null, null);
       map.refresh(store);
