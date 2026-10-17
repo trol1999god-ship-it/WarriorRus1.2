@@ -123,7 +123,7 @@ public final class MainActivity extends Activity {
       map.view.getController().setZoom(state.getDouble("mapZoom", 5));
     }
     FrameLayout root = new FrameLayout(this);
-    root.setBackgroundColor(0xfff3f5f9);
+    root.setBackgroundColor(0xff071b2c);
     root.addView(map.view, new FrameLayout.LayoutParams(-1, -1));
     coordinatesCollapsed = getPreferences(MODE_PRIVATE).getBoolean("coordinatesCollapsed", false);
     mapLayerVisible = getPreferences(MODE_PRIVATE).getBoolean("mapLayerVisible", true);
