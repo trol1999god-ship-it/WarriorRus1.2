@@ -28,7 +28,7 @@ public final class TimelineController {
   public void pause(){playing=false;handler.removeCallbacks(step);if(play!=null)play.setText("Воспроизвести");}
   private Button button(String title,Runnable action){Button b=new Button(activity);b.setText(title);b.setTextColor(0xffe4f2ff);b.setAllCaps(false);b.setTextSize(12);b.setMinHeight(dp(48));b.setOnClickListener(v->action.run());return b;}
   private void show(){if(panel!=null)host.removeView(panel);
-    panel=new ScrollView(activity){@Override protected void onMeasure(int w,int h){int limit=Math.min(dp(270),Math.max(dp(48),host.getHeight()-dp(140)));super.onMeasure(w,MeasureSpec.makeMeasureSpec(limit,MeasureSpec.AT_MOST));}};
+    panel=new ScrollView(activity){@Override protected void onMeasure(int w,int h){int available=MeasureSpec.getMode(h)==MeasureSpec.UNSPECIFIED?host.getHeight()-dp(64):MeasureSpec.getSize(h);int limit=Math.min(dp(270),Math.max(dp(48),available-dp(76)));super.onMeasure(w,MeasureSpec.makeMeasureSpec(limit,MeasureSpec.AT_MOST));}};
     panel.setTag("timelineControls");GradientDrawable background=new GradientDrawable();background.setColor(0xf20b2335);background.setCornerRadius(dp(12));background.setStroke(dp(1),0xff297ab6);panel.setBackground(background);
     LinearLayout body=new LinearLayout(activity);body.setOrientation(LinearLayout.VERTICAL);body.setPadding(dp(8),dp(4),dp(8),dp(4));panel.addView(body);
     caption=new TextView(activity);caption.setTextColor(0xffe4f2ff);caption.setTextSize(12);body.addView(caption);
