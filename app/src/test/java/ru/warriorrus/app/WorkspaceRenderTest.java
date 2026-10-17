@@ -27,6 +27,12 @@ public class WorkspaceRenderTest {
 
   private void render(String name, int width, int height) throws Exception {
     RuntimeEnvironment.getApplication().getSharedPreferences("MainActivity", 0).edit().clear().commit();
+    RuntimeEnvironment.getApplication().deleteDatabase("warrior2.db");
+    try (ru.warriorrus.app.data.ObjectStore store = new ru.warriorrus.app.data.ObjectStore(RuntimeEnvironment.getApplication())) {
+      store.create(0, "Полевой выход", "folder", 0, 0);
+      store.create(0, "Точка 1", "point", 55.75, 37.62);
+      store.create(0, "Точка 2", "point", 55.76, 37.63);
+    }
     try (ActivityController<MainActivity> controller = Robolectric.buildActivity(MainActivity.class).setup().visible()) {
       View root = controller.get().getWindow().getDecorView();
       org.osmdroid.views.MapView map = (org.osmdroid.views.MapView) type(root, org.osmdroid.views.MapView.class);
@@ -40,6 +46,14 @@ public class WorkspaceRenderTest {
       Dialog layers = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       snapshot(layers.getWindow().getDecorView(), name + "-layers", Math.min(360, width - 16), 250);
       layers.dismiss();
+      root.findViewWithTag("Карты").performClick();
+      Dialog maps = org.robolectric.shadows.ShadowDialog.getLatestDialog();
+      snapshot(maps.getWindow().getDecorView(), name + "-maps", Math.min(360, width - 16), 300);
+      maps.dismiss();
+      root.findViewWithTag("Объекты").performClick();
+      Dialog objects = org.robolectric.shadows.ShadowDialog.getLatestDialog();
+      snapshot(objects.getWindow().getDecorView(), name + "-objects", Math.min(640, width - 16), height - 24);
+      objects.dismiss();
     }
   }
 

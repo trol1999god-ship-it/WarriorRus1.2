@@ -36,10 +36,11 @@ public class MapUiTest {
       assertEquals(-1, map.getLayoutParams().height);
       assertNull(find(a.getWindow().getDecorView(), "Warrior Explorer"));
       find(a.getWindow().getDecorView(), "Объекты").performClick();
-      AlertDialog d = org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
-      assertEquals(5, d.getListView().getAdapter().getCount());
-      assertEquals("Метки на экране", d.getListView().getAdapter().getItem(4));
-      d.dismiss();
+      Dialog objects = org.robolectric.shadows.ShadowDialog.getLatestDialog();
+      assertNotNull(find(objects.getWindow().getDecorView(), "Объекты карты"));
+      assertNotNull(objects.getWindow().getDecorView().findViewWithTag("filter:point"));
+      objects.dismiss();
+      AlertDialog d;
       find(a.getWindow().getDecorView(), "Меню").performClick();
       Dialog menu = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       find(menu.getWindow().getDecorView(), "Настройки").performClick();
@@ -69,10 +70,9 @@ public class MapUiTest {
     try (ActivityController<MainActivity> c =
         Robolectric.buildActivity(MainActivity.class).setup()) {
       find(c.get().getWindow().getDecorView(), "Объекты").performClick();
-      item(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog(), 0);
       Dialog explorer = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       find(explorer.getWindow().getDecorView(), "Вид").performClick();
-      assertNotNull(find(explorer.getWindow().getDecorView(), "● Existing\n55.70000, 37.60000"));
+      assertNotNull(find(explorer.getWindow().getDecorView(), "Existing\n55.70000, 37.60000"));
     }
     try (ActivityController<MainActivity> c =
             Robolectric.buildActivity(MainActivity.class).setup();
@@ -105,8 +105,8 @@ public class MapUiTest {
       assertEquals("", objects.getText().toString());
       assertNotNull(objects.getCompoundDrawablesRelative()[1]);
       objects.performClick();
-      assertTrue(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog().isShowing());
-      org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog().dismiss();
+      assertTrue(org.robolectric.shadows.ShadowDialog.getLatestDialog().isShowing());
+      org.robolectric.shadows.ShadowDialog.getLatestDialog().dismiss();
       described(root, "Свернуть или раскрыть координаты").performClick();
       assertEquals(View.GONE, root.findViewWithTag("coordinateDetails").getVisibility());
     }
@@ -155,6 +155,64 @@ public class MapUiTest {
       find(c.get().getWindow().getDecorView(), "Слои").performClick();
       Dialog layers = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       assertNotNull(find(layers.getWindow().getDecorView(), "Непрозрачность: 40%"));
+    }
+  }
+
+  @Test
+  public void objectFiltersSearchAndCutPasteUseRealFolders() {
+    long folder, point;
+    try (ObjectStore store = new ObjectStore(RuntimeEnvironment.getApplication())) {
+      folder = store.create(0, "Trip", "folder", 0, 0);
+      point = store.create(0, "Alpha", "point", 10, 20);
+      store.create(folder, "Beta", "point", 11, 21);
+    }
+    try (ActivityController<MainActivity> c = Robolectric.buildActivity(MainActivity.class).setup()) {
+      View root = c.get().getWindow().getDecorView();
+      root.findViewWithTag("Объекты").performClick();
+      Dialog dialog = org.robolectric.shadows.ShadowDialog.getLatestDialog();
+      View objects = dialog.getWindow().getDecorView();
+      objects.findViewWithTag("filter:point").performClick();
+      assertNull(described(objects, "Выбрать Trip"));
+      assertNotNull(described(objects, "Выбрать Alpha"));
+      EditText search = (EditText) findType(objects, EditText.class);
+      search.setText("Beta");
+      assertNotNull(described(objects, "Выбрать Beta"));
+      assertNull(described(objects, "Выбрать Alpha"));
+      search.setText("");
+      objects.findViewWithTag("filter:all").performClick();
+      described(objects, "Выбрать Alpha").performClick();
+      find(objects, "Операции").performClick();
+      org.robolectric.shadows.ShadowPopupMenu.getLatestPopupMenu().getMenu().performIdentifierAction(4, 0);
+      described(objects, "Папка Trip").performClick();
+      find(objects, "Операции").performClick();
+      org.robolectric.shadows.ShadowPopupMenu.getLatestPopupMenu().getMenu().performIdentifierAction(5, 0);
+      assertNotNull(described(objects, "Выбрать Alpha"));
+    }
+    try (ObjectStore store = new ObjectStore(RuntimeEnvironment.getApplication())) {
+      assertEquals(folder, store.get(point).parent);
+      assertEquals(3, store.all().size());
+      assertNotNull(store.get(point).icon);
+    }
+  }
+
+  @Test
+  public void offlineMapModeSurvivesRestart() {
+    try (ActivityController<MainActivity> c = Robolectric.buildActivity(MainActivity.class).setup()) {
+      View root = c.get().getWindow().getDecorView();
+      root.findViewWithTag("Карты").performClick();
+      Dialog maps = org.robolectric.shadows.ShadowDialog.getLatestDialog();
+      find(maps.getWindow().getDecorView(), "Офлайн").performClick();
+      org.osmdroid.views.MapView map = (org.osmdroid.views.MapView) findType(root, org.osmdroid.views.MapView.class);
+      assertFalse(map.useDataConnection());
+    }
+    try (ActivityController<MainActivity> c = Robolectric.buildActivity(MainActivity.class).setup()) {
+      View root = c.get().getWindow().getDecorView();
+      org.osmdroid.views.MapView map = (org.osmdroid.views.MapView) findType(root, org.osmdroid.views.MapView.class);
+      assertFalse(map.useDataConnection());
+      root.findViewWithTag("Карты").performClick();
+      Dialog maps = org.robolectric.shadows.ShadowDialog.getLatestDialog();
+      find(maps.getWindow().getDecorView(), "Онлайн").performClick();
+      assertTrue(map.useDataConnection());
     }
   }
 
