@@ -48,6 +48,7 @@ public final class MainActivity extends Activity {
   private long selectedPoint;
   private boolean coordinatesCollapsed, mapLayerVisible, rightCollapsed;
   private int mapLayerOpacity;
+  private final List<Dialog> openPanels=new ArrayList<>();
   private Dialog menuDialog, layersDialog, mapsDialog, marksDialog, orientationDialog, compassDialog;
   private CompassController compassController;
   private CompassDial compassDial, mapCompass;
@@ -539,6 +540,7 @@ public final class MainActivity extends Activity {
 
   private void showPanel(Dialog dialog, View panel, int width, boolean fillHeight) {
     if (panel.getParent() instanceof ViewGroup) ((ViewGroup) panel.getParent()).removeView(panel);
+    if(!openPanels.contains(dialog))openPanels.add(dialog);
     SafePanelHost host = new SafePanelHost(this, panel, width, fillHeight);
     host.setOnClickListener(v -> dialog.dismiss());
     dialog.setContentView(host);
@@ -881,7 +883,6 @@ public final class MainActivity extends Activity {
     android.content.Intent intent =
         new android.content.Intent(this, ru.warriorrus.app.icons.IconsActivity.class);
     intent.putExtra(ru.warriorrus.app.icons.IconsActivity.POINT_IDS, selectedIds);
-    store.clearUndo();
     startActivity(intent);
   }
 
@@ -1817,6 +1818,8 @@ public final class MainActivity extends Activity {
   @Override
   protected void onDestroy() {
     iconHandler.removeCallbacksAndMessages(null);
+    for(Dialog panel:openPanels)if(panel.isShowing())panel.dismiss();
+    openPanels.clear();
     if(marksDialog!=null)marksDialog.dismiss();
     if(orientationDialog!=null)orientationDialog.dismiss();
     if(compassDialog!=null)compassDialog.dismiss();

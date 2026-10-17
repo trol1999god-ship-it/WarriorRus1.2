@@ -48,5 +48,10 @@ public class MediaHistoryTest {
     try{media.add(new ByteArrayInputStream(new byte[]{1}),"bad","application/pdf");fail();}catch(IOException expected){}
     assertTrue(store.all().isEmpty());
   }
+  @Test public void movingIconFolderUpdatesTrashAndPersistentUndo(){
+    long id=point("Icon");store.assignIcon(Collections.singleton(id),"old/a.svg",0xff123456);store.delete(Collections.singleton(id));
+    store.relocateIcons(Collections.singletonMap("old","new"));store.restoreTrash(Collections.singleton(id));assertEquals("new/a.svg",store.get(id).icon);
+    store.undo();assertNull(store.get(id));store.undo();assertEquals("new/a.svg",store.get(id).icon);
+  }
   private byte[] bytes(File f)throws Exception{try(InputStream in=new FileInputStream(f)){return PlacemarkFiles.bounded(in,1024);}}
 }
