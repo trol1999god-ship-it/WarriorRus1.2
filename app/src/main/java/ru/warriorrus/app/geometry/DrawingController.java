@@ -12,6 +12,8 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.overlay.*;
 import ru.warriorrus.app.data.*;
 import ru.warriorrus.app.map.MapWorkspace;
+import ru.warriorrus.app.EditorPanel;
+import ru.warriorrus.app.settings.Coordinates;
 
 /** Explicit manual drawing; the red focus is the only source for added coordinates. */
 public final class DrawingController {
@@ -20,10 +22,24 @@ public final class DrawingController {
   private final MapWorkspace map;
   private final Consumer<MapItem> save;
   private final List<Overlay> preview=new ArrayList<>();
-  private LinearLayout controls;
-  private TextView caption;
+  private EditorPanel controls;
+  private Button drawButton;
+  private boolean drawing, resumeSegment;
   private MapItem draft;
   private int activeSegment;
+  private final Overlay vertexOverlay=new Overlay(){
+    private final android.graphics.Paint paint=new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+    @Override public void draw(android.graphics.Canvas canvas,org.osmdroid.views.MapView view,boolean shadow){
+      if(shadow||draft==null||drawing)return;
+      android.graphics.Point pixel=new android.graphics.Point();
+      for(List<Vertex> line:draft.segments){int step=Math.max(1,line.size()/2000);for(int n=0;n<line.size();n+=step){Vertex point=line.get(n);view.getProjection().toPixels(new GeoPoint(point.latitude,point.longitude),pixel);if(pixel.x<0||pixel.y<0||pixel.x>view.getWidth()||pixel.y>view.getHeight())continue;paint.setColor(Color.WHITE);canvas.drawCircle(pixel.x,pixel.y,dp(4),paint);paint.setColor(0xff178bdc);canvas.drawCircle(pixel.x,pixel.y,dp(2),paint);}}
+    }
+    @Override public boolean onSingleTapConfirmed(MotionEvent event,org.osmdroid.views.MapView view){
+      if(draft==null||drawing)return false;int[] nearest=null;double best=dp(24)*dp(24);android.graphics.Point pixel=new android.graphics.Point();
+      for(int s=0;s<draft.segments.size();s++)for(int n=0;n<draft.segments.get(s).size();n++){Vertex point=draft.segments.get(s).get(n);view.getProjection().toPixels(new GeoPoint(point.latitude,point.longitude),pixel);double dx=pixel.x-event.getX(),dy=pixel.y-event.getY(),distance=dx*dx+dy*dy;if(distance<best){best=distance;nearest=new int[]{s,n};}}
+      if(nearest==null)return false;activeSegment=nearest[0];vertexActions(nearest[0],nearest[1]);return true;
+    }
+  };
   public DrawingController(Activity activity,FrameLayout host,MapWorkspace map,Consumer<MapItem> save) {
     this.activity=activity;this.host=host;this.map=map;this.save=save;
   }
@@ -37,26 +53,51 @@ public final class DrawingController {
       d.visible=existing.visible;d.opacity=existing.opacity;d.color=existing.color;d.icon=existing.icon;
       d.segments.addAll(Geometry.decode(Geometry.encode(existing.segments)));
     } else {d.segments.add(new ArrayList<>());if(initial!=null)d.segments.get(0).add(new Vertex(initial.getLatitude(),initial.getLongitude()));}
-    draft=d;activeSegment=0;showControls();render();
+    if(d.segments.isEmpty())d.segments.add(new ArrayList<>());
+    draft=d;activeSegment=0;drawing=false;resumeSegment=false;showControls();render();
   }
   private int dp(int n){return Math.round(n*activity.getResources().getDisplayMetrics().density);}
-  private Button button(String text,Runnable action) {
-    Button b=new Button(activity);b.setText(text);b.setTextSize(12);b.setTextColor(0xffd9edf7);b.setMinHeight(dp(48));
-    GradientDrawable background=new GradientDrawable();background.setColor(0xff12344c);background.setCornerRadius(dp(6));background.setStroke(dp(1),0xff326b92);b.setBackground(background);
-    b.setContentDescription(text);b.setOnClickListener(v->action.run());return b;
-  }
   private void showControls() {
-    controls=new LinearLayout(activity);controls.setOrientation(LinearLayout.VERTICAL);controls.setTag("drawingControls");
-    GradientDrawable bg=new GradientDrawable();bg.setColor(0xf510293b);bg.setCornerRadius(dp(12));controls.setBackground(bg);
-    caption=new TextView(activity);caption.setTextColor(Color.WHITE);caption.setTextSize(12);caption.setPadding(dp(8),dp(4),dp(8),0);controls.addView(caption);
-    HorizontalScrollView scroll=new HorizontalScrollView(activity);LinearLayout row=new LinearLayout(activity);scroll.addView(row);controls.addView(scroll);
-    row.addView(button("+ Точка",()->add((GeoPoint)map.view.getMapCenter())));
-    row.addView(button("Назад",()->{List<Vertex> line=draft.segments.get(activeSegment);if(!line.isEmpty())line.remove(line.size()-1);render();}));
-    row.addView(button("Вершины",this::vertices));row.addView(button("Контуры",this::segments));row.addView(button("Сохранить",this::finish));row.addView(button("Отмена",this::confirmCancel));
-    FrameLayout.LayoutParams p=new FrameLayout.LayoutParams(-1,-2,Gravity.BOTTOM|Gravity.START);p.setMargins(dp(8),0,dp(8),dp(64));host.addView(controls,p);
+    controls=new EditorPanel(activity,host,"drawingControls","Создание метки",this::search,this::options,this::finish);
+    controls.closeAction(ru.warriorrus.app.R.drawable.ui_check,"Сохранить");
+    if(!"route".equals(draft.kind))drawButton=controls.action("□ Рисовать","Рисовать линию",this::toggleDrawing);
+    controls.action("+ Точка","+ Точка",()->add((GeoPoint)map.view.getMapCenter()));
+    controls.action("Удалить","Назад",this::removeLast);
+    controls.show();
   }
+  private void options(){new AlertDialog.Builder(activity).setTitle("Редактор метки").setItems(new String[]{"Вершины","Контуры / сегменты","Обратить направление","Отменить рисование"},(d,n)->{if(n==0)vertices();else if(n==1)segments();else if(n==2){Collections.reverse(draft.segments.get(activeSegment));render();}else confirmCancel();}).setNegativeButton("Закрыть",null).show();}
+  private void search(){
+    EditText input=new EditText(activity);input.setHint("Широта, долгота / UTM / MGRS / EPSG:код E N");
+    AlertDialog dialog=new AlertDialog.Builder(activity).setTitle("Поиск местоположения").setView(input).setPositiveButton("Показать",null).setNegativeButton("Отмена",null).create();
+    dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try{Vertex point=Coordinates.parse(input.getText().toString());pauseDrawing();map.view.getController().setCenter(new GeoPoint(point.latitude,point.longitude));dialog.dismiss();}catch(Exception error){input.setError(error.getMessage());}}));dialog.show();
+  }
+  public boolean isDrawing(){return drawing;}
+  private void pauseDrawing(){if(drawing){drawing=false;resumeSegment=!"area".equals(draft.kind);updateDrawButton();}}
+  public void toggleDrawing(){
+    if(!active()||"route".equals(draft.kind))return;
+    if(drawing){pauseDrawing();return;}
+    if(resumeSegment&&draft.segments.get(activeSegment).size()>1){
+      draft.segments.add(new ArrayList<>());activeSegment=draft.segments.size()-1;
+    }
+    resumeSegment=false;drawing=true;updateDrawButton();appendCenter(false);
+  }
+  private void updateDrawButton(){if(drawButton!=null){drawButton.setText(drawing?"☑ Рисовать":"□ Рисовать");drawButton.setContentDescription(drawing?"Приостановить рисование":"Рисовать линию");}}
+  /** Only map panning feeds the explicit draw mode; zoom and redraw do not add vertices. */
+  public void onMapMoved(){if(active()&&drawing)appendCenter(true);}
+  private void appendCenter(boolean sampled){
+    List<Vertex> line=draft.segments.get(activeSegment);Vertex next=new Vertex(map.view.getMapCenter().getLatitude(),map.view.getMapCenter().getLongitude());
+    if(!line.isEmpty()){
+      Vertex last=line.get(line.size()-1);double distance=Geometry.distance(last,next);
+      // A screen-space threshold bounds event density while keeping detail at every zoom.
+      double threshold=sampled?Math.max(.05,org.osmdroid.util.TileSystem.GroundResolution(next.latitude,map.view.getZoomLevelDouble())*dp(3)):.001;
+      if(distance<threshold)return;
+    }
+    if(Geometry.count(draft)>=100000){pauseDrawing();Toast.makeText(activity,"Достигнут предел: 100000 точек",Toast.LENGTH_LONG).show();return;}
+    line.add(next);render();
+  }
+  private void removeLast(){pauseDrawing();List<Vertex> line=draft.segments.get(activeSegment);if(!line.isEmpty())line.remove(line.size()-1);if(line.isEmpty()&&activeSegment>0){draft.segments.remove(activeSegment);activeSegment=Math.min(activeSegment-1,draft.segments.size()-1);}render();}
   public void add(GeoPoint point) {
-    if(draft==null)return;draft.segments.get(activeSegment).add(new Vertex(point.getLatitude(),point.getLongitude()));render();
+    if(draft==null)return;if(Geometry.count(draft)>=100000){Toast.makeText(activity,"Слишком много точек",Toast.LENGTH_LONG).show();return;}draft.segments.get(activeSegment).add(new Vertex(point.getLatitude(),point.getLongitude()));render();
   }
   private void segments() {
     if(draft==null)return;List<String> names=new ArrayList<>();
@@ -79,7 +120,8 @@ public final class DrawingController {
     new AlertDialog.Builder(activity).setTitle("Вершины · "+draft.typeName()).setItems(labels.toArray(new String[0]),(d,n)->vertexActions(indices.get(n)[0],indices.get(n)[1])).setNegativeButton("Закрыть",null).show();
   }
   private void vertexActions(int segment,int index) {
-    new AlertDialog.Builder(activity).setTitle("Вершина "+(index+1)).setItems(new String[]{"Изменить координаты","На карте","Вставить центр после","Удалить","Раньше","Позже","Обратить порядок контура"},(d,n)->{
+    pauseDrawing();
+    new AlertDialog.Builder(activity).setTitle("Вершина "+(index+1)).setItems(new String[]{"Изменить координаты","На карте","Вставить центр после","Удалить","Раньше","Позже","Обратить порядок контура","Перенести в центр карты","Разделить здесь"},(d,n)->{
       List<Vertex> line=draft.segments.get(segment);Vertex old=line.get(index);
       switch(n) {
         case 0:
@@ -93,10 +135,13 @@ public final class DrawingController {
         case 4:if(index>0)Collections.swap(line,index,index-1);break;
         case 5:if(index+1<line.size())Collections.swap(line,index,index+1);break;
         case 6:Collections.reverse(line);break;
+        case 7:line.set(index,new Vertex(map.view.getMapCenter().getLatitude(),map.view.getMapCenter().getLongitude(),old.elevation,old.time,old.name,old.description));break;
+        case 8:try{Geometry.split(draft,segment,index);activeSegment=segment+1;}catch(IllegalArgumentException error){Toast.makeText(activity,error.getMessage(),Toast.LENGTH_LONG).show();}break;
       }render();
     }).setNegativeButton("Закрыть",null).show();
   }
   private void finish() {
+    pauseDrawing();
     try{Geometry.validate(draft);}catch(Exception e){Toast.makeText(activity,e.getMessage(),Toast.LENGTH_LONG).show();return;}
     LinearLayout form=new LinearLayout(activity);form.setOrientation(LinearLayout.VERTICAL);EditText name=new EditText(activity),note=new EditText(activity);
     name.setHint("Название");name.setText(draft.name);note.setHint("Описание");note.setText(draft.description);form.addView(name);form.addView(note);
@@ -110,20 +155,23 @@ public final class DrawingController {
   public void confirmCancel() {
     if(!active())return;new AlertDialog.Builder(activity).setTitle("Отменить рисование?").setMessage("Несохранённые изменения будут удалены.").setPositiveButton("Отменить рисование",(d,w)->cancel()).setNegativeButton("Продолжить",null).show();
   }
-  public void cancel(){for(Overlay o:preview)map.view.getOverlays().remove(o);preview.clear();if(controls!=null)host.removeView(controls);controls=null;draft=null;map.view.invalidate();}
+  public void cancel(){for(Overlay o:preview)map.view.getOverlays().remove(o);preview.clear();map.view.getOverlays().remove(vertexOverlay);if(controls!=null)host.removeView(controls);controls=null;draft=null;drawing=false;drawButton=null;map.view.invalidate();}
   private void render() {
+    map.view.getOverlays().remove(vertexOverlay);
     for(Overlay o:preview)map.view.getOverlays().remove(o);preview.clear();
-    caption.setText(draft.typeName()+" · контур "+(activeSegment+1)+" · точек: "+Geometry.count(draft)+" · "+ru.warriorrus.app.settings.DisplayUnits.load(activity).distance(Geometry.length(draft)));
+    controls.title(draft.name==null||draft.name.isEmpty()?"Создание: "+draft.typeName():draft.name);
+    controls.summary(Geometry.summary(draft,ru.warriorrus.app.settings.DisplayUnits.load(activity))+"\nКонтур / сегмент: "+(activeSegment+1)+" из "+draft.segments.size());
     for(List<Vertex> segment:draft.segments) {
       List<GeoPoint> pts=new ArrayList<>();for(Vertex v:segment)pts.add(new GeoPoint(v.latitude,v.longitude));
       if("area".equals(draft.kind)&&pts.size()>2)pts.add(pts.get(0));
       Polyline line=new Polyline(map.view);line.setPoints(pts);line.getOutlinePaint().setColor(0xff37c1ff);line.getOutlinePaint().setStrokeWidth(dp(3));line.setOnClickListener((l,m,p)->false);preview.add(line);map.view.getOverlays().add(line);
-    }map.view.invalidate();
+    }map.view.getOverlays().add(vertexOverlay);map.view.invalidate();
   }
   public void saveState(Bundle state) {
+    if(active()){state.putString("draftIcon",draft.icon);state.putBoolean("draftDrawing",drawing);state.putBoolean("draftResumeSegment",resumeSegment);state.putBoolean("draftStatistics",controls.expanded());}
     if(!active())return;state.putInt("draftActive",activeSegment);state.putString("draftMedia",ObjectJson.attachments(draft.attachments));state.putLong("draftCreated",draft.created);state.putString("draftGeometry",Geometry.encode(draft.segments));state.putString("draftKind",draft.kind);state.putString("draftName",draft.name);state.putString("draftDescription",draft.description);state.putInt("draftPosition",draft.position);state.putLong("draftId",draft.id);state.putLong("draftParent",draft.parent);state.putInt("draftColor",draft.color);state.putBoolean("draftVisible",draft.visible);state.putFloat("draftOpacity",draft.opacity);
   }
   public void restore(Bundle state) {
-    if(state==null||!state.containsKey("draftGeometry"))return;MapItem d=new MapItem();d.attachments.addAll(ObjectJson.attachments(state.getString("draftMedia","[]")));d.created=state.getLong("draftCreated");d.kind=state.getString("draftKind");d.name=state.getString("draftName");d.description=state.getString("draftDescription");d.position=state.getInt("draftPosition");d.id=state.getLong("draftId");d.parent=state.getLong("draftParent");d.color=state.getInt("draftColor");d.visible=state.getBoolean("draftVisible");d.opacity=state.getFloat("draftOpacity");d.segments.addAll(Geometry.decode(state.getString("draftGeometry")));start(d,d.kind,d.parent,null);activeSegment=Math.min(state.getInt("draftActive",0),draft.segments.size()-1);render();
+    if(state==null||!state.containsKey("draftGeometry"))return;MapItem d=new MapItem();d.attachments.addAll(ObjectJson.attachments(state.getString("draftMedia","[]")));d.created=state.getLong("draftCreated");d.kind=state.getString("draftKind");d.name=state.getString("draftName");d.description=state.getString("draftDescription");d.position=state.getInt("draftPosition");d.id=state.getLong("draftId");d.parent=state.getLong("draftParent");d.color=state.getInt("draftColor");d.visible=state.getBoolean("draftVisible");d.opacity=state.getFloat("draftOpacity");d.icon=state.getString("draftIcon","builtin:pin");d.segments.addAll(Geometry.decode(state.getString("draftGeometry")));start(d,d.kind,d.parent,null);activeSegment=Math.max(0,Math.min(state.getInt("draftActive",0),draft.segments.size()-1));drawing=state.getBoolean("draftDrawing",false);resumeSegment=state.getBoolean("draftResumeSegment",false);controls.expanded(state.getBoolean("draftStatistics",false));updateDrawButton();render();
   }
 }

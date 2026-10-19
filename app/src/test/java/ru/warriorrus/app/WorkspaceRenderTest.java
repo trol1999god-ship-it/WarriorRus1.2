@@ -60,6 +60,16 @@ public class WorkspaceRenderTest {
       Dialog objects = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       snapshot(objects.getWindow().getDecorView(), name + "-objects", Math.min(640, width - 16), height - 24);
       objects.dismiss();
+      java.lang.reflect.Field drawingField=MainActivity.class.getDeclaredField("drawing");drawingField.setAccessible(true);
+      ru.warriorrus.app.geometry.DrawingController drawing=(ru.warriorrus.app.geometry.DrawingController)drawingField.get(controller.get());
+      drawing.start(null,"path",0,new org.osmdroid.util.GeoPoint(55.75,37.62));drawing.add(new org.osmdroid.util.GeoPoint(55.76,37.63));
+      EditorPanel editor=root.findViewWithTag("drawingControls");editor.expanded(true);
+      snapshot(root,name+"-drawing",width,height);drawing.cancel();
+      java.lang.reflect.Field toolsField=MainActivity.class.getDeclaredField("mapTools");toolsField.setAccessible(true);
+      ru.warriorrus.app.map.MapTools tools=(ru.warriorrus.app.map.MapTools)toolsField.get(controller.get());
+      tools.start(new ru.warriorrus.app.data.Vertex(55.75,37.62));
+      ((EditorPanel)root.findViewWithTag("measureControls")).expanded(true);
+      snapshot(root,name+"-measurement",width,height);tools.finish();
     }
   }
 

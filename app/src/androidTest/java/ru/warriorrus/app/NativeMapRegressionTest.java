@@ -92,6 +92,25 @@ public class NativeMapRegressionTest {
   }
 
   @Test @androidx.test.filters.SdkSuppress(minSdkVersion = 30)
+  public void drawModeStatisticsAndSaveRemainUsableAfterRotation() throws Exception {
+    android.content.Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
+    context.deleteDatabase("warrior2.db");context.getSharedPreferences("MainActivity",0).edit().clear().putBoolean("mapOnline",false).commit();
+    try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
+      click(By.desc("Действия в центре карты"));click(By.text("Новая метка…"));click(By.text("Линия"));
+      click(By.desc("Рисовать линию"));
+      device.swipe(device.getDisplayWidth()/2,device.getDisplayHeight()/3,device.getDisplayWidth()/2+100,device.getDisplayHeight()/3+50,25);device.waitForIdle();
+      click(By.desc("Приостановить рисование"));click(By.desc("Развернуть статистику"));
+      device.setOrientationLeft();device.waitForIdle();
+      scenario.onActivity(activity->{View panel=activity.getWindow().getDecorView().findViewWithTag("drawingControls");assertNotNull(panel);assertWithinSafeArea(activity,panel);assertWithinSafeArea(activity,described(panel,"Сохранить"));assertTrue(((EditorPanel)panel).expanded());});
+      capture("landscape-drawing-statistics");click(By.desc("Сохранить"));
+      UiObject2 name=device.wait(Until.findObject(By.clazz(EditText.class)),8000);assertNotNull(name);name.setText("Нарисованная линия");click(By.res("android:id/button1"));
+      assertTrue(device.wait(Until.gone(By.res("android:id/button1")),8000));
+      scenario.recreate();device.waitForIdle();
+      scenario.onActivity(activity->{try(ru.warriorrus.app.data.ObjectStore store=new ru.warriorrus.app.data.ObjectStore(activity)){assertEquals(1,store.all().size());assertTrue(ru.warriorrus.app.geometry.Geometry.count(store.all().get(0))>2);}});
+    }finally{device.setOrientationNatural();device.unfreezeRotation();}
+  }
+
+  @Test @androidx.test.filters.SdkSuppress(minSdkVersion = 30)
   public void systemNavigationDoesNotCoverPanelsOrAddButton() throws Exception {
     android.content.Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
     context.getSharedPreferences("MainActivity", 0).edit().clear().putBoolean("mapOnline", false).commit();
@@ -184,6 +203,7 @@ public class NativeMapRegressionTest {
   }
 
   private void capture(String name) throws Exception {
+    device.executeShellCommand("mkdir -p /data/local/tmp/rabochaya-screens");
     device.executeShellCommand("screencap -p /data/local/tmp/rabochaya-screens/" + name + ".png");
   }
 

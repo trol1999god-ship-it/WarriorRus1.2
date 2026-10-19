@@ -38,6 +38,16 @@ public final class Geometry {
     } catch (JSONException e) { throw new IllegalArgumentException("Не удалось прочитать геометрию", e); }
   }
   public static int count(MapItem i) { int n=0; for (List<Vertex> s : i.segments) n+=s.size(); return n; }
+  /** Split a linear segment at a shared vertex without losing vertex metadata or distance. */
+  public static void split(MapItem item,int segment,int index) {
+    if(!Arrays.asList("path","track").contains(item.kind))throw new IllegalArgumentException("Разделение доступно для линий и треков");
+    if(segment<0||segment>=item.segments.size())throw new IllegalArgumentException("Сегмент не найден");
+    List<Vertex> line=item.segments.get(segment);
+    if(index<=0||index>=line.size()-1)throw new IllegalArgumentException("Выберите внутреннюю точку сегмента");
+    List<Vertex> first=new ArrayList<>(line.subList(0,index+1));
+    List<Vertex> second=new ArrayList<>(line.subList(index,line.size()));
+    item.segments.set(segment,first);item.segments.add(segment+1,second);
+  }
   public static void validate(MapItem item) {
     if (!Arrays.asList("route", "path", "track", "area").contains(item.kind)) throw new IllegalArgumentException("Тип геометрии не поддерживается");
     if (item.segments.isEmpty()) throw new IllegalArgumentException("Добавьте точки");

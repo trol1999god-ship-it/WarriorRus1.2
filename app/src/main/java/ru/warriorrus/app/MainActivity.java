@@ -132,13 +132,7 @@ public final class MainActivity extends Activity {
     explorer = new ExplorerController(store);
     if(state!=null){explorer.folder=state.getLong("folder");selectionMode=state.getBoolean("explorerSelectionMode");long[] selected=state.getLongArray("explorerSelected");if(selected!=null)for(long id:selected)explorer.selected.add(id);List<Long> clipboard=new ArrayList<>();long[] copied=state.getLongArray("explorerClipboard");if(copied!=null)for(long id:copied)clipboard.add(id);explorer.restoreClipboard(clipboard,state.getBoolean("explorerCut"));}
     map = new MapWorkspace(this, this::longPressMap);
-    if (state != null) {
-      map.view
-          .getController()
-          .setCenter(
-              new GeoPoint(state.getDouble("mapLat", 55.75), state.getDouble("mapLon", 37.62)));
-      map.view.getController().setZoom(state.getDouble("mapZoom", 5));
-    }
+    MapViewport.restore(map.view,getPreferences(MODE_PRIVATE),state);
     FrameLayout root = new FrameLayout(this);mapRoot=root;
     root.setBackgroundColor(0xff071b2c);
     root.addView(map.view, new FrameLayout.LayoutParams(-1, -1));
@@ -231,6 +225,7 @@ public final class MainActivity extends Activity {
         new org.osmdroid.events.MapListener() {
           public boolean onScroll(org.osmdroid.events.ScrollEvent e) {
             selectedPoint = 0;
+            if(drawing!=null)drawing.onMapMoved();
             updateCoordinates();
             return false;
           }
@@ -452,7 +447,15 @@ public final class MainActivity extends Activity {
   private void longPressMap(GeoPoint point){if(drawing!=null&&drawing.active()){drawing.add(point);return;}int action=getPreferences(MODE_PRIVATE).getInt("longPressMap",0);if(action==1)edit(null,point);else if(action==2){android.content.ClipboardManager clipboard=(android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);clipboard.setPrimaryClip(ClipData.newPlainText("Координаты",Coordinates.format(getPreferences(MODE_PRIVATE).getInt("primaryCoordinates",0),point.getLatitude(),point.getLongitude(),getPreferences(MODE_PRIVATE).getString("primaryEPSG","EPSG:32637"))));}else if(action==0)mapContextMenu(point);}
   private void mapContextMenu(GeoPoint point){
     if(drawing!=null&&drawing.active()){drawing.add(point);return;}
-    AlertDialog dialog=new AlertDialog.Builder(this).create();LinearLayout panel=referenceUi.panel();referenceUi.row(panel,"Задать цель",R.drawable.ui_focus,()->{dialog.dismiss();mapTools.target(new Vertex(point.getLatitude(),point.getLongitude()));});
+    AlertDialog dialog=new AlertDialog.Builder(this).create();LinearLayout panel=referenceUi.panel();
+    LinearLayout targetRow=new LinearLayout(this);
+    Button targetAction=referenceUi.action(mapTools.hasTarget()?"Убрать цель":"Задать цель",()->{dialog.dismiss();mapTools.target(mapTools.hasTarget()?null:new Vertex(point.getLatitude(),point.getLongitude()));});
+    targetAction.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ui_focus,0,0,0);targetAction.setCompoundDrawablePadding(dp(10));targetRow.addView(targetAction,new LinearLayout.LayoutParams(0,dp(48),1));
+    if(mapTools.hasTarget()){
+      Button jump=referenceUi.action("↗",()->{dialog.dismiss();mapTools.jumpTarget();});jump.setContentDescription("Перейти к цели");targetRow.addView(jump,new LinearLayout.LayoutParams(dp(44),dp(48)));
+      Button replace=referenceUi.action("⊙",()->{dialog.dismiss();mapTools.target(new Vertex(point.getLatitude(),point.getLongitude()));});replace.setContentDescription("Заменить цель центром карты");targetRow.addView(replace,new LinearLayout.LayoutParams(dp(44),dp(48)));
+    }
+    panel.addView(targetRow);
     LinearLayout row=new LinearLayout(this);Button create=referenceUi.action("Новая метка…",()->{dialog.dismiss();createPlacemarkAt(point);});create.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ui_pin,0,0,0);create.setCompoundDrawablePadding(dp(10));row.addView(create,new LinearLayout.LayoutParams(0,dp(48),1));Button quick=referenceUi.action("!",()->{dialog.dismiss();edit(null,point);});quick.setContentDescription("Путевая точка");row.addView(quick,new LinearLayout.LayoutParams(dp(44),dp(48)));panel.addView(row);
     LinearLayout tools=new LinearLayout(this);tools.addView(referenceUi.action("Инструменты…",()->{dialog.dismiss();mapToolsMenu(point);}),new LinearLayout.LayoutParams(0,dp(48),1));Button info=referenceUi.action("i",()->{dialog.dismiss();new AlertDialog.Builder(this).setTitle("Местоположение").setMessage(Coordinates.format(getPreferences(MODE_PRIVATE).getInt("primaryCoordinates",0),point.getLatitude(),point.getLongitude(),getPreferences(MODE_PRIVATE).getString("primaryEPSG","EPSG:32637"))).setPositiveButton("Копировать",(d,w)->{android.content.ClipboardManager clipboard=(android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);clipboard.setPrimaryClip(ClipData.newPlainText("Координаты",Coordinates.format(getPreferences(MODE_PRIVATE).getInt("primaryCoordinates",0),point.getLatitude(),point.getLongitude(),getPreferences(MODE_PRIVATE).getString("primaryEPSG","EPSG:32637"))));}).setNegativeButton("Закрыть",null).show();});info.setContentDescription("Сведения о местоположении");tools.addView(info,new LinearLayout.LayoutParams(dp(44),dp(48)));panel.addView(tools);MapItem selected=store.get(selectedPoint);if(selected!=null){View gap=new View(this);panel.addView(gap,new LinearLayout.LayoutParams(-1,dp(4)));referenceUi.row(panel,selected.name,R.drawable.ui_pin,()->{dialog.dismiss();pointDetails(selected);});}dialog.setView(panel);dialog.show();
   }
@@ -1212,6 +1215,7 @@ public final class MainActivity extends Activity {
   @Override public void onBackPressed() {
     if(screen!=null&&screen.locked()){screen.lock(false);return;}
     if (drawing != null && drawing.active()) { drawing.confirmCancel(); return; }
+    if(mapTools!=null&&mapTools.measuring){mapTools.finish();return;}
     if(timeline!=null&&timeline.model.active){timeline.close();return;}
     requestExit();
   }
@@ -1222,6 +1226,7 @@ public final class MainActivity extends Activity {
     state.putLong("folder",explorer.folder);state.putBoolean("explorerSelectionMode",selectionMode);long[] selectedObjects=new long[explorer.selected.size()];int offset=0;for(long id:explorer.selected)selectedObjects[offset++]=id;state.putLongArray("explorerSelected",selectedObjects);List<Long> clipboardObjects=explorer.clipboardIds();long[] clipboardIds=new long[clipboardObjects.size()];for(int n=0;n<clipboardIds.length;n++)clipboardIds[n]=clipboardObjects.get(n);state.putLongArray("explorerClipboard",clipboardIds);state.putBoolean("explorerCut",explorer.isCut());
     if(screen!=null)screen.save(state);state.putString("screenshotPath",screenshotPath);
     if (drawing != null) drawing.saveState(state);
+    if(mapTools!=null)mapTools.saveState();
     if(timeline!=null)timeline.saveState(state);
     state.putString("exportRasterPath",exportRasterPath);
     state.putLong("attachmentObject",attachmentObject);
@@ -1233,6 +1238,7 @@ public final class MainActivity extends Activity {
     state.putDouble("mapLat", map.view.getMapCenter().getLatitude());
     state.putDouble("mapLon", map.view.getMapCenter().getLongitude());
     state.putDouble("mapZoom", map.view.getZoomLevelDouble());
+    state.putFloat("mapAngle",map.view.getMapOrientation());
   }
 
   @Override
@@ -1249,6 +1255,8 @@ public final class MainActivity extends Activity {
 
   @Override
   protected void onPause() {
+    if(map!=null)MapViewport.save(map.view,getPreferences(MODE_PRIVATE));
+    if(mapTools!=null)mapTools.saveState();
     if(timeline!=null)timeline.pause();
     iconHandler.removeCallbacksAndMessages(null);
     if(compassController!=null)compassController.stop();
