@@ -15,6 +15,7 @@ public final class EditorPanel extends LinearLayout {
   private final ScrollView details;
   private final Button statistics, closeButton;
   private boolean expanded;
+  private int detailsMaximum;
 
   public EditorPanel(Context context, FrameLayout host, String tag, String name,
       Runnable search, Runnable options, Runnable close) {
@@ -51,7 +52,11 @@ public final class EditorPanel extends LinearLayout {
     summary.setTextColor(ReferenceMenu.TEXT);
     summary.setTextSize(12);
     summary.setPadding(ui.dp(12), ui.dp(4), ui.dp(12), ui.dp(8));
-    details = new ScrollView(context);
+    details = new ScrollView(context){
+      @Override protected void onMeasure(int width,int height){
+        super.onMeasure(width,View.MeasureSpec.makeMeasureSpec(detailsMaximum,View.MeasureSpec.AT_MOST));
+      }
+    };
     details.addView(summary);
     details.setVisibility(GONE);
     addView(details, new LayoutParams(-1, -2));
@@ -104,8 +109,9 @@ public final class EditorPanel extends LinearLayout {
     // Preserve the map and toolbar even on short landscape windows or with a keyboard.
     int available = View.MeasureSpec.getMode(height) == View.MeasureSpec.UNSPECIFIED
         ? host.getHeight() : View.MeasureSpec.getSize(height);
-    int limit = Math.max(0, Math.min(ui.dp(300), available));
-    details.getLayoutParams().height = Math.max(0, limit - ui.dp(138));
+    int windowHeight=host.getHeight()>0?host.getHeight()-host.getPaddingTop()-host.getPaddingBottom():available+ui.dp(64);
+    int limit=Math.max(0,Math.min(available,Math.min(ui.dp(300),Math.max(ui.dp(138),(int)(windowHeight*.45f)))));
+    detailsMaximum=Math.max(0,limit-ui.dp(138));
     super.onMeasure(width, View.MeasureSpec.makeMeasureSpec(limit, View.MeasureSpec.AT_MOST));
   }
 }

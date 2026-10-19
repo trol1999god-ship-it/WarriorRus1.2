@@ -2,7 +2,6 @@ package ru.warriorrus.app.geometry;
 
 import android.app.*;
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
@@ -24,7 +23,7 @@ public final class DrawingController {
   private final List<Overlay> preview=new ArrayList<>();
   private EditorPanel controls;
   private Button drawButton;
-  private boolean drawing, resumeSegment;
+  private boolean drawing, resumeSegment, layoutReady;
   private MapItem draft;
   private int activeSegment;
   private final Overlay vertexOverlay=new Overlay(){
@@ -42,6 +41,8 @@ public final class DrawingController {
   };
   public DrawingController(Activity activity,FrameLayout host,MapWorkspace map,Consumer<MapItem> save) {
     this.activity=activity;this.host=host;this.map=map;this.save=save;
+    layoutReady=map.view.isLayoutOccurred();
+    if(!layoutReady)map.view.addOnFirstLayoutListener((v,l,t,r,b)->layoutReady=true);
   }
   public void updateUnits(){if(active())render();}
   public boolean active(){return draft!=null;}
@@ -72,7 +73,7 @@ public final class DrawingController {
     dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try{Vertex point=Coordinates.parse(input.getText().toString());pauseDrawing();map.view.getController().setCenter(new GeoPoint(point.latitude,point.longitude));dialog.dismiss();}catch(Exception error){input.setError(error.getMessage());}}));dialog.show();
   }
   public boolean isDrawing(){return drawing;}
-  private void pauseDrawing(){if(drawing){drawing=false;resumeSegment=!"area".equals(draft.kind);updateDrawButton();}}
+  private void pauseDrawing(){if(drawing){drawing=false;resumeSegment=!"area".equals(draft.kind);updateDrawButton();map.view.invalidate();}}
   public void toggleDrawing(){
     if(!active()||"route".equals(draft.kind))return;
     if(drawing){pauseDrawing();return;}
@@ -83,13 +84,14 @@ public final class DrawingController {
   }
   private void updateDrawButton(){if(drawButton!=null){drawButton.setText(drawing?"☑ Рисовать":"□ Рисовать");drawButton.setContentDescription(drawing?"Приостановить рисование":"Рисовать линию");}}
   /** Only map panning feeds the explicit draw mode; zoom and redraw do not add vertices. */
-  public void onMapMoved(){if(active()&&drawing)appendCenter(true);}
+  public void onMapMoved(){if(layoutReady&&active()&&drawing)appendCenter(true);}
   private void appendCenter(boolean sampled){
     List<Vertex> line=draft.segments.get(activeSegment);Vertex next=new Vertex(map.view.getMapCenter().getLatitude(),map.view.getMapCenter().getLongitude());
     if(!line.isEmpty()){
       Vertex last=line.get(line.size()-1);double distance=Geometry.distance(last,next);
       // A screen-space threshold bounds event density while keeping detail at every zoom.
-      double threshold=sampled?Math.max(.05,org.osmdroid.util.TileSystem.GroundResolution(next.latitude,map.view.getZoomLevelDouble())*dp(3)):.001;
+      double resolution=org.osmdroid.util.TileSystem.GroundResolution(next.latitude,map.view.getZoomLevelDouble());
+      double threshold=Math.max(.05,resolution*dp(sampled?3:2));
       if(distance<threshold)return;
     }
     if(Geometry.count(draft)>=100000){pauseDrawing();Toast.makeText(activity,"Достигнут предел: 100000 точек",Toast.LENGTH_LONG).show();return;}

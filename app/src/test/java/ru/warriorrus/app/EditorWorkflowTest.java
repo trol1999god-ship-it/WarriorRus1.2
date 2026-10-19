@@ -24,15 +24,16 @@ public class EditorWorkflowTest {
     Bundle state=new Bundle();
     try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup().visible()){
       DrawingController editor=field(c.get(),"drawing");MapWorkspace map=field(c.get(),"map");
+      map.view.measure(View.MeasureSpec.makeMeasureSpec(400,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(800,View.MeasureSpec.EXACTLY));map.view.layout(0,0,400,800);
       MapItem existing=new MapItem();existing.kind="path";existing.name="Линия";existing.visible=true;existing.opacity=1;existing.icon="builtin:star";existing.segments.add(new ArrayList<>(Arrays.asList(new Vertex(55,37),new Vertex(55.001,37))));
       editor.start(existing,"path",0,null);
       map.view.getController().setZoom(16.0);map.view.getController().setCenter(new GeoPoint(55.001,37));
       editor.toggleDrawing();assertTrue(editor.isDrawing());
       map.view.getController().setCenter(new GeoPoint(55.002,37));editor.onMapMoved();editor.onMapMoved();
-      editor.toggleDrawing();assertFalse(editor.isDrawing());map.view.getController().setCenter(new GeoPoint(56,38));editor.onMapMoved();
+      editor.toggleDrawing();assertFalse(editor.isDrawing());map.view.getController().setCenter(new GeoPoint(56.0,38.0));editor.onMapMoved();
       editor.toggleDrawing();map.view.getController().setCenter(new GeoPoint(56.001,38));editor.onMapMoved();
       EditorPanel panel=c.get().getWindow().getDecorView().findViewWithTag("drawingControls");panel.expanded(true);c.saveInstanceState(state);
-      List<List<Vertex>> segments=Geometry.decode(state.getString("draftGeometry"));assertEquals(2,segments.size());assertEquals(3,segments.get(0).size());assertEquals(2,segments.get(1).size());
+      List<List<Vertex>> segments=Geometry.decode(state.getString("draftGeometry"));assertEquals(state.getString("draftGeometry"),2,segments.size());assertEquals(state.getString("draftGeometry"),3,segments.get(0).size());assertEquals(state.getString("draftGeometry"),2,segments.get(1).size());
       assertEquals(55.002,segments.get(0).get(2).latitude,.0001);assertEquals(56,segments.get(1).get(0).latitude,.0001);
     }
     try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup(state).visible()){
