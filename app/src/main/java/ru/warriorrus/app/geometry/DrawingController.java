@@ -61,10 +61,10 @@ public final class DrawingController {
   private void showControls() {
     controls=new EditorPanel(activity,host,"drawingControls","Создание метки",this::search,this::options,this::finish);
     controls.closeAction(ru.warriorrus.app.R.drawable.ui_check,"Сохранить");
-    if(!"route".equals(draft.kind))drawButton=controls.action("□ Рисовать","Рисовать линию",this::toggleDrawing);
-    controls.action("+ Точка","+ Точка",()->add((GeoPoint)map.view.getMapCenter()));
+    if(!"route".equals(draft.kind))drawButton=controls.action("Начертить","Рисовать линию",this::toggleDrawing);
+    controls.action("Путевая точка","+ Точка",()->add((GeoPoint)map.view.getMapCenter()));
     controls.action("Удалить","Назад",this::removeLast);
-    controls.show();
+    controls.show();updateDrawButton();
   }
   private void options(){new AlertDialog.Builder(activity).setTitle("Редактор метки").setItems(new String[]{"Вершины","Контуры / сегменты","Обратить направление","Отменить рисование"},(d,n)->{if(n==0)vertices();else if(n==1)segments();else if(n==2){Collections.reverse(draft.segments.get(activeSegment));render();}else confirmCancel();}).setNegativeButton("Закрыть",null).show();}
   private void search(){
@@ -82,7 +82,7 @@ public final class DrawingController {
     }
     resumeSegment=false;drawing=true;updateDrawButton();appendCenter(false);
   }
-  private void updateDrawButton(){if(drawButton!=null){drawButton.setText(drawing?"☑ Рисовать":"□ Рисовать");drawButton.setContentDescription(drawing?"Приостановить рисование":"Рисовать линию");}}
+  private void updateDrawButton(){if(drawButton!=null){drawButton.setText("Начертить");ru.warriorrus.app.ReferenceAssets.applyNamed(drawButton,drawing?"atk_toolkit_widget_check_on_24":"atk_toolkit_widget_check_off_24",16,true);drawButton.setContentDescription(drawing?"Приостановить рисование":"Рисовать линию");}}
   /** Only map panning feeds the explicit draw mode; zoom and redraw do not add vertices. */
   public void onMapMoved(){if(layoutReady&&active()&&drawing)appendCenter(true);}
   private void appendCenter(boolean sampled){

@@ -41,7 +41,7 @@ public class GeometryUiTest {
   @Test public void drawingDraftSurvivesActivityRecreation() {
     Bundle state=new Bundle();
     try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup().visible()) {
-      View root=c.get().getWindow().getDecorView();desc(root,"Действия в центре карты").performClick();AlertDialog context=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();desc(context.getWindow().getDecorView(),"Новая метка…").performClick();context=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();context.getListView().performItemClick(null,2,2);
+      View root=c.get().getWindow().getDecorView();desc(root,"Действия в центре карты").performClick();AlertDialog context=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();desc(context.getWindow().getDecorView(),"Новая метка…").performClick();context=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();for(int n=0;n<context.getListView().getCount();n++)if("Маршрут".equals(context.getListView().getItemAtPosition(n)))context.getListView().performItemClick(null,n,n);
       c.saveInstanceState(state);
     }
     try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup(state).visible()) {assertNotNull(c.get().getWindow().getDecorView().findViewWithTag("drawingControls"));}

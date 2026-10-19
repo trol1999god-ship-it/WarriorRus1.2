@@ -60,11 +60,12 @@ public final class EditorPanel extends LinearLayout {
     details.addView(summary);
     details.setVisibility(GONE);
     addView(details, new LayoutParams(-1, -2));
+    expanded(false);
   }
 
   private Button headerButton(int icon, String description, Runnable action) {
     Button button = ui.action("", action);
-    button.setCompoundDrawablesRelativeWithIntrinsicBounds(icon,0,0,0);
+    ReferenceAssets.apply(button,icon,20);
     button.setPadding(ui.dp(12),0,ui.dp(12),0);
     button.setContentDescription(description);
     button.setGravity(Gravity.CENTER);
@@ -88,12 +89,13 @@ public final class EditorPanel extends LinearLayout {
   }
 
   public void title(String value) { title.setText(value); }
-  public void closeAction(int icon,String value) { closeButton.setCompoundDrawablesRelativeWithIntrinsicBounds(icon,0,0,0);closeButton.setContentDescription(value); }
+  public void closeAction(int icon,String value) { ReferenceAssets.apply(closeButton,icon,20);closeButton.setContentDescription(value); }
   public void summary(String value) { summary.setText(value); }
   public void expanded(boolean value) {
     expanded = value;
     details.setVisibility(value ? VISIBLE : GONE);
-    statistics.setText((value ? "⌃" : "⌄") + "  Статистика");
+    statistics.setText("Статистика");
+    ReferenceAssets.applyNamed(statistics,value?"app_action_expand_less_24":"app_action_expand_more_24",16,true);
     statistics.setContentDescription(value ? "Свернуть статистику" : "Развернуть статистику");
   }
   public boolean expanded() { return expanded; }

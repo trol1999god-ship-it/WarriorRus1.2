@@ -17,11 +17,11 @@ public class MenuModelTest {
   @Test public void categoriesFollowOriginalOrderAndPlacemarksOpenTheirSubmenu(){
     try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup()){
       View root=c.get().getWindow().getDecorView();ViewGroup bar=root.findViewWithTag("bottomToolbar");
-      String[] descriptions={"Меню","Карты и слои","Метки","Ориентация"};assertEquals(4,bar.getChildCount());
+      String[] descriptions={"Меню","Карты и слои","Метки","Ориентирование"};assertEquals(4,bar.getChildCount());
       for(int n=0;n<4;n++)assertEquals(descriptions[n],bar.getChildAt(n).getContentDescription());
       bar.getChildAt(2).performClick();Dialog menu=org.robolectric.shadows.ShadowDialog.getLatestDialog();View options=menu.getWindow().getDecorView();
-      assertNotNull(text(options,"Проводник меток"));assertNotNull(text(options,"Создать метку"));assertNotNull(text(options,"Поиск местоположения"));
-      assertNull(text(options,"Отображаемые метки"));text(options,"Проводник меток").performClick();
+      assertNotNull(text(options,"Все метки"));assertNotNull(text(options,"Новая метка"));assertNotNull(text(options,"Поиск на карте"));
+      assertNull(text(options,"Метки на экране"));text(options,"Все метки").performClick();
       assertNotNull(text(org.robolectric.shadows.ShadowDialog.getLatestDialog().getWindow().getDecorView(),"Локальные метки"));
     }
   }

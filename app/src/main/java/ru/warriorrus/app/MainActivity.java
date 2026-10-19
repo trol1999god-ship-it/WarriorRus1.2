@@ -133,8 +133,8 @@ public final class MainActivity extends Activity {
     if(state!=null){explorer.folder=state.getLong("folder");selectionMode=state.getBoolean("explorerSelectionMode");long[] selected=state.getLongArray("explorerSelected");if(selected!=null)for(long id:selected)explorer.selected.add(id);List<Long> clipboard=new ArrayList<>();long[] copied=state.getLongArray("explorerClipboard");if(copied!=null)for(long id:copied)clipboard.add(id);explorer.restoreClipboard(clipboard,state.getBoolean("explorerCut"));}
     map = new MapWorkspace(this, this::longPressMap);
     MapViewport.restore(map.view,getPreferences(MODE_PRIVATE),state);
-    FrameLayout root = new FrameLayout(this);mapRoot=root;
-    root.setBackgroundColor(0xff071b2c);
+    FrameLayout root = new FrameLayout(this);mapRoot=root;root.setTag("mapRoot");map.view.setTag("mapCanvas");
+    root.setBackgroundColor(0xffd6ecff);
     root.addView(map.view, new FrameLayout.LayoutParams(-1, -1));
     coordinatesCollapsed = getPreferences(MODE_PRIVATE).getBoolean("coordinatesCollapsed", false);
     mapLayerVisible = getPreferences(MODE_PRIVATE).getBoolean("mapLayerVisible", true);
@@ -142,7 +142,7 @@ public final class MainActivity extends Activity {
     map.view.setUseDataConnection(getPreferences(MODE_PRIVATE).getBoolean("mapOnline", true));
     applyMapLayer();
 
-    MapFocusTarget focusTarget=new MapFocusTarget(this,map.view,()->{selectedPoint=0;mapContextMenu((GeoPoint)map.view.getMapCenter());});root.addView(focusTarget,new FrameLayout.LayoutParams(dp(44),dp(44),Gravity.CENTER));
+    MapFocusTarget focusTarget=new MapFocusTarget(this,map.view,()->{selectedPoint=0;mapContextMenu((GeoPoint)map.view.getMapCenter());});focusTarget.setTag("mapFocus");root.addView(focusTarget,new FrameLayout.LayoutParams(dp(44),dp(44),Gravity.CENTER));
 
     LinearLayout coordinatePanel = new LinearLayout(this);
     coordinatePanel.setOrientation(LinearLayout.HORIZONTAL);
@@ -179,7 +179,7 @@ public final class MainActivity extends Activity {
     LinearLayout toolbar = new LinearLayout(this);
     toolbar.setOrientation(LinearLayout.HORIZONTAL);
     toolbar.setTag("bottomToolbar");
-    String[] tabNames = {"Меню", "Карты", "Объекты", "Ориентация"};
+    String[] tabNames = {"Меню", "Карты", "Объекты", "Ориентирование"};
     int[] tabIcons = {R.drawable.ui_menu, R.drawable.ui_map, R.drawable.ui_pin, R.drawable.ui_compass};
     for (int i = 0; i < tabNames.length; i++) {
       final int index=i;
@@ -189,16 +189,15 @@ public final class MainActivity extends Activity {
       if(i==2)tab.setContentDescription("Метки");
       final int category=i;
       tab.setOnLongClickListener(v->{if(category==0)runFirstCommand();else if(category==1)catalogMenu();else if(category==2)openExplorer(false);else toggleCompass();return true;});
-      if (i == 0) tab.setBackground(selectedPlate());
       tab.setText("");
-      tab.setCompoundDrawablesRelativeWithIntrinsicBounds(tabIcons[i], 0, 0, 0);
+      ReferenceAssets.apply(tab,tabIcons[i],48);
       tab.setCompoundDrawablePadding(0);
-      tab.setPadding(dp(12), 0, dp(12), 0);
+      tab.setPadding(0,0,0,0);
       toolbar.addView(tab, new LinearLayout.LayoutParams(dp(48), dp(48)));
     }
     bottomContainer.addView(toolbar, new LinearLayout.LayoutParams(0, -2, 1));
     FrameLayout.LayoutParams bottom = new FrameLayout.LayoutParams(dp(192), dp(48), Gravity.BOTTOM | Gravity.START);
-    bottom.setMargins(dp(8), 0, dp(8), dp(8));
+    bottom.setMargins(dp(3), 0, dp(3), dp(3));
     root.addView(bottomContainer, bottom);
     headingInfo=hudText("",11);headingInfo.setVisibility(View.GONE);coordinateDetails.addView(headingInfo);
     mapCompass=new CompassDial(this);mapCompass.setVisibility(View.GONE);
@@ -208,8 +207,8 @@ public final class MainActivity extends Activity {
 
     LinearLayout zoomControls=new LinearLayout(this);zoomControls.setTag("zoomControls");zoomControls.setOrientation(LinearLayout.VERTICAL);
     Button zoomIn=iconButton("Увеличить",R.drawable.ui_plus,()->map.view.getController().zoomIn()),zoomOut=iconButton("Уменьшить",R.drawable.ui_minus,()->map.view.getController().zoomOut());
-    for(Button button:new Button[]{zoomIn,zoomOut}){button.setText("");button.setCompoundDrawablesRelativeWithIntrinsicBounds(button==zoomIn?R.drawable.ui_plus:R.drawable.ui_minus,0,0,0);button.setPadding(dp(12),0,dp(12),0);zoomControls.addView(button,new LinearLayout.LayoutParams(dp(48),dp(48)));}
-    FrameLayout.LayoutParams zoomPosition=new FrameLayout.LayoutParams(dp(48),-2,Gravity.END|Gravity.BOTTOM);zoomPosition.setMargins(0,0,dp(4),dp(60));root.addView(zoomControls,zoomPosition);
+    for(Button button:new Button[]{zoomIn,zoomOut}){button.setText("");ReferenceAssets.apply(button,button==zoomIn?R.drawable.ui_plus:R.drawable.ui_minus,48);button.setPadding(0,0,0,0);LinearLayout.LayoutParams zoomButton=new LinearLayout.LayoutParams(dp(48),dp(48));if(button==zoomIn)zoomButton.bottomMargin=dp(12);zoomControls.addView(button,zoomButton);}
+    FrameLayout.LayoutParams zoomPosition=new FrameLayout.LayoutParams(dp(48),-2,Gravity.END|Gravity.BOTTOM);zoomPosition.setMargins(0,0,dp(3),dp(3));root.addView(zoomControls,zoomPosition);
     TextView attribution = hudText("© OpenStreetMap", 10);
     attribution.setTag("mapAttribution");
     attribution.setBackground(plate());
@@ -291,16 +290,16 @@ public final class MainActivity extends Activity {
   private void categoryOptions(int category){getPreferences(MODE_PRIVATE).edit().putBoolean("expandedCategory"+category,!getPreferences(MODE_PRIVATE).getBoolean("expandedCategory"+category,false)).apply();if(categoryDialog!=null)categoryDialog.dismiss();if(category==0)mainMenu();else if(category==1)mapsMenu();else if(category==2)marksMenu();else orientationMenu();}
   private void showSubmenu(Dialog dialog,LinearLayout panel,int category){
     if(categoryDialog!=null&&categoryDialog!=dialog)categoryDialog.dismiss();categoryDialog=dialog;shownCategory=category;
-    ScrollView scroll=new ScrollView(this);scroll.setFillViewport(false);scroll.addView(panel);int width=Math.min(dp(340),getResources().getDisplayMetrics().widthPixels-dp(16));
+    ScrollView scroll=new ScrollView(this);scroll.setFillViewport(false);scroll.addView(panel);int width=Math.min(dp(352),getResources().getDisplayMetrics().widthPixels-dp(6));
     SafePanelHost host=new SafePanelHost(this,scroll,width,false);host.setOnClickListener(v->dialog.dismiss());LinearLayout bar=new LinearLayout(this);bar.setBackground(referenceUi.background());
-    int[] icons={R.drawable.ui_menu,R.drawable.ui_map,R.drawable.ui_pin,R.drawable.ui_compass};String[] labels={"Меню","Карты и слои","Метки","Ориентация"};
-    for(int n=0;n<4;n++){final int index=n;Button tab=iconButton(labels[n],icons[n],()->openCategory(index));tab.setText("");tab.setCompoundDrawablesRelativeWithIntrinsicBounds(icons[n],0,0,0);tab.setPadding(dp(12),0,dp(12),0);if(n==category)tab.setBackground(selectedPlate());tab.setOnLongClickListener(v->{dialog.dismiss();if(index==0)runFirstCommand();else if(index==1)catalogMenu();else if(index==2)openExplorer(false);else toggleCompass();return true;});bar.addView(tab,new LinearLayout.LayoutParams(dp(48),dp(48)));}
+    int[] icons={R.drawable.ui_menu,R.drawable.ui_map,R.drawable.ui_pin,R.drawable.ui_compass};String[] labels={"Меню","Карты и слои","Метки","Ориентирование"};
+    for(int n=0;n<4;n++){final int index=n;Button tab=iconButton(labels[n],icons[n],()->openCategory(index));tab.setText("");ReferenceAssets.apply(tab,icons[n],48);tab.setPadding(0,0,0,0);if(n==category)tab.setBackground(selectedPlate());tab.setOnLongClickListener(v->{dialog.dismiss();if(index==0)runFirstCommand();else if(index==1)catalogMenu();else if(index==2)openExplorer(false);else toggleCompass();return true;});bar.addView(tab,new LinearLayout.LayoutParams(dp(48),dp(48)));}
     host.submenuToolbar(bar,dp(192),dp(48));dialog.setContentView(host);Window w=dialog.getWindow();if(w!=null){w.setBackgroundDrawableResource(android.R.color.transparent);w.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);SystemInsets.edgeToEdge(w);}dialog.show();if(w!=null){w.setLayout(-1,-1);w.setGravity(Gravity.FILL);}openPanels.add(dialog);dialog.setOnDismissListener(d->{openPanels.remove(dialog);if(categoryDialog==dialog){categoryDialog=null;shownCategory=-1;}if(screen!=null)screen.apply();});host.requestApplyInsets();if(screen!=null)screen.showStatusBar();
   }
   private void mainMenu(){
     menuDialog=new Dialog(this);LinearLayout panel=referenceUi.panel();boolean editing=getPreferences(MODE_PRIVATE).getBoolean("expandedCategory0",false);
     referenceUi.heading(panel,"Рабочая карта","?",()->about());
-    List<String> commands=mainCommands.items();for(int n=0;n<commands.size();n++){final int position=n;final String id=commands.get(n);LinearLayout row=new LinearLayout(this);Button action=referenceUi.action(MainCommands.label(id),()->{menuDialog.dismiss();executeCommand(id);});int icon=mainCommandIcon(id);if(icon!=0){action.setCompoundDrawablesRelativeWithIntrinsicBounds(icon,0,0,0);action.setCompoundDrawablePadding(dp(10));}row.addView(action,new LinearLayout.LayoutParams(0,-2,1));if(editing){Button edit=referenceUi.action("✎",()->editMainCommand(position));edit.setContentDescription("Изменить команду "+(position+1));row.addView(edit,new LinearLayout.LayoutParams(dp(44),dp(48)));}panel.addView(row);}
+    List<String> commands=mainCommands.items();for(int n=0;n<commands.size();n++){final int position=n;final String id=commands.get(n);LinearLayout row=new LinearLayout(this);Button action=referenceUi.action(MainCommands.label(id),()->{menuDialog.dismiss();executeCommand(id);});int icon=mainCommandIcon(id);if(icon!=0){ReferenceAssets.apply(action,icon,24);action.setCompoundDrawablePadding(dp(10));}row.addView(action,new LinearLayout.LayoutParams(0,-2,1));if(editing){Button edit=referenceUi.action("✎",()->editMainCommand(position));edit.setContentDescription("Изменить команду "+(position+1));row.addView(edit,new LinearLayout.LayoutParams(dp(44),dp(48)));}panel.addView(row);}
     if(editing)referenceUi.row(panel,"Пользовательская кнопка",R.drawable.ui_plus,()->editMainCommand(mainCommands.items().size()));
     referenceUi.row(panel,"Настройки",R.drawable.ui_settings,()->{menuDialog.dismiss();settingsMenu();});
     referenceUi.row(panel,"Выход",R.drawable.ui_exit,()->{menuDialog.dismiss();requestExit();});
@@ -375,7 +374,7 @@ public final class MainActivity extends Activity {
 
   private Button iconButton(String name, int icon, Runnable action) {
     Button button = compact(name, action);
-    button.setCompoundDrawablesRelativeWithIntrinsicBounds(0, icon, 0, 0);
+    ReferenceAssets.apply(button,icon,24);
     button.setCompoundDrawablePadding(dp(4));
     button.setPadding(dp(4), dp(9), dp(4), dp(7));
     button.setGravity(Gravity.CENTER);
@@ -450,14 +449,14 @@ public final class MainActivity extends Activity {
     AlertDialog dialog=new AlertDialog.Builder(this).create();LinearLayout panel=referenceUi.panel();
     LinearLayout targetRow=new LinearLayout(this);
     Button targetAction=referenceUi.action(mapTools.hasTarget()?"Убрать цель":"Задать цель",()->{dialog.dismiss();mapTools.target(mapTools.hasTarget()?null:new Vertex(point.getLatitude(),point.getLongitude()));});
-    targetAction.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ui_focus,0,0,0);targetAction.setCompoundDrawablePadding(dp(10));targetRow.addView(targetAction,new LinearLayout.LayoutParams(0,dp(48),1));
+    ReferenceAssets.apply(targetAction,R.drawable.ui_focus,24);targetAction.setCompoundDrawablePadding(dp(10));targetRow.addView(targetAction,new LinearLayout.LayoutParams(0,dp(48),1));
     if(mapTools.hasTarget()){
       Button jump=referenceUi.action("↗",()->{dialog.dismiss();mapTools.jumpTarget();});jump.setContentDescription("Перейти к цели");targetRow.addView(jump,new LinearLayout.LayoutParams(dp(44),dp(48)));
       Button replace=referenceUi.action("⊙",()->{dialog.dismiss();mapTools.target(new Vertex(point.getLatitude(),point.getLongitude()));});replace.setContentDescription("Заменить цель центром карты");targetRow.addView(replace,new LinearLayout.LayoutParams(dp(44),dp(48)));
     }
     panel.addView(targetRow);
-    LinearLayout row=new LinearLayout(this);Button create=referenceUi.action("Новая метка…",()->{dialog.dismiss();createPlacemarkAt(point);});create.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ui_pin,0,0,0);create.setCompoundDrawablePadding(dp(10));row.addView(create,new LinearLayout.LayoutParams(0,dp(48),1));Button quick=referenceUi.action("!",()->{dialog.dismiss();edit(null,point);});quick.setContentDescription("Путевая точка");row.addView(quick,new LinearLayout.LayoutParams(dp(44),dp(48)));panel.addView(row);
-    LinearLayout tools=new LinearLayout(this);tools.addView(referenceUi.action("Инструменты…",()->{dialog.dismiss();mapToolsMenu(point);}),new LinearLayout.LayoutParams(0,dp(48),1));Button info=referenceUi.action("i",()->{dialog.dismiss();new AlertDialog.Builder(this).setTitle("Местоположение").setMessage(Coordinates.format(getPreferences(MODE_PRIVATE).getInt("primaryCoordinates",0),point.getLatitude(),point.getLongitude(),getPreferences(MODE_PRIVATE).getString("primaryEPSG","EPSG:32637"))).setPositiveButton("Копировать",(d,w)->{android.content.ClipboardManager clipboard=(android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);clipboard.setPrimaryClip(ClipData.newPlainText("Координаты",Coordinates.format(getPreferences(MODE_PRIVATE).getInt("primaryCoordinates",0),point.getLatitude(),point.getLongitude(),getPreferences(MODE_PRIVATE).getString("primaryEPSG","EPSG:32637"))));}).setNegativeButton("Закрыть",null).show();});info.setContentDescription("Сведения о местоположении");tools.addView(info,new LinearLayout.LayoutParams(dp(44),dp(48)));panel.addView(tools);MapItem selected=store.get(selectedPoint);if(selected!=null){View gap=new View(this);panel.addView(gap,new LinearLayout.LayoutParams(-1,dp(4)));referenceUi.row(panel,selected.name,R.drawable.ui_pin,()->{dialog.dismiss();pointDetails(selected);});}dialog.setView(panel);dialog.show();
+    LinearLayout row=new LinearLayout(this);Button create=referenceUi.action("Новая метка…",()->{dialog.dismiss();createPlacemarkAt(point);});ReferenceAssets.apply(create,R.drawable.ui_pin,24);create.setCompoundDrawablePadding(dp(10));row.addView(create,new LinearLayout.LayoutParams(0,dp(48),1));Button quick=referenceUi.action("!",()->{dialog.dismiss();edit(null,point);});quick.setContentDescription("Путевая точка");row.addView(quick,new LinearLayout.LayoutParams(dp(44),dp(48)));panel.addView(row);
+    LinearLayout tools=new LinearLayout(this);tools.addView(referenceUi.action("Инструменты…",()->{dialog.dismiss();mapToolsMenu(point);}),new LinearLayout.LayoutParams(0,dp(48),1));Button info=referenceUi.action("i",()->{dialog.dismiss();new AlertDialog.Builder(this).setTitle("Местоположение").setMessage(Coordinates.format(getPreferences(MODE_PRIVATE).getInt("primaryCoordinates",0),point.getLatitude(),point.getLongitude(),getPreferences(MODE_PRIVATE).getString("primaryEPSG","EPSG:32637"))).setPositiveButton("Копировать",(d,w)->{android.content.ClipboardManager clipboard=(android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);clipboard.setPrimaryClip(ClipData.newPlainText("Координаты",Coordinates.format(getPreferences(MODE_PRIVATE).getInt("primaryCoordinates",0),point.getLatitude(),point.getLongitude(),getPreferences(MODE_PRIVATE).getString("primaryEPSG","EPSG:32637"))));}).setNegativeButton("Закрыть",null).show();});info.setContentDescription("Сведения о местоположении");tools.addView(info,new LinearLayout.LayoutParams(dp(44),dp(48)));panel.addView(tools);MapItem selected=store.get(selectedPoint);if(selected!=null){View gap=new View(this);panel.addView(gap,new LinearLayout.LayoutParams(-1,dp(4)));referenceUi.row(panel,selected.name,R.drawable.ui_pin,()->{dialog.dismiss();pointDetails(selected);});}MapContextBubble.show(dialog,panel,map.view,point);
   }
 
   private void mapToolsMenu(GeoPoint point){sheet("Инструменты",new String[]{"Измерить","Проекция точки по расстоянию и азимуту","Удалить измерения",mapTools.hasTarget()?"Убрать цель":"Задать цель","Перейти к цели"},n->{
@@ -470,7 +469,7 @@ public final class MainActivity extends Activity {
     DisplayUnits units=DisplayUnits.load(this);
     LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);EditText distance=new EditText(this),bearing=new EditText(this);distance.setHint("Расстояние");bearing.setHint("Азимут, "+units.angleUnit());distance.setInputType(8194);bearing.setInputType(12290);form.addView(distance);
     Spinner distanceUnit=new Spinner(this);String[] names={"Метры","Километры","Футы","Ярды","Мили","Морские мили"};double[] factors={1,1000,.3048,.9144,1609.344,1852};ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,names);adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);distanceUnit.setAdapter(adapter);distanceUnit.setSelection(units.distanceMode>=8||units.distanceMode==3?5:units.distanceMode>=2?2:0);form.addView(distanceUnit);form.addView(bearing);
-    AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Проекция точки").setView(form).setPositiveButton("Создать метку",null).setNegativeButton("Отмена",null).create();dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try{Vertex destination=Geometry.project(origin,units.degrees(Double.parseDouble(bearing.getText().toString().replace(',','.'))),Double.parseDouble(distance.getText().toString().replace(',','.'))*factors[distanceUnit.getSelectedItemPosition()]);dialog.dismiss();edit(null,new GeoPoint(destination.latitude,destination.longitude));}catch(Exception error){distance.setError("Введите расстояние и азимут числами");}}));dialog.show();
+    AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Проекция точки").setView(form).setPositiveButton("Новая метка",null).setNegativeButton("Отмена",null).create();dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try{Vertex destination=Geometry.project(origin,units.degrees(Double.parseDouble(bearing.getText().toString().replace(',','.'))),Double.parseDouble(distance.getText().toString().replace(',','.'))*factors[distanceUnit.getSelectedItemPosition()]);dialog.dismiss();edit(null,new GeoPoint(destination.latitude,destination.longitude));}catch(Exception error){distance.setError("Введите расстояние и азимут числами");}}));dialog.show();
   }
 
   private void mapsMenu(){
@@ -482,7 +481,7 @@ public final class MainActivity extends Activity {
     org.json.JSONArray favorites=catalog.favoriteSets();if(favorites.length()==0)referenceUi.note(panel,"Избранные карты и наборы карт не созданы");
     for(int n=0;n<favorites.length();n++){org.json.JSONObject favorite=favorites.optJSONObject(n);if(favorite==null)continue;Button select=referenceUi.row(panel,favorite.optString("name"),R.drawable.ui_map,()->{try{catalog.applyFavorite(favorite,false);mapsDialog.dismiss();updateCoordinates();}catch(Exception e){fileError(e.getMessage());}});select.setOnLongClickListener(v->{favoriteMapActions(favorite);return true;});}
     boolean expanded=getPreferences(MODE_PRIVATE).getBoolean("expandedCategory1",false);referenceUi.heading(panel,"Опции",expanded?"⌃":"⌄",()->categoryOptions(1));
-    if(expanded){referenceUi.option(panel,"Использовать только сохранённый кэш карты",!map.view.useDataConnection(),on->setMapOnline(!on));referenceUi.option(panel,"Индикаторы загрузки карты",getPreferences(MODE_PRIVATE).getBoolean("mapLoadingIndicators",false),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("mapLoadingIndicators",on).apply();catalog.updateAppearance();});referenceUi.heading(panel,"Информеры","",null);
+    if(expanded){referenceUi.option(panel,"Использовать только сохранённый кэш карты",!map.view.useDataConnection(),on->setMapOnline(!on));referenceUi.option(panel,"Индикаторы загрузки карты",getPreferences(MODE_PRIVATE).getBoolean("mapLoadingIndicators",true),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("mapLoadingIndicators",on).apply();catalog.updateAppearance();});referenceUi.heading(panel,"Информеры","",null);
       for(String key:new String[]{"mapInfoName","mapInfoScale","mapInfoRuler"})referenceUi.option(panel,key.equals("mapInfoName")?"Название карты":key.equals("mapInfoScale")?"Масштаб карты":"Масштабная линейка",getPreferences(MODE_PRIVATE).getBoolean(key,!key.equals("mapInfoName")),on->{getPreferences(MODE_PRIVATE).edit().putBoolean(key,on).apply();mapInfo.update(catalog);});}
     showSubmenu(mapsDialog,panel,1);
   }
@@ -508,13 +507,13 @@ public final class MainActivity extends Activity {
 
   private void marksMenu(){
     marksDialog=new Dialog(this);LinearLayout panel=referenceUi.panel();referenceUi.heading(panel,"Метки","",null);
-    referenceUi.row(panel,"Проводник меток",R.drawable.ui_folder,()->{marksDialog.dismiss();openExplorer(false);});
-    if(!timelineItems().isEmpty())referenceUi.row(panel,"Отображаемые метки",R.drawable.ui_pin,()->{marksDialog.dismiss();openExplorer(true);});
-    referenceUi.row(panel,"Создать метку",R.drawable.ui_pin,()->{marksDialog.dismiss();createPlacemark();});
-    if(timeline.available())referenceUi.row(panel,"Контроль времени",0,()->{marksDialog.dismiss();openTimeline();});
-    referenceUi.row(panel,"Поиск местоположения",R.drawable.ui_focus,()->{marksDialog.dismiss();searchMap();});
+    referenceUi.row(panel,"Все метки",R.drawable.ui_folder,()->{marksDialog.dismiss();openExplorer(false);});
+    if(!timelineItems().isEmpty())referenceUi.row(panel,"Метки на экране",R.drawable.ui_pin,()->{marksDialog.dismiss();openExplorer(true);});
+    referenceUi.row(panel,"Новая метка",R.drawable.ui_pin,()->{marksDialog.dismiss();createPlacemark();});
+    if(timeline.available())referenceUi.row(panel,"Время движения по треку",0,()->{marksDialog.dismiss();openTimeline();});
+    referenceUi.row(panel,"Поиск на карте",R.drawable.ui_search,()->{marksDialog.dismiss();searchMap();});
     boolean expanded=getPreferences(MODE_PRIVATE).getBoolean("expandedCategory2",false);referenceUi.heading(panel,"Опции",expanded?"⌃":"⌄",()->categoryOptions(2));
-    if(expanded){referenceUi.option(panel,"Подписи меток",map.labelsVisible,on->{getPreferences(MODE_PRIVATE).edit().putBoolean("placemarkLabels",on).apply();applySettings();});referenceUi.option(panel,"Линия к цели",getPreferences(MODE_PRIVATE).getBoolean("targetLine",true),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("targetLine",on).apply();mapTools.update();});referenceUi.heading(panel,"Информеры","",null);referenceUi.option(panel,"Информация о цели",getPreferences(MODE_PRIVATE).getBoolean("targetInfo",true),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("targetInfo",on).apply();mapTools.update();});}
+    if(expanded){referenceUi.option(panel,"Названия меток",map.labelsVisible,on->{getPreferences(MODE_PRIVATE).edit().putBoolean("placemarkLabels",on).apply();applySettings();});referenceUi.option(panel,"Линия до цели",getPreferences(MODE_PRIVATE).getBoolean("targetLine",true),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("targetLine",on).apply();mapTools.update();});referenceUi.heading(panel,"Информеры","",null);referenceUi.option(panel,"Статус цели",getPreferences(MODE_PRIVATE).getBoolean("targetInfo",true),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("targetInfo",on).apply();mapTools.update();});}
     showSubmenu(marksDialog,panel,2);
   }
   private List<MapItem> timelineItems(){List<MapItem> items=new ArrayList<>();for(MapItem item:store.renderItems())if(!item.isFolder()&&store.effectiveOpacity(item)>0)items.add(item);return items;}
@@ -525,12 +524,37 @@ public final class MainActivity extends Activity {
   }
   private void showFeature(Dialog dialog,LinearLayout panel){ScrollView scroll=new ScrollView(this);scroll.addView(panel);showPanel(dialog,scroll,dp(360),false);}
   private void createPlacemark(){createPlacemarkAt((GeoPoint)map.view.getMapCenter());}
-  private void createPlacemarkAt(GeoPoint point){sheet("Создать метку",new String[]{"Метка","Набор меток","Маршрут","Линия","Область"},n->{if(n==0)edit(null,point);else if(n==1){EditText name=new EditText(this);new AlertDialog.Builder(this).setTitle("Набор меток").setView(name).setPositiveButton("ОК",(d,w)->run(()->store.create(explorer.folder,name.getText().toString(),"set",0,0))).setNegativeButton("Отмена",null).show();}else startDrawing(n==2?"route":n==3?"path":"area",point);});}
+  private void createPlacemarkAt(GeoPoint point){PlacemarkCreationMenu.show(this,n->{
+    if(n==1)edit(null,point);
+    else if(n==2)createSpecialPlacemark(point,"audio");
+    else if(n==3){EditText name=new EditText(this);new AlertDialog.Builder(this).setTitle("Набор точек").setView(name).setPositiveButton("ОК",(d,w)->run(()->store.create(explorer.folder,name.getText().toString(),"set",0,0))).setNegativeButton("Отмена",null).show();}
+    else if(n>=4&&n<=6)startDrawing(n==4?"route":n==5?"path":"area",point);
+    else if(n==7||n==8)createSpecialPlacemark(point,n==7?"circle":"text");
+    else if(n==10)searchMap();
+    else if(n==11){if(drawing.active()){fileError("Сначала завершите рисунок");return;}timeline.close();mapTools.start(new Vertex(point.getLatitude(),point.getLongitude()));}
+  });}
+  private void createSpecialPlacemark(GeoPoint center,String type){
+    LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);EditText name=new EditText(this);name.setHint(type.equals("text")?"Текст":"Название");form.addView(name);
+    EditText radius=new EditText(this);radius.setHint("Радиус");radius.setInputType(android.text.InputType.TYPE_CLASS_NUMBER|android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL);Spinner units=new Spinner(this);String[] names={"м","км","ft","mi","nmi"};double[] factors={1,1000,.3048,1609.344,1852};units.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,names));
+    if(type.equals("circle")){form.addView(radius);form.addView(units);}
+    AlertDialog dialog=new AlertDialog.Builder(this).setTitle(type.equals("circle")?"Круг":type.equals("text")?"Текст":"Аудиоточка").setView(form).setPositiveButton("Создать",null).setNegativeButton("Отмена",null).create();
+    dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{
+      if(name.getText().toString().trim().isEmpty()){name.setError("Введите название");return;}
+      try{
+        MapItem item=new MapItem();item.kind=type.equals("circle")?"area":"point";item.parent=explorer.folder;item.name=name.getText().toString().trim();item.latitude=center.getLatitude();item.longitude=center.getLongitude();item.visible=true;item.opacity=1;item.color=0xff3f6db5;
+        if(type.equals("circle")){double meters=Double.parseDouble(radius.getText().toString().replace(',','.'))*factors[units.getSelectedItemPosition()];if(Double.isNaN(meters)||Double.isInfinite(meters)||meters<=0||meters>20000000)throw new IllegalArgumentException("Радиус должен быть больше нуля и не более 20000 км");List<Vertex> ring=new ArrayList<>();Vertex origin=new Vertex(item.latitude,item.longitude);for(int n=0;n<96;n++)ring.add(Geometry.project(origin,n*360.0/96,meters));item.segments.add(ring);item.icon="builtin:circle";}
+        else if(type.equals("text"))item.icon="builtin:text";
+        long id=store.save(item);refresh();dialog.dismiss();
+        if(type.equals("audio")){attachmentObject=id;Intent choose=new Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("audio/*").putExtra(Intent.EXTRA_LOCAL_ONLY,true).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);startActivityForResult(choose,ATTACH_FILE);}
+      }catch(Exception error){(type.equals("circle")?radius:name).setError(error.getMessage());}
+    }));dialog.show();
+  }
+
   private void orientationMenu(){
-    orientationDialog=new Dialog(this);LinearLayout panel=referenceUi.panel();referenceUi.heading(panel,"Ориентация","",null);
-    LinearLayout row=new LinearLayout(this);Button open=referenceUi.action("Компас",()->{orientationDialog.dismiss();showCompass();});open.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ui_compass,0,0,0);open.setCompoundDrawablePadding(dp(10));row.addView(open,new LinearLayout.LayoutParams(0,dp(48),1));Switch toggle=new Switch(this);toggle.setContentDescription("Включить компас");toggle.setChecked(getPreferences(MODE_PRIVATE).getBoolean("compassEnabled",false));toggle.setOnCheckedChangeListener((v,on)->{setCompass(on);if(on&&!compassController.enabled)toggle.setChecked(false);});row.addView(toggle,new LinearLayout.LayoutParams(dp(60),dp(48)));panel.addView(row);
-    referenceUi.option(panel,"Поворачивать карту по компасу",getPreferences(MODE_PRIVATE).getBoolean("compassRotate",false),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("compassRotate",on).apply();updateCompass();});referenceUi.option(panel,"Показывать компас на карте",getPreferences(MODE_PRIVATE).getBoolean("compassOnMap",false),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("compassOnMap",on).apply();updateCompass();});
-    referenceUi.heading(panel,"Информеры","",null);referenceUi.option(panel,"Текущий азимут",getPreferences(MODE_PRIVATE).getBoolean("compassInfo",false),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("compassInfo",on).apply();updateCompass();});showSubmenu(orientationDialog,panel,3);
+    orientationDialog=new Dialog(this);LinearLayout panel=referenceUi.panel();referenceUi.heading(panel,"Ориентирование","",null);
+    LinearLayout row=new LinearLayout(this);Button open=referenceUi.action("Компас",()->{orientationDialog.dismiss();showCompass();});ReferenceAssets.apply(open,R.drawable.ui_compass,24);open.setCompoundDrawablePadding(dp(10));row.addView(open,new LinearLayout.LayoutParams(0,dp(48),1));Switch toggle=new Switch(this);toggle.setContentDescription("Включить компас");toggle.setChecked(getPreferences(MODE_PRIVATE).getBoolean("compassEnabled",false));toggle.setOnCheckedChangeListener((v,on)->{setCompass(on);if(on&&!compassController.enabled)toggle.setChecked(false);});row.addView(toggle,new LinearLayout.LayoutParams(dp(60),dp(48)));panel.addView(row);
+    referenceUi.option(panel,"Вращать карту по компасу",getPreferences(MODE_PRIVATE).getBoolean("compassRotate",false),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("compassRotate",on).apply();updateCompass();});referenceUi.option(panel,"Показать компас",getPreferences(MODE_PRIVATE).getBoolean("compassOnMap",false),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("compassOnMap",on).apply();updateCompass();});
+    referenceUi.heading(panel,"Информеры","",null);referenceUi.option(panel,"Статус компаса",getPreferences(MODE_PRIVATE).getBoolean("compassInfo",false),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("compassInfo",on).apply();updateCompass();});showSubmenu(orientationDialog,panel,3);
   }
   private void toggleCompass(){setCompass(!getPreferences(MODE_PRIVATE).getBoolean("compassEnabled",false));}
   private void setCompass(boolean on){
@@ -702,12 +726,12 @@ public final class MainActivity extends Activity {
   }
   private void explorerParent(){if(explorer.folder==0)return;MapItem folder=store.get(explorer.folder);explorer.folder=folder==null?0:folder.parent;explorer.query="";explorer.selected.clear();selectionMode=false;refresh();}
   private void explorerPlaces(){sheet("Локальные метки",new String[]{"Мои метки","Мои загрузки"},n->{if(n==0){explorer.folder=0;explorer.query="";objectFilter="all";displayedOnly=false;selectionMode=false;explorer.selected.clear();refresh();}else importFile();});}
-  private void explorerCreate(){PopupMenu menu=new PopupMenu(this,explorerAdd);String[] names={"Метка","Набор меток","Маршрут","Линия","Область","Папка"};for(int n=0;n<names.length;n++){final int index=n;menu.getMenu().add(0,n,n,names[n]).setOnMenuItemClickListener(item->{if(index==5)newFolder();else if(index==1){EditText input=new EditText(this);new AlertDialog.Builder(this).setTitle("Набор меток").setView(input).setPositiveButton("ОК",(d,w)->run(()->store.create(explorer.folder,input.getText().toString(),"set",0,0))).setNegativeButton("Отмена",null).show();}else{explorerDialog.dismiss();if(index==0)edit(null,(GeoPoint)map.view.getMapCenter());else startDrawing(index==2?"route":index==3?"path":"area",(GeoPoint)map.view.getMapCenter());}return true;});}menu.show();}
+  private void explorerCreate(){PopupMenu menu=new PopupMenu(this,explorerAdd);String[] names={"Метка","Набор точек","Маршрут","Линия","Область","Папка"};for(int n=0;n<names.length;n++){final int index=n;menu.getMenu().add(0,n,n,names[n]).setOnMenuItemClickListener(item->{if(index==5)newFolder();else if(index==1){EditText input=new EditText(this);new AlertDialog.Builder(this).setTitle("Набор точек").setView(input).setPositiveButton("ОК",(d,w)->run(()->store.create(explorer.folder,input.getText().toString(),"set",0,0))).setNegativeButton("Отмена",null).show();}else{explorerDialog.dismiss();if(index==0)edit(null,(GeoPoint)map.view.getMapCenter());else startDrawing(index==2?"route":index==3?"path":"area",(GeoPoint)map.view.getMapCenter());}return true;});}menu.show();}
   private void clipboardMenu(){List<Long> ids=explorer.clipboardIds();List<String> names=new ArrayList<>();names.add("Вставить все");names.add("Очистить");for(long id:ids){MapItem item=store.get(id);names.add(item==null?"Удалённая метка":item.name);}sheet("Буфер обмена",names.toArray(new String[0]),n->{if(n==0)run(explorer::paste);else if(n==1){explorer.clearClipboard();refresh();}else run(()->explorer.paste(Collections.singleton(ids.get(n-2))));});}
   private void explorerHeaderMenu(List<MapItem> group,String kind){List<Long> ids=new ArrayList<>();for(MapItem i:group)if(!selectionMode||explorer.selected.contains(i.id))ids.add(i.id);String suffix=selectionMode?"выбранные":"все";PopupMenu menu=new PopupMenu(this,explorerMore);String[] names={"Показать "+suffix,"Убрать "+suffix,"Экспортировать как…","Копировать "+suffix,"Вырезать "+suffix,"Изменить цвет","Удалить "+suffix,"Выбрать все","Снять выделение","Предпросмотр","Список","Поиск","Сортировать по имени","Импортировать метки"};for(int n=0;n<names.length;n++){final int index=n;menu.getMenu().add(0,n,n,names[n]).setOnMenuItemClickListener(item->{if(index<=6){explorer.selected.clear();explorer.selected.addAll(ids);if(index==0||index==1)run(()->store.style(ids,index==0,null,null));else if(index==2)exportFile();else if(index==3||index==4)run(()->explorer.clipboard(index==4));else if(index==5)style();else delete();}else if(index==7||index==8){selectionMode=true;explorer.selected.clear();if(index==7)for(MapItem i:group)explorer.selected.add(i.id);refresh();}else if(index==9||index==10){getPreferences(MODE_PRIVATE).edit().putBoolean("preview:"+kind,index==9).apply();cards=index==9;refresh();}else if(index==11){search.setVisibility(View.VISIBLE);search.requestFocus();}else if(index==12){explorer.alphabetical=!explorer.alphabetical;refresh();}else importFile();return true;});}menu.show();}
   private void refresh(){
     explorer.reconcile();if(timeline!=null)timeline.refreshBounds();map.refresh(store);if(rows==null)return;
-    MapItem folder=store.get(explorer.folder);explorerSubtitle.setText(selectionMode?"Выбрано: "+explorer.selected.size():displayedOnly?"Отображаемые метки":folder==null?"Мои метки":folder.name);explorerClipboard.setVisibility(explorer.hasClipboard()?View.VISIBLE:View.GONE);refreshing=true;if(!search.getText().toString().equals(explorer.query))search.setText(explorer.query);refreshing=false;
+    MapItem folder=store.get(explorer.folder);explorerSubtitle.setText(selectionMode?"Выбрано: "+explorer.selected.size():displayedOnly?"Метки на экране":folder==null?"Мои метки":folder.name);explorerClipboard.setVisibility(explorer.hasClipboard()?View.VISIBLE:View.GONE);refreshing=true;if(!search.getText().toString().equals(explorer.query))search.setText(explorer.query);refreshing=false;
     rows.removeAllViews();Map<String,List<MapItem>> groups=new LinkedHashMap<>();for(MapItem item:visibleEntries()){String kind=item.isFolder()?"Папки":item.kind.equals("point")?"Путевые точки":item.kind.equals("route")?"Маршруты":item.kind.equals("area")?"Области":"Линии и треки";if(!groups.containsKey(kind))groups.put(kind,new ArrayList<>());groups.get(kind).add(item);}
     for(Map.Entry<String,List<MapItem>> group:groups.entrySet()){String kind=group.getKey();referenceUi.heading(rows,kind,"⋮",()->explorerHeaderMenu(group.getValue(),kind));boolean preview=getPreferences(MODE_PRIVATE).getBoolean("preview:"+kind,false);for(MapItem item:group.getValue()){
       LinearLayout row=new LinearLayout(this);row.setGravity(Gravity.CENTER_VERTICAL);row.setMinimumHeight(dp(preview?88:48));row.setBackgroundColor(explorer.selected.contains(item.id)?0xff8bc5ef:Color.TRANSPARENT);

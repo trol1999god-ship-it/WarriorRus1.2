@@ -131,7 +131,7 @@ public class MapUiTest {
       for (int n = 1; n <= 2; n++) {
         described(root, "Действия в центре карты").performClick();
         find(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog().getWindow().getDecorView(),"Новая метка…").performClick();
-        item(org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog(),0);
+        AlertDialog catalog=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();for(int index=0;index<catalog.getListView().getCount();index++)if("Путевая точка".equals(catalog.getListView().getItemAtPosition(index)))item(catalog,index);
         AlertDialog editor = org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
         org.robolectric.shadows.ShadowLooper.idleMainLooper();
         ((EditText) findType(editor.getWindow().getDecorView(), EditText.class)).setText("Point " + n);

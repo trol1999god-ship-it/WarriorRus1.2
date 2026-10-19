@@ -33,7 +33,7 @@ public class NativeMapRegressionTest {
     try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
       for (int n = 1; n <= 8; n++) {
         click(By.desc("Действия в центре карты"));
-        click(By.text("Новая метка…"));click(By.text("Метка"));
+        click(By.text("Новая метка…"));click(By.text("Путевая точка"));
         UiObject2 name = device.wait(Until.findObject(By.clazz(EditText.class)), 8000);
         assertNotNull(name);
         name.setText("Test point " + n);
@@ -51,7 +51,7 @@ public class NativeMapRegressionTest {
       device.waitForIdle();
       scenario.onActivity(activity -> assertEquals(8, markerCount(activity)));
       click(By.desc("Увеличить"));
-      click(By.desc("Метки"));click(By.desc("Проводник меток"));
+      click(By.desc("Метки"));click(By.desc("Все метки"));
       assertNotNull(device.wait(Until.findObject(By.text("Локальные метки")), 8000));
     }
   }
@@ -96,7 +96,7 @@ public class NativeMapRegressionTest {
     android.content.Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
     context.deleteDatabase("warrior2.db");context.getSharedPreferences("MainActivity",0).edit().clear().putBoolean("mapOnline",false).commit();
     try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
-      click(By.desc("Действия в центре карты"));click(By.text("Новая метка…"));click(By.text("Линия"));
+      click(By.desc("Действия в центре карты"));click(By.text("Новая метка…"));click(By.text("Путь"));
       click(By.desc("Рисовать линию"));
       device.swipe(device.getDisplayWidth()/2,device.getDisplayHeight()/3,device.getDisplayWidth()/2+100,device.getDisplayHeight()/3+50,25);device.waitForIdle();
       click(By.desc("Приостановить рисование"));click(By.desc("Развернуть статистику"));
@@ -123,11 +123,11 @@ public class NativeMapRegressionTest {
         scenario.onActivity(activity -> assertWithinSafeArea(activity,
             activity.getWindow().getDecorView().findViewWithTag("bottomPanel")));
         capture(prefix + "-map");
-        String[] labels = {"Меню", "Слои", "Карты и слои", "Метки", "Ориентация"};
+        String[] labels = {"Меню", "Слои", "Карты и слои", "Метки", "Ориентирование"};
         String[] fields = {"menuDialog", "layersDialog", "mapsDialog", "explorerDialog", "orientationDialog"};
         for (int index = 0; index < labels.length; index++) {
           if(labels[index].equals("Слои")){click(By.desc("Карты и слои"));click(By.desc("Карты на экране"));}
-          else {click(By.desc(labels[index]));if(labels[index].equals("Метки"))click(By.desc("Проводник меток"));}
+          else {click(By.desc(labels[index]));if(labels[index].equals("Метки"))click(By.desc("Все метки"));}
           final String fieldName = fields[index];
           scenario.onActivity(activity -> {
             try {
@@ -144,7 +144,7 @@ public class NativeMapRegressionTest {
           capture(prefix + "-" + fieldName);
           if (fieldName.equals("explorerDialog")) {
             click(By.desc("Создать объект"));
-            assertNotNull(device.wait(Until.findObject(By.text("Метка")), 8000));
+            assertNotNull(device.wait(Until.findObject(By.text("Путевая точка")), 8000));
             device.pressBack();
             device.waitForIdle();
           }
@@ -217,7 +217,7 @@ public class NativeMapRegressionTest {
     }
     device.executeShellCommand("mkdir -p /data/local/tmp/rabochaya-screens");
     try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
-      click(By.desc("Метки"));click(By.desc("Контроль времени"));
+      click(By.desc("Метки"));click(By.desc("Время движения по треку"));
       scenario.onActivity(a->{android.widget.SeekBar seek=a.getWindow().getDecorView().findViewWithTag("timelineSeek");assertNotNull(seek);android.os.Bundle args=new android.os.Bundle();args.putFloat(android.view.accessibility.AccessibilityNodeInfo.ACTION_ARGUMENT_PROGRESS_VALUE,5000);assertTrue(seek.performAccessibilityAction(android.view.accessibility.AccessibilityNodeInfo.AccessibilityAction.ACTION_SET_PROGRESS.getId(),args));});device.waitForIdle();
       for(int orientation=0;orientation<2;orientation++){
         if(orientation==0)device.setOrientationNatural();else device.setOrientationLeft();device.waitForIdle();

@@ -68,6 +68,20 @@ public class EditorWorkflowTest {
     }
   }
 
+  @Test public void creationCatalogSavesCircleAndTextLocallyAcrossRestart()throws Exception{
+    try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup().visible()){
+      for(String type:new String[]{"Круг","Текст"}){
+        View root=c.get().getWindow().getDecorView();desc(root,"Действия в центре карты").performClick();AlertDialog dialog=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();desc(dialog.getWindow().getDecorView(),"Новая метка…").performClick();dialog=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();
+        for(int n=0;n<dialog.getListView().getCount();n++)if(type.equals(dialog.getListView().getItemAtPosition(n)))dialog.getListView().performItemClick(null,n,n);
+        org.robolectric.shadows.ShadowLooper.idleMainLooper();AlertDialog form=org.robolectric.shadows.ShadowAlertDialog.getLatestAlertDialog();List<EditText> fields=new ArrayList<>();edits(form.getWindow().getDecorView(),fields);fields.get(0).setText(type);if(type.equals("Круг"))fields.get(1).setText("1000");form.getButton(-1).performClick();assertFalse(type+": "+fields.stream().map(e->String.valueOf(e.getError())).collect(java.util.stream.Collectors.joining("; ")),form.isShowing());
+      }
+    }
+    try(ObjectStore store=new ObjectStore(RuntimeEnvironment.getApplication())){
+      assertEquals(2,store.all().size());MapItem circle=store.all().get(0),text=store.all().get(1);assertEquals("Круг",circle.typeName());assertEquals(96,Geometry.count(circle));assertEquals(1000,Geometry.distance(new Vertex(circle.latitude,circle.longitude),circle.segments.get(0).get(0)),.01);assertEquals("Текст",text.typeName());assertFalse(text.isGeometry());assertEquals("builtin:text",text.icon);
+    }
+  }
+  private void edits(View view,List<EditText> fields){if(view instanceof EditText)fields.add((EditText)view);if(view instanceof ViewGroup)for(int n=0;n<((ViewGroup)view).getChildCount();n++)edits(((ViewGroup)view).getChildAt(n),fields);}
+
   @SuppressWarnings("unchecked") private <T>T field(Object object,String name)throws Exception{java.lang.reflect.Field f=object.getClass().getDeclaredField(name);f.setAccessible(true);return(T)f.get(object);}
   private View desc(View v,String name){if(name.equals(v.getContentDescription()))return v;if(v instanceof ViewGroup)for(int n=0;n<((ViewGroup)v).getChildCount();n++){View found=desc(((ViewGroup)v).getChildAt(n),name);if(found!=null)return found;}return null;}
 }

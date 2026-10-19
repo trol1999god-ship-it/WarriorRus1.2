@@ -62,4 +62,12 @@ public class SystemInsetsTest {
         View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY));
     view.layout(0, 0, width, height);
   }
+
+  @Test @Config(sdk=23) public void mapViewportAndFocusStayFixedWhileLegacyBarsHideAndKeyboardRemainsProtected(){
+    android.widget.FrameLayout root=new android.widget.FrameLayout(RuntimeEnvironment.getApplication());root.setTag("mapRoot");View map=new View(root.getContext());map.setTag("mapCanvas");root.addView(map,new android.widget.FrameLayout.LayoutParams(-1,-1));View focus=new View(root.getContext());focus.setTag("mapFocus");root.addView(focus,new android.widget.FrameLayout.LayoutParams(44,44,android.view.Gravity.CENTER));SystemInsets.protect(root,0);
+    WindowInsets insets=org.robolectric.util.ReflectionHelpers.callConstructor(WindowInsets.class,org.robolectric.util.ReflectionHelpers.ClassParameter.from(Rect.class,new Rect(0,24,0,48)));org.robolectric.util.ReflectionHelpers.setField(insets,"mStableInsets",new Rect(0,24,0,48));
+    root.dispatchApplyWindowInsets(insets);layout(root,360,800);assertEquals(800,map.getHeight());assertEquals(0,map.getTop());assertEquals(400,focus.getY()+22,.01);
+    root.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN|View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);root.dispatchApplyWindowInsets(insets);layout(root,360,800);assertEquals(0,root.getPaddingTop());assertEquals(0,root.getPaddingBottom());assertEquals(800,map.getHeight());assertEquals(400,focus.getY()+22,.01);
+    WindowInsets keyboard=org.robolectric.util.ReflectionHelpers.callConstructor(WindowInsets.class,org.robolectric.util.ReflectionHelpers.ClassParameter.from(Rect.class,new Rect(0,24,0,280)));org.robolectric.util.ReflectionHelpers.setField(keyboard,"mStableInsets",new Rect(0,24,0,48));root.dispatchApplyWindowInsets(keyboard);assertEquals(280,root.getPaddingBottom());
+  }
 }

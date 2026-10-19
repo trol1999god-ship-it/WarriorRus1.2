@@ -7,7 +7,7 @@ import org.json.*;
 /** Stable action IDs; only commands implemented locally are offered. */
 public final class MainCommands {
   public static final String[] IDS={"hide","lock","capture","point","quickPoint","search","measure","compass","north","grid","night","coordinates","maps","displayedMaps","explorer","import","export","settings","about"};
-  public static final String[] LABELS={"Скрыть кнопки меню","Блокировать экран","Снимок экрана","Метка","Быстрая метка","Поиск местоположения","Измерить","Компас","Север сверху","Координатная сетка","Ночной режим","Координаты центра экрана","Доступные карты","Карты на экране","Проводник меток","Импорт меток","Экспорт меток","Настройки","О программе"};
+  public static final String[] LABELS={"Скрыть кнопки меню","Блокировать экран","Снимок экрана","Метка","Быстрая метка","Поиск местоположения","Измерить","Компас","Север сверху","Координатная сетка","Ночной режим","Координаты центра экрана","Доступные карты","Карты на экране","Все метки","Импорт меток","Экспорт меток","Настройки","О программе"};
   private final SharedPreferences prefs;
   public MainCommands(SharedPreferences prefs){this.prefs=prefs;}
   public List<String> items(){List<String> result=new ArrayList<>();if(!prefs.contains("mainCommands"))return new ArrayList<>(Arrays.asList("hide","lock","capture"));try{JSONArray a=new JSONArray(prefs.getString("mainCommands","[]"));for(int n=0;n<a.length()&&result.size()<24;n++){String id=a.optString(n);if(Arrays.asList(IDS).contains(id))result.add(id);}}catch(JSONException ignored){}return result;}

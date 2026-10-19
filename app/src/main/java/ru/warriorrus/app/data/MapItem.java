@@ -15,12 +15,14 @@ public final class MapItem {
   public final java.util.List<java.util.List<Vertex>> segments = new java.util.ArrayList<>();
   public boolean isGeometry() { return !isFolder() && !"point".equals(kind); }
   public String typeName() {
+    if("builtin:text".equals(icon))return "Текст";
+    if("builtin:circle".equals(icon)&&"area".equals(kind))return "Круг";
     switch (kind) {
       case "folder": return "Папка";
-      case "set": return "Набор меток";
+      case "set": return "Набор точек";
       case "route": return "Маршрут";
       case "area": return "Область";
-      case "path": return "Линия";
+      case "path": return "Путь";
       case "track": return "Трек";
       default: return "Метка";
     }

@@ -16,7 +16,7 @@ public final class SafePanelHost extends FrameLayout {
     setFocusableInTouchMode(true);
     panel.setClickable(true);
     addView(panel, new LayoutParams(maximumWidth, fillHeight ? -1 : -2, Gravity.BOTTOM | Gravity.START));
-    int spacing = fillHeight?0:(int) (8 * getResources().getDisplayMetrics().density);
+    int spacing = fillHeight?0:(int) (3 * getResources().getDisplayMetrics().density);
     setPadding(spacing, spacing, spacing, spacing);
     SystemInsets.protect(this, spacing);
   }
@@ -28,7 +28,7 @@ public final class SafePanelHost extends FrameLayout {
   }
 
   public void submenuToolbar(View toolbar,int width,int height){
-    LayoutParams panel=(LayoutParams)getChildAt(0).getLayoutParams();panel.bottomMargin=height+(int)(4*getResources().getDisplayMetrics().density);getChildAt(0).setLayoutParams(panel);
+    LayoutParams panel=(LayoutParams)getChildAt(0).getLayoutParams();panel.bottomMargin=height+(int)(1*getResources().getDisplayMetrics().density);getChildAt(0).setLayoutParams(panel);
     addView(toolbar,new LayoutParams(width,height,Gravity.BOTTOM|Gravity.START));
   }
 }

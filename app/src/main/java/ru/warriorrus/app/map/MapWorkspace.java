@@ -89,7 +89,7 @@ public final class MapWorkspace {
         float opacity = opacities.getOrDefault(i.id,1f);
         if (opacity == 0) continue;
         if (i.isGeometry()) { drawGeometry(i, opacity,original); if(timeline!=null&&timeline.active&&timeline.showHeads){Vertex head=timeline.head(original);if(head!=null)drawTimeHead(original,head,opacity);}continue; }
-        Marker m = new NamedMarker(view, opacity, labelsVisible);
+        Marker m = new NamedMarker(view, opacity, labelsVisible || "builtin:text".equals(i.icon));
         m.setOnMarkerClickListener(
             (marker, mapView) -> {
               if (onPointClick != null) {

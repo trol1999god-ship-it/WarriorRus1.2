@@ -3,14 +3,22 @@ package ru.warriorrus.app.map;
 import android.content.Context;
 import android.graphics.*;
 import android.view.View;
+import android.graphics.drawable.Drawable;
+import ru.warriorrus.app.ReferenceAssets;
 
 /** Windows-styled compass, with a fixed dial or a rotating rose. */
 public final class CompassDial extends View {
   private final Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG);
   public float heading;
+  private final Drawable referenceDial,referenceNeedle;
   public boolean movingRose=true,ready;
-  public CompassDial(Context context){super(context);setContentDescription("Шкала компаса");}
+  public CompassDial(Context context){super(context);setContentDescription("Шкала компаса");referenceDial=ReferenceAssets.drawable(context,"orientation_compass_bg_280",280,true);referenceNeedle=ReferenceAssets.drawable(context,"orientation_compass_needle_100",100,false);}
   @Override protected void onDraw(Canvas canvas){super.onDraw(canvas);
+    if(referenceDial!=null&&referenceNeedle!=null){
+      int size=Math.min(getWidth(),getHeight());float cx=getWidth()/2f,cy=getHeight()/2f;
+      canvas.save();canvas.translate(cx,cy);if(movingRose&&ready)canvas.rotate(-heading);referenceDial.setBounds(-size/2,-size/2,size/2,size/2);referenceDial.draw(canvas);canvas.restore();
+      canvas.save();canvas.translate(cx,cy);if(!movingRose&&ready)canvas.rotate(-heading);int half=Math.round(size*.32f);referenceNeedle.setBounds(-half,-half,half,half);referenceNeedle.setAlpha(ready?255:110);referenceNeedle.draw(canvas);canvas.restore();return;
+    }
     float radius=Math.min(getWidth(),getHeight())*.39f,cx=getWidth()/2f,cy=getHeight()/2f;
     canvas.save();canvas.translate(cx,cy);
     if(movingRose&&ready)canvas.rotate(-heading);
