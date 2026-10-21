@@ -8,6 +8,8 @@ import org.osmdroid.views.overlay.Overlay;
 
 /** Geographic grid adapts to viewport, including views crossing the date line. */
 public final class CoordinateGrid extends Overlay {
+  public int coordinateMode;
+  public String custom="EPSG:32637";
   public static List<Double> lines(double start, double end) {
     List<Double> result = new ArrayList<>();
     double span = end - start;
@@ -39,6 +41,7 @@ public final class CoordinateGrid extends Overlay {
     p.setColor(0x99566f85);
     p.setStrokeWidth(map.getResources().getDisplayMetrics().density);
     p.setTextSize(11 * map.getResources().getDisplayMetrics().scaledDensity);
+    if(coordinateMode>=3){drawProjected(c,map,p);return;}
     Point pixel = new Point();
     for (double lat : lines(box.getLatSouth(), box.getLatNorth())) {
       map.getProjection().toPixels(new GeoPoint(lat, map.getMapCenter().getLongitude()), pixel);
@@ -53,5 +56,30 @@ public final class CoordinateGrid extends Overlay {
       c.drawText(
           String.format(Locale.ROOT, "%.4f°", normalized), pixel.x + 4, map.getHeight() / 2f, p);
     }
+  }
+
+  private void drawProjected(Canvas canvas,MapView map,Paint paint){
+    if(map.getZoomLevelDouble()<4)return;
+    try{
+      String code=ru.warriorrus.app.settings.Coordinates.system(coordinateMode,map.getMapCenter().getLatitude(),map.getMapCenter().getLongitude(),custom);
+      boolean geographic=ru.warriorrus.app.settings.ProjectionMath.geographic(code);
+      double minX=Double.POSITIVE_INFINITY,maxX=Double.NEGATIVE_INFINITY,minY=Double.POSITIVE_INFINITY,maxY=Double.NEGATIVE_INFINITY;
+      for(int x=0;x<3;x++)for(int y=0;y<3;y++){
+        org.osmdroid.api.IGeoPoint v=map.getProjection().fromPixels(x*map.getWidth()/2,y*map.getHeight()/2);
+        double[] p=ru.warriorrus.app.settings.ProjectionMath.project(code,v.getLatitude(),v.getLongitude());minX=Math.min(minX,p[0]);maxX=Math.max(maxX,p[0]);minY=Math.min(minY,p[1]);maxY=Math.max(maxY,p[1]);
+      }
+      if(!geographic&&(maxX-minX>10000000||maxY-minY>10000000))return;
+      for(double x:lines(minX,maxX))gridLine(canvas,map,paint,code,true,x,minY,maxY,geographic);
+      for(double y:lines(minY,maxY))gridLine(canvas,map,paint,code,false,y,minX,maxX,geographic);
+    }catch(RuntimeException outside){/* No projected grid outside the selected CRS. */}
+  }
+  private void gridLine(Canvas canvas,MapView map,Paint paint,String code,boolean east,double value,double from,double to,boolean geographic){
+    Path path=new Path();Point pixel=new Point();boolean started=false,labelled=false;
+    for(int n=0;n<=24;n++)try{
+      double moving=from+(to-from)*n/24;ru.warriorrus.app.data.Vertex v=ru.warriorrus.app.settings.ProjectionMath.inverse(code,east?value:moving,east?moving:value);
+      map.getProjection().toPixels(new GeoPoint(v.latitude,v.longitude),pixel);if(started)path.lineTo(pixel.x,pixel.y);else{path.moveTo(pixel.x,pixel.y);started=true;}
+      if(!labelled&&pixel.x>=4&&pixel.x<map.getWidth()-70&&pixel.y>=18&&pixel.y<map.getHeight()-12){String axis=coordinateMode==5?(east?"Y ":"X "):(east?"E ":"N ");canvas.drawText(axis+String.format(Locale.ROOT,geographic?"%.4f°":"%.0f",value),pixel.x+3,pixel.y-3,paint);labelled=true;}
+    }catch(RuntimeException outside){started=false;}
+    paint.setStyle(Paint.Style.STROKE);canvas.drawPath(path,paint);paint.setStyle(Paint.Style.FILL);
   }
 }

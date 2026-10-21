@@ -40,7 +40,11 @@ public final class IconLibrary {
 
   public static IconLibrary open(Context c) throws IOException {
     File[] dirs = c.getExternalMediaDirs();
-    for (File dir : dirs) if (dir != null) return new IconLibrary(new File(dir, "icons"));
+    for (File dir : dirs) if (dir != null) {
+      IconLibrary library=new IconLibrary(new File(dir,"icons"));
+      ru.warriorrus.app.ReferenceAssets.installSymbols(c,library.root);
+      return library;
+    }
     throw new IOException(
         "Внешнее хранилище недоступно. Подключите накопитель и обновите библиотеку.");
   }
@@ -132,6 +136,8 @@ public final class IconLibrary {
   public static String builtinText(String key) throws IOException {
     if ("builtin:pin".equals(key)) return PIN;
     if ("builtin:star".equals(key)) return STAR;
+    if ("builtin:text".equals(key)) return "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M0 0' fill='none'/></svg>";
+    if ("builtin:circle".equals(key)) return "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='13' fill='none' stroke='black' stroke-width='2'/></svg>";
     throw new IOException("Встроенный значок не найден");
   }
 

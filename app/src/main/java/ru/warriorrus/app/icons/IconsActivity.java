@@ -62,7 +62,7 @@ public final class IconsActivity extends Activity {
     TextView v = new TextView(this);
     v.setText(s);
     v.setTextSize(size);
-    v.setTextColor(0xff202632);
+    v.setTextColor(0xffe4f2ff);
     v.setPadding(dp(12), dp(10), dp(12), dp(10));
     return v;
   }
@@ -92,7 +92,7 @@ public final class IconsActivity extends Activity {
 
   private void error(Exception e) {
     new AlertDialog.Builder(this)
-        .setTitle("Warrior Icons")
+        .setTitle("Значки — Рабочая карта")
         .setMessage(e.getMessage())
         .setPositiveButton("ОК", null)
         .show();
@@ -115,8 +115,8 @@ public final class IconsActivity extends Activity {
     }
     LinearLayout root = new LinearLayout(this);
     root.setOrientation(LinearLayout.VERTICAL);
-    root.setBackgroundColor(0xfff4f6fa);
-    root.addView(text("Warrior Icons", 22));
+    root.setBackgroundColor(0xff071b2c);
+    root.addView(text("Значки — Рабочая карта", 22));
     HorizontalScrollView nav = new HorizontalScrollView(this);
     crumbs = new LinearLayout(this);
     nav.addView(crumbs);
@@ -129,6 +129,7 @@ public final class IconsActivity extends Activity {
         button(
             "Папка +", () -> nameDialog("Новая папка", "", name -> library.mkdir(folder, name))));
     actions.addView(button("SVG +", () -> createSvg()));
+    actions.addView(button("Нарисовать", this::drawIcon));
     actions.addView(button("Импорт SVG", () -> importFiles()));
     actions.addView(button("Обновить", () -> execute(() -> thumbnails.evictAll())));
     actions.addView(
@@ -185,15 +186,8 @@ public final class IconsActivity extends Activity {
     root.addView(scroll, new LinearLayout.LayoutParams(-1, 0, 1));
     status = text("", 12);
     root.addView(status);
-    root.setOnApplyWindowInsetsListener(
-        (v, insets) -> {
-          v.setPadding(
-              insets.getSystemWindowInsetLeft(),
-              insets.getSystemWindowInsetTop(),
-              insets.getSystemWindowInsetRight(),
-              insets.getSystemWindowInsetBottom());
-          return insets;
-        });
+    ru.warriorrus.app.SystemInsets.edgeToEdge(getWindow());
+    ru.warriorrus.app.SystemInsets.protect(root, 0);
     setContentView(root);
     root.requestApplyInsets();
     refresh();
@@ -228,7 +222,7 @@ public final class IconsActivity extends Activity {
         row.setGravity(Gravity.CENTER_VERTICAL);
         row.setMinimumHeight(dp(64));
         GradientDrawable bg = new GradientDrawable();
-        bg.setColor(selected.contains(e.key) ? 0xffdceaff : Color.WHITE);
+        bg.setColor(selected.contains(e.key) ? 0xff073b65 : 0xff10293b);
         bg.setCornerRadius(dp(10));
         row.setBackground(bg);
         CheckBox check = new CheckBox(this);
@@ -418,6 +412,15 @@ public final class IconsActivity extends Activity {
                     }))
         .setNegativeButton("Отмена", null)
         .show();
+  }
+
+  private void drawIcon() {
+    LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);EditText name=new EditText(this);name.setHint("Название значка.svg");form.addView(name);
+    SketchView sketch=new SketchView(this);form.addView(sketch,new LinearLayout.LayoutParams(-1,dp(240)));LinearLayout tools=new LinearLayout(this);tools.addView(button("Отменить штрих",sketch::undo));tools.addView(button("Очистить",sketch::clear));form.addView(tools);
+    AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Нарисовать значок").setView(form).setPositiveButton("Сохранить SVG",null).setNegativeButton("Отмена",null).create();
+    dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try{if(library==null)library=IconLibrary.open(this);String destination="Созданное от руки";if(!library.resolve(destination).isDirectory())library.mkdir("",destination);
+      library.importSvg(destination,name.getText().toString(),new ByteArrayInputStream(sketch.svg().getBytes(java.nio.charset.StandardCharsets.UTF_8)));folder=destination;dialog.dismiss();refresh();
+    }catch(Exception error){name.setError(error.getMessage());}}));dialog.show();
   }
 
   private void createSvg() {

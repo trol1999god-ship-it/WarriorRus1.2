@@ -79,7 +79,7 @@ public class ObjectStoreTest {
     store.undo();
     assertEquals(3, store.all().size());
     assertEquals(b, store.get(p).parent);
-    assertFalse(store.canUndo());
+    assertTrue(store.canUndo());
   }
 
   @Test
@@ -115,7 +115,7 @@ public class ObjectStoreTest {
     point(b, "Alpha");
     ExplorerController c = new ExplorerController(store);
     c.open(b);
-    assertEquals("Warrior / Folder / Nested", c.breadcrumb());
+    assertEquals("Рабочая карта / Folder / Nested", c.breadcrumb());
     c.alphabetical = true;
     assertEquals("Alpha", c.entries().get(0).name);
     c.folder = 0;

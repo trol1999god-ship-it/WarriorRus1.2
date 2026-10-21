@@ -1,1 +1,14 @@
-<resources><style name="AppTheme" parent="@android:style/Theme.Material.Light.NoActionBar"><item name="android:fontFamily">sans</item><item name="android:colorAccent">#3F6DB5</item><item name="android:statusBarColor">#E8EEF8</item><item name="android:navigationBarColor">#F3F5F9</item><item name="android:windowLightStatusBar">true</item></style></resources>
+<resources>
+  <style name="AppTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
+    <item name="android:colorBackground">#D6ECFF</item><item name="android:windowBackground">#D6ECFF</item>
+    <item name="android:textColorPrimary">#082E4C</item><item name="android:textColorSecondary">#427DA9</item>
+    <item name="android:fontFamily">sans</item><item name="android:popupMenuStyle">@style/BluePopup</item><item name="android:colorAccent">#178BDC</item><item name="android:colorButtonNormal">#B6D9F4</item>
+    <item name="android:statusBarColor">#123B5E</item><item name="android:navigationBarColor">#123B5E</item>
+    <item name="android:windowLightStatusBar">false</item><item name="android:alertDialogTheme">@style/BlueDialog</item>
+  </style>
+  <style name="BlueDialog" parent="@android:style/Theme.Material.Light.Dialog.Alert">
+    <item name="android:colorBackground">#D6ECFF</item><item name="android:windowBackground">#D6ECFF</item>
+    <item name="android:textColorPrimary">#082E4C</item><item name="android:textColorSecondary">#427DA9</item><item name="android:colorAccent">#178BDC</item><item name="android:colorButtonNormal">#B6D9F4</item>
+  </style>
+  <style name="BluePopup" parent="@android:style/Widget.Material.Light.PopupMenu"><item name="android:popupBackground">#D6ECFF</item></style>
+</resources>

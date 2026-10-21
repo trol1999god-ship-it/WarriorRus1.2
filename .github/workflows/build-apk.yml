@@ -2,7 +2,9 @@ name: Build Рабочая карта APK
 on:
   workflow_dispatch:
   push:
-    branches: [ main, master ]
+    branches: [ main, master, rename-rabochaya-karta ]
+  pull_request:
+    branches: [ main ]
 permissions:
   contents: read
 jobs:
@@ -35,6 +37,7 @@ jobs:
           name: Rabochaya-karta-test-reports
           path: |
             app/build/reports/tests/
+            app/build/reports/ui/
             app/build/reports/lint-results-debug.html
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
