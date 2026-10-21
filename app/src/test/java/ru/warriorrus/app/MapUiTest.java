@@ -76,7 +76,7 @@ public class MapUiTest {
       assertEquals("Existing", s.get(id).name);
       assertEquals("user.svg", s.get(id).icon);
       assertEquals(0xff123456, s.get(id).color);
-      assertEquals(4, s.getReadableDatabase().getVersion());
+      assertEquals(5, s.getReadableDatabase().getVersion());
       assertTrue(file.exists());
     }
   }

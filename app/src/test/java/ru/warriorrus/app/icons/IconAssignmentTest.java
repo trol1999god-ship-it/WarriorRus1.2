@@ -88,6 +88,6 @@ public class IconAssignmentTest {
     store = new ObjectStore(context);
     assertEquals("Existing", store.get(7).name);
     assertEquals("builtin:pin", store.get(7).icon);
-    assertEquals(4, store.getReadableDatabase().getVersion());
+    assertEquals(5, store.getReadableDatabase().getVersion());
   }
 }

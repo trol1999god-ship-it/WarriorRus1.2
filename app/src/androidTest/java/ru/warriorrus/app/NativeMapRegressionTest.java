@@ -93,6 +93,25 @@ public class NativeMapRegressionTest {
     }
   }
 
+  @Test public void pendingPropertiesAndEditorPropertiesSurviveRecreation() throws Exception {
+    android.content.Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
+    context.deleteDatabase("warrior2.db");context.getSharedPreferences("MainActivity",0).edit().clear().putBoolean("mapOnline",false).commit();
+    try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
+      click(By.desc("Действия в центре карты"));click(By.text("Новая метка…"));click(By.text("Путь"));
+      UiObject2 name=device.wait(Until.findObject(By.clazz(EditText.class)),8000);assertNotNull(name);name.setText("До поворота");
+      scenario.recreate();device.waitForIdle();name=device.wait(Until.findObject(By.clazz(EditText.class)),8000);
+      assertNotNull(name);assertEquals("До поворота",name.getText());click(By.res("android:id/button1"));
+      click(By.desc("+ Точка"));click(By.desc("Опции редактора"));click(By.text("Свойства"));
+      name=device.wait(Until.findObject(By.clazz(EditText.class)),8000);assertNotNull(name);name.setText("После изменения");
+      click(By.res("android:id/button1"));scenario.recreate();device.waitForIdle();scenario.onActivity(this::assertDrawingViewport);
+      click(By.desc("Сохранить"));scenario.recreate();device.waitForIdle();
+      scenario.onActivity(activity->{try(ru.warriorrus.app.data.ObjectStore store=new ru.warriorrus.app.data.ObjectStore(activity)){
+        assertEquals(1,store.all().size());assertEquals("После изменения",store.all().get(0).name);assertEquals(2,ru.warriorrus.app.geometry.Geometry.count(store.all().get(0)));
+      }});
+      capture("properties-recreated");
+    }
+  }
+
   private void assertDrawingViewport(MainActivity activity) {
     View root=activity.getWindow().getDecorView();View editor=root.findViewWithTag("drawingControls");
     View canvas=root.findViewWithTag("mapCanvas"),focus=root.findViewWithTag("mapFocus");
@@ -111,7 +130,7 @@ public class NativeMapRegressionTest {
       UiObject2 propertiesName=device.wait(Until.findObject(By.clazz(EditText.class)),8000);assertNotNull(propertiesName);propertiesName.setText("Нарисованная линия");click(By.res("android:id/button1"));
       click(By.desc("Рисовать линию"));
       device.swipe(device.getDisplayWidth()/2,device.getDisplayHeight()/3,device.getDisplayWidth()/2+100,device.getDisplayHeight()/3+50,25);device.waitForIdle();
-      click(By.desc("Приостановить рисование"));click(By.desc("Развернуть статистику"));
+      click(By.desc("Приостановить рисование"));click(By.desc("Свернуть статистику"));click(By.desc("Развернуть статистику"));
       device.setOrientationLeft();device.waitForIdle();
       scenario.onActivity(activity->{View panel=activity.getWindow().getDecorView().findViewWithTag("drawingControls");assertNotNull(panel);assertWithinSafeArea(activity,panel);assertWithinSafeArea(activity,described(panel,"Сохранить"));assertTrue(((EditorPanel)panel).expanded());});
       capture("landscape-drawing-statistics");click(By.desc("Сохранить"));
