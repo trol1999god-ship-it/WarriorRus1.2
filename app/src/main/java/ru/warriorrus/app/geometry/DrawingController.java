@@ -23,6 +23,7 @@ public final class DrawingController {
   private final List<Overlay> preview=new ArrayList<>();
   private EditorPanel controls;
   private Button drawButton;
+  private GeometryStatisticsView statistics;
   private boolean drawing, resumeSegment, layoutReady, propertiesPrepared;
   private MapItem draft;
   private int activeSegment;
@@ -72,6 +73,7 @@ public final class DrawingController {
     if(!"route".equals(draft.kind))drawButton=controls.action("Начертить","Рисовать линию",this::toggleDrawing);
     controls.action("Путевая точка","+ Точка",()->add((GeoPoint)map.view.getMapCenter()));
     controls.action("Удалить","Назад",this::removeLast);
+    statistics=new GeometryStatisticsView(activity,draft);statistics.profile.onSelection(sample->inspect(sample.vertex));controls.statisticsContent(statistics);
     controls.show();updateDrawButton();
   }
   private void options(){
@@ -100,6 +102,7 @@ public final class DrawingController {
     dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try{Vertex point=Coordinates.parse(input.getText().toString());pauseDrawing();map.view.getController().setCenter(new GeoPoint(point.latitude,point.longitude));dialog.dismiss();}catch(Exception error){input.setError(error.getMessage());}}));dialog.show();
   }
   public boolean isDrawing(){return drawing;}
+  public void inspect(Vertex vertex){pauseDrawing();map.view.getController().setCenter(new GeoPoint(vertex.latitude,vertex.longitude));}
   private void pauseDrawing(){if(drawing){drawing=false;resumeSegment=!"area".equals(draft.kind);updateDrawButton();map.view.invalidate();}}
   public void toggleDrawing(){
     if(!active()||"route".equals(draft.kind))return;
@@ -190,12 +193,12 @@ public final class DrawingController {
   public void confirmCancel() {
     if(!active())return;new AlertDialog.Builder(activity).setTitle("Отменить рисование?").setMessage("Несохранённые изменения будут удалены.").setPositiveButton("Отменить рисование",(d,w)->cancel()).setNegativeButton("Продолжить",null).show();
   }
-  public void cancel(){for(Overlay o:preview)map.view.getOverlays().remove(o);preview.clear();map.view.getOverlays().remove(vertexOverlay);if(controls!=null)host.removeView(controls);ru.warriorrus.app.EditorViewport.update(host);controls=null;draft=null;drawing=false;drawButton=null;map.view.invalidate();}
+  public void cancel(){for(Overlay o:preview)map.view.getOverlays().remove(o);preview.clear();map.view.getOverlays().remove(vertexOverlay);if(controls!=null)host.removeView(controls);ru.warriorrus.app.EditorViewport.update(host);controls=null;statistics=null;draft=null;drawing=false;drawButton=null;map.view.invalidate();}
   private void render() {
     map.view.getOverlays().remove(vertexOverlay);
     for(Overlay o:preview)map.view.getOverlays().remove(o);preview.clear();
     controls.title(draft.name==null||draft.name.isEmpty()?"Создание: "+draft.typeName():draft.name);
-    controls.summary(Geometry.summary(draft,ru.warriorrus.app.settings.DisplayUnits.load(activity))+"\nКонтур / сегмент: "+(activeSegment+1)+" из "+draft.segments.size());
+    statistics.update(draft);
     if("area".equals(draft.kind)&&!draft.segments.isEmpty()&&draft.segments.get(0).size()>2){
       Polygon fill=new Polygon(map.view);List<GeoPoint> outer=new ArrayList<>();
       for(Vertex v:draft.segments.get(0))outer.add(new GeoPoint(v.latitude,v.longitude));fill.setPoints(outer);
@@ -215,10 +218,11 @@ public final class DrawingController {
   }
   public void saveState(Bundle state) {
     state.putBoolean("draftPropertiesPrepared",propertiesPrepared);
+    if(active()&&statistics!=null)statistics.profile.save(state,"draftProfile");
     if(active()){state.putString("draftAppearance",draft.appearance.encode());state.putString("draftIcon",draft.icon);state.putBoolean("draftDrawing",drawing);state.putBoolean("draftResumeSegment",resumeSegment);state.putBoolean("draftStatistics",controls.expanded());}
     if(!active())return;state.putInt("draftActive",activeSegment);state.putString("draftMedia",ObjectJson.attachments(draft.attachments));state.putLong("draftCreated",draft.created);state.putString("draftGeometry",Geometry.encode(draft.segments));state.putString("draftKind",draft.kind);state.putString("draftName",draft.name);state.putString("draftDescription",draft.description);state.putInt("draftPosition",draft.position);state.putLong("draftId",draft.id);state.putLong("draftParent",draft.parent);state.putInt("draftColor",draft.color);state.putBoolean("draftVisible",draft.visible);state.putFloat("draftOpacity",draft.opacity);
   }
   public void restore(Bundle state) {
-    if(state==null||!state.containsKey("draftGeometry"))return;MapItem d=new MapItem();d.attachments.addAll(ObjectJson.attachments(state.getString("draftMedia","[]")));d.created=state.getLong("draftCreated");d.kind=state.getString("draftKind");d.name=state.getString("draftName");d.description=state.getString("draftDescription");d.position=state.getInt("draftPosition");d.id=state.getLong("draftId");d.parent=state.getLong("draftParent");d.color=state.getInt("draftColor");d.visible=state.getBoolean("draftVisible");d.opacity=state.getFloat("draftOpacity");d.icon=state.getString("draftIcon","builtin:pin");d.appearance=ObjectAppearance.decode(state.getString("draftAppearance","{}"));d.segments.addAll(Geometry.decode(state.getString("draftGeometry")));start(d,d.kind,d.parent,null);propertiesPrepared=state.getBoolean("draftPropertiesPrepared",false);activeSegment=Math.max(0,Math.min(state.getInt("draftActive",0),draft.segments.size()-1));drawing=state.getBoolean("draftDrawing",false);resumeSegment=state.getBoolean("draftResumeSegment",false);controls.expanded(state.getBoolean("draftStatistics",false));updateDrawButton();render();
+    if(state==null||!state.containsKey("draftGeometry"))return;MapItem d=new MapItem();d.attachments.addAll(ObjectJson.attachments(state.getString("draftMedia","[]")));d.created=state.getLong("draftCreated");d.kind=state.getString("draftKind");d.name=state.getString("draftName");d.description=state.getString("draftDescription");d.position=state.getInt("draftPosition");d.id=state.getLong("draftId");d.parent=state.getLong("draftParent");d.color=state.getInt("draftColor");d.visible=state.getBoolean("draftVisible");d.opacity=state.getFloat("draftOpacity");d.icon=state.getString("draftIcon","builtin:pin");d.appearance=ObjectAppearance.decode(state.getString("draftAppearance","{}"));d.segments.addAll(Geometry.decode(state.getString("draftGeometry")));start(d,d.kind,d.parent,null);propertiesPrepared=state.getBoolean("draftPropertiesPrepared",false);activeSegment=Math.max(0,Math.min(state.getInt("draftActive",0),draft.segments.size()-1));drawing=state.getBoolean("draftDrawing",false);resumeSegment=state.getBoolean("draftResumeSegment",false);controls.expanded(state.getBoolean("draftStatistics",false));updateDrawButton();render();statistics.profile.restore(state,"draftProfile");
   }
 }

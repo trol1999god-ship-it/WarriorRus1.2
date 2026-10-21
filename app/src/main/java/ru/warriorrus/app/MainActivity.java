@@ -73,6 +73,9 @@ public final class MainActivity extends Activity {
   private TextView headingInfo, compassReadout;
   private Switch compassToggle;
   private CompassPanel compassPanel;
+  private Dialog profileDialog;
+  private GeometryStatisticsView profileStatistics;
+  private long profileObjectId;
   private String objectFilter = "all";
 
 
@@ -274,6 +277,7 @@ public final class MainActivity extends Activity {
     refresh();
     updateCoordinates();screen.restore(state);
     if(state!=null&&state.getBoolean("compassPanelOpen",false))mapRoot.post(this::showCompass);
+    if(state!=null&&state.getLong("profileObjectId",0)>0){MapItem item=store.get(state.getLong("profileObjectId"));if(item!=null)mapRoot.post(()->profile(item,state));}
     if(state!=null && state.containsKey("geometryPropertiesKind") && !drawing.active()) {
       MapItem p=new MapItem();p.kind=state.getString("geometryPropertiesKind");
       p.name=state.getString("geometryPropertiesName","");p.description=state.getString("geometryPropertiesDescription","");
@@ -983,9 +987,13 @@ public final class MainActivity extends Activity {
       result.description=notes.toString();Vertex first=result.segments.get(0).get(0);result.latitude=first.latitude;result.longitude=first.longitude;store.save(result);refresh();dialog.dismiss();
     }catch(Exception e){name.setError(e.getMessage());}}));dialog.show();
   }
-  private void profile(MapItem item) {
-    Dialog dialog=new Dialog(this);LinearLayout panel=new LinearLayout(this);panel.setOrientation(LinearLayout.VERTICAL);panel.setBackground(plate());panel.setPadding(dp(12),dp(12),dp(12),dp(12));panel.addView(hudText(item.name,18));panel.addView(hudText(Geometry.summary(item,DisplayUnits.load(this))+"\n"+TrackStatistics.of(item).summary(DisplayUnits.load(this)),14));
-    panel.addView(new ElevationProfile(this,item),new LinearLayout.LayoutParams(-1,dp(190)));panel.addView(compact("Закрыть",dialog::dismiss));ScrollView scroll=new ScrollView(this);scroll.addView(panel);showPanel(dialog,scroll,dp(520),false);
+  private void profile(MapItem item){profile(item,null);}
+  private void profile(MapItem item,Bundle state) {
+    if(profileDialog!=null)profileDialog.dismiss();
+    Dialog dialog=new Dialog(this);profileDialog=dialog;profileObjectId=item.id;LinearLayout panel=featurePanel(item.name,dialog);
+    GeometryStatisticsView statistics=new GeometryStatisticsView(this,item);profileStatistics=statistics;statistics.profile.onSelection(sample->drawing.inspect(sample.vertex));statistics.profile.restore(state,"objectProfile");panel.addView(statistics);
+    dialog.setOnDismissListener(d->{if(profileDialog==dialog){profileDialog=null;profileStatistics=null;profileObjectId=0;}});
+    ScrollView scroll=new ScrollView(this);scroll.addView(panel);showPanel(dialog,scroll,dp(520),false);
   }
   private void templatesMenu(boolean save) {
     if(save){if(explorer.selected.size()!=1){fileError("Выберите одну метку");return;}MapItem item=store.get(explorer.selected.iterator().next());if(item==null||!"point".equals(item.kind)){fileError("Шаблон создаётся из обычной метки");return;}
@@ -1316,6 +1324,7 @@ public final class MainActivity extends Activity {
   protected void onSaveInstanceState(Bundle state) {
     super.onSaveInstanceState(state);
     state.putBoolean("compassPanelOpen",compassPanel!=null);
+    if(profileDialog!=null&&profileDialog.isShowing()&&profileStatistics!=null){state.putLong("profileObjectId",profileObjectId);profileStatistics.profile.save(state,"objectProfile");}
     state.putLong("folder",explorer.folder);state.putBoolean("explorerSelectionMode",selectionMode);long[] selectedObjects=new long[explorer.selected.size()];int offset=0;for(long id:explorer.selected)selectedObjects[offset++]=id;state.putLongArray("explorerSelected",selectedObjects);List<Long> clipboardObjects=explorer.clipboardIds();long[] clipboardIds=new long[clipboardObjects.size()];for(int n=0;n<clipboardIds.length;n++)clipboardIds[n]=clipboardObjects.get(n);state.putLongArray("explorerClipboard",clipboardIds);state.putBoolean("explorerCut",explorer.isCut());
     if(screen!=null)screen.save(state);state.putString("screenshotPath",screenshotPath);
     if (drawing != null) drawing.saveState(state);

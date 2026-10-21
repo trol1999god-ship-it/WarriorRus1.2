@@ -11,7 +11,7 @@ public final class EditorPanel extends LinearLayout {
   private final ReferenceMenu ui;
   private final FrameLayout host;
   private final TextView title, summary;
-  private final LinearLayout actions;
+  private final LinearLayout actions,detailsBody;
   private final ScrollView details;
   private final Button statistics, closeButton;
   private boolean expanded;
@@ -58,7 +58,7 @@ public final class EditorPanel extends LinearLayout {
         super.onMeasure(width,View.MeasureSpec.makeMeasureSpec(detailsMaximum,View.MeasureSpec.AT_MOST));
       }
     };
-    details.addView(summary);
+    detailsBody=new LinearLayout(context);detailsBody.setOrientation(VERTICAL);detailsBody.addView(summary);details.addView(detailsBody);
     details.setVisibility(GONE);
     addView(details, new LayoutParams(-1, -2));
     expanded(false);
@@ -92,6 +92,7 @@ public final class EditorPanel extends LinearLayout {
   public void title(String value) { title.setText(value); }
   public void closeAction(int icon,String value) { ReferenceAssets.apply(closeButton,icon,20);closeButton.setContentDescription(value); }
   public void summary(String value) { summary.setText(value); }
+  public void statisticsContent(View view){detailsBody.removeAllViews();detailsBody.addView(view,new LayoutParams(-1,-2));}
   public void expanded(boolean value) {
     expanded = value;
     details.setVisibility(value ? VISIBLE : GONE);

@@ -8,7 +8,7 @@ import ru.warriorrus.app.data.*;
 public final class TrackStatistics {
   public double ascent,descent,min=Double.POSITIVE_INFINITY,max=Double.NEGATIVE_INFINITY;
   public long first=Long.MAX_VALUE,last=Long.MIN_VALUE,movingMillis;
-  public double timedDistance;
+  public double timedDistance,maxSpeed;
   public double maxUphill,maxDownhill;
   public static TrackStatistics of(MapItem item) {
     TrackStatistics stats=new TrackStatistics();
@@ -16,7 +16,7 @@ public final class TrackStatistics {
       for(Vertex v:segment){
         if(v.elevation!=null){stats.min=Math.min(stats.min,v.elevation);stats.max=Math.max(stats.max,v.elevation);if(previous!=null&&previous.elevation!=null){double delta=v.elevation-previous.elevation;if(delta>0)stats.ascent+=delta;else stats.descent-=delta;double distance=Geometry.distance(previous,v);if(distance>0){double slope=Math.toDegrees(Math.atan2(delta,distance));stats.maxUphill=Math.max(stats.maxUphill,slope);stats.maxDownhill=Math.min(stats.maxDownhill,slope);}}}
         Long time=time(v.time);if(time!=null){stats.first=Math.min(stats.first,time);stats.last=Math.max(stats.last,time);}
-        if(previous!=null&&time!=null){Long before=time(previous.time);if(before!=null&&time>before){stats.movingMillis+=time-before;stats.timedDistance+=Geometry.distance(previous,v);}}
+        if(previous!=null&&time!=null){Long before=time(previous.time);if(before!=null&&time>before){stats.movingMillis+=time-before;double step=Geometry.distance(previous,v);stats.timedDistance+=step;stats.maxSpeed=Math.max(stats.maxSpeed,step/(((double)time-before)/1000));}}
         previous=v;
       }
     }return stats;

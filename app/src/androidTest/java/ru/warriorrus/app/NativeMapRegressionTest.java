@@ -32,12 +32,29 @@ public class NativeMapRegressionTest {
     device.waitForIdle();
   }
 
+  @Test public void profileTouchAxesAndRotationPreserveLocalTrack()throws Exception{
+    android.content.Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();context.deleteDatabase("warrior2.db");context.getSharedPreferences("MainActivity",0).edit().clear().putBoolean("mapOnline",false).commit();
+    ru.warriorrus.app.data.MapItem item=new ru.warriorrus.app.data.MapItem();item.kind="track";item.name="Native profile";item.visible=true;item.opacity=1;
+    item.segments.add(java.util.Arrays.asList(new ru.warriorrus.app.data.Vertex(48,11,500.0,"2026-10-21T00:00:00Z"),new ru.warriorrus.app.data.Vertex(48.001,11.001,540.0,"2026-10-21T00:01:00Z"),new ru.warriorrus.app.data.Vertex(48.002,11.002,520.0,"2026-10-21T00:03:00Z")));
+    final long id;try(ru.warriorrus.app.data.ObjectStore store=new ru.warriorrus.app.data.ObjectStore(context)){id=store.save(item);}final String source=ru.warriorrus.app.geometry.Geometry.encode(item.segments);
+    try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
+      scenario.onActivity(activity->{try{java.lang.reflect.Field f=MainActivity.class.getDeclaredField("drawing");f.setAccessible(true);((MapView)type(activity.getWindow().getDecorView(),MapView.class)).getController().setZoom(17.0);((ru.warriorrus.app.geometry.DrawingController)f.get(activity)).start(item,"track",0,null);}catch(Exception e){throw new AssertionError(e);}});device.waitForIdle();
+      UiScrollable scroll=new UiScrollable(new UiSelector().scrollable(true));assertTrue(scroll.scrollIntoView(new UiSelector().description("Установить по оси Y")));
+      click(By.desc("Установить по оси Y"));click(By.text("Скорость"));assertTrue(device.wait(Until.gone(By.text("Установить по оси Y")),8000));
+      click(By.desc("Установить по оси X"));click(By.text("Время"));assertTrue(device.wait(Until.gone(By.text("Установить по оси X")),8000));
+      assertTrue(scroll.scrollIntoView(new UiSelector().description("Профиль объекта Native profile")));UiObject2 chart=device.wait(Until.findObject(By.desc("Профиль объекта Native profile")),8000);assertNotNull(chart);android.graphics.Rect rect=chart.getVisibleBounds();assertTrue(rect.height()>20);device.swipe(rect.left+20,rect.centerY(),rect.right-20,rect.centerY(),15);device.waitForIdle();capture("profile-speed-time");
+      scenario.onActivity(activity->assertProfileState(activity,source));device.setOrientationLeft();device.waitForIdle();scenario.onActivity(activity->assertProfileState(activity,source));capture("profile-landscape");
+      try(ru.warriorrus.app.data.ObjectStore store=new ru.warriorrus.app.data.ObjectStore(context)){assertEquals(source,ru.warriorrus.app.geometry.Geometry.encode(store.get(id).segments));}
+    }finally{device.setOrientationNatural();device.unfreezeRotation();}
+  }
+  private void assertProfileState(MainActivity activity,String geometry){try{java.lang.reflect.Field f=MainActivity.class.getDeclaredField("drawing");f.setAccessible(true);android.os.Bundle state=new android.os.Bundle();((ru.warriorrus.app.geometry.DrawingController)f.get(activity)).saveState(state);assertEquals(geometry,state.getString("draftGeometry"));assertEquals(1,state.getInt("draftProfileValue"));assertEquals(1,state.getInt("draftProfileAxis"));assertTrue(state.getInt("draftProfileCursor",-1)>=0);}catch(Exception e){throw new AssertionError(e);}}
+
   @Test public void compassSettingsCalibrationAndModePersistence() throws Exception {
     android.content.Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
     context.getSharedPreferences("MainActivity",0).edit().clear().putBoolean("mapOnline",false).putInt("compassMode",0).commit();
     try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
       click(By.desc("Ориентирование"));click(By.text("Компас"));
-      click(By.desc("Настройки компаса"));click(By.text("Больше"));assertNotNull(device.wait(Until.findObject(By.desc("Датчик")),8000));click(By.clazz(android.widget.Spinner.class).desc("Компас"));click(By.text("TopoChaix"));click(By.res("android:id/button1"));
+      click(By.desc("Настройки компаса"));click(By.res("android:id/button3"));assertNotNull(device.wait(Until.findObject(By.desc("Датчик")),8000));click(By.clazz(android.widget.Spinner.class).desc("Компас"));click(By.text("TopoChaix"));click(By.res("android:id/button1"));
       assertTrue(device.wait(Until.gone(By.res("android:id/button1")),8000));scenario.onActivity(activity->assertEquals(1,activity.getPreferences(0).getInt("compassMode",-1)));capture("compass-topochaix");
       scenario.onActivity(activity->{View root=activity.getWindow().getDecorView();View panel=root.findViewWithTag("compassPanel"),map=root.findViewWithTag("mapCanvas");assertNotNull(panel);assertTrue(map.getBottom()<=panel.getTop());});
       click(By.desc("Справка о компасе"));assertNotNull(device.wait(Until.findObject(By.desc("Поворот устройства по трём осям")),8000));click(By.res("android:id/button1"));
