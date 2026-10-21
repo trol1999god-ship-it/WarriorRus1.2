@@ -26,7 +26,7 @@ public class NativeMapRegressionTest {
   private void click(BySelector selector) {
     dismissSystemEducation();
     UiObject2 object = device.wait(Until.findObject(selector), 8000);
-    if(object==null){try{device.executeShellCommand("mkdir -p /data/local/tmp/rabochaya-screens");device.takeScreenshot(new java.io.File("/data/local/tmp/rabochaya-screens/missing-control.png"));device.dumpWindowHierarchy(new java.io.File("/data/local/tmp/rabochaya-screens/missing-control.xml"));}catch(Exception ignored){}}
+    if(object==null){try{capture("missing-control");}catch(Exception ignored){}}
     assertNotNull("Missing UI control: "+selector,object);
     object.click();
     device.waitForIdle();
@@ -106,7 +106,9 @@ public class NativeMapRegressionTest {
       click(By.desc("Действия в центре карты"));click(By.text("Новая метка…"));click(By.text("Путь"));
       UiObject2 name=device.wait(Until.findObject(By.clazz(EditText.class)),8000);assertNotNull(name);name.setText("До поворота");
       scenario.recreate();device.waitForIdle();name=device.wait(Until.findObject(By.clazz(EditText.class)),8000);
-      assertNotNull(name);assertEquals("До поворота",name.getText());click(By.res("android:id/button1"));
+      assertNotNull(name);assertEquals("До поворота",name.getText());
+      dismissKeyboard();capture("properties-before-confirm");click(By.res("android:id/button1"));
+      assertTrue(device.wait(Until.gone(By.res("android:id/button1")),8000));
       click(By.desc("+ Точка"));click(By.desc("Опции редактора"));click(By.text("Свойства"));
       name=device.wait(Until.findObject(By.clazz(EditText.class)),8000);assertNotNull(name);name.setText("После изменения");
       click(By.res("android:id/button1"));scenario.recreate();device.waitForIdle();scenario.onActivity(this::assertDrawingViewport);
@@ -236,6 +238,11 @@ public class NativeMapRegressionTest {
       scenario.onActivity(activity->{try{java.lang.reflect.Field field=MainActivity.class.getDeclaredField("mapTools");field.setAccessible(true);ru.warriorrus.app.map.MapTools tools=(ru.warriorrus.app.map.MapTools)field.get(activity);tools.start(new ru.warriorrus.app.data.Vertex(0,0));assertEquals(111195,tools.previewLength(),50);tools.add();tools.finish();}catch(Exception error){throw new AssertionError(error);}});
       scenario.recreate();device.waitForIdle();
     }
+  }
+
+  private void dismissKeyboard(){
+    BySelector keyboard=By.pkg(java.util.regex.Pattern.compile(".*inputmethod.*"));
+    if(device.hasObject(keyboard)){device.pressBack();assertTrue("Keyboard did not close",device.wait(Until.gone(keyboard),8000));device.waitForIdle();}
   }
 
   private void capture(String name) throws Exception {
