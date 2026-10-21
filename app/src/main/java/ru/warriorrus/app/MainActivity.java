@@ -562,10 +562,12 @@ public final class MainActivity extends Activity {
   }
 
   private void orientationMenu(){
-    orientationDialog=new Dialog(this);LinearLayout panel=referenceUi.panel();referenceUi.heading(panel,"Ориентирование","",null);
+    orientationDialog=new Dialog(this);LinearLayout panel=referenceUi.panel();boolean expanded=getPreferences(MODE_PRIVATE).getBoolean("expandedCategory3",false);referenceUi.heading(panel,"Ориентирование","",null);
     LinearLayout row=new LinearLayout(this);Button open=referenceUi.action("Компас",()->{orientationDialog.dismiss();showCompass();});ReferenceAssets.apply(open,R.drawable.ui_compass,24);open.setCompoundDrawablePadding(dp(10));row.addView(open,new LinearLayout.LayoutParams(0,dp(48),1));Switch toggle=new Switch(this);toggle.setContentDescription("Включить компас");toggle.setChecked(getPreferences(MODE_PRIVATE).getBoolean("compassEnabled",false));toggle.setOnCheckedChangeListener((v,on)->{setCompass(on);if(on&&!compassController.enabled)toggle.setChecked(false);});row.addView(toggle,new LinearLayout.LayoutParams(dp(60),dp(48)));panel.addView(row);
-    referenceUi.option(panel,"Вращать карту по компасу",getPreferences(MODE_PRIVATE).getBoolean("compassRotate",false),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("compassRotate",on).apply();updateCompass();});referenceUi.option(panel,"Показать компас",getPreferences(MODE_PRIVATE).getBoolean("compassOnMap",false),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("compassOnMap",on).apply();updateCompass();});
-    referenceUi.heading(panel,"Информеры","",null);referenceUi.option(panel,"Статус компаса",getPreferences(MODE_PRIVATE).getBoolean("compassInfo",false),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("compassInfo",on).apply();updateCompass();});showSubmenu(orientationDialog,panel,3);
+    referenceUi.heading(panel,"Опции",expanded?"⌃":"⌄",()->categoryOptions(3));
+    if(expanded){referenceUi.option(panel,"Вращать карту по компасу",getPreferences(MODE_PRIVATE).getBoolean("compassRotate",false),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("compassRotate",on).apply();updateCompass();});referenceUi.option(panel,"Показать компас",getPreferences(MODE_PRIVATE).getBoolean("compassOnMap",false),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("compassOnMap",on).apply();updateCompass();});
+    referenceUi.heading(panel,"Информеры","",null);referenceUi.option(panel,"Статус компаса",getPreferences(MODE_PRIVATE).getBoolean("compassInfo",false),on->{getPreferences(MODE_PRIVATE).edit().putBoolean("compassInfo",on).apply();updateCompass();});}
+    showSubmenu(orientationDialog,panel,3);
   }
   private void toggleCompass(){setCompass(!getPreferences(MODE_PRIVATE).getBoolean("compassEnabled",false));}
   private void setCompass(boolean on){

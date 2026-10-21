@@ -36,6 +36,24 @@ public class ReferenceInterfaceTest {
   }try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup(state)){
     View lock=c.get().getWindow().getDecorView().findViewWithTag("touchLock");assertNotNull(lock);desc(lock,"Разблокировать экран").performLongClick();assertNull(c.get().getWindow().getDecorView().findViewWithTag("touchLock"));
   }}
+  @Test public void orientationOptionsStartCollapsedAndKeepTheChosenExpansionAfterRestart(){
+    try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup()){
+      c.get().getWindow().getDecorView().findViewWithTag("Ориентирование").performClick();
+      View root=org.robolectric.shadows.ShadowDialog.getLatestDialog().getWindow().getDecorView();
+      assertFalse(c.get().getPreferences(0).getAll().toString(),c.get().getPreferences(0).getBoolean("expandedCategory3",false));
+      assertNotNull(text(root,"Компас"));assertNull(text(root,"Вращать карту по компасу"));
+      desc(root,"Опции").performClick();
+      root=org.robolectric.shadows.ShadowDialog.getLatestDialog().getWindow().getDecorView();
+      assertNotNull(text(root,"Вращать карту по компасу"));assertNotNull(text(root,"Показать компас"));
+    }
+    try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup()){
+      c.get().getWindow().getDecorView().findViewWithTag("Ориентирование").performClick();
+      View root=org.robolectric.shadows.ShadowDialog.getLatestDialog().getWindow().getDecorView();
+      assertNotNull(text(root,"Вращать карту по компасу"));desc(root,"Опции").performClick();
+      root=org.robolectric.shadows.ShadowDialog.getLatestDialog().getWindow().getDecorView();
+      assertNull(text(root,"Вращать карту по компасу"));assertFalse(prefs.getBoolean("expandedCategory3",true));
+    }
+  }
   @Test public void favoriteSetRestoresLayerOrderAndAllColorParametersWithoutLosingInstalledSources()throws Exception {
     try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup()){
       java.lang.reflect.Field f=MainActivity.class.getDeclaredField("catalog");f.setAccessible(true);MapCatalog catalog=(MapCatalog)f.get(c.get());MapCatalog.Layer base=catalog.find("osm"),added=catalog.addOnline("Synthetic map","https://example.invalid/{z}/{x}/{y}.png","Synthetic source",false);added.opacity=42;added.saturation=.3f;added.contrast=1.3f;added.brightness=-.2f;added.hue=35;added.inverted=true;added.erase=true;added.eraseColor=0xfff0eedd;added.eraseTolerance=12;added.blend=2;catalog.saveFavorite("Test set");org.json.JSONObject set=catalog.favoriteSets().getJSONObject(0);String id=set.getString("id");

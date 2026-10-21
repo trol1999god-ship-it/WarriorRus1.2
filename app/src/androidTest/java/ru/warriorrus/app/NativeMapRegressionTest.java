@@ -180,7 +180,7 @@ public class NativeMapRegressionTest {
           capture(prefix + "-" + fieldName);
           if (fieldName.equals("explorerDialog")) {
             click(By.desc("Создать объект"));
-            assertNotNull(device.wait(Until.findObject(By.text("Путевая точка")), 8000));
+            assertNotNull(device.wait(Until.findObject(By.text("Метка")), 8000));
             device.pressBack();
             device.waitForIdle();
           }

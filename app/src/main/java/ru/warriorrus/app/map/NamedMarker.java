@@ -38,7 +38,8 @@ public final class NamedMarker extends Marker {
   public void labelStyle(ru.warriorrus.app.data.ObjectAppearance appearance) {
     float size=appearance.labelSize*map.getResources().getDisplayMetrics().scaledDensity;
     text.setTextSize(size);outline.setTextSize(size);
-    Typeface font=Typeface.create(Typeface.DEFAULT,(appearance.labelBold?Typeface.BOLD:0)|(appearance.labelItalic?Typeface.ITALIC:0));text.setTypeface(font);outline.setTypeface(font);
+    int style=appearance.labelBold?(appearance.labelItalic?Typeface.BOLD_ITALIC:Typeface.BOLD):(appearance.labelItalic?Typeface.ITALIC:Typeface.NORMAL);
+    Typeface font=Typeface.create(Typeface.DEFAULT,style);text.setTypeface(font);outline.setTypeface(font);
     text.setColor(ObjectStyleRenderer.alpha(appearance.labelColor==null?Color.BLACK:appearance.labelColor,opacity));
   }
 
