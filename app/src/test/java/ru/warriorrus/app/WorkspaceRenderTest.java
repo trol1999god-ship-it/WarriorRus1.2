@@ -60,6 +60,12 @@ public class WorkspaceRenderTest {
       Dialog objects = org.robolectric.shadows.ShadowDialog.getLatestDialog();
       snapshot(objects.getWindow().getDecorView(), name + "-objects", Math.min(640, width - 16), height - 24);
       objects.dismiss();
+      java.lang.reflect.Method compassMethod=MainActivity.class.getDeclaredMethod("showCompass");compassMethod.setAccessible(true);compassMethod.invoke(controller.get());
+      org.robolectric.shadows.ShadowDialog.getLatestDialog().dismiss();
+      ru.warriorrus.app.map.CompassDial dial=root.findViewWithTag("compassDial");dial.ready=true;dial.heading=35;dial.topo=false;
+      snapshot(root,name+"-compass-standard",width,height);
+      dial.topo=true;dial.invalidate();snapshot(root,name+"-compass-topochaix",width,height);
+      java.lang.reflect.Method closeCompass=MainActivity.class.getDeclaredMethod("closeCompass");closeCompass.setAccessible(true);closeCompass.invoke(controller.get());
       java.lang.reflect.Field drawingField=MainActivity.class.getDeclaredField("drawing");drawingField.setAccessible(true);
       ru.warriorrus.app.geometry.DrawingController drawing=(ru.warriorrus.app.geometry.DrawingController)drawingField.get(controller.get());
       drawing.start(null,"path",0,new org.osmdroid.util.GeoPoint(55.75,37.62));drawing.add(new org.osmdroid.util.GeoPoint(55.76,37.63));

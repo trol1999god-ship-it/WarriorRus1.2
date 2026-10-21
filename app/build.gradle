@@ -14,8 +14,8 @@ android {
         minSdk 23
         targetSdk 35
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        versionCode 20
-        versionName "2.3.8b-parity-validation"
+        versionCode 21
+        versionName "2.3.8b-compass"
     }
 }
 

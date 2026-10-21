@@ -67,10 +67,12 @@ public final class MainActivity extends Activity {
   private boolean coordinatesCollapsed, mapLayerVisible, rightCollapsed;
   private int mapLayerOpacity;
   private final List<Dialog> openPanels=new ArrayList<>();
-  private Dialog menuDialog, layersDialog, mapsDialog, marksDialog, orientationDialog, compassDialog;
+  private Dialog menuDialog, layersDialog, mapsDialog, marksDialog, orientationDialog;
   private CompassController compassController;
   private CompassDial compassDial, mapCompass;
   private TextView headingInfo, compassReadout;
+  private Switch compassToggle;
+  private CompassPanel compassPanel;
   private String objectFilter = "all";
 
 
@@ -271,6 +273,7 @@ public final class MainActivity extends Activity {
     explorerDialog.setOnDismissListener(d -> displayedOnly = false);
     refresh();
     updateCoordinates();screen.restore(state);
+    if(state!=null&&state.getBoolean("compassPanelOpen",false))mapRoot.post(this::showCompass);
     if(state!=null && state.containsKey("geometryPropertiesKind") && !drawing.active()) {
       MapItem p=new MapItem();p.kind=state.getString("geometryPropertiesKind");
       p.name=state.getString("geometryPropertiesName","");p.description=state.getString("geometryPropertiesDescription","");
@@ -337,7 +340,7 @@ public final class MainActivity extends Activity {
     case "hide":getPreferences(MODE_PRIVATE).edit().putBoolean("menuHidden",true).apply();renderMenuVisibility();break;
     case "lock":screen.lock(true);break;case "capture":captureMap();break;
     case "point":edit(null,center);break;case "quickPoint":run(()->store.create(explorer.folder,"Метка "+(store.all().size()+1),"point",center.getLatitude(),center.getLongitude()));break;
-    case "search":searchMap();break;case "measure":if(drawing.active()){fileError("Сначала завершите рисунок");break;}timeline.close();mapTools.start(new Vertex(center.getLatitude(),center.getLongitude()));break;
+    case "search":searchMap();break;case "measure":if(drawing.active()){fileError("Сначала завершите рисунок");break;}closeCompass();timeline.close();mapTools.start(new Vertex(center.getLatitude(),center.getLongitude()));break;
     case "compass":showCompass();break;case "north":map.view.setMapOrientation(0);break;
     case "grid":gridEnabled=!gridEnabled;map.showGrid(gridEnabled);getPreferences(MODE_PRIVATE).edit().putBoolean("coordinateGrid",gridEnabled).apply();break;
     case "night":getPreferences(MODE_PRIVATE).edit().putBoolean("nightMode",!getPreferences(MODE_PRIVATE).getBoolean("nightMode",false)).apply();catalog.updateAppearance();break;
@@ -472,7 +475,7 @@ public final class MainActivity extends Activity {
 
   private void mapToolsMenu(GeoPoint point){sheet("Инструменты",new String[]{"Измерить","Проекция точки по расстоянию и азимуту","Удалить измерения",mapTools.hasTarget()?"Убрать цель":"Задать цель","Перейти к цели"},n->{
     Vertex origin=new Vertex(point.getLatitude(),point.getLongitude());
-    if(n==0){if(drawing.active()){fileError("Сначала завершите рисунок");return;}timeline.close();mapTools.start(origin);}
+    if(n==0){if(drawing.active()){fileError("Сначала завершите рисунок");return;}closeCompass();timeline.close();mapTools.start(origin);}
     else if(n==1)projectPoint(origin);else if(n==2)new AlertDialog.Builder(this).setTitle("Удалить все измерения?").setPositiveButton("Удалить",(d,w)->mapTools.clear()).setNegativeButton("Отмена",null).show();
     else if(n==3)mapTools.target(mapTools.hasTarget()?null:origin);else mapTools.jumpTarget();
   });}
@@ -528,7 +531,7 @@ public final class MainActivity extends Activity {
     showSubmenu(marksDialog,panel,2);
   }
   private List<MapItem> timelineItems(){List<MapItem> items=new ArrayList<>();for(MapItem item:store.renderItems())if(!item.isFolder()&&store.effectiveOpacity(item)>0)items.add(item);return items;}
-  private void openTimeline(){if(drawing.active()||mapTools.measuring){fileError("Сначала завершите рисунок или измерение");return;}if(!timeline.open())fileError("Нет отображаемых меток со временем в файле");}
+  private void openTimeline(){if(drawing.active()||mapTools.measuring){fileError("Сначала завершите рисунок или измерение");return;}if(timeline.open())closeCompass();else fileError("Нет отображаемых меток со временем в файле");}
   private LinearLayout featurePanel(String title,Dialog dialog) {
     LinearLayout panel=new LinearLayout(this);panel.setOrientation(LinearLayout.VERTICAL);panel.setPadding(dp(12),dp(8),dp(12),dp(8));panel.setBackground(plate());
     LinearLayout header=new LinearLayout(this);header.addView(hudText(title,18),new LinearLayout.LayoutParams(0,-2,1));header.addView(compact("×",dialog::dismiss),new LinearLayout.LayoutParams(dp(48),dp(48)));panel.addView(header);return panel;
@@ -542,7 +545,7 @@ public final class MainActivity extends Activity {
     else if(n>=4&&n<=6)startDrawing(n==4?"route":n==5?"path":"area",point);
     else if(n==7||n==8)createSpecialPlacemark(point,n==7?"circle":"text");
     else if(n==10)searchMap();
-    else if(n==11){if(drawing.active()){fileError("Сначала завершите рисунок");return;}timeline.close();mapTools.start(new Vertex(point.getLatitude(),point.getLongitude()));}
+    else if(n==11){if(drawing.active()){fileError("Сначала завершите рисунок");return;}closeCompass();timeline.close();mapTools.start(new Vertex(point.getLatitude(),point.getLongitude()));}
   });}
   private void createSpecialPlacemark(GeoPoint center,String type){
     LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);EditText name=new EditText(this);name.setHint(type.equals("text")?"Текст":"Название");form.addView(name);
@@ -575,12 +578,37 @@ public final class MainActivity extends Activity {
     else compassController.stop();getPreferences(MODE_PRIVATE).edit().putBoolean("compassEnabled",on).apply();updateCompass();
   }
   private void showCompass(){
-    compassDialog=new Dialog(this);LinearLayout panel=featurePanel("Компас",compassDialog);
-    compassDial=new CompassDial(this);panel.addView(compassDial,new LinearLayout.LayoutParams(-1,dp(240)));compassReadout=hudText("",14);panel.addView(compassReadout);
-    panel.addView(compact("Включить / выключить",this::toggleCompass));
-    CheckBox rose=new CheckBox(this);rose.setText("Подвижная шкала");rose.setTextColor(ReferenceMenu.TEXT);rose.setChecked(getPreferences(MODE_PRIVATE).getBoolean("compassRose",true));rose.setOnCheckedChangeListener((v,on)->{getPreferences(MODE_PRIVATE).edit().putBoolean("compassRose",on).apply();updateCompass();});panel.addView(rose);
-    panel.addView(compact("Датчик",()->sheet("Датчик компаса",new String[]{"Вектор вращения (если доступен)","Магнитометр и акселерометр"},n->{getPreferences(MODE_PRIVATE).edit().putString("compassSensor",n==0?"rotation":"magnetic").apply();if(compassController.enabled)setCompass(true);}))); 
-    panel.addView(hudText("Север выбирается в настройках. Склонение рассчитывается по центру карты; местоположение телефона не запрашивается. Давление доступно при наличии барометра.",12));showFeature(compassDialog,panel);updateCompass();
+    if(compassPanel!=null)return;
+    if(drawing.active()||mapTools.measuring||timeline.model.active){fileError("Сначала завершите рисунок, измерение или контроль времени");return;}
+    compassPanel=new CompassPanel(this,mapRoot,this::setCompass,this::compassCalibration,this::compassSettings,this::closeCompass);
+    compassToggle=compassPanel.toggle;compassDial=compassPanel.dial;compassReadout=compassPanel.status;
+    compassPanel.show();if(!compassController.enabled)setCompass(true);else updateCompass();
+  }
+  private void closeCompass(){
+    if(compassPanel==null)return;mapRoot.removeView(compassPanel);compassPanel=null;compassDial=null;compassReadout=null;compassToggle=null;EditorViewport.update(mapRoot);updateCompass();
+  }
+  private Spinner compassChoice(LinearLayout panel,String title,String[] values,int selected){
+    TextView label=hudText(title,12);label.setTextColor(ReferenceMenu.MUTED);label.setPadding(dp(8),dp(12),dp(8),0);panel.addView(label);
+    Spinner input=new Spinner(this);input.setContentDescription(title);input.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,values));input.setSelection(Math.max(0,Math.min(values.length-1,selected)));panel.addView(input,new LinearLayout.LayoutParams(-1,dp(48)));return input;
+  }
+  private void compassSettings(){
+    android.content.SharedPreferences prefs=getPreferences(MODE_PRIVATE);LinearLayout panel=referenceUi.panel();
+    Spinner mode=compassChoice(panel,"Компас",new String[]{"Стандартный","TopoChaix"},prefs.getInt("compassMode",1));
+    Spinner north=compassChoice(panel,"Направление на север (компас)",new String[]{"Истинный (географический) север","Координатный север","Магнитный север"},prefs.getInt("northReference",2));
+    LinearLayout extra=new LinearLayout(this);extra.setOrientation(LinearLayout.VERTICAL);extra.setVisibility(View.GONE);panel.addView(extra);
+    Spinner sensor=compassChoice(extra,"Датчик",new String[]{"Вектор вращения (если доступен)","Магнитометр и акселерометр"},prefs.getString("compassSensor","rotation").equals("magnetic")?1:0);
+    AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Ориентирование").setView(panel).setNeutralButton("Больше",null).setPositiveButton("ОК",(d,w)->{
+      String selected=sensor.getSelectedItemPosition()==0?"rotation":"magnetic";boolean restart=compassController.enabled&&!selected.equals(prefs.getString("compassSensor","rotation"));
+      prefs.edit().putInt("compassMode",mode.getSelectedItemPosition()).putInt("northReference",north.getSelectedItemPosition()).putString("compassSensor",selected).apply();
+      if(restart)setCompass(true);else updateCompass();
+    }).create();
+    dialog.show();dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(v->{boolean expand=extra.getVisibility()!=View.VISIBLE;extra.setVisibility(expand?View.VISIBLE:View.GONE);dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setText(expand?"Меньше":"Больше");});
+  }
+  private void compassCalibration(){
+    LinearLayout panel=referenceUi.panel();referenceUi.note(panel,"Для калибровки компаса по очереди поверните устройство несколько раз по трём осям.");
+    ImageView illustration=new ImageView(this);illustration.setContentDescription("Поворот устройства по трём осям");illustration.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
+    try{illustration.setImageDrawable(new android.graphics.drawable.PictureDrawable(com.caverock.androidsvg.SVG.getFromResource(this,R.raw.compass_calibration).renderToPicture()));panel.addView(illustration,new LinearLayout.LayoutParams(-1,dp(180)));}catch(Exception ignored){}
+    new AlertDialog.Builder(this).setTitle("Калибровка компаса").setView(panel).setPositiveButton("ОК",null).show();
   }
   private void updateCompass(){
     if(compassController==null||headingInfo==null)return;CompassController c=compassController;android.content.SharedPreferences prefs=getPreferences(MODE_PRIVATE);
@@ -588,9 +616,10 @@ public final class MainActivity extends Activity {
     if(reference!=2){double lat=map.view.getMapCenter().getLatitude(),lon=map.view.getMapCenter().getLongitude();corrected+=new android.hardware.GeomagneticField((float)lat,(float)lon,0f,System.currentTimeMillis()).getDeclination();if(reference==1)try{int mode=prefs.getInt("primaryCoordinates",0);String code=Coordinates.system(mode,lat,lon,prefs.getString("primaryEPSG","EPSG:32637"));if(!ProjectionMath.geographic(code)){Vertex toward=Geometry.project(new Vertex(lat,lon),0,100);double[] a=ProjectionMath.project(code,lat,lon),b=ProjectionMath.project(code,toward.latitude,toward.longitude);corrected+=Math.toDegrees(Math.atan2(b[0]-a[0],b[1]-a[1]));}}catch(Exception ignored){}}
     float heading=CompassController.normalize((float)corrected);
     String value=!c.enabled?"Компас выключен":!c.ready?"Ожидание показаний датчика":"Азимут: "+units.bearing(heading)+"\nНаклон: "+units.slope(c.pitch)+" · Крен: "+units.slope(c.roll)+(c.pressureHpa==null?"":"\nДавление: "+units.pressure(c.pressureHpa))+(c.accuracy<=android.hardware.SensorManager.SENSOR_STATUS_ACCURACY_LOW?"\nТребуется калибровка":"");
-    if(compassReadout!=null)compassReadout.setText(value);headingInfo.setText(value);headingInfo.setVisibility(c.enabled&&prefs.getBoolean("compassInfo",false)?View.VISIBLE:View.GONE);
-    for(CompassDial dial:new CompassDial[]{compassDial,mapCompass})if(dial!=null){dial.heading=heading;dial.ready=c.ready;dial.movingRose=prefs.getBoolean("compassRose",true);dial.invalidate();}
-    mapCompass.setVisibility(c.enabled&&prefs.getBoolean("compassOnMap",false)?View.VISIBLE:View.GONE);
+    if(compassToggle!=null&&compassToggle.isChecked()!=c.enabled)compassToggle.setChecked(c.enabled);
+    if(compassReadout!=null)compassReadout.setText(!c.enabled?"Компас выключен":!c.ready?"Ожидание показаний датчика":units.bearing(heading)+" · "+(reference==0?"Истинный север":reference==1?"Координатный север":"Магнитный север")+(c.accuracy<=android.hardware.SensorManager.SENSOR_STATUS_ACCURACY_LOW?"\nТребуется калибровка":""));headingInfo.setText(value);headingInfo.setVisibility(c.enabled&&prefs.getBoolean("compassInfo",false)?View.VISIBLE:View.GONE);
+    for(CompassDial dial:new CompassDial[]{compassDial,mapCompass})if(dial!=null){dial.heading=heading;dial.ready=c.enabled&&c.ready;dial.topo=prefs.getInt("compassMode",1)==1;dial.invalidate();}
+    mapCompass.setVisibility(c.enabled&&compassPanel==null&&prefs.getBoolean("compassOnMap",false)?View.VISIBLE:View.GONE);
     if(c.enabled&&c.ready&&prefs.getBoolean("compassRotate",false))map.view.setMapOrientation(-heading);
   }
 
@@ -805,7 +834,7 @@ public final class MainActivity extends Activity {
     }
     if (item != null && item.isGeometry()) {
       if (explorerDialog != null) explorerDialog.dismiss();
-      timeline.close();drawing.start(item, item.kind, item.parent, null); return;
+      closeCompass();timeline.close();drawing.start(item, item.kind, item.parent, null); return;
     }
     LinearLayout form = new LinearLayout(this);
     form.setOrientation(LinearLayout.VERTICAL);
@@ -1126,7 +1155,7 @@ public final class MainActivity extends Activity {
 
   private void showGeometryProperties(MapItem properties,GeoPoint initial) {
     geometryStart=initial;
-    geometryProperties=GeometryPropertiesDialog.show(this,properties,store.all(),configured->drawing.startConfigured(configured,initial));
+    geometryProperties=GeometryPropertiesDialog.show(this,properties,store.all(),configured->{closeCompass();drawing.startConfigured(configured,initial);});
   }
 
   private void appearance(MapItem item) {
@@ -1276,6 +1305,7 @@ public final class MainActivity extends Activity {
 
   @Override public void onBackPressed() {
     if(screen!=null&&screen.locked()){screen.lock(false);return;}
+    if(compassPanel!=null){closeCompass();return;}
     if (drawing != null && drawing.active()) { drawing.confirmCancel(); return; }
     if(mapTools!=null&&mapTools.measuring){mapTools.finish();return;}
     if(timeline!=null&&timeline.model.active){timeline.close();return;}
@@ -1285,6 +1315,7 @@ public final class MainActivity extends Activity {
   @Override
   protected void onSaveInstanceState(Bundle state) {
     super.onSaveInstanceState(state);
+    state.putBoolean("compassPanelOpen",compassPanel!=null);
     state.putLong("folder",explorer.folder);state.putBoolean("explorerSelectionMode",selectionMode);long[] selectedObjects=new long[explorer.selected.size()];int offset=0;for(long id:explorer.selected)selectedObjects[offset++]=id;state.putLongArray("explorerSelected",selectedObjects);List<Long> clipboardObjects=explorer.clipboardIds();long[] clipboardIds=new long[clipboardObjects.size()];for(int n=0;n<clipboardIds.length;n++)clipboardIds[n]=clipboardObjects.get(n);state.putLongArray("explorerClipboard",clipboardIds);state.putBoolean("explorerCut",explorer.isCut());
     if(screen!=null)screen.save(state);state.putString("screenshotPath",screenshotPath);
     if (drawing != null) drawing.saveState(state);
@@ -1350,7 +1381,7 @@ public final class MainActivity extends Activity {
     openPanels.clear();
     if(marksDialog!=null)marksDialog.dismiss();
     if(orientationDialog!=null)orientationDialog.dismiss();
-    if(compassDialog!=null)compassDialog.dismiss();
+    closeCompass();
     if (menuDialog != null) menuDialog.dismiss();
     if (layersDialog != null) layersDialog.dismiss();
     if (mapsDialog != null) mapsDialog.dismiss();

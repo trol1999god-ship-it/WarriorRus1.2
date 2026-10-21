@@ -13,6 +13,7 @@ public final class EditorViewport {
   public static void update(FrameLayout root) {
     View editor=root.findViewWithTag("drawingControls");
     int occupied=editor instanceof EditorPanel && ((EditorPanel)editor).docked()?editor.getHeight():0;
+    View compass=root.findViewWithTag("compassPanel");if(compass instanceof CompassPanel)occupied=Math.max(occupied,compass.getHeight());
     View map=root.findViewWithTag("mapCanvas"), focus=root.findViewWithTag("mapFocus");
     if(map!=null){
       FrameLayout.LayoutParams p=(FrameLayout.LayoutParams)map.getLayoutParams();

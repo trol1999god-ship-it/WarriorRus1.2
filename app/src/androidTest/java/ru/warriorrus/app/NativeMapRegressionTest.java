@@ -32,6 +32,22 @@ public class NativeMapRegressionTest {
     device.waitForIdle();
   }
 
+  @Test public void compassSettingsCalibrationAndModePersistence() throws Exception {
+    android.content.Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
+    context.getSharedPreferences("MainActivity",0).edit().clear().putBoolean("mapOnline",false).putInt("compassMode",0).commit();
+    try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
+      click(By.desc("Ориентирование"));click(By.text("Компас"));
+      click(By.desc("Настройки компаса"));click(By.text("Больше"));assertNotNull(device.wait(Until.findObject(By.desc("Датчик")),8000));click(By.clazz(android.widget.Spinner.class).desc("Компас"));click(By.text("TopoChaix"));click(By.res("android:id/button1"));
+      assertTrue(device.wait(Until.gone(By.res("android:id/button1")),8000));scenario.onActivity(activity->assertEquals(1,activity.getPreferences(0).getInt("compassMode",-1)));capture("compass-topochaix");
+      scenario.onActivity(activity->{View root=activity.getWindow().getDecorView();View panel=root.findViewWithTag("compassPanel"),map=root.findViewWithTag("mapCanvas");assertNotNull(panel);assertTrue(map.getBottom()<=panel.getTop());});
+      click(By.desc("Справка о компасе"));assertNotNull(device.wait(Until.findObject(By.desc("Поворот устройства по трём осям")),8000));click(By.res("android:id/button1"));
+      scenario.recreate();device.waitForIdle();click(By.desc("Настройки компаса"));
+      assertNotNull(device.wait(Until.findObject(By.text("TopoChaix")),8000));
+      click(By.clazz(android.widget.Spinner.class).desc("Компас"));click(By.text("Стандартный"));click(By.res("android:id/button1"));capture("compass-standard");
+      click(By.desc("Закрыть компас"));scenario.onActivity(activity->assertNull(activity.getWindow().getDecorView().findViewWithTag("compassPanel")));
+    }
+  }
+
   @Test public void repeatedMarkerCreationDrawingRecreationAndPanelTouches() throws Exception {
     android.content.Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
     context.deleteDatabase("warrior2.db");
@@ -101,7 +117,7 @@ public class NativeMapRegressionTest {
 
   @Test public void pendingPropertiesAndEditorPropertiesSurviveRecreation() throws Exception {
     android.content.Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
-    context.deleteDatabase("warrior2.db");context.getSharedPreferences("MainActivity",0).edit().clear().putBoolean("mapOnline",false).commit();
+    context.deleteDatabase("warrior2.db");context.getSharedPreferences("MainActivity",0).edit().clear().putBoolean("mapOnline",false).putInt("compassMode",0).commit();
     try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
       click(By.desc("Действия в центре карты"));click(By.text("Новая метка…"));click(By.text("Путь"));
       UiObject2 name=device.wait(Until.findObject(By.clazz(EditText.class)),8000);assertNotNull(name);name.setText("До поворота");
@@ -132,7 +148,7 @@ public class NativeMapRegressionTest {
   @Test @androidx.test.filters.SdkSuppress(minSdkVersion = 30)
   public void drawModeStatisticsAndSaveRemainUsableAfterRotation() throws Exception {
     android.content.Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
-    context.deleteDatabase("warrior2.db");context.getSharedPreferences("MainActivity",0).edit().clear().putBoolean("mapOnline",false).commit();
+    context.deleteDatabase("warrior2.db");context.getSharedPreferences("MainActivity",0).edit().clear().putBoolean("mapOnline",false).putInt("compassMode",0).commit();
     try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
       click(By.desc("Действия в центре карты"));click(By.text("Новая метка…"));click(By.text("Путь"));
       UiObject2 propertiesName=device.wait(Until.findObject(By.clazz(EditText.class)),8000);assertNotNull(propertiesName);propertiesName.setText("Нарисованная линия");click(By.res("android:id/button1"));
@@ -208,7 +224,7 @@ public class NativeMapRegressionTest {
 
   @Test public void localMediaKmzHistoryAndOfflineRasterOnRealAndroid() throws Exception {
     android.content.Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();context.deleteDatabase("warrior2.db");
-    context.getSharedPreferences("MainActivity",0).edit().clear().putBoolean("mapOnline",false).commit();
+    context.getSharedPreferences("MainActivity",0).edit().clear().putBoolean("mapOnline",false).putInt("compassMode",0).commit();
     android.graphics.Bitmap image=android.graphics.Bitmap.createBitmap(256,256,android.graphics.Bitmap.Config.ARGB_8888);image.eraseColor(0xff1565c0);
     java.io.ByteArrayOutputStream data=new java.io.ByteArrayOutputStream();image.compress(android.graphics.Bitmap.CompressFormat.PNG,100,data);image.recycle();byte[] png=data.toByteArray();
     long original;String mediaKey;

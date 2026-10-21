@@ -12,6 +12,7 @@ public final class CompassController implements SensorEventListener {
   private final Consumer<CompassController> changed;
   private final float[] gravity=new float[3], magnetic=new float[3];
   private boolean haveGravity,haveMagnetic;
+  private int headingSensorType=-1;
   public boolean enabled,ready;
   public float heading,pitch,roll;
   public Float pressureHpa;
@@ -25,16 +26,19 @@ public final class CompassController implements SensorEventListener {
     stop();this.method=method;haveGravity=haveMagnetic=false;
     if(manager==null)return false;
     Sensor rotation=manager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
-    if(!"magnetic".equals(method)&&rotation!=null)enabled=manager.registerListener(this,rotation,SensorManager.SENSOR_DELAY_UI);
-    else {
+    if(!"magnetic".equals(method)&&rotation!=null){
+      enabled=manager.registerListener(this,rotation,SensorManager.SENSOR_DELAY_UI);
+      if(enabled)headingSensorType=Sensor.TYPE_ROTATION_VECTOR;
+    }
+    if(!enabled) {
       Sensor a=manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),m=manager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-      if(a!=null&&m!=null){boolean first=manager.registerListener(this,a,SensorManager.SENSOR_DELAY_UI);boolean second=manager.registerListener(this,m,SensorManager.SENSOR_DELAY_UI);enabled=first&&second;}
+      if(a!=null&&m!=null){boolean first=manager.registerListener(this,a,SensorManager.SENSOR_DELAY_UI);boolean second=manager.registerListener(this,m,SensorManager.SENSOR_DELAY_UI);enabled=first&&second;if(enabled)headingSensorType=Sensor.TYPE_MAGNETIC_FIELD;}
     }
     if(!enabled)manager.unregisterListener(this);
     else {Sensor pressure=manager.getDefaultSensor(Sensor.TYPE_PRESSURE);if(pressure!=null)manager.registerListener(this,pressure,SensorManager.SENSOR_DELAY_UI);}
     changed.accept(this);return enabled;
   }
-  public void stop(){if(manager!=null)manager.unregisterListener(this);enabled=false;ready=false;pressureHpa=null;}
+  public void stop(){if(manager!=null)manager.unregisterListener(this);enabled=false;ready=false;pressureHpa=null;accuracy=SensorManager.SENSOR_STATUS_UNRELIABLE;headingSensorType=-1;}
   @Override public void onSensorChanged(SensorEvent event) {
     if(!enabled)return;
     if(event.sensor.getType()==Sensor.TYPE_PRESSURE){if(event.values.length>0&&event.values[0]>0){pressureHpa=event.values[0];changed.accept(this);}return;}
@@ -56,5 +60,5 @@ public final class CompassController implements SensorEventListener {
     ready=true;changed.accept(this);
   }
   public static float normalize(float angle){return (angle%360+360)%360;}
-  @Override public void onAccuracyChanged(Sensor sensor,int value){if(sensor.getType()!=Sensor.TYPE_ACCELEROMETER){accuracy=value;changed.accept(this);}}
+  @Override public void onAccuracyChanged(Sensor sensor,int value){if(enabled&&sensor.getType()==headingSensorType){accuracy=value;changed.accept(this);}}
 }

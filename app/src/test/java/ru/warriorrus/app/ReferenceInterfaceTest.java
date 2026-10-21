@@ -54,6 +54,33 @@ public class ReferenceInterfaceTest {
       assertNull(text(root,"Вращать карту по компасу"));assertFalse(prefs.getBoolean("expandedCategory3",true));
     }
   }
+  @Test public void compassModeSurvivesRestartAndCalibrationDoesNotInventSensorReadings()throws Exception {
+    try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup()){
+      c.get().getWindow().getDecorView().findViewWithTag("Ориентирование").performClick();
+      View root=org.robolectric.shadows.ShadowDialog.getLatestDialog().getWindow().getDecorView();text(root,"Компас").performClick();
+      org.robolectric.shadows.ShadowDialog.getLatestDialog().dismiss();root=c.get().getWindow().getDecorView();
+      assertNotNull(desc(root,"Включить компас"));assertNotNull(desc(root,"Настройки компаса"));assertNotNull(desc(root,"Справка о компасе"));
+      CompassDial dial=root.findViewWithTag("compassDial");assertTrue(dial.topo);assertFalse(dial.ready);
+      desc(root,"Настройки компаса").performClick();Dialog settings=org.robolectric.shadows.ShadowDialog.getLatestDialog();
+      Spinner mode=(Spinner)desc(settings.getWindow().getDecorView(),"Компас");mode.setSelection(0);
+      android.app.AlertDialog options=(android.app.AlertDialog)settings;
+      Spinner sensor=(Spinner)desc(settings.getWindow().getDecorView(),"Датчик");assertEquals(View.GONE,((View)sensor.getParent()).getVisibility());
+      options.getButton(android.app.AlertDialog.BUTTON_NEUTRAL).performClick();assertEquals(View.VISIBLE,((View)sensor.getParent()).getVisibility());
+      options.getButton(android.app.AlertDialog.BUTTON_POSITIVE).performClick();org.robolectric.shadows.ShadowLooper.idleMainLooper();
+      assertEquals(0,prefs.getInt("compassMode",-1));assertFalse(dial.topo);
+      desc(root,"Справка о компасе").performClick();
+      View calibration=org.robolectric.shadows.ShadowDialog.getLatestDialog().getWindow().getDecorView();assertNotNull(desc(calibration,"Поворот устройства по трём осям"));assertFalse(dial.ready);
+      org.robolectric.shadows.ShadowDialog.getLatestDialog().dismiss();desc(root,"Закрыть компас").performClick();
+    }
+    try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup()){
+      c.get().getWindow().getDecorView().findViewWithTag("Ориентирование").performClick();
+      text(org.robolectric.shadows.ShadowDialog.getLatestDialog().getWindow().getDecorView(),"Компас").performClick();
+      org.robolectric.shadows.ShadowDialog.getLatestDialog().dismiss();View root=c.get().getWindow().getDecorView();
+      CompassDial dial=root.findViewWithTag("compassDial");assertFalse(dial.topo);assertFalse(dial.ready);
+      Switch toggle=(Switch)desc(root,"Включить компас");toggle.setChecked(true);
+      assertFalse(toggle.isChecked());assertFalse(prefs.getBoolean("compassEnabled",true));assertFalse(dial.ready);
+    }
+  }
   @Test public void favoriteSetRestoresLayerOrderAndAllColorParametersWithoutLosingInstalledSources()throws Exception {
     try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup()){
       java.lang.reflect.Field f=MainActivity.class.getDeclaredField("catalog");f.setAccessible(true);MapCatalog catalog=(MapCatalog)f.get(c.get());MapCatalog.Layer base=catalog.find("osm"),added=catalog.addOnline("Synthetic map","https://example.invalid/{z}/{x}/{y}.png","Synthetic source",false);added.opacity=42;added.saturation=.3f;added.contrast=1.3f;added.brightness=-.2f;added.hue=35;added.inverted=true;added.erase=true;added.eraseColor=0xfff0eedd;added.eraseTolerance=12;added.blend=2;catalog.saveFavorite("Test set");org.json.JSONObject set=catalog.favoriteSets().getJSONObject(0);String id=set.getString("id");
