@@ -13,7 +13,7 @@ import ru.warriorrus.app.data.*;
 import ru.warriorrus.app.exchange.*;
 import ru.warriorrus.app.geometry.*;
 
-@RunWith(RobolectricTestRunner.class) @Config(sdk={23,35})
+@RunWith(RobolectricTestRunner.class) @Config(sdk={23,35},shadows=ru.warriorrus.app.icons.IconsActivityTest.MediaContext.class)
 public class ObjectAppearanceIntegrationTest {
   private Context context;
   @Before public void clear(){context=RuntimeEnvironment.getApplication();context.deleteDatabase("warrior2.db");}

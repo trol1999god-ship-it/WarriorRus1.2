@@ -2,6 +2,7 @@
 set -u
 navigation_mode="$1"
 adb shell cmd overlay enable-exclusive --category "com.android.internal.systemui.navbar.${navigation_mode}" || exit 1
+adb shell settings put secure immersive_mode_confirmations confirmed || exit 1
 gradle connectedDebugAndroidTest
 native_test_status=$?
 mkdir -p app/build/native-screens

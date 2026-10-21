@@ -18,7 +18,13 @@ import org.osmdroid.views.overlay.Marker;
 public class NativeMapRegressionTest {
   private final UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
 
+  private void dismissSystemEducation() {
+    UiObject2 tip=device.findObject(By.pkg("com.android.systemui").text(java.util.regex.Pattern.compile("(?i)got it|понятно")));
+    if(tip!=null){tip.click();device.waitForIdle();}
+  }
+
   private void click(BySelector selector) {
+    dismissSystemEducation();
     UiObject2 object = device.wait(Until.findObject(selector), 8000);
     if(object==null){try{device.executeShellCommand("mkdir -p /data/local/tmp/rabochaya-screens");device.takeScreenshot(new java.io.File("/data/local/tmp/rabochaya-screens/missing-control.png"));device.dumpWindowHierarchy(new java.io.File("/data/local/tmp/rabochaya-screens/missing-control.xml"));}catch(Exception ignored){}}
     assertNotNull("Missing UI control: "+selector,object);
@@ -254,7 +260,15 @@ public class NativeMapRegressionTest {
         scenario.onActivity(a->{try{java.lang.reflect.Field field=MainActivity.class.getDeclaredField("timeline");field.setAccessible(true);ru.warriorrus.app.geometry.TimelineController time=(ru.warriorrus.app.geometry.TimelineController)field.get(a);assertTrue(time.model.active);assertEquals(5000,time.model.progress());View controls=a.getWindow().getDecorView().findViewWithTag("timelineControls");assertWithinSafeArea(a,controls);assertTrue("Restored time panel must retain room for controls",controls.getHeight()>140*a.getResources().getDisplayMetrics().density);try(ru.warriorrus.app.data.ObjectStore store=new ru.warriorrus.app.data.ObjectStore(a)){assertEquals(original,ru.warriorrus.app.geometry.Geometry.encode(store.get(id).segments));assertEquals(37.63,time.model.head(store.get(id)).longitude,1e-6);}}catch(ReflectiveOperationException e){throw new AssertionError(e);}});
         capture(orientation==0?"time-portrait":"time-landscape");
       }
-      click(By.desc("В начало"));click(By.desc("Воспроизвести"));assertTrue(device.wait(Until.hasObject(By.text("Воспроизвести")),8000));
+      click(By.desc("В начало"));click(By.desc("Воспроизвести"));
+      java.util.concurrent.atomic.AtomicInteger playbackProgress=new java.util.concurrent.atomic.AtomicInteger();
+      long playbackDeadline=android.os.SystemClock.uptimeMillis()+8000;
+      do{
+        scenario.onActivity(a->{try{java.lang.reflect.Field f=MainActivity.class.getDeclaredField("timeline");f.setAccessible(true);playbackProgress.set(((ru.warriorrus.app.geometry.TimelineController)f.get(a)).model.progress());}catch(ReflectiveOperationException e){throw new AssertionError(e);}});
+        if(playbackProgress.get()==10000)break;
+        Thread.sleep(50);
+      }while(android.os.SystemClock.uptimeMillis()<playbackDeadline);
+      assertEquals(10000,playbackProgress.get());
       scenario.onActivity(a->{try{java.lang.reflect.Field f=MainActivity.class.getDeclaredField("timeline");f.setAccessible(true);assertEquals(10000,((ru.warriorrus.app.geometry.TimelineController)f.get(a)).model.progress());}catch(ReflectiveOperationException e){throw new AssertionError(e);}});
       click(By.desc("Закрыть контроль времени"));scenario.onActivity(a->assertNull(a.getWindow().getDecorView().findViewWithTag("timelineControls")));
       try(ru.warriorrus.app.data.ObjectStore store=new ru.warriorrus.app.data.ObjectStore(context)){assertEquals(original,ru.warriorrus.app.geometry.Geometry.encode(store.get(id).segments));}
