@@ -58,9 +58,29 @@ public class SystemInsetsTest {
   }
 
   private void layout(View view, int width, int height) {
+    view.forceLayout();
     view.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
         View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY));
     view.layout(0, 0, width, height);
+  }
+
+  @Test public void dockedEditorResizesMapAndFocusAndRestoresThemOnClose() {
+    android.widget.FrameLayout root=new android.widget.FrameLayout(RuntimeEnvironment.getApplication());root.setTag("mapRoot");
+    View map=new View(root.getContext());map.setTag("mapCanvas");root.addView(map,new android.widget.FrameLayout.LayoutParams(-1,-1));
+    View focus=new View(root.getContext());focus.setTag("mapFocus");root.addView(focus,new android.widget.FrameLayout.LayoutParams(44,44,android.view.Gravity.CENTER));
+    LinearLayout bar=new LinearLayout(root.getContext());bar.setTag("bottomPanel");root.addView(bar,new android.widget.FrameLayout.LayoutParams(192,48,android.view.Gravity.BOTTOM));
+    EditorPanel editor=new EditorPanel(root.getContext(),root,"drawingControls","Путь",null,null,()->{});editor.dockMap();editor.show();
+    for(int[] size:new int[][]{{360,800},{800,360}}){
+      root.setPadding(0,24,0,48);layout(root,size[0],size[1]);EditorViewport.update(root);layout(root,size[0],size[1]);
+      assertEquals("editor="+editor.getHeight()+" map margin="+((android.widget.FrameLayout.LayoutParams)map.getLayoutParams()).bottomMargin+" measured="+map.getMeasuredHeight(),editor.getTop(),map.getBottom());
+      assertEquals(map.getHeight()/2f,focus.getY()+22,.51f);
+      assertTrue(bar.getBottom()<=editor.getTop());assertEquals(48,bar.getWidth());
+      editor.expanded(false);layout(root,size[0],size[1]);EditorViewport.update(root);layout(root,size[0],size[1]);
+      assertEquals(editor.getTop(),map.getBottom());assertEquals(map.getHeight()/2f,focus.getY()+22,.51f);
+      editor.expanded(true);
+    }
+    root.removeView(editor);EditorViewport.update(root);layout(root,360,800);
+    assertEquals(800,map.getHeight());assertEquals(400,focus.getY()+22,.51f);assertEquals(192,bar.getWidth());
   }
 
   @Test @Config(sdk=23) public void mapViewportAndFocusStayFixedWhileLegacyBarsHideAndKeyboardRemainsProtected(){

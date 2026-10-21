@@ -21,7 +21,7 @@ public final class ObjectJson {
     JSONArray result=new JSONArray();
     try {for(MapItem i:items)result.put(new JSONObject().put("id",i.id).put("parent",i.parent).put("name",i.name).put("kind",i.kind)
       .put("lat",i.latitude).put("lon",i.longitude).put("visible",i.visible).put("position",i.position).put("color",i.color).put("opacity",i.opacity)
-      .put("icon",i.icon).put("description",i.description).put("geometry",new JSONArray(Geometry.encode(i.segments)))
+      .put("icon",i.icon).put("description",i.description).put("appearance",new JSONObject(i.appearance.encode())).put("geometry",new JSONArray(Geometry.encode(i.segments)))
       .put("attachments",new JSONArray(attachments(i.attachments))).put("created",i.created).put("updated",i.updated).put("trashed",i.trashed));}
     catch(JSONException e){throw new IllegalArgumentException(e);}return result.toString();
   }
@@ -32,7 +32,7 @@ public final class ObjectJson {
         if(!Arrays.asList("folder","set","point","route","path","track","area").contains(i.kind))throw new IllegalArgumentException("Неизвестный тип объекта");
         i.latitude=o.getDouble("lat");i.longitude=o.getDouble("lon");new Vertex(i.latitude,i.longitude);i.visible=o.getBoolean("visible");i.position=o.optInt("position");i.color=o.getInt("color");i.opacity=(float)o.getDouble("opacity");
         if(Float.isNaN(i.opacity)||i.opacity<0||i.opacity>1)throw new IllegalArgumentException("Неверная прозрачность");
-        i.icon=o.optString("icon","builtin:pin");i.description=o.optString("description","");i.segments.addAll(Geometry.decode(o.getJSONArray("geometry").toString()));
+        i.icon=o.optString("icon","builtin:pin");i.description=o.optString("description","");i.appearance=ObjectAppearance.decode(o.optJSONObject("appearance")==null?"{}":o.getJSONObject("appearance").toString());i.segments.addAll(Geometry.decode(o.getJSONArray("geometry").toString()));
         i.attachments.addAll(attachments(o.optJSONArray("attachments")==null?"[]":o.getJSONArray("attachments").toString()));i.created=o.optLong("created",0);i.updated=o.optLong("updated",0);i.trashed=o.optBoolean("trashed",false);
         if(i.isGeometry())Geometry.validate(i);result.add(i);
       }

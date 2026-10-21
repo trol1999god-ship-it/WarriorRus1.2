@@ -40,9 +40,7 @@ public final class SystemInsets {
       }
       view.setPadding(left + spacing, top + spacing, right + spacing, bottom + spacing);
       if(view instanceof android.widget.FrameLayout&&"mapRoot".equals(view.getTag())){
-        View map=view.findViewWithTag("mapCanvas"),focus=view.findViewWithTag("mapFocus");
-        if(map!=null){android.widget.FrameLayout.LayoutParams p=(android.widget.FrameLayout.LayoutParams)map.getLayoutParams();if(p.leftMargin!=-left||p.topMargin!=-top||p.rightMargin!=-right||p.bottomMargin!=-bottom){p.setMargins(-left,-top,-right,-bottom);map.setLayoutParams(p);}}
-        if(focus!=null){focus.setTranslationX((right-left)/2f);focus.setTranslationY((bottom-top)/2f);}
+        EditorViewport.update((android.widget.FrameLayout)view);
       }
       return insets;
     });

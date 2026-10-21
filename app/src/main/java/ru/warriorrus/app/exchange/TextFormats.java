@@ -39,7 +39,7 @@ public final class TextFormats {
     String kind="Point".equals(type)?"point":"Polygon".equals(type)?"area":"path";
     String declared=properties.optString("workmap:kind",kind);if(Arrays.asList("route","path","track").contains(declared)&&!"point".equals(kind)&&!"area".equals(kind))kind=declared;
     if(!Arrays.asList("Point","LineString","MultiLineString","Polygon").contains(type))throw new IOException("Неподдерживаемая геометрия GeoJSON: "+type);
-    MapItem i=item(all,name,kind);i.description=properties.optString("description",properties.optString("desc",""));
+    MapItem i=item(all,name,kind);i.description=properties.optString("description",properties.optString("desc",""));i.appearance=ObjectAppearance.decode(properties.optJSONObject("workmap:appearance")==null?"{}":properties.getJSONObject("workmap:appearance").toString());
     String color=properties.optString("color",properties.optString("stroke",""));if(color.matches("#[0-9a-fA-F]{6}"))i.color=(int)(0xff000000L|Long.parseLong(color.substring(1),16));
     if("point".equals(kind)){Vertex p=coordinate(c);i.latitude=p.latitude;i.longitude=p.longitude;i.segments.add(new ArrayList<>(Collections.singletonList(p)));}
     else if("LineString".equals(type))i.segments.add(line(c,false));else for(int n=0;n<c.length();n++)i.segments.add(line(c.getJSONArray(n),"area".equals(kind)));
@@ -89,7 +89,7 @@ public final class TextFormats {
     char sep="tsv".equals(format)?'\t':',';StringBuilder text=new StringBuilder();writeRow(text,sep,Arrays.asList("name","latitude","longitude","description","kind","geometry"));
     for(MapItem i:items)if(!i.isFolder())writeRow(text,sep,Arrays.asList(i.name,""+i.latitude,""+i.longitude,i.description,i.kind,geometry(i).toString()));output.write(text.toString().getBytes(StandardCharsets.UTF_8));
   }
-  private static JSONObject properties(MapItem i)throws JSONException{return new JSONObject().put("name",i.name).put("description",i.description).put("color",String.format(Locale.ROOT,"#%06x",i.color&0xffffff)).put("workmap:kind",i.kind);}
+  private static JSONObject properties(MapItem i)throws JSONException{return new JSONObject().put("name",i.name).put("description",i.description).put("color",String.format(Locale.ROOT,"#%06x",i.color&0xffffff)).put("workmap:kind",i.kind).put("workmap:appearance",new JSONObject(i.appearance.encode()));}
   private static JSONArray point(Vertex p)throws JSONException {JSONArray a=new JSONArray().put(p.longitude).put(p.latitude);if(p.elevation!=null)a.put(p.elevation);return a;}
   private static JSONObject geometry(MapItem i)throws JSONException {
     if(!i.isGeometry())return new JSONObject().put("type","Point").put("coordinates",point(new Vertex(i.latitude,i.longitude)));

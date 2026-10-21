@@ -44,7 +44,7 @@ public final class ExplorerController {
     List<MapItem> result = new ArrayList<>();
     for (MapItem i : store.all())
       if ((query.isEmpty() && fromDate==0 && toDate==0 ? i.parent==folder
-          : (i.name+(descriptions?" "+i.description:"")).toLowerCase(Locale.ROOT).contains(query.toLowerCase(Locale.ROOT)))
+          : (i.name+(descriptions?" "+i.description+" "+i.appearance.keywords+" "+i.appearance.activity:"")).toLowerCase(Locale.ROOT).contains(query.toLowerCase(Locale.ROOT)))
           && (fromDate==0 || i.created>=fromDate) && (toDate==0 || (i.created>0 && i.created<toDate))) result.add(i);
     if (alphabetical)
       result.sort(

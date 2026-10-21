@@ -39,5 +39,5 @@ public final class TimelineModel {
     }return found;
   }
   public static Vertex interpolate(Vertex a,Vertex b,double fraction,long time){double t=Math.max(0,Math.min(1,fraction));if(t==0)return a;if(t==1)return b;double delta=((b.longitude-a.longitude+540)%360)-180,lon=((a.longitude+delta*t+540)%360)-180;Double height=a.elevation!=null&&b.elevation!=null?a.elevation+(b.elevation-a.elevation)*t:null;return new Vertex(a.latitude+(b.latitude-a.latitude)*t,lon,height,java.time.Instant.ofEpochMilli(time).toString());}
-  private static MapItem metadata(MapItem i){MapItem c=new MapItem();c.id=i.id;c.parent=i.parent;c.name=i.name;c.kind=i.kind;c.icon=i.icon;c.latitude=i.latitude;c.longitude=i.longitude;c.visible=i.visible;c.position=i.position;c.color=i.color;c.opacity=i.opacity;c.description=i.description;c.created=i.created;c.updated=i.updated;c.trashed=i.trashed;c.attachments.addAll(i.attachments);return c;}
+  private static MapItem metadata(MapItem i){MapItem c=new MapItem();c.id=i.id;c.parent=i.parent;c.name=i.name;c.kind=i.kind;c.icon=i.icon;c.latitude=i.latitude;c.longitude=i.longitude;c.visible=i.visible;c.position=i.position;c.color=i.color;c.opacity=i.opacity;c.description=i.description;c.appearance=i.appearance.copy();c.created=i.created;c.updated=i.updated;c.trashed=i.trashed;c.attachments.addAll(i.attachments);return c;}
 }

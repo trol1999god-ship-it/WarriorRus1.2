@@ -34,6 +34,8 @@ public final class MainActivity extends Activity {
   private MapInfoPanel mapInfo;
   private FrameLayout mapRoot;
   private Dialog categoryDialog;
+  private GeometryPropertiesDialog.State geometryProperties;
+  private GeoPoint geometryStart;
   private int shownCategory=-1,lastCategory=-1;
   private long lastCategoryTap;
   private String screenshotPath="";
@@ -269,6 +271,15 @@ public final class MainActivity extends Activity {
     explorerDialog.setOnDismissListener(d -> displayedOnly = false);
     refresh();
     updateCoordinates();screen.restore(state);
+    if(state!=null && state.containsKey("geometryPropertiesKind") && !drawing.active()) {
+      MapItem p=new MapItem();p.kind=state.getString("geometryPropertiesKind");
+      p.name=state.getString("geometryPropertiesName","");p.description=state.getString("geometryPropertiesDescription","");
+      p.parent=state.getLong("geometryPropertiesParent");p.color=state.getInt("geometryPropertiesColor");
+      p.visible=state.getBoolean("geometryPropertiesVisible");p.opacity=state.getFloat("geometryPropertiesOpacity",1);
+      p.icon=state.getString("geometryPropertiesIcon","builtin:pin");p.appearance=ObjectAppearance.decode(state.getString("geometryPropertiesAppearance","{}"));
+      GeoPoint initial=state.getBoolean("geometryPropertiesHasStart")?new GeoPoint(state.getDouble("geometryPropertiesLat"),state.getDouble("geometryPropertiesLon")):null;
+      showGeometryProperties(p,initial);
+    }
     if(state!=null)screenshotPath=state.getString("screenshotPath","");
     renderMenuVisibility();
   }
@@ -542,8 +553,8 @@ public final class MainActivity extends Activity {
       if(name.getText().toString().trim().isEmpty()){name.setError("Введите название");return;}
       try{
         MapItem item=new MapItem();item.kind=type.equals("circle")?"area":"point";item.parent=explorer.folder;item.name=name.getText().toString().trim();item.latitude=center.getLatitude();item.longitude=center.getLongitude();item.visible=true;item.opacity=1;item.color=0xff3f6db5;
-        if(type.equals("circle")){double meters=Double.parseDouble(radius.getText().toString().replace(',','.'))*factors[units.getSelectedItemPosition()];if(Double.isNaN(meters)||Double.isInfinite(meters)||meters<=0||meters>20000000)throw new IllegalArgumentException("Радиус должен быть больше нуля и не более 20000 км");List<Vertex> ring=new ArrayList<>();Vertex origin=new Vertex(item.latitude,item.longitude);for(int n=0;n<96;n++)ring.add(Geometry.project(origin,n*360.0/96,meters));item.segments.add(ring);item.icon="builtin:circle";}
-        else if(type.equals("text"))item.icon="builtin:text";
+        if(type.equals("circle")){double meters=Double.parseDouble(radius.getText().toString().replace(',','.'))*factors[units.getSelectedItemPosition()];if(Double.isNaN(meters)||Double.isInfinite(meters)||meters<=0||meters>20000000)throw new IllegalArgumentException("Радиус должен быть больше нуля и не более 20000 км");List<Vertex> ring=new ArrayList<>();Vertex origin=new Vertex(item.latitude,item.longitude);for(int n=0;n<96;n++)ring.add(Geometry.project(origin,n*360.0/96,meters));item.segments.add(ring);item.icon="builtin:circle";item.appearance.circleRadiusMeters=meters;item.appearance.circleLatitude=item.latitude;item.appearance.circleLongitude=item.longitude;}
+        else if(type.equals("text")){item.icon="builtin:text";item.appearance.textObject=true;}
         long id=store.save(item);refresh();dialog.dismiss();
         if(type.equals("audio")){attachmentObject=id;Intent choose=new Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("audio/*").putExtra(Intent.EXTRA_LOCAL_ONLY,true).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);startActivityForResult(choose,ATTACH_FILE);}
       }catch(Exception error){(type.equals("circle")?radius:name).setError(error.getMessage());}
@@ -680,6 +691,16 @@ public final class MainActivity extends Activity {
 
   private void pointActions(MapItem item){mapContextMenu(new GeoPoint(item.latitude,item.longitude));}
 
+  private String appearanceSummary(MapItem item) {
+    ObjectAppearance a=item.appearance;StringBuilder out=new StringBuilder();
+    if(!a.activity.isEmpty())out.append("\nАктивность: ").append(a.activity);
+    if(a.weight!=0)out.append("\nВес: ").append(a.weight);
+    if(!a.url.isEmpty())out.append("\nURL: ").append(a.url);
+    if(!a.keywords.isEmpty())out.append("\nКлючевые слова: ").append(a.keywords);
+    if(item.isGeometry()&&!"area".equals(item.kind)&&!"solid".equals(a.colorMode))out.append("\nСиний → красный · ").append(new DynamicLineOverlay(item,1,map.lineWidth).range(DisplayUnits.load(this)));
+    return out.toString();
+  }
+
   private void pointDetails(MapItem i) {
     new AlertDialog.Builder(this)
         .setTitle(i.name)
@@ -690,11 +711,11 @@ public final class MainActivity extends Activity {
                 i.latitude,
                 i.longitude,
                 i.icon,
-                i.color & 0xffffff, i.description, Geometry.summary(i,DisplayUnits.load(this))+(i.isGeometry()?"\n"+TrackStatistics.of(i).summary(DisplayUnits.load(this)):"")))
+                i.color & 0xffffff, i.description+appearanceSummary(i), Geometry.summary(i,DisplayUnits.load(this))+(i.isGeometry()?"\n"+TrackStatistics.of(i).summary(DisplayUnits.load(this)):"")))
         .setPositiveButton(
             "Редактировать", (d, w) -> edit(i, new GeoPoint(i.latitude, i.longitude)))
-        .setNeutralButton(i.isGeometry()?"Профиль / Вложения":"Вложения ("+i.attachments.size()+")", (d,w) -> {
-          if(i.isGeometry())sheet(i.name,new String[]{"Профиль высот и статистика","Вложения"},n->{if(n==0)profile(i);else attachmentsMenu(i.id);});else attachmentsMenu(i.id);
+        .setNeutralButton("Ещё…", (d,w) -> {
+          sheet(i.name,i.isGeometry()?new String[]{"Оформление и свойства","Вложения","Профиль высот и статистика"}:new String[]{"Оформление и свойства","Вложения"},n->{if(n==0)appearance(i);else if(n==1)attachmentsMenu(i.id);else profile(i);});
         })
         .setNegativeButton("Закрыть", null)
         .show();
@@ -747,7 +768,7 @@ public final class MainActivity extends Activity {
     referenceUi.row(panel,item.visible?"Убрать с карты":"Показать на карте",R.drawable.ui_map,()->{dialog.dismiss();run(()->store.style(Collections.singleton(item.id),!item.visible,null,null));});
     referenceUi.heading(panel,"Буфер обмена","",null);referenceUi.row(panel,"Копировать",0,()->{dialog.dismiss();select.run();run(()->explorer.clipboard(false));});referenceUi.row(panel,"Вырезать",0,()->{dialog.dismiss();select.run();run(()->explorer.clipboard(true));});
     referenceUi.heading(panel,"Множественный выбор","",null);referenceUi.row(panel,"Выбрать",0,()->{dialog.dismiss();selectionMode=true;explorer.toggle(item.id);refresh();});
-    referenceUi.heading(panel,"Редактирование","",null);referenceUi.row(panel,"Изменить цвет",0,()->{dialog.dismiss();select.run();style();});referenceUi.row(panel,"Редактировать параметры",0,()->{dialog.dismiss();edit(item,new GeoPoint(item.latitude,item.longitude));});if(item.isGeometry())referenceUi.row(panel,"Редактировать профиль",0,()->{dialog.dismiss();profile(item);});referenceUi.row(panel,"Удалить",0,()->{dialog.dismiss();select.run();delete();});dialog.setView(scroll);dialog.show();
+    referenceUi.heading(panel,"Редактирование","",null);referenceUi.row(panel,"Оформление и свойства",0,()->{dialog.dismiss();appearance(item);});referenceUi.row(panel,"Изменить цвет",0,()->{dialog.dismiss();select.run();style();});referenceUi.row(panel,"Редактировать параметры",0,()->{dialog.dismiss();edit(item,new GeoPoint(item.latitude,item.longitude));});if(item.isGeometry())referenceUi.row(panel,"Редактировать профиль",0,()->{dialog.dismiss();profile(item);});referenceUi.row(panel,"Удалить",0,()->{dialog.dismiss();select.run();delete();});dialog.setView(scroll);dialog.show();
   }
 
   private void newFolder() {
@@ -777,6 +798,9 @@ public final class MainActivity extends Activity {
   }
 
   private void edit(MapItem item, GeoPoint point) {
+    if(item!=null&&item.isCircle()) {
+      CirclePropertiesDialog.show(this,item,value->{store.save(value);refresh();});return;
+    }
     if (item != null && item.isGeometry()) {
       if (explorerDialog != null) explorerDialog.dismiss();
       timeline.close();drawing.start(item, item.kind, item.parent, null); return;
@@ -923,7 +947,7 @@ public final class MainActivity extends Activity {
     if(sources.size()<2){fileError("Выберите минимум два объекта");return;}
     EditText name=new EditText(this);name.setHint("Название объединённого трека");
     AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Объединить, сохранив разрывы").setMessage("Исходные объекты сохранятся. Сегменты будут добавлены в порядке выделения.").setView(name).setPositiveButton("Объединить",null).setNegativeButton("Отмена",null).create();
-    dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try{MapItem result=new MapItem();result.kind="track";result.name=name.getText().toString();result.parent=explorer.folder;result.visible=true;result.opacity=1;result.color=sources.get(0).color;Set<String> media=new HashSet<>();StringBuilder notes=new StringBuilder();
+    dialog.setOnShowListener(v->dialog.getButton(-1).setOnClickListener(w->{try{MapItem result=new MapItem();result.kind="track";result.name=name.getText().toString();result.parent=explorer.folder;result.visible=true;result.opacity=1;result.color=sources.get(0).color;result.appearance=sources.get(0).appearance.copy();Set<String> media=new HashSet<>();StringBuilder notes=new StringBuilder();
       for(MapItem i:sources){result.segments.addAll(Geometry.decode(Geometry.encode(i.segments)));notes.append(i.name).append("\n").append(i.description).append("\n");for(Attachment a:i.attachments)if(media.add(a.key))result.attachments.add(a);}
       result.description=notes.toString();Vertex first=result.segments.get(0).get(0);result.latitude=first.latitude;result.longitude=first.longitude;store.save(result);refresh();dialog.dismiss();
     }catch(Exception e){name.setError(e.getMessage());}}));dialog.show();
@@ -1092,7 +1116,19 @@ public final class MainActivity extends Activity {
     if (explorerDialog != null) explorerDialog.dismiss();
     if(mapTools!=null&&mapTools.measuring){fileError("Сначала закройте измерение");return;}
     if(timeline!=null)timeline.close();
-    drawing.start(null, kind, explorer.folder, point);
+    if(drawing.active()){fileError("Сначала сохраните или отмените рисунок");return;}
+    MapItem properties=new MapItem();properties.kind=kind;properties.parent=explorer.folder;
+    properties.name="";properties.visible=true;properties.opacity=1;properties.color=0xff3f6db5;
+    showGeometryProperties(properties,point);
+  }
+
+  private void showGeometryProperties(MapItem properties,GeoPoint initial) {
+    geometryStart=initial;
+    geometryProperties=GeometryPropertiesDialog.show(this,properties,store.all(),configured->drawing.startConfigured(configured,initial));
+  }
+
+  private void appearance(MapItem item) {
+    ObjectAppearanceDialog.show(this,item,next->{item.appearance=next;store.save(item);refresh();});
   }
 
   private void applySettings() {
@@ -1250,6 +1286,16 @@ public final class MainActivity extends Activity {
     state.putLong("folder",explorer.folder);state.putBoolean("explorerSelectionMode",selectionMode);long[] selectedObjects=new long[explorer.selected.size()];int offset=0;for(long id:explorer.selected)selectedObjects[offset++]=id;state.putLongArray("explorerSelected",selectedObjects);List<Long> clipboardObjects=explorer.clipboardIds();long[] clipboardIds=new long[clipboardObjects.size()];for(int n=0;n<clipboardIds.length;n++)clipboardIds[n]=clipboardObjects.get(n);state.putLongArray("explorerClipboard",clipboardIds);state.putBoolean("explorerCut",explorer.isCut());
     if(screen!=null)screen.save(state);state.putString("screenshotPath",screenshotPath);
     if (drawing != null) drawing.saveState(state);
+    if(geometryProperties!=null && geometryProperties.isShowing()) {
+      MapItem p=geometryProperties.snapshot();
+      state.putString("geometryPropertiesKind",p.kind);state.putString("geometryPropertiesName",p.name);
+      state.putString("geometryPropertiesDescription",p.description);state.putString("geometryPropertiesIcon",p.icon);
+      state.putString("geometryPropertiesAppearance",p.appearance.encode());
+      state.putLong("geometryPropertiesParent",p.parent);state.putInt("geometryPropertiesColor",p.color);
+      state.putBoolean("geometryPropertiesVisible",p.visible);state.putFloat("geometryPropertiesOpacity",p.opacity);
+      state.putBoolean("geometryPropertiesHasStart",geometryStart!=null);
+      if(geometryStart!=null){state.putDouble("geometryPropertiesLat",geometryStart.getLatitude());state.putDouble("geometryPropertiesLon",geometryStart.getLongitude());}
+    }
     if(mapTools!=null)mapTools.saveState();
     if(timeline!=null)timeline.saveState(state);
     state.putString("exportRasterPath",exportRasterPath);
@@ -1263,6 +1309,11 @@ public final class MainActivity extends Activity {
     state.putDouble("mapLon", map.view.getMapCenter().getLongitude());
     state.putDouble("mapZoom", map.view.getZoomLevelDouble());
     state.putFloat("mapAngle",map.view.getMapOrientation());
+  }
+
+  @Override public void onWindowFocusChanged(boolean hasFocus) {
+    super.onWindowFocusChanged(hasFocus);
+    if(hasFocus && screen!=null && categoryDialog==null)screen.apply();
   }
 
   @Override
@@ -1290,6 +1341,7 @@ public final class MainActivity extends Activity {
 
   @Override
   protected void onDestroy() {
+    if(geometryProperties!=null)geometryProperties.dismiss();
     if(timeline!=null)timeline.pause();
     iconHandler.removeCallbacksAndMessages(null);
     for(Dialog panel:new ArrayList<>(openPanels))if(panel.isShowing())panel.dismiss();

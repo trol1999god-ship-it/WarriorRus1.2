@@ -12,7 +12,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
 
 
   public ObjectStore(Context context) {
-    super(context, "warrior2.db", null, 4);
+    super(context, "warrior2.db", null, 5);
   }
 
   @Override
@@ -32,6 +32,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
     db.execSQL("CREATE INDEX objects_parent ON objects(parent)");
     addGeometryColumns(db);
     addMediaHistory(db);
+    addAppearance(db);
   }
 
   @Override
@@ -40,6 +41,11 @@ public final class ObjectStore extends SQLiteOpenHelper {
       db.execSQL("ALTER TABLE objects ADD COLUMN icon TEXT NOT NULL DEFAULT 'builtin:pin'");
     if (oldVersion < 3) addGeometryColumns(db);
     if (oldVersion < 4) addMediaHistory(db);
+    if (oldVersion < 5) addAppearance(db);
+  }
+
+  private void addAppearance(SQLiteDatabase db) {
+    db.execSQL("ALTER TABLE objects ADD COLUMN appearance TEXT NOT NULL DEFAULT '{}' ");
   }
 
   private void addMediaHistory(SQLiteDatabase db) {
@@ -69,6 +75,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
         String subtype = c.getString(c.getColumnIndexOrThrow("subtype"));
         if (!subtype.isEmpty()) i.kind = subtype;
         i.description = c.getString(c.getColumnIndexOrThrow("description"));
+        i.appearance = ObjectAppearance.decode(c.getString(c.getColumnIndexOrThrow("appearance")));
         i.attachments.addAll(ObjectJson.attachments(c.getString(c.getColumnIndexOrThrow("attachments"))));
         i.created = c.getLong(c.getColumnIndexOrThrow("created"));
         i.updated = c.getLong(c.getColumnIndexOrThrow("updated"));
@@ -135,6 +142,7 @@ public final class ObjectStore extends SQLiteOpenHelper {
     v.put("kind", i.isFolder() ? "folder" : "point");
     v.put("subtype", i.isGeometry() || "set".equals(i.kind) ? i.kind : "");
     v.put("description", i.description);
+    v.put("appearance", i.appearance.encode());
     v.put("attachments", ObjectJson.attachments(i.attachments));
     v.put("created", i.created);
     v.put("updated", i.updated);

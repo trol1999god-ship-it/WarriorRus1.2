@@ -89,7 +89,8 @@ public final class MapWorkspace {
         float opacity = opacities.getOrDefault(i.id,1f);
         if (opacity == 0) continue;
         if (i.isGeometry()) { drawGeometry(i, opacity,original); if(timeline!=null&&timeline.active&&timeline.showHeads){Vertex head=timeline.head(original);if(head!=null)drawTimeHead(original,head,opacity);}continue; }
-        Marker m = new NamedMarker(view, opacity, labelsVisible || "builtin:text".equals(i.icon));
+        NamedMarker m = new NamedMarker(view, opacity, i.appearance.labels && (labelsVisible || i.isText()));
+        m.labelStyle(i.appearance);
         m.setOnMarkerClickListener(
             (marker, mapView) -> {
               if (onPointClick != null) {
@@ -106,13 +107,13 @@ public final class MapWorkspace {
         icon.setShape(GradientDrawable.OVAL);
         icon.setColor(i.color);
         icon.setStroke(3, Color.WHITE);
-        int size = (int) (markerSize * activity.getResources().getDisplayMetrics().density);
+        int size = Math.round((i.appearance.markerSize>0?i.appearance.markerSize:markerSize) * activity.getResources().getDisplayMetrics().density);
         icon.setSize(size, size);
         icon.setAlpha(Math.round(255 * opacity));
         android.graphics.drawable.Drawable rendered = icon;
         try {
           String iconKey = i.icon == null || i.icon.isEmpty() ? "builtin:pin" : i.icon;
-          String cacheKey = iconKey + ":" + i.color;
+          String cacheKey = iconKey + ":" + i.color + ":" + size;
           android.graphics.drawable.Drawable.ConstantState cached = renderedCache.get(cacheKey);
           if (cached != null) rendered = cached.newDrawable(activity.getResources()).mutate();
           else {
@@ -153,19 +154,20 @@ public final class MapWorkspace {
       polygon.setPoints(points(item.segments.get(0)));
       java.util.List<java.util.List<GeoPoint>> holes=new java.util.ArrayList<>();
       for(int n=1;n<item.segments.size();n++)holes.add(points(item.segments.get(n)));polygon.setHoles(holes);
-      polygon.getOutlinePaint().setColor(color);polygon.getOutlinePaint().setStrokeWidth(lineWidth*activity.getResources().getDisplayMetrics().density);
-      polygon.getFillPaint().setColor((color&0x00ffffff)|(Math.round(android.graphics.Color.alpha(color)*0.2f)<<24));
+      ObjectStyleRenderer.stroke(polygon.getOutlinePaint(),item,opacity,lineWidth,activity.getResources().getDisplayMetrics().density);
+      polygon.getFillPaint().setColor(ObjectStyleRenderer.fill(item,opacity));
       polygon.setOnClickListener((shape,mapView,p)->{if(onPointClick!=null)onPointClick.accept(original);return true;});
       geometryOverlays.add(polygon);view.getOverlays().add(polygon);
     } else for(java.util.List<Vertex> segment:item.segments) {
       org.osmdroid.views.overlay.Polyline line=new org.osmdroid.views.overlay.Polyline(view);
-      line.setPoints(points(segment));line.getOutlinePaint().setColor(color);
-      line.getOutlinePaint().setStrokeWidth(lineWidth*activity.getResources().getDisplayMetrics().density);
+      line.setPoints(points(segment));ObjectStyleRenderer.stroke(line.getOutlinePaint(),item,opacity,lineWidth,activity.getResources().getDisplayMetrics().density);
+      if(!"solid".equals(item.appearance.colorMode))line.getOutlinePaint().setColor(Color.TRANSPARENT);
       line.setOnClickListener((shape,mapView,p)->{if(onPointClick!=null)onPointClick.accept(original);return true;});
       geometryOverlays.add(line);view.getOverlays().add(line);
     }
-    if(labelsVisible) {
-      NamedMarker name=new NamedMarker(view,opacity,true);
+    if(!"area".equals(item.kind)&&!"solid".equals(item.appearance.colorMode)){DynamicLineOverlay colors=new DynamicLineOverlay(item,opacity,lineWidth);geometryOverlays.add(colors);view.getOverlays().add(colors);}
+    if(labelsVisible && item.appearance.labels) {
+      NamedMarker name=new NamedMarker(view,opacity,true);name.labelStyle(item.appearance);
       name.setPosition(new GeoPoint(item.latitude,item.longitude));name.setTitle(item.name);
       android.graphics.drawable.ColorDrawable transparent=new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT);
       name.setIcon(transparent);name.setOnMarkerClickListener((m,v)->{if(onPointClick!=null)onPointClick.accept(original);return true;});

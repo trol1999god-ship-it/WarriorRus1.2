@@ -64,8 +64,35 @@ public final class PlacemarkFiles {
     if(root==null||!stack.isEmpty())throw new IOException("Пустой или повреждённый XML");return root;
   }
   private static void collectStyles(Node n,Map<String,Node> styles) {
-    if("Style".equals(n.name)&&n.attributes.containsKey("id"))styles.put("#"+n.attributes.get("id"),n);
+    if(("Style".equals(n.name)||"StyleMap".equals(n.name))&&n.attributes.containsKey("id"))styles.put("#"+n.attributes.get("id"),n);
     for(Node c:n.children)collectStyles(c,styles);
+  }
+  private static Node resolveStyle(String key,Map<String,Node> styles,Set<String> visited) {
+    if(!visited.add(key)||visited.size()>16)return null;
+    Node n=styles.get(key);if(n==null||"Style".equals(n.name))return n;
+    for(Node pair:n.named("Pair"))if("normal".equals(pair.value("key"))) {
+      Node inline=pair.child("Style");return inline!=null?inline:resolveStyle(pair.value("styleUrl"),styles,visited);
+    }return null;
+  }
+  private static float styleNumber(String value,float fallback,float min,float max) {
+    try{float n=Float.parseFloat(value);return Float.isNaN(n)||Float.isInfinite(n)?fallback:Math.max(min,Math.min(max,n));}
+    catch(NumberFormatException e){return fallback;}
+  }
+  private static void readStyle(Node style,MapItem i) throws IOException {
+    Node line=style.child("LineStyle"),icon=style.child("IconStyle"),poly=style.child("PolyStyle"),label=style.child("LabelStyle");
+    Node colorSource=i.isGeometry()?line:icon;
+    if(colorSource!=null&&!colorSource.value("color").isEmpty())i.color=kmlColor(colorSource.value("color"));
+    if(line!=null)i.appearance.lineWidth=styleNumber(line.value("width"),0,0,40);
+    if(icon!=null&&!icon.value("scale").isEmpty())i.appearance.markerSize=styleNumber(icon.value("scale"),1,0.05f,5.3333f)*24;
+    if(poly!=null){
+      i.appearance.fill=!"0".equals(poly.value("fill"));i.appearance.outline=!"0".equals(poly.value("outline"));
+      if(!poly.value("color").isEmpty()){i.appearance.fillColor=kmlColor(poly.value("color"));i.appearance.fillOpacity=1;}
+    }
+    if(label!=null){
+      float scale=styleNumber(label.value("scale"),1,0,4);i.appearance.labels=scale>0;
+      i.appearance.labelSize=Math.max(6,Math.min(48,13*scale));
+      if(!label.value("color").isEmpty())i.appearance.labelColor=kmlColor(label.value("color"));
+    }
   }
   private static MapItem item(String name,String kind,long parent,List<MapItem> all) throws IOException {
     if(all.size()>=10000)throw new IOException("Не более 10 000 объектов за импорт");
@@ -85,8 +112,15 @@ public final class PlacemarkFiles {
           Node ext=n.child("ExtendedData");if(ext!=null)for(Node d:ext.named("Data"))
             if("workmap:kind".equals(d.attributes.get("name"))&&Arrays.asList("route","path","track").contains(d.value("value"))&&"path".equals(kind))kind=d.value("value");
           MapItem i=item(n.value("name"),kind,parent,all);i.description=n.value("description");i.visible=!"0".equals(n.value("visibility"));
-          Node style=n.child("Style");if(style==null)style=styles.get(n.value("styleUrl"));
-          if(style!=null) {Node line=style.child("LineStyle");if(line==null)line=style.child("IconStyle");if(line!=null&&!line.value("color").isEmpty())i.color=kmlColor(line.value("color"));}
+          Node style=n.child("Style");if(style==null)style=resolveStyle(n.value("styleUrl"),styles,new HashSet<>());
+          if(style!=null)readStyle(style,i);
+          if(ext!=null)for(Node data:ext.named("Data")) {
+            String key=data.attributes.get("name"),value=data.value("value");
+            if("workmap:appearance".equals(key))i.appearance=ObjectAppearance.decode(value);
+            else if("workmap:icon".equals(key)&&Arrays.asList("builtin:circle","builtin:text").contains(value))i.icon=value;
+            else if("workmap:color".equals(key))i.color=Integer.parseInt(value);
+            else if("workmap:opacity".equals(key))i.opacity=styleNumber(value,1,0,1);
+          }
           if("area".equals(kind)) {
             Node outer=shape.child("outerBoundaryIs");if(outer==null)throw new IOException("У области нет внешнего контура");
             i.segments.add(ring(outer));for(Node hole:shape.named("innerBoundaryIs"))i.segments.add(ring(hole));
@@ -96,7 +130,9 @@ public final class PlacemarkFiles {
             if(i.isGeometry())i.segments.add(points);
             else {i.latitude=points.get(0).latitude;i.longitude=points.get(0).longitude;}
           }
-          if(i.isGeometry()) {Geometry.validate(i);Vertex v=i.segments.get(0).get(0);i.latitude=v.latitude;i.longitude=v.longitude;}
+          if(i.isGeometry()) {Geometry.validate(i);Vertex v=i.segments.get(0).get(0);i.latitude=v.latitude;i.longitude=v.longitude;
+            if("builtin:circle".equals(i.icon)&&i.appearance.circleLatitude!=null&&i.appearance.circleLongitude!=null){i.latitude=i.appearance.circleLatitude;i.longitude=i.appearance.circleLongitude;}
+          }
         }
       }
     }
@@ -157,16 +193,42 @@ public final class PlacemarkFiles {
     if(!written.add(i.id))return;String element=i.isFolder()?"Folder":"Placemark";x.startTag(null,element);tag(x,"name",i.name);tag(x,"description",descriptions.containsKey(i.id)?descriptions.get(i.id):i.description);tag(x,"visibility",i.visible?"1":"0");
     if(i.isFolder()) {for(MapItem child:items)if(child.parent==i.id)writeKml(x,child,items,written,icons,descriptions);}
     else {
-      x.startTag(null,"Style");for(String style:Arrays.asList("LineStyle","IconStyle","PolyStyle")){x.startTag(null,style);int color=(i.color&0x00ffffff)|Math.round(255*i.opacity)<<24;int kml=(color&0xff00ff00)|((color&255)<<16)|((color>>16)&255);tag(x,"color","IconStyle".equals(style)&&icons.containsKey(i.id)?"ffffffff":String.format(Locale.ROOT,"%08x",kml));
-        if("IconStyle".equals(style)&&icons.containsKey(i.id)){x.startTag(null,"Icon");tag(x,"href",icons.get(i.id));x.endTag(null,"Icon");}
-        if("LineStyle".equals(style))tag(x,"width","3");x.endTag(null,style);}x.endTag(null,"Style");
+      x.startTag(null,"Style");
+      for(String style:Arrays.asList("LineStyle","IconStyle","PolyStyle")){
+        x.startTag(null,style);
+        int color=ru.warriorrus.app.map.ObjectStyleRenderer.alpha(i.color,i.opacity);
+        if("LineStyle".equals(style)&&!i.appearance.outline)color=0;
+        if("PolyStyle".equals(style))color=ru.warriorrus.app.map.ObjectStyleRenderer.fill(i,i.opacity);
+        if("IconStyle".equals(style)&&icons.containsKey(i.id))color=ru.warriorrus.app.map.ObjectStyleRenderer.alpha(0xffffffff,i.opacity);
+        tag(x,"color",kmlColorText(color));
+        if("IconStyle".equals(style)){
+          if(i.appearance.markerSize>0)tag(x,"scale",Float.toString(i.appearance.markerSize/24));
+          if(icons.containsKey(i.id)){x.startTag(null,"Icon");tag(x,"href",icons.get(i.id));x.endTag(null,"Icon");}
+        }
+        if("LineStyle".equals(style))tag(x,"width",Float.toString(i.appearance.lineWidth>0?i.appearance.lineWidth:3));
+        if("PolyStyle".equals(style)){tag(x,"fill",i.appearance.fill?"1":"0");tag(x,"outline",i.appearance.outline?"1":"0");}
+        x.endTag(null,style);
+      }
+      x.startTag(null,"LabelStyle");tag(x,"scale",i.appearance.labels?Float.toString(i.appearance.labelSize/13):"0");
+      tag(x,"color",kmlColorText(ru.warriorrus.app.map.ObjectStyleRenderer.alpha(i.appearance.labelColor==null?0xff000000:i.appearance.labelColor,i.opacity)));
+      x.endTag(null,"LabelStyle");x.endTag(null,"Style");
+      x.startTag(null,"ExtendedData");
+      data(x,"workmap:kind",i.kind);if(i.isCircle()||i.isText())data(x,"workmap:icon",i.isCircle()?"builtin:circle":"builtin:text");data(x,"workmap:appearance",i.appearance.encode());data(x,"workmap:color",Integer.toString(i.color));data(x,"workmap:opacity",Float.toString(i.opacity));
+      data(x,"activity",i.appearance.activity);data(x,"weight",Double.toString(i.appearance.weight));
+      data(x,"url",i.appearance.url);data(x,"keywords",i.appearance.keywords);x.endTag(null,"ExtendedData");
       if(!i.isGeometry()){x.startTag(null,"Point");tag(x,"coordinates",i.longitude+","+i.latitude);x.endTag(null,"Point");}
       else {
-        x.startTag(null,"ExtendedData");x.startTag(null,"Data").attribute(null,"name","workmap:kind");tag(x,"value",i.kind);x.endTag(null,"Data");x.endTag(null,"ExtendedData");
         if("area".equals(i.kind)){x.startTag(null,"Polygon");for(int n=0;n<i.segments.size();n++){String bound=n==0?"outerBoundaryIs":"innerBoundaryIs";x.startTag(null,bound);x.startTag(null,"LinearRing");tag(x,"coordinates",coordinateText(i.segments.get(n),true));x.endTag(null,"LinearRing");x.endTag(null,bound);}x.endTag(null,"Polygon");}
         else {boolean multi=i.segments.size()>1;if(multi)x.startTag(null,"MultiGeometry");for(List<Vertex> line:i.segments){x.startTag(null,"LineString");tag(x,"tessellate","1");tag(x,"coordinates",coordinateText(line,false));x.endTag(null,"LineString");}if(multi)x.endTag(null,"MultiGeometry");}
       }
     }x.endTag(null,element);
+  }
+  private static String kmlColorText(int color){
+    int swapped=(color&0xff00ff00)|((color&255)<<16)|((color>>16)&255);
+    return String.format(Locale.ROOT,"%08x",swapped);
+  }
+  private static void data(XmlSerializer x,String name,String value)throws IOException {
+    x.startTag(null,"Data").attribute(null,"name",name);tag(x,"value",value);x.endTag(null,"Data");
   }
   private static String coordinateText(List<Vertex> line,boolean close){StringBuilder b=new StringBuilder();for(Vertex v:line){if(b.length()>0)b.append(' ');b.append(v.longitude).append(',').append(v.latitude);if(v.elevation!=null)b.append(',').append(v.elevation);}if(close&&!line.isEmpty()){Vertex p=line.get(0);b.append(' ').append(p.longitude).append(',').append(p.latitude);if(p.elevation!=null)b.append(',').append(p.elevation);}return b.toString();}
   private static void tag(XmlSerializer x,String name,String value)throws IOException {x.startTag(null,name);x.text(value==null?"":value);x.endTag(null,name);}

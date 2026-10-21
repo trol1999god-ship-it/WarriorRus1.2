@@ -20,6 +20,11 @@ public final class BundleExchange {
     ZipOutputStream zip=new ZipOutputStream(out);Map<Long,String> icons=new HashMap<>(),descriptions=new HashMap<>();
     List<MapItem> portable=ObjectJson.decode(ObjectJson.encode(items));Set<Long> ids=new HashSet<>();for(MapItem i:portable)ids.add(i.id);for(MapItem i:portable)if(!ids.contains(i.parent))i.parent=0;Set<String> included=new HashSet<>();
     for(MapItem i:portable) {
+      if(i.isText())i.appearance.textObject=true;
+      if(i.isCircle()&&i.appearance.circleRadiusMeters<=0&&!i.segments.isEmpty()&&!i.segments.get(0).isEmpty()){
+        i.appearance.circleLatitude=i.latitude;i.appearance.circleLongitude=i.longitude;
+        i.appearance.circleRadiusMeters=ru.warriorrus.app.geometry.Geometry.distance(new Vertex(i.latitude,i.longitude),i.segments.get(0).get(0));
+      }
       if(!i.isFolder()) {
         String svg=i.icon.startsWith("builtin:")?IconLibrary.builtinText(i.icon):library.text(i.icon);
         String svgName="icons/object-"+i.id+".svg",pngName="icons/object-"+i.id+".png";

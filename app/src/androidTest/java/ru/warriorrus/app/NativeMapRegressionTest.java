@@ -63,6 +63,10 @@ public class NativeMapRegressionTest {
     try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
       for (String kind : new String[]{"Маршрут", "Область"}) {
         click(By.desc("Действия в центре карты"));click(By.text("Новая метка…"));click(By.text(kind));
+        UiObject2 propertiesName=device.wait(Until.findObject(By.clazz(EditText.class)),8000);assertNotNull(propertiesName);propertiesName.setText(kind);click(By.res("android:id/button1"));
+        device.waitForIdle();scenario.onActivity(this::assertDrawingViewport);capture("geometry-editor-expanded");
+        click(By.desc("Свернуть статистику"));device.waitForIdle();scenario.onActivity(this::assertDrawingViewport);
+        click(By.desc("Развернуть статистику"));device.waitForIdle();scenario.onActivity(this::assertDrawingViewport);
         device.swipe(device.getDisplayWidth()/2, device.getDisplayHeight()/2,
             device.getDisplayWidth()/2+100, device.getDisplayHeight()/2+60, 10);
         click(By.desc("+ Точка"));
@@ -72,8 +76,6 @@ public class NativeMapRegressionTest {
           click(By.desc("+ Точка"));
         }
         click(By.desc("Сохранить"));
-        UiObject2 name = device.wait(Until.findObject(By.clazz(EditText.class)), 8000);
-        assertNotNull(name); name.setText(kind); click(By.res("android:id/button1"));
         assertTrue(device.wait(Until.gone(By.res("android:id/button1")), 8000));
       }
       scenario.recreate(); device.waitForIdle();
@@ -91,19 +93,28 @@ public class NativeMapRegressionTest {
     }
   }
 
+  private void assertDrawingViewport(MainActivity activity) {
+    View root=activity.getWindow().getDecorView();View editor=root.findViewWithTag("drawingControls");
+    View canvas=root.findViewWithTag("mapCanvas"),focus=root.findViewWithTag("mapFocus");
+    assertNotNull(editor);assertEquals(editor.getTop(),canvas.getBottom());
+    assertEquals(canvas.getTop()+canvas.getHeight()/2f,focus.getY()+focus.getHeight()/2f,2f);
+    assertTrue(root.findViewWithTag("bottomPanel").getBottom()<=editor.getTop());
+    assertTrue(root.findViewWithTag("zoomControls").getBottom()<=editor.getTop());
+  }
+
   @Test @androidx.test.filters.SdkSuppress(minSdkVersion = 30)
   public void drawModeStatisticsAndSaveRemainUsableAfterRotation() throws Exception {
     android.content.Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
     context.deleteDatabase("warrior2.db");context.getSharedPreferences("MainActivity",0).edit().clear().putBoolean("mapOnline",false).commit();
     try(ActivityScenario<MainActivity> scenario=ActivityScenario.launch(MainActivity.class)){
       click(By.desc("Действия в центре карты"));click(By.text("Новая метка…"));click(By.text("Путь"));
+      UiObject2 propertiesName=device.wait(Until.findObject(By.clazz(EditText.class)),8000);assertNotNull(propertiesName);propertiesName.setText("Нарисованная линия");click(By.res("android:id/button1"));
       click(By.desc("Рисовать линию"));
       device.swipe(device.getDisplayWidth()/2,device.getDisplayHeight()/3,device.getDisplayWidth()/2+100,device.getDisplayHeight()/3+50,25);device.waitForIdle();
       click(By.desc("Приостановить рисование"));click(By.desc("Развернуть статистику"));
       device.setOrientationLeft();device.waitForIdle();
       scenario.onActivity(activity->{View panel=activity.getWindow().getDecorView().findViewWithTag("drawingControls");assertNotNull(panel);assertWithinSafeArea(activity,panel);assertWithinSafeArea(activity,described(panel,"Сохранить"));assertTrue(((EditorPanel)panel).expanded());});
       capture("landscape-drawing-statistics");click(By.desc("Сохранить"));
-      UiObject2 name=device.wait(Until.findObject(By.clazz(EditText.class)),8000);assertNotNull(name);name.setText("Нарисованная линия");click(By.res("android:id/button1"));
       assertTrue(device.wait(Until.gone(By.res("android:id/button1")),8000));
       scenario.recreate();device.waitForIdle();
       scenario.onActivity(activity->{try(ru.warriorrus.app.data.ObjectStore store=new ru.warriorrus.app.data.ObjectStore(activity)){assertEquals(1,store.all().size());assertTrue(ru.warriorrus.app.geometry.Geometry.count(store.all().get(0))>2);}});

@@ -13,6 +13,7 @@ public final class NamedMarker extends Marker {
   private final float gap;
   private final MapView map;
   private final boolean showLabel;
+  private final float opacity;
 
   public NamedMarker(MapView map, float alpha) {
     this(map, alpha, true);
@@ -20,6 +21,7 @@ public final class NamedMarker extends Marker {
 
   public NamedMarker(MapView map, float alpha, boolean showLabel) {
     super(map);
+    this.opacity=alpha;
     this.showLabel = showLabel;
     this.map = map;
     gap = 18 * map.getResources().getDisplayMetrics().density;
@@ -31,6 +33,13 @@ public final class NamedMarker extends Marker {
     outline.setAlpha(Math.round(alpha * 255));
     outline.setStyle(Paint.Style.STROKE);
     outline.setStrokeWidth(3 * map.getResources().getDisplayMetrics().density);
+  }
+
+  public void labelStyle(ru.warriorrus.app.data.ObjectAppearance appearance) {
+    float size=appearance.labelSize*map.getResources().getDisplayMetrics().scaledDensity;
+    text.setTextSize(size);outline.setTextSize(size);
+    Typeface font=Typeface.create(Typeface.DEFAULT,(appearance.labelBold?Typeface.BOLD:0)|(appearance.labelItalic?Typeface.ITALIC:0));text.setTypeface(font);outline.setTypeface(font);
+    text.setColor(ObjectStyleRenderer.alpha(appearance.labelColor==null?Color.BLACK:appearance.labelColor,opacity));
   }
 
   @Override

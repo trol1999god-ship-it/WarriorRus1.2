@@ -14,8 +14,8 @@ android {
         minSdk 23
         targetSdk 35
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        versionCode 17
-        versionName "2.3.8b-reference-assets"
+        versionCode 19
+        versionName "2.3.8b-object-styles"
     }
 }
 

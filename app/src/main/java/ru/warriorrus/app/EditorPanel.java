@@ -15,6 +15,7 @@ public final class EditorPanel extends LinearLayout {
   private final ScrollView details;
   private final Button statistics, closeButton;
   private boolean expanded;
+  private boolean docked;
   private int detailsMaximum;
 
   public EditorPanel(Context context, FrameLayout host, String tag, String name,
@@ -99,11 +100,14 @@ public final class EditorPanel extends LinearLayout {
     statistics.setContentDescription(value ? "Свернуть статистику" : "Развернуть статистику");
   }
   public boolean expanded() { return expanded; }
+  public void dockMap() { docked=true; expanded(true); }
+  public boolean docked() { return docked; }
 
   public void show() {
     FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(-1, -2,
         Gravity.BOTTOM | Gravity.START);
-    params.setMargins(ui.dp(4), 0, ui.dp(4), ui.dp(64));
+    params.setMargins(docked?0:ui.dp(4), 0, docked?0:ui.dp(4), docked?0:ui.dp(64));
+    if(docked)addOnLayoutChangeListener((v,l,t,r,b,ol,ot,or,ob)->EditorViewport.update(host));
     host.addView(this, params);
   }
 
@@ -112,8 +116,8 @@ public final class EditorPanel extends LinearLayout {
     int available = View.MeasureSpec.getMode(height) == View.MeasureSpec.UNSPECIFIED
         ? host.getHeight() : View.MeasureSpec.getSize(height);
     int windowHeight=host.getHeight()>0?host.getHeight()-host.getPaddingTop()-host.getPaddingBottom():available+ui.dp(64);
-    int limit=Math.max(0,Math.min(available,Math.min(ui.dp(300),Math.max(ui.dp(138),(int)(windowHeight*.45f)))));
+    int limit=Math.max(0,Math.min(available,Math.min(docked?windowHeight:ui.dp(300),Math.max(ui.dp(138),(int)(windowHeight*.45f)))));
     detailsMaximum=Math.max(0,limit-ui.dp(138));
-    super.onMeasure(width, View.MeasureSpec.makeMeasureSpec(limit, View.MeasureSpec.AT_MOST));
+    super.onMeasure(width, View.MeasureSpec.makeMeasureSpec(limit, docked&&expanded?View.MeasureSpec.EXACTLY:View.MeasureSpec.AT_MOST));
   }
 }
