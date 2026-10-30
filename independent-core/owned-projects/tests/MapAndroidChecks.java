@@ -424,9 +424,24 @@ public final class MapAndroidChecks extends Instrumentation {
  Activity launchWorkspace()throws Exception{
   ActivityMonitor monitor=addMonitor("org.rabochaya.projects.LocalMapActivity",null,false);
   getTargetContext().startActivity(new Intent().setClassName(getTargetContext().getPackageName(),"org.rabochaya.projects.OwnedHomeActivity").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-  Activity map=waitForMonitorWithTimeout(monitor,45000);removeMonitor(monitor);check(map!=null,"launcher opens owned map directly");activity=map;waitText("видимых объектов");return map;
+  Activity map=waitForMonitorWithTimeout(monitor,45000);removeMonitor(monitor);check(map!=null,"launcher opens owned map directly");activity=map;waitText("видимых объектов");stableMainMap();return activity;
  }
- android.view.View stableMainMap()throws Exception{long end=System.currentTimeMillis()+15000;android.view.View previous=null;int stable=0;while(System.currentTimeMillis()<end){final android.view.View[] current=new android.view.View[1];runOnMainSync(()->{try{Field busy=activity.getClass().getDeclaredField("busy");busy.setAccessible(true);android.view.View view=(android.view.View)map();if(!busy.getBoolean(activity)&&view!=null&&view.isAttachedToWindow()&&view.isShown()&&view.hasWindowFocus()&&view.getWidth()>0&&view.getHeight()>0)current[0]=view;}catch(Exception e){throw new RuntimeException(e);}});if(current[0]!=null&&current[0]==previous){if(++stable>=3)return current[0];}else stable=0;previous=current[0];Thread.sleep(100);}reportMainMapState();throw new AssertionError("current main map never became stable and attached");}
+ android.view.View findMainMap(android.view.View root){if(root.getClass().getName().equals("org.rabochaya.projects.LocalMapView"))return root;if(root instanceof android.view.ViewGroup){android.view.ViewGroup group=(android.view.ViewGroup)root;for(int i=0;i<group.getChildCount();i++){android.view.View found=findMainMap(group.getChildAt(i));if(found!=null)return found;}}return null;}
+ android.view.View stableMainMap()throws Exception{
+  long end=System.currentTimeMillis()+15000;android.view.View previous=null;int stable=0;final long expectedProject=activity.getIntent().getLongExtra("project",-1);
+  while(System.currentTimeMillis()<end){final android.view.View[] current=new android.view.View[1];runOnMainSync(()->{try{
+   android.view.View root=activeDialogRoot(),view=findMainMap(root);if(view==null)return;
+   Context owner=view.getContext();while(owner instanceof ContextWrapper&&!(owner instanceof Activity))owner=((ContextWrapper)owner).getBaseContext();
+   if(!(owner instanceof Activity)||!owner.getClass().getName().equals("org.rabochaya.projects.LocalMapActivity"))return;Activity live=(Activity)owner;
+   if(live.isFinishing()||live.isDestroyed()||live.getWindow().getDecorView()!=root||live.getIntent().getLongExtra("project",-1)!=expectedProject)return;
+   Field busy=live.getClass().getDeclaredField("busy"),field=live.getClass().getDeclaredField("map");busy.setAccessible(true);field.setAccessible(true);
+   if(!busy.getBoolean(live)&&view==field.get(live)&&view.isAttachedToWindow()&&view.isShown()&&view.hasWindowFocus()&&view.getWidth()>0&&view.getHeight()>0){
+    if(activity!=live){Bundle status=new Bundle();status.putString("stream","MAIN_MAP_REBOUND previous="+activity+" finishing="+activity.isFinishing()+" destroyed="+activity.isDestroyed()+" current="+live+" project="+expectedProject+" root="+root+"\n");sendStatus(0,status);}activity=live;current[0]=view;
+   }
+  }catch(Exception e){throw new RuntimeException(e);}});
+   if(current[0]!=null&&current[0]==previous){if(++stable>=3)return current[0];}else stable=0;previous=current[0];Thread.sleep(100);
+  }reportMainMapState();throw new AssertionError("current main map never became stable and attached");
+ }
  void reportMainMapState(){
   final String[] state=new String[1];
   runOnMainSync(()->{try{

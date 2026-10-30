@@ -30,19 +30,22 @@ final class ManagerVisualChecks {
   }}
   if(view instanceof ViewGroup){ViewGroup group=(ViewGroup)view;for(int i=0;i<group.getChildCount();i++)inspect(group.getChildAt(i),texts);}
  }
- void snapshot(String name,boolean keyboard)throws Exception{
+ void snapshot(String name,boolean keyboard)throws Exception{snapshot(name,keyboard,"Сохранить");}
+ void snapshot(String name,boolean keyboard,String positive)throws Exception{
   m.waitForIdleSync();Thread.sleep(700);final JSONObject state=new JSONObject();final RuntimeException[] error={null};
   m.runOnMainSync(()->{try{View root=m.activeDialogRoot();Rect frame=new Rect();root.getWindowVisibleDisplayFrame(frame);state.put("name",name);state.put("visibleFrame",frame.toShortString());state.put("orientation",m.activity.getResources().getConfiguration().orientation);state.put("nightMask",m.activity.getResources().getConfiguration().uiMode&Configuration.UI_MODE_NIGHT_MASK);JSONArray texts=new JSONArray();inspect(root,texts);state.put("texts",texts);}catch(Exception e){error[0]=new RuntimeException(e);}});
   if(error[0]!=null)throw error[0];JSONArray ime=imeWindows();boolean shown=ime.length()>0;state.put("imeWindows",ime);state.put("keyboardRequested",keyboard);state.put("keyboardObserved",shown);
   m.capture("mvisual-"+name);observations.put(state);emit("MANAGER_VISUAL "+state.toString());
-  if(keyboard){m.check(shown,"real soft keyboard window visible for "+name);buttonsReachable();editableLineVisible();}
+  if(keyboard){m.check(shown,"real soft keyboard window visible for "+name);buttonsReachable(positive);editableLineVisible();}
   JSONArray texts=state.getJSONArray("texts");for(int i=0;i<texts.length();i++){JSONObject text=texts.getJSONObject(i);if(text.getBoolean("visible"))m.check(text.getBoolean("arimo"),"Arimo on visible manager text: "+text.getString("text"));}
-  if(name.endsWith("-main")){m.check(m.find(m.getUiAutomation().getRootInActiveWindow(),"QA_VISUAL_Папка",false)!=null,"object list survives main layout");final View[] footer={null};m.runOnMainSync(()->footer[0]=button(m.activity.getWindow().getDecorView(),"Проекты, импорт и экспорт"));m.check(footer[0]!=null&&fullyVisible(footer[0]),"footer reachable inside app window");final boolean[] navigation={false};m.runOnMainSync(()->{View root=m.activity.getWindow().getDecorView();View actions=button(root,"Действия"),close=button(root,"Закрыть");navigation[0]=actions!=null&&close!=null&&fullyVisible(actions)&&fullyVisible(close);});m.check(navigation[0],"navigation buttons remain fully visible without header scrolling");}
+  if(name.endsWith("-main")){m.check(m.visibleText("QA_VISUAL_Папка"),"object list survives main layout");final View[] footer={null};m.runOnMainSync(()->footer[0]=button(m.activity.getWindow().getDecorView(),"Проекты, импорт и экспорт"));m.check(footer[0]!=null&&fullyVisible(footer[0]),"footer reachable inside app window");final boolean[] navigation={false};m.runOnMainSync(()->{View root=m.activity.getWindow().getDecorView();View actions=button(root,"Действия"),close=button(root,"Закрыть");navigation[0]=actions!=null&&close!=null&&fullyVisible(actions)&&fullyVisible(close);});m.check(navigation[0],"navigation buttons remain fully visible without header scrolling");}
  }
  View button(View root,String label){if(root instanceof Button&&label.contentEquals(((Button)root).getText()))return root;if(root instanceof ViewGroup){ViewGroup group=(ViewGroup)root;for(int i=0;i<group.getChildCount();i++){View found=button(group.getChildAt(i),label);if(found!=null)return found;}}return null;}
  boolean fullyVisible(View view){Rect actual=new Rect(),frame=new Rect();int[] xy=new int[2];view.getLocationOnScreen(xy);view.getWindowVisibleDisplayFrame(frame);return view.getGlobalVisibleRect(actual)&&actual.width()==view.getWidth()&&actual.height()==view.getHeight()&&frame.contains(xy[0],xy[1],xy[0]+view.getWidth(),xy[1]+view.getHeight());}
  void editableLineVisible(){final boolean[] visible={false};m.runOnMainSync(()->{List<EditText> fields=new ArrayList<>();m.collectInputs(m.activeDialogRoot(),fields);for(EditText field:fields){Rect bounds=new Rect();if(field.getGlobalVisibleRect(bounds)&&bounds.height()>=field.getLineHeight())visible[0]=true;}});m.check(visible[0],"at least one editable text line remains visible above keyboard");}
- void buttonsReachable(){final boolean[] good={false};m.runOnMainSync(()->{View root=m.activeDialogRoot();View save=button(root,"Сохранить"),cancel=button(root,"Отмена");good[0]=save!=null&&cancel!=null&&fullyVisible(save)&&fullyVisible(cancel);});m.check(good[0],"Save and Cancel fully visible above IME/system insets");}
+ void buttonsReachable(){buttonsReachable("Сохранить");}
+ void buttonsReachable(String positive){final boolean[] good={false};m.runOnMainSync(()->{View root=m.activeDialogRoot();View save=button(root,positive),cancel=button(root,"Отмена");good[0]=save!=null&&cancel!=null&&fullyVisible(save)&&fullyVisible(cancel);});m.check(good[0],positive+" and Cancel fully visible above IME/system insets");}
+ void controlReachable(String label){final boolean[] visible={false};m.runOnMainSync(()->{View control=button(m.activeDialogRoot(),label);visible[0]=control!=null&&fullyVisible(control);});m.check(visible[0],label+" fully visible above IME");}
  void keyboard()throws Exception{
   final EditText[] input={null};m.runOnMainSync(()->{List<EditText> fields=new ArrayList<>();m.collectInputs(m.activeDialogRoot(),fields);if(!fields.isEmpty()){input[0]=fields.get(0);input[0].requestFocus();((InputMethodManager)m.activity.getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(input[0],InputMethodManager.SHOW_IMPLICIT);}});
   m.check(input[0]!=null,"visual dialog has editable field");long end=System.currentTimeMillis()+7000;while(System.currentTimeMillis()<end){if(imeWindows().length()>0)return;Thread.sleep(200);}throw new AssertionError("soft keyboard window never appeared");
@@ -66,6 +69,12 @@ final class ManagerVisualChecks {
     rotate(UiAutomation.ROTATION_FREEZE_0);m.managerAction("Новая папка / группа");m.inputs("QA_VISUAL_Новая папка");keyboard();snapshot(theme+"-portrait-name-ime",true);cancel();
     m.click("QA_VISUAL_Точка");m.managerAction("Изменить описание");keyboard();snapshot(theme+"-portrait-description-ime",true);cancel();
     rotate(UiAutomation.ROTATION_FREEZE_90);m.click("QA_VISUAL_Точка");m.managerAction("Изменить описание");keyboard();snapshot(theme+"-landscape-description-ime",true);cancel();
+    if(night==UiModeManager.MODE_NIGHT_NO){
+     Map<String,?> prefsBefore=new HashMap<>(context.getSharedPreferences("object-manager-view",0).getAll());
+     m.click("Поиск и фильтры");m.inputs("QA_VISUAL");keyboard();snapshot("day-landscape-search-ime",true,"Применить");controlReachable("Сбросить");cancel();
+     m.dateForm(2,"2026-10-01","2026-10-30");keyboard();snapshot("day-landscape-dates-ime",true,"Применить");controlReachable("Сбросить даты");cancel();
+     m.check(prefsBefore.equals(context.getSharedPreferences("object-manager-view",0).getAll()),"Cancel with IME leaves search/date preferences unchanged");
+    }
     m.check(Arrays.equals(before,(byte[])m.call(m.call(store,"load",new Class[]{long.class},id),"xml",new Class[]{})),"visual capture and rotation preserve synthetic project bytes");
    }
   }finally{
