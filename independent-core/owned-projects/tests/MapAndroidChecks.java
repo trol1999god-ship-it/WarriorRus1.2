@@ -353,11 +353,25 @@ public final class MapAndroidChecks extends Instrumentation {
  void addMapPoint(float x,float y)throws Exception{clickDescription("Добавить вершину на карте");android.view.View v=mapSurface();mapTouch(v.getWidth()*x,v.getHeight()*y,v.getWidth()*x,v.getHeight()*y,false,false);}
  void pinchVertex(int index)throws Exception{
   float[] point=vertexPixel(index);android.view.View surface=mapSurface();int[] at=new int[2];runOnMainSync(()->surface.getLocationOnScreen(at));long down=android.os.SystemClock.uptimeMillis();
-  android.view.MotionEvent.PointerProperties[] props=new android.view.MotionEvent.PointerProperties[2];for(int i=0;i<2;i++){props[i]=new android.view.MotionEvent.PointerProperties();props[i].id=i;props[i].toolType=android.view.MotionEvent.TOOL_TYPE_FINGER;}
-  int[] actions={0,5|(1<<8),2,2,6|(1<<8),1};
-  for(int step=0;step<actions.length;step++){int count=step==0||step==5?1:2;android.view.MotionEvent.PointerCoords[] coords=new android.view.MotionEvent.PointerCoords[count];float expand=step<2?0:step==2?25:45;for(int i=0;i<count;i++){coords[i]=new android.view.MotionEvent.PointerCoords();coords[i].x=at[0]+point[0]+(i==0?-expand:100+expand);coords[i].y=at[1]+point[1];coords[i].pressure=1;coords[i].size=.1f;}android.view.MotionEvent event=android.view.MotionEvent.obtain(down,android.os.SystemClock.uptimeMillis(),actions[step],count,props,coords,0,0,1,1,0,0,android.view.InputDevice.SOURCE_TOUCHSCREEN,0);check(getUiAutomation().injectInputEvent(event,true),"map pinch event "+step);event.recycle();Thread.sleep(120);}waitForIdleSync();
   int minimumSpan=-1;try{Object config=android.view.ViewConfiguration.get(getTargetContext());minimumSpan=(Integer)config.getClass().getMethod("getScaledMinimumScalingSpan").invoke(config);}catch(NoSuchMethodException unavailable){}
-  Bundle status=new Bundle();status.putString("stream","MAP_PINCH vertex="+Arrays.toString(point)+" origin="+Arrays.toString(at)+" surface="+surface.getWidth()+"x"+surface.getHeight()+" minimumSpan="+minimumSpan+" requestedMoveSpans=150,190 viewport="+Arrays.toString((double[])call(editorField("mapCanvas"),"viewport",new Class[]{}))+"\n");sendStatus(0,status);
+  float width=surface.getWidth(),inset=8;
+  check(point[0]>inset&&point[0]<width-inset&&point[1]>0&&point[1]<surface.getHeight(),"pinch begins on visible vertex within canvas");
+  boolean right=point[0]<width/2;float room=right?width-inset-point[0]:point[0]-inset;
+  float second=point[0]+(right?1:-1)*Math.min(100,room*.75f);
+  float firstEnd=right?inset:width-inset,secondEnd=right?width-inset:inset;
+  check(width-2*inset>Math.max(0,minimumSpan)+2*android.view.ViewConfiguration.get(getTargetContext()).getScaledTouchSlop(),"canvas permits pinch beyond platform minimum span");
+  android.view.MotionEvent.PointerProperties[] props=new android.view.MotionEvent.PointerProperties[2];for(int i=0;i<2;i++){props[i]=new android.view.MotionEvent.PointerProperties();props[i].id=i;props[i].toolType=android.view.MotionEvent.TOOL_TYPE_FINGER;}
+  // Crossing minSpan starts scaling with factor 1. Keep moving afterwards;
+  // both complete pointer paths stay inside the actual canvas on each API.
+  int moves=12;
+  for(int step=0;step<moves+4;step++){
+   int action=step==0?0:step==1?5|(1<<8):step==moves+2?6|(1<<8):step==moves+3?1:2;
+   int count=step==0||step==moves+3?1:2;float fraction=step<2?0:Math.min(1,(step-1)/(float)moves);
+   android.view.MotionEvent.PointerCoords[] coords=new android.view.MotionEvent.PointerCoords[count];
+   for(int i=0;i<count;i++){coords[i]=new android.view.MotionEvent.PointerCoords();float from=i==0?point[0]:second,to=i==0?firstEnd:secondEnd;coords[i].x=at[0]+from+(to-from)*fraction;coords[i].y=at[1]+point[1];coords[i].pressure=1;coords[i].size=.1f;}
+   android.view.MotionEvent event=android.view.MotionEvent.obtain(down,android.os.SystemClock.uptimeMillis(),action,count,props,coords,0,0,1,1,0,0,android.view.InputDevice.SOURCE_TOUCHSCREEN,0);check(getUiAutomation().injectInputEvent(event,true),"map pinch event "+step);event.recycle();Thread.sleep(120);
+  }
+  waitForIdleSync();Bundle status=new Bundle();status.putString("stream","MAP_PINCH vertex="+Arrays.toString(point)+" origin="+Arrays.toString(at)+" surface="+surface.getWidth()+"x"+surface.getHeight()+" minimumSpan="+minimumSpan+" endSpan="+(width-2*inset)+" moveSamples="+moves+" viewport="+Arrays.toString((double[])call(editorField("mapCanvas"),"viewport",new Class[]{}))+"\n");sendStatus(0,status);
  }
  void finishEditor()throws Exception{if(activity!=null){Activity last=activity;runOnMainSync(()->last.finish());waitForIdleSync();activity=null;}}
  void cleanMapFixture(Object store,long id,String feature)throws Exception{finishEditor();if(id>0){call(store,"remove",new Class[]{long.class},id);staticCall("LocalMapActivity","cleanupDeletedProject",new Class[]{Context.class,long.class},getTargetContext(),id);staticCall("GeometryDraft","delete",new Class[]{File.class,long.class,String.class},new File(getTargetContext().getFilesDir(),"geometry-drafts"),id,feature);}getTargetContext().getSharedPreferences("qa_geometry_map",0).edit().clear().commit();}
