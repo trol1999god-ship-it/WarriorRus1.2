@@ -14,7 +14,7 @@ def get(name,url,sha):
   with urllib.request.urlopen(url,timeout=60) as response:path.write_bytes(response.read())
  if hashlib.sha256(path.read_bytes()).hexdigest()!=sha:raise RuntimeError('Tool checksum mismatch: '+name)
  return path
-r8=get('r8.jar','https://dl.google.com/dl/android/maven2/com/android/tools/r8/8.3.37/r8-8.3.37.jar','900dfbc649519969fc5a4c7520d6b7355338e565fa1249874e0190b8d61b1199')
+r8=get('r8.jar','https://dl.google.com/dl/android/maven2/com/android/tools/r8/8.3.37/r8-8.3.37.jar','59753e70a74f918389cc87f1b7d66b5c0862932559167425708ded159e3de439')
 apktool=get('apktool.jar','https://github.com/iBotPeaches/Apktool/releases/download/v2.11.1/apktool_2.11.1.jar','56d59c524fc764263ba8d345754d8daf55b1887818b15cd3b594f555d249e2db')
 build=sdk/'build-tools/35.0.0';android=sdk/'platforms/android-23/android.jar';aapt=build/'aapt2'
 for path in [aapt,android,build/'lib/apksigner.jar']:
