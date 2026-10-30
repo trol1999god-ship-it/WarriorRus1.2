@@ -54,6 +54,7 @@ final class ManagerVisualChecks {
   final int[] xy=new int[2];final float[] center=new float[2];m.runOnMainSync(()->{View cancel=button(m.activeDialogRoot(),"Отмена");cancel.getLocationOnScreen(xy);center[0]=xy[0]+cancel.getWidth()/2f;center[1]=xy[1]+cancel.getHeight()/2f;});
   long down=SystemClock.uptimeMillis();for(int action:new int[]{0,1}){MotionEvent event=MotionEvent.obtain(down,SystemClock.uptimeMillis(),action,center[0],center[1],0);event.setSource(InputDevice.SOURCE_TOUCHSCREEN);m.check(m.getUiAutomation().injectInputEvent(event,true),"real Cancel touch "+action);event.recycle();Thread.sleep(90);}m.waitText("Объекты проекта");m.waitForIdleSync();Thread.sleep(300);
  }
+ void selectVisualPoint()throws Exception{m.managerAction("Снять весь выбор");m.click("QA_VISUAL_Точка");m.check(m.managerKeys("selected").equals(Arrays.asList("1")),"exactly the visual point selected before description editing");}
  void run()throws Exception{
   Context context=m.getTargetContext();Object store=m.storeClass.getConstructor(Context.class).newInstance(context);long id=-1;UiModeManager ui=(UiModeManager)context.getSystemService(Context.UI_MODE_SERVICE);int oldNight=ui.getNightMode();AccessibilityServiceInfo service=m.getUiAutomation().getServiceInfo();int oldFlags=service.flags;service.flags|=AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS;m.getUiAutomation().setServiceInfo(service);String oldKeyboard=shell("settings get secure show_ime_with_hard_keyboard").trim();
   try{
@@ -67,8 +68,8 @@ final class ManagerVisualChecks {
     m.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);long hidden=System.currentTimeMillis()+7000;while(imeWindows().length()>0&&System.currentTimeMillis()<hidden)Thread.sleep(100);m.check(imeWindows().length()==0,"Back hides keyboard without closing editor");m.waitText("Новая папка / группа");snapshot(theme+"-landscape-name-restored",false);m.check(m.find(m.getUiAutomation().getRootInActiveWindow(),"Новая папка / группа",true).isVisibleToUser(),"normal dialog title returns after IME dismissal");buttonsReachable();final boolean[] restored={false};m.runOnMainSync(()->{List<EditText> fields=new ArrayList<>();m.collectInputs(m.activeDialogRoot(),fields);restored[0]=fields.size()==1&&"QA_VISUAL_Новая папка".contentEquals(fields.get(0).getText());});m.check(restored[0],"keyboard dismissal preserves unsaved name");
     keyboard();buttonsReachable();cancel();
     rotate(UiAutomation.ROTATION_FREEZE_0);m.managerAction("Новая папка / группа");m.inputs("QA_VISUAL_Новая папка");keyboard();snapshot(theme+"-portrait-name-ime",true);cancel();
-    m.click("QA_VISUAL_Точка");m.managerAction("Изменить описание");keyboard();snapshot(theme+"-portrait-description-ime",true);cancel();
-    rotate(UiAutomation.ROTATION_FREEZE_90);m.click("QA_VISUAL_Точка");m.managerAction("Изменить описание");keyboard();snapshot(theme+"-landscape-description-ime",true);cancel();
+    selectVisualPoint();m.managerAction("Изменить описание");keyboard();snapshot(theme+"-portrait-description-ime",true);cancel();
+    rotate(UiAutomation.ROTATION_FREEZE_90);selectVisualPoint();m.managerAction("Изменить описание");keyboard();snapshot(theme+"-landscape-description-ime",true);cancel();
     if(night==UiModeManager.MODE_NIGHT_NO){
      Map<String,?> prefsBefore=new HashMap<>(context.getSharedPreferences("object-manager-view",0).getAll());
      m.click("Поиск и фильтры");m.inputs("QA_VISUAL");keyboard();snapshot("day-landscape-search-ime",true,"Применить");controlReachable("Сбросить");cancel();
