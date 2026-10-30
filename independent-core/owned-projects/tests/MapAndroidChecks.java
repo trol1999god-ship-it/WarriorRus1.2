@@ -468,6 +468,7 @@ public final class MapAndroidChecks extends Instrumentation {
    clickDescription("Свернуть / развернуть инструменты");check(findDescription(getUiAutomation().getRootInActiveWindow(),"Карты")==null,"collapse hides toolbar");clickDescription("Свернуть / развернуть инструменты");check(findDescription(getUiAutomation().getRootInActiveWindow(),"Карты")!=null,"expand restores toolbar");
    clickDescription("Свернуть / развернуть координаты");check(!context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).getBoolean("show_coordinates",true),"coordinate collapse persisted");
    setViewport(.4,.45,5);final Activity first=activity;runOnMainSync(new Runnable(){public void run(){first.finish();}});waitForIdleSync();launchWorkspace();
+   final Activity reopened=activity;activity=first;stableMainMap();check(activity==reopened&&activity!=first,"stale finished launcher Activity resolves to the live reopened map");
    double[] view=(double[])call(map(),"viewport",new Class[]{});check(Math.abs(view[0]-.4)<1e-8&&Math.abs(view[1]-.45)<1e-8&&Math.abs(view[2]-5)<1e-8,"viewport restored after launcher reopen");
    check(((List)call(store,"list",new Class[]{})).size()==count,"repeat launcher does not create duplicate project");
    check(requests.get()==networkBefore,"local workspace reopen and overview do not request internet tiles");
