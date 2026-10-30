@@ -2,8 +2,8 @@
 from pathlib import Path
 import subprocess,tempfile,json,sys
 root=Path(__file__).resolve().parent
-modules=['ObjectEditorDraft','KmlXml','ObjectDescription','KmlTimeFilter','ObjectVisibility','ObjectListing','ObjectClipboard','ObjectTree','GeometryMapState','GeometryVertices','GeometryCoordinates','GeometryEdits','GeometryDraft','Coordinates','MapMath','MapHitTest','CompassMath','TileRegion','TileProjection','TileSource','MapCatalog','TileDownloadPlan']
-tests=['ObjectEditorDraftTests','KmlXmlTests','ObjectDescriptionTests','KmlTimeFilterTests','ObjectVisibilityTests','ObjectListingTests','ObjectClipboardTests','ObjectTreeTests','GeometryMapStateTests','GeometryVerticesTests','GeometryCoordinatesTests','GeometryEditsTests','CoordinateTests','MapMathTests','MapHitTestTests','CompassMathTests','TileRegionTests']
+modules=['ObjectSelectionState','ObjectEditorDraft','KmlXml','ObjectDescription','KmlTimeFilter','ObjectVisibility','ObjectListing','ObjectClipboard','ObjectTree','GeometryMapState','GeometryVertices','GeometryCoordinates','GeometryEdits','GeometryDraft','Coordinates','MapMath','MapHitTest','CompassMath','TileRegion','TileProjection','TileSource','MapCatalog','TileDownloadPlan']
+tests=['ObjectSelectionStateTests','ObjectEditorDraftTests','KmlXmlTests','ObjectDescriptionTests','KmlTimeFilterTests','ObjectVisibilityTests','ObjectListingTests','ObjectClipboardTests','ObjectTreeTests','GeometryMapStateTests','GeometryVerticesTests','GeometryCoordinatesTests','GeometryEditsTests','CoordinateTests','MapMathTests','MapHitTestTests','CompassMathTests','TileRegionTests']
 with tempfile.TemporaryDirectory(prefix='rk-jvm-') as temp:
  w=Path(temp);compiler=w/'Compile.java';compiler.write_text('class Compile {public static void main(String[] args){int code=javax.tools.ToolProvider.getSystemJavaCompiler().run(null,System.out,System.err,args);if(code!=0)System.exit(code);}}')
  tests.append('UiTextTests')

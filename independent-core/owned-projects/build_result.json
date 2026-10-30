@@ -1,5 +1,5 @@
 {
-  "added_classes": 340,
+  "added_classes": 341,
   "generated_files": [
     "AttachmentsActivity$$ExternalSyntheticLambda0.smali",
     "AttachmentsActivity$$ExternalSyntheticLambda1.smali",
@@ -282,6 +282,7 @@
     "ObjectManagerActivity$Rows$$ExternalSyntheticLambda2.smali",
     "ObjectManagerActivity$Rows.smali",
     "ObjectManagerActivity.smali",
+    "ObjectSelectionState.smali",
     "ObjectTree$1.smali",
     "ObjectTree$Row.smali",
     "ObjectTree.smali",
@@ -378,7 +379,8 @@
     "src/org/rabochaya/projects/ObjectDescription.java": "6acde0a2369dcf2034ce1c6f3c27d018a9d1b714497f4e5d11351297cc0c354e",
     "src/org/rabochaya/projects/ObjectEditorDraft.java": "21b97936d4c30249852c596f415e60a16b220f2272119d87e1660f360f27a372",
     "src/org/rabochaya/projects/ObjectListing.java": "03ed9988bce1ead92cb027766a25c34706aa4ac49d9cfdc37e7d3cf2e10315c0",
-    "src/org/rabochaya/projects/ObjectManagerActivity.java": "777b2ab61a99673a2043213985793d99f212f416db355083424c716c77b14f63",
+    "src/org/rabochaya/projects/ObjectManagerActivity.java": "3e22629b42ee7b44189ffc6a3239d13f296820df0711984787df7a7f80005607",
+    "src/org/rabochaya/projects/ObjectSelectionState.java": "bee4aef6e8f3e6693d956aa036a06c38d2703ac00465b24e90aae70109819c77",
     "src/org/rabochaya/projects/ObjectTree.java": "ff0aedbb354e9df35f164b9a28211292ba02e17bcf21bbb5b377d0da247e2019",
     "src/org/rabochaya/projects/ObjectTreeWrites.java": "19b0a0a1b4f6bbd0df1eae38f2e007f95b28bd7db9404640ca6fbce034c7b5e5",
     "src/org/rabochaya/projects/ObjectVisibility.java": "ae74735ed7426f9116a096f606a5aa6cd4e54d41dfd92fe245f656d082dca722",

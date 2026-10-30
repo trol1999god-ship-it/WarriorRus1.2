@@ -9,6 +9,7 @@ public final class ObjectEditorDraftTests {
   ObjectEditorDraft stale=draft(7,"description","0/0",token);Element folder=ObjectTree.resolve(root,"0");folder.insertBefore(ObjectTree.resolve(root,"1"),folder.getFirstChild());check(!stale.matches(7,root));check(ObjectTree.resolve(root,"0/0").getAttribute("id").equals("q"));
   ObjectEditorDraft fresh=draft(7,"description","0/1",ObjectTree.token(root));check(fresh.matches(7,root));ObjectTree.resolve(root,"0/1").setAttribute("changed","true");check(!fresh.matches(7,root));check(!draft(7,"rename","0/0",token).matches(7,root));
   ObjectEditorDraft cursor=new ObjectEditorDraft(7,"rename","0",token,"😀",-4,99);check(cursor.start==0&&cursor.end==2);boolean bad=false;try{draft(7,"delete","0",token);}catch(IllegalArgumentException e){bad=true;}check(bad);
+  for(String value:new String[]{null,new String(new char[100001])}){boolean rejected=false;try{new ObjectEditorDraft(7,"rename","0",token,value,0,0);}catch(IllegalArgumentException e){rejected=true;}check(rejected);}
   System.out.println("PASS ObjectEditorDraft: "+checks+" assertions");
  }
 }
