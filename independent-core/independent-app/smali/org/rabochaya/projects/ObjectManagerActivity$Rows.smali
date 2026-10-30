@@ -22,7 +22,7 @@
 .method private constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
     .locals 0
 
-    .line 34
+    .line 40
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
     invoke-direct {p0}, Landroid/widget/BaseAdapter;-><init>()V
@@ -33,7 +33,7 @@
 .method synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Lorg/rabochaya/projects/ObjectManagerActivity$1;)V
     .locals 0
 
-    .line 34
+    .line 40
     invoke-direct {p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
 
     return-void
@@ -44,10 +44,10 @@
 .method public getCount()I
     .locals 1
 
-    .line 35
+    .line 41
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$100(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/List;
+    invoke-static {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$200(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/List;
 
     move-result-object v0
 
@@ -61,10 +61,10 @@
 .method public getItem(I)Ljava/lang/Object;
     .locals 1
 
-    .line 35
+    .line 41
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$100(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/List;
+    invoke-static {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$200(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/List;
 
     move-result-object v0
 
@@ -78,7 +78,7 @@
 .method public getItemId(I)J
     .locals 2
 
-    .line 35
+    .line 41
     int-to-long v0, p1
 
     return-wide v0
@@ -87,10 +87,10 @@
 .method public getView(ILandroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;
     .locals 5
 
-    .line 36
+    .line 42
     iget-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$100(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/List;
+    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$200(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/List;
 
     move-result-object p2
 
@@ -110,7 +110,7 @@
 
     invoke-virtual {p2, p3}, Landroid/widget/LinearLayout;->setGravity(I)V
 
-    .line 37
+    .line 43
     new-instance p3, Landroid/widget/CheckBox;
 
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
@@ -119,7 +119,7 @@
 
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$200(Lorg/rabochaya/projects/ObjectManagerActivity;)Lorg/rabochaya/projects/ObjectListing;
+    invoke-static {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$300(Lorg/rabochaya/projects/ObjectManagerActivity;)Lorg/rabochaya/projects/ObjectListing;
 
     move-result-object v0
 
@@ -175,7 +175,7 @@
 
     iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {v3}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$300(Lorg/rabochaya/projects/ObjectManagerActivity;)Lorg/rabochaya/projects/ObjectListing$Options;
+    invoke-static {v3}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$400(Lorg/rabochaya/projects/ObjectManagerActivity;)Lorg/rabochaya/projects/ObjectListing$Options;
 
     move-result-object v3
 
@@ -222,7 +222,7 @@
 
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$400(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/Set;
+    invoke-static {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$500(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/Set;
 
     move-result-object v0
 
@@ -236,7 +236,7 @@
 
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$500(Lorg/rabochaya/projects/ObjectManagerActivity;)Z
+    invoke-static {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$600(Lorg/rabochaya/projects/ObjectManagerActivity;)Z
 
     move-result v0
 
@@ -262,17 +262,17 @@
 
     invoke-virtual {p3, v0}, Landroid/widget/CheckBox;->setOnCheckedChangeListener(Landroid/widget/CompoundButton$OnCheckedChangeListener;)V
 
-    .line 38
+    .line 44
     new-instance v0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows$$ExternalSyntheticLambda1;
 
     invoke-direct {v0, p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity$Rows$$ExternalSyntheticLambda1;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity$Rows;Lorg/rabochaya/projects/ObjectTree$Row;)V
 
-    .line 39
+    .line 45
     invoke-virtual {p2, v0}, Landroid/widget/LinearLayout;->setOnLongClickListener(Landroid/view/View$OnLongClickListener;)V
 
     invoke-virtual {p3, v0}, Landroid/widget/CheckBox;->setOnLongClickListener(Landroid/view/View$OnLongClickListener;)V
 
-    .line 40
+    .line 46
     iget-boolean p3, p1, Lorg/rabochaya/projects/ObjectTree$Row;->folder:Z
 
     if-eqz p3, :cond_2
@@ -285,7 +285,7 @@
 
     const-string p1, "\u041e\u0442\u043a\u0440\u044b\u0442\u044c"
 
-    invoke-static {p3, p2, p1, v1}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$600(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
+    invoke-static {p3, p2, p1, v1}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$700(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
 
     move-result-object p1
 
@@ -298,10 +298,10 @@
 .method synthetic lambda$getView$0$org-rabochaya-projects-ObjectManagerActivity$Rows(Lorg/rabochaya/projects/ObjectTree$Row;Landroid/widget/CompoundButton;Z)V
     .locals 0
 
-    .line 37
+    .line 43
     iget-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$500(Lorg/rabochaya/projects/ObjectManagerActivity;)Z
+    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$600(Lorg/rabochaya/projects/ObjectManagerActivity;)Z
 
     move-result p2
 
@@ -312,7 +312,7 @@
     :cond_0
     iget-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$400(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/Set;
+    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$500(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/Set;
 
     move-result-object p2
 
@@ -330,11 +330,11 @@
     :goto_0
     iget-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$1100(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+    invoke-static {p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$1200(Lorg/rabochaya/projects/ObjectManagerActivity;)V
 
     iget-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$1200(Lorg/rabochaya/projects/ObjectManagerActivity;)Landroid/widget/TextView;
+    invoke-static {p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$1300(Lorg/rabochaya/projects/ObjectManagerActivity;)Landroid/widget/TextView;
 
     move-result-object p1
 
@@ -350,7 +350,7 @@
 
     iget-object p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {p3}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$400(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/Set;
+    invoke-static {p3}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$500(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/Set;
 
     move-result-object p3
 
@@ -374,10 +374,10 @@
 .method synthetic lambda$getView$1$org-rabochaya-projects-ObjectManagerActivity$Rows(Lorg/rabochaya/projects/ObjectTree$Row;Landroid/view/View;)Z
     .locals 2
 
-    .line 38
+    .line 44
     iget-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$500(Lorg/rabochaya/projects/ObjectManagerActivity;)Z
+    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$600(Lorg/rabochaya/projects/ObjectManagerActivity;)Z
 
     move-result p2
 
@@ -387,7 +387,7 @@
 
     iget-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$800(Lorg/rabochaya/projects/ObjectManagerActivity;)Lorg/w3c/dom/Element;
+    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$900(Lorg/rabochaya/projects/ObjectManagerActivity;)Lorg/w3c/dom/Element;
 
     move-result-object p2
 
@@ -398,7 +398,7 @@
     :cond_0
     iget-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$400(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/Set;
+    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$500(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/Set;
 
     move-result-object p2
 
@@ -412,7 +412,7 @@
 
     iget-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$400(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/Set;
+    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$500(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/Set;
 
     move-result-object p2
 
@@ -420,7 +420,7 @@
 
     iget-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$400(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/Set;
+    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$500(Lorg/rabochaya/projects/ObjectManagerActivity;)Ljava/util/Set;
 
     move-result-object p2
 
@@ -430,12 +430,12 @@
 
     iget-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$900(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+    invoke-static {p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$1000(Lorg/rabochaya/projects/ObjectManagerActivity;)V
 
     :cond_1
     iget-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-static {p2, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$1000(Lorg/rabochaya/projects/ObjectManagerActivity;Lorg/rabochaya/projects/ObjectTree$Row;)V
+    invoke-static {p2, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$1100(Lorg/rabochaya/projects/ObjectManagerActivity;Lorg/rabochaya/projects/ObjectTree$Row;)V
 
     :cond_2
     :goto_0
@@ -445,12 +445,12 @@
 .method synthetic lambda$getView$2$org-rabochaya-projects-ObjectManagerActivity$Rows(Lorg/rabochaya/projects/ObjectTree$Row;)V
     .locals 1
 
-    .line 40
+    .line 46
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
     iget-object p1, p1, Lorg/rabochaya/projects/ObjectTree$Row;->key:Ljava/lang/String;
 
-    invoke-static {v0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$700(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/String;)V
+    invoke-static {v0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$800(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/String;)V
 
     return-void
 .end method

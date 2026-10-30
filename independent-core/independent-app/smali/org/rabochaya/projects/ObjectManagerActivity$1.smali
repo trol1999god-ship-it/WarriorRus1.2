@@ -1,14 +1,11 @@
 .class Lorg/rabochaya/projects/ObjectManagerActivity$1;
-.super Ljava/lang/Object;
+.super Landroid/widget/ScrollView;
 .source "ObjectManagerActivity.java"
-
-# interfaces
-.implements Landroid/widget/AdapterView$OnItemSelectedListener;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lorg/rabochaya/projects/ObjectManagerActivity;->dateOptions()V
+    value = Lorg/rabochaya/projects/ObjectManagerActivity;->onCreate(Landroid/os/Bundle;)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -20,102 +17,58 @@
 # instance fields
 .field final synthetic this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-.field final synthetic val$error:Landroid/widget/TextView;
-
-.field final synthetic val$from:Landroid/widget/EditText;
-
-.field final synthetic val$to:Landroid/widget/EditText;
-
 
 # direct methods
-.method constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/TextView;)V
+.method constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/content/Context;)V
     .locals 0
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "()V"
-        }
-    .end annotation
 
-    .line 107
+    .line 16
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$1;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$1;->val$from:Landroid/widget/EditText;
-
-    iput-object p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$1;->val$to:Landroid/widget/EditText;
-
-    iput-object p4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$1;->val$error:Landroid/widget/TextView;
-
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0, p2}, Landroid/widget/ScrollView;-><init>(Landroid/content/Context;)V
 
     return-void
 .end method
 
 
 # virtual methods
-.method public onItemSelected(Landroid/widget/AdapterView;Landroid/view/View;IJ)V
-    .locals 1
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Landroid/widget/AdapterView<",
-            "*>;",
-            "Landroid/view/View;",
-            "IJ)V"
-        }
-    .end annotation
+.method protected onMeasure(II)V
+    .locals 3
 
-    .line 107
-    iget-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$1;->val$from:Landroid/widget/EditText;
+    .line 16
+    invoke-static {p2}, Landroid/view/View$MeasureSpec;->getSize(I)I
 
-    const/4 p2, 0x1
+    move-result p2
 
-    const/4 p4, 0x0
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$1;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    const/4 p5, 0x2
+    const/high16 v1, 0x42400000    # 48.0f
 
-    if-ne p3, p5, :cond_0
+    invoke-static {v0, v1}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
-    move v0, p2
+    move-result v0
 
-    goto :goto_0
+    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$1;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    :cond_0
-    move v0, p4
+    const/high16 v2, 0x43000000    # 128.0f
 
-    :goto_0
-    invoke-virtual {p1, v0}, Landroid/widget/EditText;->setEnabled(Z)V
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
-    iget-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$1;->val$to:Landroid/widget/EditText;
+    move-result v1
 
-    if-ne p3, p5, :cond_1
+    sub-int/2addr p2, v1
 
-    goto :goto_1
+    invoke-static {v0, p2}, Ljava/lang/Math;->max(II)I
 
-    :cond_1
-    move p2, p4
+    move-result p2
 
-    :goto_1
-    invoke-virtual {p1, p2}, Landroid/widget/EditText;->setEnabled(Z)V
+    const/high16 v0, -0x80000000
 
-    iget-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$1;->val$error:Landroid/widget/TextView;
+    invoke-static {p2, v0}, Landroid/view/View$MeasureSpec;->makeMeasureSpec(II)I
 
-    const-string p2, ""
+    move-result p2
 
-    invoke-virtual {p1, p2}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+    invoke-super {p0, p1, p2}, Landroid/widget/ScrollView;->onMeasure(II)V
 
-    return-void
-.end method
-
-.method public onNothingSelected(Landroid/widget/AdapterView;)V
-    .locals 0
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Landroid/widget/AdapterView<",
-            "*>;)V"
-        }
-    .end annotation
-
-    .line 107
     return-void
 .end method
