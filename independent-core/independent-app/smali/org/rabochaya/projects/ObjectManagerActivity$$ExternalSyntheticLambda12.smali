@@ -30,7 +30,7 @@
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda12;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$searchOptions$45$org-rabochaya-projects-ObjectManagerActivity(Landroid/content/DialogInterface;I)V
+    invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$searchOptions$44$org-rabochaya-projects-ObjectManagerActivity(Landroid/content/DialogInterface;I)V
 
     return-void
 .end method

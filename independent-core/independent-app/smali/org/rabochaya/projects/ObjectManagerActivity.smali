@@ -22,6 +22,12 @@
 
 .field private disposed:Z
 
+.field private editorDialog:Landroid/app/AlertDialog;
+
+.field private editorDraft:Lorg/rabochaya/projects/ObjectEditorDraft;
+
+.field private editorInput:Landroid/widget/EditText;
+
 .field private expected:Ljava/lang/String;
 
 .field private folder:Ljava/lang/String;
@@ -31,6 +37,8 @@
 .field private listing:Lorg/rabochaya/projects/ObjectListing;
 
 .field private path:Landroid/widget/TextView;
+
+.field private pendingEditor:Lorg/rabochaya/projects/ObjectEditorDraft;
 
 .field private project:J
 
@@ -100,7 +108,7 @@
     .line 7
     invoke-direct {p0}, Landroid/app/Activity;-><init>()V
 
-    .line 8
+    .line 9
     const-string v0, ""
 
     iput-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->folder:Ljava/lang/String;
@@ -111,7 +119,7 @@
 
     iput-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->rows:Ljava/util/List;
 
-    .line 9
+    .line 10
     invoke-static {}, Lorg/rabochaya/projects/ObjectListing$Options;->defaults()Lorg/rabochaya/projects/ObjectListing$Options;
 
     move-result-object v0
@@ -124,7 +132,7 @@
 
     iput-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->shownKeys:Ljava/util/Set;
 
-    .line 10
+    .line 11
     new-instance v0, Ljava/util/LinkedHashSet;
 
     invoke-direct {v0}, Ljava/util/LinkedHashSet;-><init>()V
@@ -137,7 +145,7 @@
 
     iput-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
-    .line 52
+    .line 53
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
@@ -269,7 +277,7 @@
 .method private button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
     .locals 1
 
-    .line 49
+    .line 50
     new-instance v0, Landroid/widget/Button;
 
     invoke-direct {v0, p0}, Landroid/widget/Button;-><init>(Landroid/content/Context;)V
@@ -282,9 +290,9 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    new-instance p1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda47;
+    new-instance p1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda46;
 
-    invoke-direct {p1, p0, p3}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda47;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/Runnable;)V
+    invoke-direct {p1, p0, p3}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda46;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/Runnable;)V
 
     invoke-virtual {v0, p1}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
@@ -294,7 +302,7 @@
 .method private capture(Z)V
     .locals 4
 
-    .line 81
+    .line 82
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->selection()Ljava/util/List;
 
     move-result-object v0
@@ -318,9 +326,9 @@
 
     iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
-    new-instance v3, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda3;
+    new-instance v3, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;
 
-    invoke-direct {v3, p0, p1, v0, v1}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda3;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;ZLjava/util/List;Ljava/lang/String;)V
+    invoke-direct {v3, p0, p1, v0, v1}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;ZLjava/util/List;Ljava/lang/String;)V
 
     invoke-interface {v2, v3}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
@@ -330,16 +338,16 @@
 .method private clearClipboard()V
     .locals 2
 
-    .line 82
+    .line 83
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->enabled(Z)V
 
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
-    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda6;
+    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda2;
 
-    invoke-direct {v1, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda6;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+    invoke-direct {v1, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda2;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
 
     invoke-interface {v0, v1}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
@@ -349,10 +357,10 @@
 .method private clipboardError(Ljava/lang/Exception;)V
     .locals 1
 
-    .line 83
-    new-instance v0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda42;
+    .line 84
+    new-instance v0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda41;
 
-    invoke-direct {v0, p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda42;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/Exception;)V
+    invoke-direct {v0, p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda41;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/Exception;)V
 
     invoke-virtual {p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->runOnUiThread(Ljava/lang/Runnable;)V
 
@@ -362,7 +370,7 @@
 .method private confirmDelete()V
     .locals 5
 
-    .line 105
+    .line 109
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->selection()Ljava/util/List;
 
     move-result-object v0
@@ -433,9 +441,9 @@
 
     const-string v2, "\u0423\u0434\u0430\u043b\u0438\u0442\u044c"
 
-    new-instance v3, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda8;
+    new-instance v3, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda5;
 
-    invoke-direct {v3, p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda8;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/util/List;)V
+    invoke-direct {v3, p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda5;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/util/List;)V
 
     invoke-virtual {v1, v2, v3}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
@@ -471,7 +479,7 @@
 .method private dateInput(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;)Landroid/widget/EditText;
     .locals 3
 
-    .line 127
+    .line 132
     new-instance v0, Landroid/widget/TextView;
 
     invoke-direct {v0, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
@@ -518,7 +526,7 @@
 .method private dateOptions()V
     .locals 11
 
-    .line 130
+    .line 135
     new-instance v0, Landroid/widget/LinearLayout;
 
     invoke-direct {v0, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
@@ -543,7 +551,7 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    .line 131
+    .line 136
     sget-object v1, Lorg/rabochaya/projects/KmlTimeFilter;->MODES:[Ljava/lang/String;
 
     iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->viewOptions:Lorg/rabochaya/projects/ObjectListing$Options;
@@ -592,14 +600,14 @@
 
     invoke-virtual {v0, v10}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    .line 132
+    .line 137
     new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$3;
 
     invoke-direct {v1, p0, v8, v9, v10}, Lorg/rabochaya/projects/ObjectManagerActivity$3;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/TextView;)V
 
     invoke-virtual {v7, v1}, Landroid/widget/Spinner;->setOnItemSelectedListener(Landroid/widget/AdapterView$OnItemSelectedListener;)V
 
-    .line 133
+    .line 138
     new-instance v1, Landroid/widget/ScrollView;
 
     invoke-direct {v1, p0}, Landroid/widget/ScrollView;-><init>(Landroid/content/Context;)V
@@ -628,9 +636,9 @@
 
     move-result-object v0
 
-    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda26;
+    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda23;
 
-    invoke-direct {v1, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda26;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+    invoke-direct {v1, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda23;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
 
     const-string v3, "\u0421\u0431\u0440\u043e\u0441\u0438\u0442\u044c \u0434\u0430\u0442\u044b"
 
@@ -648,8 +656,8 @@
 
     move-result-object v0
 
-    .line 134
-    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda27;
+    .line 139
+    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda24;
 
     move-object v4, v1
 
@@ -657,31 +665,29 @@
 
     move-object v6, v0
 
-    invoke-direct/range {v4 .. v10}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda27;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/app/AlertDialog;Landroid/widget/Spinner;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/TextView;)V
+    invoke-direct/range {v4 .. v10}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda24;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/app/AlertDialog;Landroid/widget/Spinner;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/TextView;)V
 
     invoke-virtual {v0, v1}, Landroid/app/AlertDialog;->setOnShowListener(Landroid/content/DialogInterface$OnShowListener;)V
 
     invoke-virtual {v0}, Landroid/app/AlertDialog;->show()V
 
-    .line 135
+    .line 140
     return-void
 .end method
 
 .method private description()V
-    .locals 6
+    .locals 10
 
-    .line 92
-    const-string v0, "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u043e\u0431\u044a\u0435\u043a\u0442\u0430"
+    .line 93
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->selected:Ljava/util/Set;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->selected:Ljava/util/Set;
+    invoke-interface {v0}, Ljava/util/Set;->size()I
 
-    invoke-interface {v1}, Ljava/util/Set;->size()I
+    move-result v0
 
-    move-result v1
+    const/4 v1, 0x1
 
-    const/4 v2, 0x1
-
-    if-eq v1, v2, :cond_0
+    if-eq v0, v1, :cond_0
 
     const-string v0, "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043e\u0434\u0438\u043d \u043e\u0431\u044a\u0435\u043a\u0442 \u0438\u043b\u0438 \u043f\u0430\u043f\u043a\u0443"
 
@@ -690,125 +696,53 @@
     return-void
 
     :cond_0
-    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->selected:Ljava/util/Set;
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->selected:Ljava/util/Set;
 
-    invoke-interface {v1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+    invoke-interface {v0}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
-    move-result-object v1
+    move-result-object v0
 
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    move-result-object v1
+    move-result-object v0
 
-    check-cast v1, Ljava/lang/String;
+    move-object v5, v0
 
-    .line 93
+    check-cast v5, Ljava/lang/String;
+
     :try_start_0
-    iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->snapshot:Lorg/w3c/dom/Element;
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->snapshot:Lorg/w3c/dom/Element;
 
-    iget-object v4, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->expected:Ljava/lang/String;
+    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->expected:Ljava/lang/String;
 
-    invoke-static {v3, v1, v4}, Lorg/rabochaya/projects/ObjectDescription;->read(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0, v5, v1}, Lorg/rabochaya/projects/ObjectDescription;->read(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
-    move-result-object v3
+    move-result-object v7
 
-    new-instance v4, Landroid/widget/LinearLayout;
+    new-instance v0, Lorg/rabochaya/projects/ObjectEditorDraft;
 
-    invoke-direct {v4, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
+    iget-wide v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->project:J
 
-    invoke-virtual {v4, v2}, Landroid/widget/LinearLayout;->setOrientation(I)V
+    const-string v4, "description"
 
-    const/16 v2, 0x8
+    iget-object v6, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->expected:Ljava/lang/String;
 
-    const/16 v5, 0x10
+    invoke-virtual {v7}, Ljava/lang/String;->length()I
 
-    invoke-virtual {v4, v5, v2, v5, v2}, Landroid/widget/LinearLayout;->setPadding(IIII)V
+    move-result v8
 
-    .line 94
-    new-instance v2, Landroid/widget/TextView;
+    invoke-virtual {v7}, Ljava/lang/String;->length()I
 
-    invoke-direct {v2, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
+    move-result v9
 
-    const-string v5, "\u0418\u0441\u0445\u043e\u0434\u043d\u044b\u0439 \u0442\u0435\u043a\u0441\u0442 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u044f KML. HTML \u0438 \u0441\u0441\u044b\u043b\u043a\u0438 \u043f\u043e\u043a\u0430\u0437\u0430\u043d\u044b \u043a\u0430\u043a \u0442\u0435\u043a\u0441\u0442. \u0421\u043b\u0443\u0436\u0435\u0431\u043d\u044b\u0435 \u0441\u0441\u044b\u043b\u043a\u0438 \u0432\u043b\u043e\u0436\u0435\u043d\u0438\u0439 \u0441\u043e\u0445\u0440\u0430\u043d\u044f\u044e\u0442\u0441\u044f \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u043e. \u041f\u0443\u0441\u0442\u043e\u0439 \u0442\u0435\u043a\u0441\u0442 \u043e\u0447\u0438\u0449\u0430\u0435\u0442 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435."
+    move-object v1, v0
 
-    invoke-virtual {v2, v5}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+    invoke-direct/range {v1 .. v9}, Lorg/rabochaya/projects/ObjectEditorDraft;-><init>(JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;II)V
 
-    invoke-virtual {v4, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-
-    .line 95
-    invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->input()Landroid/widget/EditText;
-
-    move-result-object v2
-
-    invoke-virtual {v2, v0}, Landroid/widget/EditText;->setHint(Ljava/lang/CharSequence;)V
-
-    const v5, 0xa0001
-
-    invoke-virtual {v2, v5}, Landroid/widget/EditText;->setInputType(I)V
-
-    const/4 v5, 0x4
-
-    invoke-virtual {v2, v5}, Landroid/widget/EditText;->setMinLines(I)V
-
-    const/16 v5, 0x9
-
-    invoke-virtual {v2, v5}, Landroid/widget/EditText;->setMaxLines(I)V
-
-    const/16 v5, 0x30
-
-    invoke-virtual {v2, v5}, Landroid/widget/EditText;->setGravity(I)V
-
-    invoke-virtual {v2, v3}, Landroid/widget/EditText;->setText(Ljava/lang/CharSequence;)V
-
-    invoke-virtual {v4, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-
-    .line 96
-    invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->dialog()Landroid/app/AlertDialog$Builder;
-
-    move-result-object v3
-
-    invoke-virtual {v3, v0}, Landroid/app/AlertDialog$Builder;->setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
-
-    move-result-object v0
-
-    invoke-direct {p0, v4}, Lorg/rabochaya/projects/ObjectManagerActivity;->scroll(Landroid/view/View;)Landroid/widget/ScrollView;
-
-    move-result-object v3
-
-    invoke-virtual {v0, v3}, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
-
-    move-result-object v0
-
-    const-string v3, "\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c"
-
-    const/4 v4, 0x0
-
-    invoke-virtual {v0, v3, v4}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
-
-    move-result-object v0
-
-    const-string v3, "\u041e\u0442\u043c\u0435\u043d\u0430"
-
-    invoke-virtual {v0, v3, v4}, Landroid/app/AlertDialog$Builder;->setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
-
-    move-result-object v0
-
-    .line 97
-    new-instance v3, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda0;
-
-    invoke-direct {v3, p0, v0, v2, v1}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda0;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/app/AlertDialog;Landroid/widget/EditText;Ljava/lang/String;)V
-
-    invoke-virtual {v0, v3}, Landroid/app/AlertDialog;->setOnShowListener(Landroid/content/DialogInterface$OnShowListener;)V
-
-    invoke-virtual {v0}, Landroid/app/AlertDialog;->show()V
+    invoke-direct {p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->openEditor(Lorg/rabochaya/projects/ObjectEditorDraft;)V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 98
     goto :goto_0
 
     :catch_0
@@ -820,7 +754,6 @@
 
     invoke-direct {p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->notice(Ljava/lang/String;)V
 
-    .line 99
     :goto_0
     return-void
 .end method
@@ -828,7 +761,7 @@
 .method private destination()V
     .locals 12
 
-    .line 101
+    .line 105
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->selection()Ljava/util/List;
 
     move-result-object v0
@@ -854,7 +787,7 @@
 
     invoke-interface {v2, v4}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 102
+    .line 106
     new-instance v5, Ljava/util/HashMap;
 
     invoke-direct {v5}, Ljava/util/HashMap;-><init>()V
@@ -995,7 +928,7 @@
 
     goto :goto_1
 
-    .line 103
+    .line 107
     :cond_6
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->dialog()Landroid/app/AlertDialog$Builder;
 
@@ -1015,9 +948,9 @@
 
     check-cast v4, [Ljava/lang/CharSequence;
 
-    new-instance v5, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda10;
+    new-instance v5, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda8;
 
-    invoke-direct {v5, p0, v1, v0, v2}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda10;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
+    invoke-direct {v5, p0, v1, v0, v2}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda8;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
 
     invoke-virtual {v3, v4, v5}, Landroid/app/AlertDialog$Builder;->setItems([Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
@@ -1033,14 +966,14 @@
 
     invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
 
-    .line 104
+    .line 108
     return-void
 .end method
 
 .method private dialog()Landroid/app/AlertDialog$Builder;
     .locals 1
 
-    .line 48
+    .line 49
     new-instance v0, Lorg/rabochaya/projects/ObjectManagerActivity$2;
 
     invoke-direct {v0, p0, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$2;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/content/Context;)V
@@ -1060,7 +993,7 @@
         }
     .end annotation
 
-    .line 29
+    .line 30
     const/4 v0, 0x5
 
     new-array v0, v0, [I
@@ -1151,7 +1084,7 @@
 .method private enabled(Z)V
     .locals 4
 
-    .line 50
+    .line 51
     xor-int/lit8 v0, p1, 0x1
 
     iput-boolean v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->busy:Z
@@ -1250,7 +1183,7 @@
 .method private font(Landroid/view/View;)V
     .locals 4
 
-    .line 27
+    .line 28
     instance-of v0, p1, Landroid/widget/TextView;
 
     const/4 v1, 0x0
@@ -1332,7 +1265,7 @@
 .method private input()Landroid/widget/EditText;
     .locals 3
 
-    .line 25
+    .line 26
     new-instance v0, Landroid/widget/EditText;
 
     invoke-direct {v0, p0}, Landroid/widget/EditText;-><init>(Landroid/content/Context;)V
@@ -1357,7 +1290,7 @@
 .method private load()V
     .locals 2
 
-    .line 51
+    .line 52
     iget-boolean v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->busy:Z
 
     if-eqz v0, :cond_0
@@ -1377,9 +1310,9 @@
 
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
-    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda30;
+    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda28;
 
-    invoke-direct {v1, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda30;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+    invoke-direct {v1, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda28;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
 
     invoke-interface {v0, v1}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
@@ -1389,7 +1322,7 @@
 .method private menu()V
     .locals 14
 
-    .line 77
+    .line 78
     const-string v12, "\u0421\u043a\u0440\u044b\u0442\u044c \u0432\u044b\u0431\u0440\u0430\u043d\u043d\u044b\u0435"
 
     const-string v13, "\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435"
@@ -1422,7 +1355,7 @@
 
     move-result-object v0
 
-    .line 78
+    .line 79
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->dialog()Landroid/app/AlertDialog$Builder;
 
     move-result-object v1
@@ -1469,9 +1402,9 @@
 
     move-result-object v1
 
-    new-instance v2, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda34;
+    new-instance v2, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda33;
 
-    invoke-direct {v2, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda34;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+    invoke-direct {v2, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda33;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
 
     invoke-virtual {v1, v0, v2}, Landroid/app/AlertDialog$Builder;->setItems([Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
@@ -1487,25 +1420,25 @@
 
     invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
 
-    .line 79
+    .line 80
     return-void
 .end method
 
 .method private name(Z)V
-    .locals 8
+    .locals 10
 
-    .line 86
-    const/4 v0, 0x1
-
+    .line 90
     if-eqz p1, :cond_0
 
-    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->selected:Ljava/util/Set;
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->selected:Ljava/util/Set;
 
-    invoke-interface {v1}, Ljava/util/Set;->size()I
+    invoke-interface {v0}, Ljava/util/Set;->size()I
 
-    move-result v1
+    move-result v0
 
-    if-eq v1, v0, :cond_0
+    const/4 v1, 0x1
+
+    if-eq v0, v1, :cond_0
 
     const-string p1, "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043e\u0434\u0438\u043d \u043e\u0431\u044a\u0435\u043a\u0442"
 
@@ -1513,151 +1446,109 @@
 
     return-void
 
-    .line 87
     :cond_0
     if-eqz p1, :cond_1
 
-    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->selected:Ljava/util/Set;
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->selected:Ljava/util/Set;
 
-    invoke-interface {v1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+    invoke-interface {v0}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
-    move-result-object v1
+    move-result-object v0
 
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    move-result-object v1
+    move-result-object v0
 
-    check-cast v1, Ljava/lang/String;
+    check-cast v0, Ljava/lang/String;
 
     goto :goto_0
 
     :cond_1
-    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->folder:Ljava/lang/String;
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->folder:Ljava/lang/String;
 
     :goto_0
-    move-object v7, v1
+    move-object v5, v0
 
-    invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->input()Landroid/widget/EditText;
+    const-string v0, ""
 
-    move-result-object v5
+    if-eqz p1, :cond_3
 
-    if-eqz p1, :cond_2
+    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->rows:Ljava/util/List;
 
-    const-string v1, "\u041d\u043e\u0432\u043e\u0435 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0435"
-
-    goto :goto_1
-
-    :cond_2
-    const-string v1, "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043f\u0430\u043f\u043a\u0438 / \u0433\u0440\u0443\u043f\u043f\u044b"
-
-    :goto_1
-    invoke-virtual {v5, v1}, Landroid/widget/EditText;->setHint(Ljava/lang/CharSequence;)V
-
-    invoke-virtual {v5, v0}, Landroid/widget/EditText;->setSingleLine(Z)V
-
-    if-eqz p1, :cond_4
-
-    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->rows:Ljava/util/List;
-
-    invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
-
-    move-result-object v0
-
-    :cond_3
-    :goto_2
-    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v1
-
-    if-eqz v1, :cond_4
-
-    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v1
 
-    check-cast v1, Lorg/rabochaya/projects/ObjectTree$Row;
-
-    iget-object v2, v1, Lorg/rabochaya/projects/ObjectTree$Row;->key:Ljava/lang/String;
-
-    invoke-virtual {v2, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    :cond_2
+    :goto_1
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
     if-eqz v2, :cond_3
 
-    iget-object v1, v1, Lorg/rabochaya/projects/ObjectTree$Row;->name:Ljava/lang/String;
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    invoke-virtual {v5, v1}, Landroid/widget/EditText;->setText(Ljava/lang/CharSequence;)V
+    move-result-object v2
+
+    check-cast v2, Lorg/rabochaya/projects/ObjectTree$Row;
+
+    iget-object v3, v2, Lorg/rabochaya/projects/ObjectTree$Row;->key:Ljava/lang/String;
+
+    invoke-virtual {v3, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v3
+
+    if-eqz v3, :cond_2
+
+    iget-object v0, v2, Lorg/rabochaya/projects/ObjectTree$Row;->name:Ljava/lang/String;
+
+    goto :goto_1
+
+    :cond_3
+    move-object v7, v0
+
+    .line 91
+    new-instance v0, Lorg/rabochaya/projects/ObjectEditorDraft;
+
+    iget-wide v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->project:J
+
+    if-eqz p1, :cond_4
+
+    const-string p1, "rename"
 
     goto :goto_2
 
-    .line 88
     :cond_4
-    invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->dialog()Landroid/app/AlertDialog$Builder;
+    const-string p1, "create"
 
-    move-result-object v0
+    :goto_2
+    move-object v4, p1
 
-    if-eqz p1, :cond_5
+    iget-object v6, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->expected:Ljava/lang/String;
 
-    const-string v1, "\u041f\u0435\u0440\u0435\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u0442\u044c"
+    invoke-virtual {v7}, Ljava/lang/String;->length()I
 
-    goto :goto_3
+    move-result v8
 
-    :cond_5
-    const-string v1, "\u041d\u043e\u0432\u0430\u044f \u043f\u0430\u043f\u043a\u0430 / \u0433\u0440\u0443\u043f\u043f\u0430"
+    invoke-virtual {v7}, Ljava/lang/String;->length()I
 
-    :goto_3
-    invoke-virtual {v0, v1}, Landroid/app/AlertDialog$Builder;->setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+    move-result v9
 
-    move-result-object v0
+    move-object v1, v0
 
-    invoke-virtual {v0, v5}, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
+    invoke-direct/range {v1 .. v9}, Lorg/rabochaya/projects/ObjectEditorDraft;-><init>(JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;II)V
 
-    move-result-object v0
+    invoke-direct {p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->openEditor(Lorg/rabochaya/projects/ObjectEditorDraft;)V
 
-    const-string v1, "\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c"
-
-    const/4 v2, 0x0
-
-    invoke-virtual {v0, v1, v2}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
-
-    move-result-object v0
-
-    const-string v1, "\u041e\u0442\u043c\u0435\u043d\u0430"
-
-    invoke-virtual {v0, v1, v2}, Landroid/app/AlertDialog$Builder;->setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
-
-    move-result-object v0
-
-    .line 89
-    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda9;
-
-    move-object v2, v1
-
-    move-object v3, p0
-
-    move-object v4, v0
-
-    move v6, p1
-
-    invoke-direct/range {v2 .. v7}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda9;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/app/AlertDialog;Landroid/widget/EditText;ZLjava/lang/String;)V
-
-    invoke-virtual {v0, v1}, Landroid/app/AlertDialog;->setOnShowListener(Landroid/content/DialogInterface$OnShowListener;)V
-
-    invoke-virtual {v0}, Landroid/app/AlertDialog;->show()V
-
-    .line 90
+    .line 92
     return-void
 .end method
 
 .method private navigate(Ljava/lang/String;)V
     .locals 7
 
-    .line 57
+    .line 58
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->folder:Ljava/lang/String;
 
     new-instance p1, Lorg/rabochaya/projects/ObjectListing$Options;
@@ -1694,7 +1585,7 @@
 .method private notice(Ljava/lang/String;)V
     .locals 2
 
-    .line 137
+    .line 142
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->dialog()Landroid/app/AlertDialog$Builder;
 
     move-result-object v0
@@ -1719,7 +1610,7 @@
 .method public static open(Landroid/app/Activity;J)V
     .locals 2
 
-    .line 12
+    .line 13
     new-instance v0, Landroid/content/Intent;
 
     const-class v1, Lorg/rabochaya/projects/ObjectManagerActivity;
@@ -1737,10 +1628,251 @@
     return-void
 .end method
 
+.method private openEditor(Lorg/rabochaya/projects/ObjectEditorDraft;)V
+    .locals 10
+
+    .line 95
+    iget-wide v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->project:J
+
+    iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->snapshot:Lorg/w3c/dom/Element;
+
+    invoke-virtual {p1, v0, v1, v2}, Lorg/rabochaya/projects/ObjectEditorDraft;->matches(JLorg/w3c/dom/Element;)Z
+
+    move-result v6
+
+    iget-object v0, p1, Lorg/rabochaya/projects/ObjectEditorDraft;->operation:Ljava/lang/String;
+
+    const-string v1, "description"
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v8
+
+    new-instance v0, Landroid/widget/LinearLayout;
+
+    invoke-direct {v0, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
+
+    const/4 v1, 0x1
+
+    invoke-virtual {v0, v1}, Landroid/widget/LinearLayout;->setOrientation(I)V
+
+    const/16 v2, 0x10
+
+    const/16 v3, 0x8
+
+    invoke-virtual {v0, v2, v3, v2, v3}, Landroid/widget/LinearLayout;->setPadding(IIII)V
+
+    .line 96
+    if-eqz v8, :cond_0
+
+    new-instance v2, Landroid/widget/TextView;
+
+    invoke-direct {v2, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
+
+    const-string v3, "\u0418\u0441\u0445\u043e\u0434\u043d\u044b\u0439 \u0442\u0435\u043a\u0441\u0442 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u044f KML. HTML \u0438 \u0441\u0441\u044b\u043b\u043a\u0438 \u043f\u043e\u043a\u0430\u0437\u0430\u043d\u044b \u043a\u0430\u043a \u0442\u0435\u043a\u0441\u0442. \u0421\u043b\u0443\u0436\u0435\u0431\u043d\u044b\u0435 \u0441\u0441\u044b\u043b\u043a\u0438 \u0432\u043b\u043e\u0436\u0435\u043d\u0438\u0439 \u0441\u043e\u0445\u0440\u0430\u043d\u044f\u044e\u0442\u0441\u044f \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u043e. \u041f\u0443\u0441\u0442\u043e\u0439 \u0442\u0435\u043a\u0441\u0442 \u043e\u0447\u0438\u0449\u0430\u0435\u0442 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435."
+
+    invoke-virtual {v2, v3}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    invoke-virtual {v0, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
+
+    .line 97
+    :cond_0
+    if-nez v6, :cond_1
+
+    new-instance v2, Landroid/widget/TextView;
+
+    invoke-direct {v2, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
+
+    const-string v3, "\u041f\u0440\u043e\u0435\u043a\u0442 \u0438\u0437\u043c\u0435\u043d\u0438\u043b\u0441\u044f. \u0427\u0435\u0440\u043d\u043e\u0432\u0438\u043a \u0432\u043e\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d. \u0421\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435 \u0437\u0430\u0431\u043b\u043e\u043a\u0438\u0440\u043e\u0432\u0430\u043d\u043e. \u041e\u0442\u043c\u0435\u043d\u0438\u0442\u0435 \u0440\u0435\u0434\u0430\u043a\u0442\u043e\u0440 \u0438 \u043f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u0435 \u0432\u044b\u0431\u043e\u0440 \u043e\u0431\u044a\u0435\u043a\u0442\u0430."
+
+    invoke-virtual {v2, v3}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    invoke-virtual {v0, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
+
+    .line 98
+    :cond_1
+    invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->input()Landroid/widget/EditText;
+
+    move-result-object v2
+
+    new-array v3, v1, [Landroid/text/InputFilter;
+
+    new-instance v4, Landroid/text/InputFilter$LengthFilter;
+
+    const v5, 0x186a0
+
+    invoke-direct {v4, v5}, Landroid/text/InputFilter$LengthFilter;-><init>(I)V
+
+    const/4 v5, 0x0
+
+    aput-object v4, v3, v5
+
+    invoke-virtual {v2, v3}, Landroid/widget/EditText;->setFilters([Landroid/text/InputFilter;)V
+
+    const-string v3, "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u043e\u0431\u044a\u0435\u043a\u0442\u0430"
+
+    const-string v4, "rename"
+
+    if-eqz v8, :cond_2
+
+    move-object v5, v3
+
+    goto :goto_0
+
+    :cond_2
+    iget-object v5, p1, Lorg/rabochaya/projects/ObjectEditorDraft;->operation:Ljava/lang/String;
+
+    invoke-virtual {v5, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_3
+
+    const-string v5, "\u041d\u043e\u0432\u043e\u0435 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0435"
+
+    goto :goto_0
+
+    :cond_3
+    const-string v5, "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043f\u0430\u043f\u043a\u0438 / \u0433\u0440\u0443\u043f\u043f\u044b"
+
+    :goto_0
+    invoke-virtual {v2, v5}, Landroid/widget/EditText;->setHint(Ljava/lang/CharSequence;)V
+
+    .line 99
+    if-eqz v8, :cond_4
+
+    const v1, 0xa0001
+
+    invoke-virtual {v2, v1}, Landroid/widget/EditText;->setInputType(I)V
+
+    const/4 v1, 0x4
+
+    invoke-virtual {v2, v1}, Landroid/widget/EditText;->setMinLines(I)V
+
+    const/16 v1, 0x9
+
+    invoke-virtual {v2, v1}, Landroid/widget/EditText;->setMaxLines(I)V
+
+    const/16 v1, 0x30
+
+    invoke-virtual {v2, v1}, Landroid/widget/EditText;->setGravity(I)V
+
+    goto :goto_1
+
+    :cond_4
+    invoke-virtual {v2, v1}, Landroid/widget/EditText;->setSingleLine(Z)V
+
+    :goto_1
+    iget-object v1, p1, Lorg/rabochaya/projects/ObjectEditorDraft;->text:Ljava/lang/String;
+
+    invoke-virtual {v2, v1}, Landroid/widget/EditText;->setText(Ljava/lang/CharSequence;)V
+
+    invoke-virtual {v0, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
+
+    .line 100
+    invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->dialog()Landroid/app/AlertDialog$Builder;
+
+    move-result-object v1
+
+    if-eqz v8, :cond_5
+
+    goto :goto_2
+
+    :cond_5
+    iget-object v3, p1, Lorg/rabochaya/projects/ObjectEditorDraft;->operation:Ljava/lang/String;
+
+    invoke-virtual {v3, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v3
+
+    if-eqz v3, :cond_6
+
+    const-string v3, "\u041f\u0435\u0440\u0435\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u0442\u044c"
+
+    goto :goto_2
+
+    :cond_6
+    const-string v3, "\u041d\u043e\u0432\u0430\u044f \u043f\u0430\u043f\u043a\u0430 / \u0433\u0440\u0443\u043f\u043f\u0430"
+
+    :goto_2
+    invoke-virtual {v1, v3}, Landroid/app/AlertDialog$Builder;->setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+
+    move-result-object v1
+
+    invoke-direct {p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->scroll(Landroid/view/View;)Landroid/widget/ScrollView;
+
+    move-result-object v0
+
+    invoke-virtual {v1, v0}, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
+
+    move-result-object v0
+
+    const-string v1, "\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c"
+
+    const/4 v3, 0x0
+
+    invoke-virtual {v0, v1, v3}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+
+    move-result-object v0
+
+    const-string v1, "\u041e\u0442\u043c\u0435\u043d\u0430"
+
+    invoke-virtual {v0, v1, v3}, Landroid/app/AlertDialog$Builder;->setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
+
+    move-result-object v0
+
+    iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->editorDraft:Lorg/rabochaya/projects/ObjectEditorDraft;
+
+    iput-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->editorInput:Landroid/widget/EditText;
+
+    iput-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->editorDialog:Landroid/app/AlertDialog;
+
+    .line 101
+    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda6;
+
+    invoke-direct {v1, p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda6;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/app/AlertDialog;)V
+
+    invoke-virtual {v0, v1}, Landroid/app/AlertDialog;->setOnDismissListener(Landroid/content/DialogInterface$OnDismissListener;)V
+
+    .line 102
+    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda7;
+
+    move-object v3, v1
+
+    move-object v4, p0
+
+    move-object v5, v0
+
+    move-object v7, v2
+
+    move-object v9, p1
+
+    invoke-direct/range {v3 .. v9}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda7;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/app/AlertDialog;ZLandroid/widget/EditText;ZLorg/rabochaya/projects/ObjectEditorDraft;)V
+
+    invoke-virtual {v0, v1}, Landroid/app/AlertDialog;->setOnShowListener(Landroid/content/DialogInterface$OnShowListener;)V
+
+    invoke-virtual {v0}, Landroid/app/AlertDialog;->show()V
+
+    invoke-virtual {v2}, Landroid/widget/EditText;->requestFocus()Z
+
+    iget v0, p1, Lorg/rabochaya/projects/ObjectEditorDraft;->start:I
+
+    iget p1, p1, Lorg/rabochaya/projects/ObjectEditorDraft;->end:I
+
+    invoke-virtual {v2, v0, p1}, Landroid/widget/EditText;->setSelection(II)V
+
+    .line 103
+    return-void
+.end method
+
 .method private option(Landroid/widget/LinearLayout;Ljava/lang/String;Z)Landroid/widget/CheckBox;
     .locals 1
 
-    .line 118
+    .line 123
     new-instance v0, Landroid/widget/CheckBox;
 
     invoke-direct {v0, p0}, Landroid/widget/CheckBox;-><init>(Landroid/content/Context;)V
@@ -1757,7 +1889,7 @@
 .method private option(Landroid/widget/LinearLayout;Ljava/lang/String;[Ljava/lang/String;I)Landroid/widget/Spinner;
     .locals 2
 
-    .line 117
+    .line 122
     new-instance v0, Landroid/widget/TextView;
 
     invoke-direct {v0, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
@@ -1794,7 +1926,7 @@
 .method private outsideSelection()I
     .locals 4
 
-    .line 53
+    .line 54
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->selected:Ljava/util/Set;
 
     invoke-interface {v0}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
@@ -1836,7 +1968,7 @@
 .method private parent()V
     .locals 3
 
-    .line 58
+    .line 59
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->folder:Ljava/lang/String;
 
     invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
@@ -1880,7 +2012,7 @@
 .method private paste()V
     .locals 5
 
-    .line 84
+    .line 85
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->expected:Ljava/lang/String;
 
     iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->folder:Ljava/lang/String;
@@ -1893,19 +2025,89 @@
 
     iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
-    new-instance v4, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda28;
+    new-instance v4, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda25;
 
-    invoke-direct {v4, p0, v0, v2, v1}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda28;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/String;Lorg/w3c/dom/Element;Ljava/lang/String;)V
+    invoke-direct {v4, p0, v0, v2, v1}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda25;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/String;Lorg/w3c/dom/Element;Ljava/lang/String;)V
 
     invoke-interface {v3, v4}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
     return-void
 .end method
 
+.method private readEditor(Landroid/os/Bundle;)Lorg/rabochaya/projects/ObjectEditorDraft;
+    .locals 11
+
+    .line 86
+    const/4 v0, 0x0
+
+    if-nez p1, :cond_0
+
+    return-object v0
+
+    :cond_0
+    :try_start_0
+    new-instance v10, Lorg/rabochaya/projects/ObjectEditorDraft;
+
+    const-string v1, "project"
+
+    invoke-virtual {p1, v1}, Landroid/os/Bundle;->getLong(Ljava/lang/String;)J
+
+    move-result-wide v2
+
+    const-string v1, "operation"
+
+    invoke-virtual {p1, v1}, Landroid/os/Bundle;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v4
+
+    const-string v1, "key"
+
+    invoke-virtual {p1, v1}, Landroid/os/Bundle;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v5
+
+    const-string v1, "token"
+
+    invoke-virtual {p1, v1}, Landroid/os/Bundle;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v6
+
+    const-string v1, "text"
+
+    invoke-virtual {p1, v1}, Landroid/os/Bundle;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v7
+
+    const-string v1, "start"
+
+    invoke-virtual {p1, v1}, Landroid/os/Bundle;->getInt(Ljava/lang/String;)I
+
+    move-result v8
+
+    const-string v1, "end"
+
+    invoke-virtual {p1, v1}, Landroid/os/Bundle;->getInt(Ljava/lang/String;)I
+
+    move-result v9
+
+    move-object v1, v10
+
+    invoke-direct/range {v1 .. v9}, Lorg/rabochaya/projects/ObjectEditorDraft;-><init>(JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;II)V
+    :try_end_0
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
+
+    return-object v10
+
+    :catch_0
+    move-exception p1
+
+    return-object v0
+.end method
+
 .method private rememberView()V
     .locals 4
 
-    .line 116
+    .line 121
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2256,7 +2458,7 @@
 .method private render()V
     .locals 10
 
-    .line 55
+    .line 56
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
@@ -2343,7 +2545,7 @@
 
     iget-object v0, v0, Lorg/rabochaya/projects/ObjectTree$Row;->name:Ljava/lang/String;
 
-    .line 56
+    .line 57
     :goto_1
     iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->dateButton:Landroid/widget/Button;
 
@@ -2897,10 +3099,76 @@
     return-void
 .end method
 
+.method private restoreEditor()V
+    .locals 5
+
+    .line 88
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->pendingEditor:Lorg/rabochaya/projects/ObjectEditorDraft;
+
+    const/4 v1, 0x0
+
+    iput-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->pendingEditor:Lorg/rabochaya/projects/ObjectEditorDraft;
+
+    if-nez v0, :cond_0
+
+    return-void
+
+    :cond_0
+    iget-wide v1, v0, Lorg/rabochaya/projects/ObjectEditorDraft;->project:J
+
+    iget-wide v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->project:J
+
+    cmp-long v1, v1, v3
+
+    if-eqz v1, :cond_1
+
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->status:Landroid/widget/TextView;
+
+    const-string v1, "\u0427\u0435\u0440\u043d\u043e\u0432\u0438\u043a \u0434\u0440\u0443\u0433\u043e\u0433\u043e \u043f\u0440\u043e\u0435\u043a\u0442\u0430 \u043d\u0435 \u0432\u043e\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d"
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    return-void
+
+    :cond_1
+    iget-wide v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->project:J
+
+    iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->snapshot:Lorg/w3c/dom/Element;
+
+    invoke-virtual {v0, v1, v2, v3}, Lorg/rabochaya/projects/ObjectEditorDraft;->matches(JLorg/w3c/dom/Element;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_2
+
+    iget-object v1, v0, Lorg/rabochaya/projects/ObjectEditorDraft;->operation:Ljava/lang/String;
+
+    const-string v2, "create"
+
+    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_2
+
+    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->selected:Ljava/util/Set;
+
+    iget-object v2, v0, Lorg/rabochaya/projects/ObjectEditorDraft;->key:Ljava/lang/String;
+
+    invoke-interface {v1, v2}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+
+    invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->render()V
+
+    :cond_2
+    invoke-direct {p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->openEditor(Lorg/rabochaya/projects/ObjectEditorDraft;)V
+
+    return-void
+.end method
+
 .method private restoreView()V
     .locals 17
 
-    .line 114
+    .line 119
     move-object/from16 v1, p0
 
     const-string v2, ""
@@ -3259,7 +3527,7 @@
 .method private rowMenu(Lorg/rabochaya/projects/ObjectTree$Row;)V
     .locals 4
 
-    .line 69
+    .line 70
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
@@ -3268,7 +3536,7 @@
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
-    .line 70
+    .line 71
     iget-boolean v2, p1, Lorg/rabochaya/projects/ObjectTree$Row;->folder:Z
 
     if-eqz v2, :cond_0
@@ -3283,7 +3551,7 @@
 
     invoke-interface {v1, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 71
+    .line 72
     :cond_0
     const-string p1, "\u041f\u0435\u0440\u0435\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u0442\u044c \u0432\u044b\u0431\u0440\u0430\u043d\u043d\u043e\u0435"
 
@@ -3305,7 +3573,7 @@
 
     invoke-interface {v1, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 72
+    .line 73
     const-string p1, "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c"
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
@@ -3336,7 +3604,7 @@
 
     invoke-interface {v1, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 73
+    .line 74
     const-string p1, "\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u0432\u044b\u0431\u0440\u0430\u043d\u043d\u044b\u0435"
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
@@ -3367,7 +3635,7 @@
 
     invoke-interface {v1, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 74
+    .line 75
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->dialog()Landroid/app/AlertDialog$Builder;
 
     move-result-object p1
@@ -3442,14 +3710,124 @@
 
     invoke-virtual {p1}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
 
-    .line 75
+    .line 76
     return-void
+.end method
+
+.method private saveEditor()Landroid/os/Bundle;
+    .locals 11
+
+    .line 87
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->editorDraft:Lorg/rabochaya/projects/ObjectEditorDraft;
+
+    if-eqz v0, :cond_0
+
+    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->editorInput:Landroid/widget/EditText;
+
+    if-eqz v1, :cond_0
+
+    new-instance v1, Lorg/rabochaya/projects/ObjectEditorDraft;
+
+    iget-wide v3, v0, Lorg/rabochaya/projects/ObjectEditorDraft;->project:J
+
+    iget-object v5, v0, Lorg/rabochaya/projects/ObjectEditorDraft;->operation:Ljava/lang/String;
+
+    iget-object v6, v0, Lorg/rabochaya/projects/ObjectEditorDraft;->key:Ljava/lang/String;
+
+    iget-object v7, v0, Lorg/rabochaya/projects/ObjectEditorDraft;->token:Ljava/lang/String;
+
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->editorInput:Landroid/widget/EditText;
+
+    invoke-virtual {v0}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/Object;->toString()Ljava/lang/String;
+
+    move-result-object v8
+
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->editorInput:Landroid/widget/EditText;
+
+    invoke-virtual {v0}, Landroid/widget/EditText;->getSelectionStart()I
+
+    move-result v9
+
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->editorInput:Landroid/widget/EditText;
+
+    invoke-virtual {v0}, Landroid/widget/EditText;->getSelectionEnd()I
+
+    move-result v10
+
+    move-object v2, v1
+
+    invoke-direct/range {v2 .. v10}, Lorg/rabochaya/projects/ObjectEditorDraft;-><init>(JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;II)V
+
+    goto :goto_0
+
+    :cond_0
+    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->pendingEditor:Lorg/rabochaya/projects/ObjectEditorDraft;
+
+    :goto_0
+    if-nez v1, :cond_1
+
+    const/4 v0, 0x0
+
+    return-object v0
+
+    :cond_1
+    new-instance v0, Landroid/os/Bundle;
+
+    invoke-direct {v0}, Landroid/os/Bundle;-><init>()V
+
+    const-string v2, "project"
+
+    iget-wide v3, v1, Lorg/rabochaya/projects/ObjectEditorDraft;->project:J
+
+    invoke-virtual {v0, v2, v3, v4}, Landroid/os/Bundle;->putLong(Ljava/lang/String;J)V
+
+    const-string v2, "operation"
+
+    iget-object v3, v1, Lorg/rabochaya/projects/ObjectEditorDraft;->operation:Ljava/lang/String;
+
+    invoke-virtual {v0, v2, v3}, Landroid/os/Bundle;->putString(Ljava/lang/String;Ljava/lang/String;)V
+
+    const-string v2, "key"
+
+    iget-object v3, v1, Lorg/rabochaya/projects/ObjectEditorDraft;->key:Ljava/lang/String;
+
+    invoke-virtual {v0, v2, v3}, Landroid/os/Bundle;->putString(Ljava/lang/String;Ljava/lang/String;)V
+
+    const-string v2, "token"
+
+    iget-object v3, v1, Lorg/rabochaya/projects/ObjectEditorDraft;->token:Ljava/lang/String;
+
+    invoke-virtual {v0, v2, v3}, Landroid/os/Bundle;->putString(Ljava/lang/String;Ljava/lang/String;)V
+
+    const-string v2, "text"
+
+    iget-object v3, v1, Lorg/rabochaya/projects/ObjectEditorDraft;->text:Ljava/lang/String;
+
+    invoke-virtual {v0, v2, v3}, Landroid/os/Bundle;->putString(Ljava/lang/String;Ljava/lang/String;)V
+
+    const-string v2, "start"
+
+    iget v3, v1, Lorg/rabochaya/projects/ObjectEditorDraft;->start:I
+
+    invoke-virtual {v0, v2, v3}, Landroid/os/Bundle;->putInt(Ljava/lang/String;I)V
+
+    const-string v2, "end"
+
+    iget v1, v1, Lorg/rabochaya/projects/ObjectEditorDraft;->end:I
+
+    invoke-virtual {v0, v2, v1}, Landroid/os/Bundle;->putInt(Ljava/lang/String;I)V
+
+    return-object v0
 .end method
 
 .method private scroll(Landroid/view/View;)Landroid/widget/ScrollView;
     .locals 1
 
-    .line 26
+    .line 27
     new-instance v0, Landroid/widget/ScrollView;
 
     invoke-direct {v0, p0}, Landroid/widget/ScrollView;-><init>(Landroid/content/Context;)V
@@ -3462,7 +3840,7 @@
 .method private searchOptions()V
     .locals 13
 
-    .line 120
+    .line 125
     new-instance v0, Landroid/widget/LinearLayout;
 
     invoke-direct {v0, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
@@ -3511,7 +3889,7 @@
 
     invoke-virtual {v0, v6}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    .line 121
+    .line 126
     sget-object v1, Lorg/rabochaya/projects/ObjectListing;->SEARCH_FIELDS:[Ljava/lang/String;
 
     iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->viewOptions:Lorg/rabochaya/projects/ObjectListing$Options;
@@ -3524,7 +3902,7 @@
 
     move-result-object v12
 
-    .line 122
+    .line 127
     sget-object v1, Lorg/rabochaya/projects/ObjectListing;->KINDS:[Ljava/lang/String;
 
     iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->viewOptions:Lorg/rabochaya/projects/ObjectListing$Options;
@@ -3561,7 +3939,7 @@
 
     move-result-object v9
 
-    .line 123
+    .line 128
     iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->viewOptions:Lorg/rabochaya/projects/ObjectListing$Options;
 
     iget-boolean v1, v1, Lorg/rabochaya/projects/ObjectListing$Options;->recursive:Z
@@ -3588,7 +3966,7 @@
 
     invoke-virtual {v1, v0}, Landroid/widget/ScrollView;->addView(Landroid/view/View;)V
 
-    .line 124
+    .line 129
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->dialog()Landroid/app/AlertDialog$Builder;
 
     move-result-object v0
@@ -3637,7 +4015,7 @@
 
     invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
 
-    .line 125
+    .line 130
     return-void
 .end method
 
@@ -3652,7 +4030,7 @@
         }
     .end annotation
 
-    .line 100
+    .line 104
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->selected:Ljava/util/Set;
 
     invoke-interface {v0}, Ljava/util/Set;->isEmpty()Z
@@ -3682,7 +4060,7 @@
 .method private selectionSummary()V
     .locals 3
 
-    .line 54
+    .line 55
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->selectionInfo:Landroid/widget/TextView;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -3731,7 +4109,7 @@
 .method private styleDialog(Landroid/app/AlertDialog;)V
     .locals 16
 
-    .line 31
+    .line 32
     move-object/from16 v12, p0
 
     invoke-virtual/range {p1 .. p1}, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
@@ -3744,7 +4122,7 @@
 
     invoke-direct {v12, v2}, Lorg/rabochaya/projects/ObjectManagerActivity;->watchFont(Landroid/view/View;)V
 
-    .line 32
+    .line 33
     const v0, 0x102002b
 
     invoke-virtual {v2, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
@@ -3755,7 +4133,7 @@
 
     return-void
 
-    .line 33
+    .line 34
     :cond_0
     new-instance v6, Ljava/util/LinkedHashMap;
 
@@ -3804,7 +4182,7 @@
 
     return-void
 
-    .line 34
+    .line 35
     :cond_3
     invoke-virtual/range {p0 .. p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->getResources()Landroid/content/res/Resources;
 
@@ -3838,7 +4216,7 @@
 
     move-result-object v0
 
-    .line 35
+    .line 36
     if-eqz v0, :cond_4
 
     invoke-virtual {v0}, Landroid/view/View;->getPaddingLeft()I
@@ -3865,7 +4243,7 @@
 
     invoke-interface {v6, v0, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 36
+    .line 37
     :cond_4
     if-nez v8, :cond_5
 
@@ -3901,7 +4279,7 @@
 
     iget v11, v0, Landroid/view/WindowManager$LayoutParams;->height:I
 
-    .line 37
+    .line 38
     invoke-virtual {v2}, Landroid/view/View;->getBackground()Landroid/graphics/drawable/Drawable;
 
     move-result-object v9
@@ -3928,12 +4306,12 @@
 
     aput-boolean v1, v3, v1
 
-    .line 38
+    .line 39
     invoke-virtual {v2}, Landroid/view/View;->getViewTreeObserver()Landroid/view/ViewTreeObserver;
 
     move-result-object v14
 
-    new-instance v15, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;
+    new-instance v15, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda0;
 
     move-object v0, v15
 
@@ -3947,18 +4325,18 @@
 
     move v8, v13
 
-    invoke-direct/range {v0 .. v11}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/view/View;[ZLandroid/view/View;ILjava/util/Map;Landroid/app/AlertDialog;ILandroid/graphics/drawable/Drawable;II)V
+    invoke-direct/range {v0 .. v11}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda0;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/view/View;[ZLandroid/view/View;ILjava/util/Map;Landroid/app/AlertDialog;ILandroid/graphics/drawable/Drawable;II)V
 
     invoke-virtual {v14, v15}, Landroid/view/ViewTreeObserver;->addOnGlobalLayoutListener(Landroid/view/ViewTreeObserver$OnGlobalLayoutListener;)V
 
-    .line 47
+    .line 48
     return-void
 .end method
 
 .method private viewPrefs()Landroid/content/SharedPreferences;
     .locals 2
 
-    .line 113
+    .line 118
     const-string v0, "object-manager-view"
 
     const/4 v1, 0x0
@@ -3973,7 +4351,7 @@
 .method private visibility(Z)V
     .locals 5
 
-    .line 80
+    .line 81
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->selection()Ljava/util/List;
 
     move-result-object v0
@@ -4183,9 +4561,9 @@
     const-string v2, "\u0421\u043a\u0440\u044b\u0442\u044c"
 
     :goto_3
-    new-instance v3, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda46;
+    new-instance v3, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda45;
 
-    invoke-direct {v3, p0, p1, v0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda46;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;ZLjava/util/List;)V
+    invoke-direct {v3, p0, p1, v0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda45;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;ZLjava/util/List;)V
 
     invoke-virtual {v1, v2, v3}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
@@ -4221,14 +4599,14 @@
 .method private watchFont(Landroid/view/View;)V
     .locals 2
 
-    .line 28
+    .line 29
     invoke-virtual {p1}, Landroid/view/View;->getViewTreeObserver()Landroid/view/ViewTreeObserver;
 
     move-result-object v0
 
-    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda41;
+    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda40;
 
-    invoke-direct {v1, p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda41;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/view/View;)V
+    invoke-direct {v1, p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda40;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/view/View;)V
 
     invoke-virtual {v0, v1}, Landroid/view/ViewTreeObserver;->addOnGlobalLayoutListener(Landroid/view/ViewTreeObserver$OnGlobalLayoutListener;)V
 
@@ -4240,7 +4618,7 @@
 .method private withDates(ILjava/lang/String;Ljava/lang/String;)Lorg/rabochaya/projects/ObjectListing$Options;
     .locals 12
 
-    .line 128
+    .line 133
     new-instance v11, Lorg/rabochaya/projects/ObjectListing$Options;
 
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->viewOptions:Lorg/rabochaya/projects/ObjectListing$Options;
@@ -4285,7 +4663,7 @@
 .end method
 
 .method private write(Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)V
-    .locals 8
+    .locals 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -4298,10 +4676,44 @@
         }
     .end annotation
 
-    .line 107
+    .line 110
+    iget-object v4, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->expected:Ljava/lang/String;
+
+    const/4 v5, 0x0
+
+    move-object v0, p0
+
+    move-object v1, p1
+
+    move-object v2, p2
+
+    move-object v3, p3
+
+    invoke-direct/range {v0 .. v5}, Lorg/rabochaya/projects/ObjectManagerActivity;->write(Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Landroid/app/AlertDialog;)V
+
+    return-void
+.end method
+
+.method private write(Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Landroid/app/AlertDialog;)V
+    .locals 9
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/lang/String;",
+            "Ljava/util/List<",
+            "Ljava/lang/String;",
+            ">;",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            "Landroid/app/AlertDialog;",
+            ")V"
+        }
+    .end annotation
+
+    .line 112
     iget-boolean v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->busy:Z
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_2
 
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->snapshot:Lorg/w3c/dom/Element;
 
@@ -4310,28 +4722,47 @@
     goto :goto_0
 
     :cond_0
-    iget-object v5, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->expected:Ljava/lang/String;
-
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->enabled(Z)V
 
-    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->adapter:Lorg/rabochaya/projects/ObjectManagerActivity$Rows;
+    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->adapter:Lorg/rabochaya/projects/ObjectManagerActivity$Rows;
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->notifyDataSetChanged()V
+    invoke-virtual {v1}, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->notifyDataSetChanged()V
 
-    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->status:Landroid/widget/TextView;
+    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->status:Landroid/widget/TextView;
 
-    const-string v1, "\u0421\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435\u2026"
+    const-string v2, "\u0421\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435\u2026"
 
-    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+    invoke-virtual {v1, v2}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 108
+    if-eqz p5, :cond_1
+
+    const/4 v1, -0x1
+
+    invoke-virtual {p5, v1}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v0}, Landroid/widget/Button;->setEnabled(Z)V
+
+    const/4 v1, -0x2
+
+    invoke-virtual {p5, v1}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v0}, Landroid/widget/Button;->setEnabled(Z)V
+
+    invoke-virtual {p5, v0}, Landroid/app/AlertDialog;->setCancelable(Z)V
+
+    .line 113
+    :cond_1
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
-    new-instance v7, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda23;
+    new-instance v8, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda26;
 
-    move-object v1, v7
+    move-object v1, v8
 
     move-object v2, p0
 
@@ -4339,17 +4770,21 @@
 
     move-object v4, p3
 
+    move-object v5, p4
+
     move-object v6, p2
 
-    invoke-direct/range {v1 .. v6}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda23;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+    move-object v7, p5
 
-    invoke-interface {v0, v7}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
+    invoke-direct/range {v1 .. v7}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda26;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Landroid/app/AlertDialog;)V
 
-    .line 112
+    invoke-interface {v0, v8}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
+
+    .line 117
     return-void
 
-    .line 107
-    :cond_1
+    .line 112
+    :cond_2
     :goto_0
     return-void
 .end method
@@ -4359,7 +4794,7 @@
 .method synthetic lambda$button$8$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/Runnable;Landroid/view/View;)V
     .locals 0
 
-    .line 49
+    .line 50
     iget-boolean p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->busy:Z
 
     if-nez p2, :cond_0
@@ -4373,7 +4808,7 @@
 .method synthetic lambda$capture$26$org-rabochaya-projects-ObjectManagerActivity(Z)V
     .locals 2
 
-    .line 81
+    .line 82
     iget-boolean v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->disposed:Z
 
     if-eqz v0, :cond_0
@@ -4423,7 +4858,7 @@
 .method synthetic lambda$capture$27$org-rabochaya-projects-ObjectManagerActivity(ZLjava/util/List;Ljava/lang/String;)V
     .locals 7
 
-    .line 81
+    .line 82
     new-instance v6, Lorg/rabochaya/projects/ProjectStore;
 
     invoke-direct {v6, p0}, Lorg/rabochaya/projects/ProjectStore;-><init>(Landroid/content/Context;)V
@@ -4441,9 +4876,9 @@
 
     invoke-static/range {v0 .. v5}, Lorg/rabochaya/projects/ObjectClipboardWrites;->capture(Lorg/rabochaya/projects/ProjectStore;JZLjava/util/List;Ljava/lang/String;)V
 
-    new-instance p2, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda48;
+    new-instance p2, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda47;
 
-    invoke-direct {p2, p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda48;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Z)V
+    invoke-direct {p2, p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda47;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Z)V
 
     invoke-virtual {p0, p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->runOnUiThread(Ljava/lang/Runnable;)V
     :try_end_0
@@ -4479,7 +4914,7 @@
 .method synthetic lambda$clearClipboard$28$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 2
 
-    .line 82
+    .line 83
     iget-boolean v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->disposed:Z
 
     if-eqz v0, :cond_0
@@ -4503,7 +4938,7 @@
 .method synthetic lambda$clearClipboard$29$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 2
 
-    .line 82
+    .line 83
     new-instance v0, Lorg/rabochaya/projects/ProjectStore;
 
     invoke-direct {v0, p0}, Lorg/rabochaya/projects/ProjectStore;-><init>(Landroid/content/Context;)V
@@ -4511,9 +4946,9 @@
     :try_start_0
     invoke-static {v0}, Lorg/rabochaya/projects/ObjectClipboardWrites;->clear(Lorg/rabochaya/projects/ProjectStore;)V
 
-    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda29;
+    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda27;
 
-    invoke-direct {v1, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda29;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+    invoke-direct {v1, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda27;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
 
     invoke-virtual {p0, v1}, Lorg/rabochaya/projects/ObjectManagerActivity;->runOnUiThread(Ljava/lang/Runnable;)V
     :try_end_0
@@ -4549,7 +4984,7 @@
 .method synthetic lambda$clipboardError$30$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/Exception;)V
     .locals 2
 
-    .line 83
+    .line 84
     iget-boolean v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->disposed:Z
 
     if-eqz v0, :cond_0
@@ -4578,10 +5013,10 @@
     return-void
 .end method
 
-.method synthetic lambda$confirmDelete$40$org-rabochaya-projects-ObjectManagerActivity(Ljava/util/List;Landroid/content/DialogInterface;I)V
+.method synthetic lambda$confirmDelete$39$org-rabochaya-projects-ObjectManagerActivity(Ljava/util/List;Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 105
+    .line 109
     const-string p2, "delete"
 
     const-string p3, ""
@@ -4591,10 +5026,10 @@
     return-void
 .end method
 
-.method synthetic lambda$dateOptions$46$org-rabochaya-projects-ObjectManagerActivity(Landroid/content/DialogInterface;I)V
+.method synthetic lambda$dateOptions$45$org-rabochaya-projects-ObjectManagerActivity(Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 133
+    .line 138
     const/4 p1, 0x0
 
     const-string p2, ""
@@ -4612,10 +5047,10 @@
     return-void
 .end method
 
-.method synthetic lambda$dateOptions$47$org-rabochaya-projects-ObjectManagerActivity(Landroid/widget/Spinner;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/app/AlertDialog;Landroid/widget/TextView;Landroid/view/View;)V
+.method synthetic lambda$dateOptions$46$org-rabochaya-projects-ObjectManagerActivity(Landroid/widget/Spinner;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/app/AlertDialog;Landroid/widget/TextView;Landroid/view/View;)V
     .locals 0
 
-    .line 134
+    .line 139
     :try_start_0
     invoke-virtual {p1}, Landroid/widget/Spinner;->getSelectedItemPosition()I
 
@@ -4666,10 +5101,10 @@
     return-void
 .end method
 
-.method synthetic lambda$dateOptions$48$org-rabochaya-projects-ObjectManagerActivity(Landroid/app/AlertDialog;Landroid/widget/Spinner;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/TextView;Landroid/content/DialogInterface;)V
+.method synthetic lambda$dateOptions$47$org-rabochaya-projects-ObjectManagerActivity(Landroid/app/AlertDialog;Landroid/widget/Spinner;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/TextView;Landroid/content/DialogInterface;)V
     .locals 8
 
-    .line 134
+    .line 139
     invoke-direct {p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->styleDialog(Landroid/app/AlertDialog;)V
 
     const/4 p6, -0x1
@@ -4678,7 +5113,7 @@
 
     move-result-object p6
 
-    new-instance v7, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda7;
+    new-instance v7, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda9;
 
     move-object v0, v7
 
@@ -4694,79 +5129,17 @@
 
     move-object v6, p5
 
-    invoke-direct/range {v0 .. v6}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda7;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/widget/Spinner;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/app/AlertDialog;Landroid/widget/TextView;)V
+    invoke-direct/range {v0 .. v6}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda9;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/widget/Spinner;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/app/AlertDialog;Landroid/widget/TextView;)V
 
     invoke-virtual {p6, v7}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
     return-void
 .end method
 
-.method synthetic lambda$description$36$org-rabochaya-projects-ObjectManagerActivity(Landroid/widget/EditText;Landroid/app/AlertDialog;Ljava/lang/String;Landroid/view/View;)V
+.method synthetic lambda$destination$37$org-rabochaya-projects-ObjectManagerActivity(Ljava/util/List;Ljava/lang/String;Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 97
-    invoke-virtual {p1}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
-
-    move-result-object p4
-
-    invoke-virtual {p4}, Ljava/lang/Object;->toString()Ljava/lang/String;
-
-    move-result-object p4
-
-    :try_start_0
-    invoke-static {p4}, Lorg/rabochaya/projects/ObjectDescription;->validate(Ljava/lang/String;)V
-    :try_end_0
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
-
-    invoke-virtual {p2}, Landroid/app/AlertDialog;->dismiss()V
-
-    const-string p1, "description"
-
-    invoke-static {p3}, Ljava/util/Collections;->singletonList(Ljava/lang/Object;)Ljava/util/List;
-
-    move-result-object p2
-
-    invoke-direct {p0, p1, p2, p4}, Lorg/rabochaya/projects/ObjectManagerActivity;->write(Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)V
-
-    return-void
-
-    :catch_0
-    move-exception p2
-
-    invoke-virtual {p2}, Ljava/lang/IllegalArgumentException;->getMessage()Ljava/lang/String;
-
-    move-result-object p2
-
-    invoke-virtual {p1, p2}, Landroid/widget/EditText;->setError(Ljava/lang/CharSequence;)V
-
-    return-void
-.end method
-
-.method synthetic lambda$description$37$org-rabochaya-projects-ObjectManagerActivity(Landroid/app/AlertDialog;Landroid/widget/EditText;Ljava/lang/String;Landroid/content/DialogInterface;)V
-    .locals 1
-
-    .line 97
-    invoke-direct {p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->styleDialog(Landroid/app/AlertDialog;)V
-
-    const/4 p4, -0x1
-
-    invoke-virtual {p1, p4}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
-
-    move-result-object p4
-
-    new-instance v0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda2;
-
-    invoke-direct {v0, p0, p2, p1, p3}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda2;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/widget/EditText;Landroid/app/AlertDialog;Ljava/lang/String;)V
-
-    invoke-virtual {p4, v0}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
-
-    return-void
-.end method
-
-.method synthetic lambda$destination$38$org-rabochaya-projects-ObjectManagerActivity(Ljava/util/List;Ljava/lang/String;Landroid/content/DialogInterface;I)V
-    .locals 0
-
-    .line 103
+    .line 107
     const-string p3, "move"
 
     invoke-direct {p0, p3, p1, p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->write(Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)V
@@ -4774,10 +5147,10 @@
     return-void
 .end method
 
-.method synthetic lambda$destination$39$org-rabochaya-projects-ObjectManagerActivity(Ljava/util/List;Ljava/util/List;Ljava/util/List;Landroid/content/DialogInterface;I)V
+.method synthetic lambda$destination$38$org-rabochaya-projects-ObjectManagerActivity(Ljava/util/List;Ljava/util/List;Ljava/util/List;Landroid/content/DialogInterface;I)V
     .locals 2
 
-    .line 103
+    .line 107
     invoke-interface {p1, p5}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
     move-result-object p1
@@ -4850,9 +5223,9 @@
 
     move-result-object p3
 
-    new-instance p4, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda4;
+    new-instance p4, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda29;
 
-    invoke-direct {p4, p0, p2, p1}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda4;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/util/List;Ljava/lang/String;)V
+    invoke-direct {p4, p0, p2, p1}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda29;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/util/List;Ljava/lang/String;)V
 
     const-string p1, "\u041f\u0435\u0440\u0435\u043d\u0435\u0441\u0442\u0438"
 
@@ -4876,7 +5249,7 @@
 .method synthetic lambda$load$10$org-rabochaya-projects-ObjectManagerActivity(Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 51
+    .line 52
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->load()V
 
     return-void
@@ -4885,7 +5258,7 @@
 .method synthetic lambda$load$11$org-rabochaya-projects-ObjectManagerActivity(Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 51
+    .line 52
     invoke-virtual {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->finish()V
 
     return-void
@@ -4894,7 +5267,7 @@
 .method synthetic lambda$load$12$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/Exception;)V
     .locals 3
 
-    .line 51
+    .line 52
     iget-boolean v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->disposed:Z
 
     if-eqz v0, :cond_0
@@ -4944,9 +5317,9 @@
 
     move-result-object p1
 
-    new-instance v0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda43;
+    new-instance v0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda42;
 
-    invoke-direct {v0, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda43;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+    invoke-direct {v0, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda42;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
 
     const-string v1, "\u041f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u044c"
 
@@ -4954,9 +5327,9 @@
 
     move-result-object p1
 
-    new-instance v0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda44;
+    new-instance v0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda43;
 
-    invoke-direct {v0, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda44;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+    invoke-direct {v0, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda43;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
 
     const-string v1, "\u0417\u0430\u043a\u0440\u044b\u0442\u044c"
 
@@ -4972,7 +5345,7 @@
 .method synthetic lambda$load$13$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 8
 
-    .line 51
+    .line 52
     new-instance v0, Lorg/rabochaya/projects/ProjectStore;
 
     invoke-direct {v0, p0}, Lorg/rabochaya/projects/ProjectStore;-><init>(Landroid/content/Context;)V
@@ -5000,13 +5373,13 @@
 
     move-result-object v7
 
-    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda31;
+    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda30;
 
     move-object v2, v1
 
     move-object v3, p0
 
-    invoke-direct/range {v2 .. v7}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda31;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/String;Lorg/w3c/dom/Element;Ljava/util/List;Lorg/rabochaya/projects/ObjectListing;)V
+    invoke-direct/range {v2 .. v7}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda30;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/String;Lorg/w3c/dom/Element;Ljava/util/List;Lorg/rabochaya/projects/ObjectListing;)V
 
     invoke-virtual {p0, v1}, Lorg/rabochaya/projects/ObjectManagerActivity;->runOnUiThread(Ljava/lang/Runnable;)V
     :try_end_0
@@ -5024,9 +5397,9 @@
     move-exception v1
 
     :try_start_1
-    new-instance v2, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda32;
+    new-instance v2, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda31;
 
-    invoke-direct {v2, p0, v1}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda32;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/Exception;)V
+    invoke-direct {v2, p0, v1}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda31;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/Exception;)V
 
     invoke-virtual {p0, v2}, Lorg/rabochaya/projects/ObjectManagerActivity;->runOnUiThread(Ljava/lang/Runnable;)V
     :try_end_1
@@ -5046,7 +5419,7 @@
 .method synthetic lambda$load$9$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/String;Lorg/w3c/dom/Element;Ljava/util/List;Lorg/rabochaya/projects/ObjectListing;)V
     .locals 2
 
-    .line 51
+    .line 52
     iget-boolean v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->disposed:Z
 
     if-eqz v0, :cond_0
@@ -5134,13 +5507,15 @@
 
     invoke-virtual {p1, p2}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
+    invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->restoreEditor()V
+
     return-void
 .end method
 
 .method synthetic lambda$menu$24$org-rabochaya-projects-ObjectManagerActivity(Landroid/content/DialogInterface;I)V
     .locals 1
 
-    .line 78
+    .line 79
     iget-boolean p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->busy:Z
 
     if-eqz p1, :cond_0
@@ -5274,109 +5649,10 @@
     .end packed-switch
 .end method
 
-.method synthetic lambda$name$34$org-rabochaya-projects-ObjectManagerActivity(Landroid/widget/EditText;Landroid/app/AlertDialog;ZLjava/lang/String;Landroid/view/View;)V
-    .locals 2
-
-    .line 89
-    invoke-virtual {p1}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
-
-    move-result-object p5
-
-    invoke-virtual {p5}, Ljava/lang/Object;->toString()Ljava/lang/String;
-
-    move-result-object p5
-
-    invoke-virtual {p5}, Ljava/lang/String;->trim()Ljava/lang/String;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
-
-    move-result v0
-
-    if-nez v0, :cond_2
-
-    invoke-virtual {p5}, Ljava/lang/String;->trim()Ljava/lang/String;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Ljava/lang/String;->length()I
-
-    move-result v0
-
-    const/16 v1, 0x3e8
-
-    if-le v0, v1, :cond_0
-
-    goto :goto_1
-
-    :cond_0
-    invoke-virtual {p2}, Landroid/app/AlertDialog;->dismiss()V
-
-    if-eqz p3, :cond_1
-
-    const-string p1, "rename"
-
-    goto :goto_0
-
-    :cond_1
-    const-string p1, "create"
-
-    :goto_0
-    invoke-static {p4}, Ljava/util/Collections;->singletonList(Ljava/lang/Object;)Ljava/util/List;
-
-    move-result-object p2
-
-    invoke-direct {p0, p1, p2, p5}, Lorg/rabochaya/projects/ObjectManagerActivity;->write(Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)V
-
-    return-void
-
-    :cond_2
-    :goto_1
-    const-string p2, "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435: \u043e\u0442 1 \u0434\u043e 1000 \u0441\u0438\u043c\u0432\u043e\u043b\u043e\u0432"
-
-    invoke-virtual {p1, p2}, Landroid/widget/EditText;->setError(Ljava/lang/CharSequence;)V
-
-    return-void
-.end method
-
-.method synthetic lambda$name$35$org-rabochaya-projects-ObjectManagerActivity(Landroid/app/AlertDialog;Landroid/widget/EditText;ZLjava/lang/String;Landroid/content/DialogInterface;)V
-    .locals 7
-
-    .line 89
-    invoke-direct {p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->styleDialog(Landroid/app/AlertDialog;)V
-
-    const/4 p5, -0x1
-
-    invoke-virtual {p1, p5}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
-
-    move-result-object p5
-
-    new-instance v6, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda5;
-
-    move-object v0, v6
-
-    move-object v1, p0
-
-    move-object v2, p2
-
-    move-object v3, p1
-
-    move v4, p3
-
-    move-object v5, p4
-
-    invoke-direct/range {v0 .. v5}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda5;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/widget/EditText;Landroid/app/AlertDialog;ZLjava/lang/String;)V
-
-    invoke-virtual {p5, v6}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
-
-    return-void
-.end method
-
 .method synthetic lambda$onCreate$0$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 0
 
-    .line 19
+    .line 20
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->parent()V
 
     return-void
@@ -5385,7 +5661,7 @@
 .method synthetic lambda$onCreate$1$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 0
 
-    .line 19
+    .line 20
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->menu()V
 
     return-void
@@ -5394,7 +5670,7 @@
 .method synthetic lambda$onCreate$2$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 0
 
-    .line 19
+    .line 20
     invoke-virtual {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->finish()V
 
     return-void
@@ -5403,7 +5679,7 @@
 .method synthetic lambda$onCreate$3$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 0
 
-    .line 20
+    .line 21
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->searchOptions()V
 
     return-void
@@ -5412,7 +5688,7 @@
 .method synthetic lambda$onCreate$4$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 0
 
-    .line 20
+    .line 21
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->dateOptions()V
 
     return-void
@@ -5421,7 +5697,7 @@
 .method synthetic lambda$onCreate$5$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 5
 
-    .line 22
+    .line 23
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->refreshOnResume:Z
@@ -5469,10 +5745,169 @@
     return-void
 .end method
 
+.method synthetic lambda$openEditor$34$org-rabochaya-projects-ObjectManagerActivity(Landroid/app/AlertDialog;Landroid/content/DialogInterface;)V
+    .locals 0
+
+    .line 101
+    iget-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->editorDialog:Landroid/app/AlertDialog;
+
+    if-ne p2, p1, :cond_0
+
+    const/4 p1, 0x0
+
+    iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->editorDraft:Lorg/rabochaya/projects/ObjectEditorDraft;
+
+    iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->editorInput:Landroid/widget/EditText;
+
+    iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->editorDialog:Landroid/app/AlertDialog;
+
+    :cond_0
+    return-void
+.end method
+
+.method synthetic lambda$openEditor$35$org-rabochaya-projects-ObjectManagerActivity(ZLandroid/widget/EditText;ZLorg/rabochaya/projects/ObjectEditorDraft;Landroid/app/AlertDialog;Landroid/view/View;)V
+    .locals 6
+
+    .line 102
+    if-eqz p1, :cond_3
+
+    iget-boolean p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->busy:Z
+
+    if-eqz p1, :cond_0
+
+    goto :goto_1
+
+    :cond_0
+    invoke-virtual {p2}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    if-eqz p3, :cond_1
+
+    :try_start_0
+    invoke-static {v3}, Lorg/rabochaya/projects/ObjectDescription;->validate(Ljava/lang/String;)V
+
+    goto :goto_0
+
+    :cond_1
+    invoke-virtual {v3}, Ljava/lang/String;->trim()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Ljava/lang/String;->isEmpty()Z
+
+    move-result p1
+
+    if-nez p1, :cond_2
+
+    invoke-virtual {v3}, Ljava/lang/String;->trim()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Ljava/lang/String;->length()I
+
+    move-result p1
+    :try_end_0
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
+
+    const/16 p3, 0x3e8
+
+    if-gt p1, p3, :cond_2
+
+    :goto_0
+    iget-object v1, p4, Lorg/rabochaya/projects/ObjectEditorDraft;->operation:Ljava/lang/String;
+
+    iget-object p1, p4, Lorg/rabochaya/projects/ObjectEditorDraft;->key:Ljava/lang/String;
+
+    invoke-static {p1}, Ljava/util/Collections;->singletonList(Ljava/lang/Object;)Ljava/util/List;
+
+    move-result-object v2
+
+    iget-object v4, p4, Lorg/rabochaya/projects/ObjectEditorDraft;->token:Ljava/lang/String;
+
+    move-object v0, p0
+
+    move-object v5, p5
+
+    invoke-direct/range {v0 .. v5}, Lorg/rabochaya/projects/ObjectManagerActivity;->write(Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Landroid/app/AlertDialog;)V
+
+    return-void
+
+    :cond_2
+    :try_start_1
+    new-instance p1, Ljava/lang/IllegalArgumentException;
+
+    const-string p3, "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435: \u043e\u0442 1 \u0434\u043e 1000 \u0441\u0438\u043c\u0432\u043e\u043b\u043e\u0432"
+
+    invoke-direct {p1, p3}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+
+    throw p1
+    :try_end_1
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_1 .. :try_end_1} :catch_0
+
+    :catch_0
+    move-exception p1
+
+    invoke-virtual {p1}, Ljava/lang/IllegalArgumentException;->getMessage()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-virtual {p2, p1}, Landroid/widget/EditText;->setError(Ljava/lang/CharSequence;)V
+
+    :cond_3
+    :goto_1
+    return-void
+.end method
+
+.method synthetic lambda$openEditor$36$org-rabochaya-projects-ObjectManagerActivity(Landroid/app/AlertDialog;ZLandroid/widget/EditText;ZLorg/rabochaya/projects/ObjectEditorDraft;Landroid/content/DialogInterface;)V
+    .locals 8
+
+    .line 102
+    invoke-direct {p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->styleDialog(Landroid/app/AlertDialog;)V
+
+    const/4 p6, -0x1
+
+    invoke-virtual {p1, p6}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p2}, Landroid/widget/Button;->setEnabled(Z)V
+
+    invoke-virtual {p1, p6}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
+
+    move-result-object p6
+
+    new-instance v7, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda10;
+
+    move-object v0, v7
+
+    move-object v1, p0
+
+    move v2, p2
+
+    move-object v3, p3
+
+    move v4, p4
+
+    move-object v5, p5
+
+    move-object v6, p1
+
+    invoke-direct/range {v0 .. v6}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda10;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;ZLandroid/widget/EditText;ZLorg/rabochaya/projects/ObjectEditorDraft;Landroid/app/AlertDialog;)V
+
+    invoke-virtual {p6, v7}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+
+    return-void
+.end method
+
 .method synthetic lambda$paste$31$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/String;Ljava/lang/String;Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 84
+    .line 85
     const-string p3, "paste"
 
     invoke-static {p1}, Ljava/util/Collections;->singletonList(Ljava/lang/Object;)Ljava/util/List;
@@ -5487,7 +5922,7 @@
 .method synthetic lambda$paste$32$org-rabochaya-projects-ObjectManagerActivity(Lorg/rabochaya/projects/ObjectClipboard;ILjava/lang/String;Ljava/lang/String;)V
     .locals 3
 
-    .line 84
+    .line 85
     iget-boolean v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->disposed:Z
 
     if-eqz v0, :cond_0
@@ -5563,9 +5998,9 @@
 
     move-result-object p1
 
-    new-instance p2, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda45;
+    new-instance p2, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda44;
 
-    invoke-direct {p2, p0, p3, p4}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda45;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/String;Ljava/lang/String;)V
+    invoke-direct {p2, p0, p3, p4}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda44;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/String;Ljava/lang/String;)V
 
     const-string p3, "\u0412\u0441\u0442\u0430\u0432\u0438\u0442\u044c"
 
@@ -5589,7 +6024,7 @@
 .method synthetic lambda$paste$33$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/String;Lorg/w3c/dom/Element;Ljava/lang/String;)V
     .locals 7
 
-    .line 84
+    .line 85
     new-instance v0, Lorg/rabochaya/projects/ProjectStore;
 
     invoke-direct {v0, p0}, Lorg/rabochaya/projects/ProjectStore;-><init>(Landroid/content/Context;)V
@@ -5627,7 +6062,7 @@
 
     move-result v4
 
-    new-instance p1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda33;
+    new-instance p1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda32;
 
     move-object v1, p1
 
@@ -5635,7 +6070,7 @@
 
     move-object v6, p3
 
-    invoke-direct/range {v1 .. v6}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda33;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Lorg/rabochaya/projects/ObjectClipboard;ILjava/lang/String;Ljava/lang/String;)V
+    invoke-direct/range {v1 .. v6}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda32;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Lorg/rabochaya/projects/ObjectClipboard;ILjava/lang/String;Ljava/lang/String;)V
 
     invoke-virtual {p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->runOnUiThread(Ljava/lang/Runnable;)V
 
@@ -5699,7 +6134,7 @@
 .method synthetic lambda$rowMenu$14$org-rabochaya-projects-ObjectManagerActivity(Lorg/rabochaya/projects/ObjectTree$Row;)V
     .locals 0
 
-    .line 70
+    .line 71
     iget-object p1, p1, Lorg/rabochaya/projects/ObjectTree$Row;->key:Ljava/lang/String;
 
     invoke-direct {p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->navigate(Ljava/lang/String;)V
@@ -5710,7 +6145,7 @@
 .method synthetic lambda$rowMenu$15$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 1
 
-    .line 71
+    .line 72
     const/4 v0, 0x1
 
     invoke-direct {p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->name(Z)V
@@ -5721,7 +6156,7 @@
 .method synthetic lambda$rowMenu$16$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 0
 
-    .line 71
+    .line 72
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->description()V
 
     return-void
@@ -5730,7 +6165,7 @@
 .method synthetic lambda$rowMenu$17$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 1
 
-    .line 72
+    .line 73
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->capture(Z)V
@@ -5741,7 +6176,7 @@
 .method synthetic lambda$rowMenu$18$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 1
 
-    .line 72
+    .line 73
     const/4 v0, 0x1
 
     invoke-direct {p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->capture(Z)V
@@ -5752,7 +6187,7 @@
 .method synthetic lambda$rowMenu$19$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 0
 
-    .line 72
+    .line 73
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->destination()V
 
     return-void
@@ -5761,7 +6196,7 @@
 .method synthetic lambda$rowMenu$20$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 1
 
-    .line 73
+    .line 74
     const/4 v0, 0x1
 
     invoke-direct {p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->visibility(Z)V
@@ -5772,7 +6207,7 @@
 .method synthetic lambda$rowMenu$21$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 1
 
-    .line 73
+    .line 74
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->visibility(Z)V
@@ -5783,7 +6218,7 @@
 .method synthetic lambda$rowMenu$22$org-rabochaya-projects-ObjectManagerActivity()V
     .locals 0
 
-    .line 73
+    .line 74
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->confirmDelete()V
 
     return-void
@@ -5792,7 +6227,7 @@
 .method synthetic lambda$rowMenu$23$org-rabochaya-projects-ObjectManagerActivity(Ljava/util/List;Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 74
+    .line 75
     iget-boolean p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->busy:Z
 
     if-nez p2, :cond_0
@@ -5809,10 +6244,10 @@
     return-void
 .end method
 
-.method synthetic lambda$searchOptions$44$org-rabochaya-projects-ObjectManagerActivity(Landroid/widget/EditText;Landroid/widget/Spinner;Landroid/widget/Spinner;Landroid/widget/Spinner;Landroid/widget/CheckBox;Landroid/widget/CheckBox;Landroid/widget/Spinner;Landroid/content/DialogInterface;I)V
+.method synthetic lambda$searchOptions$43$org-rabochaya-projects-ObjectManagerActivity(Landroid/widget/EditText;Landroid/widget/Spinner;Landroid/widget/Spinner;Landroid/widget/Spinner;Landroid/widget/CheckBox;Landroid/widget/CheckBox;Landroid/widget/Spinner;Landroid/content/DialogInterface;I)V
     .locals 13
 
-    .line 124
+    .line 129
     move-object v0, p0
 
     new-instance v12, Lorg/rabochaya/projects/ObjectListing$Options;
@@ -5880,10 +6315,10 @@
     return-void
 .end method
 
-.method synthetic lambda$searchOptions$45$org-rabochaya-projects-ObjectManagerActivity(Landroid/content/DialogInterface;I)V
+.method synthetic lambda$searchOptions$44$org-rabochaya-projects-ObjectManagerActivity(Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 124
+    .line 129
     invoke-static {}, Lorg/rabochaya/projects/ObjectListing$Options;->defaults()Lorg/rabochaya/projects/ObjectListing$Options;
 
     move-result-object p1
@@ -5900,7 +6335,7 @@
 .method synthetic lambda$styleDialog$7$org-rabochaya-projects-ObjectManagerActivity(Landroid/view/View;[ZLandroid/view/View;ILjava/util/Map;Landroid/app/AlertDialog;ILandroid/graphics/drawable/Drawable;II)V
     .locals 12
 
-    .line 39
+    .line 40
     move-object v0, p3
 
     new-instance v1, Landroid/graphics/Rect;
@@ -5953,7 +6388,7 @@
     :cond_1
     move v1, v4
 
-    .line 40
+    .line 41
     :goto_0
     aget-boolean v2, p2, v4
 
@@ -5964,7 +6399,7 @@
     :cond_2
     aput-boolean v1, p2, v4
 
-    .line 43
+    .line 44
     if-eqz v0, :cond_4
 
     if-eqz v1, :cond_3
@@ -5979,7 +6414,7 @@
     :goto_1
     invoke-virtual {p3, v2}, Landroid/view/View;->setVisibility(I)V
 
-    .line 44
+    .line 45
     :cond_4
     invoke-interface/range {p5 .. p5}, Ljava/util/Map;->entrySet()Ljava/util/Set;
 
@@ -6087,7 +6522,7 @@
 
     goto :goto_2
 
-    .line 45
+    .line 46
     :cond_b
     invoke-virtual/range {p6 .. p6}, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
 
@@ -6135,14 +6570,14 @@
     :goto_8
     invoke-virtual {v0, v2, v1}, Landroid/view/Window;->setLayout(II)V
 
-    .line 46
+    .line 47
     return-void
 .end method
 
 .method synthetic lambda$visibility$25$org-rabochaya-projects-ObjectManagerActivity(ZLjava/util/List;Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 80
+    .line 81
     if-eqz p1, :cond_0
 
     const-string p1, "show"
@@ -6163,16 +6598,16 @@
 .method synthetic lambda$watchFont$6$org-rabochaya-projects-ObjectManagerActivity(Landroid/view/View;)V
     .locals 0
 
-    .line 28
+    .line 29
     invoke-direct {p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->font(Landroid/view/View;)V
 
     return-void
 .end method
 
-.method synthetic lambda$write$41$org-rabochaya-projects-ObjectManagerActivity(Lorg/w3c/dom/Element;Ljava/util/List;Lorg/rabochaya/projects/ObjectListing;Ljava/lang/String;)V
+.method synthetic lambda$write$40$org-rabochaya-projects-ObjectManagerActivity(Landroid/app/AlertDialog;Lorg/w3c/dom/Element;Ljava/util/List;Lorg/rabochaya/projects/ObjectListing;Ljava/lang/String;)V
     .locals 1
 
-    .line 110
+    .line 115
     iget-boolean v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->disposed:Z
 
     if-eqz v0, :cond_0
@@ -6180,13 +6615,18 @@
     return-void
 
     :cond_0
-    iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->snapshot:Lorg/w3c/dom/Element;
+    if-eqz p1, :cond_1
 
-    iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->rows:Ljava/util/List;
+    invoke-virtual {p1}, Landroid/app/AlertDialog;->dismiss()V
 
-    iput-object p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->listing:Lorg/rabochaya/projects/ObjectListing;
+    :cond_1
+    iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->snapshot:Lorg/w3c/dom/Element;
 
-    iput-object p4, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->expected:Ljava/lang/String;
+    iput-object p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->rows:Ljava/util/List;
+
+    iput-object p4, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->listing:Lorg/rabochaya/projects/ObjectListing;
+
+    iput-object p5, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->expected:Ljava/lang/String;
 
     const-string p1, ""
 
@@ -6213,10 +6653,10 @@
     return-void
 .end method
 
-.method synthetic lambda$write$42$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/Exception;)V
-    .locals 3
+.method synthetic lambda$write$41$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/Exception;Landroid/app/AlertDialog;)V
+    .locals 4
 
-    .line 111
+    .line 116
     iget-boolean v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->disposed:Z
 
     if-eqz v0, :cond_0
@@ -6228,36 +6668,57 @@
 
     invoke-direct {p0, v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->enabled(Z)V
 
-    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->adapter:Lorg/rabochaya/projects/ObjectManagerActivity$Rows;
+    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->adapter:Lorg/rabochaya/projects/ObjectManagerActivity$Rows;
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->notifyDataSetChanged()V
+    invoke-virtual {v1}, Lorg/rabochaya/projects/ObjectManagerActivity$Rows;->notifyDataSetChanged()V
 
-    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->status:Landroid/widget/TextView;
+    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->status:Landroid/widget/TextView;
 
-    new-instance v1, Ljava/lang/StringBuilder;
+    new-instance v2, Ljava/lang/StringBuilder;
 
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v2, "\u0418\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u044f \u043d\u0435 \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u044b: "
+    const-string v3, "\u0418\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u044f \u043d\u0435 \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u044b: "
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {p1}, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v2
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {p1}, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    if-eqz p2, :cond_1
+
+    const/4 v1, -0x1
+
+    invoke-virtual {p2, v1}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
 
     move-result-object v1
 
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v1, v0}, Landroid/widget/Button;->setEnabled(Z)V
+
+    const/4 v1, -0x2
+
+    invoke-virtual {p2, v1}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
 
     move-result-object v1
 
-    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+    invoke-virtual {v1, v0}, Landroid/widget/Button;->setEnabled(Z)V
 
+    invoke-virtual {p2, v0}, Landroid/app/AlertDialog;->setCancelable(Z)V
+
+    :cond_1
     invoke-virtual {p1}, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
 
     move-result-object p1
@@ -6267,10 +6728,10 @@
     return-void
 .end method
 
-.method synthetic lambda$write$43$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+.method synthetic lambda$write$42$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Landroid/app/AlertDialog;)V
     .locals 8
 
-    .line 108
+    .line 113
     new-instance v7, Lorg/rabochaya/projects/ProjectStore;
 
     invoke-direct {v7, p0}, Lorg/rabochaya/projects/ProjectStore;-><init>(Landroid/content/Context;)V
@@ -6328,29 +6789,31 @@
     :goto_0
     invoke-virtual {p1}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
 
-    move-result-object v2
-
-    .line 109
-    invoke-static {v2}, Lorg/rabochaya/projects/ObjectTree;->rows(Lorg/w3c/dom/Element;)Ljava/util/List;
-
     move-result-object v3
 
-    invoke-static {v2}, Lorg/rabochaya/projects/ObjectTree;->token(Lorg/w3c/dom/Element;)Ljava/lang/String;
-
-    move-result-object v5
-
-    invoke-static {v2, v3}, Lorg/rabochaya/projects/ObjectListing;->build(Lorg/w3c/dom/Element;Ljava/util/List;)Lorg/rabochaya/projects/ObjectListing;
+    .line 114
+    invoke-static {v3}, Lorg/rabochaya/projects/ObjectTree;->rows(Lorg/w3c/dom/Element;)Ljava/util/List;
 
     move-result-object v4
 
-    .line 110
-    new-instance p1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda24;
+    invoke-static {v3}, Lorg/rabochaya/projects/ObjectTree;->token(Lorg/w3c/dom/Element;)Ljava/lang/String;
+
+    move-result-object v6
+
+    invoke-static {v3, v4}, Lorg/rabochaya/projects/ObjectListing;->build(Lorg/w3c/dom/Element;Ljava/util/List;)Lorg/rabochaya/projects/ObjectListing;
+
+    move-result-object v5
+
+    .line 115
+    new-instance p1, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda3;
 
     move-object v0, p1
 
     move-object v1, p0
 
-    invoke-direct/range {v0 .. v5}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda24;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Lorg/w3c/dom/Element;Ljava/util/List;Lorg/rabochaya/projects/ObjectListing;Ljava/lang/String;)V
+    move-object v2, p5
+
+    invoke-direct/range {v0 .. v6}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda3;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/app/AlertDialog;Lorg/w3c/dom/Element;Ljava/util/List;Lorg/rabochaya/projects/ObjectListing;Ljava/lang/String;)V
 
     invoke-virtual {p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->runOnUiThread(Ljava/lang/Runnable;)V
     :try_end_0
@@ -6359,7 +6822,7 @@
 
     goto :goto_1
 
-    .line 111
+    .line 116
     :catchall_0
     move-exception p1
 
@@ -6369,9 +6832,9 @@
     move-exception p1
 
     :try_start_1
-    new-instance p2, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda25;
+    new-instance p2, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda4;
 
-    invoke-direct {p2, p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda25;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/Exception;)V
+    invoke-direct {p2, p0, p1, p5}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda4;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/Exception;Landroid/app/AlertDialog;)V
 
     invoke-virtual {p0, p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->runOnUiThread(Ljava/lang/Runnable;)V
     :try_end_1
@@ -6391,7 +6854,7 @@
 .method public onBackPressed()V
     .locals 8
 
-    .line 140
+    .line 145
     iget-boolean v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->busy:Z
 
     if-eqz v0, :cond_0
@@ -6460,7 +6923,7 @@
 .method protected onCreate(Landroid/os/Bundle;)V
     .locals 5
 
-    .line 13
+    .line 14
     invoke-virtual {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
@@ -6503,7 +6966,7 @@
 
     iput-wide v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->project:J
 
-    .line 14
+    .line 15
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->restoreView()V
 
     if-eqz p1, :cond_1
@@ -6522,11 +6985,23 @@
 
     invoke-virtual {p1, v0}, Landroid/os/Bundle;->getString(Ljava/lang/String;)Ljava/lang/String;
 
+    move-result-object v0
+
+    iput-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->expected:Ljava/lang/String;
+
+    const-string v0, "editor"
+
+    invoke-virtual {p1, v0}, Landroid/os/Bundle;->getBundle(Ljava/lang/String;)Landroid/os/Bundle;
+
     move-result-object p1
 
-    iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->expected:Ljava/lang/String;
+    invoke-direct {p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->readEditor(Landroid/os/Bundle;)Lorg/rabochaya/projects/ObjectEditorDraft;
 
-    .line 15
+    move-result-object p1
+
+    iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->pendingEditor:Lorg/rabochaya/projects/ObjectEditorDraft;
+
+    .line 16
     :cond_1
     new-instance p1, Landroid/widget/LinearLayout;
 
@@ -6544,7 +7019,7 @@
 
     invoke-direct {p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->watchFont(Landroid/view/View;)V
 
-    .line 16
+    .line 17
     new-instance v1, Landroid/widget/LinearLayout;
 
     invoke-direct {v1, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
@@ -6567,7 +7042,7 @@
 
     invoke-virtual {p1, v0, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 17
+    .line 18
     new-instance v0, Landroid/widget/TextView;
 
     invoke-direct {v0, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
@@ -6582,7 +7057,7 @@
 
     invoke-virtual {v1, v0}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    .line 18
+    .line 19
     new-instance v0, Landroid/widget/TextView;
 
     invoke-direct {v0, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
@@ -6635,16 +7110,16 @@
 
     invoke-virtual {v1, v0}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    .line 19
+    .line 20
     new-instance v0, Landroid/widget/LinearLayout;
 
     invoke-direct {v0, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
 
     invoke-virtual {p1, v0}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    new-instance v2, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda35;
+    new-instance v2, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda34;
 
-    invoke-direct {v2, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda35;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+    invoke-direct {v2, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda34;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
 
     const-string v3, "\u0412\u0432\u0435\u0440\u0445"
 
@@ -6654,9 +7129,9 @@
 
     iput-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->up:Landroid/widget/Button;
 
-    new-instance v2, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda36;
+    new-instance v2, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda35;
 
-    invoke-direct {v2, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda36;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+    invoke-direct {v2, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda35;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
 
     const-string v3, "\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u044f"
 
@@ -6666,18 +7141,18 @@
 
     iput-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->actions:Landroid/widget/Button;
 
-    new-instance v2, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda37;
+    new-instance v2, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda36;
 
-    invoke-direct {v2, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda37;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+    invoke-direct {v2, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda36;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
 
     const-string v3, "\u0417\u0430\u043a\u0440\u044b\u0442\u044c"
 
     invoke-direct {p0, v0, v3, v2}, Lorg/rabochaya/projects/ObjectManagerActivity;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
 
-    .line 20
-    new-instance v0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda38;
+    .line 21
+    new-instance v0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda37;
 
-    invoke-direct {v0, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda38;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+    invoke-direct {v0, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda37;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
 
     const-string v2, "\u041f\u043e\u0438\u0441\u043a \u0438 \u0444\u0438\u043b\u044c\u0442\u0440\u044b"
 
@@ -6687,9 +7162,9 @@
 
     iput-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->searchButton:Landroid/widget/Button;
 
-    new-instance v0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda39;
+    new-instance v0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda38;
 
-    invoke-direct {v0, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda39;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+    invoke-direct {v0, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda38;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
 
     const-string v2, "\u0414\u0430\u0442\u044b KML"
 
@@ -6699,7 +7174,7 @@
 
     iput-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->dateButton:Landroid/widget/Button;
 
-    .line 21
+    .line 22
     new-instance v0, Landroid/widget/ListView;
 
     invoke-direct {v0, p0}, Landroid/widget/ListView;-><init>(Landroid/content/Context;)V
@@ -6732,30 +7207,39 @@
 
     invoke-virtual {p1, v0, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 22
-    new-instance v0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda40;
+    .line 23
+    new-instance v0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda39;
 
-    invoke-direct {v0, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda40;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+    invoke-direct {v0, p0}, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda39;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
 
     const-string v1, "\u041f\u0440\u043e\u0435\u043a\u0442\u044b, \u0438\u043c\u043f\u043e\u0440\u0442 \u0438 \u044d\u043a\u0441\u043f\u043e\u0440\u0442"
 
     invoke-direct {p0, p1, v1, v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
 
-    .line 23
+    .line 24
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->load()V
 
-    .line 24
+    .line 25
     return-void
 .end method
 
 .method protected onDestroy()V
     .locals 1
 
-    .line 141
+    .line 146
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->disposed:Z
 
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->editorDialog:Landroid/app/AlertDialog;
+
+    if-eqz v0, :cond_0
+
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->editorDialog:Landroid/app/AlertDialog;
+
+    invoke-virtual {v0}, Landroid/app/AlertDialog;->dismiss()V
+
+    :cond_0
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
     invoke-interface {v0}, Ljava/util/concurrent/ExecutorService;->shutdown()V
@@ -6768,7 +7252,7 @@
 .method protected onResume()V
     .locals 1
 
-    .line 139
+    .line 144
     invoke-super {p0}, Landroid/app/Activity;->onResume()V
 
     iget-boolean v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->refreshOnResume:Z
@@ -6792,7 +7276,7 @@
 .method protected onSaveInstanceState(Landroid/os/Bundle;)V
     .locals 2
 
-    .line 138
+    .line 143
     invoke-super {p0, p1}, Landroid/app/Activity;->onSaveInstanceState(Landroid/os/Bundle;)V
 
     const-string v0, "folder"
@@ -6806,6 +7290,14 @@
     iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->expected:Ljava/lang/String;
 
     invoke-virtual {p1, v0, v1}, Landroid/os/Bundle;->putString(Ljava/lang/String;Ljava/lang/String;)V
+
+    const-string v0, "editor"
+
+    invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->saveEditor()Landroid/os/Bundle;
+
+    move-result-object v1
+
+    invoke-virtual {p1, v0, v1}, Landroid/os/Bundle;->putBundle(Ljava/lang/String;Landroid/os/Bundle;)V
 
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->rememberView()V
 
