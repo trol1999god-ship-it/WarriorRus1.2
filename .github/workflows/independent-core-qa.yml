@@ -23,6 +23,8 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - run: python3 ci/test_run_android_checks.py
+        working-directory: independent-core
       - run: python3 owned-projects/verify_jvm.py
         working-directory: independent-core
   android:
@@ -69,7 +71,7 @@ jobs:
           disable-spellchecker: true
           emulator-boot-timeout: 600
           working-directory: independent-core
-          script: python3 ci/run_android_checks.py --adb "$ANDROID_HOME/platform-tools/adb" --serial emulator-5554 --app "$RUNNER_TEMP/rk-qa/app.apk" --tests "$RUNNER_TEMP/rk-qa/tests.apk" --output "$RUNNER_TEMP/rk-results"
+          script: python3 ci/run_android_checks.py --keep-going --adb "$ANDROID_HOME/platform-tools/adb" --serial emulator-5554 --app "$RUNNER_TEMP/rk-qa/app.apk" --tests "$RUNNER_TEMP/rk-qa/tests.apk" --output "$RUNNER_TEMP/rk-results"
       - name: Keep synthetic test results
         if: always()
         uses: actions/upload-artifact@v4

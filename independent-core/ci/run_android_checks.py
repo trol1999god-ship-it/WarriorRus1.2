@@ -8,6 +8,7 @@ p.add_argument('--app',type=Path,required=True)
 p.add_argument('--tests',type=Path,required=True)
 p.add_argument('--output',type=Path,required=True)
 p.add_argument('--install-timeout',type=int,default=180,help='Package installation timeout for software emulators')
+p.add_argument('--keep-going',action='store_true',help='Collect independent failures; skip reopen scenarios whose fixture failed; still exit nonzero')
 p.add_argument('--no-streaming',action='store_true',help='Push APKs before installation when streamed install is unreliable')
 modes=['binary','independence','offlineformats','cachewrites','cacheexport','launcher','coordinates','catalogscreen','geometryedit','geometrymap','geometrymapreopen','objectmanager','objectmanagerreopen','clipboard','clipboardreopen','managerfilters','managerfiltersreopen','managervisibility','managervisibilityreopen','managerdates','managerdatesreopen','managerdescription','managerdescriptionreopen','managercontext','managercontextreopen']
 p.add_argument('--modes',nargs='+',choices=modes,default=modes,help='Run the selected scenarios in this order; default: full suite')
@@ -38,6 +39,11 @@ install=['install','-r']+(['--no-streaming'] if a.no_streaming else [])
 adb(*install,a.app.resolve(),timeout=a.install_timeout);adb(*install,a.tests.resolve(),timeout=a.install_timeout)
 sha=hashlib.sha256(a.app.read_bytes()).hexdigest();records=[]
 for mode in a.modes:
+ if a.keep_going and mode.endswith('reopen') and (not records or not records[-1]['passed']):
+  records.append({'mode':mode,'passed':False,'skipped':True,'reason':'Preceding fixture failed','seconds':0})
+  (out/'results.json').write_text(json.dumps(records,indent=2)+'\n')
+  print('SKIP '+mode+': preceding fixture failed',flush=True)
+  continue
  print('RUN '+mode,flush=True)
  started=time.monotonic();passed=False;text=''
  try:
@@ -57,5 +63,9 @@ for mode in a.modes:
   records.append({'mode':mode,'passed':passed,'seconds':round(time.monotonic()-started,2)})
   (out/'results.json').write_text(json.dumps(records,indent=2)+'\n')
  print(('PASS ' if passed else 'FAIL ')+mode,flush=True)
- if not passed:raise SystemExit('Android scenario failed: '+mode)
+ if not passed:
+  print(text,flush=True)
+  if not a.keep_going:raise SystemExit('Android scenario failed: '+mode)
+failed=[r['mode'] for r in records if not r['passed']]
+if failed:raise SystemExit('Android scenarios failed or skipped: '+', '.join(failed))
 print('All selected Android scenarios passed; this is not full 26.1 acceptance')
