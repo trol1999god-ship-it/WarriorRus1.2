@@ -58,6 +58,11 @@ for mode in a.modes:
  finally:
   (out/(mode+'.txt')).write_text(text)
   (out/(mode+'-logcat.txt')).write_text(adb('logcat','-d','-t','1000',required=False))
+  if not passed:
+   # Retain the actual foreground/focused windows; a missing accessibility
+   # label alone does not distinguish an app defect from the wrong window.
+   for service, detail in [('window','windows'), ('activity','activities')]:
+    (out/(mode+'-'+service+'.txt')).write_text(adb('shell','dumpsys',service,detail,timeout=15,required=False))
   # The emulator contains synthetic QA data only. Do not pull private databases.
   adb('pull','/sdcard/Android/data/org.rabochaya.karta/files',out/mode,required=False)
   records.append({'mode':mode,'passed':passed,'seconds':round(time.monotonic()-started,2)})

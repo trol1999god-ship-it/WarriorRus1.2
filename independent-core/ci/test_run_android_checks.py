@@ -17,6 +17,8 @@ import sys
 args = sys.argv[3:]
 if args[:2] == ['shell', 'getprop']:
     print('1')
+elif args[:2] == ['shell', 'dumpsys']:
+    print('synthetic ' + args[2] + ' diagnostics')
 elif args[:3] == ['shell', 'am', 'instrument']:
     mode = args[args.index('mode') + 1]
     if mode in ''' + repr(tuple(failures)) + ''':
@@ -38,6 +40,10 @@ elif args[:3] == ['shell', 'am', 'instrument']:
             result = subprocess.run(command + ['--modes'] + modes,
                                     capture_output=True, text=True, timeout=30)
             records = json.loads((output / 'results.json').read_text())
+            result.window_diagnostics = {
+                path.name: path.read_text() for path in output.glob('*-window.txt')}
+            result.activity_diagnostics = {
+                path.name: path.read_text() for path in output.glob('*-activity.txt')}
             return result, records
 
     def test_collects_failure_and_runs_next_independent_mode(self):
@@ -45,6 +51,10 @@ elif args[:3] == ['shell', 'am', 'instrument']:
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual([r['passed'] for r in records], [False, True])
         self.assertIn('synthetic assertion', result.stdout)
+        self.assertEqual(result.window_diagnostics,
+                         {'binary-window.txt': 'synthetic window diagnostics\n'})
+        self.assertEqual(result.activity_diagnostics,
+                         {'binary-activity.txt': 'synthetic activity diagnostics\n'})
 
     def test_skips_reopen_after_failed_fixture_and_continues(self):
         result, records = self.run_modes(
