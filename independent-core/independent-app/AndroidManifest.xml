@@ -1,0 +1,16 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="org.rabochaya.karta" android:versionCode="27" android:versionName="27-independent-core">
+ <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="33"/>
+ <uses-permission android:name="android.permission.INTERNET"/>
+ <application android:label="Рабочая карта" android:icon="@drawable/app_icon" android:allowBackup="false" android:fullBackupContent="false" android:debuggable="false" android:usesCleartextTraffic="false" android:theme="@android:style/Theme.Material.Light.NoActionBar">
+  <activity android:name="org.rabochaya.projects.OwnedHomeActivity" android:exported="true"><intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter></activity>
+  <activity android:name="org.rabochaya.projects.ProjectsActivity" android:exported="false" android:configChanges="keyboardHidden|orientation|screenSize"/>
+  <activity android:name="org.rabochaya.projects.MapCatalogActivity" android:exported="false"/>
+  <activity android:name="org.rabochaya.projects.OnlineMapActivity" android:exported="false" android:configChanges="keyboardHidden|orientation|screenSize"/>
+  <activity android:name="org.rabochaya.projects.CacheExportActivity" android:exported="false"/>
+  <activity android:name="org.rabochaya.projects.GeometryEditorActivity" android:exported="false"/>
+  <activity android:name="org.rabochaya.projects.ObjectManagerActivity" android:exported="false"/>
+  <activity android:name="org.rabochaya.projects.CompassActivity" android:exported="false"/>
+  <activity android:name="org.rabochaya.projects.AttachmentsActivity" android:exported="false" android:configChanges="keyboardHidden|orientation|screenSize"/>
+  <activity android:name="org.rabochaya.projects.MediaPlaybackActivity" android:exported="false"/>
+  <activity android:name="org.rabochaya.projects.LocalMapActivity" android:exported="false"/>
+ </application></manifest>

@@ -1,0 +1,331 @@
+{
+  "warning": "Это кандидаты из текстов и истории изменений исходной программы. Список не полный; доступность в 26.1 должна быть проверена через её интерфейс. Он не доказывает реализацию в новом ядре.",
+  "formats": [
+    {
+      "domain": "maps",
+      "format": "GeoTIFF (.tif/.tiff), including NoData",
+      "evidence": "reference strings.xml changelog",
+      "runtime_confirmed": false
+    },
+    {
+      "domain": "maps",
+      "format": "CompeGPS Raster Image (.rmap)",
+      "evidence": "reference strings.xml changelog",
+      "runtime_confirmed": false
+    },
+    {
+      "domain": "maps",
+      "format": "OziExplorer .map with .jpg/.png/.bmp/.gif images",
+      "evidence": "reference strings.xml changelog",
+      "runtime_confirmed": false
+    },
+    {
+      "domain": "objects",
+      "format": "GPX, KML/KMZ, SHP, GeoJSON, IGC",
+      "evidence": "reference strings.xml changelog",
+      "runtime_confirmed": false
+    }
+  ],
+  "ui_candidates": [
+    {
+      "resource": "core_submenu_print_map",
+      "english": "Print map",
+      "russian": "Снимок экрана",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "core_submenu_display_grid",
+      "english": "Display grid",
+      "russian": "Координатная сетка",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "core_submenu_display_secondary_grid",
+      "english": "Display secondary grid",
+      "russian": "Доп. координатная сетка",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "maps_submenu_favorites_title",
+      "english": "Favourite maps & sets",
+      "russian": "Избранные карты и наборы карт",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "landmarks_submenu_display_target_information",
+      "english": "Target information",
+      "russian": "Статус цели",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "core_button_calibrate",
+      "english": "Calibrate",
+      "russian": "Калибровать",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "core_button_convert_to",
+      "english": "Convert to",
+      "russian": "Конвертировать в",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "core_button_reverse_order",
+      "english": "Reverse order",
+      "russian": "Обратный порядок",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "core_explorer_context_group_sort_title",
+      "english": "Sort by",
+      "russian": "Сортировать по",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "core_backups_restore_merge_s",
+      "english": "Files already present on the device won’t be restored.",
+      "russian": "Файлы, уже имеющиеся на устройстве, не будут восстановлены.",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "maps_context_menu_calibrate",
+      "english": "Calibrate",
+      "russian": "Привязать",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "maps_favorites_set_empty",
+      "english": "No favourite map or set defined yet",
+      "russian": "Избранные карты и наборы карт не созданы",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "maps_favorites_create_to_save_s",
+      "english": "You can save your changes as a favorite map or map set.",
+      "russian": "Для сохранения изменений создайте/обновите избранную карту или набор карт.",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "maps_favorites_unsaved_list_s",
+      "english": "The configuration of maps currently displayed will be replaced and lost.",
+      "russian": "Конфигурация отображаемых в данный момент карт будет заменена и утеряна.",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "maps_favorites_ask_save_list_s",
+      "english": "Do you want to save it as a favourite set?",
+      "russian": "Сохранить её в избранном наборе карт?",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "maps_favorites_item",
+      "english": "Favourite item",
+      "russian": "Элемент избранного",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "maps_favorites_save_as",
+      "english": "Save as favourite",
+      "russian": "Сохранить в избранные",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "maps_onboard_explorer_group_calibratable",
+      "english": "Images to calibrate",
+      "russian": "Изображения для привязки",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "landmarks_context_menu_edit_profile",
+      "english": "Edit profile",
+      "russian": "Изменить профиль",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "landmarks_context_menu_dynamic_profile",
+      "english": "Dynamic profile",
+      "russian": "Динамический профиль",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "landmarks_context_menu_split_here",
+      "english": "Split here",
+      "russian": "Разделить здесь",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "landmarks_context_menu_split_points",
+      "english": "Split waypoints",
+      "russian": "Разгруппировать точки",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "landmarks_follow_path_option_reverse",
+      "english": "Reverse order",
+      "russian": "В обратном направлении",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "landmarks_offline_folder_unsorted",
+      "english": "Unsorted placemarks",
+      "russian": "Несортированные метки",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "search_format_name",
+      "english": "Search by name",
+      "russian": "Поиск по имени",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "search_format_project",
+      "english": "Project a location",
+      "russian": "Спроектировать местоположение",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "search_text_format",
+      "english": "Search format",
+      "russian": "Критерий поиска",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "orientation_compass_calibrate_message",
+      "english": "Rotate your device in all directions to calibrate the magnetic sensor.",
+      "russian": "Для калибровки компаса по очереди поверните устройство несколько раз по трём осям.",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "barometer_calibrate_text",
+      "english": "\"To get precise results using the barometer, you need to calibrate it.\nPlace yourself at a known elevation (you may use the GNSS altitude) and enter it as a reference.\"",
+      "russian": "\"Для получения точных показаний барометр необходимо откалибровать.\nВстаньте на каком-либо заранее известном возвышенном месте (можно использовать GNSS высоту) и введите значение высоты в качестве эталонного.\"",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "barometer_calibrate_current_2p",
+      "english": "The current reference pressure is %s at %s.",
+      "russian": "Текущее эталонное давление составляет %s на высоте %s",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "barometer_calibrate_elevation",
+      "english": "Current elevation",
+      "russian": "Текущая высота",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "settings_display_reference_north_grid",
+      "english": "Grid north",
+      "russian": "Координатный север",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "settings_canvas_grids_title",
+      "english": "Grids density and style",
+      "russian": "Вид координатных сеток",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "settings_canvas_grids_desc",
+      "english": "Define how grids are displayed on the map.",
+      "russian": "Выбрать плотность и стиль отображения координатных сеток на карте.",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "settings_canvas_grids_option_minor_labels",
+      "english": "Display labels of minor lines",
+      "russian": "Отобразить надписи на вспомогательных линиях",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "core_details_no_information",
+      "english": "No information.",
+      "russian": "Нет информации",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "atk_metadata_location_azimuth_grid",
+      "english": "Azimuth (grid)",
+      "russian": "Азимут (коор.)",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "atk_metadata_location_reverse_1p",
+      "english": "Reverse %s",
+      "russian": "Обратный %s",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "core_graphics_category_profile",
+      "english": "Profile",
+      "russian": "Профиль",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "core_graphics_touch_profile",
+      "english": "Touch the profile to control",
+      "russian": "Коснитесь экрана для управления профилем",
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "abc_action_bar_home_description_format",
+      "english": "%1$s, %2$s",
+      "russian": null,
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "abc_action_bar_home_subtitle_description_format",
+      "english": "%1$s, %2$s, %3$s",
+      "russian": null,
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "application_uri_online_help_maps_calibrate",
+      "english": "private-help:",
+      "russian": null,
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "application_uri_online_help_placemarks",
+      "english": "private-help:",
+      "russian": null,
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "application_uri_online_help_placemarks_explorer",
+      "english": "private-help:",
+      "russian": null,
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "application_uri_online_help_placemarks_import_export_gen",
+      "english": "private-help:",
+      "russian": null,
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "application_uri_online_help_placemarks_import_export_xsv",
+      "english": "private-help:",
+      "russian": null,
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "application_uri_online_help_placemarks_statistics",
+      "english": "private-help:",
+      "russian": null,
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "application_uri_online_help_placemarks_measure",
+      "english": "private-help:",
+      "russian": null,
+      "runtime_confirmed": false
+    },
+    {
+      "resource": "application_uri_online_help_placemarks_autorouting",
+      "english": "private-help:",
+      "russian": null,
+      "runtime_confirmed": false
+    }
+  ]
+}

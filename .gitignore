@@ -3,3 +3,16 @@
 local.properties
 *.apk
 !downloads/*.apk
+# Secrets and generated development outputs
+**/*.apk
+**/*.aab
+**/*.jks
+**/*.keystore
+**/*.p12
+**/*.pem
+**/.env
+**/local.properties
+**/__pycache__/
+**/password
+independent-core/security/jvm-current.json
+independent-core/security/standalone-build.json
