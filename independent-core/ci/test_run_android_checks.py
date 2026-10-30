@@ -5,6 +5,11 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import base64
+import contextlib
+import hashlib
+import io
+from visual_evidence import emit_visual_evidence
 
 
 class RunnerTests(unittest.TestCase):
@@ -74,6 +79,44 @@ elif args[:3] == ['shell', 'am', 'instrument']:
         result, records = self.run_modes(['binary', 'independence'], ['binary'], False)
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual(len(records), 1)
+
+
+class VisualEvidenceTests(unittest.TestCase):
+    png = base64.b64decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aLeoAAAAASUVORK5CYII=')
+
+    def test_roundtrip_and_unrelated_files_are_excluded(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'map_mvisual-day-main.png').write_bytes(self.png)
+            (root / 'private.png').write_bytes(b'unrelated must never be logged')
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                emit_visual_evidence(root)
+            lines = output.getvalue().splitlines()
+            self.assertEqual(lines[0], 'RK_VISUAL_BEGIN map_mvisual-day-main.png ' + hashlib.sha256(self.png).hexdigest())
+            encoded = ''.join(line.removeprefix('RK_VISUAL_DATA ') for line in lines if line.startswith('RK_VISUAL_DATA '))
+            self.assertEqual(base64.b64decode(encoded), self.png)
+            self.assertNotIn('private', output.getvalue())
+
+    def test_missing_frames_fail(self):
+        with tempfile.TemporaryDirectory() as directory:
+            with self.assertRaisesRegex(RuntimeError, 'No manager visual'):
+                emit_visual_evidence(Path(directory))
+
+    def test_size_cap_fails_before_logging_payload(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'map_mvisual-day-main.png'
+            path.write_bytes(self.png + b'x' * (2 * 1024 * 1024))
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output), self.assertRaisesRegex(RuntimeError, 'limit'):
+                emit_visual_evidence(Path(directory))
+            self.assertEqual(output.getvalue(), '')
+
+    def test_non_png_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            (Path(directory) / 'map_mvisual-day-main.png').write_bytes(b'not PNG')
+            with self.assertRaisesRegex(RuntimeError, 'not PNG'):
+                emit_visual_evidence(Path(directory))
 
 
 if __name__ == '__main__':
