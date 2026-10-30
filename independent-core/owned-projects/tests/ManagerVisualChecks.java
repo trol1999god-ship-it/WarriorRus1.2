@@ -11,14 +11,15 @@ final class ManagerVisualChecks {
  void finish(){if(m.activity!=null){Activity old=m.activity;m.runOnMainSync(()->old.finish());m.waitForIdleSync();m.activity=null;}}
  void launch(long project)throws Exception{m.activity=m.startActivitySync(new Intent().setClassName(m.getTargetContext().getPackageName(),"org.rabochaya.projects.ObjectManagerActivity").putExtra("project",project).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));m.geometryReady();m.waitText("Объекты проекта");}
  void rotate(int rotation)throws Exception{
-  Instrumentation.ActivityMonitor monitor=m.addMonitor("org.rabochaya.projects.ObjectManagerActivity",null,false);
   int desired=rotation==UiAutomation.ROTATION_FREEZE_0?Configuration.ORIENTATION_PORTRAIT:Configuration.ORIENTATION_LANDSCAPE;
-  try{m.check(m.getUiAutomation().setRotation(rotation),"visual rotation requested");long until=System.currentTimeMillis()+15000;int stable=0;
-   while(System.currentTimeMillis()<until){Activity next=m.waitForMonitorWithTimeout(monitor,100);if(next!=null)m.activity=next;
-    View decor=m.activity.getWindow().getDecorView();boolean dimensions=desired==Configuration.ORIENTATION_PORTRAIT?decor.getHeight()>decor.getWidth():decor.getWidth()>decor.getHeight();
-    if(!m.activity.isDestroyed()&&m.activity.getResources().getConfiguration().orientation==desired&&dimensions){if(++stable>=3){m.geometryReady();return;}}else stable=0;Thread.sleep(100);
-   }throw new AssertionError("visual orientation did not settle: "+desired);
-  }finally{m.removeMonitor(monitor);}
+  m.check(m.getUiAutomation().setRotation(rotation),"visual rotation requested");long until=System.currentTimeMillis()+15000;int stable=0;final int[] state=new int[3];
+  while(System.currentTimeMillis()<until){
+   m.runOnMainSync(()->{View root=m.activeDialogRoot();ViewGroup content=(ViewGroup)root.findViewById(android.R.id.content);if(content!=null&&content.getChildCount()>0){Context current=content.getChildAt(0).getContext();while(current instanceof ContextWrapper&&!(current instanceof Activity))current=((ContextWrapper)current).getBaseContext();if(current instanceof Activity&&current.getClass().getName().equals("org.rabochaya.projects.ObjectManagerActivity"))m.activity=(Activity)current;}
+    View decor=m.activity.getWindow().getDecorView();state[0]=decor.getWidth();state[1]=decor.getHeight();state[2]=m.activity.getResources().getConfiguration().orientation;
+   });
+   boolean dimensions=desired==Configuration.ORIENTATION_PORTRAIT?state[1]>state[0]:state[0]>state[1];
+   if(!m.activity.isDestroyed()&&state[2]==desired&&dimensions){if(++stable>=3){m.geometryReady();return;}}else stable=0;Thread.sleep(100);
+  }emit("VISUAL_ROTATION_STATE desired="+desired+" actual="+Arrays.toString(state)+" activity="+m.activity);throw new AssertionError("visual orientation did not settle: "+desired);
  }
  JSONArray imeWindows()throws Exception{JSONArray windows=new JSONArray();for(AccessibilityWindowInfo window:m.getUiAutomation().getWindows())if(window.getType()==AccessibilityWindowInfo.TYPE_INPUT_METHOD){Rect bounds=new Rect();window.getBoundsInScreen(bounds);if(bounds.width()>0&&bounds.height()>0)windows.put(bounds.toShortString());}return windows;}
  void inspect(View view,JSONArray texts)throws Exception{
@@ -34,12 +35,13 @@ final class ManagerVisualChecks {
   m.runOnMainSync(()->{try{View root=m.activeDialogRoot();Rect frame=new Rect();root.getWindowVisibleDisplayFrame(frame);state.put("name",name);state.put("visibleFrame",frame.toShortString());state.put("orientation",m.activity.getResources().getConfiguration().orientation);state.put("nightMask",m.activity.getResources().getConfiguration().uiMode&Configuration.UI_MODE_NIGHT_MASK);JSONArray texts=new JSONArray();inspect(root,texts);state.put("texts",texts);}catch(Exception e){error[0]=new RuntimeException(e);}});
   if(error[0]!=null)throw error[0];JSONArray ime=imeWindows();boolean shown=ime.length()>0;state.put("imeWindows",ime);state.put("keyboardRequested",keyboard);state.put("keyboardObserved",shown);
   m.capture("mvisual-"+name);observations.put(state);emit("MANAGER_VISUAL "+state.toString());
-  if(keyboard){m.check(shown,"real soft keyboard window visible for "+name);buttonsReachable();}
+  if(keyboard){m.check(shown,"real soft keyboard window visible for "+name);buttonsReachable();editableLineVisible();}
   JSONArray texts=state.getJSONArray("texts");for(int i=0;i<texts.length();i++){JSONObject text=texts.getJSONObject(i);if(text.getBoolean("visible"))m.check(text.getBoolean("arimo"),"Arimo on visible manager text: "+text.getString("text"));}
-  if(name.endsWith("-main")){m.check(m.find(m.getUiAutomation().getRootInActiveWindow(),"QA_VISUAL_Папка",false)!=null,"object list survives main layout");final View[] footer={null};m.runOnMainSync(()->footer[0]=button(m.activity.getWindow().getDecorView(),"Проекты, импорт и экспорт"));m.check(footer[0]!=null&&fullyVisible(footer[0]),"footer reachable inside app window");}
+  if(name.endsWith("-main")){m.check(m.find(m.getUiAutomation().getRootInActiveWindow(),"QA_VISUAL_Папка",false)!=null,"object list survives main layout");final View[] footer={null};m.runOnMainSync(()->footer[0]=button(m.activity.getWindow().getDecorView(),"Проекты, импорт и экспорт"));m.check(footer[0]!=null&&fullyVisible(footer[0]),"footer reachable inside app window");final boolean[] navigation={false};m.runOnMainSync(()->{View root=m.activity.getWindow().getDecorView();View actions=button(root,"Действия"),close=button(root,"Закрыть");navigation[0]=actions!=null&&close!=null&&fullyVisible(actions)&&fullyVisible(close);});m.check(navigation[0],"navigation buttons remain fully visible without header scrolling");}
  }
  View button(View root,String label){if(root instanceof Button&&label.contentEquals(((Button)root).getText()))return root;if(root instanceof ViewGroup){ViewGroup group=(ViewGroup)root;for(int i=0;i<group.getChildCount();i++){View found=button(group.getChildAt(i),label);if(found!=null)return found;}}return null;}
  boolean fullyVisible(View view){Rect actual=new Rect(),frame=new Rect();int[] xy=new int[2];view.getLocationOnScreen(xy);view.getWindowVisibleDisplayFrame(frame);return view.getGlobalVisibleRect(actual)&&actual.width()==view.getWidth()&&actual.height()==view.getHeight()&&frame.contains(xy[0],xy[1],xy[0]+view.getWidth(),xy[1]+view.getHeight());}
+ void editableLineVisible(){final boolean[] visible={false};m.runOnMainSync(()->{List<EditText> fields=new ArrayList<>();m.collectInputs(m.activeDialogRoot(),fields);for(EditText field:fields){Rect bounds=new Rect();if(field.getGlobalVisibleRect(bounds)&&bounds.height()>=field.getLineHeight())visible[0]=true;}});m.check(visible[0],"at least one editable text line remains visible above keyboard");}
  void buttonsReachable(){final boolean[] good={false};m.runOnMainSync(()->{View root=m.activeDialogRoot();View save=button(root,"Сохранить"),cancel=button(root,"Отмена");good[0]=save!=null&&cancel!=null&&fullyVisible(save)&&fullyVisible(cancel);});m.check(good[0],"Save and Cancel fully visible above IME/system insets");}
  void keyboard()throws Exception{
   final EditText[] input={null};m.runOnMainSync(()->{List<EditText> fields=new ArrayList<>();m.collectInputs(m.activeDialogRoot(),fields);if(!fields.isEmpty()){input[0]=fields.get(0);input[0].requestFocus();((InputMethodManager)m.activity.getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(input[0],InputMethodManager.SHOW_IMPLICIT);}});
@@ -58,7 +60,9 @@ final class ManagerVisualChecks {
    for(int night:new int[]{UiModeManager.MODE_NIGHT_NO,UiModeManager.MODE_NIGHT_YES}){
     finish();m.getUiAutomation().setRotation(UiAutomation.ROTATION_FREEZE_0);if(Build.VERSION.SDK_INT>=24)shell("cmd uimode night "+(night==UiModeManager.MODE_NIGHT_YES?"yes":"no"));else ui.setNightMode(night);Thread.sleep(700);launch(id);rotate(UiAutomation.ROTATION_FREEZE_0);m.check((m.activity.getResources().getConfiguration().uiMode&Configuration.UI_MODE_NIGHT_MASK)==(night==UiModeManager.MODE_NIGHT_YES?Configuration.UI_MODE_NIGHT_YES:Configuration.UI_MODE_NIGHT_NO),"actual system night mask applied");String theme=night==UiModeManager.MODE_NIGHT_YES?"night":"day";
     snapshot(theme+"-portrait-main",false);rotate(UiAutomation.ROTATION_FREEZE_90);snapshot(theme+"-landscape-main",false);
-    m.managerAction("Новая папка / группа");m.inputs("QA_VISUAL_Новая папка");keyboard();snapshot(theme+"-landscape-name-ime",true);cancel();
+    m.managerAction("Новая папка / группа");m.inputs("QA_VISUAL_Новая папка");keyboard();snapshot(theme+"-landscape-name-ime",true);
+    m.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);long hidden=System.currentTimeMillis()+7000;while(imeWindows().length()>0&&System.currentTimeMillis()<hidden)Thread.sleep(100);m.check(imeWindows().length()==0,"Back hides keyboard without closing editor");m.waitText("Новая папка / группа");snapshot(theme+"-landscape-name-restored",false);m.check(m.find(m.getUiAutomation().getRootInActiveWindow(),"Новая папка / группа",true).isVisibleToUser(),"normal dialog title returns after IME dismissal");buttonsReachable();final boolean[] restored={false};m.runOnMainSync(()->{List<EditText> fields=new ArrayList<>();m.collectInputs(m.activeDialogRoot(),fields);restored[0]=fields.size()==1&&"QA_VISUAL_Новая папка".contentEquals(fields.get(0).getText());});m.check(restored[0],"keyboard dismissal preserves unsaved name");
+    keyboard();buttonsReachable();cancel();
     rotate(UiAutomation.ROTATION_FREEZE_0);m.managerAction("Новая папка / группа");m.inputs("QA_VISUAL_Новая папка");keyboard();snapshot(theme+"-portrait-name-ime",true);cancel();
     m.click("QA_VISUAL_Точка");m.managerAction("Изменить описание");keyboard();snapshot(theme+"-portrait-description-ime",true);cancel();
     rotate(UiAutomation.ROTATION_FREEZE_90);m.click("QA_VISUAL_Точка");m.managerAction("Изменить описание");keyboard();snapshot(theme+"-landscape-description-ime",true);cancel();

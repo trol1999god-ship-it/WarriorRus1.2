@@ -50,7 +50,7 @@
 
     iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$1;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    const/high16 v2, 0x43000000    # 128.0f
+    const/high16 v2, 0x43400000    # 192.0f
 
     invoke-static {v1, v2}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 

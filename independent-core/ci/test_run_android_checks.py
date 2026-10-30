@@ -9,7 +9,7 @@ import base64
 import contextlib
 import hashlib
 import io
-from visual_evidence import emit_visual_evidence
+from visual_evidence import emit_visual_evidence, decode_visual_log
 
 
 class RunnerTests(unittest.TestCase):
@@ -97,6 +97,42 @@ class VisualEvidenceTests(unittest.TestCase):
             encoded = ''.join(line.removeprefix('RK_VISUAL_DATA ') for line in lines if line.startswith('RK_VISUAL_DATA '))
             self.assertEqual(base64.b64decode(encoded), self.png)
             self.assertNotIn('private', output.getvalue())
+
+    def log_fixture(self):
+        encoded = base64.b64encode(self.png).decode('ascii')
+        return ('timestamp RK_VISUAL_BEGIN map_mvisual-day-main.png ' + hashlib.sha256(self.png).hexdigest() + '\n'
+                'timestamp RK_VISUAL_DATA ' + encoded + '\n'
+                'timestamp RK_VISUAL_END map_mvisual-day-main.png\n')
+
+    def test_decode_roundtrip_with_job_timestamps(self):
+        self.assertEqual(decode_visual_log(self.log_fixture()), {'map_mvisual-day-main.png': self.png})
+
+    def test_decoder_rejects_corruption_and_truncation(self):
+        text = self.log_fixture()
+        with self.assertRaises(ValueError):
+            decode_visual_log(text.replace(hashlib.sha256(self.png).hexdigest(), '0' * 64))
+        with self.assertRaises(ValueError):
+            decode_visual_log(text[:text.index('timestamp RK_VISUAL_END')])
+
+    def test_decoder_rejects_duplicate_and_path_traversal(self):
+        text = self.log_fixture()
+        with self.assertRaises(ValueError):
+            decode_visual_log(text + text)
+        with self.assertRaises(ValueError):
+            decode_visual_log(text.replace('map_mvisual-day-main.png', '../outside.png'))
+
+    def test_cli_preserves_existing_evidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            log = root / 'job.log'
+            log.write_text(self.log_fixture())
+            target = root / 'map_mvisual-day-main.png'
+            target.write_bytes(b'existing evidence')
+            result = subprocess.run([sys.executable, str(Path(__file__).with_name('extract_visual_evidence.py')),
+                                     '--log', str(log), '--out', str(root)], capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertEqual(target.read_bytes(), b'existing evidence')
+            self.assertFalse((root / 'frames.json').exists())
 
     def test_missing_frames_fail(self):
         with tempfile.TemporaryDirectory() as directory:

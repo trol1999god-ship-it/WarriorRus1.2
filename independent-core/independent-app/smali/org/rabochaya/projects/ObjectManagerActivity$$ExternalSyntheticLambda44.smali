@@ -3,17 +3,15 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/view/ViewTreeObserver$OnGlobalLayoutListener;
+.implements Landroid/content/DialogInterface$OnClickListener;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-.field public final synthetic f$1:Landroid/view/View;
-
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/view/View;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
     .locals 0
 
     .line 0
@@ -21,22 +19,18 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda44;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda44;->f$1:Landroid/view/View;
-
     return-void
 .end method
 
 
 # virtual methods
-.method public final onGlobalLayout()V
-    .locals 2
+.method public final onClick(Landroid/content/DialogInterface;I)V
+    .locals 1
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda44;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda44;->f$1:Landroid/view/View;
-
-    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$watchFont$6$org-rabochaya-projects-ObjectManagerActivity(Landroid/view/View;)V
+    invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$load$11$org-rabochaya-projects-ObjectManagerActivity(Landroid/content/DialogInterface;I)V
 
     return-void
 .end method

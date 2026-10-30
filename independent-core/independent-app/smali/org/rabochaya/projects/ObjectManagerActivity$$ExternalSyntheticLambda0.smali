@@ -48,7 +48,7 @@
 
     iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda0;->f$3:Ljava/lang/String;
 
-    invoke-virtual {v0, v1, v2, v3, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$description$36$org-rabochaya-projects-ObjectManagerActivity(Landroid/app/AlertDialog;Landroid/widget/EditText;Ljava/lang/String;Landroid/content/DialogInterface;)V
+    invoke-virtual {v0, v1, v2, v3, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$description$37$org-rabochaya-projects-ObjectManagerActivity(Landroid/app/AlertDialog;Landroid/widget/EditText;Ljava/lang/String;Landroid/content/DialogInterface;)V
 
     return-void
 .end method

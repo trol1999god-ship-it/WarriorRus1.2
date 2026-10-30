@@ -42,7 +42,7 @@
 
     iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda46;->f$2:Ljava/util/List;
 
-    invoke-virtual {v0, v1, v2, p1, p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$visibility$24$org-rabochaya-projects-ObjectManagerActivity(ZLjava/util/List;Landroid/content/DialogInterface;I)V
+    invoke-virtual {v0, v1, v2, p1, p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$visibility$25$org-rabochaya-projects-ObjectManagerActivity(ZLjava/util/List;Landroid/content/DialogInterface;I)V
 
     return-void
 .end method

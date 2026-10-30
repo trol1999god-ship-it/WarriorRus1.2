@@ -22,7 +22,7 @@
 .method constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/content/Context;)V
     .locals 0
 
-    .line 29
+    .line 48
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$2;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
     invoke-direct {p0, p2}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
@@ -35,22 +35,10 @@
 .method public create()Landroid/app/AlertDialog;
     .locals 3
 
-    .line 29
+    .line 48
     invoke-super {p0}, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
 
     move-result-object v0
-
-    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$2;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
-
-    invoke-virtual {v0}, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Landroid/view/Window;->getDecorView()Landroid/view/View;
-
-    move-result-object v2
-
-    invoke-static {v1, v2}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$100(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/view/View;)V
 
     invoke-virtual {v0}, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
 
@@ -59,6 +47,21 @@
     const/16 v2, 0x10
 
     invoke-virtual {v1, v2}, Landroid/view/Window;->setSoftInputMode(I)V
+
+    return-object v0
+.end method
+
+.method public show()Landroid/app/AlertDialog;
+    .locals 2
+
+    .line 48
+    invoke-super {p0}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$2;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
+
+    invoke-static {v1, v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$100(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/app/AlertDialog;)V
 
     return-object v0
 .end method

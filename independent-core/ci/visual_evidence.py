@@ -26,3 +26,42 @@ def emit_visual_evidence(directory):
         for start in range(0, len(encoded), 1000):
             print('RK_VISUAL_DATA ' + encoded[start:start+1000], flush=True)
         print('RK_VISUAL_END ' + path.name, flush=True)
+
+
+def decode_visual_log(text):
+    """Validate connector/job-log PNGs; never infer visual acceptance from them."""
+    frames = {}
+    current = None
+    total = 0
+    for line in text.splitlines():
+        marker = re.search(r'RK_VISUAL_(BEGIN|DATA|END) (.*)$', line)
+        if not marker:
+            continue
+        kind, value = marker.groups()
+        if kind == 'BEGIN':
+            if current is not None:
+                raise ValueError('Unfinished visual frame')
+            fields = value.split()
+            if len(fields) != 2 or not re.fullmatch(r'map_mvisual-[a-z-]+\.png', fields[0]) or not re.fullmatch(r'[a-f0-9]{64}', fields[1]):
+                raise ValueError('Invalid visual frame header')
+            if fields[0] in frames or len(frames) >= 16:
+                raise ValueError('Duplicate frame or frame limit exceeded')
+            current = [fields[0], fields[1], '']
+        elif kind == 'DATA':
+            if current is None or not re.fullmatch(r'[A-Za-z0-9+/=]+', value):
+                raise ValueError('Unexpected visual frame data')
+            current[2] += value
+            if len(current[2]) > 3 * 1024 * 1024:
+                raise ValueError('Visual frame exceeds limit')
+        else:
+            if current is None or value != current[0]:
+                raise ValueError('Visual frame end mismatch')
+            data = base64.b64decode(current[2], validate=True)
+            total += len(data)
+            if total > 2 * 1024 * 1024 or not data.startswith(b'\x89PNG\r\n\x1a\n') or hashlib.sha256(data).hexdigest() != current[1]:
+                raise ValueError('Visual PNG limit/signature/hash mismatch')
+            frames[current[0]] = data
+            current = None
+    if current is not None or not frames:
+        raise ValueError('Missing or unfinished visual evidence')
+    return frames
