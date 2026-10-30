@@ -10,7 +10,7 @@ with tempfile.TemporaryDirectory(prefix='map-checks-') as d:
  compile=['java',compiler,'-source','8','-target','8','-encoding','UTF-8','-bootclasspath',a.android_jar.resolve()]
  # Java 8 lambda signatures for the compiler only, exactly as in the production overlay.
  run(compile+['-d',api]+sorted((here/'api-stubs/java/lang/invoke').glob('*.java')))
- run(compile+['-cp',api,'-d',classes,here/'tests/UiText.java',here/'tests/ManagerVisualChecks.java',here/'tests/MapAndroidChecks.java'])
+ run(compile+['-cp',api,'-d',classes,here/'tests/UiText.java',here/'tests/ManagerVisualChecks.java',here/'tests/ManagerRotationChecks.java',here/'tests/MapAndroidChecks.java'])
  jar=w/'tests.jar'
  with zipfile.ZipFile(jar,'w',zipfile.ZIP_DEFLATED) as z:
   for f in classes.rglob('*.class'):
