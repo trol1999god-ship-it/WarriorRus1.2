@@ -1,0 +1,12 @@
+{
+  "source": "124822bb04aa53c2b9d1549aec360bb230a81a6d",
+  "run": 41166910485,
+  "jobs": {
+    "23": 124436411980,
+    "35": 124436411969
+  },
+  "previous_modes_passed_each": 31,
+  "both_apis": "Settled portrait asserted; old Activity destroyed/different asserted; chooser restored=false; XML/assets/settings and source selection unchanged.",
+  "reviewed_png_count": 4,
+  "api35_earlier_probe_invalid": true
+}

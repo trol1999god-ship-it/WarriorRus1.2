@@ -40,7 +40,7 @@
         }
     .end annotation
 
-    .line 178
+    .line 187
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
     iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$mode:Landroid/widget/Spinner;
@@ -72,7 +72,7 @@
         }
     .end annotation
 
-    .line 178
+    .line 187
     iget-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$mode:Landroid/widget/Spinner;
 
     invoke-virtual {p1}, Landroid/widget/Spinner;->getSelectedItemPosition()I
@@ -141,6 +141,6 @@
         }
     .end annotation
 
-    .line 178
+    .line 187
     return-void
 .end method
