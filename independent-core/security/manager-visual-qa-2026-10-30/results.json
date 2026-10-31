@@ -1,0 +1,107 @@
+{
+  "qualification": "Scoped synthetic emulator QA; not full 26.1 acceptance or a replacement release",
+  "code_commit": "78176dc4af8263a3a482515ae810da96c98e1292",
+  "production_manager_commit": "4bc826d7d37fa7ccb07814d5bb132e666241d6b4",
+  "run": 41107524308,
+  "jvm": {
+    "job": 124241525940,
+    "conclusion": "success",
+    "suites": 17,
+    "assertions": 81006,
+    "host_driver_tests": 12
+  },
+  "android": [
+    {
+      "api": 23,
+      "job": 124241698685,
+      "conclusion": "success",
+      "modes": [
+        "binary",
+        "independence",
+        "offlineformats",
+        "cachewrites",
+        "cacheexport",
+        "launcher",
+        "coordinates",
+        "catalogscreen",
+        "geometryedit",
+        "geometrymap",
+        "geometrymapreopen",
+        "objectmanager",
+        "objectmanagerreopen",
+        "clipboard",
+        "clipboardreopen",
+        "managerfilters",
+        "managerfiltersreopen",
+        "managervisibility",
+        "managervisibilityreopen",
+        "managerdates",
+        "managerdatesreopen",
+        "managerdescription",
+        "managerdescriptionreopen",
+        "managercontext",
+        "managercontextreopen",
+        "managervisual"
+      ],
+      "visual_assertions": 230,
+      "pngs": 16
+    },
+    {
+      "api": 35,
+      "job": 124241698650,
+      "conclusion": "success",
+      "modes": [
+        "binary",
+        "independence",
+        "offlineformats",
+        "cachewrites",
+        "cacheexport",
+        "launcher",
+        "coordinates",
+        "catalogscreen",
+        "geometryedit",
+        "geometrymap",
+        "geometrymapreopen",
+        "objectmanager",
+        "objectmanagerreopen",
+        "clipboard",
+        "clipboardreopen",
+        "managerfilters",
+        "managerfiltersreopen",
+        "managervisibility",
+        "managervisibilityreopen",
+        "managerdates",
+        "managerdatesreopen",
+        "managerdescription",
+        "managerdescriptionreopen",
+        "managercontext",
+        "managercontextreopen",
+        "managervisual"
+      ],
+      "visual_assertions": 223,
+      "pngs": 16
+    }
+  ],
+  "review": {
+    "all_32_final_pngs_sha256_verified": true,
+    "all_32_final_pngs_viewed": true,
+    "baseline_examples_viewed": true,
+    "observed": [
+      "List/navigation/footer available in portrait and landscape",
+      "Arimo on all visible manager texts",
+      "Light/dark scenes with actual nightMask 16/32",
+      "Name/description editable line and Save/Cancel visible with real IME",
+      "Real DOWN/UP Cancel touches dismiss editor without project writes",
+      "Keyboard dismissal restores normal name dialog and unsaved name",
+      "Day landscape search/date first input and Apply/Cancel/Reset visible with IME; Cancel preserves preferences",
+      "Launcher forced finished-Activity regression passes; live map/root/project and stable-view checks retained"
+    ],
+    "limits": [
+      "No exact reference palette/icon placement acceptance",
+      "No open editor rotation/draft restoration test",
+      "Search/date added scenes are day landscape and first date field only",
+      "No physical device, other display/font sizes or complete lifecycle acceptance",
+      "Release gate remains blocked; requirements unchanged"
+    ]
+  }
+}

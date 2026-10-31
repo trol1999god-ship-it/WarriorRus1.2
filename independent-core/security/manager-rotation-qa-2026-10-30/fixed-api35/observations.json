@@ -1,0 +1,780 @@
+[
+  {
+    "name": "rotation-name-before",
+    "visibleFrame": "[0,24][320,616]",
+    "orientation": 1,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Переименовать",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[48, 137, 224, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][264,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "QA_ROTATE_Новое имя 😀",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[40, 174, 240, 48]",
+        "visible": true,
+        "visibleBounds": "[32,71][272,119]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[91, 234, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[83,131][167,179]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[175, 234, 109, 48]",
+        "visible": true,
+        "visibleBounds": "[167,131][276,179]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,381][320,616]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "rotation-name-cancel",
+    "visibleFrame": "[0,24][640,106]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Переименовать",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 42, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "QA_ROTATE_Новое имя 😀",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 19, 608, 31]",
+        "visible": true,
+        "visibleBounds": "[16,0][624,26]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[435, 54, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[435,30][519,78]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[519, 54, 109, 48]",
+        "visible": true,
+        "visibleBounds": "[519,30][628,78]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,106][640,296]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "rotation-name-return",
+    "visibleFrame": "[0,24][320,381]",
+    "orientation": 1,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Переименовать",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[47, 137, 226, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][266,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "QA_ROTATE_Новое имя 😀",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[39, 174, 242, 48]",
+        "visible": true,
+        "visibleBounds": "[32,71][274,119]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[92, 234, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[85,131][169,179]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[176, 234, 109, 48]",
+        "visible": true,
+        "visibleBounds": "[169,131][278,179]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,381][320,616]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "rotation-name-save",
+    "visibleFrame": "[0,24][640,106]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Переименовать",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 42, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "QA_ROTATE_Новое имя 😀",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 19, 608, 31]",
+        "visible": true,
+        "visibleBounds": "[16,0][624,26]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[435, 54, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[435,30][519,78]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[519, 54, 109, 48]",
+        "visible": true,
+        "visibleBounds": "[519,30][628,78]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,106][640,296]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "rotation-name-stale-before",
+    "visibleFrame": "[0,24][640,106]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Переименовать",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 42, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Проект изменился. Черновик восстановлен. Сохранение заблокировано. Отмените редактор и повторите выбор объекта.",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[16, -18, 608, 37]",
+        "visible": false,
+        "visibleBounds": "[16,-42][624,-5]",
+        "fullyVisible": false
+      },
+      {
+        "class": "EditText",
+        "text": "QA_ROTATE_Новое имя 😀",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 19, 608, 31]",
+        "visible": true,
+        "visibleBounds": "[16,0][624,26]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[435, 54, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[435,30][519,78]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#28000000",
+        "arimo": true,
+        "bounds": "[519, 54, 109, 48]",
+        "visible": true,
+        "visibleBounds": "[519,30][628,78]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,106][640,296]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "rotation-name-stale-after",
+    "visibleFrame": "[0,24][640,106]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Переименовать",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 42, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "QA_ROTATE_Новое имя 😀",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 19, 608, 31]",
+        "visible": true,
+        "visibleBounds": "[16,0][624,26]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[435, 54, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[435,30][519,78]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[519, 54, 109, 48]",
+        "visible": true,
+        "visibleBounds": "[519,30][628,78]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,106][640,296]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "rotation-name-rejected",
+    "visibleFrame": "[0,24][640,296]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Проект изменился. Перечитайте список и повторите выбор",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 120, 384, 41]",
+        "visible": true,
+        "visibleBounds": "[16,34][400,75]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Понятно",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[405, 165, 95, 48]",
+        "visible": true,
+        "visibleBounds": "[293,79][388,127]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "rotation-description-before",
+    "visibleFrame": "[0,24][320,616]",
+    "orientation": 1,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Описание объекта",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[40, 63, 240, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Исходный текст описания KML. HTML и ссылки показаны как текст. Служебные ссылки вложений сохраняются отдельно. Пустой текст очищает описание.",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[32, 100, 256, 85]",
+        "visible": true,
+        "visibleBounds": "[32,71][288,156]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "QA_ROTATE_Описание 😀\nВторая строка",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[32, 185, 256, 111]",
+        "visible": true,
+        "visibleBounds": "[32,156][288,267]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[99, 308, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[99,279][183,327]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[183, 308, 109, 48]",
+        "visible": true,
+        "visibleBounds": "[183,279][292,327]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,381][320,616]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "rotation-description-cancel",
+    "visibleFrame": "[0,24][640,106]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Описание объекта",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 42, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Исходный текст описания KML. HTML и ссылки показаны как текст. Служебные ссылки вложений сохраняются отдельно. Пустой текст очищает описание.",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[16, -13, 608, 37]",
+        "visible": false,
+        "visibleBounds": "[16,-37][624,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "EditText",
+        "text": "QA_ROTATE_Описание 😀\nВторая строка",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 24, 608, 51]",
+        "visible": true,
+        "visibleBounds": "[16,0][624,26]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[435, 54, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[435,30][519,78]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[519, 54, 109, 48]",
+        "visible": true,
+        "visibleBounds": "[519,30][628,78]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,106][640,296]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "rotation-description-return",
+    "visibleFrame": "[0,24][320,381]",
+    "orientation": 1,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Описание объекта",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[40, 63, 240, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Исходный текст описания KML. HTML и ссылки показаны как текст. Служебные ссылки вложений сохраняются отдельно. Пустой текст очищает описание.",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[32, 100, 256, 85]",
+        "visible": true,
+        "visibleBounds": "[32,71][288,156]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "QA_ROTATE_Описание 😀\nВторая строка",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[32, 185, 256, 111]",
+        "visible": true,
+        "visibleBounds": "[32,156][288,267]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[99, 308, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[99,279][183,327]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[183, 308, 109, 48]",
+        "visible": true,
+        "visibleBounds": "[183,279][292,327]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,381][320,616]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "rotation-description-save",
+    "visibleFrame": "[0,24][640,106]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Описание объекта",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 42, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Исходный текст описания KML. HTML и ссылки показаны как текст. Служебные ссылки вложений сохраняются отдельно. Пустой текст очищает описание.",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[16, -13, 608, 37]",
+        "visible": false,
+        "visibleBounds": "[16,-37][624,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "EditText",
+        "text": "QA_ROTATE_Описание 😀\nВторая строка",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 24, 608, 51]",
+        "visible": true,
+        "visibleBounds": "[16,0][624,26]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[435, 54, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[435,30][519,78]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[519, 54, 109, 48]",
+        "visible": true,
+        "visibleBounds": "[519,30][628,78]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,106][640,296]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "rotation-description-stale-before",
+    "visibleFrame": "[0,24][640,106]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Описание объекта",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 42, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Исходный текст описания KML. HTML и ссылки показаны как текст. Служебные ссылки вложений сохраняются отдельно. Пустой текст очищает описание.",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[16, -50, 608, 37]",
+        "visible": false,
+        "visibleBounds": "[16,-74][624,-37]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Проект изменился. Черновик восстановлен. Сохранение заблокировано. Отмените редактор и повторите выбор объекта.",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[16, -13, 608, 37]",
+        "visible": false,
+        "visibleBounds": "[16,-37][624,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "EditText",
+        "text": "QA_ROTATE_Описание 😀\nВторая строка",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 24, 608, 51]",
+        "visible": true,
+        "visibleBounds": "[16,0][624,26]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[435, 54, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[435,30][519,78]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#28000000",
+        "arimo": true,
+        "bounds": "[519, 54, 109, 48]",
+        "visible": true,
+        "visibleBounds": "[519,30][628,78]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,106][640,296]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "rotation-description-stale-after",
+    "visibleFrame": "[0,24][640,106]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Описание объекта",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 42, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Исходный текст описания KML. HTML и ссылки показаны как текст. Служебные ссылки вложений сохраняются отдельно. Пустой текст очищает описание.",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[16, -13, 608, 37]",
+        "visible": false,
+        "visibleBounds": "[16,-37][624,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "EditText",
+        "text": "QA_ROTATE_Описание 😀\nВторая строка",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 24, 608, 51]",
+        "visible": true,
+        "visibleBounds": "[16,0][624,26]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[435, 54, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[435,30][519,78]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[519, 54, 109, 48]",
+        "visible": true,
+        "visibleBounds": "[519,30][628,78]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,106][640,296]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "rotation-description-rejected",
+    "visibleFrame": "[0,24][640,296]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Проект изменился. Перечитайте список и повторите выбор",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 120, 384, 41]",
+        "visible": true,
+        "visibleBounds": "[16,34][400,75]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Понятно",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[405, 165, 95, 48]",
+        "visible": true,
+        "visibleBounds": "[293,79][388,127]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "name": "map_mvisual-chooser-before.png",
+    "sha256": "f0913b3c8c057a5944614a9a1e77e456f9987e182991f68fdda675ce7bfa9d06",
+    "width": 320,
+    "height": 640,
+    "bytes": 24735
+  },
+  {
+    "name": "map_mvisual-chooser-cancel.png",
+    "sha256": "ff07ba4a9aceed6e0039c1104a965fdb3052d408cd361736ad97d25067db1e78",
+    "width": 640,
+    "height": 320,
+    "bytes": 23539
+  },
+  {
+    "name": "map_mvisual-chooser-choice-cancel.png",
+    "sha256": "3666a3bcb42d3b825724c1b84fd8e99077f7f0cda0672634bc89aff35e6069e5",
+    "width": 640,
+    "height": 320,
+    "bytes": 23526
+  },
+  {
+    "name": "map_mvisual-chooser-confirm-return.png",
+    "sha256": "47875eba606da54782aa23a1df13b9da19c9232713b4d1e5c6699d9b3118d71f",
+    "width": 320,
+    "height": 640,
+    "bytes": 30229
+  },
+  {
+    "name": "map_mvisual-chooser-foreign.png",
+    "sha256": "1d711870d8bd183f7942193298e7d870a42730bb1fe8bf54a69697726a76963e",
+    "width": 640,
+    "height": 320,
+    "bytes": 20781
+  },
+  {
+    "name": "map_mvisual-chooser-rejected.png",
+    "sha256": "0da077410ae0e60cf4876e626a862569e3ab5d6890a658a420187546f71f0ad1",
+    "width": 640,
+    "height": 320,
+    "bytes": 22333
+  },
+  {
+    "name": "map_mvisual-chooser-return.png",
+    "sha256": "809b4bb59beadf500c00531c0313703b9a2d6c0bdab635ccf0ca3db2517bb6c0",
+    "width": 320,
+    "height": 640,
+    "bytes": 27310
+  },
+  {
+    "name": "map_mvisual-chooser-save.png",
+    "sha256": "3666a3bcb42d3b825724c1b84fd8e99077f7f0cda0672634bc89aff35e6069e5",
+    "width": 640,
+    "height": 320,
+    "bytes": 23526
+  },
+  {
+    "name": "map_mvisual-chooser-saved.png",
+    "sha256": "f46594f154a5da74d9d0ceaa5fa5ea71a76131d870bf4edb44dac7c73e0de27b",
+    "width": 320,
+    "height": 640,
+    "bytes": 22672
+  },
+  {
+    "name": "map_mvisual-chooser-stale-after-return.png",
+    "sha256": "bea9d575ba6af16dac827d77cd9fb5a33af127ffb0670f1d591d07404dfca2c5",
+    "width": 320,
+    "height": 640,
+    "bytes": 33805
+  },
+  {
+    "name": "map_mvisual-chooser-stale-after.png",
+    "sha256": "3666a3bcb42d3b825724c1b84fd8e99077f7f0cda0672634bc89aff35e6069e5",
+    "width": 640,
+    "height": 320,
+    "bytes": 23526
+  },
+  {
+    "name": "map_mvisual-chooser-stale-before.png",
+    "sha256": "c3aa53cc090224e97a36e81ab44a56ab8cab78357259f6c9c9a1d12a32e247ac",
+    "width": 640,
+    "height": 320,
+    "bytes": 26486
+  }
+]

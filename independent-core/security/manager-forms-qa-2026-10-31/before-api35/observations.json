@@ -1,0 +1,9 @@
+{
+  "job": 124347828329,
+  "observations": [
+    "FORM_LAYOUT_FAILED kind=search Применить and Cancel fully visible above IME/system insets",
+    "FORM_STATE kind=search restored=false before={\"inputs\":[[\"QA_Несохранённый 😀\",3,8,true]],\"spinners\":[2,2,1,3],\"checks\":[true,true],\"error\":\"\"} after={\"inputs\":[],\"spinners\":[],\"checks\":[false,false,false],\"error\":\"\"}",
+    "FORM_LAYOUT_FAILED kind=dates Применить and Cancel fully visible above IME/system insets",
+    "FORM_STATE kind=dates restored=false before={\"inputs\":[[\"2026-10-01\",0,0,false],[\"2026-10-\",3,8,true]],\"spinners\":[2],\"checks\":[],\"error\":\"Дата: ГГГГ-ММ-ДД, например 2026-10-28\"} after={\"inputs\":[],\"spinners\":[],\"checks\":[false,false,false],\"error\":\"\"}"
+  ]
+}

@@ -1,0 +1,66 @@
+[
+  {
+    "name": "map_mvisual-forms-dates-apply.png",
+    "sha256": "240384fb1011fe29282d9f343cf8477a79193743f6ca5f78b449402d6628f36a"
+  },
+  {
+    "name": "map_mvisual-forms-dates-before.png",
+    "sha256": "1799be491c46e956b95d70f7d402770642a03f9fbc4cd91ad5df95c663d23479"
+  },
+  {
+    "name": "map_mvisual-forms-dates-cancel.png",
+    "sha256": "5e50d4e2530c7ad5dbf01318a42eaaaccb1d3a4df486badc2a813993b3a1af43"
+  },
+  {
+    "name": "map_mvisual-forms-dates-corrected.png",
+    "sha256": "25b09cb63b74d0f424b94bdbe3b8a4e584f79d170d0ed517e27f45e729b3706f"
+  },
+  {
+    "name": "map_mvisual-forms-dates-message.png",
+    "sha256": "b18ae69b3412ada8de3bbb1b88eefe704ce399e5240600904ed8ec0434d4578e"
+  },
+  {
+    "name": "map_mvisual-forms-dates-reset.png",
+    "sha256": "240384fb1011fe29282d9f343cf8477a79193743f6ca5f78b449402d6628f36a"
+  },
+  {
+    "name": "map_mvisual-forms-dates-return.png",
+    "sha256": "59f5089d0ff874ef521c3601b98ed9cb1fec6bda5b29ece889bd5b05a2248a96"
+  },
+  {
+    "name": "map_mvisual-forms-foreign-dates.png",
+    "sha256": "1fb6d293306152a493d200b6448e6dc95295918b7a4677dac16eb19d69caf88c"
+  },
+  {
+    "name": "map_mvisual-forms-foreign-search.png",
+    "sha256": "1fb6d293306152a493d200b6448e6dc95295918b7a4677dac16eb19d69caf88c"
+  },
+  {
+    "name": "map_mvisual-forms-move-after.png",
+    "sha256": "b6d7333ed441533a94cfc0d91fb9e9b43de8719c648d96ba41d6375c06985df8"
+  },
+  {
+    "name": "map_mvisual-forms-move-before.png",
+    "sha256": "8e21f9d8a7ad6fce258c292dad20064b859a7a36b6205b269bb6a1a0cdf846ad"
+  },
+  {
+    "name": "map_mvisual-forms-search-apply.png",
+    "sha256": "e87ce9ce6d0698b42e74e566e9de1a69bbbefd9c68ca2df446d75155ea3b64fa"
+  },
+  {
+    "name": "map_mvisual-forms-search-before.png",
+    "sha256": "1b6acfc56be60f82985a7fd40d0e3781fb8323bc5e40ee636306137e14518874"
+  },
+  {
+    "name": "map_mvisual-forms-search-cancel.png",
+    "sha256": "bef4bcf0390a1a245776abdb5e04390908417acb0a0e5de35d309e2cff5339fd"
+  },
+  {
+    "name": "map_mvisual-forms-search-reset.png",
+    "sha256": "bef4bcf0390a1a245776abdb5e04390908417acb0a0e5de35d309e2cff5339fd"
+  },
+  {
+    "name": "map_mvisual-forms-search-return.png",
+    "sha256": "ed2a6d42a986665dbf7b883e7dc3af162dd9a7571176969b0919e6aafea93e8c"
+  }
+]
