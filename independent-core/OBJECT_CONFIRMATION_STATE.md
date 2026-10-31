@@ -31,8 +31,8 @@ successful operations compare full expected DOM tokens, with only new copy IDs
 and namespace-declaration placement normalized for clone comparison.
 
 Local:22 JVM suites /81190 assertions (model60, clipboard63), host12, QA415 own
-classes, source SHA256 matched build_result. Android validation of the candidate
-is still pending. This is scoped QA, not full reference UI/process-death/device/
+classes, source SHA256 matched build_result. Final Android results are recorded
+below. This is scoped QA, not full reference UI/process-death/device/
 migration acceptance. No requirements are accepted and release gate is unchanged.
 
 The first candidate91cbee / CI41162028421 passed30 modes on each API. All16
@@ -46,7 +46,7 @@ not a claim that every intermediate frame was visually accepted.
 de2fb84 scopes Bundle folder/token to viewProject, retaining the target project's
 own stored view as fallback. Its QA unsigned SHA256 is
 eaa19f35e57da137b0dfe979c4574c6f069aaad8c0ed8be918833066addb637c.
-Full CI41163805624 is running with the same strict foreign-project assertions.
+Full CI41163805624 was run with the same strict foreign-project assertions.
 
 Final de2fb84 / CI41163805624: JVM and both Android jobs succeeded;31/31 modes
 on API23 and35, no skips. managerconfirm709/706 and managerpasteconfirm910/908
