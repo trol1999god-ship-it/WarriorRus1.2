@@ -547,3 +547,29 @@ CI29. Не считать его проверенным результатом �
 move-state-final-build:414 own classes, unsigned SHA256
 cd6479a5633fa931157d9ea398ee13bd6975f83c57eaaf28b2cd5113b6d6d96e;
 build_result source SHA совпадают, JVM21 /81122 host12 успешны.
+
+Кандидат переноса сохранён/отправлен 063ce3f36aeea7bf52cda6cc727da7538612a9d9.
+CI41153634195 запущен,29 режимов, без новых веток/worktree/merge. До фактического
+success и просмотра move-state PNG не объявлять перенос готовым. Проверенные
+формы относятся к a3a4a98/CI41152234002; текущий кандидат содержит их же код.
+
+В CI41153634195 JVM124395518731 success (21 /81122, host12);
+Android23 124395605265, Android35 124395605262 выполняются. Чтение completed логов
+и извлечение только map_mvisual-move-state-* (не смешивать с forms/rotation,
+лимит16 на сценарий) — следующий шаг. После каждого нового UI отказа сначала
+просмотреть настоящий PNG/диагностику, не ослаблять проверки.
+
+CI41153634195 failure: новый managermove прошёл243/242 обе API, все20 PNG
+SHA256-проверены и просмотрены, сохранены manager-move-qa-2026-10-31/first-api*.
+Это НЕ полный success. objectmanager обе API ожидал автоматически закрытое
+подтверждение после stale-отказа; active-window содержит прежний Move-dialog,
+stack MapAndroidChecks.java:306. Новая семантика сохраняет подтверждение.
+Тест теперь проверяет исходный project/старый token в moveDraft, явно Cancel,
+ещё раз сравнивает новый XML, затем Refresh. Assertions сохранены и добавлены.
+API35 coordinates не выполнен: adb device offline. API35 managerforms прошёл
+все6 raw actions, но failed на немедленном foreign-project field/visibleText
+assert без PNG. Production-причина не доказана; код не менялся. Добавлены
+waitText ожидаемой строки, PNG ДО assert, actual/expected project в сообщении;
+исходный exact project и visibleText assert остаётся. Это синхронизация/диагностика,
+не доказательство исправленного production-дефекта. Новый tests APK compiled,
+host12 pass. Нужен полный CI29 текущих тестов; app по-прежнему 063ce3f/414 classes.
