@@ -1,0 +1,26 @@
+{
+  "source": "5c71c3d65b23b63423c4b97954b8d085d705aa8a",
+  "run": 41150648969,
+  "jvm": {
+    "suites": 20,
+    "assertions": 81088,
+    "host_tests": 12
+  },
+  "android": {
+    "23": {
+      "job": 124386166288,
+      "modes_passed": 28,
+      "managerforms_assertions": 463
+    },
+    "35": {
+      "job": 124386166295,
+      "modes_passed": 28,
+      "managerforms_assertions": 455
+    }
+  },
+  "new_png_verified_and_reviewed": 32,
+  "raw_forms_functional": "passed scoped checks",
+  "visual_remaining": "portrait search Apply label breaks inside word",
+  "move_observation": "confirmation disappears after actual recreate on both APIs; not fixed",
+  "replacement_release_allowed": false
+}
