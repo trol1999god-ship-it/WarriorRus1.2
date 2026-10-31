@@ -13,7 +13,7 @@
     "result": "raw forms and complete action labels passed scoped checks; both rotations/real IME; no acceptance of full reference UI"
   },
   "scoped_forms_remaining_defects": [],
-  "all_stages_png_verified_and_reviewed": 74,
+  "all_stages_png_verified_and_reviewed": 106,
   "functional_before_label_fix": {
     "source": "5c71c3d65b23b63423c4b97954b8d085d705aa8a",
     "run": 41150648969,
@@ -42,5 +42,19 @@
   },
   "replacement_release_allowed": false,
   "accepted_requirements": 0,
-  "full_reference_ui_acceptance": false
+  "full_reference_ui_acceptance": false,
+  "regression_on_move": {
+    "source": "c337a9d1d31fef5918cba3120c90dd399db22059",
+    "production": "063ce3f36aeea7bf52cda6cc727da7538612a9d9",
+    "run": 41155203098,
+    "api23_job": 124400472581,
+    "api35_job": 124400472639,
+    "modes_passed_each": 29,
+    "managerforms_assertions": [
+      482,
+      473
+    ],
+    "png_verified_and_reviewed": 32,
+    "result": "strict forms and foreign-project assertions pass; move observation now restored"
+  }
 }
