@@ -22,5 +22,18 @@
   "raw_forms_functional": "passed scoped checks",
   "visual_remaining": "portrait search Apply label breaks inside word",
   "move_observation": "confirmation disappears after actual recreate on both APIs; not fixed",
-  "replacement_release_allowed": false
+  "replacement_release_allowed": false,
+  "labels_final": {
+    "source": "a3a4a98e8af57feab34899d43adecc51b6e639d2",
+    "run": 41152234002,
+    "api23_job": 124391260404,
+    "api35_job": 124391260318,
+    "modes_passed_each": 28,
+    "managerforms_assertions": [
+      492,
+      482
+    ],
+    "png_verified_and_reviewed": 32,
+    "result": "raw forms and complete action labels passed scoped checks; both rotations/real IME; no acceptance of full reference UI"
+  }
 }
