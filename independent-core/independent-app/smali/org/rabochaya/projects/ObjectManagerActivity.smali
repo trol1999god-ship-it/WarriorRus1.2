@@ -8909,7 +8909,19 @@
     .line 19
     invoke-direct {p0}, Lorg/rabochaya/projects/ObjectManagerActivity;->restoreView()V
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_2
+
+    const-string v0, "viewProject"
+
+    invoke-virtual {p1, v0, v2, v3}, Landroid/os/Bundle;->getLong(Ljava/lang/String;J)J
+
+    move-result-wide v0
+
+    iget-wide v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->project:J
+
+    cmp-long v0, v0, v2
+
+    if-nez v0, :cond_1
 
     const-string v0, "folder"
 
@@ -8929,6 +8941,7 @@
 
     iput-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->expected:Ljava/lang/String;
 
+    :cond_1
     const-string v0, "editor"
 
     invoke-virtual {p1, v0}, Landroid/os/Bundle;->getBundle(Ljava/lang/String;)Landroid/os/Bundle;
@@ -8986,7 +8999,7 @@
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->pendingConfirmation:Lorg/rabochaya/projects/ObjectConfirmationDraft;
 
     .line 20
-    :cond_1
+    :cond_2
     new-instance p1, Landroid/widget/LinearLayout;
 
     invoke-direct {p1, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
@@ -9287,10 +9300,16 @@
 .end method
 
 .method protected onSaveInstanceState(Landroid/os/Bundle;)V
-    .locals 2
+    .locals 3
 
     .line 184
     invoke-super {p0, p1}, Landroid/app/Activity;->onSaveInstanceState(Landroid/os/Bundle;)V
+
+    const-string v0, "viewProject"
+
+    iget-wide v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity;->project:J
+
+    invoke-virtual {p1, v0, v1, v2}, Landroid/os/Bundle;->putLong(Ljava/lang/String;J)V
 
     const-string v0, "folder"
 

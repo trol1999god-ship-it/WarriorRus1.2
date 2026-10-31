@@ -664,3 +664,14 @@ compiled, host12 pass. Старые stale-paste/visibility тесты допол
 сохранённого подтверждения, явным Cancel и повторной проверкой нового XML.
 Production-готовность пока не заявлять: нужен полный CI31 и новые PNG обеих API.
 Область/ограничения записаны OBJECT_CONFIRMATION_STATE.md.
+
+Кандидат сохранён/отправлен91cbee8749cdb0d297e95a6dd4f1db805519f853;
+CI41162028421 выполняется. Новые managerconfirm/managerpasteconfirm отдельны,
+каждый bounded16 PNG. При декодировании полного лога разделять confirm-pastecopy/
+pastecut от confirm-delete/show/hide/hierarchy, не повышать лимиты декодера.
+Читать completed job; проверить все31 режима и снимки, в особенности чужой
+проект с тем же XML и своим сохранённым root view. Старые результаты не заменяют
+проверку текущего source. Все baseline/логи/toolchain сохранены без reset/clean.
+
+CI91cbee /41162028421 завершён: JVM success, обе API30 passed, только managerpasteconfirm failure. Все16 copy/cut Cancel/confirm/stale/replace/clear прошли. Foreign-pastecopy выявил перенос folder=0 из чужого Bundle при одинаковом XML (оба PNG просмотрены); диалог/выбор отклонялись корректно. Исправлена привязка folder/token Bundle к viewProject; fallback — собственные prefs проекта. Критерии тестов не изменены. Промежуточные62 PNG сохранены first-actions/paste-api23/35, их полная визуальная приёмка не заявляется.
+Новая QA project-view-fix-build:415 classes, minSdk23, INTERNET only, unsigned eaa19f35e57da137b0dfe979c4574c6f069aaad8c0ed8be918833066addb637c; source SHA совпали, driver12 pass. Требуется новый полный CI31 обеих API.
