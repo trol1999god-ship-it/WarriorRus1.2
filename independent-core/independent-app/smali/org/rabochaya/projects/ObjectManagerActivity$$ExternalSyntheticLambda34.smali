@@ -9,9 +9,19 @@
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
+.field public final synthetic f$1:Ljava/lang/String;
+
+.field public final synthetic f$2:Lorg/w3c/dom/Element;
+
+.field public final synthetic f$3:Ljava/util/List;
+
+.field public final synthetic f$4:Lorg/rabochaya/projects/ObjectListing;
+
+.field public final synthetic f$5:Ljava/lang/String;
+
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/String;Lorg/w3c/dom/Element;Ljava/util/List;Lorg/rabochaya/projects/ObjectListing;Ljava/lang/String;)V
     .locals 0
 
     .line 0
@@ -19,18 +29,38 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda34;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
+    iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda34;->f$1:Ljava/lang/String;
+
+    iput-object p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda34;->f$2:Lorg/w3c/dom/Element;
+
+    iput-object p4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda34;->f$3:Ljava/util/List;
+
+    iput-object p5, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda34;->f$4:Lorg/rabochaya/projects/ObjectListing;
+
+    iput-object p6, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda34;->f$5:Ljava/lang/String;
+
     return-void
 .end method
 
 
 # virtual methods
 .method public final run()V
-    .locals 1
+    .locals 6
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda34;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$onCreate$0$org-rabochaya-projects-ObjectManagerActivity()V
+    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda34;->f$1:Ljava/lang/String;
+
+    iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda34;->f$2:Lorg/w3c/dom/Element;
+
+    iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda34;->f$3:Ljava/util/List;
+
+    iget-object v4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda34;->f$4:Lorg/rabochaya/projects/ObjectListing;
+
+    iget-object v5, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda34;->f$5:Ljava/lang/String;
+
+    invoke-virtual/range {v0 .. v5}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$load$9$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/String;Lorg/w3c/dom/Element;Ljava/util/List;Lorg/rabochaya/projects/ObjectListing;Ljava/lang/String;)V
 
     return-void
 .end method

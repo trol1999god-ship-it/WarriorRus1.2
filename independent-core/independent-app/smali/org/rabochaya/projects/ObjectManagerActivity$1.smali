@@ -22,7 +22,7 @@
 .method constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/content/Context;)V
     .locals 0
 
-    .line 20
+    .line 21
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$1;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
     invoke-direct {p0, p2}, Landroid/widget/ScrollView;-><init>(Landroid/content/Context;)V
@@ -35,7 +35,7 @@
 .method protected onMeasure(II)V
     .locals 3
 
-    .line 20
+    .line 21
     invoke-static {p2}, Landroid/view/View$MeasureSpec;->getSize(I)I
 
     move-result p2

@@ -10,6 +10,8 @@
 # instance fields
 .field public final cut:Z
 
+.field private final generation:Ljava/lang/String;
+
 .field public final keys:Ljava/util/List;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -27,7 +29,7 @@
 
 # direct methods
 .method public constructor <init>(JZLjava/lang/String;Ljava/util/Collection;)V
-    .locals 7
+    .locals 8
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(JZ",
@@ -39,120 +41,178 @@
     .end annotation
 
     .line 7
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    invoke-static {}, Ljava/util/UUID;->randomUUID()Ljava/util/UUID;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/util/UUID;->toString()Ljava/lang/String;
+
+    move-result-object v7
+
+    move-object v1, p0
+
+    move-wide v2, p1
+
+    move v4, p3
+
+    move-object v5, p4
+
+    move-object v6, p5
+
+    invoke-direct/range {v1 .. v7}, Lorg/rabochaya/projects/ObjectClipboard;-><init>(JZLjava/lang/String;Ljava/util/Collection;Ljava/lang/String;)V
+
+    return-void
+.end method
+
+.method private constructor <init>(JZLjava/lang/String;Ljava/util/Collection;Ljava/lang/String;)V
+    .locals 6
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(JZ",
+            "Ljava/lang/String;",
+            "Ljava/util/Collection<",
+            "Ljava/lang/String;",
+            ">;",
+            "Ljava/lang/String;",
+            ")V"
+        }
+    .end annotation
 
     .line 8
-    const-wide/16 v0, 0x0
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    cmp-long v0, p1, v0
+    .line 9
+    if-eqz p6, :cond_5
 
-    if-lez v0, :cond_3
-
-    if-eqz p4, :cond_3
-
-    const-string v0, "[a-f0-9]{64}"
-
-    invoke-virtual {p4, v0}, Ljava/lang/String;->matches(Ljava/lang/String;)Z
+    invoke-virtual {p6}, Ljava/lang/String;->isEmpty()Z
 
     move-result v0
 
-    if-eqz v0, :cond_3
+    if-nez v0, :cond_0
 
-    if-eqz p5, :cond_3
+    const-string v0, "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+
+    invoke-virtual {p6, v0}, Ljava/lang/String;->matches(Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_5
+
+    :cond_0
+    iput-object p6, p0, Lorg/rabochaya/projects/ObjectClipboard;->generation:Ljava/lang/String;
+
+    .line 10
+    const-wide/16 v0, 0x0
+
+    cmp-long p6, p1, v0
+
+    if-lez p6, :cond_4
+
+    if-eqz p4, :cond_4
+
+    const-string p6, "[a-f0-9]{64}"
+
+    invoke-virtual {p4, p6}, Ljava/lang/String;->matches(Ljava/lang/String;)Z
+
+    move-result p6
+
+    if-eqz p6, :cond_4
+
+    if-eqz p5, :cond_4
 
     invoke-interface {p5}, Ljava/util/Collection;->isEmpty()Z
 
-    move-result v0
+    move-result p6
 
-    if-nez v0, :cond_3
+    if-nez p6, :cond_4
 
     invoke-interface {p5}, Ljava/util/Collection;->size()I
 
-    move-result v0
+    move-result p6
 
-    const/16 v1, 0x2710
+    const/16 v0, 0x2710
 
-    if-gt v0, v1, :cond_3
+    if-gt p6, v0, :cond_4
 
-    .line 9
-    new-instance v0, Ljava/util/HashSet;
+    .line 11
+    new-instance p6, Ljava/util/HashSet;
 
-    invoke-direct {v0}, Ljava/util/HashSet;-><init>()V
+    invoke-direct {p6}, Ljava/util/HashSet;-><init>()V
 
     invoke-interface {p5}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
 
+    move-result-object v0
+
+    :cond_1
+    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_3
+
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
     move-result-object v1
 
-    :cond_0
-    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+    check-cast v1, Ljava/lang/String;
 
-    move-result v2
+    const-string v2, "\u041d\u0435\u0434\u043e\u043f\u0443\u0441\u0442\u0438\u043c\u044b\u0439 \u0432\u044b\u0431\u043e\u0440 \u0432 \u0431\u0443\u0444\u0435\u0440\u0435"
 
-    if-eqz v2, :cond_2
+    if-eqz v1, :cond_2
 
-    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-virtual {v1}, Ljava/lang/String;->length()I
 
-    move-result-object v2
+    move-result v3
 
-    check-cast v2, Ljava/lang/String;
+    const/16 v4, 0x100
 
-    const-string v3, "\u041d\u0435\u0434\u043e\u043f\u0443\u0441\u0442\u0438\u043c\u044b\u0439 \u0432\u044b\u0431\u043e\u0440 \u0432 \u0431\u0443\u0444\u0435\u0440\u0435"
+    if-gt v3, v4, :cond_2
 
-    if-eqz v2, :cond_1
+    const-string v3, "(0|[1-9][0-9]*)(/(0|[1-9][0-9]*))*"
 
-    invoke-virtual {v2}, Ljava/lang/String;->length()I
+    invoke-virtual {v1, v3}, Ljava/lang/String;->matches(Ljava/lang/String;)Z
+
+    move-result v3
+
+    if-eqz v3, :cond_2
+
+    const-string v3, "/"
+
+    invoke-virtual {v1, v3}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
+
+    move-result-object v4
+
+    array-length v4, v4
+
+    const/16 v5, 0x21
+
+    if-gt v4, v5, :cond_2
+
+    invoke-interface {p6, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
     move-result v4
 
-    const/16 v5, 0x100
-
-    if-gt v4, v5, :cond_1
-
-    const-string v4, "(0|[1-9][0-9]*)(/(0|[1-9][0-9]*))*"
-
-    invoke-virtual {v2, v4}, Ljava/lang/String;->matches(Ljava/lang/String;)Z
-
-    move-result v4
-
-    if-eqz v4, :cond_1
-
-    const-string v4, "/"
-
-    invoke-virtual {v2, v4}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
-
-    move-result-object v5
-
-    array-length v5, v5
-
-    const/16 v6, 0x21
-
-    if-gt v5, v6, :cond_1
-
-    invoke-interface {v0, v2}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
-
-    move-result v5
-
-    if-eqz v5, :cond_1
+    if-eqz v4, :cond_2
 
     :try_start_0
-    invoke-virtual {v2, v4}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
+    invoke-virtual {v1, v3}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
 
-    move-result-object v2
+    move-result-object v1
 
-    array-length v4, v2
+    array-length v3, v1
 
-    const/4 v5, 0x0
+    const/4 v4, 0x0
 
     :goto_0
-    if-ge v5, v4, :cond_0
+    if-ge v4, v3, :cond_1
 
-    aget-object v6, v2, v5
+    aget-object v5, v1, v4
 
-    invoke-static {v6}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
+    invoke-static {v5}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
     :try_end_0
     .catch Ljava/lang/NumberFormatException; {:try_start_0 .. :try_end_0} :catch_0
 
-    add-int/lit8 v5, v5, 0x1
+    add-int/lit8 v4, v4, 0x1
 
     goto :goto_0
 
@@ -161,19 +221,19 @@
 
     new-instance p1, Ljava/lang/IllegalArgumentException;
 
-    invoke-direct {p1, v3}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+    invoke-direct {p1, v2}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
 
     throw p1
 
-    :cond_1
+    :cond_2
     new-instance p1, Ljava/lang/IllegalArgumentException;
 
-    invoke-direct {p1, v3}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+    invoke-direct {p1, v2}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
 
     throw p1
 
-    .line 10
-    :cond_2
+    .line 12
+    :cond_3
     iput-wide p1, p0, Lorg/rabochaya/projects/ObjectClipboard;->project:J
 
     iput-boolean p3, p0, Lorg/rabochaya/projects/ObjectClipboard;->cut:Z
@@ -190,11 +250,11 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectClipboard;->keys:Ljava/util/List;
 
-    .line 11
+    .line 13
     return-void
 
-    .line 8
-    :cond_3
+    .line 10
+    :cond_4
     new-instance p1, Ljava/lang/IllegalArgumentException;
 
     const-string p2, "\u041d\u0435\u0434\u043e\u043f\u0443\u0441\u0442\u0438\u043c\u044b\u0439 \u0431\u0443\u0444\u0435\u0440 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432"
@@ -202,32 +262,42 @@
     invoke-direct {p1, p2}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
 
     throw p1
+
+    .line 9
+    :cond_5
+    new-instance p1, Ljava/lang/IllegalArgumentException;
+
+    const-string p2, "\u041d\u0435\u0434\u043e\u043f\u0443\u0441\u0442\u0438\u043c\u043e\u0435 \u043f\u043e\u043a\u043e\u043b\u0435\u043d\u0438\u0435 \u0431\u0443\u0444\u0435\u0440\u0430"
+
+    invoke-direct {p1, p2}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+
+    throw p1
 .end method
 
 .method public static decode([B)Lorg/rabochaya/projects/ObjectClipboard;
-    .locals 9
+    .locals 12
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
         }
     .end annotation
 
-    .line 18
+    .line 20
     const-string v0, "\u0411\u0443\u0444\u0435\u0440 \u043f\u043e\u0432\u0440\u0435\u0436\u0434\u0451\u043d; \u043e\u0447\u0438\u0441\u0442\u0438\u0442\u0435 \u0435\u0433\u043e \u0438 \u043f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u0435 \u0432\u044b\u0431\u043e\u0440"
 
-    if-eqz p0, :cond_5
+    if-eqz p0, :cond_a
 
     array-length v1, p0
 
     const/16 v2, 0x20
 
-    if-lt v1, v2, :cond_5
+    if-lt v1, v2, :cond_a
 
     array-length v1, p0
 
     const/high16 v3, 0x100000
 
-    if-gt v1, v3, :cond_5
+    if-gt v1, v3, :cond_a
 
     array-length v1, p0
 
@@ -255,9 +325,9 @@
 
     move-result p0
 
-    if-eqz p0, :cond_4
+    if-eqz p0, :cond_9
 
-    .line 19
+    .line 21
     :try_start_0
     new-instance p0, Ljava/io/DataInputStream;
 
@@ -270,104 +340,157 @@
     invoke-virtual {p0}, Ljava/io/DataInputStream;->readInt()I
 
     move-result v1
+    :try_end_0
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
 
     const v2, 0x524b4342
 
-    if-ne v1, v2, :cond_3
+    const-string v3, "\u041d\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043d\u0430\u044f \u0432\u0435\u0440\u0441\u0438\u044f \u0431\u0443\u0444\u0435\u0440\u0430"
 
+    if-ne v1, v2, :cond_8
+
+    :try_start_1
     invoke-virtual {p0}, Ljava/io/DataInputStream;->readInt()I
 
     move-result v1
 
-    const/4 v2, 0x1
+    const/4 v2, 0x2
 
-    if-ne v1, v2, :cond_3
+    const/4 v4, 0x1
 
+    if-eq v1, v4, :cond_1
+
+    if-ne v1, v2, :cond_0
+
+    goto :goto_1
+
+    :cond_0
+    new-instance p0, Ljava/io/IOException;
+
+    invoke-direct {p0, v3}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    :goto_0
+    throw p0
+
+    :cond_1
+    :goto_1
+    if-ne v1, v4, :cond_2
+
+    const-string v3, ""
+
+    goto :goto_2
+
+    :cond_2
+    invoke-virtual {p0}, Ljava/io/DataInputStream;->readUTF()Ljava/lang/String;
+
+    move-result-object v3
+
+    :goto_2
+    move-object v11, v3
+
+    if-ne v1, v2, :cond_4
+
+    invoke-virtual {v11}, Ljava/lang/String;->isEmpty()Z
+
+    move-result v1
+
+    if-nez v1, :cond_3
+
+    goto :goto_3
+
+    :cond_3
+    new-instance p0, Ljava/io/IOException;
+
+    const-string v1, "\u041d\u0435\u0434\u043e\u043f\u0443\u0441\u0442\u0438\u043c\u043e\u0435 \u043f\u043e\u043a\u043e\u043b\u0435\u043d\u0438\u0435 \u0431\u0443\u0444\u0435\u0440\u0430"
+
+    invoke-direct {p0, v1}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    goto :goto_0
+
+    :cond_4
+    :goto_3
     invoke-virtual {p0}, Ljava/io/DataInputStream;->readLong()J
 
-    move-result-wide v4
+    move-result-wide v6
 
     invoke-virtual {p0}, Ljava/io/DataInputStream;->readBoolean()Z
 
-    move-result v6
+    move-result v8
 
     invoke-virtual {p0}, Ljava/io/DataInputStream;->readUTF()Ljava/lang/String;
 
-    move-result-object v7
+    move-result-object v9
 
     invoke-virtual {p0}, Ljava/io/DataInputStream;->readInt()I
 
     move-result v1
 
-    if-lt v1, v2, :cond_2
+    if-lt v1, v4, :cond_7
 
     const/16 v2, 0x2710
 
-    if-gt v1, v2, :cond_2
+    if-gt v1, v2, :cond_7
 
-    new-instance v8, Ljava/util/ArrayList;
+    new-instance v10, Ljava/util/ArrayList;
 
-    invoke-direct {v8}, Ljava/util/ArrayList;-><init>()V
+    invoke-direct {v10}, Ljava/util/ArrayList;-><init>()V
 
     const/4 v2, 0x0
 
-    :goto_0
-    if-ge v2, v1, :cond_0
+    :goto_4
+    if-ge v2, v1, :cond_5
 
     invoke-virtual {p0}, Ljava/io/DataInputStream;->readUTF()Ljava/lang/String;
 
     move-result-object v3
 
-    invoke-interface {v8, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+    invoke-interface {v10, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_4
 
-    :cond_0
+    :cond_5
     invoke-virtual {p0}, Ljava/io/DataInputStream;->available()I
 
     move-result p0
 
-    if-nez p0, :cond_1
+    if-nez p0, :cond_6
 
     new-instance p0, Lorg/rabochaya/projects/ObjectClipboard;
 
-    move-object v3, p0
+    move-object v5, p0
 
-    invoke-direct/range {v3 .. v8}, Lorg/rabochaya/projects/ObjectClipboard;-><init>(JZLjava/lang/String;Ljava/util/Collection;)V
+    invoke-direct/range {v5 .. v11}, Lorg/rabochaya/projects/ObjectClipboard;-><init>(JZLjava/lang/String;Ljava/util/Collection;Ljava/lang/String;)V
 
     return-object p0
 
-    :cond_1
+    :cond_6
     new-instance p0, Ljava/io/IOException;
 
     const-string v1, "\u041b\u0438\u0448\u043d\u0438\u0435 \u0434\u0430\u043d\u043d\u044b\u0435 \u0432 \u0431\u0443\u0444\u0435\u0440\u0435"
 
     invoke-direct {p0, v1}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
 
-    :goto_1
-    throw p0
+    goto :goto_0
 
-    :cond_2
+    :cond_7
     new-instance p0, Ljava/io/IOException;
 
     const-string v1, "\u041d\u0435\u0434\u043e\u043f\u0443\u0441\u0442\u0438\u043c\u044b\u0439 \u0440\u0430\u0437\u043c\u0435\u0440 \u0431\u0443\u0444\u0435\u0440\u0430"
 
     invoke-direct {p0, v1}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
 
-    goto :goto_1
+    goto :goto_0
 
-    :cond_3
+    :cond_8
     new-instance p0, Ljava/io/IOException;
 
-    const-string v1, "\u041d\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043d\u0430\u044f \u0432\u0435\u0440\u0441\u0438\u044f \u0431\u0443\u0444\u0435\u0440\u0430"
+    invoke-direct {p0, v3}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+    :try_end_1
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_1 .. :try_end_1} :catch_0
 
-    invoke-direct {p0, v1}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
-    :try_end_0
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
-
-    goto :goto_1
+    goto :goto_0
 
     :catch_0
     move-exception p0
@@ -378,15 +501,15 @@
 
     throw v1
 
-    .line 18
-    :cond_4
+    .line 20
+    :cond_9
     new-instance p0, Ljava/io/IOException;
 
     invoke-direct {p0, v0}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
 
     throw p0
 
-    :cond_5
+    :cond_a
     new-instance p0, Ljava/io/IOException;
 
     invoke-direct {p0, v0}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
@@ -397,7 +520,7 @@
 .method private static digest([B)[B
     .locals 1
 
-    .line 12
+    .line 14
     :try_start_0
     const-string v0, "SHA-256"
 
@@ -433,7 +556,7 @@
         }
     .end annotation
 
-    .line 15
+    .line 17
     new-instance v0, Ljava/io/ByteArrayOutputStream;
 
     invoke-direct {v0}, Ljava/io/ByteArrayOutputStream;-><init>()V
@@ -446,10 +569,37 @@
 
     invoke-virtual {v1, v2}, Ljava/io/DataOutputStream;->writeInt(I)V
 
+    iget-object v2, p0, Lorg/rabochaya/projects/ObjectClipboard;->generation:Ljava/lang/String;
+
+    invoke-virtual {v2}, Ljava/lang/String;->isEmpty()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
     const/4 v2, 0x1
 
+    goto :goto_0
+
+    :cond_0
+    const/4 v2, 0x2
+
+    :goto_0
     invoke-virtual {v1, v2}, Ljava/io/DataOutputStream;->writeInt(I)V
 
+    iget-object v2, p0, Lorg/rabochaya/projects/ObjectClipboard;->generation:Ljava/lang/String;
+
+    invoke-virtual {v2}, Ljava/lang/String;->isEmpty()Z
+
+    move-result v2
+
+    if-nez v2, :cond_1
+
+    iget-object v2, p0, Lorg/rabochaya/projects/ObjectClipboard;->generation:Ljava/lang/String;
+
+    invoke-virtual {v1, v2}, Ljava/io/DataOutputStream;->writeUTF(Ljava/lang/String;)V
+
+    :cond_1
     iget-wide v2, p0, Lorg/rabochaya/projects/ObjectClipboard;->project:J
 
     invoke-virtual {v1, v2, v3}, Ljava/io/DataOutputStream;->writeLong(J)V
@@ -476,12 +626,12 @@
 
     move-result-object v2
 
-    :goto_0
+    :goto_1
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_2
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -491,9 +641,9 @@
 
     invoke-virtual {v1, v3}, Ljava/io/DataOutputStream;->writeUTF(Ljava/lang/String;)V
 
-    goto :goto_0
+    goto :goto_1
 
-    :cond_0
+    :cond_2
     invoke-virtual {v1}, Ljava/io/DataOutputStream;->flush()V
 
     invoke-virtual {v0}, Ljava/io/ByteArrayOutputStream;->toByteArray()[B
@@ -506,7 +656,7 @@
 
     const/high16 v3, 0x100000
 
-    if-gt v2, v3, :cond_1
+    if-gt v2, v3, :cond_3
 
     invoke-static {v1}, Lorg/rabochaya/projects/ObjectClipboard;->digest([B)[B
 
@@ -520,7 +670,7 @@
 
     return-object v0
 
-    :cond_1
+    :cond_3
     new-instance v0, Ljava/io/IOException;
 
     const-string v1, "\u0421\u043b\u0438\u0448\u043a\u043e\u043c \u0431\u043e\u043b\u044c\u0448\u043e\u0439 \u0432\u044b\u0431\u043e\u0440 \u0434\u043b\u044f \u0431\u0443\u0444\u0435\u0440\u0430"
@@ -538,7 +688,7 @@
         }
     .end annotation
 
-    .line 13
+    .line 15
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V

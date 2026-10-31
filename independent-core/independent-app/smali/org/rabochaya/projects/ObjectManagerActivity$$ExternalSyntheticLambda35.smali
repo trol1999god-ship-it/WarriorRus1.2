@@ -9,9 +9,11 @@
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
+.field public final synthetic f$1:Ljava/lang/Exception;
+
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/Exception;)V
     .locals 0
 
     .line 0
@@ -19,18 +21,22 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda35;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
+    iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda35;->f$1:Ljava/lang/Exception;
+
     return-void
 .end method
 
 
 # virtual methods
 .method public final run()V
-    .locals 1
+    .locals 2
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda35;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$onCreate$1$org-rabochaya-projects-ObjectManagerActivity()V
+    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda35;->f$1:Ljava/lang/Exception;
+
+    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$load$12$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/Exception;)V
 
     return-void
 .end method

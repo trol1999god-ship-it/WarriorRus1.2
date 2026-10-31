@@ -9,13 +9,11 @@
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-.field public final synthetic f$1:Ljava/lang/Exception;
-
-.field public final synthetic f$2:Landroid/app/AlertDialog;
+.field public final synthetic f$1:Z
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/Exception;Landroid/app/AlertDialog;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Z)V
     .locals 0
 
     .line 0
@@ -23,9 +21,7 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda2;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda2;->f$1:Ljava/lang/Exception;
-
-    iput-object p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda2;->f$2:Landroid/app/AlertDialog;
+    iput-boolean p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda2;->f$1:Z
 
     return-void
 .end method
@@ -33,16 +29,14 @@
 
 # virtual methods
 .method public final run()V
-    .locals 3
+    .locals 2
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda2;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda2;->f$1:Ljava/lang/Exception;
+    iget-boolean v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda2;->f$1:Z
 
-    iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda2;->f$2:Landroid/app/AlertDialog;
-
-    invoke-virtual {v0, v1, v2}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$write$43$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/Exception;Landroid/app/AlertDialog;)V
+    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$capture$25$org-rabochaya-projects-ObjectManagerActivity(Z)V
 
     return-void
 .end method

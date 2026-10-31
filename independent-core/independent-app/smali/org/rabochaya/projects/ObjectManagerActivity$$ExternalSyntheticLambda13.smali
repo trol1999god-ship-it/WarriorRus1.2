@@ -9,15 +9,9 @@
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-.field public final synthetic f$1:Ljava/util/List;
-
-.field public final synthetic f$2:Ljava/util/List;
-
-.field public final synthetic f$3:Ljava/util/List;
-
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
     .locals 0
 
     .line 0
@@ -25,34 +19,18 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda13;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda13;->f$1:Ljava/util/List;
-
-    iput-object p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda13;->f$2:Ljava/util/List;
-
-    iput-object p4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda13;->f$3:Ljava/util/List;
-
     return-void
 .end method
 
 
 # virtual methods
 .method public final onClick(Landroid/content/DialogInterface;I)V
-    .locals 6
+    .locals 1
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda13;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda13;->f$1:Ljava/util/List;
-
-    iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda13;->f$2:Ljava/util/List;
-
-    iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda13;->f$3:Ljava/util/List;
-
-    move-object v4, p1
-
-    move v5, p2
-
-    invoke-virtual/range {v0 .. v5}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$destination$37$org-rabochaya-projects-ObjectManagerActivity(Ljava/util/List;Ljava/util/List;Ljava/util/List;Landroid/content/DialogInterface;I)V
+    invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$dateOptions$48$org-rabochaya-projects-ObjectManagerActivity(Landroid/content/DialogInterface;I)V
 
     return-void
 .end method

@@ -630,3 +630,37 @@ CI41156877080 все3 job success. Среда running/connected, сохранё�
 настоящий destroyed/recreate90, сравнение XML/вложений/settings/fingerprint буфера.
 Проба собирает все5 случаев, итоговый assert остаётся failure при любой потере.
 Production не менялся; восстановление ещё не реализовывать до фактов обеих API.
+
+Проба40c4d1c отправлена; CI41160073360 выполняется: JVM124415466698 success,
+API23 124415524418 / API35 124415524394. Параллельная отдельная JVM-проба буфера
+на исходном коде подтвердила freshEquivalentCapturesHaveSameFingerprint=true:
+content hash не различает повторное capture идентичных данных. Для требуемой
+защиты замены локально подготовлено поколение UUID в формате2; decode/encode
+формата1 сохраняет исходные байты и fingerprint, без переписывания старого буфера.
+Это незакоммиченный кандидат ObjectClipboard.java/tests, не сбрасывать. JVM
+с ним успешен, freshEquivalentCapturesHaveSameFingerprint=false, roundtrip=true.
+Восстановление UI пока не подключено; дождаться реальных baseline обеих API.
+
+Baseline40c4d1c CI41160073360 завершён: обе API прежние29 passed, managerconfirm
+ожидаемо failure; все delete/show/hide/pastecopy/pastecut restored=false после
+настоящего destroyed/recreate. XML/settings/assets/clipboard unchanged=true.
+Job23 124415524418, job35 124415524394; все20 PNG SHA-проверены и просмотрены,
+сохранены security/manager-confirm-qa-2026-10-31/before-api23/35.
+Теперь локально подключён ObjectConfirmationDraft: original project/process/
+token/source indices/destination/preview/fingerprint; старый токен в транзакции,
+restore только диалога, disabled если XML/clipboard stale. Для paste сохранена
+подпись исходного назначения; для visibility не схлопывать parent+child выбор.
+Модель60 JVM assertions; с поколением буфера22 набора /81190. Новая QA-сборка
+выполняется, Android-готовности кандидата нет. Финальные проверки разделены на
+managerconfirm и managerpasteconfirm (полный CI31), не увеличивая480s/16PNG caps.
+Они включают Cancel/confirm, обе реальные ориентации, stale-before/after, foreign
+project с тем же XML, recapture идентичного буфера/clear до и после восстановления,
+точные XML/assets/settings/clipboard сравнения. Все незакоммиченные файлы сохранять.
+
+Кандидат локально собран confirmation-fix-build:415 own classes, minSdk23,
+INTERNET only, unsigned SHA256 d4d2493ebcb122f2e72219933278d42cef488fc950f668e4f980f2dd4625d08b.
+Все source SHA совпали с build_result; tests APK с финальным DOM-сравнением
+compiled, host12 pass. Старые stale-paste/visibility тесты дополнены проверкой
+сохранённого подтверждения, явным Cancel и повторной проверкой нового XML.
+Production-готовность пока не заявлять: нужен полный CI31 и новые PNG обеих API.
+Область/ограничения записаны OBJECT_CONFIRMATION_STATE.md.
