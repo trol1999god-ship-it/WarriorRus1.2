@@ -324,7 +324,7 @@
 .end method
 
 .method shown(Lorg/rabochaya/projects/ObjectFormDraft;)V
-    .locals 10
+    .locals 11
 
     .line 139
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->dialog:Landroid/app/AlertDialog;
@@ -363,27 +363,29 @@
 
     invoke-direct {v1, v2}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
 
+    const/4 v2, 0x0
+
+    invoke-virtual {v1, v2}, Landroid/widget/LinearLayout;->setBaselineAligned(Z)V
+
     .line 140
-    const/4 v2, -0x3
+    const/4 v3, -0x3
 
-    const/4 v3, -0x2
+    const/4 v4, -0x2
 
-    const/4 v4, -0x1
+    const/4 v5, -0x1
 
-    filled-new-array {v2, v3, v4}, [I
+    filled-new-array {v3, v4, v5}, [I
 
-    move-result-object v2
+    move-result-object v3
 
-    const/4 v5, 0x0
-
-    move v6, v5
+    move v6, v2
 
     :goto_0
     const/4 v7, 0x3
 
     if-ge v6, v7, :cond_2
 
-    aget v7, v2, v6
+    aget v7, v3, v6
 
     iget-object v8, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->dialog:Landroid/app/AlertDialog;
 
@@ -417,7 +419,7 @@
     invoke-virtual {v9, v7}, Landroid/view/ViewGroup;->removeView(Landroid/view/View;)V
 
     :cond_1
-    invoke-virtual {v7, v5}, Landroid/widget/Button;->setSingleLine(Z)V
+    invoke-virtual {v7, v2}, Landroid/widget/Button;->setSingleLine(Z)V
 
     invoke-virtual {v7, v8}, Landroid/widget/Button;->setTransformationMethod(Landroid/text/method/TransformationMethod;)V
 
@@ -428,6 +430,24 @@
     const/4 v8, 0x0
 
     invoke-virtual {v7, v8}, Landroid/widget/Button;->setEllipsize(Landroid/text/TextUtils$TruncateAt;)V
+
+    iget-object v8, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
+
+    const/high16 v9, 0x40800000    # 4.0f
+
+    invoke-static {v8, v9}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
+
+    move-result v8
+
+    invoke-virtual {v7}, Landroid/widget/Button;->getPaddingTop()I
+
+    move-result v9
+
+    invoke-virtual {v7}, Landroid/widget/Button;->getPaddingBottom()I
+
+    move-result v10
+
+    invoke-virtual {v7, v8, v9, v8, v10}, Landroid/widget/Button;->setPadding(IIII)V
 
     iget-object v8, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
@@ -451,7 +471,7 @@
 
     const/high16 v9, 0x3f800000    # 1.0f
 
-    invoke-direct {v8, v5, v3, v9}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
+    invoke-direct {v8, v2, v4, v9}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
 
     invoke-virtual {v1, v7, v8}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
@@ -464,18 +484,18 @@
     :cond_2
     if-eqz v0, :cond_3
 
-    const/16 v2, 0x8
+    const/16 v3, 0x8
 
-    invoke-virtual {v0, v2}, Landroid/view/View;->setVisibility(I)V
+    invoke-virtual {v0, v3}, Landroid/view/View;->setVisibility(I)V
 
     :cond_3
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->pane:Landroid/widget/LinearLayout;
 
-    new-instance v2, Landroid/widget/LinearLayout$LayoutParams;
+    new-instance v3, Landroid/widget/LinearLayout$LayoutParams;
 
-    invoke-direct {v2, v4, v3}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+    invoke-direct {v3, v5, v4}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
 
-    invoke-virtual {v0, v1, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v0, v1, v3}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
@@ -494,27 +514,27 @@
 
     move-result-object v1
 
-    iget v2, p1, Lorg/rabochaya/projects/ObjectFormDraft;->focus:I
-
-    if-ltz v2, :cond_4
-
-    iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->inputs:[Landroid/widget/EditText;
-
     iget v3, p1, Lorg/rabochaya/projects/ObjectFormDraft;->focus:I
 
-    aget-object v2, v2, v3
+    if-ltz v3, :cond_4
 
-    invoke-virtual {v2}, Landroid/widget/EditText;->isEnabled()Z
+    iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->inputs:[Landroid/widget/EditText;
 
-    move-result v2
+    iget v4, p1, Lorg/rabochaya/projects/ObjectFormDraft;->focus:I
 
-    if-eqz v2, :cond_4
+    aget-object v3, v3, v4
 
-    iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->inputs:[Landroid/widget/EditText;
+    invoke-virtual {v3}, Landroid/widget/EditText;->isEnabled()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_4
+
+    iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->inputs:[Landroid/widget/EditText;
 
     iget p1, p1, Lorg/rabochaya/projects/ObjectFormDraft;->focus:I
 
-    aget-object p1, v2, p1
+    aget-object p1, v3, p1
 
     invoke-virtual {p1}, Landroid/widget/EditText;->requestFocus()Z
 
@@ -527,9 +547,9 @@
 
     iget-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->pane:Landroid/widget/LinearLayout;
 
-    const/4 v2, 0x1
+    const/4 v3, 0x1
 
-    invoke-virtual {p1, v2}, Landroid/widget/LinearLayout;->setFocusableInTouchMode(Z)V
+    invoke-virtual {p1, v3}, Landroid/widget/LinearLayout;->setFocusableInTouchMode(Z)V
 
     iget-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->pane:Landroid/widget/LinearLayout;
 
@@ -541,19 +561,19 @@
 
     array-length p1, p1
 
-    if-ge v5, p1, :cond_6
+    if-ge v2, p1, :cond_6
 
     iget-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->inputs:[Landroid/widget/EditText;
 
-    aget-object p1, p1, v5
+    aget-object p1, p1, v2
 
-    aget v2, v0, v5
+    aget v3, v0, v2
 
-    aget v3, v1, v5
+    aget v4, v1, v2
 
-    invoke-virtual {p1, v2, v3}, Landroid/widget/EditText;->setSelection(II)V
+    invoke-virtual {p1, v3, v4}, Landroid/widget/EditText;->setSelection(II)V
 
-    add-int/lit8 v5, v5, 0x1
+    add-int/lit8 v2, v2, 0x1
 
     goto :goto_2
 

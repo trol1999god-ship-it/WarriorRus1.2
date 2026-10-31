@@ -479,3 +479,22 @@ ObjectFormDraft/FormUi и строгий managerforms готовы к полно
 QA-сборка forms-fix-build совпадает со всеми build_result SHA256. Подробности и
 границы — OBJECT_FORM_STATE.md. До фактического Android success исправление
 не считать проверенным на эмуляторах. Следом исследовать собранный move confirmation.
+
+Исправление сохранено/отправлено как a354f17; CI 41149424155, JVM124382125724
+success (20 / 81 088, host12). API35 124382222904 failure: native action row
+кнопки 57px высотой сдвинуты baseline-выравниванием на 3px вниз и обрезаны.
+PNG просмотрен, observations/frames сохранены в first-fix-api35. Не засчитан success.
+Clipboard и managerrotation в этом job не проверены: adb device offline;
+clipboardreopen закономерно skipped. Локально отключён baselineAligned action-row,
+горизонтальные padding кнопок уменьшены до4dp, цели48dp и критерии сохранены.
+Новая QA-сборка выполняется. API23 пока выполняется; дождаться до нового push.
+Локальный adb --version блокируется записью в /home/agent/.android (read-only),
+переменные Android home не помогли; локальная эмуляция не запускалась. Java17,
+компиляторы и SDK для сборки работают. Публикация reusable-среды не проверялась.
+
+API23 124382222918 завершён: прежние27 прошли, managerforms остановился на том же
+baseline-сдвиге57px кнопок на3px. PNG просмотрен и сохранён в first-fix-api23.
+Новая полная QA-сборка forms-row-fix-build успешна: unsigned SHA256
+4385051837d61f4bc03b2f0c3261109288f5fb5ef063eff43322ed857aee0b48,
+411 own classes, все Java source SHA256 совпали с build_result. Тесты не менялись.
+Нужен полный CI исправления строки кнопок; исходный a354f17 не принят.
