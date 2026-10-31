@@ -22,7 +22,7 @@
 .method constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/content/Context;)V
     .locals 0
 
-    .line 51
+    .line 52
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$2;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
     invoke-direct {p0, p2}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
@@ -35,7 +35,7 @@
 .method public create()Landroid/app/AlertDialog;
     .locals 3
 
-    .line 51
+    .line 52
     invoke-super {p0}, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
 
     move-result-object v0
@@ -54,7 +54,7 @@
 .method public show()Landroid/app/AlertDialog;
     .locals 2
 
-    .line 51
+    .line 52
     invoke-super {p0}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
 
     move-result-object v0

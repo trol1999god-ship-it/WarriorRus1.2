@@ -36,7 +36,7 @@
 
     iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda8;->f$1:Ljava/util/List;
 
-    invoke-virtual {v0, v1, p1, p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$confirmDelete$39$org-rabochaya-projects-ObjectManagerActivity(Ljava/util/List;Landroid/content/DialogInterface;I)V
+    invoke-virtual {v0, v1, p1, p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$confirmDelete$41$org-rabochaya-projects-ObjectManagerActivity(Ljava/util/List;Landroid/content/DialogInterface;I)V
 
     return-void
 .end method

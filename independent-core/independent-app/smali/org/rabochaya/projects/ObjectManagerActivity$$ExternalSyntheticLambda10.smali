@@ -74,7 +74,7 @@
 
     move-object v8, p1
 
-    invoke-virtual/range {v0 .. v8}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$dateOptions$48$org-rabochaya-projects-ObjectManagerActivity(Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;Lorg/rabochaya/projects/ObjectFormDraft;Landroid/app/AlertDialog;Landroid/widget/Spinner;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/TextView;Landroid/content/DialogInterface;)V
+    invoke-virtual/range {v0 .. v8}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$dateOptions$50$org-rabochaya-projects-ObjectManagerActivity(Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;Lorg/rabochaya/projects/ObjectFormDraft;Landroid/app/AlertDialog;Landroid/widget/Spinner;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/TextView;Landroid/content/DialogInterface;)V
 
     return-void
 .end method

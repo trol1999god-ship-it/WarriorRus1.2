@@ -3,7 +3,7 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/lang/Runnable;
+.implements Landroid/content/DialogInterface$OnClickListener;
 
 
 # instance fields
@@ -24,13 +24,13 @@
 
 
 # virtual methods
-.method public final run()V
+.method public final onClick(Landroid/content/DialogInterface;I)V
     .locals 1
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda5;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$clearClipboard$29$org-rabochaya-projects-ObjectManagerActivity()V
+    invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$searchOptions$46$org-rabochaya-projects-ObjectManagerActivity(Landroid/content/DialogInterface;I)V
 
     return-void
 .end method
