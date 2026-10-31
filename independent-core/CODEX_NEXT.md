@@ -517,3 +517,8 @@ functional-api23/35 и results.json. Apply/Cancel/Reset, невалидная д
 до нового PNG не объявлять визуальный итог. Затем следующий функциональный
 пробел: MOVE_OBSERVATION confirmationRestored=false обе API; кадры move-before/
 after просмотрены, подтверждение исчезает, XML автоматически не меняется.
+
+Локально исправлена только подтверждённая подпись: веса нативных кнопок
+Reset/Cancel/Apply = 1/.75/1.25, без уменьшения шрифта или цели48dp. В managerforms
+добавлено требование однострочного Apply/Cancel и search Reset при настоящей IME.
+Полная forms-label-fix-build успешна; требуется новый полный CI и просмотр PNG.

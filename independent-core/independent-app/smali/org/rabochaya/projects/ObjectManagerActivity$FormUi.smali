@@ -324,7 +324,7 @@
 .end method
 
 .method shown(Lorg/rabochaya/projects/ObjectFormDraft;)V
-    .locals 11
+    .locals 12
 
     .line 139
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->dialog:Landroid/app/AlertDialog;
@@ -383,7 +383,7 @@
     :goto_0
     const/4 v7, 0x3
 
-    if-ge v6, v7, :cond_2
+    if-ge v6, v7, :cond_4
 
     aget v7, v3, v6
 
@@ -391,104 +391,119 @@
 
     invoke-virtual {v8, v7}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
 
-    move-result-object v7
-
-    if-nez v7, :cond_0
-
-    goto :goto_1
-
-    :cond_0
-    invoke-virtual {v7}, Landroid/widget/Button;->getTransformationMethod()Landroid/text/method/TransformationMethod;
-
     move-result-object v8
 
-    invoke-virtual {v7}, Landroid/widget/Button;->getParent()Landroid/view/ViewParent;
+    if-nez v8, :cond_0
+
+    goto :goto_2
+
+    :cond_0
+    invoke-virtual {v8}, Landroid/widget/Button;->getTransformationMethod()Landroid/text/method/TransformationMethod;
 
     move-result-object v9
 
-    instance-of v9, v9, Landroid/view/ViewGroup;
+    invoke-virtual {v8}, Landroid/widget/Button;->getParent()Landroid/view/ViewParent;
 
-    if-eqz v9, :cond_1
+    move-result-object v10
 
-    invoke-virtual {v7}, Landroid/widget/Button;->getParent()Landroid/view/ViewParent;
+    instance-of v10, v10, Landroid/view/ViewGroup;
 
-    move-result-object v9
+    if-eqz v10, :cond_1
 
-    check-cast v9, Landroid/view/ViewGroup;
+    invoke-virtual {v8}, Landroid/widget/Button;->getParent()Landroid/view/ViewParent;
 
-    invoke-virtual {v9, v7}, Landroid/view/ViewGroup;->removeView(Landroid/view/View;)V
+    move-result-object v10
+
+    check-cast v10, Landroid/view/ViewGroup;
+
+    invoke-virtual {v10, v8}, Landroid/view/ViewGroup;->removeView(Landroid/view/View;)V
 
     :cond_1
-    invoke-virtual {v7, v2}, Landroid/widget/Button;->setSingleLine(Z)V
+    invoke-virtual {v8, v2}, Landroid/widget/Button;->setSingleLine(Z)V
 
-    invoke-virtual {v7, v8}, Landroid/widget/Button;->setTransformationMethod(Landroid/text/method/TransformationMethod;)V
+    invoke-virtual {v8, v9}, Landroid/widget/Button;->setTransformationMethod(Landroid/text/method/TransformationMethod;)V
 
-    const/4 v8, 0x2
+    const/4 v9, 0x2
 
-    invoke-virtual {v7, v8}, Landroid/widget/Button;->setMaxLines(I)V
+    invoke-virtual {v8, v9}, Landroid/widget/Button;->setMaxLines(I)V
 
-    const/4 v8, 0x0
+    const/4 v9, 0x0
 
-    invoke-virtual {v7, v8}, Landroid/widget/Button;->setEllipsize(Landroid/text/TextUtils$TruncateAt;)V
+    invoke-virtual {v8, v9}, Landroid/widget/Button;->setEllipsize(Landroid/text/TextUtils$TruncateAt;)V
 
-    iget-object v8, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
+    iget-object v9, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    const/high16 v9, 0x40800000    # 4.0f
+    const/high16 v10, 0x40800000    # 4.0f
 
-    invoke-static {v8, v9}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
-
-    move-result v8
-
-    invoke-virtual {v7}, Landroid/widget/Button;->getPaddingTop()I
+    invoke-static {v9, v10}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
     move-result v9
 
-    invoke-virtual {v7}, Landroid/widget/Button;->getPaddingBottom()I
+    invoke-virtual {v8}, Landroid/widget/Button;->getPaddingTop()I
 
     move-result v10
 
-    invoke-virtual {v7, v8, v9, v8, v10}, Landroid/widget/Button;->setPadding(IIII)V
+    invoke-virtual {v8}, Landroid/widget/Button;->getPaddingBottom()I
 
-    iget-object v8, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
+    move-result v11
 
-    const/high16 v9, 0x42400000    # 48.0f
+    invoke-virtual {v8, v9, v10, v9, v11}, Landroid/widget/Button;->setPadding(IIII)V
 
-    invoke-static {v8, v9}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
+    iget-object v9, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    move-result v8
+    const/high16 v10, 0x42400000    # 48.0f
 
-    invoke-virtual {v7, v8}, Landroid/widget/Button;->setMinHeight(I)V
+    invoke-static {v9, v10}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
-    iget-object v8, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
+    move-result v9
 
-    invoke-static {v8, v9}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
+    invoke-virtual {v8, v9}, Landroid/widget/Button;->setMinHeight(I)V
 
-    move-result v8
+    iget-object v9, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-virtual {v7, v8}, Landroid/widget/Button;->setMinimumHeight(I)V
+    invoke-static {v9, v10}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
-    new-instance v8, Landroid/widget/LinearLayout$LayoutParams;
+    move-result v9
 
-    const/high16 v9, 0x3f800000    # 1.0f
+    invoke-virtual {v8, v9}, Landroid/widget/Button;->setMinimumHeight(I)V
 
-    invoke-direct {v8, v2, v4, v9}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
+    new-instance v9, Landroid/widget/LinearLayout$LayoutParams;
 
-    invoke-virtual {v1, v7, v8}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    if-ne v7, v5, :cond_2
+
+    const/high16 v7, 0x3fa00000    # 1.25f
+
+    goto :goto_1
+
+    :cond_2
+    if-ne v7, v4, :cond_3
+
+    const/high16 v7, 0x3f400000    # 0.75f
+
+    goto :goto_1
+
+    :cond_3
+    const/high16 v7, 0x3f800000    # 1.0f
 
     :goto_1
+    invoke-direct {v9, v2, v4, v7}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
+
+    invoke-virtual {v1, v8, v9}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    :goto_2
     add-int/lit8 v6, v6, 0x1
 
     goto :goto_0
 
     .line 141
-    :cond_2
-    if-eqz v0, :cond_3
+    :cond_4
+    if-eqz v0, :cond_5
 
     const/16 v3, 0x8
 
     invoke-virtual {v0, v3}, Landroid/view/View;->setVisibility(I)V
 
-    :cond_3
+    :cond_5
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->pane:Landroid/widget/LinearLayout;
 
     new-instance v3, Landroid/widget/LinearLayout$LayoutParams;
@@ -504,7 +519,7 @@
     invoke-static {v0, v1}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$100(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/app/AlertDialog;)V
 
     .line 142
-    if-eqz p1, :cond_6
+    if-eqz p1, :cond_8
 
     invoke-virtual {p1}, Lorg/rabochaya/projects/ObjectFormDraft;->starts()[I
 
@@ -516,7 +531,7 @@
 
     iget v3, p1, Lorg/rabochaya/projects/ObjectFormDraft;->focus:I
 
-    if-ltz v3, :cond_4
+    if-ltz v3, :cond_6
 
     iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->inputs:[Landroid/widget/EditText;
 
@@ -528,7 +543,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_4
+    if-eqz v3, :cond_6
 
     iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->inputs:[Landroid/widget/EditText;
 
@@ -538,12 +553,12 @@
 
     invoke-virtual {p1}, Landroid/widget/EditText;->requestFocus()Z
 
-    goto :goto_2
+    goto :goto_3
 
-    :cond_4
+    :cond_6
     iget p1, p1, Lorg/rabochaya/projects/ObjectFormDraft;->focus:I
 
-    if-gez p1, :cond_5
+    if-gez p1, :cond_7
 
     iget-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->pane:Landroid/widget/LinearLayout;
 
@@ -555,13 +570,13 @@
 
     invoke-virtual {p1}, Landroid/widget/LinearLayout;->requestFocus()Z
 
-    :cond_5
-    :goto_2
+    :cond_7
+    :goto_3
     iget-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->inputs:[Landroid/widget/EditText;
 
     array-length p1, p1
 
-    if-ge v2, p1, :cond_6
+    if-ge v2, p1, :cond_8
 
     iget-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->inputs:[Landroid/widget/EditText;
 
@@ -575,9 +590,9 @@
 
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_2
+    goto :goto_3
 
     .line 143
-    :cond_6
+    :cond_8
     return-void
 .end method
