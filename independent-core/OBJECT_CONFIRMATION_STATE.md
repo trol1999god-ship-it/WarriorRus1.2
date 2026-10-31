@@ -34,3 +34,25 @@ Local:22 JVM suites /81190 assertions (model60, clipboard63), host12, QA415 own
 classes, source SHA256 matched build_result. Android validation of the candidate
 is still pending. This is scoped QA, not full reference UI/process-death/device/
 migration acceptance. No requirements are accepted and release gate is unchanged.
+
+The first candidate91cbee / CI41162028421 passed30 modes on each API. All16
+copy/cut cancellation/confirmation/staleness/recapture/clear cases passed, but
+foreign-pastecopy failed: the confirmation and selection were correctly rejected,
+yet onCreate adopted folder0 from the source Bundle into the other project's
+stored root view because their XML tokens matched. Both failure PNGs were reviewed.
+The62 intermediate frames and observations are retained as failure evidence,
+not a claim that every intermediate frame was visually accepted.
+
+de2fb84 scopes Bundle folder/token to viewProject, retaining the target project's
+own stored view as fallback. Its QA unsigned SHA256 is
+eaa19f35e57da137b0dfe979c4574c6f069aaad8c0ed8be918833066addb637c.
+Full CI41163805624 is running with the same strict foreign-project assertions.
+
+Final de2fb84 / CI41163805624: JVM and both Android jobs succeeded;31/31 modes
+on API23 and35, no skips. managerconfirm709/706 and managerpasteconfirm910/908
+assertions respectively. All foreign cases preserve their own view/settings; all
+Cancel/explicit action/stale/replace/clear scenarios passed.64 final PNGs were
+SHA256-verified and retained with observations;20 representative final PNGs were
+actually reviewed (exact names in final-result.json). Visible text Arimo verified
+in all64 observations. This does not claim visual reference acceptance of every
+frame, process-death restoration, device/migration or the whole application.
