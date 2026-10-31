@@ -30,7 +30,7 @@
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda42;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$onCreate$3$org-rabochaya-projects-ObjectManagerActivity()V
+    invoke-virtual {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$onCreate$5$org-rabochaya-projects-ObjectManagerActivity()V
 
     return-void
 .end method

@@ -76,7 +76,7 @@
 
     move v9, p2
 
-    invoke-virtual/range {v0 .. v9}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$searchOptions$47$org-rabochaya-projects-ObjectManagerActivity(Landroid/widget/EditText;Landroid/widget/Spinner;Landroid/widget/Spinner;Landroid/widget/Spinner;Landroid/widget/CheckBox;Landroid/widget/CheckBox;Landroid/widget/Spinner;Landroid/content/DialogInterface;I)V
+    invoke-virtual/range {v0 .. v9}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$searchOptions$48$org-rabochaya-projects-ObjectManagerActivity(Landroid/widget/EditText;Landroid/widget/Spinner;Landroid/widget/Spinner;Landroid/widget/Spinner;Landroid/widget/CheckBox;Landroid/widget/CheckBox;Landroid/widget/Spinner;Landroid/content/DialogInterface;I)V
 
     return-void
 .end method

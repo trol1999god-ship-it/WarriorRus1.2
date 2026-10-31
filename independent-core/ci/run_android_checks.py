@@ -66,6 +66,10 @@ for mode in a.modes:
     (out/(mode+'-'+service+'.txt')).write_text(adb('shell','dumpsys',service,detail,timeout=15,required=False))
   # The emulator contains synthetic QA data only. Do not pull private databases.
   adb('pull','/sdcard/Android/data/org.rabochaya.karta/files',out/mode,required=False)
+  if mode=='managerchooser':
+   layout=adb('logcat','-d','-s','RK_CHOOSER:D','*:S',required=False)
+   (out/'managerchooser-layout.txt').write_text(layout)
+   print('CHOOSER_LAYOUT_DIAGNOSTICS\n'+'\n'.join(layout.splitlines()[-256:])[-32768:],flush=True)
   if mode in ('managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser'):
    print(text,flush=True)
    try:emit_visual_evidence(out/mode)

@@ -15,13 +15,13 @@
 
 .field public final synthetic f$3:I
 
-.field public final synthetic f$4:Ljava/util/List;
+.field public final synthetic f$4:I
 
-.field public final synthetic f$5:I
+.field public final synthetic f$5:Ljava/util/List;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/app/AlertDialog;ZILjava/util/List;I)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/app/AlertDialog;ZIILjava/util/List;)V
     .locals 0
 
     .line 0
@@ -35,9 +35,9 @@
 
     iput p4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$3:I
 
-    iput-object p5, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$4:Ljava/util/List;
+    iput p5, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$4:I
 
-    iput p6, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$5:I
+    iput-object p6, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$5:Ljava/util/List;
 
     return-void
 .end method
@@ -56,13 +56,13 @@
 
     iget v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$3:I
 
-    iget-object v4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$4:Ljava/util/List;
+    iget v4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$4:I
 
-    iget v5, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$5:I
+    iget-object v5, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$5:Ljava/util/List;
 
     move-object v6, p1
 
-    invoke-virtual/range {v0 .. v6}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$openChooser$37$org-rabochaya-projects-ObjectManagerActivity(Landroid/app/AlertDialog;ZILjava/util/List;ILandroid/content/DialogInterface;)V
+    invoke-virtual/range {v0 .. v6}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$openChooser$38$org-rabochaya-projects-ObjectManagerActivity(Landroid/app/AlertDialog;ZIILjava/util/List;Landroid/content/DialogInterface;)V
 
     return-void
 .end method

@@ -38,12 +38,12 @@
 .method constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/String;Landroid/widget/LinearLayout;[Landroid/widget/EditText;[Landroid/widget/Spinner;[Landroid/widget/CheckBox;Landroid/widget/TextView;)V
     .locals 2
 
-    .line 161
+    .line 162
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 160
+    .line 161
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
     invoke-static {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$1400(Lorg/rabochaya/projects/ObjectManagerActivity;)J
@@ -60,7 +60,7 @@
 
     iput-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->pane:Landroid/widget/LinearLayout;
 
-    .line 161
+    .line 162
     iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->kind:Ljava/lang/String;
 
     iput-object p4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->inputs:[Landroid/widget/EditText;
@@ -103,7 +103,7 @@
 .method bind(Landroid/app/AlertDialog;)V
     .locals 1
 
-    .line 163
+    .line 164
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->dialog:Landroid/app/AlertDialog;
 
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
@@ -122,7 +122,7 @@
 .method capture()Lorg/rabochaya/projects/ObjectFormDraft;
     .locals 12
 
-    .line 162
+    .line 163
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->inputs:[Landroid/widget/EditText;
 
     array-length v0, v0
@@ -304,7 +304,7 @@
 .method synthetic lambda$bind$0$org-rabochaya-projects-ObjectManagerActivity$FormUi(Landroid/content/DialogInterface;)V
     .locals 1
 
-    .line 163
+    .line 164
     iget-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
     invoke-static {p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$1600(Lorg/rabochaya/projects/ObjectManagerActivity;)Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;
@@ -326,7 +326,7 @@
 .method shown(Lorg/rabochaya/projects/ObjectFormDraft;)V
     .locals 12
 
-    .line 167
+    .line 168
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;->dialog:Landroid/app/AlertDialog;
 
     invoke-virtual {v0}, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
@@ -367,7 +367,7 @@
 
     invoke-virtual {v1, v2}, Landroid/widget/LinearLayout;->setBaselineAligned(Z)V
 
-    .line 168
+    .line 169
     const/4 v3, -0x3
 
     const/4 v4, -0x2
@@ -495,7 +495,7 @@
 
     goto :goto_0
 
-    .line 169
+    .line 170
     :cond_4
     if-eqz v0, :cond_5
 
@@ -518,7 +518,7 @@
 
     invoke-static {v0, v1}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$100(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/app/AlertDialog;)V
 
-    .line 170
+    .line 171
     if-eqz p1, :cond_8
 
     invoke-virtual {p1}, Lorg/rabochaya/projects/ObjectFormDraft;->starts()[I
@@ -592,7 +592,7 @@
 
     goto :goto_3
 
-    .line 171
+    .line 172
     :cond_8
     return-void
 .end method
