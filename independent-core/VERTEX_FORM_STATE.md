@@ -1,3 +1,21 @@
+# Восстановление raw-формы отдельной вершины — проверенный ограниченный результат
+
+Код66cb8ca, CI41818076658 attempt2 SUCCESS. API23/API35 по33/33, vertexrotation369/364; JVM23 набора/81259 утверждений, QA-driver12.426 ownclasses, minSdk23, INTERNET only.32 финальных SHA-проверенных PNG фактически просмотрены: security/vertex-form-qa-2026-11-04/final-66-api23/35; final-result.json и final-66-api*-trace.json содержат source/job/метаданные.
+
+Baseline0b574a2 доказал потерю valid/invalid raw-формы обеими API после настоящего уничтожения/пересоздания Activity. Теперь Bundle хранит ограниченные raw-текст/выделение/ошибку с исходными project/feature/process/part/token и хешем основного ввода. Само восстановление ничего не применяет. Чужое намерение отклоняется, устаревший main/geometry блокирует Apply. Explicit Apply меняет только основной UI-ввод; отдельный Save транзакционно меняет выбранную вершину. Cancel и отказы сохраняют XML/вложения; более новый объект не перезаписывается. Проверены оба поворота с old.isDestroyed, реальная IME, физические границы поля/кнопок, полный диалог после hideIME, no ghost, stale-before/after/main-changed и чужой проект с тем же XML/другой feature.
+
+Native errorPopup перекрывал действия: заменён inline-ошибкой, Arimo применён к форме/selector. API35 floating-dialog frame не учитывал IME (616 против Activity381 на экране640), затем отдельные layout-события оставляли форму некомпактной/не возвращали заголовок. Layout использует frame Activity и наблюдает оба окна; оба слушателя удаляются при закрытии.100px IME predicate сохранён, добавлены реальные screen-coordinate guards.
+
+Первая API35 попытка этого кода завершилась failure: paste instrumentation908 passed, PNG pull не удался, chooser adb offline до старта. Один повтор API35 на неизменном source прошёл все33; прежняя неудача сохранена отдельно. Успех редактора не использовался для сокрытия failure полного job.
+
+Границы: в landscape API35 с IME доступно82px; поле и действия видны, длинная ошибка/предупреждение вне текущего scroll viewport. Полное сообщение реально просмотрено после hideIME; настоящий жест прокрутки к нему с IME ещё не проверен. Только Point/LineString part0 replace имеет эту новую Android-приёмку; before/after, другой индекс/часть и внутренние контуры требуют отдельных проб. Нет заявления одновременной видимости всего текста, полного эталонного UI, Android16/телефона или миграции. Gate false25, requirements0accepted.
+
+Следующий участок: реальная прокрутка длинного сообщения в82px; затем сначала baseline открытых подтверждений удаления вершины/внутреннего контура при recreate. Эти пробы ещё не запускались.
+
+---
+
+История подготовки (pending ниже относится к прежним кандидатам):
+
 # Raw vertex editor recreation
 
 Baseline 0b574a2 / CI41800304932: both API23/API35 lost valid and invalid open raw coordinate forms after real destroyed/recreate. Main draft and KML/assets remained intact. All eight baseline PNGs reviewed; native error popup covered action buttons, modal text lacked Arimo. Evidence: security/vertex-form-qa-2026-11-04/before-*.
