@@ -1,3 +1,10 @@
+Новый несохранённый внутренний контур проверен на code70cc7c5:
+CI41892245044 success attempt2, API23/API35 по39/39, JVM24/81315, host13;
+56 финальных PNG просмотрены. Raw/addingHole/оба actualrecreate/IME/Cancel/
+explicit Apply→отдельныйSave/stale/foreign сохраняют данные; Save добавляет третье
+кольцо, не заменяет outer. Production unchanged1fc6b8f.
+[NEW_HOLE_STATE.md](NEW_HOLE_STATE.md) — границы и failed history.
+
 Вставка вершины до/после в nonzero MultiGeometry и втором внутреннем контуре
 проверена с raw/selection/IME/обоими actualrecreate/Cancel/Apply→отдельныйSave.
 Test e28d4d4 / CI41859261415: API23/API35 по37/37;32 новых PNG просмотрены.

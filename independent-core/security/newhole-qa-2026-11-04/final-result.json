@@ -1,0 +1,59 @@
+{
+  "source": "70cc7c5a0588f7cc45df1826b74b0402bc288236",
+  "production_source": "1fc6b8f2448247990967a287b732980dcd4d7197",
+  "run": 41892245044,
+  "attempt": 2,
+  "conclusion": "success",
+  "jobs": {
+    "jvm_executed": 126792407100,
+    "jvm_cached": 126809403009,
+    "api23_executed": 126792623810,
+    "api23_cached": 126809403155,
+    "api35_executed_attempt2": 126809400911
+  },
+  "modes_each": 39,
+  "main_assertions_each": 275,
+  "guards_assertions": {
+    "23": 445,
+    "35": 444
+  },
+  "jvm_suites": 24,
+  "jvm_assertions": 81315,
+  "driver_tests": 13,
+  "final_png_sha_verified_and_actually_reviewed": 56,
+  "final_png_scope": {
+    "23": [
+      "final-70-main-api23",
+      "final-70-guards-api23"
+    ],
+    "35": [
+      "final-70-retry-main-api35",
+      "final-70-retry-guards-api35"
+    ]
+  },
+  "earlier_api35_attempt1_png_reviewed": 28,
+  "production_changed": false,
+  "app_source_sha_matched": 54,
+  "min_sdk": 23,
+  "api_stubs_packaged": false,
+  "cases": [
+    "New unsaved addingHole=true retains original owner/feature/process/outer-key/token/main stamp/index/op across both actual destroyed/recreate",
+    "raw before/after: exact text/selection1..3/error and real IME/physical field/actions guards",
+    "native vertex deletion in new hole: Cancel or explicit confirm changes only draft",
+    "Apply alone never writes KML; separate MainSave adds exactly third inner0/inner/2, never replaces outer or existing rings, full DOM/assets comparison",
+    "stale-before/stale-after/main-changed raw and delete rejected; newer dirty main retained",
+    "stale MainSave refused, foreign sameXML project/other feature reject old draft and adding mode",
+    "invalid latitude/error/selection persist across both rotations, Cancel/no ghost/no automatic write"
+  ],
+  "history": "Initial d2 test names broke strict PNG allowlist;149 fixed names API23 passed39/39, API35 had offline/missing PNG;70 diagnostic attempt1 proved adb offline in4 old modes, new-hole modes/PNG passed;one failed-job-only rerun same source passed39/39 API35. No skip or offline counted as pass.",
+  "limitations": [
+    "Same-process restore only; no process-death restoration acceptance",
+    "Selector names outer anchor during new-hole input; no full UI reference acceptance",
+    "API35 tight landscape error can need scroll; reusable dialog earlier scroll checked, new-hole-specific scroll not claimed",
+    "Physical device/Android16/full reference parity/primary signing/migration unaccepted"
+  ],
+  "release_gate_allowed": false,
+  "release_gate_blockers": 25,
+  "accepted_requirements": 0,
+  "full_migration_complete": false
+}

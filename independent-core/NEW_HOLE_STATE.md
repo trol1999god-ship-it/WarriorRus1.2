@@ -1,5 +1,29 @@
 # Новый внутренний контур: текущая проба 4 ноября 2026
 
+ПРОВЕРЕННЫЙ итог code70cc7c5 / CI41892245044 success attempt2: API23/API35
+по39/39, main275 each, guards445/444; JVM24/81315, host13.56 финальных PNG
+SHA-verified и все просмотрены (API23 первая попытка, API35 вторая); ещё28PNG
+первой API35 сохранены/просмотрены. final-result.json содержит IDs и точные границы.
+Production unchanged1fc6b8f: потери состояния/неверной записи в этом участке
+не обнаружено, предварительных исправлений приложения не было.
+
+Оба настоящих destroyed/recreate сохраняют raw/selection/error/main/addingHole и
+исходный context. Cancel не пишет KML/assets; explicit Apply только меняет ввод;
+отдельный Save добавляет третье кольцо без изменений outer/двух прежних колец.
+Stale-before/after/main-changed/foreign и stale Save блокируются с сохранением данных.
+Ошибка QA-имён исправлена; пропажу PNG нельзя было считать успехом. Новый драйвер
+сохраняет16K chars pull output, печатает4K chars при отказе; строгий13-й host test.
+Диагностика первой попытки70 показала adb offline в4 старых modes; один повтор
+только API35 на том же коде прошёл все39, включая ранее неисполненные modes.
+
+Ограничения: same-process only; selector продолжает показывать outer-якорь нового
+контура; тесный landscape может требовать прокрутки длинной ошибки (новый собственный
+scroll probe здесь не заявлен). Полный UI/геометрический паритет, process-death,
+физическое устройство/Android16, миграция/основная подпись не приняты.0 accepted.
+
+Исторические неуспешные попытки, не текущий статус:
+
+
 Текущий исправленный test14984ab / CI41886801966 failure: API23 success39/39,
 main275/guards445,28PNG collected. API35 main275 passed, guards439 instrumentation
 passed, но0PNG collected; managermove не выполнен из-за adb offline. Причина pull
