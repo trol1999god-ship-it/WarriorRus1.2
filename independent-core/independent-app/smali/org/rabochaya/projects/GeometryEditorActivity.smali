@@ -3887,9 +3887,15 @@
 
     invoke-direct {v1}, Landroid/graphics/Rect;-><init>()V
 
-    move-object v2, p1
+    invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->getWindow()Landroid/view/Window;
 
-    invoke-virtual {p1, v1}, Landroid/view/View;->getWindowVisibleDisplayFrame(Landroid/graphics/Rect;)V
+    move-result-object v2
+
+    invoke-virtual {v2}, Landroid/view/Window;->getDecorView()Landroid/view/View;
+
+    move-result-object v2
+
+    invoke-virtual {v2, v1}, Landroid/view/View;->getWindowVisibleDisplayFrame(Landroid/graphics/Rect;)V
 
     invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->getResources()Landroid/content/res/Resources;
 
