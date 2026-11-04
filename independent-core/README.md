@@ -1,3 +1,8 @@
+Вставка вершины до/после в nonzero MultiGeometry и втором внутреннем контуре
+проверена с raw/selection/IME/обоими actualrecreate/Cancel/Apply→отдельныйSave.
+Test e28d4d4 / CI41859261415: API23/API35 по37/37;32 новых PNG просмотрены.
+Production unchanged1fc6b8f. [VERTEX_INSERTION_STATE.md](VERTEX_INSERTION_STATE.md).
+
 Подтверждения удаления вершины/внутреннего контура теперь восстанавливаются после
 реального recreate с исходным owner/process/token/адресом/индексом/main stamp.
 Confirm не пишет KML; для контура готовит намерение, запись — отдельным Save.
@@ -8,8 +13,8 @@ Code1fc6b8f / CI41852078435: API23/API35 по36/36, JVM24/81315, host12;
 API35 Activity82px/content26px, текст читается по строкам, поле возвращается,
 raw/cursor/error/token и данные сохранны. Прежние34 режима прошли на обеих API;
 15 новых PNG просмотрены. [VERTEX_SCROLL_STATE.md](VERTEX_SCROLL_STATE.md).
-Следующие baseline подтверждений удаления геометрии выявили потерю обоих диалогов;
-их исправление ещё не принято: [GEOMETRY_CONFIRMATION_STATE.md](GEOMETRY_CONFIRMATION_STATE.md).
+Исторические baseline подтвердили потерю обоих диалогов; проверенное исправление
+и его границы описаны в [GEOMETRY_CONFIRMATION_STATE.md](GEOMETRY_CONFIRMATION_STATE.md).
 
 Raw-форма отдельной вершины теперь сохраняет текст/выделение/ошибку после реального
 пересоздания Activity только для исходного объекта; Apply и отдельный Save остаются
