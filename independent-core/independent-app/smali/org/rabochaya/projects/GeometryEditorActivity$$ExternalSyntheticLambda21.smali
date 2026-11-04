@@ -3,21 +3,17 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/lang/Runnable;
+.implements Landroid/view/View$OnClickListener;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-.field public final synthetic f$1:Ljava/lang/String;
-
-.field public final synthetic f$2:Ljava/lang/String;
-
-.field public final synthetic f$3:Ljava/lang/String;
+.field public final synthetic f$1:Ljava/lang/Runnable;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;Ljava/lang/Runnable;)V
     .locals 0
 
     .line 0
@@ -25,30 +21,22 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda21;->f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda21;->f$1:Ljava/lang/String;
-
-    iput-object p3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda21;->f$2:Ljava/lang/String;
-
-    iput-object p4, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda21;->f$3:Ljava/lang/String;
+    iput-object p2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda21;->f$1:Ljava/lang/Runnable;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final run()V
-    .locals 4
+.method public final onClick(Landroid/view/View;)V
+    .locals 2
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda21;->f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda21;->f$1:Ljava/lang/String;
+    iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda21;->f$1:Ljava/lang/Runnable;
 
-    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda21;->f$2:Ljava/lang/String;
-
-    iget-object v3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda21;->f$3:Ljava/lang/String;
-
-    invoke-virtual {v0, v1, v2, v3}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$write$20$org-rabochaya-projects-GeometryEditorActivity(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+    invoke-virtual {v0, v1, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$button$0$org-rabochaya-projects-GeometryEditorActivity(Ljava/lang/Runnable;Landroid/view/View;)V
 
     return-void
 .end method

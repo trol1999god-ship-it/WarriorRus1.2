@@ -30,7 +30,7 @@
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda1;->f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$onBackPressed$24$org-rabochaya-projects-GeometryEditorActivity(Landroid/content/DialogInterface;I)V
+    invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$onBackPressed$25$org-rabochaya-projects-GeometryEditorActivity(Landroid/content/DialogInterface;I)V
 
     return-void
 .end method
