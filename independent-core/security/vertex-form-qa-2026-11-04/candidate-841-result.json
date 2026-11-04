@@ -1,0 +1,17 @@
+{
+  "source": "841843a0a2824a3e2b6f22e33994dbdffb10314d",
+  "run": 41809524186,
+  "api23": {
+    "job": 126505105617,
+    "modes": 33,
+    "vertex_assertions": 348,
+    "png_verified_reviewed": 16
+  },
+  "api35": {
+    "job": 126505105775,
+    "previous_modes_passed": 32,
+    "vertex_failure": "initial portrait real IME visible-frame reduction assertion; before rotation",
+    "png_verified_reviewed": 1
+  },
+  "accepted": false
+}
