@@ -4826,19 +4826,31 @@
     return-void
 .end method
 
-.method private restoreChooserAnchor(Landroid/widget/ListView;II)V
-    .locals 2
+.method private restoreChooserAnchor(Landroid/widget/ListView;IILandroid/os/Parcelable;)V
+    .locals 8
 
     .line 125
     invoke-virtual {p1}, Landroid/widget/ListView;->getViewTreeObserver()Landroid/view/ViewTreeObserver;
 
     move-result-object v0
 
-    new-instance v1, Lorg/rabochaya/projects/ObjectManagerActivity$3;
+    new-instance v7, Lorg/rabochaya/projects/ObjectManagerActivity$3;
 
-    invoke-direct {v1, p0, p1, p2, p3}, Lorg/rabochaya/projects/ObjectManagerActivity$3;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/widget/ListView;II)V
+    move-object v1, v7
 
-    invoke-virtual {v0, v1}, Landroid/view/ViewTreeObserver;->addOnPreDrawListener(Landroid/view/ViewTreeObserver$OnPreDrawListener;)V
+    move-object v2, p0
+
+    move-object v3, p1
+
+    move v4, p2
+
+    move v5, p3
+
+    move-object v6, p4
+
+    invoke-direct/range {v1 .. v6}, Lorg/rabochaya/projects/ObjectManagerActivity$3;-><init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/widget/ListView;IILandroid/os/Parcelable;)V
+
+    invoke-virtual {v0, v7}, Landroid/view/ViewTreeObserver;->addOnPreDrawListener(Landroid/view/ViewTreeObserver$OnPreDrawListener;)V
 
     return-void
 .end method
@@ -8370,7 +8382,7 @@
     .line 123
     invoke-direct {p0, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->styleDialog(Landroid/app/AlertDialog;)V
 
-    if-eqz p2, :cond_3
+    if-eqz p2, :cond_2
 
     invoke-virtual {p1}, Landroid/app/AlertDialog;->getListView()Landroid/widget/ListView;
 
@@ -8380,22 +8392,13 @@
 
     invoke-direct {p0, p2, p3, p4, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->chooserDiagnostic(Ljava/lang/String;IILandroid/widget/ListView;)V
 
-    if-eqz p5, :cond_0
+    if-nez p5, :cond_0
 
-    invoke-virtual {p1, p5}, Landroid/widget/ListView;->onRestoreInstanceState(Landroid/os/Parcelable;)V
+    if-gtz p3, :cond_0
 
-    const-string p2, "restore-native"
-
-    invoke-direct {p0, p2, p3, p4, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->chooserDiagnostic(Ljava/lang/String;IILandroid/widget/ListView;)V
-
-    goto :goto_0
+    if-eqz p4, :cond_1
 
     :cond_0
-    if-gtz p3, :cond_1
-
-    if-eqz p4, :cond_2
-
-    :cond_1
     invoke-interface {p6}, Ljava/util/List;->size()I
 
     move-result p2
@@ -8406,10 +8409,9 @@
 
     move-result p2
 
-    invoke-direct {p0, p1, p2, p4}, Lorg/rabochaya/projects/ObjectManagerActivity;->restoreChooserAnchor(Landroid/widget/ListView;II)V
+    invoke-direct {p0, p1, p2, p4, p5}, Lorg/rabochaya/projects/ObjectManagerActivity;->restoreChooserAnchor(Landroid/widget/ListView;IILandroid/os/Parcelable;)V
 
-    :cond_2
-    :goto_0
+    :cond_1
     const-string p2, "show-after"
 
     invoke-direct {p0, p2, p3, p4, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->chooserDiagnostic(Ljava/lang/String;IILandroid/widget/ListView;)V
@@ -8420,7 +8422,7 @@
 
     invoke-virtual {p1, p2}, Landroid/widget/ListView;->post(Ljava/lang/Runnable;)Z
 
-    :cond_3
+    :cond_2
     return-void
 .end method
 

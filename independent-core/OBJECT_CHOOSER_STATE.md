@@ -77,3 +77,13 @@ pending-sync restoration from a raw selection request.
 Local QA419 classes,22 JVM suites/81190 assertions, driver12, source hashes match.
 Android verification of this candidate remains pending. Requirements/release gate
 are unchanged and the full application remains unaccepted.
+
+F5 CI41793608248 did not pass: both previous31 modes and original-folder passed,
+but native restore in onShow was still discarded while layoutRequested=true.
+Both APIs now correctly established first6/top0 before rotation; both then
+returned to first0.30 PNGs retained,4 scroll frames reviewed. The next candidate
+applies native state only once at a stable pre-draw (children present and no
+pending layout), cancels that draw to request the framework sync layout, and
+retains all first6/top0 checks. No timers or automatic destination action.
+Local QA420 classes, source hashes match, JVM22/81190 and driver12 pass;
+Android validation remains pending.

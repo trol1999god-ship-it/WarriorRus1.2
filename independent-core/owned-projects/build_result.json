@@ -1,5 +1,5 @@
 {
-  "added_classes": 353,
+  "added_classes": 354,
   "generated_files": [
     "AttachmentsActivity$$ExternalSyntheticLambda0.smali",
     "AttachmentsActivity$$ExternalSyntheticLambda1.smali",
@@ -284,6 +284,7 @@
     "ObjectManagerActivity$$ExternalSyntheticLambda9.smali",
     "ObjectManagerActivity$1.smali",
     "ObjectManagerActivity$2.smali",
+    "ObjectManagerActivity$3$$ExternalSyntheticLambda0.smali",
     "ObjectManagerActivity$3.smali",
     "ObjectManagerActivity$4.smali",
     "ObjectManagerActivity$FormUi$$ExternalSyntheticLambda0.smali",
@@ -393,7 +394,7 @@
     "src/org/rabochaya/projects/ObjectEditorDraft.java": "21b97936d4c30249852c596f415e60a16b220f2272119d87e1660f360f27a372",
     "src/org/rabochaya/projects/ObjectFormDraft.java": "71f8195db5bce74d7007870e9c8d73bfb56f355784a085f6edf485d0bca53094",
     "src/org/rabochaya/projects/ObjectListing.java": "03ed9988bce1ead92cb027766a25c34706aa4ac49d9cfdc37e7d3cf2e10315c0",
-    "src/org/rabochaya/projects/ObjectManagerActivity.java": "48f370b451a6df50093fd768e13c9c550a6474d5e9ca70ea94a6eaa6302dc86b",
+    "src/org/rabochaya/projects/ObjectManagerActivity.java": "0b65a28e8dd08038bc2a105a83d0212b886162bc54ed69c3532ea6220143b752",
     "src/org/rabochaya/projects/ObjectMoveDraft.java": "4cb010f27a69f173d34c5c8bb519ae9d1c7ab41fa2c395ffa2977d4c0127b4bb",
     "src/org/rabochaya/projects/ObjectSelectionState.java": "bee4aef6e8f3e6693d956aa036a06c38d2703ac00465b24e90aae70109819c77",
     "src/org/rabochaya/projects/ObjectTree.java": "ff0aedbb354e9df35f164b9a28211292ba02e17bcf21bbb5b377d0da247e2019",
