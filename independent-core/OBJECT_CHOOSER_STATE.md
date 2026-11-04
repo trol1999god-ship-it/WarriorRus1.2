@@ -51,3 +51,29 @@ GeometryEditorActivity recreation, first reproduction rather than guessed repair
 Release gate remains false/25 blockers,0 requirements accepted. This is not full
 reference UI, process-death, physical-device, migration or whole-app acceptance.
 No new cloud task was created and reusable-environment publication was not repaired.
+
+## 4 November: diagnostic cause and candidate repair
+
+Execution restored through the standard running/connected/current status; shell
+and saved Java17/SDK worked. Local docs were preserved as backup and retained
+stash before fast-forward to6cf9c4a. No reset/clean or network/TLS changes.
+
+8d0a0cf / CI41176758819: previous31 modes and original-folder passed on both
+APIs. On23 the list has8px top padding: setSelectionFromTop(6,0) produced first5,
+top-40, while row6 started at+8. On35 first6/top0 was correctly saved and read,
+but raw setSelectionFromTop during pending show-layout reverted to first0/top0.
+The numeric data and guarded intent were intact.29 diagnostic PNGs are retained;
+five relevant scroll/original-folder PNGs were actually reviewed.
+
+Candidate uses public ListView.onSaveInstanceState/onRestoreInstanceState, capped
+at4096 bytes, so the framework participates in initial layout synchronization.
+Only guarded unchanged XML can apply that state; no choice callback is invoked.
+The numeric fallback applies after layout and subtracts list padding. The fixture
+now requests absolute top0 by subtracting getListPaddingTop; first==6 remains
+mandatory, with a stronger top==0 assertion before and after both real rotations.
+AOSP AbsListView for android-6.0.1_r81/android-15.0.0_r1 distinguishes this native
+pending-sync restoration from a raw selection request.
+
+Local QA419 classes,22 JVM suites/81190 assertions, driver12, source hashes match.
+Android verification of this candidate remains pending. Requirements/release gate
+are unchanged and the full application remains unaccepted.

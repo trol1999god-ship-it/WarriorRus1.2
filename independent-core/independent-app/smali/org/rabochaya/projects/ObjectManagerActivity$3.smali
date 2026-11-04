@@ -3,12 +3,12 @@
 .source "ObjectManagerActivity.java"
 
 # interfaces
-.implements Landroid/widget/AdapterView$OnItemSelectedListener;
+.implements Landroid/view/ViewTreeObserver$OnPreDrawListener;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lorg/rabochaya/projects/ObjectManagerActivity;->dateOptions(Lorg/rabochaya/projects/ObjectFormDraft;)V
+    value = Lorg/rabochaya/projects/ObjectManagerActivity;->restoreChooserAnchor(Landroid/widget/ListView;II)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -20,19 +20,15 @@
 # instance fields
 .field final synthetic this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-.field final synthetic val$error:Landroid/widget/TextView;
+.field final synthetic val$first:I
 
-.field final synthetic val$from:Landroid/widget/EditText;
+.field final synthetic val$options:Landroid/widget/ListView;
 
-.field final synthetic val$lastMode:[I
-
-.field final synthetic val$mode:Landroid/widget/Spinner;
-
-.field final synthetic val$to:Landroid/widget/EditText;
+.field final synthetic val$top:I
 
 
 # direct methods
-.method constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/widget/Spinner;Landroid/widget/EditText;Landroid/widget/EditText;[ILandroid/widget/TextView;)V
+.method constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/widget/ListView;II)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -40,18 +36,14 @@
         }
     .end annotation
 
-    .line 188
+    .line 125
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$mode:Landroid/widget/Spinner;
+    iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$options:Landroid/widget/ListView;
 
-    iput-object p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$from:Landroid/widget/EditText;
+    iput p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$first:I
 
-    iput-object p4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$to:Landroid/widget/EditText;
-
-    iput-object p5, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$lastMode:[I
-
-    iput-object p6, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$error:Landroid/widget/TextView;
+    iput p4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$top:I
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -60,87 +52,72 @@
 
 
 # virtual methods
-.method public onItemSelected(Landroid/widget/AdapterView;Landroid/view/View;IJ)V
-    .locals 1
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Landroid/widget/AdapterView<",
-            "*>;",
-            "Landroid/view/View;",
-            "IJ)V"
-        }
-    .end annotation
+.method public onPreDraw()Z
+    .locals 5
 
-    .line 188
-    iget-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$mode:Landroid/widget/Spinner;
+    .line 125
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$options:Landroid/widget/ListView;
 
-    invoke-virtual {p1}, Landroid/widget/Spinner;->getSelectedItemPosition()I
+    invoke-virtual {v0}, Landroid/widget/ListView;->getChildCount()I
 
-    move-result p1
+    move-result v0
 
-    iget-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$from:Landroid/widget/EditText;
+    if-eqz v0, :cond_1
 
-    const/4 p3, 0x1
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$options:Landroid/widget/ListView;
 
-    const/4 p4, 0x0
+    invoke-virtual {v0}, Landroid/widget/ListView;->isLayoutRequested()Z
 
-    const/4 p5, 0x2
+    move-result v0
 
-    if-ne p1, p5, :cond_0
-
-    move v0, p3
+    if-eqz v0, :cond_0
 
     goto :goto_0
 
     :cond_0
-    move v0, p4
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$options:Landroid/widget/ListView;
 
-    :goto_0
-    invoke-virtual {p2, v0}, Landroid/widget/EditText;->setEnabled(Z)V
+    invoke-virtual {v0}, Landroid/widget/ListView;->getViewTreeObserver()Landroid/view/ViewTreeObserver;
 
-    iget-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$to:Landroid/widget/EditText;
+    move-result-object v0
 
-    if-ne p1, p5, :cond_1
+    invoke-virtual {v0, p0}, Landroid/view/ViewTreeObserver;->removeOnPreDrawListener(Landroid/view/ViewTreeObserver$OnPreDrawListener;)V
 
-    goto :goto_1
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$options:Landroid/widget/ListView;
+
+    iget v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$first:I
+
+    iget v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$top:I
+
+    iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$options:Landroid/widget/ListView;
+
+    invoke-virtual {v3}, Landroid/widget/ListView;->getListPaddingTop()I
+
+    move-result v3
+
+    sub-int/2addr v2, v3
+
+    invoke-virtual {v0, v1, v2}, Landroid/widget/ListView;->setSelectionFromTop(II)V
+
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
+
+    iget v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$first:I
+
+    iget v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$top:I
+
+    iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$options:Landroid/widget/ListView;
+
+    const-string v4, "restore-anchor-after-layout"
+
+    invoke-static {v0, v4, v1, v2, v3}, Lorg/rabochaya/projects/ObjectManagerActivity;->access$1400(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/String;IILandroid/widget/ListView;)V
+
+    const/4 v0, 0x0
+
+    return v0
 
     :cond_1
-    move p3, p4
+    :goto_0
+    const/4 v0, 0x1
 
-    :goto_1
-    invoke-virtual {p2, p3}, Landroid/widget/EditText;->setEnabled(Z)V
-
-    iget-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$lastMode:[I
-
-    aget p2, p2, p4
-
-    if-eq p1, p2, :cond_2
-
-    iget-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$error:Landroid/widget/TextView;
-
-    const-string p3, ""
-
-    invoke-virtual {p2, p3}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    iget-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$lastMode:[I
-
-    aput p1, p2, p4
-
-    :cond_2
-    return-void
-.end method
-
-.method public onNothingSelected(Landroid/widget/AdapterView;)V
-    .locals 0
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "(",
-            "Landroid/widget/AdapterView<",
-            "*>;)V"
-        }
-    .end annotation
-
-    .line 188
-    return-void
+    return v0
 .end method
