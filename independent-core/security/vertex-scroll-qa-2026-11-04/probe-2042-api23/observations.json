@@ -1,0 +1,114 @@
+[
+  {
+    "kind": "invalid",
+    "message": "Широта от −90 до 90, долгота от −180 до 180; числа должны быть конечными",
+    "lines": [
+      {
+        "line": 0,
+        "top": 59,
+        "bottom": 80,
+        "full": true
+      }
+    ],
+    "covered": "{0}",
+    "lineCount": 1,
+    "scrollY": 0,
+    "viewport": "0 31 640 80",
+    "activityFrame": "0 24 640 136",
+    "messageBounds": "0 59 640 80",
+    "raw": {
+      "present": true,
+      "text": "91 0",
+      "start": 1,
+      "end": 3,
+      "error": "Широта от −90 до 90, долгота от −180 до 180; числа должны быть конечными"
+    },
+    "ime": [
+      "[0,136][640,420]"
+    ]
+  },
+  {
+    "kind": "invalid",
+    "message": "Широта от −90 до 90, долгота от −180 до 180; числа должны быть конечными",
+    "lines": [
+      {
+        "line": 0,
+        "top": 59,
+        "bottom": 80,
+        "full": true
+      }
+    ],
+    "covered": "{0}",
+    "lineCount": 1,
+    "scrollY": 0,
+    "viewport": "0 31 640 80",
+    "activityFrame": "0 24 640 136",
+    "messageBounds": "0 59 640 80",
+    "raw": {
+      "present": true,
+      "text": "91 0",
+      "start": 1,
+      "end": 3,
+      "error": "Широта от −90 до 90, долгота от −180 до 180; числа должны быть конечными"
+    },
+    "ime": [
+      "[0,136][640,420]"
+    ]
+  },
+  {
+    "kind": "invalid",
+    "message": "Широта от −90 до 90, долгота от −180 до 180; числа должны быть конечными",
+    "lines": [
+      {
+        "line": 0,
+        "top": 59,
+        "bottom": 80,
+        "full": true
+      }
+    ],
+    "covered": "{0}",
+    "lineCount": 1,
+    "scrollY": 0,
+    "viewport": "0 31 640 80",
+    "activityFrame": "0 24 640 136",
+    "messageBounds": "0 59 640 80",
+    "raw": {
+      "present": true,
+      "text": "91 0",
+      "start": 1,
+      "end": 3,
+      "error": "Широта от −90 до 90, долгота от −180 до 180; числа должны быть конечными"
+    },
+    "ime": [
+      "[0,136][640,420]"
+    ]
+  },
+  {
+    "kind": "invalid",
+    "message": "Широта от −90 до 90, долгота от −180 до 180; числа должны быть конечными",
+    "lines": [
+      {
+        "line": 0,
+        "top": 59,
+        "bottom": 80,
+        "full": true
+      }
+    ],
+    "covered": "{0}",
+    "lineCount": 1,
+    "scrollY": 0,
+    "viewport": "0 31 640 80",
+    "activityFrame": "0 24 640 136",
+    "messageBounds": "0 59 640 80",
+    "raw": {
+      "present": true,
+      "text": "91 0",
+      "start": 1,
+      "end": 3,
+      "error": "Широта от −90 до 90, долгота от −180 до 180; числа должны быть конечными"
+    },
+    "ime": [
+      "[0,136][640,420]"
+    ]
+  }
+]

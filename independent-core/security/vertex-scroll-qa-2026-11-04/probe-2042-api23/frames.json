@@ -1,0 +1,14 @@
+[
+  {
+    "name": "map_mvisual-vertex-scroll-invalid-field.png",
+    "sha256": "9b98e9f834f26b12e107e05ad1c15d23cdf9c16c322a85fc9eef7a36899cdd86"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-invalid-message.png",
+    "sha256": "9b98e9f834f26b12e107e05ad1c15d23cdf9c16c322a85fc9eef7a36899cdd86"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-invalid-return.png",
+    "sha256": "df6801fcd953db6e90016a1c6a121c1007445ba2d7d95cd2021133c9de8ac8c7"
+  }
+]
