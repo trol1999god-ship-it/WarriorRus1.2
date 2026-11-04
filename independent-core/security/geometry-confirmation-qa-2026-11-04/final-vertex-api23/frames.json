@@ -1,0 +1,50 @@
+[
+  {
+    "name": "map_mvisual-geometry-delete-vertex-after.png",
+    "sha256": "a91576e4525e399374107112664688df1e4dac61935e79e96ef212227c20156d"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-before-save.png",
+    "sha256": "4fb56a1b66bbb8cd11c4b715a5c70dd95d91396b72ad3c27138970f528e96677"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-before.png",
+    "sha256": "72f67b58aa23bdfc5eb29d3f4e060c2a7ac724213564bd95fb08798c1bfb3d48"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-cancel-return.png",
+    "sha256": "79a887027a0bd51afd946b5712b6eb9921dec198dffe2d621f7fc5d4d5560968"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-confirm.png",
+    "sha256": "a91576e4525e399374107112664688df1e4dac61935e79e96ef212227c20156d"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-foreign-feature.png",
+    "sha256": "49b69c1f2ab838db4cbb52c6223290b29e46d311bd24ea5b163be47f3d6bd580"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-foreign-project.png",
+    "sha256": "1ddbdddc3f039da23df855dcfb2d81e73b50e17f77a03698e9f6c6be2786cb42"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-main-changed.png",
+    "sha256": "093cbfec9dd57c5f128790224e437de58b98cbf7db12450df1582a340902042f"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-saved.png",
+    "sha256": "4b40d2c314e331fd86affd6576d97020d3b52c34587d5b383e06bdd2ca65d93d"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-stale-after.png",
+    "sha256": "2cb6f53dc5d4976345aa3bffdfddcf8c6ec405768dd176bef26d2c0a1eee2ad6"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-stale-before.png",
+    "sha256": "d2a2e2b3d7d514af19b89d02421630e95dd5cbcf5c63510d4d55541b81758286"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-stale-save.png",
+    "sha256": "c4a44b1b1916d3ca8b0e30cee0a96bd7305d5acc0b3954bfa6f8b5a5ea7875b5"
+  }
+]

@@ -1,3 +1,9 @@
+Подтверждения удаления вершины/внутреннего контура теперь восстанавливаются после
+реального recreate с исходным owner/process/token/адресом/индексом/main stamp.
+Confirm не пишет KML; для контура готовит намерение, запись — отдельным Save.
+Code1fc6b8f / CI41852078435: API23/API35 по36/36, JVM24/81315, host12;
+56 финальных PNG просмотрены. Ограничения — [GEOMETRY_CONFIRMATION_STATE.md](GEOMETRY_CONFIRMATION_STATE.md).
+
 Длинная inline-ошибка/stale warning проверены настоящими жестами с открытой IME:
 API35 Activity82px/content26px, текст читается по строкам, поле возвращается,
 raw/cursor/error/token и данные сохранны. Прежние34 режима прошли на обеих API;
