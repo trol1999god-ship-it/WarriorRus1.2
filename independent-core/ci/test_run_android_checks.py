@@ -9,7 +9,7 @@ import base64
 import contextlib
 import hashlib
 import io
-from visual_evidence import emit_visual_evidence, decode_visual_log
+from visual_evidence import emit_visual_evidence, emit_visual_summary, decode_visual_log
 
 
 class RunnerTests(unittest.TestCase):
@@ -148,6 +148,28 @@ class VisualEvidenceTests(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertEqual(target.read_bytes(), b'existing evidence')
             self.assertFalse((root / 'frames.json').exists())
+
+    def test_compact_summary_preserves_exact_png_and_hash(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'map_mvisual-day-main.png'
+            path.write_bytes(self.png)
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                emit_visual_summary(Path(directory))
+            self.assertEqual(output.getvalue().strip(), 'VISUAL_VALIDATED ' + path.name + ' ' + hashlib.sha256(self.png).hexdigest())
+            self.assertEqual(path.read_bytes(), self.png)
+            self.assertNotIn('RK_VISUAL', output.getvalue())
+
+    def test_compact_summary_keeps_missing_signature_and_size_failures(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            with self.assertRaisesRegex(RuntimeError, 'No manager visual'):
+                emit_visual_summary(root)
+            path = root / 'map_mvisual-day-main.png'
+            for data, message in [(b'bad', 'not PNG'), (self.png + b'x' * (2 * 1024 * 1024), 'limit')]:
+                path.write_bytes(data)
+                with self.assertRaisesRegex(RuntimeError, message):
+                    emit_visual_summary(root)
 
     def test_missing_frames_fail(self):
         with tempfile.TemporaryDirectory() as directory:

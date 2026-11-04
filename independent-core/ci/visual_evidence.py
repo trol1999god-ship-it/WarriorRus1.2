@@ -7,6 +7,8 @@ from pathlib import Path
 import base64
 import hashlib
 import re
+import contextlib
+import io
 
 
 def emit_visual_evidence(directory):
@@ -26,6 +28,16 @@ def emit_visual_evidence(directory):
         for start in range(0, len(encoded), 1000):
             print('RK_VISUAL_DATA ' + encoded[start:start+1000], flush=True)
         print('RK_VISUAL_END ' + path.name, flush=True)
+
+
+def emit_visual_summary(directory):
+    """Validate the same complete PNG set; retain files and log a compact manifest."""
+    output = io.StringIO()
+    with contextlib.redirect_stdout(output):
+        emit_visual_evidence(directory)
+    for line in output.getvalue().splitlines():
+        if line.startswith('RK_VISUAL_BEGIN '):
+            print('VISUAL_VALIDATED ' + line.removeprefix('RK_VISUAL_BEGIN '), flush=True)
 
 
 def decode_visual_log(text):

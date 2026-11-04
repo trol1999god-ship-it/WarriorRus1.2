@@ -1,7 +1,7 @@
 """Runs only on a disposable emulator. A failed instrumentation result fails CI."""
 from pathlib import Path
 import argparse,hashlib,json,subprocess,time
-from visual_evidence import emit_visual_evidence
+from visual_evidence import emit_visual_evidence,emit_visual_summary
 p=argparse.ArgumentParser()
 p.add_argument('--adb',type=Path,required=True)
 p.add_argument('--serial',required=True)
@@ -12,6 +12,7 @@ p.add_argument('--install-timeout',type=int,default=180,help='Package installati
 p.add_argument('--keep-going',action='store_true',help='Collect independent failures; skip reopen scenarios whose fixture failed; still exit nonzero')
 p.add_argument('--no-streaming',action='store_true',help='Push APKs before installation when streamed install is unreliable')
 modes=['binary','independence','offlineformats','cachewrites','cacheexport','launcher','coordinates','catalogscreen','geometryedit','geometrymap','geometrymapreopen','objectmanager','objectmanagerreopen','clipboard','clipboardreopen','managerfilters','managerfiltersreopen','managervisibility','managervisibilityreopen','managerdates','managerdatesreopen','managerdescription','managerdescriptionreopen','managercontext','managercontextreopen','managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation','vertexscroll','geometryvertexconfirm','geometryholeconfirm','vertexinsertion','geometrynewhole','geometrynewholeguards','mapvertexconfirm']
+p.add_argument('--visual-log-modes',nargs='*',choices=modes,default=['mapvertexconfirm'],help='Full console PNG previews for these modes; every visual mode still validates and retains all PNG artifacts')
 p.add_argument('--modes',nargs='+',choices=modes,default=modes,help='Run the selected scenarios in this order; default: full suite')
 a=p.parse_args();out=a.output.resolve();out.mkdir(parents=True,exist_ok=True)
 for i,mode in enumerate(a.modes):
@@ -72,8 +73,11 @@ for mode in a.modes:
    (out/'managerchooser-layout.txt').write_text(layout)
    print('CHOOSER_LAYOUT_DIAGNOSTICS\n'+'\n'.join(layout.splitlines()[-256:])[-32768:],flush=True)
   if mode in ('managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation','vertexscroll','geometryvertexconfirm','geometryholeconfirm','vertexinsertion','geometrynewhole','geometrynewholeguards','mapvertexconfirm'):
-   print(text,flush=True)
-   try:emit_visual_evidence(out/mode)
+   if mode in a.visual_log_modes or not passed:print(text,flush=True)
+   else:print("\n".join(line for line in text.splitlines() if "INSTRUMENTATION_RESULT:" in line),flush=True)
+   try:
+    if mode in a.visual_log_modes:emit_visual_evidence(out/mode)
+    else:emit_visual_summary(out/mode)
    except Exception as error:
     passed=False;print('VISUAL_EVIDENCE_FAILED '+str(error),flush=True)
     print('ARTIFACT_PULL_DIAGNOSTICS '+mode+'\n'+pull_result[-4096:],flush=True)
