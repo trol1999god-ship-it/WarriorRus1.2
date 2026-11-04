@@ -11,7 +11,7 @@ p.add_argument('--output',type=Path,required=True)
 p.add_argument('--install-timeout',type=int,default=180,help='Package installation timeout for software emulators')
 p.add_argument('--keep-going',action='store_true',help='Collect independent failures; skip reopen scenarios whose fixture failed; still exit nonzero')
 p.add_argument('--no-streaming',action='store_true',help='Push APKs before installation when streamed install is unreliable')
-modes=['binary','independence','offlineformats','cachewrites','cacheexport','launcher','coordinates','catalogscreen','geometryedit','geometrymap','geometrymapreopen','objectmanager','objectmanagerreopen','clipboard','clipboardreopen','managerfilters','managerfiltersreopen','managervisibility','managervisibilityreopen','managerdates','managerdatesreopen','managerdescription','managerdescriptionreopen','managercontext','managercontextreopen','managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation']
+modes=['binary','independence','offlineformats','cachewrites','cacheexport','launcher','coordinates','catalogscreen','geometryedit','geometrymap','geometrymapreopen','objectmanager','objectmanagerreopen','clipboard','clipboardreopen','managerfilters','managerfiltersreopen','managervisibility','managervisibilityreopen','managerdates','managerdatesreopen','managerdescription','managerdescriptionreopen','managercontext','managercontextreopen','managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation','vertexscroll']
 p.add_argument('--modes',nargs='+',choices=modes,default=modes,help='Run the selected scenarios in this order; default: full suite')
 a=p.parse_args();out=a.output.resolve();out.mkdir(parents=True,exist_ok=True)
 for i,mode in enumerate(a.modes):
@@ -70,7 +70,7 @@ for mode in a.modes:
    layout=adb('logcat','-d','-s','RK_CHOOSER:D','*:S',required=False)
    (out/'managerchooser-layout.txt').write_text(layout)
    print('CHOOSER_LAYOUT_DIAGNOSTICS\n'+'\n'.join(layout.splitlines()[-256:])[-32768:],flush=True)
-  if mode in ('managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation'):
+  if mode in ('managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation','vertexscroll'):
    print(text,flush=True)
    try:emit_visual_evidence(out/mode)
    except Exception as error:
