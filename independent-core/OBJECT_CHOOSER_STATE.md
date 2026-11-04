@@ -1,3 +1,30 @@
+# Destination chooser — verified scoped QA,4 November
+
+Code ebc29d5 / CI41796713928 succeeded: API23 and35 each32/32 modes,
+managerchooser405/401 assertions; JVM22/81190, driver12. All32 final PNGs
+were SHA256-verified and actually reviewed, with visible-text Arimo checks.
+Original browsing folder, hidden selection, Cancel at both stages, explicit Move,
+stale-before/after and foreign identical-XML project guards passed. Real
+destroyed/recreate in BOTH directions retained first6 and absolute top0.
+
+API23 fixture cause: top-relative setSelection added8px padding and exposed a
+sliver of row5; use negative list padding to request absolute top0 without
+relaxing first==6. API35 app cause: restoring during pending initial layout
+was overwritten; even native state applied in onShow failed on both APIs.
+Applying it once at a stable pre-draw retained the correct anchor in both
+directions. The checks were unchanged between failed f5 and passing ebc.
+
+Evidence: security/manager-chooser-qa-2026-10-31/final-ebc-api23/35 and
+final-ebc-result.json. Code420 own classes, minSdk23, INTERNET only. Existing
+project/process/token/source/destination guards remain; restoration itself
+performs no KML/asset/settings mutation or destination action.
+
+This does not accept the whole reference UI, process-death, physical-device or
+migration requirements. Gate false25 and0 accepted remain. Next: first reproduce
+raw vertex-coordinate form state loss in GeometryEditorActivity.
+
+## Retained investigation history
+
 # Destination chooser before Move — incomplete QA
 
 Baseline124822b / CI41166910485 validly reproduced loss on API23 and API35.
