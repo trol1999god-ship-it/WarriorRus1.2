@@ -1,0 +1,31 @@
+{
+  "source": "14984abd5ace54edc808733f6217a9dc02a27a3d",
+  "production_source": "1fc6b8f2448247990967a287b732980dcd4d7197",
+  "run": 41886801966,
+  "conclusion": "failure",
+  "jobs": {
+    "23": 126773594556,
+    "35": 126773594410,
+    "jvm": 126773329298
+  },
+  "modes_wrapper_passed": {
+    "23": 39,
+    "35": 37
+  },
+  "main_assertions_each": 275,
+  "guards_instrumentation_assertions": {
+    "23": 445,
+    "35": 439
+  },
+  "api35_failures": [
+    "managermove adb: device offline, no valid scenario execution",
+    "geometrynewholeguards instrumentation PASS but zero collected PNG; exact adb pull cause missing because response was discarded"
+  ],
+  "api23_visual_name_fix_verified": true,
+  "png_sha_verified": 44,
+  "png_actually_reviewed": 16,
+  "reviewed_scope": "All12 API23 guards;4 API35 main (after-land,after-applied,delete-save-land,before-return). Other28 retained but not claimed reviewed.",
+  "production_changed": false,
+  "next": "Record bounded adb pull diagnostics and perform a full diagnostic CI39 on changed driver, no blind same-run rerun; fail-on-missing-evidence stays strict.",
+  "full_acceptance": false
+}

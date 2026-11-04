@@ -65,7 +65,8 @@ for mode in a.modes:
    for service, detail in [('window','windows'), ('activity','activities')]:
     (out/(mode+'-'+service+'.txt')).write_text(adb('shell','dumpsys',service,detail,timeout=15,required=False))
   # The emulator contains synthetic QA data only. Do not pull private databases.
-  adb('pull','/sdcard/Android/data/org.rabochaya.karta/files',out/mode,required=False)
+  pull_result=adb('pull','/sdcard/Android/data/org.rabochaya.karta/files',out/mode,required=False)
+  (out/(mode+'-artifact-pull.txt')).write_text(pull_result[-16384:])
   if mode=='managerchooser':
    layout=adb('logcat','-d','-s','RK_CHOOSER:D','*:S',required=False)
    (out/'managerchooser-layout.txt').write_text(layout)
@@ -75,6 +76,7 @@ for mode in a.modes:
    try:emit_visual_evidence(out/mode)
    except Exception as error:
     passed=False;print('VISUAL_EVIDENCE_FAILED '+str(error),flush=True)
+    print('ARTIFACT_PULL_DIAGNOSTICS '+mode+'\n'+pull_result[-4096:],flush=True)
   records.append({'mode':mode,'passed':passed,'seconds':round(time.monotonic()-started,2)})
   (out/'results.json').write_text(json.dumps(records,indent=2)+'\n')
  print(('PASS ' if passed else 'FAIL ')+mode,flush=True)

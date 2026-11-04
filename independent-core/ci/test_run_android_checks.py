@@ -13,7 +13,7 @@ from visual_evidence import emit_visual_evidence, decode_visual_log
 
 
 class RunnerTests(unittest.TestCase):
-    def run_modes(self, modes, failures=(), keep_going=True):
+    def run_modes(self, modes, failures=(), keep_going=True, pull_error=False):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             adb = root / 'adb'
@@ -24,6 +24,9 @@ if args[:2] == ['shell', 'getprop']:
     print('1')
 elif args[:2] == ['shell', 'dumpsys']:
     print('synthetic ' + args[2] + ' diagnostics')
+elif args[:1] == ['pull'] and ''' + repr(pull_error) + ''':
+    print('adb: error: failed to copy synthetic screenshots: device offline', file=sys.stderr)
+    sys.exit(1)
 elif args[:3] == ['shell', 'am', 'instrument']:
     mode = args[args.index('mode') + 1]
     if mode in ''' + repr(tuple(failures)) + ''':
@@ -49,6 +52,8 @@ elif args[:3] == ['shell', 'am', 'instrument']:
                 path.name: path.read_text() for path in output.glob('*-window.txt')}
             result.activity_diagnostics = {
                 path.name: path.read_text() for path in output.glob('*-activity.txt')}
+            result.pull_diagnostics = {
+                path.name: path.read_text() for path in output.glob('*-artifact-pull.txt')}
             return result, records
 
     def test_collects_failure_and_runs_next_independent_mode(self):
@@ -74,6 +79,16 @@ elif args[:3] == ['shell', 'am', 'instrument']:
         result, records = self.run_modes(['objectmanager', 'objectmanagerreopen'])
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertTrue(all(r['passed'] for r in records))
+
+    def test_missing_visual_pull_is_a_failure_with_transport_diagnostics(self):
+        result, records = self.run_modes(['geometrynewholeguards', 'binary'], pull_error=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual([r['passed'] for r in records], [False, True])
+        self.assertIn('PASS geometrynewholeguards:', result.stdout)
+        self.assertIn('VISUAL_EVIDENCE_FAILED No manager visual screenshots', result.stdout)
+        self.assertIn('ARTIFACT_PULL_DIAGNOSTICS geometrynewholeguards', result.stdout)
+        self.assertIn('device offline', result.stdout)
+        self.assertIn('device offline', result.pull_diagnostics['geometrynewholeguards-artifact-pull.txt'])
 
     def test_default_still_stops_on_first_failure(self):
         result, records = self.run_modes(['binary', 'independence'], ['binary'], False)
