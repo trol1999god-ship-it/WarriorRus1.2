@@ -1,3 +1,10 @@
+Длинная inline-ошибка/stale warning проверены настоящими жестами с открытой IME:
+API35 Activity82px/content26px, текст читается по строкам, поле возвращается,
+raw/cursor/error/token и данные сохранны. Прежние34 режима прошли на обеих API;
+15 новых PNG просмотрены. [VERTEX_SCROLL_STATE.md](VERTEX_SCROLL_STATE.md).
+Следующие baseline подтверждений удаления геометрии выявили потерю обоих диалогов;
+их исправление ещё не принято: [GEOMETRY_CONFIRMATION_STATE.md](GEOMETRY_CONFIRMATION_STATE.md).
+
 Raw-форма отдельной вершины теперь сохраняет текст/выделение/ошибку после реального
 пересоздания Activity только для исходного объекта; Apply и отдельный Save остаются
 явными, stale/foreign запись блокируется. Код66cb8ca / CI41818076658: API23/API35

@@ -1,3 +1,5 @@
+Дополнение: доступность длинных сообщений с открытой IME теперь реально проверена touch-scroll на обеих API;15 новых PNG просмотрены. Подробности/границы — VERTEX_SCROLL_STATE.md. Историческое ограничение «жест ещё не проверен» ниже относится к прежнему этапу.
+
 # Восстановление raw-формы отдельной вершины — проверенный ограниченный результат
 
 Код66cb8ca, CI41818076658 attempt2 SUCCESS. API23/API35 по33/33, vertexrotation369/364; JVM23 набора/81259 утверждений, QA-driver12.426 ownclasses, minSdk23, INTERNET only.32 финальных SHA-проверенных PNG фактически просмотрены: security/vertex-form-qa-2026-11-04/final-66-api23/35; final-result.json и final-66-api*-trace.json содержат source/job/метаданные.

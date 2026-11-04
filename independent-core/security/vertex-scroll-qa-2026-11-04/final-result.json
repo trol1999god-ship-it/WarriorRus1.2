@@ -1,0 +1,20 @@
+{
+  "source": "6d5f2ce6c9d33db792c9abe840c44e437996346e",
+  "run": 41841673619,
+  "previous_modes_each_passed": 34,
+  "jobs": {
+    "23": 126614823506,
+    "35": 126614823369
+  },
+  "scroll_assertions": {
+    "23": 167,
+    "35": 314
+  },
+  "final_png_sha_verified_and_reviewed": 15,
+  "api35_activity_frame_height": 82,
+  "api35_content_viewport_height": 26,
+  "observed": "all full error/warning lines exposed sequentially by real touch; IME remains open; reverse gestures return editable field; raw/cursor1..3/error/original token unchanged; real rejected Apply and Cancel touches; no KML/assets writes",
+  "production_changed": false,
+  "global_ci": "failure only the two new geometry deletion baselines; no skipped scenarios",
+  "full_acceptance": false
+}
