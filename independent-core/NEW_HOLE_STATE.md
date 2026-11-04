@@ -1,5 +1,17 @@
 # Новый внутренний контур: текущая проба 4 ноября 2026
 
+Текущий исправленный test14984ab / CI41886801966 failure: API23 success39/39,
+main275/guards445,28PNG collected. API35 main275 passed, guards439 instrumentation
+passed, но0PNG collected; managermove не выполнен из-за adb offline. Причина pull
+неизвестна: старый драйвер отбрасывал ответ. Новый diagnostic-only driver79f9c07
+сохраняет cap16KiB pull output и печатает cap4KiB при visual failure;13host tests
+passed, включая instrumentation PASS + pull offline => FAILED. Повтор или исправление
+инфраструктуры пока не подтверждены. Все подробности — probe-149-result.json:
+44PNG decoded,16reviewed (12API23guards+4API35main),28непросмотрены.
+
+Историческая первая попытка и ошибка имени:
+
+
 Production остаётся 1fc6b8f; предполагаемых изменений приложения не было.
 Проба d2ddc5851ca56b9c99887dfcdc2d229e2d611e43 / CI41881298679 failure:
 JVM24/81315 и host12 passed, обе Android-сборки passed, обе API38/39 wrapper pass.
