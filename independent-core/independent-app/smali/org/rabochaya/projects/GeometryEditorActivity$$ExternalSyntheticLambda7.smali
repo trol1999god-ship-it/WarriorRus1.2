@@ -30,7 +30,7 @@
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda7;->f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$load$15$org-rabochaya-projects-GeometryEditorActivity()V
+    invoke-virtual {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$build$20$org-rabochaya-projects-GeometryEditorActivity()V
 
     return-void
 .end method

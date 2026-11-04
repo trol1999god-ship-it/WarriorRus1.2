@@ -25,7 +25,7 @@
 .method constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;)V
     .locals 0
 
-    .line 128
+    .line 160
     iput-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$2;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method synthetic lambda$onItemSelected$0$org-rabochaya-projects-GeometryEditorActivity$2(ILandroid/content/DialogInterface;I)V
     .locals 2
 
-    .line 128
+    .line 160
     :try_start_0
     iget-object p2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$2;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
@@ -123,7 +123,7 @@
         }
     .end annotation
 
-    .line 128
+    .line 160
     iget-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$2;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
     invoke-static {p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$100(Lorg/rabochaya/projects/GeometryEditorActivity;)Z
@@ -235,6 +235,6 @@
         }
     .end annotation
 
-    .line 128
+    .line 160
     return-void
 .end method

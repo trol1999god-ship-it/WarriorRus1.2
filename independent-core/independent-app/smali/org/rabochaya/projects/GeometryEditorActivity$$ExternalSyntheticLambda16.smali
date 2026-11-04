@@ -3,34 +3,46 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/content/DialogInterface$OnClickListener;
+.implements Ljava/lang/Runnable;
 
 
 # instance fields
-.field public final synthetic f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
+.field public final synthetic f$0:Landroid/view/View;
+
+.field public final synthetic f$1:Landroid/view/ViewTreeObserver$OnGlobalLayoutListener;
+
+.field public final synthetic f$2:Landroid/view/View;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;)V
+.method public synthetic constructor <init>(Landroid/view/View;Landroid/view/ViewTreeObserver$OnGlobalLayoutListener;Landroid/view/View;)V
     .locals 0
 
     .line 0
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    iput-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda16;->f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
+    iput-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda16;->f$0:Landroid/view/View;
+
+    iput-object p2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda16;->f$1:Landroid/view/ViewTreeObserver$OnGlobalLayoutListener;
+
+    iput-object p3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda16;->f$2:Landroid/view/View;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final onClick(Landroid/content/DialogInterface;I)V
-    .locals 1
+.method public final run()V
+    .locals 3
 
     .line 0
-    iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda16;->f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
+    iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda16;->f$0:Landroid/view/View;
 
-    invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$openVertexEditor$8$org-rabochaya-projects-GeometryEditorActivity(Landroid/content/DialogInterface;I)V
+    iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda16;->f$1:Landroid/view/ViewTreeObserver$OnGlobalLayoutListener;
+
+    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda16;->f$2:Landroid/view/View;
+
+    invoke-static {v0, v1, v2}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$fitVertexDialog$11(Landroid/view/View;Landroid/view/ViewTreeObserver$OnGlobalLayoutListener;Landroid/view/View;)V
 
     return-void
 .end method
