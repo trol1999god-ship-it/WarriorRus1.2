@@ -3,15 +3,17 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/content/DialogInterface$OnClickListener;
+.implements Landroid/view/View$OnClickListener;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
+.field public final synthetic f$1:Ljava/lang/Runnable;
+
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;Ljava/lang/Runnable;)V
     .locals 0
 
     .line 0
@@ -19,18 +21,22 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda20;->f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
+    iput-object p2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda20;->f$1:Ljava/lang/Runnable;
+
     return-void
 .end method
 
 
 # virtual methods
-.method public final onClick(Landroid/content/DialogInterface;I)V
-    .locals 1
+.method public final onClick(Landroid/view/View;)V
+    .locals 2
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda20;->f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$actions$1$org-rabochaya-projects-GeometryEditorActivity(Landroid/content/DialogInterface;I)V
+    iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda20;->f$1:Ljava/lang/Runnable;
+
+    invoke-virtual {v0, v1, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$button$0$org-rabochaya-projects-GeometryEditorActivity(Ljava/lang/Runnable;Landroid/view/View;)V
 
     return-void
 .end method

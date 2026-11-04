@@ -11,19 +11,19 @@
 
 .field public final synthetic f$1:Landroid/app/AlertDialog;
 
-.field public final synthetic f$2:Ljava/lang/String;
+.field public final synthetic f$2:Landroid/widget/TextView;
 
-.field public final synthetic f$3:Ljava/lang/String;
+.field public final synthetic f$3:Landroid/widget/EditText;
 
-.field public final synthetic f$4:I
+.field public final synthetic f$4:Lorg/rabochaya/projects/VertexEditDraft;
 
-.field public final synthetic f$5:Ljava/lang/String;
+.field public final synthetic f$5:Landroid/widget/TextView;
 
-.field public final synthetic f$6:Landroid/widget/EditText;
+.field public final synthetic f$6:Landroid/widget/TextView;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;Landroid/app/AlertDialog;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Landroid/widget/EditText;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;Landroid/app/AlertDialog;Landroid/widget/TextView;Landroid/widget/EditText;Lorg/rabochaya/projects/VertexEditDraft;Landroid/widget/TextView;Landroid/widget/TextView;)V
     .locals 0
 
     .line 0
@@ -33,15 +33,15 @@
 
     iput-object p2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$1:Landroid/app/AlertDialog;
 
-    iput-object p3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$2:Ljava/lang/String;
+    iput-object p3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$2:Landroid/widget/TextView;
 
-    iput-object p4, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$3:Ljava/lang/String;
+    iput-object p4, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$3:Landroid/widget/EditText;
 
-    iput p5, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$4:I
+    iput-object p5, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$4:Lorg/rabochaya/projects/VertexEditDraft;
 
-    iput-object p6, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$5:Ljava/lang/String;
+    iput-object p6, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$5:Landroid/widget/TextView;
 
-    iput-object p7, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$6:Landroid/widget/EditText;
+    iput-object p7, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$6:Landroid/widget/TextView;
 
     return-void
 .end method
@@ -56,19 +56,19 @@
 
     iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$1:Landroid/app/AlertDialog;
 
-    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$2:Ljava/lang/String;
+    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$2:Landroid/widget/TextView;
 
-    iget-object v3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$3:Ljava/lang/String;
+    iget-object v3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$3:Landroid/widget/EditText;
 
-    iget v4, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$4:I
+    iget-object v4, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$4:Lorg/rabochaya/projects/VertexEditDraft;
 
-    iget-object v5, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$5:Ljava/lang/String;
+    iget-object v5, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$5:Landroid/widget/TextView;
 
-    iget-object v6, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$6:Landroid/widget/EditText;
+    iget-object v6, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda17;->f$6:Landroid/widget/TextView;
 
     move-object v7, p1
 
-    invoke-virtual/range {v0 .. v7}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$vertices$4$org-rabochaya-projects-GeometryEditorActivity(Landroid/app/AlertDialog;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Landroid/widget/EditText;Landroid/content/DialogInterface;)V
+    invoke-virtual/range {v0 .. v7}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$openVertexEditor$10$org-rabochaya-projects-GeometryEditorActivity(Landroid/app/AlertDialog;Landroid/widget/TextView;Landroid/widget/EditText;Lorg/rabochaya/projects/VertexEditDraft;Landroid/widget/TextView;Landroid/widget/TextView;Landroid/content/DialogInterface;)V
 
     return-void
 .end method
