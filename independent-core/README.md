@@ -1,3 +1,8 @@
+Undo на карте сохраняется после actual destroyed/recreate в исходном контексте.
+Codeb482d07 / CI41976552076: обеAPI42/42, Undo363 each, все32 новыхPNG просмотрены.
+Три шага/LIFO, Cancel/отдельныйSave и stale/mainChanged/foreign/DOM/assets проверены.
+[MAP_UNDO_STATE.md](MAP_UNDO_STATE.md) — границы same-process восстановления.
+
 На code9078825 / CI41950249469 success attempt2 обеAPI прошли41/41.
 Удаление вершины existing/new внутреннего контура на карте: actualrecreate/Cancel/
 Confirm→отдельныйSave и полныйDOM/assets проверены; финальные47PNG map-hole+scroll

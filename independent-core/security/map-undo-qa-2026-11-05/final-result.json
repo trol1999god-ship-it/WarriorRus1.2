@@ -1,0 +1,24 @@
+{
+  "code": "b482d07d91983d368f6b4ebdafe54e4b8f9dbd16",
+  "run": 41976552076,
+  "conclusion": "success",
+  "jobs": {
+    "23": 127076750849,
+    "35": 127076750725,
+    "jvm": 127076632809
+  },
+  "scenarios_each": 42,
+  "undo_assertions_each": 363,
+  "png_each": 16,
+  "all_png_viewed": true,
+  "jvm_suites": 25,
+  "jvm_assertions": 81355,
+  "host_tests": 16,
+  "source_sha_match_count": 55,
+  "owned_classes": 431,
+  "min_sdk": 23,
+  "release_gate_allowed": false,
+  "release_blocked_count": 25,
+  "accepted_requirements": 0,
+  "scope": "same-process configuration recreation only"
+}

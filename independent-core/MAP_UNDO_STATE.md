@@ -1,3 +1,22 @@
+# Проверенное восстановление Undo после смены конфигурации
+
+Codeb482d07 / CI41976552076 SUCCESS: API23/API35 по42/42, Undo363 each.
+Actual jobs127076750849/23,127076750725/35; JVM127076632809 success25/81355, host16.
+32 final-b482 PNG SHA-verified и все просмотрены. Оба actual destroyed/recreate
+сохраняют history1→1 и исходные owner/feature/process/key/token/main/selected/viewport.
+Реальные Undo после обеих ориентаций, три drag и три LIFO шага прошли;
+Cancel не меняет KML/assets, отдельныйSave меняет только адресованныйLineString и
+очищаетстарыйUndo scope. Stale before/after, newer main и foreignsameXMLproject/
+feature/key не принимают старую историю и не изменяют документы/вложения при отказе.
+Новый процесс остаётся без старойUndo (существующий geometrymapreopen также passed).
+
+История передаётся только in-memory при конфигурационном пересоздании, независимой
+bounded копией без Activity/Bundle/file references. Лимиты32step/4Mchar сохранены.
+Никаких autoUndo/autoSave, serialization или изменений privacy/resources/min23/gate.
+Это ограниченная same-process приёмка; полнаямиграция/reference/physical остаютсяоткрыты.
+
+## История baseline и подготовки
+
 # История Undo при настоящем пересоздании Activity
 
 Baseline7519313 / CI41962788919: обе API прежние41 режима passed; новый42й failed.
