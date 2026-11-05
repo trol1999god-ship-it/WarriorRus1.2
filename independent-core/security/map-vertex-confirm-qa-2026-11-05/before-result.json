@@ -1,0 +1,49 @@
+{
+  "source": "6ee902c6b90d3bbd18552251b25c52930e0ad4e6",
+  "run": 41936120579,
+  "conclusion": "failure",
+  "jobs": {
+    "jvm": 126944870612,
+    "23": 126945105800,
+    "35": 126945105621
+  },
+  "prior_modes_pass_each": 39,
+  "new_mode_valid_baseline": true,
+  "old_destroyed_and_new_identity_both_rotations_each": true,
+  "confirmation_restored_each_direction": false,
+  "main_selection_address_token_viewport_xml_assets_preserved": true,
+  "landscape_surface": {
+    "23": [
+      616,
+      31
+    ],
+    "35": [
+      616,
+      7
+    ]
+  },
+  "portrait_surface": {
+    "23": [
+      296,
+      309
+    ],
+    "35": [
+      296,
+      285
+    ]
+  },
+  "strict_threshold": [
+    80,
+    80
+  ],
+  "strict_threshold_lowered": false,
+  "all_png_sha_verified_and_reviewed": 8,
+  "native_dialog_arimo": false,
+  "production_changed": false,
+  "confirmed_causes": [
+    "Canvas native AlertDialog local callback not included in Activity save/restore",
+    "Stacked heading/selector/coordinate hint/mode/status/actions leave surface31/7px in landscape"
+  ],
+  "old_api35_126846599661_cause_still_unread": true,
+  "old_api35_read_boundary": "Transport closed; artifact workspace tunnel403; direct API Forbidden. Current API35 facts independent."
+}
