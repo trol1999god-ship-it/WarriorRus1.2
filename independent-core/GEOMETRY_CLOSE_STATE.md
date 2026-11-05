@@ -33,3 +33,5 @@ Arimo/landscape fullwidth. JVM27/81416 (Close model29), Android runtime ещё �
 actual baseline — следующий пробел; этот кандидат не объявляет его исправленным.
 
 Финальная локальная QA443/min23/INTERNETonly,57sourceSHAexact; unsignedb2db0651077aa682be63f4108d4d38af1e319becc35f29f56edbcdd7c8c1a925. JVM27/81416, host16, instrumentation231188 compiled. GateFalse25/0accepted; Android runtime кандидата ещё не принят.
+
+Interim1c / CI42014806917: API35 success44/44, close563, managerforms473 actually executed; API23 old43passed/managerforms482, close after-land physicalfail187pxbutton/181visible. All19interimPNG SHAverified/reviewed. New bounded layout candidate reduces only landscape native-button horizontal inset to8dp, keeps texts/font/height/strictfullyVisible. Final acceptance pending bothAPI.

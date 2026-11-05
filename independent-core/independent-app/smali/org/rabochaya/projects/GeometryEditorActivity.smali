@@ -8839,7 +8839,7 @@
 .end method
 
 .method synthetic lambda$openClose$38$org-rabochaya-projects-GeometryEditorActivity(Landroid/app/AlertDialog;Lorg/rabochaya/projects/GeometryCloseDraft;Landroid/content/DialogInterface;)V
-    .locals 3
+    .locals 8
 
     .line 245
     invoke-virtual {p1}, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
@@ -8864,7 +8864,11 @@
 
     const/4 v0, 0x2
 
-    const/4 v1, -0x1
+    const/4 v1, 0x0
+
+    const/4 v2, -0x3
+
+    const/4 v3, -0x1
 
     if-ne p3, v0, :cond_0
 
@@ -8874,7 +8878,44 @@
 
     const/4 v0, -0x2
 
-    invoke-virtual {p3, v1, v0}, Landroid/view/Window;->setLayout(II)V
+    invoke-virtual {p3, v3, v0}, Landroid/view/Window;->setLayout(II)V
+
+    const/high16 p3, 0x41000000    # 8.0f
+
+    invoke-static {p0, p3}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
+
+    move-result p3
+
+    filled-new-array {v3, v0, v2}, [I
+
+    move-result-object v0
+
+    move v4, v1
+
+    :goto_0
+    const/4 v5, 0x3
+
+    if-ge v4, v5, :cond_0
+
+    aget v5, v0, v4
+
+    invoke-virtual {p1, v5}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
+
+    move-result-object v5
+
+    invoke-virtual {v5}, Landroid/widget/Button;->getPaddingTop()I
+
+    move-result v6
+
+    invoke-virtual {v5}, Landroid/widget/Button;->getPaddingBottom()I
+
+    move-result v7
+
+    invoke-virtual {v5, p3, v6, p3, v7}, Landroid/widget/Button;->setPadding(IIII)V
+
+    add-int/lit8 v4, v4, 0x1
+
+    goto :goto_0
 
     :cond_0
     invoke-direct {p0, p2}, Lorg/rabochaya/projects/GeometryEditorActivity;->closeMatches(Lorg/rabochaya/projects/GeometryCloseDraft;)Z
@@ -8891,39 +8932,32 @@
 
     if-nez p3, :cond_1
 
-    const/4 p3, 0x1
-
-    goto :goto_0
+    const/4 v1, 0x1
 
     :cond_1
-    const/4 p3, 0x0
-
-    :goto_0
-    invoke-virtual {p1, v1}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
-
-    move-result-object v0
-
-    invoke-virtual {v0, p3}, Landroid/widget/Button;->setEnabled(Z)V
-
-    const/4 v0, -0x3
-
-    invoke-virtual {p1, v0}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
-
-    move-result-object v2
-
-    invoke-virtual {v2, p3}, Landroid/widget/Button;->setEnabled(Z)V
-
-    invoke-virtual {p1, v1}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
+    invoke-virtual {p1, v3}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
 
     move-result-object p3
 
-    new-instance v1, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda0;
+    invoke-virtual {p3, v1}, Landroid/widget/Button;->setEnabled(Z)V
 
-    invoke-direct {v1, p0, p2, p1}, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda0;-><init>(Lorg/rabochaya/projects/GeometryEditorActivity;Lorg/rabochaya/projects/GeometryCloseDraft;Landroid/app/AlertDialog;)V
+    invoke-virtual {p1, v2}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
 
-    invoke-virtual {p3, v1}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+    move-result-object p3
 
-    invoke-virtual {p1, v0}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
+    invoke-virtual {p3, v1}, Landroid/widget/Button;->setEnabled(Z)V
+
+    invoke-virtual {p1, v3}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
+
+    move-result-object p3
+
+    new-instance v0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda0;
+
+    invoke-direct {v0, p0, p2, p1}, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda0;-><init>(Lorg/rabochaya/projects/GeometryEditorActivity;Lorg/rabochaya/projects/GeometryCloseDraft;Landroid/app/AlertDialog;)V
+
+    invoke-virtual {p3, v0}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+
+    invoke-virtual {p1, v2}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
 
     move-result-object p3
 
