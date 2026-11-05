@@ -13,25 +13,19 @@
    Никакого rerun/baseline этого завершённого участка без новой причины.
 2. `migration/IMPLEMENTATION_PLAN.md` и closeproof сохранены remote2e40e22:
    все23id ровноодинраз, реализация/приёмка разделены, доказательства/пробелы/зависимости/критерии.
-3. Production слои code17ac3f9d12198a7dbd8db06085219df38db6958f /CI42028003488 completed:
-   API35job127247171605 SUCCESS46/46, layers88/reopen16. Все6 interimPNG просмотрены;
-   renderer order/alpha/visibility, actualforce-stop/exact composition, KML/assets/MBTiles/
-   cache/otherProject passed. API23job127247171704: old44pass, новыйmaplayers failed
-   "real slider applies partial opacity"; reopenSKIP НЕpassed, новыхPNG доassertionнет.
-   QA events не задавали SOURCE_TOUCHSCREEN, в отличие от проверенного mapTouch.
-   Не менятьproduction наосновании этого жеста; исправить тест explicit touchscreen+
-   drag/90ms, before/after diagnostics/PNG доassert, строгий partialopacity сохранить.
-   Кандидатfixготов: explicit SOURCE_TOUCHSCREEN DOWN/MOVE/UP+90ms, actualthumb→middle;
-   Widget/model numeric diagnostics и8PNG/API before/after ДОстрогойpartial оценки.
-   По просмотренным35PNG исправлен толькоunchecked tint новыхcheckbox (lightondark).
-   LocalQA479/sourceSHA60exact/JVM28_81449/host16/API23instrumentation compiled;
-   app/testSHA — security/map-layers-qa-2026-11-05/local-build.json.
-   Затем обоснованный fullCI46 изменённого теста/UI. Никакого blindrerun.
-   Модель/Store/менеджер/каталог/общийrenderer+GeometryMapCanvas ужеproductionкод.
-   LocalQA479/sourceSHA60/min23/INTERNETonly, JVM28/81449/host16 passed;
-   подробности MAP_LAYERS.md/local-build.json. GateFalse25/0accepted.
-   Следующий production участок после проверки обеихAPI — compose-aware cache/export,
-   не orphan/dialog baseline. Сохранённые stashes/toolchain/артефакты не трогать.
+3. Слои проверены: code17ac3f9 +dc16493 / CI42034901826 SUCCESS46/46 обеAPI.
+   jobs23 127270591123/35 127270591391, layers89/reopen16each, managerforms482/473.
+   Все16 final-dc PNG SHAverified/просмотрены. Touch45%/50%, renderer pixels/order/
+   visibility, actualforce-stop/cache/MBTiles/other-project/KML/assets passed.
+   MAP_LAYERS.md и final-result.json. Не повторять без новой причины; приёмка открыта.
+
+4. Локальный НЕпроверенный Androidruntime кандидат следующего production участка:
+   CompositionCacheExport + project-aware CacheExportActivity + атомарная замена
+   File-экспорта; исходники/смали сохранены без overwrite данных. FinalQA485,
+   JVM29 включая RasterExportFile9 pass. Подключена проверка в существующий cacheexport,
+   отдельный новый baseline НЕ добавлен. SDK23 tests241121 compiled, host16, source62exact/JVM29_81458.
+   Сохранить source candidate/запустить обоснованный CI; runtime/PNG ещё не проверены.
+   Артефакты composition-export-build-final, composition-export-jvm-bounded.log сохранены.
 
 ## Production очередь
 

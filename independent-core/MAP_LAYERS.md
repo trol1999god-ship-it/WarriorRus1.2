@@ -58,3 +58,11 @@ API23job127247171704: прежние44pass, новый test failed на partial 
 в новом менеджере; бизнес-модель/renderer/data guards не изменены.
 LocalQA479/source60exact/min23/INTERNETonly/JVM28_81449 passed, SDK23 tests compiled;
 точные app/test SHA — local-build.json. Android новый кандидат ещёнеисполнен.
+
+## Финальный результат ограниченного участка
+
+Code dc16493 / CI42034901826 SUCCESS: обеAPI46/46, layers89/reopen16each;
+managerforms23=482/35=473 реальноpass. Все16 final-dc PNG SHAverified/просмотрены.
+Реальный touch: API23 45%, API35 50%; partial guard неизменён. Add/remove/visibility/
+order/alpha, force-stop/restart, KML/assets/cache/MBTiles/other-project passed.
+Production opacity не меняли ради теста. Полная приёмка остаётся открытой.
