@@ -35,3 +35,20 @@ actual baseline — следующий пробел; этот кандидат �
 Финальная локальная QA443/min23/INTERNETonly,57sourceSHAexact; unsignedb2db0651077aa682be63f4108d4d38af1e319becc35f29f56edbcdd7c8c1a925. JVM27/81416, host16, instrumentation231188 compiled. GateFalse25/0accepted; Android runtime кандидата ещё не принят.
 
 Interim1c / CI42014806917: API35 success44/44, close563, managerforms473 actually executed; API23 old43passed/managerforms482, close after-land physicalfail187pxbutton/181visible. All19interimPNG SHAverified/reviewed. New bounded layout candidate reduces only landscape native-button horizontal inset to8dp, keeps texts/font/height/strictfullyVisible. Final acceptance pending bothAPI.
+
+## Проверенный результат
+
+Code e5e0e5618b9c7747935005f9a6f123f7ae42c845 / CI42020440809 SUCCESS:
+API23job127221764336 иAPI35job127221764405 по44/44, close563 each.
+managerforms23=482/35=473 реально исполнены; offline/skip не засчитывались.
+JVM127221555080 success27/81416, host16. Все32 final-e5 PNG SHAverified и просмотрены.
+Оба actual destroyed/recreate восстанавливают только исходный диалог; три native-кнопки
+полностью видны, Arimo. Cancel/explicit SaveDraft/Discard, mainChanged/foreign,
+replacement private draft, stale KML/private-only Close и отдельный MainSave/DOM/assets passed.
+Правка8dp устранила physical overflow; ни один strict guard не понижен.
+
+Объём runtime проверки — существующий LineString на карте; модель также ограничивает
+key/type/hole/adding/mode, но это не отдельная приёмка всех типов/контекстов.
+Исходный missing-part native путь сохранён. По новому приоритету пользователя отдельная
+orphan baseline очередь остановлена; следующий результат — production композиция слоёв.
+GateFalse25/0accepted, полная миграционная и физическая приёмка не заявлена.

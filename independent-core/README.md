@@ -1,3 +1,10 @@
+Подтверждение закрытия dirty-редактора проверено с реальными пересозданиями Activity.
+Code e5e0e56 / CI42020440809: 44/44 обеAPI, close563 each;32 новыхPNG просмотрены.
+Cancel/SaveDraft/Discard/foreign/mainChanged/replaced draft и отдельный MainSave сохраняют KML/assets.
+[GEOMETRY_CLOSE_STATE.md](GEOMETRY_CLOSE_STATE.md) — проверенный контекст и ограничения.
+Полный перенос ведётся по [migration/IMPLEMENTATION_PLAN.md](migration/IMPLEMENTATION_PLAN.md);
+реализация и приёмка разделены, accepted не выставлены.
+
 Подтверждение смены несохранённого контура восстанавливается только для исходного контекста.
 Code c1a55df / CI41986306743: 43/43 обеAPI, mappartconfirm669 each;32 новыхPNG просмотрены.
 Cancel/stale/foreign/target guards и явный переход→отдельныйSave сохраняют остальнойDOM/assets.
