@@ -1,0 +1,13 @@
+{
+  "source": "0b574a2cdbe1deb62c2448d0230eab3fe9c691fc",
+  "run": 41800304932,
+  "jobs": {
+    "23": 126474286626,
+    "35": 126474286496
+  },
+  "previous_modes_each": 32,
+  "both_api": "valid and invalid raw vertex forms lost after actual destroyed/recreate; initial portrait, raw/cursor/error and real IME asserted; dirty main draft/KML/assets unchanged",
+  "png_verified_and_reviewed": 8,
+  "baseline_fonts": "modal title/hint/field/buttons not Arimo; native validation popup overlaps actions on both portrait screenshots",
+  "full_acceptance": false
+}

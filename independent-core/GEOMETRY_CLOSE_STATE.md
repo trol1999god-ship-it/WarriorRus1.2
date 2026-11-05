@@ -1,0 +1,54 @@
+# Подтверждение закрытия редактора геометрии
+
+Baseline d4bd78b / CI41991451307: JVM и обе сборки successful.
+API23 127124520817: прежние43pass, только новый geometrycloseconfirm failure.
+API35 127124520804: прежние42pass; managerforms adb offline до instrumentation,
+не проверен; новый close сценарий реально исполнился и failed.
+Обе API: actual destroyed/recreate land+return restored=false; исходные raw,
+Undo1, selected1, owner/feature/process/key/token/viewport/KML/assets сохранены.
+Cancel, явные SaveDraft и Discard с повторным открытием прошли без KML write.
+14 before-d4 PNG SHA-verified и просмотрены. Native Arimo=false обеAPI;
+API23 landscape SaveDraft вне видимого окна, Continue обрезано.
+Причина — local onBackPressed AlertDialog без сохранения исходного намерения,
+default native font/window width. До фактов production не менялся (c1a55df).
+
+API35 managerforms inherited rotation-named16PNG сохранены отдельно; не являются
+снимками исполнившейся формы и не засчитываются её успешной проверкой.
+Полный исходный job log сохранён в рабочей области, visual blocks выделены по
+исходным mode/prefix и каждый проверен неизменным строгим decoder/cap16/SHA.
+
+Следующий шаг: bounded original-context dialog restoration, без автоматического
+закрытия/сохранения/удаления; проверенные Cancel, explicit SaveDraft/Discard,
+mainChanged/foreign/owned private draft guards, Arimo/три полностью видимые кнопки.
+Проверенный part-choice43 и Undo42 не повторять вслепую; полный CI44 кандидата
+должен реально выполнить обе API/managerforms, а не засчитать offline за успех.
+
+Кандидат после baseline: managed bounded original-context metadata, только диалог;
+явные локальные SaveDraft/Discard проверяют own private draft атомарно под существующим
+GeometryDraft.class lock. Несовпадение main/foreign/replacement блокирует старое действие.
+Stale KML не меняет expected token и не пишет KML через Close; отдельный stale MainSave
+должен отказать. Завершённое явное действие не дублируется lifecycle persist.
+Arimo/landscape fullwidth. JVM27/81416 (Close model29), Android runtime ещё не принят.
+Исходный missing-part/orphan native Close путь сохранён без изменения: его отдельный
+actual baseline — следующий пробел; этот кандидат не объявляет его исправленным.
+
+Финальная локальная QA443/min23/INTERNETonly,57sourceSHAexact; unsignedb2db0651077aa682be63f4108d4d38af1e319becc35f29f56edbcdd7c8c1a925. JVM27/81416, host16, instrumentation231188 compiled. GateFalse25/0accepted; Android runtime кандидата ещё не принят.
+
+Interim1c / CI42014806917: API35 success44/44, close563, managerforms473 actually executed; API23 old43passed/managerforms482, close after-land physicalfail187pxbutton/181visible. All19interimPNG SHAverified/reviewed. New bounded layout candidate reduces only landscape native-button horizontal inset to8dp, keeps texts/font/height/strictfullyVisible. Final acceptance pending bothAPI.
+
+## Проверенный результат
+
+Code e5e0e5618b9c7747935005f9a6f123f7ae42c845 / CI42020440809 SUCCESS:
+API23job127221764336 иAPI35job127221764405 по44/44, close563 each.
+managerforms23=482/35=473 реально исполнены; offline/skip не засчитывались.
+JVM127221555080 success27/81416, host16. Все32 final-e5 PNG SHAverified и просмотрены.
+Оба actual destroyed/recreate восстанавливают только исходный диалог; три native-кнопки
+полностью видны, Arimo. Cancel/explicit SaveDraft/Discard, mainChanged/foreign,
+replacement private draft, stale KML/private-only Close и отдельный MainSave/DOM/assets passed.
+Правка8dp устранила physical overflow; ни один strict guard не понижен.
+
+Объём runtime проверки — существующий LineString на карте; модель также ограничивает
+key/type/hole/adding/mode, но это не отдельная приёмка всех типов/контекстов.
+Исходный missing-part native путь сохранён. По новому приоритету пользователя отдельная
+orphan baseline очередь остановлена; следующий результат — production композиция слоёв.
+GateFalse25/0accepted, полная миграционная и физическая приёмка не заявлена.

@@ -1,0 +1,5 @@
+RUN managerforms
+2026-11-05T08:14:37.3236566Z adb: device offline
+2026-11-05T08:14:37.3236807Z 
+2026-11-05T08:14:37.3237585Z 
+Inherited rotation-named PNGs: not evidence that managerforms ran or passed. No managerforms instrumentation result; adb device offline.

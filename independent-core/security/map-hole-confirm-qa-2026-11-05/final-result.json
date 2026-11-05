@@ -1,0 +1,31 @@
+{
+  "code": "90788252b3c45ff9fffaa8700d6a9e95c4c07490",
+  "production": "0e9d47d6ce144a6e961d7d58e78cd97e10454d2a",
+  "run": 41950249469,
+  "attempt": 2,
+  "conclusion": "success",
+  "actual_jobs": {
+    "23": 126992346768,
+    "35": 127003661058,
+    "jvm": 126992228305
+  },
+  "cached_jobs": {
+    "23": 127003663605,
+    "jvm": 127003662453
+  },
+  "scenarios_each": 41,
+  "hole_assertions_each": 325,
+  "scroll_assertions": {
+    "23": 167,
+    "35": 314
+  },
+  "final_png": 47,
+  "final_all_viewed": true,
+  "extra_initial35_png_viewed": 25,
+  "jvm": [
+    24,
+    81323
+  ],
+  "host_tests": 16,
+  "release_accepted": false
+}

@@ -1,0 +1,15 @@
+{
+  "code": "7519313b5402625de0cfc47649e2362b672a4a17",
+  "run": 41962788919,
+  "jobs": {
+    "23": 127032934409,
+    "35": 127032934421
+  },
+  "conclusion": "failure",
+  "old_modes_pass_each": 41,
+  "new_failure": "Undo history 1 -> 0 after both actual recreations",
+  "raw_selected_token_viewport_retained": true,
+  "save_cancel_dom_assets_pass": true,
+  "png_count": 12,
+  "all_png_viewed": true
+}

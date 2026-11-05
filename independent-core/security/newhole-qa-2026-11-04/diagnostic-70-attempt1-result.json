@@ -1,0 +1,54 @@
+{
+  "source": "70cc7c5a0588f7cc45df1826b74b0402bc288236",
+  "production_source": "1fc6b8f2448247990967a287b732980dcd4d7197",
+  "run": 41892245044,
+  "attempt": 1,
+  "full_ci_conclusion": "failure",
+  "jobs": {
+    "23": 126792623810,
+    "35": 126792623751,
+    "jvm": 126792407100
+  },
+  "modes_wrapper_passed": {
+    "23": 39,
+    "35": 35
+  },
+  "main_assertions_each": 275,
+  "guards_assertions": {
+    "23": 445,
+    "35": 444
+  },
+  "scoped_newhole_modes_passed_both": true,
+  "full_ci_passed": false,
+  "api35_failures": [
+    "FAIL geometryedit",
+    "FAIL managerrotation",
+    "FAIL managerforms",
+    "FAIL vertexinsertion"
+  ],
+  "exact_transport_evidence": "ARTIFACT_PULL_DIAGNOSTICS managerrotation / adb: error: failed to get feature set: device offline; geometryedit/managerforms/vertexinsertion also adb: device offline, not successful execution.",
+  "jvm_suites": 24,
+  "jvm_assertions": 81315,
+  "driver_tests": 13,
+  "all_54_app_source_sha_match_saved_build": true,
+  "min_sdk": 23,
+  "api_stubs_packaged": false,
+  "png_sha_verified_and_actually_reviewed": 56,
+  "production_changed": false,
+  "next_attempt": {
+    "attempt": 2,
+    "api35_job": 126809400911,
+    "status": "in_progress",
+    "reason": "one rerun failed API35 only after exact diagnostics; same source, keep JVM/API23 successful executions",
+    "cached_jvm_id": 126809403009,
+    "cached_api23_id": 126809403155
+  },
+  "limitations": [
+    "Same-process intent restoration; no process-death restoration acceptance",
+    "Selector still labels outer anchor during new-hole input; model flag and third-ring Save tested, no full UI reference parity claim",
+    "API35 landscape long error can require scroll; error raw retained, earlier vertexscroll covered reusable dialog scroll, no new-hole-specific scroll acceptance",
+    "No physical device/Android16/migration/main certificate/reference acceptance"
+  ],
+  "accepted_requirements": 0,
+  "full_migration_complete": false
+}

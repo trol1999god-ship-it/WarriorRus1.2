@@ -1,0 +1,66 @@
+[
+  {
+    "name": "map_mvisual-rotation-description-before.png",
+    "sha256": "bb7e703582aec276734c17308d1bcd6c0f311d6b4587d780ec8ae335680f9b6e"
+  },
+  {
+    "name": "map_mvisual-rotation-description-cancel.png",
+    "sha256": "1aa8900d923a1a85ae40d68415f289f834dab4e5b4321a3e17e724de4a5e7479"
+  },
+  {
+    "name": "map_mvisual-rotation-description-rejected.png",
+    "sha256": "61645c90019cb4f8fa1b8cb03916b3321d0bbebae7765ea4c3ac5fb4e288c438"
+  },
+  {
+    "name": "map_mvisual-rotation-description-return.png",
+    "sha256": "b8de04c2375470d7ba146e4adc744f347d99bf6a7e0f0b8b6142ea38483dc816"
+  },
+  {
+    "name": "map_mvisual-rotation-description-save.png",
+    "sha256": "099fc6d1688f9643be703ad9a054a7a389bfe3a93f0166071cac1044c5410042"
+  },
+  {
+    "name": "map_mvisual-rotation-description-stale-after.png",
+    "sha256": "d27b38e73d405376e1e69bfa7ca7357f08bb7739bfec19c5058e0819f6ad28a4"
+  },
+  {
+    "name": "map_mvisual-rotation-description-stale-before.png",
+    "sha256": "630ef8242df316694cb653d92ba9a55f3624a1cda9240f96d4491ee4a12aec8b"
+  },
+  {
+    "name": "map_mvisual-rotation-name-before.png",
+    "sha256": "ce7d5b3cd09a32081b2c27476163b81313afe5814d8c3e8549114fe7d6ff4363"
+  },
+  {
+    "name": "map_mvisual-rotation-name-cancel.png",
+    "sha256": "1d2a214a59e997aed14931b2b4b1a2ce5f1b68f0c3719e250593a1a814bb328e"
+  },
+  {
+    "name": "map_mvisual-rotation-name-rejected.png",
+    "sha256": "8eb6782f1d10473989039c8ac9adf78c8090c5a8a828087b6645e8ad8af682e9"
+  },
+  {
+    "name": "map_mvisual-rotation-name-return.png",
+    "sha256": "81c38e52b35968178b2f256f01dca303c3206096ce79fa578dd28539461c8a48"
+  },
+  {
+    "name": "map_mvisual-rotation-name-save.png",
+    "sha256": "1d2a214a59e997aed14931b2b4b1a2ce5f1b68f0c3719e250593a1a814bb328e"
+  },
+  {
+    "name": "map_mvisual-rotation-name-stale-after.png",
+    "sha256": "1d2a214a59e997aed14931b2b4b1a2ce5f1b68f0c3719e250593a1a814bb328e"
+  },
+  {
+    "name": "map_mvisual-rotation-name-stale-before.png",
+    "sha256": "f36ac2d67eb609d95622b4aa6326203ab2cf9ac990f51aabadae65651f79437e"
+  },
+  {
+    "name": "map_mvisual-rotation-selection-restored.png",
+    "sha256": "6c4eb2a521a254f4bbe17b96e2845d03fd365f4edd8ae85ad1768057ed9c3278"
+  },
+  {
+    "name": "map_mvisual-rotation-selection-stale.png",
+    "sha256": "8b7ed68775605236b1fb43b745b94422531b73289aab84e8c520bf34ae37cc42"
+  }
+]

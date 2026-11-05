@@ -1,0 +1,36 @@
+.class public final synthetic Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda13;
+.super Ljava/lang/Object;
+.source "D8$$SyntheticClass"
+
+# interfaces
+.implements Landroid/content/DialogInterface$OnClickListener;
+
+
+# instance fields
+.field public final synthetic f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
+
+
+# direct methods
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;)V
+    .locals 0
+
+    .line 0
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda13;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public final onClick(Landroid/content/DialogInterface;I)V
+    .locals 1
+
+    .line 0
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda13;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
+
+    invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$dateOptions$51$org-rabochaya-projects-ObjectManagerActivity(Landroid/content/DialogInterface;I)V
+
+    return-void
+.end method

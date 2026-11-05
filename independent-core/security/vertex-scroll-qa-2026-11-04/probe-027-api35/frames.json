@@ -1,0 +1,38 @@
+[
+  {
+    "name": "map_mvisual-vertex-scroll-invalid-field.png",
+    "sha256": "e0b2230bec351582683aefd0f455bcf4e695146f5dc5cd07c84a010cad116c77"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-invalid-line-b.png",
+    "sha256": "4559acbdaf78dc300f98fec16f3a45ad04a43a55cb638092aa0c56d8dca1614c"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-invalid-message.png",
+    "sha256": "4559acbdaf78dc300f98fec16f3a45ad04a43a55cb638092aa0c56d8dca1614c"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-invalid-return.png",
+    "sha256": "1de80585fd5903b46b29bc1eb3b8f9a46c7d087467e6fc8f160f94c3c73c712c"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-stale-field.png",
+    "sha256": "86d4f130b7e3c1ecbc3dcaf8ae90a6c14da5721339d665fe6daea90237dec664"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-stale-line-b.png",
+    "sha256": "c8de23d22b4fa6fc65dc94c5d518c1b8b68919918b706c6d8c8a449fe5c5a352"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-stale-line-c.png",
+    "sha256": "61eefd8919847c05b413b07c7883585e386439bc4bd4c7d65a70cae3bfb3acc1"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-stale-message.png",
+    "sha256": "61eefd8919847c05b413b07c7883585e386439bc4bd4c7d65a70cae3bfb3acc1"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-stale-return.png",
+    "sha256": "86d4f130b7e3c1ecbc3dcaf8ae90a6c14da5721339d665fe6daea90237dec664"
+  }
+]

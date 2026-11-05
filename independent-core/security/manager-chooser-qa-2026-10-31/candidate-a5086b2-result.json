@@ -1,0 +1,71 @@
+{
+  "source": "a5086b291b94a94674384a82bed4df85cbcf2414",
+  "run": 41173465616,
+  "jobs": {
+    "23": 124456168296,
+    "35": 124456168273,
+    "jvm": 124456091833
+  },
+  "accepted": false,
+  "replacement_release_allowed": false,
+  "release_blockers": 25,
+  "jvm_suites": 22,
+  "jvm_assertions": 81190,
+  "host_driver_tests": 12,
+  "local_qa": {
+    "owned_classes": 417,
+    "min_sdk": 23,
+    "permissions": [
+      "android.permission.INTERNET"
+    ],
+    "unsigned_sha256": "6e4554f2d5340415b546cee748e0157b06157b2496c46db157f809c956ca7c90"
+  },
+  "passed_modes": {
+    "23": 31,
+    "35": 30
+  },
+  "failed_modes": {
+    "23": [
+      "managerchooser"
+    ],
+    "35": [
+      "managermove",
+      "managerchooser"
+    ]
+  },
+  "passed_chooser_cases_each": [
+    "cancel",
+    "choice-cancel",
+    "save",
+    "stale-before",
+    "stale-after",
+    "foreign-identical-XML"
+  ],
+  "api23_scroll": "Precondition failed before rotation: first option was not6 after setSelectionFromTop. Actual value not emitted; no scroll-restoration claim.",
+  "api35_scroll": "Precondition first6 passed; actual new/destroyed Activity and original chooser identity passed; first option was not6 after rotation. Actual saved/restored values not emitted; exact cause unresolved.",
+  "origin_folder_case": "Not reached on either API after scroll failure; unverified.",
+  "api35_managermove": "Did not start: adb: device offline before instrumentation. Emitted forms frames belong to preceding mode and are not Move evidence.",
+  "pngs": {
+    "count": 25,
+    "reviewed": 25,
+    "api23": 12,
+    "api35": 13,
+    "integrity": "SHA256, PNG signature, chunk CRC and dimension bounds verified in tool JavaScript; originals viewed directly. Local extractor not run for candidate because execution environment unavailable.",
+    "visible_text_arimo": true
+  },
+  "blocker": "Execution environment marked unavailable during CI; no further local shell/build operations attempted. Source/tests already pushed; uncommitted local documentation must be preserved and reconciled when machine recovers.",
+  "next": "Diagnose actual first-visible/saved/restored chooser index and adapter/layout timing without relaxing first==6. Keep original-folder case mandatory, run it before or independently of scroll failure. Fix confirmed cause and run full CI32. Only then proceed to vertex-coordinate subdialog recreation.",
+  "artifacts": [
+    {
+      "api": 23,
+      "id": 13031454329,
+      "file_id": "file_00000000581881f5a711d12ed8163407"
+    },
+    {
+      "api": 35,
+      "id": 13031984772,
+      "file_id": "file_00000000766881f5b3e497cca0bc45e8"
+    }
+  ],
+  "network_counter_assertion": "Final managerchooser network assertion not reached after scroll failure; no complete mode/privacy acceptance claimed."
+}

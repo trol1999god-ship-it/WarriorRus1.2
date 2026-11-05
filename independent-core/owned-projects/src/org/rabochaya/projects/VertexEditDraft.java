@@ -1,0 +1,14 @@
+package org.rabochaya.projects;
+import java.nio.charset.Charset;import java.security.*;
+/** Bounded UI data only; owner and original main-input identity guard every application. */
+public final class VertexEditDraft {
+ public final long project;public final String feature,session,key,token,mainStamp,type,operation,raw,error;public final boolean addingHole;public final int index,start,end;
+ public VertexEditDraft(long project,String feature,String session,String key,String token,String mainStamp,String type,boolean addingHole,int index,String operation,String raw,int start,int end,String error){
+  if(project<=0||feature==null||feature.isEmpty()||feature.length()>4096||session==null||session.isEmpty()||session.length()>128||key==null||key.length()>512||!key.matches("\\d+(?:\\.\\d+)*(?:/(?:outer|inner/\\d+))?")||token==null||!token.matches("[a-f0-9]{64}")||mainStamp==null||!mainStamp.matches("[a-f0-9]{64}")||!("Point".equals(type)||"LineString".equals(type)||"Polygon".equals(type))||addingHole&&!"Polygon".equals(type)||index<0||index>=10000||!("replace".equals(operation)||"before".equals(operation)||"after".equals(operation))||"Point".equals(type)&&(index!=0||!"replace".equals(operation))||raw==null||raw.length()>8192||start<0||start>raw.length()||end<0||end>raw.length()||error==null||error.length()>2048)throw new IllegalArgumentException("Недопустимый ввод вершины");
+  this.project=project;this.feature=feature;this.session=session;this.key=key;this.token=token;this.mainStamp=mainStamp;this.type=type;this.addingHole=addingHole;this.index=index;this.operation=operation;this.raw=raw;this.start=start;this.end=end;this.error=error;
+ }
+ public static String stamp(String text){if(text==null||text.length()>500000)throw new IllegalArgumentException("Недопустимый исходный ввод");try{byte[] hash=MessageDigest.getInstance("SHA-256").digest(text.getBytes(Charset.forName("UTF-8")));StringBuilder out=new StringBuilder();for(byte b:hash)out.append(String.format(java.util.Locale.US,"%02x",b&255));return out.toString();}catch(NoSuchAlgorithmException e){throw new IllegalStateException(e);}}
+ public VertexEditDraft withUi(String raw,int start,int end,String error){return new VertexEditDraft(project,feature,session,key,token,mainStamp,type,addingHole,index,operation,raw,start,end,error);}
+ public boolean inSession(long project,String feature,String session){return this.project==project&&this.feature.equals(feature)&&this.session.equals(session);}
+ public boolean matches(long project,String feature,String session,String key,String token,String type,boolean addingHole,String main){return inSession(project,feature,session)&&this.key.equals(key)&&this.token.equals(token)&&this.type.equals(type)&&this.addingHole==addingHole&&main!=null&&main.length()<=500000&&mainStamp.equals(stamp(main));}
+}

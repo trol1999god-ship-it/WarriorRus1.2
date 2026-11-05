@@ -1,0 +1,66 @@
+[
+  {
+    "name": "map_mvisual-geometry-delete-hole-after.png",
+    "sha256": "96c17a369b07d90a673ba912f1d85ce9e87e8c6f028ba884213485a718d9e74b"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-before-save.png",
+    "sha256": "f9a38191059bb9f408e3388fc9d10abcc0e9410ceaff4630f9c935f0cc8eb845"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-before.png",
+    "sha256": "0d682861fc4c205275eaa554bae7ff0dd89f08c46907dc77d5886eba59ca859c"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-cancel-return.png",
+    "sha256": "0d682861fc4c205275eaa554bae7ff0dd89f08c46907dc77d5886eba59ca859c"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-cancelled-stage.png",
+    "sha256": "628f8865bfd0f46e2f92ac4369ba11fcc9ab1aafa997eadd290f205221bc1229"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-confirm.png",
+    "sha256": "96c17a369b07d90a673ba912f1d85ce9e87e8c6f028ba884213485a718d9e74b"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-foreign-feature.png",
+    "sha256": "4315c701baeb7194de79c42c2273c39d2e67fee6b5df508384326cb53e7414fc"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-foreign-project.png",
+    "sha256": "e355384dd61f0decb309e5d8b56578785dc36392bb51a1f5ed14e93d28188ee3"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-main-changed.png",
+    "sha256": "b98dae8f93852e9e9e63fc0ab1ea2f8d79db568000d2fd7c089a7fe4e99a94ae"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-saved.png",
+    "sha256": "4842af02b50a3f2ed141464facd65e83a9481d243c96f3e986cc5b8a9ae9eda1"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-stage-foreign.png",
+    "sha256": "e355384dd61f0decb309e5d8b56578785dc36392bb51a1f5ed14e93d28188ee3"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-stage-main-changed.png",
+    "sha256": "8c06217a2a6be09f7731b11f63bdf00a7666e7e8498d5c2cbbad3e5dfa357dd4"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-staged-cancel.png",
+    "sha256": "b95c1c25a807970b3946d6026c5aa6e6f715d00e7e8038bdec7ff41e8bf32e96"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-stale-after.png",
+    "sha256": "2a4f54efa9cffdf41b5b7e4b5cd579fc6c2adfea385602df36ac7e79f34ef027"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-stale-before.png",
+    "sha256": "1577833c5807f9f6093a85334ca9bd51cbc11c9cc1e373da8508f763f0294f28"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-stale-save.png",
+    "sha256": "e0a5fcc199d9ff9160abd2f8bf0f994929d8b4c3ccf3af223dc3ef8e69f4aefb"
+  }
+]

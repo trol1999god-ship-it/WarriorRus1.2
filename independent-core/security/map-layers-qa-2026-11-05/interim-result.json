@@ -1,0 +1,16 @@
+{
+  "commit": "17ac3f9d12198a7dbd8db06085219df38db6958f",
+  "run": 42028003488,
+  "api23_job": 127247171704,
+  "api23_old_pass": 44,
+  "api23_failure": "new maplayers partial opacity assertion after input events without explicit SOURCE_TOUCHSCREEN; production cause not proven",
+  "api23_reopen": "skipped, not passed",
+  "api23_new_png": 0,
+  "api35_job": 127247171605,
+  "api35_pass": 46,
+  "api35_layers_assertions": 88,
+  "api35_restart_assertions": 16,
+  "api35_png_sha_verified": 6,
+  "api35_png_visually_reviewed": 6,
+  "stage_complete": false
+}

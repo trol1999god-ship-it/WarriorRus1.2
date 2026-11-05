@@ -1,0 +1,14 @@
+[
+  {
+    "name": "map_mvisual-geometry-close-after-land.png",
+    "sha256": "f871b2b83514d385c74bc965e0f0b765090df1966f19a496e06795712f63bc5e"
+  },
+  {
+    "name": "map_mvisual-geometry-close-before-land.png",
+    "sha256": "6b09a8d84b3bdecc140df2f2ece1a27e609f5fb8dc71abf8a78daf643839f6ec"
+  },
+  {
+    "name": "map_mvisual-geometry-close-cancelled.png",
+    "sha256": "f8c1a0cfb0dcdd66e979aa652925df5659f111a621ded50fb4c403637d143396"
+  }
+]
