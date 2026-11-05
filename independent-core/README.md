@@ -1,3 +1,8 @@
+На code9078825 / CI41950249469 success attempt2 обеAPI прошли41/41.
+Удаление вершины existing/new внутреннего контура на карте: actualrecreate/Cancel/
+Confirm→отдельныйSave и полныйDOM/assets проверены; финальные47PNG map-hole+scroll
+просмотрены. Productionunchanged0e9d47d; [MAP_HOLE_CONFIRMATION_STATE.md](MAP_HOLE_CONFIRMATION_STATE.md).
+
 Подтверждение удаления вершины на карте восстанавливается после actual recreate.
 Production0e9d47d + test0716037 / CI41946263354: обе API40/40, map444 each,
 28 новых PNG просмотрены. Cancel и отдельные Confirm→Save/guards/DOM/assets проверены.
