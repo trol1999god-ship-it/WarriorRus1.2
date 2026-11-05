@@ -1490,12 +1490,172 @@
 .method public close()V
     .locals 1
 
-    .line 47
+    .line 49
     iget-object v0, p0, Lorg/rabochaya/projects/OfflineTiles;->db:Landroid/database/sqlite/SQLiteDatabase;
 
     invoke-virtual {v0}, Landroid/database/sqlite/SQLiteDatabase;->close()V
 
     return-void
+.end method
+
+.method public keys()Ljava/util/List;
+    .locals 9
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Ljava/util/List<",
+            "[I>;"
+        }
+    .end annotation
+
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 48
+    new-instance v0, Ljava/util/ArrayList;
+
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+
+    iget-object v1, p0, Lorg/rabochaya/projects/OfflineTiles;->db:Landroid/database/sqlite/SQLiteDatabase;
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "SELECT zoom_level,tile_column,tile_row FROM "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    iget-object v3, p0, Lorg/rabochaya/projects/OfflineTiles;->table:Ljava/lang/String;
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    const-string v3, " WHERE typeof(zoom_level)=\'integer\' AND typeof(tile_column)=\'integer\' AND typeof(tile_row)=\'integer\' AND zoom_level BETWEEN 0 AND 23 AND tile_column>=0 AND tile_row>=0 AND tile_column<(1<<zoom_level) AND tile_row<(1<<zoom_level) LIMIT 20001"
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    const/4 v3, 0x0
+
+    invoke-virtual {v1, v2, v3}, Landroid/database/sqlite/SQLiteDatabase;->rawQuery(Ljava/lang/String;[Ljava/lang/String;)Landroid/database/Cursor;
+
+    move-result-object v1
+
+    :goto_0
+    :try_start_0
+    invoke-interface {v1}, Landroid/database/Cursor;->moveToNext()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_2
+
+    invoke-interface {v0}, Ljava/util/List;->size()I
+
+    move-result v2
+
+    const/16 v3, 0x4e20
+
+    if-ge v2, v3, :cond_1
+
+    const/4 v2, 0x0
+
+    invoke-interface {v1, v2}, Landroid/database/Cursor;->getInt(I)I
+
+    move-result v3
+
+    const/4 v4, 0x1
+
+    invoke-interface {v1, v4}, Landroid/database/Cursor;->getInt(I)I
+
+    move-result v5
+
+    const/4 v6, 0x2
+
+    invoke-interface {v1, v6}, Landroid/database/Cursor;->getInt(I)I
+
+    move-result v7
+
+    const/4 v8, 0x3
+
+    new-array v8, v8, [I
+
+    aput v3, v8, v2
+
+    aput v5, v8, v4
+
+    iget-boolean v2, p0, Lorg/rabochaya/projects/OfflineTiles;->xyz:Z
+
+    if-eqz v2, :cond_0
+
+    goto :goto_1
+
+    :cond_0
+    int-to-long v4, v7
+
+    invoke-static {v3, v4, v5}, Lorg/rabochaya/projects/MapMath;->tmsRow(IJ)J
+
+    move-result-wide v2
+
+    long-to-int v7, v2
+
+    :goto_1
+    aput v7, v8, v6
+
+    invoke-interface {v0, v8}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    goto :goto_0
+
+    :cond_1
+    new-instance v0, Ljava/io/IOException;
+
+    const-string v2, "\u042d\u043a\u0441\u043f\u043e\u0440\u0442 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d 20 000 \u0442\u0430\u0439\u043b\u043e\u0432 \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u0430"
+
+    invoke-direct {v0, v2}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    throw v0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    :cond_2
+    if-eqz v1, :cond_3
+
+    invoke-interface {v1}, Landroid/database/Cursor;->close()V
+
+    :cond_3
+    return-object v0
+
+    :catchall_0
+    move-exception v0
+
+    if-eqz v1, :cond_4
+
+    :try_start_1
+    invoke-interface {v1}, Landroid/database/Cursor;->close()V
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+
+    goto :goto_2
+
+    :catchall_1
+    move-exception v1
+
+    invoke-virtual {v0, v1}, Ljava/lang/Throwable;->addSuppressed(Ljava/lang/Throwable;)V
+
+    :cond_4
+    :goto_2
+    throw v0
 .end method
 
 .method public tile(III)Landroid/graphics/Bitmap;

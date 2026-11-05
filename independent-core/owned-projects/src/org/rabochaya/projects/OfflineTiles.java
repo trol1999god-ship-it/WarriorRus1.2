@@ -44,5 +44,7 @@ public final class OfflineTiles implements Closeable {
   String[] args={Integer.toString(z),Integer.toString(x),Long.toString(xyz?xyzY:MapMath.tmsRow(z,xyzY))};
   try(Cursor c=db.rawQuery("SELECT tile_data FROM "+table+" WHERE zoom_level=? AND tile_column=? AND tile_row=? AND typeof(tile_data)='blob' AND length(tile_data) BETWEEN 1 AND 1048576 LIMIT 1",args)){return c.moveToFirst()?decode(c.getBlob(0)):null;}
  }
+ /** Enumerate only validated integer tile coordinates, without executing imported views. */
+ public List<int[]> keys()throws IOException{List<int[]> result=new ArrayList<>();try(Cursor c=db.rawQuery("SELECT zoom_level,tile_column,tile_row FROM "+table+" WHERE typeof(zoom_level)='integer' AND typeof(tile_column)='integer' AND typeof(tile_row)='integer' AND zoom_level BETWEEN 0 AND 23 AND tile_column>=0 AND tile_row>=0 AND tile_column<(1<<zoom_level) AND tile_row<(1<<zoom_level) LIMIT 20001",null)){while(c.moveToNext()){if(result.size()>=20000)throw new IOException("Экспорт ограничен 20 000 тайлов источника");int z=c.getInt(0),x=c.getInt(1),y=c.getInt(2);result.add(new int[]{z,x,xyz?y:(int)MapMath.tmsRow(z,y)});}}return result;}
  public void close(){db.close();}
 }

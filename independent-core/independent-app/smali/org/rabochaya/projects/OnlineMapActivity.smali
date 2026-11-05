@@ -2445,7 +2445,7 @@
 .end method
 
 .method synthetic lambda$show$9$org-rabochaya-projects-OnlineMapActivity()V
-    .locals 2
+    .locals 4
 
     .line 13
     new-instance v0, Landroid/content/Intent;
@@ -2453,6 +2453,22 @@
     const-class v1, Lorg/rabochaya/projects/CacheExportActivity;
 
     invoke-direct {v0, p0, v1}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
+
+    const-string v1, "project"
+
+    iget-wide v2, p0, Lorg/rabochaya/projects/OnlineMapActivity;->project:J
+
+    invoke-virtual {v0, v1, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;J)Landroid/content/Intent;
+
+    move-result-object v0
+
+    const-string v1, "single_source"
+
+    const/4 v2, 0x1
+
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
+
+    move-result-object v0
 
     invoke-virtual {p0, v0}, Lorg/rabochaya/projects/OnlineMapActivity;->startActivity(Landroid/content/Intent;)V
 
@@ -2651,7 +2667,7 @@
 .end method
 
 .method protected onActivityResult(IILandroid/content/Intent;)V
-    .locals 1
+    .locals 2
 
     .line 34
     invoke-super {p0, p1, p2, p3}, Landroid/app/Activity;->onActivityResult(IILandroid/content/Intent;)V
@@ -2687,6 +2703,22 @@
     const-class p2, Lorg/rabochaya/projects/CacheExportActivity;
 
     invoke-direct {p1, p0, p2}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
+
+    const-string p2, "project"
+
+    iget-wide v0, p0, Lorg/rabochaya/projects/OnlineMapActivity;->project:J
+
+    invoke-virtual {p1, p2, v0, v1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;J)Landroid/content/Intent;
+
+    move-result-object p1
+
+    const-string p2, "single_source"
+
+    const/4 p3, 0x1
+
+    invoke-virtual {p1, p2, p3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
+
+    move-result-object p1
 
     invoke-virtual {p0, p1}, Lorg/rabochaya/projects/OnlineMapActivity;->startActivity(Landroid/content/Intent;)V
 

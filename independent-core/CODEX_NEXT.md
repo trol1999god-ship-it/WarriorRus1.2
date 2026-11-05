@@ -19,13 +19,19 @@
    visibility, actualforce-stop/cache/MBTiles/other-project/KML/assets passed.
    MAP_LAYERS.md и final-result.json. Не повторять без новой причины; приёмка открыта.
 
-4. Локальный НЕпроверенный Androidruntime кандидат следующего production участка:
-   CompositionCacheExport + project-aware CacheExportActivity + атомарная замена
-   File-экспорта; исходники/смали сохранены без overwrite данных. FinalQA485,
-   JVM29 включая RasterExportFile9 pass. Подключена проверка в существующий cacheexport,
-   отдельный новый baseline НЕ добавлен. SDK23 tests241121 compiled, host16, source62exact/JVM29_81458.
-   Сохранить source candidate/запустить обоснованный CI; runtime/PNG ещё не проверены.
-   Артефакты composition-export-build-final, composition-export-jvm-bounded.log сохранены.
+4. Подготовлен production кандидат compose-aware export в один MBTiles/TMS3857:
+   order/visible/group alpha, bounds записанных тайлов (+180), source.zoomFor,
+   EPSG3395 reprojection. File replacement атомарный после sync, cap512MiB/20000tiles;
+   SAF не удаляет чужой URI при ошибке, сборка завершается до открытия назначения.
+   Ошибка во время SAF-copy может оставить partial file, UI сообщает; не заявлять
+   atomic SAF. MAP_COMPOSITION_EXPORT.md и migration/MAP_FORMATS.md.
+   QA485/source62exact/JVM29_81458/host16; tests расширены внутри cacheexport,
+   без нового baseline mode. Bounds/order/alpha/hidden/mixedzoom/Cancel/UI-save/empty
+   failure/source cache/other project/KML/assets +2PNG. Androidruntime ещё не проверен.
+   Сохранить кандидат/запустить обоснованный CI изменённого export/shared render;
+   проверить обаcompletedjob/PNG/roundtrip/data. Не повторять CI слоёв42034901826.
+   Артефакты composition-export-release-candidate-build — только внутренний QA,
+   не пользовательский replacement release. Все прежние receipts/builds сохранены.
 
 ## Production очередь
 

@@ -25,10 +25,26 @@
     return-void
 .end method
 
+.method static synthetic lambda$write$0(Landroid/content/Context;Lorg/rabochaya/projects/TileSource;Lorg/rabochaya/projects/CacheExport$Progress;Ljava/io/File;)I
+    .locals 0
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 9
+    invoke-static {p0, p1, p3, p2}, Lorg/rabochaya/projects/CacheExport;->writePrepared(Landroid/content/Context;Lorg/rabochaya/projects/TileSource;Ljava/io/File;Lorg/rabochaya/projects/CacheExport$Progress;)I
+
+    move-result p0
+
+    return p0
+.end method
+
 .method private static meta(Landroid/database/sqlite/SQLiteDatabase;Ljava/lang/String;Ljava/lang/String;)V
     .locals 2
 
-    .line 35
+    .line 36
     new-instance v0, Landroid/content/ContentValues;
 
     invoke-direct {v0}, Landroid/content/ContentValues;-><init>()V
@@ -50,500 +66,641 @@
     return-void
 .end method
 
-.method private static render([Lorg/rabochaya/projects/OnlineTiles;[Lorg/rabochaya/projects/TileSource;III)Landroid/graphics/Bitmap;
-    .locals 28
+.method static render([Lorg/rabochaya/projects/OnlineTiles;[Lorg/rabochaya/projects/TileSource;III)Landroid/graphics/Bitmap;
+    .locals 36
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
         }
     .end annotation
 
-    .line 37
+    .line 38
     move-object/from16 v0, p1
 
     move/from16 v1, p2
 
-    move/from16 v2, p4
+    new-instance v2, Landroid/graphics/Paint;
 
-    new-instance v3, Landroid/graphics/Paint;
+    const/4 v3, 0x2
 
-    const/4 v4, 0x2
+    invoke-direct {v2, v3}, Landroid/graphics/Paint;-><init>(I)V
 
-    invoke-direct {v3, v4}, Landroid/graphics/Paint;-><init>(I)V
+    const/4 v3, 0x1
 
-    const/4 v4, 0x1
+    shl-int v4, v3, v1
 
-    shl-int v5, v4, v1
+    .line 39
+    const/4 v7, 0x0
 
-    .line 38
-    const/4 v6, 0x0
-
-    move v8, v6
-
-    const/4 v9, 0x0
+    const/4 v8, 0x0
 
     :goto_0
     :try_start_0
-    array-length v10, v0
+    array-length v9, v0
 
-    if-ge v8, v10, :cond_7
-
-    .line 39
-    aget-object v10, v0, v8
-
-    invoke-virtual {v10, v1}, Lorg/rabochaya/projects/TileSource;->hasZoom(I)Z
-
-    move-result v11
-
-    if-nez v11, :cond_0
-
-    move/from16 v24, v5
-
-    move v10, v6
-
-    move/from16 v16, v8
-
-    goto/16 :goto_9
+    if-ge v7, v9, :cond_9
 
     .line 40
-    :cond_0
-    iget-boolean v11, v10, Lorg/rabochaya/projects/TileSource;->ellipsoid:Z
+    aget-object v9, v0, v7
 
-    if-eqz v11, :cond_1
+    invoke-virtual {v9, v1}, Lorg/rabochaya/projects/TileSource;->zoomFor(I)I
 
-    int-to-double v14, v2
+    move-result v10
 
-    move/from16 v16, v8
+    shl-int v11, v3, v10
 
-    int-to-double v7, v5
+    .line 41
+    move/from16 v12, p3
 
-    div-double v17, v14, v7
+    int-to-double v13, v12
 
-    invoke-static/range {v17 .. v18}, Lorg/rabochaya/projects/MapMath;->lat(D)D
+    move/from16 v16, v7
 
-    move-result-wide v11
+    int-to-double v6, v4
 
-    invoke-static {v11, v12, v4}, Lorg/rabochaya/projects/TileProjection;->y(DZ)D
+    div-double v17, v13, v6
 
-    move-result-wide v11
+    move/from16 v15, p4
 
-    mul-double/2addr v11, v7
+    move/from16 v19, v4
 
-    invoke-static {v11, v12}, Ljava/lang/Math;->floor(D)D
+    int-to-double v3, v15
 
-    move-result-wide v11
+    div-double v20, v3, v6
 
-    double-to-int v11, v11
+    const-wide/high16 v22, 0x3ff0000000000000L    # 1.0
 
-    invoke-static {v6, v11}, Ljava/lang/Math;->max(II)I
+    add-double v13, v13, v22
 
-    move-result v11
+    div-double/2addr v13, v6
 
-    add-int/lit8 v12, v5, -0x1
+    add-double v3, v3, v22
 
-    const-wide/high16 v17, 0x3ff0000000000000L    # 1.0
+    div-double/2addr v3, v6
 
-    add-double v14, v14, v17
+    .line 42
+    move-wide/from16 v24, v6
 
-    div-double/2addr v14, v7
+    int-to-double v5, v11
 
-    invoke-static {v14, v15}, Lorg/rabochaya/projects/MapMath;->lat(D)D
+    mul-double v26, v17, v5
 
-    move-result-wide v14
+    const-wide v28, 0x3e112e0be826d695L    # 1.0E-9
 
-    invoke-static {v14, v15, v4}, Lorg/rabochaya/projects/TileProjection;->y(DZ)D
+    add-double v26, v26, v28
 
-    move-result-wide v14
+    invoke-static/range {v26 .. v27}, Ljava/lang/Math;->floor(D)D
 
-    mul-double/2addr v14, v7
+    move-result-wide v0
 
-    invoke-static {v14, v15}, Ljava/lang/Math;->floor(D)D
+    double-to-int v0, v0
 
-    move-result-wide v7
+    const/4 v1, 0x0
 
-    double-to-int v7, v7
+    invoke-static {v1, v0}, Ljava/lang/Math;->max(II)I
 
-    invoke-static {v12, v7}, Ljava/lang/Math;->min(II)I
+    move-result v0
 
-    move-result v7
+    add-int/lit8 v11, v11, -0x1
+
+    mul-double/2addr v13, v5
+
+    sub-double v13, v13, v28
+
+    invoke-static {v13, v14}, Ljava/lang/Math;->ceil(D)D
+
+    move-result-wide v13
+
+    double-to-int v1, v13
+
+    const/4 v7, 0x1
+
+    sub-int/2addr v1, v7
+
+    invoke-static {v11, v1}, Ljava/lang/Math;->min(II)I
+
+    move-result v1
+
+    .line 43
+    iget-boolean v7, v9, Lorg/rabochaya/projects/TileSource;->ellipsoid:Z
+
+    if-eqz v7, :cond_0
+
+    invoke-static/range {v20 .. v21}, Lorg/rabochaya/projects/MapMath;->lat(D)D
+
+    move-result-wide v13
+
+    const/4 v7, 0x1
+
+    invoke-static {v13, v14, v7}, Lorg/rabochaya/projects/TileProjection;->y(DZ)D
+
+    move-result-wide v13
 
     goto :goto_1
 
-    :cond_1
-    move/from16 v16, v8
+    :cond_0
+    move-wide/from16 v13, v20
 
-    move v7, v2
-
-    move v11, v7
-
-    .line 41
     :goto_1
+    mul-double/2addr v13, v5
+
+    add-double v13, v13, v28
+
+    invoke-static {v13, v14}, Ljava/lang/Math;->floor(D)D
+
+    move-result-wide v13
+
+    double-to-int v7, v13
+
+    const/4 v13, 0x0
+
+    invoke-static {v13, v7}, Ljava/lang/Math;->max(II)I
+
+    move-result v7
+
+    .line 44
+    iget-boolean v13, v9, Lorg/rabochaya/projects/TileSource;->ellipsoid:Z
+
+    if-eqz v13, :cond_1
+
+    invoke-static {v3, v4}, Lorg/rabochaya/projects/MapMath;->lat(D)D
+
+    move-result-wide v3
+
+    const/4 v13, 0x1
+
+    invoke-static {v3, v4, v13}, Lorg/rabochaya/projects/TileProjection;->y(DZ)D
+
+    move-result-wide v3
+
+    :cond_1
+    mul-double/2addr v3, v5
+
+    sub-double v3, v3, v28
+
+    invoke-static {v3, v4}, Ljava/lang/Math;->ceil(D)D
+
+    move-result-wide v3
+
+    double-to-int v3, v3
+
+    const/4 v4, 0x1
+
+    sub-int/2addr v3, v4
+
+    invoke-static {v11, v3}, Ljava/lang/Math;->min(II)I
+
+    move-result v3
+
+    .line 45
+    sub-int v11, v1, v0
+
+    add-int/2addr v11, v4
+
+    int-to-long v13, v11
+
+    sub-int v11, v3, v7
+
+    add-int/2addr v11, v4
+
+    int-to-long v11, v11
+
+    mul-long/2addr v13, v11
+
+    const-wide/16 v11, 0x20
+
+    cmp-long v4, v13, v11
+
+    if-gtz v4, :cond_8
+
+    .line 46
     nop
 
     :goto_2
-    if-gt v11, v7, :cond_6
+    if-gt v7, v3, :cond_7
 
-    .line 42
-    aget-object v8, p0, v16
+    move v4, v0
 
-    move/from16 v12, p3
+    :goto_3
+    if-gt v4, v1, :cond_6
 
-    invoke-virtual {v8, v1, v12, v11, v6}, Lorg/rabochaya/projects/OnlineTiles;->tile(IIIZ)Landroid/graphics/Bitmap;
+    .line 47
+    aget-object v11, p0, v16
 
-    move-result-object v8
+    const/4 v12, 0x0
+
+    invoke-virtual {v11, v10, v4, v7, v12}, Lorg/rabochaya/projects/OnlineTiles;->tile(IIIZ)Landroid/graphics/Bitmap;
+
+    move-result-object v11
     :try_end_0
     .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_3
     .catch Ljava/lang/RuntimeException; {:try_start_0 .. :try_end_0} :catch_2
 
-    if-nez v8, :cond_2
+    if-nez v11, :cond_2
 
-    move/from16 v24, v5
+    move/from16 v31, v0
 
-    move/from16 v22, v7
+    move/from16 v30, v1
 
-    move-object/from16 v21, v10
+    move-object v1, v2
 
-    move/from16 v25, v11
+    move/from16 v32, v3
 
-    const-wide/high16 v19, 0x3ff0000000000000L    # 1.0
+    move/from16 v33, v4
 
-    move v10, v6
+    move-object/from16 v29, v9
 
-    goto/16 :goto_6
+    move/from16 v34, v10
 
-    .line 43
+    const/4 v9, 0x0
+
+    goto/16 :goto_7
+
+    .line 48
     :cond_2
-    if-nez v9, :cond_3
+    if-nez v8, :cond_3
 
     :try_start_1
-    sget-object v14, Landroid/graphics/Bitmap$Config;->ARGB_8888:Landroid/graphics/Bitmap$Config;
+    sget-object v12, Landroid/graphics/Bitmap$Config;->ARGB_8888:Landroid/graphics/Bitmap$Config;
 
-    const/16 v15, 0x100
+    const/16 v13, 0x100
 
-    invoke-static {v15, v15, v14}, Landroid/graphics/Bitmap;->createBitmap(IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;
+    invoke-static {v13, v13, v12}, Landroid/graphics/Bitmap;->createBitmap(IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;
 
-    move-result-object v9
+    move-result-object v8
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    goto :goto_3
+    goto :goto_4
 
-    .line 49
+    .line 55
     :catchall_0
     move-exception v0
 
-    goto/16 :goto_8
+    goto/16 :goto_9
 
-    .line 43
+    .line 48
     :cond_3
-    :goto_3
-    :try_start_2
-    new-instance v14, Landroid/graphics/Canvas;
-
-    invoke-direct {v14, v9}, Landroid/graphics/Canvas;-><init>(Landroid/graphics/Bitmap;)V
-
-    .line 44
-    iget-boolean v15, v10, Lorg/rabochaya/projects/TileSource;->ellipsoid:Z
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_2
-
-    const/high16 v13, 0x43800000    # 256.0f
-
-    const/4 v6, 0x0
-
-    if-nez v15, :cond_4
-
-    :try_start_3
-    new-instance v15, Landroid/graphics/RectF;
-
-    invoke-direct {v15, v6, v6, v13, v13}, Landroid/graphics/RectF;-><init>(FFFF)V
-
-    const/4 v6, 0x0
-
-    invoke-virtual {v14, v8, v6, v15, v3}, Landroid/graphics/Canvas;->drawBitmap(Landroid/graphics/Bitmap;Landroid/graphics/Rect;Landroid/graphics/RectF;Landroid/graphics/Paint;)V
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_0
-
-    move/from16 v24, v5
-
-    move/from16 v22, v7
-
-    move-object/from16 v23, v9
-
-    move-object/from16 v21, v10
-
-    move/from16 v25, v11
-
-    const/4 v10, 0x0
-
-    const-wide/high16 v19, 0x3ff0000000000000L    # 1.0
-
-    goto/16 :goto_5
-
-    .line 45
-    :cond_4
-    const/4 v15, 0x0
-
-    const/4 v15, 0x0
-
     :goto_4
-    :try_start_4
-    invoke-virtual {v8}, Landroid/graphics/Bitmap;->getHeight()I
+    :try_start_2
+    new-instance v12, Landroid/graphics/Canvas;
 
-    move-result v6
+    invoke-direct {v12, v8}, Landroid/graphics/Canvas;-><init>(Landroid/graphics/Bitmap;)V
 
-    if-ge v15, v6, :cond_5
+    .line 49
+    int-to-double v13, v4
 
-    .line 46
-    move-object v6, v14
+    div-double/2addr v13, v5
 
-    int-to-double v13, v11
+    sub-double v13, v13, v17
 
-    move/from16 v21, v5
-
-    int-to-double v4, v15
-
-    invoke-virtual {v8}, Landroid/graphics/Bitmap;->getHeight()I
-
-    move-result v0
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_2
-
-    int-to-double v0, v0
-
-    div-double v0, v4, v0
-
-    add-double/2addr v0, v13
-
-    move/from16 v22, v7
-
-    move-object/from16 v23, v9
-
-    move/from16 v7, v21
-
-    move-object/from16 v21, v10
-
-    int-to-double v9, v7
-
-    div-double/2addr v0, v9
-
-    move/from16 v24, v7
-
-    const/4 v7, 0x1
-
-    :try_start_5
-    invoke-static {v0, v1, v7}, Lorg/rabochaya/projects/TileProjection;->latitude(DZ)D
-
-    move-result-wide v0
-
-    invoke-static {v0, v1}, Lorg/rabochaya/projects/MapMath;->y(D)D
-
-    move-result-wide v0
-
-    mul-double/2addr v0, v9
-
-    const-wide/high16 v19, 0x3ff0000000000000L    # 1.0
-
-    add-double v4, v4, v19
-
-    invoke-virtual {v8}, Landroid/graphics/Bitmap;->getHeight()I
-
-    move-result v7
-
-    move/from16 v25, v11
-
-    int-to-double v11, v7
-
-    div-double/2addr v4, v11
-
-    add-double/2addr v13, v4
-
-    div-double/2addr v13, v9
-
-    const/4 v4, 0x1
-
-    invoke-static {v13, v14, v4}, Lorg/rabochaya/projects/TileProjection;->latitude(DZ)D
-
-    move-result-wide v11
-
-    invoke-static {v11, v12}, Lorg/rabochaya/projects/MapMath;->y(D)D
-
-    move-result-wide v11
-
-    mul-double/2addr v11, v9
-
-    .line 47
-    new-instance v5, Landroid/graphics/Rect;
-
-    invoke-virtual {v8}, Landroid/graphics/Bitmap;->getWidth()I
-
-    move-result v7
-
-    add-int/lit8 v9, v15, 0x1
-
-    const/4 v10, 0x0
-
-    invoke-direct {v5, v10, v15, v7, v9}, Landroid/graphics/Rect;-><init>(IIII)V
-
-    new-instance v7, Landroid/graphics/RectF;
-
-    int-to-double v13, v2
-
-    sub-double/2addr v0, v13
+    mul-double v13, v13, v24
 
     const-wide/high16 v26, 0x4070000000000000L    # 256.0
 
-    mul-double v0, v0, v26
+    mul-double v13, v13, v26
+
+    double-to-float v13, v13
+
+    div-double v28, v24, v5
+
+    move v14, v0
+
+    move/from16 v30, v1
+
+    mul-double v0, v28, v26
 
     double-to-float v0, v0
 
-    sub-double/2addr v11, v13
+    .line 50
+    iget-boolean v1, v9, Lorg/rabochaya/projects/TileSource;->ellipsoid:Z
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_2
 
-    mul-double v11, v11, v26
+    if-nez v1, :cond_4
 
-    double-to-float v1, v11
+    move-object/from16 v28, v8
 
-    const/high16 v11, 0x43800000    # 256.0f
+    move-object v1, v9
 
-    const/4 v12, 0x0
+    int-to-double v8, v7
 
-    invoke-direct {v7, v12, v0, v11, v1}, Landroid/graphics/RectF;-><init>(FFFF)V
+    div-double/2addr v8, v5
 
-    invoke-virtual {v6, v8, v5, v7, v3}, Landroid/graphics/Canvas;->drawBitmap(Landroid/graphics/Bitmap;Landroid/graphics/Rect;Landroid/graphics/RectF;Landroid/graphics/Paint;)V
-    :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_1
+    sub-double v8, v8, v20
 
-    .line 45
-    move-object/from16 v0, p1
+    mul-double v8, v8, v24
 
-    move/from16 v1, p2
+    mul-double v8, v8, v26
 
-    move-object v14, v6
+    double-to-float v8, v8
 
-    move v15, v9
+    :try_start_3
+    new-instance v9, Landroid/graphics/RectF;
 
-    move v13, v11
+    move-object/from16 v29, v1
 
-    move v6, v12
+    add-float v1, v13, v0
 
-    move-object/from16 v10, v21
+    add-float/2addr v0, v8
 
-    move/from16 v7, v22
+    invoke-direct {v9, v13, v8, v1, v0}, Landroid/graphics/RectF;-><init>(FFFF)V
 
-    move-object/from16 v9, v23
+    const/4 v1, 0x0
 
-    move/from16 v5, v24
+    invoke-virtual {v12, v11, v1, v9, v2}, Landroid/graphics/Canvas;->drawBitmap(Landroid/graphics/Bitmap;Landroid/graphics/Rect;Landroid/graphics/RectF;Landroid/graphics/Paint;)V
 
-    move/from16 v11, v25
+    move-object v1, v2
 
-    move/from16 v12, p3
+    move/from16 v32, v3
 
-    goto :goto_4
+    move/from16 v33, v4
 
-    .line 49
+    move/from16 v34, v10
+
+    move/from16 v31, v14
+
+    const/4 v9, 0x0
+
+    goto/16 :goto_6
+
+    .line 55
     :catchall_1
     move-exception v0
 
-    move-object/from16 v9, v23
+    move-object/from16 v8, v28
 
-    goto :goto_8
-
-    .line 45
-    :cond_5
-    move/from16 v24, v5
-
-    move/from16 v22, v7
-
-    move-object/from16 v23, v9
-
-    move-object/from16 v21, v10
-
-    move/from16 v25, v11
-
-    const/4 v10, 0x0
-
-    const-wide/high16 v19, 0x3ff0000000000000L    # 1.0
-
-    .line 49
-    :goto_5
-    :try_start_6
-    invoke-virtual {v8}, Landroid/graphics/Bitmap;->recycle()V
-    :try_end_6
-    .catch Ljava/io/IOException; {:try_start_6 .. :try_end_6} :catch_1
-    .catch Ljava/lang/RuntimeException; {:try_start_6 .. :try_end_6} :catch_0
-
-    move-object/from16 v9, v23
-
-    .line 41
-    :goto_6
-    add-int/lit8 v11, v25, 0x1
-
-    move-object/from16 v0, p1
-
-    move/from16 v1, p2
-
-    move v6, v10
-
-    move-object/from16 v10, v21
-
-    move/from16 v7, v22
-
-    move/from16 v5, v24
-
-    goto/16 :goto_2
+    goto/16 :goto_9
 
     .line 51
+    :cond_4
+    move-object/from16 v28, v8
+
+    move-object/from16 v29, v9
+
+    const/4 v1, 0x0
+
+    const/4 v8, 0x0
+
+    :goto_5
+    invoke-virtual {v11}, Landroid/graphics/Bitmap;->getHeight()I
+
+    move-result v9
+
+    if-ge v8, v9, :cond_5
+
+    .line 52
+    move-object v9, v2
+
+    int-to-double v1, v7
+
+    move/from16 v31, v14
+
+    int-to-double v14, v8
+
+    move/from16 v32, v3
+
+    invoke-virtual {v11}, Landroid/graphics/Bitmap;->getHeight()I
+
+    move-result v3
+
+    move/from16 v33, v4
+
+    int-to-double v3, v3
+
+    div-double v3, v14, v3
+
+    add-double/2addr v3, v1
+
+    div-double/2addr v3, v5
+
+    move/from16 v34, v10
+
+    const/4 v10, 0x1
+
+    invoke-static {v3, v4, v10}, Lorg/rabochaya/projects/TileProjection;->latitude(DZ)D
+
+    move-result-wide v3
+
+    invoke-static {v3, v4}, Lorg/rabochaya/projects/MapMath;->y(D)D
+
+    move-result-wide v3
+
+    add-double v14, v14, v22
+
+    invoke-virtual {v11}, Landroid/graphics/Bitmap;->getHeight()I
+
+    move-result v10
+
+    move-object/from16 v35, v9
+
+    int-to-double v9, v10
+
+    div-double/2addr v14, v9
+
+    add-double/2addr v1, v14
+
+    div-double/2addr v1, v5
+
+    const/4 v9, 0x1
+
+    invoke-static {v1, v2, v9}, Lorg/rabochaya/projects/TileProjection;->latitude(DZ)D
+
+    move-result-wide v1
+
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/MapMath;->y(D)D
+
+    move-result-wide v1
+
+    .line 53
+    new-instance v10, Landroid/graphics/Rect;
+
+    invoke-virtual {v11}, Landroid/graphics/Bitmap;->getWidth()I
+
+    move-result v14
+
+    add-int/lit8 v15, v8, 0x1
+
+    const/4 v9, 0x0
+
+    invoke-direct {v10, v9, v8, v14, v15}, Landroid/graphics/Rect;-><init>(IIII)V
+
+    new-instance v8, Landroid/graphics/RectF;
+
+    sub-double v3, v3, v20
+
+    mul-double v3, v3, v24
+
+    mul-double v3, v3, v26
+
+    double-to-float v3, v3
+
+    add-float v4, v13, v0
+
+    sub-double v1, v1, v20
+
+    mul-double v1, v1, v24
+
+    mul-double v1, v1, v26
+
+    double-to-float v1, v1
+
+    invoke-direct {v8, v13, v3, v4, v1}, Landroid/graphics/RectF;-><init>(FFFF)V
+
+    move-object/from16 v1, v35
+
+    invoke-virtual {v12, v11, v10, v8, v1}, Landroid/graphics/Canvas;->drawBitmap(Landroid/graphics/Bitmap;Landroid/graphics/Rect;Landroid/graphics/RectF;Landroid/graphics/Paint;)V
+    :try_end_3
+    .catchall {:try_start_3 .. :try_end_3} :catchall_1
+
+    .line 51
+    move-object v2, v1
+
+    move v8, v15
+
+    move/from16 v14, v31
+
+    move/from16 v3, v32
+
+    move/from16 v4, v33
+
+    move/from16 v10, v34
+
+    const/4 v1, 0x0
+
+    move/from16 v15, p4
+
+    goto :goto_5
+
+    :cond_5
+    move-object v1, v2
+
+    move/from16 v32, v3
+
+    move/from16 v33, v4
+
+    move/from16 v34, v10
+
+    move/from16 v31, v14
+
+    const/4 v9, 0x0
+
+    .line 55
+    :goto_6
+    :try_start_4
+    invoke-virtual {v11}, Landroid/graphics/Bitmap;->recycle()V
+    :try_end_4
+    .catch Ljava/io/IOException; {:try_start_4 .. :try_end_4} :catch_1
+    .catch Ljava/lang/RuntimeException; {:try_start_4 .. :try_end_4} :catch_0
+
+    move-object/from16 v8, v28
+
+    .line 46
+    :goto_7
+    add-int/lit8 v4, v33, 0x1
+
+    move/from16 v15, p4
+
+    move-object v2, v1
+
+    move-object/from16 v9, v29
+
+    move/from16 v1, v30
+
+    move/from16 v0, v31
+
+    move/from16 v3, v32
+
+    move/from16 v10, v34
+
+    goto/16 :goto_3
+
+    .line 57
     :catch_0
     move-exception v0
 
-    goto :goto_7
+    goto :goto_8
 
     :catch_1
     move-exception v0
 
-    :goto_7
-    move-object/from16 v9, v23
+    :goto_8
+    move-object/from16 v8, v28
 
     goto :goto_a
 
-    .line 49
+    .line 55
     :catchall_2
     move-exception v0
 
-    move-object/from16 v23, v9
+    move-object/from16 v28, v8
 
-    :goto_8
-    :try_start_7
-    invoke-virtual {v8}, Landroid/graphics/Bitmap;->recycle()V
+    :goto_9
+    :try_start_5
+    invoke-virtual {v11}, Landroid/graphics/Bitmap;->recycle()V
 
     throw v0
-    :try_end_7
-    .catch Ljava/io/IOException; {:try_start_7 .. :try_end_7} :catch_3
-    .catch Ljava/lang/RuntimeException; {:try_start_7 .. :try_end_7} :catch_2
 
-    .line 41
+    .line 46
     :cond_6
-    move/from16 v24, v5
+    move/from16 v31, v0
 
-    move v10, v6
+    move/from16 v30, v1
 
-    .line 38
-    :goto_9
-    add-int/lit8 v8, v16, 0x1
+    move-object v1, v2
+
+    move/from16 v32, v3
+
+    move-object/from16 v29, v9
+
+    move/from16 v34, v10
+
+    const/4 v9, 0x0
+
+    add-int/lit8 v7, v7, 0x1
+
+    move/from16 v15, p4
+
+    move-object/from16 v9, v29
+
+    move/from16 v1, v30
+
+    goto/16 :goto_2
+
+    .line 39
+    :cond_7
+    move-object v1, v2
+
+    const/4 v9, 0x0
+
+    add-int/lit8 v7, v16, 0x1
 
     move-object/from16 v0, p1
 
+    move/from16 v4, v19
+
+    const/4 v3, 0x1
+
     move/from16 v1, p2
-
-    move v6, v10
-
-    move/from16 v5, v24
 
     goto/16 :goto_0
 
-    .line 51
-    :cond_7
-    return-object v9
+    .line 45
+    :cond_8
+    new-instance v0, Ljava/io/IOException;
+
+    const-string v1, "\u0414\u043b\u044f \u044d\u0442\u043e\u0433\u043e \u0441\u043e\u0447\u0435\u0442\u0430\u043d\u0438\u044f \u0443\u0440\u043e\u0432\u043d\u0435\u0439 \u043d\u0443\u0436\u043d\u043e \u0431\u043e\u043b\u044c\u0448\u0435 32 \u0438\u0441\u0445\u043e\u0434\u043d\u044b\u0445 \u0442\u0430\u0439\u043b\u043e\u0432 \u043d\u0430 \u0432\u044b\u0445\u043e\u0434\u043d\u043e\u0439 \u0442\u0430\u0439\u043b"
+
+    invoke-direct {v0, v1}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    throw v0
+    :try_end_5
+    .catch Ljava/io/IOException; {:try_start_5 .. :try_end_5} :catch_3
+    .catch Ljava/lang/RuntimeException; {:try_start_5 .. :try_end_5} :catch_2
+
+    .line 57
+    :cond_9
+    return-object v8
 
     :catch_2
     move-exception v0
@@ -554,15 +711,35 @@
     move-exception v0
 
     :goto_a
-    if-eqz v9, :cond_8
+    if-eqz v8, :cond_a
 
-    invoke-virtual {v9}, Landroid/graphics/Bitmap;->recycle()V
+    invoke-virtual {v8}, Landroid/graphics/Bitmap;->recycle()V
 
-    :cond_8
+    :cond_a
     throw v0
 .end method
 
 .method public static write(Landroid/content/Context;Lorg/rabochaya/projects/TileSource;Ljava/io/File;Lorg/rabochaya/projects/CacheExport$Progress;)I
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 9
+    new-instance v0, Lorg/rabochaya/projects/CacheExport$$ExternalSyntheticLambda0;
+
+    invoke-direct {v0, p0, p1, p3}, Lorg/rabochaya/projects/CacheExport$$ExternalSyntheticLambda0;-><init>(Landroid/content/Context;Lorg/rabochaya/projects/TileSource;Lorg/rabochaya/projects/CacheExport$Progress;)V
+
+    invoke-static {p2, v0}, Lorg/rabochaya/projects/RasterExportFile;->replace(Ljava/io/File;Lorg/rabochaya/projects/RasterExportFile$Writer;)I
+
+    move-result p0
+
+    return p0
+.end method
+
+.method private static writePrepared(Landroid/content/Context;Lorg/rabochaya/projects/TileSource;Ljava/io/File;Lorg/rabochaya/projects/CacheExport$Progress;)I
     .locals 22
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -570,7 +747,7 @@
         }
     .end annotation
 
-    .line 10
+    .line 11
     move-object/from16 v0, p1
 
     move-object/from16 v1, p2
@@ -587,7 +764,7 @@
 
     new-array v6, v5, [Lorg/rabochaya/projects/OnlineTiles;
 
-    .line 12
+    .line 13
     const/4 v8, 0x0
 
     :try_start_0
@@ -595,7 +772,7 @@
 
     invoke-direct {v9}, Ljava/util/TreeMap;-><init>()V
 
-    .line 13
+    .line 14
     move v10, v8
 
     :goto_0
@@ -610,7 +787,7 @@
 
     if-ge v10, v11, :cond_4
 
-    .line 14
+    .line 15
     :try_start_1
     new-instance v11, Lorg/rabochaya/projects/OnlineTiles;
 
@@ -622,7 +799,7 @@
 
     aput-object v11, v6, v10
 
-    .line 15
+    .line 16
     aget-object v11, v6, v10
 
     invoke-virtual {v11}, Lorg/rabochaya/projects/OnlineTiles;->keys()Ljava/util/List;
@@ -646,14 +823,14 @@
 
     check-cast v14, [I
 
-    .line 16
+    .line 17
     aget v7, v14, v8
 
     shl-int v8, v13, v7
 
     aget v13, v14, v12
 
-    .line 17
+    .line 18
     aget-object v12, v4, v10
 
     iget-boolean v12, v12, Lorg/rabochaya/projects/TileSource;->ellipsoid:Z
@@ -749,7 +926,7 @@
 
     move v0, v13
 
-    .line 18
+    .line 19
     :goto_2
     nop
 
@@ -832,7 +1009,7 @@
     .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
     .catchall {:try_start_2 .. :try_end_2} :catchall_1
 
-    .line 19
+    .line 20
     :cond_2
     move-object/from16 v0, p1
 
@@ -852,7 +1029,7 @@
 
     goto/16 :goto_1
 
-    .line 13
+    .line 14
     :cond_3
     move-object/from16 v17, v4
 
@@ -868,7 +1045,7 @@
 
     goto/16 :goto_0
 
-    .line 33
+    .line 34
     :catchall_0
     move-exception v0
 
@@ -885,7 +1062,7 @@
 
     goto/16 :goto_18
 
-    .line 32
+    .line 33
     :catch_0
     move-exception v0
 
@@ -902,7 +1079,7 @@
 
     goto/16 :goto_17
 
-    .line 21
+    .line 22
     :cond_4
     move-object/from16 v17, v4
 
@@ -930,7 +1107,7 @@
     .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_8
     .catchall {:try_start_4 .. :try_end_4} :catchall_13
 
-    .line 22
+    .line 23
     :try_start_5
     invoke-virtual/range {p2 .. p2}, Ljava/io/File;->exists()Z
 
@@ -962,19 +1139,19 @@
     .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_6} :catch_1
     .catchall {:try_start_6 .. :try_end_6} :catchall_1
 
-    .line 33
+    .line 34
     :catchall_1
     move-exception v0
 
     goto :goto_4
 
-    .line 32
+    .line 33
     :catch_1
     move-exception v0
 
     goto :goto_5
 
-    .line 23
+    .line 24
     :cond_6
     :goto_6
     move-object/from16 v1, p2
@@ -998,7 +1175,7 @@
 
     invoke-virtual {v4, v0}, Landroid/database/sqlite/SQLiteDatabase;->execSQL(Ljava/lang/String;)V
 
-    .line 24
+    .line 25
     const-string v0, "name"
 
     move-object/from16 v3, p1
@@ -1037,13 +1214,13 @@
 
     invoke-static {v4, v0, v3}, Lorg/rabochaya/projects/CacheExport;->meta(Landroid/database/sqlite/SQLiteDatabase;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 25
+    .line 26
     invoke-virtual {v4}, Landroid/database/sqlite/SQLiteDatabase;->beginTransaction()V
     :try_end_8
     .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_8} :catch_6
     .catchall {:try_start_8 .. :try_end_8} :catchall_11
 
-    .line 26
+    .line 27
     :try_start_9
     invoke-virtual {v9}, Ljava/util/TreeMap;->values()Ljava/util/Collection;
 
@@ -1085,7 +1262,7 @@
 
     check-cast v12, [I
 
-    .line 27
+    .line 28
     invoke-virtual {v9}, Ljava/util/TreeMap;->size()I
 
     move-result v13
@@ -1120,7 +1297,7 @@
     :try_end_c
     .catchall {:try_start_c .. :try_end_c} :catchall_7
 
-    .line 28
+    .line 29
     if-eqz v14, :cond_9
 
     :try_start_d
@@ -1329,11 +1506,11 @@
 
     const/4 v15, 0x2
 
-    .line 29
+    .line 30
     :goto_a
     add-int/lit8 v5, v5, 0x1
 
-    .line 30
+    .line 31
     move-object/from16 v0, p0
 
     move-object/from16 v1, p2
@@ -1391,7 +1568,7 @@
     :try_start_16
     invoke-virtual {v4}, Landroid/database/sqlite/SQLiteDatabase;->endTransaction()V
 
-    .line 31
+    .line 32
     invoke-virtual {v4}, Landroid/database/sqlite/SQLiteDatabase;->close()V
     :try_end_16
     .catch Ljava/lang/Exception; {:try_start_16 .. :try_end_16} :catch_4
@@ -1440,7 +1617,7 @@
     .catch Ljava/lang/Exception; {:try_start_1a .. :try_end_1a} :catch_2
     .catchall {:try_start_1a .. :try_end_1a} :catchall_a
 
-    .line 33
+    .line 34
     move v8, v1
 
     :goto_c
@@ -1461,7 +1638,7 @@
 
     goto :goto_c
 
-    .line 31
+    .line 32
     :cond_c
     return v3
 
@@ -1493,19 +1670,19 @@
     .catch Ljava/lang/Exception; {:try_start_1c .. :try_end_1c} :catch_9
     .catchall {:try_start_1c .. :try_end_1c} :catchall_14
 
-    .line 33
+    .line 34
     :catchall_a
     move-exception v0
 
     goto :goto_e
 
-    .line 32
+    .line 33
     :catch_2
     move-exception v0
 
     goto :goto_f
 
-    .line 33
+    .line 34
     :catchall_b
     move-exception v0
 
@@ -1516,7 +1693,7 @@
 
     goto/16 :goto_15
 
-    .line 32
+    .line 33
     :catch_3
     move-exception v0
 
@@ -1527,7 +1704,7 @@
 
     goto/16 :goto_16
 
-    .line 33
+    .line 34
     :catchall_c
     move-exception v0
 
@@ -1537,7 +1714,7 @@
 
     goto :goto_11
 
-    .line 32
+    .line 33
     :catch_4
     move-exception v0
 
@@ -1547,7 +1724,7 @@
 
     goto :goto_12
 
-    .line 30
+    .line 31
     :catchall_d
     move-exception v0
 
@@ -1592,19 +1769,19 @@
     .catch Ljava/lang/Exception; {:try_start_1e .. :try_end_1e} :catch_5
     .catchall {:try_start_1e .. :try_end_1e} :catchall_10
 
-    .line 33
+    .line 34
     :catchall_10
     move-exception v0
 
     goto :goto_11
 
-    .line 32
+    .line 33
     :catch_5
     move-exception v0
 
     goto :goto_12
 
-    .line 33
+    .line 34
     :catchall_11
     move-exception v0
 
@@ -1619,7 +1796,7 @@
 
     goto/16 :goto_18
 
-    .line 32
+    .line 33
     :catch_6
     move-exception v0
 
@@ -1634,7 +1811,7 @@
 
     goto/16 :goto_17
 
-    .line 33
+    .line 34
     :catchall_12
     move-exception v0
 
@@ -1648,7 +1825,7 @@
 
     goto :goto_15
 
-    .line 32
+    .line 33
     :catch_7
     move-exception v0
 
@@ -1662,7 +1839,7 @@
 
     goto :goto_16
 
-    .line 33
+    .line 34
     :catchall_13
     move-exception v0
 
@@ -1672,7 +1849,7 @@
 
     goto :goto_13
 
-    .line 32
+    .line 33
     :catch_8
     move-exception v0
 
@@ -1682,7 +1859,7 @@
 
     goto :goto_14
 
-    .line 21
+    .line 22
     :cond_e
     move-object/from16 v5, p2
 
@@ -1704,19 +1881,19 @@
     .catch Ljava/lang/Exception; {:try_start_1f .. :try_end_1f} :catch_9
     .catchall {:try_start_1f .. :try_end_1f} :catchall_14
 
-    .line 33
+    .line 34
     :catchall_14
     move-exception v0
 
     goto :goto_15
 
-    .line 32
+    .line 33
     :catch_9
     move-exception v0
 
     goto :goto_16
 
-    .line 33
+    .line 34
     :catchall_15
     move-exception v0
 
@@ -1731,7 +1908,7 @@
 
     goto :goto_15
 
-    .line 32
+    .line 33
     :catch_a
     move-exception v0
 
@@ -1746,7 +1923,7 @@
 
     goto :goto_16
 
-    .line 33
+    .line 34
     :catchall_16
     move-exception v0
 
@@ -1763,7 +1940,7 @@
 
     goto :goto_18
 
-    .line 32
+    .line 33
     :catch_b
     move-exception v0
 
@@ -1819,7 +1996,7 @@
     :try_end_20
     .catchall {:try_start_20 .. :try_end_20} :catchall_17
 
-    .line 33
+    .line 34
     :catchall_17
     move-exception v0
 

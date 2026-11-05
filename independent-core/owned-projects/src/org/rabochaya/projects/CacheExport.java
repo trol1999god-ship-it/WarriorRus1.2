@@ -6,7 +6,8 @@ public final class CacheExport {
  public interface Progress {void update(int done,int total)throws IOException;}
  private static final long MAX_BYTES=512L*1024*1024;
  private CacheExport(){}
- public static int write(Context context,TileSource source,File destination,Progress progress)throws IOException{
+ public static int write(Context context,TileSource source,File destination,Progress progress)throws IOException{return RasterExportFile.replace(destination,tmp->writePrepared(context,source,tmp,progress));}
+ private static int writePrepared(Context context,TileSource source,File destination,Progress progress)throws IOException{
   TileSource[] leaves=source.leafs();OnlineTiles[] readers=new OnlineTiles[leaves.length];SQLiteDatabase out=null;boolean complete=false;int count=0;
   try{
    TreeMap<String,int[]> keys=new TreeMap<>();
@@ -33,18 +34,23 @@ public final class CacheExport {
   finally{if(out!=null)out.close();for(OnlineTiles r:readers)if(r!=null)r.close();if(!complete)destination.delete();}
  }
  private static void meta(SQLiteDatabase db,String name,String value){ContentValues row=new ContentValues();row.put("name",name);row.put("value",value);db.insertOrThrow("metadata",null,row);}
- private static Bitmap render(OnlineTiles[] readers,TileSource[] leaves,int z,int x,int y)throws IOException{
+ static Bitmap render(OnlineTiles[] readers,TileSource[] leaves,int z,int x,int y)throws IOException{
   Bitmap result=null;Paint paint=new Paint(Paint.FILTER_BITMAP_FLAG);int n=1<<z;
   try{for(int i=0;i<leaves.length;i++){
-   TileSource s=leaves[i];if(!s.hasZoom(z))continue;
-   int first=y,last=y;if(s.ellipsoid){first=Math.max(0,(int)Math.floor(TileProjection.y(MapMath.lat(y/(double)n),true)*n));last=Math.min(n-1,(int)Math.floor(TileProjection.y(MapMath.lat((y+1.0)/n),true)*n));}
-   for(int sy=first;sy<=last;sy++){
-    Bitmap tile=readers[i].tile(z,x,sy,false);if(tile==null)continue;
+   TileSource s=leaves[i];int sourceZoom=s.zoomFor(z),sn=1<<sourceZoom;
+   double left=x/(double)n,top=y/(double)n,right=(x+1.0)/n,bottom=(y+1.0)/n;
+   int firstX=Math.max(0,(int)Math.floor(left*sn+1e-9)),lastX=Math.min(sn-1,(int)Math.ceil(right*sn-1e-9)-1);
+   int firstY=Math.max(0,(int)Math.floor((s.ellipsoid?TileProjection.y(MapMath.lat(top),true):top)*sn+1e-9));
+   int lastY=Math.min(sn-1,(int)Math.ceil((s.ellipsoid?TileProjection.y(MapMath.lat(bottom),true):bottom)*sn-1e-9)-1);
+   if((long)(lastX-firstX+1)*(lastY-firstY+1)>32)throw new IOException("Для этого сочетания уровней нужно больше 32 исходных тайлов на выходной тайл");
+   for(int sy=firstY;sy<=lastY;sy++)for(int sx=firstX;sx<=lastX;sx++){
+    Bitmap tile=readers[i].tile(sourceZoom,sx,sy,false);if(tile==null)continue;
     try{if(result==null)result=Bitmap.createBitmap(256,256,Bitmap.Config.ARGB_8888);Canvas canvas=new Canvas(result);
-     if(!s.ellipsoid)canvas.drawBitmap(tile,null,new RectF(0,0,256,256),paint);
+     float px=(float)((sx/(double)sn-left)*n*256),size=(float)(n/(double)sn*256);
+     if(!s.ellipsoid){float py=(float)((sy/(double)sn-top)*n*256);canvas.drawBitmap(tile,null,new RectF(px,py,px+size,py+size),paint);}
      else for(int row=0;row<tile.getHeight();row++){
-      double top=MapMath.y(TileProjection.latitude((sy+row/(double)tile.getHeight())/n,true))*n,bottom=MapMath.y(TileProjection.latitude((sy+(row+1.0)/tile.getHeight())/n,true))*n;
-      canvas.drawBitmap(tile,new Rect(0,row,tile.getWidth(),row+1),new RectF(0,(float)((top-y)*256),256,(float)((bottom-y)*256)),paint);
+      double rowTop=MapMath.y(TileProjection.latitude((sy+row/(double)tile.getHeight())/sn,true)),rowBottom=MapMath.y(TileProjection.latitude((sy+(row+1.0)/tile.getHeight())/sn,true));
+      canvas.drawBitmap(tile,new Rect(0,row,tile.getWidth(),row+1),new RectF(px,(float)((rowTop-top)*n*256),px+size,(float)((rowBottom-top)*n*256)),paint);
      }
     }finally{tile.recycle();}
    }
