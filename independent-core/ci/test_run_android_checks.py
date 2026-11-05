@@ -13,12 +13,14 @@ from visual_evidence import emit_visual_evidence, emit_visual_summary, decode_vi
 
 
 class RunnerTests(unittest.TestCase):
-    def run_modes(self, modes, failures=(), keep_going=True, pull_error=False):
+    def run_modes(self, modes, failures=(), keep_going=True, pull_error=False, pull_png=False):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             adb = root / 'adb'
             adb.write_text('#!' + sys.executable + '\n' + '''
 import sys
+from pathlib import Path
+import base64
 args = sys.argv[3:]
 if args[:2] == ['shell', 'getprop']:
     print('1')
@@ -27,6 +29,9 @@ elif args[:2] == ['shell', 'dumpsys']:
 elif args[:1] == ['pull'] and ''' + repr(pull_error) + ''':
     print('adb: error: failed to copy synthetic screenshots: device offline', file=sys.stderr)
     sys.exit(1)
+elif args[:1] == ['pull'] and ''' + repr(pull_png) + ''':
+    target = Path(args[-1]); target.mkdir(parents=True, exist_ok=True)
+    (target / 'map_mvisual-synthetic-failure.png').write_bytes(base64.b64decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aLeoAAAAASUVORK5CYII='))
 elif args[:3] == ['shell', 'am', 'instrument']:
     mode = args[args.index('mode') + 1]
     if mode in ''' + repr(tuple(failures)) + ''':
@@ -89,6 +94,15 @@ elif args[:3] == ['shell', 'am', 'instrument']:
         self.assertIn('ARTIFACT_PULL_DIAGNOSTICS geometrynewholeguards', result.stdout)
         self.assertIn('device offline', result.stdout)
         self.assertIn('device offline', result.pull_diagnostics['geometrynewholeguards-artifact-pull.txt'])
+
+    def test_failed_nonfocused_mode_keeps_full_verified_png_preview(self):
+        result, records = self.run_modes(['vertexscroll'], ['vertexscroll'], pull_png=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(records[0]['passed'])
+        self.assertIn('RK_VISUAL_BEGIN map_mvisual-synthetic-failure.png ', result.stdout)
+        self.assertIn('RK_VISUAL_DATA ', result.stdout)
+        self.assertIn('RK_VISUAL_END map_mvisual-synthetic-failure.png', result.stdout)
+        self.assertNotIn('VISUAL_EVIDENCE_FAILED', result.stdout)
 
     def test_default_still_stops_on_first_failure(self):
         result, records = self.run_modes(['binary', 'independence'], ['binary'], False)
