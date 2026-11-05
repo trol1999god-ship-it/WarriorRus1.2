@@ -1,0 +1,16 @@
+{
+  "code": "981a692486da24c3ac47e73dd9b7fbd5fdb01593",
+  "run": 41980561298,
+  "jobs": {
+    "23": 127089572934,
+    "35": 127089572804
+  },
+  "old_modes_pass_each": 42,
+  "new_failure": "native dirty-part confirmation lost after both actual recreations",
+  "context_data_retained": true,
+  "native_arimo": false,
+  "api23_positive_width": 150,
+  "api23_visible_width": 102,
+  "png": 12,
+  "all_viewed": true
+}
