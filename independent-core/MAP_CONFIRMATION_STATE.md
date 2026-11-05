@@ -1,5 +1,25 @@
 # Подтверждение удаления вершины на карте — baseline 5 ноября 2026
 
+Кандидат после подтверждённого baseline: управляемый Activity map intent с origin-флагом,
+исходными owner/process/key/token/mainStamp/index и проверкой текущего выбора. OnMap Confirm
+вызывает прежний MapState act/undo/validation, изменяет лишь private main; запись KML — отдельныйSave.
+Существующие list/hole intent сохраняют прежний default origin. Stale read проверяется до/после worker,
+чужой контекст не получает намерение, Cancel не пишет XML/assets.
+Landscape map получает одну48px строку selector+mode, убирает повторные heading/hint и лишний
+vertical padding. Порог80/точныйviewport сохранён. Шрифты native confirmation/credit — прежний Arimo.
+Новая матрица14PNG/API расширяет validbaseline: Cancel/actualrotate/real touch, nonzero part Save,
+stale-before/after/main-changed/selected-changed/staleSave/foreign. Minimum-geometry validation и Undo
+сохраняются через старый act; существующий geometrymap ожидает завершения нового guarded worker.
+
+Локально: JVM24/81323 (GeometryConfirmation64), host15, instrumentation210467/API23 compiled,
+QA430 own/min23/INTERNET only, no legacy/native/stubs/missing refs,54 source SHA match.
+Unsigned6f2e47cf3d6b098bb52ed70bb261d8ea0604a024b8b976208d182bff14a105e8.
+Android-кандидат ещё НЕ проверен. Release gate False25,0 accepted; требуется полныйCI40/реальныеPNG.
+Намерение только same-process; process-death/reference/physical/full migration acceptance не заявлена.
+
+Проверенный baseline до исправления:
+
+
 Code6ee902c / CI41936120579 failure:39 прежних modes pass обе API.
 Новый baseline действительно прошёл оба actual destroyed/recreate с разными Activity IDs.
 Native confirmation исчезает на API23/API35 в обоих направлениях. Raw/selected/key/token/

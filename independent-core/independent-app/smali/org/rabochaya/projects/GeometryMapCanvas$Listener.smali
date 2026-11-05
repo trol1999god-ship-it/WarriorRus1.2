@@ -18,5 +18,8 @@
 .method public abstract changed()V
 .end method
 
+.method public abstract deleteRequested(I)V
+.end method
+
 .method public abstract message(Ljava/lang/String;)V
 .end method

@@ -36,7 +36,7 @@
 
     iget-object v1, p0, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda1;->f$1:Ljava/lang/Runnable;
 
-    invoke-virtual {v0, v1, p1}, Lorg/rabochaya/projects/GeometryMapCanvas;->lambda$button$9$org-rabochaya-projects-GeometryMapCanvas(Ljava/lang/Runnable;Landroid/view/View;)V
+    invoke-virtual {v0, v1, p1}, Lorg/rabochaya/projects/GeometryMapCanvas;->lambda$button$7$org-rabochaya-projects-GeometryMapCanvas(Ljava/lang/Runnable;Landroid/view/View;)V
 
     return-void
 .end method

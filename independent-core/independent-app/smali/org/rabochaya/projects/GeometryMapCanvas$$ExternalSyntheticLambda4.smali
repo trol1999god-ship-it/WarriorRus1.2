@@ -30,7 +30,7 @@
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda4;->f$0:Lorg/rabochaya/projects/GeometryMapCanvas;
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/GeometryMapCanvas;->lambda$new$0$org-rabochaya-projects-GeometryMapCanvas()V
+    invoke-virtual {v0}, Lorg/rabochaya/projects/GeometryMapCanvas;->lambda$new$1$org-rabochaya-projects-GeometryMapCanvas()V
 
     return-void
 .end method

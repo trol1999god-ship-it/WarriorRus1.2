@@ -38,12 +38,12 @@
 .method constructor <init>(Lorg/rabochaya/projects/GeometryMapCanvas;Landroid/app/Activity;)V
     .locals 0
 
-    .line 78
+    .line 80
     iput-object p1, p0, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->this$0:Lorg/rabochaya/projects/GeometryMapCanvas;
 
     invoke-direct {p0, p2}, Landroid/view/View;-><init>(Landroid/content/Context;)V
 
-    .line 72
+    .line 74
     new-instance p1, Landroid/graphics/Paint;
 
     const/4 p2, 0x1
@@ -52,12 +52,12 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->paint:Landroid/graphics/Paint;
 
-    .line 74
+    .line 76
     const/4 p1, -0x1
 
     iput p1, p0, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->vertex:I
 
-    .line 78
+    .line 80
     const-string p1, "\u0412\u0435\u0440\u0448\u0438\u043d\u044b \u043a\u043e\u043d\u0442\u0443\u0440\u0430 \u043d\u0430 \u043a\u0430\u0440\u0442\u0435. \u041a\u043e\u0441\u043d\u0438\u0442\u0435\u0441\u044c \u0432\u0435\u0440\u0448\u0438\u043d\u044b \u0438 \u043f\u0435\u0440\u0435\u0442\u0430\u0449\u0438\u0442\u0435. \u0421\u0432\u043e\u0431\u043e\u0434\u043d\u043e\u0435 \u043c\u0435\u0441\u0442\u043e \u2014 \u043f\u0435\u0440\u0435\u043c\u0435\u0449\u0435\u043d\u0438\u0435 \u043a\u0430\u0440\u0442\u044b, \u0434\u0432\u0430 \u043f\u0430\u043b\u044c\u0446\u0430 \u2014 \u043c\u0430\u0441\u0448\u0442\u0430\u0431."
 
     invoke-virtual {p0, p1}, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->setContentDescription(Ljava/lang/CharSequence;)V
@@ -68,7 +68,7 @@
 .method private forward(Landroid/view/MotionEvent;)V
     .locals 1
 
-    .line 91
+    .line 93
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->this$0:Lorg/rabochaya/projects/GeometryMapCanvas;
 
     invoke-static {v0}, Lorg/rabochaya/projects/GeometryMapCanvas;->access$200(Lorg/rabochaya/projects/GeometryMapCanvas;)Lorg/rabochaya/projects/LocalMapView;
@@ -83,7 +83,7 @@
 .method private hit(FF)I
     .locals 9
 
-    .line 89
+    .line 91
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->this$0:Lorg/rabochaya/projects/GeometryMapCanvas;
 
     const/high16 v1, 0x41c00000    # 24.0f
@@ -210,7 +210,7 @@
         }
     .end annotation
 
-    .line 85
+    .line 87
     move-object/from16 v0, p0
 
     invoke-interface/range {p2 .. p2}, Ljava/util/List;->isEmpty()Z
@@ -250,7 +250,7 @@
 
     mul-double/2addr v4, v8
 
-    .line 86
+    .line 88
     invoke-interface/range {p2 .. p2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v8
@@ -376,7 +376,7 @@
 
     goto :goto_0
 
-    .line 87
+    .line 89
     :cond_3
     const-string v2, "Polygon"
 
@@ -425,7 +425,7 @@
 
     invoke-virtual {v3, v1, v2}, Landroid/graphics/Canvas;->drawPath(Landroid/graphics/Path;Landroid/graphics/Paint;)V
 
-    .line 88
+    .line 90
     return-void
 .end method
 
@@ -434,7 +434,7 @@
 .method cancelGesture()V
     .locals 2
 
-    .line 90
+    .line 92
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->forwarding:Z
 
     if-eqz v0, :cond_0
@@ -497,7 +497,7 @@
 .method synthetic lambda$onTouchEvent$0$org-rabochaya-projects-GeometryMapCanvas$Overlay([D)V
     .locals 5
 
-    .line 105
+    .line 107
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->this$0:Lorg/rabochaya/projects/GeometryMapCanvas;
 
     invoke-static {v0}, Lorg/rabochaya/projects/GeometryMapCanvas;->access$700(Lorg/rabochaya/projects/GeometryMapCanvas;)Lorg/rabochaya/projects/GeometryMapState;
@@ -520,7 +520,7 @@
 .method synthetic lambda$onTouchEvent$1$org-rabochaya-projects-GeometryMapCanvas$Overlay(I[D)V
     .locals 7
 
-    .line 106
+    .line 108
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->this$0:Lorg/rabochaya/projects/GeometryMapCanvas;
 
     invoke-static {v0}, Lorg/rabochaya/projects/GeometryMapCanvas;->access$700(Lorg/rabochaya/projects/GeometryMapCanvas;)Lorg/rabochaya/projects/GeometryMapState;
@@ -545,7 +545,7 @@
 .method protected onDraw(Landroid/graphics/Canvas;)V
     .locals 11
 
-    .line 80
+    .line 82
     invoke-super {p0, p1}, Landroid/view/View;->onDraw(Landroid/graphics/Canvas;)V
 
     const/4 v0, 0x0
@@ -613,7 +613,7 @@
 
     goto :goto_0
 
-    .line 81
+    .line 83
     :cond_0
     new-instance v1, Ljava/util/ArrayList;
 
@@ -664,7 +664,7 @@
 
     goto :goto_1
 
-    .line 82
+    .line 84
     :cond_2
     iget-object v2, p0, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->this$0:Lorg/rabochaya/projects/GeometryMapCanvas;
 
@@ -692,7 +692,7 @@
 
     invoke-direct/range {v2 .. v7}, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->path(Landroid/graphics/Canvas;Ljava/util/List;Ljava/lang/String;II)V
 
-    .line 83
+    .line 85
     move v2, v0
 
     :goto_3
@@ -929,7 +929,7 @@
 
     goto/16 :goto_3
 
-    .line 84
+    .line 86
     :cond_8
     return-void
 .end method
@@ -937,7 +937,7 @@
 .method protected onSizeChanged(IIII)V
     .locals 7
 
-    .line 79
+    .line 81
     invoke-super {p0, p1, p2, p3, p4}, Landroid/view/View;->onSizeChanged(IIII)V
 
     if-lez p1, :cond_1
@@ -1029,7 +1029,7 @@
 .method public onTouchEvent(Landroid/view/MotionEvent;)Z
     .locals 10
 
-    .line 93
+    .line 95
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->this$0:Lorg/rabochaya/projects/GeometryMapCanvas;
 
     invoke-static {v0}, Lorg/rabochaya/projects/GeometryMapCanvas;->access$900(Lorg/rabochaya/projects/GeometryMapCanvas;)Z
@@ -1063,7 +1063,7 @@
 
     move-result v3
 
-    .line 94
+    .line 96
     const/4 v4, -0x1
 
     if-nez v0, :cond_4
@@ -1171,7 +1171,7 @@
     :goto_1
     return v1
 
-    .line 95
+    .line 97
     :cond_4
     iget-object v5, p0, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->down:Landroid/view/MotionEvent;
 
@@ -1179,7 +1179,7 @@
 
     return v1
 
-    .line 96
+    .line 98
     :cond_5
     const/4 v5, 0x5
 
@@ -1201,7 +1201,7 @@
 
     invoke-direct {p0, v4}, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->forward(Landroid/view/MotionEvent;)V
 
-    .line 97
+    .line 99
     :cond_6
     iget-boolean v4, p0, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->forwarding:Z
 
@@ -1221,7 +1221,7 @@
     :cond_8
     return v1
 
-    .line 98
+    .line 100
     :cond_9
     const/4 v4, 0x2
 
@@ -1263,7 +1263,7 @@
 
     if-lez v0, :cond_b
 
-    .line 99
+    .line 101
     iget v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->vertex:I
 
     if-ltz v0, :cond_a
@@ -1310,7 +1310,7 @@
 
     goto :goto_2
 
-    .line 100
+    .line 102
     :cond_a
     iput-boolean v1, p0, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->forwarding:Z
 
@@ -1320,12 +1320,12 @@
 
     invoke-direct {p0, p1}, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->forward(Landroid/view/MotionEvent;)V
 
-    .line 101
+    .line 103
     :cond_b
     :goto_2
     return v1
 
-    .line 102
+    .line 104
     :cond_c
     if-ne v0, v5, :cond_d
 
@@ -1333,7 +1333,7 @@
 
     return v1
 
-    .line 103
+    .line 105
     :cond_d
     if-ne v0, v1, :cond_12
 
@@ -1343,7 +1343,7 @@
 
     invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->cancelGesture()V
 
-    .line 104
+    .line 106
     const/4 v4, 0x0
 
     cmpg-float v5, v2, v4
@@ -1376,7 +1376,7 @@
 
     goto :goto_4
 
-    .line 105
+    .line 107
     :cond_e
     iget-object v4, p0, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->this$0:Lorg/rabochaya/projects/GeometryMapCanvas;
 
@@ -1402,7 +1402,7 @@
 
     goto :goto_3
 
-    .line 106
+    .line 108
     :cond_f
     if-ltz p1, :cond_10
 
@@ -1422,14 +1422,14 @@
 
     invoke-static {v2, v3}, Lorg/rabochaya/projects/GeometryMapCanvas;->access$1500(Lorg/rabochaya/projects/GeometryMapCanvas;Ljava/lang/Runnable;)V
 
-    .line 107
+    .line 109
     :cond_10
     :goto_3
     invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->performClick()Z
 
     return v1
 
-    .line 104
+    .line 106
     :cond_11
     :goto_4
     iget-object p1, p0, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->this$0:Lorg/rabochaya/projects/GeometryMapCanvas;
@@ -1444,11 +1444,11 @@
 
     return v1
 
-    .line 108
+    .line 110
     :cond_12
     return v1
 
-    .line 93
+    .line 95
     :cond_13
     :goto_5
     return v1
@@ -1457,7 +1457,7 @@
 .method public performClick()Z
     .locals 1
 
-    .line 110
+    .line 112
     invoke-super {p0}, Landroid/view/View;->performClick()Z
 
     const/4 v0, 0x1

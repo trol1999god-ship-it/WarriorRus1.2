@@ -9,7 +9,7 @@ import java.util.*;
 
 /** A selected-part overlay over the existing map renderer and its tile policy. */
 public final class GeometryMapCanvas extends LinearLayout implements LocalMapView.Listener {
-    public interface Listener {void changed();void message(String message);}
+    public interface Listener {void changed();void message(String message);void deleteRequested(int index);}
     private final Activity activity;
     private final GeometryMapState state;
     private final Listener listener;
@@ -33,13 +33,13 @@ public final class GeometryMapCanvas extends LinearLayout implements LocalMapVie
         LinearLayout zoom=new LinearLayout(activity);zoom.setOrientation(VERTICAL);
         button(zoom,"+","Увеличить карту редактора",()->map.step(1));button(zoom,"−","Уменьшить карту редактора",()->map.step(-1));
         scene.addView(zoom,new FrameLayout.LayoutParams(dp(48),dp(96),Gravity.TOP|Gravity.RIGHT));
-        TextView credit=new TextView(activity);credit.setText(source!=null?source.attribution:file.isFile()?"Локальная карта MBTiles":"Обзорная карта");credit.setTextColor(-1);credit.setTextSize(10);credit.setMaxLines(3);credit.setBackgroundColor(0xcc232d1d);credit.setPadding(dp(4),dp(2),dp(4),dp(2));
+        TextView credit=new TextView(activity);credit.setText(source!=null?source.attribution:file.isFile()?"Локальная карта MBTiles":"Обзорная карта");credit.setTypeface(WorkspaceUi.font(activity));credit.setTextColor(-1);credit.setTextSize(10);credit.setMaxLines(3);credit.setBackgroundColor(0xcc232d1d);credit.setPadding(dp(4),dp(2),dp(4),dp(2));
         scene.addView(credit,new FrameLayout.LayoutParams(-2,-2,Gravity.BOTTOM|Gravity.LEFT));
         LinearLayout controls=new LinearLayout(activity);addView(controls,new LinearLayout.LayoutParams(-1,dp(48)));
         add=button(controls,"Добавить","Добавить вершину на карте",()->{overlay.cancelGesture();adding=!adding;update();listener.message(adding?"Коснитесь места новой вершины. Вставка после выбранной; высота новой вершины — 0 м":"Добавление отменено");});
         remove=button(controls,"Удалить","Удалить выбранную вершину",()->{
             if(state.selected()<0){listener.message("Сначала коснитесь вершины");return;}
-            new android.app.AlertDialog.Builder(activity).setMessage("Удалить выбранную вершину из текущего ввода?").setPositiveButton("Удалить",(d,w)->act(()->state.delete())).setNegativeButton("Отмена",null).show();
+            listener.deleteRequested(state.selected());
         });
         undo=button(controls,"Шаг назад","Отменить действие с вершиной",()->act(()->state.undo()));
         button(controls,"Охват","Показать весь редактируемый контур",()->fit());update();
@@ -48,6 +48,8 @@ public final class GeometryMapCanvas extends LinearLayout implements LocalMapVie
     private Button button(LinearLayout row,String title,String description,Runnable action){Button b=new Button(activity);b.setAllCaps(false);b.setText(title);b.setTextSize(12);b.setContentDescription(description);b.setTypeface(WorkspaceUi.font(activity));row.addView(b,new LinearLayout.LayoutParams(0,-1,1));if(row.getOrientation()==VERTICAL)b.setLayoutParams(new LinearLayout.LayoutParams(-1,0,1));b.setOnClickListener(v->{if(editable&&!closed)action.run();});return b;}
     private void act(Runnable action){if(closed||!editable)return;overlay.cancelGesture();try{action.run();adding=false;update();listener.changed();}catch(IllegalArgumentException e){listener.message(e.getMessage());}}
     private void update(){add.setEnabled(editable&&!"Point".equals(state.type));add.setText(adding?"Коснуться…":"Добавить");remove.setEnabled(editable&&state.selected()>=0&&!"Point".equals(state.type));undo.setEnabled(editable&&state.canUndo());overlay.invalidate();}
+    /** Handle only the captured selection; act retains existing geometry validation/undo semantics. */
+    public boolean deleteConfirmed(int index){if(closed||!editable||state.selected()!=index)return false;act(()->state.delete());return true;}
     public void setEditingEnabled(boolean value){editable=value;overlay.cancelGesture();update();}
     public void cancelGesture(){overlay.cancelGesture();}
     public void suspend(boolean value){if(value)overlay.cancelGesture();map.suspend(value);}
