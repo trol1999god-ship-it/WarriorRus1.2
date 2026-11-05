@@ -1,6 +1,8 @@
 <!-- CURRENT_RESUME_START -->
 # Актуальная точка продолжения — 5 ноября 2026
 
+СЛЕДУЮЩИЙ test-only baseline mappartconfirm подключён как43йрежим: native dirty-part navigation confirmation0.1→0.0, обаactualdestroyed/recreate с realdrag/исходнымraw/Undo1/selected1/token/owner/process/viewport и точнойнеизменностьюXML/assets; Cancel иявныйConfirm меняюттолькоUIпослевыбора.6PNG/API дообщейstrictоценки. Productionunchangedb482d07; не объявлятьдефект/не исправлятьпредполагаемое дофактов23/35. ПроверенныйUndo42 не rerun вслепую; новыйfull43 обоснован новымbaseline.
+
 ПРОВЕРЕН Undo fix codeb482d07d91983d368f6b4ebdafe54e4b8f9dbd16 / CI41976552076 SUCCESS: API23 job127076750849 иAPI35 job127076750725 по42/42; новыйmapundorotation363 each. JVMjob127076632809 success25/81355, host16. Все32 final-b482 PNG SHA-verified и ВСЕ просмотрены. Обаactualdestroyed/recreate history1→1, реальныеUndoпослеобоихrot, триrealdrag/3LIFOstep, originalowner/feature/process/key/token/main/selected/viewport, Cancel/отдельныйSave/fullDOM/assets passed. Stalebefore/after/mainChanged/foreignsameXMLproject/feature/key не принимаютстаруюисторию; новаяprocesssession остаётсяfresh (прежнийgeometrymapreopen passed). Same-process config only, не recoveryUndoпослекill/newlaunch/полнаямиграционнаяприёмка. GateFalse25/0accepted, title/min23/Arimo/privacy/onlinecache сохранены.
 Следующийреализуемыйbaseline — открытое native confirmation сменыdirty-контура0.1→0.0: prepared MapPartConfirmationChecks.java.pending, precompiled221066 bytes, НЕ исполнен. Проверить actualbothrot иoriginalraw/Undo/selection/token/viewport/XML/assets, Cancel иявныйConfirm; productionb482дофактовне менять. BaselineUndo/проверенный42 не повторять без обоснования.
 
