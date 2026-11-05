@@ -37,3 +37,16 @@ opacity touch, renderer pixels для порядка/alpha/visibility, Cancel re
 экспорт фактической пользовательской композиции — следующие функциональные пункты плана.
 Старые single-source online/cache/export операции сохранены; их нельзя называть экспортом
 нового пользовательского состава. GateFalse25/0accepted; внутренний APK не готовый выпуск.
+
+## Факты первого runtime кандидата
+
+17ac3f9 / CI42028003488: API35job127247171605 success46/46,
+maplayers88 + maplayersreopen16. Все6 interim-17 PNG SHAverified/просмотрены:
+реальное смешение purple, reorder red, hidden/top +50%blue, тот же результат после
+force-stop; manager сохраняет visible/order/opacity. KML/assets/MBTiles/cache guards passed.
+API23job127247171704: прежние44pass, новый test failed на partial opacity после
+инжекции без установленного SOURCE_TOUCHSCREEN. Reopen SKIP, НЕpassed; новые слоевыеPNG
+не успели сниматься до assertion. Это пока не доказанный production дефект.
+Следующий шаг — исправить QA input source/настоящее drag по существующему mapTouch
+образцу, сохранить before/after кадры/числа ДО строгой оценки opacity и исполнитьCI46
+изменённого сценария. Условия partial opacity/restart/data/pixel guards не ослаблять.

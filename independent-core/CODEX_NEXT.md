@@ -11,24 +11,22 @@
    close563each, managerforms482/473 реальноpass. Все32 final-e5 PNG SHAverified
    и просмотрены, final-result.json. JVM27/81416, host16. Strict guards unchanged.
    Никакого rerun/baseline этого завершённого участка без новой причины.
-2. `migration/IMPLEMENTATION_PLAN.md`: все23id ровноодинраз, реализация/приёмка
-   разделены, доказательства/пробелы/зависимости/критерии. Сохранить вместе с closeproof.
-3. Production слои УЖЕ написаны локально: MapComposition/Settings/MapLayersActivity,
-   каталог layer-pick, LocalMapActivity/View composer + GeometryMapCanvas reuse.
-   Функции add/remove/visible/order/opacity и per-project persistence реализованы,
-   удаление строки не удаляет карты/кеш/KML. Существующий single-map choice сохраняет
-   состав отключённым, каталог в add-mode не меняет network/single-map prefs.
-   До16слоёв, текущий MBTiles проекта + каталог/XYZ/обзорная карта.
-   Финальная local QA479/min23/INTERNETonly/no legacy/native/stubs/missingrefs,
-   sourceSHA60 exact, unsigneda70a196e1b607d6a0919bb4f99654c81cabad94e69816f117e591737ede14c32.
-   JVM28/81449 (MapComposition33), host16, tests237599 compiled,
-   SHA55fdbfd0086731e62e4e7c7079bbc1de648933e3c9b3671bd441a5a8c24c505d.
-   Androidruntime слоёв ЕЩЁНЕПРОВЕРЕН. Нужен candidatecommit/fullCI46:
-   maplayers→maplayersreopen (реальный force-stop, безpmclear второго режима),
-   UI/actual opacity touch/pixel order+alpha+visibility, source cache/localMBTiles/
-   KML/assets/otherProject сохранность, exact composition restart. Только6PNG/API,
-   новая возможность вместоизолированныхдиалоговыхbaseline.
-   Candidateготов к сохранению/push для обоснованногоfullCI46; не объявлять runtime слоёв принятым до completedjobs/pixels/restart/новыхPNG.
+2. `migration/IMPLEMENTATION_PLAN.md` и closeproof сохранены remote2e40e22:
+   все23id ровноодинраз, реализация/приёмка разделены, доказательства/пробелы/зависимости/критерии.
+3. Production слои code17ac3f9d12198a7dbd8db06085219df38db6958f /CI42028003488 completed:
+   API35job127247171605 SUCCESS46/46, layers88/reopen16. Все6 interimPNG просмотрены;
+   renderer order/alpha/visibility, actualforce-stop/exact composition, KML/assets/MBTiles/
+   cache/otherProject passed. API23job127247171704: old44pass, новыйmaplayers failed
+   "real slider applies partial opacity"; reopenSKIP НЕpassed, новыхPNG доassertionнет.
+   QA events не задавали SOURCE_TOUCHSCREEN, в отличие от проверенного mapTouch.
+   Не менятьproduction наосновании этого жеста; исправить тест explicit touchscreen+
+   drag/90ms, before/after diagnostics/PNG доassert, строгий partialopacity сохранить.
+   Затем обоснованный fullCI46 изменённого test. Никакого blindrerun.
+   Модель/Store/менеджер/каталог/общийrenderer+GeometryMapCanvas ужеproductionкод.
+   LocalQA479/sourceSHA60/min23/INTERNETonly, JVM28/81449/host16 passed;
+   подробности MAP_LAYERS.md/local-build.json. GateFalse25/0accepted.
+   Следующий production участок после проверки обеихAPI — compose-aware cache/export,
+   не orphan/dialog baseline. Сохранённые stashes/toolchain/артефакты не трогать.
 
 ## Production очередь
 
