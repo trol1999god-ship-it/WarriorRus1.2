@@ -22,3 +22,14 @@ API35 managerforms inherited rotation-named16PNG сохранены отдель
 mainChanged/foreign/owned private draft guards, Arimo/три полностью видимые кнопки.
 Проверенный part-choice43 и Undo42 не повторять вслепую; полный CI44 кандидата
 должен реально выполнить обе API/managerforms, а не засчитать offline за успех.
+
+Кандидат после baseline: managed bounded original-context metadata, только диалог;
+явные локальные SaveDraft/Discard проверяют own private draft атомарно под существующим
+GeometryDraft.class lock. Несовпадение main/foreign/replacement блокирует старое действие.
+Stale KML не меняет expected token и не пишет KML через Close; отдельный stale MainSave
+должен отказать. Завершённое явное действие не дублируется lifecycle persist.
+Arimo/landscape fullwidth. JVM27/81416 (Close model29), Android runtime ещё не принят.
+Исходный missing-part/orphan native Close путь сохранён без изменения: его отдельный
+actual baseline — следующий пробел; этот кандидат не объявляет его исправленным.
+
+Финальная локальная QA443/min23/INTERNETonly,57sourceSHAexact; unsignedb2db0651077aa682be63f4108d4d38af1e319becc35f29f56edbcdd7c8c1a925. JVM27/81416, host16, instrumentation231188 compiled. GateFalse25/0accepted; Android runtime кандидата ещё не принят.

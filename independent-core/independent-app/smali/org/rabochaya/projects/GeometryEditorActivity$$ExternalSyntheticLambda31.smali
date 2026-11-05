@@ -3,31 +3,19 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/content/DialogInterface$OnClickListener;
+.implements Landroid/content/DialogInterface$OnShowListener;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-.field public final synthetic f$1:Ljava/util/List;
+.field public final synthetic f$1:Landroid/app/AlertDialog;
 
-.field public final synthetic f$2:Ljava/lang/String;
-
-.field public final synthetic f$3:Ljava/lang/String;
-
-.field public final synthetic f$4:I
-
-.field public final synthetic f$5:Ljava/util/List;
-
-.field public final synthetic f$6:Lorg/rabochaya/projects/GeometryEdits$Part;
-
-.field public final synthetic f$7:Ljava/lang/String;
-
-.field public final synthetic f$8:Z
+.field public final synthetic f$2:Lorg/rabochaya/projects/GeometryPartChoiceDraft;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;ILjava/util/List;Lorg/rabochaya/projects/GeometryEdits$Part;Ljava/lang/String;Z)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;Landroid/app/AlertDialog;Lorg/rabochaya/projects/GeometryPartChoiceDraft;)V
     .locals 0
 
     .line 0
@@ -35,54 +23,26 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$1:Ljava/util/List;
+    iput-object p2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$1:Landroid/app/AlertDialog;
 
-    iput-object p3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$2:Ljava/lang/String;
-
-    iput-object p4, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$3:Ljava/lang/String;
-
-    iput p5, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$4:I
-
-    iput-object p6, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$5:Ljava/util/List;
-
-    iput-object p7, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$6:Lorg/rabochaya/projects/GeometryEdits$Part;
-
-    iput-object p8, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$7:Ljava/lang/String;
-
-    iput-boolean p9, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$8:Z
+    iput-object p3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$2:Lorg/rabochaya/projects/GeometryPartChoiceDraft;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final onClick(Landroid/content/DialogInterface;I)V
-    .locals 11
+.method public final onShow(Landroid/content/DialogInterface;)V
+    .locals 3
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$1:Ljava/util/List;
+    iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$1:Landroid/app/AlertDialog;
 
-    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$2:Ljava/lang/String;
+    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$2:Lorg/rabochaya/projects/GeometryPartChoiceDraft;
 
-    iget-object v3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$3:Ljava/lang/String;
-
-    iget v4, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$4:I
-
-    iget-object v5, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$5:Ljava/util/List;
-
-    iget-object v6, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$6:Lorg/rabochaya/projects/GeometryEdits$Part;
-
-    iget-object v7, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$7:Ljava/lang/String;
-
-    iget-boolean v8, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$8:Z
-
-    move-object v9, p1
-
-    move v10, p2
-
-    invoke-virtual/range {v0 .. v10}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$vertices$2$org-rabochaya-projects-GeometryEditorActivity(Ljava/util/List;Ljava/lang/String;Ljava/lang/String;ILjava/util/List;Lorg/rabochaya/projects/GeometryEdits$Part;Ljava/lang/String;ZLandroid/content/DialogInterface;I)V
+    invoke-virtual {v0, v1, v2, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$openPartChoice$7$org-rabochaya-projects-GeometryEditorActivity(Landroid/app/AlertDialog;Lorg/rabochaya/projects/GeometryPartChoiceDraft;Landroid/content/DialogInterface;)V
 
     return-void
 .end method
