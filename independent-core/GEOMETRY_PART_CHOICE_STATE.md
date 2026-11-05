@@ -17,6 +17,8 @@ owner/feature/process. Восстановление только диалога,
 несовпадении owned discard, затем переключает толькоUI. Cancel/отказ не пишутXML/assets.
 NativeArimo и landscape fullwidth сохраняют строки/порядок и исправляют замеренноеclipping.
 Локально JVM26/81387, host16, instrumentation224840/API23, QA437/min23/INTERNETonly,
-56sourceSHA matched/no legacy/native/stubs/missingrefs. Runtime ещёНЕпроверен.
+56sourceSHA matched/no legacy/native/stubs/missingrefs. Runtime проверен: CI41986306743 success43/43 обеAPI, mappartconfirm669 each.
 Матрица16PNG/API добавляетsource/targetstale before/after/mainChanged/missingtarget/
 foreignproject+feature/Cancelghost и отдельныйSave толькоцелевогоPoint, безизмененияsourceDOM.
+
+Final code c1a55df3601dd788c49cb180e4825b0613547ff1: jobs23 127107916677 /35 127107916746; JVM127107728623 success26/81387, host16. Все32 final-c1 PNG SHA-verified и просмотрены. Все перечисленные actual rotation, guard, Cancel и отдельный Save сценарии прошли. API23 landscape полная кнопка подтверждена PNG; Arimo/обе кнопки проходят строгую физическую проверку. GateFalse25/0accepted; полная миграционная приёмка не заявлена.

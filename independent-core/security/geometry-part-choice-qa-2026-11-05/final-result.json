@@ -1,0 +1,18 @@
+{
+  "commit": "c1a55df3601dd788c49cb180e4825b0613547ff1",
+  "run": 41986306743,
+  "result": "success",
+  "api23_job": 127107916677,
+  "api35_job": 127107916746,
+  "jvm_job": 127107728623,
+  "scenarios_per_api": 43,
+  "part_confirm_assertions_per_api": 669,
+  "jvm_suites": 26,
+  "jvm_assertions": 81387,
+  "host_tests": 16,
+  "png_sha_verified": 32,
+  "png_visually_reviewed": 32,
+  "release_gate": false,
+  "gate_blockers": 25,
+  "accepted_requirements": 0
+}

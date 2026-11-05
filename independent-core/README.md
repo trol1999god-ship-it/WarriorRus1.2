@@ -1,3 +1,8 @@
+Подтверждение смены несохранённого контура восстанавливается только для исходного контекста.
+Code c1a55df / CI41986306743: 43/43 обеAPI, mappartconfirm669 each;32 новыхPNG просмотрены.
+Cancel/stale/foreign/target guards и явный переход→отдельныйSave сохраняют остальнойDOM/assets.
+[GEOMETRY_PART_CHOICE_STATE.md](GEOMETRY_PART_CHOICE_STATE.md) — факты и границы проверки.
+
 Undo на карте сохраняется после actual destroyed/recreate в исходном контексте.
 Codeb482d07 / CI41976552076: обеAPI42/42, Undo363 each, все32 новыхPNG просмотрены.
 Три шага/LIFO, Cancel/отдельныйSave и stale/mainChanged/foreign/DOM/assets проверены.
