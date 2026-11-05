@@ -1,3 +1,14 @@
+# Проверенное восстановление map confirmation — 5 ноября 2026
+
+Production0e9d47d + test0716037 / CI41946263354 SUCCESS, обеAPI40/40.
+Новый mapvertexconfirm444 each; все28 final-071 PNG SHA-verified и просмотрены.
+Actual destroyed/recreate в обе стороны, исходные raw/selected/key/token/viewport,
+Cancel/explicitConfirm→отдельныйSave, stale/mainChanged/foreign и полныйDOM/assets прошли.
+Landscape surface API23 616x124, API35 616x100; строгий >80 сохранён.
+Vertexscroll167/314 passed с прежним82px guard после snapshot перед оценкой.
+Старый0e frame не записан: точную причину его раннего precondition не объявляем доказанной.
+JVM24/81323; host15CI/16local. Это scoped proof, gate закрыт, не полная приёмка.
+
 # Подтверждение удаления вершины на карте — baseline 5 ноября 2026
 
 Кандидат после подтверждённого baseline: управляемый Activity map intent с origin-флагом,

@@ -1,3 +1,8 @@
+Подтверждение удаления вершины на карте восстанавливается после actual recreate.
+Production0e9d47d + test0716037 / CI41946263354: обе API40/40, map444 each,
+28 новых PNG просмотрены. Cancel и отдельные Confirm→Save/guards/DOM/assets проверены.
+Границы — [MAP_CONFIRMATION_STATE.md](MAP_CONFIRMATION_STATE.md); полная миграция не завершена.
+
 Новый несохранённый внутренний контур проверен на code70cc7c5:
 CI41892245044 success attempt2, API23/API35 по39/39, JVM24/81315, host13;
 56 финальных PNG просмотрены. Raw/addingHole/оба actualrecreate/IME/Cancel/
