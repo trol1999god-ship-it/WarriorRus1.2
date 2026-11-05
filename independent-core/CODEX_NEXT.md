@@ -19,19 +19,24 @@
    visibility, actualforce-stop/cache/MBTiles/other-project/KML/assets passed.
    MAP_LAYERS.md и final-result.json. Не повторять без новой причины; приёмка открыта.
 
-4. Подготовлен production кандидат compose-aware export в один MBTiles/TMS3857:
-   order/visible/group alpha, bounds записанных тайлов (+180), source.zoomFor,
-   EPSG3395 reprojection. File replacement атомарный после sync, cap512MiB/20000tiles;
-   SAF не удаляет чужой URI при ошибке, сборка завершается до открытия назначения.
-   Ошибка во время SAF-copy может оставить partial file, UI сообщает; не заявлять
-   atomic SAF. MAP_COMPOSITION_EXPORT.md и migration/MAP_FORMATS.md.
-   QA485/source62exact/JVM29_81458/host16; tests расширены внутри cacheexport,
-   без нового baseline mode. Bounds/order/alpha/hidden/mixedzoom/Cancel/UI-save/empty
-   failure/source cache/other project/KML/assets +2PNG. Androidruntime ещё не проверен.
-   Сохранить кандидат/запустить обоснованный CI изменённого export/shared render;
-   проверить обаcompletedjob/PNG/roundtrip/data. Не повторять CI слоёв42034901826.
-   Артефакты composition-export-release-candidate-build — только внутренний QA,
-   не пользовательский replacement release. Все прежние receipts/builds сохранены.
+4. Export production3f72957 / CI42067960861 completed FAILURE: JVM success,
+   обе Android-сборки success,45/46each; onlycacheexport failed mixedzoom RGB.
+   Подтверждена ошибка новой QA-пробы: ожидался pureblue, actualfixture onlineRaster
+   задаёт25/90/220. Production fallback пока не признан дефектным/готовым.
+   Поправлен только test: pinned nativeRGB, computedblend +RGB/alpha, прежнийtol2,
+   source/outputPNG иhexdiagnostic ДОстрогогоassert. SDK23 tests compiled.
+   Сохранить QAfix отдельно от WIPjobs/65source generated files и запустить
+   обоснованный CI изменённой проверки; неblindrerun3f. Поздние Cancel/UI/data
+   ещё НЕисполнены. Все16interimPNG толькослои SHAverified/просмотрены, НЕexportproof.
+   interim-3f-result.json/MAP_COMPOSITION_EXPORT.md. Полная приёмка открыта.
+5. Локальный НЕпроверенный WIP следующего production cache-участка:
+   CompositionDownloadJob/Settings/Activity + OnlineTiles.contains + пункт карты.
+   Дедуп/policy/20000tiles/project-CAS/сохранённое задание; foreground pause,
+   restart только явный, resume проверяет кеш заново. Исходники не отправлены;
+   local QA501/min23/INTERNETonly/JVM30_81490 (job32) passed;
+   подключается реальный UI pause/force-stop/resume/missing-only cache/KML/assets
+   в существующие maplayers/reopen, без нового mode/baseline. Androidruntime ещё нет.
+   CI экспорта исполняет замороженный3f72957, НЕ этот WIP. Сохранять все diff.
 
 ## Production очередь
 
