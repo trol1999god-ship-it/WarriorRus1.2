@@ -14,7 +14,11 @@ stale-before/after/main-changed/selected-changed/staleSave/foreign. Minimum-geom
 Локально: JVM24/81323 (GeometryConfirmation64), host15, instrumentation210467/API23 compiled,
 QA430 own/min23/INTERNET only, no legacy/native/stubs/missing refs,54 source SHA match.
 Unsigned6f2e47cf3d6b098bb52ed70bb261d8ea0604a024b8b976208d182bff14a105e8.
-Android-кандидат ещё НЕ проверен. Release gate False25,0 accepted; требуется полныйCI40/реальныеPNG.
+CI41941913724: новый mapvertexconfirm PASS444 на каждой API, все28 PNG SHA-verified и просмотрены
+(probe-0e-api23/35). API23 полный40/40 success, API35 полный39/40 failure: vertexscroll
+останавливается до снимка на strict82px precondition, фактические размеры отсутствуют.
+Нельзя считать весь этап принятым; test diagnostic теперь пишет metrics/PNG до неизменного82px guard.
+Production0e9d47d после этого не менялся. Release gate False25,0 accepted.
 Намерение только same-process; process-death/reference/physical/full migration acceptance не заявлена.
 
 Проверенный baseline до исправления:

@@ -76,7 +76,7 @@ for mode in a.modes:
    if mode in a.visual_log_modes or not passed:print(text,flush=True)
    else:print("\n".join(line for line in text.splitlines() if "INSTRUMENTATION_RESULT:" in line),flush=True)
    try:
-    if mode in a.visual_log_modes:emit_visual_evidence(out/mode)
+    if mode in a.visual_log_modes or not passed:emit_visual_evidence(out/mode)
     else:emit_visual_summary(out/mode)
    except Exception as error:
     passed=False;print('VISUAL_EVIDENCE_FAILED '+str(error),flush=True)
