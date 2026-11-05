@@ -1,0 +1,15 @@
+{
+  "commit": "d4bd78bba186c28b863c9fb06fd8e018c6960187",
+  "run": 41991451307,
+  "result": "failure",
+  "api23_job": 127124520817,
+  "api35_job": 127124520804,
+  "api23_old_pass": 43,
+  "api35_old_pass": 42,
+  "api35_managerforms": "adb device offline before instrumentation; inherited rotation PNGs are not forms evidence",
+  "close_actual_recreate_restored": false,
+  "close_png_sha_verified": 14,
+  "close_png_visually_reviewed": 14,
+  "inherited_png_sha_verified": 16,
+  "inherited_png_not_acceptance": true
+}
