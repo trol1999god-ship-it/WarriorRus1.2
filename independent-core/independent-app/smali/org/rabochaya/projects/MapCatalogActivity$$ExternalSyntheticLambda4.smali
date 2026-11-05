@@ -9,11 +9,11 @@
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/MapCatalogActivity;
 
-.field public final synthetic f$1:I
+.field public final synthetic f$1:Landroid/app/AlertDialog;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapCatalogActivity;I)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapCatalogActivity;Landroid/app/AlertDialog;)V
     .locals 0
 
     .line 0
@@ -21,7 +21,7 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda4;->f$0:Lorg/rabochaya/projects/MapCatalogActivity;
 
-    iput p2, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda4;->f$1:I
+    iput-object p2, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda4;->f$1:Landroid/app/AlertDialog;
 
     return-void
 .end method
@@ -34,9 +34,9 @@
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda4;->f$0:Lorg/rabochaya/projects/MapCatalogActivity;
 
-    iget v1, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda4;->f$1:I
+    iget-object v1, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda4;->f$1:Landroid/app/AlertDialog;
 
-    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/MapCatalogActivity;->lambda$render$6$org-rabochaya-projects-MapCatalogActivity(I)V
+    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/MapCatalogActivity;->lambda$layerDialog$11$org-rabochaya-projects-MapCatalogActivity(Landroid/app/AlertDialog;)V
 
     return-void
 .end method

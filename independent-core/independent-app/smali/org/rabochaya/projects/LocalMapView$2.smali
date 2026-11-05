@@ -5,7 +5,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lorg/rabochaya/projects/LocalMapView;-><init>(Landroid/content/Context;Ljava/util/List;Ljava/io/File;Lorg/rabochaya/projects/LocalMapView$Listener;Lorg/rabochaya/projects/TileSource;Z)V
+    value = Lorg/rabochaya/projects/LocalMapView;-><init>(Landroid/content/Context;Ljava/util/List;Ljava/io/File;Lorg/rabochaya/projects/LocalMapView$Listener;Lorg/rabochaya/projects/TileSource;ZLorg/rabochaya/projects/MapComposition;)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -24,7 +24,7 @@
 .method constructor <init>(Lorg/rabochaya/projects/LocalMapView;Lorg/rabochaya/projects/LocalMapView$Listener;)V
     .locals 0
 
-    .line 13
+    .line 16
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$2;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     iput-object p2, p0, Lorg/rabochaya/projects/LocalMapView$2;->val$listener:Lorg/rabochaya/projects/LocalMapView$Listener;
@@ -39,7 +39,7 @@
 .method public onDown(Landroid/view/MotionEvent;)Z
     .locals 0
 
-    .line 13
+    .line 16
     const/4 p1, 0x1
 
     return p1
@@ -48,7 +48,7 @@
 .method public onLongPress(Landroid/view/MotionEvent;)V
     .locals 11
 
-    .line 13
+    .line 16
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$2;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-static {v0}, Lorg/rabochaya/projects/LocalMapView;->access$000(Lorg/rabochaya/projects/LocalMapView;)Z

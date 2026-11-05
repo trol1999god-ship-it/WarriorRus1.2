@@ -5,7 +5,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lorg/rabochaya/projects/LocalMapView;-><init>(Landroid/content/Context;Ljava/util/List;Ljava/io/File;Lorg/rabochaya/projects/LocalMapView$Listener;Lorg/rabochaya/projects/TileSource;Z)V
+    value = Lorg/rabochaya/projects/LocalMapView;-><init>(Landroid/content/Context;Ljava/util/List;Ljava/io/File;Lorg/rabochaya/projects/LocalMapView$Listener;Lorg/rabochaya/projects/TileSource;ZLorg/rabochaya/projects/MapComposition;)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -22,7 +22,7 @@
 .method constructor <init>(Lorg/rabochaya/projects/LocalMapView;)V
     .locals 0
 
-    .line 14
+    .line 17
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$3;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-direct {p0}, Landroid/view/ScaleGestureDetector$SimpleOnScaleGestureListener;-><init>()V
@@ -35,7 +35,7 @@
 .method public onScale(Landroid/view/ScaleGestureDetector;)Z
     .locals 5
 
-    .line 14
+    .line 17
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$3;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-virtual {p1}, Landroid/view/ScaleGestureDetector;->getScaleFactor()F
@@ -78,7 +78,7 @@
 .method public onScaleEnd(Landroid/view/ScaleGestureDetector;)V
     .locals 0
 
-    .line 14
+    .line 17
     iget-object p1, p0, Lorg/rabochaya/projects/LocalMapView$3;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-static {p1}, Lorg/rabochaya/projects/LocalMapView;->access$900(Lorg/rabochaya/projects/LocalMapView;)V

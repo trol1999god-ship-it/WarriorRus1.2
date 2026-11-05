@@ -4,6 +4,7 @@
  <application android:label="Рабочая карта" android:icon="@drawable/app_icon" android:allowBackup="false" android:fullBackupContent="false" android:debuggable="false" android:usesCleartextTraffic="false" android:theme="@android:style/Theme.Material.Light.NoActionBar">
   <activity android:name="org.rabochaya.projects.OwnedHomeActivity" android:exported="true"><intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter></activity>
   <activity android:name="org.rabochaya.projects.ProjectsActivity" android:exported="false" android:configChanges="keyboardHidden|orientation|screenSize"/>
+  <activity android:name="org.rabochaya.projects.MapLayersActivity" android:exported="false"/>
   <activity android:name="org.rabochaya.projects.MapCatalogActivity" android:exported="false"/>
   <activity android:name="org.rabochaya.projects.OnlineMapActivity" android:exported="false" android:configChanges="keyboardHidden|orientation|screenSize"/>
   <activity android:name="org.rabochaya.projects.CacheExportActivity" android:exported="false"/>

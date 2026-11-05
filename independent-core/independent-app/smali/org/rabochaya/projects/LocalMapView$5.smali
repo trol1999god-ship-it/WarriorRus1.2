@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lorg/rabochaya/projects/LocalMapView;->request(Ljava/lang/String;IIII)V
+    value = Lorg/rabochaya/projects/LocalMapView;->request(Ljava/lang/String;IIIILorg/rabochaya/projects/LocalMapView$RasterLayer;)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -19,6 +19,8 @@
 
 # instance fields
 .field final synthetic this$0:Lorg/rabochaya/projects/LocalMapView;
+
+.field final synthetic val$group:Lorg/rabochaya/projects/LocalMapView$RasterLayer;
 
 .field final synthetic val$key:Ljava/lang/String;
 
@@ -32,7 +34,7 @@
 
 
 # direct methods
-.method constructor <init>(Lorg/rabochaya/projects/LocalMapView;IIIILjava/lang/String;)V
+.method constructor <init>(Lorg/rabochaya/projects/LocalMapView;Lorg/rabochaya/projects/LocalMapView$RasterLayer;IIIILjava/lang/String;)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -40,10 +42,10 @@
         }
     .end annotation
 
-    .line 43
+    .line 49
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$5;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
-    iput p2, p0, Lorg/rabochaya/projects/LocalMapView$5;->val$layer:I
+    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapView$5;->val$group:Lorg/rabochaya/projects/LocalMapView$RasterLayer;
 
     iput p3, p0, Lorg/rabochaya/projects/LocalMapView$5;->val$z:I
 
@@ -51,7 +53,9 @@
 
     iput p5, p0, Lorg/rabochaya/projects/LocalMapView$5;->val$y:I
 
-    iput-object p6, p0, Lorg/rabochaya/projects/LocalMapView$5;->val$key:Ljava/lang/String;
+    iput p6, p0, Lorg/rabochaya/projects/LocalMapView$5;->val$layer:I
+
+    iput-object p7, p0, Lorg/rabochaya/projects/LocalMapView$5;->val$key:Ljava/lang/String;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -61,9 +65,9 @@
 
 # virtual methods
 .method public run()V
-    .locals 7
+    .locals 9
 
-    .line 43
+    .line 49
     const/4 v0, 0x0
 
     :try_start_0
@@ -73,7 +77,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_3
 
     iget-object v1, p0, Lorg/rabochaya/projects/LocalMapView$5;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
@@ -81,19 +85,46 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_3
 
-    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapView$5;->this$0:Lorg/rabochaya/projects/LocalMapView;
-
-    invoke-static {v1}, Lorg/rabochaya/projects/LocalMapView;->access$1400(Lorg/rabochaya/projects/LocalMapView;)[Lorg/rabochaya/projects/OnlineTiles;
-
-    move-result-object v1
+    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapView$5;->val$group:Lorg/rabochaya/projects/LocalMapView$RasterLayer;
 
     if-eqz v1, :cond_0
 
+    iget-object v2, p0, Lorg/rabochaya/projects/LocalMapView$5;->val$group:Lorg/rabochaya/projects/LocalMapView$RasterLayer;
+
+    iget v3, p0, Lorg/rabochaya/projects/LocalMapView$5;->val$z:I
+
+    iget v4, p0, Lorg/rabochaya/projects/LocalMapView$5;->val$x:I
+
+    iget v5, p0, Lorg/rabochaya/projects/LocalMapView$5;->val$y:I
+
+    iget v6, p0, Lorg/rabochaya/projects/LocalMapView$5;->val$layer:I
+
     iget-object v1, p0, Lorg/rabochaya/projects/LocalMapView$5;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
-    invoke-static {v1}, Lorg/rabochaya/projects/LocalMapView;->access$1400(Lorg/rabochaya/projects/LocalMapView;)[Lorg/rabochaya/projects/OnlineTiles;
+    invoke-static {v1}, Lorg/rabochaya/projects/LocalMapView;->access$1400(Lorg/rabochaya/projects/LocalMapView;)Z
+
+    move-result v7
+
+    invoke-virtual/range {v2 .. v7}, Lorg/rabochaya/projects/LocalMapView$RasterLayer;->tile(IIIIZ)Landroid/graphics/Bitmap;
+
+    move-result-object v1
+
+    goto :goto_0
+
+    :cond_0
+    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapView$5;->this$0:Lorg/rabochaya/projects/LocalMapView;
+
+    invoke-static {v1}, Lorg/rabochaya/projects/LocalMapView;->access$1500(Lorg/rabochaya/projects/LocalMapView;)[Lorg/rabochaya/projects/OnlineTiles;
+
+    move-result-object v1
+
+    if-eqz v1, :cond_1
+
+    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapView$5;->this$0:Lorg/rabochaya/projects/LocalMapView;
+
+    invoke-static {v1}, Lorg/rabochaya/projects/LocalMapView;->access$1500(Lorg/rabochaya/projects/LocalMapView;)[Lorg/rabochaya/projects/OnlineTiles;
 
     move-result-object v1
 
@@ -109,7 +140,7 @@
 
     iget-object v5, p0, Lorg/rabochaya/projects/LocalMapView$5;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
-    invoke-static {v5}, Lorg/rabochaya/projects/LocalMapView;->access$1500(Lorg/rabochaya/projects/LocalMapView;)Z
+    invoke-static {v5}, Lorg/rabochaya/projects/LocalMapView;->access$1400(Lorg/rabochaya/projects/LocalMapView;)Z
 
     move-result v5
 
@@ -119,14 +150,14 @@
 
     goto :goto_0
 
-    :cond_0
+    :cond_1
     iget-object v1, p0, Lorg/rabochaya/projects/LocalMapView$5;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-static {v1}, Lorg/rabochaya/projects/LocalMapView;->access$1000(Lorg/rabochaya/projects/LocalMapView;)Lorg/rabochaya/projects/OfflineTiles;
 
     move-result-object v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_2
 
     iget-object v1, p0, Lorg/rabochaya/projects/LocalMapView$5;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
@@ -146,14 +177,14 @@
 
     goto :goto_0
 
-    :cond_1
+    :cond_2
     iget-object v1, p0, Lorg/rabochaya/projects/LocalMapView$5;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-static {v1}, Lorg/rabochaya/projects/LocalMapView;->access$1600(Lorg/rabochaya/projects/LocalMapView;)Lorg/rabochaya/projects/BundledTiles;
 
     move-result-object v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_3
 
     iget-object v1, p0, Lorg/rabochaya/projects/LocalMapView$5;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
@@ -175,15 +206,15 @@
 
     goto :goto_0
 
-    :cond_2
+    :cond_3
     move-object v1, v0
 
     :goto_0
-    move-object v6, v1
+    move-object v8, v1
 
     move-object v1, v0
 
-    move-object v0, v6
+    move-object v0, v8
 
     goto :goto_1
 

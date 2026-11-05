@@ -9,9 +9,13 @@
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/MapCatalogActivity;
 
+.field public final synthetic f$1:I
+
+.field public final synthetic f$2:Ljava/util/Map;
+
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapCatalogActivity;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapCatalogActivity;ILjava/util/Map;)V
     .locals 0
 
     .line 0
@@ -19,18 +23,26 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda8;->f$0:Lorg/rabochaya/projects/MapCatalogActivity;
 
+    iput p2, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda8;->f$1:I
+
+    iput-object p3, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda8;->f$2:Ljava/util/Map;
+
     return-void
 .end method
 
 
 # virtual methods
 .method public final run()V
-    .locals 1
+    .locals 3
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda8;->f$0:Lorg/rabochaya/projects/MapCatalogActivity;
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/MapCatalogActivity;->lambda$build$2$org-rabochaya-projects-MapCatalogActivity()V
+    iget v1, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda8;->f$1:I
+
+    iget-object v2, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda8;->f$2:Ljava/util/Map;
+
+    invoke-virtual {v0, v1, v2}, Lorg/rabochaya/projects/MapCatalogActivity;->lambda$scan$18$org-rabochaya-projects-MapCatalogActivity(ILjava/util/Map;)V
 
     return-void
 .end method

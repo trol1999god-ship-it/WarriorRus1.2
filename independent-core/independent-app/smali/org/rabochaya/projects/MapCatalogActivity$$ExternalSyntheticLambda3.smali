@@ -3,19 +3,17 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/view/View$OnClickListener;
+.implements Ljava/lang/Runnable;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/MapCatalogActivity;
 
-.field public final synthetic f$1:Ljava/lang/String;
-
-.field public final synthetic f$2:Z
+.field public final synthetic f$1:I
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapCatalogActivity;Ljava/lang/String;Z)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapCatalogActivity;I)V
     .locals 0
 
     .line 0
@@ -23,26 +21,22 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda3;->f$0:Lorg/rabochaya/projects/MapCatalogActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda3;->f$1:Ljava/lang/String;
-
-    iput-boolean p3, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda3;->f$2:Z
+    iput p2, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda3;->f$1:I
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final onClick(Landroid/view/View;)V
-    .locals 3
+.method public final run()V
+    .locals 2
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda3;->f$0:Lorg/rabochaya/projects/MapCatalogActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda3;->f$1:Ljava/lang/String;
+    iget v1, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda3;->f$1:I
 
-    iget-boolean v2, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda3;->f$2:Z
-
-    invoke-virtual {v0, v1, v2, p1}, Lorg/rabochaya/projects/MapCatalogActivity;->lambda$render$5$org-rabochaya-projects-MapCatalogActivity(Ljava/lang/String;ZLandroid/view/View;)V
+    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/MapCatalogActivity;->lambda$scan$19$org-rabochaya-projects-MapCatalogActivity(I)V
 
     return-void
 .end method

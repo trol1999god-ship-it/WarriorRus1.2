@@ -86,6 +86,8 @@
     .locals 2
 
     .line 6
+    invoke-static {p0, p2, p3}, Lorg/rabochaya/projects/MapCompositionSettings;->suspend(Landroid/content/Context;J)V
+
     invoke-static {p0}, Lorg/rabochaya/projects/OnlineMapSettings;->prefs(Landroid/content/Context;)Landroid/content/SharedPreferences;
 
     move-result-object p0
@@ -192,6 +194,8 @@
     move-result-object v0
 
     if-eqz v0, :cond_0
+
+    invoke-static {p0, p2, p3}, Lorg/rabochaya/projects/MapCompositionSettings;->suspend(Landroid/content/Context;J)V
 
     invoke-static {p0}, Lorg/rabochaya/projects/OnlineMapSettings;->prefs(Landroid/content/Context;)Landroid/content/SharedPreferences;
 
@@ -367,6 +371,8 @@
     .locals 2
 
     .line 10
+    invoke-static {p0, p1, p2}, Lorg/rabochaya/projects/MapCompositionSettings;->suspend(Landroid/content/Context;J)V
+
     invoke-static {p0}, Lorg/rabochaya/projects/OnlineMapSettings;->prefs(Landroid/content/Context;)Landroid/content/SharedPreferences;
 
     move-result-object p0

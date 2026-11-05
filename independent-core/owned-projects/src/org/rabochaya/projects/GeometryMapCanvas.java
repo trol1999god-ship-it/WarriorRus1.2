@@ -28,12 +28,13 @@ public final class GeometryMapCanvas extends LinearLayout implements LocalMapVie
         FrameLayout scene=new FrameLayout(activity);addView(scene,new LinearLayout.LayoutParams(-1,0,1));
         TileSource source=OnlineMapSettings.active(activity,project)?OnlineMapSettings.source(activity):null;
         File file=new File(activity.getFilesDir(),"local_basemap_"+project+".mbtiles");
-        map=new LocalMapView(activity,Collections.<KmlProject.Feature>emptyList(),file,this,source,source!=null&&OnlineMapSettings.network(activity));scene.addView(map,new FrameLayout.LayoutParams(-1,-1));
+        MapComposition composition=null;try{if(MapCompositionSettings.active(activity,project))composition=MapCompositionSettings.load(activity,project).composition;}catch(Exception e){listener.message("Состав карт не прочитан: "+e.getMessage());}
+        map=new LocalMapView(activity,Collections.<KmlProject.Feature>emptyList(),file,this,source,OnlineMapSettings.network(activity),composition);scene.addView(map,new FrameLayout.LayoutParams(-1,-1));
         overlay=new Overlay(activity);scene.addView(overlay,new FrameLayout.LayoutParams(-1,-1));
         LinearLayout zoom=new LinearLayout(activity);zoom.setOrientation(VERTICAL);
         button(zoom,"+","Увеличить карту редактора",()->map.step(1));button(zoom,"−","Уменьшить карту редактора",()->map.step(-1));
         scene.addView(zoom,new FrameLayout.LayoutParams(dp(48),dp(96),Gravity.TOP|Gravity.RIGHT));
-        TextView credit=new TextView(activity);credit.setText(source!=null?source.attribution:file.isFile()?"Локальная карта MBTiles":"Обзорная карта");credit.setTypeface(WorkspaceUi.font(activity));credit.setTextColor(-1);credit.setTextSize(10);credit.setMaxLines(3);credit.setBackgroundColor(0xcc232d1d);credit.setPadding(dp(4),dp(2),dp(4),dp(2));
+        TextView credit=new TextView(activity);credit.setText(composition!=null?"Слои карты · "+composition.attributions():source!=null?source.attribution:file.isFile()?"Локальная карта MBTiles":"Обзорная карта");credit.setTypeface(WorkspaceUi.font(activity));credit.setTextColor(-1);credit.setTextSize(10);credit.setMaxLines(3);credit.setBackgroundColor(0xcc232d1d);credit.setPadding(dp(4),dp(2),dp(4),dp(2));
         scene.addView(credit,new FrameLayout.LayoutParams(-2,-2,Gravity.BOTTOM|Gravity.LEFT));
         LinearLayout controls=new LinearLayout(activity);addView(controls,new LinearLayout.LayoutParams(-1,dp(48)));
         add=button(controls,"Добавить","Добавить вершину на карте",()->{overlay.cancelGesture();adding=!adding;update();listener.message(adding?"Коснитесь места новой вершины. Вставка после выбранной; высота новой вершины — 0 м":"Добавление отменено");});

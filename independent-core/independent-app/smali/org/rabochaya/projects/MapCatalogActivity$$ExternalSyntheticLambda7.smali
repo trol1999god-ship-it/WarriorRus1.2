@@ -9,9 +9,11 @@
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/MapCatalogActivity;
 
+.field public final synthetic f$1:I
+
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapCatalogActivity;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapCatalogActivity;I)V
     .locals 0
 
     .line 0
@@ -19,18 +21,22 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda7;->f$0:Lorg/rabochaya/projects/MapCatalogActivity;
 
+    iput p2, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda7;->f$1:I
+
     return-void
 .end method
 
 
 # virtual methods
 .method public final run()V
-    .locals 1
+    .locals 2
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda7;->f$0:Lorg/rabochaya/projects/MapCatalogActivity;
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/MapCatalogActivity;->lambda$build$1$org-rabochaya-projects-MapCatalogActivity()V
+    iget v1, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda7;->f$1:I
+
+    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/MapCatalogActivity;->lambda$render$6$org-rabochaya-projects-MapCatalogActivity(I)V
 
     return-void
 .end method

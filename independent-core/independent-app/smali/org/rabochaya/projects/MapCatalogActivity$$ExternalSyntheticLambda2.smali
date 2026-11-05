@@ -3,17 +3,17 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/lang/Runnable;
+.implements Landroid/content/DialogInterface$OnClickListener;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/MapCatalogActivity;
 
-.field public final synthetic f$1:I
+.field public final synthetic f$1:Lorg/rabochaya/projects/MapCatalog$Entry;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapCatalogActivity;I)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapCatalogActivity;Lorg/rabochaya/projects/MapCatalog$Entry;)V
     .locals 0
 
     .line 0
@@ -21,22 +21,22 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda2;->f$0:Lorg/rabochaya/projects/MapCatalogActivity;
 
-    iput p2, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda2;->f$1:I
+    iput-object p2, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda2;->f$1:Lorg/rabochaya/projects/MapCatalog$Entry;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final run()V
+.method public final onClick(Landroid/content/DialogInterface;I)V
     .locals 2
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda2;->f$0:Lorg/rabochaya/projects/MapCatalogActivity;
 
-    iget v1, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda2;->f$1:I
+    iget-object v1, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda2;->f$1:Lorg/rabochaya/projects/MapCatalog$Entry;
 
-    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/MapCatalogActivity;->lambda$scan$16$org-rabochaya-projects-MapCatalogActivity(I)V
+    invoke-virtual {v0, v1, p1, p2}, Lorg/rabochaya/projects/MapCatalogActivity;->lambda$actions$14$org-rabochaya-projects-MapCatalogActivity(Lorg/rabochaya/projects/MapCatalog$Entry;Landroid/content/DialogInterface;I)V
 
     return-void
 .end method

@@ -25,7 +25,7 @@
 .method constructor <init>(Lorg/rabochaya/projects/LocalMapView;)V
     .locals 0
 
-    .line 87
+    .line 95
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$6;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -36,16 +36,48 @@
 
 # virtual methods
 .method public run()V
-    .locals 4
+    .locals 5
 
-    .line 87
+    .line 95
+    iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$6;->this$0:Lorg/rabochaya/projects/LocalMapView;
+
+    invoke-static {v0}, Lorg/rabochaya/projects/LocalMapView;->access$2100(Lorg/rabochaya/projects/LocalMapView;)[Lorg/rabochaya/projects/LocalMapView$RasterLayer;
+
+    move-result-object v0
+
+    const/4 v1, 0x0
+
+    if-eqz v0, :cond_0
+
+    iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$6;->this$0:Lorg/rabochaya/projects/LocalMapView;
+
+    invoke-static {v0}, Lorg/rabochaya/projects/LocalMapView;->access$2100(Lorg/rabochaya/projects/LocalMapView;)[Lorg/rabochaya/projects/LocalMapView$RasterLayer;
+
+    move-result-object v0
+
+    array-length v2, v0
+
+    move v3, v1
+
+    :goto_0
+    if-ge v3, v2, :cond_0
+
+    aget-object v4, v0, v3
+
+    invoke-virtual {v4}, Lorg/rabochaya/projects/LocalMapView$RasterLayer;->close()V
+
+    add-int/lit8 v3, v3, 0x1
+
+    goto :goto_0
+
+    :cond_0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$6;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-static {v0}, Lorg/rabochaya/projects/LocalMapView;->access$1000(Lorg/rabochaya/projects/LocalMapView;)Lorg/rabochaya/projects/OfflineTiles;
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1
 
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$6;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
@@ -55,36 +87,34 @@
 
     invoke-virtual {v0}, Lorg/rabochaya/projects/OfflineTiles;->close()V
 
-    :cond_0
+    :cond_1
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$6;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/LocalMapView;->access$1400(Lorg/rabochaya/projects/LocalMapView;)[Lorg/rabochaya/projects/OnlineTiles;
+    invoke-static {v0}, Lorg/rabochaya/projects/LocalMapView;->access$1500(Lorg/rabochaya/projects/LocalMapView;)[Lorg/rabochaya/projects/OnlineTiles;
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_2
 
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$6;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/LocalMapView;->access$1400(Lorg/rabochaya/projects/LocalMapView;)[Lorg/rabochaya/projects/OnlineTiles;
+    invoke-static {v0}, Lorg/rabochaya/projects/LocalMapView;->access$1500(Lorg/rabochaya/projects/LocalMapView;)[Lorg/rabochaya/projects/OnlineTiles;
 
     move-result-object v0
 
-    array-length v1, v0
+    array-length v2, v0
 
-    const/4 v2, 0x0
+    :goto_1
+    if-ge v1, v2, :cond_2
 
-    :goto_0
-    if-ge v2, v1, :cond_1
-
-    aget-object v3, v0, v2
+    aget-object v3, v0, v1
 
     invoke-virtual {v3}, Lorg/rabochaya/projects/OnlineTiles;->close()V
 
-    add-int/lit8 v2, v2, 0x1
+    add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_1
 
-    :cond_1
+    :cond_2
     return-void
 .end method

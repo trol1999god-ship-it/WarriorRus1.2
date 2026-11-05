@@ -34,7 +34,7 @@
         }
     .end annotation
 
-    .line 57
+    .line 60
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$1;->this$0:Lorg/rabochaya/projects/LocalMapActivity;
 
     iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$1;->val$input:Landroid/widget/EditText;
@@ -60,7 +60,7 @@
         }
     .end annotation
 
-    .line 57
+    .line 60
     iget-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$1;->val$input:Landroid/widget/EditText;
 
     const-string p2, ""
@@ -138,6 +138,6 @@
         }
     .end annotation
 
-    .line 57
+    .line 60
     return-void
 .end method

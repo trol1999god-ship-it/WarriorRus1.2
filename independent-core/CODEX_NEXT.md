@@ -19,16 +19,16 @@
    удаление строки не удаляет карты/кеш/KML. Существующий single-map choice сохраняет
    состав отключённым, каталог в add-mode не меняет network/single-map prefs.
    До16слоёв, текущий MBTiles проекта + каталог/XYZ/обзорная карта.
-   Финальная local QA474/min23/INTERNETonly/no legacy/native/stubs/missingrefs,
-   sourceSHA60 exact, unsigned497c5c115a6e4d366ad8970003dcb750ed1a7efb2dfb363f8d244af683f9aad6.
-   JVM28/81449 (MapComposition33), host16, tests237080 compiled,
-   SHA6187d3109b7ecaf58f68b7f778e19af21eba4f70e8024a67667faf09766b6b7e.
+   Финальная local QA479/min23/INTERNETonly/no legacy/native/stubs/missingrefs,
+   sourceSHA60 exact, unsigneda70a196e1b607d6a0919bb4f99654c81cabad94e69816f117e591737ede14c32.
+   JVM28/81449 (MapComposition33), host16, tests237599 compiled,
+   SHA55fdbfd0086731e62e4e7c7079bbc1de648933e3c9b3671bd441a5a8c24c505d.
    Androidruntime слоёв ЕЩЁНЕПРОВЕРЕН. Нужен candidatecommit/fullCI46:
    maplayers→maplayersreopen (реальный force-stop, безpmclear второго режима),
    UI/actual opacity touch/pixel order+alpha+visibility, source cache/localMBTiles/
    KML/assets/otherProject сохранность, exact composition restart. Только6PNG/API,
    новая возможность вместоизолированныхдиалоговыхbaseline.
-   Исходники и generated smali пока незакоммичены — сохранить и сверить передpush.
+   Candidateготов к сохранению/push для обоснованногоfullCI46; не объявлять runtime слоёв принятым до completedjobs/pixels/restart/новыхPNG.
 
 ## Production очередь
 

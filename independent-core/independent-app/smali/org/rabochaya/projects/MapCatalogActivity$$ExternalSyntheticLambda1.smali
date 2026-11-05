@@ -36,7 +36,7 @@
 
     iget-object v1, p0, Lorg/rabochaya/projects/MapCatalogActivity$$ExternalSyntheticLambda1;->f$1:Lorg/rabochaya/projects/MapCatalog$Entry;
 
-    invoke-virtual {v0, v1, p1, p2}, Lorg/rabochaya/projects/MapCatalogActivity;->lambda$actions$11$org-rabochaya-projects-MapCatalogActivity(Lorg/rabochaya/projects/MapCatalog$Entry;Landroid/content/DialogInterface;I)V
+    invoke-virtual {v0, v1, p1, p2}, Lorg/rabochaya/projects/MapCatalogActivity;->lambda$layerActions$13$org-rabochaya-projects-MapCatalogActivity(Lorg/rabochaya/projects/MapCatalog$Entry;Landroid/content/DialogInterface;I)V
 
     return-void
 .end method

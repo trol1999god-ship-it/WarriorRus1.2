@@ -65,7 +65,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/app/Activity;JLorg/rabochaya/projects/GeometryMapState;Ljava/util/List;Ljava/lang/String;Z[DLorg/rabochaya/projects/GeometryMapCanvas$Listener;)V
-    .locals 17
+    .locals 19
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -83,13 +83,13 @@
     .end annotation
 
     .line 25
-    move-object/from16 v8, p0
+    move-object/from16 v9, p0
 
-    move-object/from16 v9, p1
+    move-object/from16 v10, p1
 
-    move-object/from16 v10, p4
+    move-object/from16 v11, p4
 
-    move-object/from16 v11, p9
+    move-object/from16 v12, p9
 
     invoke-direct/range {p0 .. p1}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
 
@@ -98,37 +98,37 @@
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    iput-object v0, v8, Lorg/rabochaya/projects/GeometryMapCanvas;->context:Ljava/util/List;
+    iput-object v0, v9, Lorg/rabochaya/projects/GeometryMapCanvas;->context:Ljava/util/List;
 
     .line 19
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    iput-object v0, v8, Lorg/rabochaya/projects/GeometryMapCanvas;->contextTypes:Ljava/util/List;
+    iput-object v0, v9, Lorg/rabochaya/projects/GeometryMapCanvas;->contextTypes:Ljava/util/List;
 
     .line 21
-    const/4 v12, 0x1
+    const/4 v13, 0x1
 
-    iput-boolean v12, v8, Lorg/rabochaya/projects/GeometryMapCanvas;->editable:Z
+    iput-boolean v13, v9, Lorg/rabochaya/projects/GeometryMapCanvas;->editable:Z
 
     .line 25
-    iput-object v9, v8, Lorg/rabochaya/projects/GeometryMapCanvas;->activity:Landroid/app/Activity;
+    iput-object v10, v9, Lorg/rabochaya/projects/GeometryMapCanvas;->activity:Landroid/app/Activity;
 
-    iput-object v10, v8, Lorg/rabochaya/projects/GeometryMapCanvas;->state:Lorg/rabochaya/projects/GeometryMapState;
+    iput-object v11, v9, Lorg/rabochaya/projects/GeometryMapCanvas;->state:Lorg/rabochaya/projects/GeometryMapState;
 
-    iput-object v11, v8, Lorg/rabochaya/projects/GeometryMapCanvas;->listener:Lorg/rabochaya/projects/GeometryMapCanvas$Listener;
+    iput-object v12, v9, Lorg/rabochaya/projects/GeometryMapCanvas;->listener:Lorg/rabochaya/projects/GeometryMapCanvas$Listener;
 
     move-object/from16 v0, p8
 
-    iput-object v0, v8, Lorg/rabochaya/projects/GeometryMapCanvas;->initialViewport:[D
+    iput-object v0, v9, Lorg/rabochaya/projects/GeometryMapCanvas;->initialViewport:[D
 
     .line 26
-    invoke-virtual {v8, v12}, Lorg/rabochaya/projects/GeometryMapCanvas;->setOrientation(I)V
+    invoke-virtual {v9, v13}, Lorg/rabochaya/projects/GeometryMapCanvas;->setOrientation(I)V
 
     const v0, -0xdcd2e3
 
-    invoke-virtual {v8, v0}, Lorg/rabochaya/projects/GeometryMapCanvas;->setBackgroundColor(I)V
+    invoke-virtual {v9, v0}, Lorg/rabochaya/projects/GeometryMapCanvas;->setBackgroundColor(I)V
 
     .line 27
     invoke-interface/range {p5 .. p5}, Ljava/util/List;->iterator()Ljava/util/Iterator;
@@ -168,7 +168,7 @@
 
     :goto_1
     :try_start_0
-    iget-object v2, v8, Lorg/rabochaya/projects/GeometryMapCanvas;->context:Ljava/util/List;
+    iget-object v2, v9, Lorg/rabochaya/projects/GeometryMapCanvas;->context:Ljava/util/List;
 
     iget-object v4, v0, Lorg/rabochaya/projects/GeometryEdits$Part;->text:Ljava/lang/String;
 
@@ -180,7 +180,7 @@
 
     invoke-interface {v2, v4}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    iget-object v2, v8, Lorg/rabochaya/projects/GeometryMapCanvas;->contextTypes:Ljava/util/List;
+    iget-object v2, v9, Lorg/rabochaya/projects/GeometryMapCanvas;->contextTypes:Ljava/util/List;
 
     iget-object v0, v0, Lorg/rabochaya/projects/GeometryEdits$Part;->type:Ljava/lang/String;
 
@@ -197,67 +197,69 @@
 
     .line 28
     :cond_2
-    new-instance v0, Landroid/widget/FrameLayout;
+    new-instance v14, Landroid/widget/FrameLayout;
 
-    invoke-direct {v0, v9}, Landroid/widget/FrameLayout;-><init>(Landroid/content/Context;)V
+    invoke-direct {v14, v10}, Landroid/widget/FrameLayout;-><init>(Landroid/content/Context;)V
 
-    new-instance v1, Landroid/widget/LinearLayout$LayoutParams;
+    new-instance v0, Landroid/widget/LinearLayout$LayoutParams;
+
+    const/4 v1, 0x0
 
     const/high16 v2, 0x3f800000    # 1.0f
 
-    const/4 v13, -0x1
+    const/4 v15, -0x1
 
-    const/4 v3, 0x0
+    invoke-direct {v0, v15, v1, v2}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
 
-    invoke-direct {v1, v13, v3, v2}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
-
-    invoke-virtual {v8, v0, v1}, Lorg/rabochaya/projects/GeometryMapCanvas;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v9, v14, v0}, Lorg/rabochaya/projects/GeometryMapCanvas;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 29
     invoke-static/range {p1 .. p3}, Lorg/rabochaya/projects/OnlineMapSettings;->active(Landroid/content/Context;J)Z
 
-    move-result v1
+    move-result v0
 
-    if-eqz v1, :cond_3
+    const/4 v1, 0x0
+
+    if-eqz v0, :cond_3
 
     invoke-static/range {p1 .. p1}, Lorg/rabochaya/projects/OnlineMapSettings;->source(Landroid/content/Context;)Lorg/rabochaya/projects/TileSource;
 
-    move-result-object v1
+    move-result-object v0
+
+    move-object v8, v0
 
     goto :goto_2
 
     :cond_3
-    const/4 v1, 0x0
-
-    :goto_2
-    move-object v14, v1
+    move-object v8, v1
 
     .line 30
-    new-instance v15, Ljava/io/File;
+    :goto_2
+    new-instance v7, Ljava/io/File;
 
     invoke-virtual/range {p1 .. p1}, Landroid/app/Activity;->getFilesDir()Ljava/io/File;
 
-    move-result-object v1
+    move-result-object v0
 
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v4, "local_basemap_"
+    const-string v3, "local_basemap_"
 
-    invoke-virtual {v2, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    move-wide/from16 v4, p2
-
-    invoke-virtual {v2, v4, v5}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v2
 
-    const-string v4, ".mbtiles"
+    move-wide/from16 v3, p2
 
-    invoke-virtual {v2, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v2, v3, v4}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    const-string v5, ".mbtiles"
+
+    invoke-virtual {v2, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v2
 
@@ -265,116 +267,159 @@
 
     move-result-object v2
 
-    invoke-direct {v15, v1, v2}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
+    invoke-direct {v7, v0, v2}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
 
     .line 31
-    new-instance v7, Lorg/rabochaya/projects/LocalMapView;
+    :try_start_1
+    invoke-static/range {p1 .. p3}, Lorg/rabochaya/projects/MapCompositionSettings;->active(Landroid/content/Context;J)Z
 
-    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
+    move-result v0
 
-    move-result-object v4
+    if-eqz v0, :cond_4
 
-    if-eqz v14, :cond_4
+    invoke-static/range {p1 .. p3}, Lorg/rabochaya/projects/MapCompositionSettings;->load(Landroid/content/Context;J)Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
-    invoke-static/range {p1 .. p1}, Lorg/rabochaya/projects/OnlineMapSettings;->network(Landroid/content/Context;)Z
+    move-result-object v0
 
-    move-result v1
+    iget-object v0, v0, Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;->composition:Lorg/rabochaya/projects/MapComposition;
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
 
-    if-eqz v1, :cond_4
-
-    move/from16 v16, v12
+    move-object v1, v0
 
     goto :goto_3
 
-    :cond_4
-    move/from16 v16, v3
+    :catch_1
+    move-exception v0
 
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "\u0421\u043e\u0441\u0442\u0430\u0432 \u043a\u0430\u0440\u0442 \u043d\u0435 \u043f\u0440\u043e\u0447\u0438\u0442\u0430\u043d: "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v0}, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-interface {v12, v0}, Lorg/rabochaya/projects/GeometryMapCanvas$Listener;->message(Ljava/lang/String;)V
+
+    :cond_4
     :goto_3
-    move-object v1, v7
+    move-object v0, v1
+
+    .line 32
+    new-instance v6, Lorg/rabochaya/projects/LocalMapView;
+
+    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
+
+    move-result-object v3
+
+    invoke-static/range {p1 .. p1}, Lorg/rabochaya/projects/OnlineMapSettings;->network(Landroid/content/Context;)Z
+
+    move-result v16
+
+    move-object v1, v6
 
     move-object/from16 v2, p1
 
-    move-object v3, v4
-
-    move-object v4, v15
+    move-object v4, v7
 
     move-object/from16 v5, p0
 
-    move-object v6, v14
+    move-object v13, v6
 
-    move-object v12, v7
+    move-object v6, v8
+
+    move-object/from16 v17, v7
 
     move/from16 v7, v16
 
-    invoke-direct/range {v1 .. v7}, Lorg/rabochaya/projects/LocalMapView;-><init>(Landroid/content/Context;Ljava/util/List;Ljava/io/File;Lorg/rabochaya/projects/LocalMapView$Listener;Lorg/rabochaya/projects/TileSource;Z)V
+    move-object/from16 v18, v8
 
-    iput-object v12, v8, Lorg/rabochaya/projects/GeometryMapCanvas;->map:Lorg/rabochaya/projects/LocalMapView;
+    move-object v8, v0
 
-    iget-object v1, v8, Lorg/rabochaya/projects/GeometryMapCanvas;->map:Lorg/rabochaya/projects/LocalMapView;
+    invoke-direct/range {v1 .. v8}, Lorg/rabochaya/projects/LocalMapView;-><init>(Landroid/content/Context;Ljava/util/List;Ljava/io/File;Lorg/rabochaya/projects/LocalMapView$Listener;Lorg/rabochaya/projects/TileSource;ZLorg/rabochaya/projects/MapComposition;)V
 
-    new-instance v2, Landroid/widget/FrameLayout$LayoutParams;
+    iput-object v13, v9, Lorg/rabochaya/projects/GeometryMapCanvas;->map:Lorg/rabochaya/projects/LocalMapView;
 
-    invoke-direct {v2, v13, v13}, Landroid/widget/FrameLayout$LayoutParams;-><init>(II)V
-
-    invoke-virtual {v0, v1, v2}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
-
-    .line 32
-    new-instance v1, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;
-
-    invoke-direct {v1, v8, v9}, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;-><init>(Lorg/rabochaya/projects/GeometryMapCanvas;Landroid/app/Activity;)V
-
-    iput-object v1, v8, Lorg/rabochaya/projects/GeometryMapCanvas;->overlay:Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;
-
-    iget-object v1, v8, Lorg/rabochaya/projects/GeometryMapCanvas;->overlay:Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;
+    iget-object v1, v9, Lorg/rabochaya/projects/GeometryMapCanvas;->map:Lorg/rabochaya/projects/LocalMapView;
 
     new-instance v2, Landroid/widget/FrameLayout$LayoutParams;
 
-    invoke-direct {v2, v13, v13}, Landroid/widget/FrameLayout$LayoutParams;-><init>(II)V
+    invoke-direct {v2, v15, v15}, Landroid/widget/FrameLayout$LayoutParams;-><init>(II)V
 
-    invoke-virtual {v0, v1, v2}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v14, v1, v2}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 33
+    new-instance v1, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;
+
+    invoke-direct {v1, v9, v10}, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;-><init>(Lorg/rabochaya/projects/GeometryMapCanvas;Landroid/app/Activity;)V
+
+    iput-object v1, v9, Lorg/rabochaya/projects/GeometryMapCanvas;->overlay:Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;
+
+    iget-object v1, v9, Lorg/rabochaya/projects/GeometryMapCanvas;->overlay:Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;
+
+    new-instance v2, Landroid/widget/FrameLayout$LayoutParams;
+
+    invoke-direct {v2, v15, v15}, Landroid/widget/FrameLayout$LayoutParams;-><init>(II)V
+
+    invoke-virtual {v14, v1, v2}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 34
     new-instance v1, Landroid/widget/LinearLayout;
 
-    invoke-direct {v1, v9}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
+    invoke-direct {v1, v10}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
 
     const/4 v2, 0x1
 
     invoke-virtual {v1, v2}, Landroid/widget/LinearLayout;->setOrientation(I)V
 
-    .line 34
+    .line 35
     new-instance v2, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda3;
 
-    invoke-direct {v2, v8}, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda3;-><init>(Lorg/rabochaya/projects/GeometryMapCanvas;)V
+    invoke-direct {v2, v9}, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda3;-><init>(Lorg/rabochaya/projects/GeometryMapCanvas;)V
 
     const-string v3, "+"
 
     const-string v4, "\u0423\u0432\u0435\u043b\u0438\u0447\u0438\u0442\u044c \u043a\u0430\u0440\u0442\u0443 \u0440\u0435\u0434\u0430\u043a\u0442\u043e\u0440\u0430"
 
-    invoke-direct {v8, v1, v3, v4, v2}, Lorg/rabochaya/projects/GeometryMapCanvas;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
+    invoke-direct {v9, v1, v3, v4, v2}, Lorg/rabochaya/projects/GeometryMapCanvas;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
 
     new-instance v2, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda4;
 
-    invoke-direct {v2, v8}, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda4;-><init>(Lorg/rabochaya/projects/GeometryMapCanvas;)V
+    invoke-direct {v2, v9}, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda4;-><init>(Lorg/rabochaya/projects/GeometryMapCanvas;)V
 
     const-string v3, "\u2212"
 
     const-string v4, "\u0423\u043c\u0435\u043d\u044c\u0448\u0438\u0442\u044c \u043a\u0430\u0440\u0442\u0443 \u0440\u0435\u0434\u0430\u043a\u0442\u043e\u0440\u0430"
 
-    invoke-direct {v8, v1, v3, v4, v2}, Lorg/rabochaya/projects/GeometryMapCanvas;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
+    invoke-direct {v9, v1, v3, v4, v2}, Lorg/rabochaya/projects/GeometryMapCanvas;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
 
-    .line 35
+    .line 36
     new-instance v2, Landroid/widget/FrameLayout$LayoutParams;
 
     const/high16 v3, 0x42400000    # 48.0f
 
-    invoke-direct {v8, v3}, Lorg/rabochaya/projects/GeometryMapCanvas;->dp(F)I
+    invoke-direct {v9, v3}, Lorg/rabochaya/projects/GeometryMapCanvas;->dp(F)I
 
     move-result v4
 
     const/high16 v5, 0x42c00000    # 96.0f
 
-    invoke-direct {v8, v5}, Lorg/rabochaya/projects/GeometryMapCanvas;->dp(F)I
+    invoke-direct {v9, v5}, Lorg/rabochaya/projects/GeometryMapCanvas;->dp(F)I
 
     move-result v5
 
@@ -382,163 +427,192 @@
 
     invoke-direct {v2, v4, v5, v6}, Landroid/widget/FrameLayout$LayoutParams;-><init>(III)V
 
-    invoke-virtual {v0, v1, v2}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v14, v1, v2}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 36
+    .line 37
     new-instance v1, Landroid/widget/TextView;
 
-    invoke-direct {v1, v9}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
+    invoke-direct {v1, v10}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
 
-    if-eqz v14, :cond_5
+    if-eqz v0, :cond_5
 
-    iget-object v2, v14, Lorg/rabochaya/projects/TileSource;->attribution:Ljava/lang/String;
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "\u0421\u043b\u043e\u0438 \u043a\u0430\u0440\u0442\u044b \u00b7 "
+
+    invoke-virtual {v2, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v0}, Lorg/rabochaya/projects/MapComposition;->attributions()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
 
     goto :goto_4
 
     :cond_5
-    invoke-virtual {v15}, Ljava/io/File;->isFile()Z
-
-    move-result v2
+    move-object/from16 v2, v18
 
     if-eqz v2, :cond_6
 
-    const-string v2, "\u041b\u043e\u043a\u0430\u043b\u044c\u043d\u0430\u044f \u043a\u0430\u0440\u0442\u0430 MBTiles"
+    iget-object v0, v2, Lorg/rabochaya/projects/TileSource;->attribution:Ljava/lang/String;
 
     goto :goto_4
 
     :cond_6
-    const-string v2, "\u041e\u0431\u0437\u043e\u0440\u043d\u0430\u044f \u043a\u0430\u0440\u0442\u0430"
+    invoke-virtual/range {v17 .. v17}, Ljava/io/File;->isFile()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_7
+
+    const-string v0, "\u041b\u043e\u043a\u0430\u043b\u044c\u043d\u0430\u044f \u043a\u0430\u0440\u0442\u0430 MBTiles"
+
+    goto :goto_4
+
+    :cond_7
+    const-string v0, "\u041e\u0431\u0437\u043e\u0440\u043d\u0430\u044f \u043a\u0430\u0440\u0442\u0430"
 
     :goto_4
-    invoke-virtual {v1, v2}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+    invoke-virtual {v1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
     invoke-static/range {p1 .. p1}, Lorg/rabochaya/projects/WorkspaceUi;->font(Landroid/app/Activity;)Landroid/graphics/Typeface;
 
-    move-result-object v2
+    move-result-object v0
 
-    invoke-virtual {v1, v2}, Landroid/widget/TextView;->setTypeface(Landroid/graphics/Typeface;)V
+    invoke-virtual {v1, v0}, Landroid/widget/TextView;->setTypeface(Landroid/graphics/Typeface;)V
 
-    invoke-virtual {v1, v13}, Landroid/widget/TextView;->setTextColor(I)V
+    invoke-virtual {v1, v15}, Landroid/widget/TextView;->setTextColor(I)V
 
-    const/high16 v2, 0x41200000    # 10.0f
+    const/high16 v0, 0x41200000    # 10.0f
 
-    invoke-virtual {v1, v2}, Landroid/widget/TextView;->setTextSize(F)V
+    invoke-virtual {v1, v0}, Landroid/widget/TextView;->setTextSize(F)V
 
-    const/4 v2, 0x3
+    const/4 v0, 0x3
 
-    invoke-virtual {v1, v2}, Landroid/widget/TextView;->setMaxLines(I)V
+    invoke-virtual {v1, v0}, Landroid/widget/TextView;->setMaxLines(I)V
 
-    const v2, -0x33dcd2e3    # -4.2775668E7f
+    const v0, -0x33dcd2e3    # -4.2775668E7f
 
-    invoke-virtual {v1, v2}, Landroid/widget/TextView;->setBackgroundColor(I)V
+    invoke-virtual {v1, v0}, Landroid/widget/TextView;->setBackgroundColor(I)V
 
-    const/high16 v2, 0x40800000    # 4.0f
+    const/high16 v0, 0x40800000    # 4.0f
 
-    invoke-direct {v8, v2}, Lorg/rabochaya/projects/GeometryMapCanvas;->dp(F)I
-
-    move-result v4
-
-    const/high16 v5, 0x40000000    # 2.0f
-
-    invoke-direct {v8, v5}, Lorg/rabochaya/projects/GeometryMapCanvas;->dp(F)I
-
-    move-result v6
-
-    invoke-direct {v8, v2}, Lorg/rabochaya/projects/GeometryMapCanvas;->dp(F)I
+    invoke-direct {v9, v0}, Lorg/rabochaya/projects/GeometryMapCanvas;->dp(F)I
 
     move-result v2
 
-    invoke-direct {v8, v5}, Lorg/rabochaya/projects/GeometryMapCanvas;->dp(F)I
+    const/high16 v4, 0x40000000    # 2.0f
+
+    invoke-direct {v9, v4}, Lorg/rabochaya/projects/GeometryMapCanvas;->dp(F)I
 
     move-result v5
 
-    invoke-virtual {v1, v4, v6, v2, v5}, Landroid/widget/TextView;->setPadding(IIII)V
+    invoke-direct {v9, v0}, Lorg/rabochaya/projects/GeometryMapCanvas;->dp(F)I
 
-    .line 37
-    new-instance v2, Landroid/widget/FrameLayout$LayoutParams;
+    move-result v0
 
-    const/16 v4, 0x53
+    invoke-direct {v9, v4}, Lorg/rabochaya/projects/GeometryMapCanvas;->dp(F)I
 
-    const/4 v5, -0x2
+    move-result v4
 
-    invoke-direct {v2, v5, v5, v4}, Landroid/widget/FrameLayout$LayoutParams;-><init>(III)V
-
-    invoke-virtual {v0, v1, v2}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v1, v2, v5, v0, v4}, Landroid/widget/TextView;->setPadding(IIII)V
 
     .line 38
+    new-instance v0, Landroid/widget/FrameLayout$LayoutParams;
+
+    const/16 v2, 0x53
+
+    const/4 v4, -0x2
+
+    invoke-direct {v0, v4, v4, v2}, Landroid/widget/FrameLayout$LayoutParams;-><init>(III)V
+
+    invoke-virtual {v14, v1, v0}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 39
     new-instance v0, Landroid/widget/LinearLayout;
 
-    invoke-direct {v0, v9}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
+    invoke-direct {v0, v10}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
 
     new-instance v1, Landroid/widget/LinearLayout$LayoutParams;
 
-    invoke-direct {v8, v3}, Lorg/rabochaya/projects/GeometryMapCanvas;->dp(F)I
+    invoke-direct {v9, v3}, Lorg/rabochaya/projects/GeometryMapCanvas;->dp(F)I
 
     move-result v2
 
-    invoke-direct {v1, v13, v2}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+    invoke-direct {v1, v15, v2}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
 
-    invoke-virtual {v8, v0, v1}, Lorg/rabochaya/projects/GeometryMapCanvas;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v9, v0, v1}, Lorg/rabochaya/projects/GeometryMapCanvas;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 39
+    .line 40
     new-instance v1, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda5;
 
-    invoke-direct {v1, v8, v11}, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda5;-><init>(Lorg/rabochaya/projects/GeometryMapCanvas;Lorg/rabochaya/projects/GeometryMapCanvas$Listener;)V
+    invoke-direct {v1, v9, v12}, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda5;-><init>(Lorg/rabochaya/projects/GeometryMapCanvas;Lorg/rabochaya/projects/GeometryMapCanvas$Listener;)V
 
     const-string v2, "\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c"
 
     const-string v3, "\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0432\u0435\u0440\u0448\u0438\u043d\u0443 \u043d\u0430 \u043a\u0430\u0440\u0442\u0435"
 
-    invoke-direct {v8, v0, v2, v3, v1}, Lorg/rabochaya/projects/GeometryMapCanvas;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
+    invoke-direct {v9, v0, v2, v3, v1}, Lorg/rabochaya/projects/GeometryMapCanvas;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
 
     move-result-object v1
 
-    iput-object v1, v8, Lorg/rabochaya/projects/GeometryMapCanvas;->add:Landroid/widget/Button;
+    iput-object v1, v9, Lorg/rabochaya/projects/GeometryMapCanvas;->add:Landroid/widget/Button;
 
-    .line 40
+    .line 41
     new-instance v1, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda6;
 
-    invoke-direct {v1, v10, v11}, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda6;-><init>(Lorg/rabochaya/projects/GeometryMapState;Lorg/rabochaya/projects/GeometryMapCanvas$Listener;)V
+    invoke-direct {v1, v11, v12}, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda6;-><init>(Lorg/rabochaya/projects/GeometryMapState;Lorg/rabochaya/projects/GeometryMapCanvas$Listener;)V
 
     const-string v2, "\u0423\u0434\u0430\u043b\u0438\u0442\u044c"
 
     const-string v3, "\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0432\u044b\u0431\u0440\u0430\u043d\u043d\u0443\u044e \u0432\u0435\u0440\u0448\u0438\u043d\u0443"
 
-    invoke-direct {v8, v0, v2, v3, v1}, Lorg/rabochaya/projects/GeometryMapCanvas;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
+    invoke-direct {v9, v0, v2, v3, v1}, Lorg/rabochaya/projects/GeometryMapCanvas;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
 
     move-result-object v1
 
-    iput-object v1, v8, Lorg/rabochaya/projects/GeometryMapCanvas;->remove:Landroid/widget/Button;
+    iput-object v1, v9, Lorg/rabochaya/projects/GeometryMapCanvas;->remove:Landroid/widget/Button;
 
-    .line 44
+    .line 45
     new-instance v1, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda7;
 
-    invoke-direct {v1, v8, v10}, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda7;-><init>(Lorg/rabochaya/projects/GeometryMapCanvas;Lorg/rabochaya/projects/GeometryMapState;)V
+    invoke-direct {v1, v9, v11}, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda7;-><init>(Lorg/rabochaya/projects/GeometryMapCanvas;Lorg/rabochaya/projects/GeometryMapState;)V
 
     const-string v2, "\u0428\u0430\u0433 \u043d\u0430\u0437\u0430\u0434"
 
     const-string v3, "\u041e\u0442\u043c\u0435\u043d\u0438\u0442\u044c \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u0441 \u0432\u0435\u0440\u0448\u0438\u043d\u043e\u0439"
 
-    invoke-direct {v8, v0, v2, v3, v1}, Lorg/rabochaya/projects/GeometryMapCanvas;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
+    invoke-direct {v9, v0, v2, v3, v1}, Lorg/rabochaya/projects/GeometryMapCanvas;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
 
     move-result-object v1
 
-    iput-object v1, v8, Lorg/rabochaya/projects/GeometryMapCanvas;->undo:Landroid/widget/Button;
+    iput-object v1, v9, Lorg/rabochaya/projects/GeometryMapCanvas;->undo:Landroid/widget/Button;
 
-    .line 45
+    .line 46
     new-instance v1, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda8;
 
-    invoke-direct {v1, v8}, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda8;-><init>(Lorg/rabochaya/projects/GeometryMapCanvas;)V
+    invoke-direct {v1, v9}, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda8;-><init>(Lorg/rabochaya/projects/GeometryMapCanvas;)V
 
     const-string v2, "\u041e\u0445\u0432\u0430\u0442"
 
     const-string v3, "\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u0432\u0435\u0441\u044c \u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u0443\u0435\u043c\u044b\u0439 \u043a\u043e\u043d\u0442\u0443\u0440"
 
-    invoke-direct {v8, v0, v2, v3, v1}, Lorg/rabochaya/projects/GeometryMapCanvas;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
+    invoke-direct {v9, v0, v2, v3, v1}, Lorg/rabochaya/projects/GeometryMapCanvas;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
 
     invoke-direct/range {p0 .. p0}, Lorg/rabochaya/projects/GeometryMapCanvas;->update()V
 
-    .line 46
+    .line 47
     return-void
 .end method
 
@@ -704,7 +778,7 @@
 .method private act(Ljava/lang/Runnable;)V
     .locals 1
 
-    .line 49
+    .line 50
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->closed:Z
 
     if-nez v0, :cond_1
@@ -756,7 +830,7 @@
 .method private button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
     .locals 3
 
-    .line 48
+    .line 49
     new-instance v0, Landroid/widget/Button;
 
     iget-object v1, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->activity:Landroid/app/Activity;
@@ -820,7 +894,7 @@
 .method private coordinate(FF)[D
     .locals 17
 
-    .line 61
+    .line 62
     move-object/from16 v0, p0
 
     iget-object v1, v0, Lorg/rabochaya/projects/GeometryMapCanvas;->map:Lorg/rabochaya/projects/LocalMapView;
@@ -915,7 +989,7 @@
 .method private dp(F)I
     .locals 1
 
-    .line 47
+    .line 48
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->activity:Landroid/app/Activity;
 
     invoke-static {v0, p1}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
@@ -928,7 +1002,7 @@
 .method private fit()V
     .locals 11
 
-    .line 63
+    .line 64
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
@@ -988,7 +1062,7 @@
 
     goto :goto_1
 
-    .line 64
+    .line 65
     :cond_1
     invoke-interface {v0}, Ljava/util/List;->size()I
 
@@ -1064,14 +1138,14 @@
     :goto_2
     invoke-virtual/range {v4 .. v10}, Lorg/rabochaya/projects/LocalMapView;->restore(DDD)V
 
-    .line 65
+    .line 66
     return-void
 .end method
 
 .method static synthetic lambda$new$3(Lorg/rabochaya/projects/GeometryMapState;Lorg/rabochaya/projects/GeometryMapCanvas$Listener;)V
     .locals 1
 
-    .line 41
+    .line 42
     invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryMapState;->selected()I
 
     move-result v0
@@ -1084,7 +1158,7 @@
 
     return-void
 
-    .line 42
+    .line 43
     :cond_0
     invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryMapState;->selected()I
 
@@ -1092,14 +1166,14 @@
 
     invoke-interface {p1, p0}, Lorg/rabochaya/projects/GeometryMapCanvas$Listener;->deleteRequested(I)V
 
-    .line 43
+    .line 44
     return-void
 .end method
 
 .method static synthetic lambda$new$4(Lorg/rabochaya/projects/GeometryMapState;)V
     .locals 0
 
-    .line 44
+    .line 45
     invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryMapState;->undo()V
 
     return-void
@@ -1108,7 +1182,7 @@
 .method private screen([D)[F
     .locals 16
 
-    .line 60
+    .line 61
     move-object/from16 v0, p0
 
     iget-object v1, v0, Lorg/rabochaya/projects/GeometryMapCanvas;->map:Lorg/rabochaya/projects/LocalMapView;
@@ -1201,7 +1275,7 @@
 .method private update()V
     .locals 5
 
-    .line 50
+    .line 51
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->add:Landroid/widget/Button;
 
     iget-boolean v1, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->editable:Z
@@ -1318,7 +1392,7 @@
 .method public cancelGesture()V
     .locals 1
 
-    .line 54
+    .line 55
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->overlay:Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;
 
     invoke-virtual {v0}, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->cancelGesture()V
@@ -1329,7 +1403,7 @@
 .method public center(DDD)V
     .locals 0
 
-    .line 66
+    .line 67
     iget-object p1, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->overlay:Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;
 
     if-eqz p1, :cond_0
@@ -1345,7 +1419,7 @@
 .method public close()V
     .locals 1
 
-    .line 56
+    .line 57
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->closed:Z
 
     if-eqz v0, :cond_0
@@ -1371,7 +1445,7 @@
 .method public deleteConfirmed(I)Z
     .locals 1
 
-    .line 52
+    .line 53
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->closed:Z
 
     if-nez v0, :cond_1
@@ -1411,14 +1485,14 @@
 .method public draftChanged(I)V
     .locals 0
 
-    .line 70
+    .line 71
     return-void
 .end method
 
 .method public error(Ljava/lang/String;)V
     .locals 1
 
-    .line 68
+    .line 69
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->closed:Z
 
     if-nez v0, :cond_0
@@ -1434,7 +1508,7 @@
 .method synthetic lambda$button$7$org-rabochaya-projects-GeometryMapCanvas(Ljava/lang/Runnable;Landroid/view/View;)V
     .locals 0
 
-    .line 48
+    .line 49
     iget-boolean p2, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->editable:Z
 
     if-eqz p2, :cond_0
@@ -1452,7 +1526,7 @@
 .method synthetic lambda$deleteConfirmed$8$org-rabochaya-projects-GeometryMapCanvas()V
     .locals 1
 
-    .line 52
+    .line 53
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->state:Lorg/rabochaya/projects/GeometryMapState;
 
     invoke-virtual {v0}, Lorg/rabochaya/projects/GeometryMapState;->delete()V
@@ -1463,7 +1537,7 @@
 .method synthetic lambda$new$0$org-rabochaya-projects-GeometryMapCanvas()V
     .locals 3
 
-    .line 34
+    .line 35
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->map:Lorg/rabochaya/projects/LocalMapView;
 
     const-wide/high16 v1, 0x3ff0000000000000L    # 1.0
@@ -1476,7 +1550,7 @@
 .method synthetic lambda$new$1$org-rabochaya-projects-GeometryMapCanvas()V
     .locals 3
 
-    .line 34
+    .line 35
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->map:Lorg/rabochaya/projects/LocalMapView;
 
     const-wide/high16 v1, -0x4010000000000000L    # -1.0
@@ -1489,7 +1563,7 @@
 .method synthetic lambda$new$2$org-rabochaya-projects-GeometryMapCanvas(Lorg/rabochaya/projects/GeometryMapCanvas$Listener;)V
     .locals 1
 
-    .line 39
+    .line 40
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->overlay:Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;
 
     invoke-virtual {v0}, Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;->cancelGesture()V
@@ -1522,7 +1596,7 @@
 .method synthetic lambda$new$5$org-rabochaya-projects-GeometryMapCanvas(Lorg/rabochaya/projects/GeometryMapState;)V
     .locals 1
 
-    .line 44
+    .line 45
     new-instance v0, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda0;
 
     invoke-direct {v0, p1}, Lorg/rabochaya/projects/GeometryMapCanvas$$ExternalSyntheticLambda0;-><init>(Lorg/rabochaya/projects/GeometryMapState;)V
@@ -1535,7 +1609,7 @@
 .method synthetic lambda$new$6$org-rabochaya-projects-GeometryMapCanvas()V
     .locals 0
 
-    .line 45
+    .line 46
     invoke-direct {p0}, Lorg/rabochaya/projects/GeometryMapCanvas;->fit()V
 
     return-void
@@ -1544,21 +1618,21 @@
 .method public longPressed(DD)V
     .locals 0
 
-    .line 71
+    .line 72
     return-void
 .end method
 
 .method public picked(Lorg/rabochaya/projects/KmlProject$Feature;)V
     .locals 0
 
-    .line 67
+    .line 68
     return-void
 .end method
 
 .method public screenVertex(I)[F
     .locals 1
 
-    .line 58
+    .line 59
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->state:Lorg/rabochaya/projects/GeometryMapState;
 
     invoke-virtual {v0, p1}, Lorg/rabochaya/projects/GeometryMapState;->point(I)[D
@@ -1575,7 +1649,7 @@
 .method public setEditingEnabled(Z)V
     .locals 0
 
-    .line 53
+    .line 54
     iput-boolean p1, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->editable:Z
 
     iget-object p1, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->overlay:Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;
@@ -1590,7 +1664,7 @@
 .method public settled(DDD)V
     .locals 0
 
-    .line 69
+    .line 70
     iget-object p1, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->overlay:Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;
 
     if-eqz p1, :cond_0
@@ -1606,7 +1680,7 @@
 .method public suspend(Z)V
     .locals 1
 
-    .line 55
+    .line 56
     if-eqz p1, :cond_0
 
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->overlay:Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;
@@ -1624,7 +1698,7 @@
 .method public touchSurface()Landroid/view/View;
     .locals 1
 
-    .line 59
+    .line 60
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->overlay:Lorg/rabochaya/projects/GeometryMapCanvas$Overlay;
 
     return-object v0
@@ -1633,7 +1707,7 @@
 .method public viewport()[D
     .locals 1
 
-    .line 57
+    .line 58
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapCanvas;->map:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-virtual {v0}, Lorg/rabochaya/projects/LocalMapView;->viewport()[D

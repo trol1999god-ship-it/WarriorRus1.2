@@ -11,8 +11,8 @@ p.add_argument('--output',type=Path,required=True)
 p.add_argument('--install-timeout',type=int,default=180,help='Package installation timeout for software emulators')
 p.add_argument('--keep-going',action='store_true',help='Collect independent failures; skip reopen scenarios whose fixture failed; still exit nonzero')
 p.add_argument('--no-streaming',action='store_true',help='Push APKs before installation when streamed install is unreliable')
-modes=['binary','independence','offlineformats','cachewrites','cacheexport','launcher','coordinates','catalogscreen','geometryedit','geometrymap','geometrymapreopen','objectmanager','objectmanagerreopen','clipboard','clipboardreopen','managerfilters','managerfiltersreopen','managervisibility','managervisibilityreopen','managerdates','managerdatesreopen','managerdescription','managerdescriptionreopen','managercontext','managercontextreopen','managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation','vertexscroll','geometryvertexconfirm','geometryholeconfirm','vertexinsertion','geometrynewhole','geometrynewholeguards','mapvertexconfirm','mapholeconfirm','mapundorotation','mappartconfirm','geometrycloseconfirm']
-p.add_argument('--visual-log-modes',nargs='*',choices=modes,default=['geometrycloseconfirm'],help='Full console PNG previews for these modes; every visual mode still validates and retains all PNG artifacts')
+modes=['binary','independence','offlineformats','cachewrites','cacheexport','launcher','coordinates','catalogscreen','geometryedit','geometrymap','geometrymapreopen','objectmanager','objectmanagerreopen','clipboard','clipboardreopen','managerfilters','managerfiltersreopen','managervisibility','managervisibilityreopen','managerdates','managerdatesreopen','managerdescription','managerdescriptionreopen','managercontext','managercontextreopen','managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation','vertexscroll','geometryvertexconfirm','geometryholeconfirm','vertexinsertion','geometrynewhole','geometrynewholeguards','mapvertexconfirm','mapholeconfirm','mapundorotation','mappartconfirm','geometrycloseconfirm','maplayers','maplayersreopen']
+p.add_argument('--visual-log-modes',nargs='*',choices=modes,default=['maplayersreopen'],help='Full console PNG previews for these modes; every visual mode still validates and retains all PNG artifacts')
 p.add_argument('--modes',nargs='+',choices=modes,default=modes,help='Run the selected scenarios in this order; default: full suite')
 a=p.parse_args();out=a.output.resolve();out.mkdir(parents=True,exist_ok=True)
 for i,mode in enumerate(a.modes):
@@ -24,6 +24,7 @@ for i,mode in enumerate(a.modes):
  if mode=='clipboardreopen' and (i==0 or a.modes[i-1]!='clipboard'):p.error('clipboardreopen must immediately follow clipboard')
  if mode=='objectmanagerreopen' and (i==0 or a.modes[i-1]!='objectmanager'):p.error('objectmanagerreopen must immediately follow objectmanager')
  if mode=='geometrymapreopen' and (i==0 or a.modes[i-1]!='geometrymap'):p.error('geometrymapreopen must immediately follow geometrymap')
+if 'maplayersreopen' in a.modes and (a.modes.index('maplayersreopen')==0 or a.modes[a.modes.index('maplayersreopen')-1]!='maplayers'):p.error('maplayersreopen must immediately follow maplayers')
 if a.install_timeout<=0:p.error('--install-timeout must be positive')
 if not a.serial.startswith('emulator-'):raise SystemExit('Only a disposable emulator serial is accepted')
 def adb(*args,timeout=60,required=True):
@@ -51,8 +52,8 @@ for mode in a.modes:
  try:
   # Fixtures and settings never come from a personal installation.
   adb('shell','am','force-stop','org.rabochaya.karta')
-  if mode not in ['geometrymapreopen','objectmanagerreopen','clipboardreopen','managerfiltersreopen','managervisibilityreopen','managerdatesreopen','managerdescriptionreopen','managercontextreopen']:adb('shell','pm','clear','org.rabochaya.karta')
-  elif not records or records[-1]['mode']!=({'managercontextreopen':'managercontext','managerdescriptionreopen':'managerdescription','managerdatesreopen':'managerdates','geometrymapreopen':'geometrymap','objectmanagerreopen':'objectmanager','clipboardreopen':'clipboard','managerfiltersreopen':'managerfilters','managervisibilityreopen':'managervisibility'}[mode]) or not records[-1]['passed']:raise RuntimeError('Missing successful map-edit handoff')
+  if mode not in ['geometrymapreopen','objectmanagerreopen','clipboardreopen','managerfiltersreopen','managervisibilityreopen','managerdatesreopen','managerdescriptionreopen','managercontextreopen','maplayersreopen']:adb('shell','pm','clear','org.rabochaya.karta')
+  elif not records or records[-1]['mode']!=({'maplayersreopen':'maplayers','managercontextreopen':'managercontext','managerdescriptionreopen':'managerdescription','managerdatesreopen':'managerdates','geometrymapreopen':'geometrymap','objectmanagerreopen':'objectmanager','clipboardreopen':'clipboard','managerfiltersreopen':'managerfilters','managervisibilityreopen':'managervisibility'}[mode]) or not records[-1]['passed']:raise RuntimeError('Missing successful map-edit handoff')
   adb('logcat','-c')
   text=adb('shell','am','instrument','-w','-r','-e','mode',mode,'-e','sha',sha,'-e','version','27','org.rabochaya.maptests/org.rabochaya.maptests.MapAndroidChecks',timeout=480)
   passed=('PASS '+mode+':' in text and 'INSTRUMENTATION_CODE: -1' in text and 'FAIL\n' not in text and 'INSTRUMENTATION_FAILED' not in text)
@@ -72,7 +73,7 @@ for mode in a.modes:
    layout=adb('logcat','-d','-s','RK_CHOOSER:D','*:S',required=False)
    (out/'managerchooser-layout.txt').write_text(layout)
    print('CHOOSER_LAYOUT_DIAGNOSTICS\n'+'\n'.join(layout.splitlines()[-256:])[-32768:],flush=True)
-  if mode in ('managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation','vertexscroll','geometryvertexconfirm','geometryholeconfirm','vertexinsertion','geometrynewhole','geometrynewholeguards','mapvertexconfirm','mapholeconfirm','mapundorotation','mappartconfirm','geometrycloseconfirm'):
+  if mode in ('managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation','vertexscroll','geometryvertexconfirm','geometryholeconfirm','vertexinsertion','geometrynewhole','geometrynewholeguards','mapvertexconfirm','mapholeconfirm','mapundorotation','mappartconfirm','geometrycloseconfirm','maplayers','maplayersreopen'):
    if mode in a.visual_log_modes or not passed:print(text,flush=True)
    else:print("\n".join(line for line in text.splitlines() if "INSTRUMENTATION_RESULT:" in line),flush=True)
    try:
