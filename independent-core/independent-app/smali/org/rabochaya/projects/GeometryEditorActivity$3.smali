@@ -25,7 +25,7 @@
 .method constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;)V
     .locals 0
 
-    .line 187
+    .line 206
     iput-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,10 +38,10 @@
 .method public changed()V
     .locals 6
 
-    .line 188
+    .line 207
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1100(Lorg/rabochaya/projects/GeometryEditorActivity;)Z
+    invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$800(Lorg/rabochaya/projects/GeometryEditorActivity;)Z
 
     move-result v0
 
@@ -49,7 +49,7 @@
 
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1200(Lorg/rabochaya/projects/GeometryEditorActivity;)Z
+    invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$900(Lorg/rabochaya/projects/GeometryEditorActivity;)Z
 
     move-result v0
 
@@ -57,7 +57,7 @@
 
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1300(Lorg/rabochaya/projects/GeometryEditorActivity;)Lorg/rabochaya/projects/GeometryMapCanvas;
+    invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1000(Lorg/rabochaya/projects/GeometryEditorActivity;)Lorg/rabochaya/projects/GeometryMapCanvas;
 
     move-result-object v0
 
@@ -68,17 +68,17 @@
     :cond_0
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1400(Lorg/rabochaya/projects/GeometryEditorActivity;)V
+    invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1100(Lorg/rabochaya/projects/GeometryEditorActivity;)V
 
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1600(Lorg/rabochaya/projects/GeometryEditorActivity;)Landroid/widget/EditText;
+    invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1300(Lorg/rabochaya/projects/GeometryEditorActivity;)Landroid/widget/EditText;
 
     move-result-object v0
 
     iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-static {v1}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1500(Lorg/rabochaya/projects/GeometryEditorActivity;)Lorg/rabochaya/projects/GeometryMapState;
+    invoke-static {v1}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1200(Lorg/rabochaya/projects/GeometryEditorActivity;)Lorg/rabochaya/projects/GeometryMapState;
 
     move-result-object v1
 
@@ -90,7 +90,7 @@
 
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1600(Lorg/rabochaya/projects/GeometryEditorActivity;)Landroid/widget/EditText;
+    invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1300(Lorg/rabochaya/projects/GeometryEditorActivity;)Landroid/widget/EditText;
 
     move-result-object v0
 
@@ -100,7 +100,7 @@
 
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1700(Lorg/rabochaya/projects/GeometryEditorActivity;)Z
+    invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1400(Lorg/rabochaya/projects/GeometryEditorActivity;)Z
 
     move-result v0
 
@@ -114,7 +114,7 @@
 
     iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-static {v2}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1500(Lorg/rabochaya/projects/GeometryEditorActivity;)Lorg/rabochaya/projects/GeometryMapState;
+    invoke-static {v2}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1200(Lorg/rabochaya/projects/GeometryEditorActivity;)Lorg/rabochaya/projects/GeometryMapState;
 
     move-result-object v2
 
@@ -136,7 +136,7 @@
 
     iget-object v3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-static {v3}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1500(Lorg/rabochaya/projects/GeometryEditorActivity;)Lorg/rabochaya/projects/GeometryMapState;
+    invoke-static {v3}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1200(Lorg/rabochaya/projects/GeometryEditorActivity;)Lorg/rabochaya/projects/GeometryMapState;
 
     move-result-object v3
 
@@ -158,13 +158,13 @@
 
     iget-object v3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-static {v3}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1500(Lorg/rabochaya/projects/GeometryEditorActivity;)Lorg/rabochaya/projects/GeometryMapState;
+    invoke-static {v3}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1200(Lorg/rabochaya/projects/GeometryEditorActivity;)Lorg/rabochaya/projects/GeometryMapState;
 
     move-result-object v3
 
     iget-object v4, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-static {v4}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1500(Lorg/rabochaya/projects/GeometryEditorActivity;)Lorg/rabochaya/projects/GeometryMapState;
+    invoke-static {v4}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1200(Lorg/rabochaya/projects/GeometryEditorActivity;)Lorg/rabochaya/projects/GeometryMapState;
 
     move-result-object v4
 
@@ -206,7 +206,7 @@
 
     iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-static {v2}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1500(Lorg/rabochaya/projects/GeometryEditorActivity;)Lorg/rabochaya/projects/GeometryMapState;
+    invoke-static {v2}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1200(Lorg/rabochaya/projects/GeometryEditorActivity;)Lorg/rabochaya/projects/GeometryMapState;
 
     move-result-object v2
 
@@ -232,7 +232,7 @@
 
     move-result-object v1
 
-    invoke-static {v0, v1}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1800(Lorg/rabochaya/projects/GeometryEditorActivity;Ljava/lang/String;)V
+    invoke-static {v0, v1}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1500(Lorg/rabochaya/projects/GeometryEditorActivity;Ljava/lang/String;)V
 
     :cond_3
     :goto_2
@@ -242,10 +242,10 @@
 .method public deleteRequested(I)V
     .locals 1
 
-    .line 190
+    .line 209
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-static {v0, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1900(Lorg/rabochaya/projects/GeometryEditorActivity;I)V
+    invoke-static {v0, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1600(Lorg/rabochaya/projects/GeometryEditorActivity;I)V
 
     return-void
 .end method
@@ -253,10 +253,10 @@
 .method public message(Ljava/lang/String;)V
     .locals 1
 
-    .line 189
+    .line 208
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1100(Lorg/rabochaya/projects/GeometryEditorActivity;)Z
+    invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$800(Lorg/rabochaya/projects/GeometryEditorActivity;)Z
 
     move-result v0
 
@@ -264,7 +264,7 @@
 
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-static {v0, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1800(Lorg/rabochaya/projects/GeometryEditorActivity;Ljava/lang/String;)V
+    invoke-static {v0, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1500(Lorg/rabochaya/projects/GeometryEditorActivity;Ljava/lang/String;)V
 
     :cond_0
     return-void

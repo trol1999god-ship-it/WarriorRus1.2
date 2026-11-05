@@ -36,7 +36,7 @@
 
     iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda28;->f$1:Landroid/app/AlertDialog;
 
-    invoke-virtual {v0, v1, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$openGeometryConfirmation$5$org-rabochaya-projects-GeometryEditorActivity(Landroid/app/AlertDialog;Landroid/content/DialogInterface;)V
+    invoke-virtual {v0, v1, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$openPartChoice$5$org-rabochaya-projects-GeometryEditorActivity(Landroid/app/AlertDialog;Landroid/content/DialogInterface;)V
 
     return-void
 .end method

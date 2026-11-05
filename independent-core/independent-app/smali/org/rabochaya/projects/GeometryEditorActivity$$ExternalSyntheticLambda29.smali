@@ -11,11 +11,11 @@
 
 .field public final synthetic f$1:Landroid/app/AlertDialog;
 
-.field public final synthetic f$2:Lorg/rabochaya/projects/GeometryConfirmationDraft;
+.field public final synthetic f$2:Lorg/rabochaya/projects/GeometryPartChoiceDraft;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;Landroid/app/AlertDialog;Lorg/rabochaya/projects/GeometryConfirmationDraft;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;Landroid/app/AlertDialog;Lorg/rabochaya/projects/GeometryPartChoiceDraft;)V
     .locals 0
 
     .line 0
@@ -25,7 +25,7 @@
 
     iput-object p2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda29;->f$1:Landroid/app/AlertDialog;
 
-    iput-object p3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda29;->f$2:Lorg/rabochaya/projects/GeometryConfirmationDraft;
+    iput-object p3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda29;->f$2:Lorg/rabochaya/projects/GeometryPartChoiceDraft;
 
     return-void
 .end method
@@ -40,9 +40,9 @@
 
     iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda29;->f$1:Landroid/app/AlertDialog;
 
-    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda29;->f$2:Lorg/rabochaya/projects/GeometryConfirmationDraft;
+    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda29;->f$2:Lorg/rabochaya/projects/GeometryPartChoiceDraft;
 
-    invoke-virtual {v0, v1, v2, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$openGeometryConfirmation$7$org-rabochaya-projects-GeometryEditorActivity(Landroid/app/AlertDialog;Lorg/rabochaya/projects/GeometryConfirmationDraft;Landroid/content/DialogInterface;)V
+    invoke-virtual {v0, v1, v2, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$openPartChoice$7$org-rabochaya-projects-GeometryEditorActivity(Landroid/app/AlertDialog;Lorg/rabochaya/projects/GeometryPartChoiceDraft;Landroid/content/DialogInterface;)V
 
     return-void
 .end method
