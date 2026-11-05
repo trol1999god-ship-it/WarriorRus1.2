@@ -43,6 +43,12 @@ public final class GeometryMapState {
     public void select(int index){if(index< -1||index>=size())throw new IllegalArgumentException("Вершина не найдена");selected=index;}
     public boolean canUndo(){return !history.isEmpty();}
     public int undoCount(){return history.size();}
+    /** Independent bounded history; immutable snapshot strings may safely be shared. */
+    public GeometryMapState snapshotCopy(){
+        GeometryMapState copy=new GeometryMapState(text,type,incompleteAllowed);
+        copy.selected=selected;copy.history.addAll(history);copy.historyChars=historyChars;
+        return copy;
+    }
     public boolean complete(){try{GeometryCoordinates.parse(text,type);return true;}catch(IllegalArgumentException e){return false;}}
     private List<double[]> copy(){List<double[]> result=new ArrayList<>();for(double[] p:points)result.add(p.clone());return result;}
     private void change(List<double[]> next,int selection){

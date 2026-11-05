@@ -1,5 +1,5 @@
 {
-  "added_classes": 364,
+  "added_classes": 365,
   "generated_files": [
     "AttachmentsActivity$$ExternalSyntheticLambda0.smali",
     "AttachmentsActivity$$ExternalSyntheticLambda1.smali",
@@ -96,6 +96,7 @@
     "GeometryMapCanvas.smali",
     "GeometryMapState$Snapshot.smali",
     "GeometryMapState.smali",
+    "GeometryMapUndoDraft.smali",
     "GeometryVertices.smali",
     "KmlTimeFilter$1.smali",
     "KmlTimeFilter$Entry.smali",
@@ -383,10 +384,11 @@
     "src/org/rabochaya/projects/GeometryConfirmationDraft.java": "91aad0f1f9ec344ae188dc49d6c7ff4fff5f337aeeba1366b6a27fac6efa6896",
     "src/org/rabochaya/projects/GeometryCoordinates.java": "124c19acb32a6a5bc4aeeac567cd7fea71bdbfb6c3433c29ece29d06a7a4378b",
     "src/org/rabochaya/projects/GeometryDraft.java": "5be7b96484f2774dfdcecb486450ecf63dfe0893e54e8d03ec27126a989cdaca",
-    "src/org/rabochaya/projects/GeometryEditorActivity.java": "7bbb801767d77115242dbed740576299b1a62c191ac15f782b1f684e1f84fa81",
+    "src/org/rabochaya/projects/GeometryEditorActivity.java": "a88a09bc72b2e59f9bdbe78161072b94bfa4c88e42d7cb68e19fce45bf48d4e9",
     "src/org/rabochaya/projects/GeometryEdits.java": "4f77cf747b4ac66dc217a9be1e7a5dcd5fa457bab60f96a77d355b61c2b0e66a",
     "src/org/rabochaya/projects/GeometryMapCanvas.java": "159d804bed8b1f5122258fd11c6c981d8e1bb985264e8db32d0f9f082e561962",
-    "src/org/rabochaya/projects/GeometryMapState.java": "4e6d5c6e5ee995837ffb65735de6290f5e84febdec1f4ac2811f5773dfb35339",
+    "src/org/rabochaya/projects/GeometryMapState.java": "9baa5d74e41224b506d24047b53fa0f8fe71bb529bd105d929b0432a5229b379",
+    "src/org/rabochaya/projects/GeometryMapUndoDraft.java": "dc5e4325f945305506a4b6a6d40d54eeefd50d16e85c5589f6d33ad9d6f80902",
     "src/org/rabochaya/projects/GeometryVertices.java": "7ad465223550be97a0a7adc28faff2345f7dddabd27c06281481f496a8f7fe46",
     "src/org/rabochaya/projects/KmlTimeFilter.java": "3c2dfbf8cad62e31d1998c931774d18e8d8a1bcb29c31629d5cf964f81238ddd",
     "src/org/rabochaya/projects/KmlXml.java": "5e4553e48f0f250d2f71b16b521a142c0144acb520c1837378b7e1dbd92d73e0",

@@ -74,6 +74,8 @@
 
 .field private pendingGeometryError:Ljava/lang/String;
 
+.field private pendingMapUndo:Lorg/rabochaya/projects/GeometryMapUndoDraft;
+
 .field private pendingVertex:Lorg/rabochaya/projects/VertexEditDraft;
 
 .field private preferredKey:Ljava/lang/String;
@@ -135,29 +137,29 @@
     .line 14
     invoke-direct {p0}, Landroid/app/Activity;-><init>()V
 
-    .line 17
+    .line 18
     const-string v0, ""
 
     iput-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->geometryConfirmationError:Ljava/lang/String;
 
     iput-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->pendingGeometryError:Ljava/lang/String;
 
-    .line 33
+    .line 34
     const/4 v1, -0x1
 
     iput v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->restoreSelection:I
 
-    .line 38
+    .line 39
     invoke-static {}, Ljava/util/concurrent/Executors;->newSingleThreadExecutor()Ljava/util/concurrent/ExecutorService;
 
     move-result-object v2
 
     iput-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
-    .line 40
+    .line 41
     iput v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->current:I
 
-    .line 41
+    .line 42
     iput-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->base:Ljava/lang/String;
 
     return-void
@@ -361,7 +363,7 @@
 .method private actions()V
     .locals 9
 
-    .line 58
+    .line 59
     new-instance v2, Ljava/util/ArrayList;
 
     invoke-direct {v2}, Ljava/util/ArrayList;-><init>()V
@@ -390,7 +392,7 @@
 
     iget-object v4, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->expected:Ljava/lang/String;
 
-    .line 59
+    .line 60
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->stagedHoleDeletion:Lorg/rabochaya/projects/GeometryConfirmationDraft;
 
     if-eqz v0, :cond_0
@@ -401,7 +403,7 @@
 
     goto :goto_0
 
-    .line 60
+    .line 61
     :cond_0
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->orphan:Z
 
@@ -423,7 +425,7 @@
 
     invoke-interface {v2, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 61
+    .line 62
     :cond_1
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->orphan:Z
 
@@ -441,7 +443,7 @@
 
     invoke-interface {v2, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 62
+    .line 63
     :cond_2
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->orphan:Z
 
@@ -451,7 +453,7 @@
 
     invoke-interface {v2, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 63
+    .line 64
     :cond_3
     :goto_0
     const-string v0, "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432\u0432\u043e\u0434"
@@ -462,7 +464,7 @@
 
     invoke-interface {v2, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 64
+    .line 65
     new-instance v0, Landroid/app/AlertDialog$Builder;
 
     invoke-direct {v0, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
@@ -509,14 +511,14 @@
 
     invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
 
-    .line 65
+    .line 66
     return-void
 .end method
 
 .method private applyVertex(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Landroid/widget/EditText;)Z
     .locals 8
 
-    .line 90
+    .line 91
     const/4 v7, 0x0
 
     move-object v0, p0
@@ -543,7 +545,7 @@
 .method private applyVertex(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Landroid/widget/EditText;Landroid/widget/TextView;)Z
     .locals 2
 
-    .line 92
+    .line 93
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->busy:Z
 
     const/4 v1, 0x0
@@ -572,7 +574,7 @@
 
     goto :goto_1
 
-    .line 93
+    .line 94
     :cond_0
     :try_start_0
     invoke-static {p1, p2, p3, p4, p5}, Lorg/rabochaya/projects/GeometryVertices;->edit(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)Ljava/lang/String;
@@ -603,7 +605,7 @@
 
     return p1
 
-    .line 94
+    .line 95
     :catch_0
     move-exception p1
 
@@ -642,7 +644,7 @@
     :goto_0
     return v1
 
-    .line 92
+    .line 93
     :cond_3
     :goto_1
     iget-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->status:Landroid/widget/TextView;
@@ -657,7 +659,7 @@
 .method private boundedConfirmationError(Ljava/lang/String;)Ljava/lang/String;
     .locals 2
 
-    .line 96
+    .line 97
     if-nez p1, :cond_0
 
     const-string p1, ""
@@ -688,7 +690,7 @@
 .method private build(Lorg/rabochaya/projects/GeometryDraft;Ljava/lang/String;)V
     .locals 8
 
-    .line 150
+    .line 151
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->root:Landroid/widget/LinearLayout;
 
     invoke-virtual {v0}, Landroid/widget/LinearLayout;->removeAllViews()V
@@ -811,7 +813,7 @@
 
     invoke-virtual {v0, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    .line 151
+    .line 152
     const-string v0, "WGS 84: \u0448\u0438\u0440\u043e\u0442\u0430 \u0434\u043e\u043b\u0433\u043e\u0442\u0430 [\u0432\u044b\u0441\u043e\u0442\u0430], \u043e\u0434\u043d\u0430 \u0432\u0435\u0440\u0448\u0438\u043d\u0430 \u0432 \u0441\u0442\u0440\u043e\u043a\u0435"
 
     const/16 v2, 0xc
@@ -828,7 +830,7 @@
 
     invoke-virtual {v0, v3}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    .line 152
+    .line 153
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->root:Landroid/widget/LinearLayout;
 
     new-instance v3, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda7;
@@ -843,7 +845,7 @@
 
     iput-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mode:Landroid/widget/Button;
 
-    .line 153
+    .line 154
     new-instance v0, Landroid/widget/EditText;
 
     invoke-direct {v0, p0}, Landroid/widget/EditText;-><init>(Landroid/content/Context;)V
@@ -928,7 +930,7 @@
 
     invoke-virtual {v0, v4, v6}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 154
+    .line 155
     const-string v0, ""
 
     invoke-direct {p0, v0, v2}, Lorg/rabochaya/projects/GeometryEditorActivity;->label(Ljava/lang/String;I)Landroid/widget/TextView;
@@ -961,7 +963,7 @@
 
     invoke-virtual {v2, v0, v4}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 155
+    .line 156
     new-instance v2, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda8;
 
     invoke-direct {v2, p0}, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda8;-><init>(Lorg/rabochaya/projects/GeometryEditorActivity;)V
@@ -1021,7 +1023,7 @@
 
     goto :goto_1
 
-    .line 156
+    .line 157
     :cond_1
     iput v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->current:I
 
@@ -1073,7 +1075,7 @@
 
     goto :goto_3
 
-    .line 157
+    .line 158
     :cond_4
     :goto_4
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapViewport:[D
@@ -1098,7 +1100,7 @@
 
     iput-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapViewport:[D
 
-    .line 158
+    .line 159
     :cond_5
     if-eqz p1, :cond_8
 
@@ -1179,7 +1181,7 @@
 
     invoke-virtual {v0, v2}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 159
+    .line 160
     :cond_8
     :goto_6
     iput-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->ownedDraft:Lorg/rabochaya/projects/GeometryDraft;
@@ -1194,7 +1196,7 @@
 
     invoke-virtual {p1, p2}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 160
+    .line 161
     :cond_9
     iget-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->selector:Landroid/widget/Spinner;
 
@@ -1221,18 +1223,22 @@
     :cond_a
     invoke-direct {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->fitMapControls()V
 
+    const/4 p1, 0x0
+
+    iput-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->pendingMapUndo:Lorg/rabochaya/projects/GeometryMapUndoDraft;
+
     invoke-direct {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->restoreVertexEditor()V
 
     invoke-direct {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->restoreGeometryConfirmation()V
 
-    .line 161
+    .line 162
     return-void
 .end method
 
 .method private button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/Button;
     .locals 3
 
-    .line 55
+    .line 56
     new-instance v0, Landroid/widget/Button;
 
     invoke-direct {v0, p0}, Landroid/widget/Button;-><init>(Landroid/content/Context;)V
@@ -1271,7 +1277,7 @@
 .method private cancelStagedHoleDeletion()V
     .locals 2
 
-    .line 101
+    .line 102
     const/4 v0, 0x0
 
     iput-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->stagedHoleDeletion:Lorg/rabochaya/projects/GeometryConfirmationDraft;
@@ -1292,7 +1298,7 @@
 .method private choosePart(I)V
     .locals 1
 
-    .line 163
+    .line 164
     invoke-direct {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->dirty()Z
 
     move-result v0
@@ -1327,7 +1333,7 @@
 .method private clearGeometryConfirmation(Landroid/app/AlertDialog;)V
     .locals 1
 
-    .line 103
+    .line 104
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->geometryConfirmationDialog:Landroid/app/AlertDialog;
 
     if-eq v0, p1, :cond_0
@@ -1368,7 +1374,7 @@
 .method private clearNotice()V
     .locals 1
 
-    .line 198
+    .line 200
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->notice:Landroid/widget/Toast;
 
     if-eqz v0, :cond_0
@@ -1388,7 +1394,7 @@
 .method private clearVertexEditor(Landroid/app/AlertDialog;)V
     .locals 1
 
-    .line 131
+    .line 132
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->vertexDialog:Landroid/app/AlertDialog;
 
     if-ne v0, p1, :cond_1
@@ -1421,7 +1427,7 @@
 .method private confirmGeometryDeletion(Lorg/rabochaya/projects/GeometryConfirmationDraft;Landroid/app/AlertDialog;)V
     .locals 3
 
-    .line 112
+    .line 113
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->disposed:Z
 
     if-nez v0, :cond_3
@@ -1440,7 +1446,7 @@
 
     goto :goto_0
 
-    .line 113
+    .line 114
     :cond_0
     invoke-direct {p0, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->geometryConfirmationMatches(Lorg/rabochaya/projects/GeometryConfirmationDraft;)Z
 
@@ -1456,7 +1462,7 @@
 
     return-void
 
-    .line 114
+    .line 115
     :cond_1
     invoke-direct {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->persist()Z
 
@@ -1480,7 +1486,7 @@
 
     return-void
 
-    .line 115
+    .line 116
     :cond_2
     iput-boolean v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->geometryChecking:Z
 
@@ -1494,7 +1500,7 @@
 
     invoke-virtual {v0, v2}, Landroid/widget/Button;->setEnabled(Z)V
 
-    .line 116
+    .line 117
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
     new-instance v1, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda18;
@@ -1503,10 +1509,10 @@
 
     invoke-interface {v0, v1}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
-    .line 122
+    .line 123
     return-void
 
-    .line 112
+    .line 113
     :cond_3
     :goto_0
     return-void
@@ -1515,7 +1521,7 @@
 .method private dirty()Z
     .locals 1
 
-    .line 196
+    .line 198
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->stagedHoleDeletion:Lorg/rabochaya/projects/GeometryConfirmationDraft;
 
     if-nez v0, :cond_1
@@ -1544,7 +1550,7 @@
 .method private discardReload()V
     .locals 3
 
-    .line 200
+    .line 202
     new-instance v0, Landroid/app/AlertDialog$Builder;
 
     invoke-direct {v0, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
@@ -1581,7 +1587,7 @@
 .method private drafts()Ljava/io/File;
     .locals 3
 
-    .line 46
+    .line 47
     new-instance v0, Ljava/io/File;
 
     invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->getFilesDir()Ljava/io/File;
@@ -1598,7 +1604,7 @@
 .method private enabled(Z)V
     .locals 6
 
-    .line 56
+    .line 57
     xor-int/lit8 v0, p1, 0x1
 
     iput-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->busy:Z
@@ -1777,7 +1783,7 @@
 .method private fitMapControls()V
     .locals 8
 
-    .line 167
+    .line 168
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->compactMapControls:Landroid/widget/LinearLayout;
 
     if-eqz v0, :cond_8
@@ -1800,7 +1806,7 @@
 
     goto/16 :goto_4
 
-    .line 168
+    .line 169
     :cond_0
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapMode:Z
 
@@ -1829,7 +1835,7 @@
     :cond_1
     move v0, v1
 
-    .line 169
+    .line 170
     :goto_0
     const/4 v2, -0x1
 
@@ -1893,7 +1899,7 @@
 
     goto :goto_1
 
-    .line 170
+    .line 171
     :cond_2
     if-nez v0, :cond_3
 
@@ -1957,7 +1963,7 @@
 
     invoke-virtual {v3, v4, v5, v6}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;ILandroid/view/ViewGroup$LayoutParams;)V
 
-    .line 171
+    .line 172
     :cond_3
     :goto_1
     iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->compactMapControls:Landroid/widget/LinearLayout;
@@ -2018,10 +2024,10 @@
 
     invoke-virtual {v1, v2, v0, v2, v0}, Landroid/widget/LinearLayout;->setPadding(IIII)V
 
-    .line 172
+    .line 173
     return-void
 
-    .line 167
+    .line 168
     :cond_8
     :goto_4
     return-void
@@ -2030,7 +2036,7 @@
 .method private fitVertexDialog(Landroid/app/AlertDialog;Landroid/widget/TextView;)V
     .locals 16
 
-    .line 130
+    .line 131
     move-object/from16 v13, p0
 
     invoke-virtual/range {p1 .. p1}, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
@@ -2229,7 +2235,7 @@
 .method private geometryConfirmationError(Lorg/rabochaya/projects/GeometryConfirmationDraft;Landroid/app/AlertDialog;Ljava/lang/String;Z)V
     .locals 2
 
-    .line 104
+    .line 105
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->geometryConfirmation:Lorg/rabochaya/projects/GeometryConfirmationDraft;
 
     if-ne v0, p1, :cond_3
@@ -2349,7 +2355,7 @@
 .method private geometryConfirmationMatches(Lorg/rabochaya/projects/GeometryConfirmationDraft;)Z
     .locals 14
 
-    .line 99
+    .line 100
     const/4 v0, 0x0
 
     if-eqz p1, :cond_2
@@ -2496,7 +2502,7 @@
 .method private geometryConfirmationMessage(Lorg/rabochaya/projects/GeometryConfirmationDraft;)Ljava/lang/String;
     .locals 2
 
-    .line 100
+    .line 101
     iget-boolean v0, p1, Lorg/rabochaya/projects/GeometryConfirmationDraft;->onMap:Z
 
     if-eqz v0, :cond_0
@@ -2575,7 +2581,7 @@
 .method private label(Ljava/lang/String;I)Landroid/widget/TextView;
     .locals 1
 
-    .line 54
+    .line 55
     new-instance v0, Landroid/widget/TextView;
 
     invoke-direct {v0, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
@@ -2602,7 +2608,7 @@
 .method static synthetic lambda$fitVertexDialog$11(Landroid/view/View;Landroid/view/ViewTreeObserver$OnGlobalLayoutListener;Landroid/view/View;)V
     .locals 1
 
-    .line 130
+    .line 131
     invoke-virtual {p0}, Landroid/view/View;->getViewTreeObserver()Landroid/view/ViewTreeObserver;
 
     move-result-object v0
@@ -2643,7 +2649,7 @@
 .method private load()V
     .locals 2
 
-    .line 139
+    .line 140
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapMode:Z
 
     if-eqz v0, :cond_0
@@ -2663,7 +2669,7 @@
 
     iput-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
 
-    .line 140
+    .line 141
     invoke-direct {p0, v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->enabled(Z)V
 
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->status:Landroid/widget/TextView;
@@ -2672,7 +2678,7 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 141
+    .line 142
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
     new-instance v1, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda6;
@@ -2681,14 +2687,14 @@
 
     invoke-interface {v0, v1}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
-    .line 148
+    .line 149
     return-void
 .end method
 
 .method private mapMessage(Ljava/lang/String;)V
     .locals 3
 
-    .line 193
+    .line 195
     iget v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->current:I
 
     if-ltz v0, :cond_0
@@ -2757,7 +2763,7 @@
 .method private newHole()V
     .locals 4
 
-    .line 199
+    .line 201
     invoke-direct {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->dirty()Z
 
     move-result v0
@@ -2812,7 +2818,7 @@
 .method public static open(Landroid/app/Activity;JLjava/lang/String;)V
     .locals 2
 
-    .line 44
+    .line 45
     new-instance v0, Landroid/content/Intent;
 
     const-class v1, Lorg/rabochaya/projects/GeometryEditorActivity;
@@ -2833,14 +2839,14 @@
 
     invoke-virtual {p0, p1}, Landroid/app/Activity;->startActivity(Landroid/content/Intent;)V
 
-    .line 45
+    .line 46
     return-void
 .end method
 
 .method private openGeometryConfirmation(Lorg/rabochaya/projects/GeometryConfirmationDraft;Ljava/lang/String;)V
     .locals 4
 
-    .line 106
+    .line 107
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->disposed:Z
 
     if-nez v0, :cond_5
@@ -2880,7 +2886,7 @@
 
     return-void
 
-    .line 107
+    .line 108
     :cond_1
     iput-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->geometryConfirmation:Lorg/rabochaya/projects/GeometryConfirmationDraft;
 
@@ -2900,7 +2906,7 @@
 
     iput-object p2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->geometryConfirmationError:Ljava/lang/String;
 
-    .line 108
+    .line 109
     :cond_2
     new-instance p2, Landroid/app/AlertDialog$Builder;
 
@@ -3004,7 +3010,7 @@
 
     iput-object p2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->geometryConfirmationDialog:Landroid/app/AlertDialog;
 
-    .line 109
+    .line 110
     new-instance v0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda28;
 
     invoke-direct {v0, p0, p2}, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda28;-><init>(Lorg/rabochaya/projects/GeometryEditorActivity;Landroid/app/AlertDialog;)V
@@ -3019,10 +3025,10 @@
 
     invoke-virtual {p2}, Landroid/app/AlertDialog;->show()V
 
-    .line 110
+    .line 111
     return-void
 
-    .line 106
+    .line 107
     :cond_5
     :goto_2
     return-void
@@ -3031,14 +3037,14 @@
 .method private openMap()V
     .locals 14
 
-    .line 178
+    .line 179
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->busy:Z
 
-    if-nez v0, :cond_8
+    if-nez v0, :cond_9
 
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->orphan:Z
 
-    if-nez v0, :cond_8
+    if-nez v0, :cond_9
 
     iget v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->current:I
 
@@ -3046,7 +3052,7 @@
 
     goto/16 :goto_3
 
-    .line 180
+    .line 181
     :cond_0
     :try_start_0
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->addingHole:Z
@@ -3079,54 +3085,114 @@
 
     invoke-virtual {v1}, Ljava/lang/Object;->toString()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v13
 
-    .line 181
-    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
+    .line 182
+    iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->pendingMapUndo:Lorg/rabochaya/projects/GeometryMapUndoDraft;
 
-    if-eqz v2, :cond_2
+    const/4 v2, 0x0
 
-    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
+    iput-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->pendingMapUndo:Lorg/rabochaya/projects/GeometryMapUndoDraft;
 
-    invoke-virtual {v2}, Lorg/rabochaya/projects/GeometryMapState;->text()Ljava/lang/String;
+    if-eqz v1, :cond_2
+
+    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->parts:Ljava/util/List;
+
+    iget v3, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->current:I
+
+    invoke-interface {v2, v3}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
     move-result-object v2
 
-    invoke-virtual {v2, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    check-cast v2, Lorg/rabochaya/projects/GeometryEdits$Part;
 
-    move-result v2
+    iget-wide v3, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->project:J
 
-    if-eqz v2, :cond_2
+    iget-object v5, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->featureId:Ljava/lang/String;
 
-    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
+    sget-object v6, Lorg/rabochaya/projects/GeometryEditorActivity;->VERTEX_SESSION:Ljava/lang/String;
 
-    iget-object v2, v2, Lorg/rabochaya/projects/GeometryMapState;->type:Ljava/lang/String;
+    iget-object v7, v2, Lorg/rabochaya/projects/GeometryEdits$Part;->key:Ljava/lang/String;
 
-    invoke-virtual {v2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    iget-object v8, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->expected:Ljava/lang/String;
 
-    move-result v2
+    iget-object v9, v2, Lorg/rabochaya/projects/GeometryEdits$Part;->token:Ljava/lang/String;
 
-    if-eqz v2, :cond_2
+    iget-boolean v10, v2, Lorg/rabochaya/projects/GeometryEdits$Part;->hole:Z
 
-    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
+    iget-boolean v11, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->addingHole:Z
 
-    iget-boolean v2, v2, Lorg/rabochaya/projects/GeometryMapState;->incompleteAllowed:Z
+    move-wide v2, v3
 
-    iget-boolean v3, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->addingHole:Z
+    move-object v4, v5
 
-    if-eq v2, v3, :cond_3
+    move-object v5, v6
 
+    move-object v6, v7
+
+    move-object v7, v8
+
+    move-object v8, v9
+
+    move-object v9, v0
+
+    move-object v12, v13
+
+    invoke-virtual/range {v1 .. v12}, Lorg/rabochaya/projects/GeometryMapUndoDraft;->restore(JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZLjava/lang/String;)Lorg/rabochaya/projects/GeometryMapState;
+
+    move-result-object v1
+
+    if-eqz v1, :cond_2
+
+    iput-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
+
+    .line 183
     :cond_2
-    new-instance v2, Lorg/rabochaya/projects/GeometryMapState;
+    iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
 
-    iget-boolean v3, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->addingHole:Z
+    if-eqz v1, :cond_3
 
-    invoke-direct {v2, v1, v0, v3}, Lorg/rabochaya/projects/GeometryMapState;-><init>(Ljava/lang/String;Ljava/lang/String;Z)V
+    iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
 
-    iput-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
+    invoke-virtual {v1}, Lorg/rabochaya/projects/GeometryMapState;->text()Ljava/lang/String;
 
-    .line 182
+    move-result-object v1
+
+    invoke-virtual {v1, v13}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_3
+
+    iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
+
+    iget-object v1, v1, Lorg/rabochaya/projects/GeometryMapState;->type:Ljava/lang/String;
+
+    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_3
+
+    iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
+
+    iget-boolean v1, v1, Lorg/rabochaya/projects/GeometryMapState;->incompleteAllowed:Z
+
+    iget-boolean v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->addingHole:Z
+
+    if-eq v1, v2, :cond_4
+
     :cond_3
+    new-instance v1, Lorg/rabochaya/projects/GeometryMapState;
+
+    iget-boolean v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->addingHole:Z
+
+    invoke-direct {v1, v13, v0, v2}, Lorg/rabochaya/projects/GeometryMapState;-><init>(Ljava/lang/String;Ljava/lang/String;Z)V
+
+    iput-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
+
+    .line 184
+    :cond_4
     const/4 v0, 0x0
 
     move v1, v0
@@ -3140,7 +3206,7 @@
 
     const/4 v3, 0x1
 
-    if-ge v1, v2, :cond_5
+    if-ge v1, v2, :cond_6
 
     iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
 
@@ -3158,13 +3224,13 @@
 
     cmpl-double v2, v2, v4
 
-    if-gtz v2, :cond_4
+    if-gtz v2, :cond_5
 
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_1
 
-    :cond_4
+    :cond_5
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "\u042d\u0442\u0430 \u043a\u0430\u0440\u0442\u0430 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0430\u0435\u0442 \u0448\u0438\u0440\u043e\u0442\u044b \u0434\u043e \u00b185.05112878\u00b0. \u0414\u043b\u044f \u043f\u043e\u043b\u044f\u0440\u043d\u044b\u0445 \u0432\u0435\u0440\u0448\u0438\u043d \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0439\u0442\u0435 \u0441\u043f\u0438\u0441\u043e\u043a \u043a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442"
@@ -3173,11 +3239,11 @@
 
     throw v0
 
-    .line 183
-    :cond_5
+    .line 185
+    :cond_6
     iget v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->restoreSelection:I
 
-    if-ltz v1, :cond_6
+    if-ltz v1, :cond_7
 
     iget v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->restoreSelection:I
 
@@ -3187,7 +3253,7 @@
 
     move-result v2
 
-    if-ge v1, v2, :cond_6
+    if-ge v1, v2, :cond_7
 
     iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
 
@@ -3195,12 +3261,12 @@
 
     invoke-virtual {v1, v2}, Lorg/rabochaya/projects/GeometryMapState;->select(I)V
 
-    :cond_6
+    :cond_7
     const/4 v1, -0x1
 
     iput v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->restoreSelection:I
 
-    .line 184
+    .line 186
     iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->input:Landroid/widget/EditText;
 
     invoke-virtual {v2}, Landroid/widget/EditText;->clearFocus()V
@@ -3213,7 +3279,7 @@
 
     check-cast v2, Landroid/view/inputmethod/InputMethodManager;
 
-    if-eqz v2, :cond_7
+    if-eqz v2, :cond_8
 
     iget-object v4, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->root:Landroid/widget/LinearLayout;
 
@@ -3223,8 +3289,8 @@
 
     invoke-virtual {v2, v4, v0}, Landroid/view/inputmethod/InputMethodManager;->hideSoftInputFromWindow(Landroid/os/IBinder;I)Z
 
-    .line 185
-    :cond_7
+    .line 187
+    :cond_8
     new-instance v0, Lorg/rabochaya/projects/GeometryMapCanvas;
 
     iget-wide v6, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->project:J
@@ -3261,7 +3327,7 @@
 
     iput-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapCanvas:Lorg/rabochaya/projects/GeometryMapCanvas;
 
-    .line 190
+    .line 192
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->body:Landroid/widget/FrameLayout;
 
     invoke-virtual {v0}, Landroid/widget/FrameLayout;->removeAllViews()V
@@ -3292,7 +3358,7 @@
     :try_end_0
     .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 191
+    .line 193
     goto :goto_2
 
     :catch_0
@@ -3314,12 +3380,12 @@
 
     invoke-virtual {v1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 192
+    .line 194
     :goto_2
     return-void
 
-    .line 178
-    :cond_8
+    .line 179
+    :cond_9
     :goto_3
     return-void
 .end method
@@ -3327,7 +3393,7 @@
 .method private openVertexEditor(Lorg/rabochaya/projects/VertexEditDraft;)V
     .locals 10
 
-    .line 133
+    .line 134
     new-instance v4, Landroid/widget/EditText;
 
     invoke-direct {v4, p0}, Landroid/widget/EditText;-><init>(Landroid/content/Context;)V
@@ -3374,7 +3440,7 @@
 
     invoke-virtual {v4, v3}, Landroid/widget/EditText;->setSelectAllOnFocus(Z)V
 
-    .line 134
+    .line 135
     new-instance v1, Landroid/widget/LinearLayout;
 
     invoke-direct {v1, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
@@ -3470,7 +3536,7 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/ScrollView;->addView(Landroid/view/View;)V
 
-    .line 135
+    .line 136
     iget-object v1, p1, Lorg/rabochaya/projects/VertexEditDraft;->operation:Ljava/lang/String;
 
     const-string v2, "replace"
@@ -3554,7 +3620,7 @@
 
     iput-object v8, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->vertexDialog:Landroid/app/AlertDialog;
 
-    .line 136
+    .line 137
     new-instance v0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda20;
 
     invoke-direct {v0, p0, v8}, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda20;-><init>(Lorg/rabochaya/projects/GeometryEditorActivity;Landroid/app/AlertDialog;)V
@@ -3579,14 +3645,14 @@
 
     invoke-virtual {v8}, Landroid/app/AlertDialog;->show()V
 
-    .line 137
+    .line 138
     return-void
 .end method
 
 .method private persist()Z
     .locals 6
 
-    .line 197
+    .line 199
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->busy:Z
 
     const/4 v1, 0x1
@@ -3734,7 +3800,7 @@
 .method private readGeometryConfirmation(Landroid/os/Bundle;)Lorg/rabochaya/projects/GeometryConfirmationDraft;
     .locals 16
 
-    .line 97
+    .line 98
     move-object/from16 v0, p1
 
     const/4 v1, 0x0
@@ -3832,7 +3898,7 @@
 .method private readVertex(Landroid/os/Bundle;)Lorg/rabochaya/projects/VertexEditDraft;
     .locals 19
 
-    .line 124
+    .line 125
     move-object/from16 v0, p1
 
     const/4 v1, 0x0
@@ -3946,7 +4012,7 @@
 .method private releaseMap()V
     .locals 1
 
-    .line 164
+    .line 165
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapCanvas:Lorg/rabochaya/projects/GeometryMapCanvas;
 
     if-eqz v0, :cond_0
@@ -3974,7 +4040,7 @@
 .method private requestMapDeletion(I)V
     .locals 16
 
-    .line 174
+    .line 175
     move-object/from16 v1, p0
 
     iget-boolean v0, v1, Lorg/rabochaya/projects/GeometryEditorActivity;->disposed:Z
@@ -4017,7 +4083,7 @@
 
     goto :goto_1
 
-    .line 175
+    .line 176
     :cond_0
     iget-object v0, v1, Lorg/rabochaya/projects/GeometryEditorActivity;->parts:Ljava/util/List;
 
@@ -4091,11 +4157,11 @@
 
     invoke-virtual {v2, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 176
+    .line 177
     :goto_0
     return-void
 
-    .line 174
+    .line 175
     :cond_1
     :goto_1
     return-void
@@ -4104,7 +4170,7 @@
 .method private restoreGeometryConfirmation()V
     .locals 7
 
-    .line 102
+    .line 103
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->pendingGeometryConfirmation:Lorg/rabochaya/projects/GeometryConfirmationDraft;
 
     const/4 v1, 0x0
@@ -4216,7 +4282,7 @@
 .method private restoreVertexEditor()V
     .locals 5
 
-    .line 127
+    .line 128
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->pendingVertex:Lorg/rabochaya/projects/VertexEditDraft;
 
     const/4 v1, 0x0
@@ -4265,7 +4331,7 @@
 .method private saveGeometryConfirmation()Landroid/os/Bundle;
     .locals 5
 
-    .line 98
+    .line 99
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->geometryConfirmation:Lorg/rabochaya/projects/GeometryConfirmationDraft;
 
     if-eqz v0, :cond_0
@@ -4418,7 +4484,7 @@
 .method private saveVertex()Landroid/os/Bundle;
     .locals 6
 
-    .line 125
+    .line 126
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->vertexDraft:Lorg/rabochaya/projects/VertexEditDraft;
 
     if-nez v0, :cond_0
@@ -4599,7 +4665,7 @@
 .method private showPart(I)V
     .locals 4
 
-    .line 162
+    .line 163
     invoke-direct {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->releaseMap()V
 
     const/4 v0, 0x0
@@ -4680,7 +4746,7 @@
 .method private textDirty()Z
     .locals 3
 
-    .line 195
+    .line 197
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->input:Landroid/widget/EditText;
 
     if-eqz v0, :cond_1
@@ -4750,7 +4816,7 @@
 .method private textMode()V
     .locals 4
 
-    .line 165
+    .line 166
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapMode:Z
 
     if-nez v0, :cond_0
@@ -4800,7 +4866,7 @@
 .method private vertexFont(Landroid/view/View;)V
     .locals 4
 
-    .line 128
+    .line 129
     instance-of v0, p1, Landroid/widget/TextView;
 
     const/4 v1, 0x0
@@ -4882,7 +4948,7 @@
 .method private vertexMatches(Lorg/rabochaya/projects/VertexEditDraft;)Z
     .locals 13
 
-    .line 126
+    .line 127
     iget v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->current:I
 
     const/4 v1, 0x0
@@ -4989,7 +5055,7 @@
         }
     .end annotation
 
-    .line 129
+    .line 130
     invoke-virtual {p1}, Landroid/view/View;->getPaddingLeft()I
 
     move-result v0
@@ -5044,7 +5110,7 @@
 .method private vertices()V
     .locals 12
 
-    .line 67
+    .line 68
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->parts:Ljava/util/List;
 
     iget v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->current:I
@@ -5061,7 +5127,7 @@
 
     iget-boolean v8, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->addingHole:Z
 
-    .line 68
+    .line 69
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->input:Landroid/widget/EditText;
 
     invoke-virtual {v0}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
@@ -5096,7 +5162,7 @@
     :goto_0
     move-object v3, v0
 
-    .line 70
+    .line 71
     :try_start_0
     invoke-static {v5, v3}, Lorg/rabochaya/projects/GeometryVertices;->rows(Ljava/lang/String;Ljava/lang/String;)Ljava/util/List;
 
@@ -5104,7 +5170,7 @@
     :try_end_0
     .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 71
+    .line 72
     invoke-interface {v4}, Ljava/util/List;->size()I
 
     move-result v0
@@ -5152,7 +5218,7 @@
 
     goto :goto_1
 
-    .line 72
+    .line 73
     :cond_1
     new-instance v0, Landroid/app/AlertDialog$Builder;
 
@@ -5176,7 +5242,7 @@
 
     move-result-object v0
 
-    .line 88
+    .line 89
     const-string v1, "\u0417\u0430\u043a\u0440\u044b\u0442\u044c"
 
     const/4 v2, 0x0
@@ -5187,10 +5253,10 @@
 
     invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
 
-    .line 89
+    .line 90
     return-void
 
-    .line 70
+    .line 71
     :catch_0
     move-exception v0
 
@@ -5208,7 +5274,7 @@
 .method private write(Z)V
     .locals 10
 
-    .line 202
+    .line 204
     iget v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->current:I
 
     if-ltz v0, :cond_9
@@ -5313,7 +5379,7 @@
 
     iget-boolean v7, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->addingHole:Z
 
-    .line 203
+    .line 205
     if-nez v4, :cond_7
 
     if-eqz v7, :cond_6
@@ -5354,7 +5420,7 @@
 
     return-void
 
-    .line 204
+    .line 206
     :cond_7
     :goto_3
     invoke-direct {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->persist()Z
@@ -5376,7 +5442,7 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 205
+    .line 207
     iget-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
     new-instance v0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda3;
@@ -5389,10 +5455,10 @@
 
     invoke-interface {p1, v0}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
-    .line 215
+    .line 217
     return-void
 
-    .line 202
+    .line 204
     :cond_9
     :goto_4
     return-void
@@ -5403,7 +5469,7 @@
 .method synthetic lambda$actions$1$org-rabochaya-projects-GeometryEditorActivity(Ljava/util/List;Lorg/rabochaya/projects/GeometryEdits$Part;Ljava/lang/String;Ljava/lang/String;Landroid/content/DialogInterface;I)V
     .locals 15
 
-    .line 64
+    .line 65
     move-object v1, p0
 
     move-object/from16 v0, p2
@@ -5582,7 +5648,7 @@
 .method synthetic lambda$build$20$org-rabochaya-projects-GeometryEditorActivity()V
     .locals 1
 
-    .line 152
+    .line 153
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapMode:Z
 
     if-eqz v0, :cond_0
@@ -5601,7 +5667,7 @@
 .method synthetic lambda$build$21$org-rabochaya-projects-GeometryEditorActivity()V
     .locals 1
 
-    .line 155
+    .line 156
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->write(Z)V
@@ -5612,7 +5678,7 @@
 .method synthetic lambda$build$22$org-rabochaya-projects-GeometryEditorActivity()V
     .locals 0
 
-    .line 155
+    .line 156
     invoke-direct {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->actions()V
 
     return-void
@@ -5621,7 +5687,7 @@
 .method synthetic lambda$build$23$org-rabochaya-projects-GeometryEditorActivity()V
     .locals 0
 
-    .line 155
+    .line 156
     invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->onBackPressed()V
 
     return-void
@@ -5630,7 +5696,7 @@
 .method synthetic lambda$button$0$org-rabochaya-projects-GeometryEditorActivity(Ljava/lang/Runnable;Landroid/view/View;)V
     .locals 0
 
-    .line 55
+    .line 56
     iget-boolean p2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->busy:Z
 
     if-nez p2, :cond_0
@@ -5644,7 +5710,7 @@
 .method synthetic lambda$confirmGeometryDeletion$8$org-rabochaya-projects-GeometryEditorActivity(Lorg/rabochaya/projects/GeometryConfirmationDraft;Landroid/app/AlertDialog;Ljava/lang/String;)V
     .locals 8
 
-    .line 117
+    .line 118
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->disposed:Z
 
     if-nez v0, :cond_9
@@ -5678,7 +5744,7 @@
 
     goto :goto_2
 
-    .line 118
+    .line 119
     :cond_1
     iget-object p3, p1, Lorg/rabochaya/projects/GeometryConfirmationDraft;->kind:Ljava/lang/String;
 
@@ -5775,7 +5841,7 @@
 
     goto :goto_1
 
-    .line 119
+    .line 120
     :cond_6
     invoke-direct {p0, p2}, Lorg/rabochaya/projects/GeometryEditorActivity;->clearGeometryConfirmation(Landroid/app/AlertDialog;)V
 
@@ -5791,11 +5857,11 @@
 
     invoke-virtual {p1, p2}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 120
+    .line 121
     :goto_1
     return-void
 
-    .line 117
+    .line 118
     :cond_7
     :goto_2
     if-eqz p3, :cond_8
@@ -5816,7 +5882,7 @@
 .method synthetic lambda$confirmGeometryDeletion$9$org-rabochaya-projects-GeometryEditorActivity(Lorg/rabochaya/projects/GeometryConfirmationDraft;Landroid/app/AlertDialog;)V
     .locals 7
 
-    .line 116
+    .line 117
     const/4 v0, 0x0
 
     :try_start_0
@@ -5969,7 +6035,7 @@
 
     goto :goto_1
 
-    .line 117
+    .line 118
     :cond_3
     :goto_3
     new-instance v1, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda2;
@@ -5978,10 +6044,10 @@
 
     invoke-virtual {p0, v1}, Lorg/rabochaya/projects/GeometryEditorActivity;->runOnUiThread(Ljava/lang/Runnable;)V
 
-    .line 121
+    .line 122
     return-void
 
-    .line 116
+    .line 117
     :catchall_1
     move-exception p1
 
@@ -5999,7 +6065,7 @@
 .method synthetic lambda$discardReload$24$org-rabochaya-projects-GeometryEditorActivity(Landroid/content/DialogInterface;I)V
     .locals 2
 
-    .line 200
+    .line 202
     :try_start_0
     invoke-direct {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->drafts()Ljava/io/File;
 
@@ -6053,7 +6119,7 @@
 .method synthetic lambda$fitVertexDialog$10$org-rabochaya-projects-GeometryEditorActivity(Landroid/view/View;[ZLandroid/view/View;ILandroid/widget/TextView;Ljava/util/Map;Landroid/app/AlertDialog;ILandroid/graphics/drawable/Drawable;II)V
     .locals 12
 
-    .line 130
+    .line 131
     move-object v0, p3
 
     invoke-direct {p0, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->vertexFont(Landroid/view/View;)V
@@ -6269,7 +6335,7 @@
 .method synthetic lambda$load$16$org-rabochaya-projects-GeometryEditorActivity(Ljava/util/List;Lorg/rabochaya/projects/GeometryDraft;Ljava/lang/String;)V
     .locals 1
 
-    .line 146
+    .line 147
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->disposed:Z
 
     if-nez v0, :cond_0
@@ -6285,7 +6351,7 @@
 .method synthetic lambda$load$17$org-rabochaya-projects-GeometryEditorActivity()V
     .locals 0
 
-    .line 147
+    .line 148
     invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->finish()V
 
     return-void
@@ -6294,7 +6360,7 @@
 .method synthetic lambda$load$18$org-rabochaya-projects-GeometryEditorActivity(Ljava/lang/Exception;)V
     .locals 3
 
-    .line 147
+    .line 148
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->disposed:Z
 
     if-nez v0, :cond_0
@@ -6356,12 +6422,12 @@
 .method synthetic lambda$load$19$org-rabochaya-projects-GeometryEditorActivity()V
     .locals 7
 
-    .line 141
+    .line 142
     new-instance v0, Lorg/rabochaya/projects/ProjectStore;
 
     invoke-direct {v0, p0}, Lorg/rabochaya/projects/ProjectStore;-><init>(Landroid/content/Context;)V
 
-    .line 142
+    .line 143
     :try_start_0
     iget-wide v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->project:J
 
@@ -6377,7 +6443,7 @@
 
     if-eqz v1, :cond_1
 
-    .line 143
+    .line 144
     invoke-static {v1}, Lorg/rabochaya/projects/GeometryEdits;->parts(Lorg/w3c/dom/Element;)Ljava/util/List;
 
     move-result-object v1
@@ -6388,7 +6454,7 @@
 
     if-nez v2, :cond_0
 
-    .line 144
+    .line 145
     const-string v2, ""
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
@@ -6423,11 +6489,11 @@
 
     const/4 v3, 0x0
 
-    .line 145
+    .line 146
     :goto_0
     nop
 
-    .line 146
+    .line 147
     new-instance v4, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda11;
 
     invoke-direct {v4, p0, v1, v3, v2}, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda11;-><init>(Lorg/rabochaya/projects/GeometryEditorActivity;Ljava/util/List;Lorg/rabochaya/projects/GeometryDraft;Ljava/lang/String;)V
@@ -6436,7 +6502,7 @@
 
     goto :goto_1
 
-    .line 143
+    .line 144
     :cond_0
     new-instance v1, Ljava/io/IOException;
 
@@ -6446,7 +6512,7 @@
 
     throw v1
 
-    .line 142
+    .line 143
     :cond_1
     new-instance v1, Ljava/io/IOException;
 
@@ -6459,7 +6525,7 @@
     .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
     .catchall {:try_start_2 .. :try_end_2} :catchall_0
 
-    .line 147
+    .line 148
     :catchall_0
     move-exception v1
 
@@ -6491,7 +6557,7 @@
 .method synthetic lambda$onBackPressed$28$org-rabochaya-projects-GeometryEditorActivity(Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 216
+    .line 218
     invoke-direct {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->persist()Z
 
     move-result p1
@@ -6507,7 +6573,7 @@
 .method synthetic lambda$onBackPressed$29$org-rabochaya-projects-GeometryEditorActivity(Landroid/content/DialogInterface;I)V
     .locals 2
 
-    .line 216
+    .line 218
     :try_start_0
     invoke-direct {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->drafts()Ljava/io/File;
 
@@ -6559,7 +6625,7 @@
 .method synthetic lambda$openGeometryConfirmation$4$org-rabochaya-projects-GeometryEditorActivity(Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 108
+    .line 109
     check-cast p1, Landroid/app/AlertDialog;
 
     invoke-direct {p0, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->clearGeometryConfirmation(Landroid/app/AlertDialog;)V
@@ -6570,7 +6636,7 @@
 .method synthetic lambda$openGeometryConfirmation$5$org-rabochaya-projects-GeometryEditorActivity(Landroid/app/AlertDialog;Landroid/content/DialogInterface;)V
     .locals 0
 
-    .line 109
+    .line 110
     invoke-direct {p0, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->clearGeometryConfirmation(Landroid/app/AlertDialog;)V
 
     return-void
@@ -6579,7 +6645,7 @@
 .method synthetic lambda$openGeometryConfirmation$6$org-rabochaya-projects-GeometryEditorActivity(Lorg/rabochaya/projects/GeometryConfirmationDraft;Landroid/app/AlertDialog;Landroid/view/View;)V
     .locals 0
 
-    .line 109
+    .line 110
     invoke-direct {p0, p1, p2}, Lorg/rabochaya/projects/GeometryEditorActivity;->confirmGeometryDeletion(Lorg/rabochaya/projects/GeometryConfirmationDraft;Landroid/app/AlertDialog;)V
 
     return-void
@@ -6588,7 +6654,7 @@
 .method synthetic lambda$openGeometryConfirmation$7$org-rabochaya-projects-GeometryEditorActivity(Landroid/app/AlertDialog;Lorg/rabochaya/projects/GeometryConfirmationDraft;Landroid/content/DialogInterface;)V
     .locals 2
 
-    .line 109
+    .line 110
     invoke-virtual {p1}, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
 
     move-result-object p3
@@ -6641,7 +6707,7 @@
 .method synthetic lambda$openVertexEditor$12$org-rabochaya-projects-GeometryEditorActivity(Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 135
+    .line 136
     check-cast p1, Landroid/app/AlertDialog;
 
     invoke-direct {p0, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->clearVertexEditor(Landroid/app/AlertDialog;)V
@@ -6652,7 +6718,7 @@
 .method synthetic lambda$openVertexEditor$13$org-rabochaya-projects-GeometryEditorActivity(Landroid/app/AlertDialog;Landroid/content/DialogInterface;)V
     .locals 0
 
-    .line 136
+    .line 137
     invoke-direct {p0, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->clearVertexEditor(Landroid/app/AlertDialog;)V
 
     return-void
@@ -6661,7 +6727,7 @@
 .method synthetic lambda$openVertexEditor$14$org-rabochaya-projects-GeometryEditorActivity(Lorg/rabochaya/projects/VertexEditDraft;Landroid/widget/TextView;Landroid/app/AlertDialog;Landroid/widget/EditText;Landroid/widget/TextView;Landroid/view/View;)V
     .locals 8
 
-    .line 136
+    .line 137
     iget-boolean p6, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->busy:Z
 
     if-nez p6, :cond_2
@@ -6742,7 +6808,7 @@
 .method synthetic lambda$openVertexEditor$15$org-rabochaya-projects-GeometryEditorActivity(Landroid/app/AlertDialog;Landroid/widget/TextView;Landroid/widget/EditText;Lorg/rabochaya/projects/VertexEditDraft;Landroid/widget/TextView;Landroid/widget/TextView;Landroid/content/DialogInterface;)V
     .locals 7
 
-    .line 136
+    .line 137
     invoke-direct {p0, p1, p2}, Lorg/rabochaya/projects/GeometryEditorActivity;->fitVertexDialog(Landroid/app/AlertDialog;Landroid/widget/TextView;)V
 
     invoke-virtual {p3}, Landroid/widget/EditText;->requestFocus()Z
@@ -6795,7 +6861,7 @@
 .method synthetic lambda$vertices$2$org-rabochaya-projects-GeometryEditorActivity(Ljava/util/List;Ljava/lang/String;Ljava/lang/String;ILjava/util/List;Lorg/rabochaya/projects/GeometryEdits$Part;Ljava/lang/String;ZLandroid/content/DialogInterface;I)V
     .locals 25
 
-    .line 82
+    .line 83
     move-object/from16 v8, p0
 
     move/from16 v0, p4
@@ -6814,7 +6880,7 @@
 
     check-cast v5, Ljava/lang/String;
 
-    .line 83
+    .line 84
     const-string v2, "replace"
 
     invoke-virtual {v5, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -6841,7 +6907,7 @@
 
     goto :goto_0
 
-    .line 85
+    .line 86
     :cond_0
     const-string v1, "delete"
 
@@ -6903,7 +6969,7 @@
 
     goto :goto_1
 
-    .line 86
+    .line 87
     :cond_1
     const/4 v6, 0x0
 
@@ -6921,7 +6987,7 @@
 
     goto :goto_1
 
-    .line 84
+    .line 85
     :cond_2
     :goto_0
     :try_start_1
@@ -7004,7 +7070,7 @@
 
     invoke-virtual {v1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 87
+    .line 88
     :goto_1
     return-void
 .end method
@@ -7012,7 +7078,7 @@
 .method synthetic lambda$vertices$3$org-rabochaya-projects-GeometryEditorActivity(Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lorg/rabochaya/projects/GeometryEdits$Part;Ljava/lang/String;ZLandroid/content/DialogInterface;I)V
     .locals 14
 
-    .line 73
+    .line 74
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
@@ -7021,7 +7087,7 @@
 
     invoke-direct {v2}, Ljava/util/ArrayList;-><init>()V
 
-    .line 74
+    .line 75
     const-string v1, "\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u043a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u044b"
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
@@ -7030,7 +7096,7 @@
 
     invoke-interface {v2, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 75
+    .line 76
     const-string v1, "Point"
 
     move-object v4, p1
@@ -7041,7 +7107,7 @@
 
     if-nez v1, :cond_2
 
-    .line 76
+    .line 77
     const-string v1, "\u0412\u0441\u0442\u0430\u0432\u0438\u0442\u044c \u043f\u0435\u0440\u0435\u0434"
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
@@ -7058,7 +7124,7 @@
 
     invoke-interface {v2, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 77
+    .line 78
     if-lez p8, :cond_0
 
     const-string v1, "\u0412\u044b\u0448\u0435 \u0432 \u0441\u043f\u0438\u0441\u043a\u0435"
@@ -7069,7 +7135,7 @@
 
     invoke-interface {v2, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 78
+    .line 79
     :cond_0
     add-int/lit8 v1, p8, 0x1
 
@@ -7087,7 +7153,7 @@
 
     invoke-interface {v2, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 79
+    .line 80
     :cond_1
     const-string v1, "\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0432\u0435\u0440\u0448\u0438\u043d\u0443"
 
@@ -7097,7 +7163,7 @@
 
     invoke-interface {v2, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 81
+    .line 82
     :cond_2
     new-instance v1, Landroid/app/AlertDialog$Builder;
 
@@ -7169,7 +7235,7 @@
 
     move-result-object v0
 
-    .line 87
+    .line 88
     const-string v1, "\u041e\u0442\u043c\u0435\u043d\u0430"
 
     const/4 v2, 0x0
@@ -7180,14 +7246,14 @@
 
     invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
 
-    .line 88
+    .line 89
     return-void
 .end method
 
 .method synthetic lambda$write$25$org-rabochaya-projects-GeometryEditorActivity(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
     .locals 1
 
-    .line 213
+    .line 215
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->disposed:Z
 
     if-nez v0, :cond_0
@@ -7229,7 +7295,7 @@
 .method synthetic lambda$write$26$org-rabochaya-projects-GeometryEditorActivity(Ljava/lang/Exception;)V
     .locals 3
 
-    .line 214
+    .line 216
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->disposed:Z
 
     if-nez v0, :cond_0
@@ -7271,12 +7337,12 @@
 .method synthetic lambda$write$27$org-rabochaya-projects-GeometryEditorActivity(ZLorg/rabochaya/projects/GeometryEdits$Part;Ljava/lang/String;ZLjava/lang/String;Lorg/rabochaya/projects/GeometryDraft;)V
     .locals 6
 
-    .line 205
+    .line 207
     new-instance v0, Lorg/rabochaya/projects/ProjectStore;
 
     invoke-direct {v0, p0}, Lorg/rabochaya/projects/ProjectStore;-><init>(Landroid/content/Context;)V
 
-    .line 206
+    .line 208
     :try_start_0
     iget-wide v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->project:J
 
@@ -7292,7 +7358,7 @@
 
     if-eqz v2, :cond_6
 
-    .line 207
+    .line 209
     if-eqz p1, :cond_0
 
     iget-object v3, p2, Lorg/rabochaya/projects/GeometryEdits$Part;->key:Ljava/lang/String;
@@ -7315,14 +7381,14 @@
 
     invoke-static {v2, v3, p3, p5}, Lorg/rabochaya/projects/GeometryEdits;->replace(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 208
+    .line 210
     :goto_0
     iget-object p3, p2, Lorg/rabochaya/projects/GeometryEdits$Part;->key:Ljava/lang/String;
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 209
+    .line 211
     const-string v3, "/outer"
 
     const-string v4, "/inner/"
@@ -7400,7 +7466,7 @@
 
     goto :goto_1
 
-    .line 210
+    .line 212
     :cond_3
     if-eqz p1, :cond_4
 
@@ -7432,11 +7498,11 @@
 
     move-result-object p3
 
-    .line 211
+    .line 213
     :cond_4
     nop
 
-    .line 212
+    .line 214
     iget-wide p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->project:J
 
     invoke-virtual {v0, p1, p2, v1}, Lorg/rabochaya/projects/ProjectStore;->saveDocument(JLorg/rabochaya/projects/KmlProject;)V
@@ -7517,7 +7583,7 @@
 
     move-result-object p1
 
-    .line 213
+    .line 215
     new-instance p2, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda13;
 
     invoke-direct {p2, p0, p5, p3, p1}, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda13;-><init>(Lorg/rabochaya/projects/GeometryEditorActivity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
@@ -7526,7 +7592,7 @@
 
     goto :goto_3
 
-    .line 206
+    .line 208
     :cond_6
     new-instance p1, Ljava/io/IOException;
 
@@ -7539,7 +7605,7 @@
     .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_1
     .catchall {:try_start_3 .. :try_end_3} :catchall_0
 
-    .line 214
+    .line 216
     :catchall_0
     move-exception p1
 
@@ -7571,7 +7637,7 @@
 .method public onBackPressed()V
     .locals 3
 
-    .line 216
+    .line 218
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->busy:Z
 
     if-eqz v0, :cond_0
@@ -7651,7 +7717,7 @@
 .method protected onCreate(Landroid/os/Bundle;)V
     .locals 7
 
-    .line 48
+    .line 49
     invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
 
     invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->getIntent()Landroid/content/Intent;
@@ -7694,11 +7760,11 @@
 
     iput-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->pendingVertex:Lorg/rabochaya/projects/VertexEditDraft;
 
-    .line 49
+    .line 50
     :cond_0
     const/4 v0, 0x1
 
-    if-eqz p1, :cond_3
+    if-eqz p1, :cond_4
 
     const-string v1, "geometry_confirmation"
 
@@ -7764,11 +7830,11 @@
 
     cmp-long v1, v1, v5
 
-    if-nez v1, :cond_3
+    if-nez v1, :cond_4
 
     iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->featureId:Ljava/lang/String;
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_4
 
     iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->featureId:Ljava/lang/String;
 
@@ -7782,7 +7848,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_4
 
     const-string v1, "geometry_map"
 
@@ -7792,6 +7858,23 @@
 
     iput-boolean v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->restoreMap:Z
 
+    invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->getLastNonConfigurationInstance()Ljava/lang/Object;
+
+    move-result-object v1
+
+    iget-boolean v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->restoreMap:Z
+
+    if-eqz v2, :cond_3
+
+    instance-of v2, v1, Lorg/rabochaya/projects/GeometryMapUndoDraft;
+
+    if-eqz v2, :cond_3
+
+    check-cast v1, Lorg/rabochaya/projects/GeometryMapUndoDraft;
+
+    iput-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->pendingMapUndo:Lorg/rabochaya/projects/GeometryMapUndoDraft;
+
+    :cond_3
     const-string v1, "geometry_selected"
 
     const/4 v2, -0x1
@@ -7818,8 +7901,8 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->preferredKey:Ljava/lang/String;
 
-    .line 50
-    :cond_3
+    .line 51
+    :cond_4
     invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->getWindow()Landroid/view/Window;
 
     move-result-object p1
@@ -7834,7 +7917,7 @@
 
     invoke-virtual {p1, v1}, Landroid/view/Window;->setNavigationBarColor(I)V
 
-    .line 51
+    .line 52
     new-instance p1, Landroid/widget/LinearLayout;
 
     invoke-direct {p1, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
@@ -7865,7 +7948,7 @@
 
     invoke-virtual {p0, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->setContentView(Landroid/view/View;)V
 
-    .line 52
+    .line 53
     const-string p1, "\u041e\u0442\u043a\u0440\u044b\u0442\u0438\u0435 \u0433\u0435\u043e\u043c\u0435\u0442\u0440\u0438\u0438\u2026"
 
     const/16 v0, 0x10
@@ -7884,14 +7967,14 @@
 
     invoke-direct {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->load()V
 
-    .line 53
+    .line 54
     return-void
 .end method
 
 .method protected onDestroy()V
     .locals 1
 
-    .line 220
+    .line 228
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->disposed:Z
@@ -7937,7 +8020,7 @@
 .method protected onPause()V
     .locals 2
 
-    .line 218
+    .line 226
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapCanvas:Lorg/rabochaya/projects/GeometryMapCanvas;
 
     if-eqz v0, :cond_0
@@ -7959,7 +8042,7 @@
 .method protected onResume()V
     .locals 2
 
-    .line 219
+    .line 227
     invoke-super {p0}, Landroid/app/Activity;->onResume()V
 
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapCanvas:Lorg/rabochaya/projects/GeometryMapCanvas;
@@ -7976,10 +8059,133 @@
     return-void
 .end method
 
+.method public onRetainNonConfigurationInstance()Ljava/lang/Object;
+    .locals 10
+
+    .line 220
+    iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->disposed:Z
+
+    const/4 v1, 0x0
+
+    if-nez v0, :cond_4
+
+    iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->busy:Z
+
+    if-nez v0, :cond_4
+
+    iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapMode:Z
+
+    if-eqz v0, :cond_4
+
+    iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
+
+    if-eqz v0, :cond_4
+
+    iget v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->current:I
+
+    if-ltz v0, :cond_4
+
+    iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->input:Landroid/widget/EditText;
+
+    if-nez v0, :cond_0
+
+    goto :goto_1
+
+    .line 221
+    :cond_0
+    iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapCanvas:Lorg/rabochaya/projects/GeometryMapCanvas;
+
+    if-eqz v0, :cond_1
+
+    iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapCanvas:Lorg/rabochaya/projects/GeometryMapCanvas;
+
+    invoke-virtual {v0}, Lorg/rabochaya/projects/GeometryMapCanvas;->cancelGesture()V
+
+    .line 222
+    :cond_1
+    iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
+
+    invoke-virtual {v0}, Lorg/rabochaya/projects/GeometryMapState;->canUndo()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
+
+    invoke-virtual {v0}, Lorg/rabochaya/projects/GeometryMapState;->text()Ljava/lang/String;
+
+    move-result-object v0
+
+    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->input:Landroid/widget/EditText;
+
+    invoke-virtual {v2}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
+
+    move-result-object v2
+
+    invoke-virtual {v0, v2}, Ljava/lang/String;->contentEquals(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_2
+
+    goto :goto_0
+
+    .line 223
+    :cond_2
+    :try_start_0
+    new-instance v0, Lorg/rabochaya/projects/GeometryMapUndoDraft;
+
+    iget-wide v3, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->project:J
+
+    iget-object v5, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->featureId:Ljava/lang/String;
+
+    sget-object v6, Lorg/rabochaya/projects/GeometryEditorActivity;->VERTEX_SESSION:Ljava/lang/String;
+
+    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->parts:Ljava/util/List;
+
+    iget v7, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->current:I
+
+    invoke-interface {v2, v7}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Lorg/rabochaya/projects/GeometryEdits$Part;
+
+    iget-object v7, v2, Lorg/rabochaya/projects/GeometryEdits$Part;->key:Ljava/lang/String;
+
+    iget-object v8, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->expected:Ljava/lang/String;
+
+    iget-object v9, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapState:Lorg/rabochaya/projects/GeometryMapState;
+
+    move-object v2, v0
+
+    invoke-direct/range {v2 .. v9}, Lorg/rabochaya/projects/GeometryMapUndoDraft;-><init>(JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/rabochaya/projects/GeometryMapState;)V
+    :try_end_0
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_0
+
+    return-object v0
+
+    :catch_0
+    move-exception v0
+
+    return-object v1
+
+    .line 222
+    :cond_3
+    :goto_0
+    return-object v1
+
+    .line 220
+    :cond_4
+    :goto_1
+    return-object v1
+.end method
+
 .method protected onSaveInstanceState(Landroid/os/Bundle;)V
     .locals 3
 
-    .line 217
+    .line 225
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->mapCanvas:Lorg/rabochaya/projects/GeometryMapCanvas;
 
     if-eqz v0, :cond_0

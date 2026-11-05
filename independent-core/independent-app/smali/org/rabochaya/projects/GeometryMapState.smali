@@ -148,7 +148,7 @@
         }
     .end annotation
 
-    .line 49
+    .line 55
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -215,7 +215,7 @@
 
     goto :goto_0
 
-    .line 50
+    .line 56
     :cond_1
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
@@ -225,7 +225,7 @@
 
     move-result-object v0
 
-    .line 51
+    .line 57
     iget-object v1, p0, Lorg/rabochaya/projects/GeometryMapState;->text:Ljava/lang/String;
 
     invoke-virtual {v1, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -238,7 +238,7 @@
 
     return-void
 
-    .line 52
+    .line 58
     :cond_2
     iget-object v1, p0, Lorg/rabochaya/projects/GeometryMapState;->history:Ljava/util/Deque;
 
@@ -264,7 +264,7 @@
 
     iput v1, p0, Lorg/rabochaya/projects/GeometryMapState;->historyChars:I
 
-    .line 53
+    .line 59
     :goto_1
     iget-object v1, p0, Lorg/rabochaya/projects/GeometryMapState;->history:Ljava/util/Deque;
 
@@ -282,7 +282,7 @@
 
     goto :goto_2
 
-    .line 54
+    .line 60
     :cond_3
     iput-object v0, p0, Lorg/rabochaya/projects/GeometryMapState;->points:Ljava/util/List;
 
@@ -290,10 +290,10 @@
 
     iput p2, p0, Lorg/rabochaya/projects/GeometryMapState;->selected:I
 
-    .line 55
+    .line 61
     return-void
 
-    .line 53
+    .line 59
     :cond_4
     :goto_2
     iget-object v1, p0, Lorg/rabochaya/projects/GeometryMapState;->history:Ljava/util/Deque;
@@ -322,7 +322,7 @@
 .method private static coordinate(DDD)[D
     .locals 1
 
-    .line 57
+    .line 63
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -380,7 +380,7 @@
         }
     .end annotation
 
-    .line 47
+    .line 53
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
@@ -654,7 +654,7 @@
 .method public complete()Z
     .locals 2
 
-    .line 46
+    .line 52
     :try_start_0
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapState;->text:Ljava/lang/String;
 
@@ -679,12 +679,12 @@
 .method public delete()V
     .locals 3
 
-    .line 70
+    .line 76
     iget v0, p0, Lorg/rabochaya/projects/GeometryMapState;->selected:I
 
     if-ltz v0, :cond_1
 
-    .line 71
+    .line 77
     const-string v0, "Point"
 
     iget-object v1, p0, Lorg/rabochaya/projects/GeometryMapState;->type:Ljava/lang/String;
@@ -695,7 +695,7 @@
 
     if-nez v0, :cond_0
 
-    .line 72
+    .line 78
     invoke-direct {p0}, Lorg/rabochaya/projects/GeometryMapState;->copy()Ljava/util/List;
 
     move-result-object v0
@@ -718,10 +718,10 @@
 
     invoke-direct {p0, v0, v1}, Lorg/rabochaya/projects/GeometryMapState;->change(Ljava/util/List;I)V
 
-    .line 73
+    .line 79
     return-void
 
-    .line 71
+    .line 77
     :cond_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
@@ -731,7 +731,7 @@
 
     throw v0
 
-    .line 70
+    .line 76
     :cond_1
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
@@ -745,7 +745,7 @@
 .method public insert(DD)V
     .locals 8
 
-    .line 65
+    .line 71
     const-string v0, "Point"
 
     iget-object v1, p0, Lorg/rabochaya/projects/GeometryMapState;->type:Ljava/lang/String;
@@ -756,7 +756,7 @@
 
     if-nez v0, :cond_2
 
-    .line 66
+    .line 72
     invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryMapState;->size()I
 
     move-result v0
@@ -765,7 +765,7 @@
 
     if-ge v0, v1, :cond_1
 
-    .line 67
+    .line 73
     iget v0, p0, Lorg/rabochaya/projects/GeometryMapState;->selected:I
 
     if-gez v0, :cond_0
@@ -800,10 +800,10 @@
 
     invoke-direct {p0, v1, v0}, Lorg/rabochaya/projects/GeometryMapState;->change(Ljava/util/List;I)V
 
-    .line 68
+    .line 74
     return-void
 
-    .line 66
+    .line 72
     :cond_1
     new-instance p1, Ljava/lang/IllegalArgumentException;
 
@@ -813,7 +813,7 @@
 
     throw p1
 
-    .line 65
+    .line 71
     :cond_2
     new-instance p1, Ljava/lang/IllegalArgumentException;
 
@@ -827,7 +827,7 @@
 .method public move(IDD)V
     .locals 8
 
-    .line 60
+    .line 66
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapState;->points:Ljava/util/List;
 
     invoke-interface {v0, p1}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -848,7 +848,7 @@
 
     move-result-object p2
 
-    .line 61
+    .line 67
     invoke-static {v0, p2}, Ljava/util/Arrays;->equals([D[D)Z
 
     move-result p3
@@ -857,7 +857,7 @@
 
     return-void
 
-    .line 62
+    .line 68
     :cond_0
     invoke-direct {p0}, Lorg/rabochaya/projects/GeometryMapState;->copy()Ljava/util/List;
 
@@ -867,7 +867,7 @@
 
     invoke-direct {p0, p3, p1}, Lorg/rabochaya/projects/GeometryMapState;->change(Ljava/util/List;I)V
 
-    .line 63
+    .line 69
     return-void
 .end method
 
@@ -942,6 +942,39 @@
     return v0
 .end method
 
+.method public snapshotCopy()Lorg/rabochaya/projects/GeometryMapState;
+    .locals 4
+
+    .line 48
+    new-instance v0, Lorg/rabochaya/projects/GeometryMapState;
+
+    iget-object v1, p0, Lorg/rabochaya/projects/GeometryMapState;->text:Ljava/lang/String;
+
+    iget-object v2, p0, Lorg/rabochaya/projects/GeometryMapState;->type:Ljava/lang/String;
+
+    iget-boolean v3, p0, Lorg/rabochaya/projects/GeometryMapState;->incompleteAllowed:Z
+
+    invoke-direct {v0, v1, v2, v3}, Lorg/rabochaya/projects/GeometryMapState;-><init>(Ljava/lang/String;Ljava/lang/String;Z)V
+
+    .line 49
+    iget v1, p0, Lorg/rabochaya/projects/GeometryMapState;->selected:I
+
+    iput v1, v0, Lorg/rabochaya/projects/GeometryMapState;->selected:I
+
+    iget-object v1, v0, Lorg/rabochaya/projects/GeometryMapState;->history:Ljava/util/Deque;
+
+    iget-object v2, p0, Lorg/rabochaya/projects/GeometryMapState;->history:Ljava/util/Deque;
+
+    invoke-interface {v1, v2}, Ljava/util/Deque;->addAll(Ljava/util/Collection;)Z
+
+    iget v1, p0, Lorg/rabochaya/projects/GeometryMapState;->historyChars:I
+
+    iput v1, v0, Lorg/rabochaya/projects/GeometryMapState;->historyChars:I
+
+    .line 50
+    return-object v0
+.end method
+
 .method public text()Ljava/lang/String;
     .locals 1
 
@@ -954,7 +987,7 @@
 .method public undo()V
     .locals 3
 
-    .line 75
+    .line 81
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapState;->history:Ljava/util/Deque;
 
     invoke-interface {v0}, Ljava/util/Deque;->isEmpty()Z
@@ -963,7 +996,7 @@
 
     if-nez v0, :cond_0
 
-    .line 76
+    .line 82
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryMapState;->history:Ljava/util/Deque;
 
     invoke-interface {v0}, Ljava/util/Deque;->removeLast()Ljava/lang/Object;
@@ -1000,10 +1033,10 @@
 
     iput v0, p0, Lorg/rabochaya/projects/GeometryMapState;->selected:I
 
-    .line 77
+    .line 83
     return-void
 
-    .line 75
+    .line 81
     :cond_0
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
