@@ -30,7 +30,7 @@
 .method constructor <init>(Lorg/rabochaya/projects/MapLayersActivity;Landroid/content/Context;ILjava/util/List;)V
     .locals 0
 
-    .line 17
+    .line 18
     iput-object p1, p0, Lorg/rabochaya/projects/MapLayersActivity$1;->this$0:Lorg/rabochaya/projects/MapLayersActivity;
 
     invoke-direct {p0, p2, p3, p4}, Landroid/widget/ArrayAdapter;-><init>(Landroid/content/Context;ILjava/util/List;)V
@@ -43,7 +43,7 @@
 .method public getView(ILandroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;
     .locals 0
 
-    .line 17
+    .line 18
     invoke-super {p0, p1, p2, p3}, Landroid/widget/ArrayAdapter;->getView(ILandroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;
 
     move-result-object p1

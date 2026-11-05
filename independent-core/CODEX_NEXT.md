@@ -21,7 +21,12 @@
    QA events не задавали SOURCE_TOUCHSCREEN, в отличие от проверенного mapTouch.
    Не менятьproduction наосновании этого жеста; исправить тест explicit touchscreen+
    drag/90ms, before/after diagnostics/PNG доassert, строгий partialopacity сохранить.
-   Затем обоснованный fullCI46 изменённого test. Никакого blindrerun.
+   Кандидатfixготов: explicit SOURCE_TOUCHSCREEN DOWN/MOVE/UP+90ms, actualthumb→middle;
+   Widget/model numeric diagnostics и8PNG/API before/after ДОстрогойpartial оценки.
+   По просмотренным35PNG исправлен толькоunchecked tint новыхcheckbox (lightondark).
+   LocalQA479/sourceSHA60exact/JVM28_81449/host16/API23instrumentation compiled;
+   app/testSHA — security/map-layers-qa-2026-11-05/local-build.json.
+   Затем обоснованный fullCI46 изменённого теста/UI. Никакого blindrerun.
    Модель/Store/менеджер/каталог/общийrenderer+GeometryMapCanvas ужеproductionкод.
    LocalQA479/sourceSHA60/min23/INTERNETonly, JVM28/81449/host16 passed;
    подробности MAP_LAYERS.md/local-build.json. GateFalse25/0accepted.

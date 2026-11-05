@@ -415,7 +415,7 @@
     "WorkspaceUi$Item.smali",
     "WorkspaceUi.smali"
   ],
-  "replaced_classes": 409,
+  "replaced_classes": 413,
   "min_sdk": 23,
   "api_stubs_packaged": false,
   "sources": {
@@ -449,7 +449,7 @@
     "src/org/rabochaya/projects/MapComposition.java": "b364b2e94302a3ac54dfe5a4d48ff526e177334ffc4a30ae5bf953088ba7a225",
     "src/org/rabochaya/projects/MapCompositionSettings.java": "d64ed3c92742bdc9ab46b23cbf70b615f17f88a02ac1754d0f36089731b79f66",
     "src/org/rabochaya/projects/MapHitTest.java": "7191198d874274bca73e6d6efe92bee2fc54bd5619cc31d3a61891b472ed0936",
-    "src/org/rabochaya/projects/MapLayersActivity.java": "60b557d5000f75b44283a49269a0c23b6e7c6550e7ffa5c079ff5551499b28ec",
+    "src/org/rabochaya/projects/MapLayersActivity.java": "98ee1bb3869ccd00813ab47120333c412ca45b08e3aeeea8eea99ce52f18af51",
     "src/org/rabochaya/projects/MapMath.java": "2e9c9fd5e76e00c0400283e71c97fbaf27ef8a4ff30fb7b394e05fe7d9332c24",
     "src/org/rabochaya/projects/MediaLinks.java": "eabda5d03d36da4b02f56208e4d81f2c39771f6a8617eb0cd1b902c7e69fbfca",
     "src/org/rabochaya/projects/MediaPlaybackActivity.java": "51f9fd4110f4424ed7915230b839388b9075ec1cd86c07ca9b7504a4f81b01a5",

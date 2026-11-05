@@ -78,7 +78,7 @@
 .method private add(Lorg/rabochaya/projects/MapComposition$Layer;)V
     .locals 3
 
-    .line 22
+    .line 23
     :try_start_0
     iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->snapshot:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
@@ -132,7 +132,7 @@
 .method private addChoices()V
     .locals 7
 
-    .line 17
+    .line 18
     invoke-direct {p0}, Lorg/rabochaya/projects/MapLayersActivity;->flushOpacity()V
 
     new-instance v0, Ljava/util/ArrayList;
@@ -305,7 +305,7 @@
 .method private apply(Lorg/rabochaya/projects/MapComposition;Z)V
     .locals 7
 
-    .line 23
+    .line 24
     iget-boolean v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->disposed:Z
 
     if-nez v0, :cond_1
@@ -429,6 +429,47 @@
     return-object v0
 .end method
 
+.method private checkTint(Landroid/widget/CheckBox;)V
+    .locals 5
+
+    .line 11
+    new-instance v0, Landroid/content/res/ColorStateList;
+
+    const v1, 0x10100a0
+
+    filled-new-array {v1}, [I
+
+    move-result-object v1
+
+    const/4 v2, 0x0
+
+    new-array v3, v2, [I
+
+    const/4 v4, 0x2
+
+    new-array v4, v4, [[I
+
+    aput-object v1, v4, v2
+
+    const/4 v1, 0x1
+
+    aput-object v3, v4, v1
+
+    const v1, -0xff6978
+
+    const v2, -0x2f2937
+
+    filled-new-array {v1, v2}, [I
+
+    move-result-object v1
+
+    invoke-direct {v0, v4, v1}, Landroid/content/res/ColorStateList;-><init>([[I[I)V
+
+    invoke-virtual {p1, v0}, Landroid/widget/CheckBox;->setButtonTintList(Landroid/content/res/ColorStateList;)V
+
+    return-void
+.end method
+
 .method private dp(I)I
     .locals 0
 
@@ -445,7 +486,7 @@
 .method private flushOpacity()V
     .locals 3
 
-    .line 24
+    .line 25
     iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->pendingLayer:Ljava/lang/String;
 
     if-eqz v0, :cond_1
@@ -567,7 +608,7 @@
 .method static synthetic lambda$addChoices$10(Ljava/util/ArrayList;Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 17
+    .line 18
     invoke-virtual {p0, p2}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
 
     move-result-object p0
@@ -591,7 +632,7 @@
 .method private reload(Ljava/lang/String;)V
     .locals 2
 
-    .line 11
+    .line 12
     :try_start_0
     iget-wide v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->project:J
 
@@ -651,7 +692,7 @@
 .method private remove(Lorg/rabochaya/projects/MapComposition$Layer;)V
     .locals 3
 
-    .line 21
+    .line 22
     new-instance v0, Landroid/app/AlertDialog$Builder;
 
     invoke-direct {v0, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
@@ -722,7 +763,7 @@
 .method private row(Lorg/rabochaya/projects/MapComposition$Layer;I)V
     .locals 9
 
-    .line 18
+    .line 19
     new-instance v0, Landroid/widget/LinearLayout;
 
     invoke-direct {v0, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
@@ -871,6 +912,8 @@
 
     invoke-virtual {v2, v3}, Landroid/widget/CheckBox;->setTypeface(Landroid/graphics/Typeface;)V
 
+    invoke-direct {p0, v2}, Lorg/rabochaya/projects/MapLayersActivity;->checkTint(Landroid/widget/CheckBox;)V
+
     iget-boolean v3, p1, Lorg/rabochaya/projects/MapComposition$Layer;->visible:Z
 
     invoke-virtual {v2, v3}, Landroid/widget/CheckBox;->setChecked(Z)V
@@ -967,7 +1010,7 @@
 
     invoke-virtual {v5, v3}, Landroid/widget/SeekBar;->setOnSeekBarChangeListener(Landroid/widget/SeekBar$OnSeekBarChangeListener;)V
 
-    .line 19
+    .line 20
     new-instance v2, Landroid/widget/LinearLayout;
 
     invoke-direct {v2, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
@@ -1065,7 +1108,7 @@
 
     goto :goto_3
 
-    .line 20
+    .line 21
     :cond_5
     return-void
 .end method
@@ -1073,7 +1116,7 @@
 .method private show(Ljava/lang/String;)V
     .locals 9
 
-    .line 12
+    .line 13
     iget-boolean v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->disposed:Z
 
     if-eqz v0, :cond_0
@@ -1191,7 +1234,7 @@
 
     return-void
 
-    .line 13
+    .line 14
     :cond_2
     new-instance p1, Landroid/widget/ScrollView;
 
@@ -1241,6 +1284,8 @@
 
     invoke-virtual {v3, v4}, Landroid/widget/CheckBox;->setTypeface(Landroid/graphics/Typeface;)V
 
+    invoke-direct {p0, v3}, Lorg/rabochaya/projects/MapLayersActivity;->checkTint(Landroid/widget/CheckBox;)V
+
     iget-object v4, p0, Lorg/rabochaya/projects/MapLayersActivity;->snapshot:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
     iget-boolean v4, v4, Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;->enabled:Z
@@ -1255,7 +1300,7 @@
 
     invoke-virtual {v3, v4}, Landroid/widget/CheckBox;->setOnCheckedChangeListener(Landroid/widget/CompoundButton$OnCheckedChangeListener;)V
 
-    .line 14
+    .line 15
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -1325,7 +1370,7 @@
     :cond_4
     invoke-virtual {v3, v8}, Landroid/widget/Button;->setEnabled(Z)V
 
-    .line 15
+    .line 16
     new-instance v3, Landroid/widget/LinearLayout;
 
     invoke-direct {v3, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
@@ -1413,7 +1458,7 @@
 
     invoke-virtual {p1, v1}, Landroid/widget/ScrollView;->post(Ljava/lang/Runnable;)Z
 
-    .line 16
+    .line 17
     return-void
 .end method
 
@@ -1471,7 +1516,7 @@
 .method synthetic lambda$addChoices$11$org-rabochaya-projects-MapLayersActivity(Landroid/app/AlertDialog;Landroid/content/DialogInterface;)V
     .locals 0
 
-    .line 17
+    .line 18
     invoke-virtual {p1}, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
 
     move-result-object p1
@@ -1488,7 +1533,7 @@
 .method synthetic lambda$addChoices$6$org-rabochaya-projects-MapLayersActivity()V
     .locals 4
 
-    .line 17
+    .line 18
     new-instance v0, Landroid/content/Intent;
 
     const-class v1, Lorg/rabochaya/projects/MapCatalogActivity;
@@ -1521,7 +1566,7 @@
 .method synthetic lambda$addChoices$7$org-rabochaya-projects-MapLayersActivity()V
     .locals 1
 
-    .line 17
+    .line 18
     invoke-static {p0}, Lorg/rabochaya/projects/OnlineMapSettings;->source(Landroid/content/Context;)Lorg/rabochaya/projects/TileSource;
 
     move-result-object v0
@@ -1538,7 +1583,7 @@
 .method synthetic lambda$addChoices$8$org-rabochaya-projects-MapLayersActivity()V
     .locals 1
 
-    .line 17
+    .line 18
     invoke-static {}, Lorg/rabochaya/projects/MapComposition$Layer;->local()Lorg/rabochaya/projects/MapComposition$Layer;
 
     move-result-object v0
@@ -1551,7 +1596,7 @@
 .method synthetic lambda$addChoices$9$org-rabochaya-projects-MapLayersActivity()V
     .locals 1
 
-    .line 17
+    .line 18
     invoke-static {}, Lorg/rabochaya/projects/MapComposition$Layer;->bundled()Lorg/rabochaya/projects/MapComposition$Layer;
 
     move-result-object v0
@@ -1564,7 +1609,7 @@
 .method synthetic lambda$remove$16$org-rabochaya-projects-MapLayersActivity(Lorg/rabochaya/projects/MapComposition$Layer;Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 21
+    .line 22
     iget-object p2, p0, Lorg/rabochaya/projects/MapLayersActivity;->snapshot:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
     iget-object p2, p2, Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;->composition:Lorg/rabochaya/projects/MapComposition;
@@ -1585,7 +1630,7 @@
 .method synthetic lambda$remove$17$org-rabochaya-projects-MapLayersActivity(Landroid/app/AlertDialog;Landroid/content/DialogInterface;)V
     .locals 0
 
-    .line 21
+    .line 22
     invoke-virtual {p1}, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
 
     move-result-object p1
@@ -1602,7 +1647,7 @@
 .method synthetic lambda$row$12$org-rabochaya-projects-MapLayersActivity(Lorg/rabochaya/projects/MapComposition$Layer;Landroid/widget/CompoundButton;Z)V
     .locals 0
 
-    .line 18
+    .line 19
     iget-object p2, p0, Lorg/rabochaya/projects/MapLayersActivity;->snapshot:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
     iget-object p2, p2, Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;->composition:Lorg/rabochaya/projects/MapComposition;
@@ -1623,7 +1668,7 @@
 .method synthetic lambda$row$13$org-rabochaya-projects-MapLayersActivity(Lorg/rabochaya/projects/MapComposition$Layer;I)V
     .locals 2
 
-    .line 19
+    .line 20
     iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->snapshot:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
     iget-object v0, v0, Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;->composition:Lorg/rabochaya/projects/MapComposition;
@@ -1646,7 +1691,7 @@
 .method synthetic lambda$row$14$org-rabochaya-projects-MapLayersActivity(Lorg/rabochaya/projects/MapComposition$Layer;I)V
     .locals 2
 
-    .line 19
+    .line 20
     iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->snapshot:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
     iget-object v0, v0, Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;->composition:Lorg/rabochaya/projects/MapComposition;
@@ -1669,7 +1714,7 @@
 .method synthetic lambda$row$15$org-rabochaya-projects-MapLayersActivity(Lorg/rabochaya/projects/MapComposition$Layer;)V
     .locals 0
 
-    .line 19
+    .line 20
     invoke-direct {p0, p1}, Lorg/rabochaya/projects/MapLayersActivity;->remove(Lorg/rabochaya/projects/MapComposition$Layer;)V
 
     return-void
@@ -1678,7 +1723,7 @@
 .method synthetic lambda$show$1$org-rabochaya-projects-MapLayersActivity()V
     .locals 0
 
-    .line 12
+    .line 13
     invoke-virtual {p0}, Lorg/rabochaya/projects/MapLayersActivity;->finish()V
 
     return-void
@@ -1687,7 +1732,7 @@
 .method synthetic lambda$show$2$org-rabochaya-projects-MapLayersActivity(Landroid/widget/CompoundButton;Z)V
     .locals 0
 
-    .line 13
+    .line 14
     iget-object p1, p0, Lorg/rabochaya/projects/MapLayersActivity;->snapshot:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
     iget-object p1, p1, Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;->composition:Lorg/rabochaya/projects/MapComposition;
@@ -1700,7 +1745,7 @@
 .method synthetic lambda$show$3$org-rabochaya-projects-MapLayersActivity()V
     .locals 0
 
-    .line 14
+    .line 15
     invoke-direct {p0}, Lorg/rabochaya/projects/MapLayersActivity;->addChoices()V
 
     return-void
@@ -1709,7 +1754,7 @@
 .method synthetic lambda$show$4$org-rabochaya-projects-MapLayersActivity()V
     .locals 0
 
-    .line 15
+    .line 16
     invoke-direct {p0}, Lorg/rabochaya/projects/MapLayersActivity;->flushOpacity()V
 
     invoke-virtual {p0}, Lorg/rabochaya/projects/MapLayersActivity;->finish()V
@@ -1720,7 +1765,7 @@
 .method synthetic lambda$show$5$org-rabochaya-projects-MapLayersActivity(I)V
     .locals 2
 
-    .line 15
+    .line 16
     iget-boolean v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->disposed:Z
 
     if-nez v0, :cond_0
@@ -1738,7 +1783,7 @@
 .method protected onActivityResult(IILandroid/content/Intent;)V
     .locals 1
 
-    .line 25
+    .line 26
     invoke-super {p0, p1, p2, p3}, Landroid/app/Activity;->onActivityResult(IILandroid/content/Intent;)V
 
     const/16 v0, 0x11a9
@@ -1887,7 +1932,7 @@
 .method protected onDestroy()V
     .locals 1
 
-    .line 27
+    .line 28
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->disposed:Z
@@ -1900,7 +1945,7 @@
 .method protected onPause()V
     .locals 0
 
-    .line 27
+    .line 28
     invoke-direct {p0}, Lorg/rabochaya/projects/MapLayersActivity;->flushOpacity()V
 
     invoke-super {p0}, Landroid/app/Activity;->onPause()V
@@ -1911,7 +1956,7 @@
 .method protected onSaveInstanceState(Landroid/os/Bundle;)V
     .locals 2
 
-    .line 26
+    .line 27
     invoke-direct {p0}, Lorg/rabochaya/projects/MapLayersActivity;->flushOpacity()V
 
     iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->scroll:Landroid/widget/ScrollView;

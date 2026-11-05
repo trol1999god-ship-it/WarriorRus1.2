@@ -29,7 +29,7 @@ readers/не запрашивают тайлы. Кеши сохраняют пр
 Два относящихся к функции сценария maplayers→maplayersreopen проверяют реальные controls,
 opacity touch, renderer pixels для порядка/alpha/visibility, Cancel remove, XYZ/catalog,
 приостановку/включение без потери состава, KML/assets/MBTiles/source-cache/other-project
-сохранность и exact composition после реального force-stop. Шесть PNG/API, прежние
+сохранность и exact composition после реального force-stop. В первоначальном сценарии шесть PNG/API, прежние
 регрессии не ослабляются. Никаких дополнительных orphan/dialog baseline.
 
 Границы: это ещё не полная приёмка слоя/набора26.1. Именованные библиотеки наборов,
@@ -50,3 +50,11 @@ API23job127247171704: прежние44pass, новый test failed на partial 
 Следующий шаг — исправить QA input source/настоящее drag по существующему mapTouch
 образцу, сохранить before/after кадры/числа ДО строгой оценки opacity и исполнитьCI46
 изменённого сценария. Условия partial opacity/restart/data/pixel guards не ослаблять.
+
+Следующий ограниченный кандидат задаёт SOURCE_TOUCHSCREEN и genuine DOWN/MOVE/UP
+с90ms между событиями, записывает widget/model opacity/geometry и before/after PNG
+до исходного строгого partial assertion. Теперь8PNG/API, cap16 не меняется.
+По реально просмотренному screenshot35 также повышен контраст unchecked checkbox
+в новом менеджере; бизнес-модель/renderer/data guards не изменены.
+LocalQA479/source60exact/min23/INTERNETonly/JVM28_81449 passed, SDK23 tests compiled;
+точные app/test SHA — local-build.json. Android новый кандидат ещёнеисполнен.

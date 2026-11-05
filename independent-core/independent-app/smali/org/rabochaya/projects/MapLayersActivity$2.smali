@@ -34,7 +34,7 @@
         }
     .end annotation
 
-    .line 18
+    .line 19
     iput-object p1, p0, Lorg/rabochaya/projects/MapLayersActivity$2;->this$0:Lorg/rabochaya/projects/MapLayersActivity;
 
     iput-object p2, p0, Lorg/rabochaya/projects/MapLayersActivity$2;->val$amount:Landroid/widget/TextView;
@@ -51,7 +51,7 @@
 .method public onProgressChanged(Landroid/widget/SeekBar;IZ)V
     .locals 2
 
-    .line 18
+    .line 19
     iget-object p1, p0, Lorg/rabochaya/projects/MapLayersActivity$2;->val$amount:Landroid/widget/TextView;
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -101,14 +101,14 @@
 .method public onStartTrackingTouch(Landroid/widget/SeekBar;)V
     .locals 0
 
-    .line 18
+    .line 19
     return-void
 .end method
 
 .method public onStopTrackingTouch(Landroid/widget/SeekBar;)V
     .locals 0
 
-    .line 18
+    .line 19
     iget-object p1, p0, Lorg/rabochaya/projects/MapLayersActivity$2;->this$0:Lorg/rabochaya/projects/MapLayersActivity;
 
     invoke-static {p1}, Lorg/rabochaya/projects/MapLayersActivity;->access$300(Lorg/rabochaya/projects/MapLayersActivity;)V
