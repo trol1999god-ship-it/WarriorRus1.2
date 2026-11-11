@@ -81,7 +81,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
     temp=File.createTempFile("local-map-import-",".tmp",getFilesDir());
     try(InputStream in=getContentResolver().openInputStream(uri);FileOutputStream out=new FileOutputStream(temp)){
      if(in==null)throw new IOException("Не удалось открыть файл");byte[] buffer=new byte[65536];long count=0;int n;
-     while((n=in.read(buffer))!=-1){if(disposed)throw new IOException("Импорт отменён");count+=n;if(count>(tiff?GeoTiffRaster.MAX_FILE:OfflineTiles.MAX_FILE))throw new IOException("Предел MBTiles — 2 ГиБ");out.write(buffer,0,n);}out.getFD().sync();
+     while((n=in.read(buffer))!=-1){if(disposed)throw new IOException("Импорт отменён");count+=n;if(count>(tiff?GeoTiffRaster.MAX_FILE:OfflineTiles.MAX_FILE))throw new IOException(tiff?"Предел GeoTIFF — 512 МиБ":"Предел MBTiles — 2 ГиБ");out.write(buffer,0,n);}out.getFD().sync();
     }
     if(tiff){inputTiff=temp;try(GeoTiffRaster bounds=new GeoTiffRaster(inputTiff)){GeoRasterTransform t=bounds.transform;rasterBounds=new double[]{t.west,t.south,t.east,t.north};}temp=File.createTempFile("geotiff-map-",".mbtiles",getFilesDir());GeoTiffImport.write(inputTiff,temp,(done,total)->{if(disposed)throw new IOException("Импорт отменён");});}
     try(OfflineTiles checked=new OfflineTiles(temp)){}

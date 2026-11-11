@@ -5672,7 +5672,7 @@
     .catchall {:try_start_2 .. :try_end_2} :catchall_b
 
     .line 83
-    if-eqz p1, :cond_8
+    if-eqz p1, :cond_9
 
     const/high16 v3, 0x10000
 
@@ -5691,11 +5691,11 @@
 
     const/4 v8, 0x0
 
-    if-eq v6, v7, :cond_3
+    if-eq v6, v7, :cond_4
 
     iget-boolean v7, p0, Lorg/rabochaya/projects/LocalMapActivity;->disposed:Z
 
-    if-nez v7, :cond_2
+    if-nez v7, :cond_3
 
     int-to-long v9, v6
 
@@ -5713,32 +5713,39 @@
     :goto_1
     cmp-long v7, v4, v9
 
-    if-gtz v7, :cond_1
+    if-lez v7, :cond_2
 
+    new-instance p3, Ljava/io/IOException;
+
+    if-eqz p2, :cond_1
+
+    const-string p2, "\u041f\u0440\u0435\u0434\u0435\u043b GeoTIFF \u2014 512 \u041c\u0438\u0411"
+
+    goto :goto_2
+
+    :cond_1
+    const-string p2, "\u041f\u0440\u0435\u0434\u0435\u043b MBTiles \u2014 2 \u0413\u0438\u0411"
+
+    :goto_2
+    invoke-direct {p3, p2}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    throw p3
+
+    :cond_2
     invoke-virtual {v2, v3, v8, v6}, Ljava/io/FileOutputStream;->write([BII)V
 
     goto :goto_0
 
-    :cond_1
-    new-instance p2, Ljava/io/IOException;
-
-    const-string p3, "\u041f\u0440\u0435\u0434\u0435\u043b MBTiles \u2014 2 \u0413\u0438\u0411"
-
-    invoke-direct {p2, p3}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
-
-    :goto_2
-    throw p2
-
-    :cond_2
+    :cond_3
     new-instance p2, Ljava/io/IOException;
 
     const-string p3, "\u0418\u043c\u043f\u043e\u0440\u0442 \u043e\u0442\u043c\u0435\u043d\u0451\u043d"
 
     invoke-direct {p2, p3}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
 
-    goto :goto_2
+    throw p2
 
-    :cond_3
+    :cond_4
     invoke-virtual {v2}, Ljava/io/FileOutputStream;->getFD()Ljava/io/FileDescriptor;
 
     move-result-object v3
@@ -5753,7 +5760,7 @@
     :try_end_4
     .catchall {:try_start_4 .. :try_end_4} :catchall_b
 
-    if-eqz p1, :cond_4
+    if-eqz p1, :cond_5
 
     :try_start_5
     invoke-virtual {p1}, Ljava/io/InputStream;->close()V
@@ -5762,8 +5769,8 @@
     .catchall {:try_start_5 .. :try_end_5} :catchall_d
 
     .line 86
-    :cond_4
-    if-eqz p2, :cond_5
+    :cond_5
+    if-eqz p2, :cond_6
 
     :try_start_6
     new-instance p1, Lorg/rabochaya/projects/GeoTiffRaster;
@@ -5902,7 +5909,7 @@
     goto/16 :goto_f
 
     .line 86
-    :cond_5
+    :cond_6
     move-object p1, v0
 
     move-object v2, p1
@@ -5919,7 +5926,7 @@
     .line 88
     iget-boolean p2, p0, Lorg/rabochaya/projects/LocalMapActivity;->disposed:Z
 
-    if-nez p2, :cond_7
+    if-nez p2, :cond_8
 
     .line 89
     const-class p2, Lorg/rabochaya/projects/LocalRasterStore;
@@ -5932,7 +5939,7 @@
     :try_start_d
     iget-boolean v3, p0, Lorg/rabochaya/projects/LocalMapActivity;->disposed:Z
 
-    if-nez v3, :cond_6
+    if-nez v3, :cond_7
 
     new-instance v3, Lorg/rabochaya/projects/ProjectStore;
 
@@ -5964,7 +5971,7 @@
     .catchall {:try_start_10 .. :try_end_10} :catchall_7
 
     .line 90
-    if-eqz p1, :cond_c
+    if-eqz p1, :cond_d
 
     invoke-virtual {p1}, Ljava/io/File;->delete()Z
 
@@ -5980,7 +5987,7 @@
     :goto_6
     throw p3
 
-    :cond_6
+    :cond_7
     new-instance p3, Ljava/io/IOException;
 
     const-string v0, "\u0418\u043c\u043f\u043e\u0440\u0442 \u043e\u0442\u043c\u0435\u043d\u0451\u043d"
@@ -6026,7 +6033,7 @@
     goto :goto_7
 
     .line 88
-    :cond_7
+    :cond_8
     :try_start_14
     new-instance p2, Ljava/io/IOException;
 
@@ -6073,7 +6080,7 @@
     goto :goto_c
 
     .line 83
-    :cond_8
+    :cond_9
     :try_start_15
     new-instance p2, Ljava/io/IOException;
 
@@ -6108,7 +6115,7 @@
     :catchall_b
     move-exception p2
 
-    if-eqz p1, :cond_9
+    if-eqz p1, :cond_a
 
     :try_start_18
     invoke-virtual {p1}, Ljava/io/InputStream;->close()V
@@ -6123,7 +6130,7 @@
     :try_start_19
     invoke-virtual {p2, p1}, Ljava/lang/Throwable;->addSuppressed(Ljava/lang/Throwable;)V
 
-    :cond_9
+    :cond_a
     :goto_e
     throw p2
     :try_end_19
@@ -6175,20 +6182,20 @@
     :try_end_1a
     .catchall {:try_start_1a .. :try_end_1a} :catchall_f
 
-    if-eqz v0, :cond_a
+    if-eqz v0, :cond_b
 
     invoke-virtual {v0}, Ljava/io/File;->delete()Z
 
-    :cond_a
-    if-eqz v1, :cond_b
+    :cond_b
+    if-eqz v1, :cond_c
 
     invoke-virtual {v1}, Ljava/io/File;->delete()Z
 
     .line 91
-    :cond_b
+    :cond_c
     move-object v0, p1
 
-    :cond_c
+    :cond_d
     :goto_10
     new-instance p1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda1;
 
@@ -6204,16 +6211,16 @@
     move-exception p1
 
     :goto_11
-    if-eqz v0, :cond_d
+    if-eqz v0, :cond_e
 
     invoke-virtual {v0}, Ljava/io/File;->delete()Z
 
-    :cond_d
-    if-eqz v1, :cond_e
+    :cond_e
+    if-eqz v1, :cond_f
 
     invoke-virtual {v1}, Ljava/io/File;->delete()Z
 
-    :cond_e
+    :cond_f
     throw p1
 .end method
 

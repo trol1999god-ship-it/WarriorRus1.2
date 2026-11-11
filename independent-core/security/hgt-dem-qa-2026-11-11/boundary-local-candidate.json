@@ -1,0 +1,21 @@
+{
+  "status": "local candidate; HGT runtime not executed yet",
+  "source_count": 71,
+  "source_hashes_exact": true,
+  "classes": 527,
+  "variant": "debug-qa",
+  "jvm_suites": 32,
+  "jvm_assertions": 81563,
+  "hgt_assertions": 32,
+  "host_tests": 18,
+  "accepted": false,
+  "android_runtime_executed": false,
+  "regression": "old sampler failed valid node next to void;32-ULP representation tolerance preserves exact nodes and coordinate roundtrip corners, genuine void/outside still rejected",
+  "build_result_sha256": "5045ceb3b41a12c3efcd4883e9c66080cd3c50e5e42c6d781440404fdf590709",
+  "files": {
+    "app.apk": "33f538a3df80472eface128b6ac6478c6e14901def1625ea3b8588d3eb9bb951",
+    "app-unsigned.apk": "e873ab3004076ddf02015708f78e6df32d1f9c1e3222d5b966be15e47d4315fe",
+    "tests-unsigned.apk": "2de879eb2d24b5d791bde9d7a92565367eae3a97b15f208ccdd2c16e6ec43b91",
+    "tests.apk": "fe0cd362d32c4965978e4acc9345bb9103cc7f593caa7390eab83b93968c6f9f"
+  }
+}

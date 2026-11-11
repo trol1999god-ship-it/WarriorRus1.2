@@ -36,8 +36,8 @@ Save/Remove и автоматическую cleanup; чужой контейне
 список операций26.1 ещё отсутствуют. Полярная область текущего Web Mercator
 не становится доступной от импорта полярного файла HGT.
 
-Локально: HGT30 JVM assertions (sign/endian/corners/bilinear/void/coverage,
-1201/3601, filename/length/foreign owner/source preservation), общий JVM32/81561,
+Локально: HGT32 JVM assertions (sign/endian/corners/bilinear/void/coverage,
+1201/3601, filename/length/foreign owner/source preservation), общий JVM32/81563,
 debugQA source71exact/527classes, SDK23 tests259072 bytes compiled;
 source/DEX privacy audit passed (собственный сканер, НЕ Android lint).
 Android runtime НЕ выполнен. CI43001233957 codeee7a60d не содержит DEM.
@@ -48,3 +48,11 @@ KML/assets/другой проект/source exact, actual force-stop/reopen. Д�
 import-ready/restarted, вместе с GeoTIFF2 и layer/cachejob12 =16; старый cap не изменён.
 SAF результат синтетический, provider/реальный HGT/эталонная приёмка отдельно.
 До реальных API23/35/новых PNG функциональный этап не засчитан.
+
+Дополнительная подтверждённая численная регрессия: old HGT7 assertion failed на
+валидном узле (499,500) рядом с void(500,500). Ненулевой вес порядка double-error
+ошибочно давал NoData. Точечный fix нормализует только ошибку представления
+(32ULP координаты/сопоставимый ULP raster index) на границах/точных узлах.
+Настоящий void/interpolation/outside остаются NaN, не заполняются/не extrapolate.
+Новые node/MapMath-roundtrip-corner controls и все прежние32 suites PASS81563;
+boundary-reproduction.log/boundary-fixed-jvm.log/boundary-local-candidate.json.
