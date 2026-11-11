@@ -4,8 +4,10 @@ layers191/reopen66each;32 новыхPNG SHAverified/просмотрены. HGT 
 исправлен в тестовом launch-helper без изменения productionDEM/timeout.
 [HGT_DEM.md](HGT_DEM.md), [GEOTIFF_DEFLATE.md](GEOTIFF_DEFLATE.md).
 Явная команда покрытия DEM проверена на59fdd15/CI43047764920:46/46both,
-layers199/reopen66each,32новыхPNG reviewed. Read-only профиль DEM — следующий
-кандидат (DEM_PROFILE.md), его Androidruntime ещё НЕпроверен.
+layers199/reopen66each,32новыхPNG reviewed. Read-only профиль DEM scoped проверен обеAPI на6f19feb/CI43100835572:
+layers275/274/reopen66,32PNG viewed; API23 full46/46, API35 adbOffline
+geometrymap/reopen дают full44/46 и CI FAILURE. DEM_PROFILE.md; это НЕзелёныйCI
+и НЕполная приёмка.
 Полная эталонная приёмка/перенос и release остаются открытыми.
 
 Подтверждение закрытия dirty-редактора проверено с реальными пересозданиями Activity.

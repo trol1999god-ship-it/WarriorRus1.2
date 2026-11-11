@@ -1,24 +1,21 @@
-# Продолжение — 11 ноября: DEM/Deflate/покрытие проверены; профиль кандидат
+# Продолжение — 12 ноября: профиль проверен scoped; следующий Tiled importer
 
-12 ноября: CI43089751186 completed CANCELLED обе Android jobs; JVMsuccess,
-Run Android scenarios SUCCESS обеAPI, API23 upload результатов FAILURE.
-Это НЕзелёныйCI. Logs130763635944/130763635965 теперь404 BlobNotFound;
-единственный опубликованный artifact — JVM13886974729. Android архивов нет,
-локальных результатов этогоrun нет; evidence-only recovery нечего читать.
-Причина исходной сетевой/серверной ошибки upload НЕустановлена без logs;
-подтверждены потеря доставки и отмена после тестов, НЕдефект приложения.
-Публичные summary обеих jobs подтверждают точную причину отмены:
-"The job has exceeded the maximum execution time of 45m0s";
-cancellation-annotations.json содержит URL/SHA страниц. Лимит45min НЕувеличен.
-Полные46/PNG/profile guards НЕподтверждены. cancelled-run-43089751186.json.
-Следующий изменённый кандидат: single ZIP всех исходных результатов с SHAmanifest,
-bounded uploads3min в существующем workflow; host20PASS, production/tests/guards
-профиля прежние. Один обоснованный новый CI доставки, НЕblindrerun.
-Код6f19febed97f770cb4caeba214b0b8beb403c1bd / CI43100835572 реально запущен;
-JVM130791529891success (log сохранён), Android23 130791794269/35 130791794371
-исполняют сценарии. Не push, пока active; full46/новыеPNG пока НЕподтверждены.
-После его завершения читать обе jobs/новыеPNG; лишь после подтверждения профиля
-вернуть Tiled patch ниже. Все local9d33ade/Tiled1e3e9ea/stash/pending сохранены.
+6f19feb/CI43100835572 завершён FAILURE, НЕзелёныйCI: JVMsuccess33/81640/host20;
+API23 130791794269 SUCCESS46/46, API35 130791794371 44PASS, geometrymap adbOffline,
+зависимый reopen SKIP. Не считать эти2 пройденными. Другие сценарии, включая
+managerforms/профиль, реально исполнены. Не отдельный rerun: новый Tiled fullCI
+обязан также исполнить geometrymap/reopen на обеихAPI.
+Профиль: layers275/274/reopen66each PASS; Close/raw/cursor/stale/foreign/
+mainChanged/explicitMainSave, KML/assets/HGT/MBTiles/cache/otherproject PASS.
+Graph ancestor shown288×481/457; legacy ScrollView hidden0×0 — подтверждённая
+причина старого тестового отказа, production не менялся. Все32 новыхPNG
+SHAverified/actuallyviewed; оба artifactdigest/вложенныеZIP/all546/543files SHA
+проверены. profile-6f19-result.json. Это scoped evidence, НЕполная приёмка.
+Доставка singleZIP/manifest/3min uploads сработала обеAPI. Старый43089751186
+CANCELLED из-за45min job timeout; logs404/Android artifacts отсутствуют,
+не восстановлены/не засчитаны. cancellation-annotations.json.
+Следующий production: восстановить Tiled patch1e3e9ea ниже; source73/Geo215,
+SDK23/JVM/nativepixels/NoData/padding/checksum/Cancel/LRU/data + fullCIboth.
 
 Только independent-core/existing codex/independent-core-auto; без новых агентов/
 веток/worktree/reset/clean/mergePR14. Preserve stash/toolchain/pending/артефакты.

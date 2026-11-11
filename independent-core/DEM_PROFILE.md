@@ -59,3 +59,17 @@ actuallyviewed: график510/512/min−900/max900 и Close полностью
 Порог80/physical/touch/raw/cursor/data guards НЕснижены. Production profile из-за
 этого отказа не меняется. Close/stale/foreign/mainChanged/MainSave/reopen ЕЩЁ НЕ
 исполнены. Новый SDK23 helper269208 compiled. profile-627-failure.json.
+
+## Scoped runtime, 12 ноября
+
+6f19feb/CI43100835572: профиль реально прошёл обеAPI (layers275/274,
+reopen66each). API23 full46/46; API35 full44/46 из-за adbOffline geometrymap
+и dependent reopen SKIP, поэтому CI FAILURE, НЕзелёный. Profile helper выбран
+через graph parent; actual viewport288×481/457, прежний nativeScrollView hidden0×0.
+Строгие >80/touch-scroll/graph/Arimo/Close/raw/cursor/owner/stale/mainChanged/
+отдельныйMainSave и KML/assets/HGT/cache/otherproject guards прошли; никаких
+production изменений из-за дефекта helper. Все32 новыхPNG actuallyviewed/SHA,
+архивы+все546/543members SHAverified; profile-6f19-result.json. Доставка работает
+на этомrun; потерянный d36run не объявляется восстановленным. Полная приёмка
+и полное DEM/форматное покрытие остаются открытыми. Следующий Tiled fullCI
+включает реальные geometrymap/reopen обеAPI, пропуск не засчитывается.

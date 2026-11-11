@@ -1,0 +1,82 @@
+[
+  {
+    "name": "map_mvisual-geotiff-import-prompt.png",
+    "sha256": "2b2b1969e98cf5be78150046d50ee455aafd5a5d3f30bc839550038e6a46967b",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-geotiff-import-saved.png",
+    "sha256": "28f28b16be4a52a47287d47bbb748bf87b2e72152228b1362fd51d4f146e4238",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-cachejob-complete.png",
+    "sha256": "af7b6ab93eece364b2d34d681c35bf0ba472a329d816177f39a8d0b2aadf6560",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-cachejob-form.png",
+    "sha256": "c84cb1feca1ece0b724627ccd3ac017670f95e793a074a4fd7933a1432d92284",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-cachejob-paused.png",
+    "sha256": "ab8117ca1900ca91b3675229f50ca7e7a38689fdecf767dac8c6b55bc1d86cd2",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-cachejob-stale.png",
+    "sha256": "991107a4cea551e7f3be2b627b14c4a4f87c0bbdd5fa168c1e67b2c1074b3b2d",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-dem-profile.png",
+    "sha256": "eb178453691d88d701f251709c3480fe8523240660defd9a92cbe730c98afd6d",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-dem-restarted.png",
+    "sha256": "5bc08d9e4d7d52c118a81c2d452cf5ca87713308868a24f4bbfcd7f174277de1",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-layers-composed.png",
+    "sha256": "b64cb9052eaa171808d53ef1f65afd9035dd4281bc68673d4e123f744dd9c71d",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-layers-final.png",
+    "sha256": "09e9181994636f08e650b86fe34f778422b3208d161ee00fa2995504c4188836",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-layers-manager.png",
+    "sha256": "f854cf6e7f7dbc74d058d865e839afa084e0983539d9a9156b25a3f2e28f79c7",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-layers-opacity-after.png",
+    "sha256": "f854cf6e7f7dbc74d058d865e839afa084e0983539d9a9156b25a3f2e28f79c7",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-layers-opacity-before.png",
+    "sha256": "5dc513e3c164207ef7d44792bfd2cd044193dc498b1fd20dda85690f9793109a",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-layers-reordered.png",
+    "sha256": "dd4c0d4e4a85e8b275a2db3a1fa13ad98a31ca0ce5c3021346ec90a64e702cc6",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-layers-restarted-manager.png",
+    "sha256": "0ad0e764f15ff4f9676b06e60a33a385699b925dd326d85ac62444ebdaa4390e",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-layers-restarted.png",
+    "sha256": "891acfde2862fb71316e632794da355fbc0ef8336157fda08a8434220e444c0d",
+    "actually_viewed": true
+  }
+]
