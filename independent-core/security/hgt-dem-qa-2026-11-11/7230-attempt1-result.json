@@ -1,0 +1,28 @@
+{
+  "code": "7230cec",
+  "run": 43035041730,
+  "attempt": 1,
+  "api23": {
+    "job": 130571810995,
+    "passed": 46,
+    "offlineformats": 68,
+    "maplayers": 191,
+    "reopen": 66,
+    "new_owner": 4,
+    "new_task": 206,
+    "phases": "fresh-created/height-zero/png/remove-complete",
+    "frames_sha_verified": 16,
+    "frames_actually_viewed": 16
+  },
+  "api35": {
+    "job": 130571811069,
+    "result": "failure",
+    "cause": "adb device offline at geometrycloseconfirm artifact pull; then maplayers force-stop failed before instrumentation, reopen skipped",
+    "geometrycloseconfirm_instrumentation_passed": 563,
+    "dem_restart_executed": false,
+    "offlineformats": 68
+  },
+  "accepted": false,
+  "retry_reason": "proven emulator/adb offline, only failed API35 job; no timeout/test changes",
+  "attempt2_api35_job": 130593252640
+}

@@ -34,8 +34,12 @@ roundtrip и checksum refusal с точной сохранностью пред�
 Gray/white-is-zero/alpha, II/MM, legacy tag, LRU restart, corrupt checksum,
 decoded overflow/shortness/unsupported predictor проверены JVM.
 
-Android runtime ещё НЕ выполнен. CI43007479633 code48ca40b содержит только
-предыдущий raw GeoTIFF и HGT DEM; этот Deflate-кандидат в нём не проверяется.
-После completed HGT jobs/PNG исследовать реальные результаты, затем сохранить/
-отправить кандидат в ту же ветку и проверить изменённый путь на23/35. PNG budget
-остаётся16; новых режимов/провайдеров/библиотек нет. Полная эталонная приёмка открыта.
+Android runtime изменённого кода7230cec / CI43035041730 attempt1:
+API23 job130571810995 SUCCESS46/46, offlineformats68 PASS; API35
+job130571811069 offlineformats68 PASS, но позднее adb device offline при
+выгрузке geometrycloseconfirm и до maplayers; reopen не исполнялся. Это НЕполный
+успех API35. Только сбойный API35 повторён без изменения кода/таймаута:
+attempt2 job130593252640 ещё выполняется. API23 16новыхPNG SHAverified/viewed,
+включая compressed import prompt/result. Полная эталонная приёмка открыта.
+CI43007479633 code48ca40b содержит только предыдущий raw GeoTIFF и HGT DEM;
+Deflate в нём не проверялся. PNG budget16, новых режимов/библиотек нет.

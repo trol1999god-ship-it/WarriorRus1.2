@@ -36,7 +36,15 @@ Code48ca40b / CI43007479633 completedFAILURE:45PASSboth, maplayersreopen480s
 (API35 result3, API23 no newDisplayed/originalrootidle), startActivitySync waits
 newcreation callback. Fix DemChecks only: MULTIPLE_TASK|NEW_TASK +strict owner/
 Intent/phase guards, compiledSDK23tests261102; productionDEM/timeout не менялись.
-Нужен обоснованный fullCI актуального кандидата обеAPI/новыйdem-restartedPNG.
+Fix7230cec remote; CI43035041730 attempt1: API23 130571810995 SUCCESS46/46,
+DEM fresh owner4/task206/height0/newPNG/explicitRemove PASS, reopen66.
+API35 130571811069 failed adbOFFLINE after geometrycloseconfirm PASS563;
+maplayers instrumentation not started/reopen skipped. Proven infra, NOT DEMpass.
+Only failed API35 job rerun requested (attempt2 job130593252640), API23 not repeated.
+API23 все16новыхPNG SHAverified/viewed. Deflate offlineformats68PASSboth
+в attempt1, но полный35/DEMrestart ещё НЕподтверждён.
+JVM130571538208 success; do notpush while active or rerun blindly.
+Нужны оба completedjob/фазы послеfresh launch/новыйdem-restartedPNG.
 Deflate WIP сохранён12bcdb0 и НЕпроверялся48ca; текущийCI проверит его отдельно.
 Сценарий расширяет существующие maplayers/reopen: select→Cancel/explicit install/
 removeCancel/foreign owner+cleanup refusal/manual centre/KML/assets/source/otherproject,
@@ -51,8 +59,8 @@ RMAP/Ozi и точный список эталона требуют собств
 
 GEOTIFF_DEFLATE.md: тот же importer, Deflate8/32946/predictor1/2, bounded streaming/
 checksum/exact decoded size/rowLRU8. JVM32_81611(GeoTIFF86), source71exact/
-debugQA528/privacy passed, latestSDK23 tests260537 compiled. Runtime НЕисполнен,
-НЕвходит в CI48ca40b. Старые uncompressed/data/physical guards не снижать,
+debugQA528/privacy passed, latestSDK23 tests260537 compiled. Runtime offlineformats68PASSboth на7230/CI43035041730 attempt1;
+полныйAPI35 пока НЕуспех. НЕвходит в CI48ca40b. Старые uncompressed/data/physical guards не снижать,
 новый UI fixture compressed;16PNG budget прежний. Сначала завершить DEM runtime.
 
 ## Проверенная история и общая очередь
