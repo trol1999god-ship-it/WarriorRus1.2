@@ -26,16 +26,13 @@
    Все8 original exportPNG SHAverified/просмотрены после readonly recovery42989065292;
    originalarchive digest проверен, НЕТrebuild/retest. Факты в final-result.json.
    ПолнаяприёмкаSAF/форматов/release открыта; успешныйCI не повторять.
-5. Cachejobs candidate97d6fa45f2de9f86013c88bd9c4728040c4a3a10 remote:
-   pushCI42995231822 in_progress, JVM130437549332 success,
-   Android23 130437703947/35 130437703955. PRduplicate42995241473 skipped.
-   Выбор слоёв/области/depth, foreground pause, saved job, explicit missing-only resume,
-   policy/dedup/cap/project-CAS. LocaldebugQA501/source65exact/JVM30_81493(job35),
-   host18/source+DEXprivacy pass; SDK23 guard tests compiled. Runtime ещё не засчитан.
-   Читатьобаcompletedjob/новыеPNG, Actual force-stop и stale/foreign/replaced/selected-
-   layer-change refusals, KML/assets/cache/другойпроект. НеpushпокаactiveCI.
-   096ed40 — debug/release validation/privacy QA. --release реальноblocked25/noAPK;
-   officiallintprobe3errors94warnings — integrationgap, неPASS. ci/QA.md/rootAGENTS.
+5. Cachejobs97d6fa4 / CI42995231822 SUCCESS46/46each, jobs23 130437703947/
+   35 130437703955; layers142/141/reopen37each, managerforms482/473. Все32 PNG
+   SHAverified/viewed. Functional/data guards passed, НО визуально кнопки10px
+   на обеих API, этап не принят. Fix48dp+physical/IME/text guards подготовлен;
+   новыйCI обоснован этим дефектом. interim-97-result.json/COMPOSITION_CACHE_JOBS.md.
+   096ed40 — debug/release/privacy QA. --release реальноblocked25/noAPK;
+   officiallintprobe3errors94warnings integrationgap, неPASS; ci/QA.md/rootAGENTS.
 6. Следующий форматныйучасток — GeoTIFF по migration/MAP_FORMATS.md и
    GEO_RASTER_CONTRACT.md; /workspace/work/manager-confirm/GeoRasterTransform.java.pending
    сохранён, SHA06958dec760d8bb79289953468be1d12458657492138129ecf7ae523c35e7294.

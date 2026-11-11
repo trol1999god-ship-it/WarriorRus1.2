@@ -35,3 +35,13 @@ CompositionDownloadJob35. SDK23 instrumentation compiled; Androidruntime кан�
 partial pause, stale-CAS/foreign/selected-layer-change/replaced-job refusal, затем
 actual force-stop→explicit missing-only resume и complete-job zero-request check.
 Другой проект/XML/assets/cache проверяются. Runtime/новыеPNG ещё НЕзасчитаны.
+
+CI42995231822 code97d6fa4: SUCCESS46/46each. Jobs23 130437703947/35 130437703955;
+maplayers142/141, reopen37each, managerforms482/473. Strict missing-only, real
+pause/force-stop/explicit resume/Cancel/stale/foreign/replaced/selected-layer-change
+and KML/assets/cache/other-project guards passed. All32 newPNG SHAverified/viewed.
+НО визуально подтверждено сжатие action buttons примерно до10px на обеих API
+(на23 с настоящей IME; на35 даже без показанной клавиатуры). Этап не принят.
+Кандидат исправления: явная48dp высота и physical/text/IME guards; новыйCI нужен
+по причине реального дефекта, не blind rerun. interim-97-result.json сохраняет
+исходные факты отдельно от будущего исправления.
