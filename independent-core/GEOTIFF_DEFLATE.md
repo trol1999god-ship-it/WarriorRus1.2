@@ -1,4 +1,4 @@
-# GeoTIFF Deflate — локальный кандидат продолжения
+# GeoTIFF Deflate — проверенный ограниченный импорт
 
 Расширен тот же явный импорт GeoTIFF→MBTiles: Compression8 (Adobe Deflate) и
 legacy32946, Predictor1/2 для interleaved unsigned RGB/gray8/alpha. Это не новая
@@ -34,12 +34,12 @@ roundtrip и checksum refusal с точной сохранностью пред�
 Gray/white-is-zero/alpha, II/MM, legacy tag, LRU restart, corrupt checksum,
 decoded overflow/shortness/unsupported predictor проверены JVM.
 
-Android runtime изменённого кода7230cec / CI43035041730 attempt1:
-API23 job130571810995 SUCCESS46/46, offlineformats68 PASS; API35
-job130571811069 offlineformats68 PASS, но позднее adb device offline при
-выгрузке geometrycloseconfirm и до maplayers; reopen не исполнялся. Это НЕполный
-успех API35. Только сбойный API35 повторён без изменения кода/таймаута:
-attempt2 job130593252640 ещё выполняется. API23 16новыхPNG SHAverified/viewed,
-включая compressed import prompt/result. Полная эталонная приёмка открыта.
-CI43007479633 code48ca40b содержит только предыдущий raw GeoTIFF и HGT DEM;
-Deflate в нём не проверялся. PNG budget16, новых режимов/библиотек нет.
+Android runtime code7230cec / CI43035041730 SUCCESS: API23 attempt1
+130571810995 и API35 attempt2 130593252640 по46/46, offlineformats68each.
+Literal pixel RGB70/60/100, обеCRS/predictors, checksum refusal/old MBTiles/source/
+KML/assets/otherproject guards прошли; actual compressed UI import prompt/result
+виден на обеихAPI. Все32 текущих layer/GeoTIFF/DEM/cachejob PNG SHAverified/viewed.
+Первый35 attempt был adbOffline после более раннего успешного offlineformats;
+повторён только сбойный job, не API23/JVM. final-7230-result.json.
+CI43007479633 code48ca40b НЕсодержит Deflate. Полная эталонная приёмка открыта,
+tiled/LZW/JPEG/BigTIFF/DEM-TIFF не поддержаны. Cap16PNG/2МиБ прежний.

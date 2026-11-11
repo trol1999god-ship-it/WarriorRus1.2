@@ -40,7 +40,8 @@ Save/Remove и автоматическую cleanup; чужой контейне
 1201/3601, filename/length/foreign owner/source preservation), общий JVM32/81563,
 debugQA source71exact/527classes, SDK23 tests259072 bytes compiled;
 source/DEX privacy audit passed (собственный сканер, НЕ Android lint).
-Android runtime НЕ выполнен. CI43001233957 codeee7a60d не содержит DEM.
+На исходном локальном этапе Android runtime ещё не был выполнен; итог7230 ниже.
+CI43001233957 codeee7a60d не содержит DEM.
 
 Новый сценарий включён в существующие maplayers/reopen: selection→Cancel,
 explicit install/remove, stale foreign replacement/cleanup refusal, ручной центр,
@@ -99,3 +100,14 @@ coverage-candidate/ содержит локальные receipts, НЕприём
 Предварительный import-ready сохранён обычным artifact PNG, selection/Cancel
 assertions не удалены. Новый coverage кадр сделан после явного выбора меню,
 до foreign refusal. Текущий CI7230 по-прежнему использует ready/restarted.
+
+## Подтверждённый результат исправленного cold restart
+
+Code7230cec / CI43035041730 SUCCESS: API23 job130571810995 attempt1 и
+API35 job130593252640 attempt2 по46PASS, layers191/reopen66each, managerforms
+482/473 реально выполнены. Всефазы/owned-source hashes/fresh owner4 task206/210/
+height0/новый PNG/explicitRemove пройдены, все32PNG SHAverified/viewed.
+Первый35job был adbOffline после geometrycloseconfirm и доlayers; только он
+повторён по доказанной инфраструктурной причине. API23/JVM повторно не запускались.
+final-7230-result.json и completed-job-summary.log; полная приёмкаDEM открыта.
+Следующая функция coverage локальная, НЕвходит в7230.

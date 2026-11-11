@@ -1,3 +1,11 @@
+DEM высоты ручного центра и Deflate GeoTIFF проверены в ограниченном объёме.
+Code7230cec / CI43035041730 SUCCESS46/46 обеAPI: offlineformats68each,
+layers191/reopen66each;32 новыхPNG SHAverified/просмотрены. HGT cold restart
+исправлен в тестовом launch-helper без изменения productionDEM/timeout.
+[HGT_DEM.md](HGT_DEM.md), [GEOTIFF_DEFLATE.md](GEOTIFF_DEFLATE.md).
+Явная команда покрытия DEM — следующий кандидат, ещё без Androidruntime.
+Полная эталонная приёмка/перенос и release остаются открытыми.
+
 Подтверждение закрытия dirty-редактора проверено с реальными пересозданиями Activity.
 Code e5e0e56 / CI42020440809: 44/44 обеAPI, close563 each;32 новыхPNG просмотрены.
 Cancel/SaveDraft/Discard/foreign/mainChanged/replaced draft и отдельный MainSave сохраняют KML/assets.

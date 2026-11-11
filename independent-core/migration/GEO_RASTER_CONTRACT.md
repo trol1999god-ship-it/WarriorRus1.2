@@ -2,7 +2,7 @@
 
 Контракт реализован ограниченным GeoTIFF reader (GEOTIFF_IMPORT.md), не полная
 приёмка26.1. Raw GeoTIFF/cachejobs ee7/CI43001233957 SUCCESS46both;
-Deflate code7230/CI43035041730 scoped offlineformats68PASSboth, полный35 pending.
+Deflate code7230/CI43035041730 SUCCESS46both/offlineformats68each,32PNG reviewed.
 Матрица IMPLEMENTATION_PLAN и MAP_FORMATS отделяют поддержанное от пробелов.
 
 Официальная спецификация: [OGC GeoTIFF](https://github.com/opengeospatial/geotiff/tree/master/GeoTIFF_Standard/standard).
