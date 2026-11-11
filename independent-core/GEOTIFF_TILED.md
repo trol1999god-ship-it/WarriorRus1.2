@@ -50,3 +50,13 @@ Existing offlineformats расширен conversion/literal pixel/NoData/Cancel/
 unused padding checksum/old MBTiles preservation; тот же UI selection→Cancel→Import,
 source/KML/assets/cache/другой проект. UI fixture tiled; PNG budget прежний16/2МиБ,
 новых mode/workflow нет. Accepted не изменён, releasegate остаётся закрытым.
+
+## Сохранение отдельно от scoped profile fix
+
+Полная интеграция сохранена коммитом1e3e9ea. По поручению пользователя сначала
+подтвердить профиль:8чистых implementation файлов временно возвращены к62794e4
+через обратный patch, без reset/clean/новыхветок/удалениядокументов/receipts.
+Незакоммиченный DemProfileChecks fix и все артефакты сохранены. Полный forward
+patch и backup wip.tar.gz: /workspace/work/manager-confirm/
+profile-scoped-preserve-lgehznjb/. Tiled НЕактивен в проверяемом profile-only коде;
+после подтверждения профиля вернуть именно эту интеграцию и продолжить runtime.

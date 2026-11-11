@@ -49,7 +49,32 @@ UI graph/Arimo/touchscroll/Close/raw/cursor/foreign/stale/mainChanged/отдел
 MainSave сохраняет inputaltitudes; KML/assets/source/otherproject checks прежние.
 Consoleprofile/restarted2 +остальные14 =cap16; ready/coverage обычныеartifact.
 Codea501a7c+b52c56c, runtime профиля ЕЩЁ НЕвыполнен и НЕвходит в7230/59CI.
-CoverageCI completed, отправить новый кандидат и читать реальные23/35/full46/PNG.
+Profile remote62794e48ded352aa0a6e2831b9c4823e1eea1c86 / pushCI43055495746
+completedFAILURE. JVM130643720560success33_81640; API23 130643950042/
+API35 130643950034 по44PASS, толькоmaplayers FAIL physicalscroll viewport,
+reopen SKIP (НЕуспех). НовыеprofilePNG обеAPI viewed/fullgraph+Arimo/Close passed.
+Helper firstScrollView не являетсяпредкомgraph; fix test-only graph ancestor +
+legacy/actual visibility/bounds diag, >80/touch/всеdata guards прежние.
+SDK23 newtests269208 compiled; profile-627-failure.json. Close/raw/cursor/foreign/
+stale/mainChanged/MainSave/reopen покаНЕисполнены. Отправить ТОЛЬКО scopedhelper fix, full46both/новыеPNG, НЕblindrerun.
+По уточнённому поручению пользователя tiled проверять ПОСЛЕ подтверждения профиля.
+Tiled сохранён отдельным1e3e9ea и backup/profile-scoped-preserve-lgehznjb;
+его8implementation файлов временно возвращены к точным62794e4 без reset/clean,
+только после проверки отсутствия незакоммиченных правок в них. Production diff
+от62794e4 для профиля нулевой. Полный forward patch:
+/workspace/work/manager-confirm/profile-scoped-preserve-lgehznjb/tiled-implementation.patch.
+После зелёного профиля восстановить source интеграцию Tiled из сохранённого patch/
+commit1e3e9ea, rebuild metadata/smali при изменениях, затем отдельный изменённыйCI.
+
+## Локальный следующий формат — tiled GeoTIFF
+
+Тотже reader/importer, raw/Deflate/32946/pred1/2. JVM33_81769/Geo215/host18,
+source73exact/debugQA535/customprivacy PASS, SDK23 app+tests compiled;
+GEOTIFF_TILED.md/security/geotiff-tiled-qa-2026-11-11 receipts. Runtime НЕвыполнен,
+НЕ627CI. TileLRU16MiB/128blocks, block≤4MiB, padded≤100Mpx; oldRowLRU8 и
+512MiB/20k input/output guards прежние. Native literal pixel/NoData/Cancel/
+sparse/paddingchecksum/oldtarget/source/KML/assets/otherproject в existing
+`offlineformats`; UIfixturetiled, cap16/2МиБ прежний, новыхmodes/workflowнет.
 
 ## Проверенная история / ограничения
 

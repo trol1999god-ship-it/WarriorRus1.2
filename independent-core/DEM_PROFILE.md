@@ -47,3 +47,15 @@ artifact PNG. Новый код НЕвходит в CI7230 или coverage CI59f
 
 Полная приёмка DEM/профиля26.1, hillshade/коллекции DEM, реальные исходные файлы,
 полные ошибки хранения/физические устройства остаются открытыми; accepted не меняется.
+
+## Реальный первый Android результат / относящееся исправление helper
+
+62794e4/CI43055495746:44PASSboth; maplayers FAIL `profile has physical scroll
+viewport`, maplayersreopen SKIP (НЕуспех). Новые24 PNG SHAverified, 2profilePNG
+actuallyviewed: график510/512/min−900/max900 и Close полностью видны, Arimo guard
+пройден. Helper выбирал первый ScrollView в AlertDialog вместо предка графика;
+его rect не может принадлежать полностью видимому графику180dp, если fail80x80.
+Исправляется только поиск actual graph ancestor +visibility/bounds diagnostics.
+Порог80/physical/touch/raw/cursor/data guards НЕснижены. Production profile из-за
+этого отказа не меняется. Close/stale/foreign/mainChanged/MainSave/reopen ЕЩЁ НЕ
+исполнены. Новый SDK23 helper269208 compiled. profile-627-failure.json.
