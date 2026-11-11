@@ -1,0 +1,16 @@
+{
+  "map_mvisual-geotiff-import-prompt.png": "38f8a40fee87f50234c65f111dd53e14ca34e8e71a15da0ab3ad525b8a47bfc9",
+  "map_mvisual-geotiff-import-saved.png": "f1a9a91257f0ccaf4f24bc1a8c16ce0c0a2e37145675a49fd953940bb60652ce",
+  "map_mvisual-cachejob-complete.png": "fae55503e0dbd8e9ace85561b69284c6b929b5e61f67eb2d0c5932d509107733",
+  "map_mvisual-cachejob-form.png": "e901d422b76605882604a406a73b3d8ebc66ec35aeea2f3143a74f679138e7d7",
+  "map_mvisual-cachejob-paused.png": "2f668083b5e29ef2ddc9989b49c3e2873649e1a28e0f4fb72c0a2287b5a9077f",
+  "map_mvisual-cachejob-stale.png": "f359fecadbca4254f2a0b516672bc702455098717aad697adcf5cc7c86675512",
+  "map_mvisual-layers-composed.png": "b794520fbcd6dc0e83aa7c11fd43e99e5e2164015232538c0d8697f43a44d329",
+  "map_mvisual-layers-final.png": "153248b497feed34636cbf1145aa9b6118d80cc765b1879d99d0a32d9574967a",
+  "map_mvisual-layers-manager.png": "7bc7bae2156a502db4afa44ab2226d0a36e373374bcd43079f4e0ba039e9f902",
+  "map_mvisual-layers-opacity-after.png": "7bc7bae2156a502db4afa44ab2226d0a36e373374bcd43079f4e0ba039e9f902",
+  "map_mvisual-layers-opacity-before.png": "065624d3f7269df97581b9ab6a252ab456ae95e59ad9166f6f188b983399ce47",
+  "map_mvisual-layers-reordered.png": "97eb273ce733789c711837150f41bc1d8132401e724a2e1452de8d634156ad8a",
+  "map_mvisual-layers-restarted-manager.png": "33bcead304fbec66256e85644ed4275762b64544f8915818e83ca04dc045a932",
+  "map_mvisual-layers-restarted.png": "267f752728680a500b1b8b67ac4c578e0db86ba0833d5fc647696f41dcf72709"
+}

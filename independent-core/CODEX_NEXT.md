@@ -1,76 +1,63 @@
-# Точка продолжения — 11 ноября 2026
+# Продолжение — 11 ноября: cachejobs/GeoTIFF проверены, DEM кандидат
 
-## Текущий этап
+Приоритет — production функциональные блоки по матрице всех23id, не dialog/orphan
+baseline. Только independent-core/existing codex/independent-core-auto; PR14 не merge.
+Без новых агентов/веток/worktree/reset/clean; сохранять данные/toolchain/stash/артефакты.
 
-Приоритет пользователя — production функциональные блоки, не очередь изолированных
-диалоговых baseline. Новых агентов/веток/worktree не создавать, PR14 не сливать.
-Только independent-core, сохранять toolchain/stash/данные/артефакты, без reset/clean.
+## Последний проверенный результат
 
-1. Close ЗАВЕРШЁН в проверенном valid-part контексте: code e5e0e56,
-   CI42020440809 SUCCESS44/44 обеAPI (jobs23 127221764336/35 127221764405),
-   close563each, managerforms482/473 реальноpass. Все32 final-e5 PNG SHAverified
-   и просмотрены, final-result.json. JVM27/81416, host16. Strict guards unchanged.
-   Никакого rerun/baseline этого завершённого участка без новой причины.
-2. `migration/IMPLEMENTATION_PLAN.md` и closeproof сохранены remote2e40e22:
-   все23id ровноодинраз, реализация/приёмка разделены, доказательства/пробелы/зависимости/критерии.
-3. Слои проверены: code17ac3f9 +dc16493 / CI42034901826 SUCCESS46/46 обеAPI.
-   jobs23 127270591123/35 127270591391, layers89/reopen16each, managerforms482/473.
-   Все16 final-dc PNG SHAverified/просмотрены. Touch45%/50%, renderer pixels/order/
-   visibility, actualforce-stop/cache/MBTiles/other-project/KML/assets passed.
-   MAP_LAYERS.md и final-result.json. Не повторять без новой причины; приёмка открыта.
+Code ee7a60de02a6e42fd1383ac996424bdfe60125b1 / pushCI43001233957 SUCCESS46/46both.
+JVM130457591508 success; Android23 130457786547/35 130457786669 completed success.
+- Cachejobs: layer choice/area/depth, Calc Cancel, partial foreground pause,
+  saved generation, actualforce-stop→explicit missing-only resume, complete zeroHTTP;
+  stale-CAS/foreign/replaced/selected-layer-change отказ, KML/assets/cache/otherproject PASS.
+- layers156/155, reopen51each; actions48dp/full visible rect/full text/Arimo above
+  actual IME обеAPI PASS. Подтверждённое clipping97 исправлено, старые guards не снижены.
+- GeoTIFF uncompressed RGB/gray8/alpha/NoData/EPSG4326/3857→private MBTiles:
+  offlineformats48each (pixel roundtrip/Cancel/unsupported/stale replace/remove/
+  explicitUI import/source/KML/assets/otherproject), scoped PASS. Новая подложка видна,
+  centre2.02E/.98N/z12.9. Полный GeoTIFF26.1/SAF-provider acceptance открыт.
+- cacheexport69each, managerforms482/473 реальноPASS. Source69exact/debugQA512,
+  JVM31_81531/host18, source+DEXprivacy custom PASS (НЕAndroidlint).
+Все28 новыхPNG SHAverified/viewed; final-result.json и runtime-ee7-result.json.
+Не rerun этого CI без изменения/причины. COMPOSITION_CACHE_JOBS.md/GEOTIFF_IMPORT.md.
 
-4. Export завершён в scoped объёме: production3f72957 +QAfixc230680,
-   CI42074949288 SUCCESS46/46each, cacheexport69each, jobs23 127412862356/
-   35 127412862334. Bounds/TMS/+180/alpha/order/visibility/mixedzoom/roundtrip/
-   Cancel/UI-save/early-failure/source/cache/localMBTiles/other-project/KML/assets passed.
-   Все8 original exportPNG SHAverified/просмотрены после readonly recovery42989065292;
-   originalarchive digest проверен, НЕТrebuild/retest. Факты в final-result.json.
-   ПолнаяприёмкаSAF/форматов/release открыта; успешныйCI не повторять.
-5. Cachejobs97d6fa4 / CI42995231822 SUCCESS46/46each, jobs23 130437703947/
-   35 130437703955; layers142/141/reopen37each, managerforms482/473. Все32 PNG
-   SHAverified/viewed. Functional/data guards passed, НО визуально кнопки10px
-   на обеих API, этап не принят. Fix48dp+physical/actualIME/text/Arimo guards remoteee7a60d;
-   pushCI43001233957 in_progress (JVM130457591508 success, Android23
-   130457786547/35 130457786669). Неpushпокаactive и неblindrerun.
-   CI обоснован этим дефектом и GeoTIFF production f4c3eff+extent/stale guards.
-   Local source69exact/debugQA512/JVM31_81531/host18/privacy; latestSDK23tests255138.
-   interim-97-result.json/COMPOSITION_CACHE_JOBS.md.
-   096ed40 — debug/release/privacy QA. --release реальноblocked25/noAPK;
-   officiallintprobe3errors94warnings integrationgap, неPASS; ci/QA.md/rootAGENTS.
-6. Следующий форматныйучасток — GeoTIFF по migration/MAP_FORMATS.md и
-   GEO_RASTER_CONTRACT.md; /workspace/work/manager-confirm/GeoRasterTransform.java.pending
-   сохранён, SHA06958dec760d8bb79289953468be1d12458657492138129ecf7ae523c35e7294.
-   Локальный WIP GeoTiffRaster/GeoRasterTransform/GeoTiffImport + явный пункт
-   Подложка→ИмпортGeoTIFF, CAS local-map, GEOTIFF_IMPORT.md. JVM38 новыхchecks;
-   весьJavaSDK23 compiled, instrumentation252776bytes compiled. QA build
-   geotiff-ui-debug-2026-11-11 PASS source69exact/512classes/JVM31_81531/host18/privacy. НЕ входит в CI97, Androidruntime не засчитан.
-   Сначала завершить CIcachejobs, затем runtime/pixel/UI import/Cancel/data guards
-   новогоформата; не считать grayscale DEM и не выдавать subset за полныйGeoTIFF.
+## Следующий кандидат — HGT DEM
 
-7. Локальный следующий WIP HGT_DEM.md: HgtRaster/DemActivity, явный import/CAS/owner,
-   высота ручного центра, без GPS/правки KML. SDK23/debugQA71sourceexact527classes,
-   JVM32_81561(HGT30), instrumentation259072bytes compiled/privacy pass.
-   НЕвходит в CIee7. Сценарий расширяет maplayers/reopen, не новый mode; runtime
-   и два новыхPNG ещё не засчитаны. Рельеф/профиль/другиеDEM/приёмка открыты.
+Локальный code0a04247 + prepared numeric boundary fix: HgtRaster/DemActivity,
+явный private import/owner/CAS, высота ручного центра, без GPS/правки KML.
+JVM HGT32 (включая подтверждённый valid-node-near-void/roundtrip boundary fix),
+всего32_81563; debugQA71sourceexact/527classes, SDK23 instrumentation compiled,
+source+DEXprivacy PASS. HGT_DEM.md. Androidruntime ЕЩЁ НЕзасчитан и НЕвходит в ee7CI.
 
-## Production очередь
+Сохранить исправление/локальные receipts, push в ту же ветку для обоснованного CI.
+Сценарий расширяет существующие maplayers/reopen: select→Cancel/explicit install/
+removeCancel/foreign owner+cleanup refusal/manual centre/KML/assets/source/otherproject,
+actualforce-stop→sameDEM/newheight/no extraHTTP/explicit remove. Два consolePNG DEM,
+вместе GeoTIFF2+layers/cachejob12=16, cap16/2МиБ не менять. Читатьоба completedjob,
+исследовать каждый реальный отказ/новыеPNG, не засчитывать offline/skip/inherited за success.
+После высоты — следующий реализуемый форматный/DEM пробел по registry/матрице:
+TIFF compression/tiled/контрольные CRS либо DEM relief/profile/collection;
+RMAP/Ozi и точный список эталона требуют собственных подтверждённых контрактов/файлов.
 
-Слои: явные add/remove/visible/order/opacity, per-project persistence/restart,
-существующий каталог/TileSource.leafs/кеши/MBTiles, без удаления файлов при удалении слоя.
-Затем кеш/форматы/DEM → объекты/геометрия → import-export/styles/SVG → вложения/явная
-передача → UI/coordinates/compass/settings → migration26.1/итоговая приёмка.
-Зависимости и критерии — IMPLEMENTATION_PLAN. Подготовленный orphan-close baseline
-НЕ запускать по старой очереди; файл .pending сохранён, не подключён, не исполнен.
+## Проверенная история и общая очередь
 
-## Сохранность и границы
+Экспорт композиции production3f72957+QAc230680 / CI42074949288 SUCCESS46both,
+cacheexport69each;8 original exportPNG recovered readonly/SHAverified/viewed, a2f4d77.
+Слои17ac3f9+dc16493 / CI42034901826 SUCCESS46both,89/reopen16each,16PNG viewed.
+Close e5e0e56 / CI42020440809 SUCCESS44both,32PNG viewed. Их baseline не повторять.
+Подготовленный orphan-close .pending сохранён, не подключать к старой очереди.
 
-minSdk23/«Рабочая карта»/Arimo/утверждённые ресурсы и online tiles/cache сохраняются.
-Нет GPS/location/telemetry/cloud sync/скрытой отправки объектов; Bluetooth толькоявно.
-Только synthetic QA/disposable keys, не основные ключи/данные телефона.
-Строгие80/82/physical/raw/cursor/owner guards/release gate не ослаблять.
-GateFalse25, requirements23/0accepted. QA APK/CI не являются готовым приложением.
+Матрица migration/IMPLEMENTATION_PLAN.md: все23id, implementation/acceptance отдельно,
+accepted0. Кеш/форматы/DEM → объекты/геометрия → import-export/styles/SVG → вложения/
+явная передача → UI/coordinates/compass/settings → migration26.1/итоговая приёмка.
+Постоянные QA: rootAGENTS/ci/QA.md, существующий workflow debug/unit/privacy/release.
+--release реальноblocked25/noAPK/publishedfalse, основные ключи не использованы.
+OfficialAndroidlint launcher есть, adapter gap; historical probe3errors94warnings,
+НЕPASS. Custom scan не Androidlint. Физический телефон/полный эталон не приняты.
 
-Сохранённый Java17/SDK доступен; публикация reusable environment не проверена.
-Предыдущие результаты и незавершённые приёмки сохранены в
-[migration/CONTINUATION_HISTORY_2026-11-05.md](migration/CONTINUATION_HISTORY_2026-11-05.md)
-и тематических state/evidence документах. Исторические in_progress не повторять вслепую.
+Java17/SDK доступны, текущая Cloud Environment работает; публикация reusable-среды
+не проверена. Stash2, исходный GeoRasterTransform.java.pending SHA06958dec760d8bb79289953468be1d12458657492138129ecf7ae523c35e7294 сохранены.
+min23/«Рабочая карта»/Arimo/ресурсы/online cache сохранить. Нет GPS/geopermissions/
+telemetry/accounts/cloudsync/скрытой передачи; Bluetooth только явно. SyntheticQA/
+disposable keys only. Strict80/82/physical/raw/cursor/owner/release guards не ослаблять.

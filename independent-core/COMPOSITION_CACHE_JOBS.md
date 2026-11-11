@@ -1,4 +1,4 @@
-# Область кеша для состава карт — локальный кандидат
+# Область кеша для состава карт — проверенный ограниченный этап
 
 Пункт карты «Скачать область слоёв» открывает отдельный экран с явным разрешением
 сети, WGS84-границами (включая пересечение180°) и диапазоном zoom. Рассчитать→Отмена
@@ -19,6 +19,8 @@ generation, source fingerprint и advisory progress с checksum. CAS не пер
 прохода. Изменённые выбранные слои/источники отклоняются (изменение невыбранного слоя не меняет задание); нужно рассчитать новое задание.
 Ошибка записи состояния не удаляет полученный кеш. Delete project очищает только
 собственный job key, общие source caches остаются.
+
+## История подготовки до окончательного CIee7
 
 Начальная local QA501/min23/INTERNETonly,65 source SHA совпали; JVM30/81493,
 CompositionDownloadJob35. SDK23 instrumentation compiled; Androidruntime кандидата
@@ -45,3 +47,11 @@ and KML/assets/cache/other-project guards passed. All32 newPNG SHAverified/viewe
 Кандидат исправления: явная48dp высота и physical/text/IME guards; новыйCI нужен
 по причине реального дефекта, не blind rerun. interim-97-result.json сохраняет
 исходные факты отдельно от будущего исправления.
+
+Итог codeee7a60d / CI43001233957 SUCCESS46/46both: jobs23 130457786547/
+35 130457786669, layers156/155, reopen51each, managerforms482/473 реальноPASS.
+Все28 новыхPNG SHAverified/просмотрены. Кнопки48dp/полный текст/Arimo над настоящей
+IME проверены физическими guards и кадрами обеихAPI; clipping97 устранён.
+Все функциональные/data guards старого97 повторноPASS. final-result.json.
+Это scoped synthetic evidence, не полная приёмка механизма кеша26.1/физического
+телефона/реальных провайдеров/долгих задач. Requirements accepted0/releaseblocked25.

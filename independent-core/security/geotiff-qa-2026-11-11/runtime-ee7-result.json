@@ -1,0 +1,47 @@
+{
+  "code": "ee7a60de02a6e42fd1383ac996424bdfe60125b1",
+  "ci": 43001233957,
+  "apis": {
+    "23": {
+      "job": 130457786547,
+      "modes_pass": 46,
+      "maplayers_assertions": 156,
+      "maplayersreopen_assertions": 51,
+      "offlineformats_assertions": 48,
+      "cacheexport_assertions": 69,
+      "managerforms_assertions": 482,
+      "saved_decoded_log_sha256": "4aeb5a38cb3c084dd873f333496e74200022f460ff25fe4b3c8d80926d70e33f",
+      "png_manifest": "fixed-ee7-api23/frames.json"
+    },
+    "35": {
+      "job": 130457786669,
+      "modes_pass": 46,
+      "maplayers_assertions": 155,
+      "maplayersreopen_assertions": 51,
+      "offlineformats_assertions": 48,
+      "cacheexport_assertions": 69,
+      "managerforms_assertions": 473,
+      "saved_decoded_log_sha256": "a953e14836a1231c6e4bb17460f910bd585cbe810fa70ee1b94013c7e2d4676d",
+      "png_manifest": "fixed-ee7-api35/frames.json"
+    }
+  },
+  "scoped_checks_passed": true,
+  "accepted": false,
+  "subset": "classic uncompressed RGB/gray8 strips, EPSG4326/3857; not complete GeoTIFF acceptance",
+  "model_assertions": 38,
+  "runtime": "existing offlineformats48each; pixel roundtrip/Cancel/invalid compression/stale replacement/stale remove/UI explicit import/source/KML/assets/other-project guards passed",
+  "frames_actually_viewed": 4,
+  "frame_paths": [
+    "../composition-cache-jobs-qa-2026-11-11/fixed-ee7-api23/map_mvisual-geotiff-import-prompt.png",
+    "../composition-cache-jobs-qa-2026-11-11/fixed-ee7-api23/map_mvisual-geotiff-import-saved.png",
+    "../composition-cache-jobs-qa-2026-11-11/fixed-ee7-api35/map_mvisual-geotiff-import-prompt.png",
+    "../composition-cache-jobs-qa-2026-11-11/fixed-ee7-api35/map_mvisual-geotiff-import-saved.png"
+  ],
+  "observed_map_centre": {
+    "longitude": 2.02,
+    "latitude": 0.98,
+    "zoom": 12.9
+  },
+  "release": "blocked25/not published",
+  "lint": "official integration gap; custom audit passed separately"
+}

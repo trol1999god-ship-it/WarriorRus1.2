@@ -30,12 +30,12 @@ OfflineTiles и проверки исходного inode/размера/вре�
 Destroy отменяет незавершённый импорт; нет автоматического resume/повторной записи.
 Исходный SAF-файл только читается, другой проект/общий online cache не затрагиваются.
 
-Факты пока локальные: GeoTIFF/transform38 JVM assertions (II/MM, CRS, Point/Area,
+История локальной подготовки до CIee7: GeoTIFF/transform38 JVM assertions (II/MM, CRS, Point/Area,
 NoData/alpha/invalid offsets/compression/degenerate transform/source preservation),
 весь Java-код с bootclasspathSDK23 скомпилирован; instrumentation255138 bytes
 скомпилирован. В существующий offlineformats подключены conversion/roundtrip pixel,
 Cancel/unsupported previous-file preservation и stale local-map CAS проверки.
-Они ещё НЕ исполнены на Android. Полный debug QA build source69exact/512classes прошёл, JVM31/81531, host18,
+На этом локальном шаге они ещё не исполнены; итог CI ниже. Полный debug QA build source69exact/512classes прошёл, JVM31/81531, host18,
 source+DEX privacy passed (custom audit, НЕ Android lint);
 Android CI cachejobs97d6fa4 не включает эти новые исходники.
 
@@ -45,6 +45,12 @@ offlineformats; console выбирает offlineformats+maplayersreopen (14 PNG 
 cacheexport по-прежнему исполняется/валидирует все кадры и сохраняет artifacts.
 Строгий cap16/2МиБ не изменён.
 
-До принятия участка нужны API23/API35 runtime/pixel и явный UI import/Cancel,
-KML/assets/other-project guards и новые снимки; внешние реальные TIFF и эталонная
-приёмка остаются отдельно. DEM не реализован этим grayscale reader.
+Для полной приёмки остаются внешние реальные TIFF/SAF-provider/эталон;
+scoped API23/API35 runtime/pixel/UI/Cancel/data/новые PNG подтверждены ниже. DEM не реализован этим grayscale reader.
+
+Runtime подтверждён на codeee7a60d / CI43001233957 SUCCESS46both:
+offlineformats48each, обычный reader/pixel roundtrip/Cancel/unsupported/stale
+replace/remove/explicit UI import/source/KML/assets/other-project passed.
+Четыре новых GeoTIFF PNG SHAverified/просмотрены; centre2.02E/.98N/z12.9 и
+приватная локальная подложка отображаются на обеихAPI. runtime-ee7-result.json.
+Это приёмка только описанного synthetic поднабора; полный формат/release не принят.
