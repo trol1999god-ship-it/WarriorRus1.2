@@ -1,5 +1,13 @@
 # Продолжение — 11 ноября: DEM/Deflate/покрытие проверены; профиль кандидат
 
+Последнее наблюдение 23:39 МСК: CI43089751186 ещёactive, JVMsuccess и
+Run Android scenarios SUCCESS обеAPI. API23 upload результатов FAILURE;
+API35 upload ещёactive. Полные logs обеAPI ReadTimeout, штатный gh API Forbidden.
+НовыхPNG НЕпросмотрено,46/46/guards ещё НЕсверены; это внешний evidence blocker,
+НЕдоказанная ошибка приложения и НЕлимит. Не rerun и не push до завершения jobs.
+Сначала читать завершённые logs/PNG этогоrun; после подтверждения профиля вернуть
+Tiled patch ниже. actions-access-blocker.json. Localdocs сохранены отдельно.
+
 Только independent-core/existing codex/independent-core-auto; без новых агентов/
 веток/worktree/reset/clean/mergePR14. Preserve stash/toolchain/pending/артефакты.
 Приоритет production функций по всем23id IMPLEMENTATION_PLAN, НЕorphan/dialog queue.
