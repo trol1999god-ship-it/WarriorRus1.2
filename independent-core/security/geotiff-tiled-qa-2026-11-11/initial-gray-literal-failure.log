@@ -1,0 +1,5 @@
+Exception in thread "main" java.lang.AssertionError: GeoTIFF 191
+	at GeoTiffTests.ck(GeoTiffTests.java:3)
+	at GeoTiffTests.main(GeoTiffTests.java:15)
+PASS DEM profile: 23 assertions
+PASS HGT DEM: 38 assertions

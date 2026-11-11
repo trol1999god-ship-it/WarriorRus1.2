@@ -1,0 +1,21 @@
+{
+  "candidate": "tiled GeoTIFF in existing reader/importer; NOT profile627CI",
+  "jvm_suites": 33,
+  "jvm_assertions": 81769,
+  "geotiff_assertions": 215,
+  "host_tests": 18,
+  "sources": 73,
+  "source_hashes_exact": true,
+  "classes": 535,
+  "sdk23_app_and_instrumentation_compiled": true,
+  "runtime_executed": false,
+  "accepted": false,
+  "files": {
+    "sdk23-build.log": "804f8c9c02eaa7503d3ef82bbdf31ae2fc05faa885871844d84af0504565c3e2",
+    "jvm.log": "1a8edb3a647304102b904f312a9ccbbc1c47afb49f716654c788a721cb429496",
+    "privacy.json": "0d04ccc4846cc2ede8ebe5a57471f0fba73472f1e355b7d7408d35ee3807a2c8",
+    "initial-gray-literal-failure.log": "616f1d25e9f3fbbb9f600d043d1e50f57e9b860406edab5e7b502e03094e0883",
+    "qa-build.json": "3c665f8f2507a9781b0bc065f2290d3e6a85ace75b441c483ec7c0e6e16e46df",
+    "host.log": "c2d76360097d9d889de078a4c5efcf1feaa3979234454df84c54ca3e101b2acc"
+  }
+}
