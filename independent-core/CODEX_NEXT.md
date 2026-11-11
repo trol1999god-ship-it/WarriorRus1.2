@@ -59,6 +59,10 @@ Profile-only SDK23 tests266580 compiled, host18/JVM33_81640 PASS; profile-627-fa
 stale/mainChanged/MainSave/reopen покаНЕисполнены. Remote d36f15f4e606fcad310a59cc25ba7940bbfbc205 / CI43089751186 in_progress;
 JVM130763362981success, API23 130763635944/35 130763635965 running
 (имена сверены). Не push покаactive; читать оба completedjob/новыеPNG.
+Промежуточный Actions status: Run Android scenarios SUCCESS обеAPI;
+API23 Keep synthetic test results FAILURE после выгрузки, jobs ещёactive.
+Два чтения API23 logs вернули ReadTimeout. Это НЕпроверенные46/46/PNG
+и НЕготовность профиля; actions-upload-pending.json сохраняет точные steps.
 Это ТОЛЬКО scopedhelper fix, full46both, НЕblindrerun.
 По уточнённому поручению пользователя tiled проверять ПОСЛЕ подтверждения профиля.
 Tiled сохранён отдельным1e3e9ea и backup/profile-scoped-preserve-lgehznjb;
