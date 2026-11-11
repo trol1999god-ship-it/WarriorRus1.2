@@ -30,10 +30,14 @@ JVM HGT32 (включая подтверждённый valid-node-near-void/roun
 всего32_81563; debugQA71sourceexact/527classes, SDK23 instrumentation compiled,
 source+DEXprivacy PASS. HGT_DEM.md. Androidruntime ЕЩЁ НЕзасчитан и НЕвходит в ee7CI.
 
-Code48ca40b уже remote; pushCI43007479633 completed FAILURE45PASSboth; only maplayersreopen timeout480s.
-Причина ещё не установлена, DEM НЕпринят. Readonly diagnostic recovery requested.
-CI source48ca40b, Deflate WIP saved12bcdb0 is NOTtested there. Previously:, JVM130478455397 success,
-Android23 130478716929/35 130478716899. Неpushпокаactive; читать completed jobs/PNG.
+Code48ca40b / CI43007479633 completedFAILURE:45PASSboth, maplayersreopen480s
+(timeout), maplayers190each. Recovery43033297900 readonly, archiveSHA verified,
+НЕtest/rerun. Причина launch-harness: NEW_TASK reused existingLocalMap root
+(API35 result3, API23 no newDisplayed/originalrootidle), startActivitySync waits
+newcreation callback. Fix DemChecks only: MULTIPLE_TASK|NEW_TASK +strict owner/
+Intent/phase guards, compiledSDK23tests261102; productionDEM/timeout не менялись.
+Нужен обоснованный fullCI актуального кандидата обеAPI/новыйdem-restartedPNG.
+Deflate WIP сохранён12bcdb0 и НЕпроверялся48ca; текущийCI проверит его отдельно.
 Сценарий расширяет существующие maplayers/reopen: select→Cancel/explicit install/
 removeCancel/foreign owner+cleanup refusal/manual centre/KML/assets/source/otherproject,
 actualforce-stop→sameDEM/newheight/no extraHTTP/explicit remove. Два consolePNG DEM,

@@ -56,3 +56,26 @@ SAF результат синтетический, provider/реальный HGT
 Настоящий void/interpolation/outside остаются NaN, не заполняются/не extrapolate.
 Новые node/MapMath-roundtrip-corner controls и все прежние32 suites PASS81563;
 boundary-reproduction.log/boundary-fixed-jvm.log/boundary-local-candidate.json.
+
+## Реальный отказ cold reopen и ограниченное исправление сценария
+
+CI43007479633/code48ca40b: JVM/build23/build35 success; по45 PASS, только
+maplayersreopen timedout480s. maplayers190each подтвердил pre-restart install/
+Cancel/foreign/height/data guards, НЕcold-restart. Кадр dem-restarted отсутствует.
+Readonly recovery43033297900 прочёл исходные архивы с digest/SHA48ca, НЕrerun.
+Логи/документы/PNG сохранены в failed-48-api23/35 и failed-48-result.json.
+
+После успешного cachejob resume сценарий запускает DEM map поверх оставшегося
+LocalMapActivity root task: NEW_TASK переиспользует его. API35 log resultcode3;
+API23 второйSTART без новогоDisplayed, прежняяActivity RESUMED/idle. Нет факта
+зависания DEM reader/slowIO/owner-lock/remove — эти действия ещё не достигнуты.
+AOSP Instrumentation.startActivitySync ждёт ActivityWaiter callback создания
+нового экземпляра, отсутствующий при reuse существующего root, без своего timeout.
+
+Fix только instrumentation DemChecks.main: NEW_TASK|MULTIPLE_TASK, строгие owner
+projectId/Intent checks и фазы RK_DEM/DEM_PHASE до/после launch/height/remove.
+Обычная production-навигация/DEM parser/lock/CAS/lifetime и timeout480 не изменены.
+Настоящий force-stop driver сохранён; новый экземпляр не подменяет cold process
+restart. SDK23 instrumentation261102bytes compiled. Новый CI текущего кандидата
+обязан подтвердить все data/physical guards и новый restarted PNG на обеих API;
+сохранённый Deflate12bcdb0 проверяется тем же прогоном, отдельно от старого48ca.

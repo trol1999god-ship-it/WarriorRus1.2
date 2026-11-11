@@ -1,0 +1,41 @@
+{
+  "code": "48ca40b9f56a816f8a5415e4c1722f55c1e15e72",
+  "run": 43007479633,
+  "conclusion": "failure",
+  "accepted": false,
+  "dem_restart_verified": false,
+  "apis": {
+    "23": {
+      "job": 130478716929,
+      "mode_pass": 45,
+      "mode_fail": "maplayersreopen",
+      "failure": "am instrument timed out480seconds",
+      "maplayers_assertions": 190,
+      "artifact_id": 13851850961,
+      "archive_sha256": "c350ec4b93425650c65a725259b8c281f835d6accb0ebee960d8d0af4796921c",
+      "archive_digest_verified_in_recovery": true,
+      "png_sha_verified": 15,
+      "dem_restarted_png_present": false,
+      "diagnostics": "failed-48-api23/diagnostic-text-sha256.json",
+      "observations": "API35 START result3; API23 no second Displayed and original root RESUMED/idle; neither run reached DemActivity/remove after restart"
+    },
+    "35": {
+      "job": 130478716899,
+      "mode_pass": 45,
+      "mode_fail": "maplayersreopen",
+      "failure": "am instrument timed out480seconds",
+      "maplayers_assertions": 190,
+      "artifact_id": 13850949587,
+      "archive_sha256": "c0ff54aefc9caab1726759917a6f7bcf3f381617c6e26254146be36ecd3e0cb4",
+      "archive_digest_verified_in_recovery": true,
+      "png_sha_verified": 15,
+      "dem_restarted_png_present": false,
+      "diagnostics": "failed-48-api35/diagnostic-text-sha256.json",
+      "observations": "API35 START result3; API23 no second Displayed and original root RESUMED/idle; neither run reached DemActivity/remove after restart"
+    }
+  },
+  "recovery_run": 43033297900,
+  "recovery_is_new_test": false,
+  "diagnosis": "startActivitySync NEW_TASK reused existing LocalMapActivity task, so waiter for fresh creation never completed; test-launch blocker, not evidence of DEM reader/CAS/remove deadlock",
+  "fix": "DEM test launch NEW_TASK|MULTIPLE_TASK with exact projectId/intent owner assertions and RK_DEM/DEM_PHASE checkpoints; no production DEM or480s timeout change"
+}
