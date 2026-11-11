@@ -10,10 +10,14 @@
 явно добавить локальный слой в «Слои карты». Это изменение активного режима
 после явного Import, не отсутствие записи настроек.
 
-Поднабор: classic TIFF6 II/MM, одна IFD, несжатые strips, unsigned RGB/gray8,
+Поднабор: classic TIFF6 II/MM, одна IFD, raw/Deflate8/32946 strips, unsigned RGB/gray8,
 объявленная alpha, целый GDAL_NODATA0..255; явные EPSG4326/3857, PixelIsArea/Point,
-Scale+один Tiepoint. Нет предположений о CRS. Palette/compression/tiled/overview/
+Scale+один Tiepoint. Deflate Predictor1/2 проверен отдельно на7230/CI43035041730;
+подробности и ограничения GEOTIFF_DEFLATE.md. Нет предположений о CRS.
+Palette/прочиеcompression/tiled/overview/
 ICC/матрицы/DEM/иные CRS явно отклоняются. Это не полная поддержка GeoTIFF26.1.
+Tiled1e3e9ea сохранён отдельно, в profile-only d36f15f/6f19feb НЕактивен;
+восстановление и собственный runtime — после подтверждения профиля (GEOTIFF_TILED.md).
 Контракт и источник спецификации — migration/GEO_RASTER_CONTRACT.md.
 
 Пределы: вход512МиБ, до20000 по оси/100млн пикселей, выход20000 тайлов и512МиБ,

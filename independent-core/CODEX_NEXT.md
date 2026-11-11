@@ -7,10 +7,16 @@ Run Android scenarios SUCCESS обеAPI, API23 upload результатов FAI
 локальных результатов этогоrun нет; evidence-only recovery нечего читать.
 Причина исходной сетевой/серверной ошибки upload НЕустановлена без logs;
 подтверждены потеря доставки и отмена после тестов, НЕдефект приложения.
+Публичные summary обеих jobs подтверждают точную причину отмены:
+"The job has exceeded the maximum execution time of 45m0s";
+cancellation-annotations.json содержит URL/SHA страниц. Лимит45min НЕувеличен.
 Полные46/PNG/profile guards НЕподтверждены. cancelled-run-43089751186.json.
 Следующий изменённый кандидат: single ZIP всех исходных результатов с SHAmanifest,
 bounded uploads3min в существующем workflow; host20PASS, production/tests/guards
 профиля прежние. Один обоснованный новый CI доставки, НЕblindrerun.
+Код6f19febed97f770cb4caeba214b0b8beb403c1bd / CI43100835572 реально запущен;
+JVM130791529891success (log сохранён), Android23 130791794269/35 130791794371
+исполняют сценарии. Не push, пока active; full46/новыеPNG пока НЕподтверждены.
 После его завершения читать обе jobs/новыеPNG; лишь после подтверждения профиля
 вернуть Tiled patch ниже. Все local9d33ade/Tiled1e3e9ea/stash/pending сохранены.
 
