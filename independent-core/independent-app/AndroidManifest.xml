@@ -8,6 +8,7 @@
   <activity android:name="org.rabochaya.projects.MapLayersActivity" android:exported="false"/>
   <activity android:name="org.rabochaya.projects.MapCatalogActivity" android:exported="false"/>
   <activity android:name="org.rabochaya.projects.OnlineMapActivity" android:exported="false" android:configChanges="keyboardHidden|orientation|screenSize"/>
+  <activity android:name="org.rabochaya.projects.DemActivity" android:exported="false"/>
   <activity android:name="org.rabochaya.projects.CacheExportActivity" android:exported="false"/>
   <activity android:name="org.rabochaya.projects.GeometryEditorActivity" android:exported="false"/>
   <activity android:name="org.rabochaya.projects.ObjectManagerActivity" android:exported="false"/>

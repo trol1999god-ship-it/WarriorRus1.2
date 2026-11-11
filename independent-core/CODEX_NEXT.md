@@ -29,8 +29,10 @@
 5. Cachejobs97d6fa4 / CI42995231822 SUCCESS46/46each, jobs23 130437703947/
    35 130437703955; layers142/141/reopen37each, managerforms482/473. Все32 PNG
    SHAverified/viewed. Functional/data guards passed, НО визуально кнопки10px
-   на обеих API, этап не принят. Fix48dp+physical/IME/text guards подготовлен;
-   новыйCI обоснован этим дефектом и GeoTIFF production f4c3eff+extent/stale guards.
+   на обеих API, этап не принят. Fix48dp+physical/actualIME/text/Arimo guards remoteee7a60d;
+   pushCI43001233957 in_progress (JVM130457591508 success, Android23
+   130457786547/35 130457786669). Неpushпокаactive и неblindrerun.
+   CI обоснован этим дефектом и GeoTIFF production f4c3eff+extent/stale guards.
    Local source69exact/debugQA512/JVM31_81531/host18/privacy; latestSDK23tests255138.
    interim-97-result.json/COMPOSITION_CACHE_JOBS.md.
    096ed40 — debug/release/privacy QA. --release реальноblocked25/noAPK;
@@ -44,6 +46,12 @@
    geotiff-ui-debug-2026-11-11 PASS source69exact/512classes/JVM31_81531/host18/privacy. НЕ входит в CI97, Androidruntime не засчитан.
    Сначала завершить CIcachejobs, затем runtime/pixel/UI import/Cancel/data guards
    новогоформата; не считать grayscale DEM и не выдавать subset за полныйGeoTIFF.
+
+7. Локальный следующий WIP HGT_DEM.md: HgtRaster/DemActivity, явный import/CAS/owner,
+   высота ручного центра, без GPS/правки KML. SDK23/debugQA71sourceexact527classes,
+   JVM32_81561(HGT30), instrumentation259072bytes compiled/privacy pass.
+   НЕвходит в CIee7. Сценарий расширяет maplayers/reopen, не новый mode; runtime
+   и два новыхPNG ещё не засчитаны. Рельеф/профиль/другиеDEM/приёмка открыты.
 
 ## Production очередь
 
