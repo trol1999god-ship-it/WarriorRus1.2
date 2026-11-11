@@ -1,0 +1,37 @@
+{
+  "origin_preserved_tiled_commit": "1e3e9ea",
+  "restored_forward_patch_sha256": "5b30479dce8659955cc23854781b826ffe638d83bb0875f4157643b19ab7adef",
+  "source_hashes_exact": 73,
+  "jvm_suites": 33,
+  "jvm_assertions": 81769,
+  "geotiff_assertions": 215,
+  "host_tests": 20,
+  "sdk23_app_and_instrumentation_compiled": true,
+  "owned_classes": 535,
+  "custom_source_and_dex_privacy_pass": true,
+  "android_lint_pass": false,
+  "android_runtime_executed_for_tiled": false,
+  "accepted": false,
+  "files": {
+    "jvm.log": "1a8edb3a647304102b904f312a9ccbbc1c47afb49f716654c788a721cb429496",
+    "host.log": "07a66f249a39176ac566c45f2e80e479029045dbd5b62bd0f5bcd856b96a8e9d",
+    "sdk23-build.log": "67d7c1ec88837a614069594679c278cd0df9139f1d77d477a9be5426261e6e09",
+    "privacy.json": "0d04ccc4846cc2ede8ebe5a57471f0fba73472f1e355b7d7408d35ee3807a2c8",
+    "qa-build.json": "46558be0ab9ec48e65f16752d0f123b37cb7553793752366dc93f60bd59b58fe",
+    "jvm-suites.json": "bf0895e287aa1c6ffb53957e67536d11fbebdaca6fdefb8621759126266175d0"
+  },
+  "apk_metadata": {
+    "app.apk": {
+      "bytes": 2204179,
+      "sha256": "3e4f432f7094aa18c704af8f167c8cf74015f198ef8c1451585d0b5b580cb5f4"
+    },
+    "tests.apk": {
+      "bytes": 279266,
+      "sha256": "8bc66d81b7d1437970c2fe42f67aeaf710c3817b2404baccfcc3a4db3a0ad873"
+    },
+    "tests-unsigned.apk": {
+      "bytes": 269208,
+      "sha256": "ce85693caf573ac7fdcbea3a864bd2e94b9e904b1ef69971a0e024f3be17e690"
+    }
+  }
+}

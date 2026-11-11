@@ -60,3 +60,14 @@ source/KML/assets/cache/другой проект. UI fixture tiled; PNG budget 
 patch и backup wip.tar.gz: /workspace/work/manager-confirm/
 profile-scoped-preserve-lgehznjb/. Tiled НЕактивен в проверяемом profile-only коде;
 после подтверждения профиля вернуть именно эту интеграцию и продолжить runtime.
+
+## Повторное подключение 12 ноября
+
+После scoped подтверждения профиля обеAPI на6f19feb/CI43100835572 (этотCI
+FAILURE из-за отдельного adbOffline geometrymap/reopen35) сохранённый forwardpatch
+1e3e9ea восстановлен без reset/clean/потериWIP. Fresh SDK23 debug app+tests,
+source73exact/535classes, JVM33_81769/Geo215/host20 и custom source+DEX privacy
+PASS, НЕAndroidlint; reactivated-2026-11-12/receipt.json. Tiled runtime ещё
+НЕисполнен и НЕвходит в6f19CI. Следующий fullCI обеAPI изменённого importer
+проверяет nativepixels/NoData/padding/checksum/Cancel/границы/сохранность и
+реально исполняет geometrymap/reopen; старый skip не засчитывается.

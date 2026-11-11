@@ -1,4 +1,4 @@
-# Продолжение — 12 ноября: профиль проверен scoped; следующий Tiled importer
+# Продолжение — 12 ноября: профиль scoped проверен; Tiled importer кандидат
 
 6f19feb/CI43100835572 завершён FAILURE, НЕзелёныйCI: JVMsuccess33/81640/host20;
 API23 130791794269 SUCCESS46/46, API35 130791794371 44PASS, geometrymap adbOffline,
@@ -14,8 +14,11 @@ SHAverified/actuallyviewed; оба artifactdigest/вложенныеZIP/all546/5
 Доставка singleZIP/manifest/3min uploads сработала обеAPI. Старый43089751186
 CANCELLED из-за45min job timeout; logs404/Android artifacts отсутствуют,
 не восстановлены/не засчитаны. cancellation-annotations.json.
-Следующий production: восстановить Tiled patch1e3e9ea ниже; source73/Geo215,
-SDK23/JVM/nativepixels/NoData/padding/checksum/Cancel/LRU/data + fullCIboth.
+Tiled patch1e3e9ea ВОССТАНОВЛЕН после проверки профиля. Fresh SDK23 debug app+
+instrumentation compiled/source73exact/535classes, JVM33_81769/Geo215/host20,
+custom source+DEX privacy PASS (НЕAndroidlint). reactivated-2026-11-12 receipts.
+Следующий: fullCIboth нового Tiled кода; nativepixels/NoData/padding/checksum/
+Cancel/LRU/data и реальные geometrymap/reopen. Tiled runtime пока НЕисполнен.
 
 Только independent-core/existing codex/independent-core-auto; без новых агентов/
 веток/worktree/reset/clean/mergePR14. Preserve stash/toolchain/pending/артефакты.
