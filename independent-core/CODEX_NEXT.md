@@ -19,6 +19,10 @@ instrumentation compiled/source73exact/535classes, JVM33_81769/Geo215/host20,
 custom source+DEX privacy PASS (НЕAndroidlint). reactivated-2026-11-12 receipts.
 Следующий: fullCIboth нового Tiled кода; nativepixels/NoData/padding/checksum/
 Cancel/LRU/data и реальные geometrymap/reopen. Tiled runtime пока НЕисполнен.
+Tiled code3c87557aca59d52d105770b724e493ecfbeac208 / CI43107394886
+реально запущен: JVM130814179373success, Android23 130814459051/
+35 130814459075 исполняют сценарии. Не push покаactive; читать завершённые
+jobs/полные46/nativepixels/новыеPNG и точныеdata guards, не засчитывать skip.
 
 Только independent-core/existing codex/independent-core-auto; без новых агентов/
 веток/worktree/reset/clean/mergePR14. Preserve stash/toolchain/pending/артефакты.
