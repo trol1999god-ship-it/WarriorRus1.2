@@ -17,6 +17,10 @@ landscape→portrait relaunch22:08:04, helper ждал busy исходного i
 replacement>0 после предыдущего landscape. SDK23compiled; guards/таймауты/
 production НЕменялись. launch-race-fix/receipt.json; следующий изменённый fullCI
 обеAPI обязан пройти все46 и actual managerrotation, не blindrerun.
+Fix1254a0b335497bfa6eb7821aae54c47a5a4df334 / CI43114388829 реально запущен;
+JVM130838457614success, Android23 130838744398/35 130838744428 running.
+Не push покаactive; после completed читать MANAGER_LAUNCH/полные46/новыеPNG,
+проверить mandatory launchReplacements>0, raw/cursor/owner/data/managerforms.
 Tiled1e3e9ea восстановлен/реализован; полное принятие этапа покаНЕобъявлено.
 Следующая функция после зелёного результата: affine ModelTransformation34264
 по OGC/общему GeoRasterTransform, bounds/native resolution/пиксели, затем Ozi;
