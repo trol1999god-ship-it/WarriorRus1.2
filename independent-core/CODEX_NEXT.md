@@ -1,4 +1,4 @@
-# Точка продолжения — 5 ноября 2026
+# Точка продолжения — 11 ноября 2026
 
 ## Текущий этап
 
@@ -19,16 +19,17 @@
    visibility, actualforce-stop/cache/MBTiles/other-project/KML/assets passed.
    MAP_LAYERS.md и final-result.json. Не повторять без новой причины; приёмка открыта.
 
-4. Export production3f72957 / CI42067960861 completed FAILURE: JVM success,
-   обе Android-сборки success,45/46each; onlycacheexport failed mixedzoom RGB.
-   Подтверждена ошибка новой QA-пробы: ожидался pureblue, actualfixture onlineRaster
-   задаёт25/90/220. Production fallback пока не признан дефектным/готовым.
-   Поправлен только test: pinned nativeRGB, computedblend +RGB/alpha, прежнийtol2,
-   source/outputPNG иhexdiagnostic ДОстрогогоassert. SDK23 tests compiled.
-   Сохранить QAfix отдельно от WIPjobs/65source generated files и запустить
-   обоснованный CI изменённой проверки; неblindrerun3f. Поздние Cancel/UI/data
-   ещё НЕисполнены. Все16interimPNG толькослои SHAverified/просмотрены, НЕexportproof.
-   interim-3f-result.json/MAP_COMPOSITION_EXPORT.md. Полная приёмка открыта.
+4. Export production3f72957 + QAfixc230680b2ba03080e37c82e2cdc063225efde7d2 remote.
+   CI42074949288 completedSUCCESS46/46each, jobs23 127412862356/35 127412862334.
+   Сборки/JVM success. ExportPNG иполный cacheexport.txt в Actions artifact,
+   в console ихнебыло: cacheexport не включён в emit-список драйвера.
+   ConnectorZIP→FileService download заблокированCloudproxy403, gh Forbidden.
+   Evidence-only режим существующегоworkflow читаеторигиналбезretest; до PNG
+   визуальнаяприёмкаоткрыта. Не повторять успешныйCI.
+   ПредыдущийCI42067960861 both45/46: expectedpureblue неверен противfixture25/90/220.
+   Сейчас pinned sourceRGB +computedblend, всеRGB/alpha/tol2, source/outputPNG ДОassert.
+   Читатьобаcompletedjob/PNG; поздние Cancel/UI/data ещё не признаныпроверенными.
+   interim-3f-result.json/MAP_COMPOSITION_EXPORT.md. Полнаяприёмка/releasegate открыты.
 5. Локальный НЕпроверенный WIP следующего production cache-участка:
    CompositionDownloadJob/Settings/Activity + OnlineTiles.contains + пункт карты.
    Дедуп/policy/20000tiles/project-CAS/сохранённое задание; foreground pause,
@@ -36,7 +37,7 @@
    local QA501/min23/INTERNETonly/JVM30_81490 (job32) passed;
    подключается реальный UI pause/force-stop/resume/missing-only cache/KML/assets
    в существующие maplayers/reopen, без нового mode/baseline. Androidruntime ещё нет.
-   CI экспорта исполняет замороженный3f72957, НЕ этот WIP. Сохранять все diff.
+   CI экспорта исполняет замороженныйc230680 (production3f), НЕ этот WIP. Сохранять все diff.
 
 ## Production очередь
 
