@@ -5,6 +5,8 @@ p=argparse.ArgumentParser()
 p.add_argument('--sdk',type=Path,required=True)
 p.add_argument('--tools',type=Path,required=True)
 p.add_argument('--out',type=Path,required=True)
+p.add_argument('--debug',action='store_true',help='Build the explicit disposable debug profile')
+p.add_argument('--skip-jvm',action='store_true',help='Reuse a passed JVM check of this snapshot; CI requires the JVM job dependency')
 a=p.parse_args();root=Path(__file__).resolve().parent.parent
 sdk=a.sdk.resolve();cache=a.tools.resolve();out=a.out.resolve();cache.mkdir(parents=True,exist_ok=True);out.mkdir(parents=True,exist_ok=True)
 def run(*args):subprocess.run(list(map(str,args)),check=True,cwd=root)
@@ -20,9 +22,9 @@ build=sdk/'build-tools/35.0.0';android=sdk/'platforms/android-23/android.jar';aa
 for path in [aapt,android,build/'lib/apksigner.jar']:
  if not path.is_file():raise RuntimeError('Missing SDK component: '+str(path))
 common=['--android-jar',android,'--aapt2',aapt]
-run('python3',root/'owned-projects/verify_jvm.py')
+if not a.skip_jvm:run('python3',root/'owned-projects/verify_jvm.py')
 run('python3',root/'owned-projects/build_additions.py',*common,'--r8',r8,'--apktool',apktool)
-run('python3',root/'owned-projects/build_standalone.py',*common,'--apktool',apktool,'--output',out/'app-unsigned.apk')
+run('python3',root/'owned-projects/build_standalone.py',*common,'--apktool',apktool,'--output',out/'app-unsigned.apk',*(['--debug'] if a.debug else []))
 run('python3',root/'owned-projects/build_tests.py',*common,'--r8',r8,'--output',out/'tests-unsigned.apk')
 # This key is disposable; it cannot update 26.1 and is never uploaded as an artifact.
 password=out/'password';password.write_text('disposable-qa-only\n');password.chmod(0o600)

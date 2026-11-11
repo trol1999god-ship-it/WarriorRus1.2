@@ -61,6 +61,18 @@ elif args[:3] == ['shell', 'am', 'instrument']:
                 path.name: path.read_text() for path in output.glob('*-artifact-pull.txt')}
             return result, records
 
+    def test_cacheexport_emits_saved_visual_evidence(self):
+        result, records = self.run_modes(['cacheexport'], pull_png=True)
+        self.assertEqual(result.returncode, 0, result.stdout)
+        self.assertTrue(records[0]['passed'])
+        self.assertIn('RK_VISUAL_BEGIN', result.stdout)
+
+    def test_cacheexport_missing_visual_pull_is_not_success(self):
+        result, records = self.run_modes(['cacheexport'], pull_error=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(records[0]['passed'])
+        self.assertIn('VISUAL_EVIDENCE_FAILED', result.stdout)
+
     def test_collects_failure_and_runs_next_independent_mode(self):
         result, records = self.run_modes(['binary', 'independence'], ['binary'])
         self.assertNotEqual(result.returncode, 0)

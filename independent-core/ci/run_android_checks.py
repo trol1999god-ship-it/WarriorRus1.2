@@ -9,6 +9,7 @@ p.add_argument('--app',type=Path,required=True)
 p.add_argument('--tests',type=Path,required=True)
 p.add_argument('--output',type=Path,required=True)
 p.add_argument('--install-timeout',type=int,default=180,help='Package installation timeout for software emulators')
+p.add_argument('--debug-qa',action='store_true',help='Expect the explicit disposable debug profile in the installed app')
 p.add_argument('--keep-going',action='store_true',help='Collect independent failures; skip reopen scenarios whose fixture failed; still exit nonzero')
 p.add_argument('--no-streaming',action='store_true',help='Push APKs before installation when streamed install is unreliable')
 modes=['binary','independence','offlineformats','cachewrites','cacheexport','launcher','coordinates','catalogscreen','geometryedit','geometrymap','geometrymapreopen','objectmanager','objectmanagerreopen','clipboard','clipboardreopen','managerfilters','managerfiltersreopen','managervisibility','managervisibilityreopen','managerdates','managerdatesreopen','managerdescription','managerdescriptionreopen','managercontext','managercontextreopen','managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation','vertexscroll','geometryvertexconfirm','geometryholeconfirm','vertexinsertion','geometrynewhole','geometrynewholeguards','mapvertexconfirm','mapholeconfirm','mapundorotation','mappartconfirm','geometrycloseconfirm','maplayers','maplayersreopen']
@@ -55,7 +56,7 @@ for mode in a.modes:
   if mode not in ['geometrymapreopen','objectmanagerreopen','clipboardreopen','managerfiltersreopen','managervisibilityreopen','managerdatesreopen','managerdescriptionreopen','managercontextreopen','maplayersreopen']:adb('shell','pm','clear','org.rabochaya.karta')
   elif not records or records[-1]['mode']!=({'maplayersreopen':'maplayers','managercontextreopen':'managercontext','managerdescriptionreopen':'managerdescription','managerdatesreopen':'managerdates','geometrymapreopen':'geometrymap','objectmanagerreopen':'objectmanager','clipboardreopen':'clipboard','managerfiltersreopen':'managerfilters','managervisibilityreopen':'managervisibility'}[mode]) or not records[-1]['passed']:raise RuntimeError('Missing successful map-edit handoff')
   adb('logcat','-c')
-  text=adb('shell','am','instrument','-w','-r','-e','mode',mode,'-e','sha',sha,'-e','version','27','org.rabochaya.maptests/org.rabochaya.maptests.MapAndroidChecks',timeout=480)
+  text=adb('shell','am','instrument','-w','-r','-e','mode',mode,'-e','sha',sha,'-e','version','27','-e','debug_qa','true' if a.debug_qa else 'false','org.rabochaya.maptests/org.rabochaya.maptests.MapAndroidChecks',timeout=480)
   passed=('PASS '+mode+':' in text and 'INSTRUMENTATION_CODE: -1' in text and 'FAIL\n' not in text and 'INSTRUMENTATION_FAILED' not in text)
  except Exception as error:text+=str(error)
  finally:
@@ -73,7 +74,7 @@ for mode in a.modes:
    layout=adb('logcat','-d','-s','RK_CHOOSER:D','*:S',required=False)
    (out/'managerchooser-layout.txt').write_text(layout)
    print('CHOOSER_LAYOUT_DIAGNOSTICS\n'+'\n'.join(layout.splitlines()[-256:])[-32768:],flush=True)
-  if mode in ('managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation','vertexscroll','geometryvertexconfirm','geometryholeconfirm','vertexinsertion','geometrynewhole','geometrynewholeguards','mapvertexconfirm','mapholeconfirm','mapundorotation','mappartconfirm','geometrycloseconfirm','maplayers','maplayersreopen'):
+  if mode in ('cacheexport','managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation','vertexscroll','geometryvertexconfirm','geometryholeconfirm','vertexinsertion','geometrynewhole','geometrynewholeguards','mapvertexconfirm','mapholeconfirm','mapundorotation','mappartconfirm','geometrycloseconfirm','maplayers','maplayersreopen'):
    if mode in a.visual_log_modes or not passed:print(text,flush=True)
    else:print("\n".join(line for line in text.splitlines() if "INSTRUMENTATION_RESULT:" in line),flush=True)
    try:

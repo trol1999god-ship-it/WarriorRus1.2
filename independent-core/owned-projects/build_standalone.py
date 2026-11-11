@@ -3,7 +3,9 @@ from pathlib import Path
 import argparse,subprocess,tempfile,shutil,zipfile,json,re,hashlib
 p=argparse.ArgumentParser()
 for n in ('android-jar','aapt2','apktool','output'):p.add_argument('--'+n,required=True,type=Path)
-p.add_argument("--release",action="store_true",help="Require full 26.1 replacement acceptance before building")
+variants=p.add_mutually_exclusive_group()
+variants.add_argument("--release",action="store_true",help="Require full 26.1 replacement acceptance before building")
+variants.add_argument("--debug",action="store_true",help="Disposable debug QA only; never a replacement release")
 a=p.parse_args();root=Path(__file__).resolve().parent.parent
 if a.release:subprocess.run(['python3',str(root/'security/release_gate.py')],check=True)
 # The Java overlay must have been compiled from this exact source snapshot.
@@ -17,8 +19,9 @@ if json.loads(record.read_text()).get('sources')!=actual:
 with tempfile.TemporaryDirectory(prefix='rk-independent-') as tmp:
  w=Path(tmp);res=w/'res';res.mkdir()
  shutil.copytree(root/'independent-app/res',res,dirs_exist_ok=True)
- manifest=w/'AndroidManifest.xml';manifest.write_text((root/'independent-app/AndroidManifest.xml').read_text())
+ manifest=w/'AndroidManifest.xml';manifest.write_text((root/'independent-app/AndroidManifest.xml').read_text().replace('android:debuggable="false"','android:debuggable="true"') if a.debug else (root/'independent-app/AndroidManifest.xml').read_text())
  def run(*args):subprocess.run(list(map(str,args)),check=True)
+ if ('android:debuggable="true"' in manifest.read_text())!=a.debug:raise RuntimeError("Manifest debug profile mismatch")
  compiled=w/'res.zip';run(a.aapt2.resolve(),'compile','--dir',res,'-o',compiled)
  resources=w/'resources.apk';run(a.aapt2.resolve(),'link','-I',a.android_jar.resolve(),'--manifest',manifest,'-o',resources,compiled)
  dex=w/'classes.dex';run('java','-cp',a.apktool.resolve(),root/'security/AssembleCheck.java',root/'independent-app/smali/org/rabochaya/projects',dex)
@@ -36,5 +39,5 @@ with tempfile.TemporaryDirectory(prefix='rk-independent-') as tmp:
  assert not missing,missing
  unexpected=sorted(r for r in refs if not r.startswith(('android/','java/','javax/','org/w3c/','org/xml/','org/rabochaya/projects/','dalvik/')))
  assert not unexpected,unexpected
- report={'qualification':'development-only; full 26.1 parity not established','replacement_release':a.release,'package':'org.rabochaya.karta','version_code':27,'min_sdk':23,'permissions':['android.permission.INTERNET'],'legacy_app_classes':False,'unexpected_class_references':unexpected,'owned_class_count':len(defined),'missing_owned_classes':missing,'native_libraries':[],'api_stubs_packaged':False,'unsigned_sha256':hashlib.sha256(out.read_bytes()).hexdigest()}
+ report={'debuggable':a.debug,'variant':'debug-qa' if a.debug else ('release-unsigned' if a.release else 'development-nondebug'),'qualification':'development-only; full 26.1 parity not established','replacement_release':a.release,'package':'org.rabochaya.karta','version_code':27,'min_sdk':23,'permissions':['android.permission.INTERNET'],'legacy_app_classes':False,'unexpected_class_references':unexpected,'owned_class_count':len(defined),'missing_owned_classes':missing,'native_libraries':[],'api_stubs_packaged':False,'unsigned_sha256':hashlib.sha256(out.read_bytes()).hexdigest()}
  (root/'security/standalone-build.json').write_text(json.dumps(report,indent=2)+'\n');print('Development APK built; not an accepted 26.1 replacement:',out.stat().st_size,'bytes')
