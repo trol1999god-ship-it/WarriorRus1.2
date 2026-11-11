@@ -79,3 +79,18 @@ projectId/Intent checks и фазы RK_DEM/DEM_PHASE до/после launch/heig
 restart. SDK23 instrumentation261102bytes compiled. Новый CI текущего кандидата
 обязан подтвердить все data/physical guards и новый restarted PNG на обеих API;
 сохранённый Deflate12bcdb0 проверяется тем же прогоном, отдельно от старого48ca.
+
+## Следующая функция: явный переход к покрытию (локальный кандидат)
+
+В «Ориентирование» добавлено «Показать область DEM». Только явное действие
+подбирает центр/zoom текущего собственного HGT; нет автоперехода при импорте.
+Свежий owned-reader и существование проекта проверяются под LocalRasterStore
+lock, чужая замена отклоняется; KML/DEM/cache не записываются. Незавершённый
+рисунок блокирует переход. Покрытие пересекается с ±85.05112878 Web Mercator;
+полностью заполярное покрытие отклоняется, частичное показывается честно.
+HGT38/все32_81617 JVM, host18, source71exact/debugQA529/customPrivacy PASS;
+SDK23 app+instrumentation собраны. Runtime новой команды ЕЩЁ НЕисполнен,
+НЕвходит в CI7230. Расширен существующий DemChecks: реальный выбор меню,
+возврат из внеобласти, foreign replacement exact viewport/bytes, исходные
+Cancel/install/remove/restart/KML/assets guards сохранены.
+coverage-candidate/ содержит локальные receipts, НЕприёмку.

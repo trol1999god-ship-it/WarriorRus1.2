@@ -42,7 +42,7 @@
 
     iget-wide v3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda76;->f$2:D
 
-    invoke-virtual {v0, v1, v2, v3, v4}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$longPressed$21$org-rabochaya-projects-LocalMapActivity(DD)V
+    invoke-virtual {v0, v1, v2, v3, v4}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$longPressed$20$org-rabochaya-projects-LocalMapActivity(DD)V
 
     return-void
 .end method

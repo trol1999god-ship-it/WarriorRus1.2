@@ -926,7 +926,7 @@
 
     monitor-enter p0
 
-    .line 18
+    .line 20
     :try_start_0
     iget-object v0, p0, Lorg/rabochaya/projects/HgtRaster;->rows:Ljava/util/LinkedHashMap;
 
@@ -942,7 +942,7 @@
 
     return-void
 
-    .line 18
+    .line 20
     :catchall_0
     move-exception v0
 
@@ -1444,4 +1444,75 @@
     monitor-exit p0
 
     throw v0
+.end method
+
+.method public mapViewport(II)[D
+    .locals 15
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 19
+    move-object v0, p0
+
+    iget v1, v0, Lorg/rabochaya/projects/HgtRaster;->south:I
+
+    int-to-double v1, v1
+
+    const-wide v3, -0x3faabcba4e5ab629L    # -85.0511287798066
+
+    invoke-static {v1, v2, v3, v4}, Ljava/lang/Math;->max(DD)D
+
+    move-result-wide v7
+
+    iget v1, v0, Lorg/rabochaya/projects/HgtRaster;->south:I
+
+    add-int/lit8 v1, v1, 0x1
+
+    int-to-double v1, v1
+
+    const-wide v3, 0x40554345b1a549d7L    # 85.0511287798066
+
+    invoke-static {v1, v2, v3, v4}, Ljava/lang/Math;->min(DD)D
+
+    move-result-wide v11
+
+    cmpl-double v1, v11, v7
+
+    if-lez v1, :cond_0
+
+    if-lez p1, :cond_0
+
+    if-lez p2, :cond_0
+
+    iget v1, v0, Lorg/rabochaya/projects/HgtRaster;->west:I
+
+    int-to-double v5, v1
+
+    iget v1, v0, Lorg/rabochaya/projects/HgtRaster;->west:I
+
+    add-int/lit8 v1, v1, 0x1
+
+    int-to-double v9, v1
+
+    move/from16 v13, p1
+
+    move/from16 v14, p2
+
+    invoke-static/range {v5 .. v14}, Lorg/rabochaya/projects/GeoRasterTransform;->viewport(DDDDII)[D
+
+    move-result-object v1
+
+    return-object v1
+
+    :cond_0
+    new-instance v1, Ljava/io/IOException;
+
+    const-string v2, "\u041e\u0431\u043b\u0430\u0441\u0442\u044c DEM \u043d\u0435 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0430\u0435\u0442\u0441\u044f \u0432 \u044d\u0442\u043e\u0439 \u043f\u0440\u043e\u0435\u043a\u0446\u0438\u0438 \u043a\u0430\u0440\u0442\u044b"
+
+    invoke-direct {v1, v2}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    throw v1
 .end method

@@ -3,34 +3,34 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Lorg/rabochaya/projects/CacheExport$Progress;
+.implements Ljava/lang/Runnable;
 
 
 # instance fields
-.field public final synthetic f$0:Lorg/rabochaya/projects/LocalMapActivity;
+.field public final synthetic f$0:Landroid/content/Context;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+.method public synthetic constructor <init>(Landroid/content/Context;)V
     .locals 0
 
     .line 0
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda0;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
+    iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda0;->f$0:Landroid/content/Context;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final update(II)V
+.method public final run()V
     .locals 1
 
     .line 0
-    iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda0;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
+    iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda0;->f$0:Landroid/content/Context;
 
-    invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$importMap$57$org-rabochaya-projects-LocalMapActivity(II)V
+    invoke-static {v0}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$cleanupDeletedProject$62(Landroid/content/Context;)V
 
     return-void
 .end method

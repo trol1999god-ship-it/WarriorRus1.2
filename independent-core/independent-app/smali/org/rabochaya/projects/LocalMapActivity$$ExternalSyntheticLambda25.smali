@@ -36,7 +36,7 @@
 
     iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda25;->f$1:Ljava/lang/Exception;
 
-    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$editObject$73$org-rabochaya-projects-LocalMapActivity(Ljava/lang/Exception;)V
+    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$load$3$org-rabochaya-projects-LocalMapActivity(Ljava/lang/Exception;)V
 
     return-void
 .end method

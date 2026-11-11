@@ -9,9 +9,11 @@
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
+.field public final synthetic f$1:Ljava/util/ArrayList;
+
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/util/ArrayList;)V
     .locals 0
 
     .line 0
@@ -19,18 +21,22 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda23;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
+    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda23;->f$1:Ljava/util/ArrayList;
+
     return-void
 .end method
 
 
 # virtual methods
 .method public final onClick(Landroid/content/DialogInterface;I)V
-    .locals 1
+    .locals 2
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda23;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$newObject$66$org-rabochaya-projects-LocalMapActivity(Landroid/content/DialogInterface;I)V
+    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda23;->f$1:Ljava/util/ArrayList;
+
+    invoke-virtual {v0, v1, p1, p2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$search$52$org-rabochaya-projects-LocalMapActivity(Ljava/util/ArrayList;Landroid/content/DialogInterface;I)V
 
     return-void
 .end method

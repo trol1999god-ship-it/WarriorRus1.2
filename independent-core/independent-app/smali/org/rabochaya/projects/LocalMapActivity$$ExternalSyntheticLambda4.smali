@@ -7,17 +7,17 @@
 
 
 # instance fields
-.field public final synthetic f$0:Landroid/content/Context;
+.field public final synthetic f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
 
 # direct methods
-.method public synthetic constructor <init>(Landroid/content/Context;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;)V
     .locals 0
 
     .line 0
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda4;->f$0:Landroid/content/Context;
+    iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda4;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
     return-void
 .end method
@@ -28,9 +28,9 @@
     .locals 1
 
     .line 0
-    iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda4;->f$0:Landroid/content/Context;
+    iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda4;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$cleanupDeletedProject$61(Landroid/content/Context;)V
+    invoke-virtual {v0}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$orientationMenu$36$org-rabochaya-projects-LocalMapActivity()V
 
     return-void
 .end method

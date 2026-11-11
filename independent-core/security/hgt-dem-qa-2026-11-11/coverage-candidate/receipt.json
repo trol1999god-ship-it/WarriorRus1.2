@@ -1,0 +1,20 @@
+{
+  "candidate": "explicit DEM coverage, not part of7230 CI",
+  "jvm_suites": 32,
+  "jvm_assertions": 81617,
+  "hgt_assertions": 38,
+  "host_tests": 18,
+  "sources": 71,
+  "source_hashes_match": true,
+  "app_classes": 529,
+  "sdk": 23,
+  "debug_qa_built": true,
+  "runtime_executed": false,
+  "accepted": false,
+  "files": {
+    "jvm.log": "94868435bba1d653950be62b4a0958aa4caa675cd6519669bdeb358ee5fc3e1a",
+    "privacy.json": "9f29d4497f73f98738c5a626267f1877347f3b67cc663b625d02f33eb273d167",
+    "qa-build.json": "557e67060c7c002febc452be834eb6f0b3931df84309c7ab83c848bd47383eeb",
+    "host.log": "6b31814ca669ade41b22a20404f4757a730ea8efa6e88b8176723edeb4327203"
+  }
+}

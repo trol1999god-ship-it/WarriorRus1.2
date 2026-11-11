@@ -63,6 +63,15 @@ debugQA528/privacy passed, latestSDK23 tests260537 compiled. Runtime offlineform
 полныйAPI35 пока НЕуспех. НЕвходит в CI48ca40b. Старые uncompressed/data/physical guards не снижать,
 новый UI fixture compressed;16PNG budget прежний. Сначала завершить DEM runtime.
 
+## Подготовлено после текущего CI (не входит в7230)
+
+Явная команда «Показать область DEM»: fresh own header+project, guarded view
+fit без KML/DEM/cache writes, drawing отказ, полярная граница WebMercator.
+JVM32_81617/HGT38/host18/source71exact/debugQA529/privacy PASS;
+SDK23 app+tests compiled. DemChecks меню/foreign exactviewport+bytes расширен;
+runtime ЕЩЁ НЕисполнен. HGT_DEM.md/coverage-candidate receipts.
+Не пушить до completed текущего35; затем отдельный обоснованный CI этой функции.
+
 ## Проверенная история и общая очередь
 
 Экспорт композиции production3f72957+QAc230680 / CI42074949288 SUCCESS46both,

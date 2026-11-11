@@ -3,17 +3,17 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/view/View$OnClickListener;
+.implements Ljava/lang/Runnable;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-.field public final synthetic f$1:Ljava/lang/Runnable;
+.field public final synthetic f$1:Ljava/lang/String;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/Runnable;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;)V
     .locals 0
 
     .line 0
@@ -21,22 +21,22 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda22;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda22;->f$1:Ljava/lang/Runnable;
+    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda22;->f$1:Ljava/lang/String;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final onClick(Landroid/view/View;)V
+.method public final run()V
     .locals 2
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda22;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda22;->f$1:Ljava/lang/Runnable;
+    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda22;->f$1:Ljava/lang/String;
 
-    invoke-virtual {v0, v1, p1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$button$0$org-rabochaya-projects-LocalMapActivity(Ljava/lang/Runnable;Landroid/view/View;)V
+    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$newProject$45$org-rabochaya-projects-LocalMapActivity(Ljava/lang/String;)V
 
     return-void
 .end method

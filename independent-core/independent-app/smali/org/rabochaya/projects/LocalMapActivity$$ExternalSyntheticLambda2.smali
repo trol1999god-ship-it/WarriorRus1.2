@@ -3,17 +3,17 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/lang/Runnable;
+.implements Landroid/content/DialogInterface$OnClickListener;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-.field public final synthetic f$1:Ljava/lang/String;
+.field public final synthetic f$1:Lorg/rabochaya/projects/KmlProject$Feature;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Lorg/rabochaya/projects/KmlProject$Feature;)V
     .locals 0
 
     .line 0
@@ -21,22 +21,22 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda2;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda2;->f$1:Ljava/lang/String;
+    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda2;->f$1:Lorg/rabochaya/projects/KmlProject$Feature;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final run()V
+.method public final onClick(Landroid/content/DialogInterface;I)V
     .locals 2
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda2;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda2;->f$1:Ljava/lang/String;
+    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda2;->f$1:Lorg/rabochaya/projects/KmlProject$Feature;
 
-    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$newProject$44$org-rabochaya-projects-LocalMapActivity(Ljava/lang/String;)V
+    invoke-virtual {v0, v1, p1, p2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$picked$65$org-rabochaya-projects-LocalMapActivity(Lorg/rabochaya/projects/KmlProject$Feature;Landroid/content/DialogInterface;I)V
 
     return-void
 .end method
