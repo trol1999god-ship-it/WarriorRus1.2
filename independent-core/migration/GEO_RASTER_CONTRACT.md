@@ -33,3 +33,26 @@ Deflate code7230/CI43035041730 SUCCESS46both/offlineformats68each,32PNG reviewed
 conversion → существующий каталог/renderer → географическая сверка и restart. Ошибка
 или отмена сохраняет исходный файл, прежнюю карту/состав, кеш, KML и вложения. Предыдущие
 MBTiles readers и онлайн-карты не заменяются новым непроверенным парсером.
+
+## Следующая зависимость после Tiled — affine геопривязка
+
+Пока только контракт, production ещё не подключён. OGC GeoTIFF1.1:
+`clause_7_requirements.adoc` blob6c8a8ba393f864acb8bb539f03d759108ff262a2;
+`requirements_class_ModelTransformationTag.adoc`
+blob49c4f58ee32c2388baed6f630fef72cb1d985311: tag34264, DOUBLE16, row-major.
+`annex-b.adoc` blob0361f3690bd597756163180bc7f74e4ddf1ae742 задаёт
+2D matrix [a,b,0,d; e,f,0,h; 0,0,0,0; 0,0,0,1]. Это raster→model,
+не обратная матрица; Area/Point полпикселя остаётся прежним. Scale+matrix
+не совмещаются. Perspective/3D/нечисловая/вырожденная/противоречивая привязка
+должны явно отклоняться. Поддержка не должна угадывать datum/CRS.
+
+Пользовательский результат: повёрнутая/скошенная локальная карта через тот же
+importer→MBTiles→renderer; прозрачность вне реального footprint, корректный
+extent и ограниченное разрешение/количество тайлов, Cancel/ошибка сохраняют
+предыдущий файл. Общий GeoRasterTransform уже inverse-affine; importer сейчас
+использует разрешение из bounding box, поэтому новая матрица требует отдельного
+контроля действительного шага пикселей, особенно при сильном skew. Нельзя только
+разрешить tag34264 и объявить поддержку готовой. Independent literal pixel/
+half-pixel/rotation/shear/NoData controls и прежние data guards обязательны.
+Этот общий результат нужен и будущей Ozi-калибровке, без второго renderer;
+полная приёмка GeoTIFF/Ozi26.1 остаётся открытой.

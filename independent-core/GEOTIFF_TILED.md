@@ -26,7 +26,7 @@ metadata arrays≤20000, output≤20000tiles/512МиБ. Для tiles допол�
 - размеры кратны16, от16 до4096; decoded block≤4МиБ;
 - суммарный padded raster≤100Mpx, не только его полезная часть;
 - TileLRU≤16МиБ decoded bytes и≤128 блоков; один inflater на загрузку блока,
-  закрывается после exact-size/CRC; исходный strip RowLRU8/stream сохранён;
+  закрывается после exact-size/zlib checksum (Adler32); исходный strip RowLRU8/stream сохранён;
 - все compressed блоки проверяются до конвертации на exact decoded size/checksum,
   включая padding и ещё не запрошенные блоки. Затем загружается только нужный tile,
   что соответствует доступу importer по выходным тайлам. Native inflater принадлежит
