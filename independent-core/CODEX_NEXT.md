@@ -19,17 +19,13 @@
    visibility, actualforce-stop/cache/MBTiles/other-project/KML/assets passed.
    MAP_LAYERS.md и final-result.json. Не повторять без новой причины; приёмка открыта.
 
-4. Export production3f72957 + QAfixc230680b2ba03080e37c82e2cdc063225efde7d2 remote.
-   CI42074949288 completedSUCCESS46/46each, jobs23 127412862356/35 127412862334.
-   Сборки/JVM success. ExportPNG иполный cacheexport.txt в Actions artifact,
-   в console ихнебыло: cacheexport не включён в emit-список драйвера.
-   ConnectorZIP→FileService download заблокированCloudproxy403, gh Forbidden.
-   Evidence-only режим существующегоworkflow читаеторигиналбезretest; до PNG
-   визуальнаяприёмкаоткрыта. Не повторять успешныйCI.
-   ПредыдущийCI42067960861 both45/46: expectedpureblue неверен противfixture25/90/220.
-   Сейчас pinned sourceRGB +computedblend, всеRGB/alpha/tol2, source/outputPNG ДОassert.
-   Читатьобаcompletedjob/PNG; поздние Cancel/UI/data ещё не признаныпроверенными.
-   interim-3f-result.json/MAP_COMPOSITION_EXPORT.md. Полнаяприёмка/releasegate открыты.
+4. Export завершён в scoped объёме: production3f72957 +QAfixc230680,
+   CI42074949288 SUCCESS46/46each, cacheexport69each, jobs23 127412862356/
+   35 127412862334. Bounds/TMS/+180/alpha/order/visibility/mixedzoom/roundtrip/
+   Cancel/UI-save/early-failure/source/cache/localMBTiles/other-project/KML/assets passed.
+   Все8 original exportPNG SHAverified/просмотрены после readonly recovery42989065292;
+   originalarchive digest проверен, НЕТrebuild/retest. Факты в final-result.json.
+   ПолнаяприёмкаSAF/форматов/release открыта; успешныйCI не повторять.
 5. Локальный НЕпроверенный WIP следующего production cache-участка:
    CompositionDownloadJob/Settings/Activity + OnlineTiles.contains + пункт карты.
    Дедуп/policy/20000tiles/project-CAS/сохранённое задание; foreground pause,

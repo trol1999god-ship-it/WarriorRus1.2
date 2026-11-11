@@ -1,0 +1,18 @@
+[
+  {
+    "name": "map_mvisual-composition-export-before.png",
+    "sha256": "8ee27024f85a8225bde8c09f6b22bff87482fc57be01be60cc56bb36aaf7e1c2"
+  },
+  {
+    "name": "map_mvisual-composition-export-saved.png",
+    "sha256": "62176ce9d7a614f56f41b1bc346a46e9bc38d7a5ce68c1dfc038cfce45f30801"
+  },
+  {
+    "name": "map_mvisual-composition-zoom-output.png",
+    "sha256": "0659cbdf1e82c4ba08dfd52951115ff373678ad40e57dc5a5e4f1cee908f2e1e"
+  },
+  {
+    "name": "map_mvisual-composition-zoom-source.png",
+    "sha256": "c9a2fa4778253282e5800cc7fe43a8075d4365b7677a507d83421bef46cc1502"
+  }
+]

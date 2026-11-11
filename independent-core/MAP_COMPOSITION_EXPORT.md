@@ -53,3 +53,14 @@ Yandex/fixed composite и новые bounds/order/visibility до этого м�
 всеRGB+opaque alpha сравниваются с вычисленным blend, исходный допуск2 сохранён.
 Source/output PNG и hex diagnostics сохраняются ДО строгого assert. Это ещё не
 доказательство правильности production fallback: читать следующий изменённыйCI.
+
+## Проверенный итог (11 ноября)
+
+Production3f72957 + QAfixc230680 / CI42074949288 SUCCESS46/46 обеAPI.
+cacheexport69each: bounds/TMS/+180/order/visible/alpha/mixedzoom/roundtrip,
+Cancel/empty failure/explicit UI-save/source cache/local map/other-project/KML/assets
+прошли. Исходныйцветff195adc, expectedff8c2d6e, actualff8b2d6e на обеихAPI,
+старыйtol2 сохранён. Все8 exportPNG SHAverified/просмотрены.
+Оригинальные4PNG/API и cacheexport.txt получены из исходного архива с проверенным
+GitHub digest через readonly recovery42989065292: старые тесты НЕперезапускались.
+Recovery не является CI нового кода. Полная приёмкаSAF/форматов26.1 открыта.
