@@ -190,7 +190,7 @@
         }
     .end annotation
 
-    .line 15
+    .line 16
     move-object/from16 v1, p0
 
     move/from16 v0, p1
@@ -207,7 +207,7 @@
 
     move-result-object v3
 
-    .line 16
+    .line 17
     iget-object v5, v1, Lorg/rabochaya/projects/OnlineTiles;->db:Landroid/database/sqlite/SQLiteDatabase;
 
     const-string v6, "SELECT tile_data,expires,etag,modified,pinned FROM tiles WHERE zoom_level=? AND tile_column=? AND tile_row=?"
@@ -273,7 +273,7 @@
 
     invoke-interface {v5}, Landroid/database/Cursor;->close()V
 
-    .line 17
+    .line 18
     :cond_1
     const-string v5, "zoom_level=? AND tile_column=? AND tile_row=?"
 
@@ -338,7 +338,7 @@
 
     return-object v6
 
-    .line 19
+    .line 20
     :cond_6
     :try_start_1
     new-instance v12, Ljava/net/URL;
@@ -402,7 +402,7 @@
 
     invoke-virtual {v12, v10, v15}, Ljavax/net/ssl/HttpsURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 20
+    .line 21
     :cond_8
     iget-boolean v10, v1, Lorg/rabochaya/projects/OnlineTiles;->closed:Z
 
@@ -457,7 +457,7 @@
 
     throw v0
 
-    .line 21
+    .line 22
     :cond_a
     :goto_2
     const-string v7, "Cache-Control"
@@ -505,7 +505,7 @@
 
     throw v0
 
-    .line 22
+    .line 23
     :cond_d
     :goto_4
     const/16 v13, 0xc8
@@ -731,7 +731,7 @@
 
     move-object/from16 v0, v21
 
-    .line 23
+    .line 24
     :goto_b
     iget-boolean v6, v1, Lorg/rabochaya/projects/OnlineTiles;->closed:Z
 
@@ -746,7 +746,7 @@
     .catch Ljava/io/IOException; {:try_start_a .. :try_end_a} :catch_0
     .catchall {:try_start_a .. :try_end_a} :catchall_8
 
-    .line 26
+    .line 27
     iget-object v2, v1, Lorg/rabochaya/projects/OnlineTiles;->active:Ljavax/net/ssl/HttpsURLConnection;
 
     const/4 v3, 0x0
@@ -757,11 +757,11 @@
 
     invoke-virtual {v2}, Ljavax/net/ssl/HttpsURLConnection;->disconnect()V
 
-    .line 23
+    .line 24
     :cond_16
     return-object v0
 
-    .line 24
+    .line 25
     :cond_17
     :try_start_b
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
@@ -904,7 +904,7 @@
 
     invoke-virtual {v6, v4, v2}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Integer;)V
 
-    .line 25
+    .line 26
     iget-object v2, v1, Lorg/rabochaya/projects/OnlineTiles;->db:Landroid/database/sqlite/SQLiteDatabase;
 
     invoke-virtual {v2}, Landroid/database/sqlite/SQLiteDatabase;->beginTransaction()V
@@ -1002,7 +1002,7 @@
     .catch Ljava/io/IOException; {:try_start_f .. :try_end_f} :catch_0
     .catchall {:try_start_f .. :try_end_f} :catchall_8
 
-    .line 26
+    .line 27
     iget-object v2, v1, Lorg/rabochaya/projects/OnlineTiles;->active:Ljavax/net/ssl/HttpsURLConnection;
 
     const/4 v3, 0x0
@@ -1013,7 +1013,7 @@
 
     invoke-virtual {v2}, Ljavax/net/ssl/HttpsURLConnection;->disconnect()V
 
-    .line 25
+    .line 26
     :cond_1f
     return-object v0
 
@@ -1077,7 +1077,7 @@
 
     throw v0
 
-    .line 23
+    .line 24
     :cond_23
     new-instance v0, Ljava/io/IOException;
 
@@ -1085,7 +1085,7 @@
 
     throw v0
 
-    .line 20
+    .line 21
     :cond_24
     move-object/from16 v21, v6
 
@@ -1098,7 +1098,7 @@
     .catch Ljava/io/IOException; {:try_start_13 .. :try_end_13} :catch_0
     .catchall {:try_start_13 .. :try_end_13} :catchall_8
 
-    .line 26
+    .line 27
     :catch_0
     move-exception v0
 
@@ -1152,7 +1152,7 @@
     :cond_27
     throw v0
 
-    .line 16
+    .line 17
     :catchall_9
     move-exception v0
 
@@ -1178,7 +1178,7 @@
     :goto_14
     throw v2
 
-    .line 15
+    .line 16
     :cond_29
     new-instance v0, Ljava/io/IOException;
 
@@ -1190,7 +1190,7 @@
 .method public static expiry(Ljava/lang/String;JJ)J
     .locals 9
 
-    .line 28
+    .line 29
     const-wide/16 v0, 0x0
 
     if-eqz p0, :cond_3
@@ -1237,7 +1237,7 @@
 
     goto :goto_0
 
-    .line 29
+    .line 30
     :cond_1
     sget-object v2, Ljava/util/Locale;->US:Ljava/util/Locale;
 
@@ -1315,7 +1315,7 @@
 
     goto :goto_1
 
-    .line 30
+    .line 31
     :cond_3
     cmp-long p0, p1, v0
 
@@ -1366,7 +1366,7 @@
 .method public cancel()V
     .locals 1
 
-    .line 32
+    .line 33
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lorg/rabochaya/projects/OnlineTiles;->closed:Z
@@ -1386,7 +1386,7 @@
 
     monitor-enter p0
 
-    .line 33
+    .line 34
     :try_start_0
     iget-object v0, p0, Lorg/rabochaya/projects/OnlineTiles;->db:Landroid/database/sqlite/SQLiteDatabase;
 
@@ -1408,7 +1408,7 @@
 
     return-void
 
-    .line 33
+    .line 34
     :catchall_0
     move-exception v0
 
@@ -1422,7 +1422,7 @@
 
     monitor-enter p0
 
-    .line 34
+    .line 35
     :try_start_0
     invoke-virtual {p0}, Lorg/rabochaya/projects/OnlineTiles;->cancel()V
 
@@ -1436,13 +1436,86 @@
 
     return-void
 
-    .line 34
+    .line 35
     :catchall_0
     move-exception v0
 
     monitor-exit p0
 
     throw v0
+.end method
+
+.method public declared-synchronized contains(III)Z
+    .locals 0
+
+    monitor-enter p0
+
+    .line 13
+    :try_start_0
+    invoke-direct {p0, p1, p2, p3}, Lorg/rabochaya/projects/OnlineTiles;->args(III)[Ljava/lang/String;
+
+    move-result-object p1
+
+    iget-object p2, p0, Lorg/rabochaya/projects/OnlineTiles;->db:Landroid/database/sqlite/SQLiteDatabase;
+
+    const-string p3, "SELECT 1 FROM tiles WHERE zoom_level=? AND tile_column=? AND tile_row=? AND typeof(tile_data)=\'blob\' AND length(tile_data) BETWEEN 1 AND 1048576 LIMIT 1"
+
+    invoke-virtual {p2, p3, p1}, Landroid/database/sqlite/SQLiteDatabase;->rawQuery(Ljava/lang/String;[Ljava/lang/String;)Landroid/database/Cursor;
+
+    move-result-object p1
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_2
+
+    :try_start_1
+    invoke-interface {p1}, Landroid/database/Cursor;->moveToFirst()Z
+
+    move-result p2
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    if-eqz p1, :cond_0
+
+    :try_start_2
+    invoke-interface {p1}, Landroid/database/Cursor;->close()V
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_2
+
+    :cond_0
+    monitor-exit p0
+
+    return p2
+
+    :catchall_0
+    move-exception p2
+
+    if-eqz p1, :cond_1
+
+    :try_start_3
+    invoke-interface {p1}, Landroid/database/Cursor;->close()V
+    :try_end_3
+    .catchall {:try_start_3 .. :try_end_3} :catchall_1
+
+    goto :goto_0
+
+    :catchall_1
+    move-exception p1
+
+    :try_start_4
+    invoke-virtual {p2, p1}, Ljava/lang/Throwable;->addSuppressed(Ljava/lang/Throwable;)V
+
+    :cond_1
+    :goto_0
+    throw p2
+    :try_end_4
+    .catchall {:try_start_4 .. :try_end_4} :catchall_2
+
+    .line 13
+    :catchall_2
+    move-exception p1
+
+    monitor-exit p0
+
+    throw p1
 .end method
 
 .method public declared-synchronized download(III)V
@@ -1455,7 +1528,7 @@
 
     monitor-enter p0
 
-    .line 13
+    .line 14
     :try_start_0
     iget-object v0, p0, Lorg/rabochaya/projects/OnlineTiles;->source:Lorg/rabochaya/projects/TileSource;
 
@@ -1497,7 +1570,7 @@
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 13
+    .line 14
     :catchall_0
     move-exception p1
 
@@ -1509,7 +1582,7 @@
 .method public interrupt()V
     .locals 1
 
-    .line 31
+    .line 32
     iget-object v0, p0, Lorg/rabochaya/projects/OnlineTiles;->active:Ljavax/net/ssl/HttpsURLConnection;
 
     if-eqz v0, :cond_0

@@ -48,7 +48,7 @@
 
     iget-object v3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda54;->f$3:Landroid/widget/Spinner;
 
-    invoke-virtual {v0, v1, v2, v3, p1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$goToCoordinates$48$org-rabochaya-projects-LocalMapActivity(Landroid/app/AlertDialog;Landroid/widget/EditText;Landroid/widget/Spinner;Landroid/content/DialogInterface;)V
+    invoke-virtual {v0, v1, v2, v3, p1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$goToCoordinates$49$org-rabochaya-projects-LocalMapActivity(Landroid/app/AlertDialog;Landroid/widget/EditText;Landroid/widget/Spinner;Landroid/content/DialogInterface;)V
 
     return-void
 .end method

@@ -36,7 +36,7 @@
 
     iget-boolean v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda55;->f$1:Z
 
-    invoke-virtual {v0, v1, p1, p2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$discardDrawing$65$org-rabochaya-projects-LocalMapActivity(ZLandroid/content/DialogInterface;I)V
+    invoke-virtual {v0, v1, p1, p2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$discardDrawing$66$org-rabochaya-projects-LocalMapActivity(ZLandroid/content/DialogInterface;I)V
 
     return-void
 .end method

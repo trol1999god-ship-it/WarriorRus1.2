@@ -52,7 +52,7 @@
 
     move v5, p2
 
-    invoke-virtual/range {v0 .. v5}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$coordinateOptions$46$org-rabochaya-projects-LocalMapActivity(Landroid/widget/Spinner;Landroid/widget/CheckBox;Landroid/widget/Spinner;Landroid/content/DialogInterface;I)V
+    invoke-virtual/range {v0 .. v5}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$coordinateOptions$47$org-rabochaya-projects-LocalMapActivity(Landroid/widget/Spinner;Landroid/widget/CheckBox;Landroid/widget/Spinner;Landroid/content/DialogInterface;I)V
 
     return-void
 .end method

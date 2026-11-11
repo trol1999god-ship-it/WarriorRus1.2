@@ -36,7 +36,7 @@
 
     iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;->f$1:Landroid/net/Uri;
 
-    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$importMap$54$org-rabochaya-projects-LocalMapActivity(Landroid/net/Uri;)V
+    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$importMap$55$org-rabochaya-projects-LocalMapActivity(Landroid/net/Uri;)V
 
     return-void
 .end method

@@ -28,12 +28,18 @@
    ПолнаяприёмкаSAF/форматов/release открыта; успешныйCI не повторять.
 5. Локальный НЕпроверенный WIP следующего production cache-участка:
    CompositionDownloadJob/Settings/Activity + OnlineTiles.contains + пункт карты.
-   Дедуп/policy/20000tiles/project-CAS/сохранённое задание; foreground pause,
+   Отдельный выбор слоёв без смены видимости карты, область/depth,
+   дедуп/policy/20000tiles/project-CAS/сохранённое задание; foreground pause,
    restart только явный, resume проверяет кеш заново. Исходники не отправлены;
-   local QA501/min23/INTERNETonly/JVM30_81490 (job32) passed;
+   local debugQA501/min23/INTERNETonly/source65exact/JVM30_81493 (job35),
+   host18/source+DEXprivacy pass, SDK23 guard tests compiled;
    подключается реальный UI pause/force-stop/resume/missing-only cache/KML/assets
    в существующие maplayers/reopen, без нового mode/baseline. Androidruntime ещё нет.
-   CI экспорта исполняет замороженныйc230680 (production3f), НЕ этот WIP. Сохранять все diff.
+   ExportCIfrozen c230680 завершён/доказательства сохраненыa2f4d77, НЕ этот WIP.
+   QA-профили сохранены096ed40; следующийcommit — cachejobs, затем
+   один обоснованныйCI нового кода (не повтор успешногоэкспорта).
+   --release реальноblocked25/noAPK; officiallintprobe3errors94warnings — gap, неPASS.
+   ci/QA.md, rootAGENTS — единыеQA; новыеcloud/Stryx/SkillUI не нужны. Сохранять все diff.
 
 ## Production очередь
 

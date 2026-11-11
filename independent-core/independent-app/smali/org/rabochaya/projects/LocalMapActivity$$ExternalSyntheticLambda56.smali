@@ -42,7 +42,7 @@
 
     iget-object v2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda56;->f$2:Landroid/widget/EditText;
 
-    invoke-virtual {v0, v1, v2, p1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$newProject$44$org-rabochaya-projects-LocalMapActivity(Landroid/app/AlertDialog;Landroid/widget/EditText;Landroid/content/DialogInterface;)V
+    invoke-virtual {v0, v1, v2, p1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$newProject$45$org-rabochaya-projects-LocalMapActivity(Landroid/app/AlertDialog;Landroid/widget/EditText;Landroid/content/DialogInterface;)V
 
     return-void
 .end method
