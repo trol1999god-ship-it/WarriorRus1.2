@@ -10017,9 +10017,21 @@
     .line 81
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->disposed:Z
 
+    if-nez v0, :cond_5
+
+    invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->isFinishing()Z
+
+    move-result v0
+
+    if-nez v0, :cond_5
+
+    invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->isDestroyed()Z
+
+    move-result v0
+
     if-eqz v0, :cond_0
 
-    return-void
+    goto :goto_2
 
     :cond_0
     const/4 v0, 0x0
@@ -10028,9 +10040,25 @@
 
     iget-boolean v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->busy:Z
 
+    if-nez v0, :cond_5
+
+    iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->closeDialog:Landroid/app/AlertDialog;
+
+    if-nez v0, :cond_5
+
+    iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->partChoiceDialog:Landroid/app/AlertDialog;
+
+    if-nez v0, :cond_5
+
+    iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->geometryConfirmationDialog:Landroid/app/AlertDialog;
+
+    if-nez v0, :cond_5
+
+    iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity;->vertexDialog:Landroid/app/AlertDialog;
+
     if-eqz v0, :cond_1
 
-    return-void
+    goto :goto_2
 
     :cond_1
     invoke-virtual {p0}, Lorg/rabochaya/projects/GeometryEditorActivity;->getIntent()Landroid/content/Intent;
@@ -10117,6 +10145,10 @@
     const-string p2, "\u0412\u0432\u043e\u0434 \u0438\u043b\u0438 \u0432\u044b\u0431\u043e\u0440 \u0438\u0437\u043c\u0435\u043d\u0438\u043b\u0438\u0441\u044c; \u043f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u0435 \u0440\u0430\u0441\u0447\u0451\u0442 \u043f\u0440\u043e\u0444\u0438\u043b\u044f"
 
     goto :goto_0
+
+    :cond_5
+    :goto_2
+    return-void
 .end method
 
 .method synthetic lambda$profile$3$org-rabochaya-projects-GeometryEditorActivity(Lorg/rabochaya/projects/GeometryCloseDraft;Ljava/util/List;)V

@@ -9,7 +9,7 @@
   "own_classes": 535,
   "sdk23_app_debug_qa_built": true,
   "latest_instrumentation_bytes": 266261,
-  "latest_instrumentation_sha256": "01065af215625f2347d0384c5708ee9d9dfca4bff6980e5d9c287b64ff9514e9",
+  "latest_instrumentation_sha256": "19d97bfa9b7c935e63df326fb6539f7a613395859b08a31d1af35197ed6950c8",
   "console_total_frame_cap": 16,
   "console_dem_frames": [
     "profile",
@@ -18,7 +18,10 @@
   "runtime_executed": false,
   "accepted": false,
   "files": {
+    "context-qa-build.json": "b782e9d993f4b4338d9099fc2bce1ebb93ad20afb60d30c8e8ee558988983085",
     "first-private-api-compile-failure.log": "e8be24b9faffac2a08c4ee305cc3b677c8f4d2243f2d6b36e943d99fc256f620",
+    "context-privacy.json": "0d04ccc4846cc2ede8ebe5a57471f0fba73472f1e355b7d7408d35ee3807a2c8",
+    "context-build.log": "5a271ba4fddf25bdbaf99c26e4993797aea6c46003cf652a1db839ce0936ab6b",
     "sdk23-build.log": "b9659a584bdf8d109f10f4cf87b787f030e6663579a5a5e17dcc7989d1168373",
     "sdk23-tests.log": "2d1ef0c11c686ab5ec9e0a3a535e55d6eca87a82f11593f722276082c64cdf23",
     "missing-helper-registration-failure.log": "12e7536291f2977c42e094a89fdc78aa30a923bc8b642a850806ab2d0437631e",
@@ -26,5 +29,6 @@
     "privacy.json": "0d04ccc4846cc2ede8ebe5a57471f0fba73472f1e355b7d7408d35ee3807a2c8",
     "qa-build.json": "2d3411a5756786e99d3e2cbfd67e6ec649f933589747f5a13e6fdeba1095e9c0",
     "host.log": "034c526d37e03a3362955f24ee34cc77a77fbec2cac79e564b28905962a3c746"
-  }
+  },
+  "callback_guard_implemented_for_active_confirmation_and_finishing_activity": true
 }
