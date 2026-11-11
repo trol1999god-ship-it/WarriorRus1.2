@@ -4,12 +4,19 @@ import android.accessibilityservice.AccessibilityServiceInfo;import android.view
 
 /** Captures only a newly-created synthetic project, never personal device data. */
 final class ManagerVisualChecks {
- final MapAndroidChecks m;final JSONArray observations=new JSONArray();
+ final MapAndroidChecks m;final JSONArray observations=new JSONArray();int launchReplacements;
  ManagerVisualChecks(MapAndroidChecks checks){m=checks;}
  String shell(String command)throws Exception{ParcelFileDescriptor fd=m.getUiAutomation().executeShellCommand(command);try(InputStream in=new ParcelFileDescriptor.AutoCloseInputStream(fd);ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] b=new byte[4096];int n;while((n=in.read(b))!=-1)out.write(b,0,n);return out.toString("UTF-8");}}
  void emit(String value){Bundle b=new Bundle();b.putString("stream",value+"\n");m.sendStatus(0,b);}
  void finish(){if(m.activity!=null){Activity old=m.activity;m.runOnMainSync(()->old.finish());m.waitForIdleSync();m.activity=null;}}
- void launch(long project)throws Exception{m.activity=m.startActivitySync(new Intent().setClassName(m.getTargetContext().getPackageName(),"org.rabochaya.projects.ObjectManagerActivity").putExtra("project",project).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));m.geometryReady();m.waitText("Объекты проекта");}
+ void launch(long project)throws Exception{m.activity=m.startActivitySync(new Intent().setClassName(m.getTargetContext().getPackageName(),"org.rabochaya.projects.ObjectManagerActivity").putExtra("project",project).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));Activity first=m.activity;
+  // Every caller requests portrait. A pending rotation can replace the instance
+  // returned by startActivitySync while it is still busy. Adopt the real window
+  // through the existing strict rotation helper BEFORE waiting for its worker.
+  rotate(UiAutomation.ROTATION_FREEZE_0);
+  m.check(m.activity.getIntent().getLongExtra("project",-1)==project,"manager launch retains requested project");m.check(first==m.activity||first.isDestroyed(),"manager launch replacement actually destroyed first instance");
+  if(first!=m.activity)launchReplacements++;
+  emit("MANAGER_LAUNCH project="+project+" actualProject="+m.activity.getIntent().getLongExtra("project",-1)+" replaced="+(first!=m.activity)+" firstDestroyed="+first.isDestroyed()+" portrait="+(m.activity.getResources().getConfiguration().orientation==Configuration.ORIENTATION_PORTRAIT));m.waitText("Объекты проекта");}
  void rotate(int rotation)throws Exception{
   int desired=rotation==UiAutomation.ROTATION_FREEZE_0?Configuration.ORIENTATION_PORTRAIT:Configuration.ORIENTATION_LANDSCAPE;
   m.check(m.getUiAutomation().setRotation(rotation),"visual rotation requested");long until=System.currentTimeMillis()+15000;int stable=0;final int[] state=new int[3];
