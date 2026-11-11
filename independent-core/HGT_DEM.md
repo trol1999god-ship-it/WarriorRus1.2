@@ -119,3 +119,11 @@ DEM_PROFILE.md: текущий raw выбранного маршрута/кон�
 debugQA535/SDK23 tests266261/JVM33_81640/profile23/host18/customprivacy PASS.
 Runtime ЕЩЁ НЕвыполнен, НЕ7230/59CI. Existingmaplayers helper, cap16 прежний;
 profile/restarted console, ready/coverage обычныеPNG. Receipts profile-candidate/.
+
+## Покрытие проверено отдельным изменённым CI
+
+Code59fdd15 / CI43047764920 SUCCESS46both: API23 130616502327/35 130616501859,
+layers199/reopen66each, managerforms482/473. Имена сверены с полными logs;
+ранняя локальная ошибка ID/API исправлена, источники разделены. Все32 новыхPNG
+SHAverified/viewed: coverage centre10.500404N/5.5E/z8.3/height−0.5m; cold manual
+centre0/explicitRemove/data guards PASS. coverage-59-result.json. Профиль НЕвходит.

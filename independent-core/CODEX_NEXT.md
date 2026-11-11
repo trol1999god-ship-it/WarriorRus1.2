@@ -1,4 +1,4 @@
-# Продолжение — 11 ноября: DEM cold restart/Deflate проверены; coverage кандидат
+# Продолжение — 11 ноября: DEM/Deflate/покрытие проверены; профиль кандидат
 
 Только independent-core/existing codex/independent-core-auto; без новых агентов/
 веток/worktree/reset/clean/mergePR14. Preserve stash/toolchain/pending/артефакты.
@@ -22,24 +22,20 @@
 - Все32 новыхPNG SHAverified/actuallyviewed, final-7230-result.json.
   Source71exact/debugQA528/customprivacy PASS (НЕAndroidlint).
 
-## Следующий функциональный кандидат — явное покрытие DEM
+## Новая проверенная функция — явное покрытие DEM
 
-Production2fefdfd + tests51aa9c2 (локально): «Ориентирование»→«Показать область DEM».
-Fresh own header+project под lock, explicit view fit без KML/DEM/cache writes,
-рисунок/foreign отказ, пересечение полярной границы WebMercator, source retained.
-JVM32_81617/HGT38/host18/source71exact/debugQA529/customprivacy PASS;
-SDK23 latestinstrumentation262207 compiled, SHA receipt coverage-candidate/.
-DemChecks: actual меню/возврат изoutside/foreign exactviewport+bytes, прежние
-Cancel/install/remove/restart/DOM/assets guards сохранены. Consolecoverage/restarted
-вместоready/restarted, totalcap16/2МиБ прежний; ready остаётсяобычнымartifact.
-Coverage remote59fdd159883bbee1c284cbc60e7844fa167a0736 / pushCI43047764920
-фактически in_progress, JVMsuccess;23 130616501859/35 130616502327 running.
-Androidruntime coverage ЕЩЁ НЕпроверен, НЕвходит в7230. Не push покаCI active;
-дождаться completed23/35 full46/новыеPNG, не blindrerun.
-После — следующий реализуемый formats/DEM пробел по registry/матрице (профиль по
-выбранной геометрии/рельеф либо tiled TIFF с bounded decoding контрактом).
+Production2fefdfd +tests51aa9c2 / remote59fdd15 / CI43047764920 SUCCESS46both.
+API23 130616502327, API35 130616501859 — имена сверены с полными журналами.
+JVM130616208702 success32_81617, HGT38/source71exact/debugQA529.
+«Ориентирование»→«Показать область DEM»: explicit own viewfit, drawing/foreign
+отказ, exactviewport/bytes; prior install/Cancel/remove/restart/data guards PASS.
+layers199/reopen66each, managerforms482/473 реальноPASS, offlineformats68each.
+Все32новыхPNG SHAverified/viewed; centre10.500404N/5.5E/z8.3/height−0.5m,
+после coldrestart manualcentre0 и explicitRemove. coverage-59-result.json.
+Ранняя локальная привязка ID к API была ошибочной, исправлена по jobname/api-level.
+Не rerun без новой причины; профиль НЕвходит в59CI.
 
-## Следующий локальный кандидат после coverage CI
+## Следующий кандидат — read-only DEM профиль
 
 Read-only DEM profile: DemProfile/View и GeometryEditorActivity «Действия»→
 «Профиль DEM» по выбранному raw маршруту/контуру,512samples/NoData breaks.
@@ -52,7 +48,8 @@ DemProfileChecks добавлен в существующийmaplayers, НЕно
 UI graph/Arimo/touchscroll/Close/raw/cursor/foreign/stale/mainChanged/отдельный
 MainSave сохраняет inputaltitudes; KML/assets/source/otherproject checks прежние.
 Consoleprofile/restarted2 +остальные14 =cap16; ready/coverage обычныеartifact.
-Runtime профиля ЕЩЁ НЕвыполнен и НЕвходит в7230/59CI. Не push покаcoverageCI active.
+Codea501a7c+b52c56c, runtime профиля ЕЩЁ НЕвыполнен и НЕвходит в7230/59CI.
+CoverageCI completed, отправить новый кандидат и читать реальные23/35/full46/PNG.
 
 ## Проверенная история / ограничения
 

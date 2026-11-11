@@ -3,7 +3,9 @@ Code7230cec / CI43035041730 SUCCESS46/46 обеAPI: offlineformats68each,
 layers191/reopen66each;32 новыхPNG SHAverified/просмотрены. HGT cold restart
 исправлен в тестовом launch-helper без изменения productionDEM/timeout.
 [HGT_DEM.md](HGT_DEM.md), [GEOTIFF_DEFLATE.md](GEOTIFF_DEFLATE.md).
-Явная команда покрытия DEM — следующий кандидат, ещё без Androidruntime.
+Явная команда покрытия DEM проверена на59fdd15/CI43047764920:46/46both,
+layers199/reopen66each,32новыхPNG reviewed. Read-only профиль DEM — следующий
+кандидат (DEM_PROFILE.md), его Androidruntime ещё НЕпроверен.
 Полная эталонная приёмка/перенос и release остаются открытыми.
 
 Подтверждение закрытия dirty-редактора проверено с реальными пересозданиями Activity.
