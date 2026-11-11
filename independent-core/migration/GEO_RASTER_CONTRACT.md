@@ -1,7 +1,9 @@
 # Следующий форматный участок: геопривязка растров
 
-Это исследование контракта, не реализованный GeoTIFF reader и не приёмка26.1.
-Очередь: завершить runtime compose-export → проверить cache jobs → форматный reader.
+Контракт реализован ограниченным GeoTIFF reader (GEOTIFF_IMPORT.md), не полная
+приёмка26.1. Raw GeoTIFF/cachejobs ee7/CI43001233957 SUCCESS46both;
+Deflate code7230/CI43035041730 scoped offlineformats68PASSboth, полный35 pending.
+Матрица IMPLEMENTATION_PLAN и MAP_FORMATS отделяют поддержанное от пробелов.
 
 Официальная спецификация: [OGC GeoTIFF](https://github.com/opengeospatial/geotiff/tree/master/GeoTIFF_Standard/standard).
 Прочитаны clause7 (`6c8a8ba393f864acb8bb539f03d759108ff262a2`) и annexB

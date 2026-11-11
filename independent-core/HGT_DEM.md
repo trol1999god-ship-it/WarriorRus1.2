@@ -94,3 +94,8 @@ SDK23 app+instrumentation собраны. Runtime новой команды ЕЩ
 возврат из внеобласти, foreign replacement exact viewport/bytes, исходные
 Cancel/install/remove/restart/KML/assets guards сохранены.
 coverage-candidate/ содержит локальные receipts, НЕприёмку.
+
+Кандидат coverage: console DEM frames coverage/restarted (2), всего16/cap прежний.
+Предварительный import-ready сохранён обычным artifact PNG, selection/Cancel
+assertions не удалены. Новый coverage кадр сделан после явного выбора меню,
+до foreign refusal. Текущий CI7230 по-прежнему использует ready/restarted.
