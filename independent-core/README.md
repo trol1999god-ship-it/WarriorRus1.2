@@ -1,3 +1,10 @@
+Tiled GeoTIFF ограниченный importer реализован на3c87557; CI43107394886
+offlineformats200each реальноPASS обеAPI: raw/Deflate/predictor/NoData/padding/
+checksum/Cancel/pixel/data guards. 32 новыхPNG viewed/SHA, archives verified.
+ВесьCI FAILURE: API23 full46/46, API35 full45/46 из-за managerrotation
+launch/recreate helper. Исправление толькоinstrumentation ещё проверяется;
+GEOTIFF_TILED.md. Это не полный формат/приёмка и не replacement release.
+
 DEM высоты ручного центра и Deflate GeoTIFF проверены в ограниченном объёме.
 Code7230cec / CI43035041730 SUCCESS46/46 обеAPI: offlineformats68each,
 layers191/reopen66each;32 новыхPNG SHAverified/просмотрены. HGT cold restart

@@ -1,28 +1,26 @@
-# Продолжение — 12 ноября: профиль scoped проверен; Tiled importer кандидат
+# Продолжение — 12 ноября: Tiled scoped200 обеAPI; исправить launch-harness regression
 
-6f19feb/CI43100835572 завершён FAILURE, НЕзелёныйCI: JVMsuccess33/81640/host20;
-API23 130791794269 SUCCESS46/46, API35 130791794371 44PASS, geometrymap adbOffline,
-зависимый reopen SKIP. Не считать эти2 пройденными. Другие сценарии, включая
-managerforms/профиль, реально исполнены. Не отдельный rerun: новый Tiled fullCI
-обязан также исполнить geometrymap/reopen на обеихAPI.
-Профиль: layers275/274/reopen66each PASS; Close/raw/cursor/stale/foreign/
-mainChanged/explicitMainSave, KML/assets/HGT/MBTiles/cache/otherproject PASS.
-Graph ancestor shown288×481/457; legacy ScrollView hidden0×0 — подтверждённая
-причина старого тестового отказа, production не менялся. Все32 новыхPNG
-SHAverified/actuallyviewed; оба artifactdigest/вложенныеZIP/all546/543files SHA
-проверены. profile-6f19-result.json. Это scoped evidence, НЕполная приёмка.
-Доставка singleZIP/manifest/3min uploads сработала обеAPI. Старый43089751186
-CANCELLED из-за45min job timeout; logs404/Android artifacts отсутствуют,
-не восстановлены/не засчитаны. cancellation-annotations.json.
-Tiled patch1e3e9ea ВОССТАНОВЛЕН после проверки профиля. Fresh SDK23 debug app+
-instrumentation compiled/source73exact/535classes, JVM33_81769/Geo215/host20,
-custom source+DEX privacy PASS (НЕAndroidlint). reactivated-2026-11-12 receipts.
-Следующий: fullCIboth нового Tiled кода; nativepixels/NoData/padding/checksum/
-Cancel/LRU/data и реальные geometrymap/reopen. Tiled runtime пока НЕисполнен.
-Tiled code3c87557aca59d52d105770b724e493ecfbeac208 / CI43107394886
-реально запущен: JVM130814179373success, Android23 130814459051/
-35 130814459075 исполняют сценарии. Не push покаactive; читать завершённые
-jobs/полные46/nativepixels/новыеPNG и точныеdata guards, не засчитывать skip.
+3c87557/CI43107394886 completed FAILURE. JVMsuccess33_81769/Geo215/host20;
+API23 130814459051 SUCCESS46/46; API35 130814459075 45PASS, толькоmanagerrotation
+FAIL geometry editor never ready. Geometrymap/reopen реальноPASS обеAPI,
+прежний35 adbOffline НЕповторился в сценарии. Не считать текущийCI зелёным.
+Tiled native offlineformats200each: raw/Deflate/32946/predictor/NoData/Cancel/
+padding checksum/oldfile/source/KML/assets/otherproject PASS. layers274/275,
+reopen66each/профиль/HGT/cache data PASS. Все32новыхPNG SHAverified/viewed;
+обаarchive/innerZIP/все546/538members SHAverified. runtime-3c875-result.json.
+Четыре35 failure PNG показывают предыдущие успешные name Cancel/Save,
+НЕготовность следующей Activity. Полныеfailure logcat/window/activity сохранены.
+Подтверждён relaunch во времяlaunch: task39 START22:08:03.807 UTC,
+landscape→portrait relaunch22:08:04, helper ждал busy исходного instance45s.
+Локальный fix ТОЛЬКОinstrumentation: существующий rotate/adoption доready,
+строгие original project/oldDestroyed; managerrotation требует actual launch
+replacement>0 после предыдущего landscape. SDK23compiled; guards/таймауты/
+production НЕменялись. launch-race-fix/receipt.json; следующий изменённый fullCI
+обеAPI обязан пройти все46 и actual managerrotation, не blindrerun.
+Tiled1e3e9ea восстановлен/реализован; полное принятие этапа покаНЕобъявлено.
+Следующая функция после зелёного результата: affine ModelTransformation34264
+по OGC/общему GeoRasterTransform, bounds/native resolution/пиксели, затем Ozi;
+контракт migration/GEO_RASTER_CONTRACT.md. Это ещё НЕproduction поддержка.
 
 Только independent-core/existing codex/independent-core-auto; без новых агентов/
 веток/worktree/reset/clean/mergePR14. Preserve stash/toolchain/pending/артефакты.

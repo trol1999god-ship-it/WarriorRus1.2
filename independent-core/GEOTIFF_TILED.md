@@ -71,3 +71,17 @@ PASS, НЕAndroidlint; reactivated-2026-11-12/receipt.json. Tiled runtime ещё
 НЕисполнен и НЕвходит в6f19CI. Следующий fullCI обеAPI изменённого importer
 проверяет nativepixels/NoData/padding/checksum/Cancel/границы/сохранность и
 реально исполняет geometrymap/reopen; старый skip не засчитывается.
+
+## Первый runtime3c87557
+
+CI43107394886 FAILURE: API23 full46/46, API35 full45/46, только managerrotation
+launch/readiness timeout после двух успешных edit scenarios. Native importer
+offlineformats200each реальноPASS: обаCRS/raw/Deflate/predictor/NoData/cross-tile
+literal pixels/Cancel/sparse/padding checksum/oldtarget/source/KML/assets/
+otherproject; geometrymap/reopen обеAPI passed. Profile/HGT/cache guards также
+passed. Все32новыхPNG viewed/SHA и оба archive/inner/all546/538members SHAverified.
+Runtime scoped подтверждён, но fullCI НЕзелёный и accepted НЕизменён.
+Следующий кандидат чинит только доказанную launch/configuration race в existing
+instrumentation, с обязательным actualreplacement и прежними physical/raw/data
+guards; runtime-3c875-result.json, launch-race-fix. Production TIFF не меняется
+из-за этого helper. Полная форматная/эталонная приёмка остаётся открытой.
