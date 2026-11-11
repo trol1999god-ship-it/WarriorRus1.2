@@ -30,7 +30,8 @@ JVM HGT32 (включая подтверждённый valid-node-near-void/roun
 всего32_81563; debugQA71sourceexact/527classes, SDK23 instrumentation compiled,
 source+DEXprivacy PASS. HGT_DEM.md. Androidruntime ЕЩЁ НЕзасчитан и НЕвходит в ee7CI.
 
-Сохранить исправление/локальные receipts, push в ту же ветку для обоснованного CI.
+Code48ca40b уже remote; pushCI43007479633 in_progress, JVM130478455397 success,
+Android23 130478716929/35 130478716899. Неpushпокаactive; читать completed jobs/PNG.
 Сценарий расширяет существующие maplayers/reopen: select→Cancel/explicit install/
 removeCancel/foreign owner+cleanup refusal/manual centre/KML/assets/source/otherproject,
 actualforce-stop→sameDEM/newheight/no extraHTTP/explicit remove. Два consolePNG DEM,
@@ -39,6 +40,14 @@ actualforce-stop→sameDEM/newheight/no extraHTTP/explicit remove. Два consol
 После высоты — следующий реализуемый форматный/DEM пробел по registry/матрице:
 TIFF compression/tiled/контрольные CRS либо DEM relief/profile/collection;
 RMAP/Ozi и точный список эталона требуют собственных подтверждённых контрактов/файлов.
+
+## Следующий локальный WIP после DEM
+
+GEOTIFF_DEFLATE.md: тот же importer, Deflate8/32946/predictor1/2, bounded streaming/
+checksum/exact decoded size/rowLRU8. JVM32_81611(GeoTIFF86), source71exact/
+debugQA528/privacy passed, latestSDK23 tests260537 compiled. Runtime НЕисполнен,
+НЕвходит в CI48ca40b. Старые uncompressed/data/physical guards не снижать,
+новый UI fixture compressed;16PNG budget прежний. Сначала завершить DEM runtime.
 
 ## Проверенная история и общая очередь
 

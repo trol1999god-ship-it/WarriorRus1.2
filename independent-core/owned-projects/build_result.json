@@ -1,5 +1,5 @@
 {
-  "added_classes": 461,
+  "added_classes": 462,
   "generated_files": [
     "AttachmentsActivity$$ExternalSyntheticLambda0.smali",
     "AttachmentsActivity$$ExternalSyntheticLambda1.smali",
@@ -74,6 +74,7 @@
     "GeoTiffImport.smali",
     "GeoTiffRaster$1.smali",
     "GeoTiffRaster$Entry.smali",
+    "GeoTiffRaster$StripInput.smali",
     "GeoTiffRaster.smali",
     "GeometryCloseDraft.smali",
     "GeometryConfirmationDraft.smali",
@@ -484,7 +485,7 @@
     "src/org/rabochaya/projects/FeatureEdits.java": "cbc19e15754482f9ff6a87d75d9a15785aa9cc2d0625c529d691a202f3e90c89",
     "src/org/rabochaya/projects/GeoRasterTransform.java": "36bd91aa0fd7ee684eea38624d4147238fb57f70161db248a7124918371b5cff",
     "src/org/rabochaya/projects/GeoTiffImport.java": "4f92bc469d1a39d8113706f44dd497c226d98e2828de94f74aa069370f06ac16",
-    "src/org/rabochaya/projects/GeoTiffRaster.java": "fe6b5489fa107a6d0fb9405ed41329197084e5d94a18022b20effe638b545833",
+    "src/org/rabochaya/projects/GeoTiffRaster.java": "0c28cb9cdf82ceebd4f5f794ea6c13b2886426edd0c61ac353b68418d828e895",
     "src/org/rabochaya/projects/GeometryCloseDraft.java": "8e291c5cd267cfc7ed93a92aed969c04e9b3f228937a54fc5b49490f3472fa0b",
     "src/org/rabochaya/projects/GeometryConfirmationDraft.java": "91aad0f1f9ec344ae188dc49d6c7ff4fff5f337aeeba1366b6a27fac6efa6896",
     "src/org/rabochaya/projects/GeometryCoordinates.java": "124c19acb32a6a5bc4aeeac567cd7fea71bdbfb6c3433c29ece29d06a7a4378b",
@@ -499,7 +500,7 @@
     "src/org/rabochaya/projects/HgtRaster.java": "662c6c4e91390dcccdc9139ac69509ce31bc8986f9da79ea4a56775d9b503d09",
     "src/org/rabochaya/projects/KmlTimeFilter.java": "3c2dfbf8cad62e31d1998c931774d18e8d8a1bcb29c31629d5cf964f81238ddd",
     "src/org/rabochaya/projects/KmlXml.java": "5e4553e48f0f250d2f71b16b521a142c0144acb520c1837378b7e1dbd92d73e0",
-    "src/org/rabochaya/projects/LocalMapActivity.java": "bdbe9ad7e585c266e240ee45985e3d1ad1adc415f196de0e482e570bd5288181",
+    "src/org/rabochaya/projects/LocalMapActivity.java": "21d959adff272495d15b7232bd3133197e137bddb7615e956ae72d039608f13b",
     "src/org/rabochaya/projects/LocalMapView.java": "df91deaacb2209201d417f365d2c03f06c6e78a5cb095c8dfdb8e4cd0f4ce784",
     "src/org/rabochaya/projects/LocalRasterStore.java": "92539a12673ab354812174b1691376de32d5ddd6b2ce071f4e13d61b4728973e",
     "src/org/rabochaya/projects/MapCatalog.java": "3804579668c60226f90f2a8178f66235667d94f4bfdeeeaee150b20c4c66a4ff",
