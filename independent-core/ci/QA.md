@@ -51,3 +51,17 @@ HardcodedDebugMode конфликтует с явными ручными про�
 assertions/PNGs и ограничения. Offline/skip/старые кадры не PASS; закрытый release gate
 не обходить, accepted без эталона/приёмки не выставлять. Playwright только для реальной
 web-части; Stryx/SkillUI не нужны без проверки происхождения/необходимости.
+
+### Доставка Android-доказательств после отменённого43089751186
+
+Обе scenario steps success, но jobs cancelled и Android artifacts отсутствуют;
+logs404 BlobNotFound. Полные46/PNG/guards не подтверждены. Причина upload внутри
+сервиса неизвестна без журналов; успешный шаг не заменяет сохранённые доказательства.
+Существующий workflow упаковывает ВСЕ rk-results в android-evidence.zip до upload:
+исходные paths/bytes и records без переоценки, manifest sourceSHA/runID/SHA256.
+Artifact independent-qa-api-N теперь содержит этот ZIP; для recovery нужен
+вложенный архив с обязательной сверкой manifest, а не старые PNG из другогоrun.
+Upload compression0 для уже сжатогоZIP, оба upload шага ограничены3min в прежнем
+job45min; failure остаётсяfailure. Это уменьшает накладные расходы/риск потери
+времени доставки, но не обещает исправления удалённого artifact service.
+Ни сценарии, ни physical/80/82/raw/owner/data/release guards не менялись.

@@ -1,12 +1,18 @@
 # Продолжение — 11 ноября: DEM/Deflate/покрытие проверены; профиль кандидат
 
-Последнее наблюдение 23:39 МСК: CI43089751186 ещёactive, JVMsuccess и
-Run Android scenarios SUCCESS обеAPI. API23 upload результатов FAILURE;
-API35 upload ещёactive. Полные logs обеAPI ReadTimeout, штатный gh API Forbidden.
-НовыхPNG НЕпросмотрено,46/46/guards ещё НЕсверены; это внешний evidence blocker,
-НЕдоказанная ошибка приложения и НЕлимит. Не rerun и не push до завершения jobs.
-Сначала читать завершённые logs/PNG этогоrun; после подтверждения профиля вернуть
-Tiled patch ниже. actions-access-blocker.json. Localdocs сохранены отдельно.
+12 ноября: CI43089751186 completed CANCELLED обе Android jobs; JVMsuccess,
+Run Android scenarios SUCCESS обеAPI, API23 upload результатов FAILURE.
+Это НЕзелёныйCI. Logs130763635944/130763635965 теперь404 BlobNotFound;
+единственный опубликованный artifact — JVM13886974729. Android архивов нет,
+локальных результатов этогоrun нет; evidence-only recovery нечего читать.
+Причина исходной сетевой/серверной ошибки upload НЕустановлена без logs;
+подтверждены потеря доставки и отмена после тестов, НЕдефект приложения.
+Полные46/PNG/profile guards НЕподтверждены. cancelled-run-43089751186.json.
+Следующий изменённый кандидат: single ZIP всех исходных результатов с SHAmanifest,
+bounded uploads3min в существующем workflow; host20PASS, production/tests/guards
+профиля прежние. Один обоснованный новый CI доставки, НЕblindrerun.
+После его завершения читать обе jobs/новыеPNG; лишь после подтверждения профиля
+вернуть Tiled patch ниже. Все local9d33ade/Tiled1e3e9ea/stash/pending сохранены.
 
 Только independent-core/existing codex/independent-core-auto; без новых агентов/
 веток/worktree/reset/clean/mergePR14. Preserve stash/toolchain/pending/артефакты.

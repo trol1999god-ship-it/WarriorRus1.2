@@ -10,6 +10,8 @@ import contextlib
 import hashlib
 import io
 from visual_evidence import emit_visual_evidence, emit_visual_summary, decode_visual_log
+from package_android_evidence import package
+import zipfile
 
 
 class RunnerTests(unittest.TestCase):
@@ -120,6 +122,43 @@ elif args[:3] == ['shell', 'am', 'instrument']:
         result, records = self.run_modes(['binary', 'independence'], ['binary'], False)
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual(len(records), 1)
+
+
+class PackagedEvidenceTests(unittest.TestCase):
+    def test_all_diagnostics_and_failed_records_survive_exactly(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); source = root / 'results'; source.mkdir()
+            records = [{'mode': 'maplayers', 'passed': False},
+                       {'mode': 'maplayersreopen', 'passed': False, 'skipped': True}]
+            (source / 'results.json').write_text(json.dumps(records))
+            (source / 'maplayers.txt').write_bytes('raw/курсор/FAIL\n'.encode())
+            (source / 'maplayers').mkdir()
+            (source / 'maplayers' / 'map_mvisual-profile.png').write_bytes(VisualEvidenceTests.png)
+            original = {p.relative_to(source).as_posix(): p.read_bytes() for p in source.rglob('*') if p.is_file()}
+            with contextlib.redirect_stdout(io.StringIO()):
+                package(source, root / 'evidence.zip', 'a' * 40, 123)
+            with zipfile.ZipFile(root / 'evidence.zip') as archive:
+                manifest = json.loads(archive.read('_evidence_manifest.json'))
+                self.assertEqual(manifest['records'], records)
+                self.assertEqual(manifest['source_sha'], 'a' * 40)
+                self.assertEqual(set(archive.namelist()), set(original) | {'_evidence_manifest.json'})
+                for item in manifest['files']:
+                    self.assertEqual(archive.read(item['path']), original[item['path']])
+                    self.assertEqual(item['sha256'], hashlib.sha256(original[item['path']]).hexdigest())
+                    self.assertEqual((source / item['path']).read_bytes(), original[item['path']])
+            with self.assertRaises(FileExistsError):
+                package(source, root / 'evidence.zip', 'a' * 40, 123)
+
+    def test_symlink_and_output_inside_source_are_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); source = root / 'results'; source.mkdir()
+            (source / 'results.json').write_text('[]')
+            with self.assertRaises(ValueError):
+                package(source, source / 'nested.zip', 'a' * 40, 123)
+            (source / 'outside').symlink_to(root / 'private')
+            with self.assertRaises(ValueError):
+                package(source, root / 'evidence.zip', 'a' * 40, 123)
+            self.assertFalse((root / 'evidence.zip').exists())
 
 
 class VisualEvidenceTests(unittest.TestCase):
