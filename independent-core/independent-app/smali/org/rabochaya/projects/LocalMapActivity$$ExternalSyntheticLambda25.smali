@@ -68,7 +68,7 @@
 
     move-object v7, p1
 
-    invoke-virtual/range {v0 .. v7}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$editObject$71$org-rabochaya-projects-LocalMapActivity(Landroid/app/AlertDialog;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/EditText;Lorg/rabochaya/projects/KmlProject$Feature;Ljava/lang/String;Landroid/content/DialogInterface;)V
+    invoke-virtual/range {v0 .. v7}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$editObject$75$org-rabochaya-projects-LocalMapActivity(Landroid/app/AlertDialog;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/EditText;Lorg/rabochaya/projects/KmlProject$Feature;Ljava/lang/String;Landroid/content/DialogInterface;)V
 
     return-void
 .end method

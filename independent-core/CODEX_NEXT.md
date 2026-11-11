@@ -26,20 +26,25 @@
    Все8 original exportPNG SHAverified/просмотрены после readonly recovery42989065292;
    originalarchive digest проверен, НЕТrebuild/retest. Факты в final-result.json.
    ПолнаяприёмкаSAF/форматов/release открыта; успешныйCI не повторять.
-5. Локальный НЕпроверенный WIP следующего production cache-участка:
-   CompositionDownloadJob/Settings/Activity + OnlineTiles.contains + пункт карты.
-   Отдельный выбор слоёв без смены видимости карты, область/depth,
-   дедуп/policy/20000tiles/project-CAS/сохранённое задание; foreground pause,
-   restart только явный, resume проверяет кеш заново. Исходники не отправлены;
-   local debugQA501/min23/INTERNETonly/source65exact/JVM30_81493 (job35),
-   host18/source+DEXprivacy pass, SDK23 guard tests compiled;
-   подключается реальный UI pause/force-stop/resume/missing-only cache/KML/assets
-   в существующие maplayers/reopen, без нового mode/baseline. Androidruntime ещё нет.
-   ExportCIfrozen c230680 завершён/доказательства сохраненыa2f4d77, НЕ этот WIP.
-   QA-профили сохранены096ed40; следующийcommit — cachejobs, затем
-   один обоснованныйCI нового кода (не повтор успешногоэкспорта).
-   --release реальноblocked25/noAPK; officiallintprobe3errors94warnings — gap, неPASS.
-   ci/QA.md, rootAGENTS — единыеQA; новыеcloud/Stryx/SkillUI не нужны. Сохранять все diff.
+5. Cachejobs candidate97d6fa45f2de9f86013c88bd9c4728040c4a3a10 remote:
+   pushCI42995231822 in_progress, JVM130437549332 success,
+   Android23 130437703947/35 130437703955. PRduplicate42995241473 skipped.
+   Выбор слоёв/области/depth, foreground pause, saved job, explicit missing-only resume,
+   policy/dedup/cap/project-CAS. LocaldebugQA501/source65exact/JVM30_81493(job35),
+   host18/source+DEXprivacy pass; SDK23 guard tests compiled. Runtime ещё не засчитан.
+   Читатьобаcompletedjob/новыеPNG, Actual force-stop и stale/foreign/replaced/selected-
+   layer-change refusals, KML/assets/cache/другойпроект. НеpushпокаactiveCI.
+   096ed40 — debug/release validation/privacy QA. --release реальноblocked25/noAPK;
+   officiallintprobe3errors94warnings — integrationgap, неPASS. ci/QA.md/rootAGENTS.
+6. Следующий форматныйучасток — GeoTIFF по migration/MAP_FORMATS.md и
+   GEO_RASTER_CONTRACT.md; /workspace/work/manager-confirm/GeoRasterTransform.java.pending
+   сохранён, SHA06958dec760d8bb79289953468be1d12458657492138129ecf7ae523c35e7294.
+   Локальный WIP GeoTiffRaster/GeoRasterTransform/GeoTiffImport + явный пункт
+   Подложка→ИмпортGeoTIFF, CAS local-map, GEOTIFF_IMPORT.md. JVM35 новыхchecks;
+   весьJavaSDK23 compiled, instrumentation252776bytes compiled. QA build
+   geotiff-ui-debug-2026-11-11 PASS source69exact/512classes/JVM31_81528/host18/privacy. НЕ входит в CI97, Androidruntime не засчитан.
+   Сначала завершить CIcachejobs, затем runtime/pixel/UI import/Cancel/data guards
+   новогоформата; не считать grayscale DEM и не выдавать subset за полныйGeoTIFF.
 
 ## Production очередь
 

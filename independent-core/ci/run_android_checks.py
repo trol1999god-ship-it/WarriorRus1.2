@@ -74,7 +74,7 @@ for mode in a.modes:
    layout=adb('logcat','-d','-s','RK_CHOOSER:D','*:S',required=False)
    (out/'managerchooser-layout.txt').write_text(layout)
    print('CHOOSER_LAYOUT_DIAGNOSTICS\n'+'\n'.join(layout.splitlines()[-256:])[-32768:],flush=True)
-  if mode in ('cacheexport','managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation','vertexscroll','geometryvertexconfirm','geometryholeconfirm','vertexinsertion','geometrynewhole','geometrynewholeguards','mapvertexconfirm','mapholeconfirm','mapundorotation','mappartconfirm','geometrycloseconfirm','maplayers','maplayersreopen'):
+  if mode in ('offlineformats','cacheexport','managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation','vertexscroll','geometryvertexconfirm','geometryholeconfirm','vertexinsertion','geometrynewhole','geometrynewholeguards','mapvertexconfirm','mapholeconfirm','mapundorotation','mappartconfirm','geometrycloseconfirm','maplayers','maplayersreopen'):
    if mode in a.visual_log_modes or not passed:print(text,flush=True)
    else:print("\n".join(line for line in text.splitlines() if "INSTRUMENTATION_RESULT:" in line),flush=True)
    try:

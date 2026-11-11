@@ -30,7 +30,7 @@
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda2;->f$0:Landroid/content/Context;
 
-    invoke-static {v0}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$cleanupDeletedProject$56(Landroid/content/Context;)V
+    invoke-static {v0}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$cleanupDeletedProject$60(Landroid/content/Context;)V
 
     return-void
 .end method
