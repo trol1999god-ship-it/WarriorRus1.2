@@ -111,3 +111,11 @@ height0/новый PNG/explicitRemove пройдены, все32PNG SHAverified/
 повторён по доказанной инфраструктурной причине. API23/JVM повторно не запускались.
 final-7230-result.json и completed-job-summary.log; полная приёмкаDEM открыта.
 Следующая функция coverage локальная, НЕвходит в7230.
+
+## Следующий read-only профиль (локальный WIP)
+
+DEM_PROFILE.md: текущий raw выбранного маршрута/контура→512localHGTsamples→график/
+таблица, без изменения высот объекта/DOM; отдельный MainSave. Source73exact/
+debugQA535/SDK23 tests266261/JVM33_81640/profile23/host18/customprivacy PASS.
+Runtime ЕЩЁ НЕвыполнен, НЕ7230/59CI. Existingmaplayers helper, cap16 прежний;
+profile/restarted console, ready/coverage обычныеPNG. Receipts profile-candidate/.

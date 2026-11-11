@@ -25,7 +25,7 @@
 .method constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;)V
     .locals 0
 
-    .line 182
+    .line 205
     iput-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$2;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -47,7 +47,7 @@
         }
     .end annotation
 
-    .line 182
+    .line 205
     iget-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$2;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
     invoke-static {p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$100(Lorg/rabochaya/projects/GeometryEditorActivity;)Z
@@ -131,6 +131,6 @@
         }
     .end annotation
 
-    .line 182
+    .line 205
     return-void
 .end method

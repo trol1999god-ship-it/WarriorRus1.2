@@ -25,7 +25,7 @@
 .method constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;)V
     .locals 0
 
-    .line 208
+    .line 231
     iput-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public changed()V
     .locals 6
 
-    .line 209
+    .line 232
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
     invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$800(Lorg/rabochaya/projects/GeometryEditorActivity;)Z
@@ -242,7 +242,7 @@
 .method public deleteRequested(I)V
     .locals 1
 
-    .line 211
+    .line 234
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
     invoke-static {v0, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$1600(Lorg/rabochaya/projects/GeometryEditorActivity;I)V
@@ -253,7 +253,7 @@
 .method public message(Ljava/lang/String;)V
     .locals 1
 
-    .line 210
+    .line 233
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$3;->this$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
     invoke-static {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->access$800(Lorg/rabochaya/projects/GeometryEditorActivity;)Z

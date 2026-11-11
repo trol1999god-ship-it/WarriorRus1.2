@@ -42,7 +42,7 @@
 
     iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda31;->f$2:Lorg/rabochaya/projects/GeometryPartChoiceDraft;
 
-    invoke-virtual {v0, v1, v2, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$openPartChoice$7$org-rabochaya-projects-GeometryEditorActivity(Landroid/app/AlertDialog;Lorg/rabochaya/projects/GeometryPartChoiceDraft;Landroid/content/DialogInterface;)V
+    invoke-virtual {v0, v1, v2, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$openPartChoice$11$org-rabochaya-projects-GeometryEditorActivity(Landroid/app/AlertDialog;Lorg/rabochaya/projects/GeometryPartChoiceDraft;Landroid/content/DialogInterface;)V
 
     return-void
 .end method

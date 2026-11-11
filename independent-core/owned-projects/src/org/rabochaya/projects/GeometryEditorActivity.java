@@ -36,10 +36,10 @@ public final class GeometryEditorActivity extends Activity {
     private int restoreSelection=-1;
     private double[] mapViewport;
     private String preferredKey;
-    private Button save,more,close;
+    private Button save,more,close;private AlertDialog profileDialog;
     private Toast notice;
     private final ExecutorService worker=Executors.newSingleThreadExecutor();
-    private boolean busy,disposed,selecting,addingHole,orphan;
+    private boolean busy,disposed,selecting,addingHole,orphan,profileRunning;
     private int current=-1;
     private String expected,base="";
 
@@ -62,9 +62,32 @@ public final class GeometryEditorActivity extends Activity {
         if(stagedHoleDeletion!=null)choices.add("Отменить удаление контура");
         else{if(!orphan&&!addingHole&&part.polygon&&!part.hole)choices.add("Добавить внутренний контур");
         if(!orphan&&!addingHole&&part.hole)choices.add("Удалить внутренний контур");
-        if(!orphan)choices.add("Редактировать вершины");}
+        if(!orphan)choices.add("Редактировать вершины");if(!orphan&&!"Point".equals(part.type))choices.add("Профиль DEM");}
         choices.add("Копировать ввод");choices.add("Перечитать объект");
-        new AlertDialog.Builder(this).setTitle("Действия с контуром").setItems(choices.toArray(new String[choices.size()]),(d,w)->{String selected=choices.get(w);if(selected.equals("Отменить удаление контура")){cancelStagedHoleDeletion();}else if(selected.equals("Редактировать вершины")){textMode();vertices();}else if(selected.equals("Добавить внутренний контур"))newHole();else if(selected.equals("Удалить внутренний контур")){if(dirty()){status.setText("Сначала сохраните или отмените текущий ввод");return;}try{openGeometryConfirmation(new GeometryConfirmationDraft(project,featureId,VERTEX_SESSION,part.key,sourceToken,VertexEditDraft.stamp(sourceText),part.type,"hole",false,-1),"");}catch(IllegalArgumentException error){status.setText(error.getMessage());}}else if(selected.equals("Перечитать объект"))discardReload();else{android.content.ClipboardManager clipboard=(android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);if(clipboard!=null)clipboard.setPrimaryClip(ClipData.newPlainText("Координаты WGS 84",input.getText().toString()));}}).setNegativeButton("Закрыть",null).show();
+        new AlertDialog.Builder(this).setTitle("Действия с контуром").setItems(choices.toArray(new String[choices.size()]),(d,w)->{String selected=choices.get(w);if(selected.equals("Отменить удаление контура")){cancelStagedHoleDeletion();}else if(selected.equals("Редактировать вершины")){textMode();vertices();}else if(selected.equals("Добавить внутренний контур"))newHole();else if(selected.equals("Удалить внутренний контур")){if(dirty()){status.setText("Сначала сохраните или отмените текущий ввод");return;}try{openGeometryConfirmation(new GeometryConfirmationDraft(project,featureId,VERTEX_SESSION,part.key,sourceToken,VertexEditDraft.stamp(sourceText),part.type,"hole",false,-1),"");}catch(IllegalArgumentException error){status.setText(error.getMessage());}}else if(selected.equals("Профиль DEM"))profile();else if(selected.equals("Перечитать объект"))discardReload();else{android.content.ClipboardManager clipboard=(android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);if(clipboard!=null)clipboard.setPrimaryClip(ClipData.newPlainText("Координаты WGS 84",input.getText().toString()));}}).setNegativeButton("Закрыть",null).show();
+    }
+    private void profile(){
+        if(profileRunning||busy||disposed||orphan||current<0||stagedHoleDeletion!=null)return;
+        if(getIntent().getLongExtra("project",-1)!=project||!featureId.equals(getIntent().getStringExtra("feature"))){status.setText("Контекст профиля изменился; откройте объект заново");return;}
+        final GeometryEdits.Part part=parts.get(current);final String raw=input.getText().toString();final GeometryCloseDraft context;final List<double[]> points;
+        try{if(!expected.equals(part.token))throw new IllegalStateException("Объект изменён; перечитайте его перед построением профиля");points=GeometryCoordinates.parse(raw,addingHole?"Polygon":part.type);context=new GeometryCloseDraft(project,featureId,VERTEX_SESSION,part.key,expected,part.type,addingHole,mapMode,VertexEditDraft.stamp(raw));}catch(RuntimeException invalid){status.setText(invalid.getMessage());return;}
+        if(mapCanvas!=null)mapCanvas.cancelGesture();profileRunning=true;status.setText("Расчёт локального профиля DEM…");
+        worker.execute(()->{ProjectStore store=null;DemProfile result=null;String error=null;try{store=new ProjectStore(this);
+            Element feature=store.load(project).byId(featureId);if(!profileFeature(feature,context))throw new IOException("Объект изменился; профиль не открыт");
+            File source=DemActivity.file(this,project);String stamp;HgtRaster reader;synchronized(LocalRasterStore.class){stamp=LocalRasterStore.stamp(source);reader=HgtRaster.owned(source,project);}try(HgtRaster owned=reader){result=DemProfile.sample(owned,points,512);}
+            synchronized(LocalRasterStore.class){if(!stamp.equals(LocalRasterStore.stamp(source)))throw new IOException("DEM заменён; повторите расчёт");}
+            feature=store.load(project).byId(featureId);if(!profileFeature(feature,context))throw new IOException("Объект изменился; профиль не открыт");
+        }catch(Exception failed){error=failed.getMessage();}finally{if(store!=null)store.close();}
+        final DemProfile ready=result;final String failure=error;runOnUiThread(()->{if(disposed)return;profileRunning=false;if(busy)return;if(getIntent().getLongExtra("project",-1)!=project||!featureId.equals(getIntent().getStringExtra("feature"))||!closeMatches(context)){status.setText("Ввод или выбор изменились; повторите расчёт профиля");return;}if(failure!=null){status.setText("Профиль не открыт: "+failure);return;}showProfile(ready);});});
+    }
+    private boolean profileFeature(Element feature,GeometryCloseDraft context){if(feature==null)return false;for(GeometryEdits.Part part:GeometryEdits.parts(feature))if(part.key.equals(context.key)&&context.token.equals(part.token)&&part.type.equals(context.type)&&part.hole==context.hole)return true;return false;}
+    private void showProfile(DemProfile profile){
+        LinearLayout content=new LinearLayout(this);content.setOrientation(1);content.setFocusableInTouchMode(true);content.setPadding(12,8,12,8);content.setBackgroundColor(0xff232d1d);
+        TextView explanation=label(String.format(java.util.Locale.US,"Снимок текущего ввода. %.3f км — сумма дуг по сфере между вершинами; %d/%d отсчётов DEM. Высоты исходного SRTM в метрах; без преобразования датума. Отсчёты линейно по широте/долготе. Координаты и высоты объекта не меняются.",profile.length/1000,profile.valid,profile.height.length),15);content.addView(label("Выбранный контур: "+parts.get(current).name,15));content.addView(explanation);
+        content.addView(new DemProfileView(this,profile),new LinearLayout.LayoutParams(-1,WorkspaceUi.dp(this,180)));
+        if(profile.valid>0)content.addView(label(String.format(java.util.Locale.US,"Отсчёты: min %.1f м; max %.1f м. Набор %.1f м; спуск %.1f м между соседними известными отсчётами. Пропуски не заполнены.",profile.min,profile.max,profile.gain,profile.loss),15));
+        StringBuilder rows=new StringBuilder("Расстояние, км · высота DEM, м\n");for(int i=0;i<profile.height.length;i++)rows.append(String.format(java.util.Locale.US,"%.3f · %s\n",profile.distance[i]/1000,Double.isNaN(profile.height[i])?"нет данных":String.format(java.util.Locale.US,"%.1f",profile.height[i])));TextView table=label(rows.toString(),14);table.setTextIsSelectable(true);content.addView(table);ScrollView scroll=new ScrollView(this);scroll.addView(content);
+        AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Профиль DEM").setView(scroll).setPositiveButton("Закрыть",null).create();android.view.inputmethod.InputMethodManager keyboard=(android.view.inputmethod.InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);if(keyboard!=null)keyboard.hideSoftInputFromWindow(root.getWindowToken(),0);profileDialog=dialog;dialog.setOnDismissListener(d->{if(profileDialog==dialog)profileDialog=null;});dialog.setOnShowListener(d->{vertexFont(dialog.getWindow().getDecorView());});dialog.show();status.setText("Профиль — только чтение. Для записи геометрии требуется отдельное «Сохранить»");
     }
     private void vertices(){
         final GeometryEdits.Part sourcePart=parts.get(current);final String sourceToken=expected;final boolean sourceAdding=addingHole;
@@ -257,5 +280,5 @@ public final class GeometryEditorActivity extends Activity {
     protected void onSaveInstanceState(Bundle state){if(mapCanvas!=null)mapCanvas.cancelGesture();persist();state.putLong("geometry_owner",project);state.putString("geometry_feature",featureId);state.putBundle("geometry_confirmation",saveGeometryConfirmation());state.putBundle("part_choice",savePartChoice());state.putBundle("close_intent",saveClose());state.putBundle("vertex",saveVertex());state.putBoolean("geometry_map",mapMode);state.putString("geometry_part",current>=0?parts.get(current).key:preferredKey);state.putInt("geometry_selected",mapState==null?-1:mapState.selected());state.putDoubleArray("geometry_viewport",mapCanvas==null?mapViewport:mapCanvas.viewport());super.onSaveInstanceState(state);}
     protected void onPause(){if(mapCanvas!=null)mapCanvas.suspend(true);persist();super.onPause();}
     protected void onResume(){super.onResume();if(mapCanvas!=null)mapCanvas.suspend(false);}
-    protected void onDestroy(){disposed=true;if(closeDialog!=null)closeDialog.dismiss();if(partChoiceDialog!=null)partChoiceDialog.dismiss();if(geometryConfirmationDialog!=null)geometryConfirmationDialog.dismiss();if(vertexDialog!=null)vertexDialog.dismiss();releaseMap();if(notice!=null)notice.cancel();worker.shutdown();super.onDestroy();}
+    protected void onDestroy(){disposed=true;if(profileDialog!=null)profileDialog.dismiss();if(closeDialog!=null)closeDialog.dismiss();if(partChoiceDialog!=null)partChoiceDialog.dismiss();if(geometryConfirmationDialog!=null)geometryConfirmationDialog.dismiss();if(vertexDialog!=null)vertexDialog.dismiss();releaseMap();if(notice!=null)notice.cancel();worker.shutdown();super.onDestroy();}
 }

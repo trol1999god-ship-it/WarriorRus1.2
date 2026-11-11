@@ -9,9 +9,15 @@
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
+.field public final synthetic f$1:Lorg/rabochaya/projects/GeometryConfirmationDraft;
+
+.field public final synthetic f$2:Landroid/app/AlertDialog;
+
+.field public final synthetic f$3:Ljava/lang/String;
+
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;Lorg/rabochaya/projects/GeometryConfirmationDraft;Landroid/app/AlertDialog;Ljava/lang/String;)V
     .locals 0
 
     .line 0
@@ -19,18 +25,30 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda14;->f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
+    iput-object p2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda14;->f$1:Lorg/rabochaya/projects/GeometryConfirmationDraft;
+
+    iput-object p3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda14;->f$2:Landroid/app/AlertDialog;
+
+    iput-object p4, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda14;->f$3:Ljava/lang/String;
+
     return-void
 .end method
 
 
 # virtual methods
 .method public final run()V
-    .locals 1
+    .locals 4
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda14;->f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$build$28$org-rabochaya-projects-GeometryEditorActivity()V
+    iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda14;->f$1:Lorg/rabochaya/projects/GeometryConfirmationDraft;
+
+    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda14;->f$2:Landroid/app/AlertDialog;
+
+    iget-object v3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda14;->f$3:Ljava/lang/String;
+
+    invoke-virtual {v0, v1, v2, v3}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$confirmGeometryDeletion$18$org-rabochaya-projects-GeometryEditorActivity(Lorg/rabochaya/projects/GeometryConfirmationDraft;Landroid/app/AlertDialog;Ljava/lang/String;)V
 
     return-void
 .end method

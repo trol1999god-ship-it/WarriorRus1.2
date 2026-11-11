@@ -3,19 +3,15 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/view/View$OnClickListener;
+.implements Ljava/lang/Runnable;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-.field public final synthetic f$1:Lorg/rabochaya/projects/GeometryConfirmationDraft;
-
-.field public final synthetic f$2:Landroid/app/AlertDialog;
-
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;Lorg/rabochaya/projects/GeometryConfirmationDraft;Landroid/app/AlertDialog;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/GeometryEditorActivity;)V
     .locals 0
 
     .line 0
@@ -23,26 +19,18 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda18;->f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda18;->f$1:Lorg/rabochaya/projects/GeometryConfirmationDraft;
-
-    iput-object p3, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda18;->f$2:Landroid/app/AlertDialog;
-
     return-void
 .end method
 
 
 # virtual methods
-.method public final onClick(Landroid/view/View;)V
-    .locals 3
+.method public final run()V
+    .locals 1
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda18;->f$0:Lorg/rabochaya/projects/GeometryEditorActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda18;->f$1:Lorg/rabochaya/projects/GeometryConfirmationDraft;
-
-    iget-object v2, p0, Lorg/rabochaya/projects/GeometryEditorActivity$$ExternalSyntheticLambda18;->f$2:Landroid/app/AlertDialog;
-
-    invoke-virtual {v0, v1, v2, p1}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$openGeometryConfirmation$12$org-rabochaya-projects-GeometryEditorActivity(Lorg/rabochaya/projects/GeometryConfirmationDraft;Landroid/app/AlertDialog;Landroid/view/View;)V
+    invoke-virtual {v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->lambda$build$32$org-rabochaya-projects-GeometryEditorActivity()V
 
     return-void
 .end method

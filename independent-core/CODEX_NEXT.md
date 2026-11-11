@@ -32,10 +32,27 @@ SDK23 latestinstrumentation262207 compiled, SHA receipt coverage-candidate/.
 DemChecks: actual меню/возврат изoutside/foreign exactviewport+bytes, прежние
 Cancel/install/remove/restart/DOM/assets guards сохранены. Consolecoverage/restarted
 вместоready/restarted, totalcap16/2МиБ прежний; ready остаётсяобычнымartifact.
-Androidruntime coverage ЕЩЁ НЕпроверен, НЕвходит в7230. Отправить этот изменённый
-кандидат, дождаться completed23/35 full46, читать реальныеотказы/новыеPNG, не blindrerun.
+Coverage remote59fdd159883bbee1c284cbc60e7844fa167a0736 / pushCI43047764920
+фактически in_progress, JVMsuccess;23 130616501859/35 130616502327 running.
+Androidruntime coverage ЕЩЁ НЕпроверен, НЕвходит в7230. Не push покаCI active;
+дождаться completed23/35 full46/новыеPNG, не blindrerun.
 После — следующий реализуемый formats/DEM пробел по registry/матрице (профиль по
 выбранной геометрии/рельеф либо tiled TIFF с bounded decoding контрактом).
+
+## Следующий локальный кандидат после coverage CI
+
+Read-only DEM profile: DemProfile/View и GeometryEditorActivity «Действия»→
+«Профиль DEM» по выбранному raw маршруту/контуру,512samples/NoData breaks.
+33 JVM/81640 (profile23), host18, source73exact/debugQA535/customprivacy PASS;
+SDK23 latesttests266261bytes compiled. DEM_PROFILE.md/profile-candidate receipts.
+Не busy: raw/cursor/Undo не заменяются; actual public parts token/key/owner,
+raw/mode/adding/Intent и file stamp guards, reader закрыт; Close без MainSave.
+Расстояние — сфера, sampleposition linear lat/lon, НЕellipsoid/geodesic parity.
+DemProfileChecks добавлен в существующийmaplayers, НЕновыйmode/workflow:
+UI graph/Arimo/touchscroll/Close/raw/cursor/foreign/stale/mainChanged/отдельный
+MainSave сохраняет inputaltitudes; KML/assets/source/otherproject checks прежние.
+Consoleprofile/restarted2 +остальные14 =cap16; ready/coverage обычныеartifact.
+Runtime профиля ЕЩЁ НЕвыполнен и НЕвходит в7230/59CI. Не push покаcoverageCI active.
 
 ## Проверенная история / ограничения
 
