@@ -55,8 +55,11 @@ API35 130643950034 по44PASS, толькоmaplayers FAIL physicalscroll viewpor
 reopen SKIP (НЕуспех). НовыеprofilePNG обеAPI viewed/fullgraph+Arimo/Close passed.
 Helper firstScrollView не являетсяпредкомgraph; fix test-only graph ancestor +
 legacy/actual visibility/bounds diag, >80/touch/всеdata guards прежние.
-SDK23 newtests269208 compiled; profile-627-failure.json. Close/raw/cursor/foreign/
-stale/mainChanged/MainSave/reopen покаНЕисполнены. Отправить ТОЛЬКО scopedhelper fix, full46both/новыеPNG, НЕblindrerun.
+Profile-only SDK23 tests266580 compiled, host18/JVM33_81640 PASS; profile-627-failure.json. Close/raw/cursor/foreign/
+stale/mainChanged/MainSave/reopen покаНЕисполнены. Remote d36f15f4e606fcad310a59cc25ba7940bbfbc205 / CI43089751186 in_progress;
+JVM130763362981success, API23 130763635944/35 130763635965 running
+(имена сверены). Не push покаactive; читать оба completedjob/новыеPNG.
+Это ТОЛЬКО scopedhelper fix, full46both, НЕblindrerun.
 По уточнённому поручению пользователя tiled проверять ПОСЛЕ подтверждения профиля.
 Tiled сохранён отдельным1e3e9ea и backup/profile-scoped-preserve-lgehznjb;
 его8implementation файлов временно возвращены к точным62794e4 без reset/clean,
@@ -88,3 +91,9 @@ sparse/paddingchecksum/oldtarget/source/KML/assets/otherproject в existing
 - Сохранять min23/название/Arimo/resources/online+cache, отсутствиеGPS/geoperms/
   telemetry/accounts/cloudsync/скрытой передачиobjects/assets; BT толькоявно.
   SyntheticQA/disposablekeys only. Полный перенос и эталонная приёмка НЕзавершены.
+
+Дополнительный readonly QA probe d36f: официальныйlint с реальными137 javac
+classfiles/source73 (до D8 desugaring), NoClassFiles ошибка устранена; остаются MissingClass для
+smali-only ProjectsActivity и HardcodedDebugMode,108warnings/exit1/НЕPASS.
+security/android-lint-qa-2026-11-11/classpath-profile-d36f/. Workflow не менялся;
+полная smali/lint coverage открыта, ABI только для type resolution.
