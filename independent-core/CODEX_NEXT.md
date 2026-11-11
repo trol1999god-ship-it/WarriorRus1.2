@@ -30,16 +30,18 @@
    35 130437703955; layers142/141/reopen37each, managerforms482/473. Все32 PNG
    SHAverified/viewed. Functional/data guards passed, НО визуально кнопки10px
    на обеих API, этап не принят. Fix48dp+physical/IME/text guards подготовлен;
-   новыйCI обоснован этим дефектом. interim-97-result.json/COMPOSITION_CACHE_JOBS.md.
+   новыйCI обоснован этим дефектом и GeoTIFF production f4c3eff+extent/stale guards.
+   Local source69exact/debugQA512/JVM31_81531/host18/privacy; latestSDK23tests255138.
+   interim-97-result.json/COMPOSITION_CACHE_JOBS.md.
    096ed40 — debug/release/privacy QA. --release реальноblocked25/noAPK;
    officiallintprobe3errors94warnings integrationgap, неPASS; ci/QA.md/rootAGENTS.
 6. Следующий форматныйучасток — GeoTIFF по migration/MAP_FORMATS.md и
    GEO_RASTER_CONTRACT.md; /workspace/work/manager-confirm/GeoRasterTransform.java.pending
    сохранён, SHA06958dec760d8bb79289953468be1d12458657492138129ecf7ae523c35e7294.
    Локальный WIP GeoTiffRaster/GeoRasterTransform/GeoTiffImport + явный пункт
-   Подложка→ИмпортGeoTIFF, CAS local-map, GEOTIFF_IMPORT.md. JVM35 новыхchecks;
+   Подложка→ИмпортGeoTIFF, CAS local-map, GEOTIFF_IMPORT.md. JVM38 новыхchecks;
    весьJavaSDK23 compiled, instrumentation252776bytes compiled. QA build
-   geotiff-ui-debug-2026-11-11 PASS source69exact/512classes/JVM31_81528/host18/privacy. НЕ входит в CI97, Androidruntime не засчитан.
+   geotiff-ui-debug-2026-11-11 PASS source69exact/512classes/JVM31_81531/host18/privacy. НЕ входит в CI97, Androidruntime не засчитан.
    Сначала завершить CIcachejobs, затем runtime/pixel/UI import/Cancel/data guards
    новогоформата; не считать grayscale DEM и не выдавать subset за полныйGeoTIFF.
 

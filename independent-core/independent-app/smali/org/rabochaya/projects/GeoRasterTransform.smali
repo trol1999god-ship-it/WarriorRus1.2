@@ -575,6 +575,144 @@
     return-object v19
 .end method
 
+.method public static viewport(DDDDII)[D
+    .locals 16
+
+    .line 22
+    invoke-static/range {p0 .. p1}, Lorg/rabochaya/projects/MapMath;->x(D)D
+
+    move-result-wide v0
+
+    invoke-static/range {p4 .. p5}, Lorg/rabochaya/projects/MapMath;->x(D)D
+
+    move-result-wide v2
+
+    invoke-static/range {p6 .. p7}, Lorg/rabochaya/projects/MapMath;->y(D)D
+
+    move-result-wide v4
+
+    invoke-static/range {p2 .. p3}, Lorg/rabochaya/projects/MapMath;->y(D)D
+
+    move-result-wide v6
+
+    cmpl-double v8, v2, v0
+
+    if-lez v8, :cond_0
+
+    cmpl-double v8, v6, v4
+
+    if-lez v8, :cond_0
+
+    add-int/lit8 v8, p8, -0x60
+
+    const/4 v9, 0x1
+
+    invoke-static {v9, v8}, Ljava/lang/Math;->max(II)I
+
+    move-result v8
+
+    int-to-double v10, v8
+
+    sub-double v12, v2, v0
+
+    const-wide v14, 0x3e45798ee2308c3aL    # 1.0E-8
+
+    invoke-static {v12, v13, v14, v15}, Ljava/lang/Math;->max(DD)D
+
+    move-result-wide v12
+
+    div-double/2addr v10, v12
+
+    add-int/lit8 v8, p9, -0x60
+
+    invoke-static {v9, v8}, Ljava/lang/Math;->max(II)I
+
+    move-result v8
+
+    int-to-double v12, v8
+
+    move-wide/from16 p1, v10
+
+    sub-double v9, v6, v4
+
+    invoke-static {v9, v10, v14, v15}, Ljava/lang/Math;->max(DD)D
+
+    move-result-wide v8
+
+    div-double/2addr v12, v8
+
+    move-wide/from16 v10, p1
+
+    invoke-static {v10, v11, v12, v13}, Ljava/lang/Math;->min(DD)D
+
+    move-result-wide v8
+
+    add-double/2addr v0, v2
+
+    const-wide/high16 v2, 0x4000000000000000L    # 2.0
+
+    div-double/2addr v0, v2
+
+    add-double/2addr v4, v6
+
+    div-double/2addr v4, v2
+
+    const-wide/high16 v6, 0x4070000000000000L    # 256.0
+
+    div-double/2addr v8, v6
+
+    invoke-static {v8, v9}, Ljava/lang/Math;->log(D)D
+
+    move-result-wide v6
+
+    invoke-static {v2, v3}, Ljava/lang/Math;->log(D)D
+
+    move-result-wide v2
+
+    div-double v2, v6, v2
+
+    const-wide/16 v6, 0x0
+
+    const-wide/high16 v8, 0x4032000000000000L    # 18.0
+
+    move-wide/from16 p1, v2
+
+    move-wide/from16 p3, v6
+
+    move-wide/from16 p5, v8
+
+    invoke-static/range {p1 .. p6}, Lorg/rabochaya/projects/MapMath;->clamp(DDD)D
+
+    move-result-wide v2
+
+    const/4 v6, 0x3
+
+    new-array v6, v6, [D
+
+    const/4 v7, 0x0
+
+    aput-wide v0, v6, v7
+
+    const/4 v0, 0x1
+
+    aput-wide v4, v6, v0
+
+    const/4 v0, 0x2
+
+    aput-wide v2, v6, v0
+
+    return-object v6
+
+    :cond_0
+    new-instance v0, Ljava/lang/IllegalArgumentException;
+
+    const-string v1, "\u041f\u0443\u0441\u0442\u044b\u0435 \u0433\u0440\u0430\u043d\u0438\u0446\u044b \u0440\u0430\u0441\u0442\u0440\u0430"
+
+    invoke-direct {v0, v1}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+
+    throw v0
+.end method
+
 
 # virtual methods
 .method public cell(DD)J

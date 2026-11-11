@@ -1,0 +1,21 @@
+{
+  "status": "local candidate; fixed buttons and GeoTIFF runtime pending",
+  "source_count": 69,
+  "source_hashes_exact": true,
+  "build_result_sha256": "24a50929012f16e2907446999473b76ddf1b5ca43531dc218aa18fb4c0124f46",
+  "variant": "debug-qa",
+  "classes": 512,
+  "jvm_suites": 31,
+  "jvm_assertions": 81531,
+  "geotiff_assertions": 38,
+  "host_tests": 18,
+  "android_runtime_executed": false,
+  "accepted": false,
+  "app_sha256": "fb63fd9130189999b2b7e16f89eec1a1404f50dc37505791ee7d21ef75b33d7b",
+  "latest_test_compilation": {
+    "path": "/workspace/work/manager-confirm/cachejobs-physical-arimo-tests-2026-11-11.apk",
+    "sha256": "67d52d3eb05b6864748b45a7dfd9be8d92fbe789048b0067d0a921af9523a83f",
+    "signed": false,
+    "includes": "actual IME/48dp/full rect/Arimo/text/no ellipsis guards; CI rebuild/signs all current tests"
+  }
+}

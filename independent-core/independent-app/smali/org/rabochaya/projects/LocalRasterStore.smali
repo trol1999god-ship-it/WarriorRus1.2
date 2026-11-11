@@ -13,6 +13,73 @@
     return-void
 .end method
 
+.method public static declared-synchronized remove(Ljava/io/File;Ljava/lang/String;)V
+    .locals 2
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    const-class v0, Lorg/rabochaya/projects/LocalRasterStore;
+
+    monitor-enter v0
+
+    .line 9
+    :try_start_0
+    invoke-static {p0}, Lorg/rabochaya/projects/LocalRasterStore;->stamp(Ljava/io/File;)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v1, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result p1
+
+    if-eqz p1, :cond_1
+
+    invoke-static {p0}, Lorg/rabochaya/projects/LocalRasterStore;->remove(Ljava/io/File;)Z
+
+    move-result p0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    if-eqz p0, :cond_0
+
+    monitor-exit v0
+
+    return-void
+
+    :cond_0
+    :try_start_1
+    new-instance p0, Ljava/io/IOException;
+
+    const-string p1, "\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u0443\u0434\u0430\u043b\u0438\u0442\u044c \u043a\u043e\u043f\u0438\u044e \u043a\u0430\u0440\u0442\u044b"
+
+    invoke-direct {p0, p1}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    :goto_0
+    throw p0
+
+    :cond_1
+    new-instance p0, Ljava/io/IOException;
+
+    const-string p1, "\u041b\u043e\u043a\u0430\u043b\u044c\u043d\u0430\u044f \u043a\u0430\u0440\u0442\u0430 \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0430; \u043f\u0440\u0435\u0436\u043d\u0435\u0435 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0435 \u0443\u0434\u0430\u043b\u0435\u043d\u0438\u044f \u043e\u0442\u043c\u0435\u043d\u0435\u043d\u043e"
+
+    invoke-direct {p0, p1}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    goto :goto_0
+
+    .line 9
+    :catchall_0
+    move-exception p0
+
+    monitor-exit v0
+
+    throw p0
+.end method
+
 .method public static declared-synchronized remove(Ljava/io/File;)Z
     .locals 2
 

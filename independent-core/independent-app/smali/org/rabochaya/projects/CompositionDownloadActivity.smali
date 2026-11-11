@@ -120,7 +120,11 @@
 
     new-instance v1, Landroid/widget/LinearLayout$LayoutParams;
 
-    const/4 v2, -0x2
+    const/high16 v2, 0x42400000    # 48.0f
+
+    invoke-static {p0, v2}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
+
+    move-result v2
 
     const/high16 v3, 0x3f800000    # 1.0f
 

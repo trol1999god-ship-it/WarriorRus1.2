@@ -18,4 +18,6 @@ public final class GeoRasterTransform {
  public long cellModel(double x,double y){if(!finite(x)||!finite(y))return -1;double xx=x-c,yy=y-f,i=(e*xx-b*yy)/det,j=(-d*xx+a*yy)/det;if(point){i+=.5;j+=.5;}if(!finite(i)||!finite(j)||i<0||j<0||i>=width||j>=height)return -1;return ((long)(int)Math.floor(j)<<32)|((long)(int)Math.floor(i)&0xffffffffL);}
  public long cell(double lon,double lat){if(!finite(lon)||!finite(lat)||lon< -180||lon>180||lat< -90||lat>90)return -1;if(crs==4326)return cellModel(lon,lat);if(Math.abs(lat)>85.05112878)return -1;return cellModel(Math.toRadians(lon)*RADIUS,RADIUS*Math.log(Math.tan(Math.PI/4+Math.toRadians(lat)/2)));}
  public double[] model(double i,double j){return new double[]{a*i+b*j+c,d*i+e*j+f};}
+ /** Raster bounds describe a continuous interval, including extents wider than180 degrees. */
+ public static double[] viewport(double west,double south,double east,double north,int width,int height){double l=MapMath.x(west),r=MapMath.x(east),t=MapMath.y(north),b=MapMath.y(south);if(!(r>l&&b>t))throw new IllegalArgumentException("Пустые границы растра");double scale=Math.min(Math.max(1,width-96)/Math.max(r-l,1e-8),Math.max(1,height-96)/Math.max(b-t,1e-8));return new double[]{(l+r)/2,(t+b)/2,MapMath.clamp(Math.log(scale/256)/Math.log(2),0,18)};}
 }

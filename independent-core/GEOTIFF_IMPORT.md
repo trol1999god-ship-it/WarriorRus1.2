@@ -21,17 +21,18 @@ ICC/матрицы/DEM/иные CRS явно отклоняются. Это не
 
 Предыдущий MBTiles заменяется только после полной конвертации/проверки ordinary
 OfflineTiles и проверки исходного inode/размера/времени. Все собственные операции
-замены/удаления подложки используют общий LocalRasterStore lock. Изменение другой
+замены/удаления подложки используют общий LocalRasterStore lock. Старое открытое подтверждение
+удаления также проверяет исходный stamp и не удаляет заменённую карту. Изменение другой
 картой во время импорта приводит к отказу, подготовленный файл не применяется.
 Destroy отменяет незавершённый импорт; нет автоматического resume/повторной записи.
 Исходный SAF-файл только читается, другой проект/общий online cache не затрагиваются.
 
-Факты пока локальные: GeoTIFF/transform35 JVM assertions (II/MM, CRS, Point/Area,
+Факты пока локальные: GeoTIFF/transform38 JVM assertions (II/MM, CRS, Point/Area,
 NoData/alpha/invalid offsets/compression/degenerate transform/source preservation),
-весь Java-код с bootclasspathSDK23 скомпилирован; instrumentation252776 bytes
+весь Java-код с bootclasspathSDK23 скомпилирован; instrumentation255138 bytes
 скомпилирован. В существующий offlineformats подключены conversion/roundtrip pixel,
 Cancel/unsupported previous-file preservation и stale local-map CAS проверки.
-Они ещё НЕ исполнены на Android. Полный debug QA build source69exact/512classes прошёл, JVM31/81528, host18,
+Они ещё НЕ исполнены на Android. Полный debug QA build source69exact/512classes прошёл, JVM31/81531, host18,
 source+DEX privacy passed (custom audit, НЕ Android lint);
 Android CI cachejobs97d6fa4 не включает эти новые исходники.
 
