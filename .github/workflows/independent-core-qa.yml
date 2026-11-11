@@ -30,10 +30,10 @@ jobs:
         with:
           fetch-depth: 2
           persist-credentials: false
-      - name: Read original export evidence without rerunning tests
+      - name: Read original DEM timeout diagnostics without rerunning tests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 independent-core/ci/recover_saved_evidence.py --api ${{ matrix.api }} --out "$RUNNER_TEMP/recovered-${{ matrix.api }}"
+        run: python3 independent-core/ci/recover_saved_evidence.py --case dem --api ${{ matrix.api }} --out "$RUNNER_TEMP/recovered-${{ matrix.api }}"
   jvm:
     if: (github.event_name != 'pull_request' || github.head_ref != 'codex/independent-core-auto') && (github.event_name != 'push' || !contains(github.event.head_commit.message, '[evidence-only]'))
     runs-on: ubuntu-22.04

@@ -30,7 +30,9 @@ JVM HGT32 (включая подтверждённый valid-node-near-void/roun
 всего32_81563; debugQA71sourceexact/527classes, SDK23 instrumentation compiled,
 source+DEXprivacy PASS. HGT_DEM.md. Androidruntime ЕЩЁ НЕзасчитан и НЕвходит в ee7CI.
 
-Code48ca40b уже remote; pushCI43007479633 in_progress, JVM130478455397 success,
+Code48ca40b уже remote; pushCI43007479633 completed FAILURE45PASSboth; only maplayersreopen timeout480s.
+Причина ещё не установлена, DEM НЕпринят. Readonly diagnostic recovery requested.
+CI source48ca40b, Deflate WIP saved12bcdb0 is NOTtested there. Previously:, JVM130478455397 success,
 Android23 130478716929/35 130478716899. Неpushпокаactive; читать completed jobs/PNG.
 Сценарий расширяет существующие maplayers/reopen: select→Cancel/explicit install/
 removeCancel/foreign owner+cleanup refusal/manual centre/KML/assets/source/otherproject,
