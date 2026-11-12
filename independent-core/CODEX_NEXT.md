@@ -43,8 +43,9 @@ corrected tests-names-fixed.apk подписан темжеодноразовы�
 Backup hgt-hillshade-ready-preserve-vfgolwjy SHAa98552e060604c132a3bf9af558d4afa16fd91c17f0797dc4e09863efe2aed56;
 также hgt-hillshade-preserve-7mhbgly9 ивсеolderbackups сохранить.
 
-Следующий шаг: scopedcommit encoding failure/namefix, затемhillshadecandidate/
-receipts/point, одинpush existingbranch→один changed-code fullCI46 на23/35.
+Encoding failure/namefix сохранён локальным7b8906f; nativefailure не переписан.
+Следующий шаг: сохранитьhillshadecandidate/receipts/point, затем одинpush обеих
+scopedизменений existingbranch→один changed-code fullCI46 на23/35.
 Передpush проверитьremote c9465df иотсутствиеactiveCI/конкурента. Обаpreviousjob
 completedfailure прочитаны; слепойrerunНЕнужен. Проверить новыеcompletedjobs/PNG/
 data; source/strict80/82/physical/owner/token/raw/selection/releaseguards неослаблять.

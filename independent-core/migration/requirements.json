@@ -275,10 +275,12 @@
         "Прежние форматы и операции без доступа к геолокации"
       ],
       "evidence": [
-        "security/geotiff-tiled-qa-2026-11-11/final-1254-result.json"
+        "security/geotiff-tiled-qa-2026-11-11/final-1254-result.json",
+        "security/hgt-hillshade-qa-2026-11-12/local/receipt.json"
       ],
       "implementation_notes": [
-        "Scoped code1254a0b/CI43114388829 SUCCESS46/46 API23+35; HGT manual-centre heights, coverage and read-only raw-geometry profile with Close/raw/cursor/stale/foreign/MainSave/data guards verified. Terrain rendering/collections/full format and reference acceptance remain open; not accepted."
+        "Scoped code1254a0b/CI43114388829 SUCCESS46/46 API23+35; HGT manual-centre heights, coverage and read-only raw-geometry profile with Close/raw/cursor/stale/foreign/MainSave/data guards verified. Terrain rendering/collections/full format and reference acceptance remain open; not accepted.",
+        "Local HgtHillshade/HgtHillshadeImport candidate: explicit315/45 Lambert cell shading of owned SRTM into same MBTiles/renderer; JVM37_83241/shade105/SDK23/source81exact/558classes/customprivacy PASS. Owner/source+target CAS, Cancel/no-autowrite/data runtime scenarios prepared; NOT in c946 CI and native pending. Not accepted."
       ]
     },
     {

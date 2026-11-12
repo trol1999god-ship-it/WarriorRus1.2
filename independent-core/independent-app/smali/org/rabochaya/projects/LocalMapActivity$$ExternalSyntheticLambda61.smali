@@ -3,17 +3,19 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/content/DialogInterface$OnClickListener;
+.implements Landroid/content/DialogInterface$OnShowListener;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-.field public final synthetic f$1:Landroid/net/Uri;
+.field public final synthetic f$1:Landroid/app/AlertDialog;
+
+.field public final synthetic f$2:Landroid/widget/EditText;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/net/Uri;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;Landroid/widget/EditText;)V
     .locals 0
 
     .line 0
@@ -21,22 +23,26 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda61;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda61;->f$1:Landroid/net/Uri;
+    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda61;->f$1:Landroid/app/AlertDialog;
+
+    iput-object p3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda61;->f$2:Landroid/widget/EditText;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final onClick(Landroid/content/DialogInterface;I)V
-    .locals 2
+.method public final onShow(Landroid/content/DialogInterface;)V
+    .locals 3
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda61;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda61;->f$1:Landroid/net/Uri;
+    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda61;->f$1:Landroid/app/AlertDialog;
 
-    invoke-virtual {v0, v1, p1, p2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$onActivityResult$61$org-rabochaya-projects-LocalMapActivity(Landroid/net/Uri;Landroid/content/DialogInterface;I)V
+    iget-object v2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda61;->f$2:Landroid/widget/EditText;
+
+    invoke-virtual {v0, v1, v2, p1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$newProject$47$org-rabochaya-projects-LocalMapActivity(Landroid/app/AlertDialog;Landroid/widget/EditText;Landroid/content/DialogInterface;)V
 
     return-void
 .end method

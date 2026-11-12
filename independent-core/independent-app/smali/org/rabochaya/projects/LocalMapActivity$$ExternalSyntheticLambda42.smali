@@ -3,7 +3,7 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Lorg/rabochaya/projects/CacheExport$Progress;
+.implements Ljava/lang/Runnable;
 
 
 # instance fields
@@ -24,13 +24,13 @@
 
 
 # virtual methods
-.method public final update(II)V
+.method public final run()V
     .locals 1
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda42;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$importMap$63$org-rabochaya-projects-LocalMapActivity(II)V
+    invoke-virtual {v0}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$mapsMenu$31$org-rabochaya-projects-LocalMapActivity()V
 
     return-void
 .end method
