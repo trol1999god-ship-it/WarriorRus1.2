@@ -58,3 +58,21 @@ IconStyle проверяет красную точку, базовую жёлт�
 component33/edit34, SDK23 source83exact/563classes/customprivacy PASS.
 Эти пиксели Android ещё pending; это НЕCI ca888b5. Все предыдущие receipt/APK
 сохранены, финальный app/test hash в independent-defaults-local/receipt.json.
+
+## Runtime ca888b5 / CI43225977674
+
+JVM38/83282/component32 SUCCESS; API23 job131209474688 SUCCESS46/46;
+API35 job131209473186 FAILURE45/46 из-за partial adb pull vertexscroll (native314 PASS).
+Renderer/offlineformats1228 PASS обе API, KML/KMZ/assets/otherproject/network0 и
+reopen guards исполнены; четыре новых KML PNG реально просмотрены, компоненты
+визуально различаются, fill прозрачный/outline синий, невидимый объект не рисуется.
+Ещё четыре HGT кадра просмотрены; source/digests/all558+561members verified.
+Общий CI не зелёный. Это НЕпроверка последующего editor/Arimo/independent-defaults
+кандидата. renderer-ca888-result.json сохраняет точную границу.
+
+Actual pull failure: return1 после progress первого файла; немедленно следующий
+boot read explicit offline, recovery sameBoot/rc0. Новый driver подтверждает такой
+случай immediate boot probe, иначе не повторяет pull. Тот же <=15sec readiness,
+partial сохраняется, новый fresh target, one readonly retry, native never repeated.
+31host tests PASS; online/newboot/permanentoffline/partial-only остаются fail.
+Новый Android runtime для editor + recovery pending, никаких ретроактивных PASS.

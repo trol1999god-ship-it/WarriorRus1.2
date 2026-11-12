@@ -16,7 +16,8 @@ import zipfile
 
 class RunnerTests(unittest.TestCase):
     def run_modes(self, modes, failures=(), keep_going=True, pull_error=False, pull_png=False,
-                  offline_once=(), boot_changed=False, permanent_offline=False, partial_pull=False, existing_output=False):
+                  offline_once=(), boot_changed=False, permanent_offline=False, partial_pull=False, existing_output=False,
+                  progress_failure=''):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             adb = root / 'adb'
@@ -28,15 +29,25 @@ args = sys.argv[3:]
 calls=Path(__file__).with_suffix('.calls')
 with calls.open('a') as log:log.write(json.dumps(args)+'\\n')
 marker=Path(__file__).with_suffix('.offline')
+progress=Path(__file__).with_suffix('.progress')
+probed=Path(__file__).with_suffix('.probed')
+if ''' + repr(progress_failure) + ''' and args[:1]==['pull'] and not progress.exists():
+    progress.write_text('partial progress')
+    target=Path(args[-1]);target.mkdir(parents=True)
+    (target/'partial.txt').write_text('original partial preserved')
+    print('[  5%] /sdcard/Android/data/org.rabochaya.karta/files/map_mvisual-synthetic-failure.png: 100%')
+    sys.exit(1)
+if ''' + repr(progress_failure) + '''=='offline' and args==['shell','cat','/proc/sys/kernel/random/boot_id'] and progress.exists() and not probed.exists():
+    probed.write_text('explicit offline observed');print('adb: device offline',file=sys.stderr);sys.exit(1)
 if ''' + repr(tuple(offline_once)) + ''' and tuple(args[:''' + str(len(offline_once)) + '''])==''' + repr(tuple(offline_once)) + ''' and not marker.exists():
     marker.write_text('rejected once')
     if ''' + repr(partial_pull) + ''' and args[0]=='pull':
         destination=Path(args[-1]);destination.mkdir(parents=True);(destination/'partial.txt').write_text('original partial preserved')
     print('adb: device offline',file=sys.stderr);sys.exit(1)
 if args == ['get-state']:
-    print('offline' if ''' + repr(permanent_offline) + ''' and marker.exists() else 'device')
+    print('offline' if ''' + repr(permanent_offline) + ''' and (marker.exists() or progress.exists()) else 'device')
 elif args == ['shell','cat','/proc/sys/kernel/random/boot_id']:
-    print('00000000-0000-4000-8000-00000000000'+('2' if ''' + repr(boot_changed) + ''' and marker.exists() else '1'))
+    print('00000000-0000-4000-8000-00000000000'+('2' if ''' + repr(boot_changed) + ''' and (marker.exists() or progress.exists()) else '1'))
 elif args[:2] == ['shell', 'getprop']:
     print('1')
 elif args[:2] == ['shell', 'dumpsys']:
@@ -121,6 +132,42 @@ elif args[:3] == ['shell', 'am', 'instrument']:
         self.assertFalse(records[0]['passed'])
         self.assertEqual(sum(call[:3]==['shell','am','instrument'] for call in result.adb_calls),1)
         self.assertEqual(result.transport_events,[])
+
+    def test_progress_only_pull_requires_explicit_followup_offline_and_same_boot(self):
+        result, records=self.run_modes(['cacheexport'],progress_failure='offline',pull_png=True)
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+        self.assertTrue(records[0]['passed'])
+        self.assertEqual(sum(c[:3]==['shell','am','instrument'] for c in result.adb_calls),1)
+        self.assertEqual(sum(c[:1]==['pull'] for c in result.adb_calls),2)
+        self.assertEqual(result.partial_files,{'cacheexport-offline-partial/partial.txt':'original partial preserved'})
+        self.assertTrue(result.transport_events[0]['same_boot'])
+        self.assertEqual(result.transport_events[0]['retry_returncode'],0)
+        self.assertIn('POST_PULL_BOOT_PROBE pull_returncode=1 probe_returncode=1',result.transport_events[0]['first_rejection'])
+
+    def test_progress_exit1_with_online_boot_is_not_retried(self):
+        result, records=self.run_modes(['cacheexport'],progress_failure='online',pull_png=True)
+        self.assertNotEqual(result.returncode,0)
+        self.assertFalse(records[0]['passed'])
+        self.assertEqual(sum(c[:1]==['pull'] for c in result.adb_calls),1)
+        self.assertEqual(result.transport_events,[])
+        self.assertIn('probe_returncode=0',result.pull_diagnostics['cacheexport-artifact-pull.txt'])
+
+    def test_partial_progress_cannot_rebind_a_changed_boot(self):
+        for confirmation in ('offline','online'):
+            with self.subTest(confirmation=confirmation):
+                result, records=self.run_modes(['cacheexport','binary'],progress_failure=confirmation,pull_png=True,boot_changed=True)
+                self.assertNotEqual(result.returncode,0)
+                self.assertEqual([r['passed'] for r in records],[False,False])
+                self.assertEqual(sum(c[:1]==['pull'] for c in result.adb_calls),1)
+                self.assertEqual(sum(c[:3]==['shell','am','instrument'] for c in result.adb_calls),1)
+                self.assertIn('boot identity changed',result.stdout)
+
+    def test_progress_followup_permanent_offline_is_failure_without_pull_retry(self):
+        result, records=self.run_modes(['cacheexport'],progress_failure='offline',pull_png=True,permanent_offline=True)
+        self.assertNotEqual(result.returncode,0)
+        self.assertFalse(records[0]['passed'])
+        self.assertEqual(sum(c[:1]==['pull'] for c in result.adb_calls),1)
+        self.assertEqual(sum(c[:3]==['shell','am','instrument'] for c in result.adb_calls),1)
 
     def test_new_boot_blocks_old_context_and_later_mutating_commands(self):
         result, records=self.run_modes(['binary','independence'],offline_once=('shell','am','force-stop'),boot_changed=True)

@@ -1,0 +1,42 @@
+{
+  "source_sha": "ca888b5e02c10828377f4d8ea4f610652810a52b",
+  "run_id": 43225977674,
+  "overall": "failure",
+  "jvm": {
+    "job": 131209140454,
+    "result": "success",
+    "suites": 38,
+    "assertions": 83282,
+    "component_model": 32
+  },
+  "api23": {
+    "job": 131209474688,
+    "result": "success",
+    "passed": 46,
+    "scenarios": 46,
+    "offlineformats_assertions": 1228,
+    "hillshade_elapsed_ms": 3357,
+    "full_job_log_sha256": "f34cd95163257cefcfbfd1581fe7c433b60d654be80aaa6394c8c991ad56aafd"
+  },
+  "api35": {
+    "job": 131209473186,
+    "result": "failure",
+    "passed": 45,
+    "scenarios": 46,
+    "offlineformats_assertions": 1228,
+    "hillshade_elapsed_ms": 2873,
+    "managerforms_native_assertions": 506,
+    "failed": "vertexscroll artifact pull; native314 PASS",
+    "pull_returncode": 1,
+    "pull_output": "[  5%] /sdcard/Android/data/org.rabochaya.karta/files/map_mvisual-vertex-scroll-invalid-field.png: 100%",
+    "subsequent_boot_read": "explicit device offline; recovery same_boot true/retry1/returncode0; no instrumentation replay",
+    "full_job_log_sha256": "5c4758106b52b49881058b9ff539d0541f8af059d4503eac0a9df2a3657a074e"
+  },
+  "scoped_result": "main renderer component pixel/alpha/fill/outline/sharedStyleMap/inline/KML-KMZ/assets/reopen/otherproject/network0 passed both APIs; HGT source/target CAS/destroy/remove/rawsource/cache/data guards also passed",
+  "visual_review": "Eight new scoped frames actually viewed: two KML scenes and two HGT prompt/saved per API. Other extracted frames not claimed viewed. Partial vertexscroll evidence does not turn failed pull into success.",
+  "limitations": [
+    "Separate component fallback source coupling discovered outside the first fixture; fixed only in later local candidate, Android pending",
+    "Arimo Paint binding and explicit manager editor not in this run",
+    "Not full acceptance, accepted0; official lint not PASS"
+  ]
+}

@@ -1,3 +1,9 @@
+Компонентный KML renderer ca888b5/CI43225977674: offlineformats1228 PASS обе API,
+четыре KML ичетыре HGT PNG просмотрены/source+digests проверены. API23full46 SUCCESS,
+API35full45 FAILURE: partial adb pull vertexscroll после native314 PASS; НЕgreen CI.
+Явный manager editor/Arimo/независимые fallback и узкий transport fix — следующий
+локальный кандидат; его Android runtime pending. CODEX_NEXT/KML_COMPONENT_STYLES.md.
+
 Последний CI43217403961 на130b522: API23 SUCCESS46/46, API35 FAILURE45/46.
 Отмывка/offlineformats1202 прошла обе API (6119/3625ms); четыре новых PNG проверены.
 Общий failure — выгрузка Undo PNG после native363 PASS; точный adb returncode не сохранён.

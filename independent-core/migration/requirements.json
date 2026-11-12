@@ -182,12 +182,17 @@
     {
       "id": "symbols",
       "title": "Значки, SVG, цвета, подписи и собственные библиотеки",
-      "status": "pending",
+      "status": "in_progress",
       "acceptance": [
         "Сохранение формы и цвета при импорте, копировании и экспорте",
         "Собственные каталоги значков и согласованные операции с ними"
       ],
-      "evidence": []
+      "evidence": [
+        "KML_COMPONENT_STYLES.md and security/kml-components-qa-2026-11-12/renderer-ca888-result.json (scoped main renderer runtime, not complete acceptance)"
+      ],
+      "implementation_notes": [
+        "ca888b5/CI43225977674: component main renderer/offlineformats1228 passed both APIs, four KML PNG reviewed; API23 full46 success, API35 full45 failure due unrelated vertexscroll partial adb pull after native314 pass. Explicit manager editor/Arimo/independent fallbacks are later local source83 candidate, Android pending. accepted remains unset."
+      ]
     },
     {
       "id": "media",

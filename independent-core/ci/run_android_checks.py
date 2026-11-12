@@ -43,9 +43,9 @@ def invalidate(message):
  global context_error
  context_error=message
  raise RuntimeError(message)
-def recover_transport(args,rejection):
+def recover_transport(args,rejection,deadline=None):
  event={'mode':globals().get('mode'),'command':list(map(str,args[:3])),'retry':1,'same_boot':False,'first_rejection':rejection[-16384:]};transport_events.append(event)
- print('ADB_TRANSPORT_WAIT '+json.dumps(event),flush=True);save_transport();deadline=time.monotonic()+a.transport_wait
+ print('ADB_TRANSPORT_WAIT '+json.dumps(event),flush=True);save_transport();deadline=time.monotonic()+a.transport_wait if deadline is None else deadline
  try:
   def probe(*command):
    remaining=deadline-time.monotonic()
@@ -66,16 +66,28 @@ def adb(*args,timeout=60,required=True):
   if context_error and required:raise RuntimeError(context_error)
   r=raw_adb(args,timeout)
   text=r.stdout+r.stderr
+  recovery_deadline=None
+  # Some adb sync failures report only partial progress, with exit1; the very
+  # next read reports offline. Progress/exit1 alone never authorizes a retry.
+  # Require an immediate explicit offline boot read, on this exact QA pull.
+  if r.returncode==1 and boot_id and not context_error and args[0]=='pull' and safe_retry(args) and re.search(r'(?m)^\[\s*\d+%\]\s+/sdcard/Android/data/org\.rabochaya\.karta/files/',text) and 'device offline' not in text.lower():
+   recovery_deadline=time.monotonic()+a.transport_wait
+   try:
+    probe=raw_adb(('shell','cat',BOOT),min(3,a.transport_wait));probe_text=probe.stdout+probe.stderr
+    text+='\nPOST_PULL_BOOT_PROBE pull_returncode=1 probe_returncode='+str(probe.returncode)+'\n'+probe_text
+    if probe.returncode==0 and probe.stdout.strip()!=boot_id:invalidate('Emulator boot identity changed after partial pull; refusing old evidence/context')
+   except (subprocess.TimeoutExpired,OSError) as error:text+='\nPOST_PULL_BOOT_PROBE '+str(error)
   # Only explicit transport rejection of idempotent preparation/reads. Never
   # repeat am instrument (including an unknown/partial result) or a timeout.
   if r.returncode and 'device offline' in text.lower() and boot_id and not context_error and safe_retry(args):
-   event=recover_transport(args,text)
+   event=recover_transport(args,text,recovery_deadline)
    if args[0]=='pull':
     destination=Path(args[-1]);partial=destination.with_name(destination.name+'-offline-partial')
     if destination.exists():
      if partial.exists():raise RuntimeError('Partial artifact backup already exists; refusing overwrite')
      destination.rename(partial)
    r=raw_adb(args,timeout)
+   text=r.stdout+r.stderr
    event['retry_returncode']=r.returncode;event['retry_output']=(r.stdout+r.stderr)[-16384:];save_transport()
  except (subprocess.TimeoutExpired,OSError) as error:
   if required:raise
@@ -83,7 +95,6 @@ def adb(*args,timeout=60,required=True):
  except RuntimeError as error:
   if required:raise
   return str(error)
- text=r.stdout+r.stderr
  if required and (r.returncode or 'Failure [' in text):raise RuntimeError('adb returncode='+str(r.returncode)+'\n'+text)
  return text
 if adb('shell','getprop','ro.kernel.qemu').strip()!='1':raise SystemExit('Refusing to clear data on a physical device')

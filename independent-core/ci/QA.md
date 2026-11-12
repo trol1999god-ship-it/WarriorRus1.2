@@ -100,3 +100,23 @@ offlineformats748each/source78/548classes/host27;16scopedPNG/source/all550+554
 members verified. Ozi PNG/JPEG/BMP+affine/data PASS; sameBoot readonly transport
 recovery реально выполнен на35 безповтораnative. Предыдущие failure остаются
 историей; приёмка/officiallint/release gate не заменяются CI.
+
+## Подтверждённый partial-progress pull / ca888b5
+
+CI43225977674:23 SUCCESS46,35 FAILURE45. Новый offlineformats1228 PASS обе;
+35 vertexscroll native314 PASS, но adb pull rc1 после partial progress. Следующий
+boot read explicit offline, sameBoot восстановлен. Это не PASS; receipt/full logs
+сохранены в kml-components-qa-2026-11-12. Не приписывать точную такую же причину
+130b, где returncode старый driver не сохранил.
+
+Узкая адаптация existing driver: exact allowed QA pull/exit1/progress недостаточны;
+immediate boot probe обязан подтвердить explicit device offline. Далее те же
+sameBoot/qemu/boot-complete, <=15s включая probe, один fresh readonly pull; partial
+rename сохраняет исходные файлы. Online/changedboot/permanentoffline не повторяют
+pull/не превращаются в успех. am instrument/native FAIL/timeout никогда не повторять.
+Host31 PASS, включая положительный recovery и отрицательные guards. Android pending.
+Никаких новых workflow/mode/снятия 16×2MiB/80/82/physical/raw/release guards.
+
+Официальный read-only lint на83sources/154actualclassfiles (9a71284): exit1,
+MissingClass/HardcodedDebugMode,112warnings. Smali bodies не проанализированы;
+adaptergap открыт, custom source+DEX privacy audit не является Android lint.

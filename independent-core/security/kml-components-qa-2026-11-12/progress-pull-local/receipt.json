@@ -1,0 +1,14 @@
+{
+  "qualification": "host-only recovery regression; runtime pending",
+  "tests": 31,
+  "passed": true,
+  "initial_failure": "diagnostic text lost by final stdout reassignment on non-retried error; retained correctly; initial log preserved",
+  "rule": "exit1 + progress on exact allowed QA pull is insufficient; require immediate explicit device-offline boot probe, matching original boot/qemu/boot_complete; readiness deadline including probe remains <=15sec; preserve partial, one fresh read-only retry; never repeat native instrumentation",
+  "negative_cases": [
+    "online boot with exit1 does not retry",
+    "changed boot blocks old context and subsequent native",
+    "permanent offline fails without pull retry",
+    "unknown instrumentation never repeats",
+    "valid partial PNG alone remains failure"
+  ]
+}
