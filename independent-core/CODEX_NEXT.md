@@ -81,3 +81,6 @@ color() берёт первый LineStyle/PolyStyle/IconStyle, аLocalMapView и
 иinline+shared normal merge; не угадыватьSVG/referenceicons, не запускатьorphanbaseline.
 
 Windowfix backup /workspace/work/manager-confirm/hgt-window-fix-preserve-sk1el74q SHAcc143be62d86113b76df610db417a460ed436fedbbdf90955d8e55f33246b708 сохранить.
+
+Windowfix130b522 pushed, CI43217403961 реальноRUNNING: JVM131180034209 SUCCESS; API23 131180316565/API35 131180316720 RunAndroidscenarios in_progress. Неpushпокаactive.
+Nextstyles толькоMODEL WIP KmlComponentStyle.java/KmlComponentStyleTests.java; rendererНЕподключён иНЕсодержитсяв130bCI. Host32checks/read-only DOM/ABGR/normalshared+inline/flags/roundtrip/cycles/foreign/bounds; backup /workspace/work/manager-confirm/kml-component-style-2026-11-12/. Сохранитьфайлы, неclaimuserfunctionготова.
