@@ -1,0 +1,27 @@
+{
+  "scope": "host only; GifRaster source unchanged from 1be9; includes RGBA dump; not Android",
+  "java_heap_mib": 32,
+  "wall_seconds": 0.8997327819961356,
+  "child_max_rss_kib": 48416,
+  "records": [
+    {
+      "file": "/workspace/work/manager-confirm/gif-model-2026-11-12/near-cap-False.gif",
+      "bytes": 5500575,
+      "pixels": 4000000,
+      "source_sha256": "0e24f5d4030a0c45e492df1694e7165fee394a7625f6181ce0c60f0e977a4421",
+      "rgba_sha256": "98fe781935b82dae517661e211a6fd82c26a21b6cd5328154786cdc8a152df81",
+      "exact": true
+    },
+    {
+      "file": "/workspace/work/manager-confirm/gif-model-2026-11-12/near-cap-True.gif",
+      "bytes": 5500138,
+      "pixels": 4000000,
+      "source_sha256": "1b01b49dddb9d2b46281c5ba753c10258e93126784a5d253b30513321e643192",
+      "rgba_sha256": "98fe781935b82dae517661e211a6fd82c26a21b6cd5328154786cdc8a152df81",
+      "exact": true
+    }
+  ],
+  "source_sha256": "ed91abfa2c5342c543e8a6528e62738f72e050a63feac6d224d6ab27b99e2ad3",
+  "fresh_compilation": "/workspace/work/manager-confirm/gif-model-2026-11-12/near-cap-source-proof-7vv1ie4d",
+  "fresh_class_byte_identity": true
+}

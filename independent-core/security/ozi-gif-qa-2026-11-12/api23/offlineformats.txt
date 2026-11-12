@@ -1,0 +1,15 @@
+INSTRUMENTATION_STATUS: stream=START offlineformats
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 133, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и qa_ozi.png. Поддержаны UTF-8\/ASCII, WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MSF=1, полный PNG\/JPEG, raw BMP24\/32 (INFO40, б","foreground":"#de000000","arimo":true,"bounds":"[16, 180, 288, 313]","visible":true,"visibleBounds":"[16,81][304,394]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[59, 497, 84, 48]","visible":true,"visibleBounds":"[59,398][143,446]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff009688","arimo":true,"bounds":"[143, 497, 149, 48]","visible":true,"visibleBounds":"[143,398][292,446]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 133, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и qa_ozi.bmp. Поддержаны UTF-8\/ASCII, WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MSF=1, полный PNG\/JPEG, raw BMP24\/32 (INFO40, б","foreground":"#de000000","arimo":true,"bounds":"[16, 180, 288, 313]","visible":true,"visibleBounds":"[16,81][304,394]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[59, 497, 84, 48]","visible":true,"visibleBounds":"[59,398][143,446]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff009688","arimo":true,"bounds":"[143, 497, 149, 48]","visible":true,"visibleBounds":"[143,398][292,446]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 133, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и qa_ozi.gif. Поддержаны UTF-8\/ASCII, WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MSF=1, полный PNG\/JPEG, raw BMP24\/32 (INFO40, б","foreground":"#de000000","arimo":true,"bounds":"[16, 180, 288, 313]","visible":true,"visibleBounds":"[16,81][304,394]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[59, 497, 84, 48]","visible":true,"visibleBounds":"[59,398][143,446]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff009688","arimo":true,"bounds":"[143, 497, 149, 48]","visible":true,"visibleBounds":"[143,398][292,446]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=PASS offlineformats: 1025 assertions
+
+INSTRUMENTATION_CODE: -1

@@ -1,3 +1,11 @@
+Статический GIF87a/89a через Ozi affine import реализован на1be9e3a и проверен
+CI43172333048 SUCCESS46/46 обеAPI, offlineformats1025each/JVM36_83129/GIF323.
+Source/digest/all552+555members verified; все16 текущих raster PNG просмотрены.
+API23 BMP/GIF prompt: предыдущий CAS Toast перекрывает строку действий на кадре;
+native clicks/Arimo/physical/data PASS, unobscured visual acceptance НЕзаявлена.
+Точная граница проверки migration/OZI_GIF.md; full formats/26.1 acceptance открыта.
+Windows1251 — отдельный локальный WIP, НЕэтотCI. Очередь CODEX_NEXT.md.
+
 Ozi PNG/JPEG/BMP24/BMP32 и affine GeoTIFF проверены scoped на8d26807 /
 CI43146921585 SUCCESS46/46 обеAPI: offlineformats748each, managerrotation379/373,
 JVM35/82806/BMP754/Ozi66/Geo432/host27/source78/548classes. Все12 относящихся

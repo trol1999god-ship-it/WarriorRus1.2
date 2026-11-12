@@ -1,4 +1,4 @@
-# Продолжение — 12 ноября: BMP/Ozi/affine/transport scoped проверены; далее GIF
+# Продолжение — 12 ноября: GIF scoped проверен; далее явная кодировка Ozi
 
 ## Последний проверенный участок
 
@@ -29,38 +29,39 @@ Original ZIP /workspace/attachments/b3ed2b6e-6e3c-42f3-995d-a8a7753af695/bmp-8d2
 Предыдущие90020/43134277461 иfbc/43139985094 FAILURE сохранены историей;
 current8d закрывает scoped регрессию, не переписывает прежние records.
 
-## Следующая функция — готовый локальный GIF-кандидат, Android pending
+## Новый проверенный участок — static GIF
 
-GifInfo развит/переименован в GifRaster; оригинал structure-only source сохранён
-/workspace/work/manager-confirm/gif-model-2026-11-12/GifInfo-structure-only.java.
-GIF87a/89a одинfullframe/global-localpalette/interlace/binarytransparency;
-собственный bounded indexed reader через тотже OziCalibration/sharedRasterMapImport/
-privateMBTiles/renderer. Strict LZW/CLEAR/KwKwK/width≤12/dict4096/palettebounds/
-точныйcount/EOI; indexed≤4Mbytes/file16MiB/20kсторона, records1024/subblocks65536/
-codes≤2×pixels+1024/cooperative15sec/interruption; refuse animation/delay/crop/
-userinput/application/plaintext/unknownversion/extensions. Без wholeARGB/spool.
+Code1be9e3a1e28ae9f245742f8ba7ee1654e212b380 /CI43172333048 SUCCESS.
+JVM131028337173 SUCCESS36/83129/GIF323/BMP754/Ozi66/Geo432/host27/source79/550classes.
+API23 131028606796 иAPI35 131028606764:46/46безskip/offlineformats1025/rotation379/373.
+StrictGIF87/89/fullframe/palette/interlace/transparency/LZW/count/EOI/deadline/
+refusals/sharedconverter/nativepixels/Cancel/CAS/actualdestroy pendingimport/
+worker termination/reopen/source/KML/assets/otherproject/network0 PASS.
+Source/outer/inner/all552+555members verified. Все16 текущихrasterPNG просмотрены;
+остальные20extracted/API НЕзаявлены. API23 BMP/GIF prompt перекрыт предыдущимCAS
+Toast настрокеbuttons: nativeclicks/Arimo/physical PASS, unobscuredvisual acceptance
+НЕзаявлена. Следующий changed-code CI кодировки сниметкадры послеToast settle;
+не повторятьGIFCI. Native-driver recovery вэтотразнепонадобилось; startupoffline
+передboot — неskip.8d реальныйsameBoot recovery остаётся отдельнымфактом.
+migration/OZI_GIF.md, security/ozi-gif-qa-2026-11-12/runtime-result.json.
+Full logs /workspace/work/manager-confirm/gif-1be9-api23.log,api35.log,jvm.log.
+ZIP /workspace/attachments/3da97ff5-e6be-4384-8743-5c2f55c9093c/gif-1be9-api23.zip
+и5d337e49-6be5-494a-9b2f-1617c5a76032/gif-1be9-api35.zip сохранить.
+Host независимыйPillow oracle14files/793240pixels +2fulltable/8738pixels +2nearcap/
+8millionpixels приheap32MiB точны; неAndroid.135structure/48Pillow/originalGifInfo/
+ozi-gif-candidate-h1qlu3wn/backup/stash2/pending/toolchain сохранить.
 
-JVM36/83129/GIF323/BMP754/Ozi66/Geo432 PASS.6 Pillow-generated golden streams
-закреплены в tests/fixtures/gif; проверяются verify_jvm. Actual reader vsPillow:
-14files/793240RGBApixels exact +2fulltable literal fixtures/8738pixels (freeze/CLEAR).
-Это HOST, НЕAndroid. Прежние135structure/48Pillow/control artifacts сохранены.
-SDK23 app+instrumentation/source79exact/550classes/debugQA/disposablekeys/
-custom source+DEX privacy PASS (НЕAndroidlint). Source/receipts/апк:
-security/ozi-gif-qa-2026-11-12/local/, /workspace/work/manager-confirm/ozi-gif-2026-11-12-qa.
-Backup всегоcandidate: ozi-gif-candidate-h1qlu3wn; resume backup3v2bljno сохранить.
-
-Existing offlineformats расширен GIF87/89/global/local/interlace/rotation/shear/
-literal pixels/bounds/nativezoom/NoData/source/Cancel/fulltable/invalidLZW/EOI/
-size/unsupported/deadline0/oldtarget. Прежние PNG/JPEG/BMP UIветки остаются, GIF
-добавляет menu→synthetic picker pair/explicitConfirm/Cancel/CAS/Arimo/actions/
-reopen/настоящийActivity.finish/destroy сожидающимimport/DOM/assets/otherproject/
-network0. Disposed flagvolatile; worker привыходе не публикуетpendingmap.
-Два новыхGIFPNG, total8mvisual≤16/2MiB. Runtime ещёНЕисполнен и НЕвходит в8dCI.
-migration/OZI_GIF.md. Code1be9e3a1e28ae9f245742f8ba7ee1654e212b380 pushed;
-CI43172333048 реальноRUNNING: JVM131028337173 SUCCESS,
-API23 131028606796 и API35 131028606764 Run Android scenarios in_progress.
-Не push покаactive. Следующий шаг — обаcompletedjob/новыеPNG/source/digest/data,
-реальныйqueued-import exit/CAS/NoData/EOF/oldguards, безblindrerun.
+Следующий функциональный WIP (НЕчасть GIF CI): явный флажок Windows-1251 для
+.map, defaultUTF8 на каждую пару, enumallowlist безfallback/autoDetect/prefs.
+Передан через OziCalibration/OziRaster/OziImport и тотже LocalMapActivity.
+JVM36/83136/Ozi73 PASS, source79exact/551classes/SDK23/debugQA/customprivacyPASS;
+officiallint НЕPASS. Existing offlineformats дополнен explicit Cyrillic pair/
+wrongdefault refusal/pixel/Cancel/CAS/reopen/Arimo/checkbox reset/data/2PNG;
+Androidpending. migration/OZI_ENCODING.md, security/ozi-encoding-qa-2026-11-12/local/.
+Backup /workspace/work/manager-confirm/ozi-encoding-preserve-iihq4ycs сохранить.
+GIFфакты закончены. Следующий шаг: сохранить проверенный scoped результатGIF;
+затем тестовыйToast settle вWIP кодировки, freshSDK23/tests/sourceSHA/коммит/один
+changed-codeCI. Прочитать обаcompletedjob/новыеPNG/data, безblindrerun.
 
 После GIF — formats/DEM по матрице; не угадыватьCRS/codepage/neatline/RMAP.
 Затем objects/geometry→styles/SVG/import-export→media/explicitshare→UI/coordinates/

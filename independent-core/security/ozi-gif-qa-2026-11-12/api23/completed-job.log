@@ -1,0 +1,1225 @@
+﻿2026-11-12T07:03:14.9660812Z Current runner version: '2.338.2'
+2026-11-12T07:03:14.9686042Z ##[group]Runner Image Provisioner
+2026-11-12T07:03:14.9686867Z Hosted Compute Agent
+2026-11-12T07:03:14.9687468Z Version: 20261028.624
+2026-11-12T07:03:14.9688000Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-12T07:03:14.9688591Z Build Date: 2026-10-28T21:51:42Z
+2026-11-12T07:03:14.9689269Z Worker ID: {47f0ae50-58a6-45a6-852d-8b8b03db5966}
+2026-11-12T07:03:14.9689873Z Region: westus3
+2026-11-12T07:03:14.9690378Z Cloud: Azure
+2026-11-12T07:03:14.9690871Z ##[endgroup]
+2026-11-12T07:03:14.9691983Z ##[group]Operating System
+2026-11-12T07:03:14.9692648Z Ubuntu
+2026-11-12T07:03:14.9693103Z 22.04.5
+2026-11-12T07:03:14.9693598Z LTS
+2026-11-12T07:03:14.9694067Z ##[endgroup]
+2026-11-12T07:03:14.9694684Z ##[group]Runner Image
+2026-11-12T07:03:14.9695286Z Image: ubuntu-22.04
+2026-11-12T07:03:14.9695778Z Version: 20261101.347.1
+2026-11-12T07:03:14.9696937Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20261101.347/images/ubuntu/Ubuntu2204-Readme.md
+2026-11-12T07:03:14.9698259Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20261101.347
+2026-11-12T07:03:14.9699109Z ##[endgroup]
+2026-11-12T07:03:14.9700147Z ##[group]GITHUB_TOKEN Permissions
+2026-11-12T07:03:14.9701835Z Contents: read
+2026-11-12T07:03:14.9702352Z Metadata: read
+2026-11-12T07:03:14.9702836Z ##[endgroup]
+2026-11-12T07:03:14.9705496Z Secret source: Actions
+2026-11-12T07:03:14.9706280Z Cache mode: write
+2026-11-12T07:03:14.9707012Z Prepare workflow directory
+2026-11-12T07:03:15.0056914Z Prepare all required actions
+2026-11-12T07:03:15.0097154Z Getting action download info
+2026-11-12T07:03:15.3390424Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-12T07:03:15.5026963Z Download action repository 'actions/setup-java@v4' (SHA:cf277c60eb25467037889841efdb72551f06f6c3)
+2026-11-12T07:03:16.2694059Z Download action repository 'reactivecircus/android-emulator-runner@v2' (SHA:a421e43855164a8197daf9d8d40fe71c6996bb0d)
+2026-11-12T07:03:16.7337258Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-12T07:03:17.0204301Z Complete job name: android (23, x86, default)
+2026-11-12T07:03:17.1092845Z ##[group]Run actions/checkout@v4
+2026-11-12T07:03:17.1094238Z with:
+2026-11-12T07:03:17.1095096Z   persist-credentials: false
+2026-11-12T07:03:17.1096187Z   repository: trol1999god-ship-it/WarriorRus1.2
+2026-11-12T07:03:17.1102989Z   token: ***
+2026-11-12T07:03:17.1103815Z   ssh-strict: true
+2026-11-12T07:03:17.1104843Z   ssh-user: git
+2026-11-12T07:03:17.1105636Z   clean: true
+2026-11-12T07:03:17.1106535Z   sparse-checkout-cone-mode: true
+2026-11-12T07:03:17.1107489Z   fetch-depth: 1
+2026-11-12T07:03:17.1108290Z   fetch-tags: false
+2026-11-12T07:03:17.1109212Z   show-progress: true
+2026-11-12T07:03:17.1110059Z   lfs: false
+2026-11-12T07:03:17.1110860Z   submodules: false
+2026-11-12T07:03:17.1111786Z   set-safe-directory: true
+2026-11-12T07:03:17.1112717Z   allow-unsafe-pr-checkout: false
+2026-11-12T07:03:17.1113990Z ##[endgroup]
+2026-11-12T07:03:17.2748971Z Syncing repository: trol1999god-ship-it/WarriorRus1.2
+2026-11-12T07:03:17.2751729Z ##[group]Getting Git version info
+2026-11-12T07:03:17.2753070Z Working directory is '/home/runner/work/WarriorRus1.2/WarriorRus1.2'
+2026-11-12T07:03:17.2755226Z [command]/usr/bin/git version
+2026-11-12T07:03:17.2785638Z git version 2.56.0
+2026-11-12T07:03:17.2802878Z ##[endgroup]
+2026-11-12T07:03:17.2818107Z Temporarily overriding HOME='/home/runner/work/_temp/4d85dfbf-2fc7-4404-854c-5634345dcc7c' before making global git config changes
+2026-11-12T07:03:17.2821764Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-12T07:03:17.2825056Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/WarriorRus1.2/WarriorRus1.2
+2026-11-12T07:03:17.2859835Z Deleting the contents of '/home/runner/work/WarriorRus1.2/WarriorRus1.2'
+2026-11-12T07:03:17.2864033Z ##[group]Initializing the repository
+2026-11-12T07:03:17.2868048Z [command]/usr/bin/git init /home/runner/work/WarriorRus1.2/WarriorRus1.2
+2026-11-12T07:03:17.3207114Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-12T07:03:17.3209907Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-12T07:03:17.3212155Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-12T07:03:17.3213963Z hint: call:
+2026-11-12T07:03:17.3215136Z hint:
+2026-11-12T07:03:17.3216399Z hint: 	git config --global init.defaultBranch <name>
+2026-11-12T07:03:17.3217888Z hint:
+2026-11-12T07:03:17.3219320Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-12T07:03:17.3221541Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-12T07:03:17.3223373Z hint:
+2026-11-12T07:03:17.3224573Z hint: 	git branch -m <name>
+2026-11-12T07:03:17.3227616Z hint:
+2026-11-12T07:03:17.3229264Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-12T07:03:17.3232161Z Initialized empty Git repository in /home/runner/work/WarriorRus1.2/WarriorRus1.2/.git/
+2026-11-12T07:03:17.3236859Z [command]/usr/bin/git remote add origin https://github.com/trol1999god-ship-it/WarriorRus1.2
+2026-11-12T07:03:17.3264634Z ##[endgroup]
+2026-11-12T07:03:17.3266348Z ##[group]Disabling automatic garbage collection
+2026-11-12T07:03:17.3268417Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-12T07:03:17.3336355Z ##[endgroup]
+2026-11-12T07:03:17.3338061Z ##[group]Setting up auth
+2026-11-12T07:03:17.3343375Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-12T07:03:17.3382892Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-12T07:03:17.3674543Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-12T07:03:17.3710902Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-12T07:03:17.3931073Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-12T07:03:17.3966826Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-12T07:03:17.4189250Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-12T07:03:17.4263490Z ##[endgroup]
+2026-11-12T07:03:17.4265485Z ##[group]Fetching the repository
+2026-11-12T07:03:17.4273185Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +1be9e3a1e28ae9f245742f8ba7ee1654e212b380:refs/remotes/origin/codex/independent-core-auto
+2026-11-12T07:03:20.3640378Z From https://github.com/trol1999god-ship-it/WarriorRus1.2
+2026-11-12T07:03:20.3645220Z  * [new ref]         1be9e3a1e28ae9f245742f8ba7ee1654e212b380 -> origin/codex/independent-core-auto
+2026-11-12T07:03:20.3647041Z ##[endgroup]
+2026-11-12T07:03:20.3647487Z ##[group]Determining the checkout info
+2026-11-12T07:03:20.3648066Z ##[endgroup]
+2026-11-12T07:03:20.3663324Z [command]/usr/bin/git sparse-checkout disable
+2026-11-12T07:03:20.3698296Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-12T07:03:20.3731422Z ##[group]Checking out the ref
+2026-11-12T07:03:20.3735971Z [command]/usr/bin/git checkout --progress --force -B codex/independent-core-auto refs/remotes/origin/codex/independent-core-auto
+2026-11-12T07:03:20.8141783Z Switched to a new branch 'codex/independent-core-auto'
+2026-11-12T07:03:20.8142799Z branch 'codex/independent-core-auto' set up to track 'origin/codex/independent-core-auto'.
+2026-11-12T07:03:20.8167587Z ##[endgroup]
+2026-11-12T07:03:20.8210114Z [command]/usr/bin/git log -1 --format=%H
+2026-11-12T07:03:20.8236142Z 1be9e3a1e28ae9f245742f8ba7ee1654e212b380
+2026-11-12T07:03:20.8245141Z ##[group]Removing auth
+2026-11-12T07:03:20.8248089Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-12T07:03:20.8280115Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-12T07:03:20.8512379Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-12T07:03:20.8537896Z http.https://github.com/.extraheader
+2026-11-12T07:03:20.8546434Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-12T07:03:20.8597894Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-12T07:03:20.8830021Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-12T07:03:20.8866898Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-12T07:03:20.9104966Z ##[endgroup]
+2026-11-12T07:03:20.9332612Z ##[group]Run actions/setup-java@v4
+2026-11-12T07:03:20.9332858Z with:
+2026-11-12T07:03:20.9333026Z   distribution: temurin
+2026-11-12T07:03:20.9333209Z   java-version: 17
+2026-11-12T07:03:20.9333386Z   java-package: jdk
+2026-11-12T07:03:20.9333586Z   check-latest: false
+2026-11-12T07:03:20.9333785Z   server-id: github
+2026-11-12T07:03:20.9333956Z   server-username: GITHUB_ACTOR
+2026-11-12T07:03:20.9334377Z   server-password: GITHUB_TOKEN
+2026-11-12T07:03:20.9334576Z   overwrite-settings: true
+2026-11-12T07:03:20.9334762Z   job-status: success
+2026-11-12T07:03:20.9336553Z   token: ***
+2026-11-12T07:03:20.9336719Z ##[endgroup]
+2026-11-12T07:03:21.0791853Z ##[warning]setup-java v4 is deprecated and will no longer receive updates. Please migrate to actions/setup-java@v5.
+2026-11-12T07:03:21.0801756Z ##[group]Installed distributions
+2026-11-12T07:03:21.0957337Z Resolved Java 17.0.21+9 from tool-cache
+2026-11-12T07:03:21.0957748Z Setting Java 17.0.21+9 as the default
+2026-11-12T07:03:21.0966551Z (node:1958) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-12T07:03:21.0967321Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-12T07:03:21.0969190Z Creating toolchains.xml for JDK version 17 from temurin
+2026-11-12T07:03:21.1025361Z Writing to /home/runner/.m2/toolchains.xml
+2026-11-12T07:03:21.1025749Z 
+2026-11-12T07:03:21.1026063Z Java configuration:
+2026-11-12T07:03:21.1026362Z   Distribution: temurin
+2026-11-12T07:03:21.1027357Z   Version: 17.0.21+9
+2026-11-12T07:03:21.1027740Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:03:21.1028135Z 
+2026-11-12T07:03:21.1028530Z ##[endgroup]
+2026-11-12T07:03:21.1046037Z Creating settings.xml with server-id: github
+2026-11-12T07:03:21.1083750Z Writing to /home/runner/.m2/settings.xml
+2026-11-12T07:03:21.1192872Z ##[group]Run "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-23" "build-tools;35.0.0"
+2026-11-12T07:03:21.1193533Z [36;1m"$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-23" "build-tools;35.0.0"[0m
+2026-11-12T07:03:21.1266117Z shell: /usr/bin/bash -e {0}
+2026-11-12T07:03:21.1266376Z env:
+2026-11-12T07:03:21.1266641Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:03:21.1267039Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:03:21.1267339Z ##[endgroup]
+2026-11-12T07:03:24.9786761Z Loading package information...                                                  
+2026-11-12T07:03:25.0609103Z Loading local repository...                                                     
+2026-11-12T07:03:25.0612185Z [                                       ] 3% Loading local repository...        
+2026-11-12T07:03:25.4101815Z [                                       ] 3% Fetch remote repository...         
+2026-11-12T07:03:25.8126494Z [=                                      ] 3% Fetch remote repository...         
+2026-11-12T07:03:25.9096081Z [=                                      ] 4% Fetch remote repository...         
+2026-11-12T07:03:25.9344818Z [=                                      ] 5% Fetch remote repository...         
+2026-11-12T07:03:25.9647865Z [==                                     ] 5% Fetch remote repository...         
+2026-11-12T07:03:26.0148293Z [==                                     ] 6% Fetch remote repository...         
+2026-11-12T07:03:26.1235558Z [==                                     ] 7% Fetch remote repository...         
+2026-11-12T07:03:26.1275360Z [==                                     ] 7% Computing updates...               
+2026-11-12T07:03:26.1339585Z [===                                    ] 8% Computing updates...               
+2026-11-12T07:03:26.1419413Z [===                                    ] 10% Computing updates...              
+2026-11-12T07:03:26.2251681Z [===                                    ] 10% Installing Android SDK Platform 23
+2026-11-12T07:03:26.3287052Z [===                                    ] 10% Downloading platform-23_r03.zip...
+2026-11-12T07:03:26.4212345Z [====                                   ] 10% Downloading platform-23_r03.zip...
+2026-11-12T07:03:26.5167795Z [====                                   ] 11% Downloading platform-23_r03.zip...
+2026-11-12T07:03:26.5425867Z [====                                   ] 12% Downloading platform-23_r03.zip...
+2026-11-12T07:03:26.5832477Z [=====                                  ] 13% Downloading platform-23_r03.zip...
+2026-11-12T07:03:26.6310406Z [=====                                  ] 14% Downloading platform-23_r03.zip...
+2026-11-12T07:03:26.6605597Z [=====                                  ] 15% Downloading platform-23_r03.zip...
+2026-11-12T07:03:26.6833911Z [======                                 ] 15% Downloading platform-23_r03.zip...
+2026-11-12T07:03:26.7189617Z [======                                 ] 16% Downloading platform-23_r03.zip...
+2026-11-12T07:03:26.7700412Z [======                                 ] 17% Downloading platform-23_r03.zip...
+2026-11-12T07:03:26.8062419Z [=======                                ] 18% Downloading platform-23_r03.zip...
+2026-11-12T07:03:26.8591491Z [=======                                ] 19% Downloading platform-23_r03.zip...
+2026-11-12T07:03:26.8808271Z [=======                                ] 20% Downloading platform-23_r03.zip...
+2026-11-12T07:03:26.9053863Z [========                               ] 20% Downloading platform-23_r03.zip...
+2026-11-12T07:03:26.9582654Z [========                               ] 21% Downloading platform-23_r03.zip...
+2026-11-12T07:03:26.9918214Z [========                               ] 22% Downloading platform-23_r03.zip...
+2026-11-12T07:03:27.0273601Z [=========                              ] 23% Downloading platform-23_r03.zip...
+2026-11-12T07:03:27.0793048Z [=========                              ] 24% Downloading platform-23_r03.zip...
+2026-11-12T07:03:27.1002592Z [=========                              ] 25% Downloading platform-23_r03.zip...
+2026-11-12T07:03:27.1256367Z [==========                             ] 25% Downloading platform-23_r03.zip...
+2026-11-12T07:03:27.1786467Z [==========                             ] 26% Downloading platform-23_r03.zip...
+2026-11-12T07:03:27.2092961Z [==========                             ] 27% Downloading platform-23_r03.zip...
+2026-11-12T07:03:27.2515996Z [===========                            ] 28% Downloading platform-23_r03.zip...
+2026-11-12T07:03:27.2949965Z [===========                            ] 29% Downloading platform-23_r03.zip...
+2026-11-12T07:03:27.3161231Z [===========                            ] 30% Downloading platform-23_r03.zip...
+2026-11-12T07:03:27.3452042Z [============                           ] 30% Downloading platform-23_r03.zip...
+2026-11-12T07:03:27.3927866Z [============                           ] 31% Downloading platform-23_r03.zip...
+2026-11-12T07:03:27.4228667Z [============                           ] 32% Downloading platform-23_r03.zip...
+2026-11-12T07:03:27.4231578Z [============                           ] 33% Downloading platform-23_r03.zip...
+2026-11-12T07:03:27.7947982Z [============                           ] 33% Unzipping...                      
+2026-11-12T07:03:27.7948857Z [============                           ] 33% Unzipping... android-6.0/         
+2026-11-12T07:03:27.7964329Z [============                           ] 33% Unzipping... android-6.0/optional/
+2026-11-12T07:03:27.8017103Z [=============                          ] 33% Unzipping... android-6.0/optional/
+2026-11-12T07:03:27.8017921Z [=============                          ] 33% Unzipping... android-6.0/build.pro
+2026-11-12T07:03:27.8018627Z [=============                          ] 33% Unzipping... android-6.0/framework
+2026-11-12T07:03:27.8302140Z [=============                          ] 33% Unzipping... android-6.0/android.j
+2026-11-12T07:03:27.8588144Z [=============                          ] 34% Unzipping... android-6.0/android.j
+2026-11-12T07:03:27.8730072Z [=============                          ] 35% Unzipping... android-6.0/android.j
+2026-11-12T07:03:27.8859926Z [==============                         ] 35% Unzipping... android-6.0/android.j
+2026-11-12T07:03:27.9071043Z [==============                         ] 36% Unzipping... android-6.0/android.j
+2026-11-12T07:03:27.9289626Z [==============                         ] 37% Unzipping... android-6.0/android.j
+2026-11-12T07:03:27.9300553Z [==============                         ] 37% Unzipping... android-6.0/sdk.prope
+2026-11-12T07:03:28.0419926Z [==============                         ] 37% Unzipping... android-6.0/templates
+2026-11-12T07:03:28.0420798Z [==============                         ] 37% Unzipping... android-6.0/data/    
+2026-11-12T07:03:28.0422384Z [==============                         ] 37% Unzipping... android-6.0/data/serv
+2026-11-12T07:03:28.0430354Z [==============                         ] 37% Unzipping... android-6.0/data/acti
+2026-11-12T07:03:28.0485448Z [==============                         ] 37% Unzipping... android-6.0/data/NOTI
+2026-11-12T07:03:28.1392323Z [==============                         ] 37% Unzipping... android-6.0/data/res/
+2026-11-12T07:03:28.4115218Z [===============                        ] 38% Unzipping... android-6.0/data/res/
+2026-11-12T07:03:28.6435386Z [===============                        ] 39% Unzipping... android-6.0/data/res/
+2026-11-12T07:03:28.6989719Z [===============                        ] 40% Unzipping... android-6.0/data/res/
+2026-11-12T07:03:28.8170608Z [================                       ] 40% Unzipping... android-6.0/data/res/
+2026-11-12T07:03:29.0013140Z [================                       ] 41% Unzipping... android-6.0/data/res/
+2026-11-12T07:03:29.1791033Z [================                       ] 42% Unzipping... android-6.0/data/res/
+2026-11-12T07:03:29.1815283Z [================                       ] 42% Unzipping... android-6.0/data/tzda
+2026-11-12T07:03:29.1815809Z [=================                      ] 43% Unzipping... android-6.0/data/tzda
+2026-11-12T07:03:29.1816273Z [=================                      ] 43% Unzipping... android-6.0/data/feat
+2026-11-12T07:03:29.1979226Z [=================                      ] 43% Unzipping... android-6.0/data/layo
+2026-11-12T07:03:29.2122655Z [=================                      ] 44% Unzipping... android-6.0/data/layo
+2026-11-12T07:03:29.2170743Z [=================                      ] 45% Unzipping... android-6.0/data/layo
+2026-11-12T07:03:29.2204059Z [==================                     ] 45% Unzipping... android-6.0/data/layo
+2026-11-12T07:03:29.2336786Z [==================                     ] 46% Unzipping... android-6.0/data/layo
+2026-11-12T07:03:29.2476279Z [==================                     ] 47% Unzipping... android-6.0/data/layo
+2026-11-12T07:03:29.2612891Z [===================                    ] 48% Unzipping... android-6.0/data/layo
+2026-11-12T07:03:29.2741800Z [===================                    ] 49% Unzipping... android-6.0/data/layo
+2026-11-12T07:03:29.2798533Z [===================                    ] 50% Unzipping... android-6.0/data/layo
+2026-11-12T07:03:29.3974287Z [====================                   ] 50% Unzipping... android-6.0/data/layo
+2026-11-12T07:03:29.3976963Z [====================                   ] 50% Unzipping... android-6.0/data/cate
+2026-11-12T07:03:29.3977446Z [====================                   ] 50% Unzipping... android-6.0/data/widg
+2026-11-12T07:03:29.4121716Z [====================                   ] 50% Unzipping... android-6.0/data/font
+2026-11-12T07:03:29.4355775Z [====================                   ] 51% Unzipping... android-6.0/data/font
+2026-11-12T07:03:29.4813251Z [====================                   ] 52% Unzipping... android-6.0/data/font
+2026-11-12T07:03:29.5283899Z [=====================                  ] 53% Unzipping... android-6.0/data/font
+2026-11-12T07:03:29.5482387Z [=====================                  ] 54% Unzipping... android-6.0/data/font
+2026-11-12T07:03:29.5483093Z [=====================                  ] 54% Unzipping... android-6.0/data/broa
+2026-11-12T07:03:29.5483663Z [=====================                  ] 54% Unzipping... android-6.0/skins/   
+2026-11-12T07:03:29.5496907Z [=====================                  ] 54% Unzipping... android-6.0/skins/WQV
+2026-11-12T07:03:29.5524407Z [=====================                  ] 54% Unzipping... android-6.0/skins/NOT
+2026-11-12T07:03:29.5537016Z [=====================                  ] 54% Unzipping... android-6.0/skins/QVG
+2026-11-12T07:03:29.5642950Z [=====================                  ] 54% Unzipping... android-6.0/skins/WQV
+2026-11-12T07:03:29.5665655Z [=====================                  ] 54% Unzipping... android-6.0/skins/WXG
+2026-11-12T07:03:29.5683823Z [=====================                  ] 54% Unzipping... android-6.0/skins/WSV
+2026-11-12T07:03:29.5697875Z [=====================                  ] 54% Unzipping... android-6.0/skins/WVG
+2026-11-12T07:03:29.5728515Z [=====================                  ] 54% Unzipping... android-6.0/skins/WXG
+2026-11-12T07:03:29.5741143Z [=====================                  ] 54% Unzipping... android-6.0/skins/HVG
+2026-11-12T07:03:29.5815821Z [=====================                  ] 54% Unzipping... android-6.0/skins/WVG
+2026-11-12T07:03:29.5817723Z [=====================                  ] 54% Unzipping... android-6.0/uiautomat
+2026-11-12T07:03:29.5819012Z [=====================                  ] 54% Unzipping... android-6.0/source.pr
+2026-11-12T07:03:29.5993481Z [=====================                  ] 55% Unzipping... android-6.0/source.pr
+2026-11-12T07:03:29.5993994Z [=======================================] 100% Unzipping... android-6.0/source.p
+2026-11-12T07:03:29.7451854Z 
+2026-11-12T07:03:29.7787528Z ##[group]Run python3 ci/build_android_qa.py --sdk "$ANDROID_HOME" --tools "$RUNNER_TEMP/rk-tools" --out "$RUNNER_TEMP/rk-qa" --debug --skip-jvm
+2026-11-12T07:03:29.7788271Z [36;1mpython3 ci/build_android_qa.py --sdk "$ANDROID_HOME" --tools "$RUNNER_TEMP/rk-tools" --out "$RUNNER_TEMP/rk-qa" --debug --skip-jvm[0m
+2026-11-12T07:03:29.7842375Z shell: /usr/bin/bash -e {0}
+2026-11-12T07:03:29.7842582Z env:
+2026-11-12T07:03:29.7842820Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:03:29.7843205Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:03:29.7843495Z ##[endgroup]
+2026-11-12T07:03:34.2526902Z Note: /home/runner/work/WarriorRus1.2/WarriorRus1.2/independent-core/owned-projects/src/org/rabochaya/projects/GeometryEditorActivity.java uses or overrides a deprecated API.
+2026-11-12T07:03:34.2529794Z Note: Recompile with -Xlint:deprecation for details.
+2026-11-12T07:03:34.2530892Z Note: /home/runner/work/WarriorRus1.2/WarriorRus1.2/independent-core/owned-projects/src/org/rabochaya/projects/LocalMapActivity.java uses unchecked or unsafe operations.
+2026-11-12T07:03:34.2532361Z Note: Recompile with -Xlint:unchecked for details.
+2026-11-12T07:03:38.5449291Z I: Using Apktool 2.11.1 on additions.apk with 4 threads
+2026-11-12T07:03:38.5472379Z I: Copying raw resources...
+2026-11-12T07:03:38.5473474Z I: Baksmaling classes.dex...
+2026-11-12T07:03:38.5511778Z I: Copying raw manifest...
+2026-11-12T07:03:39.1077099Z I: Copying original files...
+2026-11-12T07:03:39.1085061Z I: Copying unknown files...
+2026-11-12T07:03:39.2641444Z Added 484 classes; previous implementation preserved
+2026-11-12T07:03:41.2536232Z Assembled 550 classes. No APK built.
+2026-11-12T07:03:41.4964096Z Development APK built; not an accepted 26.1 replacement: 2202710 bytes
+2026-11-12T07:03:44.6037419Z Note: Some input files use unchecked or unsafe operations.
+2026-11-12T07:03:44.6038227Z Note: Recompile with -Xlint:unchecked for details.
+2026-11-12T07:03:50.2497934Z Test APK ready 285874
+2026-11-12T07:03:50.5902036Z Generating 2,048 bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 2 days
+2026-11-12T07:03:50.5903022Z 	for: CN=Disposable Android QA
+2026-11-12T07:03:51.2954777Z Note: /home/runner/work/WarriorRus1.2/WarriorRus1.2/independent-core/security/SignReview.java uses or overrides a deprecated API.
+2026-11-12T07:03:51.2956020Z Note: Recompile with -Xlint:deprecation for details.
+2026-11-12T07:03:51.6632204Z Signed and synced
+2026-11-12T07:03:52.1845196Z Note: /home/runner/work/WarriorRus1.2/WarriorRus1.2/independent-core/security/SignReview.java uses or overrides a deprecated API.
+2026-11-12T07:03:52.1846098Z Note: Recompile with -Xlint:deprecation for details.
+2026-11-12T07:03:52.4476104Z Signed and synced
+2026-11-12T07:03:52.4571630Z Isolated QA APKs ready; no replacement release was produced
+2026-11-12T07:03:52.4698227Z ##[group]Run python3 security/privacy_audit.py --apk "$RUNNER_TEMP/rk-qa/app.apk" --report "$RUNNER_TEMP/rk-quality/privacy.json"
+2026-11-12T07:03:52.4698905Z [36;1mpython3 security/privacy_audit.py --apk "$RUNNER_TEMP/rk-qa/app.apk" --report "$RUNNER_TEMP/rk-quality/privacy.json"[0m
+2026-11-12T07:03:52.4752593Z shell: /usr/bin/bash -e {0}
+2026-11-12T07:03:52.4752796Z env:
+2026-11-12T07:03:52.4753047Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:03:52.4753433Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:03:52.4753722Z ##[endgroup]
+2026-11-12T07:03:52.5254066Z {"kind": "custom scoped privacy audit; not Android lint", "passed": true, "source_files": 79, "permissions": ["android.permission.INTERNET"], "apk_checked": true, "checks": ["production manifest", "source network entry points", "GET-only no-output tile transport", "forbidden SDK/API references", "DEX SDK strings and native inventory when APK supplied"], "limits": ["not a complete dynamic data-flow proof", "local-storage and object/attachment retention also require existing runtime scenarios", "Android lint and physical-device acceptance separate"], "failures": []}
+2026-11-12T07:03:52.5330234Z ##[group]Run python3 ci/check_release_profile.py --sdk "$ANDROID_HOME" --tools "$RUNNER_TEMP/rk-tools" --out "$RUNNER_TEMP/rk-quality/release"
+2026-11-12T07:03:52.5330960Z [36;1mpython3 ci/check_release_profile.py --sdk "$ANDROID_HOME" --tools "$RUNNER_TEMP/rk-tools" --out "$RUNNER_TEMP/rk-quality/release"[0m
+2026-11-12T07:03:52.5384919Z shell: /usr/bin/bash -e {0}
+2026-11-12T07:03:52.5385126Z env:
+2026-11-12T07:03:52.5385372Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:03:52.5385753Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:03:52.5386039Z ##[endgroup]
+2026-11-12T07:03:52.6919181Z {"release_build": "blocked", "apk_created": false, "published": false, "signing_key_used": false, "gate": {"replacement_release_allowed": false, "reference": {"file_name": "Rabochaya-karta-v26.1-main-update.apk", "library_file_id": "libfile_c00a22eeb3b4819189b3936a3e78464a", "sha256": "5ac3c7091cecae66942cdffee7c91ca0eb96be5eae902e85b0d6d9920643c142"}, "blocked_by": ["install identity differs from 26.1; safe update and migration not established", "replacement versionCode must exceed the baseline", "ui-map: Главный экран карты, все панели, значки и управление", "ui-menus: Все меню, вкладки, диалоги и настройки", "catalog: 54 онлайн-источника, 3 набора и 7 групп", "layers: Менеджер карт, наборов и слоёв", "offline-formats: Все ранее поддержанные офлайн-форматы", "cache: Полный механизм кеша и скачивания областей", "cache-export: Перенос сохранённых карт одним файлом", "points: Все действия с метками и карточкой метки", "geometry: Маршруты, области, треки и рисунки", "manager: Файловый менеджер объектов, папок и групп", "symbols: Значки, SVG, цвета, подписи и собственные библиотеки", "media: Фото, видео, аудио и текстовые вложения", "import-export: Все форматы импорта и экспорта объектов", "filters: Поиск, фильтры и видимость объектов", "bluetooth: Передача файлов и объектов по Bluetooth", "coordinates: Координатные системы, сетки и измерения", "dem: DEM, высоты, рельеф и связанные инструменты", "compass: Компас и остальные разрешённые датчики", "settings: Все сохранённые настройки и локальное хранение", "migration: Обновление 26.1 без удаления и потери данных", "privacy: Согласованные ограничения приватности", "independence: Самостоятельная реализация и воспроизводимая сборка", "stability: Стабильность, minSdk 23 и проверка на устройствах"]}, "build_exit": 1}
+2026-11-12T07:03:52.6985021Z ##[group]Run python3 ci/android_lint_status.py --sdk "$ANDROID_HOME" --report "$RUNNER_TEMP/rk-quality/android-lint-support.json"
+2026-11-12T07:03:52.6985720Z [36;1mpython3 ci/android_lint_status.py --sdk "$ANDROID_HOME" --report "$RUNNER_TEMP/rk-quality/android-lint-support.json"[0m
+2026-11-12T07:03:52.7039923Z shell: /usr/bin/bash -e {0}
+2026-11-12T07:03:52.7040130Z env:
+2026-11-12T07:03:52.7040371Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:03:52.7040794Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:03:52.7041089Z ##[endgroup]
+2026-11-12T07:03:52.7319818Z {"tool": "official Android lint", "executed": false, "passed": null, "sdk_launcher_present": true, "reason": "NonGradle Java/smali/resource build has no validated Android lint project adapter; custom privacy audit is separate, not lint", "remaining": "Integrate official lint with the real manifest/source/resource/compile classpath and record its actual report before claiming lint coverage"}
+2026-11-12T07:03:52.7379001Z ##[group]Run test -c /dev/kvm
+2026-11-12T07:03:52.7379255Z [36;1mtest -c /dev/kvm[0m
+2026-11-12T07:03:52.7379452Z [36;1msudo chmod 666 /dev/kvm[0m
+2026-11-12T07:03:52.7434673Z shell: /usr/bin/bash -e {0}
+2026-11-12T07:03:52.7434879Z env:
+2026-11-12T07:03:52.7435123Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:03:52.7435530Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:03:52.7435822Z ##[endgroup]
+2026-11-12T07:03:52.7716516Z ##[group]Run reactivecircus/android-emulator-runner@v2
+2026-11-12T07:03:52.7716784Z with:
+2026-11-12T07:03:52.7716939Z   api-level: 23
+2026-11-12T07:03:52.7717101Z   arch: x86
+2026-11-12T07:03:52.7717253Z   target: default
+2026-11-12T07:03:52.7717428Z   disable-linux-hw-accel: false
+2026-11-12T07:03:52.7717626Z   disable-animations: true
+2026-11-12T07:03:52.7717819Z   disable-spellchecker: true
+2026-11-12T07:03:52.7718013Z   emulator-boot-timeout: 600
+2026-11-12T07:03:52.7718219Z   working-directory: independent-core
+2026-11-12T07:03:52.7719049Z   script: python3 ci/run_android_checks.py --keep-going --debug-qa --visual-log-modes offlineformats maplayersreopen --adb "$ANDROID_HOME/platform-tools/adb" --serial emulator-5554 --app "$RUNNER_TEMP/rk-qa/app.apk" --tests "$RUNNER_TEMP/rk-qa/tests.apk" --output "$RUNNER_TEMP/rk-results"
+2026-11-12T07:03:52.7720010Z   cores: 2
+2026-11-12T07:03:52.7720163Z   avd-name: test
+2026-11-12T07:03:52.7720325Z   force-avd-creation: true
+2026-11-12T07:03:52.7720544Z   emulator-port: 5554
+2026-11-12T07:03:52.7720887Z   emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+2026-11-12T07:03:52.7721240Z   enable-hw-keyboard: false
+2026-11-12T07:03:52.7721423Z   channel: stable
+2026-11-12T07:03:52.7721576Z env:
+2026-11-12T07:03:52.7721809Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:03:52.7722182Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:03:52.7722477Z ##[endgroup]
+2026-11-12T07:03:52.8237204Z ##[group]Configure emulator
+2026-11-12T07:03:52.8238335Z API level: 23
+2026-11-12T07:03:52.8238604Z System image API level: 23
+2026-11-12T07:03:52.8239002Z target: default
+2026-11-12T07:03:52.8239469Z CPU architecture: x86
+2026-11-12T07:03:52.8239766Z Hardware profile: 
+2026-11-12T07:03:52.8242359Z Cores: 2
+2026-11-12T07:03:52.8242816Z RAM size: 
+2026-11-12T07:03:52.8243060Z Heap size: 
+2026-11-12T07:03:52.8243261Z SD card path or size: 
+2026-11-12T07:03:52.8243455Z Disk size: 
+2026-11-12T07:03:52.8243613Z AVD name: test
+2026-11-12T07:03:52.8243786Z force avd creation: true
+2026-11-12T07:03:52.8246558Z Emulator boot timeout: 600
+2026-11-12T07:03:52.8246858Z emulator port: 5554
+2026-11-12T07:03:52.8247354Z emulator options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+2026-11-12T07:03:52.8247911Z disable animations: true
+2026-11-12T07:03:52.8248215Z disable spellchecker: true
+2026-11-12T07:03:52.8248532Z disable Linux hardware acceleration: false
+2026-11-12T07:03:52.8248874Z enable hardware keyboard: false
+2026-11-12T07:03:52.8249088Z custom working directory: independent-core
+2026-11-12T07:03:52.8249381Z Channel: 0 (stable)
+2026-11-12T07:03:52.8249542Z Script:
+2026-11-12T07:03:52.8250305Z python3 ci/run_android_checks.py --keep-going --debug-qa --visual-log-modes offlineformats maplayersreopen --adb "$ANDROID_HOME/platform-tools/adb" --serial emulator-5554 --app "$RUNNER_TEMP/rk-qa/app.apk" --tests "$RUNNER_TEMP/rk-qa/tests.apk" --output "$RUNNER_TEMP/rk-results"
+2026-11-12T07:03:52.8251114Z Pre emulator launch script:
+2026-11-12T07:03:52.8251476Z ##[endgroup]
+2026-11-12T07:03:52.8251753Z ##[group]Install Android SDK
+2026-11-12T07:03:52.8282915Z [command]/usr/bin/sh -c \yes | sdkmanager --licenses > /dev/null
+2026-11-12T07:03:54.1735039Z Installing latest build tools, platform tools, and platform.
+2026-11-12T07:03:54.1746986Z [command]/usr/bin/sh -c \sdkmanager --install 'build-tools;37.0.0' platform-tools 'platforms;android-23'> /dev/null
+2026-11-12T07:03:55.4499076Z Installing latest emulator.
+2026-11-12T07:03:55.4509808Z [command]/usr/bin/sh -c \sdkmanager --install emulator --channel=0 > /dev/null
+2026-11-12T07:04:05.7102447Z Installing system images.
+2026-11-12T07:04:05.7112952Z [command]/usr/bin/sh -c \sdkmanager --install 'system-images;android-23;default;x86' --channel=0 > /dev/null
+2026-11-12T07:04:39.3549215Z ##[endgroup]
+2026-11-12T07:04:39.3550168Z ##[group]Create AVD
+2026-11-12T07:04:39.3551300Z Creating AVD.
+2026-11-12T07:04:39.3564743Z [command]/usr/bin/sh -c \echo no | avdmanager create avd --force -n test --package 'system-images;android-23;default;x86'
+2026-11-12T07:04:40.0067848Z Loading local repository...                                                     
+2026-11-12T07:04:40.0068389Z [=========                              ] 25% Loading local repository...       
+2026-11-12T07:04:40.0068702Z [=========                              ] 25% Fetch remote repository...        
+2026-11-12T07:04:40.0069000Z [=======================================] 100% Fetch remote repository...       
+2026-11-12T07:04:40.1848894Z Auto-selecting single ABI x86
+2026-11-12T07:04:41.6033563Z Do you wish to create a custom hardware profile? [no] [command]/usr/bin/sh -c \printf 'hw.cpu.ncore=2\n' >> /home/runner/.android/avd/test.avd/config.ini
+2026-11-12T07:04:41.6053474Z ##[endgroup]
+2026-11-12T07:04:41.6056016Z ##[group]Launch Emulator
+2026-11-12T07:04:41.6056318Z Starting emulator.
+2026-11-12T07:04:41.6066161Z [command]/usr/bin/sh -c \/usr/local/lib/android/sdk/emulator/emulator -port 5554 -avd test -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim &
+2026-11-12T07:04:41.6183453Z INFO         | Android emulator version 37.2.13.0 (build_id 16740729) (CL:N/A)
+2026-11-12T07:04:41.6183997Z INFO         | Graphics backend: gfxstream
+2026-11-12T07:04:41.6184674Z INFO         | Found systemPath /usr/local/lib/android/sdk/system-images/android-23/default/x86/
+2026-11-12T07:04:41.6187659Z INFO         | Found systemPath /usr/local/lib/android/sdk/system-images/android-23/default/x86/
+2026-11-12T07:04:51.6117027Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2026-11-12T07:04:51.7081376Z * daemon not running; starting now at tcp:5037
+2026-11-12T07:04:51.7949653Z * daemon started successfully
+2026-11-12T07:04:51.7950554Z adb: device 'emulator-5554' not found
+2026-11-12T07:04:51.7956774Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+2026-11-12T07:04:53.7992187Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2026-11-12T07:04:53.8023955Z adb: device 'emulator-5554' not found
+2026-11-12T07:04:53.8029165Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+2026-11-12T07:04:55.8065284Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2026-11-12T07:04:55.8097894Z adb: device 'emulator-5554' not found
+2026-11-12T07:04:55.8102233Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+2026-11-12T07:04:57.8109576Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2026-11-12T07:04:57.8141091Z adb: device 'emulator-5554' not found
+2026-11-12T07:04:57.8145281Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+2026-11-12T07:04:58.3895591Z INFO         | Saving last run QEMU version for the AVD to 2
+2026-11-12T07:04:58.3896325Z INFO         | Increasing RAM size to 1024MB
+2026-11-12T07:04:58.3897125Z ##############################################################################
+2026-11-12T07:04:58.3897858Z ##                        WARNING - ACTION REQUIRED                         ##
+2026-11-12T07:04:58.3898445Z ##  Consider using the '-metrics-collection' flag to help improve the       ##
+2026-11-12T07:04:58.3899053Z ##  emulator by sending anonymized usage data. Or use the '-no-metrics'     ##
+2026-11-12T07:04:58.3899630Z ##  flag to bypass this warning and turn off the metrics collection.        ##
+2026-11-12T07:04:58.3900212Z ##  In a future release this warning will turn into a one-time blocking     ##
+2026-11-12T07:04:58.3900794Z ##  prompt to ask for explicit user input regarding metrics collection.     ##
+2026-11-12T07:04:58.3901278Z ##                                                                          ##
+2026-11-12T07:04:58.3902114Z ##  Please see '-help-metrics-collection' for more details. You can use     ##
+2026-11-12T07:04:58.3902700Z ##  '-metrics-to-file' or '-metrics-to-console' flags to see what type of   ##
+2026-11-12T07:04:58.3903281Z ##  data is being collected by emulator as part of usage statistics.        ##
+2026-11-12T07:04:58.3903781Z ##############################################################################
+2026-11-12T07:04:58.3904349Z INFO         | Guest GLES Driver: Auto (ext controls)
+2026-11-12T07:04:58.3904921Z INFO         | emuglConfig_init: vulkan_mode_selected:swiftshader gles_mode_selected:swiftshader
+2026-11-12T07:04:58.3905483Z INFO         | Checking system compatibility:
+2026-11-12T07:04:58.3905860Z INFO         |   Checking: hasSufficientDiskSpace
+2026-11-12T07:04:58.3906295Z INFO         |      Ok: Disk space requirements to run avd: `test` are met
+2026-11-12T07:04:58.3906730Z INFO         |   Checking: hasSufficientHwGpu
+2026-11-12T07:04:58.3907350Z INFO         |      Ok: Hardware GPU compatibility checks are not required
+2026-11-12T07:04:58.3907788Z INFO         |   Checking: hasSufficientSystem
+2026-11-12T07:04:58.3908198Z INFO         |      Ok: System requirements to run avd: `test` are met
+2026-11-12T07:04:58.3909179Z WARNING      | Feature QuickbootFileBacked is disabled due to stability issues, if you really want that, the environment variable ANDROID_EMU_FORCE_QUICKBOOT_FILE_BACKED need to set to 1
+2026-11-12T07:04:58.3910060Z WARNING      | encryption is off
+2026-11-12T07:04:58.3910414Z WARNING      | FeatureControl is requesting a non existing feature.
+2026-11-12T07:04:58.3910927Z INFO         | Storing crashdata in: /tmp/android-runner/emu-crash-37.2.13.db, detection is enabled for process: 2648
+2026-11-12T07:04:58.3911331Z INFO         | Initializing gfxstream backend
+2026-11-12T07:04:58.3911582Z INFO         | startOpenglesRendererImpl: gpu info
+2026-11-12T07:04:58.3911824Z INFO         | 
+2026-11-12T07:04:58.3912067Z INFO         | SharedLibrary::open for [libX11]
+2026-11-12T07:04:58.3912436Z INFO         | SharedLibrary::open for [libX11-xcb]
+2026-11-12T07:04:58.3912725Z WARNING      | Could not open libX11-xcb.so, try libX11-xcb.so.1
+2026-11-12T07:04:58.3913019Z INFO         | SharedLibrary::open for [libX11-xcb.so.1]
+2026-11-12T07:04:58.3913292Z INFO         | Graphics Adapter Vendor Google (Google Inc.)
+2026-11-12T07:04:58.3913640Z INFO         | Graphics Adapter Android Emulator OpenGL ES Translator (Google SwiftShader)
+2026-11-12T07:04:58.3914051Z INFO         | Graphics API Version OpenGL ES 3.0 (OpenGL ES 3.0 SwiftShader 4.0.0.1)
+2026-11-12T07:04:58.3916004Z INFO         | Graphics API Extensions GL_OES_EGL_sync GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_depth24 GL_OES_depth32 GL_OES_element_index_uint GL_OES_texture_float GL_OES_texture_float_linear GL_OES_compressed_paletted_texture GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth_texture GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_packed_depth_stencil GL_OES_vertex_half_float GL_OES_standard_derivatives GL_OES_texture_npot GL_OES_rgb8_rgba8 GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_texture_format_BGRA8888 GL_APPLE_texture_format_BGRA8888 
+2026-11-12T07:04:58.3917515Z INFO         | Graphics Device Extensions N/A
+2026-11-12T07:04:58.3917762Z INFO         | Verified boot params were not found.
+2026-11-12T07:04:58.3918006Z INFO         | Userspace boot properties:
+2026-11-12T07:04:58.3918248Z INFO         |   android.bootanim=0
+2026-11-12T07:04:58.3918479Z INFO         |   android.qemud=1
+2026-11-12T07:04:58.3918813Z INFO         |   androidboot.android_dt_dir=/sys/bus/platform/devices/ANDR0001:00/properties/android/
+2026-11-12T07:04:58.3919168Z INFO         |   androidboot.hardware=ranchu
+2026-11-12T07:04:58.3919418Z INFO         |   androidboot.serialno=EMULATOR37X2X13X0
+2026-11-12T07:04:58.3919651Z INFO         |   qemu=1
+2026-11-12T07:04:58.3919823Z INFO         |   qemu.avd_name=test
+2026-11-12T07:04:58.3920044Z INFO         |   qemu.camera_hq_edge_processing=0
+2026-11-12T07:04:58.3920464Z INFO         |   qemu.dalvik.vm.heapsize=256m
+2026-11-12T07:04:58.3920831Z INFO         |   qemu.gles=1
+2026-11-12T07:04:58.3931167Z INFO         |   qemu.gltransport=pipe
+2026-11-12T07:04:58.3931520Z INFO         |   qemu.gltransport.drawFlushInterval=800
+2026-11-12T07:04:58.3931884Z INFO         |   qemu.opengles.version=196608
+2026-11-12T07:04:58.3932265Z INFO         |   qemu.settings.system.screen_off_timeout=2147483647
+2026-11-12T07:04:58.3932636Z INFO         |   qemu.skin=320x640
+2026-11-12T07:04:58.3932940Z INFO         |   qemu.uirenderer=skiagl
+2026-11-12T07:04:58.4033967Z INFO         |   qemu.vsyncWARNING: cannnot unmap ptr 0x7f10c0401000 as it is in the protected range from 0x7f1080400000 to 0x7f10c0600000
+2026-11-12T07:04:58.4207099Z =60
+2026-11-12T07:04:58.4207498Z INFO         | Monitoring duration of emulator setup.
+2026-11-12T07:04:58.4311459Z INFO         | Setting display: 0 configuration to: 320x640, dpi: 160x160 
+2026-11-12T07:04:58.4324943Z INFO         | setDisplayActiveConfig: id:0, 320x640
+2026-11-12T07:04:58.4325939Z INFO         | emulatorSetupEnvironment: Environment scene is not required
+2026-11-12T07:04:58.4345806Z USER_INFO    | Emulator is performing a full startup. This may take upto two minutes, or more.
+2026-11-12T07:04:58.4348226Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading.
+2026-11-12T07:04:58.5755638Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading.
+2026-11-12T07:04:59.8182755Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2026-11-12T07:04:59.8213984Z adb: device offline
+2026-11-12T07:04:59.8219074Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+2026-11-12T07:05:01.8253684Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2026-11-12T07:05:01.8351393Z 
+2026-11-12T07:05:03.8391386Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2026-11-12T07:05:03.8465041Z 
+2026-11-12T07:05:05.8485467Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2026-11-12T07:05:05.8560714Z 
+2026-11-12T07:05:07.8588995Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2026-11-12T07:05:07.8664397Z 
+2026-11-12T07:05:09.8702217Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2026-11-12T07:05:09.8775650Z 
+2026-11-12T07:05:11.8816019Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2026-11-12T07:05:11.8893833Z 
+2026-11-12T07:05:13.8942666Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2026-11-12T07:05:13.9014326Z 
+2026-11-12T07:05:15.9050974Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+2026-11-12T07:05:15.9142026Z 1
+2026-11-12T07:05:15.9144639Z Emulator booted.
+2026-11-12T07:05:15.9163134Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell input keyevent 82
+2026-11-12T07:05:16.2483854Z Disabling animations.
+2026-11-12T07:05:16.2495815Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global window_animation_scale 0.0
+2026-11-12T07:05:16.5974389Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global transition_animation_scale 0.0
+2026-11-12T07:05:16.9112738Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global animator_duration_scale 0.0
+2026-11-12T07:05:17.2206197Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put secure spell_checker_enabled 0
+2026-11-12T07:05:17.5276453Z ##[endgroup]
+2026-11-12T07:05:17.5298352Z [command]/usr/bin/sh -c python3 ci/run_android_checks.py --keep-going --debug-qa --visual-log-modes offlineformats maplayersreopen --adb "$ANDROID_HOME/platform-tools/adb" --serial emulator-5554 --app "$RUNNER_TEMP/rk-qa/app.apk" --tests "$RUNNER_TEMP/rk-qa/tests.apk" --output "$RUNNER_TEMP/rk-results"
+2026-11-12T07:05:17.5798160Z INSTALL application and instrumentation
+2026-11-12T07:05:18.4048965Z RUN binary
+2026-11-12T07:05:20.8363450Z PASS binary
+2026-11-12T07:05:20.8363760Z RUN independence
+2026-11-12T07:05:23.1920460Z PASS independence
+2026-11-12T07:05:23.1920804Z RUN offlineformats
+2026-11-12T07:06:14.9981662Z INSTRUMENTATION_STATUS: stream=START offlineformats
+2026-11-12T07:06:14.9981917Z 
+2026-11-12T07:06:14.9982006Z INSTRUMENTATION_STATUS_CODE: 0
+2026-11-12T07:06:14.9985805Z INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 133, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и qa_ozi.png. Поддержаны UTF-8\/ASCII, WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MSF=1, полный PNG\/JPEG, raw BMP24\/32 (INFO40, б","foreground":"#de000000","arimo":true,"bounds":"[16, 180, 288, 313]","visible":true,"visibleBounds":"[16,81][304,394]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[59, 497, 84, 48]","visible":true,"visibleBounds":"[59,398][143,446]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff009688","arimo":true,"bounds":"[143, 497, 149, 48]","visible":true,"visibleBounds":"[143,398][292,446]","fullyVisible":true}]
+2026-11-12T07:06:14.9991545Z 
+2026-11-12T07:06:14.9991714Z INSTRUMENTATION_STATUS_CODE: 0
+2026-11-12T07:06:14.9996067Z INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 133, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и qa_ozi.bmp. Поддержаны UTF-8\/ASCII, WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MSF=1, полный PNG\/JPEG, raw BMP24\/32 (INFO40, б","foreground":"#de000000","arimo":true,"bounds":"[16, 180, 288, 313]","visible":true,"visibleBounds":"[16,81][304,394]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[59, 497, 84, 48]","visible":true,"visibleBounds":"[59,398][143,446]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff009688","arimo":true,"bounds":"[143, 497, 149, 48]","visible":true,"visibleBounds":"[143,398][292,446]","fullyVisible":true}]
+2026-11-12T07:06:14.9999337Z 
+2026-11-12T07:06:14.9999466Z INSTRUMENTATION_STATUS_CODE: 0
+2026-11-12T07:06:15.0002385Z INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 133, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и qa_ozi.gif. Поддержаны UTF-8\/ASCII, WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MSF=1, полный PNG\/JPEG, raw BMP24\/32 (INFO40, б","foreground":"#de000000","arimo":true,"bounds":"[16, 180, 288, 313]","visible":true,"visibleBounds":"[16,81][304,394]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[59, 497, 84, 48]","visible":true,"visibleBounds":"[59,398][143,446]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff009688","arimo":true,"bounds":"[143, 497, 149, 48]","visible":true,"visibleBounds":"[143,398][292,446]","fullyVisible":true}]
+2026-11-12T07:06:15.0005011Z 
+2026-11-12T07:06:15.0005131Z INSTRUMENTATION_STATUS_CODE: 0
+2026-11-12T07:06:15.0005525Z INSTRUMENTATION_RESULT: stream=PASS offlineformats: 1025 assertions
+2026-11-12T07:06:15.0005834Z 
+2026-11-12T07:06:15.0005955Z INSTRUMENTATION_CODE: -1
+2026-11-12T07:06:15.0006131Z 
+2026-11-12T07:06:15.0006985Z RK_VISUAL_BEGIN map_mvisual-geotiff-import-prompt.png 3e4768b0498007b12d202adeafbbabcc89d781a7dec65d0ffe0d0ade6a7090c6
+2026-11-12T07:06:15.0930699Z RK_VISUAL_END map_mvisual-geotiff-import-prompt.png
+2026-11-12T07:06:15.0931157Z RK_VISUAL_BEGIN map_mvisual-geotiff-import-saved.png 85fc7609cda1c68168d9d181e148a4d3831cdc47c9c8b8b7cb5772452e323965
+2026-11-12T07:06:15.1475949Z RK_VISUAL_END map_mvisual-geotiff-import-saved.png
+2026-11-12T07:06:15.1476443Z RK_VISUAL_BEGIN map_mvisual-ozi-bmp-import-prompt.png db95f9e36c3cc502aff7b3d5f7f432ea2afeeb28aeeeae7f1dbf2afbce252b83
+2026-11-12T07:06:15.2271800Z RK_VISUAL_END map_mvisual-ozi-bmp-import-prompt.png
+2026-11-12T07:06:15.2272251Z RK_VISUAL_BEGIN map_mvisual-ozi-bmp-import-saved.png 601593bc4043b82fd044c23c91b95c3c1348b80a10bed845262f6b200598c3ca
+2026-11-12T07:06:15.2796740Z RK_VISUAL_END map_mvisual-ozi-bmp-import-saved.png
+2026-11-12T07:06:15.2797202Z RK_VISUAL_BEGIN map_mvisual-ozi-gif-import-prompt.png 37be7d1849f56e38248d3373caf84b99b4fdbd9400787933a429a7fb05abe4fb
+2026-11-12T07:06:15.3590707Z RK_VISUAL_END map_mvisual-ozi-gif-import-prompt.png
+2026-11-12T07:06:15.3591180Z RK_VISUAL_BEGIN map_mvisual-ozi-gif-import-saved.png d22ea220709d3d1107c92788a4c10cae4c46edc05d1e94df293eeecdac81a9bb
+2026-11-12T07:06:15.3869278Z RK_VISUAL_END map_mvisual-ozi-gif-import-saved.png
+2026-11-12T07:06:15.3869712Z RK_VISUAL_BEGIN map_mvisual-ozi-import-prompt.png 1896612f8441a909ac2a1a76bda7e09aa9660c6e29754af6621005e55109bc68
+2026-11-12T07:06:15.4634695Z RK_VISUAL_END map_mvisual-ozi-import-prompt.png
+2026-11-12T07:06:15.4635443Z RK_VISUAL_BEGIN map_mvisual-ozi-import-saved.png b51ac83fb3635d44399a99e96faa840cf5d19704fa2c4ca30c60739444aab013
+2026-11-12T07:06:15.4968192Z RK_VISUAL_END map_mvisual-ozi-import-saved.png
+2026-11-12T07:06:15.4968428Z PASS offlineformats
+2026-11-12T07:06:15.4968594Z RUN cachewrites
+2026-11-12T07:06:17.5328599Z PASS cachewrites
+2026-11-12T07:06:17.5328939Z RUN cacheexport
+2026-11-12T07:06:26.3982220Z INSTRUMENTATION_RESULT: stream=PASS cacheexport: 69 assertions
+2026-11-12T07:06:26.3985487Z VISUAL_VALIDATED map_mvisual-composition-export-before.png a5a2ff9ce6e7b34d5ed09b68312aa3da95a22ca19824d6c5999c09fcfeac5f9c
+2026-11-12T07:06:26.3986243Z VISUAL_VALIDATED map_mvisual-composition-export-saved.png 82cdffebb7aef7f9521503a8ec883460e93d6d8e85327a61eebade5d7809980d
+2026-11-12T07:06:26.3986924Z VISUAL_VALIDATED map_mvisual-composition-zoom-output.png 0659cbdf1e82c4ba08dfd52951115ff373678ad40e57dc5a5e4f1cee908f2e1e
+2026-11-12T07:06:26.3987546Z VISUAL_VALIDATED map_mvisual-composition-zoom-source.png c9a2fa4778253282e5800cc7fe43a8075d4365b7677a507d83421bef46cc1502
+2026-11-12T07:06:26.3988700Z PASS cacheexport
+2026-11-12T07:06:26.3988979Z RUN launcher
+2026-11-12T07:06:42.0952483Z PASS launcher
+2026-11-12T07:06:42.0952713Z RUN coordinates
+2026-11-12T07:07:06.6520045Z PASS coordinates
+2026-11-12T07:07:06.6520279Z RUN catalogscreen
+2026-11-12T07:07:19.9003600Z PASS catalogscreen
+2026-11-12T07:07:19.9003997Z RUN geometryedit
+2026-11-12T07:07:54.7875990Z PASS geometryedit
+2026-11-12T07:07:54.7876472Z RUN geometrymap
+2026-11-12T07:08:25.0983952Z PASS geometrymap
+2026-11-12T07:08:25.0984434Z RUN geometrymapreopen
+2026-11-12T07:08:30.7325074Z PASS geometrymapreopen
+2026-11-12T07:08:30.7325957Z RUN objectmanager
+2026-11-12T07:08:59.3905478Z PASS objectmanager
+2026-11-12T07:08:59.3907539Z RUN objectmanagerreopen
+2026-11-12T07:09:04.4635917Z PASS objectmanagerreopen
+2026-11-12T07:09:04.4636176Z RUN clipboard
+2026-11-12T07:09:32.8225833Z PASS clipboard
+2026-11-12T07:09:32.8226155Z RUN clipboardreopen
+2026-11-12T07:09:39.8286149Z PASS clipboardreopen
+2026-11-12T07:09:39.8286476Z RUN managerfilters
+2026-11-12T07:10:20.1875428Z PASS managerfilters
+2026-11-12T07:10:20.1875795Z RUN managerfiltersreopen
+2026-11-12T07:10:26.6361151Z PASS managerfiltersreopen
+2026-11-12T07:10:26.6361437Z RUN managervisibility
+2026-11-12T07:10:59.5125713Z PASS managervisibility
+2026-11-12T07:10:59.5126147Z RUN managervisibilityreopen
+2026-11-12T07:11:08.4306163Z PASS managervisibilityreopen
+2026-11-12T07:11:08.4306544Z RUN managerdates
+2026-11-12T07:11:48.6196274Z PASS managerdates
+2026-11-12T07:11:48.6196888Z RUN managerdatesreopen
+2026-11-12T07:11:55.5595100Z PASS managerdatesreopen
+2026-11-12T07:11:55.5595397Z RUN managerdescription
+2026-11-12T07:12:29.5865808Z PASS managerdescription
+2026-11-12T07:12:29.5866087Z RUN managerdescriptionreopen
+2026-11-12T07:12:37.0946742Z PASS managerdescriptionreopen
+2026-11-12T07:12:37.0947075Z RUN managercontext
+2026-11-12T07:13:03.2647014Z PASS managercontext
+2026-11-12T07:13:03.2648454Z RUN managercontextreopen
+2026-11-12T07:13:11.1185669Z PASS managercontextreopen
+2026-11-12T07:13:11.1185949Z RUN managervisual
+2026-11-12T07:14:24.9381599Z INSTRUMENTATION_RESULT: stream=PASS managervisual: 248 assertions
+2026-11-12T07:14:24.9403608Z VISUAL_VALIDATED map_mvisual-day-landscape-dates-ime.png 6577f7fe11a1180123740c44a705e0aff2e6f38ccf05f3e54f4543bb5bd5e01f
+2026-11-12T07:14:24.9404738Z VISUAL_VALIDATED map_mvisual-day-landscape-description-ime.png 479b837daf5044b600b2326aa853efa30fff562286cc394e63172ebd02a1083d
+2026-11-12T07:14:24.9407260Z VISUAL_VALIDATED map_mvisual-day-landscape-main.png 703fb173696140df9534827b5e731a6f8b50cd23ddb1f7d9a29f0c03ad45d47e
+2026-11-12T07:14:24.9407957Z VISUAL_VALIDATED map_mvisual-day-landscape-name-ime.png e8025d84623ad6bd1db942484d90b7a8b3763afa34396b5929802cd36ee0f64c
+2026-11-12T07:14:24.9408912Z VISUAL_VALIDATED map_mvisual-day-landscape-name-restored.png 5d6898fe17681a1c1acff0d96fdd7584059e2c6ccd13981d9053890f072c4ad3
+2026-11-12T07:14:24.9411325Z VISUAL_VALIDATED map_mvisual-day-landscape-search-ime.png b14d665b1931979feaea1e6395f715ce61992e32d24f38a5c92dcc954ebd51d5
+2026-11-12T07:14:24.9412444Z VISUAL_VALIDATED map_mvisual-day-portrait-description-ime.png 2e556e831f0867a09486a949684685be34ab7be261c87de224e6f35b3e151b2b
+2026-11-12T07:14:24.9413102Z VISUAL_VALIDATED map_mvisual-day-portrait-main.png 317e934ce1be94d4e6c7360f4b611a90b3ed51bab7f528d74708d9cf3096feb8
+2026-11-12T07:14:24.9413747Z VISUAL_VALIDATED map_mvisual-day-portrait-name-ime.png 1690a39b86996671d7fd6aa4f640deb9324fb113571dd7fe40cd20738386e8bf
+2026-11-12T07:14:24.9414618Z VISUAL_VALIDATED map_mvisual-night-landscape-description-ime.png bcbd3bebef8a971d75da3e7e599cd2afcebb6560e9db94ca14ff7f47e9a38194
+2026-11-12T07:14:24.9415307Z VISUAL_VALIDATED map_mvisual-night-landscape-main.png 3adc6561d54a7b6172ef4537aa7d381d9e5ee747535ca2ab82e0c90f39b06678
+2026-11-12T07:14:24.9415937Z VISUAL_VALIDATED map_mvisual-night-landscape-name-ime.png b7016e33bd2c41a9edd79f4608172abce6eb4194056efb6db4a16a494e749ed4
+2026-11-12T07:14:24.9416599Z VISUAL_VALIDATED map_mvisual-night-landscape-name-restored.png d8ea41a52199024a154fa3afaf1c6280f641b29989b2dfcf7f013c8ee2ef7004
+2026-11-12T07:14:24.9417291Z VISUAL_VALIDATED map_mvisual-night-portrait-description-ime.png dc1a2b7e3e85df53ef312b4c203469453148aeed74bbc90bd6a40e63f457c326
+2026-11-12T07:14:24.9417957Z VISUAL_VALIDATED map_mvisual-night-portrait-main.png 23be967ec2a2132a8d4bf7a1ea7d825bdc307ecdbd8efb30ceab286cd13e3c59
+2026-11-12T07:14:24.9418576Z VISUAL_VALIDATED map_mvisual-night-portrait-name-ime.png ff87b944b527256ab87f24bf797f4d595f19276b18615fc3fcdc9baad9bcf28f
+2026-11-12T07:14:24.9418995Z PASS managervisual
+2026-11-12T07:14:24.9419171Z RUN managerrotation
+2026-11-12T07:15:48.4348288Z INSTRUMENTATION_RESULT: stream=PASS managerrotation: 379 assertions
+2026-11-12T07:15:48.4367307Z VISUAL_VALIDATED map_mvisual-rotation-description-before.png fd8de472ee8f523bd80aeb9765fb20d48311705210f9b44fe0c9f8a59ac32692
+2026-11-12T07:15:48.4368542Z VISUAL_VALIDATED map_mvisual-rotation-description-cancel.png b264c5bd5c6b32ed503f991e5e15555bd5475645957c898e7b0e4d20a34d2214
+2026-11-12T07:15:48.4369656Z VISUAL_VALIDATED map_mvisual-rotation-description-rejected.png 1c1b9ea5f3dbb9617f87fc6ac7b58580ad33fffd4f345003679ee193da557a70
+2026-11-12T07:15:48.4370397Z VISUAL_VALIDATED map_mvisual-rotation-description-return.png fd8de472ee8f523bd80aeb9765fb20d48311705210f9b44fe0c9f8a59ac32692
+2026-11-12T07:15:48.4371262Z VISUAL_VALIDATED map_mvisual-rotation-description-save.png b264c5bd5c6b32ed503f991e5e15555bd5475645957c898e7b0e4d20a34d2214
+2026-11-12T07:15:48.4372378Z VISUAL_VALIDATED map_mvisual-rotation-description-stale-after.png b264c5bd5c6b32ed503f991e5e15555bd5475645957c898e7b0e4d20a34d2214
+2026-11-12T07:15:48.4374822Z VISUAL_VALIDATED map_mvisual-rotation-description-stale-before.png 1092706118b8f2a117dcfea54437745fe4e549a71f3401dff392f171bf6d248f
+2026-11-12T07:15:48.4375971Z VISUAL_VALIDATED map_mvisual-rotation-name-before.png b648eb0080df1b91bd7994d25a1deaf1e4c0032ac03f6d9f4ddd868c8cbac9c6
+2026-11-12T07:15:48.4376986Z VISUAL_VALIDATED map_mvisual-rotation-name-cancel.png daa5b74437c7fd9512c0afac558b95d14efb5ea65cc70f43b8c571ae821b12c8
+2026-11-12T07:15:48.4377990Z VISUAL_VALIDATED map_mvisual-rotation-name-rejected.png 48585e5f8d13511e4aa721a80dd402c077308593500e12d96e890203983a1098
+2026-11-12T07:15:48.4378969Z VISUAL_VALIDATED map_mvisual-rotation-name-return.png ae70b6414ef308262e45d3e570b8721f97053607f10d268c7dadc369895b5633
+2026-11-12T07:15:48.4379960Z VISUAL_VALIDATED map_mvisual-rotation-name-save.png daa5b74437c7fd9512c0afac558b95d14efb5ea65cc70f43b8c571ae821b12c8
+2026-11-12T07:15:48.4381027Z VISUAL_VALIDATED map_mvisual-rotation-name-stale-after.png daa5b74437c7fd9512c0afac558b95d14efb5ea65cc70f43b8c571ae821b12c8
+2026-11-12T07:15:48.4382116Z VISUAL_VALIDATED map_mvisual-rotation-name-stale-before.png da942459b3cb566d9d0b8c2e82872aeee04bbbe1c9787440b43d503e68c37e35
+2026-11-12T07:15:48.4383187Z VISUAL_VALIDATED map_mvisual-rotation-selection-restored.png b22201fa0423a9708c0435551d3f41e95d96470d3df69b9b5aa889eb7df7f8c4
+2026-11-12T07:15:48.4384398Z VISUAL_VALIDATED map_mvisual-rotation-selection-stale.png 94c7139dc46e55ccc9ddd524aefb8b747f9f75eba57c9116b9168d5c16750945
+2026-11-12T07:15:48.4384850Z PASS managerrotation
+2026-11-12T07:15:48.4385024Z RUN managerforms
+2026-11-12T07:17:28.4443107Z INSTRUMENTATION_RESULT: stream=PASS managerforms: 515 assertions
+2026-11-12T07:17:28.4462522Z VISUAL_VALIDATED map_mvisual-forms-dates-apply.png e5046fbeb76d7586ec4116194a9103453b8f14ba7e3c9df83f1df1005f27ccc4
+2026-11-12T07:17:28.4463362Z VISUAL_VALIDATED map_mvisual-forms-dates-before.png 7fdffa24f1b5907144eef12285ce11817e6afb82c00ede1cc15e1410675648f7
+2026-11-12T07:17:28.4464320Z VISUAL_VALIDATED map_mvisual-forms-dates-cancel.png e5046fbeb76d7586ec4116194a9103453b8f14ba7e3c9df83f1df1005f27ccc4
+2026-11-12T07:17:28.4465216Z VISUAL_VALIDATED map_mvisual-forms-dates-corrected.png aab8dbdf86ff67c1668e4ca5f0b84f55ca38b1e8ce1f2e026e2084c8777d4dc4
+2026-11-12T07:17:28.4466261Z VISUAL_VALIDATED map_mvisual-forms-dates-message.png eb05c7d2f7d8f8993ff83ee8ce5d3fd316d825000350257190ee1fca6468fc5e
+2026-11-12T07:17:28.4466958Z VISUAL_VALIDATED map_mvisual-forms-dates-reset.png e5046fbeb76d7586ec4116194a9103453b8f14ba7e3c9df83f1df1005f27ccc4
+2026-11-12T07:17:28.4467960Z VISUAL_VALIDATED map_mvisual-forms-dates-return.png 9d30a08c60b839261c49cfa7b55fccff0ba76ef4aedf11d17ddaaaa5aa7056f2
+2026-11-12T07:17:28.4469001Z VISUAL_VALIDATED map_mvisual-forms-foreign-dates.png 57115fe79d2bf379fad9d807408e27cbb5c9fc8eaee7b0dd2940122910c1d0af
+2026-11-12T07:17:28.4469798Z VISUAL_VALIDATED map_mvisual-forms-foreign-search.png 57115fe79d2bf379fad9d807408e27cbb5c9fc8eaee7b0dd2940122910c1d0af
+2026-11-12T07:17:28.4471038Z VISUAL_VALIDATED map_mvisual-forms-move-after.png 08906e71ef0e1283c55e6d4949cdeb8e9d2528f42f3d5b07bf6b0bca7665a6a8
+2026-11-12T07:17:28.4471959Z VISUAL_VALIDATED map_mvisual-forms-move-before.png 2d06ecbd0caf076e53dd13988db1cd4e40156006992f090cd21e3571aad2cf72
+2026-11-12T07:17:28.4472817Z VISUAL_VALIDATED map_mvisual-forms-search-apply.png 8a2cd342f8709e2e5bd976dd377bbe6e8b33246574c7a41c6941e77cd0f0cae0
+2026-11-12T07:17:28.4473572Z VISUAL_VALIDATED map_mvisual-forms-search-before.png 79fd94fe66aef4763db902a1639ecbf00a17becb4318765e04301e8c5ea05228
+2026-11-12T07:17:28.4474350Z VISUAL_VALIDATED map_mvisual-forms-search-cancel.png 08815ea9e8256311d4c3a4f8b687d81a1d07b9fae0f973021a76a845bc2ace0d
+2026-11-12T07:17:28.4474958Z VISUAL_VALIDATED map_mvisual-forms-search-reset.png 42e358e6477aac87bc2598ba4a48a4376e10db32d678fcda8c731d9fe15273ca
+2026-11-12T07:17:28.4475549Z VISUAL_VALIDATED map_mvisual-forms-search-return.png 134fc965d5624126273550c0d63477de7bb11c2eebce60ec4ed0135c728d4820
+2026-11-12T07:17:28.4476165Z PASS managerforms
+2026-11-12T07:17:28.4476336Z RUN managermove
+2026-11-12T07:18:25.9961518Z INSTRUMENTATION_RESULT: stream=PASS managermove: 258 assertions
+2026-11-12T07:18:25.9975701Z VISUAL_VALIDATED map_mvisual-move-state-before.png d137d36cc54e6e1988ef8598f65407b703fb64eaa55bdfa3059bad5f3548c7ee
+2026-11-12T07:18:25.9976861Z VISUAL_VALIDATED map_mvisual-move-state-cancel.png fc71aa37dad82c13b3494a9531f221466377d1e545bea6f7db1058a3053008cf
+2026-11-12T07:18:25.9977838Z VISUAL_VALIDATED map_mvisual-move-state-foreign.png 39efd9b5583a639f8bfa2bb0af2388b913070a26257496726bf2951ffb95caef
+2026-11-12T07:18:25.9978518Z VISUAL_VALIDATED map_mvisual-move-state-rejected.png f8e5c119aa632309f5dde589e0d0680496a5c566f28ddf33c01c0c10652ca18f
+2026-11-12T07:18:25.9979234Z VISUAL_VALIDATED map_mvisual-move-state-return.png 7a5f6b9ca8e6563a986912092ec541207fa71762d670554b4b1e264d9bc21c86
+2026-11-12T07:18:25.9980200Z VISUAL_VALIDATED map_mvisual-move-state-save.png fc71aa37dad82c13b3494a9531f221466377d1e545bea6f7db1058a3053008cf
+2026-11-12T07:18:25.9981218Z VISUAL_VALIDATED map_mvisual-move-state-saved.png 782080525a0d9c4febb357a5203dee84da0154bd4ff8406e4a4319bcfe053fe6
+2026-11-12T07:18:25.9982180Z VISUAL_VALIDATED map_mvisual-move-state-stale-after-return.png f46e01877ab9ae2d75fd92db83fd12b906f310a135fc5ba6faf2b516c4982a13
+2026-11-12T07:18:25.9982892Z VISUAL_VALIDATED map_mvisual-move-state-stale-after.png a3e68f7bdccea1c2cca066356fb5298535a077c912caa67506f24c6338007068
+2026-11-12T07:18:25.9983576Z VISUAL_VALIDATED map_mvisual-move-state-stale-before.png 55d274c349497cb1eb06ffdaef695d0a902a7208bff004e1273146d2d2a5f4a1
+2026-11-12T07:18:25.9984047Z PASS managermove
+2026-11-12T07:18:25.9984448Z RUN managerconfirm
+2026-11-12T07:20:41.8640836Z INSTRUMENTATION_RESULT: stream=PASS managerconfirm: 766 assertions
+2026-11-12T07:20:41.8663789Z VISUAL_VALIDATED map_mvisual-confirm-delete-cancel.png 3b4a7bed00902ffd9a3b7681e4b0717ea081d960f7ff51825bf8bcc37939aede
+2026-11-12T07:20:41.8664966Z VISUAL_VALIDATED map_mvisual-confirm-delete-foreign.png 2a53e99197d99a0344a2cedf00b49c19adf084c253e4c1eee0221b33f382f7aa
+2026-11-12T07:20:41.8666012Z VISUAL_VALIDATED map_mvisual-confirm-delete-rejected-stale-after.png 4f0cf776bcdbb9c88297d9e79bf90935f0c0b594f273c9d7c81b8bfdb78006bf
+2026-11-12T07:20:41.8667059Z VISUAL_VALIDATED map_mvisual-confirm-delete-return.png d191a18a35b810ad153202ea86f7d91f4fd12e6feb688e6431362fc57e70ad2c
+2026-11-12T07:20:41.8668097Z VISUAL_VALIDATED map_mvisual-confirm-delete-stale-before.png c39d2dd252b23321fedc8fc9716519f9e17ca0adc8029c8b57d4b43929013c16
+2026-11-12T07:20:41.8669170Z VISUAL_VALIDATED map_mvisual-confirm-hide-cancel.png 946fb0d9a1eb26f2a567ba9be20ecd1e85350a24b553ee062089f2ea5dc02024
+2026-11-12T07:20:41.8670188Z VISUAL_VALIDATED map_mvisual-confirm-hide-foreign.png 2a53e99197d99a0344a2cedf00b49c19adf084c253e4c1eee0221b33f382f7aa
+2026-11-12T07:20:41.8671278Z VISUAL_VALIDATED map_mvisual-confirm-hide-rejected-stale-after.png 73341f69614e279f88c540ad6e15dc3848a16d17aa3daa45735be5400a39be55
+2026-11-12T07:20:41.8672677Z VISUAL_VALIDATED map_mvisual-confirm-hide-return.png eabc8131d356d70340365a12ddc39f9a47fbb480167f6d3f30561bdf01a852cd
+2026-11-12T07:20:41.8673361Z VISUAL_VALIDATED map_mvisual-confirm-hide-stale-before.png d5ade9811cf4b8925f2a6dac4ccbc68ed12c4c2146cea221fabe55d1838cea35
+2026-11-12T07:20:41.8674009Z VISUAL_VALIDATED map_mvisual-confirm-hierarchy.png 39e6c78f0d6d3973ff979d3b1e1e33b2d70be5efc2645190922e5520d7317ab6
+2026-11-12T07:20:41.8674871Z VISUAL_VALIDATED map_mvisual-confirm-show-cancel.png 619b7c083ba6c81d2be0f7bce2872bfa31e01e98240d4b3dbdaa1a504daf7ef4
+2026-11-12T07:20:41.8675494Z VISUAL_VALIDATED map_mvisual-confirm-show-foreign.png 113f01344ef8084ed6f3d52fde153524d09b59a6dd507b16fd753eba49d37c21
+2026-11-12T07:20:41.8676156Z VISUAL_VALIDATED map_mvisual-confirm-show-rejected-stale-after.png fca7f6bf818e2433442826fd8c259bb7c457b4eed38c4cf4f2b2c19bb001ec0c
+2026-11-12T07:20:41.8676820Z VISUAL_VALIDATED map_mvisual-confirm-show-return.png caeca78a4ab491fd16418e877a19dd6cadfe4e169a764d827d6c0a911683c11c
+2026-11-12T07:20:41.8677630Z VISUAL_VALIDATED map_mvisual-confirm-show-stale-before.png cd6e1b3b89cb360925216919ea51b38c5ba8133c798ebce41cf0da28cd3b170e
+2026-11-12T07:20:41.8678073Z PASS managerconfirm
+2026-11-12T07:20:41.8678251Z RUN managerpasteconfirm
+2026-11-12T07:23:16.5444292Z INSTRUMENTATION_RESULT: stream=PASS managerpasteconfirm: 970 assertions
+2026-11-12T07:23:16.5466532Z VISUAL_VALIDATED map_mvisual-confirm-pastecopy-cancel.png 4bf0ccaf4dac42a48e273bbc8135b9f95eafe9e6047520e2fe75667efdda2a55
+2026-11-12T07:23:16.5467864Z VISUAL_VALIDATED map_mvisual-confirm-pastecopy-confirm.png 4bf0ccaf4dac42a48e273bbc8135b9f95eafe9e6047520e2fe75667efdda2a55
+2026-11-12T07:23:16.5468971Z VISUAL_VALIDATED map_mvisual-confirm-pastecopy-foreign.png 18dd4ac1eca9fe0c4e3a152559598282e2dbdf8f9fc5bbce9b015b2ea1249706
+2026-11-12T07:23:16.5469813Z VISUAL_VALIDATED map_mvisual-confirm-pastecopy-rejected-replace-after.png 2bba1b91f3137ed076ae686b73fe1e392c99e8a86d339996e0778fb4d89f4f49
+2026-11-12T07:23:16.5471090Z VISUAL_VALIDATED map_mvisual-confirm-pastecopy-rejected-stale-after.png f689c06055f86a0d6cad61326a2c8f334694b33069b17d2123e688362c2deebf
+2026-11-12T07:23:16.5472344Z VISUAL_VALIDATED map_mvisual-confirm-pastecopy-replace-before.png 1b4660d834b88597cc9ee8f369a84d85f41ea06c1d353da014fb235987f719e2
+2026-11-12T07:23:16.5473381Z VISUAL_VALIDATED map_mvisual-confirm-pastecopy-return.png f0cafcef1c11f717aee813973642a67ec3f2d0bbe399d7ddca9f123d5e0c5461
+2026-11-12T07:23:16.5474349Z VISUAL_VALIDATED map_mvisual-confirm-pastecopy-stale-before.png ab96aaa6c087f7588657dcf7261e8dc1e52f6a198cd62456eef43f549c53b6b3
+2026-11-12T07:23:16.5475580Z VISUAL_VALIDATED map_mvisual-confirm-pastecut-cancel.png 31aed70d13b58b3a1172f70022c04763fca8f0a18ff45922d73b764a7940b74f
+2026-11-12T07:23:16.5476520Z VISUAL_VALIDATED map_mvisual-confirm-pastecut-confirm.png 6b128f8f277c9e9cedfd78d9b20effd133a0e177aa77e4448418c1f4cae1064c
+2026-11-12T07:23:16.5477223Z VISUAL_VALIDATED map_mvisual-confirm-pastecut-foreign.png 18dd4ac1eca9fe0c4e3a152559598282e2dbdf8f9fc5bbce9b015b2ea1249706
+2026-11-12T07:23:16.5477947Z VISUAL_VALIDATED map_mvisual-confirm-pastecut-rejected-replace-after.png ffaee0ea839d73052e0dfea003dd80f0d207bbbe72eaf26472405b21bba327b3
+2026-11-12T07:23:16.5478693Z VISUAL_VALIDATED map_mvisual-confirm-pastecut-rejected-stale-after.png f40b5a35fc3099d70e2d39eff7dd549d179af84a9f4a681768c8fd389babb532
+2026-11-12T07:23:16.5479399Z VISUAL_VALIDATED map_mvisual-confirm-pastecut-replace-before.png c69023036d7189ce2a44db763c93d753352dd71210818edf19997cb788b581e2
+2026-11-12T07:23:16.5480082Z VISUAL_VALIDATED map_mvisual-confirm-pastecut-return.png 2ccde2c804d722d3710aef70e9b621efc83f4d1ad9002107e62c7eb6e32881a0
+2026-11-12T07:23:16.5480755Z VISUAL_VALIDATED map_mvisual-confirm-pastecut-stale-before.png 2f16318db591d387979a1525ad32fc84f1dc76f576a239fde6bac6490c729c66
+2026-11-12T07:23:16.5481213Z PASS managerpasteconfirm
+2026-11-12T07:23:16.5481401Z RUN managerchooser
+2026-11-12T07:24:44.8226239Z CHOOSER_LAYOUT_DIAGNOSTICS
+2026-11-12T07:24:44.8226731Z --------- beginning of main
+2026-11-12T07:24:44.8227511Z --------- beginning of system
+2026-11-12T07:24:44.8228342Z 11-12 07:23:20.335  5020  5020 D RK_CHOOSER: stage=show-before activity=101472341 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8229562Z 11-12 07:23:20.335  5020  5020 D RK_CHOOSER: stage=show-after activity=101472341 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8230631Z 11-12 07:23:20.355  5020  5020 D RK_CHOOSER: stage=show-post activity=101472341 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8231334Z 11-12 07:23:23.165  5020  5020 D RK_CHOOSER: stage=save-native bytes=136
+2026-11-12T07:24:44.8232219Z 11-12 07:23:23.165  5020  5020 D RK_CHOOSER: stage=save-bundle activity=101472341 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8233306Z 11-12 07:23:23.217  5020  5020 D RK_CHOOSER: stage=restore-bundle activity=123695899 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=-1 actualTop=0 count=-1 children=-1 height=-1 width=-1 selected=-1 touch=false layoutRequested=false
+2026-11-12T07:24:44.8234614Z 11-12 07:23:23.250  5020  5020 D RK_CHOOSER: stage=show-before activity=123695899 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8235694Z 11-12 07:23:23.250  5020  5020 D RK_CHOOSER: stage=show-after activity=123695899 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8236814Z 11-12 07:23:23.265  5020  5020 D RK_CHOOSER: stage=restore-after-layout-before activity=123695899 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8237977Z 11-12 07:23:23.265  5020  5020 D RK_CHOOSER: stage=restore-after-layout-request activity=123695899 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8239078Z 11-12 07:23:23.266  5020  5020 D RK_CHOOSER: stage=show-post activity=123695899 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8240186Z 11-12 07:23:23.272  5020  5020 D RK_CHOOSER: stage=restore-after-layout-post activity=123695899 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8240920Z 11-12 07:23:25.728  5020  5020 D RK_CHOOSER: stage=save-native bytes=136
+2026-11-12T07:24:44.8241619Z 11-12 07:23:25.728  5020  5020 D RK_CHOOSER: stage=save-bundle activity=123695899 orientation=1 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8242751Z 11-12 07:23:25.768  5020  5020 D RK_CHOOSER: stage=restore-bundle activity=247457757 orientation=1 requestedFirst=0 requestedTop=8 actualFirst=-1 actualTop=0 count=-1 children=-1 height=-1 width=-1 selected=-1 touch=false layoutRequested=false
+2026-11-12T07:24:44.8243870Z 11-12 07:23:25.800  5020  5020 D RK_CHOOSER: stage=show-before activity=247457757 orientation=1 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8245207Z 11-12 07:23:25.800  5020  5020 D RK_CHOOSER: stage=show-after activity=247457757 orientation=1 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8246950Z 11-12 07:23:25.815  5020  5020 D RK_CHOOSER: stage=restore-after-layout-before activity=247457757 orientation=1 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8248407Z 11-12 07:23:25.815  5020  5020 D RK_CHOOSER: stage=restore-after-layout-request activity=247457757 orientation=1 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8250210Z 11-12 07:23:25.815  5020  5020 D RK_CHOOSER: stage=show-post activity=247457757 orientation=1 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8251744Z 11-12 07:23:25.823  5020  5020 D RK_CHOOSER: stage=restore-after-layout-post activity=247457757 orientation=1 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8252854Z 11-12 07:23:33.082  5020  5020 D RK_CHOOSER: stage=show-before activity=95820450 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8255709Z 11-12 07:23:33.082  5020  5020 D RK_CHOOSER: stage=show-after activity=95820450 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8256910Z 11-12 07:23:33.101  5020  5020 D RK_CHOOSER: stage=show-post activity=95820450 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8257614Z 11-12 07:23:33.683  5020  5020 D RK_CHOOSER: stage=save-native bytes=136
+2026-11-12T07:24:44.8258312Z 11-12 07:23:33.683  5020  5020 D RK_CHOOSER: stage=save-bundle activity=95820450 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8259393Z 11-12 07:23:33.725  5020  5020 D RK_CHOOSER: stage=restore-bundle activity=102011824 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=-1 actualTop=0 count=-1 children=-1 height=-1 width=-1 selected=-1 touch=false layoutRequested=false
+2026-11-12T07:24:44.8260471Z 11-12 07:23:33.756  5020  5020 D RK_CHOOSER: stage=show-before activity=102011824 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8261552Z 11-12 07:23:33.756  5020  5020 D RK_CHOOSER: stage=show-after activity=102011824 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8262683Z 11-12 07:23:33.772  5020  5020 D RK_CHOOSER: stage=restore-after-layout-before activity=102011824 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8263847Z 11-12 07:23:33.772  5020  5020 D RK_CHOOSER: stage=restore-after-layout-request activity=102011824 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8265325Z 11-12 07:23:33.772  5020  5020 D RK_CHOOSER: stage=show-post activity=102011824 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8266436Z 11-12 07:23:33.778  5020  5020 D RK_CHOOSER: stage=restore-after-layout-post activity=102011824 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8267553Z 11-12 07:23:41.439  5020  5020 D RK_CHOOSER: stage=show-before activity=223629556 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8268622Z 11-12 07:23:41.439  5020  5020 D RK_CHOOSER: stage=show-after activity=223629556 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8269681Z 11-12 07:23:41.457  5020  5020 D RK_CHOOSER: stage=show-post activity=223629556 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8270487Z 11-12 07:23:42.055  5020  5020 D RK_CHOOSER: stage=save-native bytes=136
+2026-11-12T07:24:44.8271180Z 11-12 07:23:42.055  5020  5020 D RK_CHOOSER: stage=save-bundle activity=223629556 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8272262Z 11-12 07:23:42.097  5020  5020 D RK_CHOOSER: stage=restore-bundle activity=50631968 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=-1 actualTop=0 count=-1 children=-1 height=-1 width=-1 selected=-1 touch=false layoutRequested=false
+2026-11-12T07:24:44.8273334Z 11-12 07:23:42.129  5020  5020 D RK_CHOOSER: stage=show-before activity=50631968 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8274620Z 11-12 07:23:42.129  5020  5020 D RK_CHOOSER: stage=show-after activity=50631968 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8275758Z 11-12 07:23:42.144  5020  5020 D RK_CHOOSER: stage=restore-after-layout-before activity=50631968 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8276917Z 11-12 07:23:42.144  5020  5020 D RK_CHOOSER: stage=restore-after-layout-request activity=50631968 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8278262Z 11-12 07:23:42.145  5020  5020 D RK_CHOOSER: stage=show-post activity=50631968 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8280131Z 11-12 07:23:42.153  5020  5020 D RK_CHOOSER: stage=restore-after-layout-post activity=50631968 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8281815Z 11-12 07:23:54.808  5020  5020 D RK_CHOOSER: stage=show-before activity=267449071 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8283593Z 11-12 07:23:54.808  5020  5020 D RK_CHOOSER: stage=show-after activity=267449071 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8285640Z 11-12 07:23:54.827  5020  5020 D RK_CHOOSER: stage=show-post activity=267449071 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8286787Z 11-12 07:23:55.429  5020  5020 D RK_CHOOSER: stage=save-native bytes=136
+2026-11-12T07:24:44.8287993Z 11-12 07:23:55.429  5020  5020 D RK_CHOOSER: stage=save-bundle activity=267449071 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8289968Z 11-12 07:23:55.468  5020  5020 D RK_CHOOSER: stage=restore-bundle activity=212139723 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=-1 actualTop=0 count=-1 children=-1 height=-1 width=-1 selected=-1 touch=false layoutRequested=false
+2026-11-12T07:24:44.8291921Z 11-12 07:24:02.587  5020  5020 D RK_CHOOSER: stage=show-before activity=113387518 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8293996Z 11-12 07:24:02.587  5020  5020 D RK_CHOOSER: stage=show-after activity=113387518 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8295886Z 11-12 07:24:02.606  5020  5020 D RK_CHOOSER: stage=show-post activity=113387518 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8296944Z 11-12 07:24:03.189  5020  5020 D RK_CHOOSER: stage=save-native bytes=136
+2026-11-12T07:24:44.8298174Z 11-12 07:24:03.189  5020  5020 D RK_CHOOSER: stage=save-bundle activity=113387518 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8299951Z 11-12 07:24:03.232  5020  5020 D RK_CHOOSER: stage=restore-bundle activity=159681738 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=-1 actualTop=0 count=-1 children=-1 height=-1 width=-1 selected=-1 touch=false layoutRequested=false
+2026-11-12T07:24:44.8301798Z 11-12 07:24:03.261  5020  5020 D RK_CHOOSER: stage=show-before activity=159681738 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8303605Z 11-12 07:24:03.261  5020  5020 D RK_CHOOSER: stage=show-after activity=159681738 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8305721Z 11-12 07:24:03.275  5020  5020 D RK_CHOOSER: stage=restore-after-layout-before activity=159681738 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8307759Z 11-12 07:24:03.276  5020  5020 D RK_CHOOSER: stage=restore-after-layout-request activity=159681738 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8309617Z 11-12 07:24:03.276  5020  5020 D RK_CHOOSER: stage=show-post activity=159681738 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8311347Z 11-12 07:24:03.283  5020  5020 D RK_CHOOSER: stage=restore-after-layout-post activity=159681738 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8313114Z 11-12 07:24:17.729  5020  5020 D RK_CHOOSER: stage=show-before activity=167881275 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8315370Z 11-12 07:24:17.729  5020  5020 D RK_CHOOSER: stage=show-after activity=167881275 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8317248Z 11-12 07:24:17.747  5020  5020 D RK_CHOOSER: stage=show-post activity=167881275 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8318376Z 11-12 07:24:18.341  5020  5020 D RK_CHOOSER: stage=save-native bytes=136
+2026-11-12T07:24:44.8319485Z 11-12 07:24:18.341  5020  5020 D RK_CHOOSER: stage=save-bundle activity=167881275 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8321364Z 11-12 07:24:23.606  5020  5020 D RK_CHOOSER: stage=show-before activity=248855098 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8323096Z 11-12 07:24:23.606  5020  5020 D RK_CHOOSER: stage=show-after activity=248855098 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8325031Z 11-12 07:24:23.624  5020  5020 D RK_CHOOSER: stage=show-post activity=248855098 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8326102Z 11-12 07:24:24.195  5020  5020 D RK_CHOOSER: stage=save-native bytes=136
+2026-11-12T07:24:44.8327248Z 11-12 07:24:24.195  5020  5020 D RK_CHOOSER: stage=save-bundle activity=248855098 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8329021Z 11-12 07:24:24.249  5020  5020 D RK_CHOOSER: stage=restore-bundle activity=26939656 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=-1 actualTop=0 count=-1 children=-1 height=-1 width=-1 selected=-1 touch=false layoutRequested=false
+2026-11-12T07:24:44.8330749Z 11-12 07:24:24.280  5020  5020 D RK_CHOOSER: stage=show-before activity=26939656 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8332521Z 11-12 07:24:24.280  5020  5020 D RK_CHOOSER: stage=show-after activity=26939656 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8334488Z 11-12 07:24:24.295  5020  5020 D RK_CHOOSER: stage=restore-after-layout-before activity=26939656 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8336605Z 11-12 07:24:24.295  5020  5020 D RK_CHOOSER: stage=restore-after-layout-request activity=26939656 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8338621Z 11-12 07:24:24.295  5020  5020 D RK_CHOOSER: stage=show-post activity=26939656 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8340389Z 11-12 07:24:24.303  5020  5020 D RK_CHOOSER: stage=restore-after-layout-post activity=26939656 orientation=2 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8341595Z 11-12 07:24:24.776  5020  5020 D RK_CHOOSER: stage=save-native bytes=136
+2026-11-12T07:24:44.8343051Z 11-12 07:24:24.777  5020  5020 D RK_CHOOSER: stage=save-bundle activity=26939656 orientation=1 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=384 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8345232Z 11-12 07:24:24.826  5020  5020 D RK_CHOOSER: stage=restore-bundle activity=144221637 orientation=1 requestedFirst=0 requestedTop=8 actualFirst=-1 actualTop=0 count=-1 children=-1 height=-1 width=-1 selected=-1 touch=false layoutRequested=false
+2026-11-12T07:24:44.8347178Z 11-12 07:24:24.853  5020  5020 D RK_CHOOSER: stage=show-before activity=144221637 orientation=1 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8349083Z 11-12 07:24:24.853  5020  5020 D RK_CHOOSER: stage=show-after activity=144221637 orientation=1 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8351053Z 11-12 07:24:24.868  5020  5020 D RK_CHOOSER: stage=restore-after-layout-before activity=144221637 orientation=1 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8353093Z 11-12 07:24:24.868  5020  5020 D RK_CHOOSER: stage=restore-after-layout-request activity=144221637 orientation=1 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8355185Z 11-12 07:24:24.868  5020  5020 D RK_CHOOSER: stage=show-post activity=144221637 orientation=1 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8356831Z 11-12 07:24:24.875  5020  5020 D RK_CHOOSER: stage=restore-after-layout-post activity=144221637 orientation=1 requestedFirst=0 requestedTop=8 actualFirst=0 actualTop=8 count=2 children=2 height=112 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8358427Z 11-12 07:24:32.081  5020  5020 D RK_CHOOSER: stage=show-before activity=119801529 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=20 children=10 height=482 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8359517Z 11-12 07:24:32.082  5020  5020 D RK_CHOOSER: stage=show-after activity=119801529 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=20 children=10 height=482 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8360574Z 11-12 07:24:32.089  5020  5020 D RK_CHOOSER: stage=show-post activity=119801529 orientation=1 requestedFirst=0 requestedTop=0 actualFirst=0 actualTop=8 count=20 children=10 height=481 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8361273Z 11-12 07:24:35.515  5020  5020 D RK_CHOOSER: stage=save-native bytes=136
+2026-11-12T07:24:44.8361969Z 11-12 07:24:35.515  5020  5020 D RK_CHOOSER: stage=save-bundle activity=119801529 orientation=2 requestedFirst=6 requestedTop=0 actualFirst=6 actualTop=0 count=20 children=11 height=481 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8363057Z 11-12 07:24:35.575  5020  5020 D RK_CHOOSER: stage=restore-bundle activity=65396717 orientation=2 requestedFirst=6 requestedTop=0 actualFirst=-1 actualTop=0 count=-1 children=-1 height=-1 width=-1 selected=-1 touch=false layoutRequested=false
+2026-11-12T07:24:44.8364281Z 11-12 07:24:35.601  5020  5020 D RK_CHOOSER: stage=show-before activity=65396717 orientation=2 requestedFirst=6 requestedTop=0 actualFirst=0 actualTop=8 count=20 children=4 height=162 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8365525Z 11-12 07:24:35.601  5020  5020 D RK_CHOOSER: stage=show-after activity=65396717 orientation=2 requestedFirst=6 requestedTop=0 actualFirst=0 actualTop=8 count=20 children=4 height=162 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8366657Z 11-12 07:24:35.607  5020  5020 D RK_CHOOSER: stage=restore-after-layout-before activity=65396717 orientation=2 requestedFirst=6 requestedTop=0 actualFirst=0 actualTop=8 count=20 children=4 height=161 width=384 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8367841Z 11-12 07:24:35.607  5020  5020 D RK_CHOOSER: stage=restore-after-layout-request activity=65396717 orientation=2 requestedFirst=6 requestedTop=0 actualFirst=0 actualTop=8 count=20 children=4 height=161 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8369381Z 11-12 07:24:35.607  5020  5020 D RK_CHOOSER: stage=show-post activity=65396717 orientation=2 requestedFirst=6 requestedTop=0 actualFirst=0 actualTop=8 count=20 children=4 height=161 width=384 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8371385Z 11-12 07:24:35.618  5020  5020 D RK_CHOOSER: stage=restore-after-layout-post activity=65396717 orientation=2 requestedFirst=6 requestedTop=0 actualFirst=6 actualTop=0 count=20 children=4 height=161 width=384 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8372589Z 11-12 07:24:38.063  5020  5020 D RK_CHOOSER: stage=save-native bytes=136
+2026-11-12T07:24:44.8373731Z 11-12 07:24:38.063  5020  5020 D RK_CHOOSER: stage=save-bundle activity=65396717 orientation=1 requestedFirst=6 requestedTop=0 actualFirst=6 actualTop=0 count=20 children=4 height=161 width=384 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8375777Z 11-12 07:24:38.114  5020  5020 D RK_CHOOSER: stage=restore-bundle activity=168016042 orientation=1 requestedFirst=6 requestedTop=0 actualFirst=-1 actualTop=0 count=-1 children=-1 height=-1 width=-1 selected=-1 touch=false layoutRequested=false
+2026-11-12T07:24:44.8377592Z 11-12 07:24:38.151  5020  5020 D RK_CHOOSER: stage=show-before activity=168016042 orientation=1 requestedFirst=6 requestedTop=0 actualFirst=0 actualTop=8 count=20 children=10 height=482 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8379372Z 11-12 07:24:38.151  5020  5020 D RK_CHOOSER: stage=show-after activity=168016042 orientation=1 requestedFirst=6 requestedTop=0 actualFirst=0 actualTop=8 count=20 children=10 height=482 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8381245Z 11-12 07:24:38.157  5020  5020 D RK_CHOOSER: stage=restore-after-layout-before activity=168016042 orientation=1 requestedFirst=6 requestedTop=0 actualFirst=0 actualTop=8 count=20 children=10 height=481 width=288 selected=-1 touch=true layoutRequested=false
+2026-11-12T07:24:44.8383207Z 11-12 07:24:38.157  5020  5020 D RK_CHOOSER: stage=restore-after-layout-request activity=168016042 orientation=1 requestedFirst=6 requestedTop=0 actualFirst=0 actualTop=8 count=20 children=10 height=481 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8385206Z 11-12 07:24:38.157  5020  5020 D RK_CHOOSER: stage=show-post activity=168016042 orientation=1 requestedFirst=6 requestedTop=0 actualFirst=0 actualTop=8 count=20 children=10 height=481 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8387069Z 11-12 07:24:38.169  5020  5020 D RK_CHOOSER: stage=restore-after-layout-post activity=168016042 orientation=1 requestedFirst=6 requestedTop=0 actualFirst=6 actualTop=0 count=20 children=11 height=481 width=288 selected=-1 touch=true layoutRequested=true
+2026-11-12T07:24:44.8388309Z INSTRUMENTATION_RESULT: stream=PASS managerchooser: 432 assertions
+2026-11-12T07:24:44.8389144Z VISUAL_VALIDATED map_mvisual-chooser-before.png 4a04cf7e28350926e3005a9c103f8fa991356caf1fb9193c11a4e774d8905104
+2026-11-12T07:24:44.8390105Z VISUAL_VALIDATED map_mvisual-chooser-cancel.png abb02ab8fa71d1daac6ecefb89a37a87e6303cb86adae0ae58cc08ee9ecc547f
+2026-11-12T07:24:44.8391142Z VISUAL_VALIDATED map_mvisual-chooser-choice-cancel.png abb02ab8fa71d1daac6ecefb89a37a87e6303cb86adae0ae58cc08ee9ecc547f
+2026-11-12T07:24:44.8392410Z VISUAL_VALIDATED map_mvisual-chooser-confirm-return.png 5710cbca1cc822bee095c33157120facc4c1e76fbfe42a0ea92bcec969a5a9f3
+2026-11-12T07:24:44.8393424Z VISUAL_VALIDATED map_mvisual-chooser-foreign.png c321ac916e4f610c965cf46047385a6de04719c7f1bdd258a01ab6916e7d4343
+2026-11-12T07:24:44.8394614Z VISUAL_VALIDATED map_mvisual-chooser-rejected.png 660788544fafe3f4a8ece07db3c2bae4887c2ae67db91564efe0c26754b3707d
+2026-11-12T07:24:44.8395582Z VISUAL_VALIDATED map_mvisual-chooser-return.png 063a90916a3dcf25cba938f2109d29066b9e5998b6fb4c90a451035404aabb93
+2026-11-12T07:24:44.8396545Z VISUAL_VALIDATED map_mvisual-chooser-save.png abb02ab8fa71d1daac6ecefb89a37a87e6303cb86adae0ae58cc08ee9ecc547f
+2026-11-12T07:24:44.8397495Z VISUAL_VALIDATED map_mvisual-chooser-saved.png 790faae35bc8409345e4096c6bf6344862c2cb04027098a7dd43200d31f76e07
+2026-11-12T07:24:44.8398484Z VISUAL_VALIDATED map_mvisual-chooser-scroll-before.png 754eb5bdaa7abc65783add91c8bca94927153ed86c863e0229fd314fc186542b
+2026-11-12T07:24:44.8399847Z VISUAL_VALIDATED map_mvisual-chooser-scroll-land.png eb445d4c3b414cb7d2641621be3b224c5a229bdd080544d25b683deb04f5e89f
+2026-11-12T07:24:44.8400847Z VISUAL_VALIDATED map_mvisual-chooser-scroll-return.png 22bfe03f2b88986d3cb5b0f8e2c37d190706f06ed54f203fbb46f90dcabf8b88
+2026-11-12T07:24:44.8401972Z VISUAL_VALIDATED map_mvisual-chooser-source-folder-return.png 8046ee5b37d71194d63b56ea57f37c4fea1cbfa8e1bbd31d0384d9934d2d9388
+2026-11-12T07:24:44.8403161Z VISUAL_VALIDATED map_mvisual-chooser-stale-after-return.png 554d42eb69983ac25b9c25bc8a24d12e58e1966e0d2b72fd2fd01df8d2a058aa
+2026-11-12T07:24:44.8404409Z VISUAL_VALIDATED map_mvisual-chooser-stale-after.png 09285f2b3f565f634ea43a6e392dd658011a4de06d942886b45d701666cf18fe
+2026-11-12T07:24:44.8405533Z VISUAL_VALIDATED map_mvisual-chooser-stale-before.png a0277f2b453bec34c68b232a108507ffad013930f0f21f8ef3388fdb4179d5f9
+2026-11-12T07:24:44.8406268Z PASS managerchooser
+2026-11-12T07:24:44.8406537Z RUN vertexrotation
+2026-11-12T07:26:09.9612990Z INSTRUMENTATION_RESULT: stream=PASS vertexrotation: 369 assertions
+2026-11-12T07:26:09.9631358Z VISUAL_VALIDATED map_mvisual-vertex-foreign-feature.png 3564d0f410efaaba199098b4a5830686957419650d9c1b613076d6f76f64d167
+2026-11-12T07:26:09.9632248Z VISUAL_VALIDATED map_mvisual-vertex-foreign-project.png 7901a136d324c7d74a9e553100b165ecbff4a7eab78342f98d7422cf371d4ae3
+2026-11-12T07:26:09.9633098Z VISUAL_VALIDATED map_mvisual-vertex-invalid-after.png a46410e1d684e5f398b4c998de807cc55c02d655261f2823d220139efc807281
+2026-11-12T07:26:09.9634269Z VISUAL_VALIDATED map_mvisual-vertex-invalid-before.png 0163db41e2e7cc3bb78541efde241c30e7b6f266b27f8f74ad137af65a351be7
+2026-11-12T07:26:09.9635168Z VISUAL_VALIDATED map_mvisual-vertex-invalid-ime-hidden.png dbff5612bab88dc105e84033387c0f0049310b343f8916a6449d68e2800e6109
+2026-11-12T07:26:09.9636123Z VISUAL_VALIDATED map_mvisual-vertex-invalid-land-ime.png a46410e1d684e5f398b4c998de807cc55c02d655261f2823d220139efc807281
+2026-11-12T07:26:09.9637110Z VISUAL_VALIDATED map_mvisual-vertex-invalid-return-ime.png 0163db41e2e7cc3bb78541efde241c30e7b6f266b27f8f74ad137af65a351be7
+2026-11-12T07:26:09.9638063Z VISUAL_VALIDATED map_mvisual-vertex-main-changed.png f1af385f545ca59884e6b6e7c9b0c03e07cdf080a7199fe816f8904060c99f14
+2026-11-12T07:26:09.9639061Z VISUAL_VALIDATED map_mvisual-vertex-route-before-apply.png 0373e239e5c1e9904a0d9ec4031845e689935beb35556d5d48cd830884277814
+2026-11-12T07:26:09.9639997Z VISUAL_VALIDATED map_mvisual-vertex-route-saved.png 80692c487db86868c60025f2dd636b2b7d37ab91911e6853ee73adea6aac4302
+2026-11-12T07:26:09.9640937Z VISUAL_VALIDATED map_mvisual-vertex-stale-after-rejected.png a7279d6df2eabfa31b8aad29c9378f9dc554e5c992e2ff58908c3831999b64fb
+2026-11-12T07:26:09.9641963Z VISUAL_VALIDATED map_mvisual-vertex-stale-before.png b406d0dfd4f006b9a1d0898cb1fcb2dbfb10a44bb147c76c6cf44b7f13bda80e
+2026-11-12T07:26:09.9643036Z VISUAL_VALIDATED map_mvisual-vertex-valid-after.png d3ebcce872fc6acb64be6861bea0f4cc3536dcaa39ed590658a7d2e0f3a8f0d5
+2026-11-12T07:26:09.9644468Z VISUAL_VALIDATED map_mvisual-vertex-valid-before.png 1c09247246915ba6b720ff106bcfe7ef78c835f0b7b02b88f67aad2ec0ee430a
+2026-11-12T07:26:09.9645502Z VISUAL_VALIDATED map_mvisual-vertex-valid-land-ime.png d3ebcce872fc6acb64be6861bea0f4cc3536dcaa39ed590658a7d2e0f3a8f0d5
+2026-11-12T07:26:09.9646484Z VISUAL_VALIDATED map_mvisual-vertex-valid-return-ime.png 4bc368a99f8744b40d2c3c131cdb12ad05f08b74bbccd8120b0c36f7af157d6d
+2026-11-12T07:26:09.9647157Z PASS vertexrotation
+2026-11-12T07:26:09.9647398Z RUN vertexscroll
+2026-11-12T07:26:40.4453093Z INSTRUMENTATION_RESULT: stream=PASS vertexscroll: 167 assertions
+2026-11-12T07:26:40.4459840Z VISUAL_VALIDATED map_mvisual-vertex-scroll-invalid-field.png 0af542a717e57d9a0c161ee3688b148a0a11cb76409505d4ec10092684c6bf75
+2026-11-12T07:26:40.4460578Z VISUAL_VALIDATED map_mvisual-vertex-scroll-invalid-message.png 0af542a717e57d9a0c161ee3688b148a0a11cb76409505d4ec10092684c6bf75
+2026-11-12T07:26:40.4461525Z VISUAL_VALIDATED map_mvisual-vertex-scroll-invalid-return.png 0af542a717e57d9a0c161ee3688b148a0a11cb76409505d4ec10092684c6bf75
+2026-11-12T07:26:40.4462715Z VISUAL_VALIDATED map_mvisual-vertex-scroll-stale-field.png eff2d7d74ee92ee127ee13a43f5409ad54d1e62a47d47af030171c9f9b0286c4
+2026-11-12T07:26:40.4463588Z VISUAL_VALIDATED map_mvisual-vertex-scroll-stale-message.png ab7d8c8054595fcee4736d700e0580c20a8e0390736fc1a6379a5b6017d350fd
+2026-11-12T07:26:40.4464601Z VISUAL_VALIDATED map_mvisual-vertex-scroll-stale-return.png ab7d8c8054595fcee4736d700e0580c20a8e0390736fc1a6379a5b6017d350fd
+2026-11-12T07:26:40.4466578Z PASS vertexscroll
+2026-11-12T07:26:40.4466890Z RUN geometryvertexconfirm
+2026-11-12T07:27:39.7772072Z INSTRUMENTATION_RESULT: stream=PASS geometryvertexconfirm: 367 assertions
+2026-11-12T07:27:39.7786311Z VISUAL_VALIDATED map_mvisual-geometry-delete-vertex-after.png 0fa0daab20ff3d10f601d2d2adfe23ef567ee3a3db6b1ecadb9be207f499bd24
+2026-11-12T07:27:39.7788528Z VISUAL_VALIDATED map_mvisual-geometry-delete-vertex-before-save.png 2f3355d3fbacfac1928fddd34e42a3473175af7c87d88a1873c2fba1a5dcda7e
+2026-11-12T07:27:39.7789655Z VISUAL_VALIDATED map_mvisual-geometry-delete-vertex-before.png 2dbc6b48366c9012866c2d663eed1647369e29f3e1278d5505f6291735080d68
+2026-11-12T07:27:39.7790372Z VISUAL_VALIDATED map_mvisual-geometry-delete-vertex-cancel-return.png d6b9d5e231f996585206abdf3ba568e926457f3e6a6b5b95fa74f7b09d7fc621
+2026-11-12T07:27:39.7791113Z VISUAL_VALIDATED map_mvisual-geometry-delete-vertex-confirm.png 0fa0daab20ff3d10f601d2d2adfe23ef567ee3a3db6b1ecadb9be207f499bd24
+2026-11-12T07:27:39.7792112Z VISUAL_VALIDATED map_mvisual-geometry-delete-vertex-foreign-feature.png 32981b630455ffcef2d768edfc59bef57895c57877978de1259f5ae88f0dc54e
+2026-11-12T07:27:39.7793323Z VISUAL_VALIDATED map_mvisual-geometry-delete-vertex-foreign-project.png 30fede390c071d71f345aa11a057613f0a4433e3a787ae4ef1eb0f3ba377bacb
+2026-11-12T07:27:39.7794565Z VISUAL_VALIDATED map_mvisual-geometry-delete-vertex-main-changed.png adb155474e88f99a3b1f3c6d1fb50a13ba550b41bf33c82c83e7935b1d0c172d
+2026-11-12T07:27:39.7795276Z VISUAL_VALIDATED map_mvisual-geometry-delete-vertex-saved.png 442ca88e0f650884bfe0ef6f7f1b565678b9308d8b2f751c0602a81992e924d0
+2026-11-12T07:27:39.7795963Z VISUAL_VALIDATED map_mvisual-geometry-delete-vertex-stale-after.png fb792f83eeaea84a19876f929dbc9c897b6ec7a38803ca009d927ea13c1ed48e
+2026-11-12T07:27:39.7796675Z VISUAL_VALIDATED map_mvisual-geometry-delete-vertex-stale-before.png bd7900ed881e74183b37e60619e66d982530d4531e9bdd4222307e8384638401
+2026-11-12T07:27:39.7797370Z VISUAL_VALIDATED map_mvisual-geometry-delete-vertex-stale-save.png 7e07c02f1568dde6146b14f66729b1fbcf5bab45f5bdf4e2a10e0cc551e3ef72
+2026-11-12T07:27:39.7797846Z PASS geometryvertexconfirm
+2026-11-12T07:27:39.7798046Z RUN geometryholeconfirm
+2026-11-12T07:29:01.6451784Z INSTRUMENTATION_RESULT: stream=PASS geometryholeconfirm: 515 assertions
+2026-11-12T07:29:01.6472153Z VISUAL_VALIDATED map_mvisual-geometry-delete-hole-after.png 56a01daefc41e7d73fb2423126565157ea5c86c7bf17d9ae9d04c1443abdd941
+2026-11-12T07:29:01.6473325Z VISUAL_VALIDATED map_mvisual-geometry-delete-hole-before-save.png 0fc55121a530deef28bf0bc358144177c8c63653552d9a1933be446f3576d7a4
+2026-11-12T07:29:01.6474975Z VISUAL_VALIDATED map_mvisual-geometry-delete-hole-before.png 178affd3053793a838901fa2aabba3b809d897179bae0339837518f8533afadc
+2026-11-12T07:29:01.6475976Z VISUAL_VALIDATED map_mvisual-geometry-delete-hole-cancel-return.png 178affd3053793a838901fa2aabba3b809d897179bae0339837518f8533afadc
+2026-11-12T07:29:01.6476701Z VISUAL_VALIDATED map_mvisual-geometry-delete-hole-cancelled-stage.png 91275139a8653a5e114d3926b1180c5acb6789ca33afb1d09f40c6de464d0cf6
+2026-11-12T07:29:01.6477556Z VISUAL_VALIDATED map_mvisual-geometry-delete-hole-confirm.png 56a01daefc41e7d73fb2423126565157ea5c86c7bf17d9ae9d04c1443abdd941
+2026-11-12T07:29:01.6478694Z VISUAL_VALIDATED map_mvisual-geometry-delete-hole-foreign-feature.png 87d75f73979974f14291e56ee5cfd08e8d2147e90e787dfc57ebea230b5a5038
+2026-11-12T07:29:01.6479624Z VISUAL_VALIDATED map_mvisual-geometry-delete-hole-foreign-project.png 66595062ab2e48e8aedc0ee3f4e10f9a2569695451b7335b282971f992b9e6c2
+2026-11-12T07:29:01.6480547Z VISUAL_VALIDATED map_mvisual-geometry-delete-hole-main-changed.png f70ad46a3607d9c148e106ffb59916f44cbc9d34a4e1538ee5455c6a78eb9d6f
+2026-11-12T07:29:01.6481282Z VISUAL_VALIDATED map_mvisual-geometry-delete-hole-saved.png 32f11346442eef1437499f8ddec9cd5b9ae29796a508615afbdcc9a405f223ad
+2026-11-12T07:29:01.6481994Z VISUAL_VALIDATED map_mvisual-geometry-delete-hole-stage-foreign.png 66595062ab2e48e8aedc0ee3f4e10f9a2569695451b7335b282971f992b9e6c2
+2026-11-12T07:29:01.6482708Z VISUAL_VALIDATED map_mvisual-geometry-delete-hole-stage-main-changed.png b0620c784fd4403a27f83680ac923bb33b2af25d5272282fd5dfd53916ac3b6d
+2026-11-12T07:29:01.6483418Z VISUAL_VALIDATED map_mvisual-geometry-delete-hole-staged-cancel.png 2c528de668205a08fd2b39f97dc91b4fd7c6540a91f21da9b76f294d1042c0a2
+2026-11-12T07:29:01.6484282Z VISUAL_VALIDATED map_mvisual-geometry-delete-hole-stale-after.png baac08787c846d20363ae1f40001c0dd707024336d32623365b9139ed797d836
+2026-11-12T07:29:01.6485005Z VISUAL_VALIDATED map_mvisual-geometry-delete-hole-stale-before.png 41bd167c7f3adcde5249036365b576dca65e0f1c11113d25bde1c02ad178b2f7
+2026-11-12T07:29:01.6485699Z VISUAL_VALIDATED map_mvisual-geometry-delete-hole-stale-save.png 8e8395c5a8cf37b1aa43233a295a4c183e67cdcf79ca51e0dd81d4facfa3fef8
+2026-11-12T07:29:01.6486162Z PASS geometryholeconfirm
+2026-11-12T07:29:01.6486346Z RUN vertexinsertion
+2026-11-12T07:30:14.2723394Z INSTRUMENTATION_RESULT: stream=PASS vertexinsertion: 357 assertions
+2026-11-12T07:30:14.2742821Z VISUAL_VALIDATED map_mvisual-vertex-insert-hole-after-before.png e3bbd553b57cc79141db06e156cac5314d2e1a86f6f170c573f8077dcef79a75
+2026-11-12T07:30:14.2743587Z VISUAL_VALIDATED map_mvisual-vertex-insert-hole-after-cancelled.png 2d8b8964274ec5105bf7865bd5a6efd5d4b62fae32a55674956bb459a1189ead
+2026-11-12T07:30:14.2744524Z VISUAL_VALIDATED map_mvisual-vertex-insert-hole-after-land.png 85c57cfa86fc9b64c079c51020d39c2fbdf35500f7bc2abd5d69a43e04ef1355
+2026-11-12T07:30:14.2745268Z VISUAL_VALIDATED map_mvisual-vertex-insert-hole-after-return.png e3bbd553b57cc79141db06e156cac5314d2e1a86f6f170c573f8077dcef79a75
+2026-11-12T07:30:14.2746086Z VISUAL_VALIDATED map_mvisual-vertex-insert-hole-before-applied.png b0595f0c8b415cc600e8850a682d32c89893dbf328bc53a9b2a64d6776376080
+2026-11-12T07:30:14.2746845Z VISUAL_VALIDATED map_mvisual-vertex-insert-hole-before-before.png dd6051d7056b2a388dbeccbe74193c4a0ae04472e3eddea40f7f5b90c96fd1c2
+2026-11-12T07:30:14.2747816Z VISUAL_VALIDATED map_mvisual-vertex-insert-hole-before-land.png 5c4075474ef49e4c34e331bf3e79fba5e9cbff970b1168e7026321085d0abb5f
+2026-11-12T07:30:14.2748637Z VISUAL_VALIDATED map_mvisual-vertex-insert-hole-before-return.png dd6051d7056b2a388dbeccbe74193c4a0ae04472e3eddea40f7f5b90c96fd1c2
+2026-11-12T07:30:14.2749419Z VISUAL_VALIDATED map_mvisual-vertex-insert-line-after-applied.png d4ca50df5eeb15151a91e4d8af9527cfcf089d530426a985adb2d0b738bef6c3
+2026-11-12T07:30:14.2750141Z VISUAL_VALIDATED map_mvisual-vertex-insert-line-after-before.png 669395934c4911d9070e3bb25a067216878fcfdc38c735f9e295c1b0af9ca99d
+2026-11-12T07:30:14.2751128Z VISUAL_VALIDATED map_mvisual-vertex-insert-line-after-land.png b15fda2178facf19dd088dd897a8c520715bb727ef2df6f0cfea884878a59c7a
+2026-11-12T07:30:14.2752067Z VISUAL_VALIDATED map_mvisual-vertex-insert-line-after-return.png 669395934c4911d9070e3bb25a067216878fcfdc38c735f9e295c1b0af9ca99d
+2026-11-12T07:30:14.2752963Z VISUAL_VALIDATED map_mvisual-vertex-insert-line-before-before.png 3fd43b90a3a4b98a90c98d3fe859ef5e1806f0f85a6d4c5da2cf5e3559490817
+2026-11-12T07:30:14.2753880Z VISUAL_VALIDATED map_mvisual-vertex-insert-line-before-cancelled.png ed86a8c728684d4abf99f26290792fde25fa3d45279d2ea7d36592153196790a
+2026-11-12T07:30:14.2754946Z VISUAL_VALIDATED map_mvisual-vertex-insert-line-before-land.png b15fda2178facf19dd088dd897a8c520715bb727ef2df6f0cfea884878a59c7a
+2026-11-12T07:30:14.2755853Z VISUAL_VALIDATED map_mvisual-vertex-insert-line-before-return.png 3fd43b90a3a4b98a90c98d3fe859ef5e1806f0f85a6d4c5da2cf5e3559490817
+2026-11-12T07:30:14.2756574Z PASS vertexinsertion
+2026-11-12T07:30:14.2756888Z RUN geometrynewhole
+2026-11-12T07:31:09.4523811Z INSTRUMENTATION_RESULT: stream=PASS geometrynewhole: 275 assertions
+2026-11-12T07:31:09.4542955Z VISUAL_VALIDATED map_mvisual-newhole-after-applied.png f7dcceedfe0195d8166d5d61e67d60935f5200d80cae90cf972c872e4fedf499
+2026-11-12T07:31:09.4543879Z VISUAL_VALIDATED map_mvisual-newhole-after-before.png f585276e12933e701cc832be2ae6431e39878037aebdc252776ac5c3c34f014f
+2026-11-12T07:31:09.4544895Z VISUAL_VALIDATED map_mvisual-newhole-after-land.png 998ed599e38bb7c9afe3d8127475cec465e89274df41ea98e200e0fe815f79dd
+2026-11-12T07:31:09.4545814Z VISUAL_VALIDATED map_mvisual-newhole-after-return.png f585276e12933e701cc832be2ae6431e39878037aebdc252776ac5c3c34f014f
+2026-11-12T07:31:09.4546726Z VISUAL_VALIDATED map_mvisual-newhole-before-before.png d912a7dc2e7888b11cc9f6ad98338363031796fa2d1d33124c612330566ab0e7
+2026-11-12T07:31:09.4547640Z VISUAL_VALIDATED map_mvisual-newhole-before-cancelled.png 829e0ba3977f1230d9c8a5495898d5c4b23e81162c04885397e83a53170a363f
+2026-11-12T07:31:09.4548594Z VISUAL_VALIDATED map_mvisual-newhole-before-land.png 998ed599e38bb7c9afe3d8127475cec465e89274df41ea98e200e0fe815f79dd
+2026-11-12T07:31:09.4549641Z VISUAL_VALIDATED map_mvisual-newhole-before-return.png d3831a5cddf4c985878ea666d048ab51c58e822a49bece233649a44408794f63
+2026-11-12T07:31:09.4550328Z VISUAL_VALIDATED map_mvisual-newhole-delete-cancel-before.png 955923d636bfff237fcdf53108e6666a6cbe82bb0235bc5e91f4603f9688202d
+2026-11-12T07:31:09.4551028Z VISUAL_VALIDATED map_mvisual-newhole-delete-cancel-cancelled.png 9ed4a3334dd5991a0b476186853a4f8e5d2879f0f33c1e444e4fb1cd88d226b9
+2026-11-12T07:31:09.4551705Z VISUAL_VALIDATED map_mvisual-newhole-delete-cancel-land.png 6a2c178fdd769c00c8baa14dd7ba94d450711e7b9f945c40ef5b74eef354773d
+2026-11-12T07:31:09.4552393Z VISUAL_VALIDATED map_mvisual-newhole-delete-cancel-return.png bad257c4a03d45772de43f036440e5b4a2d64daa304f520046a5a44b70a6bfc8
+2026-11-12T07:31:09.4553078Z VISUAL_VALIDATED map_mvisual-newhole-delete-save-applied.png 7671edd3b8c4d71ad9c0f6a4385874f647ddf9f0609c08f6108f1f2604fc6d6c
+2026-11-12T07:31:09.4553745Z VISUAL_VALIDATED map_mvisual-newhole-delete-save-before.png 955923d636bfff237fcdf53108e6666a6cbe82bb0235bc5e91f4603f9688202d
+2026-11-12T07:31:09.4554625Z VISUAL_VALIDATED map_mvisual-newhole-delete-save-land.png a070bceb2c8ed4cd2e8bf5808ea1af0f8e70c3d538574af166fb68e9a93b0d92
+2026-11-12T07:31:09.4555283Z VISUAL_VALIDATED map_mvisual-newhole-delete-save-return.png 9337b2ac90df7bebfb688e26eba8d571fcd36e40f6d3e54fee5d0a12538ecfe3
+2026-11-12T07:31:09.4555720Z PASS geometrynewhole
+2026-11-12T07:31:09.4555903Z RUN geometrynewholeguards
+2026-11-12T07:32:33.6884706Z INSTRUMENTATION_RESULT: stream=PASS geometrynewholeguards: 445 assertions
+2026-11-12T07:32:33.6900110Z VISUAL_VALIDATED map_mvisual-newhole-guard-delete-main-changed.png 4c8d13edd2d9f5ddd5da608cdb9981d764763ea994dc1ad765b1e1c471a4d7e4
+2026-11-12T07:32:33.6901338Z VISUAL_VALIDATED map_mvisual-newhole-guard-delete-stale-after.png 6a7ff5f29af60cd34229cb69b7cde2c29dfa25f62fa40cf0a852e1d7fb2d553a
+2026-11-12T07:32:33.6902791Z VISUAL_VALIDATED map_mvisual-newhole-guard-delete-stale-before.png 6a7ff5f29af60cd34229cb69b7cde2c29dfa25f62fa40cf0a852e1d7fb2d553a
+2026-11-12T07:32:33.6903610Z VISUAL_VALIDATED map_mvisual-newhole-guard-foreign-feature.png 8da42455089ab01314137d949b8bda6586f802ca138612aa2acf6849ed3dc39e
+2026-11-12T07:32:33.6904492Z VISUAL_VALIDATED map_mvisual-newhole-guard-foreign-project.png 2d62a5bbe1bf289a348585f0e25fb9021155bca5e382a8bad947609579eaac6d
+2026-11-12T07:32:33.6905352Z VISUAL_VALIDATED map_mvisual-newhole-guard-invalid-before.png 7a67bc9cbae6f4de7fdf44e8c868614a3901897bc369da04603ee57eeabeed61
+2026-11-12T07:32:33.6906363Z VISUAL_VALIDATED map_mvisual-newhole-guard-invalid-land.png 8628404d3190fa53dc211178814eec20148fc35aaf23e2eee9e2b2b719385834
+2026-11-12T07:32:33.6907372Z VISUAL_VALIDATED map_mvisual-newhole-guard-invalid-return.png 7a67bc9cbae6f4de7fdf44e8c868614a3901897bc369da04603ee57eeabeed61
+2026-11-12T07:32:33.6908492Z VISUAL_VALIDATED map_mvisual-newhole-guard-raw-main-changed.png 674100dbe84d83620f9374a27693caf3189d723b5acb8ad02ce4c7300ead5162
+2026-11-12T07:32:33.6909613Z VISUAL_VALIDATED map_mvisual-newhole-guard-raw-stale-after.png 89ac44bf70fcebba2178185076bc4484fdc5f1afaa1646f0de8357b981f3e984
+2026-11-12T07:32:33.6910583Z VISUAL_VALIDATED map_mvisual-newhole-guard-raw-stale-before.png 4923ce44ca522743d660b3906a81d8bebabf3be1eed864c311897b978aae3824
+2026-11-12T07:32:33.6911274Z VISUAL_VALIDATED map_mvisual-newhole-guard-stale-save.png 848b76f8a944176e1f758256d1d302b9a7072a05d0934d20990142aa9b755a31
+2026-11-12T07:32:33.6911720Z PASS geometrynewholeguards
+2026-11-12T07:32:33.6911914Z RUN mapvertexconfirm
+2026-11-12T07:33:40.4482115Z INSTRUMENTATION_RESULT: stream=PASS mapvertexconfirm: 444 assertions
+2026-11-12T07:33:40.4507216Z VISUAL_VALIDATED map_mvisual-map-vertex-confirm-after-land.png 50c008806918d4ecf6ca8fd34521dca21c25380818bcad7f547e898fe5e440cc
+2026-11-12T07:33:40.4507999Z VISUAL_VALIDATED map_mvisual-map-vertex-confirm-after-return.png 7edf71ee7b5b03339fac30571869a750148fa2535fe91d27092cd5e84f7a687b
+2026-11-12T07:33:40.4508849Z VISUAL_VALIDATED map_mvisual-map-vertex-confirm-applied-before-save.png bf44ba6b29f879483239b44f4758747a089d642a5bf795db6d84e6fde9770810
+2026-11-12T07:33:40.4509608Z VISUAL_VALIDATED map_mvisual-map-vertex-confirm-before-land.png b58f4d365deb6f051e1e374509da9121409322885632bc9d751ab1f9fe8cf4a5
+2026-11-12T07:33:40.4510366Z VISUAL_VALIDATED map_mvisual-map-vertex-confirm-before-return.png 74dbb87ec5dc529eb797de90132bd95e45cad2efde8e4a8f4e628fa7b3054a19
+2026-11-12T07:33:40.4511130Z VISUAL_VALIDATED map_mvisual-map-vertex-confirm-confirm-nonzero.png e715b2cdbd76cfbf632ceecef33bc60b7867b27ddfeeca741654ab3124a2ac4c
+2026-11-12T07:33:40.4511916Z VISUAL_VALIDATED map_mvisual-map-vertex-confirm-foreign-feature.png 0f10a32e6200d48918e416a7dc6d6dc60f0b84b59f1fff7ca6cffd69b80d2f94
+2026-11-12T07:33:40.4512891Z VISUAL_VALIDATED map_mvisual-map-vertex-confirm-foreign-project.png 7e2d06bd56a9aac9db784f06fcc00634ad5dbccea6c2be990698772b54f77990
+2026-11-12T07:33:40.4513835Z VISUAL_VALIDATED map_mvisual-map-vertex-confirm-main-changed.png b10c49f78e553f5448a8f7587903eb56220797e528f8f7788c0056bc50263609
+2026-11-12T07:33:40.4515145Z VISUAL_VALIDATED map_mvisual-map-vertex-confirm-saved-nonzero.png 45be8a25a7d2a6e8a76ebe1830ddab76def6c81d9eb04158eacc366ccdbe7cf4
+2026-11-12T07:33:40.4516271Z VISUAL_VALIDATED map_mvisual-map-vertex-confirm-selected-changed.png b10c49f78e553f5448a8f7587903eb56220797e528f8f7788c0056bc50263609
+2026-11-12T07:33:40.4517389Z VISUAL_VALIDATED map_mvisual-map-vertex-confirm-stale-after.png ad791c7f4bfed1b57b4b94a42195319843fbf32963ab043327f35fb894f173db
+2026-11-12T07:33:40.4518646Z VISUAL_VALIDATED map_mvisual-map-vertex-confirm-stale-before.png 819ddc83e0f42e8f5dd3565f8962388757f719038d12b37704cb3562bf64d128
+2026-11-12T07:33:40.4519866Z VISUAL_VALIDATED map_mvisual-map-vertex-confirm-stale-main-save.png b18c52e3d0d9ccc0d8cc8b2b07544a876dec6c6950de543c652f526f14a961f1
+2026-11-12T07:33:40.4520692Z PASS mapvertexconfirm
+2026-11-12T07:33:40.4521013Z RUN mapholeconfirm
+2026-11-12T07:34:32.1212607Z INSTRUMENTATION_RESULT: stream=PASS mapholeconfirm: 325 assertions
+2026-11-12T07:34:32.1243676Z VISUAL_VALIDATED map_mvisual-map-hole-existing-cancel-before.png c59f35ca70dcbe6e05a2c9e3e8d2e817183eb54a98b769312bc08ad61e2c35da
+2026-11-12T07:34:32.1244769Z VISUAL_VALIDATED map_mvisual-map-hole-existing-cancel-cancelled.png 12cc6731b3a104f639dd3f8ba6c3a9af0595ba6987d2a7fb6ec412a7d74babfe
+2026-11-12T07:34:32.1245877Z VISUAL_VALIDATED map_mvisual-map-hole-existing-cancel-land.png 2c052135261bf11350ab832961a60b1fc3c7758bded8235664d3b709bcdd7c8f
+2026-11-12T07:34:32.1247110Z VISUAL_VALIDATED map_mvisual-map-hole-existing-cancel-return.png 3e4fe08b39d4e27b67e1d8c1989d2f2185a54b31080af22b207e84da65966dfd
+2026-11-12T07:34:32.1248161Z VISUAL_VALIDATED map_mvisual-map-hole-existing-save-applied.png 77b8b91fc6c8fd6049a58ed81724b5cc4682d05345a727d67463430a7b87c1a3
+2026-11-12T07:34:32.1249265Z VISUAL_VALIDATED map_mvisual-map-hole-existing-save-before.png c59f35ca70dcbe6e05a2c9e3e8d2e817183eb54a98b769312bc08ad61e2c35da
+2026-11-12T07:34:32.1250298Z VISUAL_VALIDATED map_mvisual-map-hole-existing-save-land.png 2c052135261bf11350ab832961a60b1fc3c7758bded8235664d3b709bcdd7c8f
+2026-11-12T07:34:32.1251233Z VISUAL_VALIDATED map_mvisual-map-hole-existing-save-return.png 9532dc5b187d9f2b08ef30df690cb8b3717bb5af04a09835aeb4f28e2b36f80c
+2026-11-12T07:34:32.1252055Z VISUAL_VALIDATED map_mvisual-map-hole-new-cancel-before.png dc7010affb2644c74e21d7f433c92455fd09d2c9292152d4fd7c2bf9680eb38c
+2026-11-12T07:34:32.1252852Z VISUAL_VALIDATED map_mvisual-map-hole-new-cancel-cancelled.png 3010447a5b384191e175848fcce952650b0c321fb67f822958f6eea843b20bd3
+2026-11-12T07:34:32.1253642Z VISUAL_VALIDATED map_mvisual-map-hole-new-cancel-land.png 4c628a62645810c2251beeb9ba2daea1520388702792c29aa23eb105956b04ce
+2026-11-12T07:34:32.1256550Z VISUAL_VALIDATED map_mvisual-map-hole-new-cancel-return.png 812d5b3d0ff79db7d2394c1e2a4ee57a3b6ac6762a8d23419b728aaa71d84d61
+2026-11-12T07:34:32.1257734Z VISUAL_VALIDATED map_mvisual-map-hole-new-save-applied.png 4a3ae0c94bcec619dd47064557a9b66e65e5a83263f74fb79caff04348867eef
+2026-11-12T07:34:32.1258806Z VISUAL_VALIDATED map_mvisual-map-hole-new-save-before.png dc7010affb2644c74e21d7f433c92455fd09d2c9292152d4fd7c2bf9680eb38c
+2026-11-12T07:34:32.1259812Z VISUAL_VALIDATED map_mvisual-map-hole-new-save-land.png 4c628a62645810c2251beeb9ba2daea1520388702792c29aa23eb105956b04ce
+2026-11-12T07:34:32.1260802Z VISUAL_VALIDATED map_mvisual-map-hole-new-save-return.png 812d5b3d0ff79db7d2394c1e2a4ee57a3b6ac6762a8d23419b728aaa71d84d61
+2026-11-12T07:34:32.1261462Z PASS mapholeconfirm
+2026-11-12T07:34:32.1261717Z RUN mapundorotation
+2026-11-12T07:35:38.2442398Z INSTRUMENTATION_RESULT: stream=PASS mapundorotation: 363 assertions
+2026-11-12T07:35:38.2476771Z VISUAL_VALIDATED map_mvisual-map-undo-after-land.png 6e239fe8dfa9d031c64333f17ddcc82b8b7ce5ffca8e252ad8852297ca556567
+2026-11-12T07:35:38.2477621Z VISUAL_VALIDATED map_mvisual-map-undo-after-return.png a4f39f1db3a0d400d97fdb70f05951e3c5e1b514e5b6251ad37dee8684b8c4ce
+2026-11-12T07:35:38.2478601Z VISUAL_VALIDATED map_mvisual-map-undo-before-land.png 36e931b4b1f16183a17a9b168e8b65402917eef6215f82e02ed5bee45ab7e6df
+2026-11-12T07:35:38.2479585Z VISUAL_VALIDATED map_mvisual-map-undo-before-return.png a48cfcf8b88a7cf8de964d93bafe3835d489eff483c5bab8354f3937317c3275
+2026-11-12T07:35:38.2480385Z VISUAL_VALIDATED map_mvisual-map-undo-cancel-close.png f3812ad155889aab34403130b8e72350b6ef8a42ce3c4548e432349ef5011a99
+2026-11-12T07:35:38.2481027Z VISUAL_VALIDATED map_mvisual-map-undo-foreign-feature.png fd836c13ee03edc474489284a40bc5e8ef20bad86a8a20980bf139b1a2b03a9e
+2026-11-12T07:35:38.2481677Z VISUAL_VALIDATED map_mvisual-map-undo-foreign-key.png 6d12f6f472b18df7d6e6bdc97949fddb4ad45e94b0862b0953a867ad95222b8c
+2026-11-12T07:35:38.2482306Z VISUAL_VALIDATED map_mvisual-map-undo-foreign-project.png 898a0b3a55b184dc7457811a8810bf006c4ccdb3faea5949b6d3f70e71b8d18e
+2026-11-12T07:35:38.2483608Z VISUAL_VALIDATED map_mvisual-map-undo-main-changed.png 3d3d2fc0bfadb9192d3be4d9cfa2ab979f35884e739661664832cceeb7d1e40f
+2026-11-12T07:35:38.2484622Z VISUAL_VALIDATED map_mvisual-map-undo-multi-after-undo.png 532198e902c54338f69876d6625694c2014270ec622c984f7824d0fdd2eaa608
+2026-11-12T07:35:38.2485264Z VISUAL_VALIDATED map_mvisual-map-undo-multi-before-undo.png cb717590a1b784910cefee9931e52169b4f8da87fef4f16ba74d97a9deae0a47
+2026-11-12T07:35:38.2485890Z VISUAL_VALIDATED map_mvisual-map-undo-saved.png d40c6cd5b3b584a6f51a0d05861f1168a2b37cae5c6f9e26145d7001eb2b743f
+2026-11-12T07:35:38.2486656Z VISUAL_VALIDATED map_mvisual-map-undo-stale-after.png 17267fec625414a58232eba19c73f69fba6c3143e3a7d830d857fdeaed6a8cdb
+2026-11-12T07:35:38.2487466Z VISUAL_VALIDATED map_mvisual-map-undo-stale-before.png f1ed58c58d43e0dd7add0c9e2bbbb7cc2c5d9eb6535f7ff00dd38ec0b34ed24e
+2026-11-12T07:35:38.2488180Z VISUAL_VALIDATED map_mvisual-map-undo-undone-land.png 6356652b02583f28e2b89b8cdf25629134f63a15b6087fe1c7bf39872a1296bf
+2026-11-12T07:35:38.2489031Z VISUAL_VALIDATED map_mvisual-map-undo-undone-return.png f3812ad155889aab34403130b8e72350b6ef8a42ce3c4548e432349ef5011a99
+2026-11-12T07:35:38.2489455Z PASS mapundorotation
+2026-11-12T07:35:38.2489629Z RUN mappartconfirm
+2026-11-12T07:37:18.5962165Z INSTRUMENTATION_RESULT: stream=PASS mappartconfirm: 669 assertions
+2026-11-12T07:37:18.5988780Z VISUAL_VALIDATED map_mvisual-map-part-choice-after-land.png 1de071e576cb6b53f11e9daa9bc2c9a3d60a66f06051d32909e1dd1adce39699
+2026-11-12T07:37:18.5989846Z VISUAL_VALIDATED map_mvisual-map-part-choice-after-return.png 644b0f7842d845f40a34ebf7c1ccf103a7d65f8868da540d6b4ba727295a5a02
+2026-11-12T07:37:18.5990809Z VISUAL_VALIDATED map_mvisual-map-part-choice-before-land.png 09cc7b925285f0e7b325858e8252683d92fc80ffccf0590ab24bdc322fc73a87
+2026-11-12T07:37:18.5991954Z VISUAL_VALIDATED map_mvisual-map-part-choice-before-return.png 1de071e576cb6b53f11e9daa9bc2c9a3d60a66f06051d32909e1dd1adce39699
+2026-11-12T07:37:18.5993108Z VISUAL_VALIDATED map_mvisual-map-part-choice-cancel-ghost.png 94e196f884f1c9298011f4a10fd9157825be9ea84e06d9db9a68759e64b465d7
+2026-11-12T07:37:18.5994276Z VISUAL_VALIDATED map_mvisual-map-part-choice-cancelled.png 3db2887597cb93965a53a2e7c41f8fc8d1616611314de9a3c4632621e30c449a
+2026-11-12T07:37:18.5995664Z VISUAL_VALIDATED map_mvisual-map-part-choice-confirmed.png 6d12f6f472b18df7d6e6bdc97949fddb4ad45e94b0862b0953a867ad95222b8c
+2026-11-12T07:37:18.5996667Z VISUAL_VALIDATED map_mvisual-map-part-choice-foreign-feature.png fb3fc991c44ce070a53afb78088133e9aa7bce9e8ccbd72f934d9e2220ca38ba
+2026-11-12T07:37:18.5997785Z VISUAL_VALIDATED map_mvisual-map-part-choice-foreign-project.png dacaff6dba863ca834aab577fbb6e16322113225698c2e3fa5d6c90672f7c681
+2026-11-12T07:37:18.5998717Z VISUAL_VALIDATED map_mvisual-map-part-choice-main-changed.png 5a1e1e9d191377de7bba8710ae41c47b000018bf667c8a982586b6bd4006bdbc
+2026-11-12T07:37:18.5999392Z VISUAL_VALIDATED map_mvisual-map-part-choice-missing-target.png 9e24b0162139f8237d666640cd440d6c2a27be1787f525ddfe946af25eaf121a
+2026-11-12T07:37:18.6000092Z VISUAL_VALIDATED map_mvisual-map-part-choice-source-after.png 1752e32dfcb8d5d9e5775bb64169ab1e7cb84f01da5856b7f2d5f3ac4c36b37e
+2026-11-12T07:37:18.6000798Z VISUAL_VALIDATED map_mvisual-map-part-choice-source-before.png 3337d69d06efc3ffc32bc3218d11b2d7c54c8f79fcfcf88c6eb542e6bf4513fd
+2026-11-12T07:37:18.6001469Z VISUAL_VALIDATED map_mvisual-map-part-choice-target-after.png 1752e32dfcb8d5d9e5775bb64169ab1e7cb84f01da5856b7f2d5f3ac4c36b37e
+2026-11-12T07:37:18.6002132Z VISUAL_VALIDATED map_mvisual-map-part-choice-target-before.png 3337d69d06efc3ffc32bc3218d11b2d7c54c8f79fcfcf88c6eb542e6bf4513fd
+2026-11-12T07:37:18.6002789Z VISUAL_VALIDATED map_mvisual-map-part-choice-target-saved.png db4df892f00ca4a0bf2d24204df27e6f89133227bb038bd4b373bf75a598aec1
+2026-11-12T07:37:18.6003228Z PASS mappartconfirm
+2026-11-12T07:37:18.6003418Z RUN geometrycloseconfirm
+2026-11-12T07:38:46.6697951Z INSTRUMENTATION_RESULT: stream=PASS geometrycloseconfirm: 563 assertions
+2026-11-12T07:38:46.6729486Z VISUAL_VALIDATED map_mvisual-geometry-close-after-land.png bc77ca44c99b036f82ccb4b88a023f4093085dddacf29396d137012f6932d291
+2026-11-12T07:38:46.6730476Z VISUAL_VALIDATED map_mvisual-geometry-close-after-return.png 0816872cd4eb4a16c28c508caf0b4cba249166be300bcad6e42126292e036e9d
+2026-11-12T07:38:46.6731443Z VISUAL_VALIDATED map_mvisual-geometry-close-before-land.png b77ca6425489117011961d5d286dd259ec67969855fcd15b9605128ca76c35f6
+2026-11-12T07:38:46.6732213Z VISUAL_VALIDATED map_mvisual-geometry-close-before-return.png bc77ca44c99b036f82ccb4b88a023f4093085dddacf29396d137012f6932d291
+2026-11-12T07:38:46.6733207Z VISUAL_VALIDATED map_mvisual-geometry-close-cancel-ghost.png 7bf817743607ff4276dc2a77c27796183a51b706e8af4d275b9869a532ce74e2
+2026-11-12T07:38:46.6734461Z VISUAL_VALIDATED map_mvisual-geometry-close-cancelled.png b39103f047f8c3a8a9abaa967adfb78c2e95999dc52449ae1be03321f2f63aee
+2026-11-12T07:38:46.6735643Z VISUAL_VALIDATED map_mvisual-geometry-close-discarded-reopened.png df62962c6b5f1d3bc53596d66a5d9d52d15b6fe6de09160903cb01c5730d12a9
+2026-11-12T07:38:46.6737029Z VISUAL_VALIDATED map_mvisual-geometry-close-foreign-feature.png c6b97efbd5d0c3e7dbcc850db5986c8a396b1575a38bab9ba924d407ccf5ac1c
+2026-11-12T07:38:46.6738010Z VISUAL_VALIDATED map_mvisual-geometry-close-foreign-project.png 41160b9f9217857c02143c4905f3e660ab601b5094667be90d0809691fe00569
+2026-11-12T07:38:46.6739114Z VISUAL_VALIDATED map_mvisual-geometry-close-main-changed.png 95fa4656229681a2705014be28ea03a83f0c54af7f153b279288bfb9c7c45721
+2026-11-12T07:38:46.6740198Z VISUAL_VALIDATED map_mvisual-geometry-close-main-saved.png d9e1d2d6abfb6b0ec41d99d3ae181fabe8bcf739c991ba0431c9b5d791978973
+2026-11-12T07:38:46.6741330Z VISUAL_VALIDATED map_mvisual-geometry-close-replacement-discard.png e009c7fa29b8e172fb24f055ac2f817f9c8c72b3904bd2d958b549e7cce30e6d
+2026-11-12T07:38:46.6742056Z VISUAL_VALIDATED map_mvisual-geometry-close-replacement-save.png e009c7fa29b8e172fb24f055ac2f817f9c8c72b3904bd2d958b549e7cce30e6d
+2026-11-12T07:38:46.6742763Z VISUAL_VALIDATED map_mvisual-geometry-close-saved-draft-reopened.png 11443b58bde34a7b9115e5ba5edd8e8d78b93988c665e53555043526486972d2
+2026-11-12T07:38:46.6743458Z VISUAL_VALIDATED map_mvisual-geometry-close-stale-after.png 3e2ce4888746aa662395effc3791eabd5e857329f3d5e8f19476f468852cd144
+2026-11-12T07:38:46.6744268Z VISUAL_VALIDATED map_mvisual-geometry-close-stale-before.png ade4ffdf0de9c60f7b8367fbe831668ad92b43b555eae402b414f12dddc83c7b
+2026-11-12T07:38:46.6744751Z PASS geometrycloseconfirm
+2026-11-12T07:38:46.6745034Z RUN maplayers
+2026-11-12T07:40:01.4680859Z INSTRUMENTATION_RESULT: stream=PASS maplayers: 275 assertions
+2026-11-12T07:40:01.4694815Z VISUAL_VALIDATED map_mvisual-cachejob-form.png a44e4a913578b18ee3cd9e16efe78c0b46632b886fc0f66c33cc8b773c88d308
+2026-11-12T07:40:01.4696001Z VISUAL_VALIDATED map_mvisual-cachejob-paused.png 14bf947e1fe69acd107be7c5c0625f5fc9406ac0f60df582e63283ac5a2085da
+2026-11-12T07:40:01.4697030Z VISUAL_VALIDATED map_mvisual-cachejob-stale.png 822a7297be2b94218b8cafef9bfbe6d776140815491d34404efc29fa05de69d4
+2026-11-12T07:40:01.4697830Z VISUAL_VALIDATED map_mvisual-dem-profile.png bccf639d0672822610349c1c2f3b0c36b323e475ee0649c5edd2b1a0f5069fdd
+2026-11-12T07:40:01.4698506Z VISUAL_VALIDATED map_mvisual-layers-composed.png d867249243180ec6b118c5ed21a4910f9719a58d44181620cce373b6ed6c7cf5
+2026-11-12T07:40:01.4699475Z VISUAL_VALIDATED map_mvisual-layers-final.png 25cfb857bc5884de5a3a629c4802ba3783e8ba97db1eb5c3a2b1656cf18fb27f
+2026-11-12T07:40:01.4700455Z VISUAL_VALIDATED map_mvisual-layers-manager.png a4d2a221341f5d32df0a3d16eb66619caff9e68ef83a75201107253c352768bd
+2026-11-12T07:40:01.4701420Z VISUAL_VALIDATED map_mvisual-layers-opacity-after.png a4d2a221341f5d32df0a3d16eb66619caff9e68ef83a75201107253c352768bd
+2026-11-12T07:40:01.4702089Z VISUAL_VALIDATED map_mvisual-layers-opacity-before.png 839fe5467e557036d4e0ecbb0e5092f303f8dab7f355d3c90362984eb1591a6a
+2026-11-12T07:40:01.4702741Z VISUAL_VALIDATED map_mvisual-layers-reordered.png b24d0b90d06bee5e2f574154f3a468a5a5c8af5525e622a554b17cc7393e6d1c
+2026-11-12T07:40:01.4703194Z PASS maplayers
+2026-11-12T07:40:01.4703453Z RUN maplayersreopen
+2026-11-12T07:40:19.5991697Z INSTRUMENTATION_STATUS: stream=START maplayersreopen
+2026-11-12T07:40:19.5992086Z 
+2026-11-12T07:40:19.5992213Z INSTRUMENTATION_STATUS_CODE: 0
+2026-11-12T07:40:19.5992649Z INSTRUMENTATION_STATUS: stream=MAP_LAYERS_VISUAL restarted
+2026-11-12T07:40:19.5992954Z 
+2026-11-12T07:40:19.5993086Z INSTRUMENTATION_STATUS_CODE: 0
+2026-11-12T07:40:19.5993519Z INSTRUMENTATION_STATUS: stream=MAP_LAYERS_VISUAL restarted-manager
+2026-11-12T07:40:19.5993865Z 
+2026-11-12T07:40:19.5993994Z INSTRUMENTATION_STATUS_CODE: 0
+2026-11-12T07:40:19.5994526Z INSTRUMENTATION_STATUS: stream=DEM_PHASE reopen-enter
+2026-11-12T07:40:19.5994821Z 
+2026-11-12T07:40:19.5994934Z INSTRUMENTATION_STATUS_CODE: 0
+2026-11-12T07:40:19.5995399Z INSTRUMENTATION_STATUS: stream=DEM_PHASE reopen-owned-and-source-hashes-exact
+2026-11-12T07:40:19.5995812Z 
+2026-11-12T07:40:19.5995934Z INSTRUMENTATION_STATUS_CODE: 0
+2026-11-12T07:40:19.5996624Z INSTRUMENTATION_STATUS: stream=DEM_PHASE before-fresh-main-launch owner=4
+2026-11-12T07:40:19.5996994Z 
+2026-11-12T07:40:19.5997122Z INSTRUMENTATION_STATUS_CODE: 0
+2026-11-12T07:40:19.5997564Z INSTRUMENTATION_STATUS: stream=DEM_PHASE fresh-main-created owner=4 task=214
+2026-11-12T07:40:19.5997931Z 
+2026-11-12T07:40:19.5998051Z INSTRUMENTATION_STATUS_CODE: 0
+2026-11-12T07:40:19.5998452Z INSTRUMENTATION_STATUS: stream=DEM_PHASE manual-centre-height-zero
+2026-11-12T07:40:19.5998805Z 
+2026-11-12T07:40:19.5998924Z INSTRUMENTATION_STATUS_CODE: 0
+2026-11-12T07:40:19.5999348Z INSTRUMENTATION_STATUS: stream=DEM_PHASE reopen-height-png-saved
+2026-11-12T07:40:19.5999687Z 
+2026-11-12T07:40:19.5999808Z INSTRUMENTATION_STATUS_CODE: 0
+2026-11-12T07:40:19.6000226Z INSTRUMENTATION_STATUS: stream=DEM_PHASE before-owned-remove-screen
+2026-11-12T07:40:19.6000559Z 
+2026-11-12T07:40:19.6000678Z INSTRUMENTATION_STATUS_CODE: 0
+2026-11-12T07:40:19.6001067Z INSTRUMENTATION_STATUS: stream=DEM_PHASE owned-remove-complete
+2026-11-12T07:40:19.6001384Z 
+2026-11-12T07:40:19.6001500Z INSTRUMENTATION_STATUS_CODE: 0
+2026-11-12T07:40:19.6001924Z INSTRUMENTATION_RESULT: stream=PASS maplayersreopen: 66 assertions
+2026-11-12T07:40:19.6002274Z 
+2026-11-12T07:40:19.6002393Z INSTRUMENTATION_CODE: -1
+2026-11-12T07:40:19.6002581Z 
+2026-11-12T07:40:19.6003065Z RK_VISUAL_BEGIN map_mvisual-cachejob-complete.png 9f9d4d322cc0f94b14febe31aa276acd89ca4dad81a0adecb8d2a0244d9ced57
+2026-11-12T07:40:19.6459012Z RK_VISUAL_END map_mvisual-cachejob-complete.png
+2026-11-12T07:40:19.6459722Z RK_VISUAL_BEGIN map_mvisual-cachejob-form.png a44e4a913578b18ee3cd9e16efe78c0b46632b886fc0f66c33cc8b773c88d308
+2026-11-12T07:40:19.6785655Z RK_VISUAL_END map_mvisual-cachejob-form.png
+2026-11-12T07:40:19.6786083Z RK_VISUAL_BEGIN map_mvisual-cachejob-paused.png 14bf947e1fe69acd107be7c5c0625f5fc9406ac0f60df582e63283ac5a2085da
+2026-11-12T07:40:19.7095670Z RK_VISUAL_END map_mvisual-cachejob-paused.png
+2026-11-12T07:40:19.7096192Z RK_VISUAL_BEGIN map_mvisual-cachejob-stale.png 822a7297be2b94218b8cafef9bfbe6d776140815491d34404efc29fa05de69d4
+2026-11-12T07:40:19.7423875Z RK_VISUAL_END map_mvisual-cachejob-stale.png
+2026-11-12T07:40:19.7424383Z RK_VISUAL_BEGIN map_mvisual-dem-profile.png bccf639d0672822610349c1c2f3b0c36b323e475ee0649c5edd2b1a0f5069fdd
+2026-11-12T07:40:19.7770504Z RK_VISUAL_END map_mvisual-dem-profile.png
+2026-11-12T07:40:19.7770912Z RK_VISUAL_BEGIN map_mvisual-dem-restarted.png 43b363474441e651ff53e69b33c9cc740bb76753ef4de5bdf17cf7cb42fc3a58
+2026-11-12T07:40:19.8137570Z RK_VISUAL_END map_mvisual-dem-restarted.png
+2026-11-12T07:40:19.8137976Z RK_VISUAL_BEGIN map_mvisual-layers-composed.png d867249243180ec6b118c5ed21a4910f9719a58d44181620cce373b6ed6c7cf5
+2026-11-12T07:40:19.8389029Z RK_VISUAL_END map_mvisual-layers-composed.png
+2026-11-12T07:40:19.8389442Z RK_VISUAL_BEGIN map_mvisual-layers-final.png 25cfb857bc5884de5a3a629c4802ba3783e8ba97db1eb5c3a2b1656cf18fb27f
+2026-11-12T07:40:19.8652979Z RK_VISUAL_END map_mvisual-layers-final.png
+2026-11-12T07:40:19.8653579Z RK_VISUAL_BEGIN map_mvisual-layers-manager.png a4d2a221341f5d32df0a3d16eb66619caff9e68ef83a75201107253c352768bd
+2026-11-12T07:40:19.8913758Z RK_VISUAL_END map_mvisual-layers-manager.png
+2026-11-12T07:40:19.8914272Z RK_VISUAL_BEGIN map_mvisual-layers-opacity-after.png a4d2a221341f5d32df0a3d16eb66619caff9e68ef83a75201107253c352768bd
+2026-11-12T07:40:19.9177337Z RK_VISUAL_END map_mvisual-layers-opacity-after.png
+2026-11-12T07:40:19.9177791Z RK_VISUAL_BEGIN map_mvisual-layers-opacity-before.png 839fe5467e557036d4e0ecbb0e5092f303f8dab7f355d3c90362984eb1591a6a
+2026-11-12T07:40:19.9440522Z RK_VISUAL_END map_mvisual-layers-opacity-before.png
+2026-11-12T07:40:19.9440967Z RK_VISUAL_BEGIN map_mvisual-layers-reordered.png b24d0b90d06bee5e2f574154f3a468a5a5c8af5525e622a554b17cc7393e6d1c
+2026-11-12T07:40:19.9688787Z RK_VISUAL_END map_mvisual-layers-reordered.png
+2026-11-12T07:40:19.9689251Z RK_VISUAL_BEGIN map_mvisual-layers-restarted-manager.png bc905f79cd9be71e3ad32ba6174f3fb64452f5a3d103cb7f8f23e2b5e26bd23f
+2026-11-12T07:40:19.9952591Z RK_VISUAL_END map_mvisual-layers-restarted-manager.png
+2026-11-12T07:40:19.9953023Z RK_VISUAL_BEGIN map_mvisual-layers-restarted.png a9606d506769ca3300170aff62474ff103929b7c621a7c32eaae6b8895e6a094
+2026-11-12T07:40:20.0208435Z RK_VISUAL_END map_mvisual-layers-restarted.png
+2026-11-12T07:40:20.0208668Z PASS maplayersreopen
+2026-11-12T07:40:20.0208922Z All selected Android scenarios passed; this is not full 26.1 acceptance
+2026-11-12T07:40:20.0210176Z ##[group]Terminate Emulator
+2026-11-12T07:40:20.0210474Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 emu kill
+2026-11-12T07:40:20.0210785Z OK: killing emulator, bye bye
+2026-11-12T07:40:20.0210973Z OK
+2026-11-12T07:40:20.0211524Z INFO         | Wait for emulator (pid 2648) 20 seconds to shutdown gracefully before kill;you can set environment variable ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL(in seconds) to change the default value (20 seconds)
+2026-11-12T07:40:20.0212059Z 
+2026-11-12T07:40:20.0212252Z ##[endgroup]
+2026-11-12T07:40:20.0212510Z USER_INFO    | Snapshots have been disabled by the user, save request is ignored.
+2026-11-12T07:40:20.0212838Z INFO         | Saving snapshot 'default_boot' took 0 ms
+2026-11-12T07:40:20.5916213Z ERROR        | stop: Not implemented
+2026-11-12T07:40:20.5916809Z WARNING      | Emulator client has not yet been configured.. Call configure me first!
+2026-11-12T07:40:20.5975176Z INFO         | removeAll
+2026-11-12T07:40:21.6364676Z ##[group]Run python3 ci/package_android_evidence.py --source "$RUNNER_TEMP/rk-results" --target "$RUNNER_TEMP/android-evidence.zip" --source-sha "$GITHUB_SHA" --run-id "$GITHUB_RUN_ID"
+2026-11-12T07:40:21.6365645Z [36;1mpython3 ci/package_android_evidence.py --source "$RUNNER_TEMP/rk-results" --target "$RUNNER_TEMP/android-evidence.zip" --source-sha "$GITHUB_SHA" --run-id "$GITHUB_RUN_ID"[0m
+2026-11-12T07:40:21.6420701Z shell: /usr/bin/bash -e {0}
+2026-11-12T07:40:21.6420919Z env:
+2026-11-12T07:40:21.6421164Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:40:21.6421547Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:40:21.6421854Z   ANDROID_AVD_HOME: /home/runner/.android/avd
+2026-11-12T07:40:21.6422072Z ##[endgroup]
+2026-11-12T07:40:22.1595044Z {"source_sha": "1be9e3a1e28ae9f245742f8ba7ee1654e212b380", "run_id": "43172333048", "files": 552, "bytes": 14514184, "archive_sha256": "6e4e90bd02117aaebf960a6a9eb5fef51cfe4c2e62fed4706c25f4b64b30d714", "passed": 46, "records": 46, "failed_or_skipped": []}
+2026-11-12T07:40:22.1706833Z ##[group]Run actions/upload-artifact@v4
+2026-11-12T07:40:22.1707059Z with:
+2026-11-12T07:40:22.1707230Z   name: independent-qa-api-23
+2026-11-12T07:40:22.1707473Z   path: /home/runner/work/_temp/android-evidence.zip
+2026-11-12T07:40:22.1707728Z   compression-level: 0
+2026-11-12T07:40:22.1707910Z   if-no-files-found: error
+2026-11-12T07:40:22.1708092Z   retention-days: 7
+2026-11-12T07:40:22.1708440Z   overwrite: false
+2026-11-12T07:40:22.1708618Z   include-hidden-files: false
+2026-11-12T07:40:22.1708804Z env:
+2026-11-12T07:40:22.1709055Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:40:22.1709429Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:40:22.1709752Z   ANDROID_AVD_HOME: /home/runner/.android/avd
+2026-11-12T07:40:22.1709969Z ##[endgroup]
+2026-11-12T07:40:22.3116352Z (node:5463) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-12T07:40:22.3117396Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-12T07:40:22.3191265Z With the provided path, there will be 1 file uploaded
+2026-11-12T07:40:22.3196970Z Artifact name is valid!
+2026-11-12T07:40:22.3197393Z Root directory input is valid!
+2026-11-12T07:40:22.6412269Z Beginning upload of artifact content to blob storage
+2026-11-12T07:40:22.6806919Z (node:5463) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-12T07:40:23.3564991Z Uploaded bytes 8388608
+2026-11-12T07:40:23.5962239Z Uploaded bytes 14514338
+2026-11-12T07:40:23.6539885Z Finished uploading artifact content to blob storage!
+2026-11-12T07:40:23.6540642Z SHA256 digest of uploaded artifact zip is a8ff9dc9074684318fe114e18a018dbdc16e4921a3aae316cac7360c8c90dbb8
+2026-11-12T07:40:23.6541769Z Finalizing artifact upload
+2026-11-12T07:40:24.0329590Z Artifact independent-qa-api-23.zip successfully finalized. Artifact ID 13924273783
+2026-11-12T07:40:24.0330526Z Artifact independent-qa-api-23 has been successfully uploaded! Final size is 14514338 bytes. Artifact ID is 13924273783
+2026-11-12T07:40:24.0335387Z Artifact download URL: https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/43172333048/artifacts/13924273783
+2026-11-12T07:40:24.0544815Z ##[group]Run actions/upload-artifact@v4
+2026-11-12T07:40:24.0545216Z with:
+2026-11-12T07:40:24.0545484Z   name: independent-build-api-23
+2026-11-12T07:40:24.0546320Z   path: /home/runner/work/_temp/rk-qa/app.apk
+/home/runner/work/_temp/rk-qa/tests.apk
+/home/runner/work/_temp/rk-qa/qa-build.json
+/home/runner/work/_temp/rk-quality
+
+2026-11-12T07:40:24.0547113Z   if-no-files-found: warn
+2026-11-12T07:40:24.0547403Z   retention-days: 7
+2026-11-12T07:40:24.0547679Z   compression-level: 6
+2026-11-12T07:40:24.0547960Z   overwrite: false
+2026-11-12T07:40:24.0548234Z   include-hidden-files: false
+2026-11-12T07:40:24.0548545Z env:
+2026-11-12T07:40:24.0548910Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:40:24.0549519Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T07:40:24.0550023Z   ANDROID_AVD_HOME: /home/runner/.android/avd
+2026-11-12T07:40:24.0550376Z ##[endgroup]
+2026-11-12T07:40:24.1946461Z (node:5476) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-12T07:40:24.1947212Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-12T07:40:24.2015931Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-11-12T07:40:24.2018315Z The least common ancestor is /home/runner/work/_temp. This will be the root directory of the artifact
+2026-11-12T07:40:24.2019161Z With the provided path, there will be 7 files uploaded
+2026-11-12T07:40:24.2020113Z Artifact name is valid!
+2026-11-12T07:40:24.2020649Z Root directory input is valid!
+2026-11-12T07:40:24.5406508Z Beginning upload of artifact content to blob storage
+2026-11-12T07:40:24.6286346Z (node:5476) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-12T07:40:25.1994550Z Uploaded bytes 2490635
+2026-11-12T07:40:25.2565691Z Finished uploading artifact content to blob storage!
+2026-11-12T07:40:25.2566316Z SHA256 digest of uploaded artifact zip is 8909dd7a1eefea503eb00264429519eb9835dc0d1a2be5758ac247e3e3555d7d
+2026-11-12T07:40:25.2567912Z Finalizing artifact upload
+2026-11-12T07:40:25.6501713Z Artifact independent-build-api-23.zip successfully finalized. Artifact ID 13924597539
+2026-11-12T07:40:25.6502639Z Artifact independent-build-api-23 has been successfully uploaded! Final size is 2490635 bytes. Artifact ID is 13924597539
+2026-11-12T07:40:25.6508083Z Artifact download URL: https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/43172333048/artifacts/13924597539
+2026-11-12T07:40:25.6675639Z Post job cleanup.
+2026-11-12T07:40:25.7781268Z (node:5488) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-12T07:40:25.7781988Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-12T07:40:25.7979808Z Post job cleanup.
+2026-11-12T07:40:25.8766465Z [command]/usr/bin/git version
+2026-11-12T07:40:25.8812207Z git version 2.56.0
+2026-11-12T07:40:25.8856400Z Temporarily overriding HOME='/home/runner/work/_temp/3c89c498-16f0-444d-a775-4ade36335cd8' before making global git config changes
+2026-11-12T07:40:25.8865252Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-12T07:40:25.8869778Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/WarriorRus1.2/WarriorRus1.2
+2026-11-12T07:40:25.8905655Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-12T07:40:25.8943379Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-12T07:40:25.9270605Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-12T07:40:25.9303999Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-12T07:40:25.9547701Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-12T07:40:25.9581035Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-12T07:40:25.9932986Z Cleaning up orphan processes
+2026-11-12T07:40:26.0220191Z Terminate orphan process: pid (2669) (adb)
+2026-11-12T07:40:26.0304304Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

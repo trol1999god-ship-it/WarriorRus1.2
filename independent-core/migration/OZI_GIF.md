@@ -1,7 +1,6 @@
-# Ozi static GIF — локальный функциональный кандидат
+# Ozi static GIF — ограниченный проверенный функциональный участок
 
-12 ноября2026: GIF НЕвходит в8d26807/CI43146921585 SUCCESS. Runtime pending;
-локальные JVM/SDK23 и host oracle не заменяют Android и приёмку26.1.
+12 ноября2026: code1be9e3a/CI43172333048 SUCCESS46/46 обеAPI, offlineformats1025each, managerrotation379/373. JVM36/83129/GIF323/host27. SourceSHA/outer/inner/all552+555members verified,16raster PNG реально просмотрены. Full Ozi26.1 не принят. GIF не входил в предыдущий8d26807 CI.
 
 Поддержка: один полный статический GIF87a/89a, global/local palette, interlace,
 binary transparency89; indexed colors. OziCalibration/sharedRasterMapImport/
@@ -57,7 +56,7 @@ Noise — code-width growth/fulltable/CLEAR; longrun — KwKwK; gradient/interla
 
 Independent actual GifRaster vsPillow:14files/793240RGBA pixels exact; дополнительно
 Pillow подтвердил2literalStream fulltable fixtures/8738pixels,5→12bits/freeze/CLEAR.
-Эти результаты — host, НЕAndroidruntime. SDK23 app+tests, source79exact/550classes,
+Дополнительно2 Pillow files по4млн пикселей (обычный/interlaced) дали exact8млн RGBA controls при Java heap32MiB; включая dump0.90s wall/48416KiB RSS на этом host. Fresh compilation byte-identical, sourceSHA записан в near-cap-result.json. Эти результаты — host, НЕAndroidruntime. SDK23 app+tests, source79exact/550classes,
 debug QA/disposable keys/custom source+DEX privacy PASS; официальный Androidlint
 adaptergap остаётся НЕPASS. Локальные receipts security/ozi-gif-qa-2026-11-12/local/.
 
@@ -68,7 +67,11 @@ oldtarget/source. Прежние PNG/JPEG/BMP UIветки остаются; д�
 menu→synthetic explicit picker pair→Confirm/Cancel/CAS/Arimo/actions/reopen/
 actual Activity destruction with queued import/KML/assets/otherproject/network0.
 2новыхGIFPNG, суммарно8 mvisualPNG вofflineformats; strict16/2МиБ не меняются.
-Нативное исполнение/PNG/данные ещёpending новым changed-code CI.
+Нативное исполнение real Cancel/Confirm/CAS/queued-import finish+destroy/worker termination/reopen/source/KML/assets/otherproject/network0 PASS на23/35. Все46 guards сохранены. security/ozi-gif-qa-2026-11-12/runtime-result.json.
+
+API23: BMP и GIF prompt PNG содержат Toast предыдущего CAS refusal поверх строки действий. Функциональные clicks/physical bounds/Arimo PASS, но свободная видимость кнопок на этих PNG НЕзаявлена. Это ограничение снимков; следующий changed-code Windows1251 CI получает кадры после Toast settle, без повторного GIF CI. На35 prompt/actions видны. Остальные20 extractedPNG/API не заявлены просмотренными.
+
+В текущем run native-driver transport recovery не понадобилось, receipt events отсутствуют; offline на startup boot-poll не считается пропущенным native test. SameBoot guards прежние. Реальная recovery8d остаётся отдельным доказательством. Windows1251 WIP не включён в1be9.
 
 Full GIF/Ozi26.1/allformats/реальные файлы остаются не приняты; accepted0,
 releasegate25/min23/название/Arimo/resources/online+cache/privacy безGPS прежние.
