@@ -12,6 +12,8 @@
 
 
 # static fields
+.field public static final DEFAULT_COLOR:I = -0x193ba6
+
 .field public static final EMPTY:Lorg/rabochaya/projects/KmlComponentStyle;
 
 .field private static final NS:Ljava/lang/String; = "http://www.opengis.net/kml/2.2"
@@ -35,7 +37,7 @@
 .method static constructor <clinit>()V
     .locals 8
 
-    .line 6
+    .line 7
     new-instance v7, Lorg/rabochaya/projects/KmlComponentStyle;
 
     const/4 v5, 0x0
@@ -62,7 +64,7 @@
 .method private constructor <init>(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
     .locals 0
 
-    .line 8
+    .line 9
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     iput-object p1, p0, Lorg/rabochaya/projects/KmlComponentStyle;->icon:Ljava/lang/Integer;
@@ -138,7 +140,7 @@
 .method private static child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
     .locals 1
 
-    .line 11
+    .line 12
     invoke-interface {p0}, Lorg/w3c/dom/Element;->getFirstChild()Lorg/w3c/dom/Node;
 
     move-result-object p0
@@ -172,7 +174,7 @@
 .method public static color(Ljava/lang/String;)Ljava/lang/Integer;
     .locals 9
 
-    .line 14
+    .line 15
     if-eqz p0, :cond_1
 
     invoke-virtual {p0}, Ljava/lang/String;->trim()Ljava/lang/String;
@@ -242,7 +244,7 @@
 .method private static component(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/Integer;
     .locals 2
 
-    .line 15
+    .line 16
     invoke-static {p0, p1}, Lorg/rabochaya/projects/KmlComponentStyle;->child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
 
     move-result-object p0
@@ -292,7 +294,7 @@
 .method private static flag(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/Boolean;
     .locals 0
 
-    .line 16
+    .line 17
     invoke-static {p0, p1}, Lorg/rabochaya/projects/KmlComponentStyle;->text(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object p0
@@ -356,7 +358,7 @@
 .method private static inline(Lorg/w3c/dom/Element;)Lorg/rabochaya/projects/KmlComponentStyle;
     .locals 10
 
-    .line 17
+    .line 18
     const-string v0, "PolyStyle"
 
     invoke-static {p0, v0}, Lorg/rabochaya/projects/KmlComponentStyle;->child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
@@ -429,7 +431,7 @@
 .method private over(Lorg/rabochaya/projects/KmlComponentStyle;)Lorg/rabochaya/projects/KmlComponentStyle;
     .locals 8
 
-    .line 9
+    .line 10
     new-instance v7, Lorg/rabochaya/projects/KmlComponentStyle;
 
     iget-object v0, p0, Lorg/rabochaya/projects/KmlComponentStyle;->icon:Ljava/lang/Integer;
@@ -526,7 +528,7 @@
 .method private static tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
     .locals 4
 
-    .line 10
+    .line 11
     instance-of v0, p0, Lorg/w3c/dom/Element;
 
     const/4 v1, 0x0
@@ -583,7 +585,7 @@
 .method private static text(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
     .locals 0
 
-    .line 12
+    .line 13
     invoke-static {p0, p1}, Lorg/rabochaya/projects/KmlComponentStyle;->child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
 
     move-result-object p0

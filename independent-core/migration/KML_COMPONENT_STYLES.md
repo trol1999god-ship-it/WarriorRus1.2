@@ -45,3 +45,16 @@ Native проверка расширяет existing helper явными Save/Can
 exact shared/other geometry/KMZ/assets/network0 и двумя IME кадрами; итого16,
 лимит не увеличен. Этот кандидат ещё НЕпроверен Android CI и не отправляется,
 пока CI43225977674 первого renderer-кандидата работает. Backup/receipts сохранены.
+
+## Независимость отсутствующих свойств — дополнительное исправление кандидата
+
+Старый f.color извлекается из первой найденной компоненты. Его использование
+как fallback снова связывало цвета: один IconStyle мог менять линию/заливку.
+Теперь отсутствующие свойства используют прежний базовый цвет приложения
+0xffe6c45a независимо друг от друга; polygon default alpha0x45 и белая подпись
+сохранены. OGC white defaults не подставляются. Новый native fixture с одним
+IconStyle проверяет красную точку, базовую жёлтую линию/полупрозрачную заливку
+и precondition старого f.color; другие DOM/файлы не меняются. JVM39/83317,
+component33/edit34, SDK23 source83exact/563classes/customprivacy PASS.
+Эти пиксели Android ещё pending; это НЕCI ca888b5. Все предыдущие receipt/APK
+сохранены, финальный app/test hash в independent-defaults-local/receipt.json.

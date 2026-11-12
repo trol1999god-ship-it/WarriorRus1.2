@@ -1,0 +1,14 @@
+{
+  "qualification": "local, pending changed-code Android CI",
+  "source_files": 83,
+  "source_hashes_exact": true,
+  "classes": 563,
+  "jvm_suites": 39,
+  "jvm_assertions": 83317,
+  "component_model": 33,
+  "component_edit_model": 34,
+  "cause": "Legacy f.color was derived from the first available component. Using it as the absent-property fallback coupled unrelated components. Now each absent component uses the same existing application base colour 0xffe6c45a independently; legacy polygon fallback alpha0x45 retained, label white retained. No invented OGC white defaults.",
+  "native_regression": "IconStyle-only MultiGeometry: icon red; absent line remains default yellow; absent polygon remains default yellow alpha0x45. Original f.color red precondition checked. Third feature included in exact other-DOM retention guard. All runtime pending.",
+  "app_sha256": "e9955f54767d7b32171101d24efe6c12bc4f750ff8ca98865ce1a186c1b26734",
+  "tests_sha256": "de8ef5117bdb13e46b35fbf0b439de696b7aaf500d43da24ebd72c1b9b9e2e2d"
+}

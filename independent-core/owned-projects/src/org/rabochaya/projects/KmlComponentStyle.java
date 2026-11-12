@@ -2,6 +2,7 @@ package org.rabochaya.projects;
 import org.w3c.dom.*;import java.util.*;
 /** Read-only explicit KML component colours/flags. Existing renderer supplies absent-property defaults. */
 public final class KmlComponentStyle {
+ public static final int DEFAULT_COLOR=0xffe6c45a; // Existing application default, independent for each absent component.
  private static final String NS="http://www.opengis.net/kml/2.2";
  public static final KmlComponentStyle EMPTY=new KmlComponentStyle(null,null,null,null,null,null);
  public final Integer icon,line,polygon,label;public final Boolean fill,outline;

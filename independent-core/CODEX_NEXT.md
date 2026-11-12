@@ -92,6 +92,17 @@ Native existing offlineformats helper расширен Save/Cancel/invalid/reset
 Сначала прочитать completed CI43225977674/обе jobs/PNG, исправить измеренные отказы;
 не push/не отменять активный CI. Затем один justified changed-code CI editor-кандидата.
 
+## Дополнение локального editor-кандидата
+
+Исправлена обнаруженная по исходнику связь fallback через старый f.color:
+при одном IconStyle отсутствующие Line/Poly теперь независимо сохраняют старый
+базовый цвет приложения e6c45a, default fill alpha45/labelwhite прежние.
+Новая native regression IconStyle-only/line/poly control pixels и precondition
+legacy f.color добавлена в тот же helper; точная сохранность третьего объекта.
+JVM39/83317/component33/edit34, SDK23 source83exact/563classes/customprivacy PASS.
+independent-defaults-local receipts/все прежние APK/backup сохранены. Android pending.
+Не приписывать это CI ca888b5. Дождаться его результатов перед следующим push.
+
 ## Сохранность и ограничения
 
 Existing codex/independent-core-auto/independent-core only; noagents/branches/worktree/

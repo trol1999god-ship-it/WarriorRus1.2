@@ -5,7 +5,7 @@ public final class KmlComponentStyleTests {
  static Element feature(Document d){return (Element)d.getElementsByTagNameNS("http://www.opengis.net/kml/2.2","Placemark").item(0);}
  static KmlComponentStyle style(String body)throws Exception{Document d=parse(body);return new KmlComponentStyle.Resolver(d).resolve(feature(d));}
  public static void main(String[] args)throws Exception{
-  ck(KmlComponentStyle.color("ff0000ff")==0xffff0000);ck(KmlComponentStyle.color("ff00ff00")==0xff00ff00);ck(KmlComponentStyle.color("7fff0000")==0x7f0000ff);ck(KmlComponentStyle.color("00000000")==0);ck(KmlComponentStyle.color(" FFFFFFFF ")==0xffffffff);
+  ck(KmlComponentStyle.DEFAULT_COLOR==0xffe6c45a);ck(KmlComponentStyle.color("ff0000ff")==0xffff0000);ck(KmlComponentStyle.color("ff00ff00")==0xff00ff00);ck(KmlComponentStyle.color("7fff0000")==0x7f0000ff);ck(KmlComponentStyle.color("00000000")==0);ck(KmlComponentStyle.color(" FFFFFFFF ")==0xffffffff);
   for(String bad:new String[]{"red","#ff0000","fff","fffffffff","gg000000","NaN",""})ck(KmlComponentStyle.color(bad)==null);ck(KmlComponentStyle.color(null)==null);
   String shared="<Style id='s'><IconStyle><color>ff00ff00</color></IconStyle><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><color>8000ffff</color><fill>1</fill><outline>0</outline></PolyStyle><LabelStyle><color>40ff0000</color></LabelStyle></Style>";
   String map="<StyleMap id='m'><Pair><key>highlight</key><styleUrl>#missing</styleUrl></Pair><Pair><key>normal</key><styleUrl>#s</styleUrl></Pair></StyleMap>";
