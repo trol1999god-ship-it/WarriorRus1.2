@@ -13,12 +13,13 @@ smali, документации и завершённым Android CI. Это **�
 
 ## Актуальный ограниченный результат
 
-HGT130b522/CI43217403961: offlineformats1202 PASS обе API, явное построение
-6119/3625ms при прежних45sec. Четыре новых PNG просмотрены, all556+543members verified.
-API23 SUCCESS46/46, API35 FAILURE45/46 из-за adb pull Undo PNG после native363 PASS.
-Общий CI не зелёный; точный код возврата pull не сохранён. HGT_HILLSHADE.md.
-Компонентные KML цвета/flags — локальный production WIP renderer+bounded resolver,
-модель32 PASS; Android ещё не проверен. Все23id acceptance открыта.
+- a7f789a/CI43234511518 completed FAILURE: обе API45/46; offlineformats NPE в Native
+  helper до editor UI. Ошибочный byId для Style/StyleMap исправлен scoped DOM lookup
+  в c373133; equality/data guards сохранены. Save/Cancel/IME после падения не засчитаны.
+- Именованные наборы0a031db: working production candidate в существующем менеджере,
+  owner/revision/CAS; локально JVM40/83361/presets44/SDK23source84exact. Android pending.
+- Official lint84source/160classfiles exit1/2errors/114warnings, custom audit не замена.
+  Все23id acceptance открыты. История в STATUS_HISTORY_BEFORE_C373.md и feature documents.
 
 ## Проверенная исходная точка
 

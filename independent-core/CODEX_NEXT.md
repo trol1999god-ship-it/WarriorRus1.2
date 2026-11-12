@@ -65,7 +65,7 @@ Host31 PASS, initial diagnostic regression failure/fix logs сохранены.
 
 ## Следующее действие
 
-Оба a7 completedjob разобраны. Сохранить lookup fix/receipts, проверить origin a7f789a
+Оба a7 completedjob разобраны. Lookup fix/receipts сохранены в c373133; проверить origin a7f789a
 и noactiveCI/root-only; push текущего кандидата с0a031db named sets +testfix, один
 changed-code fullCI46. Прочитать оба completedjobs/новыеPNG, расследовать отказы.
 Не считать API23 доказательством35, offline/skip/partial — успехом.
@@ -88,8 +88,8 @@ a7f789a уже разобран: helper lookup NPE, исправлен толь�
 ## Незакрытые границы и сохранность
 
 Все23id implementation/acceptance раздельно, accepted0/release gate25 прежние.
-Последний официальный lint9a71284:83sources/154реальных classfiles, exit1,
-MissingClass/HardcodedDebugMode/112warnings; Java-only adapter/smali gap, НЕPASS.
+Последний официальный lint0a031db:84sources/160реальных classfiles, exit1,
+MissingClass/HardcodedDebugMode/114warnings; Java-only adapter/smali gap, НЕPASS.
 Custom privacy/sourceDEX НЕзаменяет Android lint. Full release/26.1 acceptance открыта.
 
 Java17/SDK/tools сохранены: /workspace/android-toolchain/env.sh. Безlocalemu безKVM.
