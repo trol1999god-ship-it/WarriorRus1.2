@@ -3,17 +3,17 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/lang/Runnable;
+.implements Landroid/content/DialogInterface$OnShowListener;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/MapLayersActivity;
 
-.field public final synthetic f$1:I
+.field public final synthetic f$1:Landroid/app/AlertDialog;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapLayersActivity;I)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapLayersActivity;Landroid/app/AlertDialog;)V
     .locals 0
 
     .line 0
@@ -21,22 +21,22 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda17;->f$0:Lorg/rabochaya/projects/MapLayersActivity;
 
-    iput p2, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda17;->f$1:I
+    iput-object p2, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda17;->f$1:Landroid/app/AlertDialog;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final run()V
+.method public final onShow(Landroid/content/DialogInterface;)V
     .locals 2
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda17;->f$0:Lorg/rabochaya/projects/MapLayersActivity;
 
-    iget v1, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda17;->f$1:I
+    iget-object v1, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda17;->f$1:Landroid/app/AlertDialog;
 
-    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/MapLayersActivity;->lambda$show$5$org-rabochaya-projects-MapLayersActivity(I)V
+    invoke-virtual {v0, v1, p1}, Lorg/rabochaya/projects/MapLayersActivity;->lambda$remove$24$org-rabochaya-projects-MapLayersActivity(Landroid/app/AlertDialog;Landroid/content/DialogInterface;)V
 
     return-void
 .end method

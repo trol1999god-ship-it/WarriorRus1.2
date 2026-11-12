@@ -1,4 +1,14 @@
-# Продолжение — 12 ноября: явные компонентные KML стили + узкий transport fix
+# Продолжение — 12 ноября: editor/independent defaults a7f789a CI RUNNING
+
+## Текущая проверка
+
+Remote a7f789a0b52c0512aff20bf263ec257acbbfc134 / CI43234511518 RUNNING.
+JVM131238174611 SUCCESS39/83317/component33/edit34/host31.
+Android23 job131238606010 и35 job131238605912 выполняют сценарии.
+НЕpush/не отменять активный CI, НЕclaim green. Дождаться обоихcompletedjobs,
+прочитать полные логи/source/digests/allmembers и новые16mvisual/API; выполнить
+реальную визуальную сверку editor/error приIME и map послеSave/reopen.
+Это changed-code проверка всей функции, не rerun ca888b5.
 
 ## Последний завершённый CI (не зелёный)
 
@@ -46,13 +56,23 @@ Host31 PASS, initial diagnostic regression failure/fix logs сохранены.
 
 ## Следующее действие
 
-Сохранить scoped факты/driver fix, проверить root-only/no activeCI и origin ca888b5,
-push текущего candidate в existing codex/independent-core-auto. Прочитать обе completed
-jobs/реальные новые PNG/source/digests/allmembers; расследовать каждый отказ.
+Candidate уже сохранён и отправлен как a7f789a. Сначала закончить CI43234511518:
+обе completedjobs/реальные новые PNG/source/digests/allmembers; расследовать каждый отказ.
 Не считать API23 доказательством35, offline/skip/partial — успехом.
 После проверенного участка — следующий функциональный gap матрицы styles/import-export,
 SVG/библиотеки только по проверенному контракту, затем media/explicitshare → UI/
 coordinates/compass/settings → migration26.1/приёмка. Не dialog/orphan baseline очередь.
+
+## Следующая функция подготовлена локально, НЕвходит в CI a7f789a
+
+MapCompositionPresets + existing Settings/MapLayers UI: имя/Save/явныеApply/Delete,
+существующий состав/renderer, project owner + UUID library revision + двух snapshot CAS.
+Сохранение/удаление не копирует и не меняет maps/cache/KML/assets; применениеявно
+включает stack. JVM40/83361/presets44/SDK23source84exact/576classes/customprivacy PASS.
+existing maplayers/reopen helper +2кадра (итого12/16, cap16 прежний), real force-stop,
+IME/physical/Arimo, stale/foreign/deleted-owner/data guards. Android этой функции pending.
+MAP_PRESETS.md/security/map-presets-qa-2026-11-12/local/backup сохранены.
+Не push до completed CI a7f789a и разбора его результатов; не приписывать ему этотWIP.
 
 ## Незакрытые границы и сохранность
 
@@ -68,3 +88,7 @@ kml-editor-preserve-nt60j6qs (SHA5659e1f3…), kml-defaults-preserve-jwy0b6p2 (S
 Только independent-core/existing branch; noagents/новыхветок/worktree/reset/clean/mergePR14.
 Название/min23/Arimo/resources/online+cache/приватность безGPS/geo/accounts/telemetry/
 cloudsync/скрытойпередачиobjects/assets; BTтолькоявно; syntheticQA/disposablekeys only.
+
+Исследование следующего width/scale контракта: Google KML reference иOGC2.2XSD
+вернули HTTP403, документы не получены, не считать спецификацию проверенной.
+Сетевые ограничения/TLS не менялись; повторов нет. Это не блокирует текущий editor CI.

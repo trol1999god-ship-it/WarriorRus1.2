@@ -3,17 +3,17 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/widget/CompoundButton$OnCheckedChangeListener;
+.implements Landroid/content/DialogInterface$OnShowListener;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/MapLayersActivity;
 
-.field public final synthetic f$1:Lorg/rabochaya/projects/MapComposition$Layer;
+.field public final synthetic f$1:Landroid/app/AlertDialog;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapLayersActivity;Lorg/rabochaya/projects/MapComposition$Layer;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapLayersActivity;Landroid/app/AlertDialog;)V
     .locals 0
 
     .line 0
@@ -21,22 +21,22 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda6;->f$0:Lorg/rabochaya/projects/MapLayersActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda6;->f$1:Lorg/rabochaya/projects/MapComposition$Layer;
+    iput-object p2, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda6;->f$1:Landroid/app/AlertDialog;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final onCheckedChanged(Landroid/widget/CompoundButton;Z)V
+.method public final onShow(Landroid/content/DialogInterface;)V
     .locals 2
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda6;->f$0:Lorg/rabochaya/projects/MapLayersActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda6;->f$1:Lorg/rabochaya/projects/MapComposition$Layer;
+    iget-object v1, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda6;->f$1:Landroid/app/AlertDialog;
 
-    invoke-virtual {v0, v1, p1, p2}, Lorg/rabochaya/projects/MapLayersActivity;->lambda$row$12$org-rabochaya-projects-MapLayersActivity(Lorg/rabochaya/projects/MapComposition$Layer;Landroid/widget/CompoundButton;Z)V
+    invoke-virtual {v0, v1, p1}, Lorg/rabochaya/projects/MapLayersActivity;->lambda$addChoices$18$org-rabochaya-projects-MapLayersActivity(Landroid/app/AlertDialog;Landroid/content/DialogInterface;)V
 
     return-void
 .end method

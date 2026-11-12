@@ -3,34 +3,34 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/content/DialogInterface$OnClickListener;
+.implements Ljava/lang/Runnable;
 
 
 # instance fields
-.field public final synthetic f$0:Ljava/util/ArrayList;
+.field public final synthetic f$0:Lorg/rabochaya/projects/MapLayersActivity;
 
 
 # direct methods
-.method public synthetic constructor <init>(Ljava/util/ArrayList;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapLayersActivity;)V
     .locals 0
 
     .line 0
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    iput-object p1, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda4;->f$0:Ljava/util/ArrayList;
+    iput-object p1, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda4;->f$0:Lorg/rabochaya/projects/MapLayersActivity;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final onClick(Landroid/content/DialogInterface;I)V
+.method public final run()V
     .locals 1
 
     .line 0
-    iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda4;->f$0:Ljava/util/ArrayList;
+    iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda4;->f$0:Lorg/rabochaya/projects/MapLayersActivity;
 
-    invoke-static {v0, p1, p2}, Lorg/rabochaya/projects/MapLayersActivity;->lambda$addChoices$10(Ljava/util/ArrayList;Landroid/content/DialogInterface;I)V
+    invoke-virtual {v0}, Lorg/rabochaya/projects/MapLayersActivity;->lambda$addChoices$16$org-rabochaya-projects-MapLayersActivity()V
 
     return-void
 .end method

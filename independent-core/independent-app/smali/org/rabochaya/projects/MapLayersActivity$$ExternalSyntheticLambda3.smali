@@ -30,7 +30,7 @@
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda3;->f$0:Lorg/rabochaya/projects/MapLayersActivity;
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/MapLayersActivity;->lambda$addChoices$9$org-rabochaya-projects-MapLayersActivity()V
+    invoke-virtual {v0}, Lorg/rabochaya/projects/MapLayersActivity;->lambda$addChoices$15$org-rabochaya-projects-MapLayersActivity()V
 
     return-void
 .end method

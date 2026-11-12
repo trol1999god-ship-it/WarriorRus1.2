@@ -3,7 +3,7 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/content/DialogInterface$OnClickListener;
+.implements Landroid/widget/CompoundButton$OnCheckedChangeListener;
 
 
 # instance fields
@@ -28,7 +28,7 @@
 
 
 # virtual methods
-.method public final onClick(Landroid/content/DialogInterface;I)V
+.method public final onCheckedChanged(Landroid/widget/CompoundButton;Z)V
     .locals 2
 
     .line 0
@@ -36,7 +36,7 @@
 
     iget-object v1, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda10;->f$1:Lorg/rabochaya/projects/MapComposition$Layer;
 
-    invoke-virtual {v0, v1, p1, p2}, Lorg/rabochaya/projects/MapLayersActivity;->lambda$remove$16$org-rabochaya-projects-MapLayersActivity(Lorg/rabochaya/projects/MapComposition$Layer;Landroid/content/DialogInterface;I)V
+    invoke-virtual {v0, v1, p1, p2}, Lorg/rabochaya/projects/MapLayersActivity;->lambda$row$19$org-rabochaya-projects-MapLayersActivity(Lorg/rabochaya/projects/MapComposition$Layer;Landroid/widget/CompoundButton;Z)V
 
     return-void
 .end method

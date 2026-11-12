@@ -3,17 +3,23 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/lang/Runnable;
+.implements Landroid/content/DialogInterface$OnClickListener;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/MapLayersActivity;
 
-.field public final synthetic f$1:Lorg/rabochaya/projects/MapComposition$Layer;
+.field public final synthetic f$1:Z
+
+.field public final synthetic f$2:Lorg/rabochaya/projects/MapCompositionSettings$PresetsSnapshot;
+
+.field public final synthetic f$3:Lorg/rabochaya/projects/MapCompositionPresets$Entry;
+
+.field public final synthetic f$4:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapLayersActivity;Lorg/rabochaya/projects/MapComposition$Layer;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/MapLayersActivity;ZLorg/rabochaya/projects/MapCompositionSettings$PresetsSnapshot;Lorg/rabochaya/projects/MapCompositionPresets$Entry;Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;)V
     .locals 0
 
     .line 0
@@ -21,22 +27,38 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda9;->f$0:Lorg/rabochaya/projects/MapLayersActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda9;->f$1:Lorg/rabochaya/projects/MapComposition$Layer;
+    iput-boolean p2, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda9;->f$1:Z
+
+    iput-object p3, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda9;->f$2:Lorg/rabochaya/projects/MapCompositionSettings$PresetsSnapshot;
+
+    iput-object p4, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda9;->f$3:Lorg/rabochaya/projects/MapCompositionPresets$Entry;
+
+    iput-object p5, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda9;->f$4:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final run()V
-    .locals 2
+.method public final onClick(Landroid/content/DialogInterface;I)V
+    .locals 7
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda9;->f$0:Lorg/rabochaya/projects/MapLayersActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda9;->f$1:Lorg/rabochaya/projects/MapComposition$Layer;
+    iget-boolean v1, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda9;->f$1:Z
 
-    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/MapLayersActivity;->lambda$row$15$org-rabochaya-projects-MapLayersActivity(Lorg/rabochaya/projects/MapComposition$Layer;)V
+    iget-object v2, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda9;->f$2:Lorg/rabochaya/projects/MapCompositionSettings$PresetsSnapshot;
+
+    iget-object v3, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda9;->f$3:Lorg/rabochaya/projects/MapCompositionPresets$Entry;
+
+    iget-object v4, p0, Lorg/rabochaya/projects/MapLayersActivity$$ExternalSyntheticLambda9;->f$4:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
+
+    move-object v5, p1
+
+    move v6, p2
+
+    invoke-virtual/range {v0 .. v6}, Lorg/rabochaya/projects/MapLayersActivity;->lambda$confirmPreset$12$org-rabochaya-projects-MapLayersActivity(ZLorg/rabochaya/projects/MapCompositionSettings$PresetsSnapshot;Lorg/rabochaya/projects/MapCompositionPresets$Entry;Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;Landroid/content/DialogInterface;I)V
 
     return-void
 .end method
