@@ -68,3 +68,11 @@ Min23/name/Arimo/resources/online+cache; noGPS/geoperms/telemetry/accounts/cloud
 Все23id implementation/acceptance отдельно, accepted0/releasegate25 unchanged.
 OfficialAndroidlintgap3errors94warnings/partialprobe2errors108warnings НЕPASS;
 customprivacyНЕзамена. QAAPK/CI НЕfull26.1acceptance/replacementrelease.
+
+Official lint свежий read-only probe838/source81/151classfiles: exit1/2errors(MissingClass,HardcodedDebugMode)/111warnings, НЕPASS; security/android-lint-qa-2026-11-12/hillshade-838/. Smali body gap остаётся; source/manifest/guards не менялись.
+
+Следующий функциональный пробел для изучения послеhillshade: компонентные KMLстили.
+Ужеесть f.color/sharedStyleMap; не дублировать. Подтверждено чтением own KmlProject.smali:
+color() берёт первый LineStyle/PolyStyle/IconStyle, аLocalMapView использует один f.color
+длявсехгеометрий/fill alpha0x45/white labels. Исследовать OGC component colors/fill/outline
+иinline+shared normal merge; не угадыватьSVG/referenceicons, не запускатьorphanbaseline.

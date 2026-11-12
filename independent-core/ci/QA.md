@@ -45,6 +45,13 @@ HardcodedDebugMode конфликтует с явными ручными про�
 `android_lint_status.py` в CI честно записывает этот integration gap, а не запускает
 собственный сканер под названием Android lint. Полная lint-приёмка остаётся открытой.
 
+12ноября read-only official lint probe текущего8382001 source81/151real Java
+classfiles действительно выполнен: exit1, MissingClass(ProjectsActivity только
+owned smali) +HardcodedDebugMode(manual profile false),111warnings. НЕPASS.
+security/android-lint-qa-2026-11-12/hillshade-838/; smali bodies не анализировались,
+production/manifest/privacy/release gate/CIworkflow не менялись. Предыдущие3errors94
+иpartial2errors108 — исторические результаты соответствующих source snapshots.
+
 ## Фиксация результата
 
 Ошибка→причина→исправление→регрессия. Фиксировать source commit, jobs/API, реальные
