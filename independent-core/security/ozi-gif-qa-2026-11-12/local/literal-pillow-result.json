@@ -1,0 +1,18 @@
+{
+  "kind": "independent Pillow validates literal-only width5to12 fulltable/freeze/CLEAR fixtures, NOT Android",
+  "records": [
+    {
+      "file": "literal-full-false.gif",
+      "source_sha256": "683714f53111387c701f248fcc1fdf770296ab47a4dc7d05378d1af392e39fce",
+      "rgba_sha256": "8de45c633005670f33e1f7396a54bbe2ce43caf4e9ca25c1530037bd7b0f8fa1",
+      "pixels": 4369
+    },
+    {
+      "file": "literal-full-true.gif",
+      "source_sha256": "a6d36882a8cf73bf2e34e07091b8bf76fa3a9d6534dffa6af6e698a284589961",
+      "rgba_sha256": "8de45c633005670f33e1f7396a54bbe2ce43caf4e9ca25c1530037bd7b0f8fa1",
+      "pixels": 4369
+    }
+  ],
+  "pixel_checks": 8738
+}

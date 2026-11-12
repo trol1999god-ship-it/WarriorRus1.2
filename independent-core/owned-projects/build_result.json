@@ -1,5 +1,5 @@
 {
-  "added_classes": 482,
+  "added_classes": 484,
   "generated_files": [
     "AttachmentsActivity$$ExternalSyntheticLambda0.smali",
     "AttachmentsActivity$$ExternalSyntheticLambda1.smali",
@@ -156,6 +156,8 @@
     "GeometryMapUndoDraft.smali",
     "GeometryPartChoiceDraft.smali",
     "GeometryVertices.smali",
+    "GifRaster$Bits.smali",
+    "GifRaster.smali",
     "HgtRaster$1.smali",
     "HgtRaster.smali",
     "KmlTimeFilter$1.smali",
@@ -484,7 +486,7 @@
     "WorkspaceUi$Item.smali",
     "WorkspaceUi.smali"
   ],
-  "replaced_classes": 480,
+  "replaced_classes": 482,
   "min_sdk": 23,
   "api_stubs_packaged": false,
   "sources": {
@@ -520,10 +522,11 @@
     "src/org/rabochaya/projects/GeometryMapUndoDraft.java": "dc5e4325f945305506a4b6a6d40d54eeefd50d16e85c5589f6d33ad9d6f80902",
     "src/org/rabochaya/projects/GeometryPartChoiceDraft.java": "f2ae280df0664dacd015bc8f9bd29f9f3ddea0d033aa170f9b1d81001cd89f94",
     "src/org/rabochaya/projects/GeometryVertices.java": "7ad465223550be97a0a7adc28faff2345f7dddabd27c06281481f496a8f7fe46",
+    "src/org/rabochaya/projects/GifRaster.java": "ed91abfa2c5342c543e8a6528e62738f72e050a63feac6d224d6ab27b99e2ad3",
     "src/org/rabochaya/projects/HgtRaster.java": "4b4d18fb9eb485bec11d8af439491bca4e096235ba6394e17c247d0ce49cdae4",
     "src/org/rabochaya/projects/KmlTimeFilter.java": "3c2dfbf8cad62e31d1998c931774d18e8d8a1bcb29c31629d5cf964f81238ddd",
     "src/org/rabochaya/projects/KmlXml.java": "5e4553e48f0f250d2f71b16b521a142c0144acb520c1837378b7e1dbd92d73e0",
-    "src/org/rabochaya/projects/LocalMapActivity.java": "c5c65e4a611c1cdd3f5eaec3f1ce86f559b8a04b11e4d85c6abca664a081b166",
+    "src/org/rabochaya/projects/LocalMapActivity.java": "3e680ba9510a1285384c1841112d91a4b15b766ebf9d4647b866628bb18c5adb",
     "src/org/rabochaya/projects/LocalMapView.java": "df91deaacb2209201d417f365d2c03f06c6e78a5cb095c8dfdb8e4cd0f4ce784",
     "src/org/rabochaya/projects/LocalRasterStore.java": "92539a12673ab354812174b1691376de32d5ddd6b2ce071f4e13d61b4728973e",
     "src/org/rabochaya/projects/MapCatalog.java": "3804579668c60226f90f2a8178f66235667d94f4bfdeeeaee150b20c4c66a4ff",
@@ -555,7 +558,7 @@
     "src/org/rabochaya/projects/OwnedHomeActivity.java": "33ffd0d1057010fa65630a1fc6628c8510aa691b937f652f3d619385f3e25a32",
     "src/org/rabochaya/projects/OziCalibration.java": "21b6fd54ca1836b1a917edead82e6d322aef3952c5c3bd75af74dec3c467b0d0",
     "src/org/rabochaya/projects/OziImport.java": "d13375e6066c3f8e6c36285646bfe348e88b304dd515a017705f82186375c66f",
-    "src/org/rabochaya/projects/OziRaster.java": "74f534373e97160c129406814e46146a2a3de7e8a0dc19e3597f43020a3717c4",
+    "src/org/rabochaya/projects/OziRaster.java": "234069fab2584ba543bc442276d716dadbf9af65b5308df05e75af00c5507a2e",
     "src/org/rabochaya/projects/ProjectSession.java": "ddcedf560b7342514471112ddc36cdabbf19ba4032b35dc66edc2d4a4d46392b",
     "src/org/rabochaya/projects/ProjectWrites.java": "729e4fa2f1a6a24e8142e45a40e6157ffab076fb2151924ac9b4c04630302c4b",
     "src/org/rabochaya/projects/RasterExportFile.java": "7aaa2895addbc992ef8179235ab35d0e993a2117f899d1ec247e810327e1d730",

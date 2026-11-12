@@ -29,28 +29,37 @@ Original ZIP /workspace/attachments/b3ed2b6e-6e3c-42f3-995d-a8a7753af695/bmp-8d2
 Предыдущие90020/43134277461 иfbc/43139985094 FAILURE сохранены историей;
 current8d закрывает scoped регрессию, не переписывает прежние records.
 
-## Следующая функция — локальный GIF WIP, ещёНЕпроверен Android
+## Следующая функция — готовый локальный GIF-кандидат, Android pending
 
-GifInfo был переименован/развит в GifRaster: оригинальный structure-only source
-сохранён /workspace/work/manager-confirm/gif-model-2026-11-12/GifInfo-structure-only.java.
-GifRaster.java/GifFixtures.java/GifTests.java +OziRaster/LocalMapActivity/compilelists
-незакоммичены. Подготовлен one-full-frame GIF87a/89a/global-local palette/interlace,
-строгий LZW≤12bit/palette bounds/pixelcount/EOI/CLEAR/record/subblock limits,
-opaque87/transparent89; refuse animation/delay/userinput/application/plaintext/
-partialframe/unknown extension/version. Indexed buffer≤4Mbytes, file≤16MiB,
-20kпо стороне; тотже OziCalibration/sharedRasterMapImport/privateMBTiles/renderer.
-Model135 structural+valid simpleLZW PASS. Независимый Pillow48checks подтверждает
-8fixtures (global/local/interlace/87/89), НЕсам GifRaster и НЕAndroid.
-Нужны direct reader pixel/close/EOF/dictionary/codewidth/EOI regressions и
-независимая сверка с Pillow-generated streams (widthgrowth/KwKwK/clear/fulltable).
-Далее закончить native OziChecks GIFветку без удаления PNG/BMP cases, собрать
-SDK23/sourceexact/app+tests/JVM/privacy, сохранить candidate и один обоснованный
-fullCI нового GIF. Проверить оба completedjob/новыеPNG/pixels/data, безblindrerun.
-GIF ещёне входит в8d/43146921585. Не утверждатьготовность по135/48checks.
+GifInfo развит/переименован в GifRaster; оригинал structure-only source сохранён
+/workspace/work/manager-confirm/gif-model-2026-11-12/GifInfo-structure-only.java.
+GIF87a/89a одинfullframe/global-localpalette/interlace/binarytransparency;
+собственный bounded indexed reader через тотже OziCalibration/sharedRasterMapImport/
+privateMBTiles/renderer. Strict LZW/CLEAR/KwKwK/width≤12/dict4096/palettebounds/
+точныйcount/EOI; indexed≤4Mbytes/file16MiB/20kсторона, records1024/subblocks65536/
+codes≤2×pixels+1024/cooperative15sec/interruption; refuse animation/delay/crop/
+userinput/application/plaintext/unknownversion/extensions. Без wholeARGB/spool.
 
-Resume backup /workspace/work/manager-confirm/resume-bmp-success-gif-3v2bljno
-сохраняет все diff/source/stash. BMP backup ozi-bmp-preserve-bkg2rm99/localreceipts/
-generated/SDK artifacts сохранить. Старые135/48 logs/fixtures/classfiles не стирать.
+JVM36/83129/GIF323/BMP754/Ozi66/Geo432 PASS.6 Pillow-generated golden streams
+закреплены в tests/fixtures/gif; проверяются verify_jvm. Actual reader vsPillow:
+14files/793240RGBApixels exact +2fulltable literal fixtures/8738pixels (freeze/CLEAR).
+Это HOST, НЕAndroid. Прежние135structure/48Pillow/control artifacts сохранены.
+SDK23 app+instrumentation/source79exact/550classes/debugQA/disposablekeys/
+custom source+DEX privacy PASS (НЕAndroidlint). Source/receipts/апк:
+security/ozi-gif-qa-2026-11-12/local/, /workspace/work/manager-confirm/ozi-gif-2026-11-12-qa.
+Backup всегоcandidate: ozi-gif-candidate-h1qlu3wn; resume backup3v2bljno сохранить.
+
+Existing offlineformats расширен GIF87/89/global/local/interlace/rotation/shear/
+literal pixels/bounds/nativezoom/NoData/source/Cancel/fulltable/invalidLZW/EOI/
+size/unsupported/deadline0/oldtarget. Прежние PNG/JPEG/BMP UIветки остаются, GIF
+добавляет menu→synthetic picker pair/explicitConfirm/Cancel/CAS/Arimo/actions/
+reopen/настоящийActivity.finish/destroy сожидающимimport/DOM/assets/otherproject/
+network0. Disposed flagvolatile; worker привыходе не публикуетpendingmap.
+Два новыхGIFPNG, total8mvisual≤16/2MiB. Runtime ещёНЕисполнен и НЕвходит в8dCI.
+migration/OZI_GIF.md. Следующий шаг: сохранитьcandidate отдельнымcommit, проверить
+origin/нетactiveCI/конкурента, push втойжеветке; один обоснованный fullCI новогоGIF,
+обаcompletedjob/новыеPNG/source/digest/data. Не blindrerun/не ослаблятьguards.
+
 После GIF — formats/DEM по матрице; не угадыватьCRS/codepage/neatline/RMAP.
 Затем objects/geometry→styles/SVG/import-export→media/explicitshare→UI/coordinates/
 compass/settings→migration26.1/приёмка. Все23id implementation/acceptance отдельно.
