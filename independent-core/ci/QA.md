@@ -120,3 +120,6 @@ Host31 PASS, включая положительный recovery и отрица�
 Официальный read-only lint на83sources/154actualclassfiles (9a71284): exit1,
 MissingClass/HardcodedDebugMode,112warnings. Smali bodies не проанализированы;
 adaptergap открыт, custom source+DEX privacy audit не является Android lint.
+
+Последний local named-presets probe0a031db: официальный lint84sources/160actualclassfiles
+exit1 MissingClass/HardcodedDebugMode/114warnings. НЕPASS, reports map-presets-qa/local/official-lint.

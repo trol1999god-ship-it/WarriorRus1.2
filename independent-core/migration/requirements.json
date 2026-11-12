@@ -60,7 +60,10 @@
         "Добавление и удаление слоя, порядок, прозрачность, сохранение наборов",
         "Восстановление композиции после перезапуска"
       ],
-      "evidence": []
+      "evidence": [],
+      "implementation_notes": [
+        "Named project-private presets0a031db local candidate: explicit Save/Apply/Delete, owner/library revision/composition CAS, JVM40/83361/preset44, SDK23source84/576classes and customprivacy pass. Android pending, not included in a7f789a CI. Existing maplayers/reopen scenarios extended, no new mode or relaxed frame cap."
+      ]
     },
     {
       "id": "offline-formats",

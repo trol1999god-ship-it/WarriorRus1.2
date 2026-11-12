@@ -1,3 +1,9 @@
+KML editor a7f789a/CI43234511518: обе API FAILURE45/46, Native helper ошибочно
+искал shared Style/StyleMap через feature-only byId и упал доeditor UI. Узкий test-only
+DOM lookup fix собран; UI/Save/Cancel/IME пока НЕподтверждены. Named layer presets —
+следующий локальный candidate0a031db, JVM40/83361/SDK23source84; Android pending.
+Официальный lint84source exit1/2errors/114warnings, НЕPASS. CODEX_NEXT.md.
+
 Компонентный KML renderer ca888b5/CI43225977674: offlineformats1228 PASS обе API,
 четыре KML ичетыре HGT PNG просмотрены/source+digests проверены. API23full46 SUCCESS,
 API35full45 FAILURE: partial adb pull vertexscroll после native314 PASS; НЕgreen CI.

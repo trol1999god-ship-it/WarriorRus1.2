@@ -36,3 +36,9 @@ composition, foreign/deleted owner, exact layers и настоящий force-sto
 Два новых кадра name+real IME/list: исходные10/14 mvisual станут12/16, лимит16/2MiB
 НЕувеличен. Текущий CI43234511518 относится к KML editor a7f789a, НЕк наборам.
 Полная layers/26.1 приёмка остаётся открытой, accepted0/release gate прежние.
+
+Последний официальный read-only lint0a031db:84sources/160actualclassfiles, exit1,
+MissingClass/HardcodedDebugMode/114warnings. Smali gap остаётся, НЕPASS/customaudit
+НЕзамена. Предыдущий editor CI a7f789a завершён failure из-за Native definition lookup,
+исправление test-only включается в следующую проверку вместе с наборами. Наборы
+ещё не исполнялись на Android; локальная компиляция не заменяет runtime/приёмку.

@@ -1,16 +1,25 @@
-# Продолжение — 12 ноября: editor/independent defaults a7f789a CI RUNNING
+# Продолжение — 12 ноября: исправить shared-definition helper + проверить named sets
 
-## Текущая проверка
+## Последний a7f789a: оба completed FAILURE, подтверждён test-only блокер
 
-Remote a7f789a0b52c0512aff20bf263ec257acbbfc134 / CI43234511518 RUNNING.
-JVM131238174611 SUCCESS39/83317/component33/edit34/host31.
-Android23 job131238606010 и35 job131238605912 выполняют сценарии.
-НЕpush/не отменять активный CI, НЕclaim green. Дождаться обоихcompletedjobs,
-прочитать полные логи/source/digests/allmembers и новые16mvisual/API; выполнить
-реальную визуальную сверку editor/error приIME и map послеSave/reopen.
-Это changed-code проверка всей функции, не rerun ca888b5.
+CI43234511518 JVM131238174611 SUCCESS39/83317/host31.
+API23 job131238606010 и35 job131238605912: по45/46; единственныйFAIL offlineformats.
+Оба full logs: NPE KmlComponentStyleChecks.editor line12. Ошибочно использован
+KmlProject.byId для shared Style/StyleMap: он индексирует только containers/Placemark.
+Initial renderer pixels/default independence/Arimo/KMZ иHGT guards прошли ДОэтойточки;
+editor UI/IME/Save/Cancel/reset/stale иfinal-data guards НЕисполнены/НЕзасчитаны.
+Mode offlineformats НЕPASS, total assertions не угадывать. HGT Ready4381/3629ms.
+Source/digest/all558+561members verified; шесть новых scoped KML/HGT PNG viewed,
+editor/error/postedit PNG не были созданы. editor-a7-result.json/full-job logs.
+Artifact pull failures в этом run не было; recovery branch не заявлена exercised.
 
-## Последний завершённый CI (не зелёный)
+Узкое исправление только Native helper: DOM + exact KML tag/ns/id, count==1;
+оригинальные equality/data guards не сняты. SDK23 corrected instrumentation compiled,
+paired source84 app сохранён; shared-definition-fix-local receipt. Production codec
+ради test lookup не менялся. Следующий changed-code CI проверит это и подготовленную
+реальную функцию именованных наборов; старый a7 не rerun вслепую и не станет PASS.
+
+## Предыдущий ca888b5 (история, не зелёный)
 
 Remote ca888b5e02c10828377f4d8ea4f610652810a52b / CI43225977674 FAILURE.
 JVM131209140454 SUCCESS38/83282/component32; обе Android builds SUCCESS.
@@ -56,8 +65,9 @@ Host31 PASS, initial diagnostic regression failure/fix logs сохранены.
 
 ## Следующее действие
 
-Candidate уже сохранён и отправлен как a7f789a. Сначала закончить CI43234511518:
-обе completedjobs/реальные новые PNG/source/digests/allmembers; расследовать каждый отказ.
+Оба a7 completedjob разобраны. Сохранить lookup fix/receipts, проверить origin a7f789a
+и noactiveCI/root-only; push текущего кандидата с0a031db named sets +testfix, один
+changed-code fullCI46. Прочитать оба completedjobs/новыеPNG, расследовать отказы.
 Не считать API23 доказательством35, offline/skip/partial — успехом.
 После проверенного участка — следующий функциональный gap матрицы styles/import-export,
 SVG/библиотеки только по проверенному контракту, затем media/explicitshare → UI/
@@ -72,7 +82,8 @@ MapCompositionPresets + existing Settings/MapLayers UI: имя/Save/явныеAp
 existing maplayers/reopen helper +2кадра (итого12/16, cap16 прежний), real force-stop,
 IME/physical/Arimo, stale/foreign/deleted-owner/data guards. Android этой функции pending.
 MAP_PRESETS.md/security/map-presets-qa-2026-11-12/local/backup сохранены.
-Не push до completed CI a7f789a и разбора его результатов; не приписывать ему этотWIP.
+a7f789a уже разобран: helper lookup NPE, исправлен только тест. Не приписывать ему
+наборы; они входят в следующий собственный changed-code candidate.
 
 ## Незакрытые границы и сохранность
 

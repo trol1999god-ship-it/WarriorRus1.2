@@ -76,3 +76,18 @@ boot read explicit offline, recovery sameBoot/rc0. Новый driver подтв�
 partial сохраняется, новый fresh target, one readonly retry, native never repeated.
 31host tests PASS; online/newboot/permanentoffline/partial-only остаются fail.
 Новый Android runtime для editor + recovery pending, никаких ретроактивных PASS.
+
+## a7f789a / CI43234511518 — реальный отказ тестового fixture
+
+Оба completedjobs23 131238606010/35 131238605912 FAILURE45/46, единственныйFAIL
+в offlineformats: KmlComponentStyleChecks.editor line12 NPE cloneNode(null).
+Feature lookup byId не содержит shared Style/StyleMap, что подтверждено own codec
+isContainer/Placemark indexing. Production не исправляется ради этого дефекта.
+Test helper заменён DOM lookup exact namespace/tag/id с count==1, проверки
+неизменности исходных определений/других DOM/geometry/assets сохранены.
+
+До ошибки дошли initial renderer pixel/independent fallback/Arimo/KML-KMZ checks
+и HGT guards (4381/3629ms); full mode НЕPASS. Editor UI/IME/Save/Cancel/reset/stale/
+final fixture guards не исполнены. Шесть новых scoped KML/HGT кадров просмотрены;
+editor/error/postedit кадров нет, не подменять прежними. All558+561members/source/
+digests verified. SDK23 corrected instrumentation compiled; Android fix pending.
