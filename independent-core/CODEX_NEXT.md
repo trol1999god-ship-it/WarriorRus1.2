@@ -25,14 +25,20 @@ Manager launch fix толькоinstrumentation: current own window adoption до
 initial oldDestroyed/owner/portrait guards; existing mode требует actual replacement.
 GEOTIFF_TILED.md, DEM_PROFILE.md, HGT_DEM.md; это scoped evidence, НЕполная приёмка.
 
-## Следующий production результат
+## Текущий новый production кандидат
 
-1. Affine ModelTransformationTag34264, OGC DOUBLE16 row-major/2D, через общий
+1. Affine-кандидат УЖЕреализован локально: JVM33/81986/Geo432/host20, SDK23
+app+tests/source73exact/535classes/customprivacy PASS. GEOTIFF_AFFINE.md,
+security/geotiff-affine-qa-2026-11-12/local/receipt.json. Runtime ещёНЕисполнен.
+Следующий шаг — обоснованный fullCI нового кода/обеAPI/новыеPNG/data guards.
+ModelTransformationTag34264, OGC DOUBLE16 row-major/2D, через общий
 GeoRasterTransform и existing importer/render/storage. Корректные Area/Point,
 bounds/реальный native pixel step (не толькоbbox), literal native pixels,
 NoData/footprint/Cancel и безопасный отказ unsupported transform/CRS/лимитов;
 KML/assets/cache/source/oldfile/otherproject сохранить. Контракт:
-migration/GEO_RASTER_CONTRACT.md. Сейчас matrix34264 ещёотклоняется.
+migration/GEO_RASTER_CONTRACT.md. Matrix34264 локально подключён, но НЕвходит в проверенный1254CI.
+Random-row compressed strips matrix явно отказываются (нужныtiles); измерение
+10samples/10inflater streams сохранено, старые guards не ослаблены.
 2. Затем Ozi по migration/MAP_FORMATS.md/IMPLEMENTATION_PLAN; не угадывать
 CRS/калибровку/соседний файл, без второгоrenderer. После formats/DEM — объекты/
 геометрия → style/SVG/import-export → media/explicitshare → UI/coordinates/

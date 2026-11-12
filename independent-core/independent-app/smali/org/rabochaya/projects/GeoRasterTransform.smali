@@ -510,7 +510,7 @@
 .method private static finite(D)Z
     .locals 1
 
-    .line 16
+    .line 22
     invoke-static {p0, p1}, Ljava/lang/Double;->isNaN(D)Z
 
     move-result v0
@@ -549,7 +549,7 @@
 
     move-wide/from16 v7, p4
 
-    .line 15
+    .line 21
     new-instance v19, Lorg/rabochaya/projects/GeoRasterTransform;
 
     move-object/from16 v2, v19
@@ -578,7 +578,7 @@
 .method public static viewport(DDDDII)[D
     .locals 16
 
-    .line 22
+    .line 28
     invoke-static/range {p0 .. p1}, Lorg/rabochaya/projects/MapMath;->x(D)D
 
     move-result-wide v0
@@ -718,7 +718,7 @@
 .method public cell(DD)J
     .locals 7
 
-    .line 19
+    .line 25
     invoke-static {p1, p2}, Lorg/rabochaya/projects/GeoRasterTransform;->finite(D)Z
 
     move-result v0
@@ -830,7 +830,7 @@
 .method public cellModel(DD)J
     .locals 7
 
-    .line 18
+    .line 24
     invoke-static {p1, p2}, Lorg/rabochaya/projects/GeoRasterTransform;->finite(D)Z
 
     move-result v0
@@ -971,10 +971,39 @@
     return-wide v1
 .end method
 
+.method public forwardRows()Z
+    .locals 4
+
+    .line 16
+    iget-wide v0, p0, Lorg/rabochaya/projects/GeoRasterTransform;->d:D
+
+    const-wide/16 v2, 0x0
+
+    cmpl-double v0, v0, v2
+
+    if-nez v0, :cond_0
+
+    iget-wide v0, p0, Lorg/rabochaya/projects/GeoRasterTransform;->e:D
+
+    cmpg-double v0, v0, v2
+
+    if-gez v0, :cond_0
+
+    const/4 v0, 0x1
+
+    goto :goto_0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    :goto_0
+    return v0
+.end method
+
 .method public model(DD)[D
     .locals 4
 
-    .line 20
+    .line 26
     iget-wide v0, p0, Lorg/rabochaya/projects/GeoRasterTransform;->a:D
 
     mul-double/2addr v0, p1
@@ -1016,4 +1045,129 @@
     aput-wide v2, p1, p2
 
     return-object p1
+.end method
+
+.method public pixelsPerWorldUnit()D
+    .locals 10
+
+    .line 20
+    iget v0, p0, Lorg/rabochaya/projects/GeoRasterTransform;->crs:I
+
+    const-wide v1, 0x4076800000000000L    # 360.0
+
+    const/16 v3, 0x10e6
+
+    if-ne v0, v3, :cond_0
+
+    move-wide v4, v1
+
+    goto :goto_0
+
+    :cond_0
+    const-wide v4, 0x41831bf8457c1093L    # 4.007501668557849E7
+
+    :goto_0
+    iget-wide v6, p0, Lorg/rabochaya/projects/GeoRasterTransform;->south:D
+
+    const-wide/16 v8, 0x0
+
+    cmpg-double v0, v6, v8
+
+    if-gtz v0, :cond_1
+
+    iget-wide v6, p0, Lorg/rabochaya/projects/GeoRasterTransform;->north:D
+
+    cmpl-double v0, v6, v8
+
+    if-ltz v0, :cond_1
+
+    goto :goto_1
+
+    :cond_1
+    iget-wide v6, p0, Lorg/rabochaya/projects/GeoRasterTransform;->south:D
+
+    invoke-static {v6, v7}, Ljava/lang/Math;->abs(D)D
+
+    move-result-wide v6
+
+    iget-wide v8, p0, Lorg/rabochaya/projects/GeoRasterTransform;->north:D
+
+    invoke-static {v8, v9}, Ljava/lang/Math;->abs(D)D
+
+    move-result-wide v8
+
+    invoke-static {v6, v7, v8, v9}, Ljava/lang/Math;->min(DD)D
+
+    move-result-wide v8
+
+    :goto_1
+    iget v0, p0, Lorg/rabochaya/projects/GeoRasterTransform;->crs:I
+
+    if-ne v0, v3, :cond_2
+
+    invoke-static {v8, v9}, Ljava/lang/Math;->toRadians(D)D
+
+    move-result-wide v6
+
+    invoke-static {v6, v7}, Ljava/lang/Math;->cos(D)D
+
+    move-result-wide v6
+
+    mul-double/2addr v6, v1
+
+    goto :goto_2
+
+    :cond_2
+    move-wide v6, v4
+
+    :goto_2
+    iget-wide v0, p0, Lorg/rabochaya/projects/GeoRasterTransform;->e:D
+
+    invoke-static {v0, v1}, Ljava/lang/Math;->abs(D)D
+
+    move-result-wide v0
+
+    mul-double/2addr v0, v4
+
+    iget-wide v2, p0, Lorg/rabochaya/projects/GeoRasterTransform;->b:D
+
+    invoke-static {v2, v3}, Ljava/lang/Math;->abs(D)D
+
+    move-result-wide v2
+
+    mul-double/2addr v2, v6
+
+    add-double/2addr v0, v2
+
+    iget-wide v2, p0, Lorg/rabochaya/projects/GeoRasterTransform;->d:D
+
+    invoke-static {v2, v3}, Ljava/lang/Math;->abs(D)D
+
+    move-result-wide v2
+
+    mul-double/2addr v2, v4
+
+    iget-wide v4, p0, Lorg/rabochaya/projects/GeoRasterTransform;->a:D
+
+    invoke-static {v4, v5}, Ljava/lang/Math;->abs(D)D
+
+    move-result-wide v4
+
+    mul-double/2addr v4, v6
+
+    add-double/2addr v2, v4
+
+    invoke-static {v0, v1, v2, v3}, Ljava/lang/Math;->max(DD)D
+
+    move-result-wide v0
+
+    iget-wide v2, p0, Lorg/rabochaya/projects/GeoRasterTransform;->det:D
+
+    invoke-static {v2, v3}, Ljava/lang/Math;->abs(D)D
+
+    move-result-wide v2
+
+    div-double/2addr v0, v2
+
+    return-wide v0
 .end method

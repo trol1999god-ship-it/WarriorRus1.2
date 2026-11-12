@@ -1,0 +1,36 @@
+{
+  "jvm_suites": 33,
+  "jvm_assertions": 81986,
+  "geotiff_assertions": 432,
+  "host_tests": 20,
+  "sdk23_app_and_instrumentation_compiled": true,
+  "source_hashes_exact": 73,
+  "owned_classes": 535,
+  "custom_source_dex_privacy_pass": true,
+  "official_android_lint_pass": false,
+  "runtime_executed": false,
+  "accepted": false,
+  "files": {
+    "jvm.log": "f974e1ddc850512304919b84c63dbdbad329edaa231a72c2746f76232c6df2a0",
+    "sdk23-build.log": "0193ba23852ec07466f948dda61d5bc371aeb365fce182c03dc45924ed225846",
+    "host.log": "8af40a9a067368f4d3286477b9195e2d8a541b07053e75d4cc7fd079c745ebee",
+    "privacy.json": "0d04ccc4846cc2ede8ebe5a57471f0fba73472f1e355b7d7408d35ee3807a2c8",
+    "qa-build.json": "a3b92a5209fb361640623d81ae234fc374cbac0e09c2bfd77f45290ca38f5376",
+    "jvm-suites.json": "1b74be09ecb14101278eb5b1059c2c285379ac48796e01b58c24d0603e8b2acc",
+    "corrected-test-compile-failure.log": "37126be62417cb5b2f7f8b9339d413d26a232ad9c924c8b645fd2c56f8f17065"
+  },
+  "apks": {
+    "app.apk": {
+      "bytes": 2204179,
+      "sha256": "2899c69170544a8aed211ac24f85544879b165213aae026decfe5c6ac7ee3a3b"
+    },
+    "tests.apk": {
+      "bytes": 283362,
+      "sha256": "e8d1432c4fcd6ec934384e440b21bf4da7c14f9b10169645e1b12aa936e0ce7e"
+    },
+    "tests-unsigned.apk": {
+      "bytes": 272919,
+      "sha256": "c8af08d59de0a3bb12d0f8d0993cdf27b3ac8a70241e4b720b42e2fced408206"
+    }
+  }
+}

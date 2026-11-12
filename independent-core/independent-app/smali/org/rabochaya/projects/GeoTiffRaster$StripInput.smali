@@ -26,7 +26,7 @@
 .method constructor <init>(Lorg/rabochaya/projects/GeoTiffRaster;I)V
     .locals 3
 
-    .line 29
+    .line 31
     iput-object p1, p0, Lorg/rabochaya/projects/GeoTiffRaster$StripInput;->this$0:Lorg/rabochaya/projects/GeoTiffRaster;
 
     invoke-direct {p0}, Ljava/io/InputStream;-><init>()V
@@ -60,7 +60,7 @@
         }
     .end annotation
 
-    .line 29
+    .line 31
     iget-wide v0, p0, Lorg/rabochaya/projects/GeoTiffRaster$StripInput;->remaining:J
 
     const-wide/16 v2, 0x0
@@ -122,7 +122,7 @@
         }
     .end annotation
 
-    .line 29
+    .line 31
     if-nez p3, :cond_0
 
     const/4 p1, 0x0

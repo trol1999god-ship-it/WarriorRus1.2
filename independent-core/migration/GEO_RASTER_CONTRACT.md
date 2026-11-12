@@ -34,9 +34,9 @@ conversion → существующий каталог/renderer → геогра
 или отмена сохраняет исходный файл, прежнюю карту/состав, кеш, KML и вложения. Предыдущие
 MBTiles readers и онлайн-карты не заменяются новым непроверенным парсером.
 
-## Следующая зависимость после Tiled — affine геопривязка
+## Affine геопривязка — локальный production кандидат
 
-Пока только контракт, production ещё не подключён. OGC GeoTIFF1.1:
+Подключён ограниченный production кандидат, Android runtime pending (GEOTIFF_AFFINE.md). OGC GeoTIFF1.1:
 `clause_7_requirements.adoc` blob6c8a8ba393f864acb8bb539f03d759108ff262a2;
 `requirements_class_ModelTransformationTag.adoc`
 blob49c4f58ee32c2388baed6f630fef72cb1d985311: tag34264, DOUBLE16, row-major.
@@ -49,10 +49,11 @@ blob49c4f58ee32c2388baed6f630fef72cb1d985311: tag34264, DOUBLE16, row-major.
 Пользовательский результат: повёрнутая/скошенная локальная карта через тот же
 importer→MBTiles→renderer; прозрачность вне реального footprint, корректный
 extent и ограниченное разрешение/количество тайлов, Cancel/ошибка сохраняют
-предыдущий файл. Общий GeoRasterTransform уже inverse-affine; importer сейчас
-использует разрешение из bounding box, поэтому новая матрица требует отдельного
-контроля действительного шага пикселей, особенно при сильном skew. Нельзя только
-разрешить tag34264 и объявить поддержку готовой. Independent literal pixel/
+предыдущий файл. Общий GeoRasterTransform inverse-affine; прежний importer использовал только
+разрешение из bounding box. Кандидат добавляет inverse-Jacobian row bounds для
+действительного шага пикселей, включая skew, и сохраняет прежние caps.
+Для compressed strips требуется прямой порядок строк; иначе явный отказ/нужныtiles.
+Нельзя только разрешить tag34264 и объявить поддержку готовой. Independent literal pixel/
 half-pixel/rotation/shear/NoData controls и прежние data guards обязательны.
 Этот общий результат нужен и будущей Ozi-калибровке, без второго renderer;
 полная приёмка GeoTIFF/Ozi26.1 остаётся открытой.

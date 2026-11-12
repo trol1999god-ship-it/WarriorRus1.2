@@ -15,10 +15,12 @@
 Scale+один Tiepoint. Deflate Predictor1/2 проверен отдельно на7230/CI43035041730;
 подробности и ограничения GEOTIFF_DEFLATE.md. Нет предположений о CRS.
 Palette/прочиеcompression/overview/
-ICC/матрицы/DEM/иные CRS явно отклоняются. Это не полная поддержка GeoTIFF26.1.
+ICC/perspective/3D/DEM/иные CRS явно отклоняются. Это не полная поддержка GeoTIFF26.1.
 Tiled1e3e9ea восстановлен после scoped профиля; source73/Geo215/SDK23 compiled,
 собственный Android runtime ещё pending (GEOTIFF_TILED.md). В profile-only
 d36f15f/6f19feb tiled НЕбыл активен.
+Affine34264 локально подключён следующим кандидатом (GEOTIFF_AFFINE.md),
+Android runtime pending; в проверенный1254CI ещё не входит.
 Контракт и источник спецификации — migration/GEO_RASTER_CONTRACT.md.
 
 Пределы: вход512МиБ, до20000 по оси/100млн пикселей, выход20000 тайлов и512МиБ,

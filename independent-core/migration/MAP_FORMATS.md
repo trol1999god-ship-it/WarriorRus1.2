@@ -19,3 +19,6 @@
 ограниченные размеры/количество элементов; импортированный SQLite не исполняет
 произвольные views/virtual tables. Набор форматов и пользовательские действия
 расширяются вертикально, с renderer/catalog integration, а не только тестами.
+
+Affine34264 — локальный следующий кандидат существующего importer: GEOTIFF_AFFINE.md,
+JVM33/81986/Geo432/SDK23/source73; Androidruntime pending, НЕ1254CI.

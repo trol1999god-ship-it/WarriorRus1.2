@@ -12,6 +12,12 @@ public final class GeoRasterTransform {
   for(double i:new double[]{left,right})for(double j:new double[]{top,bottom}){double x=a*i+b*j+c,y=d*i+e*j+f;if(!finite(x)||!finite(y)||crs==3857&&(Math.abs(x)>HALF_WORLD+1e-7||Math.abs(y)>HALF_WORLD+1e-7))throw new IllegalArgumentException("Растр выходит за поддерживаемую область CRS");double lon=crs==4326?x:x/RADIUS*180/Math.PI,lat=crs==4326?y:Math.toDegrees(Math.atan(Math.sinh(y/RADIUS)));if(lon< -180-1e-9||lon>180+1e-9||lat< -90||lat>90)throw new IllegalArgumentException("Некорректный географический extent");w=Math.min(w,lon);ee=Math.max(ee,lon);s=Math.min(s,lat);n=Math.max(n,lat);}
   west=Math.max(-180,w);east=Math.min(180,ee);south=s;north=n;
  }
+ /** Compressed strip streaming is suitable only when output rows advance source rows. */
+ public boolean forwardRows(){return d==0&&e<0;}
+ /** Conservative raster-pixel displacement per unit of square Mercator world coordinates.
+  * Inverse-Jacobian row sums cover rotation/shear, unlike bounding-box dimensions.
+  * Geographic dLat/dWorldY is bounded using the latitude closest to the equator. */
+ public double pixelsPerWorldUnit(){double xUnits=crs==4326?360:2*HALF_WORLD;double latitude=south<=0&&north>=0?0:Math.min(Math.abs(south),Math.abs(north));double yUnits=crs==4326?360*Math.cos(Math.toRadians(latitude)):xUnits;return Math.max(Math.abs(e)*xUnits+Math.abs(b)*yUnits,Math.abs(d)*xUnits+Math.abs(a)*yUnits)/Math.abs(det);}
  public static GeoRasterTransform scale(int width,int height,int crs,boolean point,double sx,double sy,double i,double j,double x,double y){return new GeoRasterTransform(width,height,crs,point,sx,0,x-sx*i,0,-sy,y+sy*j);}
  private static boolean finite(double v){return !Double.isNaN(v)&&!Double.isInfinite(v);}
  /** Packed row/column, or -1 outside raster. Callers avoid one allocation per output pixel. */

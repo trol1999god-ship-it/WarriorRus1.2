@@ -12,7 +12,7 @@ public final class GeoTiffImport {
   GeoRasterTransform t=raster.transform;if(t.south< -85.05112878||t.north>85.05112878)throw new IOException("Растр выходит за область Web Mercator");
   double left=MapMath.x(t.west),right=MapMath.x(t.east),top=MapMath.y(t.north),bottom=MapMath.y(t.south);
   if(!(right>left&&bottom>top))throw new IOException("Пустые границы растра");
-  int zoom=0;double scale=Math.max(raster.width/(right-left),raster.height/(bottom-top));while(zoom<23&&(256L<<zoom)<scale)zoom++;
+  int zoom=0;double scale=Math.max(raster.width/(right-left),raster.height/(bottom-top));if(raster.matrixModel){double density=t.pixelsPerWorldUnit();if(!(density>0)||Double.isNaN(density)||Double.isInfinite(density))throw new IOException("Непредставимый шаг affine растра");scale=Math.max(scale,density);}while(zoom<23&&(256L<<zoom)<scale)zoom++;
   if((256L<<zoom)<scale)throw new IOException("Разрешение растра выше поддерживаемого z23");
   int total=0;for(int z=0;z<=zoom;z++){int n=1<<z;long count=(long)(last(right,n)-first(left,n)+1)*(last(bottom,n)-first(top,n)+1);if(count>20000-total)throw new IOException("Импорт ограничен 20 000 тайлов");total+=(int)count;}
   final int planned=total;progress.update(0,planned);if(file.exists()&&!file.delete())throw new IOException("Не удалось подготовить временную карту");SQLiteDatabase db=null;
