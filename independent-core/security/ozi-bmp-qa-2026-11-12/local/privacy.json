@@ -1,0 +1,22 @@
+{
+  "kind": "custom scoped privacy audit; not Android lint",
+  "passed": true,
+  "source_files": 78,
+  "permissions": [
+    "android.permission.INTERNET"
+  ],
+  "apk_checked": true,
+  "checks": [
+    "production manifest",
+    "source network entry points",
+    "GET-only no-output tile transport",
+    "forbidden SDK/API references",
+    "DEX SDK strings and native inventory when APK supplied"
+  ],
+  "limits": [
+    "not a complete dynamic data-flow proof",
+    "local-storage and object/attachment retention also require existing runtime scenarios",
+    "Android lint and physical-device acceptance separate"
+  ],
+  "failures": []
+}

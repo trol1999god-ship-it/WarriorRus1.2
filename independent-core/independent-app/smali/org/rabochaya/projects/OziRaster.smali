@@ -12,6 +12,8 @@
 
 
 # instance fields
+.field private final bitmap:Lorg/rabochaya/projects/BmpRaster;
+
 .field private bytes:J
 
 .field public final calibration:Lorg/rabochaya/projects/OziCalibration;
@@ -34,7 +36,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
-    .locals 7
+    .locals 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
@@ -62,7 +64,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_6
+    if-eqz v0, :cond_a
 
     invoke-virtual {p1}, Ljava/io/File;->length()J
 
@@ -72,13 +74,13 @@
 
     cmp-long v0, v0, v4
 
-    if-gtz v0, :cond_6
+    if-gtz v0, :cond_a
 
     invoke-virtual {p2}, Ljava/io/File;->isFile()Z
 
     move-result v0
 
-    if-eqz v0, :cond_6
+    if-eqz v0, :cond_a
 
     invoke-virtual {p2}, Ljava/io/File;->length()J
 
@@ -88,7 +90,7 @@
 
     cmp-long v0, v0, v4
 
-    if-gtz v0, :cond_6
+    if-gtz v0, :cond_a
 
     .line 8
     const/16 v0, 0x8
@@ -138,38 +140,94 @@
 
     const/4 v4, 0x2
 
-    aget-byte v1, v1, v4
+    aget-byte v4, v1, v4
 
-    and-int/2addr v1, v5
+    and-int/2addr v4, v5
 
-    if-ne v1, v5, :cond_0
+    if-ne v4, v5, :cond_0
 
-    move v1, v3
+    move v4, v3
 
     goto :goto_0
 
     :cond_0
-    move v1, v2
+    move v4, v2
 
     :goto_0
-    if-nez v0, :cond_2
+    aget-byte v5, v1, v2
 
-    if-eqz v1, :cond_1
+    const/16 v6, 0x42
+
+    if-ne v5, v6, :cond_1
+
+    aget-byte v1, v1, v3
+
+    const/16 v5, 0x4d
+
+    if-ne v1, v5, :cond_1
+
+    move v1, v3
 
     goto :goto_1
 
     :cond_1
+    move v1, v2
+
+    :goto_1
+    if-nez v0, :cond_3
+
+    if-nez v4, :cond_3
+
+    if-eqz v1, :cond_2
+
+    goto :goto_2
+
+    :cond_2
     new-instance p1, Ljava/io/IOException;
 
-    const-string p2, "Ozi: \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u0430\u043d\u044b \u0442\u043e\u043b\u044c\u043a\u043e PNG/JPEG"
+    const-string p2, "Ozi: \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u0430\u043d\u044b PNG/JPEG \u0438\u043b\u0438 raw BMP24/32"
 
     invoke-direct {p1, p2}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
 
     throw p1
 
     .line 9
-    :cond_2
-    :goto_1
+    :cond_3
+    :goto_2
+    const/4 v0, 0x0
+
+    if-eqz v1, :cond_4
+
+    :try_start_1
+    new-instance v1, Lorg/rabochaya/projects/BmpRaster;
+
+    invoke-direct {v1, p2}, Lorg/rabochaya/projects/BmpRaster;-><init>(Ljava/io/File;)V
+    :try_end_1
+    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_5
+    .catch Ljava/lang/RuntimeException; {:try_start_1 .. :try_end_1} :catch_4
+
+    :try_start_2
+    iget p2, v1, Lorg/rabochaya/projects/BmpRaster;->width:I
+
+    iget v2, v1, Lorg/rabochaya/projects/BmpRaster;->height:I
+    :try_end_2
+    .catch Ljava/io/IOException; {:try_start_2 .. :try_end_2} :catch_1
+    .catch Ljava/lang/RuntimeException; {:try_start_2 .. :try_end_2} :catch_0
+
+    goto :goto_3
+
+    :catch_0
+    move-exception p1
+
+    goto/16 :goto_7
+
+    :catch_1
+    move-exception p1
+
+    goto/16 :goto_7
+
+    :cond_4
+    :try_start_3
     invoke-virtual {p2}, Ljava/io/File;->getPath()Ljava/lang/String;
 
     move-result-object p2
@@ -177,119 +235,185 @@
     invoke-static {p2, v2}, Landroid/graphics/BitmapRegionDecoder;->newInstance(Ljava/lang/String;Z)Landroid/graphics/BitmapRegionDecoder;
 
     move-result-object p2
+    :try_end_3
+    .catch Ljava/io/IOException; {:try_start_3 .. :try_end_3} :catch_5
+    .catch Ljava/lang/RuntimeException; {:try_start_3 .. :try_end_3} :catch_4
 
-    if-eqz p2, :cond_5
+    if-eqz p2, :cond_6
 
-    :try_start_1
+    :try_start_4
     invoke-virtual {p2}, Landroid/graphics/BitmapRegionDecoder;->getWidth()I
-
-    move-result v0
-
-    invoke-virtual {p2}, Landroid/graphics/BitmapRegionDecoder;->getHeight()I
 
     move-result v1
 
-    if-lt v0, v3, :cond_3
+    invoke-virtual {p2}, Landroid/graphics/BitmapRegionDecoder;->getHeight()I
 
-    if-lt v1, v3, :cond_3
+    move-result v2
+    :try_end_4
+    .catch Ljava/io/IOException; {:try_start_4 .. :try_end_4} :catch_3
+    .catch Ljava/lang/RuntimeException; {:try_start_4 .. :try_end_4} :catch_2
 
-    const/16 v2, 0x4e20
+    move-object v7, v0
 
-    if-gt v0, v2, :cond_3
+    move-object v0, p2
 
-    if-gt v1, v2, :cond_3
+    move p2, v1
 
-    int-to-long v2, v0
+    move-object v1, v7
 
-    int-to-long v4, v1
+    :goto_3
+    if-lt p2, v3, :cond_5
 
-    mul-long/2addr v2, v4
+    if-lt v2, v3, :cond_5
 
-    const-wide/32 v4, 0x5f5e100
+    const/16 v3, 0x4e20
 
-    cmp-long v2, v2, v4
+    if-gt p2, v3, :cond_5
 
-    if-gtz v2, :cond_3
+    if-gt v2, v3, :cond_5
 
-    new-instance v2, Ljava/io/FileInputStream;
+    int-to-long v3, p2
 
-    invoke-direct {v2, p1}, Ljava/io/FileInputStream;-><init>(Ljava/io/File;)V
-    :try_end_1
-    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_1
-    .catch Ljava/lang/RuntimeException; {:try_start_1 .. :try_end_1} :catch_0
+    int-to-long v5, v2
 
-    :try_start_2
-    invoke-static {v2, p3, v0, v1}, Lorg/rabochaya/projects/OziCalibration;->read(Ljava/io/InputStream;Ljava/lang/String;II)Lorg/rabochaya/projects/OziCalibration;
+    mul-long/2addr v3, v5
+
+    const-wide/32 v5, 0x5f5e100
+
+    cmp-long v3, v3, v5
+
+    if-gtz v3, :cond_5
+
+    :try_start_5
+    new-instance v3, Ljava/io/FileInputStream;
+
+    invoke-direct {v3, p1}, Ljava/io/FileInputStream;-><init>(Ljava/io/File;)V
+    :try_end_5
+    .catch Ljava/io/IOException; {:try_start_5 .. :try_end_5} :catch_1
+    .catch Ljava/lang/RuntimeException; {:try_start_5 .. :try_end_5} :catch_0
+
+    :try_start_6
+    invoke-static {v3, p3, p2, v2}, Lorg/rabochaya/projects/OziCalibration;->read(Ljava/io/InputStream;Ljava/lang/String;II)Lorg/rabochaya/projects/OziCalibration;
 
     move-result-object p1
 
     iput-object p1, p0, Lorg/rabochaya/projects/OziRaster;->calibration:Lorg/rabochaya/projects/OziCalibration;
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_6
+    .catchall {:try_start_6 .. :try_end_6} :catchall_0
 
-    :try_start_3
-    invoke-virtual {v2}, Ljava/io/InputStream;->close()V
+    :try_start_7
+    invoke-virtual {v3}, Ljava/io/InputStream;->close()V
 
-    iput-object p2, p0, Lorg/rabochaya/projects/OziRaster;->decoder:Landroid/graphics/BitmapRegionDecoder;
-    :try_end_3
-    .catch Ljava/io/IOException; {:try_start_3 .. :try_end_3} :catch_1
-    .catch Ljava/lang/RuntimeException; {:try_start_3 .. :try_end_3} :catch_0
+    iput-object v0, p0, Lorg/rabochaya/projects/OziRaster;->decoder:Landroid/graphics/BitmapRegionDecoder;
 
-    .line 10
+    iput-object v1, p0, Lorg/rabochaya/projects/OziRaster;->bitmap:Lorg/rabochaya/projects/BmpRaster;
+    :try_end_7
+    .catch Ljava/io/IOException; {:try_start_7 .. :try_end_7} :catch_1
+    .catch Ljava/lang/RuntimeException; {:try_start_7 .. :try_end_7} :catch_0
+
+    .line 11
     return-void
 
     .line 9
     :catchall_0
     move-exception p1
 
-    :try_start_4
-    invoke-virtual {v2}, Ljava/io/InputStream;->close()V
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_1
+    :try_start_8
+    invoke-virtual {v3}, Ljava/io/InputStream;->close()V
+    :try_end_8
+    .catchall {:try_start_8 .. :try_end_8} :catchall_1
 
-    goto :goto_2
+    goto :goto_4
 
     :catchall_1
-    move-exception p3
+    move-exception p2
 
-    :try_start_5
-    invoke-virtual {p1, p3}, Ljava/lang/Throwable;->addSuppressed(Ljava/lang/Throwable;)V
+    :try_start_9
+    invoke-virtual {p1, p2}, Ljava/lang/Throwable;->addSuppressed(Ljava/lang/Throwable;)V
 
-    :goto_2
+    :goto_4
     throw p1
 
-    :cond_3
+    :cond_5
     new-instance p1, Ljava/io/IOException;
 
-    const-string p3, "Ozi: \u043f\u0440\u0435\u0434\u0435\u043b 20 000 \u043f\u043e \u0441\u0442\u043e\u0440\u043e\u043d\u0435 / 100 \u043c\u043b\u043d \u043f\u0438\u043a\u0441\u0435\u043b\u0435\u0439"
+    const-string p2, "Ozi: \u043f\u0440\u0435\u0434\u0435\u043b 20 000 \u043f\u043e \u0441\u0442\u043e\u0440\u043e\u043d\u0435 / 100 \u043c\u043b\u043d \u043f\u0438\u043a\u0441\u0435\u043b\u0435\u0439"
+
+    invoke-direct {p1, p2}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+    :try_end_9
+    .catch Ljava/io/IOException; {:try_start_9 .. :try_end_9} :catch_1
+    .catch Ljava/lang/RuntimeException; {:try_start_9 .. :try_end_9} :catch_0
+
+    goto :goto_4
+
+    :catch_2
+    move-exception p1
+
+    goto :goto_5
+
+    :catch_3
+    move-exception p1
+
+    :goto_5
+    move-object v1, v0
+
+    move-object v0, p2
+
+    goto :goto_7
+
+    :cond_6
+    :try_start_a
+    new-instance p1, Ljava/io/IOException;
+
+    const-string p3, "Ozi: \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043d\u0435 \u0434\u0435\u043a\u043e\u0434\u0438\u0440\u043e\u0432\u0430\u043d\u043e"
 
     invoke-direct {p1, p3}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
-    :try_end_5
-    .catch Ljava/io/IOException; {:try_start_5 .. :try_end_5} :catch_1
-    .catch Ljava/lang/RuntimeException; {:try_start_5 .. :try_end_5} :catch_0
 
-    goto :goto_2
+    throw p1
+    :try_end_a
+    .catch Ljava/io/IOException; {:try_start_a .. :try_end_a} :catch_3
+    .catch Ljava/lang/RuntimeException; {:try_start_a .. :try_end_a} :catch_2
 
-    :catch_0
+    :catch_4
     move-exception p1
 
-    goto :goto_3
+    goto :goto_6
 
-    :catch_1
+    :catch_5
     move-exception p1
 
-    :goto_3
-    invoke-virtual {p2}, Landroid/graphics/BitmapRegionDecoder;->recycle()V
+    :goto_6
+    move-object v1, v0
 
+    :goto_7
+    if-eqz v0, :cond_7
+
+    invoke-virtual {v0}, Landroid/graphics/BitmapRegionDecoder;->recycle()V
+
+    :cond_7
+    if-eqz v1, :cond_8
+
+    :try_start_b
+    invoke-virtual {v1}, Lorg/rabochaya/projects/BmpRaster;->close()V
+    :try_end_b
+    .catch Ljava/io/IOException; {:try_start_b .. :try_end_b} :catch_6
+
+    goto :goto_8
+
+    :catch_6
+    move-exception p2
+
+    :cond_8
+    :goto_8
     instance-of p2, p1, Ljava/io/IOException;
 
-    if-eqz p2, :cond_4
+    if-eqz p2, :cond_9
 
     check-cast p1, Ljava/io/IOException;
 
     throw p1
 
-    :cond_4
+    :cond_9
     new-instance p2, Ljava/io/IOException;
 
     const-string p3, "Ozi: \u043e\u0448\u0438\u0431\u043a\u0430 \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f/\u043f\u0440\u0438\u0432\u044f\u0437\u043a\u0438"
@@ -298,36 +422,27 @@
 
     throw p2
 
-    :cond_5
-    new-instance p1, Ljava/io/IOException;
-
-    const-string p2, "Ozi: \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043d\u0435 \u0434\u0435\u043a\u043e\u0434\u0438\u0440\u043e\u0432\u0430\u043d\u043e"
-
-    invoke-direct {p1, p2}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
-
-    throw p1
-
     .line 8
     :catchall_2
     move-exception p1
 
-    :try_start_6
+    :try_start_c
     invoke-virtual {v2}, Ljava/io/DataInputStream;->close()V
-    :try_end_6
-    .catchall {:try_start_6 .. :try_end_6} :catchall_3
+    :try_end_c
+    .catchall {:try_start_c .. :try_end_c} :catchall_3
 
-    goto :goto_4
+    goto :goto_9
 
     :catchall_3
     move-exception p2
 
     invoke-virtual {p1, p2}, Ljava/lang/Throwable;->addSuppressed(Ljava/lang/Throwable;)V
 
-    :goto_4
+    :goto_9
     throw p1
 
     .line 7
-    :cond_6
+    :cond_a
     new-instance p1, Ljava/io/IOException;
 
     const-string p2, "Ozi: \u043f\u0440\u0435\u0434\u0435\u043b .map 128 \u041a\u0438\u0411, \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f 512 \u041c\u0438\u0411"
@@ -355,23 +470,29 @@
 # virtual methods
 .method public declared-synchronized close()V
     .locals 2
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
 
     monitor-enter p0
 
-    .line 13
+    .line 14
     :try_start_0
     iget-boolean v0, p0, Lorg/rabochaya/projects/OziRaster;->closed:Z
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1
 
+    :cond_0
     :goto_0
     monitor-exit p0
 
     return-void
 
-    :cond_0
+    :cond_1
     const/4 v0, 0x1
 
     :try_start_1
@@ -392,7 +513,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_2
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -404,7 +525,7 @@
 
     goto :goto_1
 
-    :cond_1
+    :cond_2
     iget-object v0, p0, Lorg/rabochaya/projects/OziRaster;->tiles:Ljava/util/LinkedHashMap;
 
     invoke-virtual {v0}, Ljava/util/LinkedHashMap;->clear()V
@@ -415,13 +536,26 @@
 
     iget-object v0, p0, Lorg/rabochaya/projects/OziRaster;->decoder:Landroid/graphics/BitmapRegionDecoder;
 
+    if-eqz v0, :cond_3
+
+    iget-object v0, p0, Lorg/rabochaya/projects/OziRaster;->decoder:Landroid/graphics/BitmapRegionDecoder;
+
     invoke-virtual {v0}, Landroid/graphics/BitmapRegionDecoder;->recycle()V
+
+    :cond_3
+    iget-object v0, p0, Lorg/rabochaya/projects/OziRaster;->bitmap:Lorg/rabochaya/projects/BmpRaster;
+
+    if-eqz v0, :cond_0
+
+    iget-object v0, p0, Lorg/rabochaya/projects/OziRaster;->bitmap:Lorg/rabochaya/projects/BmpRaster;
+
+    invoke-virtual {v0}, Lorg/rabochaya/projects/BmpRaster;->close()V
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     goto :goto_0
 
-    .line 13
+    .line 14
     :catchall_0
     move-exception v0
 
@@ -440,11 +574,11 @@
 
     monitor-enter p0
 
-    .line 12
+    .line 13
     :try_start_0
     iget-boolean v0, p0, Lorg/rabochaya/projects/OziRaster;->closed:Z
 
-    if-nez v0, :cond_5
+    if-nez v0, :cond_6
 
     invoke-virtual {p0}, Lorg/rabochaya/projects/OziRaster;->transform()Lorg/rabochaya/projects/GeoRasterTransform;
 
@@ -478,6 +612,25 @@
     long-to-int p1, p1
 
     :try_start_1
+    iget-object p2, p0, Lorg/rabochaya/projects/OziRaster;->bitmap:Lorg/rabochaya/projects/BmpRaster;
+
+    if-eqz p2, :cond_1
+
+    iget-object p2, p0, Lorg/rabochaya/projects/OziRaster;->bitmap:Lorg/rabochaya/projects/BmpRaster;
+
+    invoke-virtual {p2, p3, p1}, Lorg/rabochaya/projects/BmpRaster;->pixel(II)I
+
+    move-result p1
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    :goto_0
+    monitor-exit p0
+
+    return p1
+
+    :cond_1
+    :try_start_2
     div-int/lit16 p2, p3, 0x100
 
     div-int/lit16 v1, p1, 0x100
@@ -502,7 +655,7 @@
 
     check-cast v0, Landroid/graphics/Bitmap;
 
-    if-nez v0, :cond_4
+    if-nez v0, :cond_5
 
     new-instance v0, Landroid/graphics/BitmapFactory$Options;
 
@@ -513,14 +666,14 @@
     iput-object v4, v0, Landroid/graphics/BitmapFactory$Options;->inPreferredConfig:Landroid/graphics/Bitmap$Config;
 
     iput-boolean p4, v0, Landroid/graphics/BitmapFactory$Options;->inScaled:Z
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_0
 
     mul-int/lit16 p2, p2, 0x100
 
     mul-int/lit16 v1, v1, 0x100
 
-    :try_start_2
+    :try_start_3
     iget-object p4, p0, Lorg/rabochaya/projects/OziRaster;->decoder:Landroid/graphics/BitmapRegionDecoder;
 
     new-instance v4, Landroid/graphics/Rect;
@@ -554,27 +707,27 @@
     invoke-virtual {p4, v4, v0}, Landroid/graphics/BitmapRegionDecoder;->decodeRegion(Landroid/graphics/Rect;Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
 
     move-result-object v0
-    :try_end_2
-    .catch Ljava/lang/RuntimeException; {:try_start_2 .. :try_end_2} :catch_0
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_3
+    .catch Ljava/lang/RuntimeException; {:try_start_3 .. :try_end_3} :catch_0
+    .catchall {:try_start_3 .. :try_end_3} :catchall_0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_4
 
-    :try_start_3
+    :try_start_4
     invoke-virtual {v0}, Landroid/graphics/Bitmap;->getByteCount()I
 
     move-result p2
 
     int-to-long v4, p2
 
-    :goto_0
+    :goto_1
     iget-object p2, p0, Lorg/rabochaya/projects/OziRaster;->tiles:Ljava/util/LinkedHashMap;
 
     invoke-virtual {p2}, Ljava/util/LinkedHashMap;->isEmpty()Z
 
     move-result p2
 
-    if-nez p2, :cond_2
+    if-nez p2, :cond_3
 
     iget-object p2, p0, Lorg/rabochaya/projects/OziRaster;->tiles:Ljava/util/LinkedHashMap;
 
@@ -584,7 +737,7 @@
 
     const/16 p4, 0x40
 
-    if-ge p2, p4, :cond_1
+    if-ge p2, p4, :cond_2
 
     iget-wide v6, p0, Lorg/rabochaya/projects/OziRaster;->bytes:J
 
@@ -594,9 +747,9 @@
 
     cmp-long p2, v6, v8
 
-    if-lez p2, :cond_2
+    if-lez p2, :cond_3
 
-    :cond_1
+    :cond_2
     iget-object p2, p0, Lorg/rabochaya/projects/OziRaster;->tiles:Ljava/util/LinkedHashMap;
 
     invoke-virtual {p2}, Ljava/util/LinkedHashMap;->entrySet()Ljava/util/Set;
@@ -635,9 +788,9 @@
 
     invoke-virtual {p4}, Landroid/graphics/Bitmap;->recycle()V
 
-    goto :goto_0
+    goto :goto_1
 
-    :cond_2
+    :cond_3
     iget-object p2, p0, Lorg/rabochaya/projects/OziRaster;->tiles:Ljava/util/LinkedHashMap;
 
     invoke-static {v2, v3}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
@@ -652,16 +805,16 @@
 
     iput-wide v1, p0, Lorg/rabochaya/projects/OziRaster;->bytes:J
 
-    goto :goto_2
+    goto :goto_3
 
-    :cond_3
+    :cond_4
     new-instance p1, Ljava/io/IOException;
 
     const-string p2, "Ozi: \u043f\u0443\u0441\u0442\u043e\u0439 \u0440\u0435\u0433\u0438\u043e\u043d \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f"
 
     invoke-direct {p1, p2}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
 
-    :goto_1
+    :goto_2
     throw p1
 
     :catch_0
@@ -675,8 +828,8 @@
 
     throw p2
 
-    :cond_4
-    :goto_2
+    :cond_5
+    :goto_3
     rem-int/lit16 p3, p3, 0x100
 
     rem-int/lit16 p1, p1, 0x100
@@ -684,15 +837,10 @@
     invoke-virtual {v0, p3, p1}, Landroid/graphics/Bitmap;->getPixel(II)I
 
     move-result p1
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_0
 
-    monitor-exit p0
+    goto/16 :goto_0
 
-    return p1
-
-    :cond_5
-    :try_start_4
+    :cond_6
     new-instance p1, Ljava/io/IOException;
 
     const-string p2, "Ozi reader \u0437\u0430\u043a\u0440\u044b\u0442"
@@ -701,9 +849,9 @@
     :try_end_4
     .catchall {:try_start_4 .. :try_end_4} :catchall_0
 
-    goto :goto_1
+    goto :goto_2
 
-    .line 12
+    .line 13
     :catchall_0
     move-exception p1
 
@@ -715,7 +863,7 @@
 .method public transform()Lorg/rabochaya/projects/GeoRasterTransform;
     .locals 1
 
-    .line 11
+    .line 12
     iget-object v0, p0, Lorg/rabochaya/projects/OziRaster;->calibration:Lorg/rabochaya/projects/OziCalibration;
 
     iget-object v0, v0, Lorg/rabochaya/projects/OziCalibration;->transform:Lorg/rabochaya/projects/GeoRasterTransform;
