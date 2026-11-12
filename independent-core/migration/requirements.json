@@ -65,13 +65,18 @@
     {
       "id": "offline-formats",
       "title": "Все ранее поддержанные офлайн-форматы",
-      "status": "pending",
+      "status": "in_progress",
       "acceptance": [
         "Полный список форматов извлекается из эталона и проверяется реальными файлами",
         "Геопривязка, масштабы, границы и проекции совпадают",
         "Проверить фактическую поддержку GeoTIFF, CompeGPS RMAP и OziExplorer; не считать MBTiles полной заменой всех форматов"
       ],
-      "evidence": []
+      "evidence": [
+        "security/geotiff-tiled-qa-2026-11-11/final-1254-result.json"
+      ],
+      "implementation_notes": [
+        "Scoped code3c87557+1254a0b/CI43114388829 SUCCESS46/46 API23+35; bounded TIFF6 tiled raw/Deflate/predictor/NoData import, pixel/roundtrip/Cancel/checksum/data guards verified. Matrix34264/Ozi/RMAP, full format/reference acceptance remain open; not accepted."
+      ]
     },
     {
       "id": "cache",
@@ -254,12 +259,17 @@
     {
       "id": "dem",
       "title": "DEM, высоты, рельеф и связанные инструменты",
-      "status": "pending",
+      "status": "in_progress",
       "acceptance": [
         "Геопривязка, высоты и отображение на контрольных участках",
         "Прежние форматы и операции без доступа к геолокации"
       ],
-      "evidence": []
+      "evidence": [
+        "security/geotiff-tiled-qa-2026-11-11/final-1254-result.json"
+      ],
+      "implementation_notes": [
+        "Scoped code1254a0b/CI43114388829 SUCCESS46/46 API23+35; HGT manual-centre heights, coverage and read-only raw-geometry profile with Close/raw/cursor/stale/foreign/MainSave/data guards verified. Terrain rendering/collections/full format and reference acceptance remain open; not accepted."
+      ]
     },
     {
       "id": "compass",

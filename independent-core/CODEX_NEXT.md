@@ -1,129 +1,64 @@
-# Продолжение — 12 ноября: Tiled scoped200 обеAPI; исправить launch-harness regression
+# Продолжение — 12 ноября: Tiled/DEM профиль/launch-helper проверены
 
-3c87557/CI43107394886 completed FAILURE. JVMsuccess33_81769/Geo215/host20;
-API23 130814459051 SUCCESS46/46; API35 130814459075 45PASS, толькоmanagerrotation
-FAIL geometry editor never ready. Geometrymap/reopen реальноPASS обеAPI,
-прежний35 adbOffline НЕповторился в сценарии. Не считать текущийCI зелёным.
-Tiled native offlineformats200each: raw/Deflate/32946/predictor/NoData/Cancel/
-padding checksum/oldfile/source/KML/assets/otherproject PASS. layers274/275,
-reopen66each/профиль/HGT/cache data PASS. Все32новыхPNG SHAverified/viewed;
-обаarchive/innerZIP/все546/538members SHAverified. runtime-3c875-result.json.
-Четыре35 failure PNG показывают предыдущие успешные name Cancel/Save,
-НЕготовность следующей Activity. Полныеfailure logcat/window/activity сохранены.
-Подтверждён relaunch во времяlaunch: task39 START22:08:03.807 UTC,
-landscape→portrait relaunch22:08:04, helper ждал busy исходного instance45s.
-Локальный fix ТОЛЬКОinstrumentation: существующий rotate/adoption доready,
-строгие original project/oldDestroyed; managerrotation требует actual launch
-replacement>0 после предыдущего landscape. SDK23compiled; guards/таймауты/
-production НЕменялись. launch-race-fix/receipt.json; следующий изменённый fullCI
-обеAPI обязан пройти все46 и actual managerrotation, не blindrerun.
-Fix1254a0b335497bfa6eb7821aae54c47a5a4df334 / CI43114388829 реально запущен;
-JVM130838457614success, Android23 130838744398/35 130838744428 running.
-Не push покаactive; после completed читать MANAGER_LAUNCH/полные46/новыеPNG,
-проверить mandatory launchReplacements>0, raw/cursor/owner/data/managerforms.
-Tiled1e3e9ea восстановлен/реализован; полное принятие этапа покаНЕобъявлено.
-Следующая функция после зелёного результата: affine ModelTransformation34264
-по OGC/общему GeoRasterTransform, bounds/native resolution/пиксели, затем Ozi;
-контракт migration/GEO_RASTER_CONTRACT.md. Это ещё НЕproduction поддержка.
+## Последний проверенный участок
 
-Только independent-core/existing codex/independent-core-auto; без новых агентов/
-веток/worktree/reset/clean/mergePR14. Preserve stash/toolchain/pending/артефакты.
-Приоритет production функций по всем23id IMPLEMENTATION_PLAN, НЕorphan/dialog queue.
+Feature3c87557 +helper1254a0b335497bfa6eb7821aae54c47a5a4df334 /
+CI43114388829 SUCCESS: JVM33/81769 (Geo215), host20; обеAPI46/46 безskip.
+API23 130838744398: offlineformats200, managerrotation379, managerforms515,
+layers275/reopen66. API35 130838744428:200/373/506/layers274/reopen66.
+Geometrymap/geometrymapreopen реальноPASS обеAPI. MANAGER_LAUNCH подтверждает
+own project/portrait и 5/5реальных replacements/firstDestroyed=true.
+Все64 относящихся новыхPNG actuallyviewed/SHA (32Tiled/layers/cache/DEM +
+32managerrotation). Архивы/sourceSHA/digest/innerZIP/все546/549members SHAverified;
+полныеjoblogs сохранены в /workspace/work/manager-confirm/tiled-final-1254-api*.log,
+summary безbase64/PNG/manifest/receipts: security/geotiff-tiled-qa-2026-11-11/
+final-1254-api23, final-1254-api35, final-1254-result.json.
 
-## Последний проверенный код
+Работает ограниченный tiled GeoTIFF→тотже importer/MBTiles/catalog/renderer:
+raw/Deflate8/32946/predictor1/2, RGB/gray8/alpha/NoData, EPSG4326/3857;
+padding/checksum/Cancel/oldfile/source/KML/assets/cache/otherproject guards.
+RowLRU8/TileLRU16MiB+128blocks/block4MiB/padded100Mpx и512MiB/20k guards прежние.
+Read-only DEM профиль: graph ancestor288×481/457 (old nativeScrollView hidden0×0),
+actual touchscroll/Arimo/Close/raw/cursor/stale/foreign/mainChanged/отдельный
+MainSave/data/restart PASS. HGT manualcentre0/explicitRemove/сохранность PASS.
+Manager launch fix толькоinstrumentation: current own window adoption доready,
+initial oldDestroyed/owner/portrait guards; existing mode требует actual replacement.
+GEOTIFF_TILED.md, DEM_PROFILE.md, HGT_DEM.md; это scoped evidence, НЕполная приёмка.
 
-7230ceced5061061df2b6e521c62ad964edcc112 / CI43035041730 SUCCESS46/46both.
-- API23 130571810995 attempt1, API35 130593252640 attempt2; JVM success32_81611.
-  23/JVM carried, не повторялись. Первый35 был доказанный adbOffline, не DEMсбой.
-- DEM layers191/reopen66each, managerforms482/473 реальноPASS. Actualforce-stop,
-  fresh owner4/task206/210, owned+source hashes, manualcentre0, newrestartedPNG,
-  explicitRemove/KML/assets/cache/otherproject/noextraHTTP guards PASS.
-- Old48ca/CI43007479633: только reopen480s обоих; launch-harness NEW_TASK reused
-  root, startActivitySync waiter. Ограниченный fix DemChecks MULTIPLE_TASK|NEW_TASK,
-  strict owner/phases; productionDEM/timeout/guards НЕменялись. Recovery43033297900
-  readonly, НЕtest. failed-48-* evidence сохранены; HGT_DEM.md.
-- Deflate12bcdb0 входит в7230, НЕ48ca: offlineformats68each/pixel/roundtrip/
-  checksum refusal/source/KML/assets guards PASS, actualcompressedUI виден.
-  JVM GeoTIFF86, bounded stream/checksum/LRU8/predictor1/2; GEOTIFF_DEFLATE.md.
-- Все32 новыхPNG SHAverified/actuallyviewed, final-7230-result.json.
-  Source71exact/debugQA528/customprivacy PASS (НЕAndroidlint).
+## Следующий production результат
 
-## Новая проверенная функция — явное покрытие DEM
+1. Affine ModelTransformationTag34264, OGC DOUBLE16 row-major/2D, через общий
+GeoRasterTransform и existing importer/render/storage. Корректные Area/Point,
+bounds/реальный native pixel step (не толькоbbox), literal native pixels,
+NoData/footprint/Cancel и безопасный отказ unsupported transform/CRS/лимитов;
+KML/assets/cache/source/oldfile/otherproject сохранить. Контракт:
+migration/GEO_RASTER_CONTRACT.md. Сейчас matrix34264 ещёотклоняется.
+2. Затем Ozi по migration/MAP_FORMATS.md/IMPLEMENTATION_PLAN; не угадывать
+CRS/калибровку/соседний файл, без второгоrenderer. После formats/DEM — объекты/
+геометрия → style/SVG/import-export → media/explicitshare → UI/coordinates/
+compass/settings → migration26.1/полнаяприёмка. Все23id в матрице.
+Не возвращать orphan/dialog baseline queue. Каждый шаг — функция и относящиеся
+достаточные проверки; без повторного43114388829/новогоCI без изменений/причины.
 
-Production2fefdfd +tests51aa9c2 / remote59fdd15 / CI43047764920 SUCCESS46both.
-API23 130616502327, API35 130616501859 — имена сверены с полными журналами.
-JVM130616208702 success32_81617, HGT38/source71exact/debugQA529.
-«Ориентирование»→«Показать область DEM»: explicit own viewfit, drawing/foreign
-отказ, exactviewport/bytes; prior install/Cancel/remove/restart/data guards PASS.
-layers199/reopen66each, managerforms482/473 реальноPASS, offlineformats68each.
-Все32новыхPNG SHAverified/viewed; centre10.500404N/5.5E/z8.3/height−0.5m,
-после coldrestart manualcentre0 и explicitRemove. coverage-59-result.json.
-Ранняя локальная привязка ID к API была ошибочной, исправлена по jobname/api-level.
-Не rerun без новой причины; профиль НЕвходит в59CI.
+## История и обязательные ограничения
 
-## Следующий кандидат — read-only DEM профиль
+43089751186/d36 CANCELLED: artifact delivery не завершилась, job45min timeout;
+logs404 BlobNotFound/Android artifacts отсутствуют — НЕвосстановлены/незасчитаны.
+Single ZIP+SHAmanifest/bounded3min upload в existing workflow проверены на новыхrun.
+43100835572/6f19 FAILURE:35 adbOffline geometrymap/reopen; 43107394886/3c875
+FAILURE:35 manager launch race. Их доказательства сохранены историей, current
+SUCCESS1254 закрывает эти проверки. NativeProfile/cachejobs/export/layers prior
+история — профильные документы; не повторять baseline без новой причины.
 
-Read-only DEM profile: DemProfile/View и GeometryEditorActivity «Действия»→
-«Профиль DEM» по выбранному raw маршруту/контуру,512samples/NoData breaks.
-33 JVM/81640 (profile23), host18, source73exact/debugQA535/customprivacy PASS;
-SDK23 latesttests266261bytes compiled. DEM_PROFILE.md/profile-candidate receipts.
-Не busy: raw/cursor/Undo не заменяются; actual public parts token/key/owner,
-raw/mode/adding/Intent и file stamp guards, reader закрыт; Close без MainSave.
-Расстояние — сфера, sampleposition linear lat/lon, НЕellipsoid/geodesic parity.
-DemProfileChecks добавлен в существующийmaplayers, НЕновыйmode/workflow:
-UI graph/Arimo/touchscroll/Close/raw/cursor/foreign/stale/mainChanged/отдельный
-MainSave сохраняет inputaltitudes; KML/assets/source/otherproject checks прежние.
-Consoleprofile/restarted2 +остальные14 =cap16; ready/coverage обычныеartifact.
-Codea501a7c+b52c56c, runtime профиля ЕЩЁ НЕвыполнен и НЕвходит в7230/59CI.
-Profile remote62794e48ded352aa0a6e2831b9c4823e1eea1c86 / pushCI43055495746
-completedFAILURE. JVM130643720560success33_81640; API23 130643950042/
-API35 130643950034 по44PASS, толькоmaplayers FAIL physicalscroll viewport,
-reopen SKIP (НЕуспех). НовыеprofilePNG обеAPI viewed/fullgraph+Arimo/Close passed.
-Helper firstScrollView не являетсяпредкомgraph; fix test-only graph ancestor +
-legacy/actual visibility/bounds diag, >80/touch/всеdata guards прежние.
-Profile-only SDK23 tests266580 compiled, host18/JVM33_81640 PASS; profile-627-failure.json. Close/raw/cursor/foreign/
-stale/mainChanged/MainSave/reopen покаНЕисполнены. Remote d36f15f4e606fcad310a59cc25ba7940bbfbc205 / CI43089751186 in_progress;
-JVM130763362981success, API23 130763635944/35 130763635965 running
-(имена сверены). Не push покаactive; читать оба completedjob/новыеPNG.
-Промежуточный Actions status: Run Android scenarios SUCCESS обеAPI;
-API23 Keep synthetic test results FAILURE после выгрузки, jobs ещёactive.
-Два чтения API23 logs вернули ReadTimeout. Это НЕпроверенные46/46/PNG
-и НЕготовность профиля; actions-upload-pending.json сохраняет точные steps.
-Это ТОЛЬКО scopedhelper fix, full46both, НЕblindrerun.
-По уточнённому поручению пользователя tiled проверять ПОСЛЕ подтверждения профиля.
-Tiled сохранён отдельным1e3e9ea и backup/profile-scoped-preserve-lgehznjb;
-его8implementation файлов временно возвращены к точным62794e4 без reset/clean,
-только после проверки отсутствия незакоммиченных правок в них. Production diff
-от62794e4 для профиля нулевой. Полный forward patch:
-/workspace/work/manager-confirm/profile-scoped-preserve-lgehznjb/tiled-implementation.patch.
-После зелёного профиля восстановить source интеграцию Tiled из сохранённого patch/
-commit1e3e9ea, rebuild metadata/smali при изменениях, затем отдельный изменённыйCI.
-
-## Локальный следующий формат — tiled GeoTIFF
-
-Тотже reader/importer, raw/Deflate/32946/pred1/2. JVM33_81769/Geo215/host18,
-source73exact/debugQA535/customprivacy PASS, SDK23 app+tests compiled;
-GEOTIFF_TILED.md/security/geotiff-tiled-qa-2026-11-11 receipts. Runtime НЕвыполнен,
-НЕ627CI. TileLRU16MiB/128blocks, block≤4MiB, padded≤100Mpx; oldRowLRU8 и
-512MiB/20k input/output guards прежние. Native literal pixel/NoData/Cancel/
-sparse/paddingchecksum/oldtarget/source/KML/assets/otherproject в existing
-`offlineformats`; UIfixturetiled, cap16/2МиБ прежний, новыхmodes/workflowнет.
-
-## Проверенная история / ограничения
-
-- Cachejobs/rawGeo ee7 / CI43001233957 SUCCESS46both,28PNGviewed: actualforce-stop→
-  explicit missing-only resume, CalcCancel/foregroundpause/CAS/policy/source/data.
-- Export3f72957+c230680/CI42074949288 SUCCESS46both/cacheexport69each,8originalPNG
-  recoveredreadonly/SHAverified/viewed. Layers17ac3f9+dc16493/CI42034901826 PASS.
-  Не повторять эти baseline отдельно; не возвращаться к orphan.pending.
-- accepted0, releasegate25blocked/неизменён, QA НЕreplacement APK. Официальный
-  Androidlint adaptergap3errors94warnings НЕPASS; собственный сканер не замена.
-- Сохранять min23/название/Arimo/resources/online+cache, отсутствиеGPS/geoperms/
-  telemetry/accounts/cloudsync/скрытой передачиobjects/assets; BT толькоявно.
-  SyntheticQA/disposablekeys only. Полный перенос и эталонная приёмка НЕзавершены.
-
-Дополнительный readonly QA probe d36f: официальныйlint с реальными137 javac
-classfiles/source73 (до D8 desugaring), NoClassFiles ошибка устранена; остаются MissingClass для
-smali-only ProjectsActivity и HardcodedDebugMode,108warnings/exit1/НЕPASS.
-security/android-lint-qa-2026-11-11/classpath-profile-d36f/. Workflow не менялся;
-полная smali/lint coverage открыта, ABI только для type resolution.
+Только independent-core/existing codex/independent-core-auto, без новыхагентов/
+веток/worktree/reset/clean/mergePR14. Сохранить stash/toolchain/pending/артефакты.
+Tiled1e3e9ea/forwardpatch УЖЕприменён; backup/profile-scoped-preserve-lgehznjb/
+tiled-implementation.patch сохранить, повторно не применять. Pending:
+/workspace/work/manager-confirm/GeoRasterTransform.java.pending не перезаписывать.
+Toolchain /workspace/android-toolchain/env.sh (Java17/SDK23/tools); без локального
+эмулятора безKVM. Сохранять min23/название/Arimo/resources/online+cache,
+безGPS/geoperms/telemetry/accounts/cloudsync/скрытой отправкиobjects/assets,
+BTтолькоявно. SyntheticQA/disposablekeys, не телефон/основные ключи.
+accepted0, releasegate неизменён/blocked25. Official Android lint adaptergap
+(исторический3errors94warnings, partial classpath probe2errors108warnings)
+НЕPASS; custom source/DEX/privacy audit НЕзамена. QA APK НЕготовыйrelease.

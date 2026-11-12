@@ -1,3 +1,9 @@
+Текущий ограниченный результат подтверждён: code3c87557+1254a0b /
+CI43114388829 SUCCESS46/46 обеAPI, offlineformats200each, профиль/данные/
+managerrotation379/373; 64 новыхPNG reviewed/SHA. final-1254-result.json.
+accepted0, полная эталонная приёмка и replacement release открыты.
+Разделы ниже с pending/failure — история подготовки, не текущий статус.
+
 # Tiled GeoTIFF — локальный кандидат существующего importer
 
 Расширен тот же GeoTiffRaster→GeoTiffImport→private MBTiles→каталог/renderer,

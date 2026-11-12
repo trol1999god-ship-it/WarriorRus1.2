@@ -1,21 +1,11 @@
-Tiled GeoTIFF ограниченный importer реализован на3c87557; CI43107394886
-offlineformats200each реальноPASS обеAPI: raw/Deflate/predictor/NoData/padding/
-checksum/Cancel/pixel/data guards. 32 новыхPNG viewed/SHA, archives verified.
-ВесьCI FAILURE: API23 full46/46, API35 full45/46 из-за managerrotation
-launch/recreate helper. Исправление толькоinstrumentation ещё проверяется;
-GEOTIFF_TILED.md. Это не полный формат/приёмка и не replacement release.
-
-DEM высоты ручного центра и Deflate GeoTIFF проверены в ограниченном объёме.
-Code7230cec / CI43035041730 SUCCESS46/46 обеAPI: offlineformats68each,
-layers191/reopen66each;32 новыхPNG SHAverified/просмотрены. HGT cold restart
-исправлен в тестовом launch-helper без изменения productionDEM/timeout.
-[HGT_DEM.md](HGT_DEM.md), [GEOTIFF_DEFLATE.md](GEOTIFF_DEFLATE.md).
-Явная команда покрытия DEM проверена на59fdd15/CI43047764920:46/46both,
-layers199/reopen66each,32новыхPNG reviewed. Read-only профиль DEM scoped проверен обеAPI на6f19feb/CI43100835572:
-layers275/274/reopen66,32PNG viewed; API23 full46/46, API35 adbOffline
-geometrymap/reopen дают full44/46 и CI FAILURE. DEM_PROFILE.md; это НЕзелёныйCI
-и НЕполная приёмка.
-Полная эталонная приёмка/перенос и release остаются открытыми.
+Tiled GeoTIFF, read-only DEM профиль и исправленный launch-helper проверены
+на3c87557+1254a0b / CI43114388829 SUCCESS46/46 обеAPI. Native offlineformats200,
+managerrotation379/373, managerforms515/506, layers275/274/reopen66;64 новыхPNG
+просмотрены/SHA, архивы/source/digest проверены. KML/assets/HGT/MBTiles/cache/
+otherproject guards сохранены. GEOTIFF_TILED.md, DEM_PROFILE.md, HGT_DEM.md.
+Это ограниченные функции, не полный перенос/приёмка и не replacement release.
+Следующий участок: affine34264 по migration/GEO_RASTER_CONTRACT.md, затем Ozi.
+Актуальная очередь — CODEX_NEXT.md, матрица всех23id — migration/IMPLEMENTATION_PLAN.md.
 
 Подтверждение закрытия dirty-редактора проверено с реальными пересозданиями Activity.
 Code e5e0e56 / CI42020440809: 44/44 обеAPI, close563 each;32 новыхPNG просмотрены.
