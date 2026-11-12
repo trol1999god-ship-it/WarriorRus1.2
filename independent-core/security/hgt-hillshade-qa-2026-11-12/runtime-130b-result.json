@@ -13,7 +13,8 @@
     "result": "success",
     "scenarios": 46,
     "offlineformats_assertions": 1202,
-    "hillshade_elapsed_ms": 6119
+    "hillshade_elapsed_ms": 6119,
+    "full_job_log_sha256": "3cd0469ccc2383bf74f3341d166d6c68f14a5e312ec15e11f8d3dbe76c0c6159"
   },
   "api35": {
     "job": 131180316720,
@@ -23,7 +24,8 @@
     "offlineformats_assertions": 1202,
     "hillshade_elapsed_ms": 3625,
     "failure": "mapundorotation native363 PASS; adb pull failed before any screenshots; visual evidence correctly refused",
-    "transport_cause_limit": "Original driver omitted returncode from raised RuntimeError. Saved output only pull: building file list...; not proof of exact adb client cause. Subsequent device-offline boot_id read recovered once, same_boot true and returncode0. No instrumentation replay."
+    "transport_cause_limit": "Original driver omitted returncode from raised RuntimeError. Saved output only pull: building file list...; not proof of exact adb client cause. Subsequent device-offline boot_id read recovered once, same_boot true and returncode0. No instrumentation replay.",
+    "full_job_log_sha256": "02ccde8b569f4c7d991674204205e5ad2d2d1f35a86fa1e075cab68f98a4c565"
   },
   "hillshade_scope": "pixel/NoData/bounds/Cancel/stale-before/stale-after source+target/foreign/actualdestroy/reopen/remove/KML/assets/rawsource/cache/otherproject/network0 native PASS both APIs",
   "viewed": "Only four new hillshade prompt/saved frames (two per API); other extracted frames not claimed viewed",

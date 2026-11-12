@@ -85,6 +85,7 @@ ObjectTreeWrites transaction. Явные 4цвета/fill/outline, blank reset �
 override; общий StyleMap/другие поля/геометрия/assets не меняются, token CAS прежний.
 Arimo теперь привязан к Paint карты через existing cache (Activity ABI сохранён).
 JVM39/83316/edit34 PASS; SDK23 source83exact/app+tests/customprivacy PASS.
+Official lint83source/154classfiles exit1/same2errors/112warnings, НЕPASS.
 editor-local receipts; backup kml-editor-preserve-nt60j6qs/wip.tar SHA5659e1f3….
 Native existing offlineformats helper расширен Save/Cancel/invalid/reset/stale,
 2 IME PNG (всего16, лимит прежний), Arimo/physical guards. Android editor pending.

@@ -39,6 +39,8 @@ Icon href/геометрия/unknown XML сохраняются. Папки не
 добавлено использование существующего Arimo cache. WorkspaceUi.font(Activity)
 сохранён как совместимый overload, Context overload не удерживает Context.
 Локально JVM39/83316/edit34, SDK23 source83exact/app+tests/customprivacy PASS.
+Официальный lint на83source/154реальных classfiles: exit1, MissingClass и
+HardcodedDebugMode,112warnings; Java-only adapter gap сохраняется, НЕPASS.
 Native проверка расширяет existing helper явными Save/Cancel/invalid/Reset/stale,
 exact shared/other geometry/KMZ/assets/network0 и двумя IME кадрами; итого16,
 лимит не увеличен. Этот кандидат ещё НЕпроверен Android CI и не отправляется,

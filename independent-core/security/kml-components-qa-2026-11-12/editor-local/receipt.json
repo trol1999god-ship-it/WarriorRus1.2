@@ -17,5 +17,6 @@
   "apk_sha256": "27481b83398bf01961bde3d3816c96881b82a3ba6bb45c598ca1fa1abe5c5ed1",
   "tests_sha256": "94e5fc5b8e16817977e06345799032c8e068d808040fe850e7ce44109bab0fb4",
   "guard_policy": "no new mode/workflow, frame limit16/2MiB unchanged; IME editor/error frames use existing physical guards; no timeout increase",
-  "backup": "kml-editor-preserve-nt60j6qs/wip.tar SHA256 5659e1f31b35d6bd6b8cae9d1b901683d987d2a036b0a9f983b4643a32545841"
+  "backup": "kml-editor-preserve-nt60j6qs/wip.tar SHA256 5659e1f31b35d6bd6b8cae9d1b901683d987d2a036b0a9f983b4643a32545841",
+  "assembled_owned_classes": 563
 }
