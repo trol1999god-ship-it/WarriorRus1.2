@@ -59,9 +59,15 @@ officiallint НЕPASS. Existing offlineformats дополнен explicit Cyrilli
 wrongdefault refusal/pixel/Cancel/CAS/reopen/Arimo/checkbox reset/data/2PNG;
 Androidpending. migration/OZI_ENCODING.md, security/ozi-encoding-qa-2026-11-12/local/.
 Backup /workspace/work/manager-confirm/ozi-encoding-preserve-iihq4ycs сохранить.
-GIFфакты закончены. Следующий шаг: сохранить проверенный scoped результатGIF;
-затем тестовыйToast settle8000ms вWIP кодировки, freshSDK23/tests/sourceSHA/коммит/один
-changed-codeCI. Прочитать обаcompletedjob/новыеPNG/data, безblindrerun.
+GIFфакты сохранены/pushed269ea8a. Codepage code c9465dfcbbc1f9cfa08e332ca7c281a7cb099178
+pushed; CI43178276193 реальноRUNNING. JVM131047722645 SUCCESS, Android builds
+SUCCESS; API23 131047996797/API35 131047996752 Run Android scenarios in_progress.
+Capture8000ms только после доказанного Toast overlay, guards unchanged.
+Fresh SDK23 finalout /workspace/work/manager-confirm/ozi-codepage-final-2026-11-12-qa,
+source79exact/551classes; backupozi-codepage-final-preserve-ddk40pf8 сохранить.
+Следующий шаг: обаcompletedjob/новыеPNG/data; не push покаCIactive/неblindrerun.
+Далее изучается missing DEM hillshade через тотже converter/MBTiles/renderer;
+production ещёнеизменён и CP CI его НЕпроверяет.
 
 После GIF — formats/DEM по матрице; не угадыватьCRS/codepage/neatline/RMAP.
 Затем objects/geometry→styles/SVG/import-export→media/explicitshare→UI/coordinates/
