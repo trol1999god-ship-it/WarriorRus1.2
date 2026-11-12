@@ -52,3 +52,9 @@ MBTiles/cache/otherproject guards PASS. security/geotiff-affine-qa-2026-11-12/
 runtime-result.json и api23/api35. Не rerun вслепую: следующий изменённый Ozi
 кандидат обязан исполнить полный46/обеAPI и прежние391GeoTIFF cases.
 accepted0/releasegate не меняются.
+
+Последующая scoped регрессия: 8d26807/CI43146921585 SUCCESS46both,
+offlineformats748each/source78/548classes/host27;16scopedPNG/source/all550+554
+members verified. Ozi PNG/JPEG/BMP+affine/data PASS; sameBoot readonly transport
+recovery реально выполнен на35 безповтораnative. Предыдущие failure остаются
+историей; приёмка/officiallint/release gate не заменяются CI.

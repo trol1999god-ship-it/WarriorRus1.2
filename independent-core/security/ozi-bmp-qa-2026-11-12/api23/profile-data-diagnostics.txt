@@ -1,0 +1,9 @@
+INSTRUMENTATION_STATUS: stream=DEM_PHASE before-fresh-main-launch owner=4
+INSTRUMENTATION_STATUS: stream=DEM_PHASE fresh-main-created owner=4 task=208
+INSTRUMENTATION_STATUS: stream=DEM_PHASE manual-centre-height-zero
+INSTRUMENTATION_STATUS: stream=DEM_PROFILE_SCROLL legacyShown=false legacyId=16909047 legacyBounds=0 0 0 0 actualShown=true actualBounds=16 63 304 544 graphAncestor=true
+INSTRUMENTATION_STATUS: stream=DEM_PROFILE Close/raw/cursor/stale/foreign/mainChanged/explicitMainSave PASS
+INSTRUMENTATION_STATUS: stream=DEM_PHASE before-fresh-main-launch owner=4
+INSTRUMENTATION_STATUS: stream=DEM_PHASE fresh-main-created owner=4 task=210
+INSTRUMENTATION_STATUS: stream=DEM_PHASE manual-centre-height-zero
+INSTRUMENTATION_RESULT: stream=PASS maplayers: 275 assertions

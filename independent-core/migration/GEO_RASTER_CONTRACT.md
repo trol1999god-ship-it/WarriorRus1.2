@@ -59,3 +59,9 @@ extent и ограниченное разрешение/количество т�
 half-pixel/rotation/shear/NoData controls и прежние data guards обязательны.
 Этот общий результат нужен и будущей Ozi-калибровке, без второго renderer;
 полная приёмка GeoTIFF/Ozi26.1 остаётся открытой.
+
+Последующая scoped регрессия: 8d26807/CI43146921585 SUCCESS46both,
+offlineformats748each/source78/548classes/host27;16scopedPNG/source/all550+554
+members verified. Ozi PNG/JPEG/BMP+affine/data PASS; sameBoot readonly transport
+recovery реально выполнен на35 безповтораnative. Предыдущие failure остаются
+историей; приёмка/officiallint/release gate не заменяются CI.

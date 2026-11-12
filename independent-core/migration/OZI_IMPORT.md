@@ -1,6 +1,6 @@
 # Ozi .map + PNG/JPEG — ограниченный локальный кандидат
 
-12 ноября 2026: PNG/JPEG codefbc64ea/CI43139985094: nativeofflineformats581
+История первой проверки, 12 ноября 2026: PNG/JPEG codefbc64ea/CI43139985094: nativeofflineformats581
 PASS обеAPI (включая прежние391GeoTIFF). API23full46 SUCCESS; API35full41/46
 FAILURE: adb offline pull после native581 и4modeдоinstrumentation. Это НЕполный
 greenCI/не приёмкаOzi26.1 и не часть affineCI43134277461/90020f3.
@@ -75,3 +75,9 @@ PNG/JPEG native581/UI/data выполнены обеAPI, сквозной CI35 �
 с подтверждёнными контрактами и bounded readers; RMAP/прочие форматы и DEM
 по общей матрице. Implementation/acceptance разделены, accepted0/release gate
 не изменены, официальные Android lint ошибки не объявлены PASS.
+
+Последующая scoped регрессия: 8d26807/CI43146921585 SUCCESS46both,
+offlineformats748each/source78/548classes/host27;16scopedPNG/source/all550+554
+members verified. Ozi PNG/JPEG/BMP+affine/data PASS; sameBoot readonly transport
+recovery реально выполнен на35 безповтораnative. Предыдущие failure остаются
+историей; приёмка/officiallint/release gate не заменяются CI.

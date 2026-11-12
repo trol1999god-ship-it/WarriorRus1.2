@@ -1,83 +1,70 @@
-# Продолжение — 12 ноября: Ozi PNG/JPEG scoped проверен; BMP+transport кандидат
+# Продолжение — 12 ноября: BMP/Ozi/affine/transport scoped проверены; далее GIF
 
-## Проверенные факты / граница
+## Последний проверенный участок
 
-Последний полный green: Tiled3c87557+launch1254a0b / CI43114388829 SUCCESS46/46
-обеAPI, Geo215/source73/535classes/64PNG actuallyviewed. MANAGER_LAUNCH own
-project/portrait/actual replacement/firstDestroyed, профиль/Close/touchscroll/
-raw/cursor/stale/mainChanged/foreign/MainSave/HGT/data PASS. История и receipts
-в GEOTIFF_TILED.md/DEM_PROFILE.md/final-1254-result.json; не повторятьbaseline.
+Code8d268078aec0f0b45924fe888e11fa28ff0fe4dd (BMP) +transport990fc80 /
+CI43146921585 SUCCESS46/46 обеAPI. JVM130946795534 SUCCESS35/82806,
+BMP754/Ozi66/Geo432/host27/source78/548classes. API23 130947068956:
+offlineformats748/managerrotation379; API35 130947068920:748/373.
+Все46реальноPASS, безskip: PNG/JPEG/BMP24/32+affineGeoTIFF, pixel/bounds/nativezoom/
+NoData/stride/padding/top-bottom/32highbyteopaque/refusals/caps/Cancel/CAS/reopen,
+Arimo/actions/KML/assets/source/oldtarget/cache/HGT/MBTiles/otherproject/network0.
+Geometrymap/reopen, managerforms/rotation, profile/touchscroll/Close/raw/cursor/
+stale/mainChanged/foreign/MainSave/80/82/physical/owner guards сохранены.
+MANAGER_LAUNCH ownproject/portrait/actual replacement/firstDestroyed выполнены.
 
-Affine90020/CI43134277461: native391both, API23full46success/API35full44failure
-(adb offline pull managervisual/before managerrotation).44scopedPNG/source/
-outer/inner/all546/534members verified; это НЕgreenCI. GEOTIFF_AFFINE.md.
+SourceSHA/outerdigest/innerZIP/all550/554members verified;16scopedPNG реально
+просмотрены: все12raster prompt/saved и4profile/HGTrestart. Остальные18extractedPNG
+наAPI НЕзаявлены просмотренными. На23 BMPprompt содержит предыдущий PNG CAS
+refusalToast ниже диалога, действия не закрыты. Не выдавать за полную UIприёмку.
+На35 реальный offlinepull geometrynewholeguards восстановлен sameBoot=true,
+retry1/return0/13files0skipped; instrumentation НЕповторялся. На23 recovery не было.
+KernelUUID checks/<=15s/idempotent-only/partialbackup/freshoutput/unique modes/
+pull-failure-still-fail/480native/45minjob/46modes/16PNG×2MiB guards прежние.
 
-Ozi PNG/JPEG fbc64ea14ddc009e74a3ed1856885698a21d2865 /
-CI43139985094 COMPLETED FAILURE. JVM130924357006 success34/82052/Geo432/Ozi66/
-host20/source77/546classes. API23 130924523781 SUCCESS46/46;
-API35 130924523754 FAILURE41/46. Offlineformats native581 PASS обеAPI,
-включая прежние391GeoTIFF, explicit real menu→synthetic picker pair→Confirm/
-Cancel/CAS/reopen/Arimo/actions, affine literal pixels/bounds/native zoom,
-PNG/JPEG/footprint/LRU/Close/refusals/source exact/KML/assets/otherproject/request0.
-Geometrymap/reopen, managerrotation/forms, layers/profile/HGT/data PASS both;
-MANDATORY MANAGER_LAUNCH sourceproject/actual replacement/firstDestroyed/portrait
-действительно выполнены (по4replacements), старыйfailure не переименован успехом.
+security/ozi-bmp-qa-2026-11-12/runtime-result.json, api23/api35, migration/OZI_BMP.md.
+Full logs /workspace/work/manager-confirm/bmp-8d268-api23.log, api35.log, jvm.log.
+Original ZIP /workspace/attachments/b3ed2b6e-6e3c-42f3-995d-a8a7753af695/bmp-8d268-api23.zip
+и b6040be6-0e37-4e4a-98fe-90abbaa0311c/bmp-8d268-api35.zip сохранить. Не rerungreenCI.
+Предыдущие90020/43134277461 иfbc/43139985094 FAILURE сохранены историей;
+current8d закрывает scoped регрессию, не переписывает прежние records.
 
-Source/outerdigest/innerZIP/all548/538members SHA verified.12scopedPNG actually
-viewed: все4новыхOzi,4GeoTIFF,4profile/HGTrestart. Остальные extractedPNG НЕзаявлены
-просмотренными. На35 original offlineformats pull offline; эти4растровых кадра
-позже recovered в cachewrites после его prep failure — это НЕPASS обоихrecords.
-На35 cachewrites/coordinates/managerpasteconfirm/managerchooser не исполнили
-instrumentation из-за adb offline. Underlying intermittent disconnect причина
-не установлена; adb path совпадает/server-version mismatch в полныхлогах нет.
-migration/OZI_IMPORT.md, security/ozi-import-qa-2026-11-12/runtime-result.json.
-Full logs /workspace/work/manager-confirm/ozi-fbc-api23.log, api35.log; архивы
-/workspace/attachments/d97aa348-a8e0-4b71-be3d-02336f02b2f7/ozi-fbc-api23.zip и
-589097f2-57e1-4270-a9ef-68bd1a08e580/ozi-fbc-api35.zip. Не blindrerun fbc.
+## Следующая функция — локальный GIF WIP, ещёНЕпроверен Android
 
-## Следующий изменённый функциональный кандидат
+GifInfo был переименован/развит в GifRaster: оригинальный structure-only source
+сохранён /workspace/work/manager-confirm/gif-model-2026-11-12/GifInfo-structure-only.java.
+GifRaster.java/GifFixtures.java/GifTests.java +OziRaster/LocalMapActivity/compilelists
+незакоммичены. Подготовлен one-full-frame GIF87a/89a/global-local palette/interlace,
+строгий LZW≤12bit/palette bounds/pixelcount/EOI/CLEAR/record/subblock limits,
+opaque87/transparent89; refuse animation/delay/userinput/application/plaintext/
+partialframe/unknown extension/version. Indexed buffer≤4Mbytes, file≤16MiB,
+20kпо стороне; тотже OziCalibration/sharedRasterMapImport/privateMBTiles/renderer.
+Model135 structural+valid simpleLZW PASS. Независимый Pillow48checks подтверждает
+8fixtures (global/local/interlace/87/89), НЕсам GifRaster и НЕAndroid.
+Нужны direct reader pixel/close/EOF/dictionary/codewidth/EOI regressions и
+независимая сверка с Pillow-generated streams (widthgrowth/KwKwK/clear/fulltable).
+Далее закончить native OziChecks GIFветку без удаления PNG/BMP cases, собрать
+SDK23/sourceexact/app+tests/JVM/privacy, сохранить candidate и один обоснованный
+fullCI нового GIF. Проверить оба completedjob/новыеPNG/pixels/data, безblindrerun.
+GIF ещёне входит в8d/43146921585. Не утверждатьготовность по135/48checks.
 
-BMP BmpRaster/OziRaster/Activity/OziChecks/fixtures/compilelists: INFO40/
-BI_RGB24/32/topdown/bottomup/stride/padding, highbyte НЕalpha. Existing same
-OziCalibration→sharedRasterMapImport→private MBTiles/renderer; scoped contract
-migration/OZI_BMP.md. Unsupported palettes/RLE/masks/V4/V5/size/offset отказываются.
-Model754 BMP, Ozi66/Geo432 сохранены: JVM35/82806. SDK23 app+expandedtests,
-source78exact/548classes/custom source+DEX privacy PASS (НЕAndroidlint).
-Прежние PNG/JPEG UIguards сохранены +отдельная BMP UIветка/2новыхPNG, не замена.
-Runtime BMP ещёНЕисполнен. security/ozi-bmp-qa-2026-11-12/local/receipt.json;
-/workspace/work/manager-confirm/ozi-bmp-2026-11-12-qa/tests-expanded.apk current.
-Backupsource/generated/diff/receipts: ozi-bmp-preserve-bkg2rm99 (не удалять).
+Resume backup /workspace/work/manager-confirm/resume-bmp-success-gif-3v2bljno
+сохраняет все diff/source/stash. BMP backup ozi-bmp-preserve-bkg2rm99/localreceipts/
+generated/SDK artifacts сохранить. Старые135/48 logs/fixtures/classfiles не стирать.
+После GIF — formats/DEM по матрице; не угадыватьCRS/codepage/neatline/RMAP.
+Затем objects/geometry→styles/SVG/import-export→media/explicitshare→UI/coordinates/
+compass/settings→migration26.1/приёмка. Все23id implementation/acceptance отдельно.
+Приоритет функции; не возвращать dialog/orphan baseline очередь.
 
-Transportfix990fc80: existingdriver, host27PASS. Only explicit nonzero deviceoffline
-на idempotent prep/readonly command:≤15с/samekernelBoot/qemu/boot_completed,
-один retry. Native am instrument, timeout и nativeFAIL НИКОГДА не повторяются.
-KernelUUID до/после каждогоnative; чужойboot блокирует requiredcommands.
-Freshoutput/unique modes, partialpull backup сохраняется отдельно; даже validPNG
-приfailedpull НЕPASS. Originalstderr/retryresult в adb-transport.json.
-480сек/native,45minjob,46modes/80/82/physical/raw/owner/16PNG×2MiB прежние.
-Transport Androidruntime ещёpending; не считать host27 доказательством эмулятора.
+## Ограничения
 
-BMP code8d268078aec0f0b45924fe888e11fa28ff0fe4dd и transport990fc80
-сохранены/pushed. CI43146921585 реальноRUNNING: JVM130946795534 SUCCESS,
-API23 130947068956 и API35 130947068920 Run Android scenarios in_progress.
-НЕpush покаactive. Следующий шаг: оба completedjob/архивы/source/digest/новые
-BMPPNG/данные/sameBoot и реальные27host/46native/oldguards; не blindrerun. Не менять
-app из-за transient adb. При отказе исследовать фактический этап, безblindrerun.
-После проверенного BMP — Ozi GIF/прочиеformats/DEM по контрактам/матрице, без
-угадывания CRS/codepage/calibration/neatline/RMAP. Затем objects/geometry→styles/
-SVG/import-export→media/explicitshare→UI/coordinates/compass/settings→migration26.1/
-приёмка. Все23id implementation/acceptance раздельно; не dialog/orphan очередь.
-
-## Сохранность / ограничения
-
-Только independent-core/existing codex/independent-core-auto; без новыхагентов/
-веток/worktree/reset/clean/mergePR14. Stash2/toolchain/pending/артефакты сохранить.
-Tiled1e3e9ea/forwardpatch применён: повторно не применять; сохранить
-profile-scoped-preserve-lgehznjb/tiled-implementation.patch и GeoRasterTransform.java.pending
-(SHA06958dec… unchanged). Java17/SDK23/tools /workspace/android-toolchain/env.sh,
-без локальногоэмулятора безKVM. Старые cancelled/404/offline/launch failures
-сохранены историей, не переписыватьуспехом. Min23/название/Arimo/resources/online+
-cache, безGPS/geoperms/telemetry/accounts/cloudsync/скрытой отправкиobjects/assets,
-BTтолькоявно. SyntheticQA/disposablekeys, не телефон/основные ключи. accepted0 /
-releasegate blocked25 неизменны. Official Androidlint adaptergap3errors94warnings/
-partialprobe2errors108warnings НЕPASS; customaudit НЕзамена, QAAPK НЕrelease.
+Только independent-core/existing codex/independent-core-auto, без новыхагентов/
+веток/worktree/reset/clean/mergePR14. Stash2/pending/toolchain/артефакты сохранить;
+Tiled forwardpatch ужеприменён, не повторять. GeoRasterTransform.java.pending
+SHA06958dec… и profile-scoped-preserve-lgehznjb/tiled-implementation.patch unchanged.
+Java17/SDK/tools /workspace/android-toolchain/env.sh; не localemulator безKVM.
+Min23/название/Arimo/resources/online+cache, безGPS/geoperms/telemetry/accounts/
+cloudsync/скрытой отправкиobjects/assets; BTтолькоявно. SyntheticQA/disposablekeys,
+не телефон/основные ключи. accepted0/releasegate25 unchanged. Official Androidlint
+adaptergap3errors94warnings/partialprobe2errors108warnings НЕPASS; customscanНЕзамена.
+QAAPK/CI НЕполный перенос/приёмка/replacement release. Исторические failures оставить.

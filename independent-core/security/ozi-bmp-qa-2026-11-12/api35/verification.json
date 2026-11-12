@@ -1,0 +1,15 @@
+{
+  "api": "35",
+  "source_sha": "8d268078aec0f0b45924fe888e11fa28ff0fe4dd",
+  "run_id": "43146921585",
+  "outer_path": "/workspace/attachments/b6040be6-0e37-4e4a-98fe-90abbaa0311c/bmp-8d268-api35.zip",
+  "outer_sha256": "290d254120c0dafd71cc95ac6a3c4fd022094baeb68a538fefcc135eb41b135c",
+  "inner_sha256": "edd82c8c378b99c3da77741f82f5782635bba35605e0068fd44194529bf9b615",
+  "all_member_hashes_verified": true,
+  "members": 554,
+  "records": 46,
+  "passed": 46,
+  "failed_or_skipped": [],
+  "frames": 26,
+  "visual_review": "8 scoped current images actually viewed per API: all6 raster prompts/saved plus2 DEM/profile; remaining18 extracted images not claimed viewed"
+}

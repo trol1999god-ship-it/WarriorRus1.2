@@ -1,9 +1,14 @@
-# Ozi raw BMP — следующий локальный функциональный кандидат
+# Ozi raw BMP — scoped проверено на API23/API35
 
-12 ноября2026: НЕвходит в fbc64ea/CI43139985094. Тотrun проверяет предыдущий
-PNG/JPEG Ozi и ещё выполняется. Локальный BMP-кандидат подключён к тому же
-OziCalibration/OziRaster→OziImport/RasterMapImport→private MBTiles/renderer.
-Не второй импортёр/каталог и не приёмка всего BMP/Ozi26.1.
+Code8d26807 / CI43146921585 SUCCESS46/46 обеAPI, offlineformats748each.
+JVM35/82806/BMP754/Ozi66/Geo432/host27/source78/548classes;16scopedPNG viewed,
+включая все4новыхBMP и4OziPNG; source/digest/all550/554members verified.
+KML/assets/source/cache/HGT/MBTiles/otherproject/Cancel/CAS/Arimo/actions/reopen
+и прежние physical/80/82/raw/cursor/owner/data guards PASS. На23 BMPprompt содержит
+предыдущий PNG CAS-refusal Toast ниже диалога; действия не закрыты, это не ошибка
+BMP precondition. Transport990fc80 реально обработал offline readonlypull на35:
+sameBoot=true/retry1/return0/13files0skipped, безповтораinstrumentation.
+security/ozi-bmp-qa-2026-11-12/runtime-result.json. Full GIF/форматная приёмка открыты.
 
 Основание: официальные MicrosoftDocs/win32 `desktop-src/gdi/bitmap-storage.md`
 (blob56561e1d3bfa8b8ed3c49d633e27d5a0899e4123) и MicrosoftDocs/sdk-api:
@@ -41,8 +46,7 @@ reserved alpha/stride/padding/opaque/transparent footprint, source exact,
 Cancel/unsupported layout/size/old map guards. Прежний PNG/JPEG UI остаётся;
 добавлена BMP UI-ветка той же проверки явного menu/picker/Confirm/Cancel/CAS/
 Arimo/actions/reopen/KML/assets/otherproject. Дополнительные2BMP PNG не заменяют
-старые2Ozi PNG; strict16/2МиБ budget не меняется. Runtime BMP ещёНЕисполнен. Transportfix990fc80/host27 идёт в томже
-следующем changed-code CI, без повторного am instrument/ослабления guards.
+старые2Ozi PNG; strict16/2МиБ budget не меняется. Runtime BMP выполнен на8d/CI43146921585 SUCCESS обеAPI. Transportfix990fc80/host27 проверен в томже CI, без повторного am instrument/ослабления guards.
 Фактические APK/source/test hashes — security/ozi-bmp-qa-2026-11-12/local/receipt.json
-после завершения текущей локальной проверки. Только synthetic/disposable keys;
+и current runtime-result.json. Только synthetic/disposable keys;
 accepted0/releasegate/официальный Android lint gap неизменны.

@@ -1,17 +1,15 @@
-Tiled GeoTIFF, read-only DEM профиль и исправленный launch-helper проверены
-на3c87557+1254a0b / CI43114388829 SUCCESS46/46 обеAPI. Native offlineformats200,
-managerrotation379/373, managerforms515/506, layers275/274/reopen66;64 новыхPNG
-просмотрены/SHA, архивы/source/digest проверены. KML/assets/HGT/MBTiles/cache/
-otherproject guards сохранены. GEOTIFF_TILED.md, DEM_PROFILE.md, HGT_DEM.md.
-Это ограниченные функции, не полный перенос/приёмка и не replacement release.
-Affine34264 code90020f3: native391 обеAPI PASS,44PNG/SHA reviewed; CI43134277461
-API23full46success/API35full44failure (adb offline pull/before managerrotation),
-НЕполный greenCI. GEOTIFF_AFFINE.md. Следующий кандидат: явный Ozi .map+PNG/JPEG
-через тотже converter/MBTiles/renderer: fbc64ea/CI43139985094 native581both,
-API23full46success/API35full41failure(adb offline),12scopedPNG viewed/allmembers
-SHAverified; это НЕполный greenCI. Следующий локальный BMP24/32/transportfix
-кандидат pending (migration/OZI_IMPORT.md/OZI_BMP.md).
-Актуальная очередь — CODEX_NEXT.md, матрица всех23id — migration/IMPLEMENTATION_PLAN.md.
+Ozi PNG/JPEG/BMP24/BMP32 и affine GeoTIFF проверены scoped на8d26807 /
+CI43146921585 SUCCESS46/46 обеAPI: offlineformats748each, managerrotation379/373,
+JVM35/82806/BMP754/Ozi66/Geo432/host27/source78/548classes. Все12 относящихся
+raster prompt/saved PNG и4 profile/HGTrestart PNG просмотрены; source/digest/
+innerZIP/all550/554members verified. KML/assets/source/cache/HGT/MBTiles/otherproject
+и strict guards PASS. На35 реальный offline pull восстановлен sameBoot/один
+readonly retry/13files0skipped; native instrumentation не повторялся.
+migration/OZI_IMPORT.md, migration/OZI_BMP.md, security/ozi-bmp-qa-2026-11-12/runtime-result.json.
+Это ограниченные функции, НЕполная приёмка/replacement release; accepted0.
+Предыдущие90020/43134277461 иfbc/43139985094 transport failures сохранены историей.
+Следующий локальный GIF WIP ещёне входит в этотCI; очередь CODEX_NEXT.md,
+матрица всех23id migration/IMPLEMENTATION_PLAN.md. Release gate25 не ослаблен.
 
 Подтверждение закрытия dirty-редактора проверено с реальными пересозданиями Activity.
 Code e5e0e56 / CI42020440809: 44/44 обеAPI, close563 each;32 новыхPNG просмотрены.

@@ -84,5 +84,12 @@ adb/kernel/сети/root/TLS изменений. `am instrument`, native FAIL и
 проверяемый final dir. Pull failure остаётся failure даже при validpartialPNG.
 Оригинальный stderr/retry result — adb-transport.json, пакет сохраняет всё.
 Host27 PASS, включая неизвестный native/постоянныйoffline/чужойboot/partialPNG/
-previous artifacts; реальный Android transport runtime ещёpending новым CI.
+previous artifacts; реальный Android transport runtime проверен последующим8d/CI43146921585,
+sameBoot readonlypull recovery на35/13files0skipped и SUCCESS46both.
 Это не Androidlint, не приёмка/release gate bypass и не перевод прошлыхfailвPASS.
+
+Последующая scoped регрессия: 8d26807/CI43146921585 SUCCESS46both,
+offlineformats748each/source78/548classes/host27;16scopedPNG/source/all550+554
+members verified. Ozi PNG/JPEG/BMP+affine/data PASS; sameBoot readonly transport
+recovery реально выполнен на35 безповтораnative. Предыдущие failure остаются
+историей; приёмка/officiallint/release gate не заменяются CI.
