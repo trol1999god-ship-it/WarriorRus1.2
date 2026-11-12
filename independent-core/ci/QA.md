@@ -65,3 +65,24 @@ Upload compression0 для уже сжатогоZIP, оба upload шага ог
 job45min; failure остаётсяfailure. Это уменьшает накладные расходы/риск потери
 времени доставки, но не обещает исправления удалённого artifact service.
 Ни сценарии, ни physical/80/82/raw/owner/data/release guards не менялись.
+
+## Same-boot adb transport guard — 12 ноября2026
+
+Основание: CI43134277461/API35 и CI43139985094/API35: explicit deviceoffline
+при pull и подготовке следующих modes; native offlineformats391/581 PASS. Это
+не greenCI и не доказанная app regression; underlying intermittent disconnect
+не установлен, adb path совпадает/server-version-mismatch в логах не найден.
+
+Existing run_android_checks.py: после начальной qemu/boot проверки фиксирует
+kernel boot UUID, проверяет его до/после native. Только explicit nonzero
+`device offline` на idempotent prep/readonly transport может ждать≤15с и
+повторить туже команду ОДИН раз после sameBoot/qemu/boot_completed. Без restart
+adb/kernel/сети/root/TLS изменений. `am instrument`, native FAIL и timeout
+НИКОГДА не повторяются. Boot change закрывает required commands/старый контекст.
+Полный native480сек/job45min/modes46/80/82/physical/raw/owner/PNG16×2MiB
+прежние. Fresh output/unique modes; partial pull не стирается и не входит в
+проверяемый final dir. Pull failure остаётся failure даже при validpartialPNG.
+Оригинальный stderr/retry result — adb-transport.json, пакет сохраняет всё.
+Host27 PASS, включая неизвестный native/постоянныйoffline/чужойboot/partialPNG/
+previous artifacts; реальный Android transport runtime ещёpending новым CI.
+Это не Androidlint, не приёмка/release gate bypass и не перевод прошлыхfailвPASS.

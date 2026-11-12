@@ -15,20 +15,36 @@ import zipfile
 
 
 class RunnerTests(unittest.TestCase):
-    def run_modes(self, modes, failures=(), keep_going=True, pull_error=False, pull_png=False):
+    def run_modes(self, modes, failures=(), keep_going=True, pull_error=False, pull_png=False,
+                  offline_once=(), boot_changed=False, permanent_offline=False, partial_pull=False, existing_output=False):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             adb = root / 'adb'
             adb.write_text('#!' + sys.executable + '\n' + '''
 import sys
 from pathlib import Path
-import base64
+import base64,json
 args = sys.argv[3:]
-if args[:2] == ['shell', 'getprop']:
+calls=Path(__file__).with_suffix('.calls')
+with calls.open('a') as log:log.write(json.dumps(args)+'\\n')
+marker=Path(__file__).with_suffix('.offline')
+if ''' + repr(tuple(offline_once)) + ''' and tuple(args[:''' + str(len(offline_once)) + '''])==''' + repr(tuple(offline_once)) + ''' and not marker.exists():
+    marker.write_text('rejected once')
+    if ''' + repr(partial_pull) + ''' and args[0]=='pull':
+        destination=Path(args[-1]);destination.mkdir(parents=True);(destination/'partial.txt').write_text('original partial preserved')
+    print('adb: device offline',file=sys.stderr);sys.exit(1)
+if args == ['get-state']:
+    print('offline' if ''' + repr(permanent_offline) + ''' and marker.exists() else 'device')
+elif args == ['shell','cat','/proc/sys/kernel/random/boot_id']:
+    print('00000000-0000-4000-8000-00000000000'+('2' if ''' + repr(boot_changed) + ''' and marker.exists() else '1'))
+elif args[:2] == ['shell', 'getprop']:
     print('1')
 elif args[:2] == ['shell', 'dumpsys']:
     print('synthetic ' + args[2] + ' diagnostics')
 elif args[:1] == ['pull'] and ''' + repr(pull_error) + ''':
+    if ''' + repr(pull_png) + ''':
+        target = Path(args[-1]); target.mkdir(parents=True, exist_ok=True)
+        (target / 'map_mvisual-synthetic-failure.png').write_bytes(base64.b64decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aLeoAAAAASUVORK5CYII='))
     print('adb: error: failed to copy synthetic screenshots: device offline', file=sys.stderr)
     sys.exit(1)
 elif args[:1] == ['pull'] and ''' + repr(pull_png) + ''':
@@ -47,21 +63,78 @@ elif args[:3] == ['shell', 'am', 'instrument']:
             apk = root / 'fixture.apk'
             apk.write_bytes(b'synthetic QA fixture')
             output = root / 'results'
+            if existing_output:
+                output.mkdir();(output/'previous.txt').write_text('preserve existing evidence')
             command = [sys.executable, str(Path(__file__).with_name('run_android_checks.py')),
                        '--adb', str(adb), '--serial', 'emulator-5554',
-                       '--app', str(apk), '--tests', str(apk), '--output', str(output)]
+                       '--app', str(apk), '--tests', str(apk), '--output', str(output), '--transport-wait', '.5']
             if keep_going:
                 command.append('--keep-going')
             result = subprocess.run(command + ['--modes'] + modes,
                                     capture_output=True, text=True, timeout=30)
-            records = json.loads((output / 'results.json').read_text())
+            records = json.loads((output / 'results.json').read_text()) if (output/'results.json').exists() else []
             result.window_diagnostics = {
                 path.name: path.read_text() for path in output.glob('*-window.txt')}
             result.activity_diagnostics = {
                 path.name: path.read_text() for path in output.glob('*-activity.txt')}
             result.pull_diagnostics = {
                 path.name: path.read_text() for path in output.glob('*-artifact-pull.txt')}
+            result.adb_calls=[json.loads(line) for line in adb.with_suffix('.calls').read_text().splitlines()] if adb.with_suffix('.calls').exists() else []
+            result.transport_events=json.loads((output/'adb-transport.json').read_text()) if (output/'adb-transport.json').exists() else []
+            result.partial_files={str(path.relative_to(output)):path.read_text() for path in output.glob('*-offline-partial/partial.txt')}
+            result.previous_evidence=(output/'previous.txt').read_text() if (output/'previous.txt').exists() else None
             return result, records
+
+    def test_failed_pull_with_valid_partial_png_still_fails(self):
+        result, records=self.run_modes(['cacheexport'],pull_error=True,pull_png=True)
+        self.assertNotEqual(result.returncode,0)
+        self.assertFalse(records[0]['passed'])
+        self.assertIn('ARTIFACT_PULL_FAILED cacheexport',result.stdout)
+        self.assertIn('RK_VISUAL_BEGIN',result.stdout)
+
+    def test_existing_output_is_preserved_without_any_adb_action(self):
+        result, records=self.run_modes(['binary'],existing_output=True)
+        self.assertNotEqual(result.returncode,0)
+        self.assertEqual(records,[])
+        self.assertEqual(result.adb_calls,[])
+        self.assertEqual(result.previous_evidence,'preserve existing evidence')
+
+    def test_explicit_offline_preparation_waits_same_boot_then_runs_instrumentation_once(self):
+        result, records=self.run_modes(['binary'],offline_once=('shell','am','force-stop'))
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+        self.assertTrue(records[0]['passed'])
+        self.assertEqual(sum(call[:3]==['shell','am','instrument'] for call in result.adb_calls),1)
+        self.assertEqual(sum(call[:3]==['shell','am','force-stop'] for call in result.adb_calls),2)
+        self.assertTrue(result.transport_events[0]['same_boot'])
+
+    def test_partial_visual_pull_is_preserved_before_fresh_read_only_retry(self):
+        result, records=self.run_modes(['cacheexport'],offline_once=('pull',),pull_png=True,partial_pull=True)
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+        self.assertTrue(records[0]['passed'])
+        self.assertEqual(result.partial_files,{'cacheexport-offline-partial/partial.txt':'original partial preserved'})
+        self.assertEqual(sum(call[:1]==['pull'] for call in result.adb_calls),2)
+        self.assertIn('RK_VISUAL_BEGIN',result.stdout)
+
+    def test_unknown_instrumentation_result_is_not_repeated(self):
+        result, records=self.run_modes(['binary'],offline_once=('shell','am','instrument'))
+        self.assertNotEqual(result.returncode,0)
+        self.assertFalse(records[0]['passed'])
+        self.assertEqual(sum(call[:3]==['shell','am','instrument'] for call in result.adb_calls),1)
+        self.assertEqual(result.transport_events,[])
+
+    def test_new_boot_blocks_old_context_and_later_mutating_commands(self):
+        result, records=self.run_modes(['binary','independence'],offline_once=('shell','am','force-stop'),boot_changed=True)
+        self.assertNotEqual(result.returncode,0)
+        self.assertEqual([r['passed'] for r in records],[False,False])
+        self.assertEqual(sum(call[:3]==['shell','am','instrument'] for call in result.adb_calls),0)
+        self.assertIn('boot identity changed',result.stdout)
+
+    def test_persistent_offline_expires_without_running_instrumentation(self):
+        result, records=self.run_modes(['binary'],offline_once=('shell','am','force-stop'),permanent_offline=True)
+        self.assertNotEqual(result.returncode,0)
+        self.assertFalse(records[0]['passed'])
+        self.assertEqual(sum(call[:3]==['shell','am','instrument'] for call in result.adb_calls),0)
+        self.assertIn('readiness deadline exceeded',result.stdout)
 
     def test_cacheexport_emits_saved_visual_evidence(self):
         result, records = self.run_modes(['cacheexport'], pull_png=True)
