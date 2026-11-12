@@ -107,3 +107,17 @@ Host после0.9203sec/49680856allocatedbytes; все19398656ARGBbytes до/п
 558classes/customprivacy PASS. Receipt window-fix-local/. Native ready timing и
 при timeout bounded worker stacks добавлены только в существующий сценарий,
 дедлайн не увеличен. Новый changed-code CI обязателен; 838 не rerun вслепую.
+
+## 130b522 / CI43217403961 — исправленная отмывка, общий CI не зелёный
+
+Обе API выполнили offlineformats1202 с explicitCreate6119ms(API23)/3625ms(API35)
+при прежнем лимите45000. Все guards включая обе stale-after фазы и сохранность
+KML/assets/HGT/cache/foreign project PASS. Четыре новые PNG prompt/saved просмотрены;
+source/digests/all556+543members verified. JVM37/83250/shade114 SUCCESS.
+API23 job131180316565 SUCCESS46/46; API35 job131180316720 FAILURE45/46:
+Undo native363 PASS, но обязательная выгрузка PNG не удалась, visual evidence FAIL.
+Старый driver оставил лишь «pull: building file list…», без returncode; точная
+причина обрыва не установлена. Следующий offline boot read recovered sameBoot=true,
+retry1/return0, instrumentation не повторялся. Не объявлять этот CI зелёным.
+Полные logs, immutable member receipts и runtime-130b-result.json сохранены.
+Lint exit1 MissingClass/HardcodedDebugMode остаётся открыт. Не полная приёмка.

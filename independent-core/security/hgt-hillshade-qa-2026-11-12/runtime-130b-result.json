@@ -1,0 +1,32 @@
+{
+  "source_sha": "130b5224b1b999af066f22fd558f9e60f73be780",
+  "run_id": 43217403961,
+  "overall": "failure",
+  "jvm": {
+    "job": 131180034209,
+    "result": "success",
+    "suites": 37,
+    "assertions": 83250
+  },
+  "api23": {
+    "job": 131180316565,
+    "result": "success",
+    "scenarios": 46,
+    "offlineformats_assertions": 1202,
+    "hillshade_elapsed_ms": 6119
+  },
+  "api35": {
+    "job": 131180316720,
+    "result": "failure",
+    "passed": 45,
+    "scenarios": 46,
+    "offlineformats_assertions": 1202,
+    "hillshade_elapsed_ms": 3625,
+    "failure": "mapundorotation native363 PASS; adb pull failed before any screenshots; visual evidence correctly refused",
+    "transport_cause_limit": "Original driver omitted returncode from raised RuntimeError. Saved output only pull: building file list...; not proof of exact adb client cause. Subsequent device-offline boot_id read recovered once, same_boot true and returncode0. No instrumentation replay."
+  },
+  "hillshade_scope": "pixel/NoData/bounds/Cancel/stale-before/stale-after source+target/foreign/actualdestroy/reopen/remove/KML/assets/rawsource/cache/otherproject/network0 native PASS both APIs",
+  "viewed": "Only four new hillshade prompt/saved frames (two per API); other extracted frames not claimed viewed",
+  "acceptance": false,
+  "lint": "official exit1 MissingClass/HardcodedDebugMode remains open; custom privacy not lint"
+}

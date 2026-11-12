@@ -1,3 +1,10 @@
+Последний CI43217403961 на130b522: API23 SUCCESS46/46, API35 FAILURE45/46.
+Отмывка/offlineformats1202 прошла обе API (6119/3625ms); четыре новых PNG проверены.
+Общий failure — выгрузка Undo PNG после native363 PASS; точный adb returncode не сохранён.
+Доказательства runtime-130b-result.json, CODEX_NEXT.md. Новые компонентные KML стили
+пока локальный WIP, Android не проверен; accepted0/полная приёмка открыта.
+
+Историческая исходная проверка838 (ниже) относится к предыдущей версии:
 HGT hillshade8382001/CI43186245108: API23 SUCCESS46/46/native1202, API35 FAILURE45/46
 на первом UI Create (45sec ещё «Построение…»). Общий CI НЕgreen. Source/digest/all556+560members
 verified, реальные prompt/saved/failure PNG просмотрены в указанной границе.

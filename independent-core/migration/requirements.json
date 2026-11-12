@@ -282,7 +282,8 @@
       "implementation_notes": [
         "Scoped code1254a0b/CI43114388829 SUCCESS46/46 API23+35; HGT manual-centre heights, coverage and read-only raw-geometry profile with Close/raw/cursor/stale/foreign/MainSave/data guards verified. Terrain rendering/collections/full format and reference acceptance remain open; not accepted.",
         "Local HgtHillshade/HgtHillshadeImport candidate: explicit315/45 Lambert cell shading of owned SRTM into same MBTiles/renderer; JVM37_83241/shade105/SDK23/source81exact/558classes/customprivacy PASS. Owner/source+target CAS, Cancel/no-autowrite/data runtime scenarios prepared; NOT in c946 CI and native pending. Not accepted.",
-        "8382001/CI43186245108 API23full46/offlineformats1202 PASS; API35full45 FAILURE first UI Create still building at45sec, not full green. Source/digest/all556+560members verified, actual scopedPNG reviewed. Bounded exact-node optimization local JVM37_83250/shade114/SDK23/source81 PASS; all4849664 outputpixels byte-equal, host allocations1.697GB→49.7MB. Native changed-code check pending; not accepted."
+        "8382001/CI43186245108 API23full46/offlineformats1202 PASS; API35full45 FAILURE first UI Create still building at45sec, not full green. Source/digest/all556+560members verified, actual scopedPNG reviewed. Bounded exact-node optimization local JVM37_83250/shade114/SDK23/source81 PASS; all4849664 outputpixels byte-equal, host allocations1.697GB→49.7MB. Native changed-code check pending; not accepted.",
+        "130b522/CI43217403961: hillshade offlineformats1202 native PASS both APIs and four new PNG reviewed; API23 full46 success, API35 full45/46 failure due Undo artifact pull after native363 PASS. Overall CI not green. Scoped evidence HGT_HILLSHADE.md; acceptance remains pending."
       ]
     },
     {

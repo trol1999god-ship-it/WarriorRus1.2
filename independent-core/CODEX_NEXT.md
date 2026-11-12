@@ -1,4 +1,4 @@
-# Продолжение — 12 ноября: encoding name fix + новый HGT hillshade candidate
+# Продолжение — 12 ноября: hillshade runtime обе API; компонентные KML стили
 
 ## Проверенные функции и факты
 
@@ -49,14 +49,31 @@ Host all4849664pixels/19398656ARGBbytes cmp exact, SHA9fa0ab70…; allocation1.6
 558classes/app+diagnostic tests PASS/customprivacyPASS. window-fix-local receipts.
 45sec UIwait сохранён; Readyelapsed иbounded worker stacks приtimeout добавленывsame scenario.
 
-Следующий шаг: сохранитьfacts/fix/receipts, проверитьorigin838 иnoactiveCI/конкурент,
-одинchanged-code fullCI46 на23/35. Read bothcompletedjobs/newPNG/data/strictguards.
-Не rerun838 безизменений, не повышать45/480/job45 инеclaimgreen дофактов.
-Не терятьвсеbackups/stash2/pending/toolchain/originalsources/oldAPKs/артефакты.
+## Последний завершённый запуск и текущая функция
 
-После scoped результата дальшеformats/DEM→objects/geometry→styles/SVG/import-export→
-media/explicitshare→UI/coordinates/compass/settings→migration26.1/приёмка по23idматрице.
-Не возвращатьdialog/orphanbaseline очередь.
+130b522 / CI43217403961 completed FAILURE overall. JVM131180034209 SUCCESS37/83250.
+API23 131180316565 SUCCESS46/46; API35 131180316720 FAILURE45/46.
+Отмывка/offlineformats1202 PASS обе API: explicitCreate6119/3625ms при прежних45sec;
+pixel/NoData/bounds/Cancel/source+target stale-after/foreign/destroy/reopen/remove/
+KML/assets/rawHGT/cache/otherproject/network0 PASS. Source/outer/inner/all556+543members
+verified, четыре новых hillshade prompt/saved PNG просмотрены: Arimo/actions читаемы,
+синтетический ridge даёт ожидаемые два серых тона. Остальные кадры не заявлены viewed.
+API35 mapundorotation native363 PASS, но adb pull оборвался на «building file list…»;
+PNG не получены, driver правильно FAIL. Код возврата старый driver не сохранил,
+точную причину adb обрыва не приписывать продукту. Следующий boot-id read offline
+восстановлен один раз, sameBoot=true/return0, без повторного instrumentation.
+Полные job logs/digests/allmember receipts: security/hgt-hillshade-qa-2026-11-12/
+window-fix-api23,window-fix-api35,runtime-130b-result.json. Общий CI НЕgreen.
+Не blindrerun; c946/838 исторические отказы не становятся PASS задним числом.
+
+Следующая working function уже WIP: KmlComponentStyle + LocalMapView отдельные
+Icon/Line/Poly/Label colors, alpha/fill/outline, shared StyleMap normal + inline merge.
+Read-only DOM, прежние defaults, без внешней загрузки styles/icons/SVG; bounded resolver.
+Модель32checks; добавляется существующий offlineformats renderer pixel/KMZ/reopen/data
+сценарий, без нового baseline/mode/workflow. Завершить локальные JVM/SDK23/privacy,
+проверить receipts, сохранить candidate и один changed-code CI46 на23/35.
+Android этой функции пока НЕпроверен. Все23id acceptance остаются открыты.
+Дальше import-export/styles/SVG по матрице, без dialog/orphan очереди.
 
 ## Сохранность и ограничения
 
