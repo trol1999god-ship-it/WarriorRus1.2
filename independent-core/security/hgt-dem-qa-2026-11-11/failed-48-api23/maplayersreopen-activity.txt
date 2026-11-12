@@ -1,0 +1,98 @@
+ACTIVITY MANAGER ACTIVITIES (dumpsys activity activities)
+Display #0 (activities from top to bottom):
+  Stack #188:
+    Task id #205
+    * TaskRecord{e46022c #205 A=org.rabochaya.karta U=0 sz=1}
+      userId=0 effectiveUid=u0a55 mCallingUid=u0a55 mCallingPackage=org.rabochaya.karta
+      affinity=org.rabochaya.karta
+      intent={flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}
+      realActivity=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity
+      autoRemoveRecents=false isPersistable=true numFullscreen=1 taskType=0 mTaskToReturnTo=0
+      rootWasReset=false mNeverRelinquishIdentity=true mReuseTask=false mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
+      Activities=[ActivityRecord{f7b3a41 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity t205}]
+      askedCompatMode=false inRecents=true isAvailable=true
+      lastThumbnail=null lastThumbnailFile=/data/system/recent_images/205_task_thumbnail.png
+      stackId=188
+      hasBeenVisible=true mResizeable=false firstActiveTime=1794396603249 lastActiveTime=1794396603249 (inactive for 467s)
+      * Hist #0: ActivityRecord{f7b3a41 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity t205}
+          packageName=org.rabochaya.karta processName=org.rabochaya.karta
+          launchedFromUid=10055 launchedFromPackage=org.rabochaya.karta userId=0
+          app=ProcessRecord{28084f5 6732:org.rabochaya.karta/u0a55}
+          Intent { flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras) }
+          frontOfTask=true task=TaskRecord{e46022c #205 A=org.rabochaya.karta U=0 sz=1}
+          taskAffinity=org.rabochaya.karta
+          realActivity=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity
+          baseDir=/data/app/org.rabochaya.karta-1/base.apk
+          dataDir=/data/user/0/org.rabochaya.karta
+          stateNotNeeded=false componentSpecified=true mActivityType=0
+          compat={160dpi} labelRes=0x0 icon=0x7f010000 theme=0x1030241
+          config={1.0 310mcc260mnc en_US ldltr sw320dp w320dp h616dp 160dpi nrml long port finger -keyb/v/h tball/v s.449}
+          stackConfigOverride={1.0 ?mcc?mnc ?locale ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/?}
+          taskDescription: iconFilename=null label="null" color=fff5f5f5
+          launchFailed=false launchCount=0 lastLaunchTime=-7m59s899ms
+          haveState=false icicle=null
+          state=RESUMED stopped=false delayedResume=false finishing=false
+          keysPaused=false inHistory=true visible=true sleeping=false idle=true
+          fullscreen=true noDisplay=false immersive=false launchMode=0
+          frozenBeforeDestroy=false forceNewConfig=false
+          mActivityType=APPLICATION_ACTIVITY_TYPE
+          waitingVisible=false nowVisible=true lastVisibleTime=-7m47s184ms
+
+    Running activities (most recent first):
+      TaskRecord{e46022c #205 A=org.rabochaya.karta U=0 sz=1}
+        Run #0: ActivityRecord{f7b3a41 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity t205}
+
+    mResumedActivity: ActivityRecord{f7b3a41 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity t205}
+
+  Stack #0:
+    Task id #3
+    * TaskRecord{3b9728a #3 I=com.android.launcher3/.Launcher U=0 sz=1}
+      userId=0 effectiveUid=u0a8 mCallingUid=0 mCallingPackage=null
+      intent={act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10000000 cmp=com.android.launcher3/.Launcher}
+      realActivity=com.android.launcher3/.Launcher
+      autoRemoveRecents=false isPersistable=true numFullscreen=1 taskType=1 mTaskToReturnTo=0
+      rootWasReset=false mNeverRelinquishIdentity=true mReuseTask=false mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
+      Activities=[ActivityRecord{b2fd57f u0 com.android.launcher3/.Launcher t3}]
+      askedCompatMode=false inRecents=true isAvailable=true
+      lastThumbnail=null lastThumbnailFile=/data/system/recent_images/3_task_thumbnail.png
+      stackId=0
+      hasBeenVisible=true mResizeable=false firstActiveTime=1794396590829 lastActiveTime=1794396590829 (inactive for 479s)
+      * Hist #0: ActivityRecord{b2fd57f u0 com.android.launcher3/.Launcher t3}
+          packageName=com.android.launcher3 processName=com.android.launcher3
+          launchedFromUid=0 launchedFromPackage=null userId=0
+          app=ProcessRecord{79800fb 2434:com.android.launcher3/u0a8}
+          Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10000000 cmp=com.android.launcher3/.Launcher }
+          frontOfTask=true task=TaskRecord{3b9728a #3 I=com.android.launcher3/.Launcher U=0 sz=1}
+          taskAffinity=null
+          realActivity=com.android.launcher3/.Launcher
+          baseDir=/system/priv-app/Launcher3/Launcher3.apk
+          dataDir=/data/user/0/com.android.launcher3
+          stateNotNeeded=true componentSpecified=false mActivityType=1
+          compat={160dpi} labelRes=0x7f0c0005 icon=0x7f030000 theme=0x7f0e000e
+          config={1.0 310mcc260mnc en_US ldltr sw320dp w320dp h616dp 160dpi nrml long port finger -keyb/v/h tball/v s.449}
+          stackConfigOverride={1.0 ?mcc?mnc ?locale ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/?}
+          taskDescription: iconFilename=null label="null" color=ff212121
+          launchFailed=false launchCount=0 lastLaunchTime=-41m10s944ms
+          haveState=true icicle=Bundle[mParcelledData.dataSize=5288]
+          state=STOPPED stopped=true delayedResume=false finishing=false
+          keysPaused=false inHistory=true visible=false sleeping=false idle=true
+          fullscreen=true noDisplay=false immersive=false launchMode=2
+          frozenBeforeDestroy=false forceNewConfig=false
+          mActivityType=HOME_ACTIVITY_TYPE
+          waitingVisible=false nowVisible=false lastVisibleTime=-8m2s79ms
+
+    Running activities (most recent first):
+      TaskRecord{3b9728a #3 I=com.android.launcher3/.Launcher U=0 sz=1}
+        Run #0: ActivityRecord{b2fd57f u0 com.android.launcher3/.Launcher t3}
+
+    mLastPausedActivity: ActivityRecord{b2fd57f u0 com.android.launcher3/.Launcher t3}
+
+  mFocusedActivity: ActivityRecord{f7b3a41 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity t205}
+  mFocusedStack=ActivityStack{9271518 stackId=188, 1 tasks} mLastFocusedStack=ActivityStack{9271518 stackId=188, 1 tasks}
+  mSleepTimeout=false
+  mCurTaskId=205
+  mUserStackInFront={}
+  mActivityContainers={0=ActivtyContainer{0}A, 188=ActivtyContainer{188}A}
+  mLockTaskModeState=NONE mLockTaskPackages (userId:packages)=
+    0:[]
+ mLockTaskModeTasks[]

@@ -1,0 +1,572 @@
+{
+  "run": 43089751186,
+  "source_sha": "d36f15f4e606fcad310a59cc25ba7940bbfbc205",
+  "run_data": {
+    "id": 43089751186,
+    "name": "Independent core Android QA",
+    "node_id": "WFR_kwLOVHQi7c8AAAAKCFlskg",
+    "head_branch": "codex/independent-core-auto",
+    "head_sha": "d36f15f4e606fcad310a59cc25ba7940bbfbc205",
+    "path": ".github/workflows/independent-core-qa.yml",
+    "display_title": "test: scroll the profile graph ancestor and defer preserved tiled int…",
+    "run_number": 153,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "cancelled",
+    "workflow_id": 401481246,
+    "check_suite_id": 116689083947,
+    "check_suite_node_id": "CS_kwDOVHQi7c8AAAAbKzYeKw",
+    "url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/actions/runs/43089751186",
+    "html_url": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/43089751186",
+    "pull_requests": [
+      {
+        "url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/pulls/14",
+        "id": 5080995677,
+        "number": 14,
+        "head": {
+          "ref": "codex/independent-core-auto",
+          "sha": "d36f15f4e606fcad310a59cc25ba7940bbfbc205",
+          "repo": {
+            "id": 1416897261,
+            "url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2",
+            "name": "WarriorRus1.2"
+          }
+        },
+        "base": {
+          "ref": "main",
+          "sha": "2f1c92ed2feb222f0833218e8dca4095c7b7c59a",
+          "repo": {
+            "id": 1416897261,
+            "url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2",
+            "name": "WarriorRus1.2"
+          }
+        }
+      }
+    ],
+    "created_at": "2026-11-11T19:42:50Z",
+    "updated_at": "2026-11-11T21:01:37Z",
+    "actor": {
+      "login": "trol1999god-ship-it",
+      "id": 341909802,
+      "node_id": "U_kgDOFGEhKg",
+      "avatar_url": "https://avatars.githubusercontent.com/u/341909802?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/trol1999god-ship-it",
+      "html_url": "https://github.com/trol1999god-ship-it",
+      "followers_url": "https://api.github.com/users/trol1999god-ship-it/followers",
+      "following_url": "https://api.github.com/users/trol1999god-ship-it/following{/other_user}",
+      "gists_url": "https://api.github.com/users/trol1999god-ship-it/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/trol1999god-ship-it/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/trol1999god-ship-it/subscriptions",
+      "organizations_url": "https://api.github.com/users/trol1999god-ship-it/orgs",
+      "repos_url": "https://api.github.com/users/trol1999god-ship-it/repos",
+      "events_url": "https://api.github.com/users/trol1999god-ship-it/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/trol1999god-ship-it/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "run_attempt": 1,
+    "referenced_workflows": [],
+    "run_started_at": "2026-11-11T19:42:50Z",
+    "triggering_actor": {
+      "login": "trol1999god-ship-it",
+      "id": 341909802,
+      "node_id": "U_kgDOFGEhKg",
+      "avatar_url": "https://avatars.githubusercontent.com/u/341909802?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/trol1999god-ship-it",
+      "html_url": "https://github.com/trol1999god-ship-it",
+      "followers_url": "https://api.github.com/users/trol1999god-ship-it/followers",
+      "following_url": "https://api.github.com/users/trol1999god-ship-it/following{/other_user}",
+      "gists_url": "https://api.github.com/users/trol1999god-ship-it/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/trol1999god-ship-it/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/trol1999god-ship-it/subscriptions",
+      "organizations_url": "https://api.github.com/users/trol1999god-ship-it/orgs",
+      "repos_url": "https://api.github.com/users/trol1999god-ship-it/repos",
+      "events_url": "https://api.github.com/users/trol1999god-ship-it/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/trol1999god-ship-it/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "jobs_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/actions/runs/43089751186/jobs",
+    "logs_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/actions/runs/43089751186/logs",
+    "check_suite_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/check-suites/116689083947",
+    "artifacts_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/actions/runs/43089751186/artifacts",
+    "cancel_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/actions/runs/43089751186/cancel",
+    "rerun_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/actions/runs/43089751186/rerun",
+    "previous_attempt_url": null,
+    "workflow_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/actions/workflows/401481246",
+    "head_commit": {
+      "id": "d36f15f4e606fcad310a59cc25ba7940bbfbc205",
+      "tree_id": "06eaf42c8731b0a980367df91a0a5543b8c743d3",
+      "message": "test: scroll the profile graph ancestor and defer preserved tiled integration",
+      "timestamp": "2026-11-11T19:42:11Z",
+      "author": {
+        "name": "Люк Бессон",
+        "email": "trol1999god@gmail.com"
+      },
+      "committer": {
+        "name": "Люк Бессон",
+        "email": "trol1999god@gmail.com"
+      }
+    },
+    "repository": {
+      "id": 1416897261,
+      "node_id": "R_kgDOVHQi7Q",
+      "name": "WarriorRus1.2",
+      "full_name": "trol1999god-ship-it/WarriorRus1.2",
+      "private": false,
+      "owner": {
+        "login": "trol1999god-ship-it",
+        "id": 341909802,
+        "node_id": "U_kgDOFGEhKg",
+        "avatar_url": "https://avatars.githubusercontent.com/u/341909802?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/trol1999god-ship-it",
+        "html_url": "https://github.com/trol1999god-ship-it",
+        "followers_url": "https://api.github.com/users/trol1999god-ship-it/followers",
+        "following_url": "https://api.github.com/users/trol1999god-ship-it/following{/other_user}",
+        "gists_url": "https://api.github.com/users/trol1999god-ship-it/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/trol1999god-ship-it/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/trol1999god-ship-it/subscriptions",
+        "organizations_url": "https://api.github.com/users/trol1999god-ship-it/orgs",
+        "repos_url": "https://api.github.com/users/trol1999god-ship-it/repos",
+        "events_url": "https://api.github.com/users/trol1999god-ship-it/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/trol1999god-ship-it/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/trol1999god-ship-it/WarriorRus1.2",
+      "description": "Sdelano Sputnikom",
+      "fork": false,
+      "url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2",
+      "forks_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/forks",
+      "keys_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/teams",
+      "hooks_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/hooks",
+      "issue_events_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/events",
+      "assignees_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/tags",
+      "blobs_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/languages",
+      "stargazers_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/stargazers",
+      "contributors_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/contributors",
+      "subscribers_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/subscribers",
+      "subscription_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/subscription",
+      "commits_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/merges",
+      "archive_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/downloads",
+      "issues_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/labels{/name}",
+      "releases_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/deployments"
+    },
+    "head_repository": {
+      "id": 1416897261,
+      "node_id": "R_kgDOVHQi7Q",
+      "name": "WarriorRus1.2",
+      "full_name": "trol1999god-ship-it/WarriorRus1.2",
+      "private": false,
+      "owner": {
+        "login": "trol1999god-ship-it",
+        "id": 341909802,
+        "node_id": "U_kgDOFGEhKg",
+        "avatar_url": "https://avatars.githubusercontent.com/u/341909802?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/trol1999god-ship-it",
+        "html_url": "https://github.com/trol1999god-ship-it",
+        "followers_url": "https://api.github.com/users/trol1999god-ship-it/followers",
+        "following_url": "https://api.github.com/users/trol1999god-ship-it/following{/other_user}",
+        "gists_url": "https://api.github.com/users/trol1999god-ship-it/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/trol1999god-ship-it/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/trol1999god-ship-it/subscriptions",
+        "organizations_url": "https://api.github.com/users/trol1999god-ship-it/orgs",
+        "repos_url": "https://api.github.com/users/trol1999god-ship-it/repos",
+        "events_url": "https://api.github.com/users/trol1999god-ship-it/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/trol1999god-ship-it/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "html_url": "https://github.com/trol1999god-ship-it/WarriorRus1.2",
+      "description": "Sdelano Sputnikom",
+      "fork": false,
+      "url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2",
+      "forks_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/forks",
+      "keys_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/keys{/key_id}",
+      "collaborators_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/collaborators{/collaborator}",
+      "teams_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/teams",
+      "hooks_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/hooks",
+      "issue_events_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/issues/events{/number}",
+      "events_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/events",
+      "assignees_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/assignees{/user}",
+      "branches_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/branches{/branch}",
+      "tags_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/tags",
+      "blobs_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/git/blobs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/git/tags{/sha}",
+      "git_refs_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/git/refs{/sha}",
+      "trees_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/git/trees{/sha}",
+      "statuses_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/statuses/{sha}",
+      "languages_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/languages",
+      "stargazers_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/stargazers",
+      "contributors_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/contributors",
+      "subscribers_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/subscribers",
+      "subscription_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/subscription",
+      "commits_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/commits{/sha}",
+      "git_commits_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/git/commits{/sha}",
+      "comments_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/comments{/number}",
+      "issue_comment_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/issues/comments{/number}",
+      "contents_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/contents/{+path}",
+      "compare_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/compare/{base}...{head}",
+      "merges_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/merges",
+      "archive_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/{archive_format}{/ref}",
+      "downloads_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/downloads",
+      "issues_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/issues{/number}",
+      "pulls_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/pulls{/number}",
+      "milestones_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/milestones{/number}",
+      "notifications_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/notifications{?since,all,participating}",
+      "labels_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/labels{/name}",
+      "releases_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/releases{/id}",
+      "deployments_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/deployments"
+    }
+  },
+  "jobs": [
+    {
+      "id": 130763362981,
+      "name": "jvm",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 43089751186,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run python3 ci/test_run_android_checks.py",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run python3 security/privacy_audit.py --report \"$RUNNER_TEMP/source-privacy.json\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run python3 owned-projects/verify_jvm.py",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Keep unit and source-audit evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 130763365005,
+      "name": "recover-saved-evidence",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 43089751186,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 130763635944,
+      "name": "android (23, x86, default)",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "run_id": 43089751186,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Prepare SDK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Compile own application and instrumentation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Audit the built APK (custom privacy checks, not Android lint)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Record the real release-gate attempt (no publication)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Record Android lint integration gap honestly",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Require hardware acceleration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Run Android scenarios",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Keep synthetic test results",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 11
+        },
+        {
+          "name": "Keep isolated QA build and metadata",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 12
+        },
+        {
+          "name": "Post Run actions/setup-java@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 23
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 24
+        }
+      ]
+    },
+    {
+      "id": 130763635965,
+      "name": "android (35, x86_64, google_apis)",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "run_id": 43089751186,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Prepare SDK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Compile own application and instrumentation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Audit the built APK (custom privacy checks, not Android lint)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Record the real release-gate attempt (no publication)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Record Android lint integration gap honestly",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Require hardware acceleration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Run Android scenarios",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Keep synthetic test results",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 11
+        },
+        {
+          "name": "Keep isolated QA build and metadata",
+          "status": "pending",
+          "conclusion": null,
+          "number": 12
+        },
+        {
+          "name": "Post Run actions/setup-java@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 23
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 24
+        }
+      ]
+    }
+  ],
+  "artifacts": {
+    "total_count": 1,
+    "artifacts": [
+      {
+        "id": 13886974729,
+        "node_id": "MDg6QXJ0aWZhY3QxMzg4Njk3NDcyOQ==",
+        "name": "independent-unit-source-quality",
+        "size_in_bytes": 1366,
+        "url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/actions/artifacts/13886974729",
+        "archive_download_url": "https://api.github.com/repos/trol1999god-ship-it/WarriorRus1.2/actions/artifacts/13886974729/zip",
+        "expired": false,
+        "digest": "sha256:d6cdab6d394016281ebc90c5bf3b409002002a613cccb09e506b093c7bb06a65",
+        "created_at": "2026-11-11T19:43:19Z",
+        "updated_at": "2026-11-11T19:43:19Z",
+        "expires_at": "2026-11-18T19:43:14Z",
+        "workflow_run": {
+          "id": 43089751186,
+          "repository_id": 1416897261,
+          "head_repository_id": 1416897261,
+          "head_branch": "codex/independent-core-auto",
+          "head_sha": "d36f15f4e606fcad310a59cc25ba7940bbfbc205"
+        }
+      }
+    ]
+  },
+  "api23_logs": {
+    "error": "GitHub API error 404: ﻿<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>BlobNotFound</Code><Message>The specified blob does not exist.\nRequestId:7ca45ce0-c01e-00ed-3120-724947000000\nTime:2026-11-11T21:08:01.3697842Z</Message></Error>",
+    "error_code": "NOT_FOUND",
+    "error_data": {
+      "error_str": "GitHub API error 404: ﻿<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>BlobNotFound</Code><Message>The specified blob does not exist.\nRequestId:7ca45ce0-c01e-00ed-3120-724947000000\nTime:2026-11-11T21:08:01.3697842Z</Message></Error>"
+    }
+  },
+  "api35_logs": {
+    "error": "GitHub API error 404: ﻿<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>BlobNotFound</Code><Message>The specified blob does not exist.\nRequestId:7fd9bbbe-801e-0037-3520-72d0a6000000\nTime:2026-11-11T21:08:12.5382047Z</Message></Error>",
+    "error_code": "NOT_FOUND",
+    "error_data": {
+      "error_str": "GitHub API error 404: ﻿<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>BlobNotFound</Code><Message>The specified blob does not exist.\nRequestId:7fd9bbbe-801e-0037-3520-72d0a6000000\nTime:2026-11-11T21:08:12.5382047Z</Message></Error>"
+    }
+  },
+  "conclusions": {
+    "ci_green": false,
+    "scenario_steps_success_both": true,
+    "full_46_records_verified": false,
+    "new_png_reviewed": 0,
+    "underlying_upload_error": "Unknown: job logs BlobNotFound; no Android artifact published",
+    "evidence_recovery_possible": false,
+    "local_android_result_copy_found": false,
+    "production_change": false,
+    "delivery_change": "Single ZIP with original files and SHA manifest; bounded 3-minute uploads within existing workflow; no test/visual/release guard changes",
+    "accepted": false
+  }
+}

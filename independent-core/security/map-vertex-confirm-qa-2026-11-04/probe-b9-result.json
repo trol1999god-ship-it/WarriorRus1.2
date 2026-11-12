@@ -1,0 +1,23 @@
+{
+  "source": "b9d2039444a4a203802274fa52dbbcd297612766",
+  "run": 41902348265,
+  "conclusion": "failure",
+  "jobs": {
+    "23": 126828073622,
+    "35": 126828073869,
+    "jvm": 126827826996
+  },
+  "previous_modes_passed": {
+    "23": 39,
+    "35": 39
+  },
+  "map_baseline_valid": false,
+  "actual_rotation_reproduction": false,
+  "png_collected": 0,
+  "api23_error": "AssertionError geometry input field before rotation",
+  "api23_confirmed_test_cause": "geometryInput searches visible EditText nodes; map mode detaches owned input. Existing editorText reads same Activity-owned field, as existing map scenarios do.",
+  "api35_error": "Process crashed; cause not established, no state-loss attribution",
+  "fix": "test-only four getters geometryInput -> editorText; add exact portrait/main/key fixture precondition marker; all old rotation/selection/token/XML/assets guards retained",
+  "environment": "unavailable, connectivity offline; no local compile or command claimed; use existing GitHub CI for changed baseline",
+  "production_changed": false
+}

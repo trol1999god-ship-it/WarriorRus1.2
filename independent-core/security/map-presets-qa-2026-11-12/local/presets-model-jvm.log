@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: preset 40
+	at MapCompositionPresetsTests.ck(MapCompositionPresetsTests.java:3)
+	at MapCompositionPresetsTests.refused(MapCompositionPresetsTests.java:5)
+	at MapCompositionPresetsTests.main(MapCompositionPresetsTests.java:14)

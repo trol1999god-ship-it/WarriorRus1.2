@@ -1,0 +1,26 @@
+import org.rabochaya.projects.*;import org.w3c.dom.*;import javax.xml.parsers.*;import java.io.*;import java.util.*;
+public final class KmlComponentStyleTests {
+ static int n;static void ck(boolean yes){n++;if(!yes)throw new AssertionError("component style "+n);}
+ static Document parse(String body)throws Exception{DocumentBuilderFactory f=DocumentBuilderFactory.newInstance();f.setNamespaceAware(true);f.setFeature("http://apache.org/xml/features/disallow-doctype-decl",true);return f.newDocumentBuilder().parse(new ByteArrayInputStream(("<kml xmlns='http://www.opengis.net/kml/2.2'><Document>"+body+"</Document></kml>").getBytes("UTF-8")));}
+ static Element feature(Document d){return (Element)d.getElementsByTagNameNS("http://www.opengis.net/kml/2.2","Placemark").item(0);}
+ static KmlComponentStyle style(String body)throws Exception{Document d=parse(body);return new KmlComponentStyle.Resolver(d).resolve(feature(d));}
+ public static void main(String[] args)throws Exception{
+  ck(KmlComponentStyle.DEFAULT_COLOR==0xffe6c45a);ck(KmlComponentStyle.color("ff0000ff")==0xffff0000);ck(KmlComponentStyle.color("ff00ff00")==0xff00ff00);ck(KmlComponentStyle.color("7fff0000")==0x7f0000ff);ck(KmlComponentStyle.color("00000000")==0);ck(KmlComponentStyle.color(" FFFFFFFF ")==0xffffffff);
+  for(String bad:new String[]{"red","#ff0000","fff","fffffffff","gg000000","NaN",""})ck(KmlComponentStyle.color(bad)==null);ck(KmlComponentStyle.color(null)==null);
+  String shared="<Style id='s'><IconStyle><color>ff00ff00</color></IconStyle><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><color>8000ffff</color><fill>1</fill><outline>0</outline></PolyStyle><LabelStyle><color>40ff0000</color></LabelStyle></Style>";
+  String map="<StyleMap id='m'><Pair><key>highlight</key><styleUrl>#missing</styleUrl></Pair><Pair><key>normal</key><styleUrl>#s</styleUrl></Pair></StyleMap>";
+  Document d=parse(shared+map+"<Placemark><name>Слой 😀</name><styleUrl>#m</styleUrl><Style><IconStyle><color>ffff0000</color></IconStyle><PolyStyle><outline>true</outline></PolyStyle></Style></Placemark>");byte[] before=KmlXml.write(d);KmlComponentStyle.Resolver resolver=new KmlComponentStyle.Resolver(d);KmlComponentStyle s=resolver.resolve(feature(d));ck(resolver.complete);ck(s.icon==0xff0000ff);ck(s.line==0xffff0000);ck(s.polygon==0x80ffff00);ck(s.label==0x400000ff);ck(s.fill&&s.outline);ck(Arrays.equals(before,KmlXml.write(d)));
+  DocumentBuilderFactory roundFactory=DocumentBuilderFactory.newInstance();roundFactory.setNamespaceAware(true);roundFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl",true);Document round=roundFactory.newDocumentBuilder().parse(new ByteArrayInputStream(before));KmlComponentStyle r=new KmlComponentStyle.Resolver(round).resolve(feature(round));ck(r.line.equals(s.line)&&r.polygon.equals(s.polygon)&&r.fill.equals(s.fill)&&r.outline.equals(s.outline));
+  ck(resolver.resolve(feature(parse("<Placemark><styleUrl>#s</styleUrl></Placemark>")))==KmlComponentStyle.EMPTY);
+  s=style(shared+"<Placemark><styleUrl>https://example.invalid/styles.kml#s</styleUrl></Placemark>");ck(s.icon==null&&s.line==null&&s.polygon==null);
+  s=style("<StyleMap id='a'><Pair><key>normal</key><styleUrl>#b</styleUrl></Pair></StyleMap><StyleMap id='b'><Pair><key>normal</key><styleUrl>#a</styleUrl></Pair></StyleMap><Placemark><styleUrl>#a</styleUrl></Placemark>");ck(s.icon==null&&s.line==null);
+  s=style(shared+"<Style id='s'><LineStyle><color>ffffffff</color></LineStyle></Style><Placemark><styleUrl>#s</styleUrl></Placemark>");ck(s.line==null);
+  s=style(shared+"<StyleMap id='m'><Pair><key>normal</key><styleUrl>#s</styleUrl><Style><LineStyle><color>ffffffff</color></LineStyle></Style></Pair></StyleMap><Placemark><styleUrl>#m</styleUrl></Placemark>");ck(s.line==0xffffffff&&s.icon==0xff00ff00);
+  s=style(shared+"<StyleMap id='m'><Pair><key>normal</key><styleUrl>#s</styleUrl></Pair><Pair><key>normal</key><styleUrl>#s</styleUrl></Pair></StyleMap><Placemark><styleUrl>#m</styleUrl></Placemark>");ck(s.line==null);
+  s=style("<Placemark><Style><PolyStyle><colorMode>random</colorMode><color>ffffffff</color><fill>false</fill><outline>1</outline></PolyStyle><LabelStyle><color>bad</color></LabelStyle></Style></Placemark>");ck(s.polygon==null&&!s.fill&&s.outline&&s.label==null);
+  s=style("<Placemark><Style><IconStyle xmlns='urn:foreign'><color>ffffffff</color></IconStyle><LineStyle><color>7fff0000</color></LineStyle><PolyStyle><fill>yes</fill><outline>2</outline></PolyStyle></Style></Placemark>");ck(s.icon==null&&s.line==0x7f0000ff&&s.fill==null&&s.outline==null);
+  StringBuilder chain=new StringBuilder(shared);for(int i=0;i<9;i++)chain.append("<StyleMap id='a"+i+"'><Pair><key>normal</key><styleUrl>#"+(i==8?"s":"a"+(i+1))+"</styleUrl></Pair></StyleMap>");s=style(chain+"<Placemark><styleUrl>#a0</styleUrl></Placemark>");ck(s.line==null);
+  StringBuilder many=new StringBuilder();for(int i=0;i<4097;i++)many.append("<Style id='s"+i+"'/>");d=parse(many+"<Placemark><styleUrl>#s0</styleUrl><Style><LineStyle><color>ffffffff</color></LineStyle></Style></Placemark>");resolver=new KmlComponentStyle.Resolver(d);ck(!resolver.complete);ck(resolver.resolve(feature(d)).line==0xffffffff);
+  System.out.println("PASS KML component style: "+n+" assertions");
+ }
+}

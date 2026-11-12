@@ -1,0 +1,22 @@
+{
+  "api": "35",
+  "source_sha": "c9465dfcbbc1f9cfa08e332ca7c281a7cb099178",
+  "run_id": "43178276193",
+  "outer_path": "/workspace/attachments/3a0f286e-0368-493f-bdef-78d41295ca60/ozi-c946-api35.zip",
+  "outer_sha256": "d2280f2642082fb7155d35dbf9a9152329a0320789d311e2706f0af2fae8f507",
+  "inner_sha256": "204f222d37b5517f973e33d2985a0b2fc31954c2a75c01e778727c63ebd5bf6f",
+  "all_member_hashes_verified": true,
+  "members": 557,
+  "records": 46,
+  "passed": 45,
+  "failed_or_skipped": [
+    {
+      "mode": "offlineformats",
+      "passed": false,
+      "seconds": 141.15
+    }
+  ],
+  "frames": 30,
+  "visual_review": "10 original raster frames actually viewed incl CP1251 checkbox and unobscured BMP/GIF actions; remaining20 not claimed viewed. Native1094 PASS, driver record FAILURE due strict file name.",
+  "images_actually_viewed": 10
+}

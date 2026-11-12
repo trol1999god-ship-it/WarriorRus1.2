@@ -1,0 +1,44 @@
+{
+  "source": "1fc6b8f2448247990967a287b732980dcd4d7197",
+  "run": 41852078435,
+  "conclusion": "success",
+  "jobs": {
+    "jvm": 126650741656,
+    "23": 126651010247,
+    "35": 126651009803
+  },
+  "modes_each": 36,
+  "vertex_assertions_each": 367,
+  "hole_assertions_each": 515,
+  "jvm_suites": 24,
+  "jvm_assertions": 81315,
+  "driver_tests": 12,
+  "own_classes": 431,
+  "min_sdk": 23,
+  "permissions": [
+    "android.permission.INTERNET"
+  ],
+  "local_unsigned_sha256": "b3111d4d33250f4aa44f51802a450f102c27df7723d494f77e041614a38b2d5e",
+  "final_png_sha_verified_and_actually_reviewed": 56,
+  "visible_owned_text_arimo": true,
+  "cases": [
+    "Cancel before/after both actual recreations; exact main/key/token",
+    "explicit confirm changes only main vertex draft or staged readonly hole intent; KML/assets unchanged until separate MainSave",
+    "MainSave changes only middle vertex or second inner boundary; exact remaining DOM/assets",
+    "stale-before/stale-after/main-changed rejected without rebinding intent or overwriting newer main",
+    "stale MainSave rejected; local input retained",
+    "foreign sameXML project and other feature reject intent and old selected geometry view",
+    "staged hole Cancel/main-changed/foreign/rotation preserve all data and require explicit Save",
+    "no automatic or ghost action after recreation/dismissal"
+  ],
+  "limitations": [
+    "Intent restoration/staged hole deletion limited to same process; after process restart intent is rejected by nonce, no Android process-death restoration acceptance",
+    "Main fields can show only part of long coordinates in landscape; no full visual parity claim",
+    "Other raw before/after/nonzero-part/hole restoration acceptance is the next prepared probe, not executed yet",
+    "Physical device, Android16, complete reference parity, primary certificate and migration acceptance remain open"
+  ],
+  "release_gate_allowed": false,
+  "release_gate_blockers": 25,
+  "accepted_requirements": 0,
+  "full_migration_complete": false
+}

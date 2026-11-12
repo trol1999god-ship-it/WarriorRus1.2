@@ -1,0 +1,45 @@
+{
+  "code": "7230ceced5061061df2b6e521c62ad964edcc112",
+  "run": 43035041730,
+  "result": "SUCCESS",
+  "api23": {
+    "attempt": 1,
+    "job": 130571810995,
+    "carried_job_alias_attempt2": 130593256330,
+    "modes": 46,
+    "managerforms": 482,
+    "offlineformats": 68,
+    "maplayers": 191,
+    "maplayersreopen": 66,
+    "new_dem_task": 206,
+    "full_job_log_sha256": "e98eb0479374dfd825ec4b9c1126dbdfd3c605b52363511771ec0d1f866b77e0"
+  },
+  "api35": {
+    "attempt": 2,
+    "job": 130593252640,
+    "modes": 46,
+    "managerforms": 473,
+    "offlineformats": 68,
+    "maplayers": 191,
+    "maplayersreopen": 66,
+    "new_dem_task": 210,
+    "full_job_log_sha256": "bb55aa2cd5c905df54984b3aada7ba0861b6a52d9bf7588ee946017b27662c0c"
+  },
+  "frames_per_api": 16,
+  "all_32_frames_sha_verified_and_actually_viewed": true,
+  "dem_phases_both": [
+    "reopen-enter",
+    "reopen-owned-and-source-hashes-exact",
+    "before-fresh-main-launch owner=4",
+    "fresh-main-created owner=4",
+    "manual-centre-height-zero",
+    "reopen-height-png-saved",
+    "before-owned-remove-screen",
+    "owned-remove-complete"
+  ],
+  "scope": "HGT explicit import/Cancel/install/foreign/remove/manual centre/actual force-stop restart; exact KML/assets/source/cache/otherproject guards, no extra DEM requests; Deflate pixel/roundtrip/checksum refusal",
+  "historical_failure": "43007479633 both480s launch waiter, not DEM reader deadlock; 7230 test-only NEW_TASK|MULTIPLE_TASK and owner/phases, timeout unchanged",
+  "attempt1_api35": "proven adb offline after geometrycloseconfirm instrumentation, layers not started/reopen skipped; failed-only retry, API23/JVM not repeated",
+  "accepted": false,
+  "full_dem_or_geotiff_acceptance": false
+}

@@ -1,0 +1,158 @@
+[
+  {
+    "name": "maplayersreopen/map_dem-coverage.png",
+    "bytes": 73303,
+    "sha256": "7540bc2d25be5b6172ceffe98afa8c5ca38e3ec57a54495cb6b4205fc92f4ae3",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_dem-import-ready.png",
+    "bytes": 46657,
+    "sha256": "29f233b56ea2cb014f3acd93a4121e68548281ec386c565da441fc531bbe172b",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_dem-manual-centre.png",
+    "bytes": 40966,
+    "sha256": "273a3240a0452dbae6d5ce4100c659e27439b0219fc4d4c04358973235aec105",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_maplayers.png",
+    "bytes": 180401,
+    "sha256": "7d6930d67407481f82765a92f5bf4dcebae8649d55016a24ee26341a6a3f5390",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_maplayersreopen.png",
+    "bytes": 180401,
+    "sha256": "7d6930d67407481f82765a92f5bf4dcebae8649d55016a24ee26341a6a3f5390",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-cachejob-complete.png",
+    "bytes": 36921,
+    "sha256": "476b67d55bfe32761f1251e6348bf18506b0efa286a5d4b36744869d6af5b6c9",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-cachejob-form.png",
+    "bytes": 36264,
+    "sha256": "22975becf2724f40a857f19c578319a5fcf1f8eb14996ede95cd5c93732de819",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-cachejob-paused.png",
+    "bytes": 36536,
+    "sha256": "ba833cd77e7eb8e146bd26bdd1e50260c9e709def70c0bbf292b26f9c82dffdd",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-cachejob-stale.png",
+    "bytes": 37361,
+    "sha256": "605840d4ebf5b08ce65f01c4e995776b4116a8d768fb60b94591c1da4dbb67c8",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-dem-profile.png",
+    "bytes": 36140,
+    "sha256": "0550e0cfa4573198d5ef2a33321859f6091cadf666f0745068647300fd9257a3",
+    "actually_viewed": true
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-dem-restarted.png",
+    "bytes": 40966,
+    "sha256": "273a3240a0452dbae6d5ce4100c659e27439b0219fc4d4c04358973235aec105",
+    "actually_viewed": true
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-composed.png",
+    "bytes": 27491,
+    "sha256": "3e3c628c23f37a50ef032932b8a1d5626fe22b68b89cd009e2f936c65d2e0fb6",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-final.png",
+    "bytes": 28060,
+    "sha256": "7406c070cec75456502d92ab83ae870e48041bd72e0f33b4872a79fe3322c61a",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-manager.png",
+    "bytes": 27737,
+    "sha256": "7a10f75658760d4b5510253c8495369fa5e7ef88f38f8bdb7111e66508a6f976",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-opacity-after.png",
+    "bytes": 27737,
+    "sha256": "7a10f75658760d4b5510253c8495369fa5e7ef88f38f8bdb7111e66508a6f976",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-opacity-before.png",
+    "bytes": 27611,
+    "sha256": "98356957bb0e7cdd81e4781b92cfc99b2bcced4f85744c6e51a5b27551e4131f",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-reordered.png",
+    "bytes": 27323,
+    "sha256": "2bf7473332791a61d7c867c230732308185fb6aa170914ec6185ea785e94e294",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-restarted-manager.png",
+    "bytes": 27528,
+    "sha256": "715a5a1b6a464911db8a45a8f5142976acdbf3a01ac3e46bacc4a685c2224fb4",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-restarted.png",
+    "bytes": 28104,
+    "sha256": "c90ee7f922ea904e8e3550d1a1db30df7616db139d9b456f4fb9c385897b7c22",
+    "actually_viewed": false
+  },
+  {
+    "name": "offlineformats/map_mvisual-geotiff-import-prompt.png",
+    "bytes": 72038,
+    "sha256": "fd9061f7e560bd531635c759fe693c6ede8a349a0ea7b94420673293dbd11846",
+    "actually_viewed": true
+  },
+  {
+    "name": "offlineformats/map_mvisual-geotiff-import-saved.png",
+    "bytes": 40039,
+    "sha256": "ce42be2770002609cdcb7dcbf9c04a3505d1e3360f524d65d4af71d6f66979dc",
+    "actually_viewed": true
+  },
+  {
+    "name": "offlineformats/map_mvisual-ozi-bmp-import-prompt.png",
+    "bytes": 68352,
+    "sha256": "48cdbcd1ed0a83aca0e9650e0de3e8c94658fd00f5c71a1549f90a6f246009be",
+    "actually_viewed": true
+  },
+  {
+    "name": "offlineformats/map_mvisual-ozi-bmp-import-saved.png",
+    "bytes": 52424,
+    "sha256": "8b9358b90a8117661f4adf6dc6f553ec8fe3bea40c33d1ec171e5d124bcef87f",
+    "actually_viewed": true
+  },
+  {
+    "name": "offlineformats/map_mvisual-ozi-import-prompt.png",
+    "bytes": 68619,
+    "sha256": "679e989138143366f956613646cb107c7e25e6fa74b8dcb81b1698f8d691a5bc",
+    "actually_viewed": true
+  },
+  {
+    "name": "offlineformats/map_mvisual-ozi-import-saved.png",
+    "bytes": 28473,
+    "sha256": "59ee344025889128b8a5c77474f15830e2d8366858a82af4787c84272b099031",
+    "actually_viewed": true
+  },
+  {
+    "name": "offlineformats/map_offlineformats.png",
+    "bytes": 175864,
+    "sha256": "d30ac5908c0321ace650fa76e169dcc008edd0d2565d07571418a971bee94b82",
+    "actually_viewed": false
+  }
+]

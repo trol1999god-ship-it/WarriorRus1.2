@@ -1,0 +1,222 @@
+[
+  {
+    "kind": "invalid",
+    "message": "Широта от −90 до 90, долгота от −180 до 180; числа должны быть конечными",
+    "lines": [
+      {
+        "line": 0,
+        "top": 51,
+        "bottom": 72,
+        "full": false
+      }
+    ],
+    "covered": "{}",
+    "lineCount": 1,
+    "scrollY": 1,
+    "viewport": "0 24 640 50",
+    "activityFrame": "0 24 640 106",
+    "messageBounds": "0 51 640 72",
+    "raw": {
+      "present": true,
+      "text": "91 0",
+      "start": 1,
+      "end": 3,
+      "error": "Широта от −90 до 90, долгота от −180 до 180; числа должны быть конечными"
+    },
+    "ime": [
+      "[0,106][640,296]"
+    ]
+  },
+  {
+    "kind": "invalid",
+    "message": "Широта от −90 до 90, долгота от −180 до 180; числа должны быть конечными",
+    "lines": [
+      {
+        "line": 0,
+        "top": 39,
+        "bottom": 60,
+        "full": false
+      }
+    ],
+    "covered": "{}",
+    "lineCount": 1,
+    "scrollY": 13,
+    "viewport": "0 24 640 50",
+    "activityFrame": "0 24 640 106",
+    "messageBounds": "0 39 640 60",
+    "raw": {
+      "present": true,
+      "text": "91 0",
+      "start": 1,
+      "end": 3,
+      "error": "Широта от −90 до 90, долгота от −180 до 180; числа должны быть конечными"
+    },
+    "ime": [
+      "[0,106][640,296]"
+    ]
+  },
+  {
+    "kind": "invalid",
+    "message": "Широта от −90 до 90, долгота от −180 до 180; числа должны быть конечными",
+    "lines": [
+      {
+        "line": 0,
+        "top": 29,
+        "bottom": 50,
+        "full": true
+      }
+    ],
+    "covered": "{0}",
+    "lineCount": 1,
+    "scrollY": 23,
+    "viewport": "0 24 640 50",
+    "activityFrame": "0 24 640 106",
+    "messageBounds": "0 29 640 50",
+    "raw": {
+      "present": true,
+      "text": "91 0",
+      "start": 1,
+      "end": 3,
+      "error": "Широта от −90 до 90, долгота от −180 до 180; числа должны быть конечными"
+    },
+    "ime": [
+      "[0,106][640,296]"
+    ]
+  },
+  {
+    "kind": "stale",
+    "message": "Геометрия или исходный ввод изменились. Применение заблокировано; отмените форму и выберите вершину заново.",
+    "lines": [
+      {
+        "line": 0,
+        "top": -14,
+        "bottom": 4,
+        "full": false
+      },
+      {
+        "line": 1,
+        "top": 4,
+        "bottom": 23,
+        "full": false
+      }
+    ],
+    "covered": "{}",
+    "lineCount": 2,
+    "scrollY": 38,
+    "viewport": "0 24 640 50",
+    "activityFrame": "0 24 640 106",
+    "messageBounds": "0 -14 640 23",
+    "raw": {
+      "present": true,
+      "text": "21.25 31.75 41.5",
+      "start": 1,
+      "end": 3,
+      "error": ""
+    },
+    "ime": [
+      "[0,106][640,296]"
+    ]
+  },
+  {
+    "kind": "stale",
+    "message": "Геометрия или исходный ввод изменились. Применение заблокировано; отмените форму и выберите вершину заново.",
+    "lines": [
+      {
+        "line": 0,
+        "top": -2,
+        "bottom": 16,
+        "full": false
+      },
+      {
+        "line": 1,
+        "top": 16,
+        "bottom": 35,
+        "full": false
+      }
+    ],
+    "covered": "{}",
+    "lineCount": 2,
+    "scrollY": 26,
+    "viewport": "0 24 640 50",
+    "activityFrame": "0 24 640 106",
+    "messageBounds": "0 -2 640 35",
+    "raw": {
+      "present": true,
+      "text": "21.25 31.75 41.5",
+      "start": 1,
+      "end": 3,
+      "error": ""
+    },
+    "ime": [
+      "[0,106][640,296]"
+    ]
+  },
+  {
+    "kind": "stale",
+    "message": "Геометрия или исходный ввод изменились. Применение заблокировано; отмените форму и выберите вершину заново.",
+    "lines": [
+      {
+        "line": 0,
+        "top": 11,
+        "bottom": 29,
+        "full": false
+      },
+      {
+        "line": 1,
+        "top": 29,
+        "bottom": 48,
+        "full": true
+      }
+    ],
+    "covered": "{1}",
+    "lineCount": 2,
+    "scrollY": 13,
+    "viewport": "0 24 640 50",
+    "activityFrame": "0 24 640 106",
+    "messageBounds": "0 11 640 48",
+    "raw": {
+      "present": true,
+      "text": "21.25 31.75 41.5",
+      "start": 1,
+      "end": 3,
+      "error": ""
+    },
+    "ime": [
+      "[0,106][640,296]"
+    ]
+  },
+  {
+    "kind": "stale",
+    "message": "Геометрия или исходный ввод изменились. Применение заблокировано; отмените форму и выберите вершину заново.",
+    "lines": [
+      {
+        "line": 0,
+        "top": 24,
+        "bottom": 42,
+        "full": true
+      },
+      {
+        "line": 1,
+        "top": 42,
+        "bottom": 61,
+        "full": false
+      }
+    ],
+    "covered": "{0, 1}",
+    "lineCount": 2,
+    "scrollY": 0,
+    "viewport": "0 24 640 50",
+    "activityFrame": "0 24 640 106",
+    "messageBounds": "0 24 640 61",
+    "raw": {
+      "present": true,
+      "text": "21.25 31.75 41.5",
+      "start": 1,
+      "end": 3,
+      "error": ""
+    },
+    "ime": [
+      "[0,106][640,296]"
+    ]
+  }
+]

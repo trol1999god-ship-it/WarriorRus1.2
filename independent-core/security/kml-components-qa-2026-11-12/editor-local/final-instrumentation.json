@@ -1,0 +1,6 @@
+{
+  "app_sha256": "27481b83398bf01961bde3d3816c96881b82a3ba6bb45c598ca1fa1abe5c5ed1",
+  "tests_sha256": "5401c3479cfe6d8a1b20824487d3f827b7e9e11f716423d17f9c147d6ff082bf",
+  "change": "Final scene is actual map reopen after explicit edits and stale refusal, no extra frame; original SDK23 test APK preserved",
+  "runtime": "pending, not executed locally without KVM"
+}

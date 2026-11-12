@@ -1,0 +1,29 @@
+{
+  "source": "1be9e3a1e28ae9f245742f8ba7ee1654e212b380",
+  "run": 43172333048,
+  "conclusion": "SUCCESS",
+  "api23": {
+    "job": 131028606796,
+    "passed": 46,
+    "records": 46,
+    "offlineformats": 1025,
+    "managerrotation": 379
+  },
+  "api35": {
+    "job": 131028606764,
+    "passed": 46,
+    "records": 46,
+    "offlineformats": 1025,
+    "managerrotation": 373
+  },
+  "jvm": "SUCCESS36/83129/GIF323/BMP754/Ozi66/Geo432/host27/source79/550classes",
+  "scope": "static single full frame GIF87/89/global-localpalette/interlace/transparency; strict LZW/count/EOI/width/fulltable/CLEAR/deadline/refusals; shared Ozi affine converter/renderer/private MBTiles",
+  "data": "actual native source/oldtarget/Cancel/explicitConfirm/CAS/queued-import finish destroyed/worker termination/reopen/KML/assets/otherproject/network0 plus all46 existing guards PASS",
+  "archives": "sourceSHA/outer/inner/all552+555 member sizes/SHA verified",
+  "images_viewed": 16,
+  "visual_scope": "all16 raster GeoTIFF/OziPNG/BMP/GIF prompt/saved frames; remaining20 extracted perAPI not claimed viewed",
+  "visual_limit": "API23 BMP and GIF prompt screenshots contain preceding CAS Toast over action row. Native clicks/physical bounds/Arimo PASS; unobscured action visual acceptance is NOT claimed. Next changed-code encoding CI will capture after Toast settles, no GIF rerun.",
+  "transport": "No native-driver recovery events/adb-transport receipt in either archive. Emulator startup boot polling had device-offline before scenarios; not runtime skip/recovery. SameBoot guards retained; earlier8d actual recovery remains separate proof.",
+  "encoding": "Windows1251 WIP NOT included in this run",
+  "acceptance": "open; accepted0/releasegate25 unchanged; official Android lint gap NOT PASS"
+}

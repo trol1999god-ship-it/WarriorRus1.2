@@ -1,0 +1,50 @@
+[
+  {
+    "name": "map_mvisual-newhole-guard-delete-main-changed.png",
+    "sha256": "8b48dd4e30d707246942dedb0da1fd0ad1fc2838b10e92f01fe6bc80656648b7"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-delete-stale-after.png",
+    "sha256": "7cb51090036f6490063a387176b156f853ae2ab35ba8945a435fd0b3bb4eaa39"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-delete-stale-before.png",
+    "sha256": "7cb51090036f6490063a387176b156f853ae2ab35ba8945a435fd0b3bb4eaa39"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-foreign-feature.png",
+    "sha256": "20e81b160724758d14b5b413406628d3dfa0459acffa7b73ec346bae74d23eea"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-foreign-project.png",
+    "sha256": "8d525fa526ccedd91de8f8d60a278e6de97e9ea7bf11f9e8847d3626fb56e8f2"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-invalid-before.png",
+    "sha256": "af4fe65b56379bd48b086085ff88e36d8489e7695d537bbbf7a322d365da4f34"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-invalid-land.png",
+    "sha256": "b23c0661d58afc44dd738ebea082e9334e9e19e225ec02513ef03b286c76e37f"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-invalid-return.png",
+    "sha256": "af4fe65b56379bd48b086085ff88e36d8489e7695d537bbbf7a322d365da4f34"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-raw-main-changed.png",
+    "sha256": "e0335b5985c0b7b6f3dfd01cef1b696809fa4d4d2444e9949157f972000d0add"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-raw-stale-after.png",
+    "sha256": "16d11dbe16ac2756d6cb09458de8ac31c2470dac3a6316604904e188b9835d0f"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-raw-stale-before.png",
+    "sha256": "16d11dbe16ac2756d6cb09458de8ac31c2470dac3a6316604904e188b9835d0f"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-stale-save.png",
+    "sha256": "9bcd7f3eccbec25ab02ddf452ddde07e37f5ffc7bf5e8af233206365e12c6d0c"
+  }
+]

@@ -1,0 +1,2215 @@
+{
+  "source": "a3a4a98e8af57feab34899d43adecc51b6e639d2",
+  "run": 41152234002,
+  "job": 124391260318,
+  "observations": [
+    {
+      "name": "forms-search-before",
+      "visibleFrame": "[0,24][320,381]",
+      "orientation": 1,
+      "nightMask": 16,
+      "texts": [
+        {
+          "class": "DialogTitle",
+          "text": "Поиск и фильтры",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[47, 58, 225, 29]",
+          "visible": true,
+          "visibleBounds": "[40,34][265,63]",
+          "fullyVisible": true
+        },
+        {
+          "class": "EditText",
+          "text": "  QA_RAW 😀  ",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[39, 95, 241, 48]",
+          "visible": true,
+          "visibleBounds": "[32,71][273,119]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Искать в",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[39, 143, 241, 21]",
+          "visible": true,
+          "visibleBounds": "[32,119][273,140]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Название или описание",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[39, 164, 193, 24]",
+          "visible": true,
+          "visibleBounds": "[32,140][225,164]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Тип объектов",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[39, 188, 241, 21]",
+          "visible": true,
+          "visibleBounds": "[32,164][273,185]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Метки",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[39, 209, 193, 24]",
+          "visible": true,
+          "visibleBounds": "[32,185][225,209]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Видимость объектов",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[39, 233, 241, 21]",
+          "visible": true,
+          "visibleBounds": "[32,209][273,230]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Видимые по KML",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[39, 254, 193, 24]",
+          "visible": true,
+          "visibleBounds": "[32,230][225,254]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Порядок списка",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[39, 278, 241, 21]",
+          "visible": true,
+          "visibleBounds": "[32,254][273,275]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Тип и название",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[39, 299, 193, 24]",
+          "visible": true,
+          "visibleBounds": "[32,275][225,293]",
+          "fullyVisible": false
+        },
+        {
+          "class": "CheckBox",
+          "text": "С вложенными папками",
+          "foreground": "#ff000000",
+          "arimo": true,
+          "bounds": "[39, 323, 241, 32]",
+          "visible": false,
+          "visibleBounds": "[16,236][257,268]",
+          "fullyVisible": false
+        },
+        {
+          "class": "CheckBox",
+          "text": "Папки вначале",
+          "foreground": "#ff000000",
+          "arimo": true,
+          "bounds": "[39, 355, 241, 32]",
+          "visible": false,
+          "visibleBounds": "[16,268][257,300]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Сбросить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[23, 317, 91, 48]",
+          "visible": true,
+          "visibleBounds": "[16,293][107,341]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Отмена",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[114, 317, 68, 48]",
+          "visible": true,
+          "visibleBounds": "[107,293][175,341]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Применить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[182, 317, 114, 48]",
+          "visible": true,
+          "visibleBounds": "[175,293][289,341]",
+          "fullyVisible": true
+        }
+      ],
+      "imeWindows": [
+        "[0,381][320,616]"
+      ],
+      "keyboardRequested": true,
+      "keyboardObserved": true
+    },
+    {
+      "name": "forms-search-cancel",
+      "visibleFrame": "[0,24][640,106]",
+      "orientation": 2,
+      "nightMask": 16,
+      "texts": [
+        {
+          "class": "DialogTitle",
+          "text": "Поиск и фильтры",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[24, 42, 336, 29]",
+          "visible": true,
+          "visibleBounds": "[24,18][360,47]",
+          "fullyVisible": true
+        },
+        {
+          "class": "EditText",
+          "text": "  QA_RAW 😀  ",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 24, 608, 31]",
+          "visible": true,
+          "visibleBounds": "[16,0][624,31]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Искать в",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, 55, 608, 21]",
+          "visible": true,
+          "visibleBounds": "[16,31][624,34]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Название или описание",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 76, 560, 24]",
+          "visible": false,
+          "visibleBounds": "[16,52][576,76]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Тип объектов",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, 100, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,76][624,97]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Метки",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 121, 560, 24]",
+          "visible": false,
+          "visibleBounds": "[16,97][576,121]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Видимость объектов",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, 145, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,121][624,142]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Видимые по KML",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 166, 560, 24]",
+          "visible": false,
+          "visibleBounds": "[16,142][576,166]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Порядок списка",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, 190, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,166][624,187]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Тип и название",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 211, 560, 24]",
+          "visible": false,
+          "visibleBounds": "[16,187][576,211]",
+          "fullyVisible": false
+        },
+        {
+          "class": "CheckBox",
+          "text": "С вложенными папками",
+          "foreground": "#ff000000",
+          "arimo": true,
+          "bounds": "[16, 235, 608, 32]",
+          "visible": false,
+          "visibleBounds": "[16,211][624,243]",
+          "fullyVisible": false
+        },
+        {
+          "class": "CheckBox",
+          "text": "Папки вначале",
+          "foreground": "#ff000000",
+          "arimo": true,
+          "bounds": "[16, 267, 608, 32]",
+          "visible": false,
+          "visibleBounds": "[16,243][624,275]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Сбросить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[0, 58, 213, 48]",
+          "visible": true,
+          "visibleBounds": "[0,34][213,82]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Отмена",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[213, 58, 160, 48]",
+          "visible": true,
+          "visibleBounds": "[213,34][373,82]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Применить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[373, 58, 267, 48]",
+          "visible": true,
+          "visibleBounds": "[373,34][640,82]",
+          "fullyVisible": true
+        }
+      ],
+      "imeWindows": [
+        "[0,106][640,296]"
+      ],
+      "keyboardRequested": true,
+      "keyboardObserved": true
+    },
+    {
+      "name": "forms-search-return",
+      "visibleFrame": "[0,24][320,381]",
+      "orientation": 1,
+      "nightMask": 16,
+      "texts": [
+        {
+          "class": "DialogTitle",
+          "text": "Поиск и фильтры",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[47, 58, 225, 29]",
+          "visible": true,
+          "visibleBounds": "[40,34][265,63]",
+          "fullyVisible": true
+        },
+        {
+          "class": "EditText",
+          "text": "  QA_RAW 😀  ",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[39, 95, 241, 48]",
+          "visible": true,
+          "visibleBounds": "[32,71][273,119]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Искать в",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[39, 143, 241, 21]",
+          "visible": true,
+          "visibleBounds": "[32,119][273,140]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Название или описание",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[39, 164, 193, 24]",
+          "visible": true,
+          "visibleBounds": "[32,140][225,164]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Тип объектов",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[39, 188, 241, 21]",
+          "visible": true,
+          "visibleBounds": "[32,164][273,185]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Метки",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[39, 209, 193, 24]",
+          "visible": true,
+          "visibleBounds": "[32,185][225,209]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Видимость объектов",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[39, 233, 241, 21]",
+          "visible": true,
+          "visibleBounds": "[32,209][273,230]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Видимые по KML",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[39, 254, 193, 24]",
+          "visible": true,
+          "visibleBounds": "[32,230][225,254]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Порядок списка",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[39, 278, 241, 21]",
+          "visible": true,
+          "visibleBounds": "[32,254][273,275]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Тип и название",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[39, 299, 193, 24]",
+          "visible": true,
+          "visibleBounds": "[32,275][225,293]",
+          "fullyVisible": false
+        },
+        {
+          "class": "CheckBox",
+          "text": "С вложенными папками",
+          "foreground": "#ff000000",
+          "arimo": true,
+          "bounds": "[39, 323, 241, 32]",
+          "visible": false,
+          "visibleBounds": "[16,236][257,268]",
+          "fullyVisible": false
+        },
+        {
+          "class": "CheckBox",
+          "text": "Папки вначале",
+          "foreground": "#ff000000",
+          "arimo": true,
+          "bounds": "[39, 355, 241, 32]",
+          "visible": false,
+          "visibleBounds": "[16,268][257,300]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Сбросить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[23, 317, 91, 48]",
+          "visible": true,
+          "visibleBounds": "[16,293][107,341]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Отмена",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[114, 317, 68, 48]",
+          "visible": true,
+          "visibleBounds": "[107,293][175,341]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Применить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[182, 317, 114, 48]",
+          "visible": true,
+          "visibleBounds": "[175,293][289,341]",
+          "fullyVisible": true
+        }
+      ],
+      "imeWindows": [
+        "[0,381][320,616]"
+      ],
+      "keyboardRequested": true,
+      "keyboardObserved": true
+    },
+    {
+      "name": "forms-search-apply",
+      "visibleFrame": "[0,24][640,106]",
+      "orientation": 2,
+      "nightMask": 16,
+      "texts": [
+        {
+          "class": "DialogTitle",
+          "text": "Поиск и фильтры",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[24, 42, 336, 29]",
+          "visible": true,
+          "visibleBounds": "[24,18][360,47]",
+          "fullyVisible": true
+        },
+        {
+          "class": "EditText",
+          "text": "  QA_ROTATE_  ",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 24, 608, 31]",
+          "visible": true,
+          "visibleBounds": "[16,0][624,31]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Искать в",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, 55, 608, 21]",
+          "visible": true,
+          "visibleBounds": "[16,31][624,34]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Название или описание",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 76, 560, 24]",
+          "visible": false,
+          "visibleBounds": "[16,52][576,76]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Тип объектов",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, 100, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,76][624,97]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Метки",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 121, 560, 24]",
+          "visible": false,
+          "visibleBounds": "[16,97][576,121]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Видимость объектов",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, 145, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,121][624,142]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Видимые по KML",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 166, 560, 24]",
+          "visible": false,
+          "visibleBounds": "[16,142][576,166]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Порядок списка",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, 190, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,166][624,187]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Тип и название",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 211, 560, 24]",
+          "visible": false,
+          "visibleBounds": "[16,187][576,211]",
+          "fullyVisible": false
+        },
+        {
+          "class": "CheckBox",
+          "text": "С вложенными папками",
+          "foreground": "#ff000000",
+          "arimo": true,
+          "bounds": "[16, 235, 608, 32]",
+          "visible": false,
+          "visibleBounds": "[16,211][624,243]",
+          "fullyVisible": false
+        },
+        {
+          "class": "CheckBox",
+          "text": "Папки вначале",
+          "foreground": "#ff000000",
+          "arimo": true,
+          "bounds": "[16, 267, 608, 32]",
+          "visible": false,
+          "visibleBounds": "[16,243][624,275]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Сбросить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[0, 58, 213, 48]",
+          "visible": true,
+          "visibleBounds": "[0,34][213,82]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Отмена",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[213, 58, 160, 48]",
+          "visible": true,
+          "visibleBounds": "[213,34][373,82]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Применить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[373, 58, 267, 48]",
+          "visible": true,
+          "visibleBounds": "[373,34][640,82]",
+          "fullyVisible": true
+        }
+      ],
+      "imeWindows": [
+        "[0,106][640,296]"
+      ],
+      "keyboardRequested": true,
+      "keyboardObserved": true
+    },
+    {
+      "name": "forms-search-reset",
+      "visibleFrame": "[0,24][640,106]",
+      "orientation": 2,
+      "nightMask": 16,
+      "texts": [
+        {
+          "class": "DialogTitle",
+          "text": "Поиск и фильтры",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[24, 42, 336, 29]",
+          "visible": true,
+          "visibleBounds": "[24,18][360,47]",
+          "fullyVisible": true
+        },
+        {
+          "class": "EditText",
+          "text": "  QA_RAW 😀  ",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 24, 608, 31]",
+          "visible": true,
+          "visibleBounds": "[16,0][624,31]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Искать в",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, 55, 608, 21]",
+          "visible": true,
+          "visibleBounds": "[16,31][624,34]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Название или описание",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 76, 560, 24]",
+          "visible": false,
+          "visibleBounds": "[16,52][576,76]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Тип объектов",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, 100, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,76][624,97]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Метки",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 121, 560, 24]",
+          "visible": false,
+          "visibleBounds": "[16,97][576,121]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Видимость объектов",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, 145, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,121][624,142]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Видимые по KML",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 166, 560, 24]",
+          "visible": false,
+          "visibleBounds": "[16,142][576,166]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Порядок списка",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, 190, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,166][624,187]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Тип и название",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 211, 560, 24]",
+          "visible": false,
+          "visibleBounds": "[16,187][576,211]",
+          "fullyVisible": false
+        },
+        {
+          "class": "CheckBox",
+          "text": "С вложенными папками",
+          "foreground": "#ff000000",
+          "arimo": true,
+          "bounds": "[16, 235, 608, 32]",
+          "visible": false,
+          "visibleBounds": "[16,211][624,243]",
+          "fullyVisible": false
+        },
+        {
+          "class": "CheckBox",
+          "text": "Папки вначале",
+          "foreground": "#ff000000",
+          "arimo": true,
+          "bounds": "[16, 267, 608, 32]",
+          "visible": false,
+          "visibleBounds": "[16,243][624,275]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Сбросить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[0, 58, 213, 48]",
+          "visible": true,
+          "visibleBounds": "[0,34][213,82]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Отмена",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[213, 58, 160, 48]",
+          "visible": true,
+          "visibleBounds": "[213,34][373,82]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Применить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[373, 58, 267, 48]",
+          "visible": true,
+          "visibleBounds": "[373,34][640,82]",
+          "fullyVisible": true
+        }
+      ],
+      "imeWindows": [
+        "[0,106][640,296]"
+      ],
+      "keyboardRequested": true,
+      "keyboardObserved": true
+    },
+    {
+      "name": "forms-dates-before",
+      "visibleFrame": "[0,24][320,381]",
+      "orientation": 1,
+      "nightMask": 16,
+      "texts": [
+        {
+          "class": "DialogTitle",
+          "text": "Даты KML",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[40, 58, 240, 29]",
+          "visible": true,
+          "visibleBounds": "[40,34][280,63]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Собственные TimeStamp / TimeSpan объекта. Это не дата создания файла. Период задаётся целыми днями UTC, обе даты включены. Пустая граница не ограничивает период",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[32, 40, 256, 85]",
+          "visible": true,
+          "visibleBounds": "[32,63][288,101]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Отбор по дате",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[32, 125, 256, 21]",
+          "visible": true,
+          "visibleBounds": "[32,101][288,122]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Пересекается с периодом",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[32, 146, 208, 24]",
+          "visible": true,
+          "visibleBounds": "[32,122][240,146]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "С даты (UTC)",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[32, 170, 256, 21]",
+          "visible": true,
+          "visibleBounds": "[32,146][288,167]",
+          "fullyVisible": true
+        },
+        {
+          "class": "EditText",
+          "text": "2026-10-01",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[32, 191, 256, 48]",
+          "visible": true,
+          "visibleBounds": "[32,167][288,215]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "По дату (UTC)",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[32, 239, 256, 21]",
+          "visible": true,
+          "visibleBounds": "[32,215][288,236]",
+          "fullyVisible": true
+        },
+        {
+          "class": "EditText",
+          "text": "2026-10-",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[32, 260, 256, 48]",
+          "visible": true,
+          "visibleBounds": "[32,236][288,284]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Дата: ГГГГ-ММ-ДД, например 2026-10-28",
+          "foreground": "#ffb00020",
+          "arimo": true,
+          "bounds": "[32, 308, 256, 37]",
+          "visible": false,
+          "visibleBounds": "[16,221][272,258]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Сбросить даты",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[16, 308, 96, 57]",
+          "visible": true,
+          "visibleBounds": "[16,284][112,341]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Отмена",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[112, 308, 72, 48]",
+          "visible": true,
+          "visibleBounds": "[112,284][184,332]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Применить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[184, 308, 120, 48]",
+          "visible": true,
+          "visibleBounds": "[184,284][304,332]",
+          "fullyVisible": true
+        }
+      ],
+      "imeWindows": [
+        "[0,381][320,616]"
+      ],
+      "keyboardRequested": true,
+      "keyboardObserved": true
+    },
+    {
+      "name": "forms-dates-cancel",
+      "visibleFrame": "[0,24][640,106]",
+      "orientation": 2,
+      "nightMask": 16,
+      "texts": [
+        {
+          "class": "DialogTitle",
+          "text": "Даты KML",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[24, 42, 336, 29]",
+          "visible": true,
+          "visibleBounds": "[24,18][360,47]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Собственные TimeStamp / TimeSpan объекта. Это не дата создания файла. Период задаётся целыми днями UTC, обе даты включены. Пустая граница не ограничивает период",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, -147, 608, 53]",
+          "visible": false,
+          "visibleBounds": "[16,-171][624,-118]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Отбор по дате",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, -94, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,-118][624,-97]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Пересекается с периодом",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, -73, 560, 24]",
+          "visible": false,
+          "visibleBounds": "[16,-97][576,-73]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "С даты (UTC)",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, -49, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,-73][624,-52]",
+          "fullyVisible": false
+        },
+        {
+          "class": "EditText",
+          "text": "2026-10-01",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, -28, 608, 31]",
+          "visible": false,
+          "visibleBounds": "[16,-52][624,-21]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "По дату (UTC)",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, 3, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,-21][624,0]",
+          "fullyVisible": false
+        },
+        {
+          "class": "EditText",
+          "text": "2026-10-",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 24, 608, 31]",
+          "visible": true,
+          "visibleBounds": "[16,0][624,31]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Дата: ГГГГ-ММ-ДД, например 2026-10-28",
+          "foreground": "#ffb00020",
+          "arimo": true,
+          "bounds": "[16, 55, 608, 21]",
+          "visible": true,
+          "visibleBounds": "[16,31][624,34]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Сбросить даты",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[0, 58, 213, 48]",
+          "visible": true,
+          "visibleBounds": "[0,34][213,82]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Отмена",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[213, 58, 160, 48]",
+          "visible": true,
+          "visibleBounds": "[213,34][373,82]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Применить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[373, 58, 267, 48]",
+          "visible": true,
+          "visibleBounds": "[373,34][640,82]",
+          "fullyVisible": true
+        }
+      ],
+      "imeWindows": [
+        "[0,106][640,296]"
+      ],
+      "keyboardRequested": true,
+      "keyboardObserved": true
+    },
+    {
+      "name": "forms-dates-return",
+      "visibleFrame": "[0,24][320,381]",
+      "orientation": 1,
+      "nightMask": 16,
+      "texts": [
+        {
+          "class": "DialogTitle",
+          "text": "Даты KML",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[40, 58, 240, 29]",
+          "visible": true,
+          "visibleBounds": "[40,34][280,63]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Собственные TimeStamp / TimeSpan объекта. Это не дата создания файла. Период задаётся целыми днями UTC, обе даты включены. Пустая граница не ограничивает период",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[32, 40, 256, 85]",
+          "visible": true,
+          "visibleBounds": "[32,63][288,101]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Отбор по дате",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[32, 125, 256, 21]",
+          "visible": true,
+          "visibleBounds": "[32,101][288,122]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Пересекается с периодом",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[32, 146, 208, 24]",
+          "visible": true,
+          "visibleBounds": "[32,122][240,146]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "С даты (UTC)",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[32, 170, 256, 21]",
+          "visible": true,
+          "visibleBounds": "[32,146][288,167]",
+          "fullyVisible": true
+        },
+        {
+          "class": "EditText",
+          "text": "2026-10-01",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[32, 191, 256, 48]",
+          "visible": true,
+          "visibleBounds": "[32,167][288,215]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "По дату (UTC)",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[32, 239, 256, 21]",
+          "visible": true,
+          "visibleBounds": "[32,215][288,236]",
+          "fullyVisible": true
+        },
+        {
+          "class": "EditText",
+          "text": "2026-10-",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[32, 260, 256, 48]",
+          "visible": true,
+          "visibleBounds": "[32,236][288,284]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Дата: ГГГГ-ММ-ДД, например 2026-10-28",
+          "foreground": "#ffb00020",
+          "arimo": true,
+          "bounds": "[32, 308, 256, 37]",
+          "visible": false,
+          "visibleBounds": "[16,221][272,258]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Сбросить даты",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[16, 308, 96, 57]",
+          "visible": true,
+          "visibleBounds": "[16,284][112,341]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Отмена",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[112, 308, 72, 48]",
+          "visible": true,
+          "visibleBounds": "[112,284][184,332]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Применить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[184, 308, 120, 48]",
+          "visible": true,
+          "visibleBounds": "[184,284][304,332]",
+          "fullyVisible": true
+        }
+      ],
+      "imeWindows": [
+        "[0,381][320,616]"
+      ],
+      "keyboardRequested": true,
+      "keyboardObserved": true
+    },
+    {
+      "name": "forms-dates-message",
+      "visibleFrame": "[0,24][320,616]",
+      "orientation": 1,
+      "nightMask": 16,
+      "texts": [
+        {
+          "class": "DialogTitle",
+          "text": "Даты KML",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[40, 125, 240, 29]",
+          "visible": true,
+          "visibleBounds": "[40,34][280,63]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Собственные TimeStamp / TimeSpan объекта. Это не дата создания файла. Период задаётся целыми днями UTC, обе даты включены. Пустая граница не ограничивает период",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[32, 162, 256, 85]",
+          "visible": true,
+          "visibleBounds": "[32,71][288,156]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Отбор по дате",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[32, 247, 256, 21]",
+          "visible": true,
+          "visibleBounds": "[32,156][288,177]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Пересекается с периодом",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[32, 268, 208, 24]",
+          "visible": true,
+          "visibleBounds": "[32,177][240,201]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "С даты (UTC)",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[32, 292, 256, 21]",
+          "visible": true,
+          "visibleBounds": "[32,201][288,222]",
+          "fullyVisible": true
+        },
+        {
+          "class": "EditText",
+          "text": "2026-10-01",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[32, 313, 256, 48]",
+          "visible": true,
+          "visibleBounds": "[32,222][288,270]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "По дату (UTC)",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[32, 361, 256, 21]",
+          "visible": true,
+          "visibleBounds": "[32,270][288,291]",
+          "fullyVisible": true
+        },
+        {
+          "class": "EditText",
+          "text": "2026-10-",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[32, 382, 256, 48]",
+          "visible": true,
+          "visibleBounds": "[32,291][288,339]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Дата: ГГГГ-ММ-ДД, например 2026-10-28",
+          "foreground": "#ffb00020",
+          "arimo": true,
+          "bounds": "[32, 430, 256, 37]",
+          "visible": true,
+          "visibleBounds": "[32,339][288,376]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Сбросить даты",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[16, 475, 96, 57]",
+          "visible": true,
+          "visibleBounds": "[16,384][112,441]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Отмена",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[112, 475, 72, 48]",
+          "visible": true,
+          "visibleBounds": "[112,384][184,432]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Применить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[184, 475, 120, 48]",
+          "visible": true,
+          "visibleBounds": "[184,384][304,432]",
+          "fullyVisible": true
+        }
+      ],
+      "imeWindows": [],
+      "keyboardRequested": false,
+      "keyboardObserved": false
+    },
+    {
+      "name": "forms-dates-apply",
+      "visibleFrame": "[0,24][640,106]",
+      "orientation": 2,
+      "nightMask": 16,
+      "texts": [
+        {
+          "class": "DialogTitle",
+          "text": "Даты KML",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[24, 42, 336, 29]",
+          "visible": true,
+          "visibleBounds": "[24,18][360,47]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Собственные TimeStamp / TimeSpan объекта. Это не дата создания файла. Период задаётся целыми днями UTC, обе даты включены. Пустая граница не ограничивает период",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, -147, 608, 53]",
+          "visible": false,
+          "visibleBounds": "[16,-171][624,-118]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Отбор по дате",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, -94, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,-118][624,-97]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Пересекается с периодом",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, -73, 560, 24]",
+          "visible": false,
+          "visibleBounds": "[16,-97][576,-73]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "С даты (UTC)",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, -49, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,-73][624,-52]",
+          "fullyVisible": false
+        },
+        {
+          "class": "EditText",
+          "text": "2026-10-01",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, -28, 608, 31]",
+          "visible": false,
+          "visibleBounds": "[16,-52][624,-21]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "По дату (UTC)",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, 3, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,-21][624,0]",
+          "fullyVisible": false
+        },
+        {
+          "class": "EditText",
+          "text": "2026-10-",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 24, 608, 31]",
+          "visible": true,
+          "visibleBounds": "[16,0][624,31]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Дата: ГГГГ-ММ-ДД, например 2026-10-28",
+          "foreground": "#ffb00020",
+          "arimo": true,
+          "bounds": "[16, 55, 608, 21]",
+          "visible": true,
+          "visibleBounds": "[16,31][624,34]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Сбросить даты",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[0, 58, 213, 48]",
+          "visible": true,
+          "visibleBounds": "[0,34][213,82]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Отмена",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[213, 58, 160, 48]",
+          "visible": true,
+          "visibleBounds": "[213,34][373,82]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Применить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[373, 58, 267, 48]",
+          "visible": true,
+          "visibleBounds": "[373,34][640,82]",
+          "fullyVisible": true
+        }
+      ],
+      "imeWindows": [
+        "[0,106][640,296]"
+      ],
+      "keyboardRequested": true,
+      "keyboardObserved": true
+    },
+    {
+      "name": "forms-dates-corrected",
+      "visibleFrame": "[0,24][640,106]",
+      "orientation": 2,
+      "nightMask": 16,
+      "texts": [
+        {
+          "class": "DialogTitle",
+          "text": "Даты KML",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[24, 42, 336, 29]",
+          "visible": true,
+          "visibleBounds": "[24,18][360,47]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Собственные TimeStamp / TimeSpan объекта. Это не дата создания файла. Период задаётся целыми днями UTC, обе даты включены. Пустая граница не ограничивает период",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, -147, 608, 53]",
+          "visible": false,
+          "visibleBounds": "[16,-171][624,-118]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Отбор по дате",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, -94, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,-118][624,-97]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Пересекается с периодом",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, -73, 560, 24]",
+          "visible": false,
+          "visibleBounds": "[16,-97][576,-73]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "С даты (UTC)",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, -49, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,-73][624,-52]",
+          "fullyVisible": false
+        },
+        {
+          "class": "EditText",
+          "text": "2026-10-01",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, -28, 608, 31]",
+          "visible": false,
+          "visibleBounds": "[16,-52][624,-21]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "По дату (UTC)",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, 3, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,-21][624,0]",
+          "fullyVisible": false
+        },
+        {
+          "class": "EditText",
+          "text": "2026-10-31",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 24, 608, 31]",
+          "visible": true,
+          "visibleBounds": "[16,0][624,31]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Дата: ГГГГ-ММ-ДД, например 2026-10-28",
+          "foreground": "#ffb00020",
+          "arimo": true,
+          "bounds": "[16, 55, 608, 21]",
+          "visible": true,
+          "visibleBounds": "[16,31][624,34]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Сбросить даты",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[0, 58, 213, 48]",
+          "visible": true,
+          "visibleBounds": "[0,34][213,82]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Отмена",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[213, 58, 160, 48]",
+          "visible": true,
+          "visibleBounds": "[213,34][373,82]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Применить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[373, 58, 267, 48]",
+          "visible": true,
+          "visibleBounds": "[373,34][640,82]",
+          "fullyVisible": true
+        }
+      ],
+      "imeWindows": [
+        "[0,106][640,296]"
+      ],
+      "keyboardRequested": true,
+      "keyboardObserved": true
+    },
+    {
+      "name": "forms-dates-reset",
+      "visibleFrame": "[0,24][640,106]",
+      "orientation": 2,
+      "nightMask": 16,
+      "texts": [
+        {
+          "class": "DialogTitle",
+          "text": "Даты KML",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[24, 42, 336, 29]",
+          "visible": true,
+          "visibleBounds": "[24,18][360,47]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Собственные TimeStamp / TimeSpan объекта. Это не дата создания файла. Период задаётся целыми днями UTC, обе даты включены. Пустая граница не ограничивает период",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, -147, 608, 53]",
+          "visible": false,
+          "visibleBounds": "[16,-171][624,-118]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Отбор по дате",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, -94, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,-118][624,-97]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Пересекается с периодом",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, -73, 560, 24]",
+          "visible": false,
+          "visibleBounds": "[16,-97][576,-73]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "С даты (UTC)",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, -49, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,-73][624,-52]",
+          "fullyVisible": false
+        },
+        {
+          "class": "EditText",
+          "text": "2026-10-01",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, -28, 608, 31]",
+          "visible": false,
+          "visibleBounds": "[16,-52][624,-21]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "По дату (UTC)",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[16, 3, 608, 21]",
+          "visible": false,
+          "visibleBounds": "[16,-21][624,0]",
+          "fullyVisible": false
+        },
+        {
+          "class": "EditText",
+          "text": "2026-10-",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 24, 608, 31]",
+          "visible": true,
+          "visibleBounds": "[16,0][624,31]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Дата: ГГГГ-ММ-ДД, например 2026-10-28",
+          "foreground": "#ffb00020",
+          "arimo": true,
+          "bounds": "[16, 55, 608, 21]",
+          "visible": true,
+          "visibleBounds": "[16,31][624,34]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Сбросить даты",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[0, 58, 213, 48]",
+          "visible": true,
+          "visibleBounds": "[0,34][213,82]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Отмена",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[213, 58, 160, 48]",
+          "visible": true,
+          "visibleBounds": "[213,34][373,82]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Применить",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[373, 58, 267, 48]",
+          "visible": true,
+          "visibleBounds": "[373,34][640,82]",
+          "fullyVisible": true
+        }
+      ],
+      "imeWindows": [
+        "[0,106][640,296]"
+      ],
+      "keyboardRequested": true,
+      "keyboardObserved": true
+    },
+    {
+      "name": "forms-foreign-search",
+      "visibleFrame": "[0,24][640,296]",
+      "orientation": 2,
+      "nightMask": 16,
+      "texts": [
+        {
+          "class": "TextView",
+          "text": "Объекты проекта",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[12, 36, 616, 31]",
+          "visible": true,
+          "visibleBounds": "[12,36][628,67]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Корень проекта · показано: 1",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[12, 67, 616, 21]",
+          "visible": true,
+          "visibleBounds": "[12,67][628,88]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Название: «QA_ROTATE_OTHER». Все типы · Любая видимость · Эта папка · Исходный порядок",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[12, 88, 616, 37]",
+          "visible": true,
+          "visibleBounds": "[12,88][628,92]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Выбрано: 0 · вне списка: 0",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[12, 125, 616, 21]",
+          "visible": false,
+          "visibleBounds": "[0,89][616,110]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Черновик формы другого проекта не восстановлен",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[12, 146, 616, 21]",
+          "visible": false,
+          "visibleBounds": "[0,110][616,131]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Поиск и фильтры",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[12, 167, 616, 48]",
+          "visible": false,
+          "visibleBounds": "[0,131][616,179]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Даты KML",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[12, 215, 616, 48]",
+          "visible": false,
+          "visibleBounds": "[0,179][616,227]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Вверх",
+          "foreground": "#42000000",
+          "arimo": true,
+          "bounds": "[12, 92, 88, 48]",
+          "visible": true,
+          "visibleBounds": "[12,92][100,140]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Действия",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[100, 92, 88, 48]",
+          "visible": true,
+          "visibleBounds": "[100,92][188,140]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Закрыть",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[188, 92, 88, 48]",
+          "visible": true,
+          "visibleBounds": "[188,92][276,140]",
+          "fullyVisible": true
+        },
+        {
+          "class": "CheckBox",
+          "text": "QA_ROTATE_OTHER\nМетки",
+          "foreground": "#ff000000",
+          "arimo": true,
+          "bounds": "[12, 140, 616, 37]",
+          "visible": true,
+          "visibleBounds": "[12,140][628,177]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Проекты, импорт и экспорт",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[12, 236, 616, 48]",
+          "visible": true,
+          "visibleBounds": "[12,236][628,284]",
+          "fullyVisible": true
+        }
+      ],
+      "imeWindows": [],
+      "keyboardRequested": false,
+      "keyboardObserved": false
+    },
+    {
+      "name": "forms-foreign-dates",
+      "visibleFrame": "[0,24][640,296]",
+      "orientation": 2,
+      "nightMask": 16,
+      "texts": [
+        {
+          "class": "TextView",
+          "text": "Объекты проекта",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[12, 36, 616, 31]",
+          "visible": true,
+          "visibleBounds": "[12,36][628,67]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Корень проекта · показано: 1",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[12, 67, 616, 21]",
+          "visible": true,
+          "visibleBounds": "[12,67][628,88]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Название: «QA_ROTATE_OTHER». Все типы · Любая видимость · Эта папка · Исходный порядок",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[12, 88, 616, 37]",
+          "visible": true,
+          "visibleBounds": "[12,88][628,92]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Выбрано: 0 · вне списка: 0",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[12, 125, 616, 21]",
+          "visible": false,
+          "visibleBounds": "[0,89][616,110]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Черновик формы другого проекта не восстановлен",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[12, 146, 616, 21]",
+          "visible": false,
+          "visibleBounds": "[0,110][616,131]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Поиск и фильтры",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[12, 167, 616, 48]",
+          "visible": false,
+          "visibleBounds": "[0,131][616,179]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Даты KML",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[12, 215, 616, 48]",
+          "visible": false,
+          "visibleBounds": "[0,179][616,227]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Вверх",
+          "foreground": "#42000000",
+          "arimo": true,
+          "bounds": "[12, 92, 88, 48]",
+          "visible": true,
+          "visibleBounds": "[12,92][100,140]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Действия",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[100, 92, 88, 48]",
+          "visible": true,
+          "visibleBounds": "[100,92][188,140]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Закрыть",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[188, 92, 88, 48]",
+          "visible": true,
+          "visibleBounds": "[188,92][276,140]",
+          "fullyVisible": true
+        },
+        {
+          "class": "CheckBox",
+          "text": "QA_ROTATE_OTHER\nМетки",
+          "foreground": "#ff000000",
+          "arimo": true,
+          "bounds": "[12, 140, 616, 37]",
+          "visible": true,
+          "visibleBounds": "[12,140][628,177]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Проекты, импорт и экспорт",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[12, 236, 616, 48]",
+          "visible": true,
+          "visibleBounds": "[12,236][628,284]",
+          "fullyVisible": true
+        }
+      ],
+      "imeWindows": [],
+      "keyboardRequested": false,
+      "keyboardObserved": false
+    },
+    {
+      "name": "forms-move-before",
+      "visibleFrame": "[0,24][320,616]",
+      "orientation": 1,
+      "nightMask": 16,
+      "texts": [
+        {
+          "class": "TextView",
+          "text": "Перенести выбранные объекты (1, вне списка: 0) в «Корень проекта / QA_ROTATE_FOLDER»? Видимость будет зависеть от новой папки.",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[16, 246, 288, 109]",
+          "visible": true,
+          "visibleBounds": "[16,34][304,143]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Отмена",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[99, 359, 84, 48]",
+          "visible": true,
+          "visibleBounds": "[99,147][183,195]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Перенести",
+          "foreground": "#ff008577",
+          "arimo": true,
+          "bounds": "[183, 359, 109, 48]",
+          "visible": true,
+          "visibleBounds": "[183,147][292,195]",
+          "fullyVisible": true
+        }
+      ],
+      "imeWindows": [],
+      "keyboardRequested": false,
+      "keyboardObserved": false
+    },
+    {
+      "name": "forms-move-after",
+      "visibleFrame": "[0,24][640,296]",
+      "orientation": 2,
+      "nightMask": 16,
+      "texts": [
+        {
+          "class": "TextView",
+          "text": "Объекты проекта",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[12, 36, 616, 31]",
+          "visible": true,
+          "visibleBounds": "[12,36][628,67]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Корень проекта · показано: 3",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[12, 67, 616, 21]",
+          "visible": true,
+          "visibleBounds": "[12,67][628,88]",
+          "fullyVisible": true
+        },
+        {
+          "class": "TextView",
+          "text": "Все типы · Любая видимость · Эта папка · Исходный порядок",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[12, 84, 616, 19]",
+          "visible": true,
+          "visibleBounds": "[12,84][628,92]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Выбрано: 1 · вне списка: 0",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[12, 88, 616, 21]",
+          "visible": true,
+          "visibleBounds": "[12,88][628,92]",
+          "fullyVisible": false
+        },
+        {
+          "class": "TextView",
+          "text": "Флажки — выбор, долгое нажатие — действия, «Открыть» — вход в папку",
+          "foreground": "#8a000000",
+          "arimo": true,
+          "bounds": "[12, 109, 616, 21]",
+          "visible": false,
+          "visibleBounds": "[0,73][616,94]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Поиск и фильтры",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[12, 130, 616, 48]",
+          "visible": false,
+          "visibleBounds": "[0,94][616,142]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Даты KML",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[12, 178, 616, 48]",
+          "visible": false,
+          "visibleBounds": "[0,142][616,190]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Вверх",
+          "foreground": "#42000000",
+          "arimo": true,
+          "bounds": "[12, 92, 88, 48]",
+          "visible": true,
+          "visibleBounds": "[12,92][100,140]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Действия",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[100, 92, 88, 48]",
+          "visible": true,
+          "visibleBounds": "[100,92][188,140]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Закрыть",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[188, 92, 88, 48]",
+          "visible": true,
+          "visibleBounds": "[188,92][276,140]",
+          "fullyVisible": true
+        },
+        {
+          "class": "CheckBox",
+          "text": "QA_ROTATE_FOLDER\nПапки и группы",
+          "foreground": "#ff000000",
+          "arimo": true,
+          "bounds": "[12, 145, 528, 37]",
+          "visible": true,
+          "visibleBounds": "[12,145][540,182]",
+          "fullyVisible": true
+        },
+        {
+          "class": "Button",
+          "text": "Открыть",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[540, 140, 88, 48]",
+          "visible": true,
+          "visibleBounds": "[540,140][628,188]",
+          "fullyVisible": true
+        },
+        {
+          "class": "CheckBox",
+          "text": "QA_ROTATE_POINT\nМетки",
+          "foreground": "#ff000000",
+          "arimo": true,
+          "bounds": "[12, 189, 616, 37]",
+          "visible": true,
+          "visibleBounds": "[12,189][628,226]",
+          "fullyVisible": true
+        },
+        {
+          "class": "CheckBox",
+          "text": "QA_ROTATE_OTHER\nМетки",
+          "foreground": "#ff000000",
+          "arimo": true,
+          "bounds": "[12, 227, 616, 37]",
+          "visible": true,
+          "visibleBounds": "[12,227][628,236]",
+          "fullyVisible": false
+        },
+        {
+          "class": "Button",
+          "text": "Проекты, импорт и экспорт",
+          "foreground": "#de000000",
+          "arimo": true,
+          "bounds": "[12, 236, 616, 48]",
+          "visible": true,
+          "visibleBounds": "[12,236][628,284]",
+          "fullyVisible": true
+        }
+      ],
+      "imeWindows": [],
+      "keyboardRequested": false,
+      "keyboardObserved": false
+    }
+  ]
+}

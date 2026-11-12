@@ -1,0 +1,24 @@
+2026-10-31T05:39:36.7955760Z Ran 12 tests in 1.196s
+2026-10-31T05:39:36.7956171Z OK
+2026-10-31T05:39:50.5276107Z PASS ObjectConfirmationDraft: 60 assertions
+2026-10-31T05:39:50.5276596Z PASS ObjectMoveDraft: 34 assertions
+2026-10-31T05:39:50.5277995Z PASS ObjectFormDraft: 32 assertions
+2026-10-31T05:39:50.5278534Z PASS ObjectSelectionState: 20 assertions
+2026-10-31T05:39:50.5279052Z PASS ObjectEditorDraft: 30 assertions
+2026-10-31T05:39:50.5279519Z PASS KmlXml: 31 assertions
+2026-10-31T05:39:50.5279962Z PASS ObjectDescription: 169 assertions
+2026-10-31T05:39:50.5280548Z PASS KmlTimeFilter: 100 assertions
+2026-10-31T05:39:50.5297765Z PASS ObjectVisibility: 56 assertions
+2026-10-31T05:39:50.5298084Z PASS ObjectListing: 100 assertions
+2026-10-31T05:39:50.5298369Z PASS ObjectClipboard/Copy: 63 assertions
+2026-10-31T05:39:50.5298653Z PASS ObjectTree: 56 assertions
+2026-10-31T05:39:50.5298914Z PASS GeometryMapState: 52 assertions
+2026-10-31T05:39:50.5299197Z PASS GeometryVertices: 36 assertions
+2026-10-31T05:39:50.5299473Z PASS GeometryCoordinates: 26 assertions
+2026-10-31T05:39:50.5299777Z PASS GeometryEdits/Draft: 50 assertions
+2026-10-31T05:39:50.5300052Z PASS Coordinates: 71120 assertions
+2026-10-31T05:39:50.5300334Z PASS MapMath: 1828 assertions
+2026-10-31T05:39:50.5300584Z PASS MapHitTest: 37 assertions
+2026-10-31T05:39:50.5300855Z PASS CompassMath: 19 assertions
+2026-10-31T05:39:50.5301138Z PASS: 7225 tile region/source assertions
+2026-10-31T05:39:50.5348839Z PASS UiText: 46 assertions

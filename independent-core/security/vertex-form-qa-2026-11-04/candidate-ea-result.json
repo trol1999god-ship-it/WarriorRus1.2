@@ -1,0 +1,20 @@
+{
+  "source": "ea3292e48b96af460d3571ea30ef186503a8ce47",
+  "run": 41815203438,
+  "previous_modes_each": 32,
+  "api23": {
+    "job": 126524132095,
+    "failure": "invalid form full title not restored after IME hide",
+    "verified_png": 7
+  },
+  "api35": {
+    "job": 126524139413,
+    "failure": "raw restored but actions and input clipped in landscape IME; dialog remained noncompact",
+    "verified_png": 3
+  },
+  "reviewed": [
+    "candidate-ea-api23/map_mvisual-vertex-invalid-land-ime.png",
+    "candidate-ea-api35/map_mvisual-vertex-valid-land-ime.png"
+  ],
+  "accepted": false
+}

@@ -1,0 +1,31 @@
+INSTRUMENTATION_STATUS: stream=START managerrotation
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MANAGER_VISUAL {"name":"rotation-name-before","visibleFrame":"[0,24][320,616]","orientation":1,"nightMask":16,"texts":[{"class":"DialogTitle","text":"Переименовать","foreground":"#de000000","arimo":true,"bounds":"[48, 137, 224, 29]","visible":true,"visibleBounds":"[40,34][264,63]","fullyVisible":true},{"class":"EditText","text":"QA_ROTATE_Новое имя 😀","foreground":"#de000000","arimo":true,"bounds":"[40, 174, 240, 48]","visible":true,"visibleBounds":"[32,71][272,119]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff008577","arimo":true,"bounds":"[91, 234, 84, 48]","visible":true,"visibleBounds":"[83,131][167,179]","fullyVisible":true},{"class":"Button","text":"Сохранить","foreground":"#ff008577","arimo":true,"bounds":"[175, 234, 109, 48]","visible":true,"visibleBounds":"[167,131][276,179]","fullyVisible":true}],"imeWindows":["[0,381][320,616]"],"keyboardRequested":true,"keyboardObserved":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MANAGER_VISUAL {"name":"rotation-name-cancel","visibleFrame":"[0,24][640,106]","orientation":2,"nightMask":16,"texts":[{"class":"DialogTitle","text":"Переименовать","foreground":"#de000000","arimo":true,"bounds":"[24, 42, 336, 29]","visible":true,"visibleBounds":"[24,18][360,47]","fullyVisible":true},{"class":"EditText","text":"QA_ROTATE_Новое имя 😀","foreground":"#de000000","arimo":true,"bounds":"[16, 19, 608, 31]","visible":true,"visibleBounds":"[16,0][624,26]","fullyVisible":false},{"class":"Button","text":"Отмена","foreground":"#ff008577","arimo":true,"bounds":"[435, 54, 84, 48]","visible":true,"visibleBounds":"[435,30][519,78]","fullyVisible":true},{"class":"Button","text":"Сохранить","foreground":"#ff008577","arimo":true,"bounds":"[519, 54, 109, 48]","visible":true,"visibleBounds":"[519,30][628,78]","fullyVisible":true}],"imeWindows":["[0,106][640,296]"],"keyboardRequested":true,"keyboardObserved":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MANAGER_VISUAL {"name":"rotation-name-return","visibleFrame":"[0,24][320,381]","orientation":1,"nightMask":16,"texts":[{"class":"DialogTitle","text":"Переименовать","foreground":"#de000000","arimo":true,"bounds":"[47, 137, 226, 29]","visible":true,"visibleBounds":"[40,34][266,63]","fullyVisible":true},{"class":"EditText","text":"QA_ROTATE_Новое имя 😀","foreground":"#de000000","arimo":true,"bounds":"[39, 174, 242, 48]","visible":true,"visibleBounds":"[32,71][274,119]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff008577","arimo":true,"bounds":"[92, 234, 84, 48]","visible":true,"visibleBounds":"[85,131][169,179]","fullyVisible":true},{"class":"Button","text":"Сохранить","foreground":"#ff008577","arimo":true,"bounds":"[176, 234, 109, 48]","visible":true,"visibleBounds":"[169,131][278,179]","fullyVisible":true}],"imeWindows":["[0,381][320,616]"],"keyboardRequested":true,"keyboardObserved":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=ROTATION_RESULT kind=name outcome=cancel PASS
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MANAGER_VISUAL {"name":"rotation-name-save","visibleFrame":"[0,24][640,106]","orientation":2,"nightMask":16,"texts":[{"class":"DialogTitle","text":"Переименовать","foreground":"#de000000","arimo":true,"bounds":"[24, 42, 336, 29]","visible":true,"visibleBounds":"[24,18][360,47]","fullyVisible":true},{"class":"EditText","text":"QA_ROTATE_Новое имя 😀","foreground":"#de000000","arimo":true,"bounds":"[16, 19, 608, 31]","visible":true,"visibleBounds":"[16,0][624,26]","fullyVisible":false},{"class":"Button","text":"Отмена","foreground":"#ff008577","arimo":true,"bounds":"[435, 54, 84, 48]","visible":true,"visibleBounds":"[435,30][519,78]","fullyVisible":true},{"class":"Button","text":"Сохранить","foreground":"#ff008577","arimo":true,"bounds":"[519, 54, 109, 48]","visible":true,"visibleBounds":"[519,30][628,78]","fullyVisible":true}],"imeWindows":["[0,106][640,296]"],"keyboardRequested":true,"keyboardObserved":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=ROTATION_RESULT kind=name outcome=save PASS
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=FAIL
+java.lang.AssertionError: geometry editor never ready
+	at org.rabochaya.maptests.MapAndroidChecks.geometryReady(MapAndroidChecks.java:81)
+	at org.rabochaya.maptests.ManagerVisualChecks.launch(ManagerVisualChecks.java:12)
+	at org.rabochaya.maptests.ManagerRotationChecks.scenario(ManagerRotationChecks.java:20)
+	at org.rabochaya.maptests.ManagerRotationChecks.run(ManagerRotationChecks.java:41)
+	at org.rabochaya.maptests.MapAndroidChecks.onStart(MapAndroidChecks.java:10)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+
+INSTRUMENTATION_CODE: 0

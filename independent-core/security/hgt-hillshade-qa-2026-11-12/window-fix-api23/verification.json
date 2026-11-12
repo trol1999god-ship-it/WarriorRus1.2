@@ -1,0 +1,15 @@
+{
+  "api": "23",
+  "source_sha": "130b5224b1b999af066f22fd558f9e60f73be780",
+  "run_id": "43217403961",
+  "outer_path": "/workspace/attachments/40764ab3-a461-4793-bc3a-e99a996bfcdf/hgt-window-130b-api23.zip",
+  "outer_sha256": "818190fcb6985810deed2e734c923ebe39f16be239c535f0ef8224591c07704a",
+  "inner_sha256": "0a08a3936ffece8e0c488dea92eed3733a015365d780762a68a92490e5d683bd",
+  "all_member_hashes_verified": true,
+  "members": 556,
+  "records": 46,
+  "passed": 46,
+  "failed_or_skipped": [],
+  "frames": 32,
+  "visual_review": "pending actual view_image"
+}

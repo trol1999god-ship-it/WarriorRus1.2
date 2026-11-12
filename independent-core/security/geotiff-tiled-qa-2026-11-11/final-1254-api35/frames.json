@@ -1,0 +1,82 @@
+[
+  {
+    "name": "map_mvisual-cachejob-complete.png",
+    "sha256": "3d18a510cf412ab815a659918927d4aaeaab2ddb23e35be2ff0e6fbd9de1c4fa",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-cachejob-form.png",
+    "sha256": "0592c6deae68e10185068b0c1f9fa2a8e4fa99ec35a95bf31310bd1f314167d7",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-cachejob-paused.png",
+    "sha256": "fb8f4d01c7cb204229d3582592ab8e3d785ee7e5a915ba35d948eaa308f3e6ff",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-cachejob-stale.png",
+    "sha256": "371dc50446b81415c006364fd8020ff69169b78199ad775533ba1e110072ac5e",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-dem-profile.png",
+    "sha256": "5f08f46d4e1c310c5ad1e5a68a731c21b94879425a2c66ef67f1aa63a3c1a5ad",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-dem-restarted.png",
+    "sha256": "df749a4c5ece530d3a1021e35ae044d22890af665fea4afda9d8df574a9e20fd",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-layers-composed.png",
+    "sha256": "4894f436dab5e60102088de297ee05727c5ba061146a9737527f8c66e597ec07",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-layers-final.png",
+    "sha256": "b91a46a68fdf4fe1a2a1de74684979c5f1678212803bf27f3052e61cb24a0134",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-layers-manager.png",
+    "sha256": "4ba2b11c35a0f7cc471116958814075f144f83967384dbc067e2b48f82b8440b",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-layers-opacity-after.png",
+    "sha256": "4ba2b11c35a0f7cc471116958814075f144f83967384dbc067e2b48f82b8440b",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-layers-opacity-before.png",
+    "sha256": "c49fae1880608bdbdb0f892b98f68824d2184f34644e68ad9321ad341569a241",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-layers-reordered.png",
+    "sha256": "09be1542f8dd2b25108f643067dd2d75c1833aa058de92230ada88c7a032b344",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-layers-restarted-manager.png",
+    "sha256": "982e3bb31a7f26c207b734f7b0f7f6edff0621fa1d6268463bedab21b202ecbb",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-layers-restarted.png",
+    "sha256": "6af9789022e1a5deb23a2fb939a0f7a6f411355dd90c3b5b25eae1c2c439068c",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-geotiff-import-prompt.png",
+    "sha256": "736f6f560a272a29ddaa4058321ab714efe63c34b17a24c236ebbe6f7a6eeefb",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-geotiff-import-saved.png",
+    "sha256": "f1b861d8be946a9afbf975aae2fb455e4cccb94ef93b4f759c4cb042a4585d2e",
+    "actually_viewed": true
+  }
+]

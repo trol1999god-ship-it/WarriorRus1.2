@@ -1,0 +1,66 @@
+[
+  {
+    "name": "map_mvisual-confirm-delete-cancel.png",
+    "sha256": "f7e96a489f08cd4fcf868482288b70ec485360f89c9dd9563f248a2bfd0b4052"
+  },
+  {
+    "name": "map_mvisual-confirm-delete-foreign.png",
+    "sha256": "54a86e3b80fc38a2c2c2dcb7f8d49c31c09028ec2dccbe04f30694c19da3cd37"
+  },
+  {
+    "name": "map_mvisual-confirm-delete-rejected-stale-after.png",
+    "sha256": "5ed05a500e7d809b1f455255d0ac5376fd233bbc51d5af7c9280d4373adb4949"
+  },
+  {
+    "name": "map_mvisual-confirm-delete-return.png",
+    "sha256": "2ed14603b2a8cb00d76dfc36341589c57ab1ac5e02dd1d9e4887fd7a3fd1e8d0"
+  },
+  {
+    "name": "map_mvisual-confirm-delete-stale-before.png",
+    "sha256": "443894b13b82a40e27fc9f5ad87b6e34449e86a72915ba7dd92281c87d821c70"
+  },
+  {
+    "name": "map_mvisual-confirm-hide-cancel.png",
+    "sha256": "8fd6e0fe46cdb66bd69861e8a8a0c21ef332ae3354d8eff7514272e7863c746d"
+  },
+  {
+    "name": "map_mvisual-confirm-hide-foreign.png",
+    "sha256": "9ce38cbf77327c824626838c812047b854da31ba1109628fdc05afafd0261040"
+  },
+  {
+    "name": "map_mvisual-confirm-hide-rejected-stale-after.png",
+    "sha256": "cd58dca3233828ca013de22180724ee8769c93b2ca5db80d22007788868bc892"
+  },
+  {
+    "name": "map_mvisual-confirm-hide-return.png",
+    "sha256": "015b148aad80e0dce60222127cc9b4032bc6f4923042360e31c96b61bce66343"
+  },
+  {
+    "name": "map_mvisual-confirm-hide-stale-before.png",
+    "sha256": "0e0a24ef559deef430edb78d6840ce5196e42593fbceef044d5b5fc4d1aca6f0"
+  },
+  {
+    "name": "map_mvisual-confirm-hierarchy.png",
+    "sha256": "da0ffa71d269488a3f07a96cdc99abfaa50968863acca307fd14a11f618a1cf1"
+  },
+  {
+    "name": "map_mvisual-confirm-show-cancel.png",
+    "sha256": "100bc3b5fb3b5da33aaecc0fa60807a7d6f74b6ed2ea2b0940cf7c928e087c66"
+  },
+  {
+    "name": "map_mvisual-confirm-show-foreign.png",
+    "sha256": "27608ea6ccbdc14d7506ad674bea8b6decdddbcc6cf2c01b48700a5f086673a0"
+  },
+  {
+    "name": "map_mvisual-confirm-show-rejected-stale-after.png",
+    "sha256": "2c25ec4c73a4666b0fc7cc2f05f0e1ae269d70afafa8227aaeddd184ef1ba84e"
+  },
+  {
+    "name": "map_mvisual-confirm-show-return.png",
+    "sha256": "08f2934420a0f6864c849cb5aa1b3edea9ad175b39d32f89cdad111ae3fc1c01"
+  },
+  {
+    "name": "map_mvisual-confirm-show-stale-before.png",
+    "sha256": "df4f70760f4edf65ca713cebbc415414f7d0d19db07476208e6850066b3c2f1e"
+  }
+]

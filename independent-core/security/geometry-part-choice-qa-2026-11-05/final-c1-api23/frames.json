@@ -1,0 +1,66 @@
+[
+  {
+    "name": "map_mvisual-map-part-choice-after-land.png",
+    "sha256": "5bd648722b4062fab3ce6d38a44b54e1f027afd9e5435e88bf630d70dd8ab229"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-after-return.png",
+    "sha256": "da0aeb51aba8c5ccb06d79e523ae1c48f671098cdde93f4300d0bdd2ecf5e92c"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-before-land.png",
+    "sha256": "c83278b756da10afe4e534d25b3b5e50409ca207e5346b7a668bf262ca738c10"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-before-return.png",
+    "sha256": "5bd648722b4062fab3ce6d38a44b54e1f027afd9e5435e88bf630d70dd8ab229"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-cancel-ghost.png",
+    "sha256": "6e5c0b92b053e4cce682e9b1c514fc0f2dda46183e8d804992fc6e2e882ae40e"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-cancelled.png",
+    "sha256": "35788eed0e7ff5b9a327ff74240eee71ab6f41c8cc36617a753125f8c1886428"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-confirmed.png",
+    "sha256": "0424c980d8e8f97c2506d737740038bb158f7647bd598cb9c20568b2166213f7"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-foreign-feature.png",
+    "sha256": "13c95a09a70bcf1eef861329cffdcb0ba658fb95413f2cca89dbba95bb886a6f"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-foreign-project.png",
+    "sha256": "5082c4480361c100b3c136b5c5804d38172b3592d14f1a3ed5590ebd2f82c407"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-main-changed.png",
+    "sha256": "7e4a9c7c08eb3b1487a4d2c6817f6b39c0b9d388d0d317ca1b3d7d1b73e18539"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-missing-target.png",
+    "sha256": "0fc30c9ce947c03d1b83443fcbb031e89b1fee8e7da1e09b399dd6746e8d4f72"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-source-after.png",
+    "sha256": "e5626798cb4b7361f2590a681fb1bcc41561b884c3dbdaf1807e5bf6e257ea7f"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-source-before.png",
+    "sha256": "beeea911cde4ba436add4cb4e8378b468a34084e364eabf4273b81a717efa6d9"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-target-after.png",
+    "sha256": "e5626798cb4b7361f2590a681fb1bcc41561b884c3dbdaf1807e5bf6e257ea7f"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-target-before.png",
+    "sha256": "6328b90c362cbd6736a460e741c34b9cff82ac2fa1a600d69129857662d5e6af"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-target-saved.png",
+    "sha256": "efc5d439641f97efbd36d07928f80ae26838edbb447633ce826a5878a50864a4"
+  }
+]

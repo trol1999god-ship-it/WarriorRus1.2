@@ -1,0 +1,8 @@
+{
+  "source_before_guard_sha256": "18877fcbf65ba02a5edb827b26d442c0a0dafc1a6f7200a8568cadb00d87e1c7",
+  "fixture_sha256": "07a966166765e835d028fdddf1db004b6aee0ef1059baf3f57ad90fb4b8da5d4",
+  "samples": 10,
+  "inflater_streams": 10,
+  "rows_in_strip": 2048,
+  "conclusion": "Reverse affine access restarts strip decompression per sample; new layout guard preserves forward-only compressed strip path, other compressed affine requires tiles."
+}

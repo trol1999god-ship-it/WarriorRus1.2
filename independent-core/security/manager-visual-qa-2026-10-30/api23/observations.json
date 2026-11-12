@@ -1,0 +1,1458 @@
+[
+  {
+    "name": "day-portrait-main",
+    "visibleFrame": "[0,24][320,640]",
+    "orientation": 1,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Объекты проекта",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 36, 296, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][308,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта · показано: 2",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 67, 296, 21]",
+        "visible": true,
+        "visibleBounds": "[12,67][308,88]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Все типы · Любая видимость · Эта папка · Исходный порядок",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 36, 0, 0]",
+        "visible": false,
+        "visibleBounds": "[0,0][0,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Выбрано: 0 · вне списка: 0",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 88, 296, 21]",
+        "visible": true,
+        "visibleBounds": "[12,88][308,109]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Флажки — выбор, долгое нажатие — действия, «Открыть» — вход в папку",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 109, 296, 37]",
+        "visible": true,
+        "visibleBounds": "[12,109][308,146]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Поиск и фильтры",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 146, 296, 48]",
+        "visible": true,
+        "visibleBounds": "[12,146][308,194]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Даты KML",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 194, 296, 48]",
+        "visible": true,
+        "visibleBounds": "[12,194][308,242]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Вверх",
+        "foreground": "#3a000000",
+        "arimo": true,
+        "bounds": "[12, 242, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[12,242][100,290]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[100, 242, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[100,242][188,290]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[188, 242, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[188,242][276,290]",
+        "fullyVisible": true
+      },
+      {
+        "class": "CheckBox",
+        "text": "QA_VISUAL_Папка\nПапки и группы",
+        "foreground": "#ff000000",
+        "arimo": true,
+        "bounds": "[12, 295, 208, 37]",
+        "visible": true,
+        "visibleBounds": "[12,295][220,332]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Открыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[220, 290, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[220,290][308,338]",
+        "fullyVisible": true
+      },
+      {
+        "class": "CheckBox",
+        "text": "QA_VISUAL_Точка\nМетки",
+        "foreground": "#ff000000",
+        "arimo": true,
+        "bounds": "[12, 339, 296, 37]",
+        "visible": true,
+        "visibleBounds": "[12,339][308,376]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Проекты, импорт и экспорт",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 580, 296, 48]",
+        "visible": true,
+        "visibleBounds": "[12,580][308,628]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "day-landscape-main",
+    "visibleFrame": "[0,24][640,320]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Объекты проекта",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 36, 616, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][628,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта · показано: 2",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 67, 616, 21]",
+        "visible": true,
+        "visibleBounds": "[12,67][628,88]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Все типы · Любая видимость · Эта папка · Исходный порядок",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 84, 616, 19]",
+        "visible": true,
+        "visibleBounds": "[12,84][628,103]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Выбрано: 0 · вне списка: 0",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 88, 616, 21]",
+        "visible": true,
+        "visibleBounds": "[12,88][628,109]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Флажки — выбор, долгое нажатие — действия, «Открыть» — вход в папку",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 109, 616, 21]",
+        "visible": true,
+        "visibleBounds": "[12,109][628,116]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Поиск и фильтры",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 130, 616, 48]",
+        "visible": false,
+        "visibleBounds": "[0,94][616,142]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Даты KML",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 178, 616, 48]",
+        "visible": false,
+        "visibleBounds": "[0,142][616,190]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Вверх",
+        "foreground": "#3a000000",
+        "arimo": true,
+        "bounds": "[12, 116, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[12,116][100,164]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[100, 116, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[100,116][188,164]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[188, 116, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[188,116][276,164]",
+        "fullyVisible": true
+      },
+      {
+        "class": "CheckBox",
+        "text": "QA_VISUAL_Папка\nПапки и группы",
+        "foreground": "#ff000000",
+        "arimo": true,
+        "bounds": "[12, 169, 528, 37]",
+        "visible": true,
+        "visibleBounds": "[12,169][540,206]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Открыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[540, 164, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[540,164][628,212]",
+        "fullyVisible": true
+      },
+      {
+        "class": "CheckBox",
+        "text": "QA_VISUAL_Точка\nМетки",
+        "foreground": "#ff000000",
+        "arimo": true,
+        "bounds": "[12, 213, 616, 37]",
+        "visible": true,
+        "visibleBounds": "[12,213][628,250]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Проекты, импорт и экспорт",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 260, 616, 48]",
+        "visible": true,
+        "visibleBounds": "[12,260][628,308]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "day-landscape-name-ime",
+    "visibleFrame": "[0,24][640,136]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Новая папка / группа",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 50, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "QA_VISUAL_Новая папка",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[0, 32, 640, 31]",
+        "visible": true,
+        "visibleBounds": "[0,0][640,31]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[436, 80, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[436,48][520,96]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[520, 80, 108, 48]",
+        "visible": true,
+        "visibleBounds": "[520,48][628,96]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,136][640,420]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "day-landscape-name-restored",
+    "visibleFrame": "[0,24][640,320]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Новая папка / группа",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[152, 114, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][376,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "QA_VISUAL_Новая папка",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 143, 384, 48]",
+        "visible": true,
+        "visibleBounds": "[16,63][400,111]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[308, 195, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[196,115][280,163]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[392, 195, 108, 48]",
+        "visible": true,
+        "visibleBounds": "[280,115][388,163]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "day-portrait-name-ime",
+    "visibleFrame": "[0,24][320,394]",
+    "orientation": 1,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Новая папка / группа",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[48, 151, 224, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][264,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "QA_VISUAL_Новая папка",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 180, 272, 48]",
+        "visible": true,
+        "visibleBounds": "[16,63][288,111]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[92, 232, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[84,115][168,163]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[176, 232, 108, 48]",
+        "visible": true,
+        "visibleBounds": "[168,115][276,163]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,394][320,740]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "day-portrait-description-ime",
+    "visibleFrame": "[0,24][320,394]",
+    "orientation": 1,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Описание объекта",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[40, 69, 240, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Исходный текст описания KML. HTML и ссылки показаны как текст. Служебные ссылки вложений сохраняются отдельно. Пустой текст очищает описание.",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[32, 106, 256, 85]",
+        "visible": true,
+        "visibleBounds": "[32,71][288,156]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "Синтетическое описание для проверки читаемости",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[32, 191, 256, 111]",
+        "visible": true,
+        "visibleBounds": "[32,156][288,267]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[100, 314, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[100,279][184,327]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[184, 314, 108, 48]",
+        "visible": true,
+        "visibleBounds": "[184,279][292,327]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,394][320,740]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "day-landscape-description-ime",
+    "visibleFrame": "[0,24][640,136]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Описание объекта",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 42, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Исходный текст описания KML. HTML и ссылки показаны как текст. Служебные ссылки вложений сохраняются отдельно. Пустой текст очищает описание.",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[16, 21, 608, 37]",
+        "visible": true,
+        "visibleBounds": "[16,0][624,33]",
+        "fullyVisible": false
+      },
+      {
+        "class": "EditText",
+        "text": "Синтетическое описание для проверки читаемости",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 57, 608, 31]",
+        "visible": true,
+        "visibleBounds": "[16,33][624,64]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[436, 88, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[436,64][520,112]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[520, 88, 108, 48]",
+        "visible": true,
+        "visibleBounds": "[520,64][628,112]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,136][640,420]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "day-landscape-search-ime",
+    "visibleFrame": "[0,24][640,136]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Поиск и фильтры",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 42, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "QA_VISUAL",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 24, 608, 31]",
+        "visible": true,
+        "visibleBounds": "[16,0][624,31]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Искать в",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[16, 55, 608, 21]",
+        "visible": true,
+        "visibleBounds": "[16,31][624,52]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Название",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 76, 584, 24]",
+        "visible": true,
+        "visibleBounds": "[16,52][600,64]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Тип объектов",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[16, 100, 608, 21]",
+        "visible": false,
+        "visibleBounds": "[16,76][624,97]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Все типы",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 121, 584, 24]",
+        "visible": false,
+        "visibleBounds": "[16,97][600,121]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Видимость объектов",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[16, 145, 608, 21]",
+        "visible": false,
+        "visibleBounds": "[16,121][624,142]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Любая видимость",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 166, 584, 24]",
+        "visible": false,
+        "visibleBounds": "[16,142][600,166]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Порядок списка",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[16, 190, 608, 21]",
+        "visible": false,
+        "visibleBounds": "[16,166][624,187]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Исходный порядок",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 211, 584, 24]",
+        "visible": false,
+        "visibleBounds": "[16,187][600,211]",
+        "fullyVisible": false
+      },
+      {
+        "class": "CheckBox",
+        "text": "С вложенными папками",
+        "foreground": "#ff000000",
+        "arimo": true,
+        "bounds": "[16, 235, 608, 32]",
+        "visible": false,
+        "visibleBounds": "[16,211][624,243]",
+        "fullyVisible": false
+      },
+      {
+        "class": "CheckBox",
+        "text": "Папки вначале",
+        "foreground": "#ff000000",
+        "arimo": true,
+        "bounds": "[16, 267, 608, 32]",
+        "visible": false,
+        "visibleBounds": "[16,243][624,275]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Сбросить",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[12, 88, 101, 48]",
+        "visible": true,
+        "visibleBounds": "[12,64][113,112]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[432, 88, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[432,64][516,112]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Применить",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[516, 88, 112, 48]",
+        "visible": true,
+        "visibleBounds": "[516,64][628,112]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,136][640,420]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "day-landscape-dates-ime",
+    "visibleFrame": "[0,24][640,136]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Даты KML",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 42, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Собственные TimeStamp / TimeSpan объекта. Это не дата создания файла. Период задаётся целыми днями UTC, обе даты включены. Пустая граница не ограничивает период",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[16, -61, 608, 53]",
+        "visible": false,
+        "visibleBounds": "[16,-85][624,-32]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Отбор по дате",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[16, -8, 608, 21]",
+        "visible": false,
+        "visibleBounds": "[16,-32][624,-11]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Пересекается с периодом",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 13, 584, 24]",
+        "visible": true,
+        "visibleBounds": "[16,0][600,12]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "С даты (UTC)",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[16, 36, 608, 21]",
+        "visible": true,
+        "visibleBounds": "[16,12][624,33]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "2026-10-01",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 57, 608, 31]",
+        "visible": true,
+        "visibleBounds": "[16,33][624,64]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "По дату (UTC)",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[16, 88, 608, 21]",
+        "visible": false,
+        "visibleBounds": "[16,64][624,85]",
+        "fullyVisible": false
+      },
+      {
+        "class": "EditText",
+        "text": "2026-10-30",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 109, 608, 31]",
+        "visible": false,
+        "visibleBounds": "[16,85][624,116]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Сбросить даты",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[12, 88, 143, 48]",
+        "visible": true,
+        "visibleBounds": "[12,64][155,112]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[432, 88, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[432,64][516,112]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Применить",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[516, 88, 112, 48]",
+        "visible": true,
+        "visibleBounds": "[516,64][628,112]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,136][640,420]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "night-portrait-main",
+    "visibleFrame": "[0,24][320,640]",
+    "orientation": 1,
+    "nightMask": 32,
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Объекты проекта",
+        "foreground": "#b3ffffff",
+        "arimo": true,
+        "bounds": "[12, 36, 296, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][308,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта · показано: 2",
+        "foreground": "#b3ffffff",
+        "arimo": true,
+        "bounds": "[12, 67, 296, 21]",
+        "visible": true,
+        "visibleBounds": "[12,67][308,88]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Все типы · Любая видимость · Эта папка · Исходный порядок",
+        "foreground": "#b3ffffff",
+        "arimo": true,
+        "bounds": "[12, 84, 296, 19]",
+        "visible": true,
+        "visibleBounds": "[12,84][308,103]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Выбрано: 0 · вне списка: 0",
+        "foreground": "#b3ffffff",
+        "arimo": true,
+        "bounds": "[12, 88, 296, 21]",
+        "visible": true,
+        "visibleBounds": "[12,88][308,109]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Флажки — выбор, долгое нажатие — действия, «Открыть» — вход в папку",
+        "foreground": "#b3ffffff",
+        "arimo": true,
+        "bounds": "[12, 109, 296, 37]",
+        "visible": true,
+        "visibleBounds": "[12,109][308,146]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Поиск и фильтры",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 146, 296, 48]",
+        "visible": true,
+        "visibleBounds": "[12,146][308,194]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Даты KML",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 194, 296, 48]",
+        "visible": true,
+        "visibleBounds": "[12,194][308,242]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Вверх",
+        "foreground": "#4dffffff",
+        "arimo": true,
+        "bounds": "[12, 242, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[12,242][100,290]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[100, 242, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[100,242][188,290]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[188, 242, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[188,242][276,290]",
+        "fullyVisible": true
+      },
+      {
+        "class": "CheckBox",
+        "text": "QA_VISUAL_Папка\nПапки и группы",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 295, 208, 37]",
+        "visible": true,
+        "visibleBounds": "[12,295][220,332]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Открыть",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[220, 290, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[220,290][308,338]",
+        "fullyVisible": true
+      },
+      {
+        "class": "CheckBox",
+        "text": "QA_VISUAL_Точка\nМетки",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 339, 296, 37]",
+        "visible": true,
+        "visibleBounds": "[12,339][308,376]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Проекты, импорт и экспорт",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 580, 296, 48]",
+        "visible": true,
+        "visibleBounds": "[12,580][308,628]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "night-landscape-main",
+    "visibleFrame": "[0,24][640,320]",
+    "orientation": 2,
+    "nightMask": 32,
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Объекты проекта",
+        "foreground": "#b3ffffff",
+        "arimo": true,
+        "bounds": "[12, 36, 616, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][628,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта · показано: 2",
+        "foreground": "#b3ffffff",
+        "arimo": true,
+        "bounds": "[12, 67, 616, 21]",
+        "visible": true,
+        "visibleBounds": "[12,67][628,88]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Все типы · Любая видимость · Эта папка · Исходный порядок",
+        "foreground": "#b3ffffff",
+        "arimo": true,
+        "bounds": "[12, 84, 616, 19]",
+        "visible": true,
+        "visibleBounds": "[12,84][628,103]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Выбрано: 0 · вне списка: 0",
+        "foreground": "#b3ffffff",
+        "arimo": true,
+        "bounds": "[12, 88, 616, 21]",
+        "visible": true,
+        "visibleBounds": "[12,88][628,109]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Флажки — выбор, долгое нажатие — действия, «Открыть» — вход в папку",
+        "foreground": "#b3ffffff",
+        "arimo": true,
+        "bounds": "[12, 109, 616, 21]",
+        "visible": true,
+        "visibleBounds": "[12,109][628,116]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Поиск и фильтры",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 130, 616, 48]",
+        "visible": false,
+        "visibleBounds": "[0,94][616,142]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Даты KML",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 178, 616, 48]",
+        "visible": false,
+        "visibleBounds": "[0,142][616,190]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Вверх",
+        "foreground": "#4dffffff",
+        "arimo": true,
+        "bounds": "[12, 116, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[12,116][100,164]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[100, 116, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[100,116][188,164]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[188, 116, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[188,116][276,164]",
+        "fullyVisible": true
+      },
+      {
+        "class": "CheckBox",
+        "text": "QA_VISUAL_Папка\nПапки и группы",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 169, 528, 37]",
+        "visible": true,
+        "visibleBounds": "[12,169][540,206]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Открыть",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[540, 164, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[540,164][628,212]",
+        "fullyVisible": true
+      },
+      {
+        "class": "CheckBox",
+        "text": "QA_VISUAL_Точка\nМетки",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 213, 616, 37]",
+        "visible": true,
+        "visibleBounds": "[12,213][628,250]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Проекты, импорт и экспорт",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 260, 616, 48]",
+        "visible": true,
+        "visibleBounds": "[12,260][628,308]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "night-landscape-name-ime",
+    "visibleFrame": "[0,24][640,136]",
+    "orientation": 2,
+    "nightMask": 32,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Новая папка / группа",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[24, 50, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "QA_VISUAL_Новая папка",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[0, 32, 640, 31]",
+        "visible": true,
+        "visibleBounds": "[0,0][640,31]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff80cbc4",
+        "arimo": true,
+        "bounds": "[436, 80, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[436,48][520,96]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff80cbc4",
+        "arimo": true,
+        "bounds": "[520, 80, 108, 48]",
+        "visible": true,
+        "visibleBounds": "[520,48][628,96]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,136][640,420]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "night-landscape-name-restored",
+    "visibleFrame": "[0,24][640,320]",
+    "orientation": 2,
+    "nightMask": 32,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Новая папка / группа",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[152, 114, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][376,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "QA_VISUAL_Новая папка",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[128, 143, 384, 48]",
+        "visible": true,
+        "visibleBounds": "[16,63][400,111]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff80cbc4",
+        "arimo": true,
+        "bounds": "[308, 195, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[196,115][280,163]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff80cbc4",
+        "arimo": true,
+        "bounds": "[392, 195, 108, 48]",
+        "visible": true,
+        "visibleBounds": "[280,115][388,163]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "night-portrait-name-ime",
+    "visibleFrame": "[0,24][320,394]",
+    "orientation": 1,
+    "nightMask": 32,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Новая папка / группа",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[48, 151, 224, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][264,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "QA_VISUAL_Новая папка",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[24, 180, 272, 48]",
+        "visible": true,
+        "visibleBounds": "[16,63][288,111]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff80cbc4",
+        "arimo": true,
+        "bounds": "[92, 232, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[84,115][168,163]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff80cbc4",
+        "arimo": true,
+        "bounds": "[176, 232, 108, 48]",
+        "visible": true,
+        "visibleBounds": "[168,115][276,163]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,394][320,740]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "night-portrait-description-ime",
+    "visibleFrame": "[0,24][320,394]",
+    "orientation": 1,
+    "nightMask": 32,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Описание объекта",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[40, 69, 240, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Исходный текст описания KML. HTML и ссылки показаны как текст. Служебные ссылки вложений сохраняются отдельно. Пустой текст очищает описание.",
+        "foreground": "#b3ffffff",
+        "arimo": true,
+        "bounds": "[32, 106, 256, 85]",
+        "visible": true,
+        "visibleBounds": "[32,71][288,156]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "Синтетическое описание для проверки читаемости",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[32, 191, 256, 111]",
+        "visible": true,
+        "visibleBounds": "[32,156][288,267]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff80cbc4",
+        "arimo": true,
+        "bounds": "[100, 314, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[100,279][184,327]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff80cbc4",
+        "arimo": true,
+        "bounds": "[184, 314, 108, 48]",
+        "visible": true,
+        "visibleBounds": "[184,279][292,327]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,394][320,740]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  },
+  {
+    "name": "night-landscape-description-ime",
+    "visibleFrame": "[0,24][640,136]",
+    "orientation": 2,
+    "nightMask": 32,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Описание объекта",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[24, 42, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Исходный текст описания KML. HTML и ссылки показаны как текст. Служебные ссылки вложений сохраняются отдельно. Пустой текст очищает описание.",
+        "foreground": "#b3ffffff",
+        "arimo": true,
+        "bounds": "[16, 21, 608, 37]",
+        "visible": true,
+        "visibleBounds": "[16,0][624,33]",
+        "fullyVisible": false
+      },
+      {
+        "class": "EditText",
+        "text": "Синтетическое описание для проверки читаемости",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[16, 57, 608, 31]",
+        "visible": true,
+        "visibleBounds": "[16,33][624,64]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff80cbc4",
+        "arimo": true,
+        "bounds": "[436, 88, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[436,64][520,112]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#ff80cbc4",
+        "arimo": true,
+        "bounds": "[520, 88, 108, 48]",
+        "visible": true,
+        "visibleBounds": "[520,64][628,112]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [
+      "[0,136][640,420]"
+    ],
+    "keyboardRequested": true,
+    "keyboardObserved": true
+  }
+]

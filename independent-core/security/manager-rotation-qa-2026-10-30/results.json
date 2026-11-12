@@ -1,0 +1,92 @@
+{
+  "qualification": "Scoped synthetic emulator QA; full migration not accepted",
+  "before": {
+    "commit": "e701b1bdf39b77c33e673b738d7a472b5647d98d",
+    "run": 41119007901,
+    "jobs": [
+      124280766902,
+      124280767023
+    ],
+    "result": "26 previous modes passed; open editor state lost on both API23/API35; 8 PNGs viewed"
+  },
+  "fixed": {
+    "commit": "f3058fce616674ab276ee55289e325485a9c3807",
+    "run": 41121246714,
+    "jvm": {
+      "job": 124287740376,
+      "suites": 18,
+      "assertions": 81034,
+      "host_tests": 12
+    },
+    "api23": {
+      "job": 124287835783,
+      "passed_modes": 27,
+      "rotation_assertions": 304
+    },
+    "api35": {
+      "job": 124287835744,
+      "passed_modes": 27,
+      "rotation_assertions": 299
+    },
+    "all_28_fixed_pngs_hash_verified_and_viewed": true,
+    "cases_per_api": [
+      "name/cancel",
+      "name/save",
+      "name/stale-before",
+      "name/stale-after",
+      "description/cancel",
+      "description/save",
+      "description/stale-before",
+      "description/stale-after"
+    ]
+  },
+  "limitations": [
+    "No full process-death/lifecycle acceptance",
+    "No rotation during SQL write acceptance",
+    "No physical device, all display/font scales or maximum-project performance acceptance",
+    "Unapplied search/date forms on rotation remain a next task",
+    "No exact reference palette/icon placement acceptance"
+  ],
+  "release_allowed": false,
+  "latest": {
+    "commit": "e3733ce84889bbef8025fecddf021f776734d20f",
+    "production_commit": "2aa62dcb64f5e85bf5f8260edaca5aeffffa77fd",
+    "run": 41125911710,
+    "conclusion": "success",
+    "jvm": {
+      "job": 124304260471,
+      "suites": 19,
+      "assertions": 81056,
+      "host_tests": 12
+    },
+    "api23": {
+      "job": 124304429027,
+      "passed_modes": 27,
+      "visual_assertions": 242,
+      "rotation_assertions": 351,
+      "rotation_pngs": 16
+    },
+    "api35": {
+      "job": 124304428929,
+      "passed_modes": 27,
+      "visual_assertions": 235,
+      "rotation_assertions": 345,
+      "rotation_pngs": 16
+    },
+    "all_32_rotation_pngs_hash_verified_and_viewed": true,
+    "normal_selection": "visible and hidden chosen objects and folder survive configuration recreation; changed XML clears selection; process guard preserves force-stop reset policy",
+    "release_allowed": false
+  },
+  "intermediate_selection_run": {
+    "commit": "2aa62dcb64f5e85bf5f8260edaca5aeffffa77fd",
+    "run": 41123869123,
+    "conclusion": "failure",
+    "passed_modes_each_api": 26,
+    "rotation_assertions": [
+      351,
+      345
+    ],
+    "failure": "managervisual line 71 toggled off the selection retained by the new feature",
+    "correction": "Clear selection through UI, select fixture point, assert the sole XML key is 1; retain all display/IME/font criteria"
+  }
+}

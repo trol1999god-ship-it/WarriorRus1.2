@@ -1,0 +1,9 @@
+{
+  "kind": "confirmed test-only lookup fix",
+  "base_runtime": "a7f789a / CI43234511518 failed before editor UI on both APIs",
+  "app_source": "0a031db named-preset candidate, source84 exact; source83 KML production unchanged for lookup fix",
+  "tests_sha256": "bad3972613f09587beef901084da7d3fd43c9bfc301fcac697c0b979b234107e",
+  "paired_app_sha256": "63220d250ace275acba44f27d6fb5ff250fa6dd7767e0bf42b41516e087673eb",
+  "guards": "exactly one original namespaced Style/StyleMap by id; same isEqualNode DOM/geometry/assets/stale/foreign guards retained; no new mode/frame or weakened threshold",
+  "runtime": "pending corrected changed-code CI"
+}

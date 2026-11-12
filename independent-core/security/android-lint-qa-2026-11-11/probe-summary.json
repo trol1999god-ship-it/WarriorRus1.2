@@ -1,0 +1,23 @@
+{
+  "tool": "lint 9.4.0-rc01 [16111833] ",
+  "executed": true,
+  "passed": false,
+  "errors": 3,
+  "warnings": 94,
+  "integration_errors": [
+    {
+      "id": "LintError",
+      "message": "No `.class` files were found in project \"independent-app\", so none of the classfile based checks could be run. Does the project need to be built first?"
+    },
+    {
+      "id": "MissingClass",
+      "message": "Class referenced in the manifest, `org.rabochaya.projects.ProjectsActivity`, was not found in the project or the libraries"
+    },
+    {
+      "id": "HardcodedDebugMode",
+      "message": "Avoid hardcoding the debug mode; leaving it out allows debug and release builds to automatically assign one"
+    }
+  ],
+  "scope": "official offline nonGradle probe; no classfile checks, not complete lint coverage",
+  "source_count": 65
+}

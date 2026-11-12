@@ -1,0 +1,66 @@
+[
+  {
+    "name": "map_mvisual-vertex-foreign-feature.png",
+    "sha256": "3e6f5f3056addebe1115d8cffe903ee252ee2c8d882333a6fbc6df99dcfd4b58"
+  },
+  {
+    "name": "map_mvisual-vertex-foreign-project.png",
+    "sha256": "42f0f4b9a6fbdf5ff50148d69b0c4e85a73e64c5a5368c82f84a8d87f953ef0c"
+  },
+  {
+    "name": "map_mvisual-vertex-invalid-after.png",
+    "sha256": "251cb45bddfab6d1d796f2d1484a8c58c7a92a0e97cd2048c8fd09bcbf811631"
+  },
+  {
+    "name": "map_mvisual-vertex-invalid-before.png",
+    "sha256": "59ab05c056fcadbc8e2b9029399acc505bc95f28c27f0d0e971942bca35a547f"
+  },
+  {
+    "name": "map_mvisual-vertex-invalid-ime-hidden.png",
+    "sha256": "5e0f3aef85f5528443bf291d909e2e63b6b2dc54b163d4c64f60c950db1fcd29"
+  },
+  {
+    "name": "map_mvisual-vertex-invalid-land-ime.png",
+    "sha256": "251cb45bddfab6d1d796f2d1484a8c58c7a92a0e97cd2048c8fd09bcbf811631"
+  },
+  {
+    "name": "map_mvisual-vertex-invalid-return-ime.png",
+    "sha256": "59ab05c056fcadbc8e2b9029399acc505bc95f28c27f0d0e971942bca35a547f"
+  },
+  {
+    "name": "map_mvisual-vertex-main-changed.png",
+    "sha256": "24add1192ad019c1acba84865cfd33f395d68420cc863c0470a34b334ed374d6"
+  },
+  {
+    "name": "map_mvisual-vertex-route-before-apply.png",
+    "sha256": "1762a92147352a43c038a65e7fe82930f533bc3ab9ad471fdd716af31b52ac46"
+  },
+  {
+    "name": "map_mvisual-vertex-route-saved.png",
+    "sha256": "ea11bba2122425928a168aa190289e0df13df682cab0d69e671baca3160b6c10"
+  },
+  {
+    "name": "map_mvisual-vertex-stale-after-rejected.png",
+    "sha256": "c97ddeae07ae0007e762caaca9c057b07f9c700a66b3feebc78400a6c2a43371"
+  },
+  {
+    "name": "map_mvisual-vertex-stale-before.png",
+    "sha256": "49c540acba4420ce0351fe71be551e94d3be9b6bf25da9ccd5582870159600b3"
+  },
+  {
+    "name": "map_mvisual-vertex-valid-after.png",
+    "sha256": "0af2987d7b12aebee9f97fcf77ea44b31a4824df3b16390571dc11c1cc01301e"
+  },
+  {
+    "name": "map_mvisual-vertex-valid-before.png",
+    "sha256": "8e3ba2d802f8e123feaa34dab434053ff5bfc232e8cb3dd801522c9ad61d0d1e"
+  },
+  {
+    "name": "map_mvisual-vertex-valid-land-ime.png",
+    "sha256": "0af2987d7b12aebee9f97fcf77ea44b31a4824df3b16390571dc11c1cc01301e"
+  },
+  {
+    "name": "map_mvisual-vertex-valid-return-ime.png",
+    "sha256": "d5d2c7b999b3a0d722ad99ffdf0266876779fb75840ff2a8dc90fecedfa4f776"
+  }
+]

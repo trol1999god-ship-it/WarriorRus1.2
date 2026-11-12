@@ -1,0 +1,66 @@
+[
+  {
+    "name": "map_mvisual-day-landscape-dates-ime.png",
+    "sha256": "94bbb26409e828763ae4ad0c73d57700e5672f7df47c07adf8fe0dacc28ee2b9"
+  },
+  {
+    "name": "map_mvisual-day-landscape-description-ime.png",
+    "sha256": "283b8e42088fa88677e3824d5b875087c6f518e5b237b51486b8229179e8b1e2"
+  },
+  {
+    "name": "map_mvisual-day-landscape-main.png",
+    "sha256": "77ccf5d26fb853126e3870e67c7da2b6c67692dcd6fbe70453b607129ffb2820"
+  },
+  {
+    "name": "map_mvisual-day-landscape-name-ime.png",
+    "sha256": "3a256854cb71c99502c4918c6261acdc8de7794da2676e86e997b69bc85a8403"
+  },
+  {
+    "name": "map_mvisual-day-landscape-name-restored.png",
+    "sha256": "055c41e5e68718141493972d35eb892ed42b9c1f65ea4d28c671af774dab2806"
+  },
+  {
+    "name": "map_mvisual-day-landscape-search-ime.png",
+    "sha256": "824e363f20f6dc69af5491f824aab6c02597597478e7786b9de11ab5344b06bc"
+  },
+  {
+    "name": "map_mvisual-day-portrait-description-ime.png",
+    "sha256": "db433543928ccd046dbec7e27f1f5fd6f4c33da3e4023307312d1971052a9188"
+  },
+  {
+    "name": "map_mvisual-day-portrait-main.png",
+    "sha256": "a5067aa8ae808449a4106022c9879d7d018ae0c1181ba3ffd6f659fe569524a3"
+  },
+  {
+    "name": "map_mvisual-day-portrait-name-ime.png",
+    "sha256": "346346d80021215d97c12ee6b8f80e706fb9d9a418322f089f1cfa957bf94140"
+  },
+  {
+    "name": "map_mvisual-night-landscape-description-ime.png",
+    "sha256": "e643c050452457a696c42df260a9fb625f5187683b830c9bca3cc83d9e220bd2"
+  },
+  {
+    "name": "map_mvisual-night-landscape-main.png",
+    "sha256": "c8bd70b9e90e371543a03e726565ba00ddc0561a0ad6ecb8dc2844aa9d1b49f0"
+  },
+  {
+    "name": "map_mvisual-night-landscape-name-ime.png",
+    "sha256": "54afc09d4ee20f7f6687c6d426c7f67151791bcb63cda040cc19011eb7d8e9f2"
+  },
+  {
+    "name": "map_mvisual-night-landscape-name-restored.png",
+    "sha256": "66d3ff00dd64811aea16518bc1d31317a8a221a7c80f0237fe59cfeef75b8673"
+  },
+  {
+    "name": "map_mvisual-night-portrait-description-ime.png",
+    "sha256": "97e4f644ab607361f302460610feb3856b22572c7ca8fa57027a712fb3282eb2"
+  },
+  {
+    "name": "map_mvisual-night-portrait-main.png",
+    "sha256": "c931f3062578b7b559dc6243442cb756e27ccec7782f6c77296ee2ecaaa15820"
+  },
+  {
+    "name": "map_mvisual-night-portrait-name-ime.png",
+    "sha256": "8bbefce7a39053fd6b3197e60d0b5ffa979bdc84d657393d189d8d955b18e05d"
+  }
+]

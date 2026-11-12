@@ -1,0 +1,1093 @@
+--------- beginning of system
+11-11 21:15:55.029   553  1785 I NotificationService: cancelToast pkg=org.rabochaya.karta token=android.os.BinderProxy@a06619a
+--------- beginning of main
+11-11 21:15:55.031   421   454 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:15:55.031   553  1010 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:15:55.037   553  1785 W InputManager-JNI: Input channel object '44e2a8e Toast (client)' was disposed without first being removed with the input manager!
+11-11 21:15:55.043   553  1010 W NotificationService: Toast already killed. pkg=org.rabochaya.karta token=android.os.BinderProxy@a06619a
+11-11 21:15:55.221  1324  1590 I ProtoXDBBufferWrapper: ProtoXDBBufferWrapper.flushToStorage():158 Flushed 19 data item(s) to storage.
+11-11 21:15:55.246   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:15:55.663   421   454 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:15:55.663   553   572 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:15:55.688   553   572 D CoreBackPreview: Window{d8fd66 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@53067f9, mPriority=0, mIsAnimationCallback=false}
+11-11 21:15:55.881   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:15:55.934   553   572 D OomAdjuster: Not killing cached processes
+11-11 21:15:56.284   421   454 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:15:56.284   553  1785 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:15:56.285  4843  4843 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@37e5e01
+11-11 21:15:56.285   553  1785 D CoreBackPreview: Window{d8fd66 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}: Setting back callback null
+11-11 21:15:56.287   553  1785 W InputManager-JNI: Input channel object 'd8fd66 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (client)' was disposed without first being removed with the input manager!
+11-11 21:15:56.290   907   954 V WindowManagerShell: Transition requested (#44): android.os.BinderProxy@7eb5815 TransitionRequestInfo { type = CLOSE, triggerTask = null, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 44 }
+11-11 21:15:56.301   425   425 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+11-11 21:15:56.307   553   580 V WindowManager: Unknown focus tokens, dropping reportFocusChanged
+11-11 21:15:56.317   553   577 V WindowManager: Sent Transition (#44) createdAt=11-11 21:15:56.290 via request=TransitionRequestInfo { type = CLOSE, triggerTask = null, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 44 }
+11-11 21:15:56.317   553   577 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+11-11 21:15:56.317   553   577 V WindowManager:     info={id=44 t=CLOSE f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[
+11-11 21:15:56.317   553   577 V WindowManager:         {null m=CLOSE f=FILLS_TASK leash=Surface(name=ActivityRecord{ea40f6c u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity)/@0xd802b9c sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity},
+11-11 21:15:56.317   553   577 V WindowManager:         {null m=TO_FRONT f=FILLS_TASK leash=Surface(name=ActivityRecord{60ddc69 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0x3cd0f0f sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}
+11-11 21:15:56.317   553   577 V WindowManager:     ]}
+11-11 21:15:56.320   907  1361 V WindowManagerShell: onTransitionReady(transaction=2375116917327)
+11-11 21:15:56.325   907   954 V WindowManagerShell: onTransitionReady (#44) android.os.BinderProxy@7eb5815: {id=44 t=CLOSE f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=CLOSE f=FILLS_TASK leash=Surface(name=ActivityRecord{ea40f6c u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity)/@0x949172a sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity},{null m=TO_FRONT f=FILLS_TASK leash=Surface(name=ActivityRecord{60ddc69 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0xda9d91b sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}]}
+11-11 21:15:56.328   907   954 V WindowManagerShell: Playing animation for (#44) android.os.BinderProxy@7eb5815@0
+11-11 21:15:56.328   907   954 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@38e5249
+11-11 21:15:56.328   907   954 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@e21774e
+11-11 21:15:56.328   907   954 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@aedc06f
+11-11 21:15:56.328   907   954 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@cb6f17c
+11-11 21:15:56.328   907   954 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@960ca05
+11-11 21:15:56.328   907   954 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+11-11 21:15:56.328   907   954 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@a1ba5a
+11-11 21:15:56.328   907   954 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@73ff48b
+11-11 21:15:56.328   907   954 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=44 t=CLOSE f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=CLOSE f=FILLS_TASK leash=Surface(name=ActivityRecord{ea40f6c u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity)/@0x949172a sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity},{null m=TO_FRONT f=FILLS_TASK leash=Surface(name=ActivityRecord{60ddc69 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0xda9d91b sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}]}
+11-11 21:15:56.328   907   954 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[OPEN,TO_FRONT] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@1e95a62, appThread = android.app.IApplicationThread$Stub$Proxy@3b187f3, debugName = OverlaySwipeBack }}
+11-11 21:15:56.328   907   954 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@2f51cb0, appThread = android.app.IApplicationThread$Stub$Proxy@13b0729, debugName = LauncherToDream }}
+11-11 21:15:56.328   907   954 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@506baae, appThread = android.app.IApplicationThread$Stub$Proxy@152b04f, debugName = QuickstepLaunchHome }}
+11-11 21:15:56.328   907   954 V WindowManagerShell:  Delegate animation for (#44) to null
+11-11 21:15:56.328   907   954 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultTransitionHandler@8fd3ab2
+11-11 21:15:56.328   907   954 V WindowManagerShell: start default transition animation, info = {id=44 t=CLOSE f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=CLOSE f=FILLS_TASK leash=Surface(name=ActivityRecord{ea40f6c u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity)/@0x949172a sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity},{null m=TO_FRONT f=FILLS_TASK leash=Surface(name=ActivityRecord{60ddc69 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0xda9d91b sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}]}
+11-11 21:15:56.329   907   954 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@72dea64 animAttr=0x6 type=CLOSE isEntrance=true
+11-11 21:15:56.329   907   954 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@ff96182 animAttr=0x7 type=CLOSE isEntrance=false
+11-11 21:15:56.333   553  1010 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 21:15:56.376   553   682 I ImeTracker: org.rabochaya.karta:3f654628: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+11-11 21:15:56.377   553   682 I ImeTracker: org.rabochaya.karta:3f654628: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-11 21:15:56.378  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+11-11 21:15:56.379  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+11-11 21:15:56.379  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=org.rabochaya.karta, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-11 21:15:56.379  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 21:15:56.379  1324  1324 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+11-11 21:15:56.381   354   354 I netd    : tetherGetStats() -> {[]} <0.82ms>
+11-11 21:15:56.381   553  1787 W PackageConfigPersister: App-specific configuration not found for packageName: org.rabochaya.karta and userId: 0
+11-11 21:15:56.382   907   954 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@8fd3ab2
+11-11 21:15:56.383   907   954 W Looper  : Slow dispatch took 60ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda0@d8a21fc m=0
+11-11 21:15:56.390   907   954 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#44) android.os.BinderProxy@7eb5815@0
+11-11 21:15:56.392   553   577 V WindowManager: Finish Transition (#44): created at 11-11 21:15:56.290 collect-started=0.059ms request-sent=0.115ms started=1.751ms ready=4.245ms sent=25.34ms finished=101.458ms
+11-11 21:15:56.392  4843  4843 D VRI[GeometryEditorActivity]: visibilityChanged oldVisibility=true newVisibility=false
+11-11 21:15:56.393   907   954 V WindowManagerShell: Track 0 became idle
+11-11 21:15:56.393   907   954 V WindowManagerShell: All active transition animations finished
+11-11 21:15:56.394   553  1787 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 21:15:56.394   553   572 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 21:15:56.406  4843  4843 D AutofillManager: onActivityFinishing(): calling cancelLocked()
+11-11 21:15:56.407  4843  4843 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@82a4728
+11-11 21:15:56.407   553   572 D CoreBackPreview: Window{e3db417 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}: Setting back callback null
+11-11 21:15:56.409   553   572 W InputManager-JNI: Input channel object 'e3db417 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (client)' was disposed without first being removed with the input manager!
+11-11 21:15:56.516   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:15:56.894   553   572 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_OVERRIDE
+11-11 21:15:56.895   553   572 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_FULLSCREEN_OVERRIDE
+11-11 21:15:56.895   553   572 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_ORIENTATION_OVERRIDE
+11-11 21:15:56.895   553   572 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10209, packageName = null, attributionTag = null, token = android.os.Binder@2ca6e0b, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+11-11 21:15:56.895   553   572 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_RESIZEABLE_ACTIVITY_OVERRIDES
+11-11 21:15:56.895   553   572 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+11-11 21:15:56.899   553   572 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (has extras)} with LAUNCH_MULTIPLE from uid 10209 (BAL_ALLOW_VISIBLE_WINDOW) result code=0
+11-11 21:15:56.899   907   954 V WindowManagerShell: Transition requested (#45): android.os.BinderProxy@2af3f0b TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=18 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity } baseActivity=ComponentInfo{org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity} topActivity=ComponentInfo{org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity} origActivity=null realActivity=ComponentInfo{org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity} numActivities=2 lastActiveTime=175514 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@75561e8} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{49f9001 org.rabochaya.projects.GeometryEditorActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=320 topActivityLetterboxHeight=640 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 45 }
+11-11 21:15:56.901   553   573 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ENABLE_FAKE_FOCUS
+11-11 21:15:56.901   425   425 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+11-11 21:15:56.923   553  1787 D CoreBackPreview: Window{b6d56d9 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@f0eeb4c, mPriority=0, mIsAnimationCallback=false}
+11-11 21:15:56.933  4843  4843 D AutofillManager: Fill dialog is enabled:false, hints=[password, passwordAuto, creditCardNumber, creditCardSecurityCode, creditCardExpirationDate]
+11-11 21:15:56.939   907  1361 V WindowManagerShell: onTransitionReady(transaction=2375116917353)
+11-11 21:15:56.940   553   577 I ActivityTaskManager: Displayed org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity for user 0: +38ms
+11-11 21:15:56.940   553   577 V WindowManager: Sent Transition (#45) createdAt=11-11 21:15:56.895 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=18 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity } baseActivity=ComponentInfo{org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity} topActivity=ComponentInfo{org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity} origActivity=null realActivity=ComponentInfo{org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity} numActivities=2 lastActiveTime=175514 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{899b852 Task{f4506ee #18 type=standard A=10209:org.rabochaya.karta}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{afd9f77 org.rabochaya.projects.GeometryEditorActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=320 topActivityLetterboxHeight=640 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 45 }
+11-11 21:15:56.940   553   577 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+11-11 21:15:56.940   553   577 V WindowManager:     info={id=45 t=OPEN f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[
+11-11 21:15:56.940   553   577 V WindowManager:         {null m=OPEN f=FILLS_TASK leash=Surface(name=ActivityRecord{485f9dd u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity)/@0x5320811 sb=Rect(0, 0 - 0, 0) eb=Rect(0, 0 - 320, 640) d=-1->0 r=-1->0:-1 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity},
+11-11 21:15:56.940   553   577 V WindowManager:         {null m=TO_BACK f=FILLS_TASK leash=Surface(name=ActivityRecord{60ddc69 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0x3cd0f0f sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}
+11-11 21:15:56.940   553   577 V WindowManager:     ]}
+11-11 21:15:56.940   907   954 V WindowManagerShell: onTransitionReady (#45) android.os.BinderProxy@2af3f0b: {id=45 t=OPEN f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=OPEN f=FILLS_TASK leash=Surface(name=ActivityRecord{485f9dd u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity)/@0x796cea6 sb=Rect(0, 0 - 0, 0) eb=Rect(0, 0 - 320, 640) d=-1->0 r=-1->0:-1 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity},{null m=TO_BACK f=FILLS_TASK leash=Surface(name=ActivityRecord{60ddc69 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0x890c0e7 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}]}
+11-11 21:15:56.941   907   954 V WindowManagerShell: Playing animation for (#45) android.os.BinderProxy@2af3f0b@0
+11-11 21:15:56.943   907   954 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@38e5249
+11-11 21:15:56.943   907   954 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@e21774e
+11-11 21:15:56.943   907   954 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@aedc06f
+11-11 21:15:56.943   907   954 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@cb6f17c
+11-11 21:15:56.943   907   954 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@960ca05
+11-11 21:15:56.943   907   954 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+11-11 21:15:56.943   907   954 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@a1ba5a
+11-11 21:15:56.943   907   954 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@73ff48b
+11-11 21:15:56.943   907   954 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=45 t=OPEN f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=OPEN f=FILLS_TASK leash=Surface(name=ActivityRecord{485f9dd u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity)/@0x796cea6 sb=Rect(0, 0 - 0, 0) eb=Rect(0, 0 - 320, 640) d=-1->0 r=-1->0:-1 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity},{null m=TO_BACK f=FILLS_TASK leash=Surface(name=ActivityRecord{60ddc69 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0x890c0e7 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}]}
+11-11 21:15:56.943   907   954 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[OPEN,TO_FRONT] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@1e95a62, appThread = android.app.IApplicationThread$Stub$Proxy@3b187f3, debugName = OverlaySwipeBack }}
+11-11 21:15:56.943   907   954 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@2f51cb0, appThread = android.app.IApplicationThread$Stub$Proxy@13b0729, debugName = LauncherToDream }}
+11-11 21:15:56.943   907   954 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@506baae, appThread = android.app.IApplicationThread$Stub$Proxy@152b04f, debugName = QuickstepLaunchHome }}
+11-11 21:15:56.943   907   954 V WindowManagerShell:  Delegate animation for (#45) to null
+11-11 21:15:56.943   907   954 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultTransitionHandler@8fd3ab2
+11-11 21:15:56.943   907   954 V WindowManagerShell: start default transition animation, info = {id=45 t=OPEN f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=OPEN f=FILLS_TASK leash=Surface(name=ActivityRecord{485f9dd u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity)/@0x796cea6 sb=Rect(0, 0 - 0, 0) eb=Rect(0, 0 - 320, 640) d=-1->0 r=-1->0:-1 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity},{null m=TO_BACK f=FILLS_TASK leash=Surface(name=ActivityRecord{60ddc69 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0x890c0e7 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}]}
+11-11 21:15:56.943   907   954 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@f1e8483 animAttr=0x5 type=OPEN isEntrance=false
+11-11 21:15:56.944  4843  4843 D AutofillManager: notifyViewReadyInner:1073741824
+11-11 21:15:56.945  4843  4843 D AutofillManager: notifyViewReadyInner:1073741825
+11-11 21:15:56.950   553  1787 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 21:15:56.958  1186  1194 W System  : A resource failed to call release. 
+11-11 21:15:56.958  1186  1194 W System  : A resource failed to call release. 
+11-11 21:15:56.958  1186  1194 W System  : A resource failed to call release. 
+11-11 21:15:56.958  1186  1194 W System  : A resource failed to call release. 
+11-11 21:15:56.958  1186  1194 W System  : A resource failed to call release. 
+11-11 21:15:56.958  1186  1194 W System  : A resource failed to call release. 
+11-11 21:15:56.958  1186  1194 W System  : A resource failed to call release. 
+11-11 21:15:56.958  1186  1194 W System  : A resource failed to call release. 
+11-11 21:15:56.958  1186  1194 W System  : A resource failed to call release. 
+11-11 21:15:56.958  1186  1194 W System  : A resource failed to call release. 
+11-11 21:15:56.958  1186  1194 W System  : A resource failed to call release. 
+11-11 21:15:56.958  1186  1194 W System  : A resource failed to call release. 
+11-11 21:15:56.964   907   954 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@f6a84f5 animAttr=0x4 type=OPEN isEntrance=true
+11-11 21:15:56.979   907   954 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@8fd3ab2
+11-11 21:15:56.980   907   954 W Looper  : Slow dispatch took 40ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda0@82b7b71 m=0
+11-11 21:15:56.988   907   954 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#45) android.os.BinderProxy@2af3f0b@0
+11-11 21:15:56.989   553   682 I ImeTracker: org.rabochaya.karta:117e4857: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+11-11 21:15:56.990   553   682 I ImeTracker: org.rabochaya.karta:117e4857: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-11 21:15:56.990   553   577 V WindowManager: Finish Transition (#45): created at 11-11 21:15:56.895 collect-started=0.021ms request-sent=2.695ms started=4.026ms ready=6.696ms sent=36.741ms finished=94.087ms
+11-11 21:15:56.991   907   954 V WindowManagerShell: Track 0 became idle
+11-11 21:15:56.991   907   954 V WindowManagerShell: All active transition animations finished
+11-11 21:15:56.991  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+11-11 21:15:56.992   553  1785 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 21:15:56.992   553   573 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 21:15:56.992  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+11-11 21:15:56.992  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=org.rabochaya.karta, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-11 21:15:56.992  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 21:15:56.992  1324  1324 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+11-11 21:15:56.993   553   573 W PackageConfigPersister: App-specific configuration not found for packageName: org.rabochaya.karta and userId: 0
+11-11 21:15:56.994  1422  4949 I IPCThreadState: oneway function results for code 2 on binder at 0x7ddd2a59af80 will be dropped but finished with status UNKNOWN_TRANSACTION
+11-11 21:15:57.004  4843  4843 D VRI[LocalMapActivity]: visibilityChanged oldVisibility=true newVisibility=false
+11-11 21:15:57.022  4843  4855 W SurfaceComposerClient: Sync transaction timed out waiting for commit callback.
+11-11 21:15:57.041   421   454 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:15:57.041   553   572 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:15:57.057   553  1254 V AutofillSession: Primary service component name: ComponentInfo{com.google.android.gms/com.google.android.gms.autofill.service.AutofillService}, secondary service component name: ComponentInfo{com.android.credentialmanager/com.android.credentialmanager.autofill.CredentialAutofillService}
+11-11 21:15:57.057   553  1254 V SecondaryProviderHandler: Creating a secondary provider handler with component name, ComponentInfo{com.android.credentialmanager/com.android.credentialmanager.autofill.CredentialAutofillService}
+11-11 21:15:57.057   553  1254 D RequestId: nextId(): requestId = 232
+11-11 21:15:57.057   553  1254 I AppsFilter: interaction: PackageSetting{1f0944a org.rabochaya.karta/10209} -> PackageSetting{9deff2a com.google.android.inputmethod.latin/10152} BLOCKED
+11-11 21:15:57.057   553  1254 W FillRequestEventLogger: Couldn't find packageName: com.google.android.inputmethod.latin
+11-11 21:15:57.060   553  1785 W PresentationStatsEventLogger: Bad view state for: -1
+11-11 21:15:57.060   553   553 D AutofillInlineSuggestionsRequestSession: onCreateInlineSuggestionsRequestLocked called: 1073741825@1774139103
+11-11 21:15:57.060   553  1254 D AutofillInlineSuggestionsRequestSession: onInlineSuggestionsSessionInvalidated() called.
+11-11 21:15:57.074  4843  4843 I AssistStructure: Flattened final assist data: 1984 bytes, containing 1 windows, 12 views
+11-11 21:15:57.074   553  1254 D AutofillSession: createPendingIntent for request 232
+11-11 21:15:57.075   553  1254 D ContentCapturePerUserService: Notified activity assist data for activity: Token{d1ae952 ActivityRecord{485f9dd u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity t18}} without a session Id
+11-11 21:15:57.078   553  1254 W PresentationStatsEventLogger: Bad view state for: -1
+11-11 21:15:57.080   553  1785 W PresentationStatsEventLogger: Bad view state for: -1
+11-11 21:15:57.089  4843  4843 D AutofillManager: notifyViewReadyInner:1073741835
+11-11 21:15:57.089  4843  4843 D AutofillManager: notifyViewReadyInner:1073741836
+11-11 21:15:57.264   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:15:57.323  1411  1411 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.chimera.container.moduleinstall.ModuleInstallService.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+11-11 21:15:57.480  1209  4955 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.droidguard.DroidGuardGcmTaskService started execution. cause:7 exec_start_elapsed_seconds: 176 [CONTEXT service_id=218 ]
+11-11 21:15:57.483  1209  4954 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.droidguard.DroidGuardGcmTaskService finished executing. cause:7 result: 1 elapsed_millis: 7 uptime_millis: 7 exec_start_elapsed_seconds: 176 [CONTEXT service_id=218 ]
+11-11 21:15:57.493   354  4958 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+11-11 21:15:57.494   354  4959 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+11-11 21:15:57.494   354  4959 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0x7f64a28e01d0
+11-11 21:15:57.494   354  4959 I resolv  : doQuery: rcode=0, ancount=8, return value=260
+11-11 21:15:57.494   354  4960 I resolv  : res_nmkquery: (QUERY, IN, A)
+11-11 21:15:57.494   354  4960 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0x7f64328dcdd0
+11-11 21:15:57.494   354  4960 I resolv  : doQuery: rcode=0, ancount=8, return value=164
+11-11 21:15:57.495  2203  2692 D TrafficStats: tagSocket(128) with statsTag=0x1803, statsUid=10143
+11-11 21:15:57.499  1209  4955 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.auth.account.be.legacy.AuthCronService started execution. cause:5 exec_start_elapsed_seconds: 176 [CONTEXT service_id=218 ]
+11-11 21:15:57.503  1209  4955 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.auth.account.be.legacy.AuthCronService finished executing. cause:5 result: 3 elapsed_millis: 10 uptime_millis: 10 exec_start_elapsed_seconds: 176 [CONTEXT service_id=218 ]
+11-11 21:15:57.583   553   572 I RemoteProvisionSysSvc: getRegistration(android.hardware.security.keymint.IRemotelyProvisionedComponent/default)
+--------- beginning of kernel
+11-11 21:15:57.724     0     0 I servicemanager: Caller(pid=167,uid=1017,sid=u:r:keystore:s0) Found android.hardware.security.keymint.IRemotelyProvisionedComponent/default in device VINTF manifest.
+11-11 21:15:57.596   553   572 D ActivityManager: sync unfroze 2928 com.google.android.rkpdapp for 6
+11-11 21:15:57.600   553   553 I RegistrationProxy: onServiceConnected: com.android.rkpdapp.service.RemoteProvisioningService
+11-11 21:15:57.601   553  1254 W ProcessStats: Tracking association SourceState{c29754d system/1000 ImpFg #6607} whose proc state 5 is better than process ProcessState{147cfd2 com.google.android.rkpdapp/10201 pkg=com.google.android.rkpdapp} proc state 14 (47 skipped)
+11-11 21:15:57.604   553  1254 I RegistrationProxy: IGetRegistrationCallback.onSuccess
+11-11 21:15:57.607   553   572 I RemoteProvisionSysSvc: Fetching key 10143 for client 261384271
+11-11 21:15:57.607   553   572 I RegistrationProxy: getKeyAsync operation started with callback 101886940
+11-11 21:15:57.745     0     0 I servicemanager: Caller(pid=2928,uid=10201,sid=u:r:rkpdapp:s0:c201,c256,c512,c768) Found android.hardware.security.keymint.IRemotelyProvisionedComponent/default in device VINTF manifest.
+11-11 21:15:57.607  2928  4963 I RkpdRegistrationBinder: Key requested for : android.hardware.security.keymint.IRemotelyProvisionedComponent/default, clientUid: 1017, keyId: 10143, callback: 164531973
+11-11 21:15:57.608  2928  4963 I RkpdRegistrationBinder: Key successfully assigned to client
+11-11 21:15:57.608   553   553 I RemoteProvisionSysSvc: Successfully fetched key for client 261384271
+11-11 21:15:57.752     0     0 I servicemanager: Caller(pid=167,uid=1017,sid=u:r:keystore:s0) Found android.hardware.security.keymint.IRemotelyProvisionedComponent/default in device VINTF manifest.
+11-11 21:15:57.612   170   170 D SoftKeymaster: system/keymaster/km_openssl/certificate_utils.cpp, Line 148: Using TAG_CERTIFICATE_NOT_BEFORE: 0
+11-11 21:15:57.612   170   170 D SoftKeymaster: system/keymaster/km_openssl/certificate_utils.cpp, Line 154: Using TAG_CERTIFICATE_NOT_AFTER: 2461449600000
+11-11 21:15:57.612   170   170 D SoftKeymaster: system/keymaster/km_openssl/certificate_utils.cpp, Line 159: Got certificate date params:  NotBefore = 0, NotAfter = 2461449600000
+11-11 21:15:57.612   354   354 I netd    : tetherGetStats() -> {[]} <0.34ms>
+11-11 21:15:57.612   170   170 D SoftKeymaster: system/keymaster/km_openssl/certificate_utils.cpp, Line 273: Setting notBefore to 0
+11-11 21:15:57.612   170   170 D SoftKeymaster: system/keymaster/km_openssl/certificate_utils.cpp, Line 282: Setting notAfter to 2461449600
+11-11 21:15:57.617   553   572 D BiometricService: Sensor ID(0), oemStrength: 15, updatedStrength: 15, modality 2, state: 0, cookie: 0, sensorId 0, hasEnrollments: false cannot participate in Keystore operations
+11-11 21:15:57.617   553   572 D BiometricService: Sensor ID(4), oemStrength: 15, updatedStrength: 15, modality 8, state: 0, cookie: 0, sensorId 4, hasEnrollments: false cannot participate in Keystore operations
+11-11 21:15:57.651  4843  4843 D AutofillManager: notifyViewReadyInner:1073741835
+11-11 21:15:57.674   553   572 D CoreBackPreview: Window{2d93a6b u0 PopupWindow:befe459}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@c033812, mPriority=0, mIsAnimationCallback=false}
+11-11 21:15:57.783   553   572 W ParceledListSlice: Element #14 is 37964 bytes.
+11-11 21:15:57.784   553   572 W ParceledListSlice: Element #15 is 18248 bytes.
+11-11 21:15:57.785   553   572 W ParceledListSlice: Element #22 is 30472 bytes.
+11-11 21:15:57.786   553   572 W ParceledListSlice: Overly large reply size: 88648
+11-11 21:15:57.815   553   572 D FileUtils: Rounded bytes from 2593198080 to 4000000000
+11-11 21:15:57.840  2203  4957 W SystemServiceRegistry: No service published for: persistent_data_block
+11-11 21:15:57.846  2203  4957 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+11-11 21:15:57.846  2203  4957 I EGL_emulation: Opening libGLESv2_emulation.so
+11-11 21:15:57.986   354  4966 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+11-11 21:15:57.986  2203  4957 D TrafficStats: tagSocket(137) with statsTag=0x1809, statsUid=-1
+11-11 21:15:57.987  2203  4957 D TrafficStats: tagSocket(137) with statsTag=0x1809, statsUid=-1
+11-11 21:15:57.988  2203  4957 D TrafficStats: tagSocket(137) with statsTag=0x1809, statsUid=-1
+11-11 21:15:58.029  2203  4957 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+11-11 21:15:58.029  2203  4957 W libc    : Access denied finding property "service.adb.tls.port"
+11-11 21:15:58.024  2203  2203 W IntentService[D: type=1400 audit(0.0:65): avc:  denied  { read } for  name="u:object_r:system_adbd_prop:s0" dev="tmpfs" ino=318 scontext=u:r:gmscore_app:s0:c512,c768 tcontext=u:object_r:system_adbd_prop:s0 tclass=file permissive=0 app=com.google.android.gms
+11-11 21:15:58.024  2203  2203 W IntentService[D: type=1400 audit(0.0:66): avc:  denied  { read } for  name="u:object_r:adbd_prop:s0" dev="tmpfs" ino=63 scontext=u:r:gmscore_app:s0:c512,c768 tcontext=u:object_r:adbd_prop:s0 tclass=file permissive=0 app=com.google.android.gms
+11-11 21:15:58.071   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:58.071   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:58.175   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:58.176   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:58.270   421   454 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:15:58.270   553   572 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:15:58.279   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:58.279   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:58.290  4843  4858 D EGL_emulation: app_time_stats: avg=122.68ms min=2.78ms max=668.20ms count=11
+11-11 21:15:58.293   553  1785 W PresentationStatsEventLogger: Bad view state for: -1
+11-11 21:15:58.301  4843  4843 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@2c6f6cc
+11-11 21:15:58.306   553  1785 D CoreBackPreview: Window{2d93a6b u0 PopupWindow:befe459}: Setting back callback null
+11-11 21:15:58.309   553  1785 W InputManager-JNI: Input channel object '2d93a6b PopupWindow:befe459 (client)' was disposed without first being removed with the input manager!
+11-11 21:15:58.310  4843  4843 D AutofillManager: notifyViewReadyInner:1073741836
+11-11 21:15:58.323   553   682 I ImeTracker: org.rabochaya.karta:8335c930: onRequestHide at ORIGIN_SERVER reason HIDE_SAME_WINDOW_FOCUSED_WITHOUT_EDITOR fromUser false
+11-11 21:15:58.323   553   682 I ImeTracker: org.rabochaya.karta:8335c930: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-11 21:15:58.324  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+11-11 21:15:58.325  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+11-11 21:15:58.325  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=org.rabochaya.karta, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-11 21:15:58.325  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 21:15:58.325  1324  1324 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+11-11 21:15:58.326   553  1785 W PackageConfigPersister: App-specific configuration not found for packageName: org.rabochaya.karta and userId: 0
+11-11 21:15:58.378   553   830 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:15:58.379   553   830 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:15:58.380  1209  2748 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 21:15:58.380  1209  2748 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 21:15:58.380   553   830 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:15:58.382  3564  3785 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[5a67a93b-c56b]>Handler" thread_id=70 ]
+11-11 21:15:58.383  3564  3617 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=61 ]
+11-11 21:15:58.383   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:58.384   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:58.386  3564  3785 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=70 ]
+11-11 21:15:58.481  1411  2790 E WakeLock: DG:service ** IS FORCE-RELEASED ON TIMEOUT **
+11-11 21:15:58.487   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:58.487   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:58.513   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:15:58.591   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:58.591   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:58.695   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:58.695   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:58.800   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:58.800   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:58.828   354   354 I netd    : tetherGetStats() -> {[]} <0.43ms>
+11-11 21:15:58.871   553  1785 W PresentationStatsEventLogger: Bad view state for: -1
+11-11 21:15:58.898   553   572 I NotificationService: cancelToast pkg=org.rabochaya.karta token=android.os.BinderProxy@bb7b196
+11-11 21:15:58.900   421   454 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:15:58.900   553  1785 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:15:58.904   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:58.904   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:58.908  4843  4848 W rabochaya.karta: Cleared Reference was only reachable from finalizer (only reported once)
+11-11 21:15:58.921   553  1254 W InputManager-JNI: Input channel object 'd44385a Toast (client)' was disposed without first being removed with the input manager!
+11-11 21:15:58.924   553  1254 W NotificationService: Toast already killed. pkg=org.rabochaya.karta token=android.os.BinderProxy@bb7b196
+11-11 21:15:58.960   553  1254 W PresentationStatsEventLogger: Bad view state for: -1
+11-11 21:15:58.961   553  1785 W PresentationStatsEventLogger: Bad view state for: -1
+11-11 21:15:58.970  4843  4843 D AutofillManager: notifyViewReadyInner:1073741837
+11-11 21:15:58.971  4843  4843 D AutofillManager: notifyViewReadyInner:1073741838
+11-11 21:15:59.007   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:59.007   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:59.111   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:59.112   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:59.122   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:15:59.215   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:59.216   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:59.319   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:59.319   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:59.428   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:59.428   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:59.514  4843  4843 D AutofillManager: notifyViewReadyInner:1073741837
+11-11 21:15:59.525   553   572 D CoreBackPreview: Window{a03e27a u0 PopupWindow:58012dd}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@4705d5d, mPriority=0, mIsAnimationCallback=false}
+11-11 21:15:59.531   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:59.531   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:59.575  4843  4858 D EGL_emulation: app_time_stats: avg=128.38ms min=14.51ms max=583.97ms count=10
+11-11 21:15:59.622  1411  1411 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.mdd.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+11-11 21:15:59.635   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:59.635   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:59.739   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:59.739   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:59.843   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:59.843   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:15:59.914   553  2651 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+11-11 21:15:59.948   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:15:59.948   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:00.002  1422  1724 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 21:16:00.003  1422  1724 I AiAiEcho: EchoTargets: 
+11-11 21:16:00.003  1422  1724 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 21:16:00.003  1422  1724 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 21:16:00.003  1422  1724 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 21:16:00.003  1422  1724 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 21:16:00.003  1422  1724 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 21:16:00.003  1422  1724 I AiAiEcho: EchoTargets: 
+11-11 21:16:00.003  1422  1724 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 21:16:00.003  1422  1724 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 21:16:00.003  1422  1724 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 21:16:00.003  1422  1724 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 21:16:00.004  1422  1724 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-11 21:16:00.004  1422  1724 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-11 21:16:00.005  1186  1186 D SsBaseTemplateCard: No text view can be set up
+11-11 21:16:00.006  1186  1186 D SsBaseTemplateCard: Passed-in item info is null
+11-11 21:16:00.006  1186  1186 D SsBaseTemplateCard: Passed-in item info is null
+11-11 21:16:00.006  1186  1186 D SsBaseTemplateCard: Passed-in item info is null
+11-11 21:16:00.006  1186  1186 I SsBaseTemplateCard: Secondary card pane is null
+11-11 21:16:00.023   907   907 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-11 21:16:00.027   907  1015 D EGL_emulation: app_time_stats: avg=5949.14ms min=11.41ms max=23432.44ms count=4
+11-11 21:16:00.055   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:00.055   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:00.130   421   454 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:16:00.130   553  1785 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:16:00.142   553  1254 W PresentationStatsEventLogger: Bad view state for: -1
+11-11 21:16:00.152  4843  4843 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@e54ca20
+11-11 21:16:00.156   553  1254 D CoreBackPreview: Window{a03e27a u0 PopupWindow:58012dd}: Setting back callback null
+11-11 21:16:00.159   553  1254 W InputManager-JNI: Input channel object 'a03e27a PopupWindow:58012dd (client)' was disposed without first being removed with the input manager!
+11-11 21:16:00.159   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:00.160   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:00.160  4843  4843 D AutofillManager: notifyViewReadyInner:1073741838
+11-11 21:16:00.174   553   682 I ImeTracker: org.rabochaya.karta:26a0f859: onRequestHide at ORIGIN_SERVER reason HIDE_SAME_WINDOW_FOCUSED_WITHOUT_EDITOR fromUser false
+11-11 21:16:00.174   553   682 I ImeTracker: org.rabochaya.karta:26a0f859: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-11 21:16:00.174  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+11-11 21:16:00.175  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+11-11 21:16:00.175  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=org.rabochaya.karta, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-11 21:16:00.175  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 21:16:00.175  1324  1324 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+11-11 21:16:00.175   553  1254 W PackageConfigPersister: App-specific configuration not found for packageName: org.rabochaya.karta and userId: 0
+11-11 21:16:00.206  1411  1411 D BoundBrokerSvc: onUnbind: Intent { act=com.google.firebase.dynamiclinks.service.START pkg=com.google.android.gms }
+11-11 21:16:00.263   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:00.263   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:00.349   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:16:00.367   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:00.367   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:00.471   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:00.471   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:00.575   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:00.576   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:00.679   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:00.680   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:00.740   421   454 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:16:00.741   553  1254 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:16:00.755   553  1254 D CoreBackPreview: Window{5fa56f7 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@4e62ace, mPriority=0, mIsAnimationCallback=false}
+11-11 21:16:00.783   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:00.783   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:00.808  4843  4858 D EGL_emulation: app_time_stats: avg=205.48ms min=15.41ms max=600.71ms count=6
+11-11 21:16:00.887   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:00.887   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:00.962   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:16:00.991   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:00.991   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:01.095   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:01.096   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:01.199   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:01.200   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:01.303   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:01.303   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:01.357   553   572 I NotificationService: cancelToast pkg=org.rabochaya.karta token=android.os.BinderProxy@db30301
+11-11 21:16:01.358   421   454 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:16:01.358   553  1787 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:16:01.360   553  1254 W PresentationStatsEventLogger: Bad view state for: -1
+11-11 21:16:01.360  4843  4843 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@de8794f
+11-11 21:16:01.360   553  1254 D CoreBackPreview: Window{5fa56f7 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}: Setting back callback null
+11-11 21:16:01.362   553  1254 W InputManager-JNI: Input channel object '5fa56f7 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (client)' was disposed without first being removed with the input manager!
+11-11 21:16:01.377   553   580 V WindowManager: Unknown focus tokens, dropping reportFocusChanged
+11-11 21:16:01.378   553  1254 W InputManager-JNI: Input channel object '40cd170 Toast (client)' was disposed without first being removed with the input manager!
+11-11 21:16:01.379   553  1787 W NotificationService: Toast already killed. pkg=org.rabochaya.karta token=android.os.BinderProxy@db30301
+11-11 21:16:01.392   553   682 I ImeTracker: org.rabochaya.karta:ca97b164: onRequestHide at ORIGIN_SERVER reason HIDE_SAME_WINDOW_FOCUSED_WITHOUT_EDITOR fromUser false
+11-11 21:16:01.392   553   682 I ImeTracker: org.rabochaya.karta:ca97b164: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-11 21:16:01.393  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+11-11 21:16:01.394  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+11-11 21:16:01.394  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=org.rabochaya.karta, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-11 21:16:01.394  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 21:16:01.394  1324  1324 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+11-11 21:16:01.394   553  1254 W PackageConfigPersister: App-specific configuration not found for packageName: org.rabochaya.karta and userId: 0
+11-11 21:16:01.411   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:01.412   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:01.515   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:01.515   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:01.596   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:16:01.619   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:01.619   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:01.723   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:01.723   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:01.827   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:01.828   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:01.931   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:01.932   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:01.968   553   572 W PresentationStatsEventLogger: Bad view state for: -1
+11-11 21:16:01.973  4843  4858 D EGL_emulation: app_time_stats: avg=194.20ms min=10.02ms max=554.25ms count=6
+11-11 21:16:01.976   421   454 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:16:01.977   553  1787 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:16:02.000   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+11-11 21:16:02.001   553   830 D InetDiagMessage: Destroyed 1 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+11-11 21:16:02.001   553   830 D InetDiagMessage: Destroyed live tcp sockets for uids={10130} in 1ms
+11-11 21:16:02.002   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+11-11 21:16:02.003   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+11-11 21:16:02.003   553   830 D InetDiagMessage: Destroyed live tcp sockets for uids={20130} in 2ms
+11-11 21:16:02.026   553   572 W PresentationStatsEventLogger: Bad view state for: -1
+11-11 21:16:02.030   553   572 W PresentationStatsEventLogger: Bad view state for: -1
+11-11 21:16:02.035   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:02.035   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:02.037  4843  4843 D AutofillManager: notifyViewReadyInner:1073741839
+11-11 21:16:02.037  4843  4843 D AutofillManager: notifyViewReadyInner:1073741840
+11-11 21:16:02.139   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:02.139   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:02.208   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:16:02.243   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:02.243   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:02.347   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:02.347   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:02.451   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:02.451   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:02.503   553  1254 D OomAdjuster: Not killing cached processes
+11-11 21:16:02.555   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:02.555   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:02.587  4843  4843 D AutofillManager: notifyViewReadyInner:1073741839
+11-11 21:16:02.604   553  1254 D CoreBackPreview: Window{a62f73 u0 PopupWindow:92e1cfb}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@71d993a, mPriority=0, mIsAnimationCallback=false}
+11-11 21:16:02.609   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+11-11 21:16:02.609   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+11-11 21:16:02.609   553   830 D InetDiagMessage: Destroyed live tcp sockets for uids={10201} in 2ms
+11-11 21:16:02.610   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+11-11 21:16:02.610   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+11-11 21:16:02.610   553   830 D InetDiagMessage: Destroyed live tcp sockets for uids={20201} in 0ms
+11-11 21:16:02.659   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:02.659   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:02.763   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:02.763   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:02.867   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:02.867   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:02.971   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:02.971   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:03.075   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:03.075   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:03.179   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:03.179   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:03.198   421   454 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:16:03.199   553   572 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:16:03.208  4843  4858 D EGL_emulation: app_time_stats: avg=154.25ms min=12.77ms max=600.20ms count=8
+11-11 21:16:03.219  4843  4843 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@875f956
+11-11 21:16:03.222   553  1787 W InputManager-JNI: Input channel object 'a62f73 PopupWindow:92e1cfb (client)' was disposed without first being removed with the input manager!
+11-11 21:16:03.224   553   572 W WindowManager: Failed looking up window session=Session{aec311 4843:u0a10209} callers=com.android.server.wm.WindowManagerService.windowForClientLocked:6311 com.android.server.wm.Session.setOnBackInvokedCallbackInfo:1020 android.view.IWindowSession$Stub.onTransact:1199 
+11-11 21:16:03.224   553   572 I WindowManager: setOnBackInvokedCallback(): No window state for package:org.rabochaya.karta
+11-11 21:16:03.225   553   580 V WindowManager: Unknown focus tokens, dropping reportFocusChanged
+11-11 21:16:03.239   553   682 I ImeTracker: org.rabochaya.karta:bc796600: onRequestHide at ORIGIN_SERVER reason HIDE_SAME_WINDOW_FOCUSED_WITHOUT_EDITOR fromUser false
+11-11 21:16:03.240   553   682 I ImeTracker: org.rabochaya.karta:bc796600: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-11 21:16:03.240  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+11-11 21:16:03.241  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+11-11 21:16:03.241  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=org.rabochaya.karta, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-11 21:16:03.241  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 21:16:03.241  1324  1324 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+11-11 21:16:03.241   553  1787 W PackageConfigPersister: App-specific configuration not found for packageName: org.rabochaya.karta and userId: 0
+11-11 21:16:03.283   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:03.283   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:03.387   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:03.387   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:03.432   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:16:03.491   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:03.491   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:03.595   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:03.595   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:03.699   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:03.700   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:03.803   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:03.804   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:03.806   421   454 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:16:03.806   553   572 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:16:03.818   553   572 D CoreBackPreview: Window{64cc360 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@46553db, mPriority=0, mIsAnimationCallback=false}
+11-11 21:16:03.908   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:03.908   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:04.011   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:04.011   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:04.044   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:16:04.115   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:04.116   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:04.219   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:04.219   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:04.323   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:04.323   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:04.389   553   830 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:04.390   553   830 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:04.390   553   830 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:04.392  3564  3617 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=61 ]
+11-11 21:16:04.393  3564  3785 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[5a67a93b-c56b]>Handler" thread_id=70 ]
+11-11 21:16:04.396  3564  3785 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=70 ]
+11-11 21:16:04.396  1209  2554 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 21:16:04.396  1209  2554 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 21:16:04.419   421   454 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:16:04.419   553  1254 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:16:04.427  4843  4843 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@87256bc
+11-11 21:16:04.427   553  1254 D CoreBackPreview: Window{64cc360 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}: Setting back callback null
+11-11 21:16:04.427   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:04.427   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:04.429   553  1254 W InputManager-JNI: Input channel object '64cc360 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (client)' was disposed without first being removed with the input manager!
+11-11 21:16:04.435   553  1254 D CoreBackPreview: Window{b486353 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@b9ee9cb, mPriority=0, mIsAnimationCallback=false}
+11-11 21:16:04.445   553   580 V WindowManager: Unknown focus tokens, dropping reportFocusChanged
+11-11 21:16:04.535   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:04.535   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:04.639   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:04.639   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:04.653   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:16:04.743   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:04.744   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:04.847   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:04.847   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:04.951   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:04.951   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:05.038   421   454 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:16:05.038   553  1787 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:16:05.054  4843  4858 D EGL_emulation: app_time_stats: avg=369.26ms min=17.61ms max=1160.78ms count=5
+11-11 21:16:05.055   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:05.057  4843  4843 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@d77d9dd
+11-11 21:16:05.057   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:05.057   553  1787 D CoreBackPreview: Window{b486353 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}: Setting back callback null
+11-11 21:16:05.060   553  1787 W InputManager-JNI: Input channel object 'b486353 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (client)' was disposed without first being removed with the input manager!
+11-11 21:16:05.073   553   580 V WindowManager: Unknown focus tokens, dropping reportFocusChanged
+11-11 21:16:05.093   553   682 I ImeTracker: org.rabochaya.karta:eb63ff1b: onRequestHide at ORIGIN_SERVER reason HIDE_SAME_WINDOW_FOCUSED_WITHOUT_EDITOR fromUser false
+11-11 21:16:05.093   553   682 I ImeTracker: org.rabochaya.karta:eb63ff1b: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-11 21:16:05.094  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+11-11 21:16:05.096  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+11-11 21:16:05.096  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=org.rabochaya.karta, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-11 21:16:05.097  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 21:16:05.097  1324  1324 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+11-11 21:16:05.097   553  1785 W PackageConfigPersister: App-specific configuration not found for packageName: org.rabochaya.karta and userId: 0
+11-11 21:16:05.159   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:05.159   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:05.209  1324  1590 I VoiceInputManagerWrapper: VoiceInputManagerWrapper.shutdownVoiceInternal():140 shutdownVoiceInternal()
+11-11 21:16:05.263   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:05.263   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:05.265   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:16:05.367   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:05.367   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:05.471   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:05.472   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:05.575   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:05.575   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:05.649   553  1787 I NotificationService: cancelToast pkg=org.rabochaya.karta token=android.os.BinderProxy@c4fa61c
+11-11 21:16:05.650   421   454 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:16:05.650   553  1787 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:16:05.677   553  1785 W InputManager-JNI: Input channel object 'c3e456 Toast (client)' was disposed without first being removed with the input manager!
+11-11 21:16:05.679   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:05.680   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:05.680   553   573 W NotificationService: Toast already killed. pkg=org.rabochaya.karta token=android.os.BinderProxy@c4fa61c
+11-11 21:16:05.695   553  1785 W PresentationStatsEventLogger: Bad view state for: -1
+11-11 21:16:05.697   553   573 W PresentationStatsEventLogger: Bad view state for: -1
+11-11 21:16:05.707  4843  4843 D AutofillManager: notifyViewReadyInner:1073741841
+11-11 21:16:05.709  4843  4843 D AutofillManager: notifyViewReadyInner:1073741842
+11-11 21:16:05.783   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:05.783   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:05.880   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:16:05.887   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:05.887   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:05.991   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:05.991   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:06.095   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:06.095   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:06.199   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:06.199   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:06.257  4843  4843 D AutofillManager: notifyViewReadyInner:1073741841
+11-11 21:16:06.269   553  1787 D CoreBackPreview: Window{ba4d020 u0 PopupWindow:7223d5d}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@effd39b, mPriority=0, mIsAnimationCallback=false}
+11-11 21:16:06.304   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:06.304   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:06.324  4843  4858 D EGL_emulation: app_time_stats: avg=126.89ms min=13.36ms max=597.57ms count=10
+11-11 21:16:06.382   553   663 D ActivityManager: freezing 1636 android.process.acore
+11-11 21:16:06.383   553   663 D ActivityManager: freezing 1084 com.android.settings
+11-11 21:16:06.384   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+11-11 21:16:06.384   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+11-11 21:16:06.384   553   830 D InetDiagMessage: Destroyed live tcp sockets for uids={10091} in 1ms
+11-11 21:16:06.407   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:06.407   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:06.511   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:06.511   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:06.615   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:06.615   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:06.719   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:06.719   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:06.823   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:06.823   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:06.869   421   454 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:16:06.869   553   572 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:16:06.892   553   572 W PresentationStatsEventLogger: Bad view state for: -1
+11-11 21:16:06.901  4843  4843 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@db2d6a0
+11-11 21:16:06.905   553   572 D CoreBackPreview: Window{ba4d020 u0 PopupWindow:7223d5d}: Setting back callback null
+11-11 21:16:06.907   553  1787 W InputManager-JNI: Input channel object 'ba4d020 PopupWindow:7223d5d (client)' was disposed without first being removed with the input manager!
+11-11 21:16:06.909  4843  4843 D AutofillManager: notifyViewReadyInner:1073741842
+11-11 21:16:06.923   553   580 V WindowManager: Unknown focus tokens, dropping reportFocusChanged
+11-11 21:16:06.925   553   682 I ImeTracker: org.rabochaya.karta:a3805661: onRequestHide at ORIGIN_SERVER reason HIDE_SAME_WINDOW_FOCUSED_WITHOUT_EDITOR fromUser false
+11-11 21:16:06.925   553   682 I ImeTracker: org.rabochaya.karta:a3805661: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-11 21:16:06.925  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+11-11 21:16:06.926  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+11-11 21:16:06.926  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=org.rabochaya.karta, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-11 21:16:06.926  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 21:16:06.926  1324  1324 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+11-11 21:16:06.927   553  1785 W PackageConfigPersister: App-specific configuration not found for packageName: org.rabochaya.karta and userId: 0
+11-11 21:16:06.928   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:06.928   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:06.998   553   663 D ActivityManager: freezing 1986 com.google.android.as.oss
+11-11 21:16:07.000   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+11-11 21:16:07.000   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+11-11 21:16:07.001   553   830 D InetDiagMessage: Destroyed live tcp sockets for uids={10130} in 2ms
+11-11 21:16:07.031   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:07.032   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:07.104   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:16:07.135   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:07.135   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:07.239   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:07.240   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:07.343   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:07.343   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:07.392  1209  2554 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 21:16:07.392  1209  2554 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 21:16:07.393   553   830 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:07.394   553   830 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:07.394   553   830 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:07.397  3564  3785 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[5a67a93b-c56b]>Handler" thread_id=70 ]
+11-11 21:16:07.397  3564  3617 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=61 ]
+11-11 21:16:07.399  3564  3785 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=70 ]
+11-11 21:16:07.447   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:07.447   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:07.471   553  1785 W PresentationStatsEventLogger: Bad view state for: -1
+11-11 21:16:07.486  4843  4858 D EGL_emulation: app_time_stats: avg=193.74ms min=14.19ms max=548.16ms count=6
+11-11 21:16:07.490   553  1787 I NotificationService: cancelToast pkg=org.rabochaya.karta token=android.os.BinderProxy@a1c8150
+11-11 21:16:07.491   421  4078 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 21:16:07.491   553  1785 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 21:16:07.510   553  1787 W InputManager-JNI: Input channel object '11b31c6 Toast (client)' was disposed without first being removed with the input manager!
+11-11 21:16:07.512   553  1787 W NotificationService: Toast already killed. pkg=org.rabochaya.karta token=android.os.BinderProxy@a1c8150
+11-11 21:16:07.551   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:07.551   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:07.609   553   663 D ActivityManager: freezing 2928 com.google.android.rkpdapp
+11-11 21:16:07.611   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+11-11 21:16:07.611   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+11-11 21:16:07.611   553   830 D InetDiagMessage: Destroyed live tcp sockets for uids={10201} in 0ms
+11-11 21:16:07.655   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:07.656   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:07.717   421   524 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 21:16:07.754   167  4961 I keystore2: system/security/keystore2/watchdog/src/lib.rs:319 - Watchdog thread idle -> terminating. Have a great day.
+11-11 21:16:07.759   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:07.759   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:07.863   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:07.863   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:07.967   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:07.967   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:08.071   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:08.071   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:08.175   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:08.175   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:08.279   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:08.280   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:08.383   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:08.383   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:08.487   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:08.487   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:08.591   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:08.591   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:08.695   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:08.695   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:08.799   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:08.799   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:08.903   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:08.903   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:09.007   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:09.008   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:09.111   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:09.111   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:09.215   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:09.215   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:09.319   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:09.319   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:09.423   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:09.423   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:09.527   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:09.528   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:09.605   553  1785 D WindowManager: captureDisplay
+11-11 21:16:09.631   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:09.632   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:09.681   907   954 V WindowManagerShell: Transition requested (#46): android.os.BinderProxy@b6c0c12 TransitionRequestInfo { type = CLOSE, triggerTask = null, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 46 }
+11-11 21:16:09.684   425   425 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+11-11 21:16:09.692   553   580 D OomAdjuster: Not killing cached processes
+11-11 21:16:09.725   907  1361 V WindowManagerShell: onTransitionReady(transaction=2375116917530)
+11-11 21:16:09.725   553   577 V WindowManager: Sent Transition (#46) createdAt=11-11 21:16:09.681 via request=TransitionRequestInfo { type = CLOSE, triggerTask = null, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 46 }
+11-11 21:16:09.725   553   577 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+11-11 21:16:09.725   553   577 V WindowManager:     info={id=46 t=CLOSE f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[
+11-11 21:16:09.725   553   577 V WindowManager:         {null m=CLOSE f=FILLS_TASK leash=Surface(name=ActivityRecord{485f9dd u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity)/@0x5320811 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity},
+11-11 21:16:09.725   553   577 V WindowManager:         {null m=TO_FRONT f=FILLS_TASK leash=Surface(name=ActivityRecord{60ddc69 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0x3cd0f0f sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}
+11-11 21:16:09.725   553   577 V WindowManager:     ]}
+11-11 21:16:09.726   907   954 V WindowManagerShell: onTransitionReady (#46) android.os.BinderProxy@b6c0c12: {id=46 t=CLOSE f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=CLOSE f=FILLS_TASK leash=Surface(name=ActivityRecord{485f9dd u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity)/@0x9acfe3 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity},{null m=TO_FRONT f=FILLS_TASK leash=Surface(name=ActivityRecord{60ddc69 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0x9d3dde0 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}]}
+11-11 21:16:09.726   907   954 V WindowManagerShell: Playing animation for (#46) android.os.BinderProxy@b6c0c12@0
+11-11 21:16:09.726   907   954 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@38e5249
+11-11 21:16:09.726   907   954 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@e21774e
+11-11 21:16:09.726   907   954 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@aedc06f
+11-11 21:16:09.726   907   954 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@cb6f17c
+11-11 21:16:09.726   907   954 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@960ca05
+11-11 21:16:09.726   907   954 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+11-11 21:16:09.726   907   954 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@a1ba5a
+11-11 21:16:09.726   907   954 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@73ff48b
+11-11 21:16:09.726   907   954 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=46 t=CLOSE f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=CLOSE f=FILLS_TASK leash=Surface(name=ActivityRecord{485f9dd u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity)/@0x9acfe3 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity},{null m=TO_FRONT f=FILLS_TASK leash=Surface(name=ActivityRecord{60ddc69 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0x9d3dde0 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}]}
+11-11 21:16:09.726   907   954 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[OPEN,TO_FRONT] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@1e95a62, appThread = android.app.IApplicationThread$Stub$Proxy@3b187f3, debugName = OverlaySwipeBack }}
+11-11 21:16:09.726   907   954 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@2f51cb0, appThread = android.app.IApplicationThread$Stub$Proxy@13b0729, debugName = LauncherToDream }}
+11-11 21:16:09.726   907   954 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@506baae, appThread = android.app.IApplicationThread$Stub$Proxy@152b04f, debugName = QuickstepLaunchHome }}
+11-11 21:16:09.726   907   954 V WindowManagerShell:  Delegate animation for (#46) to null
+11-11 21:16:09.726   907   954 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultTransitionHandler@8fd3ab2
+11-11 21:16:09.726   907   954 V WindowManagerShell: start default transition animation, info = {id=46 t=CLOSE f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=CLOSE f=FILLS_TASK leash=Surface(name=ActivityRecord{485f9dd u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity)/@0x9acfe3 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity},{null m=TO_FRONT f=FILLS_TASK leash=Surface(name=ActivityRecord{60ddc69 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0x9d3dde0 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}]}
+11-11 21:16:09.727   907   954 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@720873f animAttr=0x6 type=CLOSE isEntrance=true
+11-11 21:16:09.727   907   954 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@20585b animAttr=0x7 type=CLOSE isEntrance=false
+11-11 21:16:09.727   553  1787 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 21:16:09.736   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:09.736   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:09.742  4843  4858 D EGL_emulation: app_time_stats: avg=563.77ms min=15.02ms max=2201.44ms count=4
+11-11 21:16:09.760   553   682 I ImeTracker: org.rabochaya.karta:36966f7b: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+11-11 21:16:09.760   553   682 I ImeTracker: org.rabochaya.karta:36966f7b: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-11 21:16:09.761  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+11-11 21:16:09.764  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+11-11 21:16:09.764  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=org.rabochaya.karta, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-11 21:16:09.765  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 21:16:09.765  1324  1324 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+11-11 21:16:09.766   553  1787 W PackageConfigPersister: App-specific configuration not found for packageName: org.rabochaya.karta and userId: 0
+11-11 21:16:09.777   907   954 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@8fd3ab2
+11-11 21:16:09.778   907   954 W Looper  : Slow dispatch took 52ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda0@ecffa0d m=0
+11-11 21:16:09.785   907   954 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#46) android.os.BinderProxy@b6c0c12@0
+11-11 21:16:09.787   553   577 V WindowManager: Finish Transition (#46): created at 11-11 21:16:09.681 collect-started=0.039ms request-sent=0.091ms started=1.728ms ready=11.881ms sent=43.252ms finished=105.413ms
+11-11 21:16:09.787  4843  4843 D VRI[GeometryEditorActivity]: visibilityChanged oldVisibility=true newVisibility=false
+11-11 21:16:09.788   907   954 V WindowManagerShell: Track 0 became idle
+11-11 21:16:09.789   907   954 V WindowManagerShell: All active transition animations finished
+11-11 21:16:09.792   553  1787 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 21:16:09.796   553   572 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 21:16:09.810   553  1787 D AutofillSession: Set the response has expired.
+11-11 21:16:09.810  4843  4843 D AutofillManager: onActivityFinishing(): calling cancelLocked()
+11-11 21:16:09.810  4843  4843 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@df55616
+11-11 21:16:09.810   553  1787 W FillResponseEventLogger: Shouldn't be logging AutofillFillRequestReported again for same event
+11-11 21:16:09.810   553  1787 W PresentationStatsEventLogger: Shouldn't be logging AutofillPresentationEventReported again for same event
+11-11 21:16:09.810   553  1787 D AutofillSession: clearPendingIntentLocked
+11-11 21:16:09.811   553  1787 D AutofillInlineSuggestionsRequestSession: onInlineSuggestionsResponseLocked called for:1073741825@1774139103
+11-11 21:16:09.811   553  1787 W AutofillInlineSuggestionsRequestSession: Never received an InlineSuggestionsRequest from the IME for 1073741825@1774139103
+11-11 21:16:09.811   553   578 D AutofillUI: destroySaveUiUiThread(): already destroyed
+11-11 21:16:09.811   553   572 D CoreBackPreview: Window{b6d56d9 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}: Setting back callback null
+11-11 21:16:09.812  3931  3931 V InlineSuggestionRenderService: handleDestroySuggestionViews called for 0:1774139103
+11-11 21:16:09.812   553  1787 W InputManager-JNI: Input channel object 'b6d56d9 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (client)' was disposed without first being removed with the input manager!
+11-11 21:16:09.839   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:09.839   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:09.943   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:09.944   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:10.047   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:10.048   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:10.151   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:10.151   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:10.255   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:10.255   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:10.359   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:10.359   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:10.463   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:10.463   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:10.567   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:10.567   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:10.580   363  1535 D android.hardware.audio@7.1-impl.ranchu: threadLoop: entering standby, frames: 4485824
+11-11 21:16:10.671   363  4875 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)
+11-11 21:16:10.671   363  4875 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1
+11-11 21:16:11.360     0     0 W healthd : battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+11-11 21:16:11.316   553  1787 D WindowManager: captureDisplay
+11-11 21:16:11.397   553  1787 W MagnificationConnectionManager: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-11 21:16:11.397   553  1787 D AccessibilityManagerService: restoreCurrentUserForTestAutomationIfNeededLocked(): ignoring because device doesn't support visible background users
+11-11 21:16:11.397   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.397   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.397   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.398   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.398   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.398  1422  4313 I AiAiEcho: Settings changed for uri: content://settings/secure/accessibility_enabled
+11-11 21:16:11.398   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.398   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.398  1422  1724 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 21:16:11.398  1422  1724 I AiAiEcho: EchoTargets: 
+11-11 21:16:11.398  1422  1724 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 21:16:11.398  1422  1724 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 21:16:11.398  1422  1724 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 21:16:11.398  1422  1724 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 21:16:11.399  1422  1724 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-11 21:16:11.399   553  1785 I ActivityManager: Force stopping org.rabochaya.karta appid=10209 user=0: finished inst
+11-11 21:16:11.399  1422  1724 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 21:16:11.399  1422  1724 I AiAiEcho: EchoTargets: 
+11-11 21:16:11.399  1422  1724 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 21:16:11.399  1422  1724 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 21:16:11.399  1422  1724 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 21:16:11.399  1422  1724 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 21:16:11.400  1186  1186 D SsBaseTemplateCard: No text view can be set up
+11-11 21:16:11.400  1186  1186 D SsBaseTemplateCard: Passed-in item info is null
+11-11 21:16:11.400  1186  1186 D SsBaseTemplateCard: Passed-in item info is null
+11-11 21:16:11.400  1186  1186 D SsBaseTemplateCard: Passed-in item info is null
+11-11 21:16:11.400  1186  1186 I SsBaseTemplateCard: Secondary card pane is null
+11-11 21:16:11.400  1422  1724 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-11 21:16:11.400   907   907 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-11 21:16:11.403  4832  4832 I app_process: System.exit called, status: 0
+11-11 21:16:11.403   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.403   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.403   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.403   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.403  4832  4832 I AndroidRuntime: VM exiting with result code 0.
+11-11 21:16:11.404   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.404   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.404   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.404   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.404   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.405   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.405   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.405   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.405   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.405   553   553 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 21:16:11.408   553   553 D BatterySaverPolicy: accessibility changed to false, updating policy.
+11-11 21:16:11.543     0     0 I binder  : 553:1785 ioctl 400c620e 7ddbc93f7354 returned -11
+11-11 21:16:11.550     0     0 I binder  : 553:1785 ioctl 400c620e 7ddbc93f7354 returned -11
+11-11 21:16:11.408   553  1785 E ActivityManager: Unable to freeze binder for 4843: -11
+11-11 21:16:11.409   553   578 D DisplayManagerService: Drop pending events for gone uid 10209
+11-11 21:16:11.410   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+11-11 21:16:11.411   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+11-11 21:16:11.411   553   830 D InetDiagMessage: Destroyed live tcp sockets for uids={10209} in 1ms
+11-11 21:16:11.411   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+11-11 21:16:11.412   553   830 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+11-11 21:16:11.412   553   830 D InetDiagMessage: Destroyed live tcp sockets for uids={20209} in 1ms
+11-11 21:16:11.412   553  1785 I ActivityManager: Killing 4843:org.rabochaya.karta/u0a209 (adj 0): stop org.rabochaya.karta due to finished inst
+11-11 21:16:11.414   553  1785 W ActivityTaskManager: Force removing ActivityRecord{60ddc69 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity t18 f}}: app died, no saved state
+11-11 21:16:11.416   907   954 V WindowManagerShell: Transition requested (#47): android.os.BinderProxy@40a7f10 TransitionRequestInfo { type = CLOSE, triggerTask = TaskInfo{userId=0 taskId=18 displayId=0 isRunning=false baseIntent=Intent { flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity } baseActivity=null topActivity=null origActivity=null realActivity=ComponentInfo{org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity} numActivities=0 lastActiveTime=188307 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@18f2a09} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=null launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= false isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 47 }
+11-11 21:16:11.421  1186  1186 I TopTaskTracker: onTaskMovedToFront: (moved taskInfo to front) taskId=7, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10000100 cmp=com.google.android.apps.nexuslauncher/.NexusLauncherActivity }
+11-11 21:16:11.424   553   572 I AppWidgetServiceImpl: startListening() 0
+11-11 21:16:11.425  1186  1186 D StatsLog: LAUNCHER_ONRESUME
+11-11 21:16:11.429   907   954 D WindowManagerShell: setLauncherKeepClearAreaHeight: visible=true, height=175
+11-11 21:16:11.430   553  1507 W AppSearchIcing: icing-search-engine.cc:321: Error: 5, Message: Document (com.google.android.googlequicksearchbox$OneSearchZeroStateGoogleSuggestions/default, zp) not found.
+11-11 21:16:11.431   354   354 I netd    : tetherGetStats() -> {[]} <1.18ms>
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: AppSearch 0-state cache not available, fallback to AGA
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: java.util.concurrent.CompletionException: java.util.NoSuchElementException: No value present
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	at java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:308)
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	at java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:323)
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	at java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:684)
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	at java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:486)
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	at java.util.concurrent.CompletableFuture.completeExceptionally(CompletableFuture.java:2138)
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	at com.google.android.apps.nexuslauncher.allapps.E0.onResult(go/retraceme 31f9979659277bb965985aff1272c33e3c3c9e755b77166d20a2465454178f2c:67)
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	at android.app.appsearch.SearchSessionUtil$1.lambda$onResult$0(go/retraceme 64eee9e9f568ff45978879ad2ff83146f2618ee8a88278736fbdf5fae931976e:144)
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	at android.app.appsearch.SearchSessionUtil$1.$r8$lambda$CEk3q8sDAQVhU3rQwVueB8FAj_M(go/retraceme 64eee9e9f568ff45978879ad2ff83146f2618ee8a88278736fbdf5fae931976e:1)
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	at android.app.appsearch.SearchSessionUtil$1$$ExternalSyntheticLambda0.run(go/retraceme 64eee9e9f568ff45978879ad2ff83146f2618ee8a88278736fbdf5fae931976e:22)
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	at android.os.Handler.handleCallback(Handler.java:959)
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	at android.os.Handler.dispatchMessage(Handler.java:100)
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	at android.os.Looper.loopOnce(Looper.java:232)
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	at android.os.Looper.loop(Looper.java:317)
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: Caused by: java.util.NoSuchElementException: No value present
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	at java.util.Optional.get(Optional.java:143)
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	at com.google.android.apps.nexuslauncher.allapps.E0.onResult(go/retraceme 31f9979659277bb965985aff1272c33e3c3c9e755b77166d20a2465454178f2c:28)
+11-11 21:16:11.431  1186  1976 D OneSearchSuggestProvider: 	... 8 more
+11-11 21:16:11.575     0     0 I binder  : undelivered TRANSACTION_COMPLETE
+11-11 21:16:11.577     0     0 I binder  : undelivered transaction 407813, process died.
+11-11 21:16:11.435   425   425 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+11-11 21:16:11.578     0     0 I binder  : undelivered TRANSACTION_COMPLETE
+11-11 21:16:11.437   553  1010 I WindowManager: WIN DEATH: Window{9218ee4 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}
+11-11 21:16:11.437   553  1010 W InputManager-JNI: Input channel object '9218ee4 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (client)' was disposed without first being removed with the input manager!
+11-11 21:16:11.438  1186  1186 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=6}
+11-11 21:16:11.438   434   434 I adbd    : Remote process closed the socket (on MSG_PEEK)
+11-11 21:16:11.439  1186  1235 D QuickstepModelDelegate: notifyAppTargetEvent action=1 launchLocation=workspace/0/[-1,-1]/[1,1]
+11-11 21:16:11.579     0     0 I binder  : undelivered transaction 407897, process died.
+11-11 21:16:11.441  1186  1976 D OneSearchSuggestProvider: Created the binder channel successfully for end point service =com.google.android.apps.search.googleapp.search.suggest.plugins.onesearch.server.OneSearchSuggestService , mChannel=i1{delegate=f{logId=45, target=directaddress:///AndroidComponentAddress%5BIntent%20%7B%20act=grpc.io.action.BIND%20cmp=com.google.android.googlequicksearchbox/com.google.android.apps.search.googleapp.search.suggest.plugins.onesearch.server.OneSearchSuggestService%20%7D%5D}} , mOneSearchConnection=l2.Z@e77a6e6
+11-11 21:16:11.441   553  1801 I ImeTracker: org.rabochaya.karta:86870f39: onRequestHide at ORIGIN_SERVER reason HIDE_REMOVE_CLIENT fromUser false
+11-11 21:16:11.441   553  1801 I ImeTracker: org.rabochaya.karta:86870f39: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-11 21:16:11.443   355   355 I Zygote  : Process 4843 exited due to signal 9 (Killed)
+11-11 21:16:11.444   553   654 D ActivityManager: sync unfroze 1557 com.google.android.googlequicksearchbox:search for 6
+11-11 21:16:11.446   553   654 D ActivityManager: sync unfroze 3682 com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0 for 6
+11-11 21:16:11.447   553   591 I libprocessgroup: Removed cgroup /sys/fs/cgroup/uid_10209/pid_4843
+11-11 21:16:11.452  1186  1186 D BaseDepthController: setSurface:
+11-11 21:16:11.452  1186  1186 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+11-11 21:16:11.452  1186  1186 D BaseDepthController: 	mSurface: Surface(name=com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity)/@0x18cf7c2
+11-11 21:16:11.460   553   654 W ProcessStats: Tracking association SourceState{a295b44 system/1000 ImpBg #6631} whose proc state 6 is better than process ProcessState{7a213cd com.google.android.googlequicksearchbox:search/10144 pkg=com.google.android.googlequicksearchbox} proc state 14 (0 skipped)
+11-11 21:16:11.460   553   581 W ActivityTaskManager: Unable to send transaction to client proc org.rabochaya.karta: no app thread
+11-11 21:16:11.462  1557  1557 I A       : (REDACTED) disposing SearchServiceClient after timeout %s
+11-11 21:16:11.463   553   580 W ActivityManager: setHasOverlayUi called on unknown pid: 4843
+11-11 21:16:11.463   553   580 V WindowManager: Unknown focus tokens, dropping reportFocusChanged
+11-11 21:16:11.464   553  1799 V ActivityManager: Got obituary of 4843:org.rabochaya.karta
+11-11 21:16:11.473  1422  1724 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 21:16:11.473  1422  1724 I AiAiEcho: EchoTargets: 
+11-11 21:16:11.473  1422  1724 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 21:16:11.473  1422  1724 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 21:16:11.473  1422  1724 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 21:16:11.473  1422  1724 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 21:16:11.474   907  3173 V WindowManagerShell: onTransitionReady(transaction=2375116917563)
+11-11 21:16:11.475  1422  1724 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-11 21:16:11.616     0     0 I binder  : undelivered transaction 407807, process died.
+11-11 21:16:11.475  1186  1186 D SsBaseTemplateCard: No text view can be set up
+11-11 21:16:11.476  1186  1186 D SsBaseTemplateCard: Passed-in item info is null
+11-11 21:16:11.476  1186  1186 D SsBaseTemplateCard: Passed-in item info is null
+11-11 21:16:11.476  1186  1186 D SsBaseTemplateCard: Passed-in item info is null
+11-11 21:16:11.478  1186  1186 I SsBaseTemplateCard: Secondary card pane is null
+11-11 21:16:11.478   907   954 V WindowManagerShell: onTransitionReady (#47) android.os.BinderProxy@40a7f10: {id=47 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@343231a} m=TO_FRONT f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0x4b9d40e sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@8640e4b} m=CLOSE f=NONE leash=Surface(name=Task=18)/@0x28fbe2f sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 taskParent=-1},{null m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{8d48f53 token=android.os.Binder@4e06342})/@0xa807c3c sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+11-11 21:16:11.478   907   954 V WindowManagerShell: Playing animation for (#47) android.os.BinderProxy@40a7f10@0
+11-11 21:16:11.478   907   954 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@38e5249
+11-11 21:16:11.478   907   954 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@e21774e
+11-11 21:16:11.479   907   954 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@aedc06f
+11-11 21:16:11.479   907   954 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@cb6f17c
+11-11 21:16:11.479   907   954 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@960ca05
+11-11 21:16:11.479   907   954 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+11-11 21:16:11.479   907   954 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@a1ba5a
+11-11 21:16:11.479   907   954 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@73ff48b
+11-11 21:16:11.479   907   954 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=47 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@343231a} m=TO_FRONT f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0x4b9d40e sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@8640e4b} m=CLOSE f=NONE leash=Surface(name=Task=18)/@0x28fbe2f sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 taskParent=-1},{null m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{8d48f53 token=android.os.Binder@4e06342})/@0xa807c3c sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+11-11 21:16:11.479   907   954 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[OPEN,TO_FRONT] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@1e95a62, appThread = android.app.IApplicationThread$Stub$Proxy@3b187f3, debugName = OverlaySwipeBack }}
+11-11 21:16:11.479   907   954 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@2f51cb0, appThread = android.app.IApplicationThread$Stub$Proxy@13b0729, debugName = LauncherToDream }}
+11-11 21:16:11.479   907   954 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@506baae, appThread = android.app.IApplicationThread$Stub$Proxy@152b04f, debugName = QuickstepLaunchHome }}
+11-11 21:16:11.479   907   954 D RemoteTransitionHandler: Found filterPair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@506baae, appThread = android.app.IApplicationThread$Stub$Proxy@152b04f, debugName = QuickstepLaunchHome }}
+11-11 21:16:11.479   907   954 V WindowManagerShell:  Delegate animation for (#47) to RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@506baae, appThread = android.app.IApplicationThread$Stub$Proxy@152b04f, debugName = QuickstepLaunchHome }
+11-11 21:16:11.482   553   577 V WindowManager: Sent Transition (#47) createdAt=11-11 21:16:11.414 via request=TransitionRequestInfo { type = CLOSE, triggerTask = TaskInfo{userId=0 taskId=18 displayId=0 isRunning=false baseIntent=Intent { flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity } baseActivity=null topActivity=null origActivity=null realActivity=ComponentInfo{org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity} numActivities=0 lastActiveTime=188307 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{899b852 Task{f4506ee #18 type=standard A=10209:org.rabochaya.karta}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=null launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= false isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 47 }
+11-11 21:16:11.482   553   577 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+11-11 21:16:11.483   553   577 V WindowManager:     info={id=47 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+11-11 21:16:11.483   553   577 V WindowManager:         {WCT{RemoteToken{4e94c77 Task{7046e12 #1 type=home}}} m=TO_FRONT f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0x3fd8ca sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 taskParent=-1},
+11-11 21:16:11.483   553   577 V WindowManager:         {WCT{RemoteToken{899b852 Task{f4506ee #18 type=standard A=10209:org.rabochaya.karta}}} m=CLOSE f=NONE leash=Surface(name=Task=18)/@0x95e90b4 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 taskParent=-1},
+11-11 21:16:11.483   553   577 V WindowManager:         {null m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{8d48f53 token=android.os.Binder@4e06342})/@0xec70e2e sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}
+11-11 21:16:11.483   553   577 V WindowManager:     ]}
+11-11 21:16:11.483   907   954 V WindowManagerShell:  animated by com.android.wm.shell.transition.RemoteTransitionHandler@73ff48b
+11-11 21:16:11.487  1557  1557 I A       : (REDACTED) Created gRPC endpoint for service %s
+11-11 21:16:11.490  1186  1186 D StateManager: createAtomicAnimation - fromState: Background, toState: Normal, partial trace:
+11-11 21:16:11.490  1186  1186 D StateManager: 	at com.android.quickstep.util.StaggeredWorkspaceAnim.prepareToAnimate(go/retraceme 31f9979659277bb965985aff1272c33e3c3c9e755b77166d20a2465454178f2c:22)
+11-11 21:16:11.490  1186  1186 D StateManager: 	at com.android.quickstep.util.StaggeredWorkspaceAnim.<init>(go/retraceme 31f9979659277bb965985aff1272c33e3c3c9e755b77166d20a2465454178f2c:4)
+11-11 21:16:11.490  1186  1186 D StateManager: 	at com.android.quickstep.util.StaggeredWorkspaceAnim.<init>(go/retraceme 31f9979659277bb965985aff1272c33e3c3c9e755b77166d20a2465454178f2c:1)
+11-11 21:16:11.492   553  1787 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 21:16:11.497  1557  1557 I BgTaskExecutorImpl: (REDACTED) Starting %s background task %s.
+11-11 21:16:11.655     0     0 I logd    : logdr: UID=2000 GID=2000 PID=4984 n tail=1000 logMask=99 pid=0 start=0ns deadline=0ns
+11-11 21:16:11.524   553   682 I ImeTracker: com.google.android.apps.nexuslauncher:e95a3493: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+11-11 21:16:11.526   553   682 I ImeTracker: com.google.android.apps.nexuslauncher:e95a3493: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-11 21:16:11.534  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+11-11 21:16:11.534  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+11-11 21:16:11.535  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=com.google.android.apps.nexuslauncher, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-11 21:16:11.535  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 21:16:11.536  1324  1324 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+11-11 21:16:11.536   553   572 W PackageConfigPersister: App-specific configuration not found for packageName: com.google.android.apps.nexuslauncher and userId: 0
+11-11 21:16:11.539  1557  1834 I A       : NGA enabled in interactor.
+11-11 21:16:11.539  1557  1834 I A       : (REDACTED) Nga state changed to %s
+11-11 21:16:11.539  1557  1834 I A       : (REDACTED) isTngActive=%s
+11-11 21:16:11.543   553   581 W ActivityTaskManager: Unable to send transaction to client proc org.rabochaya.karta: no app thread
+11-11 21:16:11.545  1186  1674 D EGL_emulation: app_time_stats: avg=1786.75ms min=6.76ms max=26174.22ms count=15
+11-11 21:16:11.565  1468  2360 I A       : Initializing all components
+11-11 21:16:11.565  1557  1824 I NetworkRecognitionRnr: Using pair HTTP connection
+11-11 21:16:11.566  1468  1829 I A       : (REDACTED) onIsEnabledChanged, isEnabled: %s
+11-11 21:16:11.566  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.566  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.566  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.566  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.566  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.566  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.567  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.572  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.574  1468  1926 I A       : (REDACTED) Nga on-device enabled based on TNG:MA active state: %b
+11-11 21:16:11.574  1468  1926 I A       : (REDACTED) State changed: %s => %s by %s and %s with %s
+11-11 21:16:11.574  1468  1926 I A       : (REDACTED) Recognizer choice: (recognizer_type: %s, recognizer_mode: %s, choice_reason: %s)
+11-11 21:16:11.576  1468  1926 I A       : (REDACTED) onActiveStateChangeEvent: %s => %s
+11-11 21:16:11.576  1468  1926 I A       : (REDACTED) #onActiveStateChangeEvent, newState: %s, previousState: %s.
+11-11 21:16:11.576  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.576  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.576  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.577  1468  1829 I A       : (REDACTED) Setting session to type: %s
+11-11 21:16:11.577  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.577  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.577  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.577  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.578  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.578  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.578  1468  1829 I A       : (REDACTED) setNavBarVisible: %s
+11-11 21:16:11.579  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.579  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.579  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.579  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.579  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.580  1468  1829 W A       : Disposing empty manager. Did you forgot to subscribe observables?
+11-11 21:16:11.580  1468  1829 I A       : (REDACTED) on opa visibility changed %s
+11-11 21:16:11.582  1468  1926 I A       : (REDACTED) Nga on-device enabled based on TNG:MA active state: %b
+11-11 21:16:11.583  1468  1829 I A       : (REDACTED) stopListening(%s, %s)
+11-11 21:16:11.597  1557  2750 I A       : [Upload] Connected
+11-11 21:16:11.603  1468  1926 I A       : Initialize
+11-11 21:16:11.603  1468  1926 I NgaEntryPointEventSendr: setupConnection
+11-11 21:16:11.604  1468  1829 I A       : (REDACTED) on opa visibility changed %s
+11-11 21:16:11.606  1557  2750 I NetworkRecognitionRnr: Using pair HTTP connection
+11-11 21:16:11.609  1557  1557 E A       : onError
+11-11 21:16:11.609  1557  1557 E A       : com.google.android.apps.gsa.shared.speech.b.l: errorCode: 65561, engine: 2
+11-11 21:16:11.609  1557  1557 E A       : 	at com.google.android.apps.gsa.staticplugins.bp.a.f.a(PG:23)
+11-11 21:16:11.609  1557  1557 E A       : 	at com.google.android.apps.gsa.s3.o.hi(PG:13)
+11-11 21:16:11.609  1557  1557 E A       : 	at com.google.ci.g.a.f.e(PG:9)
+11-11 21:16:11.609  1557  1557 E A       : 	at com.google.android.apps.gsa.speech.k.a.g.d(PG:162)
+11-11 21:16:11.609  1557  1557 E A       : 	at com.google.android.apps.gsa.speech.k.a.g.iO(PG:26)
+11-11 21:16:11.609  1557  1557 E A       : 	at com.google.android.apps.gsa.s3.p.c(PG:102)
+11-11 21:16:11.609  1557  1557 E A       : 	at com.google.android.apps.gsa.s3.q.run(PG:1)
+11-11 21:16:11.609  1557  1557 E A       : 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+11-11 21:16:11.609  1557  1557 E A       : 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+11-11 21:16:11.609  1557  1557 E A       : 	at com.google.android.apps.gsa.shared.util.c.a.e.run(PG:12)
+11-11 21:16:11.609  1557  1557 E A       : 	at com.google.android.apps.gsa.shared.util.c.a.bg.run(PG:3)
+11-11 21:16:11.609  1557  1557 E A       : 	at com.google.android.apps.gsa.shared.util.c.a.bg.run(PG:3)
+11-11 21:16:11.609  1557  1557 E A       : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+11-11 21:16:11.609  1557  1557 E A       : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+11-11 21:16:11.609  1557  1557 E A       : 	at java.lang.Thread.run(Thread.java:1012)
+11-11 21:16:11.609  1557  1557 E A       : 	at com.google.android.apps.gsa.shared.util.c.a.l.run(PG:42)
+11-11 21:16:11.609  1557  1557 E A       : Caused by: com.google.android.apps.gsa.shared.speech.b.n: errorCode: 65586, engine: 2
+11-11 21:16:11.609  1557  1557 E A       : 	at com.google.android.apps.gsa.s3.o.hi(PG:6)
+11-11 21:16:11.609  1557  1557 E A       : 	... 14 more
+11-11 21:16:11.609  1557  1557 E A       : Caused by: com.google.android.apps.gsa.shared.speech.b.j: errorCode: 401, engine: 2
+11-11 21:16:11.609  1557  1557 E A       : 	at com.google.android.apps.gsa.assistant.shared.n.i.b(PG:30)
+11-11 21:16:11.609  1557  1557 E A       : 	at com.google.android.apps.gsa.s3.producers.j.hs(PG:11)
+11-11 21:16:11.609  1557  1557 E A       : 	at com.google.android.apps.gsa.speech.k.a.g.d(PG:135)
+11-11 21:16:11.609  1557  1557 E A       : 	... 12 more
+11-11 21:16:11.612  1557  4990 I A       : [Upload] Connected
+11-11 21:16:11.614  1468  1829 I INV.SystemUI: showGestureNav
+11-11 21:16:11.614  1468  1829 I INV.SystemUI: (REDACTED) setUiHints(hints = %s)
+11-11 21:16:11.616  1557  1557 W A       : Failed to sync device settings.
+11-11 21:16:11.616  1557  1557 I A       : Retrying to sync device settings.
+11-11 21:16:11.617  1557  1557 W JobInfo : Job 'com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService#-353' has a deadline with functional constraints and an extremely short time window of 0 ms (delay=120000, deadline=120000). The functional constraints are not likely to be satisfied when the job runs.
+11-11 21:16:11.617   553  1787 W JobInfo : Job 'com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService#-353' has a deadline with functional constraints and an extremely short time window of 0 ms (delay=120000, deadline=120000). The functional constraints are not likely to be satisfied when the job runs.
+11-11 21:16:11.622  1468  1926 I NgaEntryPointEventSendr: (REDACTED) State changed: %s => %s
+11-11 21:16:11.623   553  1787 W JobInfo : Job 'com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService#-353' has a deadline with functional constraints and an extremely short time window of 0 ms (delay=120000, deadline=120000). The functional constraints are not likely to be satisfied when the job runs.
+11-11 21:16:11.632  1557  1563 W earchbox:search: Missing inline cache for java.lang.Object com.google.android.libraries.search.ab.b.e.f.a.b(com.google.android.libraries.search.ab.b.t, com.google.android.libraries.search.ab.b.z, n.c.g)
+11-11 21:16:11.633  1468  1926 I INV.SystemUI: setUiHints: finished successfully
+11-11 21:16:11.635  1468  1829 I A       : Successfully initialized all components
+11-11 21:16:11.659  1186  1186 D SearchTargetUtil: query= size=15
+11-11 21:16:11.660  1186  1186 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=david moore waived carolina panthers,input_query=android.app.search.Query@fc48794,group_id=web190041,response_id=eaa10088-fdd7-4edc-9325-489dc4f82f00,support_query_builder=false,} searchAction=david moore waived carolina panthers searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=true,suggestion_action_rpc=2,}ParentID: null targetID: 1ff5d18f-3223-4998-83df-4432fbdf3f72
+11-11 21:16:11.660  1186  1186 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=bikar and bokak coral atolls,input_query=android.app.search.Query@fc48794,group_id=web190041,response_id=eaa10088-fdd7-4edc-9325-489dc4f82f00,support_query_builder=false,} searchAction=bikar and bokak coral atolls searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=true,suggestion_action_rpc=2,}ParentID: null targetID: 6a2657b0-5bb9-479f-831c-bd2fcfdb9e54
+11-11 21:16:11.660  1186  1186 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=newegg 9800x3d motherboard ram combo,input_query=android.app.search.Query@fc48794,group_id=web190041,response_id=eaa10088-fdd7-4edc-9325-489dc4f82f00,support_query_builder=false,} searchAction=newegg 9800x3d motherboard ram combo searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=true,suggestion_action_rpc=2,}ParentID: null targetID: d6887430-d580-475e-b73a-1d1301c32826
+11-11 21:16:11.660  1186  1186 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=alaska airlines diverted flight yakima,input_query=android.app.search.Query@fc48794,group_id=web190041,response_id=eaa10088-fdd7-4edc-9325-489dc4f82f00,support_query_builder=false,} searchAction=alaska airlines diverted flight yakima searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=true,suggestion_action_rpc=2,}ParentID: null targetID: 9538e866-2d29-46bc-bb42-0c2aec6a3d2d
+11-11 21:16:11.660  1186  1186 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=pete hegseth impeachment vote,input_query=android.app.search.Query@fc48794,group_id=web190041,response_id=eaa10088-fdd7-4edc-9325-489dc4f82f00,support_query_builder=false,} searchAction=pete hegseth impeachment vote searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=true,suggestion_action_rpc=2,}ParentID: null targetID: c88ba1cf-7da4-464b-9e23-a26ff7d2dc82
+11-11 21:16:11.660  1186  1186 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=reacher vs the recruit comparison,input_query=android.app.search.Query@fc48794,group_id=web190041,response_id=eaa10088-fdd7-4edc-9325-489dc4f82f00,support_query_builder=false,} searchAction=reacher vs the recruit comparison searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=true,suggestion_action_rpc=2,}ParentID: null targetID: d73ab219-74f0-4706-96aa-78c1281de971
+11-11 21:16:11.660  1186  1186 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=apple iphone duo,input_query=android.app.search.Query@fc48794,group_id=web190041,response_id=eaa10088-fdd7-4edc-9325-489dc4f82f00,support_query_builder=false,} searchAction=apple iphone duo searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=true,suggestion_action_rpc=2,}ParentID: null targetID: 0dd3eb28-b96c-465f-91b8-cde5a4137d25
+11-11 21:16:11.660  1186  1186 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=apprentice jockey izzy neale,input_query=android.app.search.Query@fc48794,group_id=web190041,response_id=eaa10088-fdd7-4edc-9325-489dc4f82f00,support_query_builder=false,} searchAction=apprentice jockey izzy neale searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=true,suggestion_action_rpc=2,}ParentID: null targetID: cbd87ba9-a2f2-4c97-8c54-acc2a0dc289d
+11-11 21:16:11.660  1186  1186 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=kirkland signature,input_query=android.app.search.Query@fc48794,group_id=web190041,response_id=eaa10088-fdd7-4edc-9325-489dc4f82f00,support_query_builder=false,} searchAction=kirkland signature searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=true,suggestion_action_rpc=2,}ParentID: null targetID: 12309abc-bdab-4462-8b50-3adbdaa104ee
+11-11 21:16:11.660  1186  1186 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=vitamin k deficiency bleeding,input_query=android.app.search.Query@fc48794,group_id=web190041,response_id=eaa10088-fdd7-4edc-9325-489dc4f82f00,support_query_builder=false,} searchAction=vitamin k deficiency bleeding searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=true,suggestion_action_rpc=2,}ParentID: null targetID: 44b386c5-3999-4800-9dda-88b2f422890e
+11-11 21:16:11.660  1186  1186 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=weather forecast snow storm,input_query=android.app.search.Query@fc48794,group_id=web190041,response_id=eaa10088-fdd7-4edc-9325-489dc4f82f00,support_query_builder=false,} searchAction=weather forecast snow storm searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=true,suggestion_action_rpc=2,}ParentID: null targetID: 98b9c7de-c3d0-40d0-b959-c7a5205730a9
+11-11 21:16:11.660  1186  1186 D SearchTargetUtil: layoutType=extra_tall_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{bitmap_url=data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIADAAMAMBIgACEQEDEQH/xAAaAAEBAQEAAwAAAAAAAAAAAAAFBgQHAgMI/8QAMxAAAQMDAgMFBQkBAAAAAAAAAQIDEQAEBRIhBjFBEyJRgZEjYXGhwQcUMlJTgrHR4RX/xAAXAQEBAQEAAAAAAAAAAAAAAAAFBAIG/8QAIREAAQMDBQEBAAAAAAAAAAAAAQACAwQRMQUSI0FRIRP/2gAMAwEAAhEDEQA/AJ29u02Vsp2faHutJiSVHlUL/wA+9uXQxbsrVrUhEfmWRJ386r8++23jiA+lLgcHdQoa+RJ2qh+z7HoetLO4fBL2kvyRzPdSD6D5VXqcxDwPFikjBbcrmV3w3lbIJ7a2MqMAJM7zFHOW79u5DrakESCCPWvoXijE9ohm4YbB9qNWkbyQY+cVLZnCNm6cadR+KDuAQkxv5Hfzmi/3IyFYIWuHwrj+opCklIE9Yq84WvnL/ES+oqdYX2ZUTuoRIn+PKpfP482Vy4NOkdqpIBHSelM8DqPZ37XRPZmIiD3p+lJ0L+UW7UdQwgWK08TWb6w5dhUsgBCoT3kIiSRHvAq+4cRdYXDWzDSS/wBlqbCgnbmYmSI2jrU2+2h+3cYdkocTpUAYkVbcLX7F0y8h9GjRpCgVSDCQCR6cqzqtM4cjcdrVJMCNpytFtmr92ydfetktJaQpRnrHgPOgn8jc3Lf3521KWHD7MgAqO0yRIgU7c3QuLO/WhOlktBLZVsSnxjwkUDw/couseG3IIZUZQdxuAdj50LdItYbYsud8eNPh9l55MNuE6fcdpB+VeHC4uPvq12jbfZLb9oVrUOvh/nWvd9oV8m6ybbGrutklRPKTSHDmOOPs1qOkF86tI3gdN432pfTo3OIPiiq3AEpKksC6hF4tp1IUh9MAH8w5fWsEJEiZI6CkcNaouLpZdGzbJcQkHmZSPrV+oVUBhdGTcnxSU0UgeH2SGRaffk3KGHkqT+sUj4RFYMaDbJeBDVs2hOoISsq1REjlttNMvOsobU3k7MLgQl2FEKHjt18alcvcXtwtDWJtw2hKtSn3REnkIHumfjXLgJwPBFkKm3x+Vzt+l9pKy022EIUdyd9Z8jFMEQIACR4ARU5c4hONAu3XlwgTqSqFuOHkAecn+6y4zO5G1IZvEG6aT3ZJ76f3dfP1p6hq4mxhlsdoyrgdv3Xyv//Z,suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=true,is_personal=false,suggest_raw_text=elliott smith,input_query=android.app.search.Query@fc48794,group_id=web190041,response_id=eaa10088-fdd7-4edc-9325-489dc4f82f00,support_query_builder=false,} searchAction=Elliott Smith searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=true,suggestion_action_rpc=2,}ParentID: null targetID: 872ede8c-ef87-45ee-8ceb-d3debc46131f
+11-11 21:16:11.660  1186  1186 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=pooh shiesty solitary confinement ruling,input_query=android.app.search.Query@fc48794,group_id=web190041,response_id=eaa10088-fdd7-4edc-9325-489dc4f82f00,support_query_builder=false,} searchAction=pooh shiesty solitary confinement ruling searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=true,suggestion_action_rpc=2,}ParentID: null targetID: 37225320-0dde-45c5-91d1-f82fcbf4fcea
+11-11 21:16:11.661  1186  1186 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=yeti rambler insulated serving dish,input_query=android.app.search.Query@fc48794,group_id=web190041,response_id=eaa10088-fdd7-4edc-9325-489dc4f82f00,support_query_builder=false,} searchAction=yeti rambler insulated serving dish searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=true,suggestion_action_rpc=2,}ParentID: null targetID: a58efc36-1827-427d-857a-f7167a355f41
+11-11 21:16:11.661  1186  1186 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=grand theft auto vi pre load,input_query=android.app.search.Query@fc48794,group_id=web190041,response_id=eaa10088-fdd7-4edc-9325-489dc4f82f00,support_query_builder=false,} searchAction=grand theft auto vi pre load searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=true,suggestion_action_rpc=2,}ParentID: null targetID: 3dad96e6-1821-4738-bf6d-16c5e4129599
+11-11 21:16:11.661   434   447 I adbd    : host-17: connection terminated: write failed
+11-11 21:16:11.661   434   434 I adbd    : host-17: offline
+11-11 21:16:11.663   434   434 I adbd    : destroying transport host-17
+11-11 21:16:11.663   434   434 I adbd    : BlockingConnectionAdapter(host-17): stopping
+11-11 21:16:11.663   553  1483 W JobScheduler: Job didn't exist in JobStore: d8da18f #u0a144/-353 com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService
+11-11 21:16:11.665   434   446 I adbd    : host-17: read failed: Success
+11-11 21:16:11.665   434   434 I adbd    : BlockingConnectionAdapter(host-17): stopped
+11-11 21:16:11.665   434   434 I adbd    : BlockingConnectionAdapter(host-17): destructing
+11-11 21:16:11.665   434   434 I adbd    : BlockingConnectionAdapter(host-17): already stopped
+11-11 21:16:11.667  1468  1926 I A       : (REDACTED) Nga on-device enabled based on TNG:MA active state: %b
+11-11 21:16:11.675  1468  1829 I NgaEntryPointEventSendr: onServiceConnected
+11-11 21:16:11.676  1557  4982 I A       : Calling beginBinderSession().
+11-11 21:16:11.682  1557  4982 I A       : beginBinderSession(): calling binder
+11-11 21:16:11.685  1468  1829 I NgaEntryPointEventSendr: (REDACTED) State changed: %s => %s
+11-11 21:16:11.714   553  1483 W ActivityManager: Unable to start service Intent { cmp=com.google.android.apps.tachyon/.clientapi.ClientApiService } U=0: not found
+11-11 21:16:11.746  1557  2158 W A       : (REDACTED) %s task was not run. Callback from Service received after client was disposed.
+11-11 21:16:11.747  1557  4990 I PBSessionCacheImpl: (REDACTED) Deleted sessionId[%d] from persistence.
+11-11 21:16:11.747  1468  1926 I NgaEntryPointEventSendr: (REDACTED) State changed: %s => %s (%s)
+11-11 21:16:11.748  1557  2158 W SearchServiceCore: Abort, client detached.
+11-11 21:16:11.811   425   490 W VsyncModulator: setTransactionSchedule: Unexpected EarlyEnd
+11-11 21:16:11.824   907   954 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#47) android.os.BinderProxy@40a7f10@0
+11-11 21:16:11.826   553   577 V WindowManager: Finish Transition (#47): created at 11-11 21:16:11.414 collect-started=0.032ms request-sent=0.231ms started=6.039ms ready=11.426ms sent=59.881ms finished=411.212ms
+11-11 21:16:11.970     0     0 I binder  : 1483:553 cannot find target node
+11-11 21:16:11.974     0     0 I binder  : 553:1483 transaction async to 0:0 failed 408923/29189/-22, size 64-0 line 3344
+11-11 21:16:11.834   553  1483 E IPCThreadState: Binder transaction failure. id: 408923, BR_*: 29189, error: -22 (Invalid argument)
+11-11 21:16:11.834   553  1483 W ActivityManager: pid 553 system sent binder code 7 with flags 1 to frozen apps and got error -32
+11-11 21:16:11.843   553  1483 W WindowManager: Exception thrown during dispatchAppVisibility Window{9218ee4 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity EXITING}
+11-11 21:16:11.843   553  1483 W WindowManager: android.os.DeadObjectException
+11-11 21:16:11.843   553  1483 W WindowManager: 	at android.os.BinderProxy.transactNative(Native Method)
+11-11 21:16:11.843   553  1483 W WindowManager: 	at android.os.BinderProxy.transact(BinderProxy.java:586)
+11-11 21:16:11.843   553  1483 W WindowManager: 	at android.view.IWindow$Stub$Proxy.dispatchAppVisibility(IWindow.java:553)
+11-11 21:16:11.843   553  1483 W WindowManager: 	at com.android.server.wm.WindowState.sendAppVisibilityToClients(WindowState.java:3253)
+11-11 21:16:11.843   553  1483 W WindowManager: 	at com.android.server.wm.WindowContainer.sendAppVisibilityToClients(WindowContainer.java:1289)
+11-11 21:16:11.843   553  1483 W WindowManager: 	at com.android.server.wm.WindowToken.setClientVisible(WindowToken.java:403)
+11-11 21:16:11.843   553  1483 W WindowManager: 	at com.android.server.wm.ActivityRecord.setClientVisible(ActivityRecord.java:7166)
+11-11 21:16:11.843   553  1483 W WindowManager: 	at com.android.server.wm.ActivityRecord.postApplyAnimation(ActivityRecord.java:5881)
+11-11 21:16:11.843   553  1483 W WindowManager: 	at com.android.server.wm.ActivityRecord.commitVisibility(ActivityRecord.java:5823)
+11-11 21:16:11.843   553  1483 W WindowManager: 	at com.android.server.wm.Transition.finishTransition(Transition.java:1286)
+11-11 21:16:11.843   553  1483 W WindowManager: 	at com.android.server.wm.TransitionController.finishTransition(TransitionController.java:937)
+11-11 21:16:11.843   553  1483 W WindowManager: 	at com.android.server.wm.WindowOrganizerController.finishTransition(WindowOrganizerController.java:494)
+11-11 21:16:11.843   553  1483 W WindowManager: 	at android.window.IWindowOrganizerController$Stub.onTransact(IWindowOrganizerController.java:289)
+11-11 21:16:11.843   553  1483 W WindowManager: 	at com.android.server.wm.WindowOrganizerController.onTransact(WindowOrganizerController.java:204)
+11-11 21:16:11.843   553  1483 W WindowManager: 	at android.os.Binder.execTransactInternal(Binder.java:1505)
+11-11 21:16:11.843   553  1483 W WindowManager: 	at android.os.Binder.execTransact(Binder.java:1444)
+11-11 21:16:11.843   553  1483 W Process : Unable to open /proc/4843/status
+11-11 21:16:11.850  1186  1186 I TopTaskTracker: onTaskRemoved: taskId=18
+11-11 21:16:11.851  1186  1186 I TopTaskTracker: onTaskRemoved: taskId=18
+11-11 21:16:11.856   907   954 V WindowManagerShell: Track 0 became idle
+11-11 21:16:11.856   907   954 V WindowManagerShell: All active transition animations finished
+11-11 21:16:11.856   907   954 W Looper  : Slow dispatch took 32ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.RemoteTransitionHandler$1$$ExternalSyntheticLambda0@ae056e6 m=0
+11-11 21:16:11.860   553  1799 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 21:16:11.863   553  1483 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 21:16:11.868   425   425 E BpTransactionCompletedListener: Failed to transact (-32)
+11-11 21:16:12.276   434  4993 I adbd    : host-18: read thread spawning
+11-11 21:16:12.276   434  4994 I adbd    : host-18: write thread spawning
+11-11 21:16:12.277   434   434 I adbd    : host-18: already offline
+11-11 21:16:12.277   434   434 I adbd    : authentication not required
+- waiting for device -

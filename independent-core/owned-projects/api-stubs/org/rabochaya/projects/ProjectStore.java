@@ -1,0 +1,4 @@
+package org.rabochaya.projects;
+import android.content.Context;import java.io.IOException;
+/** Compile-time ABI only; excluded from DEX. */
+public final class ProjectStore {public static final class Summary {public long id;public String name;} public java.util.List<Summary> list(){throw new AssertionError("ABI stub");} public ProjectStore(Context c){throw new AssertionError("ABI stub");}public KmlProject load(long id)throws IOException{throw new AssertionError("ABI stub");}public void saveDocument(long id,KmlProject p)throws IOException{throw new AssertionError("ABI stub");} public long insert(KmlProject p,String name)throws IOException{throw new AssertionError("ABI stub");} public boolean exists(long id){throw new AssertionError("ABI stub");} public android.database.sqlite.SQLiteDatabase getWritableDatabase(){throw new AssertionError("ABI stub");} public void close(){}}

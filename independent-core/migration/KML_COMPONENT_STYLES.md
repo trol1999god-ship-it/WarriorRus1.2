@@ -1,0 +1,93 @@
+# Компонентные стили KML — ограниченный импорт и отображение
+
+KmlComponentStyle resolver читает явные IconStyle/LineStyle/PolyStyle/LabelStyle
+цвета KML aabbggrr и PolyStyle fill/outline. LocalMapView применяет их раздельно:
+точка, линия/контур, заливка и подпись; alpha сохраняется, прозрачная точка не
+оставляет чёрное кольцо, прозрачная подпись не оставляет тень. EVEN_ODD контуры
+сохраняются. При отсутствии свойства остаются прежние цвета/форма/ширина renderer.
+
+Один DOM индексируется один раз на создание View, не в onDraw. Разрешаются только
+локальные #id, StyleMap normal, inline overrides отдельных свойств, глубина8,
+200000nodes/4096style definitions. Циклы/дубликаты/ambiguous normal/foreign namespace/
+external refs/неподдержанный colorMode не угадываются и не загружаются из сети.
+Это не SVG, не библиотека значков и не редактор назначения стиля. Width/scale/random
+и highlight не заявлены реализованными. DOM/вложения renderer не переписывает.
+
+Локально: JVM38/83282/component32, SDK23 source82 exact/app+instrumentation560classes,
+custom source+DEX privacy PASS, host27 PASS. Первая test compile ошибка whitelist
+сохранена в build.log; регистрация helper в существующем build_tests.py исправлена,
+полная новая сборка build-complete.log PASS. Одноразовые ключи вне repo/artifacts.
+Официальный lint по-прежнему exit1 MissingClass/HardcodedDebugMode, НЕPASS.
+
+Android runtime пока pending. Сценарий подключён в existing offlineformats, без нового
+mode/workflow: разные компонентные pixels/alpha/flags, shared StyleMap + inline merge,
+KML и KMZ roundtrip/вложения, реальный main reopen/две новые PNG, другой проект и
+network0. Строгий лимит кадров16/2МиБ, deadlines и guards не менялись.
+Приёмка символов/всего переноса открыта, accepted0/release gate прежние.
+
+## Следующий локальный кандидат: явное редактирование
+
+После ca888b5 подготовлен «Цвет и заливка KML» в существующем менеджере. Шесть
+свойств открывают тот же managed editor, с исходными project/key/token/raw/cursor.
+Save явный, Cancel не пишет; используется существующая транзакция ObjectTreeWrites
+и ProjectWrites.savePreservingAssets. Пусто снимает только своё свойство и наследует
+shared StyleMap, не меняет его и другие объекты. Для явного цвета задаётся normal;
+собственные color/colorMode выбранного компонента снимаются при reset; width/scale/
+Icon href/геометрия/unknown XML сохраняются. Папки не принимаются как Placemark.
+
+В исходнике LocalMapView обнаружено отсутствие setTypeface у Paint подписей;
+добавлено использование существующего Arimo cache. WorkspaceUi.font(Activity)
+сохранён как совместимый overload, Context overload не удерживает Context.
+Локально JVM39/83316/edit34, SDK23 source83exact/app+tests/customprivacy PASS.
+Официальный lint на83source/154реальных classfiles: exit1, MissingClass и
+HardcodedDebugMode,112warnings; Java-only adapter gap сохраняется, НЕPASS.
+Native проверка расширяет existing helper явными Save/Cancel/invalid/Reset/stale,
+exact shared/other geometry/KMZ/assets/network0 и двумя IME кадрами; итого16,
+лимит не увеличен. Этот кандидат ещё НЕпроверен Android CI и не отправляется,
+пока CI43225977674 первого renderer-кандидата работает. Backup/receipts сохранены.
+
+## Независимость отсутствующих свойств — дополнительное исправление кандидата
+
+Старый f.color извлекается из первой найденной компоненты. Его использование
+как fallback снова связывало цвета: один IconStyle мог менять линию/заливку.
+Теперь отсутствующие свойства используют прежний базовый цвет приложения
+0xffe6c45a независимо друг от друга; polygon default alpha0x45 и белая подпись
+сохранены. OGC white defaults не подставляются. Новый native fixture с одним
+IconStyle проверяет красную точку, базовую жёлтую линию/полупрозрачную заливку
+и precondition старого f.color; другие DOM/файлы не меняются. JVM39/83317,
+component33/edit34, SDK23 source83exact/563classes/customprivacy PASS.
+Эти пиксели Android ещё pending; это НЕCI ca888b5. Все предыдущие receipt/APK
+сохранены, финальный app/test hash в independent-defaults-local/receipt.json.
+
+## Runtime ca888b5 / CI43225977674
+
+JVM38/83282/component32 SUCCESS; API23 job131209474688 SUCCESS46/46;
+API35 job131209473186 FAILURE45/46 из-за partial adb pull vertexscroll (native314 PASS).
+Renderer/offlineformats1228 PASS обе API, KML/KMZ/assets/otherproject/network0 и
+reopen guards исполнены; четыре новых KML PNG реально просмотрены, компоненты
+визуально различаются, fill прозрачный/outline синий, невидимый объект не рисуется.
+Ещё четыре HGT кадра просмотрены; source/digests/all558+561members verified.
+Общий CI не зелёный. Это НЕпроверка последующего editor/Arimo/independent-defaults
+кандидата. renderer-ca888-result.json сохраняет точную границу.
+
+Actual pull failure: return1 после progress первого файла; немедленно следующий
+boot read explicit offline, recovery sameBoot/rc0. Новый driver подтверждает такой
+случай immediate boot probe, иначе не повторяет pull. Тот же <=15sec readiness,
+partial сохраняется, новый fresh target, one readonly retry, native never repeated.
+31host tests PASS; online/newboot/permanentoffline/partial-only остаются fail.
+Новый Android runtime для editor + recovery pending, никаких ретроактивных PASS.
+
+## a7f789a / CI43234511518 — реальный отказ тестового fixture
+
+Оба completedjobs23 131238606010/35 131238605912 FAILURE45/46, единственныйFAIL
+в offlineformats: KmlComponentStyleChecks.editor line12 NPE cloneNode(null).
+Feature lookup byId не содержит shared Style/StyleMap, что подтверждено own codec
+isContainer/Placemark indexing. Production не исправляется ради этого дефекта.
+Test helper заменён DOM lookup exact namespace/tag/id с count==1, проверки
+неизменности исходных определений/других DOM/geometry/assets сохранены.
+
+До ошибки дошли initial renderer pixel/independent fallback/Arimo/KML-KMZ checks
+и HGT guards (4381/3629ms); full mode НЕPASS. Editor UI/IME/Save/Cancel/reset/stale/
+final fixture guards не исполнены. Шесть новых scoped KML/HGT кадров просмотрены;
+editor/error/postedit кадров нет, не подменять прежними. All558+561members/source/
+digests verified. SDK23 corrected instrumentation compiled; Android fix pending.

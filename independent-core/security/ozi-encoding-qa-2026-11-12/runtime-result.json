@@ -1,0 +1,27 @@
+{
+  "source": "c9465dfcbbc1f9cfa08e332ca7c281a7cb099178",
+  "run": 43178276193,
+  "conclusion": "FAILURE",
+  "api23": {
+    "job": 131047996797,
+    "native_offlineformats": 1094,
+    "passed_driver_records": 45,
+    "records": 46
+  },
+  "api35": {
+    "job": 131047996752,
+    "native_offlineformats": 1094,
+    "passed_driver_records": 45,
+    "records": 46
+  },
+  "jvm": "SUCCESS36/83136/Ozi73/GIF323/host27/source79/551classes",
+  "failure": "both native offlineformats PASS1094, successful pull, then VISUAL_EVIDENCE_FAILED Unexpected visual evidence name; map_mvisual-ozi-cp1251-* includes digits, rejected by unchanged letters-and-hyphens whitelist",
+  "data_scope": "explicit Cyrillic Windows1251/default UTF8 refusal/checkbox default reset/Cancel/Confirm/pixels/CAS/Activity reopen/source/KML/assets/otherproject/network0 native checks PASS; old45 scenarios PASS; no skipped record",
+  "archives": "sourceSHA/outer/inner/all554+557 member hashes verified",
+  "images_viewed": 20,
+  "visual_scope": "all20 original GeoTIFF/OziPNG/BMP/GIF/CP1251 prompt/saved frames actually viewed; checkbox readable; API23 BMP/GIF action row no longer overlapped after Toast settle. Remaining20 extracted/API not claimed viewed.",
+  "fix": "rename only test screenshot labels to ozi-windows; strict validator/limits/production unchanged. Host original archive names reproduce refusal, renamed copies pass same emit/decode10frames each; SDK23 instrumentation recompiled/signed. Changed-code CI still required.",
+  "transport": "no native recovery event receipt in either archive; no failure attributed to adb; startup boot polling separate",
+  "hillshade": "subsequent local WIP, NOT contained in c946 run",
+  "acceptance": "open/accepted0/releasegate25; not full green CI or full app/reference acceptance; official lint gap not PASS"
+}

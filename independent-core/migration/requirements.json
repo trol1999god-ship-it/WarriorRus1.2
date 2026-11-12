@@ -1,0 +1,372 @@
+{
+  "reference": {
+    "file_name": "Rabochaya-karta-v26.1-main-update.apk",
+    "library_file_id": "libfile_c00a22eeb3b4819189b3936a3e78464a",
+    "sha256": "5ac3c7091cecae66942cdffee7c91ca0eb96be5eae902e85b0d6d9920643c142"
+  },
+  "release_identity": {
+    "package": "local.private.maps.review21",
+    "baseline_version_code": 395,
+    "certificate": "must match the existing 26.1 APK; no substitute key"
+  },
+  "excluded_by_user": [
+    "геолокация и определение положения устройства",
+    "навигация по положению устройства",
+    "оповещения о сближении",
+    "телеметрия, облачная синхронизация и скрытая передача пользовательских данных"
+  ],
+  "requirements": [
+    {
+      "id": "ui-map",
+      "title": "Главный экран карты, все панели, значки и управление",
+      "status": "in_progress",
+      "acceptance": [
+        "Сравнение снимков 26.1 и новой версии при одинаковых настройках",
+        "Те же действия касаний, долгого нажатия, масштаба, поворота и кнопки назад"
+      ],
+      "evidence": [
+        "ANDROID_QA_2026-10-28.md (scoped evidence; not complete acceptance)"
+      ],
+      "implementation_notes": [
+        "API23 launcher passed 121 assertions including real injected long press and location; full UI parity/physical acceptance remains open"
+      ]
+    },
+    {
+      "id": "ui-menus",
+      "title": "Все меню, вкладки, диалоги и настройки",
+      "status": "in_progress",
+      "acceptance": [
+        "Каждый доступный пункт 26.1 имеет работающий эквивалент",
+        "Сохранены тексты, цвета, иконки, порядок и поведение",
+        "Подтвердить доступность каждого кандидата из reference-feature-candidates.json в эталоне; проверить печать, калибровку изображений, избранные наборы, сравнение карт и статистику, если доступны"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "catalog",
+      "title": "54 онлайн-источника, 3 набора и 7 групп",
+      "status": "in_progress",
+      "acceptance": [
+        "Совпадение идентификаторов, состава, выбора и отображения",
+        "Проверка просмотра, кеша и отказов каждого источника без подмены продукта"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "layers",
+      "title": "Менеджер карт, наборов и слоёв",
+      "status": "pending",
+      "acceptance": [
+        "Добавление и удаление слоя, порядок, прозрачность, сохранение наборов",
+        "Восстановление композиции после перезапуска"
+      ],
+      "evidence": [],
+      "implementation_notes": [
+        "Named project-private presets0a031db local candidate: explicit Save/Apply/Delete, owner/library revision/composition CAS, JVM40/83361/preset44, SDK23source84/576classes and customprivacy pass. Android pending, not included in a7f789a CI. Existing maplayers/reopen scenarios extended, no new mode or relaxed frame cap."
+      ]
+    },
+    {
+      "id": "offline-formats",
+      "title": "Все ранее поддержанные офлайн-форматы",
+      "status": "in_progress",
+      "acceptance": [
+        "Полный список форматов извлекается из эталона и проверяется реальными файлами",
+        "Геопривязка, масштабы, границы и проекции совпадают",
+        "Проверить фактическую поддержку GeoTIFF, CompeGPS RMAP и OziExplorer; не считать MBTiles полной заменой всех форматов"
+      ],
+      "evidence": [
+        "security/geotiff-tiled-qa-2026-11-11/final-1254-result.json",
+        "security/geotiff-affine-qa-2026-11-12/runtime-result.json",
+        "security/ozi-import-qa-2026-11-12/runtime-result.json",
+        "security/ozi-bmp-qa-2026-11-12/runtime-result.json",
+        "security/ozi-gif-qa-2026-11-12/runtime-result.json",
+        "security/ozi-encoding-qa-2026-11-12/runtime-result.json"
+      ],
+      "implementation_notes": [
+        "Scoped code3c87557+1254a0b/CI43114388829 SUCCESS46/46 API23+35; bounded TIFF6 tiled raw/Deflate/predictor/NoData import, pixel/roundtrip/Cancel/checksum/data guards verified. Matrix34264/Ozi/RMAP, full format/reference acceptance remain open; not accepted.",
+        "Affine34264 code90020f3: native391 both; API23full46success/API35full44failure(adb offline artifact pull/before managerrotation), not full green.44 scopedPNG/all546+534member/sourceSHA verified. Full Ozi/RMAP/format/reference acceptance remains open.",
+        "PNG/JPEG Ozi fbc64ea/CI43139985094: native581 both incl391GeoTIFF; API23full46success/API35full41failure(adb transport), not full green. All4new OziPNG/12scoped viewed/source+all548/538member SHAverified. Full Ozi/BMP/GIF/CRS/reference acceptance remains open.",
+        "8d26807/CI43146921585 SUCCESS46/46 both, native748/BMP24/32+PNG/JPEG+affine GeoTIFF/data.16scoped PNG actuallyviewed/all550+554memberSHAverified; sameBoot readonly recovery actual35. Full formats/reference acceptance remains open; not accepted.",
+        "1be9e3a/CI43172333048 SUCCESS46both/offlineformats1025/JVM36_83129/GIF323; bounded singlefullframe GIF87/89/global-local/interlace/LZW/count/EOI/deadline via shared Ozi converter, Cancel/CAS/actualdestroy queuedimport/data PASS.16rasterPNG actuallyviewed/all552+555members verified. API23 BMP/GIF prompt has prior Toast over actions: unobscured visual acceptance not claimed. Windows1251 WIP excluded. Full formats/reference acceptance remains open.",
+        "Explicit Windows1251 code c9465df/CI43178276193: native offlineformats1094 both incl default UTF8 refusal/choice/reset/Cancel/CAS/data PASS, fullCI FAILURE45/46 both from digit-containing test PNG name.20rasterPNG/all554+557members verified; API23 BMP/GIF actions unobscured after Toast settle. Test-label-only ozi-windows fix host strict emit/decode PASS; changed-code CI still pending. Full reference acceptance open."
+      ]
+    },
+    {
+      "id": "cache",
+      "title": "Полный механизм кеша и скачивания областей",
+      "status": "pending",
+      "acceptance": [
+        "Границы, глубина, прогресс, отмена, продолжение, очистка и статистика",
+        "Доступ к прежнему кешу без его потери"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "cache-export",
+      "title": "Перенос сохранённых карт одним файлом",
+      "status": "pending",
+      "acceptance": [
+        "Экспорт и импорт с геопривязкой и составными слоями",
+        "Совместимость с целевыми внешними приложениями подтверждена отдельно"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "points",
+      "title": "Все действия с метками и карточкой метки",
+      "status": "pending",
+      "acceptance": [
+        "Создание нескольких меток, выбор, подпись, описание, редактирование, копия и удаление",
+        "Повторное открытие описания работает как в эталоне"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "geometry",
+      "title": "Маршруты, области, треки и рисунки",
+      "status": "in_progress",
+      "acceptance": [
+        "Все способы ручного создания и редактирования, вершины и стили",
+        "Нет записи положения или навигации устройства"
+      ],
+      "evidence": [
+        "ANDROID_QA_2026-10-28.md (scoped evidence; not complete acceptance)",
+        "MAP_VERTEX_EDITOR.md and security/vertex-map-qa-2026-10-28/results.json (scoped evidence)"
+      ],
+      "implementation_notes": [
+        "Addressed KML coordinate/inner ring editing preserves adjacent DOM and payloads",
+        "Private geometry draft and stale-geometry conflict protection implemented",
+        "JVM DOM/draft checks passed; geometryedit instrumentation compiled only",
+        "Smoothing, split/merge, temporal tracks and full original operations remain incomplete",
+        "Individual vertex replacement/insertion/reordering/deletion in unsaved editor text; 36 JVM assertions passed; expanded Android scenario compiled only; map vertex dragging remains incomplete",
+        "API23 geometryedit passed 68 assertions including vertex actions, holes, draft recovery, payload preservation and stale-save refusal; API35 remains unaccepted",
+        "WGS84 selected-part map dragging/insertion/deletion, bounded undo, new inner rings and owned-draft cleanup implemented; real touch/pinch and force-stop recovery passed on API23 (geometrymap 101, geometrymapreopen 16); no full topology/parity acceptance",
+        "Current API23 APK passed 11 scenarios / 861 assertions; JVM 80393; 324 own classes; API35/36 and physical acceptance still pending"
+      ]
+    },
+    {
+      "id": "manager",
+      "title": "Файловый менеджер объектов, папок и групп",
+      "status": "in_progress",
+      "acceptance": [
+        "Создание, переименование, копия, перенос, удаление и массовый выбор",
+        "Буфер обмена, вложенные папки и восстановление состояния"
+      ],
+      "evidence": [
+        "OBJECT_MANAGER.md",
+        "owned-projects/tests/ObjectTreeTests.java",
+        "owned-projects/tests/MapAndroidChecks.java (objectmanager / objectmanagerreopen)",
+        "security/object-manager-qa-2026-10-28/results.json",
+        "OBJECT_CLIPBOARD.md",
+        "owned-projects/tests/ObjectClipboardTests.java",
+        "security/object-clipboard-qa-2026-10-28/results.json",
+        "OBJECT_LISTING.md",
+        "owned-projects/tests/ObjectListingTests.java",
+        "security/object-listing-qa-2026-10-28/results.json",
+        "OBJECT_VISIBILITY.md",
+        "owned-projects/tests/ObjectVisibilityTests.java",
+        "security/object-visibility-qa-2026-10-28/results.json",
+        "OBJECT_DESCRIPTION_SEARCH.md",
+        "security/object-description-search-qa-2026-10-28/results.json",
+        "OBJECT_DATE_SEARCH.md",
+        "owned-projects/tests/KmlTimeFilterTests.java",
+        "security/object-date-search-qa-2026-10-28/results.json"
+      ],
+      "implementation_notes": [
+        "Named KML folders/groups, nested navigation, cross-folder selection, create/rename, in-project move/copy/delete and private reference clipboard implemented. DOM and payloads retained by structural writes; stale roots and clipboard replacements rejected transactionally.",
+        "Name search, recursive scope, geometry type/inherited KML visibility filters, display sorting, bounded breadcrumbs and guarded per-project view preferences implemented. Hidden selected rows counted; transient selection intentionally clears after restart.",
+        "Batch show/hide changes own visibility for every explicitly selected row, including selected children. Preview counts effective transitions through the full tree; parents never auto-revealed. No-op skips payload replacement. Shared reader supports 0/false and 1/true; selected duplicate visibility fields rejected.",
+        "Snapshot clipboard, cross-project transfer, creation/modification date search, full group/layer model, all reference semantics, all Activity states and complete manager UI parity remain pending; historical build evidence is retained in the evidence paths.",
+        "Final own-KML-date-search API23 APK: 21/21 scenarios, 1391 assertions; managerdates 79, force-stop reopen 15; JVM 80760; 382 own classes. All prior 19 scenarios rerun on the same production APK; not complete acceptance.",
+        "Name/description/combined search field implemented and persisted per project. Unicode/whitespace normalization and text-only common HTML projection; no URL attributes, scripts or file-content indexing. Force-stop restores description query and field; XML, clipboard and media retained.",
+        "Own direct KML TimeStamp/TimeSpan filtering with valid/absent/unrecognized modes, UTC-day interval overlap and open bounds implemented. Partial dates, explicit offsets and fractional seconds retained; unzoned values use documented UTC search policy. Query validation stays in dialog; private per-project range restores after force-stop. Date-filtered move preserves original temporal text, geometry/altitude/style/media; no inherited date, file timestamps or map time-engine claim."
+      ]
+    },
+    {
+      "id": "symbols",
+      "title": "Значки, SVG, цвета, подписи и собственные библиотеки",
+      "status": "in_progress",
+      "acceptance": [
+        "Сохранение формы и цвета при импорте, копировании и экспорте",
+        "Собственные каталоги значков и согласованные операции с ними"
+      ],
+      "evidence": [
+        "KML_COMPONENT_STYLES.md and security/kml-components-qa-2026-11-12/renderer-ca888-result.json (scoped main renderer runtime, not complete acceptance)"
+      ],
+      "implementation_notes": [
+        "ca888b5/CI43225977674: component main renderer/offlineformats1228 passed both APIs, four KML PNG reviewed; API23 full46 success, API35 full45 failure due unrelated vertexscroll partial adb pull after native314 pass. Explicit manager editor/Arimo/independent fallbacks are later local source83 candidate, Android pending. accepted remains unset."
+      ]
+    },
+    {
+      "id": "media",
+      "title": "Фото, видео, аудио и текстовые вложения",
+      "status": "pending",
+      "acceptance": [
+        "Все операции 26.1, просмотр и сохранение после перезапуска",
+        "Общие файлы не удаляются, пока нужны другим объектам"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "import-export",
+      "title": "Все форматы импорта и экспорта объектов",
+      "status": "pending",
+      "acceptance": [
+        "Отдельный реестр форматов эталона и реальные файлы для каждого",
+        "Иерархия, стили, значки, координаты и вложения не теряются"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "filters",
+      "title": "Поиск, фильтры и видимость объектов",
+      "status": "in_progress",
+      "acceptance": [
+        "Все доступные фильтры эталона и сохранение результатов",
+        "Выбор по имени/дате и работа с найденными объектами по согласованному объёму"
+      ],
+      "evidence": [
+        "OBJECT_LISTING.md",
+        "OBJECT_VISIBILITY.md",
+        "owned-projects/tests/ObjectListingTests.java",
+        "owned-projects/tests/ObjectVisibilityTests.java",
+        "security/object-visibility-qa-2026-10-28/results.json",
+        "OBJECT_DESCRIPTION_SEARCH.md",
+        "security/object-description-search-qa-2026-10-28/results.json",
+        "OBJECT_DATE_SEARCH.md",
+        "owned-projects/tests/KmlTimeFilterTests.java",
+        "security/object-date-search-qa-2026-10-28/results.json"
+      ],
+      "implementation_notes": [
+        "Read-only name/type/inherited-visibility search and display sorting plus explicit batch own-visibility writes implemented. KmlProject.visible delegates to the same reader used by the index, including imported false/true.",
+        "Only KML visibility is handled; scale/time/Region/viewport/other layer filters, creation/modification date search and full reference UI acceptance remain open.",
+        "Final own-KML-date-search API23 APK: 21/21 scenarios, 1391 assertions; managerdates 79, force-stop reopen 15; JVM 80760; 382 own classes. All prior 19 scenarios rerun on the same production APK; not complete acceptance.",
+        "Name/description/combined search field implemented and persisted per project. Unicode/whitespace normalization and text-only common HTML projection; no URL attributes, scripts or file-content indexing. Force-stop restores description query and field; XML, clipboard and media retained.",
+        "Own direct KML TimeStamp/TimeSpan filtering with valid/absent/unrecognized modes, UTC-day interval overlap and open bounds implemented. Partial dates, explicit offsets and fractional seconds retained; unzoned values use documented UTC search policy. Query validation stays in dialog; private per-project range restores after force-stop. Date-filtered move preserves original temporal text, geometry/altitude/style/media; no inherited date, file timestamps or map time-engine claim."
+      ]
+    },
+    {
+      "id": "bluetooth",
+      "title": "Передача файлов и объектов по Bluetooth",
+      "status": "pending",
+      "acceptance": [
+        "Только явное действие пользователя",
+        "Один совместимый файл с группами, значками и вложениями"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "coordinates",
+      "title": "Координатные системы, сетки и измерения",
+      "status": "in_progress",
+      "acceptance": [
+        "Все системы, форматы, сетки и инструменты измерения эталона",
+        "Точность преобразований и поведение по центру карты без GPS"
+      ],
+      "evidence": [
+        "ANDROID_QA_2026-10-28.md (scoped evidence; not complete acceptance)"
+      ],
+      "implementation_notes": [
+        "WGS84 DD/DM/DMS, UTM and MGRS (UTM area, 1–5 digit refinement) implemented in own Java",
+        "Primary/secondary presentation, manual centre navigation and explicit copy; no GPS",
+        "External published controls and property tests run; Android coordinate UI not executed",
+        "UPS, other datums/projections, grids and remaining measuring tools are incomplete",
+        "API23 coordinates passed 46 assertions; selected WGS84 formats/manual navigation only, no full system/UPS/grid acceptance"
+      ]
+    },
+    {
+      "id": "dem",
+      "title": "DEM, высоты, рельеф и связанные инструменты",
+      "status": "in_progress",
+      "acceptance": [
+        "Геопривязка, высоты и отображение на контрольных участках",
+        "Прежние форматы и операции без доступа к геолокации"
+      ],
+      "evidence": [
+        "security/geotiff-tiled-qa-2026-11-11/final-1254-result.json",
+        "security/hgt-hillshade-qa-2026-11-12/local/receipt.json",
+        "security/hgt-hillshade-qa-2026-11-12/runtime-838-result.json"
+      ],
+      "implementation_notes": [
+        "Scoped code1254a0b/CI43114388829 SUCCESS46/46 API23+35; HGT manual-centre heights, coverage and read-only raw-geometry profile with Close/raw/cursor/stale/foreign/MainSave/data guards verified. Terrain rendering/collections/full format and reference acceptance remain open; not accepted.",
+        "Local HgtHillshade/HgtHillshadeImport candidate: explicit315/45 Lambert cell shading of owned SRTM into same MBTiles/renderer; JVM37_83241/shade105/SDK23/source81exact/558classes/customprivacy PASS. Owner/source+target CAS, Cancel/no-autowrite/data runtime scenarios prepared; NOT in c946 CI and native pending. Not accepted.",
+        "8382001/CI43186245108 API23full46/offlineformats1202 PASS; API35full45 FAILURE first UI Create still building at45sec, not full green. Source/digest/all556+560members verified, actual scopedPNG reviewed. Bounded exact-node optimization local JVM37_83250/shade114/SDK23/source81 PASS; all4849664 outputpixels byte-equal, host allocations1.697GB→49.7MB. Native changed-code check pending; not accepted.",
+        "130b522/CI43217403961: hillshade offlineformats1202 native PASS both APIs and four new PNG reviewed; API23 full46 success, API35 full45/46 failure due Undo artifact pull after native363 PASS. Overall CI not green. Scoped evidence HGT_HILLSHADE.md; acceptance remains pending."
+      ]
+    },
+    {
+      "id": "compass",
+      "title": "Компас и остальные разрешённые датчики",
+      "status": "pending",
+      "acceptance": [
+        "Действия, настройки, ориентация экрана и физическая проверка",
+        "Нет разрешений или запросов положения"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "settings",
+      "title": "Все сохранённые настройки и локальное хранение",
+      "status": "pending",
+      "acceptance": [
+        "Настройки экрана, карты, файлов, координат и единиц",
+        "Восстановление после закрытия и перезапуска устройства"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "migration",
+      "title": "Обновление 26.1 без удаления и потери данных",
+      "status": "pending",
+      "acceptance": [
+        "Тот же package и сертификат, больший versionCode",
+        "Резервная копия, транзакционный перенос, проверка точек/вложений/карт/кеша/настроек и откат"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "privacy",
+      "title": "Согласованные ограничения приватности",
+      "status": "pending",
+      "acceptance": [
+        "Нет геолокации, телеметрии, облачной синхронизации и скрытой выгрузки",
+        "Сетевые запросы карт не содержат объектов или вложений"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "independence",
+      "title": "Самостоятельная реализация и воспроизводимая сборка",
+      "status": "in_progress",
+      "acceptance": [
+        "Нет классов, нативных библиотек и runtime-зависимостей AlpineQuest",
+        "Сборка из отдельного проекта без исходного APK"
+      ],
+      "evidence": [
+        "ANDROID_QA_2026-10-28.md (scoped evidence; not complete acceptance)",
+        "MAP_VERTEX_EDITOR.md and security/vertex-map-qa-2026-10-28/results.json (scoped evidence)"
+      ],
+      "implementation_notes": [
+        "API23 independence passed 424 assertions and final DEX contains 305 own classes; full 26.1 parity remains open",
+        "Current API23 APK passed 11 scenarios / 861 assertions; JVM 80393; 324 own classes; API35/36 and physical acceptance still pending"
+      ]
+    },
+    {
+      "id": "stability",
+      "title": "Стабильность, minSdk 23 и проверка на устройствах",
+      "status": "pending",
+      "acceptance": [
+        "Нет вылетов при повторных действиях и обновлении",
+        "Инструментальные и визуальные проверки, рабочая сеть, все поддержанные версии Android"
+      ],
+      "evidence": [
+        "ANDROID_QA_2026-10-28.md (scoped evidence; not complete acceptance)",
+        "MAP_VERTEX_EDITOR.md and security/vertex-map-qa-2026-10-28/results.json (scoped evidence)"
+      ],
+      "implementation_notes": [
+        "API23 selected nine scenarios passed 721 assertions; API35 blocked by unstable OS/shared storage, physical phone and Android16 not tested",
+        "Current API23 APK passed 11 scenarios / 861 assertions; JVM 80393; 324 own classes; API35/36 and physical acceptance still pending"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "source": "063ce3f36aeea7bf52cda6cc727da7538612a9d9",
+  "run": 41153634195,
+  "full_run": "failure",
+  "move_modes_passed": [
+    243,
+    242
+  ],
+  "png_verified_and_reviewed": 20,
+  "failures": {
+    "both": "old objectmanager assumes stale confirmation dismissed; now retained",
+    "api35": [
+      "coordinates adb offline",
+      "managerforms foreign row readiness assertion; cause not yet proven"
+    ]
+  }
+}

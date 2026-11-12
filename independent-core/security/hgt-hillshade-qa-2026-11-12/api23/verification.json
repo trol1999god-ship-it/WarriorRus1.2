@@ -1,0 +1,16 @@
+{
+  "api": "23",
+  "source_sha": "8382001c6669e6e3c4093921be3ada509f0427cf",
+  "run_id": "43186245108",
+  "outer_path": "/workspace/attachments/700991fa-e0cf-4e56-8c37-40cae54de1c3/hgt-838-api23.zip",
+  "outer_sha256": "e2d87244e426c90f7789b770c0356f6e05fa59658896b3ba5d88f747c505a942",
+  "inner_sha256": "2f4c8740dd98c36c20d45c2aa43c7669474d526d62b51446266d919c3dd2e724",
+  "all_member_hashes_verified": true,
+  "members": 556,
+  "records": 46,
+  "passed": 46,
+  "failed_or_skipped": [],
+  "frames": 32,
+  "visual_review": "actual hillshade prompt and two-tone saved map viewed; other frames not claimed viewed",
+  "images_actually_viewed": 2
+}

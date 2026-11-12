@@ -1,0 +1,26 @@
+[
+  {
+    "name": "map_mvisual-vertex-scroll-invalid-field.png",
+    "sha256": "40a1c0df43888a0eeeae0774c6662b99ab6566f0718333143fcf0726876e2e85"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-invalid-message.png",
+    "sha256": "40a1c0df43888a0eeeae0774c6662b99ab6566f0718333143fcf0726876e2e85"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-invalid-return.png",
+    "sha256": "40a1c0df43888a0eeeae0774c6662b99ab6566f0718333143fcf0726876e2e85"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-stale-field.png",
+    "sha256": "1c0b072b95dd38964e98b7b4ee378a0654d5cd03e97847f3b3b7d450003c871c"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-stale-message.png",
+    "sha256": "6956acb2e8c16e8916226a1ea1d240655db149ee6a0340c24a6faa41c937b227"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-stale-return.png",
+    "sha256": "6956acb2e8c16e8916226a1ea1d240655db149ee6a0340c24a6faa41c937b227"
+  }
+]

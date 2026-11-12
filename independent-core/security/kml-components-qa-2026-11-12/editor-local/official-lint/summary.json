@@ -1,0 +1,14 @@
+{
+  "tool": "official Android lint",
+  "source_sha": "9a7128452db03adf1a67f8f703ff1d1ab7f40290",
+  "source_count": 83,
+  "actual_classfiles": 154,
+  "exit_code": 1,
+  "passed": false,
+  "errors": [
+    "MissingClass",
+    "HardcodedDebugMode"
+  ],
+  "warnings": 112,
+  "scope": "actual Java overlay classfiles; ABI-only resolution separately; smali bodies NOT analyzed; adapter remains incomplete"
+}

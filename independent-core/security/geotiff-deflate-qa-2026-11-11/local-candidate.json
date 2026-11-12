@@ -1,0 +1,27 @@
+{
+  "status": "local candidate; Deflate Android runtime not executed",
+  "source_count": 71,
+  "source_hashes_exact": true,
+  "classes": 528,
+  "variant": "debug-qa",
+  "jvm_suites": 32,
+  "jvm_assertions": 81611,
+  "geotiff_assertions": 86,
+  "host_tests": 18,
+  "accepted": false,
+  "android_runtime_executed": false,
+  "build_result_sha256": "f8bdc8840448f1c8db902a5678c972fbb72da55b484dc19c2e06b8f85b267565",
+  "files": {
+    "app.apk": "103ac1ce786caa2ca5623014aac621c4a8c348a620b6e47e50a59ab75a56eb08",
+    "app-unsigned.apk": "dde331fe90ff2748ef6bdc1f4d31cf571ff99854c822905437d9baa89f113c6e",
+    "tests-unsigned.apk": "4f5d0747576ca755830c957e4dee304e9ad2841e312bdd04a98dae2a9b1ff518",
+    "tests.apk": "a5804b6c922369ba7916fcc37c7dd6f4aaca0003d3acf1d0ae16cb1b60102446"
+  },
+  "latest_tests": {
+    "path": "/workspace/work/manager-confirm/geotiff-deflate-ui-tests-2026-11-11.apk",
+    "bytes": 260537,
+    "sha256": "7915edbf5e9068a03e5a25f55af9f0b3b7ed7fe6795ac6709011dfe8830024cd",
+    "signed": false,
+    "note": "latest compressed UI fixture; CI rebuild/signs all tests"
+  }
+}

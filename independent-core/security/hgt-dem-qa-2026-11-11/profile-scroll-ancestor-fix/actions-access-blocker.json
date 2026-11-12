@@ -1,0 +1,284 @@
+{
+  "run": 43089751186,
+  "code": "d36f15f4e606fcad310a59cc25ba7940bbfbc205",
+  "observed_utc": "2026-11-11T20:39:31Z",
+  "jobs": [
+    {
+      "id": 130763362981,
+      "name": "jvm",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 43089751186,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run python3 ci/test_run_android_checks.py",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run python3 security/privacy_audit.py --report \"$RUNNER_TEMP/source-privacy.json\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run python3 owned-projects/verify_jvm.py",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Keep unit and source-audit evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 130763365005,
+      "name": "recover-saved-evidence",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_id": 43089751186,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 130763635944,
+      "name": "android (23, x86, default)",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_id": 43089751186,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Prepare SDK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Compile own application and instrumentation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Audit the built APK (custom privacy checks, not Android lint)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Record the real release-gate attempt (no publication)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Record Android lint integration gap honestly",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Require hardware acceleration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Run Android scenarios",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Keep synthetic test results",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 11
+        },
+        {
+          "name": "Keep isolated QA build and metadata",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 12
+        },
+        {
+          "name": "Post Run actions/setup-java@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 23
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 24
+        }
+      ]
+    },
+    {
+      "id": 130763635965,
+      "name": "android (35, x86_64, google_apis)",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_id": 43089751186,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Prepare SDK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Compile own application and instrumentation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Audit the built APK (custom privacy checks, not Android lint)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Record the real release-gate attempt (no publication)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Record Android lint integration gap honestly",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Require hardware acceleration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Run Android scenarios",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Keep synthetic test results",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 11
+        },
+        {
+          "name": "Keep isolated QA build and metadata",
+          "status": "pending",
+          "conclusion": null,
+          "number": 12
+        },
+        {
+          "name": "Post Run actions/setup-java@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 23
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 24
+        }
+      ]
+    }
+  ],
+  "access": {
+    "api23_job_logs": "ReadTimeout twice",
+    "api35_job_logs": "ReadTimeout once",
+    "gh_run_view": "Forbidden; network/TLS unchanged"
+  },
+  "new_png_reviewed": 0,
+  "full_counts_verified": false,
+  "profile_runtime_accepted": false,
+  "tiled_active": false,
+  "next": "After GitHub completes artifact steps, read final logs/PNG without rerunning CI. Confirm profile guards/data, then reactivate preserved tiled patch."
+}

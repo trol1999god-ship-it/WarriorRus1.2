@@ -1,0 +1,18 @@
+[
+  {
+    "name": "map_mvisual-vertex-invalid-after.png",
+    "sha256": "fd78ef51556b8eed658f73b508f766e7ace2e79969c13f70dc0664c988cc4d10"
+  },
+  {
+    "name": "map_mvisual-vertex-invalid-before.png",
+    "sha256": "44db60cf4f705be15200455d511064eec16e0c337a626315ddd218582f4b878f"
+  },
+  {
+    "name": "map_mvisual-vertex-valid-after.png",
+    "sha256": "fd78ef51556b8eed658f73b508f766e7ace2e79969c13f70dc0664c988cc4d10"
+  },
+  {
+    "name": "map_mvisual-vertex-valid-before.png",
+    "sha256": "c58d30753b34331429d79b7bbd0132944010d311e0272f1f1d64a3f1379d6077"
+  }
+]

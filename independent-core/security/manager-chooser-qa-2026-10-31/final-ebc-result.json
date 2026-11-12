@@ -1,0 +1,28 @@
+{
+  "source": "ebc29d5cdc0133e8644bb988a796a83d13f12352",
+  "run": 41796713928,
+  "jobs": {
+    "23": 126462567978,
+    "35": 126462567993,
+    "jvm": 126462427301
+  },
+  "passed_modes_each": 32,
+  "chooser_assertions": {
+    "23": 405,
+    "35": 401
+  },
+  "jvm_suites": 22,
+  "jvm_assertions": 81190,
+  "driver_tests": 12,
+  "owned_classes": 420,
+  "min_sdk": 23,
+  "unsigned_local_sha256": "c6c83d42c556e2978c46d3ead9a2742cc87d5c12452d0609f1c23b826bbe3a57",
+  "png_verified_and_reviewed": 32,
+  "actual_rotations": "portrait -> landscape -> portrait, old Activity destroyed/different each time",
+  "scroll": "first==6 and absolute top==0 before and after both recreations",
+  "scoped_qa_passed": true,
+  "full_reference_acceptance": false,
+  "release_allowed": false,
+  "release_blockers": 25,
+  "requirements_accepted": 0
+}
