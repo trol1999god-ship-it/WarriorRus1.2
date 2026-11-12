@@ -44,9 +44,11 @@ Backup hgt-hillshade-ready-preserve-vfgolwjy SHAa98552e060604c132a3bf9af558d4afa
 также hgt-hillshade-preserve-7mhbgly9 ивсеolderbackups сохранить.
 
 Encoding failure/namefix сохранён локальным7b8906f; nativefailure не переписан.
-Следующий шаг: сохранитьhillshadecandidate/receipts/point, затем одинpush обеих
-scopedизменений existingbranch→один changed-code fullCI46 на23/35.
-Передpush проверитьremote c9465df иотсутствиеactiveCI/конкурента. Обаpreviousjob
+Hillshade code8382001c6669e6e3c4093921be3ada509f0427cf pushed.
+CI43186245108 реальноRUNNING (push8:50UTC), включаетproductionhillshade иtestnamefix.
+Не push покаactive. Следующий шаг: completedJVM/обеAndroid jobs/всеnewPNG/
+strict name/16/2MiB/pixel/owner/source/target CAS/data; прежнийc946failure сохраняется.
+Передследующимpush проверитьremote8382001 иотсутствиеactiveCI/конкурента. Обаpreviousjob
 completedfailure прочитаны; слепойrerunНЕнужен. Проверить новыеcompletedjobs/PNG/
 data; source/strict80/82/physical/owner/token/raw/selection/releaseguards неослаблять.
 После scoped результата дальшеformats/DEM→objects/geometry→styles/SVG/import-export→
