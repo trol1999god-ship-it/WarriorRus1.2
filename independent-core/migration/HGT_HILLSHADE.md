@@ -77,3 +77,33 @@ restart покрыт прежними existing scenarios. НовыеPNG и об�
 
 Все23id implementation/acceptance отдельно, accepted0. Official Androidlint gap
 НЕPASS/customprivacyНЕзамена; releasegate25/min23/Arimo/resources/name прежние.
+
+## 8382001 / CI43186245108 — факты и ограниченное исправление
+
+JVM131074000248 SUCCESS37/83241/shade105; обе Android builds SUCCESS.
+API23 131074192684 SUCCESS46/46/offlineformats1202, обе stale-after фазы реально
+прошли preparedVisible=true/busy=true; pixel/NoData/z11/bounds/Cancel/foreign/
+actualdestroy/Activityreopen/DEMremove/missingDEM/KML/assets/cache/source/otherproject PASS.
+API35 131074192672 FAILURE45/46: HgtHillshadeChecks.run line24,
+UI missing «Локальная карта MBTiles», wait45000ms. Дерево и настоящий failurePNG
+показывают foreground карту со статусом «Построение рельефа HGT…»; ANR/готовность
+публикации этим не доказаны. После первого UI Create оставшиеся API35 guards
+не исполнены. Общий CI НЕgreen. Source/outer/inner/all556+560members SHAverified.
+API23 prompt+saved иAPI35 prompt+missing-text реально просмотрены; остальные
+кадры не заявлены просмотренными. runtime-838-result.json сохраняет этот failure.
+
+Выявлена избыточная работа: на известной сетке каждый угол ячейки повторно
+проходил географическую bilinear height() и boxing, читались/создавались полные
+строки. На host точная выборка всей пирамиды4849664пикселей выделяла1697192104bytes,
+4.8523sec. Исправление: internal HgtRaster.readNodes ограничивает окно65×65,
+читает только нужные bigendian узлы через переиспользуемые short/byte buffers;
+публичный bilinear height() не меняется. Shade last-block reuse убирает boxing
+на каждом соседнем outputpixel. LRU64/1МиБ прежний, scratch≈8.5КиБ, NoData/lighting/
+геопривязка/owner/source-target CAS/45sec wait/480sec native/45min job прежние.
+
+Host после0.9203sec/49680856allocatedbytes; все19398656ARGBbytes до/после
+побайтноcmp равны, SHA2569fa0ab702a829c276a4d28b20349f65f871efb17f81ae6e6921282cf422751e0.
+Это host, НЕAndroid результат. JVM37/83250/shade114, SDK23 app+tests/source81exact/
+558classes/customprivacy PASS. Receipt window-fix-local/. Native ready timing и
+при timeout bounded worker stacks добавлены только в существующий сценарий,
+дедлайн не увеличен. Новый changed-code CI обязателен; 838 не rerun вслепую.

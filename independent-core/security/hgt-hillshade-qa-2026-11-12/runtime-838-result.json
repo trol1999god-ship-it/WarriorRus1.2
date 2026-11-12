@@ -1,0 +1,25 @@
+{
+  "source": "8382001c6669e6e3c4093921be3ada509f0427cf",
+  "run": 43186245108,
+  "conclusion": "FAILURE",
+  "api23": {
+    "job": 131074192684,
+    "conclusion": "SUCCESS",
+    "passed": 46,
+    "offlineformats": 1202,
+    "coverage": "pixel203/149/NoData/z11/bounds/Cancel/sourcealias/foreign/polar/stale-before/source-and-target-stale-after/actualdestroy pendingwork/reopen/DEM remove/missingDEM/KML/assets/rawsource/cache/otherproject/network0 PASS"
+  },
+  "api35": {
+    "job": 131074192672,
+    "conclusion": "FAILURE",
+    "passed": 45,
+    "failure": "UI missing Local map MBTiles in HgtHillshadeChecks.run line24; waitText45000ms expired while actual foreground status remained Построение рельефа HGT…",
+    "coverage_limit": "direct conversion/pixels/guards and prompt/Cancel/stale-before ran; first explicit UI Create still busy at timeout; later publication/stale-after/exit/remove/data completion NOT claimed"
+  },
+  "artifacts": "sourceSHA/outer/inner/all556+560 member hashes and sizes verified",
+  "images_viewed": "API23 actual hillshade prompt and two-tone saved map; API35 actual prompt and map_missing-text.png. Remaining frames not claimed viewed.",
+  "diagnosis": "foreground responsive accessibility map and build status; not proof of ANR/deadlock. Hot path four geographic interpolations per cell and boxing/full-row allocations, host sampling4.85sec/1.697GB allocation. Limited bounded node-window+lastblock optimization prepared, deadline unchanged; Android fix not yet verified.",
+  "old_c946": "remains FAILURE due invalid PNG name; renamed ozi-windows validated in this run, not retroactive PASS",
+  "lint": "official9.4.0-rc01 exit1 MissingClass/HardcodedDebugMode/111warnings; not PASS",
+  "acceptance": "open/accepted0/releasegate unchanged"
+}

@@ -546,7 +546,7 @@
         }
     .end annotation
 
-    .line 17
+    .line 22
     const-wide/16 v0, 0x0
 
     cmp-long v2, p3, v0
@@ -926,7 +926,7 @@
 
     monitor-enter p0
 
-    .line 20
+    .line 25
     :try_start_0
     iget-object v0, p0, Lorg/rabochaya/projects/HgtRaster;->rows:Ljava/util/LinkedHashMap;
 
@@ -942,7 +942,7 @@
 
     return-void
 
-    .line 20
+    .line 25
     :catchall_0
     move-exception v0
 
@@ -965,7 +965,7 @@
 
     monitor-enter p0
 
-    .line 15
+    .line 20
     :try_start_0
     invoke-static/range {p1 .. p2}, Ljava/lang/Double;->isNaN(D)Z
 
@@ -1437,7 +1437,7 @@
 
     return-wide v9
 
-    .line 15
+    .line 20
     :catchall_0
     move-exception v0
 
@@ -1454,7 +1454,7 @@
         }
     .end annotation
 
-    .line 19
+    .line 24
     move-object v0, p0
 
     iget v1, v0, Lorg/rabochaya/projects/HgtRaster;->south:I
@@ -1515,4 +1515,215 @@
     invoke-direct {v1, v2}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
 
     throw v1
+.end method
+
+.method declared-synchronized readNodes(IIII[SI[B)V
+    .locals 16
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    move-object/from16 v1, p0
+
+    move/from16 v0, p1
+
+    move/from16 v2, p2
+
+    move/from16 v3, p3
+
+    move/from16 v4, p4
+
+    move-object/from16 v5, p5
+
+    move/from16 v6, p6
+
+    move-object/from16 v7, p7
+
+    monitor-enter p0
+
+    .line 16
+    const/4 v8, 0x1
+
+    if-lt v3, v8, :cond_3
+
+    const/16 v9, 0x41
+
+    if-gt v3, v9, :cond_3
+
+    if-lt v4, v8, :cond_3
+
+    if-gt v4, v9, :cond_3
+
+    if-ltz v0, :cond_3
+
+    if-ltz v2, :cond_3
+
+    :try_start_0
+    iget v8, v1, Lorg/rabochaya/projects/HgtRaster;->samples:I
+
+    sub-int/2addr v8, v3
+
+    if-gt v0, v8, :cond_3
+
+    iget v8, v1, Lorg/rabochaya/projects/HgtRaster;->samples:I
+
+    sub-int/2addr v8, v4
+
+    if-gt v2, v8, :cond_3
+
+    if-lt v6, v3, :cond_3
+
+    if-gt v6, v9, :cond_3
+
+    if-eqz v5, :cond_3
+
+    if-eqz v7, :cond_3
+
+    array-length v8, v5
+
+    add-int/lit8 v9, v4, -0x1
+
+    mul-int/2addr v9, v6
+
+    add-int/2addr v9, v3
+
+    if-lt v8, v9, :cond_3
+
+    array-length v8, v7
+
+    mul-int/lit8 v9, v3, 0x2
+
+    if-lt v8, v9, :cond_3
+
+    .line 17
+    const/4 v10, 0x0
+
+    :goto_0
+    if-ge v10, v4, :cond_2
+
+    invoke-static {}, Ljava/lang/Thread;->currentThread()Ljava/lang/Thread;
+
+    move-result-object v11
+
+    invoke-virtual {v11}, Ljava/lang/Thread;->isInterrupted()Z
+
+    move-result v11
+
+    if-nez v11, :cond_1
+
+    iget-object v11, v1, Lorg/rabochaya/projects/HgtRaster;->file:Ljava/io/RandomAccessFile;
+
+    iget v12, v1, Lorg/rabochaya/projects/HgtRaster;->offset:I
+
+    int-to-long v12, v12
+
+    add-int v14, v2, v10
+
+    int-to-long v14, v14
+
+    iget v8, v1, Lorg/rabochaya/projects/HgtRaster;->samples:I
+
+    int-to-long v4, v8
+
+    mul-long/2addr v14, v4
+
+    int-to-long v4, v0
+
+    add-long/2addr v14, v4
+
+    const-wide/16 v4, 0x2
+
+    mul-long/2addr v14, v4
+
+    add-long/2addr v12, v14
+
+    invoke-virtual {v11, v12, v13}, Ljava/io/RandomAccessFile;->seek(J)V
+
+    iget-object v4, v1, Lorg/rabochaya/projects/HgtRaster;->file:Ljava/io/RandomAccessFile;
+
+    const/4 v5, 0x0
+
+    invoke-virtual {v4, v7, v5, v9}, Ljava/io/RandomAccessFile;->readFully([BII)V
+
+    move v4, v5
+
+    :goto_1
+    if-ge v4, v3, :cond_0
+
+    mul-int v8, v10, v6
+
+    add-int/2addr v8, v4
+
+    mul-int/lit8 v11, v4, 0x2
+
+    aget-byte v12, v7, v11
+
+    and-int/lit16 v12, v12, 0xff
+
+    shl-int/lit8 v12, v12, 0x8
+
+    add-int/lit8 v11, v11, 0x1
+
+    aget-byte v11, v7, v11
+
+    and-int/lit16 v11, v11, 0xff
+
+    or-int/2addr v11, v12
+
+    int-to-short v11, v11
+
+    aput-short v11, p5, v8
+
+    add-int/lit8 v4, v4, 0x1
+
+    goto :goto_1
+
+    :cond_0
+    add-int/lit8 v10, v10, 0x1
+
+    move/from16 v4, p4
+
+    move-object/from16 v5, p5
+
+    goto :goto_0
+
+    :cond_1
+    new-instance v0, Ljava/io/IOException;
+
+    const-string v2, "\u0427\u0442\u0435\u043d\u0438\u0435 HGT \u043f\u0440\u0435\u0440\u0432\u0430\u043d\u043e"
+
+    invoke-direct {v0, v2}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    throw v0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 18
+    :cond_2
+    monitor-exit p0
+
+    return-void
+
+    .line 16
+    :cond_3
+    :try_start_1
+    new-instance v0, Ljava/io/IOException;
+
+    const-string v2, "\u041d\u0435\u0434\u043e\u043f\u0443\u0441\u0442\u0438\u043c\u043e\u0435 \u043e\u043a\u043d\u043e \u0443\u0437\u043b\u043e\u0432 HGT"
+
+    invoke-direct {v0, v2}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    throw v0
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    .line 15
+    :catchall_0
+    move-exception v0
+
+    monitor-exit p0
+
+    throw v0
 .end method

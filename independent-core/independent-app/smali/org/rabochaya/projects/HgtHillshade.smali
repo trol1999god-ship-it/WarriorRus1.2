@@ -29,6 +29,14 @@
 
 .field private final height:Lorg/rabochaya/projects/HgtRaster;
 
+.field private lastBlock:[I
+
+.field private lastKey:J
+
+.field private final nodeBytes:[B
+
+.field private final nodes:[S
+
 .field private final northLight:D
 
 .field private final step:D
@@ -47,7 +55,7 @@
         }
     .end annotation
 
-    .line 7
+    .line 8
     const-wide v4, 0x4073b00000000000L    # 315.0
 
     const-wide v6, 0x4046800000000000L    # 45.0
@@ -71,12 +79,29 @@
         }
     .end annotation
 
-    .line 8
+    .line 9
     move-object/from16 v1, p0
 
     invoke-direct/range {p0 .. p0}, Ljava/lang/Object;-><init>()V
 
     .line 6
+    const/16 v0, 0x1081
+
+    new-array v0, v0, [S
+
+    iput-object v0, v1, Lorg/rabochaya/projects/HgtHillshade;->nodes:[S
+
+    const/16 v0, 0x82
+
+    new-array v0, v0, [B
+
+    iput-object v0, v1, Lorg/rabochaya/projects/HgtHillshade;->nodeBytes:[B
+
+    const-wide/high16 v2, -0x8000000000000000L
+
+    iput-wide v2, v1, Lorg/rabochaya/projects/HgtHillshade;->lastKey:J
+
+    .line 7
     new-instance v0, Ljava/util/LinkedHashMap;
 
     const/16 v2, 0x10
@@ -89,14 +114,14 @@
 
     iput-object v0, v1, Lorg/rabochaya/projects/HgtHillshade;->blocks:Ljava/util/LinkedHashMap;
 
-    .line 9
+    .line 10
     invoke-static/range {p4 .. p7}, Lorg/rabochaya/projects/HgtHillshade;->lighting(DD)V
 
     invoke-static/range {p1 .. p3}, Lorg/rabochaya/projects/HgtRaster;->owned(Ljava/io/File;J)Lorg/rabochaya/projects/HgtRaster;
 
     move-result-object v2
 
-    .line 10
+    .line 11
     :try_start_0
     iput-object v2, v1, Lorg/rabochaya/projects/HgtHillshade;->height:Lorg/rabochaya/projects/HgtRaster;
 
@@ -198,10 +223,10 @@
     :try_end_0
     .catch Ljava/lang/RuntimeException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 11
+    .line 12
     return-void
 
-    .line 10
+    .line 11
     :catch_0
     move-exception v0
 
@@ -219,7 +244,7 @@
 .method private static finite(D)Z
     .locals 1
 
-    .line 12
+    .line 13
     invoke-static {p0, p1}, Ljava/lang/Double;->isNaN(D)Z
 
     move-result v0
@@ -246,7 +271,7 @@
 .method private static lighting(DD)V
     .locals 4
 
-    .line 13
+    .line 14
     invoke-static {p0, p1}, Lorg/rabochaya/projects/HgtHillshade;->finite(D)Z
 
     move-result v0
@@ -294,14 +319,14 @@
 .end method
 
 .method private readBlock(II)[I
-    .locals 43
+    .locals 38
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
         }
     .end annotation
 
-    .line 22
+    .line 23
     move-object/from16 v0, p0
 
     const/16 v1, 0x1000
@@ -332,17 +357,43 @@
 
     move-result v3
 
+    iget-object v4, v0, Lorg/rabochaya/projects/HgtHillshade;->height:Lorg/rabochaya/projects/HgtRaster;
+
+    mul-int/lit8 v12, p1, 0x40
+
+    mul-int/lit8 v13, p2, 0x40
+
+    sub-int v5, v2, v12
+
+    add-int/lit8 v7, v5, 0x1
+
+    sub-int v5, v3, v13
+
+    add-int/lit8 v8, v5, 0x1
+
+    iget-object v9, v0, Lorg/rabochaya/projects/HgtHillshade;->nodes:[S
+
+    const/16 v10, 0x41
+
+    iget-object v11, v0, Lorg/rabochaya/projects/HgtHillshade;->nodeBytes:[B
+
+    move v5, v12
+
+    move v6, v13
+
+    invoke-virtual/range {v4 .. v11}, Lorg/rabochaya/projects/HgtRaster;->readNodes(IIII[SI[B)V
+
     iget-wide v4, v0, Lorg/rabochaya/projects/HgtHillshade;->step:D
 
     invoke-static {v4, v5}, Ljava/lang/Math;->toRadians(D)D
 
     move-result-wide v4
 
-    .line 23
-    mul-int/lit8 v6, p2, 0x40
+    .line 24
+    nop
 
     :goto_0
-    if-ge v6, v3, :cond_2
+    if-ge v6, v3, :cond_4
 
     invoke-static {}, Ljava/lang/Thread;->currentThread()Ljava/lang/Thread;
 
@@ -352,7 +403,7 @@
 
     move-result v7
 
-    if-nez v7, :cond_1
+    if-nez v7, :cond_3
 
     iget-object v7, v0, Lorg/rabochaya/projects/HgtHillshade;->height:Lorg/rabochaya/projects/HgtRaster;
 
@@ -364,9 +415,9 @@
 
     int-to-double v9, v6
 
-    iget-wide v11, v0, Lorg/rabochaya/projects/HgtHillshade;->step:D
+    iget-wide v14, v0, Lorg/rabochaya/projects/HgtHillshade;->step:D
 
-    mul-double/2addr v9, v11
+    mul-double/2addr v9, v14
 
     sub-double/2addr v7, v9
 
@@ -380,191 +431,205 @@
 
     add-int/lit8 v11, v6, 0x1
 
-    int-to-double v12, v11
+    int-to-double v14, v11
 
-    iget-wide v14, v0, Lorg/rabochaya/projects/HgtHillshade;->step:D
+    move/from16 p2, v11
 
-    mul-double/2addr v12, v14
+    move/from16 p1, v12
 
-    sub-double/2addr v9, v12
+    iget-wide v11, v0, Lorg/rabochaya/projects/HgtHillshade;->step:D
 
-    add-double v12, v7, v9
+    mul-double/2addr v14, v11
 
-    const-wide/high16 v14, 0x4000000000000000L    # 2.0
+    sub-double/2addr v9, v14
 
-    div-double/2addr v12, v14
+    add-double/2addr v7, v9
 
-    invoke-static {v12, v13}, Ljava/lang/Math;->toRadians(D)D
+    const-wide/high16 v9, 0x4000000000000000L    # 2.0
 
-    move-result-wide v12
+    div-double/2addr v7, v9
 
-    invoke-static {v12, v13}, Ljava/lang/Math;->sin(D)D
+    invoke-static {v7, v8}, Ljava/lang/Math;->toRadians(D)D
+
+    move-result-wide v7
+
+    invoke-static {v7, v8}, Ljava/lang/Math;->sin(D)D
+
+    move-result-wide v9
+
+    const-wide v11, 0x3f7b6b90f1fe94f0L    # 0.0066943799901413165
+
+    mul-double/2addr v11, v9
+
+    mul-double/2addr v11, v9
+
+    const-wide/high16 v9, 0x3ff0000000000000L    # 1.0
+
+    sub-double/2addr v9, v11
+
+    const-wide v11, 0x415854a640000000L    # 6378137.0
+
+    mul-double/2addr v11, v4
+
+    invoke-static {v9, v10}, Ljava/lang/Math;->sqrt(D)D
 
     move-result-wide v14
 
-    const-wide v16, 0x3f7b6b90f1fe94f0L    # 0.0066943799901413165
+    div-double v14, v11, v14
 
-    mul-double v16, v16, v14
+    invoke-static {v7, v8}, Ljava/lang/Math;->cos(D)D
 
-    mul-double v16, v16, v14
+    move-result-wide v7
 
-    const-wide/high16 v14, 0x3ff0000000000000L    # 1.0
+    mul-double/2addr v14, v7
 
-    sub-double v14, v14, v16
+    const-wide v7, 0x3fefc928de1c02d6L    # 0.9933056200098587
 
-    const-wide v16, 0x415854a640000000L    # 6378137.0
+    mul-double/2addr v11, v7
 
-    mul-double v16, v16, v4
+    const-wide/high16 v7, 0x3ff8000000000000L    # 1.5
 
-    invoke-static {v14, v15}, Ljava/lang/Math;->sqrt(D)D
+    invoke-static {v9, v10, v7, v8}, Ljava/lang/Math;->pow(DD)D
 
-    move-result-wide v18
+    move-result-wide v7
 
-    div-double v18, v16, v18
+    div-double/2addr v11, v7
 
-    invoke-static {v12, v13}, Ljava/lang/Math;->cos(D)D
-
-    move-result-wide v12
-
-    mul-double v18, v18, v12
-
-    const-wide v12, 0x3fefc928de1c02d6L    # 0.9933056200098587
-
-    mul-double v16, v16, v12
-
-    const-wide/high16 v12, 0x3ff8000000000000L    # 1.5
-
-    invoke-static {v14, v15, v12, v13}, Ljava/lang/Math;->pow(DD)D
-
-    move-result-wide v12
-
-    div-double v16, v16, v12
-
-    .line 24
-    mul-int/lit8 v12, p1, 0x40
+    .line 25
+    move/from16 v7, p1
 
     :goto_1
-    if-ge v12, v2, :cond_0
+    if-ge v7, v2, :cond_2
 
-    iget-object v13, v0, Lorg/rabochaya/projects/HgtHillshade;->height:Lorg/rabochaya/projects/HgtRaster;
+    sub-int v8, v6, v13
 
-    iget v13, v13, Lorg/rabochaya/projects/HgtRaster;->west:I
+    mul-int/lit8 v8, v8, 0x41
 
-    int-to-double v13, v13
+    add-int/2addr v8, v7
 
-    move v15, v2
+    sub-int v8, v8, p1
 
-    move/from16 v38, v3
+    iget-object v9, v0, Lorg/rabochaya/projects/HgtHillshade;->nodes:[S
 
-    int-to-double v2, v12
+    aget-short v9, v9, v8
 
-    move-wide/from16 v39, v4
+    iget-object v10, v0, Lorg/rabochaya/projects/HgtHillshade;->nodes:[S
 
-    iget-wide v4, v0, Lorg/rabochaya/projects/HgtHillshade;->step:D
+    add-int/lit8 v16, v8, 0x1
 
-    mul-double/2addr v2, v4
+    aget-short v10, v10, v16
 
-    add-double/2addr v13, v2
+    move/from16 v34, v2
 
-    iget-object v2, v0, Lorg/rabochaya/projects/HgtHillshade;->height:Lorg/rabochaya/projects/HgtRaster;
+    iget-object v2, v0, Lorg/rabochaya/projects/HgtHillshade;->nodes:[S
 
-    iget v2, v2, Lorg/rabochaya/projects/HgtRaster;->west:I
+    add-int/lit8 v8, v8, 0x40
 
-    int-to-double v2, v2
+    add-int/lit8 v16, v8, 0x1
 
-    add-int/lit8 v4, v12, 0x1
+    aget-short v2, v2, v16
 
-    move-wide/from16 v41, v9
+    move/from16 v35, v3
 
-    int-to-double v9, v4
+    iget-object v3, v0, Lorg/rabochaya/projects/HgtHillshade;->nodes:[S
 
-    move/from16 p2, v4
+    add-int/lit8 v8, v8, 0x2
 
-    iget-wide v4, v0, Lorg/rabochaya/projects/HgtHillshade;->step:D
+    aget-short v3, v3, v8
 
-    mul-double/2addr v9, v4
+    rem-int/lit8 v8, v6, 0x40
 
-    add-double/2addr v2, v9
+    mul-int/lit8 v8, v8, 0x40
 
-    rem-int/lit8 v4, v6, 0x40
+    rem-int/lit8 v16, v7, 0x40
 
-    mul-int/lit8 v4, v4, 0x40
+    add-int v8, v8, v16
 
-    rem-int/lit8 v12, v12, 0x40
+    move-wide/from16 v36, v4
 
-    add-int/2addr v4, v12
+    const/16 v4, -0x8000
 
-    iget-object v5, v0, Lorg/rabochaya/projects/HgtHillshade;->height:Lorg/rabochaya/projects/HgtRaster;
+    if-eq v9, v4, :cond_1
 
-    invoke-virtual {v5, v13, v14, v7, v8}, Lorg/rabochaya/projects/HgtRaster;->height(DD)D
+    if-eq v10, v4, :cond_1
 
-    move-result-wide v20
+    if-eq v2, v4, :cond_1
 
-    iget-object v5, v0, Lorg/rabochaya/projects/HgtHillshade;->height:Lorg/rabochaya/projects/HgtRaster;
+    if-ne v3, v4, :cond_0
 
-    invoke-virtual {v5, v2, v3, v7, v8}, Lorg/rabochaya/projects/HgtRaster;->height(DD)D
+    goto :goto_2
 
-    move-result-wide v22
+    :cond_0
+    int-to-double v4, v9
 
-    iget-object v5, v0, Lorg/rabochaya/projects/HgtHillshade;->height:Lorg/rabochaya/projects/HgtRaster;
+    move-wide/from16 v16, v4
 
-    move-wide/from16 v9, v41
+    int-to-double v4, v10
 
-    invoke-virtual {v5, v13, v14, v9, v10}, Lorg/rabochaya/projects/HgtRaster;->height(DD)D
+    move-wide/from16 v18, v4
 
-    move-result-wide v24
+    int-to-double v4, v2
 
-    iget-object v5, v0, Lorg/rabochaya/projects/HgtHillshade;->height:Lorg/rabochaya/projects/HgtRaster;
+    move-wide/from16 v20, v4
 
-    invoke-virtual {v5, v2, v3, v9, v10}, Lorg/rabochaya/projects/HgtRaster;->height(DD)D
+    int-to-double v2, v3
 
-    move-result-wide v26
+    move-wide/from16 v22, v2
 
     iget-wide v2, v0, Lorg/rabochaya/projects/HgtHillshade;->eastLight:D
 
-    move-wide/from16 v32, v2
+    move-wide/from16 v28, v2
 
     iget-wide v2, v0, Lorg/rabochaya/projects/HgtHillshade;->northLight:D
 
-    move-wide/from16 v34, v2
+    move-wide/from16 v30, v2
 
     iget-wide v2, v0, Lorg/rabochaya/projects/HgtHillshade;->upLight:D
 
-    move-wide/from16 v36, v2
+    move-wide/from16 v32, v2
 
-    move-wide/from16 v28, v18
+    move-wide/from16 v24, v14
 
-    move-wide/from16 v30, v16
+    move-wide/from16 v26, v11
 
-    invoke-static/range {v20 .. v37}, Lorg/rabochaya/projects/HgtHillshade;->shade(DDDDDDDDD)I
+    invoke-static/range {v16 .. v33}, Lorg/rabochaya/projects/HgtHillshade;->shade(DDDDDDDDD)I
 
     move-result v2
 
-    aput v2, v1, v4
+    goto :goto_3
 
-    move/from16 v12, p2
+    :cond_1
+    :goto_2
+    const/4 v2, 0x0
 
-    move v2, v15
+    :goto_3
+    aput v2, v1, v8
 
-    move/from16 v3, v38
+    add-int/lit8 v7, v7, 0x1
 
-    move-wide/from16 v4, v39
+    move/from16 v2, v34
+
+    move/from16 v3, v35
+
+    move-wide/from16 v4, v36
 
     goto :goto_1
 
-    .line 23
-    :cond_0
-    move v15, v2
+    .line 24
+    :cond_2
+    move/from16 v34, v2
 
-    move/from16 v38, v3
+    move/from16 v35, v3
 
-    move-wide/from16 v39, v4
+    move-wide/from16 v36, v4
 
-    move v6, v11
+    move/from16 v12, p1
+
+    move/from16 v6, p2
 
     goto/16 :goto_0
 
-    :cond_1
+    :cond_3
     new-instance v1, Ljava/io/IOException;
 
     const-string v2, "\u041e\u0442\u043c\u044b\u0432\u043a\u0430 HGT \u043f\u0440\u0435\u0440\u0432\u0430\u043d\u0430"
@@ -573,15 +638,15 @@
 
     throw v1
 
-    .line 25
-    :cond_2
+    .line 26
+    :cond_4
     return-object v1
 .end method
 
 .method public static shade(DDDDDDDD)I
     .locals 20
 
-    .line 15
+    .line 16
     invoke-static/range {p12 .. p15}, Lorg/rabochaya/projects/HgtHillshade;->lighting(DD)V
 
     invoke-static/range {p8 .. p9}, Lorg/rabochaya/projects/HgtHillshade;->finite(D)Z
@@ -669,7 +734,7 @@
 .method private static shade(DDDDDDDDD)I
     .locals 8
 
-    .line 17
+    .line 18
     invoke-static {p0, p1}, Lorg/rabochaya/projects/HgtHillshade;->finite(D)Z
 
     move-result v0
@@ -696,7 +761,7 @@
 
     goto :goto_0
 
-    .line 18
+    .line 19
     :cond_0
     sub-double v0, p2, p0
 
@@ -780,7 +845,7 @@
 
     return v0
 
-    .line 17
+    .line 18
     :cond_1
     :goto_0
     const/4 v0, 0x0
@@ -800,7 +865,7 @@
 
     monitor-enter p0
 
-    .line 27
+    .line 28
     :try_start_0
     iget-boolean v0, p0, Lorg/rabochaya/projects/HgtHillshade;->closed:Z
     :try_end_0
@@ -819,6 +884,10 @@
     :try_start_1
     iput-boolean v0, p0, Lorg/rabochaya/projects/HgtHillshade;->closed:Z
 
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Lorg/rabochaya/projects/HgtHillshade;->lastBlock:[I
+
     iget-object v0, p0, Lorg/rabochaya/projects/HgtHillshade;->blocks:Ljava/util/LinkedHashMap;
 
     invoke-virtual {v0}, Ljava/util/LinkedHashMap;->clear()V
@@ -831,7 +900,7 @@
 
     goto :goto_0
 
-    .line 27
+    .line 28
     :catchall_0
     move-exception v0
 
@@ -850,11 +919,11 @@
 
     monitor-enter p0
 
-    .line 21
+    .line 22
     :try_start_0
     iget-boolean v0, p0, Lorg/rabochaya/projects/HgtHillshade;->closed:Z
 
-    if-nez v0, :cond_3
+    if-nez v0, :cond_4
 
     iget-object v0, p0, Lorg/rabochaya/projects/HgtHillshade;->transform:Lorg/rabochaya/projects/GeoRasterTransform;
 
@@ -902,6 +971,17 @@
 
     or-long/2addr v1, v3
 
+    iget-wide v3, p0, Lorg/rabochaya/projects/HgtHillshade;->lastKey:J
+
+    cmp-long p4, v1, v3
+
+    if-nez p4, :cond_1
+
+    iget-object p4, p0, Lorg/rabochaya/projects/HgtHillshade;->lastBlock:[I
+
+    goto :goto_0
+
+    :cond_1
     iget-object p4, p0, Lorg/rabochaya/projects/HgtHillshade;->blocks:Ljava/util/LinkedHashMap;
 
     invoke-static {v1, v2}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
@@ -914,22 +994,23 @@
 
     check-cast p4, [I
 
+    :goto_0
     const/16 v3, 0x40
 
-    if-nez p4, :cond_2
+    if-nez p4, :cond_3
 
     invoke-direct {p0, p2, v0}, Lorg/rabochaya/projects/HgtHillshade;->readBlock(II)[I
 
     move-result-object p4
 
-    :goto_0
+    :goto_1
     iget-object p2, p0, Lorg/rabochaya/projects/HgtHillshade;->blocks:Ljava/util/LinkedHashMap;
 
     invoke-virtual {p2}, Ljava/util/LinkedHashMap;->size()I
 
     move-result p2
 
-    if-lt p2, v3, :cond_1
+    if-lt p2, v3, :cond_2
 
     iget-object p2, p0, Lorg/rabochaya/projects/HgtHillshade;->blocks:Ljava/util/LinkedHashMap;
 
@@ -945,9 +1026,9 @@
 
     invoke-interface {p2}, Ljava/util/Iterator;->remove()V
 
-    goto :goto_0
+    goto :goto_1
 
-    :cond_1
+    :cond_2
     iget-object p2, p0, Lorg/rabochaya/projects/HgtHillshade;->blocks:Ljava/util/LinkedHashMap;
 
     invoke-static {v1, v2}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
@@ -956,7 +1037,11 @@
 
     invoke-virtual {p2, v0, p4}, Ljava/util/LinkedHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    :cond_2
+    :cond_3
+    iput-wide v1, p0, Lorg/rabochaya/projects/HgtHillshade;->lastKey:J
+
+    iput-object p4, p0, Lorg/rabochaya/projects/HgtHillshade;->lastBlock:[I
+
     rem-int/2addr p1, v3
 
     mul-int/2addr p1, v3
@@ -973,7 +1058,7 @@
 
     return p1
 
-    :cond_3
+    :cond_4
     :try_start_2
     new-instance p1, Ljava/io/IOException;
 
@@ -985,7 +1070,7 @@
     :try_end_2
     .catchall {:try_start_2 .. :try_end_2} :catchall_0
 
-    .line 21
+    .line 22
     :catchall_0
     move-exception p1
 
@@ -997,7 +1082,7 @@
 .method public transform()Lorg/rabochaya/projects/GeoRasterTransform;
     .locals 1
 
-    .line 20
+    .line 21
     iget-object v0, p0, Lorg/rabochaya/projects/HgtHillshade;->transform:Lorg/rabochaya/projects/GeoRasterTransform;
 
     return-object v0

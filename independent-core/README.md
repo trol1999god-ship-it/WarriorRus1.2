@@ -1,3 +1,10 @@
+HGT hillshade8382001/CI43186245108: API23 SUCCESS46/46/native1202, API35 FAILURE45/46
+на первом UI Create (45sec ещё «Построение…»). Общий CI НЕgreen. Source/digest/all556+560members
+verified, реальные prompt/saved/failure PNG просмотрены в указанной границе.
+Подготовлен bounded-node performance fix: host4.85→0.92sec/1.70GB→49.7MB allocations,
+вся пирамида ARGB побайтно неизменна; JVM37_83250/shade114/SDK23/source81 exact PASS.
+Android исправления ещёpending; HGT_HILLSHADE.md иCODEX_NEXT.md. Не полная приёмка.
+
 Статический GIF87a/89a через Ozi affine import реализован на1be9e3a и проверен
 CI43172333048 SUCCESS46/46 обеAPI, offlineformats1025each/JVM36_83129/GIF323.
 Source/digest/all552+555members verified; все16 текущих raster PNG просмотрены.

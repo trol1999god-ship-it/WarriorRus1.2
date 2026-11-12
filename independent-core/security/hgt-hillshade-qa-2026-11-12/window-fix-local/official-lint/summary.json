@@ -1,0 +1,14 @@
+{
+  "tool": "official lint9.4.0-rc01",
+  "executed": true,
+  "exit_code": 1,
+  "passed": false,
+  "source": "base838 plus bounded node fix",
+  "source_count": 81,
+  "errors": [
+    "MissingClass",
+    "HardcodedDebugMode"
+  ],
+  "warnings": 111,
+  "scope": "Java only/actual classfiles; smali bodies not analyzed; NOT PASS"
+}
