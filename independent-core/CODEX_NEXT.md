@@ -45,8 +45,11 @@ custom source+DEX privacy PASS (НЕAndroidlint). Runtime Ozi ещёНЕиспо
 migration/OZI_IMPORT.md; security/ozi-import-qa-2026-11-12/final-local/receipt.json.
 Local APKs/keys: /workspace/work/manager-confirm/ozi-menu-2026-11-12-qa;
 backupdiff/source/generated/receipts: ozi-candidate-preserve-tzwce2q1 (не удалять).
-Сохранить кандидата отдельным commit, проверить remote/нетactiveCI, push тойже
-ветки и один обоснованный fullCI изменённого Ozi. Existing offlineformats теперь
+Кандидат fbc64ea14ddc009e74a3ed1856885698a21d2865 сохранён/pushed в тойже
+ветке; CI43139985094 реальноrunning: JVM130924357006 SUCCESS,
+API23 130924523781 и API35 130924523754 running (проверять jobname).
+Не push покаactive. Следующий шаг — оба completedjob/source/digest/архивы/
+новые OziPNG/факты; не blindrerun и не приписывать текущемуCI старыеPNG. Existing offlineformats теперь
 содержит PNG/JPEG/rotation/shear/literalbounds/zoom/pixels/Cancel/refusals/LRU/
 Close/realmenu→syntheticpicker pair/UI CAS/Arimo/actions/reopen/source/KML/assets/
 otherproject/network guards и2новыхPNG. Читать оба completedjob/новыеPNG;
