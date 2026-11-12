@@ -9,13 +9,11 @@
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-.field public final synthetic f$1:D
-
-.field public final synthetic f$2:D
+.field public final synthetic f$1:Ljava/util/List;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;DD)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/util/List;)V
     .locals 0
 
     .line 0
@@ -23,9 +21,7 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda75;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iput-wide p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda75;->f$1:D
-
-    iput-wide p4, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda75;->f$2:D
+    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda75;->f$1:Ljava/util/List;
 
     return-void
 .end method
@@ -33,16 +29,14 @@
 
 # virtual methods
 .method public final run()V
-    .locals 5
+    .locals 2
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda75;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iget-wide v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda75;->f$1:D
+    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda75;->f$1:Ljava/util/List;
 
-    iget-wide v3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda75;->f$2:D
-
-    invoke-virtual {v0, v1, v2, v3, v4}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$longPressed$19$org-rabochaya-projects-LocalMapActivity(DD)V
+    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$editObject$78$org-rabochaya-projects-LocalMapActivity(Ljava/util/List;)V
 
     return-void
 .end method

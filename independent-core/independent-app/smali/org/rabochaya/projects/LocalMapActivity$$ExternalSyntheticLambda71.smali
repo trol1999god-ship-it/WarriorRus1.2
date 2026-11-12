@@ -3,21 +3,21 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/lang/Runnable;
+.implements Landroid/view/View$OnClickListener;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-.field public final synthetic f$1:Landroid/net/Uri;
+.field public final synthetic f$1:Landroid/widget/EditText;
 
-.field public final synthetic f$2:Z
+.field public final synthetic f$2:Landroid/widget/Spinner;
 
-.field public final synthetic f$3:Ljava/lang/String;
+.field public final synthetic f$3:Landroid/app/AlertDialog;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/net/Uri;ZLjava/lang/String;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/EditText;Landroid/widget/Spinner;Landroid/app/AlertDialog;)V
     .locals 0
 
     .line 0
@@ -25,30 +25,30 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;->f$1:Landroid/net/Uri;
+    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;->f$1:Landroid/widget/EditText;
 
-    iput-boolean p3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;->f$2:Z
+    iput-object p3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;->f$2:Landroid/widget/Spinner;
 
-    iput-object p4, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;->f$3:Ljava/lang/String;
+    iput-object p4, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;->f$3:Landroid/app/AlertDialog;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final run()V
+.method public final onClick(Landroid/view/View;)V
     .locals 4
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;->f$1:Landroid/net/Uri;
+    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;->f$1:Landroid/widget/EditText;
 
-    iget-boolean v2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;->f$2:Z
+    iget-object v2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;->f$2:Landroid/widget/Spinner;
 
-    iget-object v3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;->f$3:Ljava/lang/String;
+    iget-object v3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;->f$3:Landroid/app/AlertDialog;
 
-    invoke-virtual {v0, v1, v2, v3}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$importMap$61$org-rabochaya-projects-LocalMapActivity(Landroid/net/Uri;ZLjava/lang/String;)V
+    invoke-virtual {v0, v1, v2, v3, p1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$goToCoordinates$50$org-rabochaya-projects-LocalMapActivity(Landroid/widget/EditText;Landroid/widget/Spinner;Landroid/app/AlertDialog;Landroid/view/View;)V
 
     return-void
 .end method

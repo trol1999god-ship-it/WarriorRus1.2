@@ -624,7 +624,7 @@ public final class MapAndroidChecks extends Instrumentation {
   android.content.pm.PackageInfo info=getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),android.content.pm.PackageManager.GET_PERMISSIONS);check(info.requestedPermissions.length==1&&"android.permission.INTERNET".equals(info.requestedPermissions[0]),"only INTERNET permission; no location, storage or background service permissions");Intent launch=getTargetContext().getPackageManager().getLaunchIntentForPackage(getTargetContext().getPackageName());check(launch!=null&&launch.getComponent().getClassName().equals("org.rabochaya.projects.OwnedHomeActivity"),"launcher enters own code");
  }
  void offlineFormats()throws Exception{
-  new GeoTiffChecks(this).run();
+  new GeoTiffChecks(this).run();new OziChecks(this).run();
   File file=tiles("qa_formats.mbtiles",true,true);SQLiteDatabase db=SQLiteDatabase.openDatabase(file.getAbsolutePath(),null,0);
   db.execSQL("CREATE TABLE metadata(name TEXT,value TEXT)");db.execSQL("INSERT INTO metadata VALUES('scheme','xyz')");db.execSQL("UPDATE tiles SET tile_row=-tile_row-1");db.execSQL("UPDATE tiles SET tile_row=4+tile_row");db.close();
   Object reader=tilesClass.getConstructor(File.class).newInstance(file);Bitmap north=(Bitmap)call(reader,"tile",new Class[]{int.class,int.class,int.class},2,0,0),south=(Bitmap)call(reader,"tile",new Class[]{int.class,int.class,int.class},2,0,3);check(Color.green(north.getPixel(128,128))<Color.green(south.getPixel(128,128)),"XYZ orientation matches TMS after explicit conversion");north.recycle();south.recycle();call(reader,"close",new Class[]{});

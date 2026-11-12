@@ -3,7 +3,7 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/view/View$OnClickListener;
+.implements Ljava/lang/Runnable;
 
 
 # instance fields
@@ -24,13 +24,13 @@
 
 
 # virtual methods
-.method public final onClick(Landroid/view/View;)V
+.method public final run()V
     .locals 1
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda44;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    invoke-virtual {v0, p1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$show$5$org-rabochaya-projects-LocalMapActivity(Landroid/view/View;)V
+    invoke-virtual {v0}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$show$16$org-rabochaya-projects-LocalMapActivity()V
 
     return-void
 .end method

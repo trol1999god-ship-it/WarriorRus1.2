@@ -3,17 +3,21 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/content/DialogInterface$OnMultiChoiceClickListener;
+.implements Landroid/content/DialogInterface$OnClickListener;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-.field public final synthetic f$1:[Z
+.field public final synthetic f$1:Landroid/net/Uri;
+
+.field public final synthetic f$2:Landroid/net/Uri;
+
+.field public final synthetic f$3:Ljava/lang/String;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;[Z)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/net/Uri;Landroid/net/Uri;Ljava/lang/String;)V
     .locals 0
 
     .line 0
@@ -21,22 +25,34 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda69;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda69;->f$1:[Z
+    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda69;->f$1:Landroid/net/Uri;
+
+    iput-object p3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda69;->f$2:Landroid/net/Uri;
+
+    iput-object p4, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda69;->f$3:Ljava/lang/String;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final onClick(Landroid/content/DialogInterface;IZ)V
-    .locals 2
+.method public final onClick(Landroid/content/DialogInterface;I)V
+    .locals 6
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda69;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda69;->f$1:[Z
+    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda69;->f$1:Landroid/net/Uri;
 
-    invoke-virtual {v0, v1, p1, p2, p3}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$display$41$org-rabochaya-projects-LocalMapActivity([ZLandroid/content/DialogInterface;IZ)V
+    iget-object v2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda69;->f$2:Landroid/net/Uri;
+
+    iget-object v3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda69;->f$3:Ljava/lang/String;
+
+    move-object v4, p1
+
+    move v5, p2
+
+    invoke-virtual/range {v0 .. v5}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$selectedOzi$57$org-rabochaya-projects-LocalMapActivity(Landroid/net/Uri;Landroid/net/Uri;Ljava/lang/String;Landroid/content/DialogInterface;I)V
 
     return-void
 .end method
