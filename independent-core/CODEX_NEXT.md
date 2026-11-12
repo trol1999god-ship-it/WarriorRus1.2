@@ -56,9 +56,11 @@ size/unsupported/deadline0/oldtarget. Прежние PNG/JPEG/BMP UIветки �
 reopen/настоящийActivity.finish/destroy сожидающимimport/DOM/assets/otherproject/
 network0. Disposed flagvolatile; worker привыходе не публикуетpendingmap.
 Два новыхGIFPNG, total8mvisual≤16/2MiB. Runtime ещёНЕисполнен и НЕвходит в8dCI.
-migration/OZI_GIF.md. Следующий шаг: сохранитьcandidate отдельнымcommit, проверить
-origin/нетactiveCI/конкурента, push втойжеветке; один обоснованный fullCI новогоGIF,
-обаcompletedjob/новыеPNG/source/digest/data. Не blindrerun/не ослаблятьguards.
+migration/OZI_GIF.md. Code1be9e3a1e28ae9f245742f8ba7ee1654e212b380 pushed;
+CI43172333048 реальноRUNNING: JVM131028337173 SUCCESS,
+API23 131028606796 и API35 131028606764 Run Android scenarios in_progress.
+Не push покаactive. Следующий шаг — обаcompletedjob/новыеPNG/source/digest/data,
+реальныйqueued-import exit/CAS/NoData/EOF/oldguards, безblindrerun.
 
 После GIF — formats/DEM по матрице; не угадыватьCRS/codepage/neatline/RMAP.
 Затем objects/geometry→styles/SVG/import-export→media/explicitshare→UI/coordinates/
