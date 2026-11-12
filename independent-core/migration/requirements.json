@@ -72,10 +72,12 @@
         "Проверить фактическую поддержку GeoTIFF, CompeGPS RMAP и OziExplorer; не считать MBTiles полной заменой всех форматов"
       ],
       "evidence": [
-        "security/geotiff-tiled-qa-2026-11-11/final-1254-result.json"
+        "security/geotiff-tiled-qa-2026-11-11/final-1254-result.json",
+        "security/geotiff-affine-qa-2026-11-12/runtime-result.json"
       ],
       "implementation_notes": [
-        "Scoped code3c87557+1254a0b/CI43114388829 SUCCESS46/46 API23+35; bounded TIFF6 tiled raw/Deflate/predictor/NoData import, pixel/roundtrip/Cancel/checksum/data guards verified. Matrix34264/Ozi/RMAP, full format/reference acceptance remain open; not accepted."
+        "Scoped code3c87557+1254a0b/CI43114388829 SUCCESS46/46 API23+35; bounded TIFF6 tiled raw/Deflate/predictor/NoData import, pixel/roundtrip/Cancel/checksum/data guards verified. Matrix34264/Ozi/RMAP, full format/reference acceptance remain open; not accepted.",
+        "Affine34264 code90020f3: native391 both; API23full46success/API35full44failure(adb offline artifact pull/before managerrotation), not full green.44 scopedPNG/all546+534member/sourceSHA verified. Full Ozi/RMAP/format/reference acceptance remains open."
       ]
     },
     {

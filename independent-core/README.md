@@ -4,7 +4,10 @@ managerrotation379/373, managerforms515/506, layers275/274/reopen66;64 новы�
 просмотрены/SHA, архивы/source/digest проверены. KML/assets/HGT/MBTiles/cache/
 otherproject guards сохранены. GEOTIFF_TILED.md, DEM_PROFILE.md, HGT_DEM.md.
 Это ограниченные функции, не полный перенос/приёмка и не replacement release.
-Следующий участок: affine34264 по migration/GEO_RASTER_CONTRACT.md, затем Ozi.
+Affine34264 code90020f3: native391 обеAPI PASS,44PNG/SHA reviewed; CI43134277461
+API23full46success/API35full44failure (adb offline pull/before managerrotation),
+НЕполный greenCI. GEOTIFF_AFFINE.md. Следующий кандидат: явный Ozi .map+PNG/JPEG
+через тотже converter/MBTiles/renderer; Android runtime pending (migration/OZI_IMPORT.md).
 Актуальная очередь — CODEX_NEXT.md, матрица всех23id — migration/IMPLEMENTATION_PLAN.md.
 
 Подтверждение закрытия dirty-редактора проверено с реальными пересозданиями Activity.

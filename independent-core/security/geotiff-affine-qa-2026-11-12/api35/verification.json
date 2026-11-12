@@ -1,0 +1,26 @@
+{
+  "api": "35",
+  "source_sha": "90020f3656742cd8a86c548e3ade3f4caa6c4ba3",
+  "run_id": "43134277461",
+  "outer_path": "/workspace/attachments/638947d2-79de-4773-ad0a-245502312338/affine-90020-api35.zip",
+  "outer_sha256": "0dae27cc9340303d61ee8b0f688a5ba848737b7591b17eb614c452d011fe7622",
+  "inner_sha256": "d23676818338f74a01ac5dd662b85f270749ea87a6edc34b342b194b3aa820e7",
+  "all_member_hashes_verified": true,
+  "members": 534,
+  "records": 46,
+  "passed": 44,
+  "failed_or_skipped": [
+    {
+      "mode": "managervisual",
+      "passed": false,
+      "seconds": 73.79
+    },
+    {
+      "mode": "managerrotation",
+      "passed": false,
+      "seconds": 0.74
+    }
+  ],
+  "frames": 22,
+  "visual_review": "22/22 frames actually viewed; generic end frames show launcher, not accepted app UI"
+}

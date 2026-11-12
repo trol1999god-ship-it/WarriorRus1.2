@@ -1,74 +1,76 @@
-# Продолжение — 12 ноября: Tiled/DEM профиль/launch-helper проверены
+# Продолжение — 12 ноября: affine проверен scoped, следующий Ozi кандидат
 
-## Последний проверенный участок
+## Последний полный зелёный участок
 
-Feature3c87557 +helper1254a0b335497bfa6eb7821aae54c47a5a4df334 /
-CI43114388829 SUCCESS: JVM33/81769 (Geo215), host20; обеAPI46/46 безskip.
-API23 130838744398: offlineformats200, managerrotation379, managerforms515,
-layers275/reopen66. API35 130838744428:200/373/506/layers274/reopen66.
-Geometrymap/geometrymapreopen реальноPASS обеAPI. MANAGER_LAUNCH подтверждает
-own project/portrait и 5/5реальных replacements/firstDestroyed=true.
-Все64 относящихся новыхPNG actuallyviewed/SHA (32Tiled/layers/cache/DEM +
-32managerrotation). Архивы/sourceSHA/digest/innerZIP/все546/549members SHAverified;
-полныеjoblogs сохранены в /workspace/work/manager-confirm/tiled-final-1254-api*.log,
-summary безbase64/PNG/manifest/receipts: security/geotiff-tiled-qa-2026-11-11/
-final-1254-api23, final-1254-api35, final-1254-result.json.
+Tiled3c87557+launch-helper1254a0b / CI43114388829 SUCCESS46/46 обеAPI,
+JVM33/81769/Geo215/host20, source73/535classes. MANAGER_LAUNCH: own project,
+portrait, по5actual replacements/firstDestroyed=true.64 новых относящихсяPNG
+просмотрены; source/digest/innerZIP/all546/549members verified. Native profile
+actual graph ancestor/touchscroll/Arimo/Close/raw/cursor/stale/foreign/mainChanged/
+MainSave/data/restart/HGT manualcentre0 PASS. GEOTIFF_TILED.md, DEM_PROFILE.md,
+security/geotiff-tiled-qa-2026-11-11/final-1254-result.json. Это НЕполная приёмка.
 
-Работает ограниченный tiled GeoTIFF→тотже importer/MBTiles/catalog/renderer:
-raw/Deflate8/32946/predictor1/2, RGB/gray8/alpha/NoData, EPSG4326/3857;
-padding/checksum/Cancel/oldfile/source/KML/assets/cache/otherproject guards.
-RowLRU8/TileLRU16MiB+128blocks/block4MiB/padded100Mpx и512MiB/20k guards прежние.
-Read-only DEM профиль: graph ancestor288×481/457 (old nativeScrollView hidden0×0),
-actual touchscroll/Arimo/Close/raw/cursor/stale/foreign/mainChanged/отдельный
-MainSave/data/restart PASS. HGT manualcentre0/explicitRemove/сохранность PASS.
-Manager launch fix толькоinstrumentation: current own window adoption доready,
-initial oldDestroyed/owner/portrait guards; existing mode требует actual replacement.
-GEOTIFF_TILED.md, DEM_PROFILE.md, HGT_DEM.md; это scoped evidence, НЕполная приёмка.
+## Последний новый функциональный результат
 
-## Текущий новый production кандидат
+Affine34264 code90020f3656742cd8a86c548e3ade3f4caa6c4ba3 /
+CI43134277461 completed FAILURE: JVMsuccess33/81986/Geo432/host20;
+API23 130905880127 SUCCESS46/46; API35 130905880117 FAILURE44/46.
+Offlineformats391 PASS обеAPI: OGC2D DOUBLE16, Area/Point/4326/3857,
+rotation/shear/flip/literalpixels/NoData/footprint/bounds/native resolution,
+raw/tiles/Deflate/predictor/Cancel/unsupported transform/CRS/layout/лимиты,
+oldfile/source/KML/assets/cache/otherproject. Geometrymap/reopen, managerforms,
+layers274/reopen66 реальноPASS обеAPI; профиль/HGT/data guards прежние.
+44 относящихся PNG actuallyviewed;6generic end frames показывают launcher после
+finish и НЕдоказывают appUI. Source/outerdigest/innerZIP/all546/534members SHA
+verified. GEOTIFF_AFFINE.md; security/geotiff-affine-qa-2026-11-12/runtime-result.json.
+Полныеjoblogs: /workspace/work/manager-confirm/affine-90020-api23.log и api35.log.
 
-1. Affine-кандидат УЖЕреализован локально: JVM33/81986/Geo432/host20, SDK23
-app+tests/source73exact/535classes/customprivacy PASS. GEOTIFF_AFFINE.md,
-security/geotiff-affine-qa-2026-11-12/local/receipt.json. Runtime ещёНЕисполнен.
-Следующий шаг — обоснованный fullCI нового кода/обеAPI/новыеPNG/data guards.
-Affine code90020f3656742cd8a86c548e3ade3f4caa6c4ba3 / pushCI43134277461
-реально запущен: JVM130905697123success, API23 130905880127 и
-API35 130905880117 running (привязка по jobname, не порядку ID).
-Не push покаactive; читать оба completedjob/архивы/новыеPNG, не blindrerun.
-ModelTransformationTag34264, OGC DOUBLE16 row-major/2D, через общий
-GeoRasterTransform и existing importer/render/storage. Корректные Area/Point,
-bounds/реальный native pixel step (не толькоbbox), literal native pixels,
-NoData/footprint/Cancel и безопасный отказ unsupported transform/CRS/лимитов;
-KML/assets/cache/source/oldfile/otherproject сохранить. Контракт:
-migration/GEO_RASTER_CONTRACT.md. Matrix34264 локально подключён, но НЕвходит в проверенный1254CI.
-Random-row compressed strips matrix явно отказываются (нужныtiles); измерение
-10samples/10inflater streams сохранено, старые guards не ослаблены.
-2. Затем Ozi по migration/MAP_FORMATS.md/IMPLEMENTATION_PLAN; не угадывать
-CRS/калибровку/соседний файл, без второгоrenderer. После formats/DEM — объекты/
-геометрия → style/SVG/import-export → media/explicitshare → UI/coordinates/
-compass/settings → migration26.1/полнаяприёмка. Все23id в матрице.
-Не возвращать orphan/dialog baseline queue. Каждый шаг — функция и относящиеся
-достаточные проверки; без повторного43114388829/новогоCI без изменений/причины.
+API35: managervisual native243PASS, но screenshot pull adb deviceoffline;
+managerrotation force-stop failed offline ДОinstrumentation. Это НЕPASS и
+НЕдоказанный production defect; исходная причина transient offline не установлена.
+PNG, попавшие в managerrotation после recovery pull, НЕсчитать его выполнением.
+Не blindrerun90020 и не менятьapp из-за adb. Следующий изменённый код обязан
+исполнить полный46incl managervisual/managerrotation обеAPI, без унаследованныхPNG.
 
-## История и обязательные ограничения
+## Текущий готовый локальный кандидат — Ozi
 
-43089751186/d36 CANCELLED: artifact delivery не завершилась, job45min timeout;
-logs404 BlobNotFound/Android artifacts отсутствуют — НЕвосстановлены/незасчитаны.
-Single ZIP+SHAmanifest/bounded3min upload в existing workflow проверены на новыхrun.
-43100835572/6f19 FAILURE:35 adbOffline geometrymap/reopen; 43107394886/3c875
-FAILURE:35 manager launch race. Их доказательства сохранены историей, current
-SUCCESS1254 закрывает эти проверки. NativeProfile/cachejobs/export/layers prior
-история — профильные документы; не повторять baseline без новой причины.
+OziCalibration/OziRaster/OziImport + общий RasterMapImport/LocalMapActivity:
+явный pair .map+PNG/JPEG → подтверждение → private MBTiles/тотжеrenderer/catalog.
+Version2.2/UTF8/ASCII/WGS84/LatitudeLongitude/affine≥3controls; unsupported
+version/CRS/datum/PolyCal/AutoCalOnly/BSBUseWPX/MSF/crop отказываются.
+Regional decode256/LRU64/16MiB, bounds/native pixel resolution и прежние
+20k/z23/512MiB/full-file/sync/CAS/disposed/project/data guards.
+JVM34/82052/Ozi66/Geo432, host20, SDK23 app+tests/source77exact/546classes,
+custom source+DEX privacy PASS (НЕAndroidlint). Runtime Ozi ещёНЕисполнен.
+migration/OZI_IMPORT.md; security/ozi-import-qa-2026-11-12/final-local/receipt.json.
+Local APKs/keys: /workspace/work/manager-confirm/ozi-menu-2026-11-12-qa;
+backupdiff/source/generated/receipts: ozi-candidate-preserve-tzwce2q1 (не удалять).
+Сохранить кандидата отдельным commit, проверить remote/нетactiveCI, push тойже
+ветки и один обоснованный fullCI изменённого Ozi. Existing offlineformats теперь
+содержит PNG/JPEG/rotation/shear/literalbounds/zoom/pixels/Cancel/refusals/LRU/
+Close/realmenu→syntheticpicker pair/UI CAS/Arimo/actions/reopen/source/KML/assets/
+otherproject/network guards и2новыхPNG. Читать оба completedjob/новыеPNG;
+факт runtime не заменять компиляцией. Не потерять промежуточные сборки/receipts.
+
+Далее Ozi/прочие formats/DEM по migration/IMPLEMENTATION_PLAN.md и MAP_FORMATS.md:
+BMP/GIF/codepages/CRS/neatline/OZF/RMAP только с проверенным контрактом, без guesses;
+затем объекты/геометрия→styles/SVG/import-export→media/explicitshare→UI/coordinates/
+compass/settings→migration26.1/приёмка. Все23id implementation/acceptance отдельно.
+Каждый этап — пользовательская функция, достаточные регрессии/данные/коммит.
+Не возвращать orphan/dialog baseline очередь и не повторять43114388829 без причины.
+
+## Сохранность / ограничения
 
 Только independent-core/existing codex/independent-core-auto, без новыхагентов/
-веток/worktree/reset/clean/mergePR14. Сохранить stash/toolchain/pending/артефакты.
-Tiled1e3e9ea/forwardpatch УЖЕприменён; backup/profile-scoped-preserve-lgehznjb/
-tiled-implementation.patch сохранить, повторно не применять. Pending:
-/workspace/work/manager-confirm/GeoRasterTransform.java.pending не перезаписывать.
-Toolchain /workspace/android-toolchain/env.sh (Java17/SDK23/tools); без локального
-эмулятора безKVM. Сохранять min23/название/Arimo/resources/online+cache,
-безGPS/geoperms/telemetry/accounts/cloudsync/скрытой отправкиobjects/assets,
-BTтолькоявно. SyntheticQA/disposablekeys, не телефон/основные ключи.
-accepted0, releasegate неизменён/blocked25. Official Android lint adaptergap
-(исторический3errors94warnings, partial classpath probe2errors108warnings)
-НЕPASS; custom source/DEX/privacy audit НЕзамена. QA APK НЕготовыйrelease.
+веток/worktree/reset/clean/mergePR14. Stash2/pending/toolchain/артефакты сохранить.
+Tiled1e3e9ea/forwardpatch УЖЕприменён, повторно не применять; сохранить
+/workspace/work/manager-confirm/profile-scoped-preserve-lgehznjb/tiled-implementation.patch
+и GeoRasterTransform.java.pending (SHA06958dec… unchanged).
+Java17/SDK23/tools: /workspace/android-toolchain/env.sh; без эмулятора безKVM.
+Исторические delivery43089751186 cancelled/404 и offline43100835572/launch43107394886
+НЕпереписывать успехом: receipts/история сохранены, их scoped проверки закрыты1254.
+Min23/название/Arimo/resources/online+cache, безGPS/geoperms/telemetry/accounts/
+cloudsync/скрытой отправкиobjects/assets, BTтолькоявно. SyntheticQA/disposablekeys,
+не телефон/основные ключи. accepted0/releasegate blocked25 неизменны. Official lint
+adaptergap3errors94warnings/partialprobe2errors108warnings НЕPASS; customaudit
+НЕзамена. QA APK НЕготовыйreplacement release и не полная готовность переноса.

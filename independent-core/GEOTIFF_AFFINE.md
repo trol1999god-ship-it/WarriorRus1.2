@@ -1,4 +1,4 @@
-# Affine GeoTIFF — production кандидат, 12 ноября 2026
+# Affine GeoTIFF — ограниченная реализация, 12 ноября 2026
 
 Явный import34264 использует existing GeoTiffRaster/GeoRasterTransform→GeoTiffImport→
 private MBTiles→catalog/renderer. Нового renderer, фоновой сети или формата хранения нет.
@@ -40,4 +40,15 @@ custom source+DEX privacy PASS (НЕAndroidlint). local/receipt.json.
 metadata bounds/native zoom, transparent footprint, raw gray/strip, forward Deflate,
 Cancel/unsupported CRS/transform/resolution/row access и oldtarget/source guards.
 UI fixture теперь sheared matrix, прежние2PNG/strict16/2MiB budget сохранены.
-Android runtime ещё НЕисполнен. accepted0/releasegate не меняются.
+Android code90020f3/CI43134277461: offlineformats391 PASS обеAPI,
+API23full46 SUCCESS; API35full44/46 FAILURE: managervisual native243PASS,
+но adb offline при pull; managerrotation не начал instrumentation (offline).
+Это НЕполный green CI и не доказанный app defect. Источник offline не установлен.
+Geometrymap/reopen, managerforms, layers274/reopen66 реальноPASS обеAPI.
+Все44 относящихся raster/layers/DEM/cachePNG просмотрены, включая6generic
+end-of-mode launcher frames, которые НЕдоказывают app UI. Архивы/sourceSHA/
+outer digest/inner ZIP/all546/534members проверены; source/KML/assets/HGT/
+MBTiles/cache/otherproject guards PASS. security/geotiff-affine-qa-2026-11-12/
+runtime-result.json и api23/api35. Не rerun вслепую: следующий изменённый Ozi
+кандидат обязан исполнить полный46/обеAPI и прежние391GeoTIFF cases.
+accepted0/releasegate не меняются.

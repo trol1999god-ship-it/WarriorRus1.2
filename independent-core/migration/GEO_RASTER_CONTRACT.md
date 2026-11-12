@@ -1,4 +1,4 @@
-# Следующий форматный участок: геопривязка растров
+# Контракт ограниченной геопривязки растров
 
 Контракт реализован ограниченным GeoTIFF reader (GEOTIFF_IMPORT.md), не полная
 приёмка26.1. Raw GeoTIFF/cachejobs ee7/CI43001233957 SUCCESS46both;
@@ -34,9 +34,11 @@ conversion → существующий каталог/renderer → геогра
 или отмена сохраняет исходный файл, прежнюю карту/состав, кеш, KML и вложения. Предыдущие
 MBTiles readers и онлайн-карты не заменяются новым непроверенным парсером.
 
-## Affine геопривязка — локальный production кандидат
+## Affine геопривязка — scoped native проверка
 
-Подключён ограниченный production кандидат, Android runtime pending (GEOTIFF_AFFINE.md). OGC GeoTIFF1.1:
+Подключена ограниченная реализация: code90020f3/CI43134277461, native391 PASS
+обеAPI; API23full46 success/API35full44failure из-за adb offline, НЕполный green.
+GEOTIFF_AFFINE.md отделяет runtime/доставку/приёмку. OGC GeoTIFF1.1:
 `clause_7_requirements.adoc` blob6c8a8ba393f864acb8bb539f03d759108ff262a2;
 `requirements_class_ModelTransformationTag.adoc`
 blob49c4f58ee32c2388baed6f630fef72cb1d985311: tag34264, DOUBLE16, row-major.
