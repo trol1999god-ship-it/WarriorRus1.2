@@ -60,7 +60,7 @@ wrongdefault refusal/pixel/Cancel/CAS/reopen/Arimo/checkbox reset/data/2PNG;
 Androidpending. migration/OZI_ENCODING.md, security/ozi-encoding-qa-2026-11-12/local/.
 Backup /workspace/work/manager-confirm/ozi-encoding-preserve-iihq4ycs сохранить.
 GIFфакты закончены. Следующий шаг: сохранить проверенный scoped результатGIF;
-затем тестовыйToast settle вWIP кодировки, freshSDK23/tests/sourceSHA/коммит/один
+затем тестовыйToast settle8000ms вWIP кодировки, freshSDK23/tests/sourceSHA/коммит/один
 changed-codeCI. Прочитать обаcompletedjob/новыеPNG/data, безblindrerun.
 
 После GIF — formats/DEM по матрице; не угадыватьCRS/codepage/neatline/RMAP.

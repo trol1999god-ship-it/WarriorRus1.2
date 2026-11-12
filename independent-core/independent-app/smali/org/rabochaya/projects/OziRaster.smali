@@ -38,7 +38,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
-    .locals 9
+    .locals 1
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
@@ -46,6 +46,22 @@
     .end annotation
 
     .line 6
+    sget-object v0, Lorg/rabochaya/projects/OziCalibration$Encoding;->UTF8:Lorg/rabochaya/projects/OziCalibration$Encoding;
+
+    invoke-direct {p0, p1, p2, p3, v0}, Lorg/rabochaya/projects/OziRaster;-><init>(Ljava/io/File;Ljava/io/File;Ljava/lang/String;Lorg/rabochaya/projects/OziCalibration$Encoding;)V
+
+    return-void
+.end method
+
+.method public constructor <init>(Ljava/io/File;Ljava/io/File;Ljava/lang/String;Lorg/rabochaya/projects/OziCalibration$Encoding;)V
+    .locals 9
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 7
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 5
@@ -61,7 +77,7 @@
 
     iput-object v0, p0, Lorg/rabochaya/projects/OziRaster;->tiles:Ljava/util/LinkedHashMap;
 
-    .line 7
+    .line 8
     invoke-virtual {p1}, Ljava/io/File;->isFile()Z
 
     move-result v0
@@ -94,7 +110,7 @@
 
     if-gtz v0, :cond_d
 
-    .line 8
+    .line 9
     const/16 v0, 0x8
 
     new-array v1, v0, [B
@@ -221,7 +237,7 @@
 
     throw p1
 
-    .line 9
+    .line 10
     :cond_4
     :goto_3
     const/4 v0, 0x0
@@ -389,7 +405,7 @@
     .catch Ljava/lang/RuntimeException; {:try_start_7 .. :try_end_7} :catch_6
 
     :try_start_8
-    invoke-static {v3, p3, v2, v4}, Lorg/rabochaya/projects/OziCalibration;->read(Ljava/io/InputStream;Ljava/lang/String;II)Lorg/rabochaya/projects/OziCalibration;
+    invoke-static {v3, p3, v2, v4, p4}, Lorg/rabochaya/projects/OziCalibration;->read(Ljava/io/InputStream;Ljava/lang/String;IILorg/rabochaya/projects/OziCalibration$Encoding;)Lorg/rabochaya/projects/OziCalibration;
 
     move-result-object p1
 
@@ -409,10 +425,10 @@
     .catch Ljava/io/IOException; {:try_start_9 .. :try_end_9} :catch_7
     .catch Ljava/lang/RuntimeException; {:try_start_9 .. :try_end_9} :catch_6
 
-    .line 11
+    .line 12
     return-void
 
-    .line 9
+    .line 10
     :catchall_0
     move-exception p1
 
@@ -526,7 +542,7 @@
 
     throw p2
 
-    .line 8
+    .line 9
     :catchall_2
     move-exception p1
 
@@ -545,7 +561,7 @@
     :goto_c
     throw p1
 
-    .line 7
+    .line 8
     :cond_d
     new-instance p1, Ljava/io/IOException;
 
@@ -582,7 +598,7 @@
 
     monitor-enter p0
 
-    .line 14
+    .line 15
     :try_start_0
     iget-boolean v0, p0, Lorg/rabochaya/projects/OziRaster;->closed:Z
     :try_end_0
@@ -668,7 +684,7 @@
 
     goto :goto_0
 
-    .line 14
+    .line 15
     :catchall_0
     move-exception v0
 
@@ -687,7 +703,7 @@
 
     monitor-enter p0
 
-    .line 13
+    .line 14
     :try_start_0
     iget-boolean v0, p0, Lorg/rabochaya/projects/OziRaster;->closed:Z
 
@@ -977,7 +993,7 @@
 
     goto :goto_2
 
-    .line 13
+    .line 14
     :catchall_0
     move-exception p1
 
@@ -989,7 +1005,7 @@
 .method public transform()Lorg/rabochaya/projects/GeoRasterTransform;
     .locals 1
 
-    .line 12
+    .line 13
     iget-object v0, p0, Lorg/rabochaya/projects/OziRaster;->calibration:Lorg/rabochaya/projects/OziCalibration;
 
     iget-object v0, v0, Lorg/rabochaya/projects/OziCalibration;->transform:Lorg/rabochaya/projects/GeoRasterTransform;

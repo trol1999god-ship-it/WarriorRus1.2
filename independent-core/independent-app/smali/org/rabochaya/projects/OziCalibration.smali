@@ -3,6 +3,14 @@
 .source "OziCalibration.java"
 
 
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lorg/rabochaya/projects/OziCalibration$Encoding;
+    }
+.end annotation
+
+
 # static fields
 .field public static final MAX_BYTES:I = 0x20000
 
@@ -19,7 +27,7 @@
 .method private constructor <init>(Ljava/lang/String;Lorg/rabochaya/projects/GeoRasterTransform;I)V
     .locals 0
 
-    .line 6
+    .line 7
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     iput-object p1, p0, Lorg/rabochaya/projects/OziCalibration;->imageName:Ljava/lang/String;
@@ -39,7 +47,7 @@
         }
     .end annotation
 
-    .line 12
+    .line 13
     invoke-static {p0}, Lorg/rabochaya/projects/OziCalibration;->number(Ljava/lang/String;)D
 
     move-result-wide v0
@@ -190,7 +198,7 @@
 .method private static bad(Ljava/lang/String;)Ljava/io/IOException;
     .locals 3
 
-    .line 7
+    .line 8
     new-instance v0, Ljava/io/IOException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -224,7 +232,7 @@
         }
     .end annotation
 
-    .line 11
+    .line 12
     const/16 v0, 0x5c
 
     const/16 v1, 0x2f
@@ -372,7 +380,7 @@
         }
     .end annotation
 
-    .line 8
+    .line 9
     const/16 v0, 0x22
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->indexOf(I)I
@@ -429,7 +437,7 @@
         }
     .end annotation
 
-    .line 10
+    .line 11
     invoke-static {p0}, Lorg/rabochaya/projects/OziCalibration;->number(Ljava/lang/String;)D
 
     move-result-wide v0
@@ -476,7 +484,7 @@
         }
     .end annotation
 
-    .line 9
+    .line 10
     :try_start_0
     invoke-static {p0}, Ljava/lang/Double;->parseDouble(Ljava/lang/String;)D
 
@@ -518,7 +526,7 @@
 .end method
 
 .method public static read(Ljava/io/InputStream;Ljava/lang/String;II)Lorg/rabochaya/projects/OziCalibration;
-    .locals 38
+    .locals 1
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
@@ -526,42 +534,65 @@
     .end annotation
 
     .line 15
+    sget-object v0, Lorg/rabochaya/projects/OziCalibration$Encoding;->UTF8:Lorg/rabochaya/projects/OziCalibration$Encoding;
+
+    invoke-static {p0, p1, p2, p3, v0}, Lorg/rabochaya/projects/OziCalibration;->read(Ljava/io/InputStream;Ljava/lang/String;IILorg/rabochaya/projects/OziCalibration$Encoding;)Lorg/rabochaya/projects/OziCalibration;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method public static read(Ljava/io/InputStream;Ljava/lang/String;IILorg/rabochaya/projects/OziCalibration$Encoding;)Lorg/rabochaya/projects/OziCalibration;
+    .locals 38
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 18
     move/from16 v0, p2
 
     move/from16 v3, p3
 
-    new-instance v1, Ljava/io/ByteArrayOutputStream;
+    move-object/from16 v1, p4
 
-    invoke-direct {v1}, Ljava/io/ByteArrayOutputStream;-><init>()V
+    if-eqz v1, :cond_3a
 
-    const/16 v2, 0x1000
+    .line 19
+    new-instance v2, Ljava/io/ByteArrayOutputStream;
 
-    new-array v4, v2, [B
+    invoke-direct {v2}, Ljava/io/ByteArrayOutputStream;-><init>()V
+
+    const/16 v4, 0x1000
+
+    new-array v5, v4, [B
 
     :goto_0
-    move-object/from16 v5, p0
+    move-object/from16 v6, p0
 
-    invoke-virtual {v5, v4}, Ljava/io/InputStream;->read([B)I
+    invoke-virtual {v6, v5}, Ljava/io/InputStream;->read([B)I
 
-    move-result v6
+    move-result v7
 
-    const/4 v7, -0x1
+    const/4 v8, -0x1
 
     const/4 v14, 0x0
 
-    if-eq v6, v7, :cond_1
+    if-eq v7, v8, :cond_1
 
-    const/high16 v7, 0x20000
+    const/high16 v8, 0x20000
 
-    invoke-virtual {v1}, Ljava/io/ByteArrayOutputStream;->size()I
+    invoke-virtual {v2}, Ljava/io/ByteArrayOutputStream;->size()I
 
-    move-result v8
+    move-result v9
 
-    sub-int/2addr v7, v8
+    sub-int/2addr v8, v9
 
-    if-gt v6, v7, :cond_0
+    if-gt v7, v8, :cond_0
 
-    invoke-virtual {v1, v4, v14, v6}, Ljava/io/ByteArrayOutputStream;->write([BII)V
+    invoke-virtual {v2, v5, v14, v7}, Ljava/io/ByteArrayOutputStream;->write([BII)V
 
     goto :goto_0
 
@@ -576,33 +607,37 @@
 
     :cond_1
     :try_start_0
-    sget-object v4, Ljava/nio/charset/StandardCharsets;->UTF_8:Ljava/nio/charset/Charset;
+    iget-object v1, v1, Lorg/rabochaya/projects/OziCalibration$Encoding;->charset:Ljava/lang/String;
 
-    invoke-virtual {v4}, Ljava/nio/charset/Charset;->newDecoder()Ljava/nio/charset/CharsetDecoder;
-
-    move-result-object v4
-
-    sget-object v5, Ljava/nio/charset/CodingErrorAction;->REPORT:Ljava/nio/charset/CodingErrorAction;
-
-    invoke-virtual {v4, v5}, Ljava/nio/charset/CharsetDecoder;->onMalformedInput(Ljava/nio/charset/CodingErrorAction;)Ljava/nio/charset/CharsetDecoder;
-
-    move-result-object v4
-
-    sget-object v5, Ljava/nio/charset/CodingErrorAction;->REPORT:Ljava/nio/charset/CodingErrorAction;
-
-    invoke-virtual {v4, v5}, Ljava/nio/charset/CharsetDecoder;->onUnmappableCharacter(Ljava/nio/charset/CodingErrorAction;)Ljava/nio/charset/CharsetDecoder;
-
-    move-result-object v4
-
-    invoke-virtual {v1}, Ljava/io/ByteArrayOutputStream;->toByteArray()[B
+    invoke-static {v1}, Ljava/nio/charset/Charset;->forName(Ljava/lang/String;)Ljava/nio/charset/Charset;
 
     move-result-object v1
 
-    invoke-static {v1}, Ljava/nio/ByteBuffer;->wrap([B)Ljava/nio/ByteBuffer;
+    invoke-virtual {v1}, Ljava/nio/charset/Charset;->newDecoder()Ljava/nio/charset/CharsetDecoder;
 
     move-result-object v1
 
-    invoke-virtual {v4, v1}, Ljava/nio/charset/CharsetDecoder;->decode(Ljava/nio/ByteBuffer;)Ljava/nio/CharBuffer;
+    sget-object v5, Ljava/nio/charset/CodingErrorAction;->REPORT:Ljava/nio/charset/CodingErrorAction;
+
+    invoke-virtual {v1, v5}, Ljava/nio/charset/CharsetDecoder;->onMalformedInput(Ljava/nio/charset/CodingErrorAction;)Ljava/nio/charset/CharsetDecoder;
+
+    move-result-object v1
+
+    sget-object v5, Ljava/nio/charset/CodingErrorAction;->REPORT:Ljava/nio/charset/CodingErrorAction;
+
+    invoke-virtual {v1, v5}, Ljava/nio/charset/CharsetDecoder;->onUnmappableCharacter(Ljava/nio/charset/CodingErrorAction;)Ljava/nio/charset/CharsetDecoder;
+
+    move-result-object v1
+
+    invoke-virtual {v2}, Ljava/io/ByteArrayOutputStream;->toByteArray()[B
+
+    move-result-object v2
+
+    invoke-static {v2}, Ljava/nio/ByteBuffer;->wrap([B)Ljava/nio/ByteBuffer;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Ljava/nio/charset/CharsetDecoder;->decode(Ljava/nio/ByteBuffer;)Ljava/nio/CharBuffer;
 
     move-result-object v1
 
@@ -612,15 +647,15 @@
     :try_end_0
     .catch Ljava/nio/charset/CharacterCodingException; {:try_start_0 .. :try_end_0} :catch_1
 
-    const-string v4, "\ufeff"
+    const-string v2, "\ufeff"
 
-    invoke-virtual {v1, v4}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+    invoke-virtual {v1, v2}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
-    move-result v4
+    move-result v2
 
     const/4 v15, 0x1
 
-    if-eqz v4, :cond_2
+    if-eqz v2, :cond_2
 
     invoke-virtual {v1, v15}, Ljava/lang/String;->substring(I)Ljava/lang/String;
 
@@ -629,54 +664,54 @@
     :cond_2
     invoke-virtual {v1, v14}, Ljava/lang/String;->indexOf(I)I
 
-    move-result v4
+    move-result v2
 
-    if-gez v4, :cond_39
+    if-gez v2, :cond_39
 
-    const-string v4, "\\r?\\n"
+    const-string v2, "\\r?\\n"
 
-    invoke-virtual {v1, v4, v7}, Ljava/lang/String;->split(Ljava/lang/String;I)[Ljava/lang/String;
+    invoke-virtual {v1, v2, v8}, Ljava/lang/String;->split(Ljava/lang/String;I)[Ljava/lang/String;
 
     move-result-object v1
 
-    array-length v4, v1
+    array-length v2, v1
 
     const/4 v5, 0x5
 
-    if-lt v4, v5, :cond_38
+    if-lt v2, v5, :cond_38
 
-    array-length v4, v1
+    array-length v2, v1
 
-    if-gt v4, v2, :cond_38
+    if-gt v2, v4, :cond_38
 
-    aget-object v4, v1, v14
+    aget-object v2, v1, v14
 
-    invoke-virtual {v4}, Ljava/lang/String;->trim()Ljava/lang/String;
+    invoke-virtual {v2}, Ljava/lang/String;->trim()Ljava/lang/String;
 
-    move-result-object v4
+    move-result-object v2
 
     const-string v6, "OziExplorer Map Data File Version 2.2"
 
-    invoke-virtual {v4, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v2, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result v4
+    move-result v2
 
-    if-eqz v4, :cond_38
+    if-eqz v2, :cond_38
 
-    array-length v4, v1
+    array-length v2, v1
 
     move v6, v14
 
     :goto_1
-    if-ge v6, v4, :cond_4
+    if-ge v6, v2, :cond_4
 
-    aget-object v8, v1, v6
+    aget-object v7, v1, v6
 
-    invoke-virtual {v8}, Ljava/lang/String;->length()I
+    invoke-virtual {v7}, Ljava/lang/String;->length()I
 
-    move-result v8
+    move-result v7
 
-    if-gt v8, v2, :cond_3
+    if-gt v7, v4, :cond_3
 
     add-int/lit8 v6, v6, 0x1
 
@@ -691,7 +726,7 @@
 
     throw v0
 
-    .line 16
+    .line 20
     :cond_4
     const/4 v12, 0x2
 
@@ -729,9 +764,9 @@
 
     aget-object v6, v4, v14
 
-    const-string v8, "WGS 84"
+    const-string v7, "WGS 84"
 
-    invoke-virtual {v6, v8}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v6, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v6
 
@@ -756,7 +791,7 @@
 
     aget-object v9, v4, v6
 
-    invoke-virtual {v9, v8}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v9, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v9
 
@@ -789,11 +824,11 @@
 
     goto :goto_2
 
-    .line 17
+    .line 21
     :cond_7
-    new-instance v8, Ljava/util/ArrayList;
+    new-instance v9, Ljava/util/ArrayList;
 
-    invoke-direct {v8}, Ljava/util/ArrayList;-><init>()V
+    invoke-direct {v9}, Ljava/util/ArrayList;-><init>()V
 
     new-instance v4, Ljava/util/ArrayList;
 
@@ -803,10 +838,10 @@
 
     invoke-direct {v6}, Ljava/util/HashSet;-><init>()V
 
-    .line 18
-    move v9, v5
+    .line 22
+    move v7, v5
 
-    move/from16 v20, v7
+    move/from16 v20, v8
 
     move/from16 v16, v14
 
@@ -817,21 +852,21 @@
     move/from16 v19, v18
 
     :goto_4
-    array-length v7, v1
+    array-length v8, v1
 
     move-object/from16 p1, v6
 
     const-wide/high16 v5, 0x3ff0000000000000L    # 1.0
 
-    if-ge v9, v7, :cond_26
+    if-ge v7, v8, :cond_26
 
-    aget-object v7, v1, v9
+    aget-object v8, v1, v7
 
-    invoke-static {v7}, Lorg/rabochaya/projects/OziCalibration;->csv(Ljava/lang/String;)[Ljava/lang/String;
+    invoke-static {v8}, Lorg/rabochaya/projects/OziCalibration;->csv(Ljava/lang/String;)[Ljava/lang/String;
 
-    move-result-object v7
+    move-result-object v8
 
-    aget-object v2, v7, v14
+    aget-object v2, v8, v14
 
     const-string v14, "Map Projection"
 
@@ -843,11 +878,11 @@
 
     if-nez v16, :cond_c
 
-    array-length v2, v7
+    array-length v2, v8
 
     if-lt v2, v12, :cond_c
 
-    aget-object v2, v7, v15
+    aget-object v2, v8, v15
 
     const-string v5, "Latitude/Longitude"
 
@@ -864,11 +899,11 @@
     move v5, v12
 
     :goto_5
-    array-length v6, v7
+    array-length v6, v8
 
     if-ge v5, v6, :cond_b
 
-    aget-object v6, v7, v5
+    aget-object v6, v8, v5
 
     invoke-virtual {v6}, Ljava/lang/String;->isEmpty()Z
 
@@ -876,7 +911,7 @@
 
     if-eqz v6, :cond_8
 
-    array-length v6, v7
+    array-length v6, v8
 
     sub-int/2addr v6, v15
 
@@ -887,11 +922,11 @@
     :cond_8
     add-int/lit8 v6, v5, 0x1
 
-    array-length v14, v7
+    array-length v14, v8
 
     if-ge v6, v14, :cond_a
 
-    aget-object v14, v7, v5
+    aget-object v14, v8, v5
 
     const-string v15, "PolyCal"
 
@@ -901,7 +936,7 @@
 
     if-nez v14, :cond_9
 
-    aget-object v14, v7, v5
+    aget-object v14, v8, v5
 
     const-string v15, "AutoCalOnly"
 
@@ -911,7 +946,7 @@
 
     if-nez v14, :cond_9
 
-    aget-object v14, v7, v5
+    aget-object v14, v8, v5
 
     const-string v15, "BSBUseWPX"
 
@@ -922,7 +957,7 @@
     if-eqz v14, :cond_a
 
     :cond_9
-    aget-object v14, v7, v5
+    aget-object v14, v8, v5
 
     invoke-virtual {v2, v14}, Ljava/util/HashSet;->add(Ljava/lang/Object;)Z
 
@@ -930,7 +965,7 @@
 
     if-eqz v14, :cond_a
 
-    aget-object v6, v7, v6
+    aget-object v6, v8, v6
 
     const-string v14, "No"
 
@@ -972,7 +1007,7 @@
 
     throw v0
 
-    .line 19
+    .line 23
     :cond_d
     const-string v14, "Projection Setup"
 
@@ -987,11 +1022,11 @@
     const/4 v2, 0x1
 
     :goto_7
-    array-length v5, v7
+    array-length v5, v8
 
     if-ge v2, v5, :cond_10
 
-    aget-object v5, v7, v2
+    aget-object v5, v8, v2
 
     invoke-virtual {v5}, Ljava/lang/String;->isEmpty()Z
 
@@ -999,7 +1034,7 @@
 
     if-nez v5, :cond_f
 
-    aget-object v5, v7, v2
+    aget-object v5, v8, v2
 
     invoke-static {v5}, Lorg/rabochaya/projects/OziCalibration;->number(Ljava/lang/String;)D
 
@@ -1042,7 +1077,7 @@
 
     throw v0
 
-    .line 20
+    .line 24
     :cond_12
     const-string v14, "MSF"
 
@@ -1054,15 +1089,15 @@
 
     if-nez v19, :cond_13
 
-    array-length v2, v7
+    array-length v2, v8
 
     if-lt v2, v12, :cond_13
 
     const/4 v2, 0x1
 
-    aget-object v7, v7, v2
+    aget-object v8, v8, v2
 
-    invoke-static {v7}, Lorg/rabochaya/projects/OziCalibration;->number(Ljava/lang/String;)D
+    invoke-static {v8}, Lorg/rabochaya/projects/OziCalibration;->number(Ljava/lang/String;)D
 
     move-result-wide v14
 
@@ -1085,7 +1120,7 @@
 
     throw v0
 
-    .line 21
+    .line 25
     :cond_14
     const-string v5, "IWH"
 
@@ -1097,13 +1132,13 @@
 
     if-nez v18, :cond_15
 
-    array-length v2, v7
+    array-length v2, v8
 
     const/4 v5, 0x4
 
     if-lt v2, v5, :cond_15
 
-    aget-object v2, v7, v12
+    aget-object v2, v8, v12
 
     invoke-static {v2}, Lorg/rabochaya/projects/OziCalibration;->integer(Ljava/lang/String;)I
 
@@ -1113,7 +1148,7 @@
 
     const/4 v2, 0x3
 
-    aget-object v2, v7, v2
+    aget-object v2, v8, v2
 
     invoke-static {v2}, Lorg/rabochaya/projects/OziCalibration;->integer(Ljava/lang/String;)I
 
@@ -1136,7 +1171,7 @@
 
     throw v0
 
-    .line 22
+    .line 26
     :cond_16
     const-string v5, "Point[0-9]+"
 
@@ -1146,13 +1181,13 @@
 
     if-eqz v5, :cond_1b
 
-    array-length v5, v7
+    array-length v5, v8
 
     const/4 v6, 0x4
 
     if-lt v5, v6, :cond_1a
 
-    aget-object v5, v7, v12
+    aget-object v5, v8, v12
 
     invoke-virtual {v5}, Ljava/lang/String;->isEmpty()Z
 
@@ -1162,7 +1197,7 @@
 
     const/4 v5, 0x3
 
-    aget-object v6, v7, v5
+    aget-object v6, v8, v5
 
     invoke-virtual {v6}, Ljava/lang/String;->isEmpty()Z
 
@@ -1178,7 +1213,7 @@
     goto/16 :goto_c
 
     :cond_17
-    array-length v5, v7
+    array-length v5, v8
 
     const/16 v6, 0x11
 
@@ -1186,7 +1221,7 @@
 
     const/4 v5, 0x1
 
-    aget-object v6, v7, v5
+    aget-object v6, v8, v5
 
     const-string v5, "xy"
 
@@ -1198,7 +1233,7 @@
 
     const/4 v5, 0x4
 
-    aget-object v6, v7, v5
+    aget-object v6, v8, v5
 
     const-string v5, "in"
 
@@ -1216,7 +1251,7 @@
 
     if-eqz v2, :cond_19
 
-    invoke-virtual {v8}, Ljava/util/ArrayList;->size()I
+    invoke-virtual {v9}, Ljava/util/ArrayList;->size()I
 
     move-result v2
 
@@ -1224,7 +1259,7 @@
 
     if-ge v2, v5, :cond_19
 
-    aget-object v2, v7, v12
+    aget-object v2, v8, v12
 
     invoke-static {v2}, Lorg/rabochaya/projects/OziCalibration;->number(Ljava/lang/String;)D
 
@@ -1232,17 +1267,17 @@
 
     const/4 v2, 0x3
 
-    aget-object v15, v7, v2
+    aget-object v15, v8, v2
 
     invoke-static {v15}, Lorg/rabochaya/projects/OziCalibration;->number(Ljava/lang/String;)D
 
-    move-result-wide v26
+    move-result-wide v25
 
     cmpg-double v2, v5, v10
 
     if-ltz v2, :cond_18
 
-    cmpg-double v2, v26, v10
+    cmpg-double v2, v25, v10
 
     if-ltz v2, :cond_18
 
@@ -1254,13 +1289,13 @@
 
     int-to-double v10, v3
 
-    cmpl-double v2, v26, v10
+    cmpl-double v2, v25, v10
 
     if-gtz v2, :cond_18
 
     const/4 v10, 0x5
 
-    aget-object v2, v7, v10
+    aget-object v2, v8, v10
 
     const-string v11, "deg"
 
@@ -1272,55 +1307,55 @@
 
     const/16 v2, 0x9
 
-    aget-object v2, v7, v2
+    aget-object v2, v8, v2
 
     const/16 v11, 0xa
 
-    aget-object v11, v7, v11
+    aget-object v11, v8, v11
 
     const/16 v15, 0xb
 
-    aget-object v15, v7, v15
+    aget-object v15, v8, v15
 
     const/4 v10, 0x0
 
     invoke-static {v2, v11, v15, v10}, Lorg/rabochaya/projects/OziCalibration;->angle(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)D
 
-    move-result-wide v30
+    move-result-wide v29
 
     const/4 v2, 0x6
 
-    aget-object v2, v7, v2
+    aget-object v2, v8, v2
 
     const/4 v11, 0x7
 
-    aget-object v11, v7, v11
+    aget-object v11, v8, v11
 
     const/16 v15, 0x8
 
-    aget-object v7, v7, v15
+    aget-object v8, v8, v15
 
     const/4 v15, 0x1
 
-    invoke-static {v2, v11, v7, v15}, Lorg/rabochaya/projects/OziCalibration;->angle(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)D
+    invoke-static {v2, v11, v8, v15}, Lorg/rabochaya/projects/OziCalibration;->angle(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)D
 
-    move-result-wide v32
+    move-result-wide v31
 
     const/4 v2, 0x4
 
-    new-array v7, v2, [D
+    new-array v8, v2, [D
 
-    aput-wide v5, v7, v10
+    aput-wide v5, v8, v10
 
-    aput-wide v26, v7, v15
+    aput-wide v25, v8, v15
 
-    aput-wide v30, v7, v12
+    aput-wide v29, v8, v12
 
     const/4 v2, 0x3
 
-    aput-wide v32, v7, v2
+    aput-wide v31, v8, v2
 
-    invoke-virtual {v8, v7}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    invoke-virtual {v9, v8}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
     goto/16 :goto_9
 
@@ -1351,7 +1386,7 @@
 
     throw v0
 
-    .line 23
+    .line 27
     :cond_1b
     move-object/from16 v14, p1
 
@@ -1369,13 +1404,13 @@
 
     if-ne v10, v11, :cond_1c
 
-    array-length v2, v7
+    array-length v2, v8
 
     if-ne v2, v12, :cond_1c
 
     const/4 v2, 0x1
 
-    aget-object v5, v7, v2
+    aget-object v5, v8, v2
 
     invoke-static {v5}, Lorg/rabochaya/projects/OziCalibration;->integer(Ljava/lang/String;)I
 
@@ -1400,7 +1435,7 @@
 
     throw v0
 
-    .line 24
+    .line 28
     :cond_1d
     move/from16 v10, v20
 
@@ -1414,7 +1449,7 @@
 
     if-eqz v2, :cond_25
 
-    array-length v2, v7
+    array-length v2, v8
 
     const/4 v5, 0x4
 
@@ -1428,13 +1463,13 @@
 
     const/4 v2, 0x1
 
-    aget-object v5, v7, v2
+    aget-object v5, v8, v2
 
     invoke-static {v5}, Lorg/rabochaya/projects/OziCalibration;->integer(Ljava/lang/String;)I
 
     move-result v5
 
-    aget-object v6, v7, v12
+    aget-object v6, v8, v12
 
     invoke-static {v6}, Lorg/rabochaya/projects/OziCalibration;->integer(Ljava/lang/String;)I
 
@@ -1442,11 +1477,11 @@
 
     const/4 v15, 0x3
 
-    aget-object v7, v7, v15
+    aget-object v8, v8, v15
 
-    invoke-static {v7}, Lorg/rabochaya/projects/OziCalibration;->integer(Ljava/lang/String;)I
+    invoke-static {v8}, Lorg/rabochaya/projects/OziCalibration;->integer(Ljava/lang/String;)I
 
-    move-result v7
+    move-result v8
 
     invoke-virtual {v4}, Ljava/util/ArrayList;->size()I
 
@@ -1461,9 +1496,9 @@
     if-ne v6, v0, :cond_23
 
     :cond_1e
-    if-eqz v7, :cond_1f
+    if-eqz v8, :cond_1f
 
-    if-ne v7, v3, :cond_23
+    if-ne v8, v3, :cond_23
 
     :cond_1f
     invoke-virtual {v4}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
@@ -1493,7 +1528,7 @@
 
     aget v5, v5, v11
 
-    if-eq v5, v7, :cond_20
+    if-eq v5, v8, :cond_20
 
     goto :goto_b
 
@@ -1513,7 +1548,7 @@
     goto :goto_a
 
     :cond_22
-    filled-new-array {v6, v7}, [I
+    filled-new-array {v6, v8}, [I
 
     move-result-object v2
 
@@ -1539,13 +1574,13 @@
 
     throw v0
 
-    .line 18
+    .line 22
     :cond_25
     :goto_c
     move/from16 v20, v10
 
     :goto_d
-    add-int/lit8 v9, v9, 0x1
+    add-int/lit8 v7, v7, 0x1
 
     move-object v6, v14
 
@@ -1553,7 +1588,7 @@
 
     const/4 v5, 0x5
 
-    const/4 v7, -0x1
+    const/4 v8, -0x1
 
     const-wide/16 v10, 0x0
 
@@ -1563,7 +1598,7 @@
 
     goto/16 :goto_4
 
-    .line 26
+    .line 30
     :cond_26
     move/from16 v10, v20
 
@@ -1573,7 +1608,7 @@
 
     if-eqz v18, :cond_35
 
-    invoke-virtual {v8}, Ljava/util/ArrayList;->size()I
+    invoke-virtual {v9}, Ljava/util/ArrayList;->size()I
 
     move-result v1
 
@@ -1617,7 +1652,7 @@
 
     throw v0
 
-    .line 27
+    .line 31
     :cond_29
     :goto_e
     const/4 v1, 0x0
@@ -1649,20 +1684,20 @@
 
     check-cast v7, [I
 
-    const/4 v9, 0x0
+    const/4 v8, 0x0
 
-    aget v10, v2, v9
+    aget v10, v2, v8
 
-    aget v11, v7, v9
+    aget v11, v7, v8
 
     if-ne v10, v11, :cond_2a
 
-    const/4 v9, 0x1
+    const/4 v8, 0x1
 
     goto :goto_10
 
     :cond_2a
-    const/4 v9, 0x0
+    const/4 v8, 0x0
 
     :goto_10
     const/4 v10, 0x1
@@ -1681,7 +1716,7 @@
     const/4 v2, 0x0
 
     :goto_11
-    if-eq v9, v2, :cond_2c
+    if-eq v8, v2, :cond_2c
 
     goto :goto_f
 
@@ -1694,7 +1729,7 @@
 
     throw v0
 
-    .line 28
+    .line 32
     :cond_2d
     const/4 v1, 0x0
 
@@ -1707,18 +1742,18 @@
     const-wide/16 v10, 0x0
 
     :goto_12
-    invoke-virtual {v8}, Ljava/util/ArrayList;->size()I
+    invoke-virtual {v9}, Ljava/util/ArrayList;->size()I
 
-    move-result v9
+    move-result v8
 
-    if-ge v7, v9, :cond_31
+    if-ge v7, v8, :cond_31
 
-    add-int/lit8 v9, v7, 0x1
+    add-int/lit8 v8, v7, 0x1
 
-    move v14, v9
+    move v14, v8
 
     :goto_13
-    invoke-virtual {v8}, Ljava/util/ArrayList;->size()I
+    invoke-virtual {v9}, Ljava/util/ArrayList;->size()I
 
     move-result v15
 
@@ -1729,25 +1764,25 @@
     move v12, v15
 
     :goto_14
-    invoke-virtual {v8}, Ljava/util/ArrayList;->size()I
+    invoke-virtual {v9}, Ljava/util/ArrayList;->size()I
 
     move-result v5
 
     if-ge v12, v5, :cond_2f
 
-    invoke-virtual {v8, v7}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+    invoke-virtual {v9, v7}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
 
     move-result-object v5
 
     check-cast v5, [D
 
-    invoke-virtual {v8, v14}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+    invoke-virtual {v9, v14}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
 
     move-result-object v6
 
     check-cast v6, [D
 
-    invoke-virtual {v8, v12}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+    invoke-virtual {v9, v12}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
 
     move-result-object v18
 
@@ -1757,45 +1792,45 @@
 
     aget-wide v20, v6, v19
 
-    aget-wide v26, v5, v19
+    aget-wide v25, v5, v19
 
-    sub-double v20, v20, v26
+    sub-double v20, v20, v25
 
-    const/16 v22, 0x1
+    const/16 v24, 0x1
 
-    aget-wide v24, v18, v22
+    aget-wide v25, v18, v24
 
-    aget-wide v26, v5, v22
+    aget-wide v27, v5, v24
 
-    sub-double v24, v24, v26
+    sub-double v25, v25, v27
 
-    mul-double v20, v20, v24
+    mul-double v20, v20, v25
 
     aget-wide v25, v18, v19
 
     aget-wide v27, v5, v19
 
-    sub-double v26, v25, v27
+    sub-double v25, v25, v27
 
-    aget-wide v28, v6, v22
+    aget-wide v27, v6, v24
 
-    aget-wide v30, v5, v22
+    aget-wide v29, v5, v24
 
-    sub-double v28, v28, v30
+    sub-double v27, v27, v29
 
-    mul-double v26, v26, v28
+    mul-double v25, v25, v27
 
-    sub-double v20, v20, v26
+    sub-double v20, v20, v25
 
     invoke-static/range {v20 .. v21}, Ljava/lang/Math;->abs(D)D
 
-    move-result-wide v26
+    move-result-wide v25
 
     invoke-static {v10, v11}, Ljava/lang/Math;->abs(D)D
 
-    move-result-wide v28
+    move-result-wide v27
 
-    cmpl-double v19, v26, v28
+    cmpl-double v19, v25, v27
 
     if-lez v19, :cond_2e
 
@@ -1824,7 +1859,7 @@
     goto :goto_13
 
     :cond_30
-    move v7, v9
+    move v7, v8
 
     const-wide/high16 v5, 0x3ff0000000000000L    # 1.0
 
@@ -1837,17 +1872,15 @@
 
     move-result-wide v5
 
-    int-to-double v14, v0
+    int-to-double v7, v0
 
-    move-object/from16 p1, v8
+    int-to-double v14, v3
 
-    int-to-double v7, v3
+    mul-double/2addr v7, v14
 
-    mul-double/2addr v14, v7
+    const-wide/high16 v14, 0x3ff0000000000000L    # 1.0
 
-    const-wide/high16 v7, 0x3ff0000000000000L    # 1.0
-
-    invoke-static {v7, v8, v14, v15}, Ljava/lang/Math;->max(DD)D
+    invoke-static {v14, v15, v7, v8}, Ljava/lang/Math;->max(DD)D
 
     move-result-wide v7
 
@@ -1859,7 +1892,7 @@
 
     if-ltz v5, :cond_34
 
-    .line 29
+    .line 33
     const/4 v12, 0x2
 
     aget-wide v5, v1, v12
@@ -1870,29 +1903,29 @@
 
     const/4 v7, 0x1
 
-    aget-wide v8, v4, v7
-
-    aget-wide v14, v2, v7
-
-    sub-double/2addr v8, v14
-
-    mul-double/2addr v5, v8
-
-    aget-wide v8, v4, v12
-
-    aget-wide v14, v2, v12
-
-    sub-double/2addr v8, v14
-
-    aget-wide v14, v1, v7
+    aget-wide v14, v4, v7
 
     aget-wide v16, v2, v7
 
     sub-double v14, v14, v16
 
-    mul-double/2addr v8, v14
+    mul-double/2addr v5, v14
 
-    sub-double/2addr v5, v8
+    aget-wide v14, v4, v12
+
+    aget-wide v16, v2, v12
+
+    sub-double v14, v14, v16
+
+    aget-wide v16, v1, v7
+
+    aget-wide v18, v2, v7
+
+    sub-double v16, v16, v18
+
+    mul-double v14, v14, v16
+
+    sub-double/2addr v5, v14
 
     div-double v18, v5, v10
 
@@ -1900,51 +1933,51 @@
 
     aget-wide v6, v1, v5
 
-    aget-wide v8, v2, v5
-
-    sub-double/2addr v6, v8
-
-    aget-wide v8, v4, v12
-
-    aget-wide v14, v2, v12
-
-    sub-double/2addr v8, v14
-
-    mul-double/2addr v6, v8
-
-    aget-wide v8, v4, v5
-
     aget-wide v14, v2, v5
 
-    sub-double/2addr v8, v14
+    sub-double/2addr v6, v14
 
-    aget-wide v14, v1, v12
+    aget-wide v14, v4, v12
 
     aget-wide v16, v2, v12
 
     sub-double v14, v14, v16
 
-    mul-double/2addr v8, v14
+    mul-double/2addr v6, v14
 
-    sub-double/2addr v6, v8
+    aget-wide v14, v4, v5
+
+    aget-wide v16, v2, v5
+
+    sub-double v14, v14, v16
+
+    aget-wide v16, v1, v12
+
+    aget-wide v20, v2, v12
+
+    sub-double v16, v16, v20
+
+    mul-double v14, v14, v16
+
+    sub-double/2addr v6, v14
 
     div-double v20, v6, v10
 
     aget-wide v6, v2, v12
 
-    aget-wide v8, v2, v5
+    aget-wide v14, v2, v5
 
-    mul-double v8, v8, v18
+    mul-double v14, v14, v18
 
-    sub-double/2addr v6, v8
+    sub-double/2addr v6, v14
 
     const/4 v5, 0x1
 
-    aget-wide v8, v2, v5
+    aget-wide v14, v2, v5
 
-    mul-double v8, v8, v20
+    mul-double v14, v14, v20
 
-    sub-double v26, v6, v8
+    sub-double v25, v6, v14
 
     const/4 v6, 0x3
 
@@ -1970,9 +2003,9 @@
 
     aget-wide v16, v1, v5
 
-    aget-wide v22, v2, v5
+    aget-wide v27, v2, v5
 
-    sub-double v16, v16, v22
+    sub-double v16, v16, v27
 
     mul-double v14, v14, v16
 
@@ -1990,9 +2023,9 @@
 
     aget-wide v22, v4, v6
 
-    aget-wide v28, v2, v6
+    aget-wide v27, v2, v6
 
-    sub-double v22, v22, v28
+    sub-double v22, v22, v27
 
     mul-double v7, v7, v22
 
@@ -2004,9 +2037,9 @@
 
     aget-wide v4, v1, v6
 
-    aget-wide v28, v2, v6
+    aget-wide v27, v2, v6
 
-    sub-double v4, v4, v28
+    sub-double v4, v4, v27
 
     mul-double v22, v22, v4
 
@@ -2028,13 +2061,13 @@
 
     mul-double v1, v1, v22
 
-    sub-double v24, v4, v1
+    sub-double v27, v4, v1
 
     mul-double v1, v18, v22
 
     mul-double v4, v20, v14
 
-    sub-double v28, v1, v4
+    sub-double v29, v1, v4
 
     :try_start_1
     new-instance v10, Lorg/rabochaya/projects/GeoRasterTransform;
@@ -2045,7 +2078,7 @@
 
     move-object v1, v10
 
-    move/from16 v30, v6
+    move/from16 v24, v6
 
     move/from16 v2, p2
 
@@ -2053,35 +2086,35 @@
 
     move-wide/from16 v6, v18
 
-    move-object/from16 v0, p1
+    move-object v0, v9
 
     move-wide/from16 v8, v20
 
-    move-object/from16 v34, v10
+    move-object/from16 v33, v10
 
-    move-wide/from16 v10, v26
+    move-wide/from16 v10, v25
 
     move/from16 v31, v12
 
-    move-object/from16 v35, v13
+    move-object/from16 v34, v13
 
     move-wide v12, v14
 
-    move-wide/from16 v36, v14
+    move-wide/from16 v35, v14
 
     move/from16 v32, v16
 
-    move/from16 v33, v17
+    move/from16 v37, v17
 
     move-wide/from16 v14, v22
 
-    move-wide/from16 v16, v24
+    move-wide/from16 v16, v27
 
     invoke-direct/range {v1 .. v17}, Lorg/rabochaya/projects/GeoRasterTransform;-><init>(IIIZDDDDDD)V
     :try_end_1
     .catch Ljava/lang/IllegalArgumentException; {:try_start_1 .. :try_end_1} :catch_0
 
-    .line 30
+    .line 34
     invoke-virtual {v0}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
 
     move-result-object v1
@@ -2103,13 +2136,13 @@
 
     mul-double v3, v3, v18
 
-    aget-wide v5, v2, v33
+    aget-wide v5, v2, v37
 
     mul-double v5, v5, v20
 
     add-double/2addr v3, v5
 
-    add-double v3, v3, v26
+    add-double v3, v3, v25
 
     aget-wide v5, v2, v31
 
@@ -2117,19 +2150,19 @@
 
     aget-wide v5, v2, v32
 
-    move-wide/from16 v7, v36
+    move-wide/from16 v7, v35
 
     mul-double v14, v7, v5
 
-    aget-wide v5, v2, v33
+    aget-wide v5, v2, v37
 
     mul-double v5, v5, v22
 
     add-double/2addr v14, v5
 
-    add-double v14, v14, v24
+    add-double v14, v14, v27
 
-    aget-wide v5, v2, v30
+    aget-wide v5, v2, v24
 
     sub-double/2addr v14, v5
 
@@ -2139,7 +2172,7 @@
 
     sub-double/2addr v5, v9
 
-    div-double v5, v5, v28
+    div-double v5, v5, v29
 
     neg-double v9, v7
 
@@ -2149,7 +2182,7 @@
 
     add-double/2addr v9, v14
 
-    div-double v9, v9, v28
+    div-double v9, v9, v29
 
     invoke-static {v5, v6}, Ljava/lang/Double;->isNaN(D)Z
 
@@ -2185,7 +2218,7 @@
 
     if-gtz v2, :cond_32
 
-    move-wide/from16 v36, v7
+    move-wide/from16 v35, v7
 
     goto :goto_15
 
@@ -2198,7 +2231,7 @@
 
     throw v0
 
-    .line 31
+    .line 35
     :cond_33
     new-instance v1, Lorg/rabochaya/projects/OziCalibration;
 
@@ -2206,15 +2239,15 @@
 
     move-result v0
 
-    move-object/from16 v3, v34
+    move-object/from16 v3, v33
 
-    move-object/from16 v2, v35
+    move-object/from16 v2, v34
 
     invoke-direct {v1, v2, v3, v0}, Lorg/rabochaya/projects/OziCalibration;-><init>(Ljava/lang/String;Lorg/rabochaya/projects/GeoRasterTransform;I)V
 
     return-object v1
 
-    .line 29
+    .line 33
     :catch_0
     move-exception v0
 
@@ -2228,7 +2261,7 @@
 
     throw v0
 
-    .line 28
+    .line 32
     :cond_34
     const-string v0, "\u043a\u043e\u043d\u0442\u0440\u043e\u043b\u044c\u043d\u044b\u0435 \u0442\u043e\u0447\u043a\u0438 \u043a\u043e\u043b\u043b\u0438\u043d\u0435\u0430\u0440\u043d\u044b/\u043d\u0435\u0443\u0441\u0442\u043e\u0439\u0447\u0438\u0432\u044b"
 
@@ -2238,7 +2271,7 @@
 
     throw v0
 
-    .line 26
+    .line 30
     :cond_35
     const-string v0, "\u043d\u0443\u0436\u043d\u044b projection/setup/IWH \u0438 \u043c\u0438\u043d\u0438\u043c\u0443\u043c 3 \u043a\u043e\u043d\u0442\u0440\u043e\u043b\u044c\u043d\u044b\u0435 \u0442\u043e\u0447\u043a\u0438"
 
@@ -2248,7 +2281,7 @@
 
     throw v0
 
-    .line 16
+    .line 20
     :cond_36
     const-string v0, "\u043f\u043e\u0434\u0434\u0435\u0440\u0436\u0430\u043d \u0442\u043e\u043b\u044c\u043a\u043e datum WGS 84"
 
@@ -2267,7 +2300,7 @@
 
     throw v0
 
-    .line 15
+    .line 19
     :cond_38
     const-string v0, "\u043d\u0435\u0432\u0435\u0440\u043d\u044b\u0439 \u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a"
 
@@ -2289,7 +2322,17 @@
     :catch_1
     move-exception v0
 
-    const-string v0, "\u043d\u0443\u0436\u0435\u043d UTF-8/ASCII .map; \u043a\u043e\u0434\u0438\u0440\u043e\u0432\u043a\u0430 \u043d\u0435 \u0443\u0433\u0430\u0434\u044b\u0432\u0430\u0435\u0442\u0441\u044f"
+    const-string v0, "\u043d\u0435\u0432\u0435\u0440\u043d\u044b\u0435 \u0431\u0430\u0439\u0442\u044b \u0434\u043b\u044f \u0432\u044b\u0431\u0440\u0430\u043d\u043d\u043e\u0439 \u043a\u043e\u0434\u0438\u0440\u043e\u0432\u043a\u0438 .map; \u043a\u043e\u0434\u0438\u0440\u043e\u0432\u043a\u0430 \u043d\u0435 \u0443\u0433\u0430\u0434\u044b\u0432\u0430\u0435\u0442\u0441\u044f"
+
+    invoke-static {v0}, Lorg/rabochaya/projects/OziCalibration;->bad(Ljava/lang/String;)Ljava/io/IOException;
+
+    move-result-object v0
+
+    throw v0
+
+    .line 18
+    :cond_3a
+    const-string v0, "\u043d\u0443\u0436\u0435\u043d \u044f\u0432\u043d\u044b\u0439 \u0432\u044b\u0431\u043e\u0440 \u043a\u043e\u0434\u0438\u0440\u043e\u0432\u043a\u0438"
 
     invoke-static {v0}, Lorg/rabochaya/projects/OziCalibration;->bad(Ljava/lang/String;)Ljava/io/IOException;
 

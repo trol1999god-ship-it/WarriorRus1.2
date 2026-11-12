@@ -14,6 +14,34 @@
 .end method
 
 .method public static write(Ljava/io/File;Ljava/io/File;Ljava/lang/String;Ljava/io/File;Lorg/rabochaya/projects/CacheExport$Progress;)I
+    .locals 6
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 6
+    sget-object v5, Lorg/rabochaya/projects/OziCalibration$Encoding;->UTF8:Lorg/rabochaya/projects/OziCalibration$Encoding;
+
+    move-object v0, p0
+
+    move-object v1, p1
+
+    move-object v2, p2
+
+    move-object v3, p3
+
+    move-object v4, p4
+
+    invoke-static/range {v0 .. v5}, Lorg/rabochaya/projects/OziImport;->write(Ljava/io/File;Ljava/io/File;Ljava/lang/String;Ljava/io/File;Lorg/rabochaya/projects/CacheExport$Progress;Lorg/rabochaya/projects/OziCalibration$Encoding;)I
+
+    move-result p0
+
+    return p0
+.end method
+
+.method public static write(Ljava/io/File;Ljava/io/File;Ljava/lang/String;Ljava/io/File;Lorg/rabochaya/projects/CacheExport$Progress;Lorg/rabochaya/projects/OziCalibration$Encoding;)I
     .locals 2
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -21,7 +49,7 @@
         }
     .end annotation
 
-    .line 7
+    .line 8
     invoke-virtual {p3}, Ljava/io/File;->getCanonicalFile()Ljava/io/File;
 
     move-result-object v0
@@ -46,10 +74,10 @@
 
     if-nez v0, :cond_0
 
-    .line 8
+    .line 9
     new-instance v0, Lorg/rabochaya/projects/OziRaster;
 
-    invoke-direct {v0, p0, p1, p2}, Lorg/rabochaya/projects/OziRaster;-><init>(Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
+    invoke-direct {v0, p0, p1, p2, p5}, Lorg/rabochaya/projects/OziRaster;-><init>(Ljava/io/File;Ljava/io/File;Ljava/lang/String;Lorg/rabochaya/projects/OziCalibration$Encoding;)V
 
     :try_start_0
     const-string p0, "\u041b\u043e\u043a\u0430\u043b\u044c\u043d\u0430\u044f Ozi \u043a\u0430\u0440\u0442\u0430"
@@ -84,7 +112,7 @@
     :goto_0
     throw p0
 
-    .line 7
+    .line 8
     :cond_0
     new-instance p0, Ljava/io/IOException;
 

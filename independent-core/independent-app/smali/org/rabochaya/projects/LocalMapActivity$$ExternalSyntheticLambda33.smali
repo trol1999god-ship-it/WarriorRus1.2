@@ -30,7 +30,7 @@
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda33;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$load$2$org-rabochaya-projects-LocalMapActivity()V
+    invoke-virtual {v0}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$marksMenu$35$org-rabochaya-projects-LocalMapActivity()V
 
     return-void
 .end method
