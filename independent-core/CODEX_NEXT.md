@@ -31,6 +31,10 @@ GEOTIFF_TILED.md, DEM_PROFILE.md, HGT_DEM.md; это scoped evidence, НЕпол
 app+tests/source73exact/535classes/customprivacy PASS. GEOTIFF_AFFINE.md,
 security/geotiff-affine-qa-2026-11-12/local/receipt.json. Runtime ещёНЕисполнен.
 Следующий шаг — обоснованный fullCI нового кода/обеAPI/новыеPNG/data guards.
+Affine code90020f3656742cd8a86c548e3ade3f4caa6c4ba3 / pushCI43134277461
+реально запущен: JVM130905697123success, API23 130905880127 и
+API35 130905880117 running (привязка по jobname, не порядку ID).
+Не push покаactive; читать оба completedjob/архивы/новыеPNG, не blindrerun.
 ModelTransformationTag34264, OGC DOUBLE16 row-major/2D, через общий
 GeoRasterTransform и existing importer/render/storage. Корректные Area/Point,
 bounds/реальный native pixel step (не толькоbbox), literal native pixels,
