@@ -73,11 +73,13 @@
       ],
       "evidence": [
         "security/geotiff-tiled-qa-2026-11-11/final-1254-result.json",
-        "security/geotiff-affine-qa-2026-11-12/runtime-result.json"
+        "security/geotiff-affine-qa-2026-11-12/runtime-result.json",
+        "security/ozi-import-qa-2026-11-12/runtime-result.json"
       ],
       "implementation_notes": [
         "Scoped code3c87557+1254a0b/CI43114388829 SUCCESS46/46 API23+35; bounded TIFF6 tiled raw/Deflate/predictor/NoData import, pixel/roundtrip/Cancel/checksum/data guards verified. Matrix34264/Ozi/RMAP, full format/reference acceptance remain open; not accepted.",
-        "Affine34264 code90020f3: native391 both; API23full46success/API35full44failure(adb offline artifact pull/before managerrotation), not full green.44 scopedPNG/all546+534member/sourceSHA verified. Full Ozi/RMAP/format/reference acceptance remains open."
+        "Affine34264 code90020f3: native391 both; API23full46success/API35full44failure(adb offline artifact pull/before managerrotation), not full green.44 scopedPNG/all546+534member/sourceSHA verified. Full Ozi/RMAP/format/reference acceptance remains open.",
+        "PNG/JPEG Ozi fbc64ea/CI43139985094: native581 both incl391GeoTIFF; API23full46success/API35full41failure(adb transport), not full green. All4new OziPNG/12scoped viewed/source+all548/538member SHAverified. Full Ozi/BMP/GIF/CRS/reference acceptance remains open."
       ]
     },
     {

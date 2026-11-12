@@ -1,0 +1,30 @@
+[
+  {
+    "original_path": "cachewrites/map_mvisual-geotiff-import-prompt.png",
+    "local_path": "recovered-offlineformats/map_mvisual-geotiff-import-prompt.png",
+    "sha256": "10b3445a555fd5ffe29f03f2b23727a87459a6cb52e694e24c6e9971d07ad1f0",
+    "actually_viewed": true,
+    "scope": "offlineformats same-run native581; pull recovered during cachewrites prep failure; neither record relabelled PASS"
+  },
+  {
+    "original_path": "cachewrites/map_mvisual-geotiff-import-saved.png",
+    "local_path": "recovered-offlineformats/map_mvisual-geotiff-import-saved.png",
+    "sha256": "df684740a91ef50e59985f27e8b6782253e188208ed97d2157e962fd0d46bce6",
+    "actually_viewed": true,
+    "scope": "offlineformats same-run native581; pull recovered during cachewrites prep failure; neither record relabelled PASS"
+  },
+  {
+    "original_path": "cachewrites/map_mvisual-ozi-import-prompt.png",
+    "local_path": "recovered-offlineformats/map_mvisual-ozi-import-prompt.png",
+    "sha256": "f0196a1eb851eb4bd163452c67fc71f17eb276b054ff4345544a2ea9196791c1",
+    "actually_viewed": true,
+    "scope": "offlineformats same-run native581; pull recovered during cachewrites prep failure; neither record relabelled PASS"
+  },
+  {
+    "original_path": "cachewrites/map_mvisual-ozi-import-saved.png",
+    "local_path": "recovered-offlineformats/map_mvisual-ozi-import-saved.png",
+    "sha256": "705b822b3b4aab58f5f22223bf0f41aff67aca50d484c88931181cb6f265baee",
+    "actually_viewed": true,
+    "scope": "offlineformats same-run native581; pull recovered during cachewrites prep failure; neither record relabelled PASS"
+  }
+]

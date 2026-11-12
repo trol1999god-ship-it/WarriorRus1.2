@@ -1,0 +1,9 @@
+INSTRUMENTATION_STATUS: stream=START offlineformats
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 168, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и qa_ozi.png. Поддержаны UTF-8\/ASCII, WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MSF=1, полный PNG\/JPEG без обрезки. До 128 КиБ ","foreground":"#de000000","arimo":true,"bounds":"[16, 205, 288, 228]","visible":true,"visibleBounds":"[16,71][304,299]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff008577","arimo":true,"bounds":"[59, 437, 84, 48]","visible":true,"visibleBounds":"[59,303][143,351]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff008577","arimo":true,"bounds":"[143, 437, 149, 48]","visible":true,"visibleBounds":"[143,303][292,351]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=PASS offlineformats: 581 assertions
+
+INSTRUMENTATION_CODE: -1

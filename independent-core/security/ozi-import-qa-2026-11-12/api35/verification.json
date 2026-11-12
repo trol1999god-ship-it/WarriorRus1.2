@@ -1,0 +1,41 @@
+{
+  "api": "35",
+  "source_sha": "fbc64ea14ddc009e74a3ed1856885698a21d2865",
+  "run_id": "43139985094",
+  "outer_path": "/workspace/attachments/589097f2-57e1-4270-a9ef-68bd1a08e580/ozi-fbc-api35.zip",
+  "outer_sha256": "2e32fd9b0be0bd46ee4f2e15e5dcde2101a8dd57447f184dc31eb499b8762c2d",
+  "inner_sha256": "40d4bd20cdd34bb455c25cd20993def70e18ee0e07fe582c460b92847b53c086",
+  "all_member_hashes_verified": true,
+  "members": 538,
+  "records": 46,
+  "passed": 41,
+  "failed_or_skipped": [
+    {
+      "mode": "offlineformats",
+      "passed": false,
+      "seconds": 40.13
+    },
+    {
+      "mode": "cachewrites",
+      "passed": false,
+      "seconds": 0.84
+    },
+    {
+      "mode": "coordinates",
+      "passed": false,
+      "seconds": 0.6
+    },
+    {
+      "mode": "managerpasteconfirm",
+      "passed": false,
+      "seconds": 0.42
+    },
+    {
+      "mode": "managerchooser",
+      "passed": false,
+      "seconds": 0.87
+    }
+  ],
+  "frames": 19,
+  "visual_review": "pending actual view_image"
+}

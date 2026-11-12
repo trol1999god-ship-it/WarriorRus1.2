@@ -1,7 +1,14 @@
 # Ozi .map + PNG/JPEG — ограниченный локальный кандидат
 
-12 ноября 2026: production код подготовлен и собран SDK23, Android runtime ещё
-НЕ проверен. Это не приёмка Ozi26.1 и не часть affineCI43134277461/90020f3.
+12 ноября 2026: PNG/JPEG codefbc64ea/CI43139985094: nativeofflineformats581
+PASS обеAPI (включая прежние391GeoTIFF). API23full46 SUCCESS; API35full41/46
+FAILURE: adb offline pull после native581 и4modeдоinstrumentation. Это НЕполный
+greenCI/не приёмкаOzi26.1 и не часть affineCI43134277461/90020f3.
+Source/outer/inner/all548/538members SHAverified;12 scopedPNG реально просмотрены,
+включая все4новых Ozi. На35 они recovered из cachewrites после его prep failure,
+не засчитываются ни как успешный pull offlineformats, ни как cachewrites PASS.
+security/ozi-import-qa-2026-11-12/runtime-result.json. Следующий локальный
+BMPкандидат/transportfix ещёНЕвходят в этотrun (migration/OZI_BMP.md).
 Официальные ссылки для формата: GDAL `OSGeo/gdal` commit
 9bb42f5a7b13e9bd1b0991ec0140b71343576e04:
 `gcore/gdal_misc.cpp` (blob8052713688144b29661473038a6fc0eb827a0cf3),
@@ -60,7 +67,9 @@ JPEG solid control, literal bounds/native zoom, Cancel/unsupported datum/CRS/
 MSF/neatline/имя/IWH/non-affine/oldfile/source exact, region LRU и close,
 UI explicit import/Cancel/stale installer/Arimo/actions/reopen/другой проект,
 KML/assets/network-request guards. Новые2PNG относятся только к новому CI.
-До исполнения API23/API35 эти проверки — сценарий, НЕ runtime evidence.
+PNG/JPEG native581/UI/data выполнены обеAPI, сквозной CI35 остаётся failure
+из-за транспорта. Следующий изменённый BMP+driver обязан пройти все46 реально;
+не blindrerun fbc, прошлые failure/PNG attribution сохраняются.
 
 Следующие форматные пробелы: Ozi BMP/GIF/codepages/проекции/neatline/OZF только
 с подтверждёнными контрактами и bounded readers; RMAP/прочие форматы и DEM
