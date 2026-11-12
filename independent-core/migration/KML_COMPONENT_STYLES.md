@@ -24,3 +24,22 @@ mode/workflow: разные компонентные pixels/alpha/flags, shared 
 KML и KMZ roundtrip/вложения, реальный main reopen/две новые PNG, другой проект и
 network0. Строгий лимит кадров16/2МиБ, deadlines и guards не менялись.
 Приёмка символов/всего переноса открыта, accepted0/release gate прежние.
+
+## Следующий локальный кандидат: явное редактирование
+
+После ca888b5 подготовлен «Цвет и заливка KML» в существующем менеджере. Шесть
+свойств открывают тот же managed editor, с исходными project/key/token/raw/cursor.
+Save явный, Cancel не пишет; используется существующая транзакция ObjectTreeWrites
+и ProjectWrites.savePreservingAssets. Пусто снимает только своё свойство и наследует
+shared StyleMap, не меняет его и другие объекты. Для явного цвета задаётся normal;
+собственные color/colorMode выбранного компонента снимаются при reset; width/scale/
+Icon href/геометрия/unknown XML сохраняются. Папки не принимаются как Placemark.
+
+В исходнике LocalMapView обнаружено отсутствие setTypeface у Paint подписей;
+добавлено использование существующего Arimo cache. WorkspaceUi.font(Activity)
+сохранён как совместимый overload, Context overload не удерживает Context.
+Локально JVM39/83316/edit34, SDK23 source83exact/app+tests/customprivacy PASS.
+Native проверка расширяет existing helper явными Save/Cancel/invalid/Reset/stale,
+exact shared/other geometry/KMZ/assets/network0 и двумя IME кадрами; итого16,
+лимит не увеличен. Этот кандидат ещё НЕпроверен Android CI и не отправляется,
+пока CI43225977674 первого renderer-кандидата работает. Backup/receipts сохранены.

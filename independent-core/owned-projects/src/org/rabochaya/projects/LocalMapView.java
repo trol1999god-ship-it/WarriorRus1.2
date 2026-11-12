@@ -13,7 +13,7 @@ public final class LocalMapView extends View {
  public LocalMapView(Context context,List<KmlProject.Feature> features,File map,Listener listener){this(context,features,map,listener,null,false);}
  public LocalMapView(Context context,List<KmlProject.Feature> features,File map,Listener listener,TileSource source,boolean network){this(context,features,map,listener,source,network,null);}
  public LocalMapView(Context context,List<KmlProject.Feature> features,File map,Listener listener,TileSource source,boolean network,MapComposition composition){
-  super(context);onlineSource=source;useNetwork=network;this.features=features;this.listener=listener;
+  super(context);paint.setTypeface(WorkspaceUi.font(context));onlineSource=source;useNetwork=network;this.features=features;this.listener=listener;
   IdentityHashMap<org.w3c.dom.Document,KmlComponentStyle.Resolver> resolvers=new IdentityHashMap<>();
   for(KmlProject.Feature feature:features)if(feature.element!=null){org.w3c.dom.Document document=feature.element.getOwnerDocument();KmlComponentStyle.Resolver resolver=resolvers.get(document);if(resolver==null){resolver=new KmlComponentStyle.Resolver(document);resolvers.put(document,resolver);}componentStyles.put(feature.element,resolver.resolve(feature.element));}setContentDescription("Карта и объекты KML. Перемещение одним пальцем, масштаб двумя.");
   contextGesture=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){public boolean onDown(MotionEvent e){return true;}public void onLongPress(MotionEvent e){if(!disposed&&!paused&&!moved&&draft==null&&e.getPointerCount()==1){longConsumed=true;listener.longPressed(MapMath.lat(cy+(e.getY()-getHeight()/2.0)/world()),MapMath.lon(cx+(e.getX()-getWidth()/2.0)/world()));}}});

@@ -9,11 +9,13 @@
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-.field public final synthetic f$1:Z
+.field public final synthetic f$1:Ljava/lang/Exception;
+
+.field public final synthetic f$2:Landroid/app/AlertDialog;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Z)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/Exception;Landroid/app/AlertDialog;)V
     .locals 0
 
     .line 0
@@ -21,7 +23,9 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda30;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iput-boolean p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda30;->f$1:Z
+    iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda30;->f$1:Ljava/lang/Exception;
+
+    iput-object p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda30;->f$2:Landroid/app/AlertDialog;
 
     return-void
 .end method
@@ -29,14 +33,16 @@
 
 # virtual methods
 .method public final run()V
-    .locals 2
+    .locals 3
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda30;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iget-boolean v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda30;->f$1:Z
+    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda30;->f$1:Ljava/lang/Exception;
 
-    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$load$13$org-rabochaya-projects-ObjectManagerActivity(Z)V
+    iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda30;->f$2:Landroid/app/AlertDialog;
+
+    invoke-virtual {v0, v1, v2}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$write$48$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/Exception;Landroid/app/AlertDialog;)V
 
     return-void
 .end method

@@ -3,23 +3,21 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/view/View$OnClickListener;
+.implements Ljava/lang/Runnable;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-.field public final synthetic f$1:Z
+.field public final synthetic f$1:I
 
-.field public final synthetic f$2:Lorg/rabochaya/projects/ObjectConfirmationDraft;
+.field public final synthetic f$2:I
 
-.field public final synthetic f$3:Landroid/app/AlertDialog;
-
-.field public final synthetic f$4:Ljava/util/List;
+.field public final synthetic f$3:Landroid/widget/ListView;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;ZLorg/rabochaya/projects/ObjectConfirmationDraft;Landroid/app/AlertDialog;Ljava/util/List;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;IILandroid/widget/ListView;)V
     .locals 0
 
     .line 0
@@ -27,36 +25,30 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iput-boolean p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$1:Z
+    iput p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$1:I
 
-    iput-object p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$2:Lorg/rabochaya/projects/ObjectConfirmationDraft;
+    iput p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$2:I
 
-    iput-object p4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$3:Landroid/app/AlertDialog;
-
-    iput-object p5, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$4:Ljava/util/List;
+    iput-object p4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$3:Landroid/widget/ListView;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final onClick(Landroid/view/View;)V
-    .locals 6
+.method public final run()V
+    .locals 4
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iget-boolean v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$1:Z
+    iget v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$1:I
 
-    iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$2:Lorg/rabochaya/projects/ObjectConfirmationDraft;
+    iget v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$2:I
 
-    iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$3:Landroid/app/AlertDialog;
+    iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$3:Landroid/widget/ListView;
 
-    iget-object v4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$4:Ljava/util/List;
-
-    move-object v5, p1
-
-    invoke-virtual/range {v0 .. v5}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$openConfirmation$43$org-rabochaya-projects-ObjectManagerActivity(ZLorg/rabochaya/projects/ObjectConfirmationDraft;Landroid/app/AlertDialog;Ljava/util/List;Landroid/view/View;)V
+    invoke-virtual {v0, v1, v2, v3}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$openChooser$39$org-rabochaya-projects-ObjectManagerActivity(IILandroid/widget/ListView;)V
 
     return-void
 .end method

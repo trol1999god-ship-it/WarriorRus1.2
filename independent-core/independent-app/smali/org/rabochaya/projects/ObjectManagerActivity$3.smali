@@ -38,7 +38,7 @@
         }
     .end annotation
 
-    .line 125
+    .line 132
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
     iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$options:Landroid/widget/ListView;
@@ -59,7 +59,7 @@
 .method synthetic lambda$onPreDraw$0$org-rabochaya-projects-ObjectManagerActivity$3(IILandroid/widget/ListView;)V
     .locals 2
 
-    .line 125
+    .line 132
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->this$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
     const-string v1, "restore-after-layout-post"
@@ -72,7 +72,7 @@
 .method public onPreDraw()Z
     .locals 5
 
-    .line 125
+    .line 132
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$3;->val$options:Landroid/widget/ListView;
 
     invoke-virtual {v0}, Landroid/widget/ListView;->getChildCount()I

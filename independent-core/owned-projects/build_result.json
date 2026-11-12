@@ -1,5 +1,5 @@
 {
-  "added_classes": 494,
+  "added_classes": 497,
   "generated_files": [
     "AttachmentsActivity$$ExternalSyntheticLambda0.smali",
     "AttachmentsActivity$$ExternalSyntheticLambda1.smali",
@@ -165,6 +165,7 @@
     "HgtRaster.smali",
     "KmlComponentStyle$Resolver.smali",
     "KmlComponentStyle.smali",
+    "KmlComponentStyleEdit.smali",
     "KmlTimeFilter$1.smali",
     "KmlTimeFilter$Entry.smali",
     "KmlTimeFilter$Query.smali",
@@ -408,6 +409,8 @@
     "ObjectManagerActivity$$ExternalSyntheticLambda51.smali",
     "ObjectManagerActivity$$ExternalSyntheticLambda52.smali",
     "ObjectManagerActivity$$ExternalSyntheticLambda53.smali",
+    "ObjectManagerActivity$$ExternalSyntheticLambda54.smali",
+    "ObjectManagerActivity$$ExternalSyntheticLambda55.smali",
     "ObjectManagerActivity$$ExternalSyntheticLambda6.smali",
     "ObjectManagerActivity$$ExternalSyntheticLambda7.smali",
     "ObjectManagerActivity$$ExternalSyntheticLambda8.smali",
@@ -537,10 +540,11 @@
     "src/org/rabochaya/projects/HgtHillshadeImport.java": "e19e07842126eae864d2637040589a3fc450d2fa5733b9ce8be4e401937ac688",
     "src/org/rabochaya/projects/HgtRaster.java": "7e31a808ab09bee91515b68abca8d77c4f7fb48e50c4425e7adc9633da63f39f",
     "src/org/rabochaya/projects/KmlComponentStyle.java": "b473257061a215a15814f6120a0b632e316db212538ec00c9a5e422ed7be748e",
+    "src/org/rabochaya/projects/KmlComponentStyleEdit.java": "9e28f7a2f2812d8eb3939e09cf11d4f38685b1e69dd4ee98a25f69b6a5cd49c0",
     "src/org/rabochaya/projects/KmlTimeFilter.java": "3c2dfbf8cad62e31d1998c931774d18e8d8a1bcb29c31629d5cf964f81238ddd",
     "src/org/rabochaya/projects/KmlXml.java": "5e4553e48f0f250d2f71b16b521a142c0144acb520c1837378b7e1dbd92d73e0",
     "src/org/rabochaya/projects/LocalMapActivity.java": "2ba14ad8d17c37a29445c5ed9b4514379fbfd84ec22ee611be839b0acd762a2b",
-    "src/org/rabochaya/projects/LocalMapView.java": "6fdb44ba090274e12104376c4ca6e64f88ec88fec9b384cc27ca0b824eb83354",
+    "src/org/rabochaya/projects/LocalMapView.java": "7db6fe0effb7ecd3fc70230fe1b9040b87929759e1a1eb74602199ad42b671b0",
     "src/org/rabochaya/projects/LocalRasterStore.java": "92539a12673ab354812174b1691376de32d5ddd6b2ce071f4e13d61b4728973e",
     "src/org/rabochaya/projects/MapCatalog.java": "3804579668c60226f90f2a8178f66235667d94f4bfdeeeaee150b20c4c66a4ff",
     "src/org/rabochaya/projects/MapCatalogActivity.java": "8c34d807f6a2a093365cbf8e01047fb0441078daf7352f5756eaec099a9e9861",
@@ -555,14 +559,14 @@
     "src/org/rabochaya/projects/ObjectClipboardWrites.java": "5485bd9cbfee008e452a11c4b126b928c6786545c9b37e20d168f7fc9cf10823",
     "src/org/rabochaya/projects/ObjectConfirmationDraft.java": "fa22b481e3b5c33f441edb08954bf24ea037ad5808ff66065b0161147b8813f3",
     "src/org/rabochaya/projects/ObjectDescription.java": "6acde0a2369dcf2034ce1c6f3c27d018a9d1b714497f4e5d11351297cc0c354e",
-    "src/org/rabochaya/projects/ObjectEditorDraft.java": "21b97936d4c30249852c596f415e60a16b220f2272119d87e1660f360f27a372",
+    "src/org/rabochaya/projects/ObjectEditorDraft.java": "40bb01c495c635b2ae36c8cb1bb638e1b87c20261fa5963458627ef42b46a957",
     "src/org/rabochaya/projects/ObjectFormDraft.java": "71f8195db5bce74d7007870e9c8d73bfb56f355784a085f6edf485d0bca53094",
     "src/org/rabochaya/projects/ObjectListing.java": "03ed9988bce1ead92cb027766a25c34706aa4ac49d9cfdc37e7d3cf2e10315c0",
-    "src/org/rabochaya/projects/ObjectManagerActivity.java": "0b65a28e8dd08038bc2a105a83d0212b886162bc54ed69c3532ea6220143b752",
+    "src/org/rabochaya/projects/ObjectManagerActivity.java": "9e68532a144ecb41600646c2c444240fee5ba92ab311c4f46763940b1f391c82",
     "src/org/rabochaya/projects/ObjectMoveDraft.java": "4cb010f27a69f173d34c5c8bb519ae9d1c7ab41fa2c395ffa2977d4c0127b4bb",
     "src/org/rabochaya/projects/ObjectSelectionState.java": "bee4aef6e8f3e6693d956aa036a06c38d2703ac00465b24e90aae70109819c77",
     "src/org/rabochaya/projects/ObjectTree.java": "ff0aedbb354e9df35f164b9a28211292ba02e17bcf21bbb5b377d0da247e2019",
-    "src/org/rabochaya/projects/ObjectTreeWrites.java": "19b0a0a1b4f6bbd0df1eae38f2e007f95b28bd7db9404640ca6fbce034c7b5e5",
+    "src/org/rabochaya/projects/ObjectTreeWrites.java": "87799bc278e2f81e9b703949892ed17def3e360a10d015b40562214748ae825e",
     "src/org/rabochaya/projects/ObjectVisibility.java": "ae74735ed7426f9116a096f606a5aa6cd4e54d41dfd92fe245f656d082dca722",
     "src/org/rabochaya/projects/OfflineTiles.java": "830da788c47529740cc1fd30b4a373622a14599abce8311c70614e45640ff119",
     "src/org/rabochaya/projects/OnlineMapActivity.java": "5e15470f17fd6529fd39c257ec8eb008fbb57b5031a8847055d57e0c7d0cd8f2",
@@ -581,6 +585,6 @@
     "src/org/rabochaya/projects/TileRegion.java": "241639238bcd3d90b4125df2b3213fcf6f71cb1efae8a7b75f712ed8c2946379",
     "src/org/rabochaya/projects/TileSource.java": "34a9091b9851b070fc33c6ee9276af8fe4df38c4e16d03262aa663b2941d0a1d",
     "src/org/rabochaya/projects/VertexEditDraft.java": "ff2477b20c385150f5eb514386347d7859b52852ff1c6130daa2117298f33cbf",
-    "src/org/rabochaya/projects/WorkspaceUi.java": "f27454c8ee4adf69b1a8d27cb8eb574eac6e56042d6bcf03a3afc6c58ef7a0a8"
+    "src/org/rabochaya/projects/WorkspaceUi.java": "3f514b523e46bf7dd177ebfdee81c1b6179aa8265c687406d66ed5632a153ca0"
   }
 }

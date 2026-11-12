@@ -73,8 +73,23 @@ Read-only DOM, прежние defaults, без внешней загрузки s
 PASS; host27 PASS. Existing offlineformats renderer pixel/KMZ/reopen/data сценарий
 и две PNG подключены, без нового baseline/mode/workflow. Сохранить candidate и один
 changed-code CI46 на23/35; прочитать оба jobs/newPNG. KML_COMPONENT_STYLES.md.
-Android этой функции пока НЕпроверен. Все23id acceptance остаются открыты.
+Candidate ca888b5 pushed; CI43225977674 RUNNING, JVM131209140454 SUCCESS.
+API23 job131209474688/API35 job131209473186 pending runtime results.
+Не push во время активного CI. Android этой функции пока НЕпроверен. Все23id acceptance остаются открыты.
 Дальше import-export/styles/SVG по матрице, без dialog/orphan очереди.
+
+## Локальное продолжение после ca888b5 (не входит в его CI)
+
+KmlComponentStyleEdit + menu «Цвет и заливка KML» reuse existing managed editor и
+ObjectTreeWrites transaction. Явные 4цвета/fill/outline, blank reset собственного
+override; общий StyleMap/другие поля/геометрия/assets не меняются, token CAS прежний.
+Arimo теперь привязан к Paint карты через existing cache (Activity ABI сохранён).
+JVM39/83316/edit34 PASS; SDK23 source83exact/app+tests/customprivacy PASS.
+editor-local receipts; backup kml-editor-preserve-nt60j6qs/wip.tar SHA5659e1f3….
+Native existing offlineformats helper расширен Save/Cancel/invalid/reset/stale,
+2 IME PNG (всего16, лимит прежний), Arimo/physical guards. Android editor pending.
+Сначала прочитать completed CI43225977674/обе jobs/PNG, исправить измеренные отказы;
+не push/не отменять активный CI. Затем один justified changed-code CI editor-кандидата.
 
 ## Сохранность и ограничения
 

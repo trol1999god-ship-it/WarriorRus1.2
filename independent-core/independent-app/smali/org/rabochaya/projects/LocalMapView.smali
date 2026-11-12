@@ -282,6 +282,14 @@
     iput-wide v2, p0, Lorg/rabochaya/projects/LocalMapView;->zoom:D
 
     .line 16
+    iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
+
+    invoke-static {p1}, Lorg/rabochaya/projects/WorkspaceUi;->font(Landroid/content/Context;)Landroid/graphics/Typeface;
+
+    move-result-object v2
+
+    invoke-virtual {v0, v2}, Landroid/graphics/Paint;->setTypeface(Landroid/graphics/Typeface;)Landroid/graphics/Typeface;
+
     iput-object p5, p0, Lorg/rabochaya/projects/LocalMapView;->onlineSource:Lorg/rabochaya/projects/TileSource;
 
     iput-boolean p6, p0, Lorg/rabochaya/projects/LocalMapView;->useNetwork:Z

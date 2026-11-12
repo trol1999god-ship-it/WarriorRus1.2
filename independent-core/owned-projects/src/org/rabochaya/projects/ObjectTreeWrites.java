@@ -9,6 +9,7 @@ public final class ObjectTreeWrites {
    if("create".equals(operation))ObjectTree.createFolder(p.root(),keys.get(0),expected,value);
    else if("rename".equals(operation))ObjectTree.rename(p.root(),keys.get(0),expected,value);
    else if("description".equals(operation)){if(keys==null||keys.size()!=1)throw new IllegalArgumentException("Выберите один объект");if(!ObjectDescription.apply(p.root(),keys.get(0),expected,value)){db.setTransactionSuccessful();return p;}}
+   else if(KmlComponentStyleEdit.operation(operation)){if(keys==null||keys.size()!=1)throw new IllegalArgumentException("Выберите один объект");KmlComponentStyleEdit.apply(p.root(),keys.get(0),expected,operation,value);}
    else if("move".equals(operation))ObjectTree.move(p.root(),keys,value,expected);
    else if("delete".equals(operation))ObjectTree.delete(p.root(),keys,expected);
    else if("show".equals(operation)||"hide".equals(operation)){ObjectVisibility.Preview change=ObjectVisibility.apply(p.root(),keys,"show".equals(operation),expected);if(change.changed==0){db.setTransactionSuccessful();return p;}}

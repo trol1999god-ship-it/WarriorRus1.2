@@ -75,14 +75,25 @@
 .end method
 
 .method public static font(Landroid/app/Activity;)Landroid/graphics/Typeface;
-    .locals 1
+    .locals 0
 
     .line 7
+    invoke-static {p0}, Lorg/rabochaya/projects/WorkspaceUi;->font(Landroid/content/Context;)Landroid/graphics/Typeface;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method public static font(Landroid/content/Context;)Landroid/graphics/Typeface;
+    .locals 1
+
+    .line 8
     sget-object v0, Lorg/rabochaya/projects/WorkspaceUi;->font:Landroid/graphics/Typeface;
 
     if-nez v0, :cond_0
 
-    invoke-virtual {p0}, Landroid/app/Activity;->getAssets()Landroid/content/res/AssetManager;
+    invoke-virtual {p0}, Landroid/content/Context;->getAssets()Landroid/content/res/AssetManager;
 
     move-result-object p0
 
@@ -103,7 +114,7 @@
 .method public static icon(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/ImageButton;
     .locals 4
 
-    .line 10
+    .line 11
     new-instance v0, Landroid/widget/ImageButton;
 
     invoke-direct {v0, p0}, Landroid/widget/ImageButton;-><init>(Landroid/content/Context;)V
@@ -239,7 +250,7 @@
 
     throw p2
 
-    .line 11
+    .line 12
     :cond_3
     :goto_1
     invoke-virtual {v0, v1}, Landroid/widget/ImageButton;->setImageBitmap(Landroid/graphics/Bitmap;)V
@@ -282,7 +293,7 @@
 .method static synthetic lambda$icon$0(Ljava/lang/Runnable;Landroid/view/View;)V
     .locals 0
 
-    .line 11
+    .line 12
     invoke-interface {p0}, Ljava/lang/Runnable;->run()V
 
     return-void
@@ -291,7 +302,7 @@
 .method static synthetic lambda$icon$1(Landroid/app/Activity;Ljava/lang/String;Landroid/view/View;)Z
     .locals 0
 
-    .line 11
+    .line 12
     const/4 p2, 0x0
 
     invoke-static {p0, p1, p2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
@@ -308,7 +319,7 @@
 .method static synthetic lambda$menu$2(Landroid/widget/PopupWindow;Lorg/rabochaya/projects/WorkspaceUi$Item;Landroid/view/View;)V
     .locals 0
 
-    .line 17
+    .line 18
     invoke-virtual {p0}, Landroid/widget/PopupWindow;->dismiss()V
 
     iget-object p0, p1, Lorg/rabochaya/projects/WorkspaceUi$Item;->action:Ljava/lang/Runnable;
@@ -321,7 +332,7 @@
 .method public static varargs menu(Landroid/app/Activity;Landroid/view/View;Ljava/lang/String;[Lorg/rabochaya/projects/WorkspaceUi$Item;)Landroid/widget/PopupWindow;
     .locals 16
 
-    .line 15
+    .line 16
     move-object/from16 v0, p0
 
     move-object/from16 v1, p3
@@ -404,7 +415,7 @@
 
     invoke-virtual {v2, v5}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    .line 16
+    .line 17
     new-instance v5, Landroid/widget/ScrollView;
 
     invoke-direct {v5, v0}, Landroid/widget/ScrollView;-><init>(Landroid/content/Context;)V
@@ -497,7 +508,7 @@
 
     invoke-virtual {v9, v5}, Landroid/widget/PopupWindow;->setElevation(F)V
 
-    .line 17
+    .line 18
     array-length v5, v1
 
     :goto_0
@@ -581,7 +592,7 @@
 
     goto :goto_0
 
-    .line 18
+    .line 19
     :cond_0
     const/high16 v1, 0x41000000    # 8.0f
 
@@ -607,7 +618,7 @@
 .method public static panel()Landroid/graphics/drawable/GradientDrawable;
     .locals 3
 
-    .line 8
+    .line 9
     new-instance v0, Landroid/graphics/drawable/GradientDrawable;
 
     invoke-direct {v0}, Landroid/graphics/drawable/GradientDrawable;-><init>()V

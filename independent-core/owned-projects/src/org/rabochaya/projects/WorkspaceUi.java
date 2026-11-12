@@ -4,7 +4,8 @@ import android.app.Activity;import android.graphics.*;import android.graphics.dr
 public final class WorkspaceUi {
  private static Typeface font;private static final Map<String,Bitmap> icons=new HashMap<>();
  public static int dp(Activity a,float n){return (int)(a.getResources().getDisplayMetrics().density*n+.5f);}
- public static Typeface font(Activity a){if(font==null)font=Typeface.createFromAsset(a.getAssets(),"fonts/Arimo-Regular.ttf");return font;}
+ public static Typeface font(Activity a){return font((android.content.Context)a);}
+ public static Typeface font(android.content.Context a){if(font==null)font=Typeface.createFromAsset(a.getAssets(),"fonts/Arimo-Regular.ttf");return font;}
  public static GradientDrawable panel(){GradientDrawable bg=new GradientDrawable();bg.setColor(0xee232d1d);bg.setCornerRadius(8);bg.setStroke(1,0xff536047);return bg;}
  public static ImageButton icon(Activity a,String name,String title,Runnable action){
   ImageButton b=new ImageButton(a);Bitmap image=icons.get(name);if(image==null)try(InputStream in=a.getAssets().open("workspace-icons/"+name+".png")){image=BitmapFactory.decodeStream(in);if(image==null)throw new IOException(name);icons.put(name,image);}catch(IOException e){throw new IllegalStateException("Missing local icon: "+name,e);}
