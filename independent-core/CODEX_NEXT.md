@@ -57,9 +57,11 @@ Freshoutput/unique modes, partialpull backup сохраняется отдель
 480сек/native,45minjob,46modes/80/82/physical/raw/owner/16PNG×2MiB прежние.
 Transport Androidruntime ещёpending; не считать host27 доказательством эмулятора.
 
-Следующий шаг: сохранитьBMP отдельным commit/обновитьmatrixcurrent, проверить
-origin/нетactiveCI/конкурента и push тойже ветки. Один обоснованный fullCI нового
-BMP+driver, оба completedjob/архивы/source/digest/новыеPNG/data/sameBoot. Не менять
+BMP code8d268078aec0f0b45924fe888e11fa28ff0fe4dd и transport990fc80
+сохранены/pushed. CI43146921585 реальноRUNNING: JVM130946795534 SUCCESS,
+API23 130947068956 и API35 130947068920 Run Android scenarios in_progress.
+НЕpush покаactive. Следующий шаг: оба completedjob/архивы/source/digest/новые
+BMPPNG/данные/sameBoot и реальные27host/46native/oldguards; не blindrerun. Не менять
 app из-за transient adb. При отказе исследовать фактический этап, безblindrerun.
 После проверенного BMP — Ozi GIF/прочиеformats/DEM по контрактам/матрице, без
 угадывания CRS/codepage/calibration/neatline/RMAP. Затем objects/geometry→styles/
