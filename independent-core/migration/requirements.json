@@ -76,14 +76,16 @@
         "security/geotiff-affine-qa-2026-11-12/runtime-result.json",
         "security/ozi-import-qa-2026-11-12/runtime-result.json",
         "security/ozi-bmp-qa-2026-11-12/runtime-result.json",
-        "security/ozi-gif-qa-2026-11-12/runtime-result.json"
+        "security/ozi-gif-qa-2026-11-12/runtime-result.json",
+        "security/ozi-encoding-qa-2026-11-12/runtime-result.json"
       ],
       "implementation_notes": [
         "Scoped code3c87557+1254a0b/CI43114388829 SUCCESS46/46 API23+35; bounded TIFF6 tiled raw/Deflate/predictor/NoData import, pixel/roundtrip/Cancel/checksum/data guards verified. Matrix34264/Ozi/RMAP, full format/reference acceptance remain open; not accepted.",
         "Affine34264 code90020f3: native391 both; API23full46success/API35full44failure(adb offline artifact pull/before managerrotation), not full green.44 scopedPNG/all546+534member/sourceSHA verified. Full Ozi/RMAP/format/reference acceptance remains open.",
         "PNG/JPEG Ozi fbc64ea/CI43139985094: native581 both incl391GeoTIFF; API23full46success/API35full41failure(adb transport), not full green. All4new OziPNG/12scoped viewed/source+all548/538member SHAverified. Full Ozi/BMP/GIF/CRS/reference acceptance remains open.",
         "8d26807/CI43146921585 SUCCESS46/46 both, native748/BMP24/32+PNG/JPEG+affine GeoTIFF/data.16scoped PNG actuallyviewed/all550+554memberSHAverified; sameBoot readonly recovery actual35. Full formats/reference acceptance remains open; not accepted.",
-        "1be9e3a/CI43172333048 SUCCESS46both/offlineformats1025/JVM36_83129/GIF323; bounded singlefullframe GIF87/89/global-local/interlace/LZW/count/EOI/deadline via shared Ozi converter, Cancel/CAS/actualdestroy queuedimport/data PASS.16rasterPNG actuallyviewed/all552+555members verified. API23 BMP/GIF prompt has prior Toast over actions: unobscured visual acceptance not claimed. Windows1251 WIP excluded. Full formats/reference acceptance remains open."
+        "1be9e3a/CI43172333048 SUCCESS46both/offlineformats1025/JVM36_83129/GIF323; bounded singlefullframe GIF87/89/global-local/interlace/LZW/count/EOI/deadline via shared Ozi converter, Cancel/CAS/actualdestroy queuedimport/data PASS.16rasterPNG actuallyviewed/all552+555members verified. API23 BMP/GIF prompt has prior Toast over actions: unobscured visual acceptance not claimed. Windows1251 WIP excluded. Full formats/reference acceptance remains open.",
+        "Explicit Windows1251 code c9465df/CI43178276193: native offlineformats1094 both incl default UTF8 refusal/choice/reset/Cancel/CAS/data PASS, fullCI FAILURE45/46 both from digit-containing test PNG name.20rasterPNG/all554+557members verified; API23 BMP/GIF actions unobscured after Toast settle. Test-label-only ozi-windows fix host strict emit/decode PASS; changed-code CI still pending. Full reference acceptance open."
       ]
     },
     {

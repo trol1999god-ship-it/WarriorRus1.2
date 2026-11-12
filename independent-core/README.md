@@ -4,7 +4,10 @@ Source/digest/all552+555members verified; все16 текущих raster PNG п�
 API23 BMP/GIF prompt: предыдущий CAS Toast перекрывает строку действий на кадре;
 native clicks/Arimo/physical/data PASS, unobscured visual acceptance НЕзаявлена.
 Точная граница проверки migration/OZI_GIF.md; full formats/26.1 acceptance открыта.
-Windows1251 — отдельный локальный WIP, НЕэтотCI. Очередь CODEX_NEXT.md.
+Windows1251 c9465df/CI43178276193: native1094both PASS, fullCI FAILURE45/46
+из-за test PNG имени с цифрами;20rasterPNG просмотрены, checkbox/buttons читаемы,
+BMP/GIF послеToast settle свободны. Test-name fix pending новым changed-codeCI;
+HGT hillshade — отдельный локальный SDK81candidate, НЕэтиCI. CODEX_NEXT.md.
 
 Ozi PNG/JPEG/BMP24/BMP32 и affine GeoTIFF проверены scoped на8d26807 /
 CI43146921585 SUCCESS46/46 обеAPI: offlineformats748each, managerrotation379/373,
@@ -16,7 +19,7 @@ readonly retry/13files0skipped; native instrumentation не повторялся
 migration/OZI_IMPORT.md, migration/OZI_BMP.md, security/ozi-bmp-qa-2026-11-12/runtime-result.json.
 Это ограниченные функции, НЕполная приёмка/replacement release; accepted0.
 Предыдущие90020/43134277461 иfbc/43139985094 transport failures сохранены историей.
-Следующий локальный GIF WIP ещёне входит в этотCI; очередь CODEX_NEXT.md,
+В тот8dCI GIF ещёне входил; текущие GIF/encoding факты описаны выше. CODEX_NEXT.md,
 матрица всех23id migration/IMPLEMENTATION_PLAN.md. Release gate25 не ослаблен.
 
 Подтверждение закрытия dirty-редактора проверено с реальными пересозданиями Activity.

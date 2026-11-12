@@ -1,4 +1,4 @@
-# Ozi: явный выбор кодировки .map — локальный кандидат
+# Ozi: явный выбор кодировки .map — native проверен, CI evidence fix pending
 
 UTF-8/ASCII остаётся значением по умолчанию. Пользователь может явно отметить
 Windows-1251 в подтверждении выбранной пары .map + изображения. Выбор действует
@@ -36,3 +36,25 @@ existing OziChecks теперь ждёт8000ms (две возможные LENGTH
 OZI_CAPTURE сохраняет время ожидания. Нативные actions/physical/Arimo/data guards
 не заменены ожиданием; source production из-за screenshot не меняется.
 Новые PNG требуется просмотреть, ожидание само не доказывает отсутствие overlay.
+
+## Факты c9465df / CI43178276193
+
+Обе job завершены FAILURE: API23 131047996797, API35 131047996752.
+JVM131047722645 SUCCESS36/83136/Ozi73/GIF323/host27, обе сборки SUCCESS.
+Native offlineformats1094 PASS обеAPI и45других driver records PASS; после
+успешного pull emitter отверг добавленное имя map_mvisual-ozi-cp1251-*.png:
+цифры запрещены действующим letters/hyphens whitelist. Это НЕgreenCI.
+Source/digest/all554+557members verified; все20current rasterPNG просмотрены.
+Actual checkbox Cyrillic/reset/actions/Arimo/pixels/source/Cancel/CAS/reopen/data
+native PASS; на23 BMP/GIF послеToast settle buttons больше не перекрыты.
+Остальные20extractedPNG/API не заявлены просмотренными.
+
+Ограниченное исправление — только test labels ozi-cp1251→ozi-windows.
+Regex/PNG signature/SHA/16frames/2MiB иproduction неизменны. На исходных кадрах
+обеих API воспроизведён original-name отказ; renamed COPY проходит тотже
+emit/decode10frames. Оригинальные кадры/имена/архивы сохранены без перезаписи.
+Host regression security/ozi-encoding-qa-2026-11-12/name-fix-host-regression.json,
+полный failure security/ozi-encoding-qa-2026-11-12/runtime-result.json.
+SDK23 instrumentation повторно скомпилирован с исправленными именами.
+Следующий изменённый candidate включает также новый hillshade; один обоснованный
+CI проверит оба изменения. Старый run не rerun и не переобозначается success.

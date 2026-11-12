@@ -1,0 +1,42 @@
+INSTRUMENTATION_STATUS: stream=START offlineformats
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-import-prompt toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 100, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и qa_ozi.png. По умолчанию UTF-8\/ASCII; Windows-1251 только по явному выбору ниже. WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MS","foreground":"#de000000","arimo":true,"bounds":"[16, 147, 288, 330]","visible":true,"visibleBounds":"[16,81][304,411]","fullyVisible":true},{"class":"CheckBox","text":"Кодировка .map: Windows-1251 (явно)","foreground":"#ff202020","arimo":true,"bounds":"[16, 477, 288, 48]","visible":true,"visibleBounds":"[16,411][304,459]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[59, 529, 84, 48]","visible":true,"visibleBounds":"[59,463][143,511]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff009688","arimo":true,"bounds":"[143, 529, 149, 48]","visible":true,"visibleBounds":"[143,463][292,511]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-import-saved toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-bmp-import-prompt toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 100, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и qa_ozi.bmp. По умолчанию UTF-8\/ASCII; Windows-1251 только по явному выбору ниже. WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MS","foreground":"#de000000","arimo":true,"bounds":"[16, 147, 288, 330]","visible":true,"visibleBounds":"[16,81][304,411]","fullyVisible":true},{"class":"CheckBox","text":"Кодировка .map: Windows-1251 (явно)","foreground":"#ff202020","arimo":true,"bounds":"[16, 477, 288, 48]","visible":true,"visibleBounds":"[16,411][304,459]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[59, 529, 84, 48]","visible":true,"visibleBounds":"[59,463][143,511]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff009688","arimo":true,"bounds":"[143, 529, 149, 48]","visible":true,"visibleBounds":"[143,463][292,511]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-bmp-import-saved toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-gif-import-prompt toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 100, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и qa_ozi.gif. По умолчанию UTF-8\/ASCII; Windows-1251 только по явному выбору ниже. WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MS","foreground":"#de000000","arimo":true,"bounds":"[16, 147, 288, 330]","visible":true,"visibleBounds":"[16,81][304,411]","fullyVisible":true},{"class":"CheckBox","text":"Кодировка .map: Windows-1251 (явно)","foreground":"#ff202020","arimo":true,"bounds":"[16, 477, 288, 48]","visible":true,"visibleBounds":"[16,411][304,459]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[59, 529, 84, 48]","visible":true,"visibleBounds":"[59,463][143,511]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff009688","arimo":true,"bounds":"[143, 529, 149, 48]","visible":true,"visibleBounds":"[143,463][292,511]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-gif-import-saved toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-cp1251-import-prompt toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 100, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и картаЁ.png. По умолчанию UTF-8\/ASCII; Windows-1251 только по явному выбору ниже. WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MS","foreground":"#de000000","arimo":true,"bounds":"[16, 147, 288, 330]","visible":true,"visibleBounds":"[16,81][304,411]","fullyVisible":true},{"class":"CheckBox","text":"Кодировка .map: Windows-1251 (явно)","foreground":"#ff202020","arimo":true,"bounds":"[16, 477, 288, 48]","visible":true,"visibleBounds":"[16,411][304,459]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[59, 529, 84, 48]","visible":true,"visibleBounds":"[59,463][143,511]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff009688","arimo":true,"bounds":"[143, 529, 149, 48]","visible":true,"visibleBounds":"[143,463][292,511]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-cp1251-import-saved toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=PASS offlineformats: 1094 assertions
+
+INSTRUMENTATION_CODE: -1
