@@ -42,7 +42,7 @@
         }
     .end annotation
 
-    .line 49
+    .line 52
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$5;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     iput-object p2, p0, Lorg/rabochaya/projects/LocalMapView$5;->val$group:Lorg/rabochaya/projects/LocalMapView$RasterLayer;
@@ -67,7 +67,7 @@
 .method public run()V
     .locals 9
 
-    .line 49
+    .line 52
     const/4 v0, 0x0
 
     :try_start_0

@@ -1,0 +1,16 @@
+{
+  "qualification": "local candidate only, not Android runtime or acceptance",
+  "jvm_suites": 38,
+  "jvm_assertions": 83282,
+  "component_model": 32,
+  "sdk_compile": 23,
+  "source_count": 82,
+  "source_hashes_exact": true,
+  "owned_classes": null,
+  "apk_sha256": "81e959b05fc9298c7218bb94fbeb6e142256add36e53735c67a31cccedbaa37a",
+  "tests_sha256": "2ade9ca48bcd24b0d425f35fbd11198df3f97efdae35e0086dd7d8d8bb8627e7",
+  "android_runtime": "pending changed-code CI",
+  "official_lint": "open exit1 MissingClass/HardcodedDebugMode; custom audit not replacement",
+  "first_build_failure": "test source not registered in existing explicit build_tests whitelist; added new helper to that list; corrected complete build passed",
+  "pull_diagnostic": "nonzero adb returncode now retained; no retry/timeout/policy changes; existing missing-evidence test checks returncode=1"
+}

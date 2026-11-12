@@ -69,9 +69,10 @@ window-fix-api23,window-fix-api35,runtime-130b-result.json. Общий CI НЕgr
 Следующая working function уже WIP: KmlComponentStyle + LocalMapView отдельные
 Icon/Line/Poly/Label colors, alpha/fill/outline, shared StyleMap normal + inline merge.
 Read-only DOM, прежние defaults, без внешней загрузки styles/icons/SVG; bounded resolver.
-Модель32checks; добавляется существующий offlineformats renderer pixel/KMZ/reopen/data
-сценарий, без нового baseline/mode/workflow. Завершить локальные JVM/SDK23/privacy,
-проверить receipts, сохранить candidate и один changed-code CI46 на23/35.
+Локально JVM38/83282/component32/SDK23source82exact/app+tests560classes/customprivacy
+PASS; host27 PASS. Existing offlineformats renderer pixel/KMZ/reopen/data сценарий
+и две PNG подключены, без нового baseline/mode/workflow. Сохранить candidate и один
+changed-code CI46 на23/35; прочитать оба jobs/newPNG. KML_COMPONENT_STYLES.md.
 Android этой функции пока НЕпроверен. Все23id acceptance остаются открыты.
 Дальше import-export/styles/SVG по матрице, без dialog/orphan очереди.
 

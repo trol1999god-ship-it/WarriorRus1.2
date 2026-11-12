@@ -34,7 +34,7 @@
         }
     .end annotation
 
-    .line 20
+    .line 23
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$4;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     iput-object p2, p0, Lorg/rabochaya/projects/LocalMapView$4;->val$map:Ljava/io/File;
@@ -51,7 +51,7 @@
 .method public run()V
     .locals 3
 
-    .line 20
+    .line 23
     :try_start_0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$4;->this$0:Lorg/rabochaya/projects/LocalMapView;
 

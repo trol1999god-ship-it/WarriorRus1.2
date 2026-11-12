@@ -31,7 +31,7 @@
 .method constructor <init>(Lorg/rabochaya/projects/LocalMapView;I)V
     .locals 0
 
-    .line 7
+    .line 8
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$1;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-direct {p0, p2}, Landroid/util/LruCache;-><init>(I)V
@@ -44,7 +44,7 @@
 .method protected bridge synthetic sizeOf(Ljava/lang/Object;Ljava/lang/Object;)I
     .locals 0
 
-    .line 7
+    .line 8
     check-cast p1, Ljava/lang/String;
 
     check-cast p2, Landroid/graphics/Bitmap;
@@ -59,7 +59,7 @@
 .method protected sizeOf(Ljava/lang/String;Landroid/graphics/Bitmap;)I
     .locals 0
 
-    .line 7
+    .line 8
     invoke-virtual {p2}, Landroid/graphics/Bitmap;->getByteCount()I
 
     move-result p1

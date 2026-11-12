@@ -28,7 +28,7 @@
 .method constructor <init>(Lorg/rabochaya/projects/MapComposition$Layer;)V
     .locals 0
 
-    .line 10
+    .line 11
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$RasterLayer;->model:Lorg/rabochaya/projects/MapComposition$Layer;
@@ -41,7 +41,7 @@
 .method cancel()V
     .locals 4
 
-    .line 10
+    .line 11
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$RasterLayer;->online:[Lorg/rabochaya/projects/OnlineTiles;
 
     if-eqz v0, :cond_0
@@ -70,7 +70,7 @@
 .method close()V
     .locals 4
 
-    .line 10
+    .line 11
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$RasterLayer;->offline:Lorg/rabochaya/projects/OfflineTiles;
 
     if-eqz v0, :cond_0
@@ -111,7 +111,7 @@
 .method interrupt()V
     .locals 4
 
-    .line 10
+    .line 11
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$RasterLayer;->online:[Lorg/rabochaya/projects/OnlineTiles;
 
     if-eqz v0, :cond_0
@@ -145,7 +145,7 @@
         }
     .end annotation
 
-    .line 10
+    .line 11
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$RasterLayer;->online:[Lorg/rabochaya/projects/OnlineTiles;
 
     if-eqz v0, :cond_0

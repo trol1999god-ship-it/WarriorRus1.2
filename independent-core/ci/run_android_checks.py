@@ -84,7 +84,7 @@ def adb(*args,timeout=60,required=True):
   if required:raise
   return str(error)
  text=r.stdout+r.stderr
- if required and (r.returncode or 'Failure [' in text):raise RuntimeError(text)
+ if required and (r.returncode or 'Failure [' in text):raise RuntimeError('adb returncode='+str(r.returncode)+'\n'+text)
  return text
 if adb('shell','getprop','ro.kernel.qemu').strip()!='1':raise SystemExit('Refusing to clear data on a physical device')
 if adb('shell','getprop','sys.boot_completed').strip()!='1':raise SystemExit('Android has not finished booting')

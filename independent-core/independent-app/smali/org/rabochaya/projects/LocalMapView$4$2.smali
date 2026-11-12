@@ -32,7 +32,7 @@
         }
     .end annotation
 
-    .line 20
+    .line 23
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$4$2;->this$1:Lorg/rabochaya/projects/LocalMapView$4;
 
     iput-object p2, p0, Lorg/rabochaya/projects/LocalMapView$4$2;->val$e:Ljava/lang/Exception;
@@ -47,7 +47,7 @@
 .method public run()V
     .locals 2
 
-    .line 20
+    .line 23
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$4$2;->this$1:Lorg/rabochaya/projects/LocalMapView$4;
 
     iget-object v0, v0, Lorg/rabochaya/projects/LocalMapView$4;->this$0:Lorg/rabochaya/projects/LocalMapView;

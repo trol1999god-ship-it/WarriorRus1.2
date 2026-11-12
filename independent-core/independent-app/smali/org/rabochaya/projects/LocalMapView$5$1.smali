@@ -34,7 +34,7 @@
         }
     .end annotation
 
-    .line 49
+    .line 52
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$5$1;->this$1:Lorg/rabochaya/projects/LocalMapView$5;
 
     iput-object p2, p0, Lorg/rabochaya/projects/LocalMapView$5$1;->val$result:Landroid/graphics/Bitmap;
@@ -51,7 +51,7 @@
 .method public run()V
     .locals 3
 
-    .line 49
+    .line 52
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$5$1;->this$1:Lorg/rabochaya/projects/LocalMapView$5;
 
     iget-object v0, v0, Lorg/rabochaya/projects/LocalMapView$5;->this$0:Lorg/rabochaya/projects/LocalMapView;

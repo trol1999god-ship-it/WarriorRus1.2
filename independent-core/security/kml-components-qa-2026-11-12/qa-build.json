@@ -1,0 +1,19 @@
+{
+  "debuggable": true,
+  "variant": "debug-qa",
+  "qualification": "development-only; full 26.1 parity not established",
+  "replacement_release": false,
+  "package": "org.rabochaya.karta",
+  "version_code": 27,
+  "min_sdk": 23,
+  "permissions": [
+    "android.permission.INTERNET"
+  ],
+  "legacy_app_classes": false,
+  "unexpected_class_references": [],
+  "owned_class_count": 560,
+  "missing_owned_classes": [],
+  "native_libraries": [],
+  "api_stubs_packaged": false,
+  "unsigned_sha256": "04a27fb7f99f35744705d562c84e6e10c02cc23244234cb7119365a0a652282c"
+}

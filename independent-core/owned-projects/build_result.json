@@ -1,5 +1,5 @@
 {
-  "added_classes": 492,
+  "added_classes": 494,
   "generated_files": [
     "AttachmentsActivity$$ExternalSyntheticLambda0.smali",
     "AttachmentsActivity$$ExternalSyntheticLambda1.smali",
@@ -163,6 +163,8 @@
     "HgtHillshadeImport.smali",
     "HgtRaster$1.smali",
     "HgtRaster.smali",
+    "KmlComponentStyle$Resolver.smali",
+    "KmlComponentStyle.smali",
     "KmlTimeFilter$1.smali",
     "KmlTimeFilter$Entry.smali",
     "KmlTimeFilter$Query.smali",
@@ -494,7 +496,7 @@
     "WorkspaceUi$Item.smali",
     "WorkspaceUi.smali"
   ],
-  "replaced_classes": 492,
+  "replaced_classes": 494,
   "min_sdk": 23,
   "api_stubs_packaged": false,
   "sources": {
@@ -534,10 +536,11 @@
     "src/org/rabochaya/projects/HgtHillshade.java": "65d35ee3ddb9b34ff43d0e23ca923dec5304e29cc64fb3a6cc7a48968471c1b4",
     "src/org/rabochaya/projects/HgtHillshadeImport.java": "e19e07842126eae864d2637040589a3fc450d2fa5733b9ce8be4e401937ac688",
     "src/org/rabochaya/projects/HgtRaster.java": "7e31a808ab09bee91515b68abca8d77c4f7fb48e50c4425e7adc9633da63f39f",
+    "src/org/rabochaya/projects/KmlComponentStyle.java": "b473257061a215a15814f6120a0b632e316db212538ec00c9a5e422ed7be748e",
     "src/org/rabochaya/projects/KmlTimeFilter.java": "3c2dfbf8cad62e31d1998c931774d18e8d8a1bcb29c31629d5cf964f81238ddd",
     "src/org/rabochaya/projects/KmlXml.java": "5e4553e48f0f250d2f71b16b521a142c0144acb520c1837378b7e1dbd92d73e0",
     "src/org/rabochaya/projects/LocalMapActivity.java": "2ba14ad8d17c37a29445c5ed9b4514379fbfd84ec22ee611be839b0acd762a2b",
-    "src/org/rabochaya/projects/LocalMapView.java": "df91deaacb2209201d417f365d2c03f06c6e78a5cb095c8dfdb8e4cd0f4ce784",
+    "src/org/rabochaya/projects/LocalMapView.java": "6fdb44ba090274e12104376c4ca6e64f88ec88fec9b384cc27ca0b824eb83354",
     "src/org/rabochaya/projects/LocalRasterStore.java": "92539a12673ab354812174b1691376de32d5ddd6b2ce071f4e13d61b4728973e",
     "src/org/rabochaya/projects/MapCatalog.java": "3804579668c60226f90f2a8178f66235667d94f4bfdeeeaee150b20c4c66a4ff",
     "src/org/rabochaya/projects/MapCatalogActivity.java": "8c34d807f6a2a093365cbf8e01047fb0441078daf7352f5756eaec099a9e9861",

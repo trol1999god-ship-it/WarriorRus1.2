@@ -181,6 +181,7 @@ elif args[:3] == ['shell', 'am', 'instrument']:
         self.assertIn('ARTIFACT_PULL_DIAGNOSTICS geometrynewholeguards', result.stdout)
         self.assertIn('device offline', result.stdout)
         self.assertIn('device offline', result.pull_diagnostics['geometrynewholeguards-artifact-pull.txt'])
+        self.assertIn('adb returncode=1', result.pull_diagnostics['geometrynewholeguards-artifact-pull.txt'])
 
     def test_failed_nonfocused_mode_keeps_full_verified_png_preview(self):
         result, records = self.run_modes(['vertexscroll'], ['vertexscroll'], pull_png=True)
