@@ -89,6 +89,9 @@ public final class MainActivity extends Activity {
     explorer = new ExplorerController(store);
     if (state != null) explorer.folder = state.getLong("folder");
     map = new MapWorkspace(this, p -> edit(null, p));
+    String savedSource = getPreferences(MODE_PRIVATE).getString("mapSource", "osm-standard");
+    if (!map.setMapSource(savedSource)) map.setMapSource("osm-standard");
+    map.view.setUseDataConnection(getPreferences(MODE_PRIVATE).getBoolean("mapOnline", true));
     if (state != null) {
       map.view
           .getController()
@@ -312,10 +315,28 @@ public final class MainActivity extends Activity {
   }
 
   private void mapsMenu() {
-    sheet(
-        "Карты",
-        new String[] {"OpenStreetMap — онлайн", "Только загруженные тайлы"},
-        n -> map.view.setUseDataConnection(n == 0));
+    java.util.List<MapSourceRegistry.Source> sources = MapSourceRegistry.all();
+    boolean online = map.view.useDataConnection();
+    String[] options = new String[sources.size() + 1];
+    for (int i = 0; i < sources.size(); i++) options[i] = sources.get(i).title;
+    options[sources.size()] = online
+        ? "Сеть: выключить (только кэш)" : "Сеть: включить";
+    sheet("Карты", options, n -> {
+      if (n == sources.size()) {
+        boolean enabled = !map.view.useDataConnection();
+        map.view.setUseDataConnection(enabled);
+        getPreferences(MODE_PRIVATE).edit().putBoolean("mapOnline", enabled).apply();
+      } else {
+        MapSourceRegistry.Source selected = sources.get(n);
+        if (map.setMapSource(selected.id)) {
+          getPreferences(MODE_PRIVATE).edit().putString("mapSource", selected.id).apply();
+        } else {
+          new AlertDialog.Builder(this)
+              .setMessage("Этот источник пока не поддерживается.")
+              .setPositiveButton("ОК", null).show();
+        }
+      }
+    });
   }
 
   private void openExplorer(boolean visibleOnly) {
