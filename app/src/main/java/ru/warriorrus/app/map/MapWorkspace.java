@@ -69,7 +69,12 @@ public final class MapWorkspace {
   }
 
   public void refresh(ObjectStore store) {
-    view.getOverlays().removeIf(o -> o instanceof Marker);
+    // Explicit iterator keeps marker cleanup compatible with Android API 23.
+    java.util.Iterator<org.osmdroid.views.overlay.Overlay> overlayIterator =
+        view.getOverlays().iterator();
+    while (overlayIterator.hasNext()) {
+      if (overlayIterator.next() instanceof Marker) overlayIterator.remove();
+    }
     java.util.Map<String, android.graphics.drawable.Drawable.ConstantState> renderedCache =
         new java.util.HashMap<>();
     for (MapItem i : store.renderItems())
