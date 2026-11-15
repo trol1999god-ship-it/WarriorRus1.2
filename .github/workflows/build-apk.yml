@@ -2,7 +2,7 @@ name: Build Рабочая карта APK
 on:
   workflow_dispatch:
   push:
-    branches: [ main, master ]
+    branches: [ main, master, feature/map-source-foundation ]
 permissions:
   contents: read
 jobs:
