@@ -32,15 +32,7 @@ public final class MapWorkspace {
     org.osmdroid.config.Configuration.getInstance()
         .setOsmdroidTileCache(new java.io.File(activity.getCacheDir(), "maps/tiles"));
     view = new MapView(activity);
-    view.setTileSource(
-        new XYTileSource(
-            "OpenStreetMap",
-            0,
-            19,
-            256,
-            ".png",
-            new String[] {"https://tile.openstreetmap.org/"},
-            "© OpenStreetMap contributors"));
+    setMapSource("osm-standard");
     view.setMultiTouchControls(true);
     view.setBuiltInZoomControls(false);
     view.getController().setZoom(5.0);
@@ -58,6 +50,22 @@ public final class MapWorkspace {
                     return true;
                   }
                 }));
+  }
+
+  /** Selects a registered source without changing map controls or object overlays. */
+  public boolean setMapSource(String sourceId) {
+    MapSourceRegistry.Source source = MapSourceRegistry.find(sourceId);
+    if (source == null || !source.networkRequired) return false;
+    // osmdroid's XYTileSource builds /z/x/y.png paths from this base URL.
+    // Reject templates we cannot faithfully represent with that provider.
+    String suffix = "{z}/{x}/{y}.png";
+    if (!source.tileUrlTemplate.endsWith(suffix)) return false;
+    String base = source.tileUrlTemplate.substring(0,
+        source.tileUrlTemplate.length() - suffix.length());
+    view.setTileSource(new XYTileSource(source.title, source.minZoom,
+        source.maxZoom, 256, ".png", new String[] {base}, source.attribution));
+    view.invalidate();
+    return true;
   }
 
   public void refresh(ObjectStore store) {
