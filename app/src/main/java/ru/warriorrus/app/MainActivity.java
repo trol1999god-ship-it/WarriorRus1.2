@@ -159,7 +159,7 @@ public final class MainActivity extends Activity {
     drawer = new LinearLayout(this);
     drawer.setOrientation(LinearLayout.VERTICAL);
     drawer.setBackgroundColor(0xfff4f6fa);
-    TextView title = label("Проводник", 20);
+    TextView title = label("Файловый менеджер", 20);
     title.setTypeface(null, Typeface.BOLD);
     drawer.addView(title);
     path = label("", 14);
