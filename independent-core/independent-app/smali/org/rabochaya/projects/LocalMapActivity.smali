@@ -133,7 +133,7 @@
 
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
-    new-instance v7, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda86;
+    new-instance v7, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda87;
 
     move-object v1, v7
 
@@ -145,7 +145,7 @@
 
     move-object v6, p4
 
-    invoke-direct/range {v1 .. v6}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda86;-><init>(Lorg/rabochaya/projects/LocalMapActivity;JLjava/lang/String;Ljava/lang/String;)V
+    invoke-direct/range {v1 .. v6}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda87;-><init>(Lorg/rabochaya/projects/LocalMapActivity;JLjava/lang/String;Ljava/lang/String;)V
 
     invoke-interface {v0, v7}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
@@ -224,9 +224,9 @@
 
     invoke-virtual {p1, v0, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    new-instance p1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda20;
+    new-instance p1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda21;
 
-    invoke-direct {p1, p0, p3}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda20;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/Runnable;)V
+    invoke-direct {p1, p0, p3}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda21;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/Runnable;)V
 
     invoke-virtual {v0, p1}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
@@ -314,9 +314,9 @@
 
     move-result-object v1
 
-    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda66;
+    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda67;
 
-    invoke-direct {v2, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda66;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v2, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda67;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     invoke-virtual {v0, v1, v2}, Landroid/app/AlertDialog$Builder;->setItems([Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
@@ -334,9 +334,9 @@
 
     move-result-object v0
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda67;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda68;
 
-    invoke-direct {v1, p0, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda67;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;)V
+    invoke-direct {v1, p0, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda68;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;)V
 
     invoke-virtual {v0, v1}, Landroid/app/AlertDialog;->setOnShowListener(Landroid/content/DialogInterface$OnShowListener;)V
 
@@ -782,13 +782,13 @@
 
     const-string v7, "\u0421\u043e\u0437\u0434\u0430\u0442\u044c"
 
-    new-instance v8, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda76;
+    new-instance v8, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda77;
 
     move-object v1, v8
 
     move-object v2, p0
 
-    invoke-direct/range {v1 .. v6}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda76;-><init>(Lorg/rabochaya/projects/LocalMapActivity;JLjava/lang/String;Ljava/lang/String;)V
+    invoke-direct/range {v1 .. v6}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda77;-><init>(Lorg/rabochaya/projects/LocalMapActivity;JLjava/lang/String;Ljava/lang/String;)V
 
     invoke-virtual {v0, v7, v8}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
@@ -806,9 +806,9 @@
 
     move-result-object v0
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda77;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda78;
 
-    invoke-direct {v1, p0, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda77;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;)V
+    invoke-direct {v1, p0, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda78;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;)V
 
     invoke-virtual {v0, v1}, Landroid/app/AlertDialog;->setOnShowListener(Landroid/content/DialogInterface$OnShowListener;)V
 
@@ -1020,9 +1020,9 @@
 
     move-result-object v0
 
-    new-instance v4, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda26;
+    new-instance v4, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;
 
-    invoke-direct {v4, p0, v1, v2, v3}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda26;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/Spinner;Landroid/widget/Spinner;Landroid/widget/CheckBox;)V
+    invoke-direct {v4, p0, v1, v2, v3}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/Spinner;Landroid/widget/Spinner;Landroid/widget/CheckBox;)V
 
     const-string v5, "\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c"
 
@@ -1038,9 +1038,9 @@
 
     move-result-object v0
 
-    new-instance v4, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;
+    new-instance v4, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda28;
 
-    invoke-direct {v4, p0, v1, v3, v2}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/Spinner;Landroid/widget/CheckBox;Landroid/widget/Spinner;)V
+    invoke-direct {v4, p0, v1, v3, v2}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda28;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/Spinner;Landroid/widget/CheckBox;Landroid/widget/Spinner;)V
 
     const-string v1, "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c"
 
@@ -1259,7 +1259,7 @@
 .method private discardDrawing(Z)V
     .locals 2
 
-    .line 112
+    .line 129
     new-instance v0, Landroid/app/AlertDialog$Builder;
 
     invoke-direct {v0, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
@@ -1270,9 +1270,9 @@
 
     move-result-object v0
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda60;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda61;
 
-    invoke-direct {v1, p0, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda60;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Z)V
+    invoke-direct {v1, p0, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda61;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Z)V
 
     const-string p1, "\u041e\u0442\u043c\u0435\u043d\u0438\u0442\u044c \u0440\u0438\u0441\u0443\u043d\u043e\u043a"
 
@@ -1354,17 +1354,17 @@
 
     move-result-object v2
 
-    new-instance v3, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda73;
+    new-instance v3, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda74;
 
-    invoke-direct {v3, p0, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda73;-><init>(Lorg/rabochaya/projects/LocalMapActivity;[Z)V
+    invoke-direct {v3, p0, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda74;-><init>(Lorg/rabochaya/projects/LocalMapActivity;[Z)V
 
     invoke-virtual {v1, v2, v0, v3}, Landroid/app/AlertDialog$Builder;->setMultiChoiceItems([Ljava/lang/CharSequence;[ZLandroid/content/DialogInterface$OnMultiChoiceClickListener;)Landroid/app/AlertDialog$Builder;
 
     move-result-object v0
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda74;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda75;
 
-    invoke-direct {v1, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda74;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v1, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda75;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v2, "\u041a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u044b"
 
@@ -1388,7 +1388,7 @@
 .method private drawingCoordinates()Ljava/lang/String;
     .locals 7
 
-    .line 110
+    .line 127
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1472,7 +1472,7 @@
 .method private editObject(Lorg/rabochaya/projects/KmlProject$Feature;Ljava/lang/String;)V
     .locals 19
 
-    .line 121
+    .line 138
     move-object/from16 v8, p0
 
     move-object/from16 v6, p1
@@ -1489,7 +1489,7 @@
 
     goto/16 :goto_7
 
-    .line 122
+    .line 139
     :cond_0
     const-string v0, "Point"
 
@@ -1538,7 +1538,7 @@
     :cond_1
     move v3, v2
 
-    .line 123
+    .line 140
     :goto_0
     new-instance v4, Landroid/widget/LinearLayout;
 
@@ -1556,7 +1556,7 @@
 
     invoke-virtual {v4, v5}, Landroid/widget/LinearLayout;->setBackgroundColor(I)V
 
-    .line 124
+    .line 141
     const-string v5, ""
 
     if-nez v6, :cond_2
@@ -1575,7 +1575,7 @@
 
     move-result-object v9
 
-    .line 125
+    .line 142
     if-nez v6, :cond_3
 
     move-object v10, v5
@@ -1596,10 +1596,10 @@
 
     move-result-object v10
 
-    .line 126
+    .line 143
     nop
 
-    .line 127
+    .line 144
     const-string v11, "%.8f %.8f"
 
     const/4 v12, 0x2
@@ -1670,7 +1670,7 @@
 
     goto :goto_3
 
-    .line 128
+    .line 145
     :cond_4
     move-object v15, v9
 
@@ -1720,7 +1720,7 @@
 
     move-result-object v5
 
-    .line 129
+    .line 146
     :cond_5
     :goto_3
     const/4 v9, 0x0
@@ -1767,7 +1767,7 @@
 
     iput-object v9, v8, Lorg/rabochaya/projects/LocalMapActivity;->creationPoint:[D
 
-    .line 130
+    .line 147
     :cond_6
     if-nez v6, :cond_7
 
@@ -1795,7 +1795,7 @@
 
     move-result-object v5
 
-    .line 131
+    .line 148
     :cond_7
     if-nez v3, :cond_9
 
@@ -1818,7 +1818,7 @@
 
     move-object v5, v1
 
-    .line 132
+    .line 149
     :goto_5
     if-eqz v5, :cond_b
 
@@ -1835,7 +1835,7 @@
     :cond_a
     invoke-virtual {v5, v12}, Landroid/widget/EditText;->setMinLines(I)V
 
-    .line 133
+    .line 150
     :cond_b
     new-instance v0, Landroid/widget/ScrollView;
 
@@ -1843,7 +1843,7 @@
 
     invoke-virtual {v0, v4}, Landroid/widget/ScrollView;->addView(Landroid/view/View;)V
 
-    .line 134
+    .line 151
     new-instance v1, Landroid/app/AlertDialog$Builder;
 
     invoke-direct {v1, v8}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
@@ -1882,8 +1882,8 @@
 
     move-result-object v9
 
-    .line 135
-    new-instance v10, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda30;
+    .line 152
+    new-instance v10, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda31;
 
     move-object v0, v10
 
@@ -1899,17 +1899,17 @@
 
     move-object/from16 v7, p2
 
-    invoke-direct/range {v0 .. v7}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda30;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/EditText;Lorg/rabochaya/projects/KmlProject$Feature;Ljava/lang/String;)V
+    invoke-direct/range {v0 .. v7}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda31;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/EditText;Lorg/rabochaya/projects/KmlProject$Feature;Ljava/lang/String;)V
 
     invoke-virtual {v9, v10}, Landroid/app/AlertDialog;->setOnShowListener(Landroid/content/DialogInterface$OnShowListener;)V
 
-    .line 152
+    .line 169
     invoke-virtual {v9}, Landroid/app/AlertDialog;->show()V
 
-    .line 153
+    .line 170
     return-void
 
-    .line 121
+    .line 138
     :cond_d
     :goto_7
     return-void
@@ -1918,7 +1918,7 @@
 .method private field(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Z)Landroid/widget/EditText;
     .locals 1
 
-    .line 117
+    .line 134
     new-instance v0, Landroid/widget/TextView;
 
     invoke-direct {v0, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
@@ -1931,7 +1931,7 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    .line 118
+    .line 135
     new-instance v0, Landroid/widget/EditText;
 
     invoke-direct {v0, p0}, Landroid/widget/EditText;-><init>(Landroid/content/Context;)V
@@ -2100,9 +2100,9 @@
 
     move-result-object v0
 
-    new-instance v3, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda59;
+    new-instance v3, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda60;
 
-    invoke-direct {v3, p0, v0, v2, v1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda59;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;Landroid/widget/EditText;Landroid/widget/Spinner;)V
+    invoke-direct {v3, p0, v0, v2, v1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda60;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;Landroid/widget/EditText;Landroid/widget/Spinner;)V
 
     invoke-virtual {v0, v3}, Landroid/app/AlertDialog;->setOnShowListener(Landroid/content/DialogInterface$OnShowListener;)V
 
@@ -2116,9 +2116,9 @@
     .locals 1
 
     .line 102
-    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda65;
+    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda66;
 
-    invoke-direct {v0, p0, p1, p2}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda65;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;[D)V
+    invoke-direct {v0, p0, p1, p2}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda66;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;[D)V
 
     invoke-virtual {p0, v0}, Lorg/rabochaya/projects/LocalMapActivity;->runOnUiThread(Ljava/lang/Runnable;)V
 
@@ -2203,9 +2203,9 @@
 
     iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
-    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda75;
+    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda76;
 
-    invoke-direct {v2, p0, p1, p2, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda75;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/net/Uri;ZLjava/lang/String;)V
+    invoke-direct {v2, p0, p1, p2, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda76;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/net/Uri;ZLjava/lang/String;)V
 
     invoke-interface {v1, v2}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
@@ -2359,9 +2359,9 @@
 
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda62;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda63;
 
-    invoke-direct {v1, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda62;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v1, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda63;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     invoke-interface {v0, v1}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
@@ -2561,9 +2561,9 @@
     .locals 8
 
     .line 41
-    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda38;
+    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda39;
 
-    invoke-direct {v0, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda38;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v0, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda39;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v1, "\u0421\u043b\u043e\u0438 \u043a\u0430\u0440\u0442\u044b"
 
@@ -2571,9 +2571,9 @@
 
     move-result-object v0
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda39;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda40;
 
-    invoke-direct {v1, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda39;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v1, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda40;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v2, "\u041e\u043d\u043b\u0430\u0439\u043d-\u043a\u0430\u0440\u0442\u044b"
 
@@ -2581,9 +2581,9 @@
 
     move-result-object v1
 
-    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda40;
+    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda41;
 
-    invoke-direct {v2, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda40;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v2, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda41;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v3, "\u041f\u043e\u0434\u043b\u043e\u0436\u043a\u0430"
 
@@ -2591,9 +2591,9 @@
 
     move-result-object v2
 
-    new-instance v3, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda41;
+    new-instance v3, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda42;
 
-    invoke-direct {v3, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda41;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v3, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda42;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v4, "\u041a\u0435\u0448 / \u043e\u043d\u043b\u0430\u0439\u043d"
 
@@ -2601,9 +2601,9 @@
 
     move-result-object v3
 
-    new-instance v4, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda42;
+    new-instance v4, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda43;
 
-    invoke-direct {v4, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda42;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v4, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda43;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v5, "\u0421\u043a\u0430\u0447\u0430\u0442\u044c \u043e\u0431\u043b\u0430\u0441\u0442\u044c \u0441\u043b\u043e\u0451\u0432"
 
@@ -2611,9 +2611,9 @@
 
     move-result-object v4
 
-    new-instance v5, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda43;
+    new-instance v5, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda44;
 
-    invoke-direct {v5, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda43;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v5, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda44;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v6, "\u042d\u043a\u0441\u043f\u043e\u0440\u0442 \u043a\u0435\u0448\u0430 MBTiles"
 
@@ -2660,9 +2660,9 @@
     .locals 5
 
     .line 42
-    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda33;
+    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda34;
 
-    invoke-direct {v0, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda33;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v0, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda34;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v1, "\u0421\u043e\u0437\u0434\u0430\u0442\u044c"
 
@@ -2670,9 +2670,9 @@
 
     move-result-object v0
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda34;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda35;
 
-    invoke-direct {v1, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda34;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v1, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda35;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v2, "\u0421\u043f\u0438\u0441\u043e\u043a \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432"
 
@@ -2680,9 +2680,9 @@
 
     move-result-object v1
 
-    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda35;
+    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda36;
 
-    invoke-direct {v2, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda35;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v2, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda36;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v3, "\u0412\u0441\u0435 \u043e\u0431\u044a\u0435\u043a\u0442\u044b"
 
@@ -2761,7 +2761,7 @@
 .method private newObject()V
     .locals 6
 
-    .line 108
+    .line 125
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity;->map:Lorg/rabochaya/projects/LocalMapView;
 
     if-eqz v0, :cond_0
@@ -2805,9 +2805,9 @@
 
     move-result-object v1
 
-    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda21;
+    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda22;
 
-    invoke-direct {v2, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda21;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v2, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda22;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     invoke-virtual {v0, v1, v2}, Landroid/app/AlertDialog$Builder;->setItems([Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
@@ -2883,9 +2883,9 @@
 
     move-result-object v1
 
-    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda61;
+    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda62;
 
-    invoke-direct {v2, p0, v1, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda61;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;Landroid/widget/EditText;)V
+    invoke-direct {v2, p0, v1, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda62;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;Landroid/widget/EditText;)V
 
     invoke-virtual {v1, v2}, Landroid/app/AlertDialog;->setOnShowListener(Landroid/content/DialogInterface$OnShowListener;)V
 
@@ -3326,9 +3326,9 @@
 
     move-result-object v1
 
-    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda44;
+    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda45;
 
-    invoke-direct {v2, p0, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda44;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;)V
+    invoke-direct {v2, p0, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda45;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;)V
 
     const-string v0, "\u0423\u0431\u0440\u0430\u0442\u044c"
 
@@ -3457,9 +3457,9 @@
 
     move-result-object v1
 
-    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda80;
+    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda81;
 
-    invoke-direct {v2, p0, v1, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda80;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;Landroid/widget/EditText;)V
+    invoke-direct {v2, p0, v1, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda81;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;Landroid/widget/EditText;)V
 
     invoke-virtual {v1, v2}, Landroid/app/AlertDialog;->setOnShowListener(Landroid/content/DialogInterface$OnShowListener;)V
 
@@ -3860,13 +3860,13 @@
 
     const-string v0, "\u0418\u043c\u043f\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c"
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda69;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda70;
 
     move-object v6, v1
 
     move-object v7, p0
 
-    invoke-direct/range {v6 .. v11}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda69;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/net/Uri;Landroid/net/Uri;Ljava/lang/String;Landroid/widget/CheckBox;)V
+    invoke-direct/range {v6 .. v11}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda70;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/net/Uri;Landroid/net/Uri;Ljava/lang/String;Landroid/widget/CheckBox;)V
 
     invoke-virtual {p1, v0, v1}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
@@ -3884,9 +3884,9 @@
 
     move-result-object p1
 
-    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda70;
+    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;
 
-    invoke-direct {v0, p0, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda70;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;)V
+    invoke-direct {v0, p0, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;)V
 
     invoke-virtual {p1, v0}, Landroid/app/AlertDialog;->setOnShowListener(Landroid/content/DialogInterface$OnShowListener;)V
 
@@ -4222,9 +4222,9 @@
 
     iget-object v1, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
 
-    new-instance v4, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda46;
+    new-instance v4, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda47;
 
-    invoke-direct {v4, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda46;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v4, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda47;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     invoke-virtual {v1, v4}, Landroid/widget/TextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
@@ -4277,9 +4277,9 @@
     invoke-virtual {v3, v4, v1}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 21
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda49;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda50;
 
-    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda49;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda50;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v4, "collapse"
 
@@ -4715,9 +4715,9 @@
 
     iget-object v0, v9, Lorg/rabochaya/projects/LocalMapActivity;->status:Landroid/widget/TextView;
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda50;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda51;
 
-    invoke-direct {v1, v9, v4}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda50;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;)V
+    invoke-direct {v1, v9, v4}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda51;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;)V
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
@@ -4802,9 +4802,9 @@
     .line 26
     iget-object v0, v9, Lorg/rabochaya/projects/LocalMapActivity;->zoomButtons:Landroid/widget/LinearLayout;
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda51;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda52;
 
-    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda51;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda52;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v2, "plus"
 
@@ -4830,9 +4830,9 @@
 
     iget-object v0, v9, Lorg/rabochaya/projects/LocalMapActivity;->zoomButtons:Landroid/widget/LinearLayout;
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda52;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda53;
 
-    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda52;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda53;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v2, "minus"
 
@@ -4872,9 +4872,9 @@
     invoke-virtual {v1, v0, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 28
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda53;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda54;
 
-    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda53;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda54;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v2, "menu"
 
@@ -4882,9 +4882,9 @@
 
     invoke-direct {v9, v0, v2, v3, v1}, Lorg/rabochaya/projects/LocalMapActivity;->tool(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)V
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda54;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda55;
 
-    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda54;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda55;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v2, "maps"
 
@@ -4892,9 +4892,9 @@
 
     invoke-direct {v9, v0, v2, v3, v1}, Lorg/rabochaya/projects/LocalMapActivity;->tool(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)V
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda55;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda56;
 
-    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda55;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda56;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v2, "marks"
 
@@ -4902,9 +4902,9 @@
 
     invoke-direct {v9, v0, v2, v3, v1}, Lorg/rabochaya/projects/LocalMapActivity;->tool(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)V
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda56;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda57;
 
-    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda56;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda57;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v2, "files"
 
@@ -4912,9 +4912,9 @@
 
     invoke-direct {v9, v0, v2, v3, v1}, Lorg/rabochaya/projects/LocalMapActivity;->tool(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)V
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda57;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda58;
 
-    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda57;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda58;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v2, "compass"
 
@@ -4922,9 +4922,9 @@
 
     invoke-direct {v9, v0, v2, v3, v1}, Lorg/rabochaya/projects/LocalMapActivity;->tool(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)V
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda47;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda48;
 
-    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda47;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda48;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v2, "search"
 
@@ -4978,9 +4978,9 @@
 
     .line 30
     :cond_16
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda48;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda49;
 
-    invoke-direct {v1, v9, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda48;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/LinearLayout;)V
+    invoke-direct {v1, v9, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda49;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/LinearLayout;)V
 
     const-string v2, "expand"
 
@@ -5456,7 +5456,7 @@
 .method private startDrawing(Ljava/lang/String;)V
     .locals 2
 
-    .line 109
+    .line 126
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity;->map:Lorg/rabochaya/projects/LocalMapView;
 
     if-nez v0, :cond_0
@@ -5495,21 +5495,11 @@
 
     iget-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity;->drawingRow:Landroid/widget/LinearLayout;
 
-    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda16;
-
-    invoke-direct {v0, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda16;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
-
-    const-string v1, "\u0412 \u0446\u0435\u043d\u0442\u0440\u0435"
-
-    invoke-direct {p0, p1, v1, v0}, Lorg/rabochaya/projects/LocalMapActivity;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/Runnable;)V
-
-    iget-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity;->drawingRow:Landroid/widget/LinearLayout;
-
     new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda17;
 
     invoke-direct {v0, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda17;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
-    const-string v1, "\u0428\u0430\u0433 \u043d\u0430\u0437\u0430\u0434"
+    const-string v1, "\u0412 \u0446\u0435\u043d\u0442\u0440\u0435"
 
     invoke-direct {p0, p1, v1, v0}, Lorg/rabochaya/projects/LocalMapActivity;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/Runnable;)V
 
@@ -5519,7 +5509,7 @@
 
     invoke-direct {v0, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda18;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
-    const-string v1, "\u0417\u0430\u043f\u0438\u0441\u0430\u0442\u044c"
+    const-string v1, "\u0428\u0430\u0433 \u043d\u0430\u0437\u0430\u0434"
 
     invoke-direct {p0, p1, v1, v0}, Lorg/rabochaya/projects/LocalMapActivity;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/Runnable;)V
 
@@ -5528,6 +5518,16 @@
     new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda19;
 
     invoke-direct {v0, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda19;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+
+    const-string v1, "\u0417\u0430\u043f\u0438\u0441\u0430\u0442\u044c"
+
+    invoke-direct {p0, p1, v1, v0}, Lorg/rabochaya/projects/LocalMapActivity;->button(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/Runnable;)V
+
+    iget-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity;->drawingRow:Landroid/widget/LinearLayout;
+
+    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda20;
+
+    invoke-direct {v0, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda20;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v1, "\u041e\u0442\u043c\u0435\u043d\u0430"
 
@@ -5540,9 +5540,9 @@
     .locals 2
 
     .line 35
-    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda28;
+    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda29;
 
-    invoke-direct {v0, p0, p4}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda28;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/Runnable;)V
+    invoke-direct {v0, p0, p4}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda29;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/Runnable;)V
 
     invoke-static {p0, p2, p3, v0}, Lorg/rabochaya/projects/WorkspaceUi;->icon(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/ImageButton;
 
@@ -5566,21 +5566,28 @@
 
 # virtual methods
 .method public center(DDD)V
-    .locals 6
+    .locals 7
 
-    .line 106
+    .line 107
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
 
-    if-eqz v0, :cond_3
+    .line 108
+    if-nez v0, :cond_0
 
+    return-void
+
+    .line 109
+    :cond_0
     invoke-static/range {p0 .. p6}, Lorg/rabochaya/projects/CoordinateSettings;->panel(Landroid/content/Context;DDD)Ljava/lang/String;
 
     move-result-object p5
 
+    .line 110
     iget-object p6, p0, Lorg/rabochaya/projects/LocalMapActivity;->dem:Lorg/rabochaya/projects/HgtRaster;
 
-    if-eqz p6, :cond_2
+    if-eqz p6, :cond_3
 
+    .line 112
     :try_start_0
     iget-object p6, p0, Lorg/rabochaya/projects/LocalMapActivity;->dem:Lorg/rabochaya/projects/HgtRaster;
 
@@ -5588,6 +5595,7 @@
 
     move-result-wide p1
 
+    .line 113
     new-instance p3, Ljava/lang/StringBuilder;
 
     invoke-direct {p3}, Ljava/lang/StringBuilder;-><init>()V
@@ -5600,13 +5608,14 @@
 
     move-result p4
 
-    if-eqz p4, :cond_0
+    if-eqz p4, :cond_1
 
     const-string p1, "\nDEM: \u043d\u0435\u0442 \u0434\u0430\u043d\u043d\u044b\u0445"
 
     goto :goto_0
 
-    :cond_0
+    .line 114
+    :cond_1
     new-instance p4, Ljava/lang/StringBuilder;
 
     invoke-direct {p4}, Ljava/lang/StringBuilder;-><init>()V
@@ -5619,34 +5628,34 @@
 
     sget-object p6, Ljava/util/Locale;->US:Ljava/util/Locale;
 
-    const-string v0, "%.1f"
+    const-string v1, "%.1f"
 
-    const/4 v1, 0x1
+    const/4 v2, 0x1
 
-    new-array v1, v1, [Ljava/lang/Object;
+    new-array v2, v2, [Ljava/lang/Object;
 
     invoke-static {p1, p2}, Ljava/lang/Math;->abs(D)D
 
-    move-result-wide v2
+    move-result-wide v3
 
-    const-wide v4, 0x3fa999999999999aL    # 0.05
+    const-wide v5, 0x3fa999999999999aL    # 0.05
 
-    cmpg-double v2, v2, v4
+    cmpg-double v3, v3, v5
 
-    if-gez v2, :cond_1
+    if-gez v3, :cond_2
 
     const-wide/16 p1, 0x0
 
-    :cond_1
+    :cond_2
     invoke-static {p1, p2}, Ljava/lang/Double;->valueOf(D)Ljava/lang/Double;
 
     move-result-object p1
 
     const/4 p2, 0x0
 
-    aput-object p1, v1, p2
+    aput-object p1, v2, p2
 
-    invoke-static {p6, v0, v1}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    invoke-static {p6, v1, v2}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object p1
 
@@ -5675,11 +5684,14 @@
     :try_end_0
     .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
 
+    .line 117
     goto :goto_1
 
+    .line 115
     :catch_0
     move-exception p1
 
+    .line 116
     new-instance p1, Ljava/lang/StringBuilder;
 
     invoke-direct {p1}, Ljava/lang/StringBuilder;-><init>()V
@@ -5698,20 +5710,49 @@
 
     move-result-object p5
 
-    :cond_2
-    :goto_1
-    iget-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
-
-    invoke-virtual {p1, p5}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
+    .line 119
     :cond_3
+    :goto_1
+    invoke-virtual {v0}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
+
+    move-result-object p1
+
+    invoke-virtual {p5, p1}, Ljava/lang/String;->contentEquals(Ljava/lang/CharSequence;)Z
+
+    move-result p1
+
+    if-eqz p1, :cond_4
+
+    return-void
+
+    .line 120
+    :cond_4
+    invoke-virtual {v0, p5}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    .line 122
+    invoke-virtual {v0}, Landroid/widget/TextView;->isInLayout()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_5
+
+    invoke-static {v0}, Ljava/util/Objects;->requireNonNull(Ljava/lang/Object;)Ljava/lang/Object;
+
+    new-instance p1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda16;
+
+    invoke-direct {p1, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda16;-><init>(Landroid/widget/TextView;)V
+
+    invoke-virtual {v0, p1}, Landroid/widget/TextView;->post(Ljava/lang/Runnable;)Z
+
+    .line 123
+    :cond_5
     return-void
 .end method
 
 .method public draftChanged(I)V
     .locals 3
 
-    .line 111
+    .line 128
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity;->status:Landroid/widget/TextView;
 
     if-eqz v0, :cond_0
@@ -5753,7 +5794,7 @@
 .method public error(Ljava/lang/String;)V
     .locals 6
 
-    .line 154
+    .line 171
     if-nez p1, :cond_0
 
     const-string p1, "\u041e\u0448\u0438\u0431\u043a\u0430 \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u043e\u0439 \u043a\u0430\u0440\u0442\u044b"
@@ -6573,7 +6614,7 @@
 .method synthetic lambda$discardDrawing$81$org-rabochaya-projects-LocalMapActivity(ZLandroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 112
+    .line 129
     iget-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity;->map:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-virtual {p2}, Lorg/rabochaya/projects/LocalMapView;->cancelDrawing()V
@@ -6692,7 +6733,7 @@
 .method synthetic lambda$editObject$82$org-rabochaya-projects-LocalMapActivity(Ljava/util/List;Lorg/rabochaya/projects/KmlSymbolAssets;)V
     .locals 1
 
-    .line 150
+    .line 167
     iget-boolean v0, p0, Lorg/rabochaya/projects/LocalMapActivity;->disposed:Z
 
     if-nez v0, :cond_1
@@ -6741,7 +6782,7 @@
 .method synthetic lambda$editObject$83$org-rabochaya-projects-LocalMapActivity(Ljava/lang/Exception;)V
     .locals 2
 
-    .line 151
+    .line 168
     iget-boolean v0, p0, Lorg/rabochaya/projects/LocalMapActivity;->disposed:Z
 
     if-nez v0, :cond_0
@@ -6781,12 +6822,12 @@
 .method synthetic lambda$editObject$84$org-rabochaya-projects-LocalMapActivity(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
     .locals 3
 
-    .line 144
+    .line 161
     new-instance v0, Lorg/rabochaya/projects/ProjectStore;
 
     invoke-direct {v0, p0}, Lorg/rabochaya/projects/ProjectStore;-><init>(Landroid/content/Context;)V
 
-    .line 145
+    .line 162
     :try_start_0
     iget-wide v1, p0, Lorg/rabochaya/projects/LocalMapActivity;->projectId:J
 
@@ -6794,7 +6835,7 @@
 
     move-result-object v1
 
-    .line 146
+    .line 163
     if-nez p1, :cond_0
 
     invoke-virtual {v1}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
@@ -6805,7 +6846,7 @@
 
     goto :goto_0
 
-    .line 147
+    .line 164
     :cond_0
     invoke-virtual {v1, p1}, Lorg/rabochaya/projects/KmlProject;->byId(Ljava/lang/String;)Lorg/w3c/dom/Element;
 
@@ -6819,14 +6860,14 @@
 
     invoke-static {p1, p5}, Lorg/rabochaya/projects/FeatureEdits;->movePoint(Lorg/w3c/dom/Element;Ljava/util/List;)V
 
-    .line 148
+    .line 165
     :cond_1
     :goto_0
     iget-wide p1, p0, Lorg/rabochaya/projects/LocalMapActivity;->projectId:J
 
     invoke-virtual {v0, p1, p2, v1}, Lorg/rabochaya/projects/ProjectStore;->saveDocument(JLorg/rabochaya/projects/KmlProject;)V
 
-    .line 149
+    .line 166
     iget-wide p1, p0, Lorg/rabochaya/projects/LocalMapActivity;->projectId:J
 
     invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/ProjectStore;->load(J)Lorg/rabochaya/projects/KmlProject;
@@ -6855,16 +6896,16 @@
 
     invoke-direct {p3, p4, p5, p1}, Lorg/rabochaya/projects/KmlSymbolAssets;-><init>(Lorg/w3c/dom/Document;Ljava/lang/String;Ljava/util/Map;)V
 
-    .line 150
-    new-instance p1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda78;
+    .line 167
+    new-instance p1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda79;
 
-    invoke-direct {p1, p0, p2, p3}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda78;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/util/List;Lorg/rabochaya/projects/KmlSymbolAssets;)V
+    invoke-direct {p1, p0, p2, p3}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda79;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/util/List;Lorg/rabochaya/projects/KmlSymbolAssets;)V
 
     invoke-virtual {p0, p1}, Lorg/rabochaya/projects/LocalMapActivity;->runOnUiThread(Ljava/lang/Runnable;)V
 
     goto :goto_1
 
-    .line 147
+    .line 164
     :cond_2
     new-instance p1, Ljava/io/IOException;
 
@@ -6877,7 +6918,7 @@
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 151
+    .line 168
     :catchall_0
     move-exception p1
 
@@ -6887,9 +6928,9 @@
     move-exception p1
 
     :try_start_1
-    new-instance p2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda79;
+    new-instance p2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda80;
 
-    invoke-direct {p2, p0, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda79;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/Exception;)V
+    invoke-direct {p2, p0, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda80;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/Exception;)V
 
     invoke-virtual {p0, p2}, Lorg/rabochaya/projects/LocalMapActivity;->runOnUiThread(Ljava/lang/Runnable;)V
     :try_end_1
@@ -6909,7 +6950,7 @@
 .method synthetic lambda$editObject$85$org-rabochaya-projects-LocalMapActivity(Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/EditText;Lorg/rabochaya/projects/KmlProject$Feature;Ljava/lang/String;Landroid/app/AlertDialog;Landroid/view/View;)V
     .locals 7
 
-    .line 136
+    .line 153
     invoke-virtual {p1}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
 
     move-result-object p7
@@ -6930,7 +6971,7 @@
 
     move-result-object v5
 
-    .line 137
+    .line 154
     invoke-virtual {v4}, Ljava/lang/String;->isEmpty()Z
 
     move-result p7
@@ -6947,7 +6988,7 @@
 
     goto :goto_3
 
-    .line 138
+    .line 155
     :cond_0
     invoke-virtual {v5}, Ljava/lang/String;->length()I
 
@@ -6963,7 +7004,7 @@
 
     return-void
 
-    .line 140
+    .line 157
     :cond_1
     const/4 p1, 0x0
 
@@ -7001,11 +7042,11 @@
 
     move-object v6, p2
 
-    .line 141
+    .line 158
     :goto_1
     nop
 
-    .line 142
+    .line 159
     if-nez p4, :cond_4
 
     goto :goto_2
@@ -7022,7 +7063,7 @@
     :goto_2
     move-object v2, p1
 
-    .line 143
+    .line 160
     const/4 p1, 0x1
 
     iput-boolean p1, p0, Lorg/rabochaya/projects/LocalMapActivity;->busy:Z
@@ -7035,10 +7076,10 @@
 
     invoke-virtual {p6}, Landroid/app/AlertDialog;->dismiss()V
 
-    .line 144
+    .line 161
     iget-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
-    new-instance p2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda36;
+    new-instance p2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda37;
 
     move-object v0, p2
 
@@ -7046,14 +7087,14 @@
 
     move-object v3, p5
 
-    invoke-direct/range {v0 .. v6}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda36;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+    invoke-direct/range {v0 .. v6}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda37;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
 
     invoke-interface {p1, p2}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
-    .line 152
+    .line 169
     return-void
 
-    .line 141
+    .line 158
     :catch_0
     move-exception p1
 
@@ -7065,7 +7106,7 @@
 
     return-void
 
-    .line 137
+    .line 154
     :cond_5
     :goto_3
     const-string p2, "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435: \u043e\u0442 1 \u0434\u043e 1000 \u0441\u0438\u043c\u0432\u043e\u043b\u043e\u0432"
@@ -7078,7 +7119,7 @@
 .method synthetic lambda$editObject$86$org-rabochaya-projects-LocalMapActivity(Landroid/app/AlertDialog;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/EditText;Lorg/rabochaya/projects/KmlProject$Feature;Ljava/lang/String;Landroid/content/DialogInterface;)V
     .locals 10
 
-    .line 135
+    .line 152
     const/4 v0, -0x1
 
     move-object v8, p1
@@ -7087,7 +7128,7 @@
 
     move-result-object v0
 
-    new-instance v9, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda72;
+    new-instance v9, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda73;
 
     move-object v1, v9
 
@@ -7103,7 +7144,7 @@
 
     move-object/from16 v7, p6
 
-    invoke-direct/range {v1 .. v8}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda72;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/EditText;Lorg/rabochaya/projects/KmlProject$Feature;Ljava/lang/String;Landroid/app/AlertDialog;)V
+    invoke-direct/range {v1 .. v8}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda73;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/EditText;Lorg/rabochaya/projects/KmlProject$Feature;Ljava/lang/String;Landroid/app/AlertDialog;)V
 
     invoke-virtual {v0, v9}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
@@ -7207,9 +7248,9 @@
 
     move-result-object p4
 
-    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;
+    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda72;
 
-    invoke-direct {v0, p0, p2, p3, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda71;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/EditText;Landroid/widget/Spinner;Landroid/app/AlertDialog;)V
+    invoke-direct {v0, p0, p2, p3, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda72;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/EditText;Landroid/widget/Spinner;Landroid/app/AlertDialog;)V
 
     invoke-virtual {p4, v0}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
@@ -7336,9 +7377,9 @@
 
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity;->map:Lorg/rabochaya/projects/LocalMapView;
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda29;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda30;
 
-    invoke-direct {v1, p0, v0, p2}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda29;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Lorg/rabochaya/projects/LocalMapView;[D)V
+    invoke-direct {v1, p0, v0, p2}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda30;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Lorg/rabochaya/projects/LocalMapView;[D)V
 
     invoke-virtual {v0, v1}, Lorg/rabochaya/projects/LocalMapView;->post(Ljava/lang/Runnable;)Z
 
@@ -8133,9 +8174,9 @@
     .catchall {:try_start_4 .. :try_end_4} :catchall_6
 
     :try_start_5
-    new-instance v9, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda81;
+    new-instance v9, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda82;
 
-    invoke-direct {v9, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda81;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v9, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda82;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     move-object v5, v3
 
@@ -8487,9 +8528,9 @@
 
     invoke-virtual {v0, p1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda37;
+    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda38;
 
-    invoke-direct {v0, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda37;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v0, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda38;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v1, "\u041a \u0441\u043f\u0438\u0441\u043a\u0443"
 
@@ -8536,9 +8577,9 @@
 
     invoke-direct {v3, v4, v5, v1}, Lorg/rabochaya/projects/KmlSymbolAssets;-><init>(Lorg/w3c/dom/Document;Ljava/lang/String;Ljava/util/Map;)V
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda24;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda25;
 
-    invoke-direct {v1, p0, v2, v3}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda24;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/util/List;Lorg/rabochaya/projects/KmlSymbolAssets;)V
+    invoke-direct {v1, p0, v2, v3}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda25;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/util/List;Lorg/rabochaya/projects/KmlSymbolAssets;)V
 
     invoke-virtual {p0, v1}, Lorg/rabochaya/projects/LocalMapActivity;->runOnUiThread(Ljava/lang/Runnable;)V
     :try_end_0
@@ -8556,9 +8597,9 @@
     move-exception v1
 
     :try_start_1
-    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda25;
+    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda26;
 
-    invoke-direct {v2, p0, v1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda25;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/Exception;)V
+    invoke-direct {v2, p0, v1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda26;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/Exception;)V
 
     invoke-virtual {p0, v2}, Lorg/rabochaya/projects/LocalMapActivity;->runOnUiThread(Ljava/lang/Runnable;)V
     :try_end_1
@@ -8866,7 +8907,7 @@
 .method synthetic lambda$newObject$76$org-rabochaya-projects-LocalMapActivity(Landroid/content/DialogInterface;I)V
     .locals 2
 
-    .line 108
+    .line 125
     const-string p1, "Polygon"
 
     const-string v0, "LineString"
@@ -8966,9 +9007,9 @@
 
     move-result-wide v0
 
-    new-instance p1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda31;
+    new-instance p1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda32;
 
-    invoke-direct {p1, p0, v0, v1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda31;-><init>(Lorg/rabochaya/projects/LocalMapActivity;J)V
+    invoke-direct {p1, p0, v0, v1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda32;-><init>(Lorg/rabochaya/projects/LocalMapActivity;J)V
 
     invoke-virtual {p0, p1}, Lorg/rabochaya/projects/LocalMapActivity;->runOnUiThread(Ljava/lang/Runnable;)V
     :try_end_0
@@ -8979,9 +9020,9 @@
     :catch_0
     move-exception p1
 
-    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda32;
+    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda33;
 
-    invoke-direct {v0, p0, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda32;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/Exception;)V
+    invoke-direct {v0, p0, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda33;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/Exception;)V
 
     invoke-virtual {p0, v0}, Lorg/rabochaya/projects/LocalMapActivity;->runOnUiThread(Ljava/lang/Runnable;)V
 
@@ -9030,9 +9071,9 @@
 
     iget-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
-    new-instance p2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda22;
+    new-instance p2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda23;
 
-    invoke-direct {p2, p0, p3}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda22;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;)V
+    invoke-direct {p2, p0, p3}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda23;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;)V
 
     invoke-interface {p1, p2}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
@@ -9057,9 +9098,9 @@
 
     move-result-object p3
 
-    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda45;
+    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda46;
 
-    invoke-direct {v0, p0, p2, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda45;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/EditText;Landroid/app/AlertDialog;)V
+    invoke-direct {v0, p0, p2, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda46;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/EditText;Landroid/app/AlertDialog;)V
 
     invoke-virtual {p3, v0}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
@@ -9171,7 +9212,7 @@
 .method synthetic lambda$picked$73$org-rabochaya-projects-LocalMapActivity(Lorg/rabochaya/projects/KmlProject$Feature;Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 107
+    .line 124
     const/4 p2, 0x0
 
     invoke-direct {p0, p1, p2}, Lorg/rabochaya/projects/LocalMapActivity;->editObject(Lorg/rabochaya/projects/KmlProject$Feature;Ljava/lang/String;)V
@@ -9182,7 +9223,7 @@
 .method synthetic lambda$picked$74$org-rabochaya-projects-LocalMapActivity(Lorg/rabochaya/projects/KmlProject$Feature;Landroid/content/DialogInterface;I)V
     .locals 2
 
-    .line 107
+    .line 124
     const/4 p2, 0x1
 
     iput-boolean p2, p0, Lorg/rabochaya/projects/LocalMapActivity;->refreshOnResume:Z
@@ -9221,7 +9262,7 @@
 .method synthetic lambda$picked$75$org-rabochaya-projects-LocalMapActivity(Landroid/app/AlertDialog;Lorg/rabochaya/projects/KmlProject$Feature;Landroid/view/View;)V
     .locals 2
 
-    .line 107
+    .line 124
     invoke-direct {p0}, Lorg/rabochaya/projects/LocalMapActivity;->canLeave()Z
 
     move-result p3
@@ -9445,9 +9486,9 @@
 
     move-result-object p1
 
-    new-instance p2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda23;
+    new-instance p2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda24;
 
-    invoke-direct {p2, p0, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda23;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/util/ArrayList;)V
+    invoke-direct {p2, p0, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda24;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/util/ArrayList;)V
 
     invoke-virtual {p1, p3, p2}, Landroid/app/AlertDialog$Builder;->setItems([Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
@@ -9476,9 +9517,9 @@
 
     move-result-object p3
 
-    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda58;
+    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda59;
 
-    invoke-direct {v0, p0, p2, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda58;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/EditText;Landroid/app/AlertDialog;)V
+    invoke-direct {v0, p0, p2, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda59;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/EditText;Landroid/app/AlertDialog;)V
 
     invoke-virtual {p3, v0}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
@@ -9782,9 +9823,9 @@
 
     move-result-object p1
 
-    new-instance p2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda68;
+    new-instance p2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda69;
 
-    invoke-direct {p2, p0, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda68;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;)V
+    invoke-direct {p2, p0, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda69;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;)V
 
     invoke-virtual {p1, p2}, Landroid/app/AlertDialog;->setOnShowListener(Landroid/content/DialogInterface$OnShowListener;)V
 
@@ -9809,7 +9850,7 @@
 .method synthetic lambda$startDrawing$77$org-rabochaya-projects-LocalMapActivity()V
     .locals 1
 
-    .line 109
+    .line 126
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity;->map:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-virtual {v0}, Lorg/rabochaya/projects/LocalMapView;->addDrawingCenter()V
@@ -9820,7 +9861,7 @@
 .method synthetic lambda$startDrawing$78$org-rabochaya-projects-LocalMapActivity()V
     .locals 1
 
-    .line 109
+    .line 126
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity;->map:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-virtual {v0}, Lorg/rabochaya/projects/LocalMapView;->undoDrawing()V
@@ -9831,7 +9872,7 @@
 .method synthetic lambda$startDrawing$79$org-rabochaya-projects-LocalMapActivity()V
     .locals 2
 
-    .line 109
+    .line 126
     :try_start_0
     invoke-direct {p0}, Lorg/rabochaya/projects/LocalMapActivity;->drawingCoordinates()Ljava/lang/String;
 
@@ -9875,7 +9916,7 @@
 .method synthetic lambda$startDrawing$80$org-rabochaya-projects-LocalMapActivity()V
     .locals 1
 
-    .line 109
+    .line 126
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lorg/rabochaya/projects/LocalMapActivity;->discardDrawing(Z)V
@@ -9938,7 +9979,7 @@
 
     move-result-object v10
 
-    new-instance v11, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda82;
+    new-instance v11, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda83;
 
     move-object v0, v11
 
@@ -9948,7 +9989,7 @@
 
     move-wide/from16 v4, p1
 
-    invoke-direct/range {v0 .. v5}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda82;-><init>(Lorg/rabochaya/projects/LocalMapActivity;DD)V
+    invoke-direct/range {v0 .. v5}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda83;-><init>(Lorg/rabochaya/projects/LocalMapActivity;DD)V
 
     const-string v0, "\u0421\u043e\u0437\u0434\u0430\u0442\u044c \u043c\u0435\u0442\u043a\u0443 \u0437\u0434\u0435\u0441\u044c"
 
@@ -9956,11 +9997,11 @@
 
     move-result-object v11
 
-    new-instance v12, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda83;
+    new-instance v12, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda84;
 
     move-object v0, v12
 
-    invoke-direct/range {v0 .. v5}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda83;-><init>(Lorg/rabochaya/projects/LocalMapActivity;DD)V
+    invoke-direct/range {v0 .. v5}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda84;-><init>(Lorg/rabochaya/projects/LocalMapActivity;DD)V
 
     const-string v0, "\u041d\u0430\u0447\u0430\u0442\u044c \u043c\u0430\u0440\u0448\u0440\u0443\u0442 \u0437\u0434\u0435\u0441\u044c"
 
@@ -9968,11 +10009,11 @@
 
     move-result-object v12
 
-    new-instance v13, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda84;
+    new-instance v13, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda85;
 
     move-object v0, v13
 
-    invoke-direct/range {v0 .. v5}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda84;-><init>(Lorg/rabochaya/projects/LocalMapActivity;DD)V
+    invoke-direct/range {v0 .. v5}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda85;-><init>(Lorg/rabochaya/projects/LocalMapActivity;DD)V
 
     const-string v0, "\u041d\u0430\u0447\u0430\u0442\u044c \u043e\u0431\u043b\u0430\u0441\u0442\u044c \u0437\u0434\u0435\u0441\u044c"
 
@@ -9980,11 +10021,11 @@
 
     move-result-object v13
 
-    new-instance v14, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda85;
+    new-instance v14, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda86;
 
     move-object v0, v14
 
-    invoke-direct/range {v0 .. v5}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda85;-><init>(Lorg/rabochaya/projects/LocalMapActivity;DD)V
+    invoke-direct/range {v0 .. v5}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda86;-><init>(Lorg/rabochaya/projects/LocalMapActivity;DD)V
 
     const-string v0, "\u0412 \u0446\u0435\u043d\u0442\u0440 \u043a\u0430\u0440\u0442\u044b"
 
@@ -10161,9 +10202,9 @@
 
     move-result-object p2
 
-    new-instance p3, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda63;
+    new-instance p3, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda64;
 
-    invoke-direct {p3, p0, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda63;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/net/Uri;)V
+    invoke-direct {p3, p0, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda64;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/net/Uri;)V
 
     const-string p1, "\u0418\u043c\u043f\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c"
 
@@ -10183,9 +10224,9 @@
 
     move-result-object p1
 
-    new-instance p2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda64;
+    new-instance p2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda65;
 
-    invoke-direct {p2, p0, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda64;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;)V
+    invoke-direct {p2, p0, p1}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda65;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/app/AlertDialog;)V
 
     invoke-virtual {p1, p2}, Landroid/app/AlertDialog;->setOnShowListener(Landroid/content/DialogInterface$OnShowListener;)V
 
@@ -10229,7 +10270,7 @@
 .method public onBackPressed()V
     .locals 1
 
-    .line 113
+    .line 130
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity;->map:Lorg/rabochaya/projects/LocalMapView;
 
     if-eqz v0, :cond_0
@@ -10456,7 +10497,7 @@
 .method protected onSaveInstanceState(Landroid/os/Bundle;)V
     .locals 2
 
-    .line 114
+    .line 131
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity;->map:Lorg/rabochaya/projects/LocalMapView;
 
     if-eqz v0, :cond_0
@@ -10502,7 +10543,7 @@
 .method public picked(Lorg/rabochaya/projects/KmlProject$Feature;)V
     .locals 8
 
-    .line 107
+    .line 124
     iget-boolean v0, p0, Lorg/rabochaya/projects/LocalMapActivity;->busy:Z
 
     if-eqz v0, :cond_0

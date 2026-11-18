@@ -1,5 +1,5 @@
 package org.rabochaya.maptests;
-import android.app.*;import android.content.*;import android.database.sqlite.SQLiteDatabase;import android.graphics.*;import android.net.Uri;import android.os.Bundle;import android.view.accessibility.AccessibilityNodeInfo;import java.io.*;import java.lang.reflect.*;import java.security.MessageDigest;import java.util.*;
+import android.app.*;import android.content.*;import android.database.sqlite.SQLiteDatabase;import android.graphics.*;import android.net.Uri;import android.os.Bundle;import android.view.accessibility.AccessibilityNodeInfo;import android.widget.TextView;import java.io.*;import java.lang.reflect.*;import java.security.MessageDigest;import java.util.*;
 /** Disposable emulator tests. Reflection targets actual installed production classes. */
 public final class MapAndroidChecks extends Instrumentation {
  Bundle args;int checks;Class<?> codec,storeClass,tilesClass;Activity activity;long project;
@@ -406,6 +406,18 @@ public final class MapAndroidChecks extends Instrumentation {
   try{
    settings.edit().clear().putInt("primary",0).putInt("secondary",3).putBoolean("show_secondary",true).commit();
    Object doc=codec.getMethod("parse",byte[].class).invoke(null,(Object)XML.getBytes("UTF-8"));id=(Long)call(store,"insert",new Class[]{codec,String.class},doc,"QA_COORDINATES");final Intent intent=new Intent().setClassName(context.getPackageName(),"org.rabochaya.projects.LocalMapActivity").putExtra("project",id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);activity=startActivitySync(intent);waitText("видимых объектов");
+   Field coordinateField=activity.getClass().getDeclaredField("coordinates");
+   coordinateField.setAccessible(true);
+   TextView coordinatePanel=(TextView)coordinateField.get(activity);
+   boolean[] fullPanel={false};
+   waitForIdleSync();
+   runOnMainSync(()->{
+    android.text.Layout layout=coordinatePanel.getLayout();
+    fullPanel[0]=layout!=null&&layout.getLineCount()>=2
+      &&layout.getLineEnd(layout.getLineCount()-1)==coordinatePanel.getText().length()
+      &&layout.getHeight()<=coordinatePanel.getHeight()-coordinatePanel.getCompoundPaddingTop()-coordinatePanel.getCompoundPaddingBottom();
+   });
+   check(fullPanel[0],"first map layout displays both coordinate formats without clipping");
    byte[] before=(byte[])call(call(store,"load",new Class[]{long.class},id),"xml",new Class[]{});
    double wx=(Double)staticCall("MapMath","x",new Class[]{double.class},37.6),wy=(Double)staticCall("MapMath","y",new Class[]{double.class},55.75);setViewport(wx,wy,8);waitText("55.750000, 37.600000");waitText("UTM · WGS 84");
    clickDescription("Настройки координат центра");clickDescription("Основной формат координат");click("MGRS · WGS 84");clickDescription("Дополнительный формат координат");click("WGS 84 · градусы, минуты, секунды");click("Сохранить");check(settings.getInt("primary",-1)==4&&settings.getInt("secondary",-1)==2,"UI persists both coordinate formats");waitText("Центр MGRS");waitText("55°45′00.00″ N");double[] viewport=(double[])call(map(),"viewport",new Class[]{});check(Math.abs(viewport[0]-wx)<1e-10&&Math.abs(viewport[1]-wy)<1e-10,"changing coordinate formats does not move map");

@@ -9,13 +9,11 @@
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-.field public final synthetic f$1:Lorg/rabochaya/projects/LocalMapView;
-
-.field public final synthetic f$2:[D
+.field public final synthetic f$1:Ljava/lang/Runnable;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Lorg/rabochaya/projects/LocalMapView;[D)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/Runnable;)V
     .locals 0
 
     .line 0
@@ -23,9 +21,7 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda29;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda29;->f$1:Lorg/rabochaya/projects/LocalMapView;
-
-    iput-object p3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda29;->f$2:[D
+    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda29;->f$1:Ljava/lang/Runnable;
 
     return-void
 .end method
@@ -33,16 +29,14 @@
 
 # virtual methods
 .method public final run()V
-    .locals 3
+    .locals 2
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda29;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda29;->f$1:Lorg/rabochaya/projects/LocalMapView;
+    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda29;->f$1:Ljava/lang/Runnable;
 
-    iget-object v2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda29;->f$2:[D
-
-    invoke-virtual {v0, v1, v2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$importFinished$69$org-rabochaya-projects-LocalMapActivity(Lorg/rabochaya/projects/LocalMapView;[D)V
+    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$tool$22$org-rabochaya-projects-LocalMapActivity(Ljava/lang/Runnable;)V
 
     return-void
 .end method
