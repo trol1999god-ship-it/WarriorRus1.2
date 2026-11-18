@@ -1,54 +1,52 @@
-# Продолжение — 18 ноября: KML schema fix7faed6d, IME candidate
+# Продолжение — 18 ноября: b99 проверен; исправление перекрытия Cancel + metrics candidate
 
-## Текущая точка
+## Последний завершённый CI
 
-Remote b99f9e637aa80523162c63e0103f89af0b5acc70. Changed-code CI44287853086 RUNNING;
-JVM134745064603 SUCCESS; Android23 job134745452435, Android35 job134745452398 pending runtime.
-НЕpush пока активен, не rerun. Current candidate includes7faed6d production order fix +b99 IME scope.
+Проверенный источник b99f9e637aa80523162c63e0103f89af0b5acc70, CI44287853086 FAILURE.
+JVM134745064603 SUCCESS40/83385/host31. Android23 job134745452435 и35 job134745452398:
+по45/46, только offlineformats FAIL. Никаких skip/transport failures в этом run.
+Source/outer/inner/all564+567members verified; по6 scoped PNG каждой API реально viewed.
 
-Предыдущий ea9ff9f, CI43280843162 completed FAILURE: JVM131401369832 SUCCESS;
-API23 job131401634505 —43/46, API35 job131401634481 —42/46.
-Обе API: offlineformats иmaplayers failed на soft keyboard window never appeared;
-maplayersreopen SKIPPED после fixture failure. Editor/sets НЕприняты.
-API35 geometrycloseconfirm native завершился code-1, но pull rc1 только building file list:
-нет PNG, нет explicit offline/sameBoot receipts; НЕPASS, native ради выгрузки не повторять.
-All529+516members/source/outer/inner hashes verified. Только initial KML scene PNG
-обе API реально просмотрены; editor/IME/preset PNG не созданы. Full logs сохранены.
+Именованные наборы0a031db: maplayers331/330, reopen77 both PASS. Save/Cancel/duplicate/
+DeleteCancel/Apply/staleLibrary/staleComposition/foreign/deletedOwner и реальный force-stop
+прошли с исходными XML/assets/maps/cache/otherproject guards. Свежие primary preset name
+с IME/list и restarted-manager PNG reviewed. Дубликаты preset PNG в reopen архиве —
+унаследованные из maplayers; не считать их новыми reopen кадрами. Не полная приёмка layers.
 
-Причина IME observation: новые helpers не включали FLAG_RETRIEVE_INTERACTIVE_WINDOWS;
-getWindows без opt-in не доказывает отсутствие физической IME. API35 logcat содержит
-onKeyboardViewShown; старые working helpers включают flag+show_ime_with_hard_keyboard.
-Узкий test-only scope включает оба preconditions и восстанавливает исходные flags/setting
-вfinally (включая setup failure); исходные реальная IME/physical/buttons/data guards сохранены.
-SDK23 corrected instrumentation compiled; runtime pending changed-code CI, не rerun ea9.
+KML editor: IME observation теперь проходит. Error/raw/bounds/Arimo пройдены до реального
+Cancel. Обе API независимо показывают native EditText error popup поверх Save/Cancel;
+касание Cancel не достигает кнопки, active tree остаётся в редакторе с ff00ffff.
+Последующие Save/reset/stale/final-editor data guards НЕисполнены. Не editor PASS.
+Evidence: security/kml-components-qa-2026-11-18/b99-result.json + оба full jobs/PNGs.
 
-Отдельный production commit7faed6d: новые Style/color/fill вставляются в порядке OGC
-до ExtendedData/width/outline; существующий DOM не переставляется. Пять valid baseline
-становились invalid; после fix full offline official XSD + serialized roundtrip PASS,
-component58, JVM40/83385, host31 свежий PASS, matchingSDK23 source84/privacysource+DEX PASS.
-Старый host29/31 при конкурентной компиляции сохранён: .5s fake-adb readiness timeout;
-guards/timeouts не изменялись, свежий isolated host31 завершился19.088s без ошибок.
-Official lint MissingClass/HardcodedDebugMode остаётся NOT PASS; acceptance0/releasegate25.
+## Подготовленный changed-code кандидат (Android pending)
 
-Следующее: дочитать CI44287853086 для KML editor+namedsets0a031db+XML guards;
-читать оба completedjobs/source/digest/allmembers/новые PNG, расследовать отказы.
-Затем функциональный gap styles/import-export/SVG по проверенному контракту, далее
-media/явнаяпередача→UI/coordinates/compass/settings→migration26.1. Не orphan/dialog queue.
-Все backups/stash2/pending/toolchain/WIP сохранены; reset/clean/worktree/merge не делались.
+Production7faed6d исправляет порядок Style/color/fill/ExtendedData; пять до/после KML
+и официальные pinned offline XSD сохранены. Все пять valid originals и emitted/roundtrip
+после fix проходят схему, external schema access disabled. Старые invalid outputs сохранены.
 
-## Следующий локальный WIP: width/label scale (НЕчасть CI b99)
+Production99d3cbf — узкий fix только KML component editor: ошибка — inline TextView в существующем
+ScrollView, не native popup над действиями. Существующие name/description ветки неизменны.
+Явные Save/Cancel, real touch/IME/raw/cursor/owner/token/data guards сохранены/усилены.
+Новый runtime пока pending; не объявлять перекрытие исправленным до фактического CI.
 
-KML_STYLE_METRICS.md: существующие StyleMap/inline/manager/render/KMZ, width0..256px,
-label scale0..16; nullable property inheritance, zero явно скрывает stroke/text,
-point outline не зависит от LineStyle width. XML unsafe values не переписываются;
-явный editor Save/Cancel/reset использует прежние owner/token guards.
-Baseline missing operation editor59 reproduced. Локально JVM40/83425/editor84/
-component47, SDK23 matching source84 app/tests, customprivacy PASS. Подготовлены
-actual raster/zero/no-shadow/point independence/polygon fill pixel guards иUI операции
-в existingofflineformats без новых mode/frame slots. Они НЕисполнены на Android.
-Нет SVG/icon library claim; текущий CI44287853086 проверяет только b99.
-Не push следующий WIP до completed результатов текущего CI; новый runtime нужен позже.
+Следующая функция уже реализована local29a43cc+844fe6e: KML width0..256 физических px,
+label scale0..16 через existing StyleMap/inline/editor/render/KMZ; zero скрывает stroke/text,
+не Android hairline; width не меняет Point outline. SVG/icon library этим не подменяется.
+JVM40/83425/editor84/component47; SDK23 matching source84/578classes app+tests,
+customprivacy PASS. Official lint84/160realclassfiles: exit1 MissingClass/
+HardcodedDebugMode/114warnings, smali bodies не анализируются — НЕPASS.
 
+Следующее: после сохранения кандидата/проверки HEAD и отсутствия activeCI отправить
+один changed-code fullCI existingworkflow для inline-error fix + metrics + прежних guards.
+Прочитать оба completedjobs/source/digest/allmembers и реальные новые PNG; каждый отказ
+расследовать. После этого SVG/import-export по проверенному контракту → media/явнаяпередача
+→ UI/coordinates/compass/settings → migration26.1, с зависимостями IMPLEMENTATION_PLAN.
+Не dialog/orphan baseline. All23 acceptance0/releasegate25, не выпуск приложения.
 
-История: [EA9 и предыдущие локальные срезы](migration/STATUS_HISTORY_EA9_2026-11-18.md),
-[ранние срезы](migration/STATUS_HISTORY_BEFORE_C373.md).
+Сохранены stash2/pending/toolchain/backup/старые artifacts; reset/clean/newbranch/worktree/
+merge/перенос репозиториев не делались. Git sandbox не достигает proxy:8080; штатный
+per-command gh credential helper вне sandbox прошёл push b99 без изменения сети/TLS.
+Это та же Cloud Environment; готовность инструментов не доказывает публикацию reusable среды.
+
+История: migration/STATUS_HISTORY_EA9_2026-11-18.md и STATUS_HISTORY_BEFORE_C373.md.

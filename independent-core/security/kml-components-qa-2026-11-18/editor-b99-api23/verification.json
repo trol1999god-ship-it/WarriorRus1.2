@@ -1,0 +1,21 @@
+{
+  "api": "23",
+  "source_sha": "b99f9e637aa80523162c63e0103f89af0b5acc70",
+  "run_id": "44287853086",
+  "outer_path": "/workspace/attachments/c88557ee-fc9d-4a15-a095-11496382e4e7/b99-api23.zip",
+  "outer_sha256": "83200b0654f3581a471ed3af7f063430314ab3a98abb1d05db92ad21d92c3662",
+  "inner_sha256": "b0a32736aa45249b9f8f388301acd09978a43eb20d248d459f36dd3c35711f57",
+  "all_member_hashes_verified": true,
+  "members": 564,
+  "records": 46,
+  "passed": 45,
+  "failed_or_skipped": [
+    {
+      "mode": "offlineformats",
+      "passed": false,
+      "seconds": 242.93
+    }
+  ],
+  "frames": 36,
+  "visual_review": "pending actual view_image"
+}

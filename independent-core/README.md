@@ -1,17 +1,18 @@
 # Рабочая карта — самостоятельное ядро
 
-Последний завершённый CI43280843162 на ea9ff9f — FAILURE: API23 43/46, API35 42/46.
-DOM lookup исправлен, но editor и presets остановились на IME observation; reopen skipped.
-API35 close native без полученных PNG не засчитан. Исходные failed receipts сохранены.
+Последний CI44287853086 на b99: FAILURE45/46 обе API, единственный FAIL offlineformats.
+IME observation проходит, но popup-ошибка KML перекрывает Cancel/Save; editor ещё не принят.
+Наборы слоёв0a031db прошли maplayers331/330 и real force-stop reopen77 обе API,
+включая явные действия/изоляцию/stale/data guards. Scoped PNG просмотрены, не вся приёмка.
 
-Production7faed6d исправляет порядок новых KML Style/color/fill, сохраняя другой DOM:
-официальная offline XSD/roundtrip, component58 и JVM40/83385 PASS; SDK23 matching pair.
-Test-only IME scope восстанавливает необходимые window/hardware-keyboard preconditions;
-physical/IME/data guards сохранены. Android изменённого кандидата pending, не приёмка.
-Именованные наборы0a031db сохраняют явные Save/Cancel/Apply/Delete иowner/revision/CAS.
+Production7faed6d: порядок новых KML узлов, пять official offline XSD/roundtrip кейсов.
+Новый кандидат переносит ошибку component editor в scrollable inline блок и добавляет
+width/label scale через existing StyleMap/editor/renderer/KMZ. JVM40/83425,
+SDK23 source84/578classes matching pair, customprivacy PASS; Android кандидата pending.
 
-Official Android lint exit1 MissingClass/HardcodedDebugMode/114warnings — НЕPASS;
-custom source+DEX audit не заменяет его. Acceptance всех23id открыта, releasegate25 сохранён.
+Свежий official Android lint84/160realclassfiles: exit1 MissingClass/HardcodedDebugMode/
+114warnings; ABI adapter incomplete, smali bodies не анализируются. Это НЕPASS;
+custom scanner не замена. All23 acceptance открыты, releasegate25 сохранён, выпуска нет.
 
 Текущая очередь: [CODEX_NEXT.md](CODEX_NEXT.md),
 [матрица всех требований](migration/IMPLEMENTATION_PLAN.md),
@@ -138,11 +139,11 @@ API23/x86: 23/23 сценария, 1492 утверждения; редактор
 
 Финальное обновление должно использовать идентификатор и сертификат 26.1, больший versionCode и проверенный перенос прежних объектов, вложений, настроек и кеша. Текущий `org.rabochaya.karta` предназначен для изолированной разработки. Основную программу и её данные удалять нельзя.
 
-## Текущий участок переноса
+## Ранее реализованный каталог (исторический срез)
 
 В самостоятельном коде добавлен отдельный групповой каталог онлайн-карт: 7 групп, 54 источника и 3 набора; исходные типовые изображения карточек, сведения о кеше, сохранение раскрытия групп, фильтр сохранённых карт, выбор карты, переходы к загрузке и экспорту, подтверждение очистки общих слоёв. Просмотр каталога не должен делать сетевых запросов или создавать пустые базы кеша; для этого добавлен инструментальный сценарий `catalogscreen`.
 
-Это **не подтверждение полного совпадения интерфейса или всей программы**. Статус текущих проверок — `PARITY_PROGRESS.md`. Главный экран, остальные меню, полная поддержка форматов, DEM, управление слоями и миграция данных остаются незавершёнными.
+Это **не подтверждение полного совпадения интерфейса или всей программы**. Исторический срез — `PARITY_PROGRESS.md`; текущая очередь и проверки — `CODEX_NEXT.md`. Главный экран, остальные меню, полная поддержка форматов, DEM, управление слоями и миграция данных остаются незавершёнными.
 
 ## Сборка
 

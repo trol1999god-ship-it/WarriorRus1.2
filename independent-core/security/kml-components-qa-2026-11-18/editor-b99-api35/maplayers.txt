@@ -1,0 +1,63 @@
+INSTRUMENTATION_STATUS: stream=START maplayers
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MAP_LAYERS_VISUAL opacity-before
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MAP_LAYERS_GESTURE {"source":4098,"geometry":"[290.0, 160.0, 459.0, 100.0, 292.0, 48.0]","widgetProgress":50,"modelOpacity":50}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MAP_LAYERS_VISUAL opacity-after
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MAP_LAYERS_VISUAL manager
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MAP_LAYERS_VISUAL composed
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MAP_LAYERS_VISUAL reordered
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MANAGER_VISUAL {"name":"layers-preset-name","visibleFrame":"[0,24][320,381]","orientation":1,"nightMask":16,"texts":[{"class":"DialogTitle","text":"Сохранить набор слоёв","foreground":"#de000000","arimo":true,"bounds":"[40, 78, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Запоминаются показанные слои, порядок, видимость и прозрачность. Карты, кеш и объекты не копируются и не меняются. Сохранение не применяет набор; применение поз","foreground":"#8a000000","arimo":true,"bounds":"[28, 115, 264, 117]","visible":true,"visibleBounds":"[28,71][292,188]","fullyVisible":true},{"class":"EditText","text":"QA_Набор 😀","foreground":"#de000000","arimo":true,"bounds":"[28, 232, 264, 48]","visible":true,"visibleBounds":"[28,188][292,236]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff008577","arimo":true,"bounds":"[99, 292, 84, 48]","visible":true,"visibleBounds":"[99,248][183,296]","fullyVisible":true},{"class":"Button","text":"Сохранить","foreground":"#ff008577","arimo":true,"bounds":"[183, 292, 109, 48]","visible":true,"visibleBounds":"[183,248][292,296]","fullyVisible":true}],"imeWindows":["[0,381][320,616]"],"keyboardRequested":true,"keyboardObserved":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MANAGER_VISUAL {"name":"layers-preset-list","visibleFrame":"[0,24][320,616]","orientation":1,"nightMask":16,"texts":[{"class":"DialogTitle","text":"Наборы слоёв","foreground":"#de000000","arimo":true,"bounds":"[40, 218, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Сохранить показанный состав","foreground":"#de000000","arimo":true,"bounds":"[16, 255, 288, 64]","visible":true,"visibleBounds":"[16,71][304,135]","fullyVisible":true},{"class":"TextView","text":"QA_Набор 😀 · слоёв: 2","foreground":"#de000000","arimo":true,"bounds":"[16, 319, 288, 64]","visible":true,"visibleBounds":"[16,135][304,199]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff008577","arimo":true,"bounds":"[208, 387, 84, 48]","visible":true,"visibleBounds":"[208,203][292,251]","fullyVisible":true}],"imeWindows":[],"keyboardRequested":false,"keyboardObserved":false}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=COMPOSITION_PRESETS save/cancel/duplicate/deleteCancel/staleLibrary/staleComposition/apply/foreign/deletedOwner PASS
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MAP_LAYERS_VISUAL final
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=DEM_PHASE before-fresh-main-launch owner=5
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=DEM_PHASE fresh-main-created owner=5 task=223
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=DEM_PHASE manual-centre-height-zero
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=INPUT_WAIT resolved after 1 retries
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=DEM_PROFILE_SCROLL legacyShown=false legacyId=16909487 legacyBounds=0 0 0 0 actualShown=true actualBounds=16 63 304 520 graphAncestor=true
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=DEM_PROFILE Close/raw/cursor/stale/foreign/mainChanged/explicitMainSave PASS
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=DEM_PHASE before-fresh-main-launch owner=5
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=DEM_PHASE fresh-main-created owner=5 task=225
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=DEM_PHASE manual-centre-height-zero
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=PASS maplayers: 330 assertions
+
+INSTRUMENTATION_CODE: -1

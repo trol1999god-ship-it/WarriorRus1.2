@@ -49,3 +49,13 @@ ea9/CI43280843162 maplayers failed before Save at IME observation on both API;
 maplayersreopen skipped. No new preset UI PNG, Save/Apply/Delete/force-stop not accepted.
 Test-only scoped interactive-window opt-in + emulator keyboard setting matches existing
 working IME helpers and restores prior state; SDK23 build passes, changed-code runtime pending.
+
+## Scoped runtime b99 / CI44287853086
+
+API23 maplayers331, API35 maplayers330; reopen77 both PASS. Actual Save/Cancel/duplicate/
+Apply/DeleteCancel/stale library+composition/foreign/deletedOwner and real force-stop
+checks passed with original XML/assets/maps/cache/otherproject guards. Fresh primary
+name-with-IME/list and restarted-manager PNG reviewed on both APIs. Preset PNG copies
+in reopen are inherited, not new reopen evidence. Overall CI FAILURE45both due KML
+error-popup blocking Cancel; not a green full CI or complete layers acceptance.
+Source/digest/allmembers/full jobs: security/kml-components-qa-2026-11-18/b99-result.json.

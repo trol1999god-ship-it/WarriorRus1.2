@@ -62,7 +62,8 @@
       ],
       "evidence": [],
       "implementation_notes": [
-        "Named project-private presets0a031db local candidate: explicit Save/Apply/Delete, owner/library revision/composition CAS, JVM40/83361/preset44, SDK23source84/576classes and customprivacy pass. Android pending, not included in a7f789a CI. Existing maplayers/reopen scenarios extended, no new mode or relaxed frame cap."
+        "Named project-private presets0a031db local candidate: explicit Save/Apply/Delete, owner/library revision/composition CAS, JVM40/83361/preset44, SDK23source84/576classes and customprivacy pass. Android pending, not included in a7f789a CI. Existing maplayers/reopen scenarios extended, no new mode or relaxed frame cap.",
+        "b99/CI44287853086: named sets scoped runtime PASS both APIs maplayers331/330, reopen77; Save/Cancel/Apply/Delete/stale/foreign/force-stop/data and fresh scoped PNG verified. Overall FAILURE45both from KML error-popup Cancel; full layers/reference acceptance open."
       ]
     },
     {
@@ -141,7 +142,7 @@
         "Individual vertex replacement/insertion/reordering/deletion in unsaved editor text; 36 JVM assertions passed; expanded Android scenario compiled only; map vertex dragging remains incomplete",
         "API23 geometryedit passed 68 assertions including vertex actions, holes, draft recovery, payload preservation and stale-save refusal; API35 remains unaccepted",
         "WGS84 selected-part map dragging/insertion/deletion, bounded undo, new inner rings and owned-draft cleanup implemented; real touch/pinch and force-stop recovery passed on API23 (geometrymap 101, geometrymapreopen 16); no full topology/parity acceptance",
-        "Current API23 APK passed 11 scenarios / 861 assertions; JVM 80393; 324 own classes; API35/36 and physical acceptance still pending"
+        "Historical 28 October snapshot: Current API23 APK passed 11 scenarios / 861 assertions; JVM 80393; 324 own classes; API35/36 and physical acceptance still pending"
       ]
     },
     {
@@ -194,7 +195,8 @@
         "KML_COMPONENT_STYLES.md and security/kml-components-qa-2026-11-12/renderer-ca888-result.json (scoped main renderer runtime, not complete acceptance)"
       ],
       "implementation_notes": [
-        "ca888b5/CI43225977674: component main renderer/offlineformats1228 passed both APIs, four KML PNG reviewed; API23 full46 success, API35 full45 failure due unrelated vertexscroll partial adb pull after native314 pass. Explicit manager editor/Arimo/independent fallbacks are later local source83 candidate, Android pending. accepted remains unset."
+        "ca888b5/CI43225977674: component main renderer/offlineformats1228 passed both APIs, four KML PNG reviewed; API23 full46 success, API35 full45 failure due unrelated vertexscroll partial adb pull after native314 pass. Explicit manager editor/Arimo/independent fallbacks are later local source83 candidate, Android pending. accepted remains unset.",
+        "b99 runtime reached real IME/error/Arimo but native error popup blocks physical Cancel on both APIs; editor subsequent Save/reset/stale not executed. Inline-error fix + width/labelScale candidate locally JVM40/83425/SDK23source84/578classes, Android pending. No SVG/library or complete acceptance claim."
       ]
     },
     {
@@ -348,7 +350,7 @@
       ],
       "implementation_notes": [
         "API23 independence passed 424 assertions and final DEX contains 305 own classes; full 26.1 parity remains open",
-        "Current API23 APK passed 11 scenarios / 861 assertions; JVM 80393; 324 own classes; API35/36 and physical acceptance still pending"
+        "Historical 28 October snapshot: Current API23 APK passed 11 scenarios / 861 assertions; JVM 80393; 324 own classes; API35/36 and physical acceptance still pending"
       ]
     },
     {
@@ -365,7 +367,7 @@
       ],
       "implementation_notes": [
         "API23 selected nine scenarios passed 721 assertions; API35 blocked by unstable OS/shared storage, physical phone and Android16 not tested",
-        "Current API23 APK passed 11 scenarios / 861 assertions; JVM 80393; 324 own classes; API35/36 and physical acceptance still pending"
+        "Historical 28 October snapshot: Current API23 APK passed 11 scenarios / 861 assertions; JVM 80393; 324 own classes; API35/36 and physical acceptance still pending"
       ]
     }
   ]

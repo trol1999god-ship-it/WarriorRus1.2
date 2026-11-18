@@ -109,3 +109,13 @@ unknown payload, other features and geometry. Five originals, edited DOMs and se
 roundtrips validate; component editor58 and all40 JVM suites PASS locally.
 This is not full OGC certification, SVG support, Android runtime proof or acceptance.
 CI43280843162 still evaluates ea9 without this correction.
+
+## 18 ноября: measured error popup occlusion
+
+b99/CI44287853086: both APIs45/46, only offlineformats failed. Real IME is now
+observed; error/Arimo/bounds checks reached. Fresh PNGs independently show native
+EditText error popup over Save/Cancel; after real Cancel touch the active tree
+remains editor with corrected unsaved ff00ffff. Valid Save/reset/stale/final-editor
+guards were NOT executed. The narrow new candidate uses an inline scrollable error
+TextView only for component editing; existing name/description validation unchanged.
+Raw/cursor/real-IME/real-Cancel/data guards retained/strengthened; runtime pending.
