@@ -1,4 +1,21 @@
-# Продолжение — 18 ноября: первый отдельный TEST APK; следующий SVG/import-export
+# Продолжение — 18 ноября WORK: полный перенос26.1; b11 технический прототип
+
+## Новый приоритет владельца после реальной проверки Fold5
+
+b11 установлен/открыт на Samsung Galaxy Z Fold5: владелец сообщил значительное отставание
+практически всего UI/функций от26.1. Это технический прототип, не почти готовый продукт.
+Первый APK приоритет выполнен. Следующий APK — только существенный пользовательский блок
+с реальным23/35 runtime/data/PNG; не модель/косметика. Полный перенос без redesign/упрощения.
+Необходимый доступный аудит: migration/FULL_PARITY_AUDIT_2026-11-18.md,
+security/full-parity-audit-2026-11-18/requirements-audit.json (23id)/branches.json (11веток).
+Library referenceAPK26.1/backupZIP и13screens недоступны агенту, bytes/hash НЕпроверены;
+inventory1222bytes НЕ13screens. Найден другой reference_ui.zip из0b78cecc:826PNG/261SVG,
+проверен byte/Git SHA; branch audit связывает его с2.3.8b, не26.1. Не смешивать эталоны.
+Других document sessions нет; чужое незапушенное недоступно, merge запрещён.
+Существующий SVG WIP сохранён; реальный gap href→renderer подтверждён. Сейчас production
+vertical slice через существующий owner KML/StyleMap/renderer/import/export, не model-only очередь.
+UI13/Arimo/resources/insets/Fold width — стандарт каждого блока; не отложенный финальный этап.
+Точное13-screen layout acceptance блокировано отсутствующими originals, функции не блокировать.
 
 ## Проверенный результат
 

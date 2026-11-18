@@ -1,0 +1,4350 @@
+[
+  {
+    "name": "mdpi/app_action_accept_24.png",
+    "bytes": 348
+  },
+  {
+    "name": "mdpi/app_action_account_24.png",
+    "bytes": 526
+  },
+  {
+    "name": "mdpi/app_action_activity_24.png",
+    "bytes": 758
+  },
+  {
+    "name": "mdpi/app_action_add_24.png",
+    "bytes": 355
+  },
+  {
+    "name": "mdpi/app_action_alert_24.png",
+    "bytes": 724
+  },
+  {
+    "name": "mdpi/app_action_align_center_24.png",
+    "bytes": 448
+  },
+  {
+    "name": "mdpi/app_action_align_left_24.png",
+    "bytes": 425
+  },
+  {
+    "name": "mdpi/app_action_align_right_24.png",
+    "bytes": 417
+  },
+  {
+    "name": "mdpi/app_action_arrows_24.png",
+    "bytes": 254
+  },
+  {
+    "name": "mdpi/app_action_audio_24.png",
+    "bytes": 415
+  },
+  {
+    "name": "mdpi/app_action_backup_24.png",
+    "bytes": 498
+  },
+  {
+    "name": "mdpi/app_action_barometer_24.png",
+    "bytes": 483
+  },
+  {
+    "name": "mdpi/app_action_battery_24.png",
+    "bytes": 162
+  },
+  {
+    "name": "mdpi/app_action_battery_40_24.png",
+    "bytes": 149
+  },
+  {
+    "name": "mdpi/app_action_battery_60_24.png",
+    "bytes": 149
+  },
+  {
+    "name": "mdpi/app_action_battery_80_24.png",
+    "bytes": 148
+  },
+  {
+    "name": "mdpi/app_action_battery_alert_24.png",
+    "bytes": 171
+  },
+  {
+    "name": "mdpi/app_action_bookmark_24.png",
+    "bytes": 204
+  },
+  {
+    "name": "mdpi/app_action_browse_24.png",
+    "bytes": 179
+  },
+  {
+    "name": "mdpi/app_action_camera_24.png",
+    "bytes": 483
+  },
+  {
+    "name": "mdpi/app_action_clipboard_24.png",
+    "bytes": 219
+  },
+  {
+    "name": "mdpi/app_action_close_24.png",
+    "bytes": 176
+  },
+  {
+    "name": "mdpi/app_action_cloud_24.png",
+    "bytes": 515
+  },
+  {
+    "name": "mdpi/app_action_cloud_check_24.png",
+    "bytes": 629
+  },
+  {
+    "name": "mdpi/app_action_cloud_down_24.png",
+    "bytes": 559
+  },
+  {
+    "name": "mdpi/app_action_cloud_off_24.png",
+    "bytes": 632
+  },
+  {
+    "name": "mdpi/app_action_cloud_up_24.png",
+    "bytes": 555
+  },
+  {
+    "name": "mdpi/app_action_color_24.png",
+    "bytes": 385
+  },
+  {
+    "name": "mdpi/app_action_comment_24.png",
+    "bytes": 240
+  },
+  {
+    "name": "mdpi/app_action_compare_24.png",
+    "bytes": 252
+  },
+  {
+    "name": "mdpi/app_action_compass_24.png",
+    "bytes": 382
+  },
+  {
+    "name": "mdpi/app_action_contact_us_24.png",
+    "bytes": 357
+  },
+  {
+    "name": "mdpi/app_action_control_time_24.png",
+    "bytes": 700
+  },
+  {
+    "name": "mdpi/app_action_convert_24.png",
+    "bytes": 379
+  },
+  {
+    "name": "mdpi/app_action_copy_24.png",
+    "bytes": 166
+  },
+  {
+    "name": "mdpi/app_action_copyright_24.png",
+    "bytes": 619
+  },
+  {
+    "name": "mdpi/app_action_create_24.png",
+    "bytes": 143
+  },
+  {
+    "name": "mdpi/app_action_cut_24.png",
+    "bytes": 303
+  },
+  {
+    "name": "mdpi/app_action_dashboard_24.png",
+    "bytes": 687
+  },
+  {
+    "name": "mdpi/app_action_date_24.png",
+    "bytes": 165
+  },
+  {
+    "name": "mdpi/app_action_delete_24.png",
+    "bytes": 168
+  },
+  {
+    "name": "mdpi/app_action_description_24.png",
+    "bytes": 163
+  },
+  {
+    "name": "mdpi/app_action_details_edit_24.png",
+    "bytes": 305
+  },
+  {
+    "name": "mdpi/app_action_details_view_24.png",
+    "bytes": 417
+  },
+  {
+    "name": "mdpi/app_action_dot_24.png",
+    "bytes": 126
+  },
+  {
+    "name": "mdpi/app_action_edit_24.png",
+    "bytes": 211
+  },
+  {
+    "name": "mdpi/app_action_erase_24.png",
+    "bytes": 344
+  },
+  {
+    "name": "mdpi/app_action_exit_24.png",
+    "bytes": 238
+  },
+  {
+    "name": "mdpi/app_action_expand_24.png",
+    "bytes": 181
+  },
+  {
+    "name": "mdpi/app_action_expand_less_24.png",
+    "bytes": 178
+  },
+  {
+    "name": "mdpi/app_action_expand_more_24.png",
+    "bytes": 177
+  },
+  {
+    "name": "mdpi/app_action_export_24.png",
+    "bytes": 187
+  },
+  {
+    "name": "mdpi/app_action_filter_24.png",
+    "bytes": 141
+  },
+  {
+    "name": "mdpi/app_action_filter_color_24.png",
+    "bytes": 445
+  },
+  {
+    "name": "mdpi/app_action_fullscreen_24.png",
+    "bytes": 122
+  },
+  {
+    "name": "mdpi/app_action_hd_24.png",
+    "bytes": 261
+  },
+  {
+    "name": "mdpi/app_action_help_online_24.png",
+    "bytes": 512
+  },
+  {
+    "name": "mdpi/app_action_hide_24.png",
+    "bytes": 561
+  },
+  {
+    "name": "mdpi/app_action_image_24.png",
+    "bytes": 307
+  },
+  {
+    "name": "mdpi/app_action_import_24.png",
+    "bytes": 193
+  },
+  {
+    "name": "mdpi/app_action_invert_24.png",
+    "bytes": 164
+  },
+  {
+    "name": "mdpi/app_action_jump_to_24.png",
+    "bytes": 197
+  },
+  {
+    "name": "mdpi/app_action_keywords_24.png",
+    "bytes": 392
+  },
+  {
+    "name": "mdpi/app_action_landmark_24.png",
+    "bytes": 264
+  },
+  {
+    "name": "mdpi/app_action_landmarks_auto_target_closest_24.png",
+    "bytes": 238
+  },
+  {
+    "name": "mdpi/app_action_landmarks_autorouting_24.png",
+    "bytes": 255
+  },
+  {
+    "name": "mdpi/app_action_landmarks_autorouting_cycling_24.png",
+    "bytes": 802
+  },
+  {
+    "name": "mdpi/app_action_landmarks_autorouting_driving_24.png",
+    "bytes": 316
+  },
+  {
+    "name": "mdpi/app_action_landmarks_autorouting_transit_24.png",
+    "bytes": 333
+  },
+  {
+    "name": "mdpi/app_action_landmarks_autorouting_walking_24.png",
+    "bytes": 529
+  },
+  {
+    "name": "mdpi/app_action_landmarks_browse_24.png",
+    "bytes": 298
+  },
+  {
+    "name": "mdpi/app_action_landmarks_compute_slope_24.png",
+    "bytes": 307
+  },
+  {
+    "name": "mdpi/app_action_landmarks_create_24.png",
+    "bytes": 288
+  },
+  {
+    "name": "mdpi/app_action_landmarks_edit_points_24.png",
+    "bytes": 384
+  },
+  {
+    "name": "mdpi/app_action_landmarks_fastpoint_24.png",
+    "bytes": 307
+  },
+  {
+    "name": "mdpi/app_action_landmarks_fastrouting_24.png",
+    "bytes": 299
+  },
+  {
+    "name": "mdpi/app_action_landmarks_group_24.png",
+    "bytes": 772
+  },
+  {
+    "name": "mdpi/app_action_landmarks_measure_24.png",
+    "bytes": 509
+  },
+  {
+    "name": "mdpi/app_action_landmarks_profile_edit_24.png",
+    "bytes": 301
+  },
+  {
+    "name": "mdpi/app_action_landmarks_profile_view_24.png",
+    "bytes": 178
+  },
+  {
+    "name": "mdpi/app_action_landmarks_target_24.png",
+    "bytes": 217
+  },
+  {
+    "name": "mdpi/app_action_landmarks_target_remove_24.png",
+    "bytes": 273
+  },
+  {
+    "name": "mdpi/app_action_left_24.png",
+    "bytes": 186
+  },
+  {
+    "name": "mdpi/app_action_line_style_24.png",
+    "bytes": 137
+  },
+  {
+    "name": "mdpi/app_action_list_24.png",
+    "bytes": 113
+  },
+  {
+    "name": "mdpi/app_action_list_clear_24.png",
+    "bytes": 174
+  },
+  {
+    "name": "mdpi/app_action_location_current_24.png",
+    "bytes": 512
+  },
+  {
+    "name": "mdpi/app_action_location_disabled_24.png",
+    "bytes": 640
+  },
+  {
+    "name": "mdpi/app_action_location_gps_24.png",
+    "bytes": 615
+  },
+  {
+    "name": "mdpi/app_action_location_marker_24.png",
+    "bytes": 442
+  },
+  {
+    "name": "mdpi/app_action_location_network_24.png",
+    "bytes": 754
+  },
+  {
+    "name": "mdpi/app_action_location_unlocked_24.png",
+    "bytes": 699
+  },
+  {
+    "name": "mdpi/app_action_lock_24.png",
+    "bytes": 324
+  },
+  {
+    "name": "mdpi/app_action_map_24.png",
+    "bytes": 312
+  },
+  {
+    "name": "mdpi/app_action_maps_add_as_layer_24.png",
+    "bytes": 555
+  },
+  {
+    "name": "mdpi/app_action_maps_browse_24.png",
+    "bytes": 346
+  },
+  {
+    "name": "mdpi/app_action_maps_calibrate_24.png",
+    "bytes": 709
+  },
+  {
+    "name": "mdpi/app_action_maps_clear_data_24.png",
+    "bytes": 429
+  },
+  {
+    "name": "mdpi/app_action_maps_layers_24.png",
+    "bytes": 479
+  },
+  {
+    "name": "mdpi/app_action_maps_remove_layer_24.png",
+    "bytes": 570
+  },
+  {
+    "name": "mdpi/app_action_maps_storearea_24.png",
+    "bytes": 293
+  },
+  {
+    "name": "mdpi/app_action_maps_storearea_start_24.png",
+    "bytes": 193
+  },
+  {
+    "name": "mdpi/app_action_memory_chip_24.png",
+    "bytes": 130
+  },
+  {
+    "name": "mdpi/app_action_memory_database_24.png",
+    "bytes": 370
+  },
+  {
+    "name": "mdpi/app_action_memory_sdcard_24.png",
+    "bytes": 161
+  },
+  {
+    "name": "mdpi/app_action_menu_24.png",
+    "bytes": 130
+  },
+  {
+    "name": "mdpi/app_action_move_bottom_24.png",
+    "bytes": 234
+  },
+  {
+    "name": "mdpi/app_action_move_down_24.png",
+    "bytes": 212
+  },
+  {
+    "name": "mdpi/app_action_move_top_24.png",
+    "bytes": 228
+  },
+  {
+    "name": "mdpi/app_action_move_up_24.png",
+    "bytes": 210
+  },
+  {
+    "name": "mdpi/app_action_new_lap_24.png",
+    "bytes": 177
+  },
+  {
+    "name": "mdpi/app_action_night_24.png",
+    "bytes": 702
+  },
+  {
+    "name": "mdpi/app_action_opacity_24.png",
+    "bytes": 158
+  },
+  {
+    "name": "mdpi/app_action_open_link_24.png",
+    "bytes": 295
+  },
+  {
+    "name": "mdpi/app_action_open_with_24.png",
+    "bytes": 239
+  },
+  {
+    "name": "mdpi/app_action_phone_24.png",
+    "bytes": 408
+  },
+  {
+    "name": "mdpi/app_action_privacy_24.png",
+    "bytes": 689
+  },
+  {
+    "name": "mdpi/app_action_project_24.png",
+    "bytes": 643
+  },
+  {
+    "name": "mdpi/app_action_record_24.png",
+    "bytes": 520
+  },
+  {
+    "name": "mdpi/app_action_refresh_24.png",
+    "bytes": 410
+  },
+  {
+    "name": "mdpi/app_action_rename_24.png",
+    "bytes": 264
+  },
+  {
+    "name": "mdpi/app_action_right_24.png",
+    "bytes": 169
+  },
+  {
+    "name": "mdpi/app_action_save_24.png",
+    "bytes": 191
+  },
+  {
+    "name": "mdpi/app_action_screen_resolution_24.png",
+    "bytes": 211
+  },
+  {
+    "name": "mdpi/app_action_screensaver_24.png",
+    "bytes": 397
+  },
+  {
+    "name": "mdpi/app_action_search_24.png",
+    "bytes": 268
+  },
+  {
+    "name": "mdpi/app_action_settings_24.png",
+    "bytes": 322
+  },
+  {
+    "name": "mdpi/app_action_share_24.png",
+    "bytes": 455
+  },
+  {
+    "name": "mdpi/app_action_show_24.png",
+    "bytes": 450
+  },
+  {
+    "name": "mdpi/app_action_sort_asc_24.png",
+    "bytes": 122
+  },
+  {
+    "name": "mdpi/app_action_sort_date_asc_24.png",
+    "bytes": 320
+  },
+  {
+    "name": "mdpi/app_action_sort_date_dsc_24.png",
+    "bytes": 319
+  },
+  {
+    "name": "mdpi/app_action_sort_dsc_24.png",
+    "bytes": 118
+  },
+  {
+    "name": "mdpi/app_action_sort_name_asc_24.png",
+    "bytes": 271
+  },
+  {
+    "name": "mdpi/app_action_sort_name_dsc_24.png",
+    "bytes": 269
+  },
+  {
+    "name": "mdpi/app_action_start_24.png",
+    "bytes": 227
+  },
+  {
+    "name": "mdpi/app_action_stop_24.png",
+    "bytes": 110
+  },
+  {
+    "name": "mdpi/app_action_style_24.png",
+    "bytes": 174
+  },
+  {
+    "name": "mdpi/app_action_sun_down_24.png",
+    "bytes": 534
+  },
+  {
+    "name": "mdpi/app_action_sun_up_24.png",
+    "bytes": 560
+  },
+  {
+    "name": "mdpi/app_action_temperature_24.png",
+    "bytes": 288
+  },
+  {
+    "name": "mdpi/app_action_text_24.png",
+    "bytes": 173
+  },
+  {
+    "name": "mdpi/app_action_tools_24.png",
+    "bytes": 416
+  },
+  {
+    "name": "mdpi/app_action_tracker_24.png",
+    "bytes": 479
+  },
+  {
+    "name": "mdpi/app_action_undo_24.png",
+    "bytes": 362
+  },
+  {
+    "name": "mdpi/app_action_unlock_24.png",
+    "bytes": 327
+  },
+  {
+    "name": "mdpi/app_action_weight_24.png",
+    "bytes": 359
+  },
+  {
+    "name": "mdpi/app_action_whats_new_24.png",
+    "bytes": 526
+  },
+  {
+    "name": "mdpi/app_mainmenu_icon_48.png",
+    "bytes": 907
+  },
+  {
+    "name": "mdpi/atk_dialog_icon_error_24.png",
+    "bytes": 300
+  },
+  {
+    "name": "mdpi/atk_dialog_icon_information_24.png",
+    "bytes": 507
+  },
+  {
+    "name": "mdpi/atk_dialog_icon_warning_24.png",
+    "bytes": 454
+  },
+  {
+    "name": "mdpi/atk_toolkit_canvas_tile_error_16.png",
+    "bytes": 622
+  },
+  {
+    "name": "mdpi/atk_toolkit_canvas_tile_loading_16.png",
+    "bytes": 554
+  },
+  {
+    "name": "mdpi/atk_toolkit_canvas_tile_online_downloading_16.png",
+    "bytes": 727
+  },
+  {
+    "name": "mdpi/atk_toolkit_canvas_tile_online_not_available_16.png",
+    "bytes": 759
+  },
+  {
+    "name": "mdpi/atk_toolkit_canvas_tile_online_offline_16.png",
+    "bytes": 722
+  },
+  {
+    "name": "mdpi/atk_toolkit_canvas_tile_online_queuing_16.png",
+    "bytes": 723
+  },
+  {
+    "name": "mdpi/atk_toolkit_canvas_tile_waiting_16.png",
+    "bytes": 577
+  },
+  {
+    "name": "mdpi/atk_toolkit_explorer_cell_file_36.png",
+    "bytes": 188
+  },
+  {
+    "name": "mdpi/atk_toolkit_explorer_cell_file_landmark_36.png",
+    "bytes": 341
+  },
+  {
+    "name": "mdpi/atk_toolkit_explorer_cell_file_map_36.png",
+    "bytes": 335
+  },
+  {
+    "name": "mdpi/atk_toolkit_explorer_cell_folder_36.png",
+    "bytes": 251
+  },
+  {
+    "name": "mdpi/atk_toolkit_explorer_cell_folder_overlay_export_36.png",
+    "bytes": 217
+  },
+  {
+    "name": "mdpi/atk_toolkit_explorer_cell_folder_overlay_hidden_36.png",
+    "bytes": 482
+  },
+  {
+    "name": "mdpi/atk_toolkit_explorer_cell_folder_overlay_import_36.png",
+    "bytes": 177
+  },
+  {
+    "name": "mdpi/atk_toolkit_explorer_cell_folder_overlay_landmarks_36.png",
+    "bytes": 423
+  },
+  {
+    "name": "mdpi/atk_toolkit_explorer_cell_folder_overlay_search_36.png",
+    "bytes": 376
+  },
+  {
+    "name": "mdpi/atk_toolkit_explorer_cell_folder_overlay_tracks_36.png",
+    "bytes": 413
+  },
+  {
+    "name": "mdpi/atk_toolkit_explorer_cell_folder_overlay_visible_36.png",
+    "bytes": 376
+  },
+  {
+    "name": "mdpi/atk_toolkit_explorer_cell_user_36.png",
+    "bytes": 513
+  },
+  {
+    "name": "mdpi/atk_toolkit_explorer_cell_users_36.png",
+    "bytes": 772
+  },
+  {
+    "name": "mdpi/atk_toolkit_explorer_icon_folder_locked_24.png",
+    "bytes": 219
+  },
+  {
+    "name": "mdpi/atk_toolkit_widget_check_off_24.png",
+    "bytes": 141
+  },
+  {
+    "name": "mdpi/atk_toolkit_widget_check_on_24.png",
+    "bytes": 228
+  },
+  {
+    "name": "mdpi/atk_toolkit_widget_drop_24.png",
+    "bytes": 138
+  },
+  {
+    "name": "mdpi/atk_toolkit_widget_radio_off_24.png",
+    "bytes": 282
+  },
+  {
+    "name": "mdpi/atk_toolkit_widget_radio_on_24.png",
+    "bytes": 328
+  },
+  {
+    "name": "mdpi/canvas_zoom_minus_48.png",
+    "bytes": 1134
+  },
+  {
+    "name": "mdpi/canvas_zoom_plus_48.png",
+    "bytes": 1069
+  },
+  {
+    "name": "mdpi/canvas_zoom_slider_36.png",
+    "bytes": 1109
+  },
+  {
+    "name": "mdpi/core_mainmenu_icon_locked_48.png",
+    "bytes": 427
+  },
+  {
+    "name": "mdpi/landmarks_direction_c_16.png",
+    "bytes": 125
+  },
+  {
+    "name": "mdpi/landmarks_direction_n_16.png",
+    "bytes": 186
+  },
+  {
+    "name": "mdpi/landmarks_explorer_cell_area_36.png",
+    "bytes": 876
+  },
+  {
+    "name": "mdpi/landmarks_explorer_cell_circle_36.png",
+    "bytes": 718
+  },
+  {
+    "name": "mdpi/landmarks_explorer_cell_path_36.png",
+    "bytes": 638
+  },
+  {
+    "name": "mdpi/landmarks_explorer_cell_proximity_36.png",
+    "bytes": 689
+  },
+  {
+    "name": "mdpi/landmarks_explorer_cell_route_36.png",
+    "bytes": 666
+  },
+  {
+    "name": "mdpi/landmarks_explorer_cell_set_36.png",
+    "bytes": 1091
+  },
+  {
+    "name": "mdpi/landmarks_explorer_cell_text_36.png",
+    "bytes": 342
+  },
+  {
+    "name": "mdpi/landmarks_explorer_cell_track_36.png",
+    "bytes": 734
+  },
+  {
+    "name": "mdpi/landmarks_explorer_cell_waypoint_36.png",
+    "bytes": 488
+  },
+  {
+    "name": "mdpi/landmarks_infobox_target_16.png",
+    "bytes": 241
+  },
+  {
+    "name": "mdpi/landmarks_mainmenu_icon_48.png",
+    "bytes": 439
+  },
+  {
+    "name": "mdpi/maps_infobox_16.png",
+    "bytes": 304
+  },
+  {
+    "name": "mdpi/maps_infobox_offlinemode_16.png",
+    "bytes": 289
+  },
+  {
+    "name": "mdpi/maps_mainmenu_icon_48.png",
+    "bytes": 466
+  },
+  {
+    "name": "mdpi/orientation_compass_bg_280.png",
+    "bytes": 85153
+  },
+  {
+    "name": "mdpi/orientation_compass_needle_100.png",
+    "bytes": 6631
+  },
+  {
+    "name": "mdpi/orientation_compass_target_100.png",
+    "bytes": 3467
+  },
+  {
+    "name": "mdpi/orientation_compass_topo_280.png",
+    "bytes": 51460
+  },
+  {
+    "name": "mdpi/orientation_compass_topoline_100.png",
+    "bytes": 2818
+  },
+  {
+    "name": "mdpi/orientation_finder_north_40.png",
+    "bytes": 1226
+  },
+  {
+    "name": "mdpi/orientation_finder_target_40.png",
+    "bytes": 1207
+  },
+  {
+    "name": "mdpi/orientation_infobox_16.png",
+    "bytes": 311
+  },
+  {
+    "name": "mdpi/orientation_mainmenu_icon_48.png",
+    "bytes": 646
+  },
+  {
+    "name": "mdpi/orientation_mainmenu_icon_unlock_48.png",
+    "bytes": 1178
+  },
+  {
+    "name": "hdpi/app_action_accept_24.png",
+    "bytes": 500
+  },
+  {
+    "name": "hdpi/app_action_account_24.png",
+    "bytes": 757
+  },
+  {
+    "name": "hdpi/app_action_activity_24.png",
+    "bytes": 1116
+  },
+  {
+    "name": "hdpi/app_action_add_24.png",
+    "bytes": 547
+  },
+  {
+    "name": "hdpi/app_action_alert_24.png",
+    "bytes": 980
+  },
+  {
+    "name": "hdpi/app_action_align_center_24.png",
+    "bytes": 636
+  },
+  {
+    "name": "hdpi/app_action_align_left_24.png",
+    "bytes": 604
+  },
+  {
+    "name": "hdpi/app_action_align_right_24.png",
+    "bytes": 601
+  },
+  {
+    "name": "hdpi/app_action_arrows_24.png",
+    "bytes": 382
+  },
+  {
+    "name": "hdpi/app_action_audio_24.png",
+    "bytes": 624
+  },
+  {
+    "name": "hdpi/app_action_backup_24.png",
+    "bytes": 723
+  },
+  {
+    "name": "hdpi/app_action_barometer_24.png",
+    "bytes": 710
+  },
+  {
+    "name": "hdpi/app_action_battery_24.png",
+    "bytes": 175
+  },
+  {
+    "name": "hdpi/app_action_battery_40_24.png",
+    "bytes": 178
+  },
+  {
+    "name": "hdpi/app_action_battery_60_24.png",
+    "bytes": 178
+  },
+  {
+    "name": "hdpi/app_action_battery_80_24.png",
+    "bytes": 187
+  },
+  {
+    "name": "hdpi/app_action_battery_alert_24.png",
+    "bytes": 205
+  },
+  {
+    "name": "hdpi/app_action_bookmark_24.png",
+    "bytes": 291
+  },
+  {
+    "name": "hdpi/app_action_browse_24.png",
+    "bytes": 262
+  },
+  {
+    "name": "hdpi/app_action_camera_24.png",
+    "bytes": 645
+  },
+  {
+    "name": "hdpi/app_action_clipboard_24.png",
+    "bytes": 359
+  },
+  {
+    "name": "hdpi/app_action_close_24.png",
+    "bytes": 214
+  },
+  {
+    "name": "hdpi/app_action_cloud_24.png",
+    "bytes": 770
+  },
+  {
+    "name": "hdpi/app_action_cloud_check_24.png",
+    "bytes": 844
+  },
+  {
+    "name": "hdpi/app_action_cloud_down_24.png",
+    "bytes": 783
+  },
+  {
+    "name": "hdpi/app_action_cloud_off_24.png",
+    "bytes": 881
+  },
+  {
+    "name": "hdpi/app_action_cloud_up_24.png",
+    "bytes": 753
+  },
+  {
+    "name": "hdpi/app_action_color_24.png",
+    "bytes": 599
+  },
+  {
+    "name": "hdpi/app_action_comment_24.png",
+    "bytes": 390
+  },
+  {
+    "name": "hdpi/app_action_compare_24.png",
+    "bytes": 352
+  },
+  {
+    "name": "hdpi/app_action_compass_24.png",
+    "bytes": 564
+  },
+  {
+    "name": "hdpi/app_action_contact_us_24.png",
+    "bytes": 493
+  },
+  {
+    "name": "hdpi/app_action_control_time_24.png",
+    "bytes": 945
+  },
+  {
+    "name": "hdpi/app_action_convert_24.png",
+    "bytes": 630
+  },
+  {
+    "name": "hdpi/app_action_copy_24.png",
+    "bytes": 249
+  },
+  {
+    "name": "hdpi/app_action_copyright_24.png",
+    "bytes": 965
+  },
+  {
+    "name": "hdpi/app_action_create_24.png",
+    "bytes": 205
+  },
+  {
+    "name": "hdpi/app_action_cut_24.png",
+    "bytes": 471
+  },
+  {
+    "name": "hdpi/app_action_dashboard_24.png",
+    "bytes": 993
+  },
+  {
+    "name": "hdpi/app_action_date_24.png",
+    "bytes": 268
+  },
+  {
+    "name": "hdpi/app_action_delete_24.png",
+    "bytes": 237
+  },
+  {
+    "name": "hdpi/app_action_description_24.png",
+    "bytes": 274
+  },
+  {
+    "name": "hdpi/app_action_details_edit_24.png",
+    "bytes": 408
+  },
+  {
+    "name": "hdpi/app_action_details_view_24.png",
+    "bytes": 733
+  },
+  {
+    "name": "hdpi/app_action_dot_24.png",
+    "bytes": 147
+  },
+  {
+    "name": "hdpi/app_action_edit_24.png",
+    "bytes": 242
+  },
+  {
+    "name": "hdpi/app_action_erase_24.png",
+    "bytes": 387
+  },
+  {
+    "name": "hdpi/app_action_exit_24.png",
+    "bytes": 294
+  },
+  {
+    "name": "hdpi/app_action_expand_24.png",
+    "bytes": 222
+  },
+  {
+    "name": "hdpi/app_action_expand_less_24.png",
+    "bytes": 203
+  },
+  {
+    "name": "hdpi/app_action_expand_more_24.png",
+    "bytes": 204
+  },
+  {
+    "name": "hdpi/app_action_export_24.png",
+    "bytes": 292
+  },
+  {
+    "name": "hdpi/app_action_filter_24.png",
+    "bytes": 198
+  },
+  {
+    "name": "hdpi/app_action_filter_color_24.png",
+    "bytes": 639
+  },
+  {
+    "name": "hdpi/app_action_fullscreen_24.png",
+    "bytes": 163
+  },
+  {
+    "name": "hdpi/app_action_hd_24.png",
+    "bytes": 374
+  },
+  {
+    "name": "hdpi/app_action_help_online_24.png",
+    "bytes": 741
+  },
+  {
+    "name": "hdpi/app_action_hide_24.png",
+    "bytes": 705
+  },
+  {
+    "name": "hdpi/app_action_image_24.png",
+    "bytes": 405
+  },
+  {
+    "name": "hdpi/app_action_import_24.png",
+    "bytes": 327
+  },
+  {
+    "name": "hdpi/app_action_invert_24.png",
+    "bytes": 210
+  },
+  {
+    "name": "hdpi/app_action_jump_to_24.png",
+    "bytes": 271
+  },
+  {
+    "name": "hdpi/app_action_keywords_24.png",
+    "bytes": 532
+  },
+  {
+    "name": "hdpi/app_action_landmark_24.png",
+    "bytes": 394
+  },
+  {
+    "name": "hdpi/app_action_landmarks_auto_target_closest_24.png",
+    "bytes": 376
+  },
+  {
+    "name": "hdpi/app_action_landmarks_autorouting_24.png",
+    "bytes": 319
+  },
+  {
+    "name": "hdpi/app_action_landmarks_autorouting_cycling_24.png",
+    "bytes": 1079
+  },
+  {
+    "name": "hdpi/app_action_landmarks_autorouting_driving_24.png",
+    "bytes": 505
+  },
+  {
+    "name": "hdpi/app_action_landmarks_autorouting_transit_24.png",
+    "bytes": 517
+  },
+  {
+    "name": "hdpi/app_action_landmarks_autorouting_walking_24.png",
+    "bytes": 694
+  },
+  {
+    "name": "hdpi/app_action_landmarks_browse_24.png",
+    "bytes": 414
+  },
+  {
+    "name": "hdpi/app_action_landmarks_compute_slope_24.png",
+    "bytes": 477
+  },
+  {
+    "name": "hdpi/app_action_landmarks_create_24.png",
+    "bytes": 412
+  },
+  {
+    "name": "hdpi/app_action_landmarks_edit_points_24.png",
+    "bytes": 518
+  },
+  {
+    "name": "hdpi/app_action_landmarks_fastpoint_24.png",
+    "bytes": 449
+  },
+  {
+    "name": "hdpi/app_action_landmarks_fastrouting_24.png",
+    "bytes": 423
+  },
+  {
+    "name": "hdpi/app_action_landmarks_group_24.png",
+    "bytes": 1068
+  },
+  {
+    "name": "hdpi/app_action_landmarks_measure_24.png",
+    "bytes": 784
+  },
+  {
+    "name": "hdpi/app_action_landmarks_profile_edit_24.png",
+    "bytes": 426
+  },
+  {
+    "name": "hdpi/app_action_landmarks_profile_view_24.png",
+    "bytes": 267
+  },
+  {
+    "name": "hdpi/app_action_landmarks_target_24.png",
+    "bytes": 277
+  },
+  {
+    "name": "hdpi/app_action_landmarks_target_remove_24.png",
+    "bytes": 458
+  },
+  {
+    "name": "hdpi/app_action_left_24.png",
+    "bytes": 218
+  },
+  {
+    "name": "hdpi/app_action_line_style_24.png",
+    "bytes": 151
+  },
+  {
+    "name": "hdpi/app_action_list_24.png",
+    "bytes": 149
+  },
+  {
+    "name": "hdpi/app_action_list_clear_24.png",
+    "bytes": 236
+  },
+  {
+    "name": "hdpi/app_action_location_current_24.png",
+    "bytes": 797
+  },
+  {
+    "name": "hdpi/app_action_location_disabled_24.png",
+    "bytes": 901
+  },
+  {
+    "name": "hdpi/app_action_location_gps_24.png",
+    "bytes": 911
+  },
+  {
+    "name": "hdpi/app_action_location_marker_24.png",
+    "bytes": 646
+  },
+  {
+    "name": "hdpi/app_action_location_network_24.png",
+    "bytes": 1119
+  },
+  {
+    "name": "hdpi/app_action_location_unlocked_24.png",
+    "bytes": 1038
+  },
+  {
+    "name": "hdpi/app_action_lock_24.png",
+    "bytes": 456
+  },
+  {
+    "name": "hdpi/app_action_map_24.png",
+    "bytes": 521
+  },
+  {
+    "name": "hdpi/app_action_maps_add_as_layer_24.png",
+    "bytes": 778
+  },
+  {
+    "name": "hdpi/app_action_maps_browse_24.png",
+    "bytes": 452
+  },
+  {
+    "name": "hdpi/app_action_maps_calibrate_24.png",
+    "bytes": 1013
+  },
+  {
+    "name": "hdpi/app_action_maps_clear_data_24.png",
+    "bytes": 531
+  },
+  {
+    "name": "hdpi/app_action_maps_layers_24.png",
+    "bytes": 632
+  },
+  {
+    "name": "hdpi/app_action_maps_remove_layer_24.png",
+    "bytes": 730
+  },
+  {
+    "name": "hdpi/app_action_maps_storearea_24.png",
+    "bytes": 411
+  },
+  {
+    "name": "hdpi/app_action_maps_storearea_start_24.png",
+    "bytes": 251
+  },
+  {
+    "name": "hdpi/app_action_memory_chip_24.png",
+    "bytes": 174
+  },
+  {
+    "name": "hdpi/app_action_memory_database_24.png",
+    "bytes": 719
+  },
+  {
+    "name": "hdpi/app_action_memory_sdcard_24.png",
+    "bytes": 195
+  },
+  {
+    "name": "hdpi/app_action_menu_24.png",
+    "bytes": 149
+  },
+  {
+    "name": "hdpi/app_action_move_bottom_24.png",
+    "bytes": 300
+  },
+  {
+    "name": "hdpi/app_action_move_down_24.png",
+    "bytes": 258
+  },
+  {
+    "name": "hdpi/app_action_move_top_24.png",
+    "bytes": 276
+  },
+  {
+    "name": "hdpi/app_action_move_up_24.png",
+    "bytes": 261
+  },
+  {
+    "name": "hdpi/app_action_new_lap_24.png",
+    "bytes": 233
+  },
+  {
+    "name": "hdpi/app_action_night_24.png",
+    "bytes": 940
+  },
+  {
+    "name": "hdpi/app_action_opacity_24.png",
+    "bytes": 216
+  },
+  {
+    "name": "hdpi/app_action_open_link_24.png",
+    "bytes": 499
+  },
+  {
+    "name": "hdpi/app_action_open_with_24.png",
+    "bytes": 425
+  },
+  {
+    "name": "hdpi/app_action_phone_24.png",
+    "bytes": 541
+  },
+  {
+    "name": "hdpi/app_action_privacy_24.png",
+    "bytes": 980
+  },
+  {
+    "name": "hdpi/app_action_project_24.png",
+    "bytes": 974
+  },
+  {
+    "name": "hdpi/app_action_record_24.png",
+    "bytes": 748
+  },
+  {
+    "name": "hdpi/app_action_refresh_24.png",
+    "bytes": 653
+  },
+  {
+    "name": "hdpi/app_action_rename_24.png",
+    "bytes": 356
+  },
+  {
+    "name": "hdpi/app_action_right_24.png",
+    "bytes": 220
+  },
+  {
+    "name": "hdpi/app_action_save_24.png",
+    "bytes": 301
+  },
+  {
+    "name": "hdpi/app_action_screen_resolution_24.png",
+    "bytes": 257
+  },
+  {
+    "name": "hdpi/app_action_screensaver_24.png",
+    "bytes": 581
+  },
+  {
+    "name": "hdpi/app_action_search_24.png",
+    "bytes": 530
+  },
+  {
+    "name": "hdpi/app_action_settings_24.png",
+    "bytes": 454
+  },
+  {
+    "name": "hdpi/app_action_share_24.png",
+    "bytes": 759
+  },
+  {
+    "name": "hdpi/app_action_show_24.png",
+    "bytes": 619
+  },
+  {
+    "name": "hdpi/app_action_sort_asc_24.png",
+    "bytes": 148
+  },
+  {
+    "name": "hdpi/app_action_sort_date_asc_24.png",
+    "bytes": 514
+  },
+  {
+    "name": "hdpi/app_action_sort_date_dsc_24.png",
+    "bytes": 510
+  },
+  {
+    "name": "hdpi/app_action_sort_dsc_24.png",
+    "bytes": 143
+  },
+  {
+    "name": "hdpi/app_action_sort_name_asc_24.png",
+    "bytes": 434
+  },
+  {
+    "name": "hdpi/app_action_sort_name_dsc_24.png",
+    "bytes": 325
+  },
+  {
+    "name": "hdpi/app_action_start_24.png",
+    "bytes": 249
+  },
+  {
+    "name": "hdpi/app_action_stop_24.png",
+    "bytes": 115
+  },
+  {
+    "name": "hdpi/app_action_style_24.png",
+    "bytes": 247
+  },
+  {
+    "name": "hdpi/app_action_sun_down_24.png",
+    "bytes": 788
+  },
+  {
+    "name": "hdpi/app_action_sun_up_24.png",
+    "bytes": 742
+  },
+  {
+    "name": "hdpi/app_action_temperature_24.png",
+    "bytes": 421
+  },
+  {
+    "name": "hdpi/app_action_text_24.png",
+    "bytes": 261
+  },
+  {
+    "name": "hdpi/app_action_text_size_24.png",
+    "bytes": 182
+  },
+  {
+    "name": "hdpi/app_action_tools_24.png",
+    "bytes": 493
+  },
+  {
+    "name": "hdpi/app_action_tracker_24.png",
+    "bytes": 792
+  },
+  {
+    "name": "hdpi/app_action_undo_24.png",
+    "bytes": 510
+  },
+  {
+    "name": "hdpi/app_action_unlock_24.png",
+    "bytes": 518
+  },
+  {
+    "name": "hdpi/app_action_weight_24.png",
+    "bytes": 601
+  },
+  {
+    "name": "hdpi/app_action_whats_new_24.png",
+    "bytes": 800
+  },
+  {
+    "name": "hdpi/app_mainmenu_icon_48.png",
+    "bytes": 1195
+  },
+  {
+    "name": "hdpi/atk_dialog_icon_error_24.png",
+    "bytes": 401
+  },
+  {
+    "name": "hdpi/atk_dialog_icon_information_24.png",
+    "bytes": 789
+  },
+  {
+    "name": "hdpi/atk_dialog_icon_warning_24.png",
+    "bytes": 516
+  },
+  {
+    "name": "hdpi/atk_toolkit_canvas_tile_error_16.png",
+    "bytes": 1017
+  },
+  {
+    "name": "hdpi/atk_toolkit_canvas_tile_loading_16.png",
+    "bytes": 928
+  },
+  {
+    "name": "hdpi/atk_toolkit_canvas_tile_online_downloading_16.png",
+    "bytes": 1297
+  },
+  {
+    "name": "hdpi/atk_toolkit_canvas_tile_online_not_available_16.png",
+    "bytes": 1371
+  },
+  {
+    "name": "hdpi/atk_toolkit_canvas_tile_online_offline_16.png",
+    "bytes": 1135
+  },
+  {
+    "name": "hdpi/atk_toolkit_canvas_tile_online_queuing_16.png",
+    "bytes": 1227
+  },
+  {
+    "name": "hdpi/atk_toolkit_canvas_tile_waiting_16.png",
+    "bytes": 917
+  },
+  {
+    "name": "hdpi/atk_toolkit_explorer_cell_file_36.png",
+    "bytes": 302
+  },
+  {
+    "name": "hdpi/atk_toolkit_explorer_cell_file_landmark_36.png",
+    "bytes": 494
+  },
+  {
+    "name": "hdpi/atk_toolkit_explorer_cell_file_map_36.png",
+    "bytes": 513
+  },
+  {
+    "name": "hdpi/atk_toolkit_explorer_cell_folder_36.png",
+    "bytes": 385
+  },
+  {
+    "name": "hdpi/atk_toolkit_explorer_cell_folder_overlay_export_36.png",
+    "bytes": 255
+  },
+  {
+    "name": "hdpi/atk_toolkit_explorer_cell_folder_overlay_hidden_36.png",
+    "bytes": 788
+  },
+  {
+    "name": "hdpi/atk_toolkit_explorer_cell_folder_overlay_import_36.png",
+    "bytes": 277
+  },
+  {
+    "name": "hdpi/atk_toolkit_explorer_cell_folder_overlay_landmarks_36.png",
+    "bytes": 550
+  },
+  {
+    "name": "hdpi/atk_toolkit_explorer_cell_folder_overlay_search_36.png",
+    "bytes": 536
+  },
+  {
+    "name": "hdpi/atk_toolkit_explorer_cell_folder_overlay_tracks_36.png",
+    "bytes": 622
+  },
+  {
+    "name": "hdpi/atk_toolkit_explorer_cell_folder_overlay_visible_36.png",
+    "bytes": 694
+  },
+  {
+    "name": "hdpi/atk_toolkit_explorer_cell_user_36.png",
+    "bytes": 757
+  },
+  {
+    "name": "hdpi/atk_toolkit_explorer_cell_users_36.png",
+    "bytes": 1153
+  },
+  {
+    "name": "hdpi/atk_toolkit_explorer_icon_folder_locked_24.png",
+    "bytes": 336
+  },
+  {
+    "name": "hdpi/atk_toolkit_widget_check_off_24.png",
+    "bytes": 214
+  },
+  {
+    "name": "hdpi/atk_toolkit_widget_check_on_24.png",
+    "bytes": 295
+  },
+  {
+    "name": "hdpi/atk_toolkit_widget_drop_24.png",
+    "bytes": 196
+  },
+  {
+    "name": "hdpi/atk_toolkit_widget_radio_off_24.png",
+    "bytes": 395
+  },
+  {
+    "name": "hdpi/atk_toolkit_widget_radio_on_24.png",
+    "bytes": 453
+  },
+  {
+    "name": "hdpi/canvas_zoom_minus_48.png",
+    "bytes": 1587
+  },
+  {
+    "name": "hdpi/canvas_zoom_plus_48.png",
+    "bytes": 1763
+  },
+  {
+    "name": "hdpi/canvas_zoom_slider_36.png",
+    "bytes": 1626
+  },
+  {
+    "name": "hdpi/core_mainmenu_icon_locked_48.png",
+    "bytes": 671
+  },
+  {
+    "name": "hdpi/landmarks_direction_c_16.png",
+    "bytes": 141
+  },
+  {
+    "name": "hdpi/landmarks_direction_n_16.png",
+    "bytes": 210
+  },
+  {
+    "name": "hdpi/landmarks_explorer_cell_area_36.png",
+    "bytes": 1205
+  },
+  {
+    "name": "hdpi/landmarks_explorer_cell_circle_36.png",
+    "bytes": 1163
+  },
+  {
+    "name": "hdpi/landmarks_explorer_cell_path_36.png",
+    "bytes": 921
+  },
+  {
+    "name": "hdpi/landmarks_explorer_cell_proximity_36.png",
+    "bytes": 941
+  },
+  {
+    "name": "hdpi/landmarks_explorer_cell_route_36.png",
+    "bytes": 928
+  },
+  {
+    "name": "hdpi/landmarks_explorer_cell_set_36.png",
+    "bytes": 1504
+  },
+  {
+    "name": "hdpi/landmarks_explorer_cell_text_36.png",
+    "bytes": 419
+  },
+  {
+    "name": "hdpi/landmarks_explorer_cell_track_36.png",
+    "bytes": 1074
+  },
+  {
+    "name": "hdpi/landmarks_explorer_cell_waypoint_36.png",
+    "bytes": 741
+  },
+  {
+    "name": "hdpi/landmarks_infobox_target_16.png",
+    "bytes": 276
+  },
+  {
+    "name": "hdpi/landmarks_mainmenu_icon_48.png",
+    "bytes": 609
+  },
+  {
+    "name": "hdpi/maps_infobox_16.png",
+    "bytes": 350
+  },
+  {
+    "name": "hdpi/maps_infobox_offlinemode_16.png",
+    "bytes": 632
+  },
+  {
+    "name": "hdpi/maps_mainmenu_icon_48.png",
+    "bytes": 672
+  },
+  {
+    "name": "hdpi/orientation_compass_bg_280.png",
+    "bytes": 151396
+  },
+  {
+    "name": "hdpi/orientation_compass_needle_100.png",
+    "bytes": 10766
+  },
+  {
+    "name": "hdpi/orientation_compass_target_100.png",
+    "bytes": 5776
+  },
+  {
+    "name": "hdpi/orientation_compass_topo_280.png",
+    "bytes": 92437
+  },
+  {
+    "name": "hdpi/orientation_compass_topoline_100.png",
+    "bytes": 4971
+  },
+  {
+    "name": "hdpi/orientation_finder_north_40.png",
+    "bytes": 1413
+  },
+  {
+    "name": "hdpi/orientation_finder_target_40.png",
+    "bytes": 1410
+  },
+  {
+    "name": "hdpi/orientation_infobox_16.png",
+    "bytes": 382
+  },
+  {
+    "name": "hdpi/orientation_mainmenu_icon_48.png",
+    "bytes": 1021
+  },
+  {
+    "name": "hdpi/orientation_mainmenu_icon_unlock_48.png",
+    "bytes": 1573
+  },
+  {
+    "name": "xhdpi/app_action_accept_24.png",
+    "bytes": 567
+  },
+  {
+    "name": "xhdpi/app_action_account_24.png",
+    "bytes": 988
+  },
+  {
+    "name": "xhdpi/app_action_activity_24.png",
+    "bytes": 1429
+  },
+  {
+    "name": "xhdpi/app_action_add_24.png",
+    "bytes": 565
+  },
+  {
+    "name": "xhdpi/app_action_alert_24.png",
+    "bytes": 1208
+  },
+  {
+    "name": "xhdpi/app_action_align_center_24.png",
+    "bytes": 713
+  },
+  {
+    "name": "xhdpi/app_action_align_left_24.png",
+    "bytes": 678
+  },
+  {
+    "name": "xhdpi/app_action_align_right_24.png",
+    "bytes": 667
+  },
+  {
+    "name": "xhdpi/app_action_arrows_24.png",
+    "bytes": 350
+  },
+  {
+    "name": "xhdpi/app_action_audio_24.png",
+    "bytes": 743
+  },
+  {
+    "name": "xhdpi/app_action_backup_24.png",
+    "bytes": 931
+  },
+  {
+    "name": "xhdpi/app_action_barometer_24.png",
+    "bytes": 877
+  },
+  {
+    "name": "xhdpi/app_action_battery_24.png",
+    "bytes": 202
+  },
+  {
+    "name": "xhdpi/app_action_battery_40_24.png",
+    "bytes": 199
+  },
+  {
+    "name": "xhdpi/app_action_battery_60_24.png",
+    "bytes": 197
+  },
+  {
+    "name": "xhdpi/app_action_battery_80_24.png",
+    "bytes": 198
+  },
+  {
+    "name": "xhdpi/app_action_battery_alert_24.png",
+    "bytes": 220
+  },
+  {
+    "name": "xhdpi/app_action_bookmark_24.png",
+    "bytes": 282
+  },
+  {
+    "name": "xhdpi/app_action_browse_24.png",
+    "bytes": 231
+  },
+  {
+    "name": "xhdpi/app_action_camera_24.png",
+    "bytes": 798
+  },
+  {
+    "name": "xhdpi/app_action_clipboard_24.png",
+    "bytes": 350
+  },
+  {
+    "name": "xhdpi/app_action_close_24.png",
+    "bytes": 236
+  },
+  {
+    "name": "xhdpi/app_action_cloud_24.png",
+    "bytes": 918
+  },
+  {
+    "name": "xhdpi/app_action_cloud_check_24.png",
+    "bytes": 1053
+  },
+  {
+    "name": "xhdpi/app_action_cloud_down_24.png",
+    "bytes": 948
+  },
+  {
+    "name": "xhdpi/app_action_cloud_off_24.png",
+    "bytes": 1134
+  },
+  {
+    "name": "xhdpi/app_action_cloud_up_24.png",
+    "bytes": 934
+  },
+  {
+    "name": "xhdpi/app_action_color_24.png",
+    "bytes": 601
+  },
+  {
+    "name": "xhdpi/app_action_comment_24.png",
+    "bytes": 354
+  },
+  {
+    "name": "xhdpi/app_action_compare_24.png",
+    "bytes": 374
+  },
+  {
+    "name": "xhdpi/app_action_compass_24.png",
+    "bytes": 728
+  },
+  {
+    "name": "xhdpi/app_action_contact_us_24.png",
+    "bytes": 575
+  },
+  {
+    "name": "xhdpi/app_action_control_time_24.png",
+    "bytes": 1187
+  },
+  {
+    "name": "xhdpi/app_action_convert_24.png",
+    "bytes": 737
+  },
+  {
+    "name": "xhdpi/app_action_copy_24.png",
+    "bytes": 244
+  },
+  {
+    "name": "xhdpi/app_action_copyright_24.png",
+    "bytes": 1213
+  },
+  {
+    "name": "xhdpi/app_action_create_24.png",
+    "bytes": 178
+  },
+  {
+    "name": "xhdpi/app_action_cut_24.png",
+    "bytes": 595
+  },
+  {
+    "name": "xhdpi/app_action_dashboard_24.png",
+    "bytes": 1288
+  },
+  {
+    "name": "xhdpi/app_action_date_24.png",
+    "bytes": 256
+  },
+  {
+    "name": "xhdpi/app_action_delete_24.png",
+    "bytes": 219
+  },
+  {
+    "name": "xhdpi/app_action_description_24.png",
+    "bytes": 230
+  },
+  {
+    "name": "xhdpi/app_action_details_edit_24.png",
+    "bytes": 446
+  },
+  {
+    "name": "xhdpi/app_action_details_view_24.png",
+    "bytes": 697
+  },
+  {
+    "name": "xhdpi/app_action_dot_24.png",
+    "bytes": 164
+  },
+  {
+    "name": "xhdpi/app_action_edit_24.png",
+    "bytes": 257
+  },
+  {
+    "name": "xhdpi/app_action_erase_24.png",
+    "bytes": 507
+  },
+  {
+    "name": "xhdpi/app_action_exit_24.png",
+    "bytes": 367
+  },
+  {
+    "name": "xhdpi/app_action_expand_24.png",
+    "bytes": 328
+  },
+  {
+    "name": "xhdpi/app_action_expand_less_24.png",
+    "bytes": 258
+  },
+  {
+    "name": "xhdpi/app_action_expand_more_24.png",
+    "bytes": 260
+  },
+  {
+    "name": "xhdpi/app_action_export_24.png",
+    "bytes": 290
+  },
+  {
+    "name": "xhdpi/app_action_filter_24.png",
+    "bytes": 172
+  },
+  {
+    "name": "xhdpi/app_action_filter_color_24.png",
+    "bytes": 834
+  },
+  {
+    "name": "xhdpi/app_action_fullscreen_24.png",
+    "bytes": 132
+  },
+  {
+    "name": "xhdpi/app_action_hd_24.png",
+    "bytes": 384
+  },
+  {
+    "name": "xhdpi/app_action_help_online_24.png",
+    "bytes": 928
+  },
+  {
+    "name": "xhdpi/app_action_hide_24.png",
+    "bytes": 951
+  },
+  {
+    "name": "xhdpi/app_action_image_24.png",
+    "bytes": 463
+  },
+  {
+    "name": "xhdpi/app_action_import_24.png",
+    "bytes": 300
+  },
+  {
+    "name": "xhdpi/app_action_invert_24.png",
+    "bytes": 206
+  },
+  {
+    "name": "xhdpi/app_action_jump_to_24.png",
+    "bytes": 275
+  },
+  {
+    "name": "xhdpi/app_action_keywords_24.png",
+    "bytes": 598
+  },
+  {
+    "name": "xhdpi/app_action_landmark_24.png",
+    "bytes": 393
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_auto_target_closest_24.png",
+    "bytes": 343
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_autorouting_24.png",
+    "bytes": 352
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_autorouting_cycling_24.png",
+    "bytes": 1332
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_autorouting_driving_24.png",
+    "bytes": 485
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_autorouting_transit_24.png",
+    "bytes": 508
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_autorouting_walking_24.png",
+    "bytes": 859
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_browse_24.png",
+    "bytes": 480
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_compute_slope_24.png",
+    "bytes": 406
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_create_24.png",
+    "bytes": 446
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_edit_points_24.png",
+    "bytes": 567
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_fastpoint_24.png",
+    "bytes": 500
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_fastrouting_24.png",
+    "bytes": 423
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_group_24.png",
+    "bytes": 1327
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_measure_24.png",
+    "bytes": 926
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_profile_edit_24.png",
+    "bytes": 451
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_profile_view_24.png",
+    "bytes": 237
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_target_24.png",
+    "bytes": 289
+  },
+  {
+    "name": "xhdpi/app_action_landmarks_target_remove_24.png",
+    "bytes": 422
+  },
+  {
+    "name": "xhdpi/app_action_left_24.png",
+    "bytes": 226
+  },
+  {
+    "name": "xhdpi/app_action_line_style_24.png",
+    "bytes": 138
+  },
+  {
+    "name": "xhdpi/app_action_list_24.png",
+    "bytes": 127
+  },
+  {
+    "name": "xhdpi/app_action_list_clear_24.png",
+    "bytes": 236
+  },
+  {
+    "name": "xhdpi/app_action_location_current_24.png",
+    "bytes": 938
+  },
+  {
+    "name": "xhdpi/app_action_location_disabled_24.png",
+    "bytes": 1009
+  },
+  {
+    "name": "xhdpi/app_action_location_gps_24.png",
+    "bytes": 1133
+  },
+  {
+    "name": "xhdpi/app_action_location_marker_24.png",
+    "bytes": 745
+  },
+  {
+    "name": "xhdpi/app_action_location_network_24.png",
+    "bytes": 1482
+  },
+  {
+    "name": "xhdpi/app_action_location_unlocked_24.png",
+    "bytes": 1258
+  },
+  {
+    "name": "xhdpi/app_action_lock_24.png",
+    "bytes": 535
+  },
+  {
+    "name": "xhdpi/app_action_map_24.png",
+    "bytes": 563
+  },
+  {
+    "name": "xhdpi/app_action_maps_add_as_layer_24.png",
+    "bytes": 899
+  },
+  {
+    "name": "xhdpi/app_action_maps_browse_24.png",
+    "bytes": 595
+  },
+  {
+    "name": "xhdpi/app_action_maps_calibrate_24.png",
+    "bytes": 1217
+  },
+  {
+    "name": "xhdpi/app_action_maps_clear_data_24.png",
+    "bytes": 685
+  },
+  {
+    "name": "xhdpi/app_action_maps_layers_24.png",
+    "bytes": 795
+  },
+  {
+    "name": "xhdpi/app_action_maps_remove_layer_24.png",
+    "bytes": 832
+  },
+  {
+    "name": "xhdpi/app_action_maps_storearea_24.png",
+    "bytes": 494
+  },
+  {
+    "name": "xhdpi/app_action_maps_storearea_start_24.png",
+    "bytes": 268
+  },
+  {
+    "name": "xhdpi/app_action_memory_chip_24.png",
+    "bytes": 150
+  },
+  {
+    "name": "xhdpi/app_action_memory_database_24.png",
+    "bytes": 646
+  },
+  {
+    "name": "xhdpi/app_action_memory_sdcard_24.png",
+    "bytes": 223
+  },
+  {
+    "name": "xhdpi/app_action_menu_24.png",
+    "bytes": 171
+  },
+  {
+    "name": "xhdpi/app_action_move_bottom_24.png",
+    "bytes": 303
+  },
+  {
+    "name": "xhdpi/app_action_move_down_24.png",
+    "bytes": 289
+  },
+  {
+    "name": "xhdpi/app_action_move_top_24.png",
+    "bytes": 288
+  },
+  {
+    "name": "xhdpi/app_action_move_up_24.png",
+    "bytes": 282
+  },
+  {
+    "name": "xhdpi/app_action_new_lap_24.png",
+    "bytes": 225
+  },
+  {
+    "name": "xhdpi/app_action_night_24.png",
+    "bytes": 1129
+  },
+  {
+    "name": "xhdpi/app_action_opacity_24.png",
+    "bytes": 203
+  },
+  {
+    "name": "xhdpi/app_action_open_link_24.png",
+    "bytes": 533
+  },
+  {
+    "name": "xhdpi/app_action_open_with_24.png",
+    "bytes": 417
+  },
+  {
+    "name": "xhdpi/app_action_phone_24.png",
+    "bytes": 698
+  },
+  {
+    "name": "xhdpi/app_action_privacy_24.png",
+    "bytes": 1131
+  },
+  {
+    "name": "xhdpi/app_action_project_24.png",
+    "bytes": 1186
+  },
+  {
+    "name": "xhdpi/app_action_record_24.png",
+    "bytes": 907
+  },
+  {
+    "name": "xhdpi/app_action_refresh_24.png",
+    "bytes": 831
+  },
+  {
+    "name": "xhdpi/app_action_rename_24.png",
+    "bytes": 339
+  },
+  {
+    "name": "xhdpi/app_action_right_24.png",
+    "bytes": 247
+  },
+  {
+    "name": "xhdpi/app_action_save_24.png",
+    "bytes": 289
+  },
+  {
+    "name": "xhdpi/app_action_screen_resolution_24.png",
+    "bytes": 257
+  },
+  {
+    "name": "xhdpi/app_action_screensaver_24.png",
+    "bytes": 727
+  },
+  {
+    "name": "xhdpi/app_action_search_24.png",
+    "bytes": 585
+  },
+  {
+    "name": "xhdpi/app_action_settings_24.png",
+    "bytes": 569
+  },
+  {
+    "name": "xhdpi/app_action_share_24.png",
+    "bytes": 883
+  },
+  {
+    "name": "xhdpi/app_action_show_24.png",
+    "bytes": 786
+  },
+  {
+    "name": "xhdpi/app_action_sort_asc_24.png",
+    "bytes": 134
+  },
+  {
+    "name": "xhdpi/app_action_sort_date_asc_24.png",
+    "bytes": 613
+  },
+  {
+    "name": "xhdpi/app_action_sort_date_dsc_24.png",
+    "bytes": 609
+  },
+  {
+    "name": "xhdpi/app_action_sort_dsc_24.png",
+    "bytes": 129
+  },
+  {
+    "name": "xhdpi/app_action_sort_name_asc_24.png",
+    "bytes": 406
+  },
+  {
+    "name": "xhdpi/app_action_sort_name_dsc_24.png",
+    "bytes": 404
+  },
+  {
+    "name": "xhdpi/app_action_start_24.png",
+    "bytes": 277
+  },
+  {
+    "name": "xhdpi/app_action_stop_24.png",
+    "bytes": 123
+  },
+  {
+    "name": "xhdpi/app_action_style_24.png",
+    "bytes": 233
+  },
+  {
+    "name": "xhdpi/app_action_sun_down_24.png",
+    "bytes": 926
+  },
+  {
+    "name": "xhdpi/app_action_sun_up_24.png",
+    "bytes": 937
+  },
+  {
+    "name": "xhdpi/app_action_temperature_24.png",
+    "bytes": 473
+  },
+  {
+    "name": "xhdpi/app_action_text_24.png",
+    "bytes": 259
+  },
+  {
+    "name": "xhdpi/app_action_text_size_24.png",
+    "bytes": 169
+  },
+  {
+    "name": "xhdpi/app_action_tools_24.png",
+    "bytes": 588
+  },
+  {
+    "name": "xhdpi/app_action_tracker_24.png",
+    "bytes": 960
+  },
+  {
+    "name": "xhdpi/app_action_undo_24.png",
+    "bytes": 653
+  },
+  {
+    "name": "xhdpi/app_action_unlock_24.png",
+    "bytes": 571
+  },
+  {
+    "name": "xhdpi/app_action_weight_24.png",
+    "bytes": 644
+  },
+  {
+    "name": "xhdpi/app_action_whats_new_24.png",
+    "bytes": 979
+  },
+  {
+    "name": "xhdpi/app_mainmenu_icon_48.png",
+    "bytes": 1439
+  },
+  {
+    "name": "xhdpi/atk_dialog_icon_error_24.png",
+    "bytes": 489
+  },
+  {
+    "name": "xhdpi/atk_dialog_icon_information_24.png",
+    "bytes": 969
+  },
+  {
+    "name": "xhdpi/atk_dialog_icon_warning_24.png",
+    "bytes": 569
+  },
+  {
+    "name": "xhdpi/atk_toolkit_canvas_tile_error_16.png",
+    "bytes": 1336
+  },
+  {
+    "name": "xhdpi/atk_toolkit_canvas_tile_loading_16.png",
+    "bytes": 1239
+  },
+  {
+    "name": "xhdpi/atk_toolkit_canvas_tile_online_downloading_16.png",
+    "bytes": 1833
+  },
+  {
+    "name": "xhdpi/atk_toolkit_canvas_tile_online_not_available_16.png",
+    "bytes": 1902
+  },
+  {
+    "name": "xhdpi/atk_toolkit_canvas_tile_online_offline_16.png",
+    "bytes": 1722
+  },
+  {
+    "name": "xhdpi/atk_toolkit_canvas_tile_online_queuing_16.png",
+    "bytes": 1692
+  },
+  {
+    "name": "xhdpi/atk_toolkit_canvas_tile_waiting_16.png",
+    "bytes": 1190
+  },
+  {
+    "name": "xhdpi/atk_toolkit_explorer_cell_file_36.png",
+    "bytes": 329
+  },
+  {
+    "name": "xhdpi/atk_toolkit_explorer_cell_file_landmark_36.png",
+    "bytes": 609
+  },
+  {
+    "name": "xhdpi/atk_toolkit_explorer_cell_file_map_36.png",
+    "bytes": 593
+  },
+  {
+    "name": "xhdpi/atk_toolkit_explorer_cell_folder_36.png",
+    "bytes": 390
+  },
+  {
+    "name": "xhdpi/atk_toolkit_explorer_cell_folder_overlay_export_36.png",
+    "bytes": 294
+  },
+  {
+    "name": "xhdpi/atk_toolkit_explorer_cell_folder_overlay_hidden_36.png",
+    "bytes": 932
+  },
+  {
+    "name": "xhdpi/atk_toolkit_explorer_cell_folder_overlay_import_36.png",
+    "bytes": 249
+  },
+  {
+    "name": "xhdpi/atk_toolkit_explorer_cell_folder_overlay_landmarks_36.png",
+    "bytes": 700
+  },
+  {
+    "name": "xhdpi/atk_toolkit_explorer_cell_folder_overlay_search_36.png",
+    "bytes": 669
+  },
+  {
+    "name": "xhdpi/atk_toolkit_explorer_cell_folder_overlay_tracks_36.png",
+    "bytes": 787
+  },
+  {
+    "name": "xhdpi/atk_toolkit_explorer_cell_folder_overlay_visible_36.png",
+    "bytes": 730
+  },
+  {
+    "name": "xhdpi/atk_toolkit_explorer_cell_user_36.png",
+    "bytes": 879
+  },
+  {
+    "name": "xhdpi/atk_toolkit_explorer_cell_users_36.png",
+    "bytes": 1404
+  },
+  {
+    "name": "xhdpi/atk_toolkit_explorer_icon_folder_locked_24.png",
+    "bytes": 382
+  },
+  {
+    "name": "xhdpi/atk_toolkit_widget_check_off_24.png",
+    "bytes": 224
+  },
+  {
+    "name": "xhdpi/atk_toolkit_widget_check_on_24.png",
+    "bytes": 349
+  },
+  {
+    "name": "xhdpi/atk_toolkit_widget_drop_24.png",
+    "bytes": 204
+  },
+  {
+    "name": "xhdpi/atk_toolkit_widget_radio_off_24.png",
+    "bytes": 513
+  },
+  {
+    "name": "xhdpi/atk_toolkit_widget_radio_on_24.png",
+    "bytes": 594
+  },
+  {
+    "name": "xhdpi/canvas_zoom_minus_48.png",
+    "bytes": 2011
+  },
+  {
+    "name": "xhdpi/canvas_zoom_plus_48.png",
+    "bytes": 2379
+  },
+  {
+    "name": "xhdpi/canvas_zoom_slider_36.png",
+    "bytes": 1390
+  },
+  {
+    "name": "xhdpi/core_mainmenu_icon_locked_48.png",
+    "bytes": 695
+  },
+  {
+    "name": "xhdpi/landmarks_direction_c_16.png",
+    "bytes": 158
+  },
+  {
+    "name": "xhdpi/landmarks_direction_n_16.png",
+    "bytes": 299
+  },
+  {
+    "name": "xhdpi/landmarks_explorer_cell_area_36.png",
+    "bytes": 1541
+  },
+  {
+    "name": "xhdpi/landmarks_explorer_cell_circle_36.png",
+    "bytes": 1380
+  },
+  {
+    "name": "xhdpi/landmarks_explorer_cell_path_36.png",
+    "bytes": 1177
+  },
+  {
+    "name": "xhdpi/landmarks_explorer_cell_proximity_36.png",
+    "bytes": 1124
+  },
+  {
+    "name": "xhdpi/landmarks_explorer_cell_route_36.png",
+    "bytes": 1119
+  },
+  {
+    "name": "xhdpi/landmarks_explorer_cell_set_36.png",
+    "bytes": 1893
+  },
+  {
+    "name": "xhdpi/landmarks_explorer_cell_text_36.png",
+    "bytes": 561
+  },
+  {
+    "name": "xhdpi/landmarks_explorer_cell_track_36.png",
+    "bytes": 1418
+  },
+  {
+    "name": "xhdpi/landmarks_explorer_cell_waypoint_36.png",
+    "bytes": 867
+  },
+  {
+    "name": "xhdpi/landmarks_infobox_target_16.png",
+    "bytes": 327
+  },
+  {
+    "name": "xhdpi/landmarks_mainmenu_icon_48.png",
+    "bytes": 680
+  },
+  {
+    "name": "xhdpi/maps_infobox_16.png",
+    "bytes": 518
+  },
+  {
+    "name": "xhdpi/maps_infobox_offlinemode_16.png",
+    "bytes": 831
+  },
+  {
+    "name": "xhdpi/maps_mainmenu_icon_48.png",
+    "bytes": 826
+  },
+  {
+    "name": "xhdpi/orientation_compass_bg_280.png",
+    "bytes": 218448
+  },
+  {
+    "name": "xhdpi/orientation_compass_needle_100.png",
+    "bytes": 15510
+  },
+  {
+    "name": "xhdpi/orientation_compass_target_100.png",
+    "bytes": 8243
+  },
+  {
+    "name": "xhdpi/orientation_compass_topo_280.png",
+    "bytes": 135943
+  },
+  {
+    "name": "xhdpi/orientation_compass_topoline_100.png",
+    "bytes": 7692
+  },
+  {
+    "name": "xhdpi/orientation_infobox_16.png",
+    "bytes": 509
+  },
+  {
+    "name": "xhdpi/orientation_mainmenu_icon_48.png",
+    "bytes": 1446
+  },
+  {
+    "name": "xhdpi/orientation_mainmenu_icon_unlock_48.png",
+    "bytes": 2068
+  },
+  {
+    "name": "xxhdpi/app_action_accept_24.png",
+    "bytes": 740
+  },
+  {
+    "name": "xxhdpi/app_action_account_24.png",
+    "bytes": 1375
+  },
+  {
+    "name": "xxhdpi/app_action_activity_24.png",
+    "bytes": 2006
+  },
+  {
+    "name": "xxhdpi/app_action_add_24.png",
+    "bytes": 890
+  },
+  {
+    "name": "xxhdpi/app_action_alert_24.png",
+    "bytes": 1612
+  },
+  {
+    "name": "xxhdpi/app_action_align_center_24.png",
+    "bytes": 988
+  },
+  {
+    "name": "xxhdpi/app_action_align_left_24.png",
+    "bytes": 970
+  },
+  {
+    "name": "xxhdpi/app_action_align_right_24.png",
+    "bytes": 955
+  },
+  {
+    "name": "xxhdpi/app_action_arrows_24.png",
+    "bytes": 464
+  },
+  {
+    "name": "xxhdpi/app_action_audio_24.png",
+    "bytes": 1021
+  },
+  {
+    "name": "xxhdpi/app_action_backup_24.png",
+    "bytes": 1248
+  },
+  {
+    "name": "xxhdpi/app_action_barometer_24.png",
+    "bytes": 1265
+  },
+  {
+    "name": "xxhdpi/app_action_battery_24.png",
+    "bytes": 249
+  },
+  {
+    "name": "xxhdpi/app_action_battery_40_24.png",
+    "bytes": 235
+  },
+  {
+    "name": "xxhdpi/app_action_battery_60_24.png",
+    "bytes": 237
+  },
+  {
+    "name": "xxhdpi/app_action_battery_80_24.png",
+    "bytes": 237
+  },
+  {
+    "name": "xxhdpi/app_action_battery_alert_24.png",
+    "bytes": 253
+  },
+  {
+    "name": "xxhdpi/app_action_bookmark_24.png",
+    "bytes": 337
+  },
+  {
+    "name": "xxhdpi/app_action_browse_24.png",
+    "bytes": 301
+  },
+  {
+    "name": "xxhdpi/app_action_camera_24.png",
+    "bytes": 1111
+  },
+  {
+    "name": "xxhdpi/app_action_clipboard_24.png",
+    "bytes": 456
+  },
+  {
+    "name": "xxhdpi/app_action_close_24.png",
+    "bytes": 298
+  },
+  {
+    "name": "xxhdpi/app_action_cloud_24.png",
+    "bytes": 1351
+  },
+  {
+    "name": "xxhdpi/app_action_cloud_check_24.png",
+    "bytes": 1448
+  },
+  {
+    "name": "xxhdpi/app_action_cloud_down_24.png",
+    "bytes": 1322
+  },
+  {
+    "name": "xxhdpi/app_action_cloud_off_24.png",
+    "bytes": 1503
+  },
+  {
+    "name": "xxhdpi/app_action_cloud_up_24.png",
+    "bytes": 1308
+  },
+  {
+    "name": "xxhdpi/app_action_color_24.png",
+    "bytes": 906
+  },
+  {
+    "name": "xxhdpi/app_action_comment_24.png",
+    "bytes": 413
+  },
+  {
+    "name": "xxhdpi/app_action_compare_24.png",
+    "bytes": 477
+  },
+  {
+    "name": "xxhdpi/app_action_compass_24.png",
+    "bytes": 1047
+  },
+  {
+    "name": "xxhdpi/app_action_contact_us_24.png",
+    "bytes": 793
+  },
+  {
+    "name": "xxhdpi/app_action_control_time_24.png",
+    "bytes": 1581
+  },
+  {
+    "name": "xxhdpi/app_action_convert_24.png",
+    "bytes": 1059
+  },
+  {
+    "name": "xxhdpi/app_action_copy_24.png",
+    "bytes": 325
+  },
+  {
+    "name": "xxhdpi/app_action_copyright_24.png",
+    "bytes": 1754
+  },
+  {
+    "name": "xxhdpi/app_action_create_24.png",
+    "bytes": 207
+  },
+  {
+    "name": "xxhdpi/app_action_cut_24.png",
+    "bytes": 869
+  },
+  {
+    "name": "xxhdpi/app_action_dashboard_24.png",
+    "bytes": 1756
+  },
+  {
+    "name": "xxhdpi/app_action_date_24.png",
+    "bytes": 300
+  },
+  {
+    "name": "xxhdpi/app_action_delete_24.png",
+    "bytes": 256
+  },
+  {
+    "name": "xxhdpi/app_action_description_24.png",
+    "bytes": 301
+  },
+  {
+    "name": "xxhdpi/app_action_details_edit_24.png",
+    "bytes": 614
+  },
+  {
+    "name": "xxhdpi/app_action_details_view_24.png",
+    "bytes": 1034
+  },
+  {
+    "name": "xxhdpi/app_action_dot_24.png",
+    "bytes": 199
+  },
+  {
+    "name": "xxhdpi/app_action_edit_24.png",
+    "bytes": 404
+  },
+  {
+    "name": "xxhdpi/app_action_erase_24.png",
+    "bytes": 640
+  },
+  {
+    "name": "xxhdpi/app_action_exit_24.png",
+    "bytes": 491
+  },
+  {
+    "name": "xxhdpi/app_action_expand_24.png",
+    "bytes": 415
+  },
+  {
+    "name": "xxhdpi/app_action_expand_less_24.png",
+    "bytes": 330
+  },
+  {
+    "name": "xxhdpi/app_action_expand_more_24.png",
+    "bytes": 331
+  },
+  {
+    "name": "xxhdpi/app_action_export_24.png",
+    "bytes": 366
+  },
+  {
+    "name": "xxhdpi/app_action_filter_24.png",
+    "bytes": 200
+  },
+  {
+    "name": "xxhdpi/app_action_filter_color_24.png",
+    "bytes": 1098
+  },
+  {
+    "name": "xxhdpi/app_action_fullscreen_24.png",
+    "bytes": 148
+  },
+  {
+    "name": "xxhdpi/app_action_hd_24.png",
+    "bytes": 474
+  },
+  {
+    "name": "xxhdpi/app_action_help_online_24.png",
+    "bytes": 1228
+  },
+  {
+    "name": "xxhdpi/app_action_hide_24.png",
+    "bytes": 1308
+  },
+  {
+    "name": "xxhdpi/app_action_image_24.png",
+    "bytes": 601
+  },
+  {
+    "name": "xxhdpi/app_action_import_24.png",
+    "bytes": 356
+  },
+  {
+    "name": "xxhdpi/app_action_invert_24.png",
+    "bytes": 250
+  },
+  {
+    "name": "xxhdpi/app_action_jump_to_24.png",
+    "bytes": 332
+  },
+  {
+    "name": "xxhdpi/app_action_keywords_24.png",
+    "bytes": 876
+  },
+  {
+    "name": "xxhdpi/app_action_landmark_24.png",
+    "bytes": 626
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_auto_target_closest_24.png",
+    "bytes": 436
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_autorouting_24.png",
+    "bytes": 535
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_autorouting_cycling_24.png",
+    "bytes": 1827
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_autorouting_driving_24.png",
+    "bytes": 695
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_autorouting_transit_24.png",
+    "bytes": 727
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_autorouting_walking_24.png",
+    "bytes": 1136
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_browse_24.png",
+    "bytes": 627
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_compute_slope_24.png",
+    "bytes": 571
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_create_24.png",
+    "bytes": 612
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_edit_points_24.png",
+    "bytes": 724
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_fastpoint_24.png",
+    "bytes": 652
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_fastrouting_24.png",
+    "bytes": 611
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_group_24.png",
+    "bytes": 1837
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_measure_24.png",
+    "bytes": 1287
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_profile_edit_24.png",
+    "bytes": 581
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_profile_view_24.png",
+    "bytes": 304
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_target_24.png",
+    "bytes": 357
+  },
+  {
+    "name": "xxhdpi/app_action_landmarks_target_remove_24.png",
+    "bytes": 550
+  },
+  {
+    "name": "xxhdpi/app_action_left_24.png",
+    "bytes": 297
+  },
+  {
+    "name": "xxhdpi/app_action_line_style_24.png",
+    "bytes": 163
+  },
+  {
+    "name": "xxhdpi/app_action_list_24.png",
+    "bytes": 144
+  },
+  {
+    "name": "xxhdpi/app_action_list_clear_24.png",
+    "bytes": 397
+  },
+  {
+    "name": "xxhdpi/app_action_location_current_24.png",
+    "bytes": 1437
+  },
+  {
+    "name": "xxhdpi/app_action_location_disabled_24.png",
+    "bytes": 1489
+  },
+  {
+    "name": "xxhdpi/app_action_location_gps_24.png",
+    "bytes": 1435
+  },
+  {
+    "name": "xxhdpi/app_action_location_marker_24.png",
+    "bytes": 1174
+  },
+  {
+    "name": "xxhdpi/app_action_location_network_24.png",
+    "bytes": 2054
+  },
+  {
+    "name": "xxhdpi/app_action_location_unlocked_24.png",
+    "bytes": 1725
+  },
+  {
+    "name": "xxhdpi/app_action_lock_24.png",
+    "bytes": 762
+  },
+  {
+    "name": "xxhdpi/app_action_map_24.png",
+    "bytes": 806
+  },
+  {
+    "name": "xxhdpi/app_action_maps_add_as_layer_24.png",
+    "bytes": 1048
+  },
+  {
+    "name": "xxhdpi/app_action_maps_browse_24.png",
+    "bytes": 748
+  },
+  {
+    "name": "xxhdpi/app_action_maps_calibrate_24.png",
+    "bytes": 1484
+  },
+  {
+    "name": "xxhdpi/app_action_maps_clear_data_24.png",
+    "bytes": 876
+  },
+  {
+    "name": "xxhdpi/app_action_maps_layers_24.png",
+    "bytes": 1068
+  },
+  {
+    "name": "xxhdpi/app_action_maps_remove_layer_24.png",
+    "bytes": 1018
+  },
+  {
+    "name": "xxhdpi/app_action_maps_storearea_24.png",
+    "bytes": 656
+  },
+  {
+    "name": "xxhdpi/app_action_maps_storearea_start_24.png",
+    "bytes": 341
+  },
+  {
+    "name": "xxhdpi/app_action_memory_chip_24.png",
+    "bytes": 167
+  },
+  {
+    "name": "xxhdpi/app_action_memory_database_24.png",
+    "bytes": 887
+  },
+  {
+    "name": "xxhdpi/app_action_memory_sdcard_24.png",
+    "bytes": 271
+  },
+  {
+    "name": "xxhdpi/app_action_menu_24.png",
+    "bytes": 202
+  },
+  {
+    "name": "xxhdpi/app_action_move_bottom_24.png",
+    "bytes": 378
+  },
+  {
+    "name": "xxhdpi/app_action_move_down_24.png",
+    "bytes": 367
+  },
+  {
+    "name": "xxhdpi/app_action_move_top_24.png",
+    "bytes": 359
+  },
+  {
+    "name": "xxhdpi/app_action_move_up_24.png",
+    "bytes": 360
+  },
+  {
+    "name": "xxhdpi/app_action_new_lap_24.png",
+    "bytes": 268
+  },
+  {
+    "name": "xxhdpi/app_action_night_24.png",
+    "bytes": 1599
+  },
+  {
+    "name": "xxhdpi/app_action_opacity_24.png",
+    "bytes": 248
+  },
+  {
+    "name": "xxhdpi/app_action_open_link_24.png",
+    "bytes": 771
+  },
+  {
+    "name": "xxhdpi/app_action_open_with_24.png",
+    "bytes": 595
+  },
+  {
+    "name": "xxhdpi/app_action_phone_24.png",
+    "bytes": 937
+  },
+  {
+    "name": "xxhdpi/app_action_privacy_24.png",
+    "bytes": 1509
+  },
+  {
+    "name": "xxhdpi/app_action_project_24.png",
+    "bytes": 1636
+  },
+  {
+    "name": "xxhdpi/app_action_record_24.png",
+    "bytes": 1182
+  },
+  {
+    "name": "xxhdpi/app_action_refresh_24.png",
+    "bytes": 1140
+  },
+  {
+    "name": "xxhdpi/app_action_rename_24.png",
+    "bytes": 411
+  },
+  {
+    "name": "xxhdpi/app_action_right_24.png",
+    "bytes": 270
+  },
+  {
+    "name": "xxhdpi/app_action_save_24.png",
+    "bytes": 387
+  },
+  {
+    "name": "xxhdpi/app_action_screen_resolution_24.png",
+    "bytes": 328
+  },
+  {
+    "name": "xxhdpi/app_action_screensaver_24.png",
+    "bytes": 975
+  },
+  {
+    "name": "xxhdpi/app_action_search_24.png",
+    "bytes": 780
+  },
+  {
+    "name": "xxhdpi/app_action_settings_24.png",
+    "bytes": 809
+  },
+  {
+    "name": "xxhdpi/app_action_share_24.png",
+    "bytes": 1161
+  },
+  {
+    "name": "xxhdpi/app_action_show_24.png",
+    "bytes": 1142
+  },
+  {
+    "name": "xxhdpi/app_action_sort_asc_24.png",
+    "bytes": 146
+  },
+  {
+    "name": "xxhdpi/app_action_sort_date_asc_24.png",
+    "bytes": 877
+  },
+  {
+    "name": "xxhdpi/app_action_sort_date_dsc_24.png",
+    "bytes": 874
+  },
+  {
+    "name": "xxhdpi/app_action_sort_dsc_24.png",
+    "bytes": 139
+  },
+  {
+    "name": "xxhdpi/app_action_sort_name_asc_24.png",
+    "bytes": 449
+  },
+  {
+    "name": "xxhdpi/app_action_sort_name_dsc_24.png",
+    "bytes": 448
+  },
+  {
+    "name": "xxhdpi/app_action_start_24.png",
+    "bytes": 334
+  },
+  {
+    "name": "xxhdpi/app_action_stop_24.png",
+    "bytes": 128
+  },
+  {
+    "name": "xxhdpi/app_action_style_24.png",
+    "bytes": 269
+  },
+  {
+    "name": "xxhdpi/app_action_sun_down_24.png",
+    "bytes": 1294
+  },
+  {
+    "name": "xxhdpi/app_action_sun_up_24.png",
+    "bytes": 1257
+  },
+  {
+    "name": "xxhdpi/app_action_temperature_24.png",
+    "bytes": 665
+  },
+  {
+    "name": "xxhdpi/app_action_text_24.png",
+    "bytes": 320
+  },
+  {
+    "name": "xxhdpi/app_action_text_size_24.png",
+    "bytes": 176
+  },
+  {
+    "name": "xxhdpi/app_action_tools_24.png",
+    "bytes": 807
+  },
+  {
+    "name": "xxhdpi/app_action_tracker_24.png",
+    "bytes": 1219
+  },
+  {
+    "name": "xxhdpi/app_action_undo_24.png",
+    "bytes": 850
+  },
+  {
+    "name": "xxhdpi/app_action_unlock_24.png",
+    "bytes": 807
+  },
+  {
+    "name": "xxhdpi/app_action_weight_24.png",
+    "bytes": 862
+  },
+  {
+    "name": "xxhdpi/app_action_whats_new_24.png",
+    "bytes": 1399
+  },
+  {
+    "name": "xxhdpi/app_mainmenu_icon_48.png",
+    "bytes": 1867
+  },
+  {
+    "name": "xxhdpi/atk_dialog_icon_error_24.png",
+    "bytes": 675
+  },
+  {
+    "name": "xxhdpi/atk_dialog_icon_information_24.png",
+    "bytes": 1381
+  },
+  {
+    "name": "xxhdpi/atk_dialog_icon_warning_24.png",
+    "bytes": 684
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_canvas_tile_error_16.png",
+    "bytes": 1959
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_canvas_tile_loading_16.png",
+    "bytes": 2386
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_canvas_tile_online_downloading_16.png",
+    "bytes": 3069
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_canvas_tile_online_not_available_16.png",
+    "bytes": 3228
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_canvas_tile_online_offline_16.png",
+    "bytes": 2801
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_canvas_tile_online_queuing_16.png",
+    "bytes": 2853
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_canvas_tile_waiting_16.png",
+    "bytes": 1784
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_explorer_cell_file_36.png",
+    "bytes": 406
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_explorer_cell_file_landmark_36.png",
+    "bytes": 789
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_explorer_cell_file_map_36.png",
+    "bytes": 809
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_explorer_cell_folder_36.png",
+    "bytes": 585
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_explorer_cell_folder_overlay_export_36.png",
+    "bytes": 367
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_explorer_cell_folder_overlay_hidden_36.png",
+    "bytes": 1284
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_explorer_cell_folder_overlay_import_36.png",
+    "bytes": 301
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_explorer_cell_folder_overlay_landmarks_36.png",
+    "bytes": 883
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_explorer_cell_folder_overlay_search_36.png",
+    "bytes": 880
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_explorer_cell_folder_overlay_tracks_36.png",
+    "bytes": 1077
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_explorer_cell_folder_overlay_visible_36.png",
+    "bytes": 1011
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_explorer_cell_user_36.png",
+    "bytes": 1331
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_explorer_cell_users_36.png",
+    "bytes": 2155
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_explorer_icon_folder_locked_24.png",
+    "bytes": 494
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_widget_check_off_24.png",
+    "bytes": 259
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_widget_check_on_24.png",
+    "bytes": 478
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_widget_drop_24.png",
+    "bytes": 244
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_widget_radio_off_24.png",
+    "bytes": 727
+  },
+  {
+    "name": "xxhdpi/atk_toolkit_widget_radio_on_24.png",
+    "bytes": 863
+  },
+  {
+    "name": "xxhdpi/canvas_zoom_minus_48.png",
+    "bytes": 1715
+  },
+  {
+    "name": "xxhdpi/canvas_zoom_plus_48.png",
+    "bytes": 3861
+  },
+  {
+    "name": "xxhdpi/canvas_zoom_slider_36.png",
+    "bytes": 2160
+  },
+  {
+    "name": "xxhdpi/core_mainmenu_icon_locked_48.png",
+    "bytes": 1063
+  },
+  {
+    "name": "xxhdpi/landmarks_direction_c_16.png",
+    "bytes": 191
+  },
+  {
+    "name": "xxhdpi/landmarks_direction_n_16.png",
+    "bytes": 378
+  },
+  {
+    "name": "xxhdpi/landmarks_explorer_cell_area_36.png",
+    "bytes": 2021
+  },
+  {
+    "name": "xxhdpi/landmarks_explorer_cell_circle_36.png",
+    "bytes": 1891
+  },
+  {
+    "name": "xxhdpi/landmarks_explorer_cell_path_36.png",
+    "bytes": 1572
+  },
+  {
+    "name": "xxhdpi/landmarks_explorer_cell_proximity_36.png",
+    "bytes": 1534
+  },
+  {
+    "name": "xxhdpi/landmarks_explorer_cell_route_36.png",
+    "bytes": 1540
+  },
+  {
+    "name": "xxhdpi/landmarks_explorer_cell_set_36.png",
+    "bytes": 2539
+  },
+  {
+    "name": "xxhdpi/landmarks_explorer_cell_text_36.png",
+    "bytes": 758
+  },
+  {
+    "name": "xxhdpi/landmarks_explorer_cell_track_36.png",
+    "bytes": 1879
+  },
+  {
+    "name": "xxhdpi/landmarks_explorer_cell_waypoint_36.png",
+    "bytes": 1130
+  },
+  {
+    "name": "xxhdpi/landmarks_infobox_target_16.png",
+    "bytes": 397
+  },
+  {
+    "name": "xxhdpi/landmarks_mainmenu_icon_48.png",
+    "bytes": 993
+  },
+  {
+    "name": "xxhdpi/maps_infobox_16.png",
+    "bytes": 552
+  },
+  {
+    "name": "xxhdpi/maps_infobox_offlinemode_16.png",
+    "bytes": 1134
+  },
+  {
+    "name": "xxhdpi/maps_mainmenu_icon_48.png",
+    "bytes": 1141
+  },
+  {
+    "name": "xxhdpi/orientation_infobox_16.png",
+    "bytes": 725
+  },
+  {
+    "name": "xxhdpi/orientation_mainmenu_icon_48.png",
+    "bytes": 2087
+  },
+  {
+    "name": "xxhdpi/orientation_mainmenu_icon_unlock_48.png",
+    "bytes": 2853
+  },
+  {
+    "name": "svg/icon_acco_alpinehut.svg",
+    "bytes": 1850
+  },
+  {
+    "name": "svg/icon_acco_bnb.svg",
+    "bytes": 2585
+  },
+  {
+    "name": "svg/icon_acco_camping.svg",
+    "bytes": 298
+  },
+  {
+    "name": "svg/icon_acco_caravan.svg",
+    "bytes": 1137
+  },
+  {
+    "name": "svg/icon_acco_hostel.svg",
+    "bytes": 941
+  },
+  {
+    "name": "svg/icon_acco_hotel.svg",
+    "bytes": 694
+  },
+  {
+    "name": "svg/icon_acco_motel.svg",
+    "bytes": 1261
+  },
+  {
+    "name": "svg/icon_acco_shelter.svg",
+    "bytes": 1356
+  },
+  {
+    "name": "svg/icon_amen_atm.svg",
+    "bytes": 1252
+  },
+  {
+    "name": "svg/icon_amen_bank.svg",
+    "bytes": 977
+  },
+  {
+    "name": "svg/icon_amen_bench.svg",
+    "bytes": 140
+  },
+  {
+    "name": "svg/icon_amen_college.svg",
+    "bytes": 744
+  },
+  {
+    "name": "svg/icon_amen_court.svg",
+    "bytes": 1074
+  },
+  {
+    "name": "svg/icon_amen_currencyexchange.svg",
+    "bytes": 2027
+  },
+  {
+    "name": "svg/icon_amen_embassy.svg",
+    "bytes": 701
+  },
+  {
+    "name": "svg/icon_amen_firehydrant.svg",
+    "bytes": 963
+  },
+  {
+    "name": "svg/icon_amen_firestation.svg",
+    "bytes": 2473
+  },
+  {
+    "name": "svg/icon_amen_library.svg",
+    "bytes": 583
+  },
+  {
+    "name": "svg/icon_amen_nursery.svg",
+    "bytes": 2112
+  },
+  {
+    "name": "svg/icon_amen_park.svg",
+    "bytes": 673
+  },
+  {
+    "name": "svg/icon_amen_playground.svg",
+    "bytes": 751
+  },
+  {
+    "name": "svg/icon_amen_police.svg",
+    "bytes": 3610
+  },
+  {
+    "name": "svg/icon_amen_postbox.svg",
+    "bytes": 289
+  },
+  {
+    "name": "svg/icon_amen_postoffice.svg",
+    "bytes": 687
+  },
+  {
+    "name": "svg/icon_amen_prison.svg",
+    "bytes": 786
+  },
+  {
+    "name": "svg/icon_amen_recycling.svg",
+    "bytes": 641
+  },
+  {
+    "name": "svg/icon_amen_school.svg",
+    "bytes": 1092
+  },
+  {
+    "name": "svg/icon_amen_telephone.svg",
+    "bytes": 458
+  },
+  {
+    "name": "svg/icon_amen_toilets.svg",
+    "bytes": 933
+  },
+  {
+    "name": "svg/icon_amen_toiletsdisabled.svg",
+    "bytes": 1084
+  },
+  {
+    "name": "svg/icon_amen_toiletsmen.svg",
+    "bytes": 908
+  },
+  {
+    "name": "svg/icon_amen_toiletswomen.svg",
+    "bytes": 975
+  },
+  {
+    "name": "svg/icon_amen_townhall.svg",
+    "bytes": 1746
+  },
+  {
+    "name": "svg/icon_amen_university.svg",
+    "bytes": 866
+  },
+  {
+    "name": "svg/icon_amen_wastebin.svg",
+    "bytes": 711
+  },
+  {
+    "name": "svg/icon_amen_wastedisposal.svg",
+    "bytes": 282
+  },
+  {
+    "name": "svg/icon_food_bar.svg",
+    "bytes": 160
+  },
+  {
+    "name": "svg/icon_food_biergarten.svg",
+    "bytes": 774
+  },
+  {
+    "name": "svg/icon_food_cafe.svg",
+    "bytes": 297
+  },
+  {
+    "name": "svg/icon_food_drinkingwater.svg",
+    "bytes": 674
+  },
+  {
+    "name": "svg/icon_food_fastfood.svg",
+    "bytes": 296
+  },
+  {
+    "name": "svg/icon_food_icecream.svg",
+    "bytes": 569
+  },
+  {
+    "name": "svg/icon_food_pizza.svg",
+    "bytes": 1715
+  },
+  {
+    "name": "svg/icon_food_pub.svg",
+    "bytes": 295
+  },
+  {
+    "name": "svg/icon_food_restaurant.svg",
+    "bytes": 384
+  },
+  {
+    "name": "svg/icon_geocaching_disabled.svg",
+    "bytes": 609
+  },
+  {
+    "name": "svg/icon_geocaching_earth.svg",
+    "bytes": 1403
+  },
+  {
+    "name": "svg/icon_geocaching_event.svg",
+    "bytes": 409
+  },
+  {
+    "name": "svg/icon_geocaching_found.svg",
+    "bytes": 820
+  },
+  {
+    "name": "svg/icon_geocaching_letterbox.svg",
+    "bytes": 369
+  },
+  {
+    "name": "svg/icon_geocaching_multi.svg",
+    "bytes": 945
+  },
+  {
+    "name": "svg/icon_geocaching_mystery.svg",
+    "bytes": 615
+  },
+  {
+    "name": "svg/icon_geocaching_owned.svg",
+    "bytes": 612
+  },
+  {
+    "name": "svg/icon_geocaching_physical.svg",
+    "bytes": 582
+  },
+  {
+    "name": "svg/icon_geocaching_puzzle.svg",
+    "bytes": 530
+  },
+  {
+    "name": "svg/icon_geocaching_ref.svg",
+    "bytes": 394
+  },
+  {
+    "name": "svg/icon_geocaching_traditional.svg",
+    "bytes": 689
+  },
+  {
+    "name": "svg/icon_geocaching_virtual.svg",
+    "bytes": 920
+  },
+  {
+    "name": "svg/icon_geocaching_webcam.svg",
+    "bytes": 540
+  },
+  {
+    "name": "svg/icon_geocaching_wherigo.svg",
+    "bytes": 1506
+  },
+  {
+    "name": "svg/icon_health_ambulance.svg",
+    "bytes": 584
+  },
+  {
+    "name": "svg/icon_health_dentist.svg",
+    "bytes": 1304
+  },
+  {
+    "name": "svg/icon_health_doctor.svg",
+    "bytes": 1503
+  },
+  {
+    "name": "svg/icon_health_hospital.svg",
+    "bytes": 427
+  },
+  {
+    "name": "svg/icon_health_hospitalemergency.svg",
+    "bytes": 457
+  },
+  {
+    "name": "svg/icon_health_optician.svg",
+    "bytes": 1563
+  },
+  {
+    "name": "svg/icon_health_pharmacy.svg",
+    "bytes": 149
+  },
+  {
+    "name": "svg/icon_health_veterinary.svg",
+    "bytes": 1512
+  },
+  {
+    "name": "svg/icon_man_chimney.svg",
+    "bytes": 223
+  },
+  {
+    "name": "svg/icon_man_crane.svg",
+    "bytes": 518
+  },
+  {
+    "name": "svg/icon_man_military.svg",
+    "bytes": 794
+  },
+  {
+    "name": "svg/icon_man_mine.svg",
+    "bytes": 597
+  },
+  {
+    "name": "svg/icon_man_mineabandoned.svg",
+    "bytes": 1512
+  },
+  {
+    "name": "svg/icon_man_petroleumwell.svg",
+    "bytes": 403
+  },
+  {
+    "name": "svg/icon_man_ruins.svg",
+    "bytes": 236
+  },
+  {
+    "name": "svg/icon_man_surveillance.svg",
+    "bytes": 237
+  },
+  {
+    "name": "svg/icon_man_survey.svg",
+    "bytes": 70
+  },
+  {
+    "name": "svg/icon_man_towercommunication.svg",
+    "bytes": 1070
+  },
+  {
+    "name": "svg/icon_man_towerlookout.svg",
+    "bytes": 286
+  },
+  {
+    "name": "svg/icon_nat_air.svg",
+    "bytes": 1151
+  },
+  {
+    "name": "svg/icon_nat_cave.svg",
+    "bytes": 761
+  },
+  {
+    "name": "svg/icon_nat_cliff.svg",
+    "bytes": 660
+  },
+  {
+    "name": "svg/icon_nat_indication.svg",
+    "bytes": 492
+  },
+  {
+    "name": "svg/icon_nat_mountainpass.svg",
+    "bytes": 494
+  },
+  {
+    "name": "svg/icon_nat_mushroom.svg",
+    "bytes": 339
+  },
+  {
+    "name": "svg/icon_nat_peak.svg",
+    "bytes": 471
+  },
+  {
+    "name": "svg/icon_nat_poi.svg",
+    "bytes": 959
+  },
+  {
+    "name": "svg/icon_nat_tree.svg",
+    "bytes": 226
+  },
+  {
+    "name": "svg/icon_nat_wood.svg",
+    "bytes": 557
+  },
+  {
+    "name": "svg/icon_power_stationcoal.svg",
+    "bytes": 481
+  },
+  {
+    "name": "svg/icon_power_stationgas.svg",
+    "bytes": 477
+  },
+  {
+    "name": "svg/icon_power_stationsolar.svg",
+    "bytes": 1286
+  },
+  {
+    "name": "svg/icon_power_stationwater.svg",
+    "bytes": 1192
+  },
+  {
+    "name": "svg/icon_power_stationwind.svg",
+    "bytes": 404
+  },
+  {
+    "name": "svg/icon_power_towerhigh.svg",
+    "bytes": 996
+  },
+  {
+    "name": "svg/icon_power_towerlow.svg",
+    "bytes": 377
+  },
+  {
+    "name": "svg/icon_power_transformer.svg",
+    "bytes": 768
+  },
+  {
+    "name": "svg/icon_shop_alcohol.svg",
+    "bytes": 690
+  },
+  {
+    "name": "svg/icon_shop_bakery.svg",
+    "bytes": 1347
+  },
+  {
+    "name": "svg/icon_shop_book.svg",
+    "bytes": 422
+  },
+  {
+    "name": "svg/icon_shop_butcher.svg",
+    "bytes": 569
+  },
+  {
+    "name": "svg/icon_shop_carrepair.svg",
+    "bytes": 668
+  },
+  {
+    "name": "svg/icon_shop_clothes.svg",
+    "bytes": 257
+  },
+  {
+    "name": "svg/icon_shop_computer.svg",
+    "bytes": 447
+  },
+  {
+    "name": "svg/icon_shop_confectionery.svg",
+    "bytes": 354
+  },
+  {
+    "name": "svg/icon_shop_convenience.svg",
+    "bytes": 532
+  },
+  {
+    "name": "svg/icon_shop_copyshop.svg",
+    "bytes": 662
+  },
+  {
+    "name": "svg/icon_shop_departmentstore.svg",
+    "bytes": 1090
+  },
+  {
+    "name": "svg/icon_shop_diy.svg",
+    "bytes": 592
+  },
+  {
+    "name": "svg/icon_shop_estate.svg",
+    "bytes": 272
+  },
+  {
+    "name": "svg/icon_shop_fish.svg",
+    "bytes": 465
+  },
+  {
+    "name": "svg/icon_shop_florist.svg",
+    "bytes": 604
+  },
+  {
+    "name": "svg/icon_shop_gardencentre.svg",
+    "bytes": 387
+  },
+  {
+    "name": "svg/icon_shop_gift.svg",
+    "bytes": 741
+  },
+  {
+    "name": "svg/icon_shop_greengrocer.svg",
+    "bytes": 408
+  },
+  {
+    "name": "svg/icon_shop_hairdresser.svg",
+    "bytes": 846
+  },
+  {
+    "name": "svg/icon_shop_hearingaids.svg",
+    "bytes": 826
+  },
+  {
+    "name": "svg/icon_shop_hifi.svg",
+    "bytes": 702
+  },
+  {
+    "name": "svg/icon_shop_jewelry.svg",
+    "bytes": 461
+  },
+  {
+    "name": "svg/icon_shop_kiosk.svg",
+    "bytes": 651
+  },
+  {
+    "name": "svg/icon_shop_laundrette.svg",
+    "bytes": 877
+  },
+  {
+    "name": "svg/icon_shop_marketplace.svg",
+    "bytes": 1411
+  },
+  {
+    "name": "svg/icon_shop_mobilephone.svg",
+    "bytes": 1634
+  },
+  {
+    "name": "svg/icon_shop_music.svg",
+    "bytes": 600
+  },
+  {
+    "name": "svg/icon_shop_newspaper.svg",
+    "bytes": 1787
+  },
+  {
+    "name": "svg/icon_shop_pet.svg",
+    "bytes": 588
+  },
+  {
+    "name": "svg/icon_shop_photo.svg",
+    "bytes": 514
+  },
+  {
+    "name": "svg/icon_shop_supermarket.svg",
+    "bytes": 928
+  },
+  {
+    "name": "svg/icon_shop_tackle.svg",
+    "bytes": 481
+  },
+  {
+    "name": "svg/icon_shop_tobacco.svg",
+    "bytes": 461
+  },
+  {
+    "name": "svg/icon_shop_toys.svg",
+    "bytes": 551
+  },
+  {
+    "name": "svg/icon_shop_vendingmachine.svg",
+    "bytes": 1159
+  },
+  {
+    "name": "svg/icon_shop_videorental.svg",
+    "bytes": 1218
+  },
+  {
+    "name": "svg/icon_sport_activity.svg",
+    "bytes": 434
+  },
+  {
+    "name": "svg/icon_sport_archery.svg",
+    "bytes": 571
+  },
+  {
+    "name": "svg/icon_sport_baseball.svg",
+    "bytes": 464
+  },
+  {
+    "name": "svg/icon_sport_canoe.svg",
+    "bytes": 776
+  },
+  {
+    "name": "svg/icon_sport_cricket.svg",
+    "bytes": 636
+  },
+  {
+    "name": "svg/icon_sport_cycling.svg",
+    "bytes": 1485
+  },
+  {
+    "name": "svg/icon_sport_diving.svg",
+    "bytes": 609
+  },
+  {
+    "name": "svg/icon_sport_golf.svg",
+    "bytes": 443
+  },
+  {
+    "name": "svg/icon_sport_golfmini.svg",
+    "bytes": 1355
+  },
+  {
+    "name": "svg/icon_sport_gym.svg",
+    "bytes": 720
+  },
+  {
+    "name": "svg/icon_sport_gymnasium.svg",
+    "bytes": 754
+  },
+  {
+    "name": "svg/icon_sport_hiking.svg",
+    "bytes": 729
+  },
+  {
+    "name": "svg/icon_sport_horseracing.svg",
+    "bytes": 1526
+  },
+  {
+    "name": "svg/icon_sport_iceskating.svg",
+    "bytes": 445
+  },
+  {
+    "name": "svg/icon_sport_jetski.svg",
+    "bytes": 754
+  },
+  {
+    "name": "svg/icon_sport_leisurecentre.svg",
+    "bytes": 731
+  },
+  {
+    "name": "svg/icon_sport_motorracing.svg",
+    "bytes": 553
+  },
+  {
+    "name": "svg/icon_sport_paragliding.svg",
+    "bytes": 626
+  },
+  {
+    "name": "svg/icon_sport_roller.svg",
+    "bytes": 486
+  },
+  {
+    "name": "svg/icon_sport_running.svg",
+    "bytes": 878
+  },
+  {
+    "name": "svg/icon_sport_sailing.svg",
+    "bytes": 496
+  },
+  {
+    "name": "svg/icon_sport_scubadiving.svg",
+    "bytes": 1101
+  },
+  {
+    "name": "svg/icon_sport_shooting.svg",
+    "bytes": 400
+  },
+  {
+    "name": "svg/icon_sport_skateboarding.svg",
+    "bytes": 1024
+  },
+  {
+    "name": "svg/icon_sport_skiingcrosscountry.svg",
+    "bytes": 615
+  },
+  {
+    "name": "svg/icon_sport_skiingdownhill.svg",
+    "bytes": 442
+  },
+  {
+    "name": "svg/icon_sport_skiingmountain.svg",
+    "bytes": 1070
+  },
+  {
+    "name": "svg/icon_sport_snooker.svg",
+    "bytes": 1581
+  },
+  {
+    "name": "svg/icon_sport_snowshoeing.svg",
+    "bytes": 724
+  },
+  {
+    "name": "svg/icon_sport_soccer.svg",
+    "bytes": 934
+  },
+  {
+    "name": "svg/icon_sport_stadium.svg",
+    "bytes": 810
+  },
+  {
+    "name": "svg/icon_sport_swimmingindoor.svg",
+    "bytes": 1214
+  },
+  {
+    "name": "svg/icon_sport_swimmingoutdoor.svg",
+    "bytes": 2219
+  },
+  {
+    "name": "svg/icon_sport_tennis.svg",
+    "bytes": 411
+  },
+  {
+    "name": "svg/icon_sport_trailrunning.svg",
+    "bytes": 1248
+  },
+  {
+    "name": "svg/icon_sport_windsurfing.svg",
+    "bytes": 711
+  },
+  {
+    "name": "svg/icon_sym_audio.svg",
+    "bytes": 288
+  },
+  {
+    "name": "svg/icon_sym_flag.svg",
+    "bytes": 230
+  },
+  {
+    "name": "svg/icon_sym_music.svg",
+    "bytes": 319
+  },
+  {
+    "name": "svg/icon_sym_picture.svg",
+    "bytes": 531
+  },
+  {
+    "name": "svg/icon_tour_archeological.svg",
+    "bytes": 1672
+  },
+  {
+    "name": "svg/icon_tour_art.svg",
+    "bytes": 1922
+  },
+  {
+    "name": "svg/icon_tour_artgallery.svg",
+    "bytes": 927
+  },
+  {
+    "name": "svg/icon_tour_attraction.svg",
+    "bytes": 644
+  },
+  {
+    "name": "svg/icon_tour_battlefield.svg",
+    "bytes": 620
+  },
+  {
+    "name": "svg/icon_tour_beach.svg",
+    "bytes": 349
+  },
+  {
+    "name": "svg/icon_tour_boundarystone.svg",
+    "bytes": 108
+  },
+  {
+    "name": "svg/icon_tour_casino.svg",
+    "bytes": 648
+  },
+  {
+    "name": "svg/icon_tour_castle.svg",
+    "bytes": 265
+  },
+  {
+    "name": "svg/icon_tour_cinema.svg",
+    "bytes": 1047
+  },
+  {
+    "name": "svg/icon_tour_citygate.svg",
+    "bytes": 127
+  },
+  {
+    "name": "svg/icon_tour_clock.svg",
+    "bytes": 959
+  },
+  {
+    "name": "svg/icon_tour_fountain.svg",
+    "bytes": 1116
+  },
+  {
+    "name": "svg/icon_tour_guidepost.svg",
+    "bytes": 316
+  },
+  {
+    "name": "svg/icon_tour_information.svg",
+    "bytes": 337
+  },
+  {
+    "name": "svg/icon_tour_map.svg",
+    "bytes": 637
+  },
+  {
+    "name": "svg/icon_tour_maya.svg",
+    "bytes": 917
+  },
+  {
+    "name": "svg/icon_tour_memorial.svg",
+    "bytes": 7497
+  },
+  {
+    "name": "svg/icon_tour_monument.svg",
+    "bytes": 406
+  },
+  {
+    "name": "svg/icon_tour_museum.svg",
+    "bytes": 199
+  },
+  {
+    "name": "svg/icon_tour_picnic.svg",
+    "bytes": 208
+  },
+  {
+    "name": "svg/icon_tour_runestone.svg",
+    "bytes": 261
+  },
+  {
+    "name": "svg/icon_tour_steamtrain.svg",
+    "bytes": 514
+  },
+  {
+    "name": "svg/icon_tour_theatre.svg",
+    "bytes": 770
+  },
+  {
+    "name": "svg/icon_tour_themepark.svg",
+    "bytes": 1668
+  },
+  {
+    "name": "svg/icon_tour_viewpoint.svg",
+    "bytes": 385
+  },
+  {
+    "name": "svg/icon_tour_waterwheel.svg",
+    "bytes": 1574
+  },
+  {
+    "name": "svg/icon_tour_waysidecross.svg",
+    "bytes": 404
+  },
+  {
+    "name": "svg/icon_tour_waysideshrine.svg",
+    "bytes": 691
+  },
+  {
+    "name": "svg/icon_tour_windmill.svg",
+    "bytes": 541
+  },
+  {
+    "name": "svg/icon_tour_wreck.svg",
+    "bytes": 570
+  },
+  {
+    "name": "svg/icon_tour_zoo.svg",
+    "bytes": 821
+  },
+  {
+    "name": "svg/icon_transp_aerodrome.svg",
+    "bytes": 1391
+  },
+  {
+    "name": "svg/icon_transp_airplane.svg",
+    "bytes": 292
+  },
+  {
+    "name": "svg/icon_transp_airport.svg",
+    "bytes": 449
+  },
+  {
+    "name": "svg/icon_transp_atv.svg",
+    "bytes": 714
+  },
+  {
+    "name": "svg/icon_transp_bicycle.svg",
+    "bytes": 1291
+  },
+  {
+    "name": "svg/icon_transp_bicyclerental.svg",
+    "bytes": 1276
+  },
+  {
+    "name": "svg/icon_transp_boat.svg",
+    "bytes": 690
+  },
+  {
+    "name": "svg/icon_transp_bus.svg",
+    "bytes": 695
+  },
+  {
+    "name": "svg/icon_transp_busstation.svg",
+    "bytes": 1325
+  },
+  {
+    "name": "svg/icon_transp_busstop.svg",
+    "bytes": 792
+  },
+  {
+    "name": "svg/icon_transp_cablecar.svg",
+    "bytes": 600
+  },
+  {
+    "name": "svg/icon_transp_car.svg",
+    "bytes": 875
+  },
+  {
+    "name": "svg/icon_transp_carrental.svg",
+    "bytes": 772
+  },
+  {
+    "name": "svg/icon_transp_carshare.svg",
+    "bytes": 907
+  },
+  {
+    "name": "svg/icon_transp_fuel.svg",
+    "bytes": 357
+  },
+  {
+    "name": "svg/icon_transp_fuellpg.svg",
+    "bytes": 1213
+  },
+  {
+    "name": "svg/icon_transp_helicopter.svg",
+    "bytes": 828
+  },
+  {
+    "name": "svg/icon_transp_helicopterpad.svg",
+    "bytes": 412
+  },
+  {
+    "name": "svg/icon_transp_lighthouse.svg",
+    "bytes": 631
+  },
+  {
+    "name": "svg/icon_transp_marina.svg",
+    "bytes": 472
+  },
+  {
+    "name": "svg/icon_transp_motorcycle.svg",
+    "bytes": 976
+  },
+  {
+    "name": "svg/icon_transp_offroad.svg",
+    "bytes": 2198
+  },
+  {
+    "name": "svg/icon_transp_parking.svg",
+    "bytes": 146
+  },
+  {
+    "name": "svg/icon_transp_parkingbicycle.svg",
+    "bytes": 1048
+  },
+  {
+    "name": "svg/icon_transp_parkingcar.svg",
+    "bytes": 509
+  },
+  {
+    "name": "svg/icon_transp_parkingcarpaid.svg",
+    "bytes": 832
+  },
+  {
+    "name": "svg/icon_transp_parkingdisabled.svg",
+    "bytes": 428
+  },
+  {
+    "name": "svg/icon_transp_port.svg",
+    "bytes": 1187
+  },
+  {
+    "name": "svg/icon_transp_rickshaw.svg",
+    "bytes": 683
+  },
+  {
+    "name": "svg/icon_transp_scooter.svg",
+    "bytes": 669
+  },
+  {
+    "name": "svg/icon_transp_sled.svg",
+    "bytes": 805
+  },
+  {
+    "name": "svg/icon_transp_slipway.svg",
+    "bytes": 545
+  },
+  {
+    "name": "svg/icon_transp_snowmobile.svg",
+    "bytes": 532
+  },
+  {
+    "name": "svg/icon_transp_subway.svg",
+    "bytes": 847
+  },
+  {
+    "name": "svg/icon_transp_taxi.svg",
+    "bytes": 708
+  },
+  {
+    "name": "svg/icon_transp_train.svg",
+    "bytes": 600
+  },
+  {
+    "name": "svg/icon_transp_tram.svg",
+    "bytes": 448
+  },
+  {
+    "name": "svg/icon_transp_walking.svg",
+    "bytes": 683
+  },
+  {
+    "name": "svg/icon_transp_zebracrossing.svg",
+    "bytes": 744
+  },
+  {
+    "name": "svg/icon_water.svg",
+    "bytes": 1000
+  },
+  {
+    "name": "svg/icon_water_dam.svg",
+    "bytes": 524
+  },
+  {
+    "name": "svg/icon_water_hotspring.svg",
+    "bytes": 1024
+  },
+  {
+    "name": "svg/icon_water_spring.svg",
+    "bytes": 494
+  },
+  {
+    "name": "svg/icon_water_tower.svg",
+    "bytes": 968
+  },
+  {
+    "name": "svg/icon_water_waterfall.svg",
+    "bytes": 700
+  },
+  {
+    "name": "svg/icon_water_weir.svg",
+    "bytes": 889
+  },
+  {
+    "name": "svg/icon_worship.svg",
+    "bytes": 320
+  },
+  {
+    "name": "svg/icon_worship_bahai.svg",
+    "bytes": 325
+  },
+  {
+    "name": "svg/icon_worship_buddhist.svg",
+    "bytes": 711
+  },
+  {
+    "name": "svg/icon_worship_christian.svg",
+    "bytes": 239
+  },
+  {
+    "name": "svg/icon_worship_hindu.svg",
+    "bytes": 607
+  },
+  {
+    "name": "svg/icon_worship_islamic.svg",
+    "bytes": 234
+  },
+  {
+    "name": "svg/icon_worship_jain.svg",
+    "bytes": 648
+  },
+  {
+    "name": "svg/icon_worship_jewish.svg",
+    "bytes": 316
+  },
+  {
+    "name": "svg/icon_worship_shinto.svg",
+    "bytes": 446
+  },
+  {
+    "name": "svg/icon_worship_sikh.svg",
+    "bytes": 823
+  }
+]

@@ -11,6 +11,18 @@ smali, документации и завершённым Android CI. Это **�
 проверку совместимости и итоговую приёмку. Старое `pending` в requirements не означает,
 что в коде ничего нет: ниже явно учтены уже реализованные части.
 
+## Переприоритизация WORK18ноября
+
+Фактическая проверка владельца на Fold5 классифицирует b11 как технический прототип.
+Ни scoped CI46/46, ни APK не свидетельствуют о близости к parity26.1. Необходимый
+аудит всех23id/11веток/доступных art/resources и точные reference gaps сохранены в
+FULL_PARITY_AUDIT_2026-11-18.md.13screens не найдены; v26_1_map_inventory.md — не они.
+UI13/compact controls/Arimo/palette/insets/Fold width выполняются В КАЖДОМ функциональном
+блоке, не только на этапе6. Текущий production gap SVG/assets→renderer→import/export
+подтверждён: preserved models без runtime не считаются функцией. Затем whole-object/library/
+media/filemanager blocks, карты/cache/DEM/coordinates по зависимости, не повторять готовые baseline.
+Следующий APK — существенная функция и real23/35 проверки, не очередной parser/cosmetic build.
+
 ## Актуальный ограниченный результат
 
 Проверенный код b11f6b635707010dfd5869a058245faf7338ecdb / push CI44296647517 SUCCESS.

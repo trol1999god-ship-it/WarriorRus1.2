@@ -1,0 +1,2037 @@
+[
+  {
+    "branch": "codex/stage1-location-permission-regression",
+    "sha": "3e225b445abe235f62736e58430f68d021bd0b99",
+    "truncated": false,
+    "files": 72,
+    "candidates": [
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/MainActivity.java",
+        "sha": "048aa2de465d7ed39c4278e76183532fa37b34da",
+        "size": 34937
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/MapItem.java",
+        "sha": "bf54e850728c1407d9837e7d4b7a39397f07cfc0",
+        "size": 428
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/ObjectStore.java",
+        "sha": "b27823dc762266685a76a62d9f63207639df85a9",
+        "size": 12298
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/explorer/ExplorerController.java",
+        "sha": "89956414dc7f1122df09864a9e569fbac4bc24b7",
+        "size": 2146
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconLibrary.java",
+        "sha": "f5a20d575965c0f2499774668e77c2dc1308d390",
+        "size": 12247
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconsActivity.java",
+        "sha": "b1762370528c341bd892e7e66b5607baa10cc1a2",
+        "size": 21060
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/SvgPreview.java",
+        "sha": "be079f34ed74eae9ed4edbe525e71ca7278940ff",
+        "size": 4106
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/CoordinateGrid.java",
+        "sha": "02a9e2edf9c805f041dab7f96fc2d8b473134353",
+        "size": 2429
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapWorkspace.java",
+        "sha": "8e2983ec375359179e4a705335948c408c267f8e",
+        "size": 5372
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/NamedMarker.java",
+        "sha": "e88c8ca71f61a7175d6656cdf3a25c0471afec09",
+        "size": 1761
+      },
+      {
+        "path": "app/src/main/res/mipmap-hdpi/ic_launcher.png",
+        "sha": "d2c68cee3882d09a3cfb134cb20c2b16d1c8867b",
+        "size": 10346
+      },
+      {
+        "path": "app/src/main/res/mipmap-mdpi/ic_launcher.png",
+        "sha": "1c6ba307ecec5cc0403b2eac88d133e6fa726735",
+        "size": 5280
+      },
+      {
+        "path": "app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+        "sha": "d73a70667c15babd95c1f067a0e8e84752493544",
+        "size": 16225
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+        "sha": "f8bb693f241ddf8cedf8fc0dae91cdb29b6be059",
+        "size": 29612
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+        "sha": "b63a01a72734ed846993648e64dec99b1941b87c",
+        "size": 44623
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/LocationPermissionTest.java",
+        "sha": "04d9e0ce2b46fef24634f5441d97a46d1124d768",
+        "size": 1400
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/MapUiTest.java",
+        "sha": "0c9e0d6975db982ea133de56f73864265ae2fe21",
+        "size": 4912
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/ObjectStoreTest.java",
+        "sha": "998f967c8da63c16f9bd8a243f7a3d5492d964bb",
+        "size": 4898
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/WorkspaceTest.java",
+        "sha": "b5e0c163df6cf421bd3bd5f0740ef323c0723275",
+        "size": 4465
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconAssignmentTest.java",
+        "sha": "dd51aaff6fd72fc30a6a99633700fbe2d6452564",
+        "size": 3371
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconLibraryTest.java",
+        "sha": "eab015f63fc6f239a2adbb34e7067daa6ae85fe8",
+        "size": 4679
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconsActivityTest.java",
+        "sha": "5e3bf98312a76ad58272b87353a6197f493960c1",
+        "size": 3771
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/SvgPreviewTest.java",
+        "sha": "3df95f1cec9643c6558b43ba56ca68f6fc037fc0",
+        "size": 2071
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-icons-debug.apk",
+        "sha": "28a8d072b24d0983b6de897f12ee367a17c5eb2b",
+        "size": 2002187
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-map-ui-debug.apk",
+        "sha": "90a0afb16b03c2b8278992aecb0f012c2f922cd5",
+        "size": 2025088
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-stage1-debug.apk",
+        "sha": "ff39eb6049e2a8c4827675071ef63343c685fb43",
+        "size": 1873723
+      }
+    ]
+  },
+  {
+    "branch": "feature/bulk-move-folder-picker",
+    "sha": "6f75b4ee99da3498acc80a21c65359539b36d84a",
+    "truncated": false,
+    "files": 71,
+    "candidates": [
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/MainActivity.java",
+        "sha": "a04e0f414410ef9006d4d092de6285f00ecd5b89",
+        "size": 37578
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/MapItem.java",
+        "sha": "bf54e850728c1407d9837e7d4b7a39397f07cfc0",
+        "size": 428
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/ObjectStore.java",
+        "sha": "b27823dc762266685a76a62d9f63207639df85a9",
+        "size": 12298
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/explorer/ExplorerController.java",
+        "sha": "89956414dc7f1122df09864a9e569fbac4bc24b7",
+        "size": 2146
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconLibrary.java",
+        "sha": "f5a20d575965c0f2499774668e77c2dc1308d390",
+        "size": 12247
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconsActivity.java",
+        "sha": "b1762370528c341bd892e7e66b5607baa10cc1a2",
+        "size": 21060
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/SvgPreview.java",
+        "sha": "be079f34ed74eae9ed4edbe525e71ca7278940ff",
+        "size": 4106
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/CoordinateGrid.java",
+        "sha": "02a9e2edf9c805f041dab7f96fc2d8b473134353",
+        "size": 2429
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapWorkspace.java",
+        "sha": "8e2983ec375359179e4a705335948c408c267f8e",
+        "size": 5372
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/NamedMarker.java",
+        "sha": "e88c8ca71f61a7175d6656cdf3a25c0471afec09",
+        "size": 1761
+      },
+      {
+        "path": "app/src/main/res/mipmap-hdpi/ic_launcher.png",
+        "sha": "d2c68cee3882d09a3cfb134cb20c2b16d1c8867b",
+        "size": 10346
+      },
+      {
+        "path": "app/src/main/res/mipmap-mdpi/ic_launcher.png",
+        "sha": "1c6ba307ecec5cc0403b2eac88d133e6fa726735",
+        "size": 5280
+      },
+      {
+        "path": "app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+        "sha": "d73a70667c15babd95c1f067a0e8e84752493544",
+        "size": 16225
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+        "sha": "f8bb693f241ddf8cedf8fc0dae91cdb29b6be059",
+        "size": 29612
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+        "sha": "b63a01a72734ed846993648e64dec99b1941b87c",
+        "size": 44623
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/MapUiTest.java",
+        "sha": "0c9e0d6975db982ea133de56f73864265ae2fe21",
+        "size": 4912
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/ObjectStoreTest.java",
+        "sha": "7c5ca363c3ce00dd46de4cda4b76987972ab9c48",
+        "size": 5979
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/WorkspaceTest.java",
+        "sha": "b5e0c163df6cf421bd3bd5f0740ef323c0723275",
+        "size": 4465
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconAssignmentTest.java",
+        "sha": "dd51aaff6fd72fc30a6a99633700fbe2d6452564",
+        "size": 3371
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconLibraryTest.java",
+        "sha": "eab015f63fc6f239a2adbb34e7067daa6ae85fe8",
+        "size": 4679
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconsActivityTest.java",
+        "sha": "5e3bf98312a76ad58272b87353a6197f493960c1",
+        "size": 3771
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/SvgPreviewTest.java",
+        "sha": "3df95f1cec9643c6558b43ba56ca68f6fc037fc0",
+        "size": 2071
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-icons-debug.apk",
+        "sha": "28a8d072b24d0983b6de897f12ee367a17c5eb2b",
+        "size": 2002187
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-map-ui-debug.apk",
+        "sha": "90a0afb16b03c2b8278992aecb0f012c2f922cd5",
+        "size": 2025088
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-stage1-debug.apk",
+        "sha": "ff39eb6049e2a8c4827675071ef63343c685fb43",
+        "size": 1873723
+      }
+    ]
+  },
+  {
+    "branch": "feature/map-source-foundation",
+    "sha": "e22015376c1a0124c2776f5de4e467bdba8078e1",
+    "truncated": false,
+    "files": 75,
+    "candidates": [
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/MainActivity.java",
+        "sha": "120bb2705af322cbf6df3918435c15662c621bba",
+        "size": 36188
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/MapItem.java",
+        "sha": "bf54e850728c1407d9837e7d4b7a39397f07cfc0",
+        "size": 428
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/ObjectStore.java",
+        "sha": "b27823dc762266685a76a62d9f63207639df85a9",
+        "size": 12298
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/explorer/ExplorerController.java",
+        "sha": "89956414dc7f1122df09864a9e569fbac4bc24b7",
+        "size": 2146
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconLibrary.java",
+        "sha": "f5a20d575965c0f2499774668e77c2dc1308d390",
+        "size": 12247
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconsActivity.java",
+        "sha": "b1762370528c341bd892e7e66b5607baa10cc1a2",
+        "size": 21060
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/SvgPreview.java",
+        "sha": "be079f34ed74eae9ed4edbe525e71ca7278940ff",
+        "size": 4106
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/CoordinateGrid.java",
+        "sha": "02a9e2edf9c805f041dab7f96fc2d8b473134353",
+        "size": 2429
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapSourceRegistry.java",
+        "sha": "a7a7fc8741805290f0810f185b094298326e9409",
+        "size": 2574
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapWorkspace.java",
+        "sha": "96f91dd4ff0507b3be6ce2af1c58fe0dc8ae5b3d",
+        "size": 6244
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/NamedMarker.java",
+        "sha": "e88c8ca71f61a7175d6656cdf3a25c0471afec09",
+        "size": 1761
+      },
+      {
+        "path": "app/src/main/res/mipmap-hdpi/ic_launcher.png",
+        "sha": "d2c68cee3882d09a3cfb134cb20c2b16d1c8867b",
+        "size": 10346
+      },
+      {
+        "path": "app/src/main/res/mipmap-mdpi/ic_launcher.png",
+        "sha": "1c6ba307ecec5cc0403b2eac88d133e6fa726735",
+        "size": 5280
+      },
+      {
+        "path": "app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+        "sha": "d73a70667c15babd95c1f067a0e8e84752493544",
+        "size": 16225
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+        "sha": "f8bb693f241ddf8cedf8fc0dae91cdb29b6be059",
+        "size": 29612
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+        "sha": "b63a01a72734ed846993648e64dec99b1941b87c",
+        "size": 44623
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/MapUiTest.java",
+        "sha": "0c9e0d6975db982ea133de56f73864265ae2fe21",
+        "size": 4912
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/ObjectStoreTest.java",
+        "sha": "998f967c8da63c16f9bd8a243f7a3d5492d964bb",
+        "size": 4898
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/WorkspaceTest.java",
+        "sha": "e4422b6df35ab61b3501ac7555f925772f7c1c66",
+        "size": 4489
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconAssignmentTest.java",
+        "sha": "dd51aaff6fd72fc30a6a99633700fbe2d6452564",
+        "size": 3371
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconLibraryTest.java",
+        "sha": "eab015f63fc6f239a2adbb34e7067daa6ae85fe8",
+        "size": 4679
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconsActivityTest.java",
+        "sha": "5e3bf98312a76ad58272b87353a6197f493960c1",
+        "size": 3771
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/SvgPreviewTest.java",
+        "sha": "3df95f1cec9643c6558b43ba56ca68f6fc037fc0",
+        "size": 2071
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/map/MapSourceRegistryTest.java",
+        "sha": "78a1defd4d3e77336e67eaadd623b3791edfb93a",
+        "size": 1291
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-icons-debug.apk",
+        "sha": "28a8d072b24d0983b6de897f12ee367a17c5eb2b",
+        "size": 2002187
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-map-ui-debug.apk",
+        "sha": "90a0afb16b03c2b8278992aecb0f012c2f922cd5",
+        "size": 2025088
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-stage1-debug.apk",
+        "sha": "ff39eb6049e2a8c4827675071ef63343c685fb43",
+        "size": 1873723
+      }
+    ]
+  },
+  {
+    "branch": "feature/stage3-local-point-attachments",
+    "sha": "9d15a349f36749a687dd6258fd5270c26b6cdced",
+    "truncated": false,
+    "files": 75,
+    "candidates": [
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/MainActivity.java",
+        "sha": "ce682ae9dfbc9cfcac45a5f2c717d43e27757342",
+        "size": 38912
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/MapItem.java",
+        "sha": "bf54e850728c1407d9837e7d4b7a39397f07cfc0",
+        "size": 428
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/ObjectStore.java",
+        "sha": "5daf6ecde670742c78e00725b017e24ce09a22af",
+        "size": 16448
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/PointAttachments.java",
+        "sha": "544d43e202652442eccffc7f1e6595b71271a484",
+        "size": 4911
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/explorer/ExplorerController.java",
+        "sha": "89956414dc7f1122df09864a9e569fbac4bc24b7",
+        "size": 2146
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconLibrary.java",
+        "sha": "f5a20d575965c0f2499774668e77c2dc1308d390",
+        "size": 12247
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconsActivity.java",
+        "sha": "b1762370528c341bd892e7e66b5607baa10cc1a2",
+        "size": 21060
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/SvgPreview.java",
+        "sha": "be079f34ed74eae9ed4edbe525e71ca7278940ff",
+        "size": 4106
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/CoordinateGrid.java",
+        "sha": "02a9e2edf9c805f041dab7f96fc2d8b473134353",
+        "size": 2429
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapWorkspace.java",
+        "sha": "8e2983ec375359179e4a705335948c408c267f8e",
+        "size": 5372
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/NamedMarker.java",
+        "sha": "e88c8ca71f61a7175d6656cdf3a25c0471afec09",
+        "size": 1761
+      },
+      {
+        "path": "app/src/main/res/mipmap-hdpi/ic_launcher.png",
+        "sha": "d2c68cee3882d09a3cfb134cb20c2b16d1c8867b",
+        "size": 10346
+      },
+      {
+        "path": "app/src/main/res/mipmap-mdpi/ic_launcher.png",
+        "sha": "1c6ba307ecec5cc0403b2eac88d133e6fa726735",
+        "size": 5280
+      },
+      {
+        "path": "app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+        "sha": "d73a70667c15babd95c1f067a0e8e84752493544",
+        "size": 16225
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+        "sha": "f8bb693f241ddf8cedf8fc0dae91cdb29b6be059",
+        "size": 29612
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+        "sha": "b63a01a72734ed846993648e64dec99b1941b87c",
+        "size": 44623
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/MapUiTest.java",
+        "sha": "bad20e6d694cd8c28d256105a818eaab58095689",
+        "size": 4912
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/ObjectStoreTest.java",
+        "sha": "998f967c8da63c16f9bd8a243f7a3d5492d964bb",
+        "size": 4898
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/PointAttachmentsTest.java",
+        "sha": "a7223ed7a850415d4ef0223a131886b1509214f2",
+        "size": 4715
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/WorkspaceTest.java",
+        "sha": "b5e0c163df6cf421bd3bd5f0740ef323c0723275",
+        "size": 4465
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconAssignmentTest.java",
+        "sha": "9e5462094e21e2da947fa2abcfaf2b29783313ce",
+        "size": 3371
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconLibraryTest.java",
+        "sha": "eab015f63fc6f239a2adbb34e7067daa6ae85fe8",
+        "size": 4679
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconsActivityTest.java",
+        "sha": "24d7e352c3006cbd767b47c1e173fce704036ba3",
+        "size": 4183
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/SvgPreviewTest.java",
+        "sha": "3df95f1cec9643c6558b43ba56ca68f6fc037fc0",
+        "size": 2071
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-icons-debug.apk",
+        "sha": "28a8d072b24d0983b6de897f12ee367a17c5eb2b",
+        "size": 2002187
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-map-ui-debug.apk",
+        "sha": "90a0afb16b03c2b8278992aecb0f012c2f922cd5",
+        "size": 2025088
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-stage1-debug.apk",
+        "sha": "ff39eb6049e2a8c4827675071ef63343c685fb43",
+        "size": 1873723
+      }
+    ]
+  },
+  {
+    "branch": "feature/stage4-map-workspace-ui",
+    "sha": "67374f2be7a35fd4bdf47d017df061abb1766430",
+    "truncated": false,
+    "files": 76,
+    "candidates": [
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/MainActivity.java",
+        "sha": "63239a834504a057faa0bc7ac18eaa7a0ba86f09",
+        "size": 41418
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/MapItem.java",
+        "sha": "bf54e850728c1407d9837e7d4b7a39397f07cfc0",
+        "size": 428
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/ObjectStore.java",
+        "sha": "5daf6ecde670742c78e00725b017e24ce09a22af",
+        "size": 16448
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/PointAttachments.java",
+        "sha": "544d43e202652442eccffc7f1e6595b71271a484",
+        "size": 4911
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/explorer/ExplorerController.java",
+        "sha": "89956414dc7f1122df09864a9e569fbac4bc24b7",
+        "size": 2146
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconLibrary.java",
+        "sha": "f5a20d575965c0f2499774668e77c2dc1308d390",
+        "size": 12247
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconsActivity.java",
+        "sha": "b1762370528c341bd892e7e66b5607baa10cc1a2",
+        "size": 21060
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/SvgPreview.java",
+        "sha": "be079f34ed74eae9ed4edbe525e71ca7278940ff",
+        "size": 4106
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/CoordinateGrid.java",
+        "sha": "02a9e2edf9c805f041dab7f96fc2d8b473134353",
+        "size": 2429
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapWorkspace.java",
+        "sha": "8e2983ec375359179e4a705335948c408c267f8e",
+        "size": 5372
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/NamedMarker.java",
+        "sha": "e88c8ca71f61a7175d6656cdf3a25c0471afec09",
+        "size": 1761
+      },
+      {
+        "path": "app/src/main/res/mipmap-hdpi/ic_launcher.png",
+        "sha": "d2c68cee3882d09a3cfb134cb20c2b16d1c8867b",
+        "size": 10346
+      },
+      {
+        "path": "app/src/main/res/mipmap-mdpi/ic_launcher.png",
+        "sha": "1c6ba307ecec5cc0403b2eac88d133e6fa726735",
+        "size": 5280
+      },
+      {
+        "path": "app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+        "sha": "d73a70667c15babd95c1f067a0e8e84752493544",
+        "size": 16225
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+        "sha": "f8bb693f241ddf8cedf8fc0dae91cdb29b6be059",
+        "size": 29612
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+        "sha": "b63a01a72734ed846993648e64dec99b1941b87c",
+        "size": 44623
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/MapUiTest.java",
+        "sha": "bad20e6d694cd8c28d256105a818eaab58095689",
+        "size": 4912
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/ObjectStoreTest.java",
+        "sha": "998f967c8da63c16f9bd8a243f7a3d5492d964bb",
+        "size": 4898
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/PointAttachmentsTest.java",
+        "sha": "a7223ed7a850415d4ef0223a131886b1509214f2",
+        "size": 4715
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/WorkspaceRedesignTest.java",
+        "sha": "f60818f8f9241e3d04e72c1f6d45c89daea3f358",
+        "size": 3112
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/WorkspaceTest.java",
+        "sha": "b5e0c163df6cf421bd3bd5f0740ef323c0723275",
+        "size": 4465
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconAssignmentTest.java",
+        "sha": "9e5462094e21e2da947fa2abcfaf2b29783313ce",
+        "size": 3371
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconLibraryTest.java",
+        "sha": "eab015f63fc6f239a2adbb34e7067daa6ae85fe8",
+        "size": 4679
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconsActivityTest.java",
+        "sha": "24d7e352c3006cbd767b47c1e173fce704036ba3",
+        "size": 4183
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/SvgPreviewTest.java",
+        "sha": "3df95f1cec9643c6558b43ba56ca68f6fc037fc0",
+        "size": 2071
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-icons-debug.apk",
+        "sha": "28a8d072b24d0983b6de897f12ee367a17c5eb2b",
+        "size": 2002187
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-map-ui-debug.apk",
+        "sha": "90a0afb16b03c2b8278992aecb0f012c2f922cd5",
+        "size": 2025088
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-stage1-debug.apk",
+        "sha": "ff39eb6049e2a8c4827675071ef63343c685fb43",
+        "size": 1873723
+      }
+    ]
+  },
+  {
+    "branch": "feature/warrior-2-baseline",
+    "sha": "270b9bb396df6f22f957e497b861e7b809756db6",
+    "truncated": false,
+    "files": 76,
+    "candidates": [
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/MainActivity.java",
+        "sha": "3ab399d5e0ba3a4cec54e893895e8af45c8a2aa6",
+        "size": 45305
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/MapItem.java",
+        "sha": "bf54e850728c1407d9837e7d4b7a39397f07cfc0",
+        "size": 428
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/ObjectStore.java",
+        "sha": "5daf6ecde670742c78e00725b017e24ce09a22af",
+        "size": 16448
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/PointAttachments.java",
+        "sha": "544d43e202652442eccffc7f1e6595b71271a484",
+        "size": 4911
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/explorer/ExplorerController.java",
+        "sha": "89956414dc7f1122df09864a9e569fbac4bc24b7",
+        "size": 2146
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconLibrary.java",
+        "sha": "f5a20d575965c0f2499774668e77c2dc1308d390",
+        "size": 12247
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconsActivity.java",
+        "sha": "b1762370528c341bd892e7e66b5607baa10cc1a2",
+        "size": 21060
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/SvgPreview.java",
+        "sha": "be079f34ed74eae9ed4edbe525e71ca7278940ff",
+        "size": 4106
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/CoordinateGrid.java",
+        "sha": "02a9e2edf9c805f041dab7f96fc2d8b473134353",
+        "size": 2429
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapWorkspace.java",
+        "sha": "0a87f36a4ea7c7d88a21fe3b76c927d60e46a74e",
+        "size": 6100
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/NamedMarker.java",
+        "sha": "e88c8ca71f61a7175d6656cdf3a25c0471afec09",
+        "size": 1761
+      },
+      {
+        "path": "app/src/main/res/mipmap-hdpi/ic_launcher.png",
+        "sha": "d2c68cee3882d09a3cfb134cb20c2b16d1c8867b",
+        "size": 10346
+      },
+      {
+        "path": "app/src/main/res/mipmap-mdpi/ic_launcher.png",
+        "sha": "1c6ba307ecec5cc0403b2eac88d133e6fa726735",
+        "size": 5280
+      },
+      {
+        "path": "app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+        "sha": "d73a70667c15babd95c1f067a0e8e84752493544",
+        "size": 16225
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+        "sha": "f8bb693f241ddf8cedf8fc0dae91cdb29b6be059",
+        "size": 29612
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+        "sha": "b63a01a72734ed846993648e64dec99b1941b87c",
+        "size": 44623
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/MapUiTest.java",
+        "sha": "bad20e6d694cd8c28d256105a818eaab58095689",
+        "size": 4912
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/ObjectStoreTest.java",
+        "sha": "998f967c8da63c16f9bd8a243f7a3d5492d964bb",
+        "size": 4898
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/PointAttachmentsTest.java",
+        "sha": "a7223ed7a850415d4ef0223a131886b1509214f2",
+        "size": 4715
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/WorkspaceRedesignTest.java",
+        "sha": "f60818f8f9241e3d04e72c1f6d45c89daea3f358",
+        "size": 3112
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/WorkspaceTest.java",
+        "sha": "b5e0c163df6cf421bd3bd5f0740ef323c0723275",
+        "size": 4465
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconAssignmentTest.java",
+        "sha": "9e5462094e21e2da947fa2abcfaf2b29783313ce",
+        "size": 3371
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconLibraryTest.java",
+        "sha": "eab015f63fc6f239a2adbb34e7067daa6ae85fe8",
+        "size": 4679
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconsActivityTest.java",
+        "sha": "24d7e352c3006cbd767b47c1e173fce704036ba3",
+        "size": 4183
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/SvgPreviewTest.java",
+        "sha": "3df95f1cec9643c6558b43ba56ca68f6fc037fc0",
+        "size": 2071
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-icons-debug.apk",
+        "sha": "28a8d072b24d0983b6de897f12ee367a17c5eb2b",
+        "size": 2002187
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-map-ui-debug.apk",
+        "sha": "90a0afb16b03c2b8278992aecb0f012c2f922cd5",
+        "size": 2025088
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-stage1-debug.apk",
+        "sha": "ff39eb6049e2a8c4827675071ef63343c685fb43",
+        "size": 1873723
+      }
+    ]
+  },
+  {
+    "branch": "fix/approved-app-branding",
+    "sha": "0b78ceccaade603999f1322b424d156e42e51daf",
+    "truncated": false,
+    "files": 202,
+    "candidates": [
+      {
+        "path": "app/src/androidTest/java/ru/warriorrus/app/NativeMapRegressionTest.java",
+        "sha": "8d899baae916c0a4ae3125a274487eade2b8978c",
+        "size": 32003
+      },
+      {
+        "path": "app/src/main/assets/reference_ui.zip",
+        "sha": "a9d9b26e7df90a0300ddc405d08f400bce74da77",
+        "size": 1402527
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/CirclePropertiesDialog.java",
+        "sha": "0f44c8db9f6367a90ed2967ba00a660bef3323df",
+        "size": 3785
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/CompassPanel.java",
+        "sha": "00a768574def98f31959a08ce33bddb2f8ef5362",
+        "size": 3269
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/EditorPanel.java",
+        "sha": "c1f1d842a406ccef9e5c9992a1af631541ff9875",
+        "size": 5896
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/EditorViewport.java",
+        "sha": "60e634c4fe23e1b84792abe16a3498f17b477a27",
+        "size": 3339
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/GeometryPropertiesDialog.java",
+        "sha": "e30f9e9db9dc4ed966b29415bc5e2c9a58315072",
+        "size": 8125
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/MainActivity.java",
+        "sha": "e66424c6d04f4e5cb19782f697410509411e7f29",
+        "size": 134114
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/MapContextBubble.java",
+        "sha": "3db2e0fbd38b20ffa0f84a9fcfc259f04049a199",
+        "size": 4368
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/ObjectAppearanceDialog.java",
+        "sha": "b9e1326c875032cec02788c9391b423355f949f2",
+        "size": 6970
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/PlacemarkCreationMenu.java",
+        "sha": "7c3ba6495c3230f7e2cb73b6f801a9c704cd9dce",
+        "size": 3664
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/ReferenceAssets.java",
+        "sha": "47a22961cc78faa4a590349ffbf280940ff83879",
+        "size": 8416
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/ReferenceMenu.java",
+        "sha": "e9d18561d38ce298c1520173dccb73756f53e4a6",
+        "size": 3312
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/SafePanelHost.java",
+        "sha": "2a5994d8b9b2d298533bcb551196ec8022f1c828",
+        "size": 1492
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/ScreenController.java",
+        "sha": "bca4218c4f26cd35fe1d9ba4a6e38a527fb467d4",
+        "size": 3169
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/SystemInsets.java",
+        "sha": "c2bbff5da499595df500b1ef49580dda2fcd3cab",
+        "size": 2257
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/Attachment.java",
+        "sha": "e20abff3c2c91c892f5fad454e2be710c0377596",
+        "size": 522
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/MapItem.java",
+        "sha": "3e58d92209d02807ad48f49c2feb2e61e5a3725e",
+        "size": 1511
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/ObjectAppearance.java",
+        "sha": "575c85b728323716f69a9d1d07d7571da335a18c",
+        "size": 3750
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/ObjectJson.java",
+        "sha": "fcfafb409bae45bfe6e0d9c8a6cbfc6b501d45b3",
+        "size": 3592
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/ObjectStore.java",
+        "sha": "54b0d13460e96af79120e423de01e8c94a13ad82",
+        "size": 21755
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/Vertex.java",
+        "sha": "6165aa56be6b1af9d65b5aaf03b21cf19a508ca9",
+        "size": 1145
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/exchange/BundleExchange.java",
+        "sha": "201012e561ae5001738450fd42c8dca1d2f48032",
+        "size": 8569
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/exchange/LocalFilesProvider.java",
+        "sha": "195e44309f3684e70588205b339eb1276dd2f90e",
+        "size": 2729
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/exchange/PlacemarkFiles.java",
+        "sha": "a647c48ce2651c6c76b13af29f40a5b2a3f3455c",
+        "size": 20086
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/exchange/TextFormats.java",
+        "sha": "10d80ad17a164139c3d676acfec872873982cc66",
+        "size": 15147
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/explorer/ExplorerController.java",
+        "sha": "8c063e8cbe0f5eb6d2703c320b2f938285a34522",
+        "size": 2940
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/geometry/DrawingController.java",
+        "sha": "d0f0f3e28c617f7dedee9622215e20c31cea114c",
+        "size": 21089
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/geometry/ElevationProfile.java",
+        "sha": "f5b84b4b92ee28a0d6bd536430cdfd08b5ce6f28",
+        "size": 6588
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/geometry/Geometry.java",
+        "sha": "f3953cf9b0e26126cee15829186f7b749234aedf",
+        "size": 6317
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/geometry/GeometryStatisticsView.java",
+        "sha": "e5f9fc936d6b16c2781eb4c9d90738e89ba9571b",
+        "size": 2784
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/geometry/ProfilePanel.java",
+        "sha": "1c73eec525703c74bf7e1467603d0ad7f1a8faac",
+        "size": 4141
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/geometry/ProfileSeries.java",
+        "sha": "be6450edc7dcaf9098f881ccd31207c8ce3abc23",
+        "size": 3127
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/geometry/TimelineController.java",
+        "sha": "d1964960cc6a587a3cee824c23492cdd587194f6",
+        "size": 8316
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/geometry/TimelineModel.java",
+        "sha": "d631c2771060e82219b99944d14f990326890c6b",
+        "size": 4674
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/geometry/TrackStatistics.java",
+        "sha": "03b0a8cea993706d5be2fe91e313ed373175c90b",
+        "size": 2835
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconLibrary.java",
+        "sha": "b184645e6cc33dac0f7b1db43a5ae68950292337",
+        "size": 12699
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconsActivity.java",
+        "sha": "947e9e83143b7d62378b8e60a17d59637c59d032",
+        "size": 22240
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/SketchView.java",
+        "sha": "442a0c67578efa75deecd634f71659e58bd8388e",
+        "size": 2942
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/SvgPreview.java",
+        "sha": "be079f34ed74eae9ed4edbe525e71ca7278940ff",
+        "size": 4106
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/CompassController.java",
+        "sha": "5a6a0eae2585355cfdf4a78596c1264eddf73fd5",
+        "size": 4037
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/CompassDial.java",
+        "sha": "30a222724579eb59581dcaca472fff907a12f3d7",
+        "size": 3636
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/CoordinateGrid.java",
+        "sha": "55e2c2c61182480bae896e20dfd9e19ca76d7904",
+        "size": 4820
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/DynamicLineOverlay.java",
+        "sha": "5e5e0144db85894917e4cab22bbcb9fcb015ecc5",
+        "size": 3683
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapAppearance.java",
+        "sha": "77756a5b2bad9d4dfeec5499f510cb219d83f678",
+        "size": 1444
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapCatalog.java",
+        "sha": "8e7daba9e1f53b7948137817207276b8e5c3cbc6",
+        "size": 14389
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapFocusTarget.java",
+        "sha": "75425ed28fffdf685665907f5110dd5698775b47",
+        "size": 2016
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapInfoPanel.java",
+        "sha": "8092e4c55a766f53800deda8ab11bdeed6e19d35",
+        "size": 3187
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapTools.java",
+        "sha": "f9c6aacf98aafb713af07170def95cc75deff6a1",
+        "size": 7434
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapViewport.java",
+        "sha": "cf10640316201f0fabf7f285e4d29956bcb130e3",
+        "size": 1893
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapWorkspace.java",
+        "sha": "de5a41f38afa8f7dbd9ab4a44c03c35f8dca03dd",
+        "size": 11222
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/NamedMarker.java",
+        "sha": "d9a568bd3dd20384a67eb47fcf39d676279dcb92",
+        "size": 2638
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/ObjectStyleRenderer.java",
+        "sha": "b619ed79c867758e6e10bcd6d517d40475660893",
+        "size": 1387
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/RasterMaps.java",
+        "sha": "4a9e9228ab762163f0bf6df972d0b95baee6fd53",
+        "size": 5982
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/RasterTilesOverlay.java",
+        "sha": "d8fd5a91b69f69a555313b8a485b243b473cd0d4",
+        "size": 3215
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/ReferenceTileStatus.java",
+        "sha": "a06aae7e0e2e9dfb6151ab09081757a02787b458",
+        "size": 1858
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/TileDownload.java",
+        "sha": "921e004f68bb1b19264f99e5cfe30364e8ba971a",
+        "size": 5261
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/TileDownloadService.java",
+        "sha": "aaa4c7c3129e9a7fc3b1d89980eacb24d323afd4",
+        "size": 4814
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/media/LocalMedia.java",
+        "sha": "5bdb47283c655bfbcd6e18efe5cfce1e936cd3e7",
+        "size": 2166
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/settings/Coordinates.java",
+        "sha": "a9c2d21c63558a35f46b2c25733884e1793af065",
+        "size": 4454
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/settings/DisplayUnits.java",
+        "sha": "3f0989844a7ce562fb375876883c5c50afd354d5",
+        "size": 5782
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/settings/MainCommands.java",
+        "sha": "334e822623fc99218394ab2b25f889534b5e0809",
+        "size": 2166
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/settings/ProjectionMath.java",
+        "sha": "4f8e11082af19d30d14ca5b785fa33deb118fba5",
+        "size": 2971
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/settings/SettingsScreen.java",
+        "sha": "c7a5a68d2adff215351af76c4d63712a78e38faa",
+        "size": 10574
+      },
+      {
+        "path": "app/src/main/res/mipmap-hdpi/ic_launcher.png",
+        "sha": "85aaeed19b72dc460e1e71bfe5711375ac533d71",
+        "size": 14731
+      },
+      {
+        "path": "app/src/main/res/mipmap-hdpi/ic_launcher_artwork.png",
+        "sha": "85aaeed19b72dc460e1e71bfe5711375ac533d71",
+        "size": 14731
+      },
+      {
+        "path": "app/src/main/res/mipmap-hdpi/ic_launcher_round.png",
+        "sha": "85aaeed19b72dc460e1e71bfe5711375ac533d71",
+        "size": 14731
+      },
+      {
+        "path": "app/src/main/res/mipmap-mdpi/ic_launcher.png",
+        "sha": "68a6ac5cd043e9d3ac2c49bdca2cce6cc231d598",
+        "size": 6951
+      },
+      {
+        "path": "app/src/main/res/mipmap-mdpi/ic_launcher_artwork.png",
+        "sha": "68a6ac5cd043e9d3ac2c49bdca2cce6cc231d598",
+        "size": 6951
+      },
+      {
+        "path": "app/src/main/res/mipmap-mdpi/ic_launcher_round.png",
+        "sha": "68a6ac5cd043e9d3ac2c49bdca2cce6cc231d598",
+        "size": 6951
+      },
+      {
+        "path": "app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+        "sha": "bb2e5e17b8a1f829676e45540dcc7fe797792538",
+        "size": 25338
+      },
+      {
+        "path": "app/src/main/res/mipmap-xhdpi/ic_launcher_artwork.png",
+        "sha": "bb2e5e17b8a1f829676e45540dcc7fe797792538",
+        "size": 25338
+      },
+      {
+        "path": "app/src/main/res/mipmap-xhdpi/ic_launcher_round.png",
+        "sha": "bb2e5e17b8a1f829676e45540dcc7fe797792538",
+        "size": 25338
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+        "sha": "6a233363cb5c31fc47ee5bdf6f01b05115c29ea4",
+        "size": 54219
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxhdpi/ic_launcher_artwork.png",
+        "sha": "6a233363cb5c31fc47ee5bdf6f01b05115c29ea4",
+        "size": 54219
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png",
+        "sha": "6a233363cb5c31fc47ee5bdf6f01b05115c29ea4",
+        "size": 54219
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+        "sha": "0eafd1ce15966fd889177f55881313fde8f32816",
+        "size": 92213
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher_artwork.png",
+        "sha": "0eafd1ce15966fd889177f55881313fde8f32816",
+        "size": 92213
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png",
+        "sha": "0eafd1ce15966fd889177f55881313fde8f32816",
+        "size": 92213
+      },
+      {
+        "path": "app/src/main/res/raw/compass_calibration.svg",
+        "sha": "fca76bfcc473da96ffb2d31d68ad8e575cb2656d",
+        "size": 4172
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/EditorWorkflowTest.java",
+        "sha": "1c38e3085e4b6b5d0e1276c3d7fc5e98d0105960",
+        "size": 8552
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/GeometryUiTest.java",
+        "sha": "821cdc2036e24c0445ede0dd64af2a6e07803ecf",
+        "size": 8406
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/MapUiTest.java",
+        "sha": "2aa0057423fc590106814fbbd42c1a8693050b18",
+        "size": 15208
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/MenuModelTest.java",
+        "sha": "28009a9e212bc37f583edc6a87d800f3d45c3ff5",
+        "size": 3014
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/ObjectAppearanceIntegrationTest.java",
+        "sha": "7dc00c3d2ccfdbba3c0d6f33c5bb77cab28ee8d8",
+        "size": 5933
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/ObjectStoreTest.java",
+        "sha": "868b698569e599a04303c5d345da77280f5f08fb",
+        "size": 4915
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/ProfileEditorTest.java",
+        "sha": "64793ad616a0a88cb69de5650d93aad6009284e1",
+        "size": 5240
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/ProfileRenderTest.java",
+        "sha": "6417b1f8459139d034cc38801ff19c66043d3021",
+        "size": 1579
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/ReferenceAssetsTest.java",
+        "sha": "915ffa657e8bd7c6c464aae647be9d7940ff790f",
+        "size": 2985
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/ReferenceInterfaceTest.java",
+        "sha": "54a5534a3d13dc4dacfb60d745edf1fd54a76c85",
+        "size": 10802
+      }
+    ]
+  },
+  {
+    "branch": "main",
+    "sha": "2f1c92ed2feb222f0833218e8dca4095c7b7c59a",
+    "truncated": false,
+    "files": 71,
+    "candidates": [
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/MainActivity.java",
+        "sha": "a29485e6c9ac6d417b3f0a59ca5bbb715cdf2bd9",
+        "size": 34993
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/MapItem.java",
+        "sha": "bf54e850728c1407d9837e7d4b7a39397f07cfc0",
+        "size": 428
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/ObjectStore.java",
+        "sha": "b27823dc762266685a76a62d9f63207639df85a9",
+        "size": 12298
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/explorer/ExplorerController.java",
+        "sha": "89956414dc7f1122df09864a9e569fbac4bc24b7",
+        "size": 2146
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconLibrary.java",
+        "sha": "f5a20d575965c0f2499774668e77c2dc1308d390",
+        "size": 12247
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconsActivity.java",
+        "sha": "b1762370528c341bd892e7e66b5607baa10cc1a2",
+        "size": 21060
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/SvgPreview.java",
+        "sha": "be079f34ed74eae9ed4edbe525e71ca7278940ff",
+        "size": 4106
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/CoordinateGrid.java",
+        "sha": "02a9e2edf9c805f041dab7f96fc2d8b473134353",
+        "size": 2429
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapWorkspace.java",
+        "sha": "8e2983ec375359179e4a705335948c408c267f8e",
+        "size": 5372
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/NamedMarker.java",
+        "sha": "e88c8ca71f61a7175d6656cdf3a25c0471afec09",
+        "size": 1761
+      },
+      {
+        "path": "app/src/main/res/mipmap-hdpi/ic_launcher.png",
+        "sha": "d2c68cee3882d09a3cfb134cb20c2b16d1c8867b",
+        "size": 10346
+      },
+      {
+        "path": "app/src/main/res/mipmap-mdpi/ic_launcher.png",
+        "sha": "1c6ba307ecec5cc0403b2eac88d133e6fa726735",
+        "size": 5280
+      },
+      {
+        "path": "app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+        "sha": "d73a70667c15babd95c1f067a0e8e84752493544",
+        "size": 16225
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+        "sha": "f8bb693f241ddf8cedf8fc0dae91cdb29b6be059",
+        "size": 29612
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+        "sha": "b63a01a72734ed846993648e64dec99b1941b87c",
+        "size": 44623
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/MapUiTest.java",
+        "sha": "0c9e0d6975db982ea133de56f73864265ae2fe21",
+        "size": 4912
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/ObjectStoreTest.java",
+        "sha": "998f967c8da63c16f9bd8a243f7a3d5492d964bb",
+        "size": 4898
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/WorkspaceTest.java",
+        "sha": "b5e0c163df6cf421bd3bd5f0740ef323c0723275",
+        "size": 4465
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconAssignmentTest.java",
+        "sha": "dd51aaff6fd72fc30a6a99633700fbe2d6452564",
+        "size": 3371
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconLibraryTest.java",
+        "sha": "eab015f63fc6f239a2adbb34e7067daa6ae85fe8",
+        "size": 4679
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconsActivityTest.java",
+        "sha": "5e3bf98312a76ad58272b87353a6197f493960c1",
+        "size": 3771
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/SvgPreviewTest.java",
+        "sha": "3df95f1cec9643c6558b43ba56ca68f6fc037fc0",
+        "size": 2071
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-icons-debug.apk",
+        "sha": "28a8d072b24d0983b6de897f12ee367a17c5eb2b",
+        "size": 2002187
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-map-ui-debug.apk",
+        "sha": "90a0afb16b03c2b8278992aecb0f012c2f922cd5",
+        "size": 2025088
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-stage1-debug.apk",
+        "sha": "ff39eb6049e2a8c4827675071ef63343c685fb43",
+        "size": 1873723
+      }
+    ]
+  },
+  {
+    "branch": "rabochaya-karta",
+    "sha": "2b6ec76b44c2ef6720188a165fef288b1fbed83c",
+    "truncated": false,
+    "files": 4274,
+    "candidates": [
+      {
+        "path": "AGENTS.md",
+        "sha": "a0e97f66f8716542d08bb51aa935058522ffc2e2",
+        "size": 7115
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/MainActivity.java",
+        "sha": "a29485e6c9ac6d417b3f0a59ca5bbb715cdf2bd9",
+        "size": 34993
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/MapItem.java",
+        "sha": "bf54e850728c1407d9837e7d4b7a39397f07cfc0",
+        "size": 428
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/ObjectStore.java",
+        "sha": "b27823dc762266685a76a62d9f63207639df85a9",
+        "size": 12298
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/explorer/ExplorerController.java",
+        "sha": "89956414dc7f1122df09864a9e569fbac4bc24b7",
+        "size": 2146
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconLibrary.java",
+        "sha": "f5a20d575965c0f2499774668e77c2dc1308d390",
+        "size": 12247
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconsActivity.java",
+        "sha": "b1762370528c341bd892e7e66b5607baa10cc1a2",
+        "size": 21060
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/SvgPreview.java",
+        "sha": "be079f34ed74eae9ed4edbe525e71ca7278940ff",
+        "size": 4106
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/CoordinateGrid.java",
+        "sha": "02a9e2edf9c805f041dab7f96fc2d8b473134353",
+        "size": 2429
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapWorkspace.java",
+        "sha": "8e2983ec375359179e4a705335948c408c267f8e",
+        "size": 5372
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/NamedMarker.java",
+        "sha": "e88c8ca71f61a7175d6656cdf3a25c0471afec09",
+        "size": 1761
+      },
+      {
+        "path": "app/src/main/res/mipmap-hdpi/ic_launcher.png",
+        "sha": "d2c68cee3882d09a3cfb134cb20c2b16d1c8867b",
+        "size": 10346
+      },
+      {
+        "path": "app/src/main/res/mipmap-mdpi/ic_launcher.png",
+        "sha": "1c6ba307ecec5cc0403b2eac88d133e6fa726735",
+        "size": 5280
+      },
+      {
+        "path": "app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+        "sha": "d73a70667c15babd95c1f067a0e8e84752493544",
+        "size": 16225
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+        "sha": "f8bb693f241ddf8cedf8fc0dae91cdb29b6be059",
+        "size": 29612
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+        "sha": "b63a01a72734ed846993648e64dec99b1941b87c",
+        "size": 44623
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/MapUiTest.java",
+        "sha": "0c9e0d6975db982ea133de56f73864265ae2fe21",
+        "size": 4912
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/ObjectStoreTest.java",
+        "sha": "998f967c8da63c16f9bd8a243f7a3d5492d964bb",
+        "size": 4898
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/WorkspaceTest.java",
+        "sha": "b5e0c163df6cf421bd3bd5f0740ef323c0723275",
+        "size": 4465
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconAssignmentTest.java",
+        "sha": "dd51aaff6fd72fc30a6a99633700fbe2d6452564",
+        "size": 3371
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconLibraryTest.java",
+        "sha": "eab015f63fc6f239a2adbb34e7067daa6ae85fe8",
+        "size": 4679
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconsActivityTest.java",
+        "sha": "5e3bf98312a76ad58272b87353a6197f493960c1",
+        "size": 3771
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/SvgPreviewTest.java",
+        "sha": "3df95f1cec9643c6558b43ba56ca68f6fc037fc0",
+        "size": 2071
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-icons-debug.apk",
+        "sha": "28a8d072b24d0983b6de897f12ee367a17c5eb2b",
+        "size": 2002187
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-map-ui-debug.apk",
+        "sha": "90a0afb16b03c2b8278992aecb0f012c2f922cd5",
+        "size": 2025088
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-stage1-debug.apk",
+        "sha": "ff39eb6049e2a8c4827675071ef63343c685fb43",
+        "size": 1873723
+      },
+      {
+        "path": "independent-core/independent-app/assets/workspace-icons/collapse.png",
+        "sha": "11d708460cd51a9e92111a853ccfb1593f27da02",
+        "size": 1140
+      },
+      {
+        "path": "independent-core/independent-app/assets/workspace-icons/compass.png",
+        "sha": "c5144dfa1ec628384feefe1a2df2329518021e09",
+        "size": 7218
+      },
+      {
+        "path": "independent-core/independent-app/assets/workspace-icons/expand.png",
+        "sha": "c45a07b55e9d9230d3833c6b4cd755b7f2027957",
+        "size": 1210
+      },
+      {
+        "path": "independent-core/independent-app/assets/workspace-icons/files.png",
+        "sha": "27e80fb76212aabb5e463be3c2c8eb4f3ca0ca60",
+        "size": 1593
+      },
+      {
+        "path": "independent-core/independent-app/assets/workspace-icons/maps.png",
+        "sha": "79065d22f54e80678d4fa77e47601e8a5a733ca4",
+        "size": 6096
+      },
+      {
+        "path": "independent-core/independent-app/assets/workspace-icons/marks.png",
+        "sha": "06fc11cc0e59a9f9ef2fc2e1ac944328ffc18adf",
+        "size": 4296
+      },
+      {
+        "path": "independent-core/independent-app/assets/workspace-icons/menu.png",
+        "sha": "af968f3fbd11681f891b84c81b3d5bd17be8432b",
+        "size": 2174
+      },
+      {
+        "path": "independent-core/independent-app/assets/workspace-icons/minus.png",
+        "sha": "074ff7009c8be2c71c0ac93c46c401bc89205f4c",
+        "size": 1163
+      },
+      {
+        "path": "independent-core/independent-app/assets/workspace-icons/plus.png",
+        "sha": "f00fb81d73bb3f15e420b9daa42051e7c24d1033",
+        "size": 1109
+      },
+      {
+        "path": "independent-core/independent-app/assets/workspace-icons/search.png",
+        "sha": "741e54eb96868246b0cf5369a42204616d4e02a2",
+        "size": 2017
+      },
+      {
+        "path": "independent-core/independent-app/res/drawable-hdpi-v4/app_icon.png",
+        "sha": "85aaeed19b72dc460e1e71bfe5711375ac533d71",
+        "size": 14731
+      },
+      {
+        "path": "independent-core/independent-app/res/drawable-mdpi-v4/app_icon.png",
+        "sha": "68a6ac5cd043e9d3ac2c49bdca2cce6cc231d598",
+        "size": 6951
+      },
+      {
+        "path": "independent-core/independent-app/res/drawable-xhdpi-v4/app_icon.png",
+        "sha": "bb2e5e17b8a1f829676e45540dcc7fe797792538",
+        "size": 25338
+      },
+      {
+        "path": "independent-core/independent-app/res/drawable-xxhdpi-v4/app_icon.png",
+        "sha": "6a233363cb5c31fc47ee5bdf6f01b05115c29ea4",
+        "size": 54219
+      },
+      {
+        "path": "independent-core/independent-app/res/drawable-xxxhdpi-v4/app_icon.png",
+        "sha": "0eafd1ce15966fd889177f55881313fde8f32816",
+        "size": 92213
+      },
+      {
+        "path": "independent-core/owned-projects/api-stubs/java/lang/invoke/CallSite.java",
+        "sha": "71a9334393be9494859957eb5a7736b9526ddb8d",
+        "size": 112
+      },
+      {
+        "path": "independent-core/owned-projects/api-stubs/java/lang/invoke/LambdaMetafactory.java",
+        "sha": "a38f74d0cbad2a03ae80b4e5f4fd20cc513c4c77",
+        "size": 311
+      },
+      {
+        "path": "independent-core/owned-projects/api-stubs/java/lang/invoke/MethodHandle.java",
+        "sha": "b14ccd3bbe9d2ead77207ab88f795187adb7833e",
+        "size": 116
+      },
+      {
+        "path": "independent-core/owned-projects/api-stubs/java/lang/invoke/MethodHandles.java",
+        "sha": "e89aded935d88dde3400b28074fdd037f554c48c",
+        "size": 199
+      },
+      {
+        "path": "independent-core/owned-projects/api-stubs/java/lang/invoke/MethodType.java",
+        "sha": "d620dc535ef5857803ab4998029eb128e1d4cce7",
+        "size": 114
+      },
+      {
+        "path": "independent-core/owned-projects/api-stubs/org/rabochaya/projects/KmlProject.java",
+        "sha": "cffd8eab2a29e6d2b185d569dda62b647a6c460f",
+        "size": 1282
+      },
+      {
+        "path": "independent-core/owned-projects/api-stubs/org/rabochaya/projects/ProjectStore.java",
+        "sha": "9f48a49ee065cc467d6570a3fb448d9b599133dd",
+        "size": 884
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/AttachmentsActivity.java",
+        "sha": "f4252c1867980e8975ce550594c05bfe63154b65",
+        "size": 6804
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/BmpRaster.java",
+        "sha": "411b9ef3046d6b2c0cbe38b03c3b656c86061dac",
+        "size": 3591
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/BundledTiles.java",
+        "sha": "c99ac8e170b8ea9bdc0cb0f4f8a47ac086d6a74b",
+        "size": 818
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/CacheExport.java",
+        "sha": "6be84281da774ca228e2f8bd44c4878d2e8b1f84",
+        "size": 6267
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/CacheExportActivity.java",
+        "sha": "367eee77f2d75cebce951d8b33725c12b68a8e0e",
+        "size": 7215
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/CatalogIndex.java",
+        "sha": "c9554886cb93fab5898e95e5b9a62b50635519e8",
+        "size": 3697
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/CompassActivity.java",
+        "sha": "0c01c9f96a22b4a853f9721c49e093aa06f07b5c",
+        "size": 4736
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/CompassMath.java",
+        "sha": "b25c2360847003979ba26831d5302c738c1c7fce",
+        "size": 1458
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/CompositionCacheExport.java",
+        "sha": "ad518c62226de1bbfcdf3813de4eaef168f03ff6",
+        "size": 7694
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/CompositionDownloadActivity.java",
+        "sha": "c436ca09dedd17068392aad32e1a297f55cbed27",
+        "size": 13020
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/CompositionDownloadJob.java",
+        "sha": "7f95435ee6a64ad57be3ce60964b8132d5ca0aca",
+        "size": 6004
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/CompositionDownloadSettings.java",
+        "sha": "708bb1c305a288d3e923419d59e5c0860312d639",
+        "size": 2650
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/CoordinateSettings.java",
+        "sha": "6edb3be2bf59b5e12d4a3214f09a23d958bc4f1d",
+        "size": 1362
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/Coordinates.java",
+        "sha": "d661402ca2723d3a01fbd40a00380b2fff99a9a5",
+        "size": 12399
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/DemActivity.java",
+        "sha": "51d6a60db7d54ab2ef35e2d62bd3f5732c9b1954",
+        "size": 8283
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/DemProfile.java",
+        "sha": "8958f701c6780fdfc5e3e47d04f2a30fbe38cba5",
+        "size": 2947
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/DemProfileView.java",
+        "sha": "eae7abd475636265509a0970ecee1ba30e3ea730",
+        "size": 2098
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/FeatureEdits.java",
+        "sha": "58e99fdc4df86412bcedff36d32c96c9b80222e2",
+        "size": 2165
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/GeoRasterTransform.java",
+        "sha": "e16cb71405b646f097cd20ea786279859e685e71",
+        "size": 4374
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/GeoTiffImport.java",
+        "sha": "aebad5dbc882ff2c13644275005dc06e94dd64ed",
+        "size": 793
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/GeoTiffRaster.java",
+        "sha": "a1ed11ab849f8c20d07d006f6cef6ddc472be530",
+        "size": 15384
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/GeometryCloseDraft.java",
+        "sha": "5500b044bfe91253bcfedc13be25a141ebdf9128",
+        "size": 1987
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/GeometryConfirmationDraft.java",
+        "sha": "8711c0c7cbbae7a7b0c9f043358673c024edac3a",
+        "size": 2543
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/GeometryCoordinates.java",
+        "sha": "d090cf427f670b83f30bd055d1f991950ed48d49",
+        "size": 2883
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/GeometryDraft.java",
+        "sha": "6833f7d1cc8e38b944dcf28d8bfaca0de8c11729",
+        "size": 6047
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/GeometryEditorActivity.java",
+        "sha": "6839d88f6f9b7c461e77f91be9ac98889bfa702a",
+        "size": 64157
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/GeometryEdits.java",
+        "sha": "ae2d3839931655cb2a5a7db123b472c1db180c2d",
+        "size": 9901
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/GeometryMapCanvas.java",
+        "sha": "2a806a45e08d030e734d940d2fe26ebdb1152a28",
+        "size": 12521
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/GeometryMapState.java",
+        "sha": "5fe46a2cb612f3f9d522e6e2e05a1bc42e04df69",
+        "size": 5361
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/GeometryMapUndoDraft.java",
+        "sha": "cda9f13e49f93e0a43d95c8e4ab8833391846e61",
+        "size": 1733
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/GeometryPartChoiceDraft.java",
+        "sha": "07f93c142a417e303190c99aafa29f9589c2e895",
+        "size": 2720
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/GeometryVertices.java",
+        "sha": "8eff07aba2b44b1662482d3f98759d6c0405191c",
+        "size": 2155
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/GifRaster.java",
+        "sha": "eb08df2f5a614a69f455dbf3c0a57a6117b6da86",
+        "size": 8260
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/HgtHillshade.java",
+        "sha": "f97ea0d0fb8c5df5576b65174f1b265c2aa7e28d",
+        "size": 4731
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/HgtHillshadeImport.java",
+        "sha": "59e1d733da757c43ade9bda6daeedc6cec591840",
+        "size": 856
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/HgtRaster.java",
+        "sha": "f1d214a45a6ed70ec2121624a55440294191fba1",
+        "size": 6415
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/KmlComponentStyle.java",
+        "sha": "58ad3fb6922f5dad2bb8f8d831ac477ece10c97f",
+        "size": 4994
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/KmlComponentStyleEdit.java",
+        "sha": "17b7409abb283696ab47c2931954386549b1f207",
+        "size": 4416
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/KmlTimeFilter.java",
+        "sha": "5404ac12126490a5ee0bde29d477a1fed85d5315",
+        "size": 6425
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/KmlXml.java",
+        "sha": "6e8df39e043711f8050d57f377563e26207ac79d",
+        "size": 4738
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/LocalMapActivity.java",
+        "sha": "e4e504c0d01f397fa928eca9a2fa629cb7192f28",
+        "size": 49073
+      },
+      {
+        "path": "independent-core/owned-projects/src/org/rabochaya/projects/LocalMapView.java",
+        "sha": "3fc47d4740a7351edf52aaede067c91c744ea5ab",
+        "size": 20217
+      }
+    ]
+  },
+  {
+    "branch": "rename-rabochaya-karta",
+    "sha": "50d637901765e380a027757e115a2e1251b0138d",
+    "truncated": false,
+    "files": 71,
+    "candidates": [
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/MainActivity.java",
+        "sha": "5cb124471456d79bbe9f217f2534a6c0ebc686f1",
+        "size": 39694
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/MapItem.java",
+        "sha": "bf54e850728c1407d9837e7d4b7a39397f07cfc0",
+        "size": 428
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/data/ObjectStore.java",
+        "sha": "a68c728ef767521fb17da8924ef9ce2751e4da96",
+        "size": 12750
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/explorer/ExplorerController.java",
+        "sha": "89956414dc7f1122df09864a9e569fbac4bc24b7",
+        "size": 2146
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconLibrary.java",
+        "sha": "f5a20d575965c0f2499774668e77c2dc1308d390",
+        "size": 12247
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/IconsActivity.java",
+        "sha": "b1762370528c341bd892e7e66b5607baa10cc1a2",
+        "size": 21060
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/icons/SvgPreview.java",
+        "sha": "be079f34ed74eae9ed4edbe525e71ca7278940ff",
+        "size": 4106
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/CoordinateGrid.java",
+        "sha": "02a9e2edf9c805f041dab7f96fc2d8b473134353",
+        "size": 2429
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/MapWorkspace.java",
+        "sha": "58124556bbf5077dd1503a60ae222f10a6534473",
+        "size": 5464
+      },
+      {
+        "path": "app/src/main/java/ru/warriorrus/app/map/NamedMarker.java",
+        "sha": "e88c8ca71f61a7175d6656cdf3a25c0471afec09",
+        "size": 1761
+      },
+      {
+        "path": "app/src/main/res/mipmap-hdpi/ic_launcher.png",
+        "sha": "d2c68cee3882d09a3cfb134cb20c2b16d1c8867b",
+        "size": 10346
+      },
+      {
+        "path": "app/src/main/res/mipmap-mdpi/ic_launcher.png",
+        "sha": "1c6ba307ecec5cc0403b2eac88d133e6fa726735",
+        "size": 5280
+      },
+      {
+        "path": "app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+        "sha": "d73a70667c15babd95c1f067a0e8e84752493544",
+        "size": 16225
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+        "sha": "f8bb693f241ddf8cedf8fc0dae91cdb29b6be059",
+        "size": 29612
+      },
+      {
+        "path": "app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+        "sha": "b63a01a72734ed846993648e64dec99b1941b87c",
+        "size": 44623
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/MapUiTest.java",
+        "sha": "577af90f0ff7a7579fd97265437734b14b32dd24",
+        "size": 4904
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/ObjectStoreTest.java",
+        "sha": "998f967c8da63c16f9bd8a243f7a3d5492d964bb",
+        "size": 4898
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/WorkspaceTest.java",
+        "sha": "66cd9da58774165bb9e1714ce6caabd198e51f84",
+        "size": 4509
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconAssignmentTest.java",
+        "sha": "dd51aaff6fd72fc30a6a99633700fbe2d6452564",
+        "size": 3371
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconLibraryTest.java",
+        "sha": "eab015f63fc6f239a2adbb34e7067daa6ae85fe8",
+        "size": 4679
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/IconsActivityTest.java",
+        "sha": "5e3bf98312a76ad58272b87353a6197f493960c1",
+        "size": 3771
+      },
+      {
+        "path": "app/src/test/java/ru/warriorrus/app/icons/SvgPreviewTest.java",
+        "sha": "3df95f1cec9643c6558b43ba56ca68f6fc037fc0",
+        "size": 2071
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-icons-debug.apk",
+        "sha": "28a8d072b24d0983b6de897f12ee367a17c5eb2b",
+        "size": 2002187
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-map-ui-debug.apk",
+        "sha": "90a0afb16b03c2b8278992aecb0f012c2f922cd5",
+        "size": 2025088
+      },
+      {
+        "path": "downloads/Warrior-rus-2.0-stage1-debug.apk",
+        "sha": "ff39eb6049e2a8c4827675071ef63343c685fb43",
+        "size": 1873723
+      }
+    ]
+  }
+]

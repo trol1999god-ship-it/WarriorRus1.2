@@ -1,0 +1,350 @@
+[
+  {
+    "id": "ui-map",
+    "implementation": "Interactive map/touch/viewport/panels exist; olive palette,6 shortcuts+collapse versus late branch4 sections; not26.1 parity.",
+    "code": "LocalMapActivity/LocalMapView/WorkspaceUi",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/LocalMapActivity.java",
+      "owned-projects/src/org/rabochaya/projects/LocalMapView.java",
+      "owned-projects/src/org/rabochaya/projects/WorkspaceUi.java"
+    ],
+    "gap": "Exact13-screen layout, compact coordinates, safe system insets, Fold width; no invented acceptance.",
+    "change": "Exact13-screen layout, compact coordinates, safe system insets, Fold width; no invented acceptance.",
+    "priority": "P0",
+    "verification": "launcher/geometrymap API23+35 b11 PASS; Fold5 owner reports prototype",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "ui-menus",
+    "implementation": "Menus call real operations but generic AlertDialogs/olive style differ.",
+    "code": "WorkspaceUi/ObjectManagerActivity",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/WorkspaceUi.java",
+      "owned-projects/src/org/rabochaya/projects/ObjectManagerActivity.java"
+    ],
+    "gap": "Restore confirmed texts/order/panels/icons per each functional block, not postpone UI.",
+    "change": "Restore confirmed texts/order/panels/icons per each functional block, not postpone UI.",
+    "priority": "P0",
+    "verification": "Code + b11 scoped UI;13 reference screens unavailable",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "catalog",
+    "implementation": "54 entries/3sets/7groups retained from AQX, real XYZ transport.",
+    "code": "MapCatalog/MapCatalogActivity/TileSource",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/MapCatalog.java",
+      "owned-projects/src/org/rabochaya/projects/MapCatalogActivity.java",
+      "owned-projects/src/org/rabochaya/projects/TileSource.java"
+    ],
+    "gap": "Provider availability/license/attribution/approved live URLs; catalogue presence alone not success.",
+    "change": "Provider availability/license/attribution/approved live URLs; catalogue presence alone not success.",
+    "priority": "P0",
+    "verification": "catalogscreen/TileSource scoped; no full live provider acceptance",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "layers",
+    "implementation": "Explicit add/remove/visible/order/alpha/private named sets implemented.",
+    "code": "MapComposition/MapLayersActivity/MapCompositionPresets",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/MapComposition.java",
+      "owned-projects/src/org/rabochaya/projects/MapLayersActivity.java",
+      "owned-projects/src/org/rabochaya/projects/MapCompositionPresets.java"
+    ],
+    "gap": "Exact manager UI and reference operations/compare; broader file interoperability.",
+    "change": "Exact manager UI and reference operations/compare; broader file interoperability.",
+    "priority": "P1",
+    "verification": "b11 maplayers330/reopen77 both",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "offline-formats",
+    "implementation": "MBTiles/PNG JPEG BMP GIF Ozi/raw Deflate tiled affine GeoTIFF bounded readers.",
+    "code": "GeoTiffRaster/GeoTiffImport/OziCalibration/OfflineTiles",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/GeoTiffRaster.java",
+      "owned-projects/src/org/rabochaya/projects/GeoTiffImport.java",
+      "owned-projects/src/org/rabochaya/projects/OziCalibration.java",
+      "owned-projects/src/org/rabochaya/projects/OfflineTiles.java"
+    ],
+    "gap": "RMAP and complete26.1 registry/CRS; unsupported transforms refuse; no format parity claim.",
+    "change": "RMAP and complete26.1 registry/CRS; unsupported transforms refuse; no format parity claim.",
+    "priority": "P1",
+    "verification": "b11 offlineformats1361 both includes scoped import/pixels/data",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "cache",
+    "implementation": "Area/depth/layers foreground pause, persisted explicit resume/missing-only/policy/cap.",
+    "code": "CompositionDownloadJob/CompositionDownloadActivity/OnlineTiles",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/CompositionDownloadJob.java",
+      "owned-projects/src/org/rabochaya/projects/CompositionDownloadActivity.java",
+      "owned-projects/src/org/rabochaya/projects/OnlineTiles.java"
+    ],
+    "gap": "Exact offline-area UI/stats/all legacy cache compatibility.",
+    "change": "Exact offline-area UI/stats/all legacy cache compatibility.",
+    "priority": "P1",
+    "verification": "b11 maplayers/reopen scoped; not all provider policies",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "cache-export",
+    "implementation": "Explicit compose-aware MBTiles export with alpha/order/bounds/512MiB refusal.",
+    "code": "CacheExportActivity/RasterExportFile",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/CacheExportActivity.java",
+      "owned-projects/src/org/rabochaya/projects/RasterExportFile.java"
+    ],
+    "gap": "All reference target formats/app interoperability + import UI parity.",
+    "change": "All reference target formats/app interoperability + import UI parity.",
+    "priority": "P1",
+    "verification": "b11 cacheexport PASS",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "points",
+    "implementation": "Create/edit/copy/delete points, descriptions and folders exist.",
+    "code": "LocalMapActivity/ObjectManagerActivity/ObjectTree",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/LocalMapActivity.java",
+      "owned-projects/src/org/rabochaya/projects/ObjectManagerActivity.java",
+      "owned-projects/src/org/rabochaya/projects/ObjectTree.java"
+    ],
+    "gap": "Full properties/icon/library/card actions and nested groups/Windows11 mode parity.",
+    "change": "Full properties/icon/library/card actions and nested groups/Windows11 mode parity.",
+    "priority": "P0",
+    "verification": "b11 launcher initial+second point/store and objectmanager/reopen PASS",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "geometry",
+    "implementation": "Addressed parts/rings/vertices/drag/Undo/drafts and CAS guards.",
+    "code": "GeometryEditorActivity/GeometryMapView/GeometryMapState",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/GeometryEditorActivity.java",
+      "owned-projects/src/org/rabochaya/projects/GeometryMapState.java"
+    ],
+    "gap": "Complete routes/areas/tracks/split merge/smoothing/statistics properties and approved editing UI.",
+    "change": "Complete routes/areas/tracks/split merge/smoothing/statistics properties and approved editing UI.",
+    "priority": "P1",
+    "verification": "b11 geometry/confirm/raw tests scoped; not topology/reference completeness",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "manager",
+    "implementation": "In-project nested folders/multiselect/copy/move/delete/sort/filter.",
+    "code": "ObjectManagerActivity/ObjectTree/ObjectClipboard",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/ObjectManagerActivity.java",
+      "owned-projects/src/org/rabochaya/projects/ObjectTree.java",
+      "owned-projects/src/org/rabochaya/projects/ObjectClipboard.java"
+    ],
+    "gap": "Cross-project guarded asset transfer; both built-in/Windows11 filemanager layouts; not just list widgets.",
+    "change": "Cross-project guarded asset transfer; both built-in/Windows11 filemanager layouts; not just list widgets.",
+    "priority": "P0",
+    "verification": "b11 manager modes PASS; no Windows11 parity proof",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "symbols",
+    "implementation": "Actual component colors/fill/outline/width/label scale + StyleMap; no SVG map renderer yet.",
+    "code": "KmlComponentStyle/KmlComponentStyleEdit",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/KmlComponentStyle.java",
+      "owned-projects/src/org/rabochaya/projects/KmlComponentStyleEdit.java"
+    ],
+    "gap": "Finish preserved SVG asset→renderer→KMLKMZ/reopen; then assignment/library/editor and full appearance.",
+    "change": "Finish preserved SVG asset→renderer→KMLKMZ/reopen; then assignment/library/editor and full appearance.",
+    "priority": "P0-now",
+    "verification": "b11 actual metrics/editor pixels+data PASS; local SVG model100/JVM43 not runtime",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "media",
+    "implementation": "Private photo/audio/video add/open/remove and shared payload preservation.",
+    "code": "AttachmentsActivity/MediaPlaybackActivity/MediaLinks",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/AttachmentsActivity.java",
+      "owned-projects/src/org/rabochaya/projects/MediaPlaybackActivity.java",
+      "owned-projects/src/org/rabochaya/projects/MediaLinks.java"
+    ],
+    "gap": "Text attachment/editor and confirmed capture/record + full card integration and explicit transfer.",
+    "change": "Text attachment/editor and confirmed capture/record + full card integration and explicit transfer.",
+    "priority": "P1",
+    "verification": "Prior scoped media checks; b11 46 map driver not media acceptance",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "import-export",
+    "implementation": "KMLKMZ DOM/payload import/export/SAF exists; shared-style edits preserve exact other DOM.",
+    "code": "ProjectStore/KmlProject (own smali)/ProjectWrites",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/ProjectWrites.java"
+    ],
+    "gap": "SVG visual semantics/complete styles and GPX/SHP/GeoJSON/IGC if confirmed; no opaque-byte-only implementation claims.",
+    "change": "SVG visual semantics/complete styles and GPX/SHP/GeoJSON/IGC if confirmed; no opaque-byte-only implementation claims.",
+    "priority": "P0-now",
+    "verification": "b11 KML component/KMZ roundtrip scoped PASS",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "filters",
+    "implementation": "Name/description/type/visibility/date/sort private prefs.",
+    "code": "ObjectListing/KmlTimeFilter/ObjectFormDraft",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/ObjectListing.java",
+      "owned-projects/src/org/rabochaya/projects/KmlTimeFilter.java",
+      "owned-projects/src/org/rabochaya/projects/ObjectFormDraft.java"
+    ],
+    "gap": "Reference full filter fields, consistent multiple-object/group UX.",
+    "change": "Reference full filter fields, consistent multiple-object/group UX.",
+    "priority": "P1",
+    "verification": "b11 filters/dates/forms/reopen scoped PASS",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "bluetooth",
+    "implementation": "No background transmission; legacy branch has explicit BundleExchange candidate.",
+    "code": "No complete explicit Bluetooth block in independent core",
+    "existing_source_paths": [],
+    "gap": "Safe explicit whole-package share/Bluetooth with Cancel/data/provider guards.",
+    "change": "Safe explicit whole-package share/Bluetooth with Cancel/data/provider guards.",
+    "priority": "P1-after-export",
+    "verification": "Not implemented/NOT accepted",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "coordinates",
+    "implementation": "WGS84 DD DM DMS/UTM/MGRS + manual centre conversion.",
+    "code": "Coordinates/CoordinateSettings",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/Coordinates.java",
+      "owned-projects/src/org/rabochaya/projects/CoordinateSettings.java"
+    ],
+    "gap": "Compact approved panel/grid/all confirmed CRS/UPS precision.",
+    "change": "Compact approved panel/grid/all confirmed CRS/UPS precision.",
+    "priority": "P0-ui/P1-CRS",
+    "verification": "b11 coordinates scoped PASS; not all CRSs",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "dem",
+    "implementation": "HGT height/manual-centre/profile/coverage/hillshade/import/remove.",
+    "code": "HgtRaster/DemProfile/HgtHillshade/DemActivity",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/HgtRaster.java",
+      "owned-projects/src/org/rabochaya/projects/DemProfile.java",
+      "owned-projects/src/org/rabochaya/projects/HgtHillshade.java",
+      "owned-projects/src/org/rabochaya/projects/DemActivity.java"
+    ],
+    "gap": "Full DEM registry/collection/lighting tools + approved UI and height integration.",
+    "change": "Full DEM registry/collection/lighting tools + approved UI and height integration.",
+    "priority": "P1",
+    "verification": "b11 existing DEM scoped regressions; not full DEM acceptance",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "compass",
+    "implementation": "Accelerometer+magnetometer without location.",
+    "code": "CompassActivity/CompassMath",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/CompassActivity.java",
+      "owned-projects/src/org/rabochaya/projects/CompassMath.java"
+    ],
+    "gap": "Original panel/settings/calibration/Fold sensor behavior; physical verification separate.",
+    "change": "Original panel/settings/calibration/Fold sensor behavior; physical verification separate.",
+    "priority": "P1",
+    "verification": "JVM scoped; no real sensor acceptance",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "settings",
+    "implementation": "Per-feature private settings exist.",
+    "code": "CoordinateSettings/OnlineMapSettings/MapCompositionSettings",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/CoordinateSettings.java",
+      "owned-projects/src/org/rabochaya/projects/OnlineMapSettings.java",
+      "owned-projects/src/org/rabochaya/projects/MapCompositionSettings.java"
+    ],
+    "gap": "Consolidated exact settings scopes/menu/schemas/units, no arbitrary redesign.",
+    "change": "Consolidated exact settings scopes/menu/schemas/units, no arbitrary redesign.",
+    "priority": "P1-throughout",
+    "verification": "Scoped reopen guards; complete settings missing",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "migration",
+    "implementation": "Private guarded transactions; test package separate.",
+    "code": "ProjectWrites/ProjectStore",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/ProjectWrites.java"
+    ],
+    "gap": "26.1 backup/import/rollback/identity/certificate version migration; main keys unavailable by design.",
+    "change": "26.1 backup/import/rollback/identity/certificate version migration; main keys unavailable by design.",
+    "priority": "P0-design/P2-run",
+    "verification": "NOT replacement; no merge/phone data",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "privacy",
+    "implementation": "Only INTERNET; tile transport GET-only receives source,z,x,y; local owned data.",
+    "code": "OnlineTiles/TileSource/ProjectWrites/manifest",
+    "existing_source_paths": [
+      "owned-projects/src/org/rabochaya/projects/OnlineTiles.java",
+      "owned-projects/src/org/rabochaya/projects/TileSource.java",
+      "owned-projects/src/org/rabochaya/projects/ProjectWrites.java"
+    ],
+    "gap": "Audit every added SVG/share/network/storage endpoint and full dependency/traffic coverage.",
+    "change": "Audit every added SVG/share/network/storage endpoint and full dependency/traffic coverage.",
+    "priority": "P0-always",
+    "verification": "b11 custom source+DEX/privacy and scoped data guards; not official lint",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "independence",
+    "implementation": "Own Java overlay+own smali; no legacy runtime or native libraries.",
+    "code": "owned-projects/build_additions.py/independent-app",
+    "existing_source_paths": [],
+    "gap": "Full functional implementation/reproducibility; earlier Gradle app not substitute.",
+    "change": "Full functional implementation/reproducibility; earlier Gradle app not substitute.",
+    "priority": "P0-always",
+    "verification": "b11 binary/independence PASS",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  },
+  {
+    "id": "stability",
+    "implementation": "Real API23/35 emulator checks; strict physical/DOM/asset guards.",
+    "code": "ci/QA.md/independent-core-qa.yml",
+    "existing_source_paths": [],
+    "gap": "Real lint errors MissingClass/HardcodedDebugMode; physical Fold/Fold resize and complete scenarios.",
+    "change": "Real lint errors MissingClass/HardcodedDebugMode; physical Fold/Fold resize and complete scenarios.",
+    "priority": "P0-always",
+    "verification": "b11 push46PASS each; PR intentionally SKIPPED; lint NOT PASS",
+    "acceptance": "open; not accepted",
+    "reference_26_1_runtime_compared": false
+  }
+]
