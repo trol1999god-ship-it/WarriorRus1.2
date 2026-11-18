@@ -21,6 +21,10 @@ public final class KmlComponentStyleTests {
   s=style("<Placemark><Style><IconStyle xmlns='urn:foreign'><color>ffffffff</color></IconStyle><LineStyle><color>7fff0000</color></LineStyle><PolyStyle><fill>yes</fill><outline>2</outline></PolyStyle></Style></Placemark>");ck(s.icon==null&&s.line==0x7f0000ff&&s.fill==null&&s.outline==null);
   StringBuilder chain=new StringBuilder(shared);for(int i=0;i<9;i++)chain.append("<StyleMap id='a"+i+"'><Pair><key>normal</key><styleUrl>#"+(i==8?"s":"a"+(i+1))+"</styleUrl></Pair></StyleMap>");s=style(chain+"<Placemark><styleUrl>#a0</styleUrl></Placemark>");ck(s.line==null);
   StringBuilder many=new StringBuilder();for(int i=0;i<4097;i++)many.append("<Style id='s"+i+"'/>");d=parse(many+"<Placemark><styleUrl>#s0</styleUrl><Style><LineStyle><color>ffffffff</color></LineStyle></Style></Placemark>");resolver=new KmlComponentStyle.Resolver(d);ck(!resolver.complete);ck(resolver.resolve(feature(d)).line==0xffffffff);
+  for(String bad:new String[]{"-1","NaN","INF","Infinity","0x1p0","1e300","1e-300","257","1,5",""})ck(KmlComponentStyle.dimension(bad,true)==null);
+  ck(KmlComponentStyle.dimension("0",true)==0f&&KmlComponentStyle.dimension("256",true)==256f);ck(KmlComponentStyle.dimension("1.5",false)==1.5f&&KmlComponentStyle.dimension("16",false)==16f&&KmlComponentStyle.dimension("16.01",false)==null);
+  s=style("<Style id='s'><LabelStyle><scale>2</scale></LabelStyle><LineStyle><width>8</width></LineStyle></Style><Placemark><styleUrl>#s</styleUrl><Style><LabelStyle><scale>NaN</scale></LabelStyle><LineStyle><width xmlns='urn:foreign'>12</width></LineStyle></Style></Placemark>");ck(s.width==8f&&s.labelScale==2f);
+  s=style("<Placemark><Style><LineStyle><width>1.25e1</width></LineStyle><LabelStyle><scale>0</scale></LabelStyle></Style></Placemark>");ck(s.width==12.5f&&s.labelScale==0f);
   System.out.println("PASS KML component style: "+n+" assertions");
  }
 }

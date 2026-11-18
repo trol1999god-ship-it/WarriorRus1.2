@@ -23,6 +23,25 @@ public final class KmlComponentStyleEditTests {
    if(i==4)ck(root.getElementsByTagNameNS("*","scale").item(0).getTextContent().equals("2")&&root.getElementsByTagNameNS("*","href").item(0).getTextContent().equals("icons/test.svg"));
   }
  }
+ static Float metric(KmlComponentStyle style,String field)throws Exception{return (Float)KmlComponentStyle.class.getField(field).get(style);}
+ static void metrics(String path)throws Exception{
+  ck(KmlComponentStyleEdit.operation("component-width"));ck(KmlComponentStyleEdit.operation("component-label-scale"));
+  ck(KmlComponentStyleEdit.value("component-width","2.50").equals("2.5"));
+  String ns="http://www.opengis.net/kml/2.2";
+  Element kml=parse("<kml xmlns='"+ns+"'><Document><Style id='s'><LabelStyle><scale>2</scale></LabelStyle><LineStyle><color>ff0000ff</color><width>8</width></LineStyle></Style><StyleMap id='m'><Pair><key>normal</key><styleUrl>#s</styleUrl></Pair></StyleMap><Placemark><styleUrl>#m</styleUrl><Style><LineStyle><width>3</width></LineStyle></Style><LineString><coordinates>10,20 11,21</coordinates></LineString></Placemark><Placemark><Point><coordinates>40,50</coordinates></Point></Placemark></Document></kml>");
+  Element root=(Element)kml.getElementsByTagNameNS(ns,"Document").item(0);Node shared=root.getFirstChild().cloneNode(true),map=root.getChildNodes().item(1).cloneNode(true),other=ObjectTree.resolve(root,"1").cloneNode(true);
+  ck(metric(style(root),"width")==3f&&metric(style(root),"labelScale")==2f);
+  apply(root,"component-width","0");apply(root,"component-label-scale","1.5");ck(metric(style(root),"width")==0f&&metric(style(root),"labelScale")==1.5f);
+  ck(style(root).line==0xffff0000);ck(KmlComponentStyleEdit.read(root,"0",ObjectTree.token(root),"component-label-scale").equals("1.5"));
+  for(String op:new String[]{"component-width","component-label-scale"}){
+   for(String bad:new String[]{"-1","NaN","INF","Infinity","0x1p0","1e300",op.equals("component-width")?"257":"16.1"}){byte[] before=xml(kml);boolean refused=false;try{apply(root,op,bad);}catch(IllegalArgumentException e){refused=true;}ck(refused&&Arrays.equals(before,xml(kml)));}
+  }
+  apply(root,"component-label-scale","0");ck(metric(style(root),"labelScale")==0f);
+  apply(root,"component-width","");apply(root,"component-label-scale","");ck(metric(style(root),"width")==8f&&metric(style(root),"labelScale")==2f);
+  ck(shared.isEqualNode(root.getFirstChild())&&map.isEqualNode(root.getChildNodes().item(1))&&other.isEqualNode(ObjectTree.resolve(root,"1")));
+  Element round=parse(new String(xml(kml),"UTF-8"));Element rr=(Element)round.getElementsByTagNameNS(ns,"Document").item(0);ck(metric(style(rr),"width")==8f&&metric(style(rr),"labelScale")==2f);
+  java.nio.file.Path schemas=java.nio.file.Paths.get(path);SchemaFactory factory=SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);factory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD,"");factory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA,"");factory.newSchema(new Source[]{new StreamSource(schemas.resolve("atom-author-link.xsd").toFile()),new StreamSource(schemas.resolve("xAL.xsd").toFile()),new StreamSource(schemas.resolve("ogckml22.xsd").toFile())}).newValidator().validate(new DOMSource(round.getOwnerDocument()));ck(true);
+ }
  public static void main(String[] args)throws Exception{
   Element root=parse("<Document xmlns='http://www.opengis.net/kml/2.2'><Style id='s'><LineStyle><color>ffff0000</color><width>7</width></LineStyle><PolyStyle><fill>1</fill></PolyStyle></Style><StyleMap id='m'><Pair><key>normal</key><styleUrl>#s</styleUrl></Pair></StyleMap><Placemark id='p'><name>Свой</name><styleUrl>#m</styleUrl><Style><LineStyle><width>9</width></LineStyle><IconStyle><Icon><href>attachments/keep.svg</href></Icon></IconStyle></Style><Point><coordinates>10,20,30</coordinates></Point><ExtendedData><Data name='keep'><value>😀</value></Data></ExtendedData></Placemark><Placemark id='other'><styleUrl>#m</styleUrl><Point><coordinates>40,50</coordinates></Point></Placemark><Folder/></Document>");
   Node shared=root.getFirstChild().cloneNode(true),other=ObjectTree.resolve(root,"1").cloneNode(true),point=ObjectTree.resolve(root,"0").getElementsByTagNameNS("*","Point").item(0).cloneNode(true);
@@ -39,7 +58,7 @@ public final class KmlComponentStyleEditTests {
   apply(root,"component-line","");ck(style(root).line==0xff0000ff);apply(root,"component-fill","");ck(style(root).fill);ck(shared.isEqualNode(root.getFirstChild())&&other.isEqualNode(ObjectTree.resolve(root,"1")));
   Element round=parse(new String(xml(root),"UTF-8"));ck(style(round).line.equals(style(root).line)&&style(round).outline.equals(style(root).outline));
   for(String op:ops){ObjectEditorDraft d=new ObjectEditorDraft(7,op,"0",ObjectTree.token(root),"raw",1,2);ck(d.matches(7,root)&&!d.matches(8,root)&&d.start==1&&d.end==2);}
-  schemaOrder(args[0]);
+  schemaOrder(args[0]);metrics(args[0]);
   System.out.println("PASS KML component editing: "+n+" assertions");
  }
 }

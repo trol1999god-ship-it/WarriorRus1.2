@@ -20,7 +20,7 @@
 .method private static add(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
     .locals 7
 
-    .line 18
+    .line 19
     invoke-interface {p0}, Lorg/w3c/dom/Element;->getOwnerDocument()Lorg/w3c/dom/Document;
 
     move-result-object v0
@@ -124,7 +124,7 @@
 .method public static apply(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
     .locals 7
 
-    .line 20
+    .line 21
     invoke-static {p3, p4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->value(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object p4
@@ -191,6 +191,12 @@
 
     if-nez v6, :cond_0
 
+    invoke-static {p3}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->metric(Ljava/lang/String;)Z
+
+    move-result v6
+
+    if-nez v6, :cond_0
+
     invoke-static {v5, v3}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->remove(Lorg/w3c/dom/Element;Ljava/lang/String;)V
 
     :cond_0
@@ -207,7 +213,7 @@
 
     goto :goto_0
 
-    .line 21
+    .line 22
     :cond_2
     invoke-virtual {p4}, Ljava/lang/String;->isEmpty()Z
 
@@ -217,7 +223,7 @@
 
     return-void
 
-    .line 22
+    .line 23
     :cond_3
     if-nez v2, :cond_7
 
@@ -360,7 +366,7 @@
     :cond_6
     invoke-interface {p0, v2, p2}, Lorg/w3c/dom/Element;->insertBefore(Lorg/w3c/dom/Node;Lorg/w3c/dom/Node;)Lorg/w3c/dom/Node;
 
-    .line 23
+    .line 24
     :cond_7
     invoke-static {v2, v0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
 
@@ -385,6 +391,12 @@
 
     if-nez p1, :cond_9
 
+    invoke-static {p3}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->metric(Ljava/lang/String;)Z
+
+    move-result p1
+
+    if-nez p1, :cond_9
+
     invoke-static {p0, v3}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->add(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
 
     move-result-object p0
@@ -393,7 +405,7 @@
 
     invoke-interface {p0, p1}, Lorg/w3c/dom/Element;->setTextContent(Ljava/lang/String;)V
 
-    .line 24
+    .line 25
     :cond_9
     return-void
 .end method
@@ -401,7 +413,7 @@
 .method private static child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
     .locals 1
 
-    .line 14
+    .line 15
     invoke-interface {p0}, Lorg/w3c/dom/Element;->getFirstChild()Lorg/w3c/dom/Node;
 
     move-result-object p0
@@ -435,7 +447,7 @@
 .method private static flag(Ljava/lang/String;)Z
     .locals 1
 
-    .line 9
+    .line 10
     const-string v0, "component-fill"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -470,8 +482,8 @@
 .method private static leaf(Ljava/lang/String;)Ljava/lang/String;
     .locals 1
 
-    .line 11
-    const-string v0, "component-fill"
+    .line 12
+    const-string v0, "component-width"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -479,37 +491,98 @@
 
     if-eqz v0, :cond_0
 
-    const-string p0, "fill"
+    const-string p0, "width"
 
     goto :goto_0
 
     :cond_0
+    const-string v0, "component-label-scale"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    const-string p0, "scale"
+
+    goto :goto_0
+
+    :cond_1
+    const-string v0, "component-fill"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    const-string p0, "fill"
+
+    goto :goto_0
+
+    :cond_2
     const-string v0, "component-outline"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p0
 
-    if-eqz p0, :cond_1
+    if-eqz p0, :cond_3
 
     const-string p0, "outline"
 
     goto :goto_0
 
-    :cond_1
+    :cond_3
     const-string p0, "color"
 
     :goto_0
     return-object p0
 .end method
 
+.method private static metric(Ljava/lang/String;)Z
+    .locals 1
+
+    .line 9
+    const-string v0, "component-width"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    const-string v0, "component-label-scale"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result p0
+
+    if-eqz p0, :cond_0
+
+    goto :goto_0
+
+    :cond_0
+    const/4 p0, 0x0
+
+    goto :goto_1
+
+    :cond_1
+    :goto_0
+    const/4 p0, 0x1
+
+    :goto_1
+    return p0
+.end method
+
 .method public static operation(Ljava/lang/String;)Z
-    .locals 6
+    .locals 8
 
     .line 7
-    const-string v4, "component-fill"
+    const-string v6, "component-width"
 
-    const-string v5, "component-outline"
+    const-string v7, "component-label-scale"
 
     const-string v0, "component-icon"
 
@@ -519,7 +592,11 @@
 
     const-string v3, "component-label"
 
-    filled-new-array/range {v0 .. v5}, [Ljava/lang/String;
+    const-string v4, "component-fill"
+
+    const-string v5, "component-outline"
+
+    filled-new-array/range {v0 .. v7}, [Ljava/lang/String;
 
     move-result-object v0
 
@@ -537,7 +614,7 @@
 .method private static order(Lorg/w3c/dom/Element;)[Ljava/lang/String;
     .locals 9
 
-    .line 17
+    .line 18
     const-string v0, "Style"
 
     invoke-static {p0, v0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
@@ -703,7 +780,7 @@
 .method private static part(Ljava/lang/String;)Ljava/lang/String;
     .locals 1
 
-    .line 10
+    .line 11
     invoke-static {p0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->title(Ljava/lang/String;)Ljava/lang/String;
 
     const-string v0, "component-icon"
@@ -716,7 +793,7 @@
 
     const-string p0, "IconStyle"
 
-    goto :goto_0
+    goto :goto_2
 
     :cond_0
     const-string v0, "component-line"
@@ -725,14 +802,28 @@
 
     move-result v0
 
+    if-nez v0, :cond_4
+
+    const-string v0, "component-width"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
     if-eqz v0, :cond_1
 
-    const-string p0, "LineStyle"
-
-    goto :goto_0
+    goto :goto_1
 
     :cond_1
     const-string v0, "component-label"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_3
+
+    const-string v0, "component-label-scale"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -740,21 +831,31 @@
 
     if-eqz p0, :cond_2
 
-    const-string p0, "LabelStyle"
-
     goto :goto_0
 
     :cond_2
     const-string p0, "PolyStyle"
 
+    goto :goto_2
+
+    :cond_3
     :goto_0
+    const-string p0, "LabelStyle"
+
+    goto :goto_2
+
+    :cond_4
+    :goto_1
+    const-string p0, "LineStyle"
+
+    :goto_2
     return-object p0
 .end method
 
 .method public static read(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
     .locals 2
 
-    .line 16
+    .line 17
     invoke-static {p3}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->part(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
@@ -860,7 +961,7 @@
 .method private static remove(Lorg/w3c/dom/Element;Ljava/lang/String;)V
     .locals 3
 
-    .line 19
+    .line 20
     invoke-interface {p0}, Lorg/w3c/dom/Element;->getFirstChild()Lorg/w3c/dom/Node;
 
     move-result-object v0
@@ -892,7 +993,7 @@
 .method private static tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
     .locals 2
 
-    .line 13
+    .line 14
     invoke-interface {p0}, Lorg/w3c/dom/Node;->getNamespaceURI()Ljava/lang/String;
 
     move-result-object v0
@@ -956,7 +1057,7 @@
 .method private static target(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Element;
     .locals 1
 
-    .line 15
+    .line 16
     invoke-static {p1}, Ljava/util/Collections;->singletonList(Ljava/lang/Object;)Ljava/util/List;
 
     move-result-object v0
@@ -1001,7 +1102,7 @@
     goto :goto_0
 
     :sswitch_0
-    const-string v0, "component-line"
+    const-string v0, "component-label-scale"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -1014,7 +1115,7 @@
     goto :goto_1
 
     :sswitch_1
-    const-string v0, "component-icon"
+    const-string v0, "component-line"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -1022,25 +1123,12 @@
 
     if-eqz p0, :cond_0
 
-    const/4 p0, 0x0
+    const/4 p0, 0x3
 
     goto :goto_1
 
     :sswitch_2
-    const-string v0, "component-fill"
-
-    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result p0
-
-    if-eqz p0, :cond_0
-
-    const/4 p0, 0x4
-
-    goto :goto_1
-
-    :sswitch_3
-    const-string v0, "component-polygon"
+    const-string v0, "component-icon"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -1052,7 +1140,33 @@
 
     goto :goto_1
 
+    :sswitch_3
+    const-string v0, "component-fill"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result p0
+
+    if-eqz p0, :cond_0
+
+    const/4 p0, 0x6
+
+    goto :goto_1
+
     :sswitch_4
+    const-string v0, "component-polygon"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result p0
+
+    if-eqz p0, :cond_0
+
+    const/4 p0, 0x4
+
+    goto :goto_1
+
+    :sswitch_5
     const-string v0, "component-outline"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -1061,11 +1175,24 @@
 
     if-eqz p0, :cond_0
 
-    const/4 p0, 0x5
+    const/4 p0, 0x7
 
     goto :goto_1
 
-    :sswitch_5
+    :sswitch_6
+    const-string v0, "component-width"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result p0
+
+    if-eqz p0, :cond_0
+
+    const/4 p0, 0x0
+
+    goto :goto_1
+
+    :sswitch_7
     const-string v0, "component-label"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -1074,7 +1201,7 @@
 
     if-eqz p0, :cond_0
 
-    const/4 p0, 0x3
+    const/4 p0, 0x5
 
     goto :goto_1
 
@@ -1122,18 +1249,32 @@
 
     return-object p0
 
+    :pswitch_6
+    const-string p0, "\u041c\u0430\u0441\u0448\u0442\u0430\u0431 \u043f\u043e\u0434\u043f\u0438\u0441\u0438 KML"
+
+    return-object p0
+
+    :pswitch_7
+    const-string p0, "\u0428\u0438\u0440\u0438\u043d\u0430 \u043b\u0438\u043d\u0438\u0438 KML (px)"
+
+    return-object p0
+
     :sswitch_data_0
     .sparse-switch
-        -0x71c3c1dc -> :sswitch_5
-        -0x4e06448e -> :sswitch_4
-        -0x23c7f796 -> :sswitch_3
-        0x4ee69053 -> :sswitch_2
-        0x4ee7d749 -> :sswitch_1
-        0x4ee94ac4 -> :sswitch_0
+        -0x71c3c1dc -> :sswitch_7
+        -0x7125130a -> :sswitch_6
+        -0x4e06448e -> :sswitch_5
+        -0x23c7f796 -> :sswitch_4
+        0x4ee69053 -> :sswitch_3
+        0x4ee7d749 -> :sswitch_2
+        0x4ee94ac4 -> :sswitch_1
+        0x77433061 -> :sswitch_0
     .end sparse-switch
 
     :pswitch_data_0
     .packed-switch 0x0
+        :pswitch_7
+        :pswitch_6
         :pswitch_5
         :pswitch_4
         :pswitch_3
@@ -1144,12 +1285,12 @@
 .end method
 
 .method public static value(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-    .locals 1
+    .locals 2
 
-    .line 12
+    .line 13
     invoke-static {p0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->title(Ljava/lang/String;)Ljava/lang/String;
 
-    if-eqz p1, :cond_5
+    if-eqz p1, :cond_8
 
     invoke-virtual {p1}, Ljava/lang/String;->trim()Ljava/lang/String;
 
@@ -1164,11 +1305,61 @@
     return-object p1
 
     :cond_0
+    invoke-static {p0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->metric(Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    const-string v0, "component-width"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    invoke-static {p1, v1}, Lorg/rabochaya/projects/KmlComponentStyle;->dimension(Ljava/lang/String;Z)Ljava/lang/Float;
+
+    move-result-object p1
+
+    if-nez p1, :cond_2
+
+    new-instance p1, Ljava/lang/IllegalArgumentException;
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result p0
+
+    if-eqz p0, :cond_1
+
+    const-string p0, "\u0428\u0438\u0440\u0438\u043d\u0430: \u043e\u0442 0 \u0434\u043e 256 px; \u043f\u0443\u0441\u0442\u043e \u2014 \u043d\u0430\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0435"
+
+    goto :goto_0
+
+    :cond_1
+    const-string p0, "\u041c\u0430\u0441\u0448\u0442\u0430\u0431 \u043f\u043e\u0434\u043f\u0438\u0441\u0438: \u043e\u0442 0 \u0434\u043e 16; \u043f\u0443\u0441\u0442\u043e \u2014 \u043d\u0430\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0435"
+
+    :goto_0
+    invoke-direct {p1, p0}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+
+    throw p1
+
+    :cond_2
+    invoke-virtual {p1}, Ljava/lang/Float;->floatValue()F
+
+    move-result p0
+
+    invoke-static {p0}, Ljava/lang/Float;->toString(F)Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+
+    :cond_3
     invoke-static {p0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->flag(Ljava/lang/String;)Z
 
     move-result p0
 
-    if-eqz p0, :cond_2
+    if-eqz p0, :cond_5
 
     const-string p0, "0"
 
@@ -1176,7 +1367,7 @@
 
     move-result p0
 
-    if-nez p0, :cond_3
+    if-nez p0, :cond_6
 
     const-string p0, "1"
 
@@ -1184,11 +1375,11 @@
 
     move-result p0
 
-    if-eqz p0, :cond_1
+    if-eqz p0, :cond_4
 
-    goto :goto_0
+    goto :goto_1
 
-    :cond_1
+    :cond_4
     new-instance p0, Ljava/lang/IllegalArgumentException;
 
     const-string p1, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 1, 0 \u0438\u043b\u0438 \u043e\u0441\u0442\u0430\u0432\u044c\u0442\u0435 \u043f\u0443\u0441\u0442\u044b\u043c \u0434\u043b\u044f \u043d\u0430\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u044f"
@@ -1197,15 +1388,15 @@
 
     throw p0
 
-    :cond_2
+    :cond_5
     invoke-static {p1}, Lorg/rabochaya/projects/KmlComponentStyle;->color(Ljava/lang/String;)Ljava/lang/Integer;
 
     move-result-object p0
 
-    if-eqz p0, :cond_4
+    if-eqz p0, :cond_7
 
-    :cond_3
-    :goto_0
+    :cond_6
+    :goto_1
     sget-object p0, Ljava/util/Locale;->US:Ljava/util/Locale;
 
     invoke-virtual {p1, p0}, Ljava/lang/String;->toLowerCase(Ljava/util/Locale;)Ljava/lang/String;
@@ -1214,7 +1405,7 @@
 
     return-object p0
 
-    :cond_4
+    :cond_7
     new-instance p0, Ljava/lang/IllegalArgumentException;
 
     const-string p1, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 8 \u0437\u043d\u0430\u043a\u043e\u0432 aabbggrr, \u043d\u0430\u043f\u0440\u0438\u043c\u0435\u0440 ff0000ff \u2014 \u043a\u0440\u0430\u0441\u043d\u044b\u0439; \u043f\u0443\u0441\u0442\u043e \u2014 \u043d\u0430\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0435"
@@ -1223,7 +1414,7 @@
 
     throw p0
 
-    :cond_5
+    :cond_8
     new-instance p0, Ljava/lang/IllegalArgumentException;
 
     const-string p1, "\u0423\u043a\u0430\u0436\u0438\u0442\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435"

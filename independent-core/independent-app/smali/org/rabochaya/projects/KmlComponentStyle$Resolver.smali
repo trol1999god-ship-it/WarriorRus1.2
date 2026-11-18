@@ -53,10 +53,10 @@
 .method public constructor <init>(Lorg/w3c/dom/Document;)V
     .locals 9
 
-    .line 22
+    .line 25
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 21
+    .line 24
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
@@ -69,7 +69,7 @@
 
     iput-object v0, p0, Lorg/rabochaya/projects/KmlComponentStyle$Resolver;->duplicates:Ljava/util/HashSet;
 
-    .line 22
+    .line 25
     iput-object p1, p0, Lorg/rabochaya/projects/KmlComponentStyle$Resolver;->document:Lorg/w3c/dom/Document;
 
     const/4 v0, 0x0
@@ -94,7 +94,7 @@
 
     move v4, v3
 
-    .line 23
+    .line 26
     :goto_1
     const/4 v5, 0x1
 
@@ -195,7 +195,7 @@
 
     invoke-virtual {v5, v6}, Ljava/util/HashSet;->add(Ljava/lang/Object;)Z
 
-    .line 24
+    .line 27
     :cond_6
     :goto_4
     invoke-interface {v2}, Lorg/w3c/dom/Node;->getFirstChild()Lorg/w3c/dom/Node;
@@ -240,11 +240,11 @@
 
     goto :goto_1
 
-    .line 23
+    .line 26
     :cond_a
     move v1, v5
 
-    .line 25
+    .line 28
     :goto_6
     if-nez v1, :cond_b
 
@@ -259,7 +259,7 @@
     :cond_b
     iput-boolean v1, p0, Lorg/rabochaya/projects/KmlComponentStyle$Resolver;->complete:Z
 
-    .line 26
+    .line 29
     return-void
 .end method
 
@@ -277,7 +277,7 @@
         }
     .end annotation
 
-    .line 28
+    .line 31
     const/16 v0, 0x8
 
     if-ge p2, v0, :cond_3
@@ -373,7 +373,7 @@
         }
     .end annotation
 
-    .line 29
+    .line 32
     const-string v0, "Style"
 
     invoke-static {p1, v0}, Lorg/rabochaya/projects/KmlComponentStyle;->access$000(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
@@ -505,7 +505,7 @@
 .method public resolve(Lorg/w3c/dom/Element;)Lorg/rabochaya/projects/KmlComponentStyle;
     .locals 3
 
-    .line 27
+    .line 30
     if-eqz p1, :cond_3
 
     invoke-interface {p1}, Lorg/w3c/dom/Element;->getOwnerDocument()Lorg/w3c/dom/Document;

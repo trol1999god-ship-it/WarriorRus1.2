@@ -1,0 +1,13 @@
+{
+  "status": "local WIP candidate, Android runtime NOT executed",
+  "not_in_run": 44287853086,
+  "base": "b99f9e637aa80523162c63e0103f89af0b5acc70",
+  "jvm": "40 PASS, editor84/component47, missing-operation59 red before implementation",
+  "sdk": "23 app and matching modified instrumentation compiled; source84 exact",
+  "privacy": "custom source+DEX passed, not Android lint",
+  "release_acceptance": "unchanged, not released/accepted",
+  "apk_sha256": {
+    "app.apk": "0102ff5c0457bf86f4ce4243b8c58b5b6223e4828f2aa80456db30984076b751",
+    "style-metrics-control-tests.apk": "75a5ec06d5b2ee3d9d2dab7a0e9f760bba8210c06f4ea44f05b3024b9c5f06a9"
+  }
+}

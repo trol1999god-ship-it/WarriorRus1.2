@@ -2,7 +2,11 @@
 
 ## Текущая точка
 
-Remote ea9ff9f, CI43280843162 completed FAILURE: JVM131401369832 SUCCESS;
+Remote b99f9e637aa80523162c63e0103f89af0b5acc70. Changed-code CI44287853086 RUNNING;
+JVM134745064603 SUCCESS; Android23 job134745452435, Android35 job134745452398 pending runtime.
+НЕpush пока активен, не rerun. Current candidate includes7faed6d production order fix +b99 IME scope.
+
+Предыдущий ea9ff9f, CI43280843162 completed FAILURE: JVM131401369832 SUCCESS;
 API23 job131401634505 —43/46, API35 job131401634481 —42/46.
 Обе API: offlineformats иmaplayers failed на soft keyboard window never appeared;
 maplayersreopen SKIPPED после fixture failure. Editor/sets НЕприняты.
@@ -26,11 +30,24 @@ component58, JVM40/83385, host31 свежий PASS, matchingSDK23 source84/priva
 guards/timeouts не изменялись, свежий isolated host31 завершился19.088s без ошибок.
 Official lint MissingClass/HardcodedDebugMode остаётся NOT PASS; acceptance0/releasegate25.
 
-Следующее: один changed-code full CI existingworkflow для KML editor+namedsets0a031db+
-XML guards после push; читать оба completedjobs/source/digest/allmembers/новые PNG.
+Следующее: дочитать CI44287853086 для KML editor+namedsets0a031db+XML guards;
+читать оба completedjobs/source/digest/allmembers/новые PNG, расследовать отказы.
 Затем функциональный gap styles/import-export/SVG по проверенному контракту, далее
 media/явнаяпередача→UI/coordinates/compass/settings→migration26.1. Не orphan/dialog queue.
 Все backups/stash2/pending/toolchain/WIP сохранены; reset/clean/worktree/merge не делались.
+
+## Следующий локальный WIP: width/label scale (НЕчасть CI b99)
+
+KML_STYLE_METRICS.md: существующие StyleMap/inline/manager/render/KMZ, width0..256px,
+label scale0..16; nullable property inheritance, zero явно скрывает stroke/text,
+point outline не зависит от LineStyle width. XML unsafe values не переписываются;
+явный editor Save/Cancel/reset использует прежние owner/token guards.
+Baseline missing operation editor59 reproduced. Локально JVM40/83425/editor84/
+component47, SDK23 matching source84 app/tests, customprivacy PASS. Подготовлены
+actual raster/zero/no-shadow/point independence/polygon fill pixel guards иUI операции
+в existingofflineformats без новых mode/frame slots. Они НЕисполнены на Android.
+Нет SVG/icon library claim; текущий CI44287853086 проверяет только b99.
+Не push следующий WIP до completed результатов текущего CI; новый runtime нужен позже.
 
 ## Штатный доступ Git (история настройки)
 

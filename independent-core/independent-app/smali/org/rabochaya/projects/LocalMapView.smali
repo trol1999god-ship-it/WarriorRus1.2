@@ -3631,7 +3631,7 @@
 
     const/high16 v4, 0x40400000    # 3.0f
 
-    if-eqz v3, :cond_1e
+    if-eqz v3, :cond_22
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -3685,9 +3685,11 @@
 
     const/high16 v15, -0x1000000
 
-    const/16 v16, 0x1
+    const/16 v16, 0x0
 
-    if-eqz v14, :cond_18
+    const/16 v17, 0x1
+
+    if-eqz v14, :cond_1a
 
     invoke-interface {v9}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -3701,11 +3703,15 @@
 
     iget-object v7, v0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
 
+    iget-object v11, v5, Lorg/rabochaya/projects/KmlComponentStyle;->width:Ljava/lang/Float;
+
+    if-nez v11, :cond_b
+
     invoke-virtual/range {p0 .. p0}, Lorg/rabochaya/projects/LocalMapView;->getResources()Landroid/content/res/Resources;
 
-    move-result-object v17
+    move-result-object v11
 
-    invoke-virtual/range {v17 .. v17}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
+    invoke-virtual {v11}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
 
     move-result-object v11
 
@@ -3713,6 +3719,16 @@
 
     mul-float/2addr v11, v4
 
+    goto :goto_9
+
+    :cond_b
+    iget-object v11, v5, Lorg/rabochaya/projects/KmlComponentStyle;->width:Ljava/lang/Float;
+
+    invoke-virtual {v11}, Ljava/lang/Float;->floatValue()F
+
+    move-result v11
+
+    :goto_9
     invoke-virtual {v7, v11}, Landroid/graphics/Paint;->setStrokeWidth(F)V
 
     iget-object v7, v0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
@@ -3730,7 +3746,23 @@
 
     move-result v7
 
-    if-eqz v7, :cond_d
+    if-eqz v7, :cond_e
+
+    iget-object v7, v0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
+
+    invoke-virtual/range {p0 .. p0}, Lorg/rabochaya/projects/LocalMapView;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v11
+
+    invoke-virtual {v11}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
+
+    move-result-object v11
+
+    iget v11, v11, Landroid/util/DisplayMetrics;->density:F
+
+    mul-float/2addr v11, v4
+
+    invoke-virtual {v7, v11}, Landroid/graphics/Paint;->setStrokeWidth(F)V
 
     iget-object v7, v14, Lorg/rabochaya/projects/KmlProject$Geometry;->rings:Ljava/util/List;
 
@@ -3754,20 +3786,20 @@
 
     iget-object v13, v5, Lorg/rabochaya/projects/KmlComponentStyle;->icon:Ljava/lang/Integer;
 
-    if-nez v13, :cond_b
+    if-nez v13, :cond_c
 
     const v13, -0x193ba6
 
-    goto :goto_9
+    goto :goto_a
 
-    :cond_b
+    :cond_c
     iget-object v13, v5, Lorg/rabochaya/projects/KmlComponentStyle;->icon:Ljava/lang/Integer;
 
     invoke-virtual {v13}, Ljava/lang/Integer;->intValue()I
 
     move-result v13
 
-    :goto_9
+    :goto_a
     invoke-virtual {v11, v13}, Landroid/graphics/Paint;->setColor(I)V
 
     iget-object v11, v0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
@@ -3778,7 +3810,7 @@
 
     aget v11, v7, v10
 
-    aget v13, v7, v16
+    aget v13, v7, v17
 
     invoke-virtual/range {p0 .. p0}, Lorg/rabochaya/projects/LocalMapView;->getResources()Landroid/content/res/Resources;
 
@@ -3790,9 +3822,9 @@
 
     iget v14, v14, Landroid/util/DisplayMetrics;->density:F
 
-    const/high16 v17, 0x40e00000    # 7.0f
+    const/high16 v16, 0x40e00000    # 7.0f
 
-    mul-float v14, v14, v17
+    mul-float v14, v14, v16
 
     iget-object v12, v0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
 
@@ -3808,11 +3840,11 @@
 
     iget-object v12, v5, Lorg/rabochaya/projects/KmlComponentStyle;->icon:Ljava/lang/Integer;
 
-    if-nez v12, :cond_c
+    if-nez v12, :cond_d
 
-    goto :goto_a
+    goto :goto_b
 
-    :cond_c
+    :cond_d
     iget-object v12, v5, Lorg/rabochaya/projects/KmlComponentStyle;->icon:Ljava/lang/Integer;
 
     invoke-virtual {v12}, Ljava/lang/Integer;->intValue()I
@@ -3821,12 +3853,12 @@
 
     and-int/2addr v15, v12
 
-    :goto_a
+    :goto_b
     invoke-virtual {v11, v15}, Landroid/graphics/Paint;->setColor(I)V
 
     aget v11, v7, v10
 
-    aget v12, v7, v16
+    aget v12, v7, v17
 
     invoke-virtual/range {p0 .. p0}, Lorg/rabochaya/projects/LocalMapView;->getResources()Landroid/content/res/Resources;
 
@@ -3852,10 +3884,10 @@
 
     move-object v13, v7
 
-    goto/16 :goto_11
+    goto/16 :goto_12
 
     .line 61
-    :cond_d
+    :cond_e
     new-instance v7, Landroid/graphics/Path;
 
     invoke-direct {v7}, Landroid/graphics/Path;-><init>()V
@@ -3870,14 +3902,14 @@
 
     move-result-object v11
 
-    :goto_b
+    :goto_c
     invoke-interface {v11}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v12
 
     const-string v15, "Polygon"
 
-    if-eqz v12, :cond_13
+    if-eqz v12, :cond_14
 
     invoke-interface {v11}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -3891,14 +3923,14 @@
 
     const-wide/16 v18, 0x0
 
-    move/from16 v20, v16
+    move/from16 v20, v17
 
-    :goto_c
+    :goto_d
     invoke-interface {v12}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v21
 
-    if-eqz v21, :cond_11
+    if-eqz v21, :cond_12
 
     invoke-interface {v12}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -3914,7 +3946,7 @@
 
     move-result-wide v4
 
-    if-eqz v20, :cond_e
+    if-eqz v20, :cond_f
 
     move-object/from16 v23, v11
 
@@ -3926,9 +3958,9 @@
 
     move-wide/from16 v18, v4
 
-    goto :goto_d
+    goto :goto_e
 
-    :cond_e
+    :cond_f
     move-object/from16 v23, v11
 
     iget-wide v10, v0, Lorg/rabochaya/projects/LocalMapView;->cx:D
@@ -3945,7 +3977,7 @@
 
     add-double v18, v18, v4
 
-    :goto_d
+    :goto_e
     invoke-virtual/range {p0 .. p0}, Lorg/rabochaya/projects/LocalMapView;->getWidth()I
 
     move-result v4
@@ -3978,7 +4010,7 @@
 
     div-double/2addr v1, v10
 
-    aget-wide v10, v21, v16
+    aget-wide v10, v21, v17
 
     invoke-static {v10, v11}, Lorg/rabochaya/projects/MapMath;->y(D)D
 
@@ -4000,7 +4032,7 @@
 
     double-to-float v1, v1
 
-    if-nez v13, :cond_f
+    if-nez v13, :cond_10
 
     const/4 v2, 0x2
 
@@ -4010,21 +4042,21 @@
 
     aput v4, v13, v2
 
-    aput v1, v13, v16
+    aput v1, v13, v17
 
-    :cond_f
-    if-eqz v20, :cond_10
+    :cond_10
+    if-eqz v20, :cond_11
 
     invoke-virtual {v7, v4, v1}, Landroid/graphics/Path;->moveTo(FF)V
 
     const/16 v20, 0x0
 
-    goto :goto_e
+    goto :goto_f
 
-    :cond_10
+    :cond_11
     invoke-virtual {v7, v4, v1}, Landroid/graphics/Path;->lineTo(FF)V
 
-    :goto_e
+    :goto_f
     move/from16 v6, v21
 
     move-object/from16 v11, v23
@@ -4039,9 +4071,9 @@
 
     const/4 v10, 0x0
 
-    goto/16 :goto_c
+    goto/16 :goto_d
 
-    :cond_11
+    :cond_12
     move-object/from16 v25, v1
 
     move/from16 v26, v2
@@ -4058,11 +4090,11 @@
 
     move-result v1
 
-    if-eqz v1, :cond_12
+    if-eqz v1, :cond_13
 
     invoke-virtual {v7}, Landroid/graphics/Path;->close()V
 
-    :cond_12
+    :cond_13
     move/from16 v6, v21
 
     move-object/from16 v11, v23
@@ -4077,10 +4109,10 @@
 
     const/4 v10, 0x0
 
-    goto/16 :goto_b
+    goto/16 :goto_c
 
     .line 62
-    :cond_13
+    :cond_14
     move-object/from16 v25, v1
 
     move/from16 v26, v2
@@ -4095,7 +4127,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_16
+    if-eqz v1, :cond_17
 
     sget-object v1, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
 
@@ -4107,7 +4139,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_15
+    if-nez v1, :cond_16
 
     iget-object v1, v0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
 
@@ -4119,27 +4151,27 @@
 
     iget-object v2, v5, Lorg/rabochaya/projects/KmlComponentStyle;->polygon:Ljava/lang/Integer;
 
-    if-nez v2, :cond_14
+    if-nez v2, :cond_15
 
     const v2, 0x45e6c45a
 
-    goto :goto_f
+    goto :goto_10
 
-    :cond_14
+    :cond_15
     iget-object v2, v5, Lorg/rabochaya/projects/KmlComponentStyle;->polygon:Ljava/lang/Integer;
 
     invoke-virtual {v2}, Ljava/lang/Integer;->intValue()I
 
     move-result v2
 
-    :goto_f
+    :goto_10
     invoke-virtual {v1, v2}, Landroid/graphics/Paint;->setColor(I)V
 
     iget-object v1, v0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
 
     invoke-virtual {v8, v7, v1}, Landroid/graphics/Canvas;->drawPath(Landroid/graphics/Path;Landroid/graphics/Paint;)V
 
-    :cond_15
+    :cond_16
     iget-object v1, v0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
 
     sget-object v2, Landroid/graphics/Paint$Style;->STROKE:Landroid/graphics/Paint$Style;
@@ -4160,23 +4192,52 @@
 
     move-result v1
 
-    if-nez v1, :cond_17
+    if-nez v1, :cond_19
 
-    goto :goto_10
+    iget-object v1, v5, Lorg/rabochaya/projects/KmlComponentStyle;->width:Ljava/lang/Float;
 
-    :cond_16
+    if-eqz v1, :cond_18
+
+    iget-object v1, v5, Lorg/rabochaya/projects/KmlComponentStyle;->width:Ljava/lang/Float;
+
+    invoke-virtual {v1}, Ljava/lang/Float;->floatValue()F
+
+    move-result v1
+
+    cmpl-float v1, v1, v16
+
+    if-lez v1, :cond_19
+
+    goto :goto_11
+
+    :cond_17
     move/from16 v6, v21
 
     move-object/from16 v5, v24
 
-    :goto_10
+    iget-object v1, v5, Lorg/rabochaya/projects/KmlComponentStyle;->width:Ljava/lang/Float;
+
+    if-eqz v1, :cond_18
+
+    iget-object v1, v5, Lorg/rabochaya/projects/KmlComponentStyle;->width:Ljava/lang/Float;
+
+    invoke-virtual {v1}, Ljava/lang/Float;->floatValue()F
+
+    move-result v1
+
+    cmpl-float v1, v1, v16
+
+    if-lez v1, :cond_19
+
+    :cond_18
+    :goto_11
     iget-object v1, v0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
 
     invoke-virtual {v8, v7, v1}, Landroid/graphics/Canvas;->drawPath(Landroid/graphics/Path;Landroid/graphics/Paint;)V
 
     .line 63
-    :cond_17
-    :goto_11
+    :cond_19
+    :goto_12
     move-object/from16 v1, v25
 
     move/from16 v2, v26
@@ -4192,12 +4253,12 @@
     goto/16 :goto_8
 
     .line 64
-    :cond_18
+    :cond_1a
     move-object/from16 v25, v1
 
     move/from16 v26, v2
 
-    if-eqz v13, :cond_1d
+    if-eqz v13, :cond_21
 
     add-int/lit8 v2, v26, 0x1
 
@@ -4205,11 +4266,11 @@
 
     move/from16 v10, v26
 
-    if-ge v10, v1, :cond_1c
+    if-ge v10, v1, :cond_20
 
     iget-object v1, v5, Lorg/rabochaya/projects/KmlComponentStyle;->label:Ljava/lang/Integer;
 
-    if-eqz v1, :cond_1a
+    if-eqz v1, :cond_1c
 
     iget-object v1, v5, Lorg/rabochaya/projects/KmlComponentStyle;->label:Ljava/lang/Integer;
 
@@ -4219,37 +4280,52 @@
 
     ushr-int/lit8 v1, v1, 0x18
 
-    if-eqz v1, :cond_19
-
-    goto :goto_12
-
-    :cond_19
-    const/4 v3, 0x0
-
-    const/high16 v6, 0x3f800000    # 1.0f
-
-    goto :goto_14
-
-    :cond_1a
-    :goto_12
-    iget-object v1, v0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
-
-    iget-object v4, v5, Lorg/rabochaya/projects/KmlComponentStyle;->label:Ljava/lang/Integer;
-
-    if-nez v4, :cond_1b
-
-    const/4 v4, -0x1
+    if-eqz v1, :cond_1b
 
     goto :goto_13
 
     :cond_1b
+    const/4 v3, 0x0
+
+    const/high16 v5, 0x3f800000    # 1.0f
+
+    goto :goto_16
+
+    :cond_1c
+    :goto_13
+    iget-object v1, v5, Lorg/rabochaya/projects/KmlComponentStyle;->labelScale:Ljava/lang/Float;
+
+    if-eqz v1, :cond_1d
+
+    iget-object v1, v5, Lorg/rabochaya/projects/KmlComponentStyle;->labelScale:Ljava/lang/Float;
+
+    invoke-virtual {v1}, Ljava/lang/Float;->floatValue()F
+
+    move-result v1
+
+    cmpl-float v1, v1, v16
+
+    if-lez v1, :cond_1b
+
+    :cond_1d
+    iget-object v1, v0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
+
+    iget-object v4, v5, Lorg/rabochaya/projects/KmlComponentStyle;->label:Ljava/lang/Integer;
+
+    if-nez v4, :cond_1e
+
+    const/4 v4, -0x1
+
+    goto :goto_14
+
+    :cond_1e
     iget-object v4, v5, Lorg/rabochaya/projects/KmlComponentStyle;->label:Ljava/lang/Integer;
 
     invoke-virtual {v4}, Ljava/lang/Integer;->intValue()I
 
     move-result v4
 
-    :goto_13
+    :goto_14
     invoke-virtual {v1, v4}, Landroid/graphics/Paint;->setColor(I)V
 
     iget-object v1, v0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
@@ -4270,8 +4346,26 @@
 
     iget v4, v4, Landroid/util/DisplayMetrics;->scaledDensity:F
 
-    const/high16 v5, 0x41600000    # 14.0f
+    const/high16 v6, 0x41600000    # 14.0f
 
+    mul-float/2addr v4, v6
+
+    iget-object v7, v5, Lorg/rabochaya/projects/KmlComponentStyle;->labelScale:Ljava/lang/Float;
+
+    if-nez v7, :cond_1f
+
+    const/high16 v5, 0x3f800000    # 1.0f
+
+    goto :goto_15
+
+    :cond_1f
+    iget-object v5, v5, Lorg/rabochaya/projects/KmlComponentStyle;->labelScale:Ljava/lang/Float;
+
+    invoke-virtual {v5}, Ljava/lang/Float;->floatValue()F
+
+    move-result v5
+
+    :goto_15
     mul-float/2addr v4, v5
 
     invoke-virtual {v1, v4}, Landroid/graphics/Paint;->setTextSize(F)V
@@ -4280,9 +4374,9 @@
 
     const/high16 v4, 0x40400000    # 3.0f
 
-    const/high16 v6, 0x3f800000    # 1.0f
+    const/high16 v5, 0x3f800000    # 1.0f
 
-    invoke-virtual {v1, v4, v6, v6, v15}, Landroid/graphics/Paint;->setShadowLayer(FFFI)V
+    invoke-virtual {v1, v4, v5, v5, v15}, Landroid/graphics/Paint;->setShadowLayer(FFFI)V
 
     iget-object v1, v3, Lorg/rabochaya/projects/KmlProject$Feature;->name:Ljava/lang/String;
 
@@ -4290,40 +4384,40 @@
 
     aget v4, v13, v3
 
-    add-float/2addr v4, v5
+    add-float/2addr v4, v6
 
-    aget v7, v13, v16
+    aget v7, v13, v17
 
-    sub-float/2addr v7, v5
+    sub-float/2addr v7, v6
 
-    iget-object v5, v0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
+    iget-object v6, v0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
 
-    invoke-virtual {v8, v1, v4, v7, v5}, Landroid/graphics/Canvas;->drawText(Ljava/lang/String;FFLandroid/graphics/Paint;)V
+    invoke-virtual {v8, v1, v4, v7, v6}, Landroid/graphics/Canvas;->drawText(Ljava/lang/String;FFLandroid/graphics/Paint;)V
 
     iget-object v1, v0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
 
     invoke-virtual {v1}, Landroid/graphics/Paint;->clearShadowLayer()V
 
-    goto :goto_14
+    goto :goto_16
 
-    :cond_1c
+    :cond_20
     const/4 v3, 0x0
 
-    const/high16 v6, 0x3f800000    # 1.0f
+    const/high16 v5, 0x3f800000    # 1.0f
 
-    goto :goto_14
+    goto :goto_16
 
-    :cond_1d
+    :cond_21
     move/from16 v10, v26
 
     const/4 v3, 0x0
 
-    const/high16 v6, 0x3f800000    # 1.0f
+    const/high16 v5, 0x3f800000    # 1.0f
 
     move v2, v10
 
     .line 65
-    :goto_14
+    :goto_16
     move v10, v3
 
     move-object/from16 v1, v25
@@ -4335,7 +4429,7 @@
     goto/16 :goto_6
 
     .line 66
-    :cond_1e
+    :cond_22
     invoke-direct/range {p0 .. p1}, Lorg/rabochaya/projects/LocalMapView;->drawDraft(Landroid/graphics/Canvas;)V
 
     iget-object v1, v0, Lorg/rabochaya/projects/LocalMapView;->paint:Landroid/graphics/Paint;
