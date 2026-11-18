@@ -42,7 +42,7 @@
 
     iget-object v2, p0, Lorg/rabochaya/projects/LocalMapView$$ExternalSyntheticLambda1;->f$2:Ljava/lang/Exception;
 
-    invoke-virtual {v0, v1, v2}, Lorg/rabochaya/projects/LocalMapView;->lambda$new$1$org-rabochaya-projects-LocalMapView(Lorg/rabochaya/projects/LocalMapView$Listener;Ljava/lang/Exception;)V
+    invoke-virtual {v0, v1, v2}, Lorg/rabochaya/projects/LocalMapView;->lambda$new$3$org-rabochaya-projects-LocalMapView(Lorg/rabochaya/projects/LocalMapView$Listener;Ljava/lang/Exception;)V
 
     return-void
 .end method

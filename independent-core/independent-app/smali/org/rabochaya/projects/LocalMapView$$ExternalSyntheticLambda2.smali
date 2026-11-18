@@ -9,11 +9,13 @@
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/LocalMapView;
 
-.field public final synthetic f$1:Ljava/util/ArrayList;
+.field public final synthetic f$1:Ljava/util/IdentityHashMap;
+
+.field public final synthetic f$2:Ljava/lang/String;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapView;Ljava/util/ArrayList;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapView;Ljava/util/IdentityHashMap;Ljava/lang/String;)V
     .locals 0
 
     .line 0
@@ -21,7 +23,9 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$$ExternalSyntheticLambda2;->f$0:Lorg/rabochaya/projects/LocalMapView;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapView$$ExternalSyntheticLambda2;->f$1:Ljava/util/ArrayList;
+    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapView$$ExternalSyntheticLambda2;->f$1:Ljava/util/IdentityHashMap;
+
+    iput-object p3, p0, Lorg/rabochaya/projects/LocalMapView$$ExternalSyntheticLambda2;->f$2:Ljava/lang/String;
 
     return-void
 .end method
@@ -29,14 +33,16 @@
 
 # virtual methods
 .method public final run()V
-    .locals 2
+    .locals 3
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$$ExternalSyntheticLambda2;->f$0:Lorg/rabochaya/projects/LocalMapView;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapView$$ExternalSyntheticLambda2;->f$1:Ljava/util/ArrayList;
+    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapView$$ExternalSyntheticLambda2;->f$1:Ljava/util/IdentityHashMap;
 
-    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/LocalMapView;->lambda$openComposition$3$org-rabochaya-projects-LocalMapView(Ljava/util/ArrayList;)V
+    iget-object v2, p0, Lorg/rabochaya/projects/LocalMapView$$ExternalSyntheticLambda2;->f$2:Ljava/lang/String;
+
+    invoke-virtual {v0, v1, v2}, Lorg/rabochaya/projects/LocalMapView;->lambda$setSymbols$0$org-rabochaya-projects-LocalMapView(Ljava/util/IdentityHashMap;Ljava/lang/String;)V
 
     return-void
 .end method

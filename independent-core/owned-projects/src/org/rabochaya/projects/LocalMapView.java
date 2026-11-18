@@ -1,13 +1,50 @@
 package org.rabochaya.projects;
-import android.content.*;import android.graphics.*;import android.util.LruCache;import android.view.*;import java.io.*;import java.util.*;import java.util.concurrent.*;
+import android.content.*;import android.graphics.*;import android.os.Handler;import android.os.Looper;import android.util.LruCache;import android.view.*;import java.io.*;import java.util.*;import java.util.concurrent.*;
 /** Independent raster map + KML geometry, sharing one Web Mercator viewport. */
 public final class LocalMapView extends View {
  public interface Listener {void center(double lat,double lon,double zoom);void picked(KmlProject.Feature feature);void error(String message);void settled(double x,double y,double zoom);void draftChanged(int count);void longPressed(double lat,double lon);}
  private final IdentityHashMap<org.w3c.dom.Element,KmlComponentStyle> componentStyles=new IdentityHashMap<>();
+ private final Handler mainHandler = new Handler(Looper.getMainLooper());
  private final IdentityHashMap<org.w3c.dom.Element,SymbolImage> symbolImages=new IdentityHashMap<>();
  private static final class SymbolImage {final Bitmap bitmap;final float scale,heading,anchorX,anchorY;final Integer color;SymbolImage(Bitmap bitmap,Map<String,String> values,Integer color){this.bitmap=bitmap;this.color=color;scale=symbolNumber(values.get("scale"),1,0,16);heading=symbolNumber(values.get("heading"),0,-360,360);anchorX=anchor(values,"x",bitmap.getWidth());anchorY=bitmap.getHeight()-anchor(values,"y",bitmap.getHeight());if(bitmap.getWidth()*scale>256||bitmap.getHeight()*scale>256)throw new IllegalArgumentException("SVG: масштаб больше256px");}private static float anchor(Map<String,String> values,String axis,int extent){String value=values.get("hotSpot."+axis);float n=symbolNumber(value,.5f,-4096,4096);String unit=values.get("hotSpot."+axis+"units");if(unit==null||unit.equals("fraction"))return n*extent;if(unit.equals("pixels"))return n;if(unit.equals("insetPixels"))return extent-n;throw new IllegalArgumentException("SVG: неподдержанная единица hotSpot");}}
  private static float symbolNumber(String text,float fallback,float min,float max){if(text==null)return fallback;if(text.length()>64||!text.matches("[+-]?(?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)(?:[eE][+-]?[0-9]+)?"))throw new IllegalArgumentException("SVG: некорректный scale/heading/hotSpot");try{float n=Float.parseFloat(text);if(Float.isNaN(n)||Float.isInfinite(n)||n<min||n>max)throw new NumberFormatException();return n;}catch(NumberFormatException e){throw new IllegalArgumentException("SVG: небезопасный scale/heading/hotSpot");}}
- public void setSymbols(final KmlSymbolAssets assets){if(disposed)return;worker.execute(new Runnable(){public void run(){final IdentityHashMap<org.w3c.dom.Element,SymbolImage> decoded=new IdentityHashMap<>();String error=null;for(KmlProject.Feature f:features){if(disposed)break;KmlComponentStyle style=componentStyles.get(f.element);if(style==null||!style.symbol.containsKey("href")||style.symbol.get("href").isEmpty())continue;Bitmap bitmap=null;try{if(decoded.size()>=32)throw new IllegalArgumentException("SVG: предел32 одновременно отображаемых значков");bitmap=SvgRaster.render(assets.read(f.element,style.symbol.get("href")));SymbolImage image=new SymbolImage(bitmap,style.symbol,style.icon);decoded.put(f.element,image);bitmap=null;}catch(IllegalArgumentException invalid){error=invalid.getMessage();}finally{if(bitmap!=null)bitmap.recycle();}}final String warning=error;post(new Runnable(){public void run(){if(disposed){for(SymbolImage image:decoded.values())image.bitmap.recycle();return;}for(SymbolImage image:symbolImages.values())image.bitmap.recycle();symbolImages.clear();symbolImages.putAll(decoded);invalidate();if(warning!=null)listener.error("Не показаны некоторые значки: "+warning);}});}});}
+ public void setSymbols(final KmlSymbolAssets assets) {
+  if (disposed) return;
+  worker.execute(() -> {
+   IdentityHashMap<org.w3c.dom.Element,SymbolImage> decoded = new IdentityHashMap<>();
+   String error = null;
+   for (KmlProject.Feature feature : features) {
+    if (disposed) break;
+    KmlComponentStyle style = componentStyles.get(feature.element);
+    String href = style == null ? null : style.symbol.get("href");
+    if (href == null || href.isEmpty()) continue;
+    Bitmap bitmap = null;
+    try {
+     if (decoded.size() >= 32) throw new IllegalArgumentException("SVG: предел32 одновременно отображаемых значков");
+     bitmap = SvgRaster.render(assets.read(feature.element, href));
+     decoded.put(feature.element, new SymbolImage(bitmap, style.symbol, style.icon));
+     bitmap = null;
+    } catch (IllegalArgumentException invalid) {
+     error = invalid.getMessage();
+    } finally {
+     if (bitmap != null) bitmap.recycle();
+    }
+   }
+   String warning = error;
+   // Publish and release bitmaps on the UI thread even when the view has no window yet.
+   mainHandler.post(() -> {
+    if (disposed) {
+     for (SymbolImage image : decoded.values()) image.bitmap.recycle();
+     return;
+    }
+    for (SymbolImage image : symbolImages.values()) image.bitmap.recycle();
+    symbolImages.clear();
+    symbolImages.putAll(decoded);
+    invalidate();
+    if (warning != null) listener.error("Не показаны некоторые значки: " + warning);
+   });
+  });
+ }
  private boolean symbol(Canvas canvas,org.w3c.dom.Element feature,float x,float y){SymbolImage icon=symbolImages.get(feature);if(icon==null)return false;int saved=canvas.save();try{canvas.translate(x,y);canvas.rotate(icon.heading);canvas.scale(icon.scale,icon.scale);paint.setStyle(Paint.Style.FILL);paint.setColor(-1);paint.setAlpha(icon.color==null?255:icon.color>>>24);paint.setColorFilter(icon.color==null?null:new LightingColorFilter(icon.color&0xffffff,0));canvas.drawBitmap(icon.bitmap,-icon.anchorX,-icon.anchorY,paint);return true;}finally{paint.setColorFilter(null);paint.setAlpha(255);canvas.restoreToCount(saved);}}
  private final List<KmlProject.Feature> features;private final Listener listener;private final Paint paint=new Paint(3);private final ExecutorService worker=Executors.newSingleThreadExecutor();
  private final LruCache<String,Bitmap> cache=new LruCache<String,Bitmap>(16*1024*1024){protected int sizeOf(String k,Bitmap b){return b.getByteCount();}};

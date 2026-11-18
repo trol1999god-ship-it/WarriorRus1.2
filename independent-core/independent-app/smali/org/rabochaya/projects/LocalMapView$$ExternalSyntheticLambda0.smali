@@ -30,7 +30,7 @@
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$$ExternalSyntheticLambda0;->f$0:Lorg/rabochaya/projects/LocalMapView;
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/LocalMapView;->lambda$new$0$org-rabochaya-projects-LocalMapView()V
+    invoke-virtual {v0}, Lorg/rabochaya/projects/LocalMapView;->lambda$new$2$org-rabochaya-projects-LocalMapView()V
 
     return-void
 .end method
