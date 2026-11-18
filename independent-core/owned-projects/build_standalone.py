@@ -1,6 +1,7 @@
 """Build a clean APK from owned classes and approved launcher artwork only."""
 from pathlib import Path
 import argparse,subprocess,tempfile,shutil,zipfile,json,re,hashlib
+import xml.etree.ElementTree as ET
 p=argparse.ArgumentParser()
 for n in ('android-jar','aapt2','apktool','output'):p.add_argument('--'+n,required=True,type=Path)
 variants=p.add_mutually_exclusive_group()
@@ -19,9 +20,21 @@ if json.loads(record.read_text()).get('sources')!=actual:
 with tempfile.TemporaryDirectory(prefix='rk-independent-') as tmp:
  w=Path(tmp);res=w/'res';res.mkdir()
  shutil.copytree(root/'independent-app/res',res,dirs_exist_ok=True)
- manifest=w/'AndroidManifest.xml';manifest.write_text((root/'independent-app/AndroidManifest.xml').read_text().replace('android:debuggable="false"','android:debuggable="true"') if a.debug else (root/'independent-app/AndroidManifest.xml').read_text())
+ source_manifest = root / 'independent-app/AndroidManifest.xml'
+ manifest = w / 'AndroidManifest.xml'
+ android_namespace = 'http://schemas.android.com/apk/res/android'
+ debuggable = f'{{{android_namespace}}}debuggable'
+ tree = ET.parse(source_manifest)
+ application = tree.getroot().find('application')
+ if application is None or debuggable in application.attrib:
+  raise RuntimeError('The source manifest must leave debug mode to the build profile')
+ if a.debug:
+  ET.register_namespace('android', android_namespace)
+  application.set(debuggable, 'true')
+  tree.write(manifest, encoding='utf-8', xml_declaration=True)
+ else:
+  shutil.copyfile(source_manifest, manifest)
  def run(*args):subprocess.run(list(map(str,args)),check=True)
- if ('android:debuggable="true"' in manifest.read_text())!=a.debug:raise RuntimeError("Manifest debug profile mismatch")
  compiled=w/'res.zip';run(a.aapt2.resolve(),'compile','--dir',res,'-o',compiled)
  resources=w/'resources.apk';run(a.aapt2.resolve(),'link','-I',a.android_jar.resolve(),'--manifest',manifest,'-o',resources,compiled)
  dex=w/'classes.dex';run('java','-cp',a.apktool.resolve(),root/'security/AssembleCheck.java',root/'independent-app/smali/org/rabochaya/projects',dex)

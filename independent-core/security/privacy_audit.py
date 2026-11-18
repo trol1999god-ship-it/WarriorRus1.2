@@ -9,7 +9,8 @@ check(manifest.find('uses-sdk').get(ns+'minSdkVersion')=='23','minSdk23 required
 permissions={x.get(ns+'name') for x in manifest.findall('uses-permission')};check(permissions=={'android.permission.INTERNET'},'Unexpected permissions; Bluetooth additions require explicit reviewed implementation')
 for feature in manifest.findall('uses-feature'):check(not feature.get(ns+'name','').startswith('android.hardware.location'),'GPS/location hardware feature forbidden')
 app=manifest.find('application')
-for name in ['allowBackup','fullBackupContent','usesCleartextTraffic','debuggable']:check(app.get(ns+name)=='false','Production manifest must keep '+name+' false')
+check(ns+'debuggable' not in app.attrib,'Production manifest must use the default non-debuggable mode')
+for name in ['allowBackup','fullBackupContent','usesCleartextTraffic']:check(app.get(ns+name)=='false','Production manifest must keep '+name+' false')
 check(app.get(ns+'label')=='Рабочая карта','Application name changed')
 for activity in app.findall('activity'):
  if activity.get(ns+'name')!='org.rabochaya.projects.OwnedHomeActivity':check(activity.get(ns+'exported')=='false','Unexpected exported activity')
