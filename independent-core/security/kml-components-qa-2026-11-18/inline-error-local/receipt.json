@@ -1,0 +1,14 @@
+{
+  "cause": "native EditText error popup covers real Cancel/Save on API23 and35; b99 evidence preserved",
+  "fix": "component-specific inline scrollable validation TextView; old name/description handlers unchanged; real touch/IME/raw/cursor/data guards retained",
+  "jvm": "40 PASS, editor84/component47, total83425",
+  "source_count": 84,
+  "class_count": 578,
+  "sdk23": "app and matching modified cursor instrumentation compiled",
+  "runtime": "pending changed-code CI; not counted as fixed until actual runtime",
+  "official_lint": "exit1 MissingClass/HardcodedDebugMode/114warnings; ABI adapter incomplete; not PASS",
+  "apk_sha256": {
+    "app.apk": "b8be2ffe9e691cb0bd75be0ae10078bf6740b9aae000818fd2c5463d9be4234c",
+    "inline-error-cursor-tests.apk": "b4fc07e0a92519d1888283c3c19914e77fad39d5f47aeec481af9a2baca6c1e5"
+  }
+}

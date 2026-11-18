@@ -9,15 +9,15 @@
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-.field public final synthetic f$1:I
+.field public final synthetic f$1:Z
 
-.field public final synthetic f$2:I
+.field public final synthetic f$2:Ljava/util/List;
 
-.field public final synthetic f$3:Landroid/widget/ListView;
+.field public final synthetic f$3:Ljava/lang/String;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;IILandroid/widget/ListView;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;ZLjava/util/List;Ljava/lang/String;)V
     .locals 0
 
     .line 0
@@ -25,11 +25,11 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iput p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$1:I
+    iput-boolean p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$1:Z
 
-    iput p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$2:I
+    iput-object p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$2:Ljava/util/List;
 
-    iput-object p4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$3:Landroid/widget/ListView;
+    iput-object p4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$3:Ljava/lang/String;
 
     return-void
 .end method
@@ -42,13 +42,13 @@
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iget v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$1:I
+    iget-boolean v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$1:Z
 
-    iget v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$2:I
+    iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$2:Ljava/util/List;
 
-    iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$3:Landroid/widget/ListView;
+    iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda1;->f$3:Ljava/lang/String;
 
-    invoke-virtual {v0, v1, v2, v3}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$openChooser$39$org-rabochaya-projects-ObjectManagerActivity(IILandroid/widget/ListView;)V
+    invoke-virtual {v0, v1, v2, v3}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$capture$27$org-rabochaya-projects-ObjectManagerActivity(ZLjava/util/List;Ljava/lang/String;)V
 
     return-void
 .end method
