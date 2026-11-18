@@ -1,6 +1,6 @@
 # План завершения самостоятельного переноса «Рабочей карты»
 
-Актуализировано 12 ноября 2026 по `requirements.json`, существующим Java/собственным
+Актуализировано 18 ноября 2026 по `requirements.json`, существующим Java/собственным
 smali, документации и завершённым Android CI. Это **план реализации и приёмки**,
 не заявление о готовности приложения. Все 23 требования остаются без `accepted`.
 `security/release_gate.py` не изменяется: сейчас 25 блокеров, replacement release запрещён.
@@ -13,16 +13,20 @@ smali, документации и завершённым Android CI. Это **�
 
 ## Актуальный ограниченный результат
 
-- b99/CI44287853086 FAILURE45/46 обе API: только offlineformats. IME observation проходит,
-  но native error popup перекрывает реальные кнопки KML; последующие editor Save/guards не исполнены.
-- Named sets0a031db scoped runtime PASS: maplayers331/330 + reopen77 both; явные действия,
-  owner/stale/force-stop/data guards и новые primary name/list/restarted-manager PNG проверены.
-  Дубликаты preset PNG в reopen не считаются новыми кадрами. Layers acceptance открыта.
-- 7faed6d schema order: пять valid originals/edited/serialized cases проходят official offline XSD.
-  Новый inline-error fix + local width/label-scale: JVM40/83425/SDK23source84/578classes;
-  Android pending. Это не SVG/icon library и не приёмка symbols/import-export.
-- Fresh official lint exit1 MissingClass/HardcodedDebugMode/114warnings; не PASS.
-  Все23 acceptance открыты; конкретные пробелы/зависимости/критерии ниже.
+Проверенный код b11f6b635707010dfd5869a058245faf7338ecdb / push CI44296647517 SUCCESS.
+JVM134775298776:40/83425, host31. API23 job134775584554 и API35 job134775584477:
+по46/46, FAIL0/SKIP0; offlineformats1361, maplayers330/reopen77 each.
+Inline error fix Cancel99d3cbf и width/label scale29a43cc+844fe6e проверены:
+real IME/raw/cursor1..4/physical Save+Cancel/Arimo, реальные Canvas pixels,
+StyleMap/inline/alpha/fill/outline/KMZ/reopen/stale/owner/data guards PASS.
+Primary preset name/list и restarted-manager проверены. Source/outer/inner/all564+567
+members сверены; по7 scoped original PNG каждой API просмотрены. Унаследованные
+копии не считаются новыми кадрами. Это ограниченный результат, не полная приёмка.
+Evidence: security/kml-components-qa-2026-11-18/final-b11-result.json.
+
+Первый TEST debug-qa APK доступен из API23 build artifact14427555390; отдельно от26.1,
+не replacement. Accepted0/23, releasegate25; official lint exit1 НЕPASS.
+Следующий функциональный gap — SVG/import-export, затем media/explicitshare и UI/settings.
 
 ## Проверенная исходная точка
 
@@ -56,7 +60,7 @@ smali, документации и завершённым Android CI. Это **�
 | points | `FeatureEdits`, основной экран и менеджер: создание/выбор/переименование/описание/координаты, scoped DOM/payload tests; `OBJECT_DESCRIPTION_EDIT.md`, launcher/manager CI. | Полная карточка и все действия эталона, символы/подписи/стили вместо одного условного маркера; согласованная работа нескольких меток. | manager, symbols, coordinates, media. | Создание нескольких меток и все подтверждённые действия работают с конкретным объектом, сохраняя соседние DOM/вложения. | Карточка/описание и визуальное поведение сопоставлены с эталоном; открыта. |
 | geometry | `GeometryEdits/Vertices/MapState`, ручной рисунок, addressed parts/holes, real drag, bounded Undo, private drafts/stale guards. `GEOMETRY.md`, `MAP_VERTEX_EDITOR.md`, state docs; CI geometry* и JVM. | Сглаживание, split/merge и временные треки/стили/прочие подтверждённые ручные операции; не считать lifecycle-диалоги полным переносом. | manager/points, coordinates; symbols/import-export для стилей и треков. | Полный реестр разрешённых операций ручной геометрии реализован вертикально: действие→редактор/карта→отдельное сохранение, без GPS и потери частей/высот. | Проверить топологию/численные результаты/визуальную эквивалентность и реальные форматы; открыта. |
 | manager | `ObjectTree/Writes`, clipboard, listing/selection, Move, confirmations и prefs уже работают внутри проекта. `OBJECT_MANAGER/CLIPBOARD/LISTING/MOVE_STATE.md`, manager CI. Clipboard явно отказывает другому проекту. | Межпроектное копирование/перенос с вложениями и уникальными ID; файловые/групповые операции согласованного реестра форматов вместо обхода защиты чужого проекта. | import-export/objects/media; существующие guarded transactions сохраняются. | Явный cross-project workflow транзакционно переносит/копирует весь выбранный состав и не теряет общие вложения; все типы групп/файлов доступны. | Проверить полный набор эталонных файловых действий и конфликты/ошибки/восстановление; открыта. |
-| symbols | Component renderer + managed explicit color/fill/outline editor integrated with existing manager and guarded writes. ca888 renderer scoped runtime verified; ea9/CI43280843162 failed before editor completion at IME observation on both APIs. 7faed6d fixes schema insertion order (offline official XSD/roundtrip/editor58/JVM40); b99 scopes test IME prerequisites. CI44287853086 failed at physical Cancel blocked by native error popup; inline-error fix pending runtime. Shared StyleMap/other DOM/assets guards retained. SVG/icon libraries not implemented; width/labelScale local29a43cc+844fe6e candidate has JVM/SDK23 proof only, Android pending next changed-code CI. | SVG/иконки, собственные библиотеки, форма/размер/цвет/подписи, связь renderer↔импорт↔экспорт. | points/geometry, import-export, media/storage. | Пользователь назначает/импортирует/сохраняет символ; одна и та же форма и стиль отображаются после копии/перезапуска/экспорта. | Сопоставить реальные SVG/библиотеки/все согласованные операции и безопасный разбор; открыта. |
+| symbols | Component renderer + managed explicit color/fill/outline editor integrated with existing manager and guarded writes. ca888 renderer scoped runtime verified; ea9/CI43280843162 failed before editor completion at IME observation on both APIs. 7faed6d fixes schema insertion order (offline official XSD/roundtrip/editor58/JVM40); b99 scopes test IME prerequisites. CI44287853086 failed at physical Cancel blocked by native error popup; inline-error99d3cbf runtime PASS на b11/CI44296647517. Shared StyleMap/other DOM/assets guards retained. SVG/icon libraries not implemented; width/labelScale29a43cc+844fe6e actual pixel/editor/KMZ/reopen/data PASS обеAPI b11/CI44296647517;14 scoped PNG reviewed. | SVG/иконки, собственные библиотеки, форма/размер/цвет/подписи, связь renderer↔импорт↔экспорт. | points/geometry, import-export, media/storage. | Пользователь назначает/импортирует/сохраняет символ; одна и та же форма и стиль отображаются после копии/перезапуска/экспорта. | Сопоставить реальные SVG/библиотеки/все согласованные операции и безопасный разбор; открыта. |
 | media | `MediaLinks`, `AttachmentsActivity`, `MediaPlaybackActivity`: приватные фото/audio/video, add/remove/open, shared payload retention; существующие media/mediareopen/mediadelete проверки описаны в README/history. | Полный набор операций эталона, текстовые вложения/редактор и явные capture/record операции, если подтверждены; универсальная передача сохранённого состава. | objects/import-export/symbols; явные разрешения по действию, без GPS. | Все подтверждённые операции доступны из карточки и переживают перезапуск; файл не удаляется, пока используется другим объектом. | Реальные кодеки/устройства/ошибки/внешняя совместимость, без пользовательских телефонных данных в QA; открыта. |
 | import-export | Собственный KML/KMZ DOM/payload store/router, SAF и structural writes; собственные base smali + overlay. Scoped XML/asset/roundtrip tests. | Реестр всех форматов эталона, недостающие readers/writers, полный стиль/SVG/группы/вложения и трансформации координат. | geometry/points/manager, symbols, coordinates, media. | Для каждого подтверждённого формата есть явный импорт/экспорт и roundtrip-контракт сохранности/отказа, без скрытой отправки. | Реальные файлы каждого формата, независимое чтение и семантический/визуальный контроль; открыта. |
 | filters | Поиск имени/описания, recursive/type/visibility, KML даты/интервалы, сортировка и per-project prefs; `OBJECT_*SEARCH.md`, `OBJECT_FORM_STATE.md`; managerforms runtime. | Оставшиеся подтверждённые фильтры/выбор результатов эталона и их работа с новыми форматами/группами. | manager, geometry/time/import-export, settings. | Весь подтверждённый набор фильтров доступен, явный Apply/Reset/Cancel сохраняет применённое состояние и выбор; не переписывает KML. | Сравнить контрольные выборки/границы дат/сортировку и сохранение результатов с эталоном; открыта. |
@@ -72,7 +76,7 @@ smali, документации и завершённым Android CI. Это **�
 
 ## Карта зависимостей переноса (не перезапуск старых этапов)
 
-Текущая очередь указана в CODEX_NEXT: editor/sets CI → style metrics/SVG/import-export →
+Текущая очередь указана в CODEX_NEXT: verified editor/sets/metrics → SVG/import-export →
 media/явная передача → UI/координаты/компас/настройки → migration26.1. Пункты ниже
 фиксируют зависимости; реализованные слои/кеш/форматы не выполнять заново как baseline.
 

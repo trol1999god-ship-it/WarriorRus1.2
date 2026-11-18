@@ -1,52 +1,57 @@
-# Продолжение — 18 ноября: b99 проверен; исправление перекрытия Cancel + metrics candidate
+# Продолжение — 18 ноября: первый отдельный TEST APK; следующий SVG/import-export
 
-## Последний завершённый CI
+## Проверенный результат
 
-Проверенный источник b99f9e637aa80523162c63e0103f89af0b5acc70, CI44287853086 FAILURE.
-JVM134745064603 SUCCESS40/83385/host31. Android23 job134745452435 и35 job134745452398:
-по45/46, только offlineformats FAIL. Никаких skip/transport failures в этом run.
-Source/outer/inner/all564+567members verified; по6 scoped PNG каждой API реально viewed.
+Проверенный код b11f6b635707010dfd5869a058245faf7338ecdb / push CI44296647517 SUCCESS.
+JVM134775298776:40/83425, host31. API23 job134775584554 и API35 job134775584477:
+по46/46, FAIL0/SKIP0; offlineformats1361, maplayers330/reopen77 each.
+Inline error fix Cancel99d3cbf и width/label scale29a43cc+844fe6e проверены:
+real IME/raw/cursor1..4/physical Save+Cancel/Arimo, реальные Canvas pixels,
+StyleMap/inline/alpha/fill/outline/KMZ/reopen/stale/owner/data guards PASS.
+Primary preset name/list и restarted-manager проверены. Source/outer/inner/all564+567
+members сверены; по7 scoped original PNG каждой API просмотрены. Унаследованные
+копии не считаются новыми кадрами. Это ограниченный результат, не полная приёмка.
+Evidence: security/kml-components-qa-2026-11-18/final-b11-result.json.
 
-Именованные наборы0a031db: maplayers331/330, reopen77 both PASS. Save/Cancel/duplicate/
-DeleteCancel/Apply/staleLibrary/staleComposition/foreign/deletedOwner и реальный force-stop
-прошли с исходными XML/assets/maps/cache/otherproject guards. Свежие primary preset name
-с IME/list и restarted-manager PNG reviewed. Дубликаты preset PNG в reopen архиве —
-унаследованные из maplayers; не считать их новыми reopen кадрами. Не полная приёмка layers.
+PR run44296655197 intentionally SKIPPED duplicate push; не SUCCESS. Recovery job skipped
+без evidence-only — штатное условие. Повторять зелёный CI без новой причины нельзя.
 
-KML editor: IME observation теперь проходит. Error/raw/bounds/Arimo пройдены до реального
-Cancel. Обе API независимо показывают native EditText error popup поверх Save/Cancel;
-касание Cancel не достигает кнопки, active tree остаётся в редакторе с ff00ffff.
-Последующие Save/reset/stale/final-editor data guards НЕисполнены. Не editor PASS.
-Evidence: security/kml-components-qa-2026-11-18/b99-result.json + оба full jobs/PNGs.
+## Отдельная тестовая установка (не replacement26.1)
 
-## Подготовленный changed-code кандидат (Android pending)
+Артефакт API23 id14427555390:
+https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44296647517/artifacts/14427555390
+В ZIP выбрать rk-qa/app.apk. package org.rabochaya.karta, versionCode27,
+versionName27-independent-core, min23/target33, debug-qa/debuggable, Disposable Android QA.
+APK SHA256 63ef99c33641936f50b346927c5fc05e41d9ccbd1c0016f6272ba5367bec6563.
+Cert SHA256 9871e3594870114076205c565781dfe8de30ecba8c37a62ba582267cc3e8af9d.
+Apksigner v1/v2/v3 verified. Архив7members без приватных ключей; APK inventory проверен.
+Запуск/исходная+вторая явная метка/save/reopen/map/layers/KMLKMZ/privacy/data прошли
+на синтетических эмуляторах23/35. Это не проверка телефона, всех13 экранов или26.1 migration.
+Не устанавливать поверх основного приложения; использовать синтетические проекты.
+Одноразовый сертификат не гарантирует будущие обновления этой TEST установки.
+Receipt: security/kml-components-qa-2026-11-18/test-install-b11/receipt.json.
 
-Production7faed6d исправляет порядок Style/color/fill/ExtendedData; пять до/после KML
-и официальные pinned offline XSD сохранены. Все пять valid originals и emitted/roundtrip
-после fix проходят схему, external schema access disabled. Старые invalid outputs сохранены.
+## Следующая пользовательская функция
 
-Production99d3cbf — узкий fix только KML component editor: ошибка — inline TextView в существующем
-ScrollView, не native popup над действиями. Существующие name/description ветки неизменны.
-Явные Save/Cancel, real touch/IME/raw/cursor/owner/token/data guards сохранены/усилены.
-Новый runtime пока pending; не объявлять перекрытие исправленным до фактического CI.
+SVG/import-export по migration/SVG_ICON_CONTRACT.md (draft, ещё не реализация):
+локальный bounded static SVG из своего KML/KMZ snapshot → existing renderer →
+reopen/экспорт с точными bytes и отказом unsupported/external features.
+Затем явное назначение/библиотека; media/explicitshare → UI13/coordinates/compass/settings
+→ safe26.1migration по матрице. Не возвращаться к orphan/dialog baseline.
 
-Следующая функция уже реализована local29a43cc+844fe6e: KML width0..256 физических px,
-label scale0..16 через existing StyleMap/inline/editor/render/KMZ; zero скрывает stroke/text,
-не Android hairline; width не меняет Point outline. SVG/icon library этим не подменяется.
-JVM40/83425/editor84/component47; SDK23 matching source84/578classes app+tests,
-customprivacy PASS. Official lint84/160realclassfiles: exit1 MissingClass/
-HardcodedDebugMode/114warnings, smali bodies не анализируются — НЕPASS.
+## Сохранённые ограничения
 
-Следующее: после сохранения кандидата/проверки HEAD и отсутствия activeCI отправить
-один changed-code fullCI existingworkflow для inline-error fix + metrics + прежних guards.
-Прочитать оба completedjobs/source/digest/allmembers и реальные новые PNG; каждый отказ
-расследовать. После этого SVG/import-export по проверенному контракту → media/явнаяпередача
-→ UI/coordinates/compass/settings → migration26.1, с зависимостями IMPLEMENTATION_PLAN.
-Не dialog/orphan baseline. All23 acceptance0/releasegate25, не выпуск приложения.
+7faed6d:5 official offline XSD/roundtrip кейсов порядка новых Style/color/ExtendedData PASS.
+Исторический b99/CI44287853086 FAILURE45/46 both: native error popup блокировал Cancel;
+это не retroactive PASS. Новое успешное доказательство — только b11/CI44296647517.
+Fresh official Android lint84/160realclassfiles: exit1 MissingClass/HardcodedDebugMode/
+114warnings; smali bodies не анализируются, custom scanner не замена. НЕPASS.
+All23 acceptance0/releasegate25 неизменны. TEST APK не выпущенный replacement.
+Та же Cloud Environment; Java17/SDK сохранены, это не исправление reusable publication.
+Stash2/pending/toolchain/backups/старые WIP сохранены. Нет reset/clean/newbranch/worktree/
+merge/cleanup/переноса репозиториев. rabochaya-karta не объединять: другие недоступные
+сессии ещё не проверены на незапушенное. PR14 draft не сливать.
 
-Сохранены stash2/pending/toolchain/backup/старые artifacts; reset/clean/newbranch/worktree/
-merge/перенос репозиториев не делались. Git sandbox не достигает proxy:8080; штатный
-per-command gh credential helper вне sandbox прошёл push b99 без изменения сети/TLS.
-Это та же Cloud Environment; готовность инструментов не доказывает публикацию reusable среды.
-
-История: migration/STATUS_HISTORY_EA9_2026-11-18.md и STATUS_HISTORY_BEFORE_C373.md.
+История: migration/STATUS_HISTORY_EA9_2026-11-18.md и STATUS_HISTORY_BEFORE_C373.md;
+точные b99 failed receipts сохранены отдельно. Документальный итог не требует нового fullCI
+для byte-identical проверенного application/test кода.

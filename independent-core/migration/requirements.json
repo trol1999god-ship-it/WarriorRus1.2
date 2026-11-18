@@ -63,7 +63,8 @@
       "evidence": [],
       "implementation_notes": [
         "Named project-private presets0a031db local candidate: explicit Save/Apply/Delete, owner/library revision/composition CAS, JVM40/83361/preset44, SDK23source84/576classes and customprivacy pass. Android pending, not included in a7f789a CI. Existing maplayers/reopen scenarios extended, no new mode or relaxed frame cap.",
-        "b99/CI44287853086: named sets scoped runtime PASS both APIs maplayers331/330, reopen77; Save/Cancel/Apply/Delete/stale/foreign/force-stop/data and fresh scoped PNG verified. Overall FAILURE45both from KML error-popup Cancel; full layers/reference acceptance open."
+        "b99/CI44287853086: named sets scoped runtime PASS both APIs maplayers331/330, reopen77; Save/Cancel/Apply/Delete/stale/foreign/force-stop/data and fresh scoped PNG verified. Overall FAILURE45both from KML error-popup Cancel; full layers/reference acceptance open.",
+        "18 ноября: b11/CI44296647517 push SUCCESS46/46 обеAPI; offlineformats1361/layers330/reopen77; KML editor Cancel/metrics pixel/KMZ/data guards PASS;14 scoped original PNG reviewed. Отдельный debug-qa TEST APK artifact14427555390 не replacement26.1 и не полная приёмка; SVG gap открыт. Official lint exit1 НЕPASS; accepted0/releasegate25 unchanged."
       ]
     },
     {
@@ -196,7 +197,8 @@
       ],
       "implementation_notes": [
         "ca888b5/CI43225977674: component main renderer/offlineformats1228 passed both APIs, four KML PNG reviewed; API23 full46 success, API35 full45 failure due unrelated vertexscroll partial adb pull after native314 pass. Explicit manager editor/Arimo/independent fallbacks are later local source83 candidate, Android pending. accepted remains unset.",
-        "b99 runtime reached real IME/error/Arimo but native error popup blocks physical Cancel on both APIs; editor subsequent Save/reset/stale not executed. Inline-error fix + width/labelScale candidate locally JVM40/83425/SDK23source84/578classes, Android pending. No SVG/library or complete acceptance claim."
+        "b99 runtime reached real IME/error/Arimo but native error popup blocks physical Cancel on both APIs; editor subsequent Save/reset/stale not executed. Inline-error fix + width/labelScale candidate locally JVM40/83425/SDK23source84/578classes, Android pending. No SVG/library or complete acceptance claim.",
+        "18 ноября: b11/CI44296647517 push SUCCESS46/46 обеAPI; offlineformats1361/layers330/reopen77; KML editor Cancel/metrics pixel/KMZ/data guards PASS;14 scoped original PNG reviewed. Отдельный debug-qa TEST APK artifact14427555390 не replacement26.1 и не полная приёмка; SVG gap открыт. Official lint exit1 НЕPASS; accepted0/releasegate25 unchanged."
       ]
     },
     {
@@ -217,7 +219,10 @@
         "Отдельный реестр форматов эталона и реальные файлы для каждого",
         "Иерархия, стили, значки, координаты и вложения не теряются"
       ],
-      "evidence": []
+      "evidence": [],
+      "implementation_notes": [
+        "18 ноября: b11/CI44296647517 push SUCCESS46/46 обеAPI; offlineformats1361/layers330/reopen77; KML editor Cancel/metrics pixel/KMZ/data guards PASS;14 scoped original PNG reviewed. Отдельный debug-qa TEST APK artifact14427555390 не replacement26.1 и не полная приёмка; SVG gap открыт. Official lint exit1 НЕPASS; accepted0/releasegate25 unchanged."
+      ]
     },
     {
       "id": "filters",
@@ -367,7 +372,8 @@
       ],
       "implementation_notes": [
         "API23 selected nine scenarios passed 721 assertions; API35 blocked by unstable OS/shared storage, physical phone and Android16 not tested",
-        "Historical 28 October snapshot: Current API23 APK passed 11 scenarios / 861 assertions; JVM 80393; 324 own classes; API35/36 and physical acceptance still pending"
+        "Historical 28 October snapshot: Current API23 APK passed 11 scenarios / 861 assertions; JVM 80393; 324 own classes; API35/36 and physical acceptance still pending",
+        "18 ноября: b11/CI44296647517 push SUCCESS46/46 обеAPI; offlineformats1361/layers330/reopen77; KML editor Cancel/metrics pixel/KMZ/data guards PASS;14 scoped original PNG reviewed. Отдельный debug-qa TEST APK artifact14427555390 не replacement26.1 и не полная приёмка; SVG gap открыт. Official lint exit1 НЕPASS; accepted0/releasegate25 unchanged."
       ]
     }
   ]

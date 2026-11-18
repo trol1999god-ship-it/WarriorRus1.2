@@ -1,0 +1,29 @@
+{
+  "source_sha": "b11f6b635707010dfd5869a058245faf7338ecdb",
+  "run_id": 44296647517,
+  "event": "push",
+  "conclusion": "success",
+  "jvm_job": 134775298776,
+  "jvm": "40 suites/83425 assertions; host31",
+  "android_jobs": {
+    "23": 134775584554,
+    "35": 134775584477
+  },
+  "driver_pass_each": 46,
+  "driver_fail_each": 0,
+  "driver_skip_each": 0,
+  "offlineformats_each": 1361,
+  "maplayers_each": 330,
+  "maplayersreopen_each": 77,
+  "scoped_original_png_viewed_each": 7,
+  "guards": "real IME/physical Save Cancel/raw selection1..4/Arimo; width12/2/0 and label2/1/0 pixels; StyleMap/inline/alpha/fill/outline/KMZ/reopen/stale/owner/DOM/assets/cache/source/other-project; preset explicit actions/force-stop",
+  "duplicate_pr_run": {
+    "id": 44296655197,
+    "conclusion": "skipped",
+    "reason": "intentional push duplicate; not success"
+  },
+  "accepted": 0,
+  "release_gate_blockers": 25,
+  "official_lint": "NOT PASS: MissingClass/HardcodedDebugMode;114 warnings",
+  "not_full_acceptance": true
+}

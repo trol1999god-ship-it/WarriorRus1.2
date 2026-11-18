@@ -1,18 +1,22 @@
 # Рабочая карта — самостоятельное ядро
 
-Последний CI44287853086 на b99: FAILURE45/46 обе API, единственный FAIL offlineformats.
-IME observation проходит, но popup-ошибка KML перекрывает Cancel/Save; editor ещё не принят.
-Наборы слоёв0a031db прошли maplayers331/330 и real force-stop reopen77 обе API,
-включая явные действия/изоляцию/stale/data guards. Scoped PNG просмотрены, не вся приёмка.
+Проверенный код b11f6b635707010dfd5869a058245faf7338ecdb / push CI44296647517 SUCCESS.
+JVM134775298776:40/83425, host31. API23 job134775584554 и API35 job134775584477:
+по46/46, FAIL0/SKIP0; offlineformats1361, maplayers330/reopen77 each.
+Inline error fix Cancel99d3cbf и width/label scale29a43cc+844fe6e проверены:
+real IME/raw/cursor1..4/physical Save+Cancel/Arimo, реальные Canvas pixels,
+StyleMap/inline/alpha/fill/outline/KMZ/reopen/stale/owner/data guards PASS.
+Primary preset name/list и restarted-manager проверены. Source/outer/inner/all564+567
+members сверены; по7 scoped original PNG каждой API просмотрены. Унаследованные
+копии не считаются новыми кадрами. Это ограниченный результат, не полная приёмка.
+Evidence: security/kml-components-qa-2026-11-18/final-b11-result.json.
 
-Production7faed6d: порядок новых KML узлов, пять official offline XSD/roundtrip кейсов.
-Новый кандидат переносит ошибку component editor в scrollable inline блок и добавляет
-width/label scale через existing StyleMap/editor/renderer/KMZ. JVM40/83425,
-SDK23 source84/578classes matching pair, customprivacy PASS; Android кандидата pending.
-
-Свежий official Android lint84/160realclassfiles: exit1 MissingClass/HardcodedDebugMode/
-114warnings; ABI adapter incomplete, smali bodies не анализируются. Это НЕPASS;
-custom scanner не замена. All23 acceptance открыты, releasegate25 сохранён, выпуска нет.
+Первый отдельный TEST APK (debug-qa, не обновление26.1):
+[артефакт CI, внутри rk-qa/app.apk](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44296647517/artifacts/14427555390).
+Package org.rabochaya.karta, versionCode27/min23; полные SHA/cert/ограничения в CODEX_NEXT.
+Только синтетические проекты, не устанавливать поверх основного приложения.
+Official Android lint exit1 MissingClass/HardcodedDebugMode/114warnings — НЕPASS.
+Accepted0/23, releasegate25; TEST не означает завершение переноса или выпуска.
 
 Текущая очередь: [CODEX_NEXT.md](CODEX_NEXT.md),
 [матрица всех требований](migration/IMPLEMENTATION_PLAN.md),
