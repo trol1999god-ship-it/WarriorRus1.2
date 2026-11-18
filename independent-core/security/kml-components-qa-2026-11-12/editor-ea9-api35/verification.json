@@ -1,0 +1,38 @@
+{
+  "api": "35",
+  "source_sha": "ea9ff9f5ce38b996501b58bd683d4a3610f6a6df",
+  "run_id": "43280843162",
+  "outer_path": "/workspace/attachments/ff393fae-097e-4d50-ae01-b53afb535a5a/ea9-13974579248.zip",
+  "outer_sha256": "f679c8f06c7e4447f44cdde31c59cf66f47f4fcce9c99f1609a70ec33b06714c",
+  "inner_sha256": "93ab85b457fccbf3f73156dacd7195bca646864b1e285974dfc97cf407e9052c",
+  "all_member_hashes_verified": true,
+  "members": 516,
+  "records": 46,
+  "passed": 42,
+  "failed_or_skipped": [
+    {
+      "mode": "offlineformats",
+      "passed": false,
+      "seconds": 200.52
+    },
+    {
+      "mode": "geometrycloseconfirm",
+      "passed": false,
+      "seconds": 88.55
+    },
+    {
+      "mode": "maplayers",
+      "passed": false,
+      "seconds": 43.41
+    },
+    {
+      "mode": "maplayersreopen",
+      "passed": false,
+      "skipped": true,
+      "reason": "Preceding fixture failed",
+      "seconds": 0
+    }
+  ],
+  "frames": 13,
+  "visual_review": "pending actual view_image"
+}

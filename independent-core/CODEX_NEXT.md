@@ -1,4 +1,45 @@
-# Продолжение — 12 ноября: исправить shared-definition helper + проверить named sets
+# Продолжение — 18 ноября: KML schema fix7faed6d, IME candidate
+
+## Текущая точка
+
+Remote ea9ff9f, CI43280843162 completed FAILURE: JVM131401369832 SUCCESS;
+API23 job131401634505 —43/46, API35 job131401634481 —42/46.
+Обе API: offlineformats иmaplayers failed на soft keyboard window never appeared;
+maplayersreopen SKIPPED после fixture failure. Editor/sets НЕприняты.
+API35 geometrycloseconfirm native завершился code-1, но pull rc1 только building file list:
+нет PNG, нет explicit offline/sameBoot receipts; НЕPASS, native ради выгрузки не повторять.
+All529+516members/source/outer/inner hashes verified. Только initial KML scene PNG
+обе API реально просмотрены; editor/IME/preset PNG не созданы. Full logs сохранены.
+
+Причина IME observation: новые helpers не включали FLAG_RETRIEVE_INTERACTIVE_WINDOWS;
+getWindows без opt-in не доказывает отсутствие физической IME. API35 logcat содержит
+onKeyboardViewShown; старые working helpers включают flag+show_ime_with_hard_keyboard.
+Узкий test-only scope включает оба preconditions и восстанавливает исходные flags/setting
+вfinally (включая setup failure); исходные реальная IME/physical/buttons/data guards сохранены.
+SDK23 corrected instrumentation compiled; runtime pending changed-code CI, не rerun ea9.
+
+Отдельный production commit7faed6d: новые Style/color/fill вставляются в порядке OGC
+до ExtendedData/width/outline; существующий DOM не переставляется. Пять valid baseline
+становились invalid; после fix full offline official XSD + serialized roundtrip PASS,
+component58, JVM40/83385, host31 свежий PASS, matchingSDK23 source84/privacysource+DEX PASS.
+Старый host29/31 при конкурентной компиляции сохранён: .5s fake-adb readiness timeout;
+guards/timeouts не изменялись, свежий isolated host31 завершился19.088s без ошибок.
+Official lint MissingClass/HardcodedDebugMode остаётся NOT PASS; acceptance0/releasegate25.
+
+Следующее: один changed-code full CI existingworkflow для KML editor+namedsets0a031db+
+XML guards после push; читать оба completedjobs/source/digest/allmembers/новые PNG.
+Затем функциональный gap styles/import-export/SVG по проверенному контракту, далее
+media/явнаяпередача→UI/coordinates/compass/settings→migration26.1. Не orphan/dialog queue.
+Все backups/stash2/pending/toolchain/WIP сохранены; reset/clean/worktree/merge не делались.
+
+## Штатный доступ Git (история настройки)
+
+Git CLI credential helper по умолчанию отсутствует. Штатный per-command
+`git -c credential.helper='!gh auth git-credential' push origin HEAD:refs/heads/codex/independent-core-auto`
+успешно использовал существующий GH_TOKEN; значения секретов не нужны в чате.
+Обычный fast-forward push сохранил исходные0a031db/c373133/ea9ff9f вremote истории.
+Прерванная API передача не меняла refs; далее не продолжать её, код уже отправлен.
+Сеть/TLS/reusable environment publication не изменялись; готовностьсреды не доказывает публикацию.
 
 ## Последний a7f789a: оба completed FAILURE, подтверждён test-only блокер
 
@@ -16,7 +57,7 @@ Artifact pull failures в этом run не было; recovery branch не за�
 Узкое исправление только Native helper: DOM + exact KML tag/ns/id, count==1;
 оригинальные equality/data guards не сняты. SDK23 corrected instrumentation compiled,
 paired source84 app сохранён; shared-definition-fix-local receipt. Production codec
-ради test lookup не менялся. Следующий changed-code CI проверит это и подготовленную
+ради test lookup не менялся. CI43280843162 проверил lookup, но остановился на IME; новый кандидат проверит это и подготовленную
 реальную функцию именованных наборов; старый a7 не rerun вслепую и не станет PASS.
 
 ## Предыдущий ca888b5 (история, не зелёный)

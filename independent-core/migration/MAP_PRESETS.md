@@ -42,3 +42,10 @@ MissingClass/HardcodedDebugMode/114warnings. Smali gap остаётся, НЕPAS
 НЕзамена. Предыдущий editor CI a7f789a завершён failure из-за Native definition lookup,
 исправление test-only включается в следующую проверку вместе с наборами. Наборы
 ещё не исполнялись на Android; локальная компиляция не заменяет runtime/приёмку.
+
+## 18 ноября: runtime boundary
+
+ea9/CI43280843162 maplayers failed before Save at IME observation on both API;
+maplayersreopen skipped. No new preset UI PNG, Save/Apply/Delete/force-stop not accepted.
+Test-only scoped interactive-window opt-in + emulator keyboard setting matches existing
+working IME helpers and restores prior state; SDK23 build passes, changed-code runtime pending.

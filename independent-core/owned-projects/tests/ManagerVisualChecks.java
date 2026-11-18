@@ -28,6 +28,22 @@ final class ManagerVisualChecks {
    if(!m.activity.isDestroyed()&&state[2]==desired&&dimensions){if(++stable>=3){m.geometryReady();return;}}else stable=0;Thread.sleep(100);
   }emit("VISUAL_ROTATION_STATE desired="+desired+" actual="+Arrays.toString(state)+" activity="+m.activity);throw new AssertionError("visual orientation did not settle: "+desired);
  }
+ // UiAutomation returns interactive windows only when explicitly opted in.
+ // Scope changes test-process accessibility and emulator keyboard preference only.
+ final class KeyboardScope implements AutoCloseable {
+  final int flags;final String setting;
+  KeyboardScope()throws Exception{
+   AccessibilityServiceInfo service=m.getUiAutomation().getServiceInfo();flags=service.flags;
+   setting=shell("settings get secure show_ime_with_hard_keyboard").trim();
+   if(!setting.equals("null")&&!setting.matches("[0-9]+"))throw new AssertionError("unexpected emulator keyboard setting");
+   try{service.flags|=AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS;m.getUiAutomation().setServiceInfo(service);shell("settings put secure show_ime_with_hard_keyboard 1");
+    m.check((m.getUiAutomation().getServiceInfo().flags&AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS)!=0,"interactive window observation enabled");
+    m.check(shell("settings get secure show_ime_with_hard_keyboard").trim().equals("1"),"emulator permits real soft keyboard with hardware keyboard");
+   }catch(Exception|AssertionError failure){try{close();}catch(Exception cleanup){failure.addSuppressed(cleanup);}throw failure;}
+  }
+  public void close()throws Exception{try{AccessibilityServiceInfo service=m.getUiAutomation().getServiceInfo();service.flags=flags;m.getUiAutomation().setServiceInfo(service);}finally{shell(setting.equals("null")?"settings delete secure show_ime_with_hard_keyboard":"settings put secure show_ime_with_hard_keyboard "+setting);}}
+ }
+ KeyboardScope keyboardScope()throws Exception{return new KeyboardScope();}
  JSONArray imeWindows()throws Exception{JSONArray windows=new JSONArray();for(AccessibilityWindowInfo window:m.getUiAutomation().getWindows())if(window.getType()==AccessibilityWindowInfo.TYPE_INPUT_METHOD){Rect bounds=new Rect();window.getBoundsInScreen(bounds);if(bounds.width()>0&&bounds.height()>0)windows.put(bounds.toShortString());}return windows;}
  void inspect(View view,JSONArray texts)throws Exception{
   if(view instanceof TextView){TextView t=(TextView)view;String value=t.getText().toString();if(!value.isEmpty()){

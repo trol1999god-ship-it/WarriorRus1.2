@@ -13,13 +13,14 @@ smali, документации и завершённым Android CI. Это **�
 
 ## Актуальный ограниченный результат
 
-- a7f789a/CI43234511518 completed FAILURE: обе API45/46; offlineformats NPE в Native
-  helper до editor UI. Ошибочный byId для Style/StyleMap исправлен scoped DOM lookup
-  в c373133; equality/data guards сохранены. Save/Cancel/IME после падения не засчитаны.
-- Именованные наборы0a031db: working production candidate в существующем менеджере,
-  owner/revision/CAS; локально JVM40/83361/presets44/SDK23source84exact. Android pending.
-- Official lint84source/160classfiles exit1/2errors/114warnings, custom audit не замена.
-  Все23id acceptance открыты. История в STATUS_HISTORY_BEFORE_C373.md и feature documents.
+- ea9/CI43280843162 completed FAILURE: API23 43/46, API35 42/46. Corrected shared DOM
+  lookup reached editor; IME observation failed in editor/presets, reopen skipped. API35 close
+  native without PNG delivery is not PASS. Full source/digest/allmembers receipts preserved.
+- Production7faed6d fixes new KML node order; five offline official-XSD edits/roundtrips,
+  component58/JVM40/83385 and SDK23 pair locally verified. Android pending, not full acceptance.
+- Narrow IME test scope restores window opt-in and emulator keyboard settings before/after
+  existing scenario; no physical/80/82/data guards weakened. Named sets0a runtime still pending.
+- Official lint exit1 MissingClass/HardcodedDebugMode remains NOT PASS; all23 acceptance open.
 
 ## Проверенная исходная точка
 

@@ -1,0 +1,7 @@
+{
+  "baseline": "ea9/CI43280843162 FAILURE43/42; no editor/preset acceptance",
+  "cause": "getWindows requires FLAG_RETRIEVE_INTERACTIVE_WINDOWS; omitted only by new helpers. API35 logcat shows actual onKeyboardViewShown",
+  "change": "test-only KeyboardScope restores accessibility flags and keyboard setting; existing physical/IME guards unchanged",
+  "runtime": "pending changed-code CI",
+  "instrumentation_sha256": "f1e158784631b993443e31af19b792cd6a4f710df143f6a316044c1b8cbbf128"
+}

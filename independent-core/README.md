@@ -1,18 +1,17 @@
 # Рабочая карта — самостоятельное ядро
 
-Последний завершённый CI43234511518 на a7f789a — FAILURE: API23/API35 по45/46.
-Причина offlineformats — тестовый NPE при поиске shared Style/StyleMap через feature-only
-byId. UI редактора Save/Cancel/IME после падения не исполнен и не принят.
+Последний завершённый CI43280843162 на ea9ff9f — FAILURE: API23 43/46, API35 42/46.
+DOM lookup исправлен, но editor и presets остановились на IME observation; reopen skipped.
+API35 close native без полученных PNG не засчитан. Исходные failed receipts сохранены.
 
-Исправленный DOM helper и точные failed receipts сохранены в c373133. Кандидат
-0a031db добавляет именованные наборы слоёв с явными Save/Cancel/Apply/Delete,
-project/revision/CAS guards и existing force-stop сценариями. Android этих изменений
-ещё pending; неизменный a7 не перезапускается.
+Production7faed6d исправляет порядок новых KML Style/color/fill, сохраняя другой DOM:
+официальная offline XSD/roundtrip, component58 и JVM40/83385 PASS; SDK23 matching pair.
+Test-only IME scope восстанавливает необходимые window/hardware-keyboard preconditions;
+physical/IME/data guards сохранены. Android изменённого кандидата pending, не приёмка.
+Именованные наборы0a031db сохраняют явные Save/Cancel/Apply/Delete иowner/revision/CAS.
 
-Локально JVM40/83361, SDK23/source84exact/576classes, matching instrumentation и
-custom source+DEX privacy PASS. Официальный Android lint84source: exit1,
-MissingClass/HardcodedDebugMode/114warnings — НЕPASS. Это не готовый release и не полная приёмка;
-все23id acceptance открыты, release gate сохранён.
+Official Android lint exit1 MissingClass/HardcodedDebugMode/114warnings — НЕPASS;
+custom source+DEX audit не заменяет его. Acceptance всех23id открыта, releasegate25 сохранён.
 
 Текущая очередь: [CODEX_NEXT.md](CODEX_NEXT.md),
 [матрица всех требований](migration/IMPLEMENTATION_PLAN.md),
