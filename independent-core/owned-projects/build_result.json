@@ -616,7 +616,7 @@
     "src/org/rabochaya/projects/TileDownloadPlan.java": "0d488527cd147b2c8fd2851c3928a935b36aecd4f18a11b5ef0657f1fc1b1e62",
     "src/org/rabochaya/projects/TileProjection.java": "c454bf6ecdeacaaa82b5d7f0cba1968d31f87e94fdc0bbef5aabdbb1c7236453",
     "src/org/rabochaya/projects/TileRegion.java": "241639238bcd3d90b4125df2b3213fcf6f71cb1efae8a7b75f712ed8c2946379",
-    "src/org/rabochaya/projects/TileSource.java": "34a9091b9851b070fc33c6ee9276af8fe4df38c4e16d03262aa663b2941d0a1d",
+    "src/org/rabochaya/projects/TileSource.java": "fe7ba6062c23fd1c8edbe2f752af4cd31b47e86bb14e6fae9d67211aeaf1483b",
     "src/org/rabochaya/projects/VertexEditDraft.java": "ff2477b20c385150f5eb514386347d7859b52852ff1c6130daa2117298f33cbf",
     "src/org/rabochaya/projects/WorkspaceUi.java": "8f5f23bfe6bb9fa5d4cfe5c0aae3bdc34a5fca856043c291541e1feee7efc292"
   }

@@ -14,6 +14,13 @@ public class TileRegionTests {
   TileSource osm=TileSource.osm();check(!osm.downloads);check(osm.url(2,1,3).equals("https://tile.openstreetmap.org/2/1/3.png"));
   TileSource custom=new TileSource("QA","https://tiles.example.org/{z}/{x}/{y}.png?key=fixed","QA ©",0,22,true);check(custom.downloads);check(custom.id.length()==64);check(custom.id.equals(new TileSource("other",custom.template,"other",1,22,false).id));
   check(!new TileSource("QA",osm.template,osm.attribution,0,19,true).downloads);
+  for (String host : new String[]{"TILE.OpenStreetMap.Org", "tile.openstreetmap.org.", "TILE.OPENSTREETMAP.ORG."}) {
+   String template = "https://" + host + "/{z}/{x}/{y}.png";
+   TileSource customOsm = new TileSource("QA", template, osm.attribution, 0, 0, true);
+   TileSource builtInOsm = TileSource.builtin("QA", osm.attribution, new String[]{template}, false, true);
+   check(!customOsm.downloads && !customOsm.canDownload(0));
+   check(!builtInOsm.downloads && !builtInOsm.canDownload(0));
+  }
   String[] blocked={"http://tiles.example.org/{z}/{x}/{y}.png","https://user@tiles.example.org/{z}/{x}/{y}","https://tiles.example.org/{z}/{x}/{y}#fragment","https://tiles.example.org:444/{z}/{x}/{y}","https://localhost/{z}/{x}/{y}","https://127.0.0.1/{z}/{x}/{y}","https://tiles.example.org/{z}/{x}/{name}","https://tiles.example.org/{z}/{x}/{y}?note={note}"};for(String url:blocked){try{new TileSource("QA",url,"QA",0,22,true);throw new AssertionError(url);}catch(IllegalArgumentException expected){checks++;}}
   for(int z=1;z<=18;z++)for(int latitude=-80;latitude<=80;latitude+=5){double y=TileProjection.y(latitude,true);check(Math.abs(TileProjection.latitude(y,true)-latitude)<1e-8);}
   check(TileProjection.quadkey(3,3,5).equals("213"));check(TileProjection.y(55,true)>MapMath.y(55));

@@ -10,7 +10,8 @@ permissions:
   contents: read
 concurrency:
   group: independent-core-${{ github.ref }}
-  cancel-in-progress: true
+  # Finish the current Android matrix before testing the newest pending push.
+  cancel-in-progress: false
 jobs:
   # Push and manual dispatch run the build; PR events avoid duplicate runs.
   # Evidence-only runs validate their changed-file allowlist and read an old artifact;

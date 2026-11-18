@@ -245,17 +245,7 @@
 
     if-eqz p6, :cond_1
 
-    const-string p4, "openstreetmap.org"
-
-    invoke-virtual {p1, p4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result p4
-
-    if-nez p4, :cond_1
-
-    const-string p4, ".openstreetmap.org"
-
-    invoke-virtual {p1, p4}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
+    invoke-static {p1}, Lorg/rabochaya/projects/TileSource;->isOpenStreetMapHost(Ljava/lang/String;)Z
 
     move-result p1
 
@@ -392,7 +382,7 @@
 .method private constructor <init>(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;ZZ[Lorg/rabochaya/projects/TileSource;)V
     .locals 18
 
-    .line 26
+    .line 31
     move-object/from16 v1, p0
 
     move-object/from16 v2, p1
@@ -436,7 +426,7 @@
     :cond_0
     const/4 v10, 0x0
 
-    .line 27
+    .line 32
     :goto_0
     const/16 v11, 0xa
 
@@ -492,7 +482,7 @@
 
     goto/16 :goto_4
 
-    .line 28
+    .line 33
     :cond_2
     move v14, v13
 
@@ -598,9 +588,7 @@
 
     move-result-object v0
 
-    const-string v6, "tile.openstreetmap.org"
-
-    invoke-virtual {v0, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-static {v0}, Lorg/rabochaya/projects/TileSource;->isOpenStreetMapHost(Ljava/lang/String;)Z
 
     move-result v0
     :try_end_0
@@ -714,7 +702,7 @@
 
     move v13, v14
 
-    .line 29
+    .line 34
     :goto_4
     iput v13, v1, Lorg/rabochaya/projects/TileSource;->minZoom:I
 
@@ -798,10 +786,10 @@
     :try_end_2
     .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
 
-    .line 30
+    .line 35
     return-void
 
-    .line 29
+    .line 34
     :catch_1
     move-exception v0
 
@@ -815,7 +803,7 @@
 .method static builtin(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;ZZ)Lorg/rabochaya/projects/TileSource;
     .locals 8
 
-    .line 24
+    .line 29
     new-instance v7, Lorg/rabochaya/projects/TileSource;
 
     const/4 v6, 0x0
@@ -923,7 +911,7 @@
 .method static composite(Ljava/lang/String;[Lorg/rabochaya/projects/TileSource;)Lorg/rabochaya/projects/TileSource;
     .locals 10
 
-    .line 25
+    .line 30
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -980,10 +968,71 @@
     return-object v1
 .end method
 
+.method private static isOpenStreetMapHost(Ljava/lang/String;)Z
+    .locals 3
+
+    .line 22
+    sget-object v0, Ljava/util/Locale;->ROOT:Ljava/util/Locale;
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->toLowerCase(Ljava/util/Locale;)Ljava/lang/String;
+
+    move-result-object p0
+
+    .line 23
+    const-string v0, "."
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
+
+    move-result v0
+
+    const/4 v1, 0x1
+
+    const/4 v2, 0x0
+
+    if-eqz v0, :cond_0
+
+    invoke-virtual {p0}, Ljava/lang/String;->length()I
+
+    move-result v0
+
+    sub-int/2addr v0, v1
+
+    invoke-virtual {p0, v2, v0}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object p0
+
+    .line 24
+    :cond_0
+    const-string v0, "openstreetmap.org"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_2
+
+    const-string v0, ".openstreetmap.org"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
+
+    move-result p0
+
+    if-eqz p0, :cond_1
+
+    goto :goto_0
+
+    :cond_1
+    move v1, v2
+
+    :cond_2
+    :goto_0
+    return v1
+.end method
+
 .method public static osm()Lorg/rabochaya/projects/TileSource;
     .locals 8
 
-    .line 31
+    .line 36
     new-instance v7, Lorg/rabochaya/projects/TileSource;
 
     const/16 v5, 0x13
@@ -1039,17 +1088,9 @@
 
     move-result-object p1
 
-    const-string v0, "openstreetmap.org"
+    if-eqz p1, :cond_1
 
-    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    if-nez v0, :cond_1
-
-    const-string v0, ".openstreetmap.org"
-
-    invoke-virtual {p1, v0}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
+    invoke-static {p1}, Lorg/rabochaya/projects/TileSource;->isOpenStreetMapHost(Ljava/lang/String;)Z
 
     move-result p1
     :try_end_0
@@ -1107,7 +1148,7 @@
 .method public leafs()[Lorg/rabochaya/projects/TileSource;
     .locals 2
 
-    .line 22
+    .line 27
     iget-object v0, p0, Lorg/rabochaya/projects/TileSource;->layers:[Lorg/rabochaya/projects/TileSource;
 
     if-nez v0, :cond_0
@@ -1269,7 +1310,7 @@
 .method public zoomFor(I)I
     .locals 2
 
-    .line 21
+    .line 26
     iget v0, p0, Lorg/rabochaya/projects/TileSource;->minZoom:I
 
     iget v1, p0, Lorg/rabochaya/projects/TileSource;->maxZoom:I
