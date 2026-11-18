@@ -39,6 +39,26 @@ reopen/экспорт с точными bytes и отказом unsupported/exte
 Затем явное назначение/библиотека; media/explicitshare → UI13/coordinates/compass/settings
 → safe26.1migration по матрице. Не возвращаться к orphan/dialog baseline.
 
+## Локальный SVG WIP после TEST выдачи (не входит в b11 APK)
+
+SvgPath49/SvgIcon34/KmlSymbolAssets17:100 новых model checks; полный JVM43 suites PASS.
+Три модели компилируются с настоящим android-23.jar как bootclasspath.
+SAX lexical-handler отвергает DTD до entities; только memory snapshot исходного Document,
+32 SVG/2MiB, file64KiB, отказ external/foreign/traversal/unsupported features.
+Текущий профиль уже: primitives/paths/solid paint/inheritance; transforms/group opacity,
+CSS/text/gradients/external features явно отвергаются, а не частично отображаются.
+Это НЕ renderer/пользовательская SVG-функция: owner asset context ещё не подключён к
+LocalMapActivity/LocalMapView; KML href/scale/hotspot contract и Android pixels/runtime
+впереди. Model source/tests/verify_jvm остаются локальным незакоммиченным WIP, специально
+не приписаны CI44296647517; generated overlay/APK b11 не перегенерированы.
+Private snapshot: /workspace/work/manager-confirm/resume-2026-11-18/svg-model-preserve/;
+final JVM log svg-model-final-jvm.log. Первый strict bootclasspath compile с lambda
+дал javac CompletionFailure MethodHandles.Lookup; заменён anonymous EntityResolver,
+финальная SDK23 model compile exit0. Compiler args artifact сохранён, не удалён.
+Следующий шаг — проверить OGC KML Icon/href/scale/hotSpot и подключить bounded adapter
+в existing renderer/asset lifetime, затем existing offlineformats pixels/reopen/KMZ/data.
+Не запускать fullCI для отдельно неинтегрированной модели ради отчёта.
+
 ## Сохранённые ограничения
 
 7faed6d:5 official offline XSD/roundtrip кейсов порядка новых Style/color/ExtendedData PASS.
