@@ -91,3 +91,16 @@ Test helper заменён DOM lookup exact namespace/tag/id с count==1, про
 final fixture guards не исполнены. Шесть новых scoped KML/HGT кадров просмотрены;
 editor/error/postedit кадров нет, не подменять прежними. All558+561members/source/
 digests verified. SDK23 corrected instrumentation compiled; Android fix pending.
+
+## Scoped schema-order correction (local, Android pending)
+
+Official OGC ETS KML2.2 schemas pinned to cd07d5db32b1f6d9cf01e2263d4b9302336ef641
+are reference-only JVM fixtures; provenance/digests are in tests/fixtures/kml22-schema/SOURCE.json.
+External DTD/schema downloads are disabled. Five valid inputs on ea9 became schema-invalid
+after explicit style edits: Style after ExtendedData, color after width/Icon, IconStyle after
+LineStyle, fill after outline. Baseline receipts are preserved in schema-order-local.
+The narrow correction inserts new nodes in normative sequence, preserving existing nodes,
+unknown payload, other features and geometry. Five originals, edited DOMs and serialized
+roundtrips validate; component editor58 and all40 JVM suites PASS locally.
+This is not full OGC certification, SVG support, Android runtime proof or acceptance.
+CI43280843162 still evaluates ea9 without this correction.

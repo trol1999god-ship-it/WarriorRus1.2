@@ -18,9 +18,9 @@
 .end method
 
 .method private static add(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
-    .locals 2
+    .locals 7
 
-    .line 17
+    .line 18
     invoke-interface {p0}, Lorg/w3c/dom/Element;->getOwnerDocument()Lorg/w3c/dom/Document;
 
     move-result-object v0
@@ -31,17 +31,100 @@
 
     invoke-interface {v0, v1, p1}, Lorg/w3c/dom/Document;->createElementNS(Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Element;
 
+    move-result-object v0
+
+    invoke-static {p0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->order(Lorg/w3c/dom/Element;)[Ljava/lang/String;
+
+    move-result-object v1
+
+    const/4 v2, -0x1
+
+    const/4 v3, 0x0
+
+    move v4, v3
+
+    :goto_0
+    array-length v5, v1
+
+    if-ge v4, v5, :cond_1
+
+    aget-object v5, v1, v4
+
+    invoke-virtual {v5, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_0
+
+    move v2, v4
+
+    :cond_0
+    add-int/lit8 v4, v4, 0x1
+
+    goto :goto_0
+
+    :cond_1
+    if-ltz v2, :cond_5
+
+    invoke-interface {p0}, Lorg/w3c/dom/Element;->getFirstChild()Lorg/w3c/dom/Node;
+
     move-result-object p1
 
-    invoke-interface {p0, p1}, Lorg/w3c/dom/Element;->appendChild(Lorg/w3c/dom/Node;)Lorg/w3c/dom/Node;
+    :goto_1
+    if-eqz p1, :cond_5
 
-    return-object p1
+    const/4 v4, 0x1
+
+    add-int/lit8 v5, v2, 0x1
+
+    :goto_2
+    array-length v6, v1
+
+    if-ge v5, v6, :cond_3
+
+    aget-object v6, v1, v5
+
+    invoke-static {p1, v6}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v6
+
+    if-eqz v6, :cond_2
+
+    goto :goto_3
+
+    :cond_2
+    add-int/lit8 v5, v5, 0x1
+
+    goto :goto_2
+
+    :cond_3
+    move v4, v3
+
+    :goto_3
+    if-eqz v4, :cond_4
+
+    goto :goto_4
+
+    :cond_4
+    invoke-interface {p1}, Lorg/w3c/dom/Node;->getNextSibling()Lorg/w3c/dom/Node;
+
+    move-result-object p1
+
+    goto :goto_1
+
+    :cond_5
+    const/4 p1, 0x0
+
+    :goto_4
+    invoke-interface {p0, v0, p1}, Lorg/w3c/dom/Element;->insertBefore(Lorg/w3c/dom/Node;Lorg/w3c/dom/Node;)Lorg/w3c/dom/Node;
+
+    return-object v0
 .end method
 
 .method public static apply(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
     .locals 7
 
-    .line 19
+    .line 20
     invoke-static {p3, p4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->value(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object p4
@@ -124,7 +207,7 @@
 
     goto :goto_0
 
-    .line 20
+    .line 21
     :cond_2
     invoke-virtual {p4}, Ljava/lang/String;->isEmpty()Z
 
@@ -134,7 +217,7 @@
 
     return-void
 
-    .line 21
+    .line 22
     :cond_3
     if-nez v2, :cond_7
 
@@ -157,6 +240,46 @@
     :goto_2
     if-eqz p1, :cond_6
 
+    const-string v4, "Region"
+
+    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v4
+
+    if-nez v4, :cond_5
+
+    const-string v4, "Metadata"
+
+    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v4
+
+    if-nez v4, :cond_5
+
+    const-string v4, "ExtendedData"
+
+    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v4
+
+    if-nez v4, :cond_5
+
+    const-string v4, "AbstractFeatureSimpleExtensionGroup"
+
+    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v4
+
+    if-nez v4, :cond_5
+
+    const-string v4, "AbstractFeatureObjectExtensionGroup"
+
+    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v4
+
+    if-nez v4, :cond_5
+
     const-string v4, "Point"
 
     invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
@@ -166,6 +289,14 @@
     if-nez v4, :cond_5
 
     const-string v4, "LineString"
+
+    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v4
+
+    if-nez v4, :cond_5
+
+    const-string v4, "LinearRing"
 
     invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
 
@@ -195,6 +326,22 @@
 
     move-result v4
 
+    if-nez v4, :cond_5
+
+    const-string v4, "PlacemarkSimpleExtensionGroup"
+
+    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v4
+
+    if-nez v4, :cond_5
+
+    const-string v4, "PlacemarkObjectExtensionGroup"
+
+    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v4
+
     if-eqz v4, :cond_4
 
     goto :goto_3
@@ -213,7 +360,7 @@
     :cond_6
     invoke-interface {p0, v2, p2}, Lorg/w3c/dom/Element;->insertBefore(Lorg/w3c/dom/Node;Lorg/w3c/dom/Node;)Lorg/w3c/dom/Node;
 
-    .line 22
+    .line 23
     :cond_7
     invoke-static {v2, v0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
 
@@ -246,7 +393,7 @@
 
     invoke-interface {p0, p1}, Lorg/w3c/dom/Element;->setTextContent(Ljava/lang/String;)V
 
-    .line 23
+    .line 24
     :cond_9
     return-void
 .end method
@@ -385,6 +532,172 @@
     move-result p0
 
     return p0
+.end method
+
+.method private static order(Lorg/w3c/dom/Element;)[Ljava/lang/String;
+    .locals 9
+
+    .line 17
+    const-string v0, "Style"
+
+    invoke-static {p0, v0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    const-string v7, "StyleSimpleExtensionGroup"
+
+    const-string v8, "StyleObjectExtensionGroup"
+
+    const-string v1, "IconStyle"
+
+    const-string v2, "LabelStyle"
+
+    const-string v3, "LineStyle"
+
+    const-string v4, "PolyStyle"
+
+    const-string v5, "BalloonStyle"
+
+    const-string v6, "ListStyle"
+
+    filled-new-array/range {v1 .. v8}, [Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+
+    :cond_0
+    const-string v0, "IconStyle"
+
+    invoke-static {p0, v0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v0
+
+    const/4 v1, 0x0
+
+    if-eqz v0, :cond_1
+
+    const-string v6, "IconStyleSimpleExtensionGroup"
+
+    const-string v7, "IconStyleObjectExtensionGroup"
+
+    const-string v2, "scale"
+
+    const-string v3, "heading"
+
+    const-string v4, "Icon"
+
+    const-string v5, "hotSpot"
+
+    filled-new-array/range {v2 .. v7}, [Ljava/lang/String;
+
+    move-result-object p0
+
+    goto :goto_1
+
+    :cond_1
+    const-string v0, "LineStyle"
+
+    invoke-static {p0, v0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    const-string p0, "LineStyleSimpleExtensionGroup"
+
+    const-string v0, "LineStyleObjectExtensionGroup"
+
+    const-string v2, "width"
+
+    :goto_0
+    filled-new-array {v2, p0, v0}, [Ljava/lang/String;
+
+    move-result-object p0
+
+    goto :goto_1
+
+    :cond_2
+    const-string v0, "PolyStyle"
+
+    invoke-static {p0, v0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    const-string p0, "PolyStyleSimpleExtensionGroup"
+
+    const-string v0, "PolyStyleObjectExtensionGroup"
+
+    const-string v2, "fill"
+
+    const-string v3, "outline"
+
+    filled-new-array {v2, v3, p0, v0}, [Ljava/lang/String;
+
+    move-result-object p0
+
+    goto :goto_1
+
+    :cond_3
+    const-string v0, "LabelStyle"
+
+    invoke-static {p0, v0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result p0
+
+    if-eqz p0, :cond_4
+
+    const-string p0, "LabelStyleSimpleExtensionGroup"
+
+    const-string v0, "LabelStyleObjectExtensionGroup"
+
+    const-string v2, "scale"
+
+    goto :goto_0
+
+    :cond_4
+    new-array p0, v1, [Ljava/lang/String;
+
+    :goto_1
+    array-length v0, p0
+
+    const/4 v2, 0x4
+
+    add-int/2addr v0, v2
+
+    new-array v0, v0, [Ljava/lang/String;
+
+    const-string v3, "color"
+
+    aput-object v3, v0, v1
+
+    const/4 v3, 0x1
+
+    const-string v4, "colorMode"
+
+    aput-object v4, v0, v3
+
+    const/4 v3, 0x2
+
+    const-string v4, "AbstractColorStyleSimpleExtensionGroup"
+
+    aput-object v4, v0, v3
+
+    const/4 v3, 0x3
+
+    const-string v4, "AbstractColorStyleObjectExtensionGroup"
+
+    aput-object v4, v0, v3
+
+    array-length v3, p0
+
+    invoke-static {p0, v1, v0, v2, v3}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+
+    return-object v0
 .end method
 
 .method private static part(Ljava/lang/String;)Ljava/lang/String;
@@ -547,7 +860,7 @@
 .method private static remove(Lorg/w3c/dom/Element;Ljava/lang/String;)V
     .locals 3
 
-    .line 18
+    .line 19
     invoke-interface {p0}, Lorg/w3c/dom/Element;->getFirstChild()Lorg/w3c/dom/Node;
 
     move-result-object v0

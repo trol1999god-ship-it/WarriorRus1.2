@@ -512,7 +512,7 @@
     "WorkspaceUi$Item.smali",
     "WorkspaceUi.smali"
   ],
-  "replaced_classes": 497,
+  "replaced_classes": 510,
   "min_sdk": 23,
   "api_stubs_packaged": false,
   "sources": {
@@ -553,7 +553,7 @@
     "src/org/rabochaya/projects/HgtHillshadeImport.java": "e19e07842126eae864d2637040589a3fc450d2fa5733b9ce8be4e401937ac688",
     "src/org/rabochaya/projects/HgtRaster.java": "7e31a808ab09bee91515b68abca8d77c4f7fb48e50c4425e7adc9633da63f39f",
     "src/org/rabochaya/projects/KmlComponentStyle.java": "4d5c78ffe1520f6108d89d808bf957c07ada3b99ba10a3d7c904c3641e07bb64",
-    "src/org/rabochaya/projects/KmlComponentStyleEdit.java": "9e28f7a2f2812d8eb3939e09cf11d4f38685b1e69dd4ee98a25f69b6a5cd49c0",
+    "src/org/rabochaya/projects/KmlComponentStyleEdit.java": "cb3fcf747d84e97b6806bb98f15fbc84871087267f448b368863439f0ba0c59a",
     "src/org/rabochaya/projects/KmlTimeFilter.java": "3c2dfbf8cad62e31d1998c931774d18e8d8a1bcb29c31629d5cf964f81238ddd",
     "src/org/rabochaya/projects/KmlXml.java": "5e4553e48f0f250d2f71b16b521a142c0144acb520c1837378b7e1dbd92d73e0",
     "src/org/rabochaya/projects/LocalMapActivity.java": "2ba14ad8d17c37a29445c5ed9b4514379fbfd84ec22ee611be839b0acd762a2b",

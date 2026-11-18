@@ -12,7 +12,7 @@ with tempfile.TemporaryDirectory(prefix='rk-jvm-') as temp:
  results=[]
  for test in tests:
   name='org.rabochaya.projects.'+test if test=='TileRegionTests' else test
-  result=subprocess.run(['java','-cp',str(w),name,*([str(root/'tests/fixtures/gif')] if test=='GifTests' else [])],text=True,capture_output=True)
+  result=subprocess.run(['java','-cp',str(w),name,*([str(root/'tests/fixtures/gif')] if test=='GifTests' else [str(root/'tests/fixtures/kml22-schema')] if test=='KmlComponentStyleEditTests' else [])],text=True,capture_output=True)
   if result.returncode:
    print(result.stdout,end='');print(result.stderr,end='',file=sys.stderr);raise SystemExit(result.returncode)
   print(result.stdout.strip());results.append({'test':test,'result':result.stdout.strip()})
