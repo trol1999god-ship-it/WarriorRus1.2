@@ -12,7 +12,7 @@ concurrency:
   group: independent-core-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  # Codex branch push already validates PR14: do not build the same source twice.
+  # Push and manual dispatch run the build; PR events avoid duplicate runs.
   # Evidence-only runs validate their changed-file allowlist and read an old artifact;
   # they are not new build/test acceptance and cannot contain application changes.
   recover-saved-evidence:
@@ -35,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 independent-core/ci/recover_saved_evidence.py --case dem --api ${{ matrix.api }} --out "$RUNNER_TEMP/recovered-${{ matrix.api }}"
   jvm:
-    if: (github.event_name != 'pull_request' || github.head_ref != 'codex/independent-core-auto') && (github.event_name != 'push' || !contains(github.event.head_commit.message, '[evidence-only]'))
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && !contains(github.event.head_commit.message, '[evidence-only]'))
     runs-on: ubuntu-22.04
     timeout-minutes: 10
     steps:
