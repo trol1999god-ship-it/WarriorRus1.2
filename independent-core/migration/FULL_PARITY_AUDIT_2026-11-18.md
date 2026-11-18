@@ -30,7 +30,7 @@ Implementation и acceptance раздельно; accepted0/23, gate25. Ника�
   0b78ceccaade603999f1322b424d156e42e51daf, Git blob a9d9b26e7df90a0300ddc405d08f400bce74da77,
   1402527bytes; byte/Git hash verified (reference-ui-provenance.json).1087resources:
   826PNG/261SVG, никакого DEX/сети/ключей и никаких screenshot13. Полный member inventory сохранён.
-  Branch docs/reference-apk-audit.md связывает эти ресурсы с AlpineQuest2.3.8b SHA7e8c..., 
+  Branch docs/reference-apk-audit.md связывает эти ресурсы с AlpineQuest2.3.8b SHA7e8c...,
   НЕ с reference26.1 SHA5ac3...; не смешивать версии и не заявлять точную26.1сверку.
   Branch README/ReferenceMenu: четыре нижние группы, blue palette TEXT082e4c/PANELc7e1f8.
   Текущий WorkspaceUi/LocalMapActivity: olive232d1d, шесть shortcut+collapse. Разрыв подтверждён кодом.

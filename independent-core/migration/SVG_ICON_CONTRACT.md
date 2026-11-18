@@ -1,7 +1,7 @@
-# Следующий SVG-участок — контракт и границы (draft, не реализация/приёмка)
+# SVG-участок — bounded production candidate; Android runtime/acceptance pending
 
-После фактических результатов CI44296647517. Существующий renderer пока показывает
-условный круг и не читает Icon/href. Общий DOM/payload store хранит непрозрачные
+После фактических результатов CI44296647517. Исторический b11 renderer показывает
+условный круг и не читает Icon/href; текущий candidate подключает owner-bound SVG. Общий DOM/payload store хранит непрозрачные
 вложения; отдельный SVG import/render/roundtrip runtime ещё не проверен. Этого
 недостаточно, чтобы назвать SVG отображение реализованным.
 
@@ -68,3 +68,36 @@ runtime libraries/библиотеки чужих значков. Визуаль
 Open implementation gaps: current app does not have SvgPath/SvgIcon/asset renderer;
 this document alone closes none of symbols/import-export acceptance. accepted0,
 releasegate25, Arimo/resources/privacy/online+cache preserved. No Stryx/SkillUI/cloud.
+
+## Реальный кандидат после аудита18ноября (уточняет предварительный план выше)
+
+Production SvgPath/SvgIcon/KmlSymbolAssets/SvgRaster + existing KmlComponentStyle/
+LocalMapActivity/LocalMapView реализуют memory snapshot→worker→Canvas. Не installed SDK
+или WebView/legacy library. Поддержаны explicit px/native width+height или viewBox,
+unqualified local SVG из найденных art ресурсов, path/primitives/solid fill+stroke/evenodd,
+bounded inline style ТОЛЬКО известные paint properties. Нет CSS resource/url/import.
+Unknown transforms/group opacity/gradients/fonts/animation etc целиком refuse. Empty path
+рисует ничего; исходныеbytes сохраняются. Все261 найденных legacy artwork только parser
+PASS; не выдавать их за13screen/26.1/Android visual acceptance и не bundled library.
+
+KML normal StyleMap+inline property inheritance для href/scale/heading/hotSpot, без чтения
+URL/диска. Явный hotSpot: fraction/pixels/insetPixels; SVG intrinsicpx scale≤16, result≤256px.
+Отсутствующий hotSpot использует центр изображения в этом candidate; точная26.1семантика/
+масштаб на разныхdensity остаётся внешней приёмкой, не подтверждена XSD одна. IconStyle
+color multiplies SVG RGB/alpha как raster color; это не silhouette-tint custom library.
+No SVG feature changes DOM or saves anything automatically. Own current KML/KMZ keeps
+original payload bytes and paths; external app SVG support is not certified.
+
+Snapshot copy256 SVG≤64KiB each/16MiB, draw32 features≤256x256; explicit warning when
+unsupported/exceeded/foreign. Worker lifetime drops disposed results and recycles bitmaps;
+paint colorFilter/alpha reset before adjacent geometry/labels. Guarded writes untouched.
+SDK23 source88/591classes matching app+tests, JVM43 suites PASS; Native checks compiled,
+не runtime. Existing offlineformats adds actual pixels/owner/KMZ/DTD/no-network cases;
+new synthetic SVG included in existing main component PNG slots, no mode/framecap addition.
+
+Модель/parser не закрывают библиотеку/назначение/editor или acceptance symbols/import-export.
+Следующий пользовательский APK только после substantial verified runtime block, не этого
+описания/внутренней QA сборки. Exact13-screen layout still needs original screenshots.
+
+Blue palette main panels/glyphs adapted from ReferenceMenu0b78cecc exact constants;
+no13-screen/layout acceptance claimed. Existing frame slots/strict guards preserved.

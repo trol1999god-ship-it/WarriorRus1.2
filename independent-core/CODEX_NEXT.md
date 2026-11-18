@@ -56,25 +56,33 @@ reopen/экспорт с точными bytes и отказом unsupported/exte
 Затем явное назначение/библиотека; media/explicitshare → UI13/coordinates/compass/settings
 → safe26.1migration по матрице. Не возвращаться к orphan/dialog baseline.
 
-## Локальный SVG WIP после TEST выдачи (не входит в b11 APK)
+## SVG production candidate: local checks PASS; Android runtime pending
 
-SvgPath49/SvgIcon34/KmlSymbolAssets17:100 новых model checks; полный JVM43 suites PASS.
-Три модели компилируются с настоящим android-23.jar как bootclasspath.
-SAX lexical-handler отвергает DTD до entities; только memory snapshot исходного Document,
-32 SVG/2MiB, file64KiB, отказ external/foreign/traversal/unsupported features.
-Текущий профиль уже: primitives/paths/solid paint/inheritance; transforms/group opacity,
-CSS/text/gradients/external features явно отвергаются, а не частично отображаются.
-Это НЕ renderer/пользовательская SVG-функция: owner asset context ещё не подключён к
-LocalMapActivity/LocalMapView; KML href/scale/hotspot contract и Android pixels/runtime
-впереди. Model source/tests/verify_jvm остаются локальным незакоммиченным WIP, специально
-не приписаны CI44296647517; generated overlay/APK b11 не перегенерированы.
-Private snapshot: /workspace/work/manager-confirm/resume-2026-11-18/svg-model-preserve/;
-final JVM log svg-model-final-jvm.log. Первый strict bootclasspath compile с lambda
-дал javac CompletionFailure MethodHandles.Lookup; заменён anonymous EntityResolver,
-финальная SDK23 model compile exit0. Compiler args artifact сохранён, не удалён.
-Следующий шаг — проверить OGC KML Icon/href/scale/hotSpot и подключить bounded adapter
-в existing renderer/asset lifetime, затем existing offlineformats pixels/reopen/KMZ/data.
-Не запускать fullCI для отдельно неинтегрированной модели ради отчёта.
+Исходный WIP100/JVM43 сохранён в work/resume-2026-11-18/svg-model-preserve и новой
+full-parity-audit snapshot, stash2/pending/toolchain untouched. Сейчас source88/591classes
+matching SDK23 app+tests; JVM43 suites PASS (SvgPath49/SvgIcon44/KmlSymbolAssets17,
+component52/editor84). Parser261 reference resources PASS — не runtime/26.1 acceptance.
+Реальный код: SVG paths/primitives/solid paint→SvgRaster→LocalMapView worker/Canvas,
+KmlComponentStyle normal StyleMap/inline href+scale/heading/hotSpot, LocalMapActivity
+передаёт snapshot assets того же Document после load/explicit metadata save. Без записи KML,
+без file/network URI loading; unknown SVG не частичный успех, видимое предупреждение.
+Own KML/KMZ import/export уже сохраняет SVG payload; новый renderer подключён к нему.
+32 отображаемых SVG/256px,256 локальных SVG/16MiB snapshot; не полная библиотека.
+Main panels/menu/glyphs используют подтверждённые blue TEXT082e4c/PANELc7e1f8;
+реальные native checks добавлены для контраста панелей. Компоновка13/Fold не принята.
+Native existing offlineformats extended: actual shape/hole/pixels/normal StyleMap/KMZ/
+same XML href foreign owner/DTD/external/script/data guards. Existing PNG slots показывают
+SVG вместе с прежними component/editor frames; frame caps/physical guards unchanged.
+Matching test DEX содержит финальные security checks. Android НЕисполнен локально,
+следующий один changed-code fullCI existing workflow после commit/push; b11 не rerun.
+Локальный host31: первый30/31 (fake-adb remainingdeadline0.018s приD8), изолированно31PASS
+без изменения criteria/timeouts. Оба лога сохранены, первый FAIL не выдан за PASS.
+Fresh official lint88/173actualclassfiles exit1 MissingClass/HardcodedDebugMode/
+114warnings; smali bodies не анализируются, NOTPASS. Custom source+DEX privacy PASS.
+Evidence: security/svg-render-qa-2026-11-18/local-candidate.json.
+Далее прочитать реальные обеAPI jobs/source/digest/PNG, исправить каждый отказ. До результата
+не выдавать следующий пользовательский APK. После verified SVG slice — assignment/custom
+library/editor целым user block с утверждённым UI, затем media/filemanager/остальная матрица.
 
 ## Сохранённые ограничения
 

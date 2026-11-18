@@ -11,9 +11,11 @@
 
 .field public final synthetic f$1:Ljava/util/List;
 
+.field public final synthetic f$2:Lorg/rabochaya/projects/KmlSymbolAssets;
+
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/util/List;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/util/List;Lorg/rabochaya/projects/KmlSymbolAssets;)V
     .locals 0
 
     .line 0
@@ -23,20 +25,24 @@
 
     iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda24;->f$1:Ljava/util/List;
 
+    iput-object p3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda24;->f$2:Lorg/rabochaya/projects/KmlSymbolAssets;
+
     return-void
 .end method
 
 
 # virtual methods
 .method public final run()V
-    .locals 2
+    .locals 3
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda24;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
     iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda24;->f$1:Ljava/util/List;
 
-    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$load$1$org-rabochaya-projects-LocalMapActivity(Ljava/util/List;)V
+    iget-object v2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda24;->f$2:Lorg/rabochaya/projects/KmlSymbolAssets;
+
+    invoke-virtual {v0, v1, v2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$load$1$org-rabochaya-projects-LocalMapActivity(Ljava/util/List;Lorg/rabochaya/projects/KmlSymbolAssets;)V
 
     return-void
 .end method

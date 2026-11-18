@@ -34,19 +34,32 @@
 
 .field public final polygon:Ljava/lang/Integer;
 
+.field public final symbol:Ljava/util/Map;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/Map<",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            ">;"
+        }
+    .end annotation
+.end field
+
 .field public final width:Ljava/lang/Float;
 
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 10
+    .locals 11
 
     .line 7
-    new-instance v9, Lorg/rabochaya/projects/KmlComponentStyle;
-
-    const/4 v7, 0x0
+    new-instance v10, Lorg/rabochaya/projects/KmlComponentStyle;
 
     const/4 v8, 0x0
+
+    invoke-static {}, Ljava/util/Collections;->emptyMap()Ljava/util/Map;
+
+    move-result-object v9
 
     const/4 v1, 0x0
 
@@ -60,20 +73,49 @@
 
     const/4 v6, 0x0
 
-    move-object v0, v9
+    const/4 v7, 0x0
 
-    invoke-direct/range {v0 .. v8}, Lorg/rabochaya/projects/KmlComponentStyle;-><init>(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Float;Ljava/lang/Float;)V
+    move-object v0, v10
 
-    sput-object v9, Lorg/rabochaya/projects/KmlComponentStyle;->EMPTY:Lorg/rabochaya/projects/KmlComponentStyle;
+    invoke-direct/range {v0 .. v9}, Lorg/rabochaya/projects/KmlComponentStyle;-><init>(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/Map;)V
+
+    sput-object v10, Lorg/rabochaya/projects/KmlComponentStyle;->EMPTY:Lorg/rabochaya/projects/KmlComponentStyle;
 
     return-void
 .end method
 
-.method private constructor <init>(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Float;Ljava/lang/Float;)V
-    .locals 0
+.method private constructor <init>(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/Map;)V
+    .locals 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/lang/Integer;",
+            "Ljava/lang/Integer;",
+            "Ljava/lang/Integer;",
+            "Ljava/lang/Integer;",
+            "Ljava/lang/Boolean;",
+            "Ljava/lang/Boolean;",
+            "Ljava/lang/Float;",
+            "Ljava/lang/Float;",
+            "Ljava/util/Map<",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            ">;)V"
+        }
+    .end annotation
 
     .line 9
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    new-instance v0, Ljava/util/LinkedHashMap;
+
+    invoke-direct {v0, p9}, Ljava/util/LinkedHashMap;-><init>(Ljava/util/Map;)V
+
+    invoke-static {v0}, Ljava/util/Collections;->unmodifiableMap(Ljava/util/Map;)Ljava/util/Map;
+
+    move-result-object p9
+
+    iput-object p9, p0, Lorg/rabochaya/projects/KmlComponentStyle;->symbol:Ljava/util/Map;
 
     iput-object p1, p0, Lorg/rabochaya/projects/KmlComponentStyle;->icon:Ljava/lang/Integer;
 
@@ -94,7 +136,18 @@
     return-void
 .end method
 
-.method static synthetic access$000(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+.method static synthetic access$000(Lorg/w3c/dom/Element;)Lorg/rabochaya/projects/KmlComponentStyle;
+    .locals 0
+
+    .line 4
+    invoke-static {p0}, Lorg/rabochaya/projects/KmlComponentStyle;->inline(Lorg/w3c/dom/Element;)Lorg/rabochaya/projects/KmlComponentStyle;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method static synthetic access$100(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
     .locals 0
 
     .line 4
@@ -105,22 +158,11 @@
     return p0
 .end method
 
-.method static synthetic access$100(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
+.method static synthetic access$200(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
     .locals 0
 
     .line 4
     invoke-static {p0, p1}, Lorg/rabochaya/projects/KmlComponentStyle;->text(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object p0
-
-    return-object p0
-.end method
-
-.method static synthetic access$200(Lorg/w3c/dom/Element;)Lorg/rabochaya/projects/KmlComponentStyle;
-    .locals 0
-
-    .line 4
-    invoke-static {p0}, Lorg/rabochaya/projects/KmlComponentStyle;->inline(Lorg/w3c/dom/Element;)Lorg/rabochaya/projects/KmlComponentStyle;
 
     move-result-object p0
 
@@ -504,7 +546,7 @@
 .end method
 
 .method private static inline(Lorg/w3c/dom/Element;)Lorg/rabochaya/projects/KmlComponentStyle;
-    .locals 12
+    .locals 13
 
     .line 21
     const-string v0, "PolyStyle"
@@ -513,7 +555,7 @@
 
     move-result-object v1
 
-    new-instance v11, Lorg/rabochaya/projects/KmlComponentStyle;
+    new-instance v12, Lorg/rabochaya/projects/KmlComponentStyle;
 
     const-string v2, "IconStyle"
 
@@ -583,22 +625,36 @@
 
     move-result-object v10
 
-    move-object v2, v11
+    invoke-static {p0}, Lorg/rabochaya/projects/KmlComponentStyle;->symbol(Lorg/w3c/dom/Element;)Ljava/util/Map;
+
+    move-result-object v11
+
+    move-object v2, v12
 
     move-object v7, v8
 
     move-object v8, v1
 
-    invoke-direct/range {v2 .. v10}, Lorg/rabochaya/projects/KmlComponentStyle;-><init>(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Float;Ljava/lang/Float;)V
+    invoke-direct/range {v2 .. v11}, Lorg/rabochaya/projects/KmlComponentStyle;-><init>(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/Map;)V
 
-    return-object v11
+    return-object v12
 .end method
 
 .method private over(Lorg/rabochaya/projects/KmlComponentStyle;)Lorg/rabochaya/projects/KmlComponentStyle;
-    .locals 10
+    .locals 11
 
     .line 10
-    new-instance v9, Lorg/rabochaya/projects/KmlComponentStyle;
+    new-instance v9, Ljava/util/LinkedHashMap;
+
+    iget-object v0, p1, Lorg/rabochaya/projects/KmlComponentStyle;->symbol:Ljava/util/Map;
+
+    invoke-direct {v9, v0}, Ljava/util/LinkedHashMap;-><init>(Ljava/util/Map;)V
+
+    iget-object v0, p0, Lorg/rabochaya/projects/KmlComponentStyle;->symbol:Ljava/util/Map;
+
+    invoke-interface {v9, v0}, Ljava/util/Map;->putAll(Ljava/util/Map;)V
+
+    new-instance v10, Lorg/rabochaya/projects/KmlComponentStyle;
 
     iget-object v0, p0, Lorg/rabochaya/projects/KmlComponentStyle;->icon:Ljava/lang/Integer;
 
@@ -712,11 +768,222 @@
     :goto_7
     move-object v8, p1
 
-    move-object v0, v9
+    move-object v0, v10
 
-    invoke-direct/range {v0 .. v8}, Lorg/rabochaya/projects/KmlComponentStyle;-><init>(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Float;Ljava/lang/Float;)V
+    invoke-direct/range {v0 .. v9}, Lorg/rabochaya/projects/KmlComponentStyle;-><init>(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/Map;)V
 
-    return-object v9
+    return-object v10
+.end method
+
+.method private static symbol(Lorg/w3c/dom/Element;)Ljava/util/Map;
+    .locals 5
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lorg/w3c/dom/Element;",
+            ")",
+            "Ljava/util/Map<",
+            "Ljava/lang/String;",
+            "Ljava/lang/String;",
+            ">;"
+        }
+    .end annotation
+
+    .line 23
+    new-instance v0, Ljava/util/LinkedHashMap;
+
+    invoke-direct {v0}, Ljava/util/LinkedHashMap;-><init>()V
+
+    const-string v1, "IconStyle"
+
+    invoke-static {p0, v1}, Lorg/rabochaya/projects/KmlComponentStyle;->child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
+
+    move-result-object p0
+
+    if-nez p0, :cond_0
+
+    return-object v0
+
+    :cond_0
+    const-string v1, "scale"
+
+    const-string v2, "heading"
+
+    filled-new-array {v1, v2}, [Ljava/lang/String;
+
+    move-result-object v1
+
+    const/4 v2, 0x0
+
+    :goto_0
+    const/4 v3, 0x2
+
+    if-ge v2, v3, :cond_2
+
+    aget-object v3, v1, v2
+
+    invoke-static {p0, v3}, Lorg/rabochaya/projects/KmlComponentStyle;->child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
+
+    move-result-object v4
+
+    if-eqz v4, :cond_1
+
+    invoke-static {v4}, Lorg/rabochaya/projects/KmlComponentStyle;->symbolText(Lorg/w3c/dom/Element;)Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-interface {v0, v3, v4}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    :cond_1
+    add-int/lit8 v2, v2, 0x1
+
+    goto :goto_0
+
+    :cond_2
+    const-string v1, "Icon"
+
+    invoke-static {p0, v1}, Lorg/rabochaya/projects/KmlComponentStyle;->child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
+
+    move-result-object v1
+
+    if-eqz v1, :cond_3
+
+    const-string v2, "href"
+
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/KmlComponentStyle;->child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
+
+    move-result-object v1
+
+    if-eqz v1, :cond_3
+
+    invoke-static {v1}, Lorg/rabochaya/projects/KmlComponentStyle;->symbolText(Lorg/w3c/dom/Element;)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-interface {v0, v2, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    :cond_3
+    const-string v1, "hotSpot"
+
+    invoke-static {p0, v1}, Lorg/rabochaya/projects/KmlComponentStyle;->child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
+
+    move-result-object p0
+
+    if-eqz p0, :cond_8
+
+    const-string v1, "x"
+
+    invoke-interface {p0, v1}, Lorg/w3c/dom/Element;->hasAttribute(Ljava/lang/String;)Z
+
+    move-result v2
+
+    const-string v3, "1"
+
+    if-eqz v2, :cond_4
+
+    invoke-interface {p0, v1}, Lorg/w3c/dom/Element;->getAttribute(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    goto :goto_1
+
+    :cond_4
+    move-object v1, v3
+
+    :goto_1
+    const-string v2, "hotSpot.x"
+
+    invoke-interface {v0, v2, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    const-string v1, "y"
+
+    invoke-interface {p0, v1}, Lorg/w3c/dom/Element;->hasAttribute(Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_5
+
+    invoke-interface {p0, v1}, Lorg/w3c/dom/Element;->getAttribute(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v3
+
+    :cond_5
+    const-string v1, "hotSpot.y"
+
+    invoke-interface {v0, v1, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    const-string v1, "xunits"
+
+    invoke-interface {p0, v1}, Lorg/w3c/dom/Element;->hasAttribute(Ljava/lang/String;)Z
+
+    move-result v2
+
+    const-string v3, "fraction"
+
+    if-eqz v2, :cond_6
+
+    invoke-interface {p0, v1}, Lorg/w3c/dom/Element;->getAttribute(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    goto :goto_2
+
+    :cond_6
+    move-object v1, v3
+
+    :goto_2
+    const-string v2, "hotSpot.xunits"
+
+    invoke-interface {v0, v2, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    const-string v1, "yunits"
+
+    invoke-interface {p0, v1}, Lorg/w3c/dom/Element;->hasAttribute(Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_7
+
+    invoke-interface {p0, v1}, Lorg/w3c/dom/Element;->getAttribute(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v3
+
+    :cond_7
+    const-string p0, "hotSpot.yunits"
+
+    invoke-interface {v0, p0, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    :cond_8
+    return-object v0
+.end method
+
+.method private static symbolText(Lorg/w3c/dom/Element;)Ljava/lang/String;
+    .locals 2
+
+    .line 22
+    invoke-interface {p0}, Lorg/w3c/dom/Element;->getTextContent()Ljava/lang/String;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Ljava/lang/String;->length()I
+
+    move-result v0
+
+    const/16 v1, 0x1000
+
+    if-le v0, v1, :cond_0
+
+    const-string p0, "%unsupported-too-long"
+
+    goto :goto_0
+
+    :cond_0
+    invoke-virtual {p0}, Ljava/lang/String;->trim()Ljava/lang/String;
+
+    move-result-object p0
+
+    :goto_0
+    return-object p0
 .end method
 
 .method private static tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z

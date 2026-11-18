@@ -25,6 +25,9 @@ public final class KmlComponentStyleTests {
   ck(KmlComponentStyle.dimension("0",true)==0f&&KmlComponentStyle.dimension("256",true)==256f);ck(KmlComponentStyle.dimension("1.5",false)==1.5f&&KmlComponentStyle.dimension("16",false)==16f&&KmlComponentStyle.dimension("16.01",false)==null);
   s=style("<Style id='s'><LabelStyle><scale>2</scale></LabelStyle><LineStyle><width>8</width></LineStyle></Style><Placemark><styleUrl>#s</styleUrl><Style><LabelStyle><scale>NaN</scale></LabelStyle><LineStyle><width xmlns='urn:foreign'>12</width></LineStyle></Style></Placemark>");ck(s.width==8f&&s.labelScale==2f);
   s=style("<Placemark><Style><LineStyle><width>1.25e1</width></LineStyle><LabelStyle><scale>0</scale></LabelStyle></Style></Placemark>");ck(s.width==12.5f&&s.labelScale==0f);
+  s=style("<Style id='svg'><IconStyle><scale>2</scale><heading>90</heading><Icon><href>icons/shape.svg</href></Icon><hotSpot x='0.5' y='0' xunits='fraction' yunits='fraction'/></IconStyle></Style><StyleMap id='svgMap'><Pair><key>normal</key><styleUrl>#svg</styleUrl></Pair></StyleMap><Placemark><styleUrl>#svgMap</styleUrl><Style><IconStyle><scale>1</scale></IconStyle></Style></Placemark>");ck(s.symbol.get("href").equals("icons/shape.svg"));ck(s.symbol.get("scale").equals("1")&&s.symbol.get("heading").equals("90"));ck(s.symbol.get("hotSpot.x").equals("0.5")&&s.symbol.get("hotSpot.y").equals("0"));
+  d=parse("<Placemark><Style><IconStyle><Icon><href>icons/a.svg</href></Icon></IconStyle></Style></Placemark>");resolver=new KmlComponentStyle.Resolver(d);ck(resolver.resolve(feature(parse("<Placemark/>"))).symbol.isEmpty());
+  char[] hugeHref=new char[5000];Arrays.fill(hugeHref,'a');s=style("<Placemark><Style><IconStyle><Icon><href>"+new String(hugeHref)+"</href></Icon></IconStyle></Style></Placemark>");ck(s.symbol.get("href").length()<100&&s.symbol.get("href").startsWith("%"));
   System.out.println("PASS KML component style: "+n+" assertions");
  }
 }

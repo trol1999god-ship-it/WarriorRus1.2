@@ -1,0 +1,21 @@
+{
+  "tool": "official Android lint",
+  "exit_code": 1,
+  "passed": false,
+  "source_count": 88,
+  "actual_classfiles": 173,
+  "errors": [
+    {
+      "id": "MissingClass",
+      "severity": "Error",
+      "message": "Class referenced in the manifest, `org.rabochaya.projects.ProjectsActivity`, was not found in the project or the libraries"
+    },
+    {
+      "id": "HardcodedDebugMode",
+      "severity": "Fatal",
+      "message": "Avoid hardcoding the debug mode; leaving it out allows debug and release builds to automatically assign one"
+    }
+  ],
+  "warnings": 114,
+  "scope": "Actual Java overlay + separate ABI resolution; smali bodies not analyzed; adapter incomplete; not complete lint coverage"
+}

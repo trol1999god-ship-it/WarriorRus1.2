@@ -23,6 +23,17 @@
 
 
 # instance fields
+.field private final cachedInline:Ljava/util/IdentityHashMap;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/IdentityHashMap<",
+            "Lorg/w3c/dom/Element;",
+            "Lorg/rabochaya/projects/KmlComponentStyle;",
+            ">;"
+        }
+    .end annotation
+.end field
+
 .field public final complete:Z
 
 .field private final document:Lorg/w3c/dom/Document;
@@ -53,10 +64,17 @@
 .method public constructor <init>(Lorg/w3c/dom/Document;)V
     .locals 9
 
-    .line 25
+    .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 24
+    .line 26
+    new-instance v0, Ljava/util/IdentityHashMap;
+
+    invoke-direct {v0}, Ljava/util/IdentityHashMap;-><init>()V
+
+    iput-object v0, p0, Lorg/rabochaya/projects/KmlComponentStyle$Resolver;->cachedInline:Ljava/util/IdentityHashMap;
+
+    .line 27
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
@@ -69,7 +87,7 @@
 
     iput-object v0, p0, Lorg/rabochaya/projects/KmlComponentStyle$Resolver;->duplicates:Ljava/util/HashSet;
 
-    .line 25
+    .line 28
     iput-object p1, p0, Lorg/rabochaya/projects/KmlComponentStyle$Resolver;->document:Lorg/w3c/dom/Document;
 
     const/4 v0, 0x0
@@ -94,7 +112,7 @@
 
     move v4, v3
 
-    .line 26
+    .line 29
     :goto_1
     const/4 v5, 0x1
 
@@ -112,7 +130,7 @@
     :cond_1
     const-string v5, "Style"
 
-    invoke-static {v2, v5}, Lorg/rabochaya/projects/KmlComponentStyle;->access$000(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+    invoke-static {v2, v5}, Lorg/rabochaya/projects/KmlComponentStyle;->access$100(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
 
     move-result v5
 
@@ -120,7 +138,7 @@
 
     const-string v5, "StyleMap"
 
-    invoke-static {v2, v5}, Lorg/rabochaya/projects/KmlComponentStyle;->access$000(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+    invoke-static {v2, v5}, Lorg/rabochaya/projects/KmlComponentStyle;->access$100(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
 
     move-result v5
 
@@ -195,7 +213,7 @@
 
     invoke-virtual {v5, v6}, Ljava/util/HashSet;->add(Ljava/lang/Object;)Z
 
-    .line 27
+    .line 30
     :cond_6
     :goto_4
     invoke-interface {v2}, Lorg/w3c/dom/Node;->getFirstChild()Lorg/w3c/dom/Node;
@@ -240,11 +258,11 @@
 
     goto :goto_1
 
-    .line 26
+    .line 29
     :cond_a
     move v1, v5
 
-    .line 28
+    .line 31
     :goto_6
     if-nez v1, :cond_b
 
@@ -259,8 +277,44 @@
     :cond_b
     iput-boolean v1, p0, Lorg/rabochaya/projects/KmlComponentStyle$Resolver;->complete:Z
 
-    .line 29
+    .line 32
     return-void
+.end method
+
+.method private inlineCached(Lorg/w3c/dom/Element;)Lorg/rabochaya/projects/KmlComponentStyle;
+    .locals 3
+
+    .line 26
+    iget-object v0, p0, Lorg/rabochaya/projects/KmlComponentStyle$Resolver;->cachedInline:Ljava/util/IdentityHashMap;
+
+    invoke-virtual {v0, p1}, Ljava/util/IdentityHashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lorg/rabochaya/projects/KmlComponentStyle;
+
+    if-nez v0, :cond_0
+
+    invoke-static {p1}, Lorg/rabochaya/projects/KmlComponentStyle;->access$000(Lorg/w3c/dom/Element;)Lorg/rabochaya/projects/KmlComponentStyle;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lorg/rabochaya/projects/KmlComponentStyle$Resolver;->cachedInline:Ljava/util/IdentityHashMap;
+
+    invoke-virtual {v1}, Ljava/util/IdentityHashMap;->size()I
+
+    move-result v1
+
+    const/16 v2, 0x1000
+
+    if-ge v1, v2, :cond_0
+
+    iget-object v1, p0, Lorg/rabochaya/projects/KmlComponentStyle$Resolver;->cachedInline:Ljava/util/IdentityHashMap;
+
+    invoke-virtual {v1, p1, v0}, Ljava/util/IdentityHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    :cond_0
+    return-object v0
 .end method
 
 .method private reference(Ljava/lang/String;ILjava/util/Set;)Lorg/rabochaya/projects/KmlComponentStyle;
@@ -277,7 +331,7 @@
         }
     .end annotation
 
-    .line 31
+    .line 34
     const/16 v0, 0x8
 
     if-ge p2, v0, :cond_3
@@ -373,16 +427,16 @@
         }
     .end annotation
 
-    .line 32
+    .line 35
     const-string v0, "Style"
 
-    invoke-static {p1, v0}, Lorg/rabochaya/projects/KmlComponentStyle;->access$000(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+    invoke-static {p1, v0}, Lorg/rabochaya/projects/KmlComponentStyle;->access$100(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
 
     move-result v1
 
     if-eqz v1, :cond_0
 
-    invoke-static {p1}, Lorg/rabochaya/projects/KmlComponentStyle;->access$200(Lorg/w3c/dom/Element;)Lorg/rabochaya/projects/KmlComponentStyle;
+    invoke-direct {p0, p1}, Lorg/rabochaya/projects/KmlComponentStyle$Resolver;->inlineCached(Lorg/w3c/dom/Element;)Lorg/rabochaya/projects/KmlComponentStyle;
 
     move-result-object p1
 
@@ -391,7 +445,7 @@
     :cond_0
     const-string v1, "StyleMap"
 
-    invoke-static {p1, v1}, Lorg/rabochaya/projects/KmlComponentStyle;->access$000(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+    invoke-static {p1, v1}, Lorg/rabochaya/projects/KmlComponentStyle;->access$100(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
 
     move-result v1
 
@@ -415,7 +469,7 @@
 
     const-string v2, "Pair"
 
-    invoke-static {p1, v2}, Lorg/rabochaya/projects/KmlComponentStyle;->access$000(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+    invoke-static {p1, v2}, Lorg/rabochaya/projects/KmlComponentStyle;->access$100(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
 
     move-result v2
 
@@ -427,7 +481,7 @@
 
     const-string v3, "key"
 
-    invoke-static {v2, v3}, Lorg/rabochaya/projects/KmlComponentStyle;->access$100(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v2, v3}, Lorg/rabochaya/projects/KmlComponentStyle;->access$200(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
@@ -465,7 +519,7 @@
     :cond_5
     const-string p1, "styleUrl"
 
-    invoke-static {v1, p1}, Lorg/rabochaya/projects/KmlComponentStyle;->access$100(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v1, p1}, Lorg/rabochaya/projects/KmlComponentStyle;->access$200(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object p1
 
@@ -482,7 +536,7 @@
     goto :goto_1
 
     :cond_6
-    invoke-static {p2}, Lorg/rabochaya/projects/KmlComponentStyle;->access$200(Lorg/w3c/dom/Element;)Lorg/rabochaya/projects/KmlComponentStyle;
+    invoke-direct {p0, p2}, Lorg/rabochaya/projects/KmlComponentStyle$Resolver;->inlineCached(Lorg/w3c/dom/Element;)Lorg/rabochaya/projects/KmlComponentStyle;
 
     move-result-object p2
 
@@ -505,7 +559,7 @@
 .method public resolve(Lorg/w3c/dom/Element;)Lorg/rabochaya/projects/KmlComponentStyle;
     .locals 3
 
-    .line 30
+    .line 33
     if-eqz p1, :cond_3
 
     invoke-interface {p1}, Lorg/w3c/dom/Element;->getOwnerDocument()Lorg/w3c/dom/Document;
@@ -521,7 +575,7 @@
     :cond_0
     const-string v0, "styleUrl"
 
-    invoke-static {p1, v0}, Lorg/rabochaya/projects/KmlComponentStyle;->access$100(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {p1, v0}, Lorg/rabochaya/projects/KmlComponentStyle;->access$200(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -544,7 +598,7 @@
 
     const-string v1, "Style"
 
-    invoke-static {p1, v1}, Lorg/rabochaya/projects/KmlComponentStyle;->access$000(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+    invoke-static {p1, v1}, Lorg/rabochaya/projects/KmlComponentStyle;->access$100(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
 
     move-result v1
 
@@ -554,7 +608,7 @@
 
     check-cast v1, Lorg/w3c/dom/Element;
 
-    invoke-static {v1}, Lorg/rabochaya/projects/KmlComponentStyle;->access$200(Lorg/w3c/dom/Element;)Lorg/rabochaya/projects/KmlComponentStyle;
+    invoke-direct {p0, v1}, Lorg/rabochaya/projects/KmlComponentStyle$Resolver;->inlineCached(Lorg/w3c/dom/Element;)Lorg/rabochaya/projects/KmlComponentStyle;
 
     move-result-object v1
 

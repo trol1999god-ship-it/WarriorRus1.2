@@ -1,9 +1,6 @@
 .class Lorg/rabochaya/projects/LocalMapView$4;
-.super Ljava/lang/Object;
+.super Landroid/view/ScaleGestureDetector$SimpleOnScaleGestureListener;
 .source "LocalMapView.java"
-
-# interfaces
-.implements Ljava/lang/Runnable;
 
 
 # annotations
@@ -20,102 +17,71 @@
 # instance fields
 .field final synthetic this$0:Lorg/rabochaya/projects/LocalMapView;
 
-.field final synthetic val$listener:Lorg/rabochaya/projects/LocalMapView$Listener;
-
-.field final synthetic val$map:Ljava/io/File;
-
 
 # direct methods
-.method constructor <init>(Lorg/rabochaya/projects/LocalMapView;Ljava/io/File;Lorg/rabochaya/projects/LocalMapView$Listener;)V
+.method constructor <init>(Lorg/rabochaya/projects/LocalMapView;)V
     .locals 0
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "()V"
-        }
-    .end annotation
 
-    .line 23
+    .line 25
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$4;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapView$4;->val$map:Ljava/io/File;
-
-    iput-object p3, p0, Lorg/rabochaya/projects/LocalMapView$4;->val$listener:Lorg/rabochaya/projects/LocalMapView$Listener;
-
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0}, Landroid/view/ScaleGestureDetector$SimpleOnScaleGestureListener;-><init>()V
 
     return-void
 .end method
 
 
 # virtual methods
-.method public run()V
-    .locals 3
+.method public onScale(Landroid/view/ScaleGestureDetector;)Z
+    .locals 5
 
-    .line 23
-    :try_start_0
+    .line 25
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$4;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
-    new-instance v1, Lorg/rabochaya/projects/OfflineTiles;
+    invoke-virtual {p1}, Landroid/view/ScaleGestureDetector;->getScaleFactor()F
 
-    iget-object v2, p0, Lorg/rabochaya/projects/LocalMapView$4;->val$map:Ljava/io/File;
+    move-result v1
 
-    invoke-direct {v1, v2}, Lorg/rabochaya/projects/OfflineTiles;-><init>(Ljava/io/File;)V
+    float-to-double v1, v1
 
-    invoke-static {v0, v1}, Lorg/rabochaya/projects/LocalMapView;->access$1002(Lorg/rabochaya/projects/LocalMapView;Lorg/rabochaya/projects/OfflineTiles;)Lorg/rabochaya/projects/OfflineTiles;
+    invoke-static {v1, v2}, Ljava/lang/Math;->log(D)D
 
-    iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$4;->this$0:Lorg/rabochaya/projects/LocalMapView;
+    move-result-wide v1
 
-    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapView$4;->this$0:Lorg/rabochaya/projects/LocalMapView;
+    const-wide/high16 v3, 0x4000000000000000L    # 2.0
 
-    invoke-static {v1}, Lorg/rabochaya/projects/LocalMapView;->access$1000(Lorg/rabochaya/projects/LocalMapView;)Lorg/rabochaya/projects/OfflineTiles;
+    invoke-static {v3, v4}, Ljava/lang/Math;->log(D)D
 
-    move-result-object v1
+    move-result-wide v3
 
-    iget v1, v1, Lorg/rabochaya/projects/OfflineTiles;->minZoom:I
+    div-double/2addr v1, v3
 
-    invoke-static {v0, v1}, Lorg/rabochaya/projects/LocalMapView;->access$1102(Lorg/rabochaya/projects/LocalMapView;I)I
+    invoke-virtual {p1}, Landroid/view/ScaleGestureDetector;->getFocusX()F
 
-    iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$4;->this$0:Lorg/rabochaya/projects/LocalMapView;
+    move-result v3
 
-    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapView$4;->this$0:Lorg/rabochaya/projects/LocalMapView;
+    invoke-virtual {p1}, Landroid/view/ScaleGestureDetector;->getFocusY()F
 
-    invoke-static {v1}, Lorg/rabochaya/projects/LocalMapView;->access$1000(Lorg/rabochaya/projects/LocalMapView;)Lorg/rabochaya/projects/OfflineTiles;
+    move-result p1
 
-    move-result-object v1
+    invoke-static {v0, v1, v2, v3, p1}, Lorg/rabochaya/projects/LocalMapView;->access$1300(Lorg/rabochaya/projects/LocalMapView;DFF)V
 
-    iget v1, v1, Lorg/rabochaya/projects/OfflineTiles;->maxZoom:I
+    iget-object p1, p0, Lorg/rabochaya/projects/LocalMapView$4;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
-    invoke-static {v0, v1}, Lorg/rabochaya/projects/LocalMapView;->access$1202(Lorg/rabochaya/projects/LocalMapView;I)I
+    const/4 v0, 0x1
 
-    iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$4;->this$0:Lorg/rabochaya/projects/LocalMapView;
+    invoke-static {p1, v0}, Lorg/rabochaya/projects/LocalMapView;->access$702(Lorg/rabochaya/projects/LocalMapView;Z)Z
 
-    const/4 v1, 0x1
+    return v0
+.end method
 
-    invoke-static {v0, v1}, Lorg/rabochaya/projects/LocalMapView;->access$1302(Lorg/rabochaya/projects/LocalMapView;Z)Z
+.method public onScaleEnd(Landroid/view/ScaleGestureDetector;)V
+    .locals 0
 
-    iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$4;->this$0:Lorg/rabochaya/projects/LocalMapView;
+    .line 25
+    iget-object p1, p0, Lorg/rabochaya/projects/LocalMapView$4;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapView$4$1;
+    invoke-static {p1}, Lorg/rabochaya/projects/LocalMapView;->access$1400(Lorg/rabochaya/projects/LocalMapView;)V
 
-    invoke-direct {v1, p0}, Lorg/rabochaya/projects/LocalMapView$4$1;-><init>(Lorg/rabochaya/projects/LocalMapView$4;)V
-
-    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/LocalMapView;->post(Ljava/lang/Runnable;)Z
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
-
-    goto :goto_0
-
-    :catch_0
-    move-exception v0
-
-    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapView$4;->this$0:Lorg/rabochaya/projects/LocalMapView;
-
-    new-instance v2, Lorg/rabochaya/projects/LocalMapView$4$2;
-
-    invoke-direct {v2, p0, v0}, Lorg/rabochaya/projects/LocalMapView$4$2;-><init>(Lorg/rabochaya/projects/LocalMapView$4;Ljava/lang/Exception;)V
-
-    invoke-virtual {v1, v2}, Lorg/rabochaya/projects/LocalMapView;->post(Ljava/lang/Runnable;)Z
-
-    :goto_0
     return-void
 .end method
