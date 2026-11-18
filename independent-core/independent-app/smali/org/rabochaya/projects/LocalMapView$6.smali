@@ -24,16 +24,8 @@
 # direct methods
 .method constructor <init>(Lorg/rabochaya/projects/LocalMapView;)V
     .locals 0
-    .annotation system Ldalvik/annotation/MethodParameters;
-        accessFlags = {
-            0x8010
-        }
-        names = {
-            null
-        }
-    .end annotation
 
-    .line 140
+    .line 145
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$6;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -46,7 +38,7 @@
 .method public run()V
     .locals 5
 
-    .line 140
+    .line 145
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$6;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-static {v0}, Lorg/rabochaya/projects/LocalMapView;->access$2200(Lorg/rabochaya/projects/LocalMapView;)[Lorg/rabochaya/projects/LocalMapView$RasterLayer;

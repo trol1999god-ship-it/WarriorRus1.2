@@ -17,6 +17,19 @@ final class SvgChecks {
   Object doc=m.codec.getMethod("parse",byte[].class).invoke(null,(Object)xml.getBytes("UTF-8"));m.assets(doc).put("icons/shape.svg",svg.getBytes("UTF-8"));m.assets(doc).put("attachments/keep.bin",new byte[]{1,2,3});byte[] before=raw.xml(doc);Map<String,byte[]> assets=new HashMap<>(m.assets(doc));List<String> errors=new ArrayList<>();int x=(int)Math.round(400-20.0/360*2048),y=(int)Math.round(300-Math.log(Math.tan(Math.PI/4+Math.toRadians(10)/2))/(2*Math.PI)*2048);int requests=m.requests.get();
   Bitmap image=draw(doc,source(doc),errors);try{pixel(image,x-10,y-10,0xffff0000,"actual SVG shape replaces circle through normal StyleMap");pixel(image,x,y,0xff253020,"SVG evenodd hole remains transparent, no fallback circle");pixel(image,x+20,y,0xff253020,"SVG stays within native36px bounds");m.check(errors.isEmpty(),"valid owner SVG has no unsupported warning");}finally{image.recycle();}
   for(String bad:new String[]{"<!DOCTYPE svg [<!ENTITY x SYSTEM 'https://example.invalid/entity'>]><svg width='36' height='36'>&x;</svg>","<svg width='36' height='36'><image href='https://example.invalid/image'/></svg>","<svg width='36' height='36'><script>bad</script></svg>","<svg width='36' height='36'><path d='MNaN 0'/></svg>"}){boolean refused=false;try{m.staticCall("SvgIcon","parse",new Class[]{byte[].class},(Object)bad.getBytes("UTF-8"));}catch(InvocationTargetException expected){refused=expected.getCause() instanceof IllegalArgumentException;}m.check(refused,"runtime SVG DTD/external/script/invalid refuses, no network");}
+  StringBuilder duplicatePoints=new StringBuilder();
+  for(int n=0;n<33;n++){
+   duplicatePoints.append("<Placemark id='same_icon_").append(n)
+    .append("'><styleUrl>#m</styleUrl><Point><coordinates>")
+    .append(n==32?"20,10":"-20,10").append("</coordinates></Point></Placemark>");
+  }
+  Object shared=variant(xml.replace("</Document>",duplicatePoints+"</Document>"),svg);
+  image=draw(shared,source(shared),errors);
+  try{
+   int lastPointX=(int)Math.round(400+20.0/360*2048);
+   pixel(image,lastPointX-10,y-10,0xffff0000,"shared SVG renders on a point beyond the first 32");
+   m.check(errors.isEmpty(),"points sharing one icon stay within the bitmap budget");
+  }finally{image.recycle();}
   Object scaled=variant(xml.replace("<scale>1</scale>","<scale>2</scale>"),svg);image=draw(scaled,source(scaled),errors);try{pixel(image,x-25,y-25,0xffff0000,"KML scale2 expands real SVG pixels");pixel(image,x+40,y,0xff253020,"scaled SVG remains bounded");}finally{image.recycle();}
   Object hidden=variant(xml.replace("<scale>1</scale>","<scale>0</scale>"),svg);image=draw(hidden,source(hidden),errors);try{pixel(image,x-10,y-10,0xff253020,"explicit icon scale0 hides SVG without fallback circle");}finally{image.recycle();}
   String corner="<svg width='36' height='36'><path fill='#ff0000' d='M0 0H18V18H0Z'/></svg>";Object rotated=variant(xml.replace("<heading>0</heading>","<heading>90</heading>"),corner);image=draw(rotated,source(rotated),errors);try{pixel(image,x+10,y-10,0xffff0000,"KML heading90 rotates asymmetrical SVG clockwise");pixel(image,x-10,y-10,0xff253020,"heading does not leave old unrotated shape");}finally{image.recycle();}

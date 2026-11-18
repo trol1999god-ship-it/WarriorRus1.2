@@ -28,26 +28,13 @@
 # direct methods
 .method constructor <init>(Lorg/rabochaya/projects/LocalMapView;Ljava/io/File;Lorg/rabochaya/projects/LocalMapView$Listener;)V
     .locals 0
-    .annotation system Ldalvik/annotation/MethodParameters;
-        accessFlags = {
-            0x8010,
-            0x1010,
-            0x1010
-        }
-        names = {
-            null,
-            null,
-            null
-        }
-    .end annotation
-
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()V"
         }
     .end annotation
 
-    .line 65
+    .line 70
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$4;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     iput-object p2, p0, Lorg/rabochaya/projects/LocalMapView$4;->val$map:Ljava/io/File;
@@ -64,7 +51,7 @@
 .method public run()V
     .locals 3
 
-    .line 65
+    .line 70
     :try_start_0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$4;->this$0:Lorg/rabochaya/projects/LocalMapView;
 

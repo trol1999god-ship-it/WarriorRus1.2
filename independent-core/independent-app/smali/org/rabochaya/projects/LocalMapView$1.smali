@@ -30,18 +30,8 @@
 # direct methods
 .method constructor <init>(Lorg/rabochaya/projects/LocalMapView;I)V
     .locals 0
-    .annotation system Ldalvik/annotation/MethodParameters;
-        accessFlags = {
-            0x8010,
-            0x0
-        }
-        names = {
-            null,
-            null
-        }
-    .end annotation
 
-    .line 50
+    .line 55
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$1;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-direct {p0, p2}, Landroid/util/LruCache;-><init>(I)V
@@ -53,18 +43,8 @@
 # virtual methods
 .method protected bridge synthetic sizeOf(Ljava/lang/Object;Ljava/lang/Object;)I
     .locals 0
-    .annotation system Ldalvik/annotation/MethodParameters;
-        accessFlags = {
-            0x1000,
-            0x1000
-        }
-        names = {
-            null,
-            null
-        }
-    .end annotation
 
-    .line 50
+    .line 55
     check-cast p1, Ljava/lang/String;
 
     check-cast p2, Landroid/graphics/Bitmap;
@@ -79,7 +59,7 @@
 .method protected sizeOf(Ljava/lang/String;Landroid/graphics/Bitmap;)I
     .locals 0
 
-    .line 50
+    .line 55
     invoke-virtual {p2}, Landroid/graphics/Bitmap;->getByteCount()I
 
     move-result p1

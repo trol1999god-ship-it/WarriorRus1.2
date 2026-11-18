@@ -6,38 +6,43 @@ public final class LocalMapView extends View {
  private final IdentityHashMap<org.w3c.dom.Element,KmlComponentStyle> componentStyles=new IdentityHashMap<>();
  private final Handler mainHandler = new Handler(Looper.getMainLooper());
  private final IdentityHashMap<org.w3c.dom.Element,SymbolImage> symbolImages=new IdentityHashMap<>();
+ private final Map<String,Bitmap> symbolBitmaps = new HashMap<>();
  private static final class SymbolImage {final Bitmap bitmap;final float scale,heading,anchorX,anchorY;final Integer color;SymbolImage(Bitmap bitmap,Map<String,String> values,Integer color){this.bitmap=bitmap;this.color=color;scale=symbolNumber(values.get("scale"),1,0,16);heading=symbolNumber(values.get("heading"),0,-360,360);anchorX=anchor(values,"x",bitmap.getWidth());anchorY=bitmap.getHeight()-anchor(values,"y",bitmap.getHeight());if(bitmap.getWidth()*scale>256||bitmap.getHeight()*scale>256)throw new IllegalArgumentException("SVG: масштаб больше256px");}private static float anchor(Map<String,String> values,String axis,int extent){String value=values.get("hotSpot."+axis);float n=symbolNumber(value,.5f,-4096,4096);String unit=values.get("hotSpot."+axis+"units");if(unit==null||unit.equals("fraction"))return n*extent;if(unit.equals("pixels"))return n;if(unit.equals("insetPixels"))return extent-n;throw new IllegalArgumentException("SVG: неподдержанная единица hotSpot");}}
  private static float symbolNumber(String text,float fallback,float min,float max){if(text==null)return fallback;if(text.length()>64||!text.matches("[+-]?(?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)(?:[eE][+-]?[0-9]+)?"))throw new IllegalArgumentException("SVG: некорректный scale/heading/hotSpot");try{float n=Float.parseFloat(text);if(Float.isNaN(n)||Float.isInfinite(n)||n<min||n>max)throw new NumberFormatException();return n;}catch(NumberFormatException e){throw new IllegalArgumentException("SVG: небезопасный scale/heading/hotSpot");}}
  public void setSymbols(final KmlSymbolAssets assets) {
   if (disposed) return;
   worker.execute(() -> {
    IdentityHashMap<org.w3c.dom.Element,SymbolImage> decoded = new IdentityHashMap<>();
+   Map<String,Bitmap> bitmaps = new HashMap<>();
    String error = null;
    for (KmlProject.Feature feature : features) {
     if (disposed) break;
     KmlComponentStyle style = componentStyles.get(feature.element);
     String href = style == null ? null : style.symbol.get("href");
     if (href == null || href.isEmpty()) continue;
-    Bitmap bitmap = null;
     try {
-     if (decoded.size() >= 32) throw new IllegalArgumentException("SVG: предел32 одновременно отображаемых значков");
-     bitmap = SvgRaster.render(assets.read(feature.element, href));
+     String key = assets.key(feature.element, href);
+     Bitmap bitmap = bitmaps.get(key);
+     if (bitmap == null) {
+      if (bitmaps.size() >= 32) throw new IllegalArgumentException("SVG: предел 32 разных значков на карте");
+      bitmap = SvgRaster.render(assets.read(feature.element, href));
+      bitmaps.put(key, bitmap);
+     }
      decoded.put(feature.element, new SymbolImage(bitmap, style.symbol, style.icon));
-     bitmap = null;
     } catch (IllegalArgumentException invalid) {
      error = invalid.getMessage();
-    } finally {
-     if (bitmap != null) bitmap.recycle();
     }
    }
    String warning = error;
    // Publish and release bitmaps on the UI thread even when the view has no window yet.
    mainHandler.post(() -> {
     if (disposed) {
-     for (SymbolImage image : decoded.values()) image.bitmap.recycle();
+     for (Bitmap bitmap : bitmaps.values()) bitmap.recycle();
      return;
     }
-    for (SymbolImage image : symbolImages.values()) image.bitmap.recycle();
+    for (Bitmap bitmap : symbolBitmaps.values()) bitmap.recycle();
+    symbolBitmaps.clear();
+    symbolBitmaps.putAll(bitmaps);
     symbolImages.clear();
     symbolImages.putAll(decoded);
     invalidate();
@@ -137,5 +142,5 @@ public final class LocalMapView extends View {
  public boolean performClick(){super.performClick();return true;}
  public double[] bounds(){double halfX=getWidth()/2.0/world(),halfY=getHeight()/2.0/world();return new double[]{halfX>=.5?-180:MapMath.lon(cx-halfX),MapMath.lat(Math.min(1,cy+halfY)),halfX>=.5?180:MapMath.lon(cx+halfX),MapMath.lat(Math.max(0,cy-halfY))};}
  public void suspend(boolean value){paused=value;RasterLayer[] stack=compositionLayers;if(value&&stack!=null)for(RasterLayer layer:stack)layer.interrupt();if(value){OnlineTiles[] sources=online;if(sources!=null)for(OnlineTiles source:sources)source.interrupt();}else{missing.clear();invalidate();}}
- public void close(){if(disposed)return;disposed=true;RasterLayer[] stack=compositionLayers;if(stack!=null)for(RasterLayer layer:stack)layer.cancel();OnlineTiles[] sources=online;if(sources!=null)for(OnlineTiles source:sources)source.cancel();worker.execute(new Runnable(){public void run(){if(compositionLayers!=null)for(RasterLayer layer:compositionLayers)layer.close();if(tiles!=null)tiles.close();if(online!=null)for(OnlineTiles source:online)source.close();}});worker.shutdown();cache.evictAll();for(SymbolImage image:symbolImages.values())image.bitmap.recycle();symbolImages.clear();}
+ public void close(){if(disposed)return;disposed=true;RasterLayer[] stack=compositionLayers;if(stack!=null)for(RasterLayer layer:stack)layer.cancel();OnlineTiles[] sources=online;if(sources!=null)for(OnlineTiles source:sources)source.cancel();worker.execute(new Runnable(){public void run(){if(compositionLayers!=null)for(RasterLayer layer:compositionLayers)layer.close();if(tiles!=null)tiles.close();if(online!=null)for(OnlineTiles source:online)source.close();}});worker.shutdown();cache.evictAll();for(Bitmap bitmap:symbolBitmaps.values())bitmap.recycle();symbolBitmaps.clear();symbolImages.clear();}
 }

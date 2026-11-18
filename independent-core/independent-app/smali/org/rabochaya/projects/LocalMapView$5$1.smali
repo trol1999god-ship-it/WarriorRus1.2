@@ -28,26 +28,13 @@
 # direct methods
 .method constructor <init>(Lorg/rabochaya/projects/LocalMapView$5;Landroid/graphics/Bitmap;Ljava/lang/String;)V
     .locals 0
-    .annotation system Ldalvik/annotation/MethodParameters;
-        accessFlags = {
-            0x8010,
-            0x1010,
-            0x1010
-        }
-        names = {
-            null,
-            null,
-            null
-        }
-    .end annotation
-
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()V"
         }
     .end annotation
 
-    .line 94
+    .line 99
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$5$1;->this$1:Lorg/rabochaya/projects/LocalMapView$5;
 
     iput-object p2, p0, Lorg/rabochaya/projects/LocalMapView$5$1;->val$result:Landroid/graphics/Bitmap;
@@ -64,7 +51,7 @@
 .method public run()V
     .locals 3
 
-    .line 94
+    .line 99
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$5$1;->this$1:Lorg/rabochaya/projects/LocalMapView$5;
 
     iget-object v0, v0, Lorg/rabochaya/projects/LocalMapView$5;->this$0:Lorg/rabochaya/projects/LocalMapView;

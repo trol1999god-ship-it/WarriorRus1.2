@@ -21,16 +21,8 @@
 # direct methods
 .method constructor <init>(Lorg/rabochaya/projects/LocalMapView;)V
     .locals 0
-    .annotation system Ldalvik/annotation/MethodParameters;
-        accessFlags = {
-            0x8010
-        }
-        names = {
-            null
-        }
-    .end annotation
 
-    .line 62
+    .line 67
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$3;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-direct {p0}, Landroid/view/ScaleGestureDetector$SimpleOnScaleGestureListener;-><init>()V
@@ -43,7 +35,7 @@
 .method public onScale(Landroid/view/ScaleGestureDetector;)Z
     .locals 5
 
-    .line 62
+    .line 67
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapView$3;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-virtual {p1}, Landroid/view/ScaleGestureDetector;->getScaleFactor()F
@@ -86,7 +78,7 @@
 .method public onScaleEnd(Landroid/view/ScaleGestureDetector;)V
     .locals 0
 
-    .line 62
+    .line 67
     iget-object p1, p0, Lorg/rabochaya/projects/LocalMapView$3;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     invoke-static {p1}, Lorg/rabochaya/projects/LocalMapView;->access$1000(Lorg/rabochaya/projects/LocalMapView;)V

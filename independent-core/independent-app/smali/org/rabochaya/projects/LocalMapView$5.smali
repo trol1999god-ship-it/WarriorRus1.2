@@ -36,34 +36,13 @@
 # direct methods
 .method constructor <init>(Lorg/rabochaya/projects/LocalMapView;Lorg/rabochaya/projects/LocalMapView$RasterLayer;IIIILjava/lang/String;)V
     .locals 0
-    .annotation system Ldalvik/annotation/MethodParameters;
-        accessFlags = {
-            0x8010,
-            0x1010,
-            0x1010,
-            0x1010,
-            0x1010,
-            0x1010,
-            0x1010
-        }
-        names = {
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        }
-    .end annotation
-
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()V"
         }
     .end annotation
 
-    .line 94
+    .line 99
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapView$5;->this$0:Lorg/rabochaya/projects/LocalMapView;
 
     iput-object p2, p0, Lorg/rabochaya/projects/LocalMapView$5;->val$group:Lorg/rabochaya/projects/LocalMapView$RasterLayer;
@@ -88,7 +67,7 @@
 .method public run()V
     .locals 9
 
-    .line 94
+    .line 99
     const/4 v0, 0x0
 
     :try_start_0
