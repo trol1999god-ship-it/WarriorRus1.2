@@ -17,9 +17,11 @@
 
 .field public final synthetic f$4:Ljava/util/List;
 
+.field public final synthetic f$5:Ljava/lang/String;
+
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)V
     .locals 0
 
     .line 0
@@ -35,13 +37,15 @@
 
     iput-object p5, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda35;->f$4:Ljava/util/List;
 
+    iput-object p6, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda35;->f$5:Ljava/lang/String;
+
     return-void
 .end method
 
 
 # virtual methods
-.method public final apply(Lorg/rabochaya/projects/ProjectStore;)Lorg/rabochaya/projects/KmlProject;
-    .locals 6
+.method public final apply(Lorg/rabochaya/projects/ProjectStore;)Lorg/rabochaya/projects/ObjectTreeWrites$EditResult;
+    .locals 7
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda35;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
@@ -54,9 +58,11 @@
 
     iget-object v4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda35;->f$4:Ljava/util/List;
 
-    move-object v5, p1
+    iget-object v5, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda35;->f$5:Ljava/lang/String;
 
-    invoke-virtual/range {v0 .. v5}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$write$50$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lorg/rabochaya/projects/ProjectStore;)Lorg/rabochaya/projects/KmlProject;
+    move-object v6, p1
+
+    invoke-virtual/range {v0 .. v6}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$write$50$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lorg/rabochaya/projects/ProjectStore;)Lorg/rabochaya/projects/ObjectTreeWrites$EditResult;
 
     move-result-object p1
 

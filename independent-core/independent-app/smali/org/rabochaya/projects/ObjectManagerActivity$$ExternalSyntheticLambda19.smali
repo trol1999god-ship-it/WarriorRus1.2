@@ -19,9 +19,11 @@
 
 .field public final synthetic f$5:Ljava/lang/String;
 
+.field public final synthetic f$6:Lorg/rabochaya/projects/ObjectTreeWrites$EditResult;
+
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/app/AlertDialog;Lorg/w3c/dom/Element;Ljava/util/List;Lorg/rabochaya/projects/ObjectListing;Ljava/lang/String;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/app/AlertDialog;Lorg/w3c/dom/Element;Ljava/util/List;Lorg/rabochaya/projects/ObjectListing;Ljava/lang/String;Lorg/rabochaya/projects/ObjectTreeWrites$EditResult;)V
     .locals 0
 
     .line 0
@@ -39,13 +41,15 @@
 
     iput-object p6, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda19;->f$5:Ljava/lang/String;
 
+    iput-object p7, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda19;->f$6:Lorg/rabochaya/projects/ObjectTreeWrites$EditResult;
+
     return-void
 .end method
 
 
 # virtual methods
 .method public final run()V
-    .locals 6
+    .locals 7
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda19;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
@@ -60,7 +64,9 @@
 
     iget-object v5, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda19;->f$5:Ljava/lang/String;
 
-    invoke-virtual/range {v0 .. v5}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$write$51$org-rabochaya-projects-ObjectManagerActivity(Landroid/app/AlertDialog;Lorg/w3c/dom/Element;Ljava/util/List;Lorg/rabochaya/projects/ObjectListing;Ljava/lang/String;)V
+    iget-object v6, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda19;->f$6:Lorg/rabochaya/projects/ObjectTreeWrites$EditResult;
+
+    invoke-virtual/range {v0 .. v6}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$write$51$org-rabochaya-projects-ObjectManagerActivity(Landroid/app/AlertDialog;Lorg/w3c/dom/Element;Ljava/util/List;Lorg/rabochaya/projects/ObjectListing;Ljava/lang/String;Lorg/rabochaya/projects/ObjectTreeWrites$EditResult;)V
 
     return-void
 .end method

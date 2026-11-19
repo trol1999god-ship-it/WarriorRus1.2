@@ -153,8 +153,9 @@ public final class ObjectManagerActivity extends Activity {
   String key = pendingSvg.getString("key");
   String token = pendingSvg.getString("token");
   pendingSvg = null;
-  write(null, store -> ObjectTreeWrites.assignSvg(
-    store, project, key, token, getContentResolver().openInputStream(uri)));
+  final String currentFolder = folder;
+  write(null, store -> new ObjectTreeWrites.EditResult(ObjectTreeWrites.assignSvg(
+    store, project, key, token, getContentResolver().openInputStream(uri)), currentFolder));
  }
 
  private void openEditor(final ObjectEditorDraft draft){
@@ -204,18 +205,19 @@ public final class ObjectManagerActivity extends Activity {
  }
  private void write(String operation,List<String> keys,String value){write(operation,keys,value,expected,null);}
  private void write(String operation,List<String> keys,String value,final String token,final AlertDialog editing){
+  final String currentFolder = folder;
   write(editing, store -> operation.equals("paste")
-    ? ObjectClipboardWrites.paste(store,project,value,token,keys.get(0))
-    : ObjectTreeWrites.apply(store,project,operation,keys,value,token));
+    ? ObjectClipboardWrites.pasteInFolder(store,project,value,token,keys.get(0))
+    : ObjectTreeWrites.apply(store,project,operation,keys,value,token,currentFolder));
  }
  private interface ProjectEdit {
-  KmlProject apply(ProjectStore store) throws IOException;
+  ObjectTreeWrites.EditResult apply(ProjectStore store) throws IOException;
  }
  private void write(AlertDialog editing, ProjectEdit edit) {
   if(busy||snapshot==null)return;enabled(false);adapter.notifyDataSetChanged();status.setText("Сохранение…");if(editing!=null){editing.getButton(-1).setEnabled(false);editing.getButton(-2).setEnabled(false);editing.setCancelable(false);}
-  worker.execute(()->{ProjectStore store=new ProjectStore(this);try{Element root=edit.apply(store).root();
+  worker.execute(()->{ProjectStore store=new ProjectStore(this);try{ObjectTreeWrites.EditResult result=edit.apply(store);Element root=result.project.root();
     final List<ObjectTree.Row> data=ObjectTree.rows(root);final String newToken=ObjectTree.token(root);final ObjectListing index=ObjectListing.build(root,data);
-    runOnUiThread(()->{if(disposed)return;if(editing!=null)editing.dismiss();snapshot=root;rows=data;listing=index;expected=newToken;folder="";selected.clear();rememberView();enabled(true);render();status.setText("Изменения сохранены");});
+    runOnUiThread(()->{if(disposed)return;if(editing!=null)editing.dismiss();snapshot=root;rows=data;listing=index;expected=newToken;folder=result.folder;selected.clear();rememberView();enabled(true);render();status.setText("Изменения сохранены");});
    }catch(Exception e){runOnUiThread(()->{if(disposed)return;enabled(true);adapter.notifyDataSetChanged();status.setText("Изменения не сохранены: "+e.getMessage());if(editing!=null){editing.getButton(-1).setEnabled(true);editing.getButton(-2).setEnabled(true);editing.setCancelable(true);}notice(e.getMessage());});}finally{store.close();}});
  }
  private SharedPreferences viewPrefs(){return getSharedPreferences("object-manager-view",0);}

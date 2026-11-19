@@ -12,6 +12,23 @@ public final class ProjectWrites {
  public static void savePreservingAssets(ProjectStore store,long id,KmlProject project)throws IOException{
   save(store,id,project,false);
  }
+ /** The classic manager edits XML only. Keep the latest local assets when that XML still matches. */
+ public static void saveClassicEdit(ProjectStore store, long id, KmlProject edited, byte[] before) throws IOException {
+  SQLiteDatabase db = store.getWritableDatabase();
+  db.beginTransaction();
+  try {
+   KmlProject current = store.load(id);
+   if (!current.entry.equals(edited.entry) || !Arrays.equals(before, current.xml())) {
+    throw new IllegalStateException("Проект изменился. Повторите действие в обновлённом списке");
+   }
+   edited.assets.clear();
+   edited.assets.putAll(current.assets);
+   savePreservingAssets(store, id, edited);
+   db.setTransactionSuccessful();
+  } finally {
+   db.endTransaction();
+  }
+ }
  private static void save(ProjectStore store,long id,KmlProject project,boolean collect)throws IOException{
   if(collect)MediaLinks.collectUnused(project);
   byte[] xml=project.xml();if(xml.length>4*1024*1024)throw new IOException("Предел KML — 4 МиБ");

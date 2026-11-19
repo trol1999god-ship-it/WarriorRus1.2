@@ -53,7 +53,7 @@
 
 # virtual methods
 .method public run()V
-    .locals 4
+    .locals 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Exception;
@@ -62,6 +62,16 @@
 
     .line 102
     :try_start_0
+    iget-object v4, p0, Lorg/rabochaya/projects/ProjectsActivity$18;->this$0:Lorg/rabochaya/projects/ProjectsActivity;
+
+    invoke-static {v4}, Lorg/rabochaya/projects/ProjectsActivity;->access$400(Lorg/rabochaya/projects/ProjectsActivity;)Lorg/rabochaya/projects/KmlProject;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Lorg/rabochaya/projects/KmlProject;->xml()[B
+
+    move-result-object v4
+
     iget-object v0, p0, Lorg/rabochaya/projects/ProjectsActivity$18;->val$change:Lorg/rabochaya/projects/ProjectsActivity$Task;
 
     invoke-interface {v0}, Lorg/rabochaya/projects/ProjectsActivity$Task;->run()V
@@ -80,7 +90,7 @@
 
     move-result-object v3
 
-    invoke-virtual {v0, v1, v2, v3}, Lorg/rabochaya/projects/ProjectStore;->saveDocument(JLorg/rabochaya/projects/KmlProject;)V
+    invoke-static {v0, v1, v2, v3, v4}, Lorg/rabochaya/projects/ProjectWrites;->saveClassicEdit(Lorg/rabochaya/projects/ProjectStore;JLorg/rabochaya/projects/KmlProject;[B)V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 

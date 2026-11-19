@@ -57,7 +57,7 @@
 .method private static appendFolder(Lorg/w3c/dom/Element;Ljava/lang/String;)V
     .locals 4
 
-    .line 33
+    .line 52
     const-string v0, "Folder"
 
     invoke-static {p0, v0}, Lorg/rabochaya/projects/ObjectTree;->element(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
@@ -124,7 +124,7 @@
         }
     .end annotation
 
-    .line 82
+    .line 101
     const/16 v0, 0x80
 
     if-gt p3, v0, :cond_6
@@ -137,7 +137,7 @@
 
     return-void
 
-    .line 83
+    .line 102
     :cond_0
     invoke-interface {p0}, Lorg/w3c/dom/Node;->getNodeValue()Ljava/lang/String;
 
@@ -204,7 +204,7 @@
 
     throw p0
 
-    .line 84
+    .line 103
     :cond_3
     invoke-interface {p0}, Lorg/w3c/dom/Node;->getAttributes()Lorg/w3c/dom/NamedNodeMap;
 
@@ -233,7 +233,7 @@
 
     goto :goto_1
 
-    .line 85
+    .line 104
     :cond_4
     invoke-interface {p0}, Lorg/w3c/dom/Node;->getFirstChild()Lorg/w3c/dom/Node;
 
@@ -252,11 +252,11 @@
 
     goto :goto_2
 
-    .line 86
+    .line 105
     :cond_5
     return-void
 
-    .line 82
+    .line 101
     :cond_6
     new-instance p0, Ljava/lang/IllegalArgumentException;
 
@@ -270,7 +270,7 @@
 .method private static checked(Lorg/w3c/dom/Element;Ljava/lang/String;)V
     .locals 1
 
-    .line 92
+    .line 111
     if-eqz p1, :cond_0
 
     invoke-static {p0}, Lorg/rabochaya/projects/ObjectTree;->token(Lorg/w3c/dom/Element;)Ljava/lang/String;
@@ -300,7 +300,7 @@
 .method private static child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
     .locals 2
 
-    .line 102
+    .line 121
     invoke-static {p0}, Lorg/rabochaya/projects/ObjectTree;->children(Lorg/w3c/dom/Element;)Ljava/util/List;
 
     move-result-object p0
@@ -349,7 +349,7 @@
         }
     .end annotation
 
-    .line 101
+    .line 120
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
@@ -394,7 +394,7 @@
         }
     .end annotation
 
-    .line 80
+    .line 99
     const/16 v0, 0x80
 
     if-gt p2, v0, :cond_2
@@ -457,7 +457,7 @@
 .method private static container(Lorg/w3c/dom/Element;)Z
     .locals 1
 
-    .line 98
+    .line 117
     const-string v0, "Folder"
 
     invoke-static {p0, v0}, Lorg/rabochaya/projects/ObjectTree;->is(Lorg/w3c/dom/Element;Ljava/lang/String;)Z
@@ -512,7 +512,7 @@
         }
     .end annotation
 
-    .line 51
+    .line 70
     invoke-static {p0, p1, p3}, Lorg/rabochaya/projects/ObjectTree;->selection(Lorg/w3c/dom/Element;Ljava/util/Collection;Ljava/lang/String;)Ljava/util/List;
 
     move-result-object p1
@@ -527,7 +527,7 @@
 
     if-eqz v0, :cond_6
 
-    .line 52
+    .line 71
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
@@ -604,7 +604,7 @@
 
     throw p0
 
-    .line 53
+    .line 72
     :cond_1
     new-instance p1, Ljava/util/HashMap;
 
@@ -634,7 +634,7 @@
 
     invoke-direct {v4}, Ljava/util/HashMap;-><init>()V
 
-    .line 54
+    .line 73
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v5
@@ -678,7 +678,7 @@
 
     goto :goto_2
 
-    .line 55
+    .line 74
     :cond_3
     invoke-interface {p0, v2}, Lorg/w3c/dom/Element;->cloneNode(Z)Lorg/w3c/dom/Node;
 
@@ -714,7 +714,7 @@
     :cond_4
     invoke-static {p0}, Lorg/rabochaya/projects/ObjectTree;->rows(Lorg/w3c/dom/Element;)Ljava/util/List;
 
-    .line 56
+    .line 75
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object p0
@@ -743,7 +743,7 @@
 
     return p0
 
-    .line 51
+    .line 70
     :cond_6
     new-instance p0, Ljava/lang/IllegalArgumentException;
 
@@ -767,7 +767,7 @@
         }
     .end annotation
 
-    .line 58
+    .line 77
     const/16 v0, 0x80
 
     if-gt p2, v0, :cond_3
@@ -860,7 +860,7 @@
 .method public static createFolder(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
     .locals 1
 
-    .line 29
+    .line 48
     invoke-static {p0, p2}, Lorg/rabochaya/projects/ObjectTree;->checked(Lorg/w3c/dom/Element;Ljava/lang/String;)V
 
     invoke-static {p3}, Lorg/rabochaya/projects/ObjectTree;->title(Ljava/lang/String;)Ljava/lang/String;
@@ -877,7 +877,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 31
+    .line 50
     const/4 v0, 0x1
 
     invoke-interface {p0, v0}, Lorg/w3c/dom/Element;->cloneNode(Z)Lorg/w3c/dom/Node;
@@ -896,10 +896,10 @@
 
     invoke-static {p3, p2}, Lorg/rabochaya/projects/ObjectTree;->appendFolder(Lorg/w3c/dom/Element;Ljava/lang/String;)V
 
-    .line 32
+    .line 51
     return-void
 
-    .line 29
+    .line 48
     :cond_0
     new-instance p0, Ljava/lang/IllegalArgumentException;
 
@@ -924,7 +924,7 @@
         }
     .end annotation
 
-    .line 43
+    .line 62
     invoke-static {p0, p2}, Lorg/rabochaya/projects/ObjectTree;->checked(Lorg/w3c/dom/Element;Ljava/lang/String;)V
 
     invoke-static {p1}, Lorg/rabochaya/projects/ObjectTree;->top(Ljava/util/Collection;)Ljava/util/List;
@@ -960,7 +960,7 @@
 
     goto :goto_0
 
-    .line 45
+    .line 64
     :cond_0
     new-instance p1, Ljava/util/HashSet;
 
@@ -1000,7 +1000,7 @@
 
     invoke-static {p0, p2, p1, v2}, Lorg/rabochaya/projects/ObjectTree;->checkReferences(Lorg/w3c/dom/Node;Ljava/util/List;Ljava/util/Set;I)V
 
-    .line 46
+    .line 65
     invoke-interface {p2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object p0
@@ -1037,7 +1037,7 @@
 .method private static descendants(Lorg/w3c/dom/Element;)I
     .locals 3
 
-    .line 73
+    .line 92
     invoke-static {p0}, Lorg/rabochaya/projects/ObjectTree;->children(Lorg/w3c/dom/Element;)Ljava/util/List;
 
     move-result-object p0
@@ -1091,7 +1091,7 @@
 .method private static element(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
     .locals 3
 
-    .line 104
+    .line 123
     invoke-interface {p0}, Lorg/w3c/dom/Element;->getNamespaceURI()Ljava/lang/String;
 
     move-result-object v0
@@ -1146,6 +1146,55 @@
     return-object p0
 .end method
 
+.method static folderTrail(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/util/List;
+    .locals 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lorg/w3c/dom/Element;",
+            "Ljava/lang/String;",
+            ")",
+            "Ljava/util/List<",
+            "Lorg/w3c/dom/Node;",
+            ">;"
+        }
+    .end annotation
+
+    .line 29
+    new-instance v0, Ljava/util/ArrayList;
+
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+
+    .line 30
+    invoke-static {p0, p1}, Lorg/rabochaya/projects/ObjectTree;->resolve(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
+
+    move-result-object p1
+
+    :goto_0
+    if-eqz p1, :cond_1
+
+    .line 31
+    invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 32
+    if-ne p1, p0, :cond_0
+
+    goto :goto_1
+
+    .line 30
+    :cond_0
+    invoke-interface {p1}, Lorg/w3c/dom/Node;->getParentNode()Lorg/w3c/dom/Node;
+
+    move-result-object p1
+
+    goto :goto_0
+
+    .line 34
+    :cond_1
+    :goto_1
+    return-object v0
+.end method
+
 .method private static fragment(Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
     .locals 6
     .annotation system Ldalvik/annotation/Signature;
@@ -1160,7 +1209,7 @@
         }
     .end annotation
 
-    .line 65
+    .line 84
     invoke-virtual {p0}, Ljava/lang/String;->trim()Ljava/lang/String;
 
     move-result-object v0
@@ -1255,7 +1304,7 @@
         }
     .end annotation
 
-    .line 59
+    .line 78
     nop
 
     :cond_0
@@ -1297,7 +1346,7 @@
 .method private static hash(Lorg/w3c/dom/Node;Ljava/security/MessageDigest;I)V
     .locals 5
 
-    .line 90
+    .line 109
     const/16 v0, 0x80
 
     if-gt p2, v0, :cond_3
@@ -1463,7 +1512,7 @@
 .method private static is(Lorg/w3c/dom/Element;Ljava/lang/String;)Z
     .locals 1
 
-    .line 99
+    .line 118
     invoke-interface {p0}, Lorg/w3c/dom/Element;->getNamespaceURI()Ljava/lang/String;
 
     move-result-object v0
@@ -1517,7 +1566,7 @@
 .method private static local(Lorg/w3c/dom/Element;)Ljava/lang/String;
     .locals 1
 
-    .line 100
+    .line 119
     invoke-interface {p0}, Lorg/w3c/dom/Element;->getLocalName()Ljava/lang/String;
 
     move-result-object v0
@@ -1542,7 +1591,7 @@
 .method private static managed(Lorg/w3c/dom/Element;)Z
     .locals 1
 
-    .line 95
+    .line 114
     const-string v0, "Folder"
 
     invoke-static {p0, v0}, Lorg/rabochaya/projects/ObjectTree;->is(Lorg/w3c/dom/Element;Ljava/lang/String;)Z
@@ -1629,7 +1678,7 @@
         }
     .end annotation
 
-    .line 36
+    .line 55
     invoke-static {p0, p3}, Lorg/rabochaya/projects/ObjectTree;->checked(Lorg/w3c/dom/Element;Ljava/lang/String;)V
 
     invoke-static {p1}, Lorg/rabochaya/projects/ObjectTree;->top(Ljava/util/Collection;)Ljava/util/List;
@@ -1646,7 +1695,7 @@
 
     if-eqz v0, :cond_7
 
-    .line 37
+    .line 56
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
@@ -1715,7 +1764,7 @@
 
     throw p0
 
-    .line 39
+    .line 58
     :cond_1
     const/4 v1, 0x1
 
@@ -1790,7 +1839,7 @@
     :cond_4
     invoke-static {p0}, Lorg/rabochaya/projects/ObjectTree;->rows(Lorg/w3c/dom/Element;)Ljava/util/List;
 
-    .line 40
+    .line 59
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object p0
@@ -1826,7 +1875,7 @@
     :cond_6
     return p1
 
-    .line 36
+    .line 55
     :cond_7
     new-instance p0, Ljava/lang/IllegalArgumentException;
 
@@ -1857,7 +1906,7 @@
         }
     .end annotation
 
-    .line 61
+    .line 80
     const/16 v0, 0x80
 
     if-gt p4, v0, :cond_8
@@ -1927,7 +1976,7 @@
 
     move-result-object v0
 
-    .line 62
+    .line 81
     invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
 
     move-result v2
@@ -1984,7 +2033,7 @@
 
     invoke-interface {p0, v3, v0}, Lorg/w3c/dom/Element;->setAttribute(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 63
+    .line 82
     :cond_5
     :goto_2
     invoke-static {p0}, Lorg/rabochaya/projects/ObjectTree;->children(Lorg/w3c/dom/Element;)Ljava/util/List;
@@ -2014,11 +2063,11 @@
 
     goto :goto_3
 
-    .line 64
+    .line 83
     :cond_6
     return-void
 
-    .line 61
+    .line 80
     :cond_7
     new-instance p0, Ljava/lang/IllegalArgumentException;
 
@@ -2041,7 +2090,7 @@
 .method static normalizeRoot(Lorg/w3c/dom/Element;)V
     .locals 5
 
-    .line 97
+    .line 116
     const-string v0, "kml"
 
     invoke-static {p0, v0}, Lorg/rabochaya/projects/ObjectTree;->is(Lorg/w3c/dom/Element;Ljava/lang/String;)Z
@@ -2175,7 +2224,7 @@
 .method private static part(Ljava/security/MessageDigest;Ljava/lang/String;)V
     .locals 2
 
-    .line 91
+    .line 110
     if-nez p1, :cond_0
 
     const-string p1, ""
@@ -2223,7 +2272,7 @@
 .method public static rename(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
     .locals 0
 
-    .line 34
+    .line 53
     invoke-static {p0, p2}, Lorg/rabochaya/projects/ObjectTree;->checked(Lorg/w3c/dom/Element;Ljava/lang/String;)V
 
     invoke-static {p3}, Lorg/rabochaya/projects/ObjectTree;->title(Ljava/lang/String;)Ljava/lang/String;
@@ -2278,7 +2327,7 @@
 .method private static requireRoot(Lorg/w3c/dom/Element;)V
     .locals 1
 
-    .line 94
+    .line 113
     if-eqz p0, :cond_0
 
     invoke-static {p0}, Lorg/rabochaya/projects/ObjectTree;->container(Lorg/w3c/dom/Element;)Z
@@ -2475,7 +2524,7 @@
         }
     .end annotation
 
-    .line 67
+    .line 86
     const/16 v0, 0x80
 
     if-gt p2, v0, :cond_b
@@ -2574,7 +2623,7 @@
 
     goto :goto_0
 
-    .line 68
+    .line 87
     :cond_4
     const-string v0, "styleUrl"
 
@@ -2607,7 +2656,7 @@
 
     invoke-interface {p0, v1}, Lorg/w3c/dom/Element;->setTextContent(Ljava/lang/String;)V
 
-    .line 69
+    .line 88
     :cond_6
     const-string v0, "description"
 
@@ -2737,7 +2786,7 @@
 
     invoke-interface {p0, v0}, Lorg/w3c/dom/Element;->setTextContent(Ljava/lang/String;)V
 
-    .line 70
+    .line 89
     :cond_9
     invoke-static {p0}, Lorg/rabochaya/projects/ObjectTree;->children(Lorg/w3c/dom/Element;)Ljava/util/List;
 
@@ -2766,11 +2815,11 @@
 
     goto :goto_6
 
-    .line 71
+    .line 90
     :cond_a
     return-void
 
-    .line 67
+    .line 86
     :cond_b
     new-instance p0, Ljava/lang/IllegalArgumentException;
 
@@ -2826,7 +2875,7 @@
         }
     .end annotation
 
-    .line 72
+    .line 91
     invoke-static {p1}, Lorg/rabochaya/projects/ObjectTree;->top(Ljava/util/Collection;)Ljava/util/List;
 
     move-result-object p1
@@ -2885,7 +2934,7 @@
         }
     .end annotation
 
-    .line 48
+    .line 67
     invoke-static {p0, p2}, Lorg/rabochaya/projects/ObjectTree;->checked(Lorg/w3c/dom/Element;Ljava/lang/String;)V
 
     invoke-static {p1}, Lorg/rabochaya/projects/ObjectTree;->top(Ljava/util/Collection;)Ljava/util/List;
@@ -2921,10 +2970,123 @@
     return-object p0
 .end method
 
+.method static survivingFolder(Lorg/w3c/dom/Element;Ljava/util/List;)Ljava/lang/String;
+    .locals 5
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lorg/w3c/dom/Element;",
+            "Ljava/util/List<",
+            "Lorg/w3c/dom/Node;",
+            ">;)",
+            "Ljava/lang/String;"
+        }
+    .end annotation
+
+    .line 37
+    const/4 v0, 0x0
+
+    invoke-interface {p1, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    move-result-object v0
+
+    const-string v1, ""
+
+    if-ne v0, p0, :cond_0
+
+    return-object v1
+
+    .line 38
+    :cond_0
+    new-instance v0, Ljava/util/IdentityHashMap;
+
+    invoke-direct {v0}, Ljava/util/IdentityHashMap;-><init>()V
+
+    .line 39
+    invoke-static {p0}, Lorg/rabochaya/projects/ObjectTree;->rows(Lorg/w3c/dom/Element;)Ljava/util/List;
+
+    move-result-object v2
+
+    invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object v2
+
+    :cond_1
+    :goto_0
+    invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_2
+
+    invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Lorg/rabochaya/projects/ObjectTree$Row;
+
+    iget-boolean v4, v3, Lorg/rabochaya/projects/ObjectTree$Row;->folder:Z
+
+    if-eqz v4, :cond_1
+
+    iget-object v4, v3, Lorg/rabochaya/projects/ObjectTree$Row;->element:Lorg/w3c/dom/Element;
+
+    iget-object v3, v3, Lorg/rabochaya/projects/ObjectTree$Row;->key:Ljava/lang/String;
+
+    invoke-interface {v0, v4, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    goto :goto_0
+
+    .line 40
+    :cond_2
+    invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object p1
+
+    :goto_1
+    invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_5
+
+    invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Lorg/w3c/dom/Node;
+
+    .line 41
+    if-ne v2, p0, :cond_3
+
+    return-object v1
+
+    .line 42
+    :cond_3
+    invoke-interface {v0, v2}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Ljava/lang/String;
+
+    .line 43
+    if-eqz v2, :cond_4
+
+    return-object v2
+
+    .line 44
+    :cond_4
+    goto :goto_1
+
+    .line 45
+    :cond_5
+    return-object v1
+.end method
+
 .method private static text(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
     .locals 0
 
-    .line 103
+    .line 122
     invoke-static {p0, p1}, Lorg/rabochaya/projects/ObjectTree;->child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
 
     move-result-object p0
@@ -2947,7 +3109,7 @@
 .method private static title(Ljava/lang/String;)Ljava/lang/String;
     .locals 2
 
-    .line 93
+    .line 112
     if-eqz p0, :cond_2
 
     invoke-virtual {p0}, Ljava/lang/String;->trim()Ljava/lang/String;
@@ -3024,7 +3186,7 @@
 .method public static token(Lorg/w3c/dom/Element;)Ljava/lang/String;
     .locals 8
 
-    .line 88
+    .line 107
     invoke-static {p0}, Lorg/rabochaya/projects/ObjectTree;->requireRoot(Lorg/w3c/dom/Element;)V
 
     :try_start_0
@@ -3114,7 +3276,7 @@
         }
     .end annotation
 
-    .line 75
+    .line 94
     if-eqz p0, :cond_8
 
     invoke-interface {p0}, Ljava/util/Collection;->isEmpty()Z
@@ -3131,7 +3293,7 @@
 
     if-gt v0, v1, :cond_7
 
-    .line 76
+    .line 95
     new-instance v0, Ljava/util/TreeSet;
 
     new-instance v1, Lorg/rabochaya/projects/ObjectTree$1;
@@ -3140,7 +3302,7 @@
 
     invoke-direct {v0, v1}, Ljava/util/TreeSet;-><init>(Ljava/util/Comparator;)V
 
-    .line 77
+    .line 96
     invoke-interface {p0}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
 
     move-result-object p0
@@ -3227,7 +3389,7 @@
 
     throw p0
 
-    .line 78
+    .line 97
     :cond_2
     new-instance p0, Ljava/util/ArrayList;
 
@@ -3307,7 +3469,7 @@
     :cond_6
     return-object p0
 
-    .line 75
+    .line 94
     :cond_7
     new-instance p0, Ljava/lang/IllegalArgumentException;
 

@@ -130,7 +130,7 @@
 .end method
 
 .method public static paste(Lorg/rabochaya/projects/ProjectStore;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/rabochaya/projects/KmlProject;
-    .locals 9
+    .locals 0
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
@@ -138,6 +138,24 @@
     .end annotation
 
     .line 16
+    invoke-static/range {p0 .. p5}, Lorg/rabochaya/projects/ObjectClipboardWrites;->pasteInFolder(Lorg/rabochaya/projects/ProjectStore;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/rabochaya/projects/ObjectTreeWrites$EditResult;
+
+    move-result-object p0
+
+    iget-object p0, p0, Lorg/rabochaya/projects/ObjectTreeWrites$EditResult;->project:Lorg/rabochaya/projects/KmlProject;
+
+    return-object p0
+.end method
+
+.method static pasteInFolder(Lorg/rabochaya/projects/ProjectStore;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/rabochaya/projects/ObjectTreeWrites$EditResult;
+    .locals 10
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 19
     invoke-virtual {p0}, Lorg/rabochaya/projects/ProjectStore;->getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase;
 
     move-result-object v0
@@ -153,7 +171,7 @@
 
     move-result-object v2
 
-    if-eqz v2, :cond_a
+    if-eqz v2, :cond_b
 
     invoke-virtual {v2}, Lorg/rabochaya/projects/ObjectClipboard;->fingerprint()Ljava/lang/String;
 
@@ -163,13 +181,13 @@
 
     move-result p5
 
-    if-eqz p5, :cond_9
+    if-eqz p5, :cond_a
 
     iget-wide v3, v2, Lorg/rabochaya/projects/ObjectClipboard;->project:J
 
     cmp-long p5, v3, p1
 
-    if-nez p5, :cond_8
+    if-nez p5, :cond_9
 
     iget-object p5, v2, Lorg/rabochaya/projects/ObjectClipboard;->token:Ljava/lang/String;
 
@@ -177,7 +195,7 @@
 
     move-result p5
 
-    if-eqz p5, :cond_7
+    if-eqz p5, :cond_8
 
     invoke-virtual {v1}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
 
@@ -191,70 +209,107 @@
 
     move-result p5
 
-    if-eqz p5, :cond_7
+    if-eqz p5, :cond_8
 
-    .line 17
-    new-instance p5, Ljava/util/ArrayList;
+    .line 20
+    invoke-virtual {v1}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
 
-    invoke-direct {p5}, Ljava/util/ArrayList;-><init>()V
+    move-result-object p5
 
-    iget-object v3, v2, Lorg/rabochaya/projects/ObjectClipboard;->keys:Ljava/util/List;
+    invoke-static {p5, p3}, Lorg/rabochaya/projects/ObjectTree;->folderTrail(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/util/List;
 
-    invoke-interface {v3}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+    move-result-object p5
+
+    .line 21
+    new-instance v3, Ljava/util/IdentityHashMap;
+
+    invoke-direct {v3}, Ljava/util/IdentityHashMap;-><init>()V
+
+    invoke-static {v3}, Ljava/util/Collections;->newSetFromMap(Ljava/util/Map;)Ljava/util/Set;
 
     move-result-object v3
 
-    :goto_0
-    invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
+    .line 22
+    iget-boolean v4, v2, Lorg/rabochaya/projects/ObjectClipboard;->cut:Z
 
-    move-result v4
+    if-nez v4, :cond_1
 
-    if-eqz v4, :cond_0
+    .line 23
+    new-instance v4, Ljava/util/HashSet;
 
-    invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    iget-object v5, v2, Lorg/rabochaya/projects/ObjectClipboard;->keys:Ljava/util/List;
 
-    move-result-object v4
+    invoke-direct {v4, v5}, Ljava/util/HashSet;-><init>(Ljava/util/Collection;)V
 
-    check-cast v4, Ljava/lang/String;
-
+    .line 24
     invoke-virtual {v1}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
 
     move-result-object v5
 
-    invoke-static {v5, v4}, Lorg/rabochaya/projects/ObjectTree;->resolve(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
+    invoke-static {v5}, Lorg/rabochaya/projects/ObjectTree;->rows(Lorg/w3c/dom/Element;)Ljava/util/List;
+
+    move-result-object v5
+
+    invoke-interface {v5}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object v5
+
+    :goto_0
+    invoke-interface {v5}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v6
+
+    if-eqz v6, :cond_1
+
+    invoke-interface {v5}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v6
+
+    check-cast v6, Lorg/rabochaya/projects/ObjectTree$Row;
+
+    .line 25
+    iget-object v7, v6, Lorg/rabochaya/projects/ObjectTree$Row;->key:Ljava/lang/String;
+
+    invoke-interface {v4, v7}, Ljava/util/Set;->contains(Ljava/lang/Object;)Z
+
+    move-result v7
+
+    if-eqz v7, :cond_0
+
+    iget-object v6, v6, Lorg/rabochaya/projects/ObjectTree$Row;->element:Lorg/w3c/dom/Element;
+
+    invoke-interface {v3, v6}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+
+    .line 26
+    :cond_0
+    goto :goto_0
+
+    .line 28
+    :cond_1
+    iget-boolean v4, v2, Lorg/rabochaya/projects/ObjectClipboard;->cut:Z
+
+    if-eqz v4, :cond_2
+
+    invoke-virtual {v1}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
 
     move-result-object v4
 
-    invoke-interface {p5, v4}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+    iget-object v5, v2, Lorg/rabochaya/projects/ObjectClipboard;->keys:Ljava/util/List;
 
-    goto :goto_0
-
-    .line 18
-    :cond_0
-    iget-boolean v3, v2, Lorg/rabochaya/projects/ObjectClipboard;->cut:Z
-
-    if-eqz v3, :cond_1
-
-    invoke-virtual {v1}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
-
-    move-result-object v3
-
-    iget-object v4, v2, Lorg/rabochaya/projects/ObjectClipboard;->keys:Ljava/util/List;
-
-    invoke-static {v3, v4, p3, p4}, Lorg/rabochaya/projects/ObjectTree;->move(Lorg/w3c/dom/Element;Ljava/util/Collection;Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v4, v5, p3, p4}, Lorg/rabochaya/projects/ObjectTree;->move(Lorg/w3c/dom/Element;Ljava/util/Collection;Ljava/lang/String;Ljava/lang/String;)I
 
     goto :goto_1
 
-    :cond_1
+    :cond_2
     invoke-virtual {v1}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
 
-    move-result-object v3
+    move-result-object v4
 
-    iget-object v4, v2, Lorg/rabochaya/projects/ObjectClipboard;->keys:Ljava/util/List;
+    iget-object v5, v2, Lorg/rabochaya/projects/ObjectClipboard;->keys:Ljava/util/List;
 
-    invoke-static {v3, v4, p3, p4}, Lorg/rabochaya/projects/ObjectTree;->copy(Lorg/w3c/dom/Element;Ljava/util/Collection;Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v4, v5, p3, p4}, Lorg/rabochaya/projects/ObjectTree;->copy(Lorg/w3c/dom/Element;Ljava/util/Collection;Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 19
+    .line 29
     :goto_1
     invoke-virtual {v1}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
 
@@ -264,77 +319,80 @@
 
     invoke-static {p0, p1, p2, v1}, Lorg/rabochaya/projects/ProjectWrites;->savePreservingAssets(Lorg/rabochaya/projects/ProjectStore;JLorg/rabochaya/projects/KmlProject;)V
 
-    .line 20
-    new-instance v8, Ljava/util/ArrayList;
-
-    invoke-direct {v8}, Ljava/util/ArrayList;-><init>()V
-
-    iget-boolean p3, v2, Lorg/rabochaya/projects/ObjectClipboard;->cut:Z
-
-    if-nez p3, :cond_5
-
+    .line 30
     invoke-virtual {v1}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
 
     move-result-object p3
 
-    invoke-static {p3}, Lorg/rabochaya/projects/ObjectTree;->rows(Lorg/w3c/dom/Element;)Ljava/util/List;
+    invoke-static {p3, p5}, Lorg/rabochaya/projects/ObjectTree;->survivingFolder(Lorg/w3c/dom/Element;Ljava/util/List;)Ljava/lang/String;
 
     move-result-object p3
 
-    invoke-interface {p3}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+    .line 31
+    new-instance v9, Ljava/util/ArrayList;
 
-    move-result-object p3
+    invoke-direct {v9}, Ljava/util/ArrayList;-><init>()V
 
-    :cond_2
-    :goto_2
-    invoke-interface {p3}, Ljava/util/Iterator;->hasNext()Z
+    iget-boolean p4, v2, Lorg/rabochaya/projects/ObjectClipboard;->cut:Z
 
-    move-result p4
+    if-nez p4, :cond_6
 
-    if-eqz p4, :cond_3
-
-    invoke-interface {p3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-virtual {v1}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
 
     move-result-object p4
 
-    check-cast p4, Lorg/rabochaya/projects/ObjectTree$Row;
+    invoke-static {p4}, Lorg/rabochaya/projects/ObjectTree;->rows(Lorg/w3c/dom/Element;)Ljava/util/List;
 
-    invoke-virtual {v1}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
+    move-result-object p4
 
-    move-result-object v3
+    invoke-interface {p4}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
-    iget-object v4, p4, Lorg/rabochaya/projects/ObjectTree$Row;->key:Ljava/lang/String;
+    move-result-object p4
 
-    invoke-static {v3, v4}, Lorg/rabochaya/projects/ObjectTree;->resolve(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
+    :cond_3
+    :goto_2
+    invoke-interface {p4}, Ljava/util/Iterator;->hasNext()Z
 
-    move-result-object v3
+    move-result p5
 
-    invoke-interface {p5, v3}, Ljava/util/List;->contains(Ljava/lang/Object;)Z
+    if-eqz p5, :cond_4
 
-    move-result v3
+    invoke-interface {p4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    if-eqz v3, :cond_2
+    move-result-object p5
 
-    iget-object p4, p4, Lorg/rabochaya/projects/ObjectTree$Row;->key:Ljava/lang/String;
+    check-cast p5, Lorg/rabochaya/projects/ObjectTree$Row;
 
-    invoke-interface {v8, p4}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+    iget-object v1, p5, Lorg/rabochaya/projects/ObjectTree$Row;->element:Lorg/w3c/dom/Element;
+
+    invoke-interface {v3, v1}, Ljava/util/Set;->contains(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_3
+
+    iget-object p5, p5, Lorg/rabochaya/projects/ObjectTree$Row;->key:Ljava/lang/String;
+
+    invoke-interface {v9, p5}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     goto :goto_2
 
-    :cond_3
-    invoke-interface {v8}, Ljava/util/List;->size()I
-
-    move-result p3
-
-    invoke-interface {p5}, Ljava/util/List;->size()I
+    :cond_4
+    invoke-interface {v9}, Ljava/util/List;->size()I
 
     move-result p4
 
-    if-ne p3, p4, :cond_4
+    iget-object p5, v2, Lorg/rabochaya/projects/ObjectClipboard;->keys:Ljava/util/List;
+
+    invoke-interface {p5}, Ljava/util/List;->size()I
+
+    move-result p5
+
+    if-ne p4, p5, :cond_5
 
     goto :goto_3
 
-    :cond_4
+    :cond_5
     new-instance p0, Ljava/lang/IllegalStateException;
 
     const-string p1, "\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u0441\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0432\u044b\u0431\u043e\u0440 \u0431\u0443\u0444\u0435\u0440\u0430"
@@ -343,62 +401,66 @@
 
     throw p0
 
-    .line 22
-    :cond_5
+    .line 33
+    :cond_6
     :goto_3
     invoke-virtual {p0, p1, p2}, Lorg/rabochaya/projects/ProjectStore;->load(J)Lorg/rabochaya/projects/KmlProject;
 
     move-result-object p0
 
-    iget-boolean p3, v2, Lorg/rabochaya/projects/ObjectClipboard;->cut:Z
+    iget-boolean p4, v2, Lorg/rabochaya/projects/ObjectClipboard;->cut:Z
 
-    if-eqz p3, :cond_6
+    if-eqz p4, :cond_7
 
     const-string p1, "object_clipboard"
 
     const-string p2, "slot=1"
 
-    const/4 p3, 0x0
+    const/4 p4, 0x0
 
-    invoke-virtual {v0, p1, p2, p3}, Landroid/database/sqlite/SQLiteDatabase;->delete(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)I
+    invoke-virtual {v0, p1, p2, p4}, Landroid/database/sqlite/SQLiteDatabase;->delete(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)I
 
     goto :goto_4
 
-    :cond_6
-    new-instance p3, Lorg/rabochaya/projects/ObjectClipboard;
+    :cond_7
+    new-instance p4, Lorg/rabochaya/projects/ObjectClipboard;
 
     invoke-virtual {p0}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
 
-    move-result-object p4
+    move-result-object p5
 
-    invoke-static {p4}, Lorg/rabochaya/projects/ObjectTree;->token(Lorg/w3c/dom/Element;)Ljava/lang/String;
+    invoke-static {p5}, Lorg/rabochaya/projects/ObjectTree;->token(Lorg/w3c/dom/Element;)Ljava/lang/String;
 
-    move-result-object v7
+    move-result-object v8
 
-    const/4 v6, 0x0
+    const/4 v7, 0x0
 
-    move-object v3, p3
+    move-object v4, p4
 
-    move-wide v4, p1
+    move-wide v5, p1
 
-    invoke-direct/range {v3 .. v8}, Lorg/rabochaya/projects/ObjectClipboard;-><init>(JZLjava/lang/String;Ljava/util/Collection;)V
+    invoke-direct/range {v4 .. v9}, Lorg/rabochaya/projects/ObjectClipboard;-><init>(JZLjava/lang/String;Ljava/util/Collection;)V
 
-    invoke-static {v0, p3}, Lorg/rabochaya/projects/ObjectClipboardWrites;->put(Landroid/database/sqlite/SQLiteDatabase;Lorg/rabochaya/projects/ObjectClipboard;)V
+    invoke-static {v0, p4}, Lorg/rabochaya/projects/ObjectClipboardWrites;->put(Landroid/database/sqlite/SQLiteDatabase;Lorg/rabochaya/projects/ObjectClipboard;)V
 
-    .line 23
+    .line 34
     :goto_4
     invoke-virtual {v0}, Landroid/database/sqlite/SQLiteDatabase;->setTransactionSuccessful()V
+
+    new-instance p1, Lorg/rabochaya/projects/ObjectTreeWrites$EditResult;
+
+    invoke-direct {p1, p0, p3}, Lorg/rabochaya/projects/ObjectTreeWrites$EditResult;-><init>(Lorg/rabochaya/projects/KmlProject;Ljava/lang/String;)V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 24
+    .line 35
     invoke-virtual {v0}, Landroid/database/sqlite/SQLiteDatabase;->endTransaction()V
 
-    .line 23
-    return-object p0
+    .line 34
+    return-object p1
 
-    .line 16
-    :cond_7
+    .line 19
+    :cond_8
     :try_start_1
     new-instance p0, Ljava/lang/IllegalStateException;
 
@@ -409,7 +471,7 @@
     :goto_5
     throw p0
 
-    :cond_8
+    :cond_9
     new-instance p0, Ljava/lang/IllegalStateException;
 
     const-string p1, "\u0411\u0443\u0444\u0435\u0440 \u043e\u0442\u043d\u043e\u0441\u0438\u0442\u0441\u044f \u043a \u0434\u0440\u0443\u0433\u043e\u043c\u0443 \u043f\u0440\u043e\u0435\u043a\u0442\u0443"
@@ -418,7 +480,7 @@
 
     goto :goto_5
 
-    :cond_9
+    :cond_a
     new-instance p0, Ljava/lang/IllegalStateException;
 
     const-string p1, "\u0411\u0443\u0444\u0435\u0440 \u0438\u0437\u043c\u0435\u043d\u0438\u043b\u0441\u044f. \u041e\u0442\u043a\u0440\u043e\u0439\u0442\u0435 \u0432\u0441\u0442\u0430\u0432\u043a\u0443 \u043f\u043e\u0432\u0442\u043e\u0440\u043d\u043e"
@@ -427,7 +489,7 @@
 
     goto :goto_5
 
-    :cond_a
+    :cond_b
     new-instance p0, Ljava/lang/IllegalStateException;
 
     const-string p1, "\u0411\u0443\u0444\u0435\u0440 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 \u043f\u0443\u0441\u0442"
@@ -438,7 +500,7 @@
 
     goto :goto_5
 
-    .line 24
+    .line 35
     :catchall_0
     move-exception p0
 

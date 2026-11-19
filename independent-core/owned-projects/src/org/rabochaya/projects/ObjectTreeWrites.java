@@ -1,21 +1,42 @@
 package org.rabochaya.projects;
 import android.database.sqlite.SQLiteDatabase;import java.io.*;import java.security.MessageDigest;import java.security.NoSuchAlgorithmException;import java.util.*;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 /** Load, compare, mutate and replace under one SQLite write transaction. */
 public final class ObjectTreeWrites {
  private ObjectTreeWrites(){}
+ static final class EditResult {
+  final KmlProject project;
+  final String folder;
+  EditResult(KmlProject project, String folder) {
+   this.project = project;
+   this.folder = folder;
+  }
+ }
  public static KmlProject apply(ProjectStore store,long id,String operation,List<String> keys,String value,String expected)throws IOException{
+  return apply(store,id,operation,keys,value,expected,"").project;
+ }
+ static EditResult apply(ProjectStore store,long id,String operation,List<String> keys,String value,String expected,String folder)throws IOException{
   SQLiteDatabase db=store.getWritableDatabase();db.beginTransaction();
   try{KmlProject p=store.load(id);
+   if (!folder.isEmpty() && !ObjectTree.token(p.root()).equals(expected)) {
+    throw new IllegalStateException("Проект изменился. Перечитайте список и повторите выбор");
+   }
+   List<Node> trail = ObjectTree.folderTrail(p.root(), folder);
    if("create".equals(operation))ObjectTree.createFolder(p.root(),keys.get(0),expected,value);
    else if("rename".equals(operation))ObjectTree.rename(p.root(),keys.get(0),expected,value);
-   else if("description".equals(operation)){if(keys==null||keys.size()!=1)throw new IllegalArgumentException("Выберите один объект");if(!ObjectDescription.apply(p.root(),keys.get(0),expected,value)){db.setTransactionSuccessful();return p;}}
+   else if("description".equals(operation)){if(keys==null||keys.size()!=1)throw new IllegalArgumentException("Выберите один объект");if(!ObjectDescription.apply(p.root(),keys.get(0),expected,value)){db.setTransactionSuccessful();return new EditResult(p,folder);}}
    else if(KmlComponentStyleEdit.operation(operation)){if(keys==null||keys.size()!=1)throw new IllegalArgumentException("Выберите один объект");KmlComponentStyleEdit.apply(p.root(),keys.get(0),expected,operation,value);}
    else if("move".equals(operation))ObjectTree.move(p.root(),keys,value,expected);
    else if("delete".equals(operation))ObjectTree.delete(p.root(),keys,expected);
-   else if("show".equals(operation)||"hide".equals(operation)){ObjectVisibility.Preview change=ObjectVisibility.apply(p.root(),keys,"show".equals(operation),expected);if(change.changed==0){db.setTransactionSuccessful();return p;}}
+   else if("show".equals(operation)||"hide".equals(operation)){ObjectVisibility.Preview change=ObjectVisibility.apply(p.root(),keys,"show".equals(operation),expected);if(change.changed==0){db.setTransactionSuccessful();return new EditResult(p,folder);}}
    else throw new IllegalArgumentException("Неизвестное действие");
-   ObjectTree.normalizeRoot(p.root());ProjectWrites.savePreservingAssets(store,id,p);db.setTransactionSuccessful();return p;
+   ObjectTree.normalizeRoot(p.root());
+   String nextFolder = ObjectTree.survivingFolder(p.root(), trail);
+   ProjectWrites.savePreservingAssets(store,id,p);
+   KmlProject saved = store.load(id);
+   db.setTransactionSuccessful();
+   return new EditResult(saved, nextFolder);
   }finally{db.endTransaction();}
  }
 

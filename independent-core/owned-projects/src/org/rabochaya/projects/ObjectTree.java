@@ -25,6 +25,25 @@ public final class ObjectTree {
   if(key==null||!key.matches("(0|[1-9][0-9]*)(/(0|[1-9][0-9]*))*")||key.split("/").length>33)throw new IllegalArgumentException("Недопустимый адрес объекта");
   Element at=root;for(String part:key.split("/")){if(!container(at))throw new IllegalStateException("Папка больше не существует");int wanted;try{wanted=Integer.parseInt(part);}catch(NumberFormatException e){throw new IllegalArgumentException("Недопустимый адрес объекта");}int i=0;Element found=null;for(Element child:children(at))if(managed(child)){if(i++==wanted){found=child;break;}}if(found==null)throw new IllegalStateException("Объект больше не существует");at=found;}return at;
  }
+ static List<Node> folderTrail(Element root, String key) {
+  List<Node> trail = new ArrayList<>();
+  for (Node folder = resolve(root, key); folder != null; folder = folder.getParentNode()) {
+   trail.add(folder);
+   if (folder == root) break;
+  }
+  return trail;
+ }
+ static String survivingFolder(Element root, List<Node> trail) {
+  if (trail.get(0) == root) return "";
+  Map<Element, String> folders = new IdentityHashMap<>();
+  for (Row row : rows(root)) if (row.folder) folders.put(row.element, row.key);
+  for (Node folder : trail) {
+   if (folder == root) return "";
+   String key = folders.get(folder);
+   if (key != null) return key;
+  }
+  return "";
+ }
  public static void createFolder(Element root,String parent,String expected,String name){
   checked(root,expected);String title=title(name);Element target=resolve(root,parent);if(!container(target))throw new IllegalArgumentException("Выберите папку");
   // Validate the resulting tree limits before touching the live DOM.

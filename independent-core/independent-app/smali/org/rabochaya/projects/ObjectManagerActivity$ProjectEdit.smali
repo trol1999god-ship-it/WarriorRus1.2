@@ -15,7 +15,7 @@
 
 
 # virtual methods
-.method public abstract apply(Lorg/rabochaya/projects/ProjectStore;)Lorg/rabochaya/projects/KmlProject;
+.method public abstract apply(Lorg/rabochaya/projects/ProjectStore;)Lorg/rabochaya/projects/ObjectTreeWrites$EditResult;
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
