@@ -15,8 +15,9 @@ p.add_argument('--api', type=int, default=23)
 p.add_argument('--abi', choices=['x86', 'x86_64'])
 p.add_argument('--boot-timeout', type=int, default=720)
 p.add_argument('--install-timeout', type=int, default=180)
+p.add_argument('--debug-qa', action='store_true')
 p.add_argument('--no-streaming', action='store_true')
-p.add_argument('--modes', nargs='+', choices=['binary', 'independence', 'offlineformats', 'cachewrites', 'cacheexport', 'launcher', 'coordinates', 'catalogscreen', 'geometryedit','geometrymap','geometrymapreopen','objectmanager','objectmanagerreopen','clipboard','clipboardreopen','managerfilters','managerfiltersreopen','managervisibility','managervisibilityreopen','managerdates','managerdatesreopen','managerdescription','managerdescriptionreopen','managercontext','managercontextreopen'])
+p.add_argument('--modes', nargs='+', choices=['svg', 'binary', 'independence', 'offlineformats', 'cachewrites', 'cacheexport', 'launcher', 'coordinates', 'catalogscreen', 'geometryedit','geometrymap','geometrymapreopen','objectmanager','objectmanagerreopen','clipboard','clipboardreopen','managerfilters','managerfiltersreopen','managervisibility','managervisibilityreopen','managerdates','managerdatesreopen','managerdescription','managerdescriptionreopen','managercontext','managercontextreopen'])
 a = p.parse_args()
 sdk, out = a.sdk.resolve(), a.output.resolve()
 abi = a.abi or ('x86' if a.api == 23 else 'x86_64')
@@ -101,6 +102,7 @@ fastboot.forceColdBoot=yes
             print('Android boot completed', flush=True)
             report['tests_started'] = True
             args = ['python3', str(Path(__file__).with_name('run_android_checks.py')), '--adb', str(adb), '--serial', 'emulator-5554', '--app', str(a.app.resolve()), '--tests', str(a.tests.resolve()), '--output', str(out/'scenarios'), '--install-timeout', str(a.install_timeout)]
+            if a.debug_qa: args += ['--debug-qa']
             if a.no_streaming: args += ['--no-streaming']
             if a.modes: args += ['--modes', *a.modes]
             result = subprocess.call(args, env=env)

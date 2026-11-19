@@ -15,7 +15,7 @@ p.add_argument('--no-streaming',action='store_true',help='Push APKs before insta
 p.add_argument('--transport-wait',type=float,default=15,help='Bounded same-boot adb readiness wait (0 < seconds <= 15); never reruns instrumentation')
 modes=['binary','independence','offlineformats','cachewrites','cacheexport','launcher','coordinates','catalogscreen','geometryedit','geometrymap','geometrymapreopen','objectmanager','objectmanagerreopen','clipboard','clipboardreopen','managerfilters','managerfiltersreopen','managervisibility','managervisibilityreopen','managerdates','managerdatesreopen','managerdescription','managerdescriptionreopen','managercontext','managercontextreopen','managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation','vertexscroll','geometryvertexconfirm','geometryholeconfirm','vertexinsertion','geometrynewhole','geometrynewholeguards','mapvertexconfirm','mapholeconfirm','mapundorotation','mappartconfirm','geometrycloseconfirm','maplayers','maplayersreopen']
 p.add_argument('--visual-log-modes',nargs='*',choices=modes,default=['cacheexport','maplayersreopen'],help='Full console PNG previews for these modes; every visual mode still validates and retains all PNG artifacts')
-p.add_argument('--modes',nargs='+',choices=modes,default=modes,help='Run the selected scenarios in this order; default: full suite')
+p.add_argument('--modes',nargs='+',choices=modes+['svg'],default=modes,help='Run the selected scenarios in this order; default: full suite')
 a=p.parse_args();out=a.output.resolve();out.mkdir(parents=True,exist_ok=True)
 if any(out.iterdir()):p.error('Output must be fresh; existing artifacts are preserved, never inherited')
 if not 0<a.transport_wait<=15:p.error('--transport-wait must be positive and at most 15 seconds')
@@ -38,7 +38,7 @@ def save_transport(): (out/'adb-transport.json').write_text(json.dumps(transport
 def raw_adb(args,timeout):
  return subprocess.run([str(a.adb),'-s',a.serial,*map(str,args)],stdin=subprocess.DEVNULL,capture_output=True,text=True,timeout=timeout)
 def safe_retry(args):
- return (args[:3] in [('shell','am','force-stop'),('shell','pm','clear')] and args[3:]==('org.rabochaya.karta',)) or args[0]=='logcat' or args[:2] in [('shell','getprop'),('shell','dumpsys')] or args==('shell','cat',BOOT) or (len(args)==3 and args[0]=='pull' and args[1]=='/sdcard/Android/data/org.rabochaya.karta/files' and Path(args[2]).parent==out and Path(args[2]).name in modes)
+ return (args[:3] in [('shell','am','force-stop'),('shell','pm','clear')] and args[3:]==('org.rabochaya.karta',)) or args[0]=='logcat' or args[:2] in [('shell','getprop'),('shell','dumpsys')] or args==('shell','cat',BOOT) or (len(args)==3 and args[0]=='pull' and args[1]=='/sdcard/Android/data/org.rabochaya.karta/files' and Path(args[2]).parent==out and Path(args[2]).name in a.modes)
 def invalidate(message):
  global context_error
  context_error=message

@@ -11,8 +11,78 @@ final class SvgChecks {
  }catch(Exception|AssertionError t){if(image[0]!=null)image[0].recycle();throw t;}finally{if(map[0]!=null)m.runOnMainSync(()->{try{m.call(map[0],"close",new Class[]{});}catch(Exception e){throw new RuntimeException(e);}});}}
  void pixel(Bitmap image,int x,int y,int color,String why){int c=image.getPixel(x,y);m.check(Math.abs(Color.red(c)-Color.red(color))<=1&&Math.abs(Color.green(c)-Color.green(color))<=1&&Math.abs(Color.blue(c)-Color.blue(color))<=1,why+" actual="+Integer.toHexString(c));}
  Object variant(String xml,String svg)throws Exception{Object doc=m.codec.getMethod("parse",byte[].class).invoke(null,(Object)xml.getBytes("UTF-8"));m.assets(doc).put("icons/shape.svg",svg.getBytes("UTF-8"));return doc;}
+ void assignment(String svg) throws Exception {
+  Object store = m.storeClass.getConstructor(Context.class).newInstance(m.getTargetContext());
+  long project = -1;
+  try {
+   String xml = "<kml xmlns='http://www.opengis.net/kml/2.2'><Document>"
+     + "<Placemark id='target'><Point><coordinates>-20,10</coordinates></Point></Placemark>"
+     + "<Placemark id='other'><Point><coordinates>20,10</coordinates></Point></Placemark>"
+     + "<Placemark id='line'><LineString><coordinates>0,5 0,7</coordinates></LineString></Placemark>"
+     + "</Document></kml>";
+   Object doc = m.codec.getMethod("parse", byte[].class).invoke(null, (Object) xml.getBytes("UTF-8"));
+   m.codec.getField("entry").set(doc, "nested/map.kml");
+   byte[] attachment = {7, 5, 3};
+   m.assets(doc).put("nested/keep.bin", attachment);
+   project = (Long) m.call(store, "insert", new Class[]{m.codec, String.class}, doc, "QA_SVG_ASSIGN");
+   doc = raw.load(store, project);
+   String originalToken = m.treeToken(doc);
+   byte[] original = raw.xml(doc);
+   byte[] bytes = svg.getBytes("UTF-8");
+   Class<?>[] signature = {m.storeClass, long.class, String.class, String.class, InputStream.class};
+   try {
+    m.staticCall("ObjectTreeWrites", "assignSvg", signature, store, project, "2", originalToken, new ByteArrayInputStream(bytes));
+    throw new AssertionError("Route accepted a point icon");
+   } catch (InvocationTargetException rejected) {
+    m.check(rejected.getCause() instanceof IllegalArgumentException, "route is rejected");
+   }
+   try {
+    m.staticCall("ObjectTreeWrites", "assignSvg", signature, store, project, "0", originalToken, new ByteArrayInputStream(new byte[65537]));
+    throw new AssertionError("Oversize icon accepted");
+   } catch (InvocationTargetException rejected) {
+    m.check(rejected.getCause() instanceof IOException, "oversize SVG is rejected before write");
+   }
+   Object unchanged = raw.load(store, project);
+   m.check(Arrays.equals(original, raw.xml(unchanged)) && m.assets(unchanged).size() == 1, "refused assignments leave the project intact");
+   m.staticCall("ObjectTreeWrites", "assignSvg", signature, store, project, "0", originalToken, new ByteArrayInputStream(bytes));
+   Object saved = raw.load(store, project);
+   String href = m.element(saved, "target").getElementsByTagNameNS("*", "href").item(0).getTextContent();
+   m.check(href.matches("icons/rk-[0-9a-f]{64}\\.svg"), "assigned icon uses project-relative path");
+   m.check(Arrays.equals(bytes, m.assets(saved).get("nested/" + href)), "assignment stores exact bytes beside nested KML");
+   m.check(Arrays.equals(attachment, m.assets(saved).get("nested/keep.bin")), "assignment preserves original attachment bytes");
+   m.check(m.element(doc,"other").isEqualNode(m.element(saved,"other")), "another placemark remains unchanged");
+   try {
+    m.staticCall("ObjectTreeWrites", "assignSvg", signature, store, project, "1", originalToken, new ByteArrayInputStream(bytes));
+    throw new AssertionError("Stale choice accepted");
+   } catch (InvocationTargetException rejected) {
+    m.check(rejected.getCause() instanceof IllegalStateException, "stale selection is rejected");
+   }
+   m.staticCall("ObjectTreeWrites", "assignSvg", signature, store, project, "1", m.treeToken(saved), new ByteArrayInputStream(bytes));
+   saved = raw.load(store, project);
+   m.check(m.assets(saved).size() == 2, "identical icons are stored once");
+   ByteArrayOutputStream out = new ByteArrayOutputStream();
+   m.call(saved, "kmz", new Class[]{OutputStream.class}, out);
+   Object round = m.codec.getMethod("read", InputStream.class, boolean.class).invoke(null, new ByteArrayInputStream(out.toByteArray()), true);
+   raw.sameAssets(round, m.assets(saved));
+   List<String> errors = new ArrayList<>();
+   Bitmap image = draw(round, source(round), errors);
+   try {
+    int x = (int) Math.round(400 - 20.0 / 360 * 2048);
+    int y = (int) Math.round(300 - Math.log(Math.tan(Math.PI / 4 + Math.toRadians(10) / 2)) / (2 * Math.PI) * 2048);
+    pixel(image, x - 10, y - 10, 0xffff0000, "assigned SVG renders after database and KMZ reopen");
+    m.check(errors.isEmpty(), "assigned SVG resolves without warnings");
+   } finally {
+    image.recycle();
+   }
+  } finally {
+   if (project > 0) m.call(store, "remove", new Class[]{long.class}, project);
+   m.call(store, "close", new Class[]{});
+  }
+ }
+
  void run()throws Exception{
   String svg="<svg width='36' height='36'><path fill='#ff0000' fill-rule='evenodd' d='M0 0H36V36H0Z M14 14H22V22H14Z'/></svg>";
+  assignment(svg);
   String xml="<kml xmlns='http://www.opengis.net/kml/2.2'><Document><Style id='s'><IconStyle><scale>1</scale><heading>0</heading><Icon><href>icons/shape.svg</href></Icon><hotSpot x='0.5' y='0.5' xunits='fraction' yunits='fraction'/></IconStyle><LabelStyle><scale>0</scale></LabelStyle></Style><StyleMap id='m'><Pair><key>normal</key><styleUrl>#s</styleUrl></Pair></StyleMap><Placemark id='svg'><name>QA_SVG</name><styleUrl>#m</styleUrl><Point><coordinates>-20,10</coordinates></Point></Placemark></Document></kml>";
   Object doc=m.codec.getMethod("parse",byte[].class).invoke(null,(Object)xml.getBytes("UTF-8"));m.assets(doc).put("icons/shape.svg",svg.getBytes("UTF-8"));m.assets(doc).put("attachments/keep.bin",new byte[]{1,2,3});byte[] before=raw.xml(doc);Map<String,byte[]> assets=new HashMap<>(m.assets(doc));List<String> errors=new ArrayList<>();int x=(int)Math.round(400-20.0/360*2048),y=(int)Math.round(300-Math.log(Math.tan(Math.PI/4+Math.toRadians(10)/2))/(2*Math.PI)*2048);int requests=m.requests.get();
   Bitmap image=draw(doc,source(doc),errors);try{pixel(image,x-10,y-10,0xffff0000,"actual SVG shape replaces circle through normal StyleMap");pixel(image,x,y,0xff253020,"SVG evenodd hole remains transparent, no fallback circle");pixel(image,x+20,y,0xff253020,"SVG stays within native36px bounds");m.check(errors.isEmpty(),"valid owner SVG has no unsupported warning");}finally{image.recycle();}

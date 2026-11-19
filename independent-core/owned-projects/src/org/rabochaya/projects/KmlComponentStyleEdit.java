@@ -20,7 +20,44 @@ public final class KmlComponentStyleEdit {
  private static void remove(Element parent,String name){for(Node n=parent.getFirstChild();n!=null;){Node next=n.getNextSibling();if(tag(n,name))parent.removeChild(n);n=next;}}
  public static void apply(Element root,String key,String token,String op,String raw){String v=value(op,raw),part=part(op),leaf=leaf(op);Element e=target(root,key,token),last=null;for(Node n=e.getFirstChild();n!=null;n=n.getNextSibling())if(tag(n,"Style")){last=(Element)n;for(Node p=n.getFirstChild();p!=null;p=p.getNextSibling())if(tag(p,part)){remove((Element)p,leaf);if(!flag(op)&&!metric(op))remove((Element)p,"colorMode");}}
   if(v.isEmpty())return;
-  if(last==null){last=e.getOwnerDocument().createElementNS(e.getNamespaceURI(),"Style");Node before=null;for(Node n=e.getFirstChild();n!=null;n=n.getNextSibling())if(tag(n,"Region")||tag(n,"Metadata")||tag(n,"ExtendedData")||tag(n,"AbstractFeatureSimpleExtensionGroup")||tag(n,"AbstractFeatureObjectExtensionGroup")||tag(n,"Point")||tag(n,"LineString")||tag(n,"LinearRing")||tag(n,"Polygon")||tag(n,"MultiGeometry")||tag(n,"Model")||tag(n,"PlacemarkSimpleExtensionGroup")||tag(n,"PlacemarkObjectExtensionGroup")){before=n;break;}e.insertBefore(last,before);}
+  if(last==null)last=addInlineStyle(e);
   Element p=child(last,part);if(p==null)p=add(last,part);add(p,leaf).setTextContent(v);if(!flag(op)&&!metric(op))add(p,"colorMode").setTextContent("normal");
+ }
+
+ private static Element addInlineStyle(Element feature) {
+  Element style=feature.getOwnerDocument().createElementNS(feature.getNamespaceURI(),"Style");Node before=null;for(Node n=feature.getFirstChild();n!=null;n=n.getNextSibling())if(tag(n,"Region")||tag(n,"Metadata")||tag(n,"ExtendedData")||tag(n,"AbstractFeatureSimpleExtensionGroup")||tag(n,"AbstractFeatureObjectExtensionGroup")||tag(n,"Point")||tag(n,"LineString")||tag(n,"LinearRing")||tag(n,"Polygon")||tag(n,"MultiGeometry")||tag(n,"Model")||tag(n,"PlacemarkSimpleExtensionGroup")||tag(n,"PlacemarkObjectExtensionGroup")){before=n;break;}feature.insertBefore(style,before);
+  return style;
+ }
+
+ public static Element marker(Element root, String key, String token) {
+  Element feature = target(root, key, token);
+  NodeList points = feature.getElementsByTagNameNS("*", "Point");
+  for (int i = 0; i < points.getLength(); i++) {
+   Node point = points.item(i);
+   if (!tag(point, "Point")) continue;
+   Node parent = point.getParentNode();
+   while (tag(parent, "MultiGeometry")) parent = parent.getParentNode();
+   if (parent == feature) return feature;
+  }
+  throw new IllegalArgumentException("Выберите объект с точкой на карте");
+ }
+
+ static void assignIcon(Element feature, String href) {
+  Element style = null;
+  for (Node node = feature.getFirstChild(); node != null; node = node.getNextSibling()) {
+   if (tag(node, "Style")) style = (Element) node;
+  }
+  // An imported inline Style with an id may also be shared by other placemarks.
+  if (style == null || style.hasAttribute("id")) style = addInlineStyle(feature);
+  Element iconStyle = child(style, "IconStyle");
+  if (iconStyle == null) iconStyle = add(style, "IconStyle");
+  Element icon = child(iconStyle, "Icon");
+  if (icon == null) icon = add(iconStyle, "Icon");
+  Element link = child(icon, "href");
+  if (link == null) {
+   link = icon.getOwnerDocument().createElementNS(icon.getNamespaceURI(), "href");
+   icon.insertBefore(link, icon.getFirstChild());
+  }
+  link.setTextContent(href);
  }
 }

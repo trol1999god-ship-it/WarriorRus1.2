@@ -1,11 +1,14 @@
 package org.rabochaya.projects;
 
-import android.app.*;import android.content.*;import android.os.Bundle;import android.view.*;import android.widget.*;
-import org.w3c.dom.Element;import java.util.*;import java.util.concurrent.*;
+import android.app.*;import android.net.Uri;import android.content.*;import android.os.Bundle;import android.view.*;import android.widget.*;
+import org.w3c.dom.Element;import java.io.*;import java.util.*;import java.util.concurrent.*;
 
 /** Local per-project folders and batch operations; file import/export remains in ProjectsActivity. */
 public final class ObjectManagerActivity extends Activity {
  private static final String SELECTION_SESSION=UUID.randomUUID().toString();private Bundle pendingSelection;
+
+ private static final int PICK_SVG = 4801;
+ private Bundle pendingSvg;
  private ObjectFormDraft pendingForm;private FormUi activeForm;
  private ObjectMoveDraft pendingMove,moveDraft;private AlertDialog moveDialog;
  private ObjectMoveDraft pendingChooser,chooserDraft;private AlertDialog chooserDialog;private int chooserFirst,chooserTop;private android.os.Parcelable chooserListState;
@@ -17,7 +20,7 @@ public final class ObjectManagerActivity extends Activity {
  private boolean busy,disposed,refreshOnResume;private TextView status,path;private Button actions,up;private ListView list;private Rows adapter;
  public static void open(Activity parent,long project){parent.startActivity(new Intent(parent,ObjectManagerActivity.class).putExtra("project",project));}
  protected void onCreate(Bundle state){setTheme((getResources().getConfiguration().uiMode&android.content.res.Configuration.UI_MODE_NIGHT_MASK)==android.content.res.Configuration.UI_MODE_NIGHT_YES?android.R.style.Theme_Material_NoActionBar:android.R.style.Theme_Material_Light_NoActionBar);super.onCreate(state);project=getIntent().getLongExtra("project",-1);
-  restoreView();if(state!=null){if(state.getLong("viewProject",-1)==project){folder=state.getString("folder","");expected=state.getString("token");}pendingEditor=readEditor(state.getBundle("editor"));pendingSelection=state.getBundle("selection");pendingForm=readForm(state.getBundle("form"));pendingMove=readMove(state.getBundle("move"));pendingChooser=readMove(state.getBundle("chooser"));if(state.getBundle("chooser")!=null){chooserFirst=Math.max(0,Math.min(9999,state.getBundle("chooser").getInt("first")));chooserTop=Math.max(-10000,Math.min(10000,state.getBundle("chooser").getInt("top")));chooserListState=state.getBundle("chooser").getParcelable("listState");}pendingConfirmation=readConfirmation(state.getBundle("confirmation"));}
+  restoreView();if(state!=null){if(state.getLong("viewProject",-1)==project){folder=state.getString("folder","");expected=state.getString("token");pendingSvg=state.getBundle("svg");}pendingEditor=readEditor(state.getBundle("editor"));pendingSelection=state.getBundle("selection");pendingForm=readForm(state.getBundle("form"));pendingMove=readMove(state.getBundle("move"));pendingChooser=readMove(state.getBundle("chooser"));if(state.getBundle("chooser")!=null){chooserFirst=Math.max(0,Math.min(9999,state.getBundle("chooser").getInt("first")));chooserTop=Math.max(-10000,Math.min(10000,state.getBundle("chooser").getInt("top")));chooserListState=state.getBundle("chooser").getParcelable("listState");}pendingConfirmation=readConfirmation(state.getBundle("confirmation"));}
   LinearLayout root=new LinearLayout(this);root.setOrientation(1);root.setPadding(12,12,12,12);setContentView(root);watchFont(root);
   LinearLayout header=new LinearLayout(this);header.setOrientation(1);ScrollView headerScroll=new ScrollView(this){protected void onMeasure(int width,int height){int available=View.MeasureSpec.getSize(height);int limit=Math.max(WorkspaceUi.dp(ObjectManagerActivity.this,48),available-WorkspaceUi.dp(ObjectManagerActivity.this,192));super.onMeasure(width,View.MeasureSpec.makeMeasureSpec(limit,View.MeasureSpec.AT_MOST));}};headerScroll.addView(header);root.addView(headerScroll,new LinearLayout.LayoutParams(-1,-2));
   TextView title=new TextView(this);title.setText("Объекты проекта");title.setTextSize(21);header.addView(title);
@@ -54,7 +57,7 @@ public final class ObjectManagerActivity extends Activity {
  private AlertDialog.Builder dialog(){return new AlertDialog.Builder(this){public AlertDialog create(){AlertDialog dialog=super.create();dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);return dialog;}public AlertDialog show(){AlertDialog dialog=super.show();styleDialog(dialog);return dialog;}};}
  private Button button(LinearLayout parent,String title,Runnable action){Button b=new Button(this);b.setText(title);b.setAllCaps(false);parent.addView(b);b.setOnClickListener(v->{if(!busy)action.run();});return b;}
  private void enabled(boolean yes){busy=!yes;actions.setEnabled(yes&&snapshot!=null);up.setEnabled(yes&&!folder.isEmpty());list.setEnabled(yes);searchButton.setEnabled(yes&&listing!=null);dateButton.setEnabled(yes&&listing!=null);if(adapter!=null)adapter.notifyDataSetChanged();}
- private void load(){if(busy)return;final boolean needsClipboard=pendingConfirmation!=null&&pendingConfirmation.paste();enabled(false);status.setText("Чтение локального проекта…");worker.execute(()->{ProjectStore store=new ProjectStore(this);try{KmlProject p=store.load(project);final Element root=p.root();final List<ObjectTree.Row> data=ObjectTree.rows(root);final String token=ObjectTree.token(root);final ObjectListing index=ObjectListing.build(root,data);final String clipboard=needsClipboard?clipboardStamp(store):"";runOnUiThread(()->{if(disposed)return;if(expected==null||!expected.equals(token))folder="";snapshot=root;rows=data;listing=index;expected=token;if(!folder.isEmpty()&&(listing.get(folder)==null||!listing.get(folder).row.folder))folder="";selected.clear();restoreSelection();rememberView();render();enabled(true);status.setText("Флажки — выбор, долгое нажатие — действия, «Открыть» — вход в папку");restoreEditor();restoreForm();restoreMove();restoreConfirmation(clipboard);restoreChooser();});}catch(Exception error){runOnUiThread(()->{if(disposed)return;enabled(true);status.setText(error.getMessage());dialog().setMessage("Не удалось открыть менеджер: "+error.getMessage()).setPositiveButton("Повторить",(d,w)->load()).setNegativeButton("Закрыть",(d,w)->finish()).show();});}finally{store.close();}});}
+ private void load(){if(busy)return;final boolean needsClipboard=pendingConfirmation!=null&&pendingConfirmation.paste();enabled(false);status.setText("Чтение локального проекта…");worker.execute(()->{ProjectStore store=new ProjectStore(this);try{KmlProject p=store.load(project);final Element root=p.root();final List<ObjectTree.Row> data=ObjectTree.rows(root);final String token=ObjectTree.token(root);final ObjectListing index=ObjectListing.build(root,data);final String clipboard=needsClipboard?clipboardStamp(store):"";runOnUiThread(()->{if(disposed)return;if(expected==null||!expected.equals(token))folder="";snapshot=root;rows=data;listing=index;expected=token;if(!folder.isEmpty()&&(listing.get(folder)==null||!listing.get(folder).row.folder))folder="";selected.clear();restoreSelection();rememberView();render();enabled(true);status.setText("Флажки — выбор, долгое нажатие — действия, «Открыть» — вход в папку");restoreEditor();restoreForm();restoreMove();restoreConfirmation(clipboard);restoreChooser();applySelectedSvg();});}catch(Exception error){runOnUiThread(()->{if(disposed)return;enabled(true);status.setText(error.getMessage());dialog().setMessage("Не удалось открыть менеджер: "+error.getMessage()).setPositiveButton("Повторить",(d,w)->load()).setNegativeButton("Закрыть",(d,w)->finish()).show();});}finally{store.close();}});}
  private List<ObjectTree.Row> visible=new ArrayList<>();
  private int outsideSelection(){int n=0;for(String key:selected)if(!shownKeys.contains(key))n++;return n;}
  private void selectionSummary(){selectionInfo.setText("Выбрано: "+selected.size()+" · вне списка: "+outsideSelection());}
@@ -102,10 +105,58 @@ public final class ObjectManagerActivity extends Activity {
  private void description(){if(selected.size()!=1){notice("Выберите один объект или папку");return;}String key=selected.iterator().next();try{String text=ObjectDescription.read(snapshot,key,expected);openEditor(new ObjectEditorDraft(project,"description",key,expected,text,text.length(),text.length()));}catch(Exception e){notice(e.getMessage());}}
  private void componentStyle(){
   if(selected.size()!=1){notice("Выберите один объект, а не папку");return;}final String key=selected.iterator().next(),token=expected;
-  final String[] operations={"component-icon","component-line","component-polygon","component-label","component-fill","component-outline","component-width","component-label-scale"};String[] names=new String[operations.length];for(int i=0;i<names.length;i++)names[i]=KmlComponentStyleEdit.title(operations[i]);
+  final String[] operations={"component-icon","component-line","component-polygon","component-label","component-fill","component-outline","component-width","component-label-scale"};String[] names=Arrays.copyOf(operations,operations.length+1);for(int i=0;i<operations.length;i++)names[i]=KmlComponentStyleEdit.title(operations[i]);names[operations.length]="Выбрать значок SVG";
   try{KmlComponentStyleEdit.read(snapshot,key,token,operations[0]);}catch(Exception e){notice(e.getMessage());return;}
-  dialog().setTitle("Цвет и заливка KML").setItems(names,(d,index)->{try{String text=KmlComponentStyleEdit.read(snapshot,key,token,operations[index]);openEditor(new ObjectEditorDraft(project,operations[index],key,token,text,text.length(),text.length()));}catch(Exception e){notice(e.getMessage());}}).setNegativeButton("Отмена",null).show();
+  dialog().setTitle("Цвет и заливка KML").setItems(names,(d,index)->{if(index==operations.length){pickSvg(key,token);return;}try{String text=KmlComponentStyleEdit.read(snapshot,key,token,operations[index]);openEditor(new ObjectEditorDraft(project,operations[index],key,token,text,text.length(),text.length()));}catch(Exception e){notice(e.getMessage());}}).setNegativeButton("Отмена",null).show();
  }
+ private void pickSvg(String key, String token) {
+  if (busy || pendingSvg != null) return;
+  try {
+   KmlComponentStyleEdit.marker(snapshot, key, token);
+   Intent picker = new Intent(Intent.ACTION_OPEN_DOCUMENT)
+     .setType("image/svg+xml")
+     .addCategory(Intent.CATEGORY_OPENABLE)
+     .putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+   pendingSvg = new Bundle();
+   pendingSvg.putString("key", key);
+   pendingSvg.putString("token", token);
+   startActivityForResult(picker, PICK_SVG);
+  } catch (ActivityNotFoundException missing) {
+   pendingSvg = null;
+   notice("На устройстве нет системного выбора файлов");
+  } catch (IllegalArgumentException | IllegalStateException invalid) {
+   notice(invalid.getMessage());
+  }
+ }
+
+ @Override protected void onActivityResult(int request, int result, Intent data) {
+  super.onActivityResult(request, result, data);
+  if (request != PICK_SVG || pendingSvg == null) return;
+  Uri uri = data == null ? null : data.getData();
+  if (result != RESULT_OK || uri == null) {
+   pendingSvg = null;
+   return;
+  }
+  if (!"content".equals(uri.getScheme())) {
+   pendingSvg = null;
+   notice("Выберите локальный SVG через системный выбор файлов");
+   return;
+  }
+  pendingSvg.putParcelable("uri", uri);
+  applySelectedSvg();
+ }
+
+ private void applySelectedSvg() {
+  if (busy || snapshot == null || pendingSvg == null) return;
+  Uri uri = pendingSvg.getParcelable("uri");
+  if (uri == null) return;
+  String key = pendingSvg.getString("key");
+  String token = pendingSvg.getString("token");
+  pendingSvg = null;
+  write(null, store -> ObjectTreeWrites.assignSvg(
+    store, project, key, token, getContentResolver().openInputStream(uri)));
+ }
+
  private void openEditor(final ObjectEditorDraft draft){
   final boolean valid=draft.matches(project,snapshot),description=draft.operation.equals("description"),component=KmlComponentStyleEdit.operation(draft.operation);LinearLayout form=new LinearLayout(this);form.setOrientation(1);form.setPadding(16,8,16,8);
   if(component){TextView help=new TextView(this);help.setText("Меняется только выбранное свойство этого объекта. Общий Style/StyleMap и другие объекты сохраняются. Цвет: 8 знаков aabbggrr (ff0000ff — красный, 00 — прозрачность). Заливка/контур: 1 — да, 0 — нет. Ширина линии: 0–256 px; масштаб подписи: 0–16 (1 — обычный, 0 — скрыть). Пусто — убрать собственное переопределение и наследовать общий стиль. Только явное «Сохранить» записывает KML.");form.addView(help);}
@@ -153,8 +204,16 @@ public final class ObjectManagerActivity extends Activity {
  }
  private void write(String operation,List<String> keys,String value){write(operation,keys,value,expected,null);}
  private void write(String operation,List<String> keys,String value,final String token,final AlertDialog editing){
+  write(editing, store -> operation.equals("paste")
+    ? ObjectClipboardWrites.paste(store,project,value,token,keys.get(0))
+    : ObjectTreeWrites.apply(store,project,operation,keys,value,token));
+ }
+ private interface ProjectEdit {
+  KmlProject apply(ProjectStore store) throws IOException;
+ }
+ private void write(AlertDialog editing, ProjectEdit edit) {
   if(busy||snapshot==null)return;enabled(false);adapter.notifyDataSetChanged();status.setText("Сохранение…");if(editing!=null){editing.getButton(-1).setEnabled(false);editing.getButton(-2).setEnabled(false);editing.setCancelable(false);}
-  worker.execute(()->{ProjectStore store=new ProjectStore(this);try{KmlProject p=operation.equals("paste")?ObjectClipboardWrites.paste(store,project,value,token,keys.get(0)):ObjectTreeWrites.apply(store,project,operation,keys,value,token);Element root=p.root();
+  worker.execute(()->{ProjectStore store=new ProjectStore(this);try{Element root=edit.apply(store).root();
     final List<ObjectTree.Row> data=ObjectTree.rows(root);final String newToken=ObjectTree.token(root);final ObjectListing index=ObjectListing.build(root,data);
     runOnUiThread(()->{if(disposed)return;if(editing!=null)editing.dismiss();snapshot=root;rows=data;listing=index;expected=newToken;folder="";selected.clear();rememberView();enabled(true);render();status.setText("Изменения сохранены");});
    }catch(Exception e){runOnUiThread(()->{if(disposed)return;enabled(true);adapter.notifyDataSetChanged();status.setText("Изменения не сохранены: "+e.getMessage());if(editing!=null){editing.getButton(-1).setEnabled(true);editing.getButton(-2).setEnabled(true);editing.setCancelable(true);}notice(e.getMessage());});}finally{store.close();}});
@@ -202,7 +261,7 @@ public final class ObjectManagerActivity extends Activity {
  }
 
  private void notice(String text){dialog().setMessage(text).setPositiveButton("Понятно",null).show();}
- protected void onSaveInstanceState(Bundle out){super.onSaveInstanceState(out);out.putLong("viewProject",project);out.putString("folder",folder);out.putString("token",expected);out.putBundle("editor",saveEditor());out.putBundle("selection",saveSelection());out.putBundle("form",saveForm());out.putBundle("move",saveMove());out.putBundle("chooser",saveChooser());out.putBundle("confirmation",saveConfirmation());rememberView();}
+ protected void onSaveInstanceState(Bundle out){super.onSaveInstanceState(out);out.putLong("viewProject",project);out.putString("folder",folder);out.putString("token",expected);out.putBundle("svg",pendingSvg);out.putBundle("editor",saveEditor());out.putBundle("selection",saveSelection());out.putBundle("form",saveForm());out.putBundle("move",saveMove());out.putBundle("chooser",saveChooser());out.putBundle("confirmation",saveConfirmation());rememberView();}
  protected void onResume(){super.onResume();if(refreshOnResume&&!busy){refreshOnResume=false;load();}}
  public void onBackPressed(){if(busy)return;if(viewOptions.filtered()){viewOptions=new ObjectListing.Options("",0,0,viewOptions.sort,false,viewOptions.foldersFirst);rememberView();render();return;}if(!folder.isEmpty())parent();else super.onBackPressed();}
  protected void onDestroy(){disposed=true;if(editorDialog!=null)editorDialog.dismiss();if(activeForm!=null)activeForm.dialog.dismiss();if(moveDialog!=null)moveDialog.dismiss();if(chooserDialog!=null)chooserDialog.dismiss();if(confirmationDialog!=null)confirmationDialog.dismiss();worker.shutdown();super.onDestroy();}

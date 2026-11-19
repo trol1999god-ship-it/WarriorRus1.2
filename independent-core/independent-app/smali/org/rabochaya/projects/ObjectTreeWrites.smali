@@ -7,7 +7,7 @@
 .method private constructor <init>()V
     .locals 0
 
-    .line 5
+    .line 6
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -37,7 +37,7 @@
         }
     .end annotation
 
-    .line 7
+    .line 8
     const-string v0, "show"
 
     invoke-virtual {p0}, Lorg/rabochaya/projects/ProjectStore;->getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase;
@@ -46,13 +46,13 @@
 
     invoke-virtual {v1}, Landroid/database/sqlite/SQLiteDatabase;->beginTransaction()V
 
-    .line 8
+    .line 9
     :try_start_0
     invoke-virtual {p0, p1, p2}, Lorg/rabochaya/projects/ProjectStore;->load(J)Lorg/rabochaya/projects/KmlProject;
 
     move-result-object v2
 
-    .line 9
+    .line 10
     const-string v3, "create"
 
     invoke-virtual {v3, p3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -77,7 +77,7 @@
 
     goto/16 :goto_1
 
-    .line 10
+    .line 11
     :cond_0
     const-string v3, "rename"
 
@@ -101,7 +101,7 @@
 
     goto/16 :goto_1
 
-    .line 11
+    .line 12
     :cond_1
     const-string v3, "description"
 
@@ -146,10 +146,10 @@
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 18
+    .line 19
     invoke-virtual {v1}, Landroid/database/sqlite/SQLiteDatabase;->endTransaction()V
 
-    .line 11
+    .line 12
     return-object v2
 
     :cond_2
@@ -160,7 +160,7 @@
 
     throw p0
 
-    .line 12
+    .line 13
     :cond_3
     invoke-static {p3}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->operation(Ljava/lang/String;)Z
 
@@ -197,7 +197,7 @@
 
     throw p0
 
-    .line 13
+    .line 14
     :cond_5
     const-string v3, "move"
 
@@ -215,7 +215,7 @@
 
     goto :goto_1
 
-    .line 14
+    .line 15
     :cond_6
     const-string p5, "delete"
 
@@ -233,7 +233,7 @@
 
     goto :goto_1
 
-    .line 15
+    .line 16
     :cond_7
     invoke-virtual {v0, p3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -251,7 +251,7 @@
 
     goto :goto_0
 
-    .line 16
+    .line 17
     :cond_8
     new-instance p0, Ljava/lang/IllegalArgumentException;
 
@@ -261,7 +261,7 @@
 
     throw p0
 
-    .line 15
+    .line 16
     :cond_9
     :goto_0
     invoke-virtual {v2}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
@@ -284,13 +284,13 @@
     :try_end_2
     .catchall {:try_start_2 .. :try_end_2} :catchall_0
 
-    .line 18
+    .line 19
     invoke-virtual {v1}, Landroid/database/sqlite/SQLiteDatabase;->endTransaction()V
 
-    .line 15
+    .line 16
     return-object v2
 
-    .line 17
+    .line 18
     :cond_a
     :goto_1
     :try_start_3
@@ -306,17 +306,425 @@
     :try_end_3
     .catchall {:try_start_3 .. :try_end_3} :catchall_0
 
-    .line 18
+    .line 19
     invoke-virtual {v1}, Landroid/database/sqlite/SQLiteDatabase;->endTransaction()V
 
-    .line 17
+    .line 18
     return-object v2
 
-    .line 18
+    .line 19
     :catchall_0
     move-exception p0
 
     invoke-virtual {v1}, Landroid/database/sqlite/SQLiteDatabase;->endTransaction()V
+
+    throw p0
+.end method
+
+.method public static assignSvg(Lorg/rabochaya/projects/ProjectStore;JLjava/lang/String;Ljava/lang/String;Ljava/io/InputStream;)Lorg/rabochaya/projects/KmlProject;
+    .locals 6
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 25
+    nop
+
+    .line 26
+    :try_start_0
+    invoke-static {p5}, Lorg/rabochaya/projects/ObjectTreeWrites;->readSvg(Ljava/io/InputStream;)[B
+
+    move-result-object v0
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+
+    .line 27
+    if-eqz p5, :cond_0
+
+    invoke-virtual {p5}, Ljava/io/InputStream;->close()V
+
+    .line 28
+    :cond_0
+    new-instance p5, Ljava/lang/StringBuilder;
+
+    invoke-direct {p5}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "icons/rk-"
+
+    invoke-virtual {p5, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object p5
+
+    invoke-static {v0}, Lorg/rabochaya/projects/ObjectTreeWrites;->digest([B)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {p5, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object p5
+
+    const-string v1, ".svg"
+
+    invoke-virtual {p5, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object p5
+
+    invoke-virtual {p5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p5
+
+    .line 29
+    invoke-virtual {p0}, Lorg/rabochaya/projects/ProjectStore;->getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase;
+
+    move-result-object v1
+
+    .line 30
+    invoke-virtual {v1}, Landroid/database/sqlite/SQLiteDatabase;->beginTransaction()V
+
+    .line 32
+    :try_start_1
+    invoke-virtual {p0, p1, p2}, Lorg/rabochaya/projects/ProjectStore;->load(J)Lorg/rabochaya/projects/KmlProject;
+
+    move-result-object v2
+
+    .line 33
+    invoke-virtual {v2}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
+
+    move-result-object v3
+
+    invoke-static {v3, p3, p4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->marker(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Element;
+
+    move-result-object p3
+
+    .line 34
+    iget-object p4, v2, Lorg/rabochaya/projects/KmlProject;->entry:Ljava/lang/String;
+
+    invoke-static {p4}, Lorg/rabochaya/projects/KmlProject;->safePath(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p4
+
+    .line 35
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const/16 v4, 0x2f
+
+    invoke-virtual {p4, v4}, Ljava/lang/String;->lastIndexOf(I)I
+
+    move-result v4
+
+    add-int/lit8 v4, v4, 0x1
+
+    const/4 v5, 0x0
+
+    invoke-virtual {p4, v5, v4}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, p5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    .line 36
+    iget-object v4, v2, Lorg/rabochaya/projects/KmlProject;->assets:Ljava/util/LinkedHashMap;
+
+    invoke-virtual {v4, v3}, Ljava/util/LinkedHashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v4
+
+    check-cast v4, [B
+
+    .line 37
+    invoke-virtual {v3, p4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result p4
+
+    if-nez p4, :cond_3
+
+    if-eqz v4, :cond_1
+
+    invoke-static {v4, v0}, Ljava/util/Arrays;->equals([B[B)Z
+
+    move-result p4
+
+    if-eqz p4, :cond_3
+
+    .line 40
+    :cond_1
+    if-nez v4, :cond_2
+
+    iget-object p4, v2, Lorg/rabochaya/projects/KmlProject;->assets:Ljava/util/LinkedHashMap;
+
+    invoke-virtual {p4, v3, v0}, Ljava/util/LinkedHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 41
+    :cond_2
+    invoke-static {p3, p5}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->assignIcon(Lorg/w3c/dom/Element;Ljava/lang/String;)V
+
+    .line 42
+    invoke-static {p0, p1, p2, v2}, Lorg/rabochaya/projects/ProjectWrites;->savePreservingAssets(Lorg/rabochaya/projects/ProjectStore;JLorg/rabochaya/projects/KmlProject;)V
+
+    .line 43
+    invoke-virtual {p0, p1, p2}, Lorg/rabochaya/projects/ProjectStore;->load(J)Lorg/rabochaya/projects/KmlProject;
+
+    move-result-object p0
+
+    .line 44
+    invoke-virtual {v1}, Landroid/database/sqlite/SQLiteDatabase;->setTransactionSuccessful()V
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    .line 45
+    nop
+
+    .line 47
+    invoke-virtual {v1}, Landroid/database/sqlite/SQLiteDatabase;->endTransaction()V
+
+    .line 45
+    return-object p0
+
+    .line 38
+    :cond_3
+    :try_start_2
+    new-instance p0, Ljava/io/IOException;
+
+    const-string p1, "SVG: \u043f\u0443\u0442\u044c \u0437\u043d\u0430\u0447\u043a\u0430 \u0443\u0436\u0435 \u0437\u0430\u043d\u044f\u0442"
+
+    invoke-direct {p0, p1}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+
+    .line 47
+    :catchall_0
+    move-exception p0
+
+    invoke-virtual {v1}, Landroid/database/sqlite/SQLiteDatabase;->endTransaction()V
+
+    .line 48
+    throw p0
+
+    .line 25
+    :catchall_1
+    move-exception p0
+
+    if-eqz p5, :cond_4
+
+    :try_start_3
+    invoke-virtual {p5}, Ljava/io/InputStream;->close()V
+    :try_end_3
+    .catchall {:try_start_3 .. :try_end_3} :catchall_2
+
+    goto :goto_0
+
+    :catchall_2
+    move-exception p1
+
+    invoke-virtual {p0, p1}, Ljava/lang/Throwable;->addSuppressed(Ljava/lang/Throwable;)V
+
+    :cond_4
+    :goto_0
+    throw p0
+.end method
+
+.method private static digest([B)Ljava/lang/String;
+    .locals 8
+
+    .line 69
+    :try_start_0
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    .line 70
+    const-string v1, "SHA-256"
+
+    invoke-static {v1}, Ljava/security/MessageDigest;->getInstance(Ljava/lang/String;)Ljava/security/MessageDigest;
+
+    move-result-object v1
+
+    invoke-virtual {v1, p0}, Ljava/security/MessageDigest;->digest([B)[B
+
+    move-result-object p0
+
+    array-length v1, p0
+
+    const/4 v2, 0x0
+
+    move v3, v2
+
+    :goto_0
+    if-ge v3, v1, :cond_0
+
+    aget-byte v4, p0, v3
+
+    .line 71
+    sget-object v5, Ljava/util/Locale;->ROOT:Ljava/util/Locale;
+
+    const-string v6, "%02x"
+
+    const/4 v7, 0x1
+
+    new-array v7, v7, [Ljava/lang/Object;
+
+    and-int/lit16 v4, v4, 0xff
+
+    invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v4
+
+    aput-object v4, v7, v2
+
+    invoke-static {v5, v6, v7}, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 70
+    add-int/lit8 v3, v3, 0x1
+
+    goto :goto_0
+
+    .line 73
+    :cond_0
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p0
+    :try_end_0
+    .catch Ljava/security/NoSuchAlgorithmException; {:try_start_0 .. :try_end_0} :catch_0
+
+    return-object p0
+
+    .line 74
+    :catch_0
+    move-exception p0
+
+    .line 75
+    new-instance v0, Ljava/lang/IllegalStateException;
+
+    invoke-direct {v0, p0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/Throwable;)V
+
+    throw v0
+.end method
+
+.method private static readSvg(Ljava/io/InputStream;)[B
+    .locals 5
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 52
+    if-eqz p0, :cond_3
+
+    .line 53
+    new-instance v0, Ljava/io/ByteArrayOutputStream;
+
+    invoke-direct {v0}, Ljava/io/ByteArrayOutputStream;-><init>()V
+
+    .line 54
+    const/16 v1, 0x1000
+
+    new-array v1, v1, [B
+
+    .line 55
+    :goto_0
+    invoke-virtual {p0, v1}, Ljava/io/InputStream;->read([B)I
+
+    move-result v2
+
+    const/4 v3, -0x1
+
+    if-eq v2, v3, :cond_1
+
+    .line 56
+    invoke-virtual {v0}, Ljava/io/ByteArrayOutputStream;->size()I
+
+    move-result v3
+
+    add-int/2addr v3, v2
+
+    const/high16 v4, 0x10000
+
+    if-gt v3, v4, :cond_0
+
+    .line 57
+    const/4 v3, 0x0
+
+    invoke-virtual {v0, v1, v3, v2}, Ljava/io/ByteArrayOutputStream;->write([BII)V
+
+    goto :goto_0
+
+    .line 56
+    :cond_0
+    new-instance p0, Ljava/io/IOException;
+
+    const-string v0, "SVG: \u0444\u0430\u0439\u043b \u0431\u043e\u043b\u044c\u0448\u0435 64 \u041a\u0438\u0411"
+
+    invoke-direct {p0, v0}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+
+    .line 59
+    :cond_1
+    invoke-virtual {v0}, Ljava/io/ByteArrayOutputStream;->toByteArray()[B
+
+    move-result-object p0
+
+    .line 60
+    invoke-static {p0}, Lorg/rabochaya/projects/SvgIcon;->parse([B)Lorg/rabochaya/projects/SvgIcon;
+
+    move-result-object v0
+
+    .line 61
+    iget-wide v1, v0, Lorg/rabochaya/projects/SvgIcon;->pixelWidth:D
+
+    const-wide/high16 v3, 0x4070000000000000L    # 256.0
+
+    cmpl-double v1, v1, v3
+
+    if-gtz v1, :cond_2
+
+    iget-wide v0, v0, Lorg/rabochaya/projects/SvgIcon;->pixelHeight:D
+
+    cmpl-double v0, v0, v3
+
+    if-gtz v0, :cond_2
+
+    .line 64
+    return-object p0
+
+    .line 62
+    :cond_2
+    new-instance p0, Ljava/io/IOException;
+
+    const-string v0, "SVG: \u0440\u0430\u0437\u043c\u0435\u0440 \u0437\u043d\u0430\u0447\u043a\u0430 \u0431\u043e\u043b\u044c\u0448\u0435 256 \u00d7 256 px"
+
+    invoke-direct {p0, v0}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+
+    .line 52
+    :cond_3
+    new-instance p0, Ljava/io/IOException;
+
+    const-string v0, "\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u043e\u0442\u043a\u0440\u044b\u0442\u044c SVG"
+
+    invoke-direct {p0, v0}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
 
     throw p0
 .end method

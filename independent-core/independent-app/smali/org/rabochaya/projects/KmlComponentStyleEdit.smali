@@ -121,8 +121,157 @@
     return-object v0
 .end method
 
+.method private static addInlineStyle(Lorg/w3c/dom/Element;)Lorg/w3c/dom/Element;
+    .locals 3
+
+    .line 28
+    invoke-interface {p0}, Lorg/w3c/dom/Element;->getOwnerDocument()Lorg/w3c/dom/Document;
+
+    move-result-object v0
+
+    invoke-interface {p0}, Lorg/w3c/dom/Element;->getNamespaceURI()Ljava/lang/String;
+
+    move-result-object v1
+
+    const-string v2, "Style"
+
+    invoke-interface {v0, v1, v2}, Lorg/w3c/dom/Document;->createElementNS(Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Element;
+
+    move-result-object v0
+
+    invoke-interface {p0}, Lorg/w3c/dom/Element;->getFirstChild()Lorg/w3c/dom/Node;
+
+    move-result-object v1
+
+    :goto_0
+    if-eqz v1, :cond_1
+
+    const-string v2, "Region"
+
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_2
+
+    const-string v2, "Metadata"
+
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_2
+
+    const-string v2, "ExtendedData"
+
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_2
+
+    const-string v2, "AbstractFeatureSimpleExtensionGroup"
+
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_2
+
+    const-string v2, "AbstractFeatureObjectExtensionGroup"
+
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_2
+
+    const-string v2, "Point"
+
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_2
+
+    const-string v2, "LineString"
+
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_2
+
+    const-string v2, "LinearRing"
+
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_2
+
+    const-string v2, "Polygon"
+
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_2
+
+    const-string v2, "MultiGeometry"
+
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_2
+
+    const-string v2, "Model"
+
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_2
+
+    const-string v2, "PlacemarkSimpleExtensionGroup"
+
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_2
+
+    const-string v2, "PlacemarkObjectExtensionGroup"
+
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    goto :goto_1
+
+    :cond_0
+    invoke-interface {v1}, Lorg/w3c/dom/Node;->getNextSibling()Lorg/w3c/dom/Node;
+
+    move-result-object v1
+
+    goto :goto_0
+
+    :cond_1
+    const/4 v1, 0x0
+
+    :cond_2
+    :goto_1
+    invoke-interface {p0, v0, v1}, Lorg/w3c/dom/Element;->insertBefore(Lorg/w3c/dom/Node;Lorg/w3c/dom/Node;)Lorg/w3c/dom/Node;
+
+    .line 29
+    return-object v0
+.end method
+
 .method public static apply(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-    .locals 7
+    .locals 6
 
     .line 21
     invoke-static {p3, p4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->value(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
@@ -147,62 +296,60 @@
 
     const/4 p2, 0x0
 
-    move-object v2, p2
-
     :goto_0
-    const-string v3, "colorMode"
-
-    const-string v4, "Style"
+    const-string v2, "colorMode"
 
     if-eqz p1, :cond_2
 
-    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+    const-string v3, "Style"
 
-    move-result v4
+    invoke-static {p1, v3}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
 
-    if-eqz v4, :cond_1
+    move-result v3
 
-    move-object v2, p1
+    if-eqz v3, :cond_1
 
-    check-cast v2, Lorg/w3c/dom/Element;
+    move-object p2, p1
+
+    check-cast p2, Lorg/w3c/dom/Element;
 
     invoke-interface {p1}, Lorg/w3c/dom/Node;->getFirstChild()Lorg/w3c/dom/Node;
 
-    move-result-object v4
+    move-result-object v3
 
     :goto_1
-    if-eqz v4, :cond_1
+    if-eqz v3, :cond_1
 
-    invoke-static {v4, v0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+    invoke-static {v3, v0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
 
-    move-result v5
+    move-result v4
 
-    if-eqz v5, :cond_0
+    if-eqz v4, :cond_0
 
-    move-object v5, v4
+    move-object v4, v3
 
-    check-cast v5, Lorg/w3c/dom/Element;
+    check-cast v4, Lorg/w3c/dom/Element;
 
-    invoke-static {v5, v1}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->remove(Lorg/w3c/dom/Element;Ljava/lang/String;)V
+    invoke-static {v4, v1}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->remove(Lorg/w3c/dom/Element;Ljava/lang/String;)V
 
     invoke-static {p3}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->flag(Ljava/lang/String;)Z
 
-    move-result v6
+    move-result v5
 
-    if-nez v6, :cond_0
+    if-nez v5, :cond_0
 
     invoke-static {p3}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->metric(Ljava/lang/String;)Z
 
-    move-result v6
+    move-result v5
 
-    if-nez v6, :cond_0
+    if-nez v5, :cond_0
 
-    invoke-static {v5, v3}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->remove(Lorg/w3c/dom/Element;Ljava/lang/String;)V
+    invoke-static {v4, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->remove(Lorg/w3c/dom/Element;Ljava/lang/String;)V
 
     :cond_0
-    invoke-interface {v4}, Lorg/w3c/dom/Node;->getNextSibling()Lorg/w3c/dom/Node;
+    invoke-interface {v3}, Lorg/w3c/dom/Node;->getNextSibling()Lorg/w3c/dom/Node;
 
-    move-result-object v4
+    move-result-object v3
 
     goto :goto_1
 
@@ -225,160 +372,25 @@
 
     .line 23
     :cond_3
-    if-nez v2, :cond_7
+    if-nez p2, :cond_4
 
-    invoke-interface {p0}, Lorg/w3c/dom/Element;->getOwnerDocument()Lorg/w3c/dom/Document;
+    invoke-static {p0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->addInlineStyle(Lorg/w3c/dom/Element;)Lorg/w3c/dom/Element;
 
-    move-result-object p1
-
-    invoke-interface {p0}, Lorg/w3c/dom/Element;->getNamespaceURI()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-interface {p1, v2, v4}, Lorg/w3c/dom/Document;->createElementNS(Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Element;
-
-    move-result-object v2
-
-    invoke-interface {p0}, Lorg/w3c/dom/Element;->getFirstChild()Lorg/w3c/dom/Node;
-
-    move-result-object p1
-
-    :goto_2
-    if-eqz p1, :cond_6
-
-    const-string v4, "Region"
-
-    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
-
-    move-result v4
-
-    if-nez v4, :cond_5
-
-    const-string v4, "Metadata"
-
-    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
-
-    move-result v4
-
-    if-nez v4, :cond_5
-
-    const-string v4, "ExtendedData"
-
-    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
-
-    move-result v4
-
-    if-nez v4, :cond_5
-
-    const-string v4, "AbstractFeatureSimpleExtensionGroup"
-
-    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
-
-    move-result v4
-
-    if-nez v4, :cond_5
-
-    const-string v4, "AbstractFeatureObjectExtensionGroup"
-
-    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
-
-    move-result v4
-
-    if-nez v4, :cond_5
-
-    const-string v4, "Point"
-
-    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
-
-    move-result v4
-
-    if-nez v4, :cond_5
-
-    const-string v4, "LineString"
-
-    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
-
-    move-result v4
-
-    if-nez v4, :cond_5
-
-    const-string v4, "LinearRing"
-
-    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
-
-    move-result v4
-
-    if-nez v4, :cond_5
-
-    const-string v4, "Polygon"
-
-    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
-
-    move-result v4
-
-    if-nez v4, :cond_5
-
-    const-string v4, "MultiGeometry"
-
-    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
-
-    move-result v4
-
-    if-nez v4, :cond_5
-
-    const-string v4, "Model"
-
-    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
-
-    move-result v4
-
-    if-nez v4, :cond_5
-
-    const-string v4, "PlacemarkSimpleExtensionGroup"
-
-    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
-
-    move-result v4
-
-    if-nez v4, :cond_5
-
-    const-string v4, "PlacemarkObjectExtensionGroup"
-
-    invoke-static {p1, v4}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
-
-    move-result v4
-
-    if-eqz v4, :cond_4
-
-    goto :goto_3
-
-    :cond_4
-    invoke-interface {p1}, Lorg/w3c/dom/Node;->getNextSibling()Lorg/w3c/dom/Node;
-
-    move-result-object p1
-
-    goto :goto_2
-
-    :cond_5
-    :goto_3
-    move-object p2, p1
-
-    :cond_6
-    invoke-interface {p0, v2, p2}, Lorg/w3c/dom/Element;->insertBefore(Lorg/w3c/dom/Node;Lorg/w3c/dom/Node;)Lorg/w3c/dom/Node;
+    move-result-object p2
 
     .line 24
-    :cond_7
-    invoke-static {v2, v0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
+    :cond_4
+    invoke-static {p2, v0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
 
     move-result-object p0
 
-    if-nez p0, :cond_8
+    if-nez p0, :cond_5
 
-    invoke-static {v2, v0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->add(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
+    invoke-static {p2, v0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->add(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
 
     move-result-object p0
 
-    :cond_8
+    :cond_5
     invoke-static {p0, v1}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->add(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
 
     move-result-object p1
@@ -389,15 +401,15 @@
 
     move-result p1
 
-    if-nez p1, :cond_9
+    if-nez p1, :cond_6
 
     invoke-static {p3}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->metric(Ljava/lang/String;)Z
 
     move-result p1
 
-    if-nez p1, :cond_9
+    if-nez p1, :cond_6
 
-    invoke-static {p0, v3}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->add(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
+    invoke-static {p0, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->add(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
 
     move-result-object p0
 
@@ -406,7 +418,130 @@
     invoke-interface {p0, p1}, Lorg/w3c/dom/Element;->setTextContent(Ljava/lang/String;)V
 
     .line 25
-    :cond_9
+    :cond_6
+    return-void
+.end method
+
+.method static assignIcon(Lorg/w3c/dom/Element;Ljava/lang/String;)V
+    .locals 3
+
+    .line 46
+    nop
+
+    .line 47
+    invoke-interface {p0}, Lorg/w3c/dom/Element;->getFirstChild()Lorg/w3c/dom/Node;
+
+    move-result-object v0
+
+    const/4 v1, 0x0
+
+    :goto_0
+    if-eqz v0, :cond_1
+
+    .line 48
+    const-string v2, "Style"
+
+    invoke-static {v0, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    move-object v1, v0
+
+    check-cast v1, Lorg/w3c/dom/Element;
+
+    .line 47
+    :cond_0
+    invoke-interface {v0}, Lorg/w3c/dom/Node;->getNextSibling()Lorg/w3c/dom/Node;
+
+    move-result-object v0
+
+    goto :goto_0
+
+    .line 51
+    :cond_1
+    if-eqz v1, :cond_2
+
+    const-string v0, "id"
+
+    invoke-interface {v1, v0}, Lorg/w3c/dom/Element;->hasAttribute(Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    :cond_2
+    invoke-static {p0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->addInlineStyle(Lorg/w3c/dom/Element;)Lorg/w3c/dom/Element;
+
+    move-result-object v1
+
+    .line 52
+    :cond_3
+    const-string p0, "IconStyle"
+
+    invoke-static {v1, p0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
+
+    move-result-object v0
+
+    .line 53
+    if-nez v0, :cond_4
+
+    invoke-static {v1, p0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->add(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
+
+    move-result-object v0
+
+    .line 54
+    :cond_4
+    const-string p0, "Icon"
+
+    invoke-static {v0, p0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
+
+    move-result-object v1
+
+    .line 55
+    if-nez v1, :cond_5
+
+    invoke-static {v0, p0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->add(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
+
+    move-result-object v1
+
+    .line 56
+    :cond_5
+    const-string p0, "href"
+
+    invoke-static {v1, p0}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->child(Lorg/w3c/dom/Element;Ljava/lang/String;)Lorg/w3c/dom/Element;
+
+    move-result-object v0
+
+    .line 57
+    if-nez v0, :cond_6
+
+    .line 58
+    invoke-interface {v1}, Lorg/w3c/dom/Element;->getOwnerDocument()Lorg/w3c/dom/Document;
+
+    move-result-object v0
+
+    invoke-interface {v1}, Lorg/w3c/dom/Element;->getNamespaceURI()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-interface {v0, v2, p0}, Lorg/w3c/dom/Document;->createElementNS(Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Element;
+
+    move-result-object v0
+
+    .line 59
+    invoke-interface {v1}, Lorg/w3c/dom/Element;->getFirstChild()Lorg/w3c/dom/Node;
+
+    move-result-object p0
+
+    invoke-interface {v1, v0, p0}, Lorg/w3c/dom/Element;->insertBefore(Lorg/w3c/dom/Node;Lorg/w3c/dom/Node;)Lorg/w3c/dom/Node;
+
+    .line 61
+    :cond_6
+    invoke-interface {v0, p1}, Lorg/w3c/dom/Element;->setTextContent(Ljava/lang/String;)V
+
+    .line 62
     return-void
 .end method
 
@@ -539,6 +674,93 @@
 
     :goto_0
     return-object p0
+.end method
+
+.method public static marker(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Element;
+    .locals 3
+
+    .line 33
+    invoke-static {p0, p1, p2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->target(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Element;
+
+    move-result-object p0
+
+    .line 34
+    const-string p1, "*"
+
+    const-string p2, "Point"
+
+    invoke-interface {p0, p1, p2}, Lorg/w3c/dom/Element;->getElementsByTagNameNS(Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/NodeList;
+
+    move-result-object p1
+
+    .line 35
+    const/4 v0, 0x0
+
+    :goto_0
+    invoke-interface {p1}, Lorg/w3c/dom/NodeList;->getLength()I
+
+    move-result v1
+
+    if-ge v0, v1, :cond_3
+
+    .line 36
+    invoke-interface {p1, v0}, Lorg/w3c/dom/NodeList;->item(I)Lorg/w3c/dom/Node;
+
+    move-result-object v1
+
+    .line 37
+    invoke-static {v1, p2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_0
+
+    goto :goto_2
+
+    .line 38
+    :cond_0
+    invoke-interface {v1}, Lorg/w3c/dom/Node;->getParentNode()Lorg/w3c/dom/Node;
+
+    move-result-object v1
+
+    .line 39
+    :goto_1
+    const-string v2, "MultiGeometry"
+
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/KmlComponentStyleEdit;->tag(Lorg/w3c/dom/Node;Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_1
+
+    invoke-interface {v1}, Lorg/w3c/dom/Node;->getParentNode()Lorg/w3c/dom/Node;
+
+    move-result-object v1
+
+    goto :goto_1
+
+    .line 40
+    :cond_1
+    if-ne v1, p0, :cond_2
+
+    return-object p0
+
+    .line 35
+    :cond_2
+    :goto_2
+    add-int/lit8 v0, v0, 0x1
+
+    goto :goto_0
+
+    .line 42
+    :cond_3
+    new-instance p0, Ljava/lang/IllegalArgumentException;
+
+    const-string p1, "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043e\u0431\u044a\u0435\u043a\u0442 \u0441 \u0442\u043e\u0447\u043a\u043e\u0439 \u043d\u0430 \u043a\u0430\u0440\u0442\u0435"
+
+    invoke-direct {p0, p1}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+
+    throw p0
 .end method
 
 .method private static metric(Ljava/lang/String;)Z

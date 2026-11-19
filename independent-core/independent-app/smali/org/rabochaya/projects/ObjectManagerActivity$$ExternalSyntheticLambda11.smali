@@ -3,29 +3,21 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/content/DialogInterface$OnShowListener;
+.implements Lorg/rabochaya/projects/ObjectManagerActivity$ProjectEdit;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-.field public final synthetic f$1:Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;
+.field public final synthetic f$1:Ljava/lang/String;
 
-.field public final synthetic f$2:Lorg/rabochaya/projects/ObjectFormDraft;
+.field public final synthetic f$2:Ljava/lang/String;
 
-.field public final synthetic f$3:Landroid/app/AlertDialog;
-
-.field public final synthetic f$4:Landroid/widget/Spinner;
-
-.field public final synthetic f$5:Landroid/widget/EditText;
-
-.field public final synthetic f$6:Landroid/widget/EditText;
-
-.field public final synthetic f$7:Landroid/widget/TextView;
+.field public final synthetic f$3:Landroid/net/Uri;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;Lorg/rabochaya/projects/ObjectFormDraft;Landroid/app/AlertDialog;Landroid/widget/Spinner;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/TextView;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/lang/String;Ljava/lang/String;Landroid/net/Uri;)V
     .locals 0
 
     .line 0
@@ -33,48 +25,32 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$1:Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;
+    iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$1:Ljava/lang/String;
 
-    iput-object p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$2:Lorg/rabochaya/projects/ObjectFormDraft;
+    iput-object p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$2:Ljava/lang/String;
 
-    iput-object p4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$3:Landroid/app/AlertDialog;
-
-    iput-object p5, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$4:Landroid/widget/Spinner;
-
-    iput-object p6, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$5:Landroid/widget/EditText;
-
-    iput-object p7, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$6:Landroid/widget/EditText;
-
-    iput-object p8, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$7:Landroid/widget/TextView;
+    iput-object p4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$3:Landroid/net/Uri;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final onShow(Landroid/content/DialogInterface;)V
-    .locals 9
+.method public final apply(Lorg/rabochaya/projects/ProjectStore;)Lorg/rabochaya/projects/KmlProject;
+    .locals 4
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$1:Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;
+    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$1:Ljava/lang/String;
 
-    iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$2:Lorg/rabochaya/projects/ObjectFormDraft;
+    iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$2:Ljava/lang/String;
 
-    iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$3:Landroid/app/AlertDialog;
+    iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$3:Landroid/net/Uri;
 
-    iget-object v4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$4:Landroid/widget/Spinner;
+    invoke-virtual {v0, v1, v2, v3, p1}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$applySelectedSvg$34$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/String;Ljava/lang/String;Landroid/net/Uri;Lorg/rabochaya/projects/ProjectStore;)Lorg/rabochaya/projects/KmlProject;
 
-    iget-object v5, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$5:Landroid/widget/EditText;
+    move-result-object p1
 
-    iget-object v6, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$6:Landroid/widget/EditText;
-
-    iget-object v7, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda11;->f$7:Landroid/widget/TextView;
-
-    move-object v8, p1
-
-    invoke-virtual/range {v0 .. v8}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$dateOptions$57$org-rabochaya-projects-ObjectManagerActivity(Lorg/rabochaya/projects/ObjectManagerActivity$FormUi;Lorg/rabochaya/projects/ObjectFormDraft;Landroid/app/AlertDialog;Landroid/widget/Spinner;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/TextView;Landroid/content/DialogInterface;)V
-
-    return-void
+    return-object p1
 .end method
