@@ -162,7 +162,7 @@
         }
     .end annotation
 
-    .line 17
+    .line 26
     move-object/from16 v0, p1
 
     move-object/from16 v1, p3
@@ -1194,6 +1194,127 @@
     .end array-data
 .end method
 
+.method static requireExportAllowed(Lorg/rabochaya/projects/MapComposition;)V
+    .locals 3
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 18
+    if-eqz p0, :cond_4
+
+    .line 19
+    iget-object p0, p0, Lorg/rabochaya/projects/MapComposition;->layers:Ljava/util/List;
+
+    invoke-interface {p0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object p0
+
+    :cond_0
+    :goto_0
+    invoke-interface {p0}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3
+
+    invoke-interface {p0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lorg/rabochaya/projects/MapComposition$Layer;
+
+    .line 20
+    iget-boolean v1, v0, Lorg/rabochaya/projects/MapComposition$Layer;->visible:Z
+
+    if-eqz v1, :cond_0
+
+    iget v1, v0, Lorg/rabochaya/projects/MapComposition$Layer;->opacity:I
+
+    if-eqz v1, :cond_0
+
+    const-string v1, "local"
+
+    iget-object v2, v0, Lorg/rabochaya/projects/MapComposition$Layer;->kind:Ljava/lang/String;
+
+    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    const-string v1, "bundled"
+
+    iget-object v2, v0, Lorg/rabochaya/projects/MapComposition$Layer;->kind:Ljava/lang/String;
+
+    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_1
+
+    goto :goto_0
+
+    .line 21
+    :cond_1
+    invoke-virtual {v0}, Lorg/rabochaya/projects/MapComposition$Layer;->source()Lorg/rabochaya/projects/TileSource;
+
+    move-result-object v1
+
+    .line 22
+    if-eqz v1, :cond_2
+
+    .line 23
+    invoke-static {v1}, Lorg/rabochaya/projects/TileSource;->requireExportAllowed(Lorg/rabochaya/projects/TileSource;)V
+
+    .line 24
+    goto :goto_0
+
+    .line 22
+    :cond_2
+    new-instance p0, Ljava/io/IOException;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "\u0418\u0441\u0442\u043e\u0447\u043d\u0438\u043a \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u0435\u043d: "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    iget-object v0, v0, Lorg/rabochaya/projects/MapComposition$Layer;->name:Ljava/lang/String;
+
+    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-direct {p0, v0}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+
+    .line 25
+    :cond_3
+    return-void
+
+    .line 18
+    :cond_4
+    new-instance p0, Ljava/lang/IllegalArgumentException;
+
+    const-string v0, "\u041d\u0443\u0436\u0435\u043d \u0441\u043e\u0441\u0442\u0430\u0432 \u043a\u0430\u0440\u0442"
+
+    invoke-direct {p0, v0}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+.end method
+
 .method public static write(Landroid/content/Context;Lorg/rabochaya/projects/MapComposition;Ljava/io/File;Lorg/rabochaya/projects/CacheExport$Progress;)I
     .locals 1
     .annotation system Ldalvik/annotation/Throws;
@@ -1203,7 +1324,7 @@
     .end annotation
 
     .line 16
-    if-eqz p1, :cond_0
+    invoke-static {p1}, Lorg/rabochaya/projects/CompositionCacheExport;->requireExportAllowed(Lorg/rabochaya/projects/MapComposition;)V
 
     new-instance v0, Lorg/rabochaya/projects/CompositionCacheExport$$ExternalSyntheticLambda0;
 
@@ -1214,13 +1335,4 @@
     move-result p0
 
     return p0
-
-    :cond_0
-    new-instance p0, Ljava/lang/IllegalArgumentException;
-
-    const-string p1, "\u041d\u0443\u0436\u0435\u043d \u0441\u043e\u0441\u0442\u0430\u0432 \u043a\u0430\u0440\u0442"
-
-    invoke-direct {p0, p1}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
-
-    throw p0
 .end method

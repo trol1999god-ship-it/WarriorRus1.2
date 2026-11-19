@@ -6,7 +6,7 @@ public final class CacheExport {
  public interface Progress {void update(int done,int total)throws IOException;}
  private static final long MAX_BYTES=512L*1024*1024;
  private CacheExport(){}
- public static int write(Context context,TileSource source,File destination,Progress progress)throws IOException{return RasterExportFile.replace(destination,tmp->writePrepared(context,source,tmp,progress));}
+ public static int write(Context context,TileSource source,File destination,Progress progress)throws IOException{TileSource.requireExportAllowed(source);return RasterExportFile.replace(destination,tmp->writePrepared(context,source,tmp,progress));}
  private static int writePrepared(Context context,TileSource source,File destination,Progress progress)throws IOException{
   TileSource[] leaves=source.leafs();OnlineTiles[] readers=new OnlineTiles[leaves.length];SQLiteDatabase out=null;boolean complete=false;int count=0;
   try{

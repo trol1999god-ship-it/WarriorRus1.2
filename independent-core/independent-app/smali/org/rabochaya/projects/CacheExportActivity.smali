@@ -50,7 +50,7 @@
         }
     .end annotation
 
-    .line 19
+    .line 23
     iget-boolean v0, p0, Lorg/rabochaya/projects/CacheExportActivity;->cancelled:Z
 
     if-nez v0, :cond_0
@@ -74,7 +74,7 @@
 .method private export(Landroid/net/Uri;)V
     .locals 2
 
-    .line 13
+    .line 17
     iget-boolean v0, p0, Lorg/rabochaya/projects/CacheExportActivity;->running:Z
 
     if-eqz v0, :cond_0
@@ -108,7 +108,7 @@
 
     invoke-interface {v0, v1}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
-    .line 18
+    .line 22
     return-void
 .end method
 
@@ -117,7 +117,7 @@
 .method synthetic lambda$export$2$org-rabochaya-projects-CacheExportActivity(II)V
     .locals 3
 
-    .line 14
+    .line 18
     iget-boolean v0, p0, Lorg/rabochaya/projects/CacheExportActivity;->disposed:Z
 
     if-nez v0, :cond_0
@@ -174,7 +174,7 @@
         }
     .end annotation
 
-    .line 14
+    .line 18
     invoke-direct {p0}, Lorg/rabochaya/projects/CacheExportActivity;->checkCancelled()V
 
     rem-int/lit8 v0, p1, 0xa
@@ -197,7 +197,7 @@
 .method synthetic lambda$export$4$org-rabochaya-projects-CacheExportActivity(Ljava/lang/String;)V
     .locals 1
 
-    .line 17
+    .line 21
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lorg/rabochaya/projects/CacheExportActivity;->running:Z
@@ -223,10 +223,10 @@
 .method synthetic lambda$export$5$org-rabochaya-projects-CacheExportActivity(Landroid/net/Uri;)V
     .locals 8
 
-    .line 13
+    .line 17
     nop
 
-    .line 14
+    .line 18
     const/4 v0, 0x0
 
     const/4 v1, 0x0
@@ -267,7 +267,7 @@
 
     move-result v2
 
-    .line 15
+    .line 19
     :goto_0
     invoke-direct {p0}, Lorg/rabochaya/projects/CacheExportActivity;->checkCancelled()V
     :try_end_0
@@ -368,7 +368,7 @@
     .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_6} :catch_0
     .catchall {:try_start_6 .. :try_end_6} :catchall_4
 
-    .line 16
+    .line 20
     if-eqz v0, :cond_7
 
     :goto_2
@@ -383,7 +383,7 @@
 
     goto :goto_6
 
-    .line 15
+    .line 19
     :catchall_0
     move-exception v2
 
@@ -445,7 +445,7 @@
     .catch Ljava/lang/Exception; {:try_start_b .. :try_end_b} :catch_1
     .catchall {:try_start_b .. :try_end_b} :catchall_4
 
-    .line 16
+    .line 20
     :catch_1
     move-exception p1
 
@@ -524,7 +524,7 @@
 
     goto :goto_2
 
-    .line 17
+    .line 21
     :cond_7
     :goto_8
     new-instance v0, Lorg/rabochaya/projects/CacheExportActivity$$ExternalSyntheticLambda1;
@@ -533,10 +533,10 @@
 
     invoke-virtual {p0, v0}, Lorg/rabochaya/projects/CacheExportActivity;->runOnUiThread(Ljava/lang/Runnable;)V
 
-    .line 18
+    .line 22
     return-void
 
-    .line 16
+    .line 20
     :goto_9
     if-eqz v0, :cond_8
 
@@ -549,7 +549,7 @@
 .method synthetic lambda$onCreate$0$org-rabochaya-projects-CacheExportActivity(Landroid/view/View;)V
     .locals 2
 
-    .line 8
+    .line 12
     iget-boolean p1, p0, Lorg/rabochaya/projects/CacheExportActivity;->running:Z
 
     if-nez p1, :cond_1
@@ -621,7 +621,7 @@
 .method synthetic lambda$onCreate$1$org-rabochaya-projects-CacheExportActivity(Landroid/view/View;)V
     .locals 0
 
-    .line 9
+    .line 13
     invoke-virtual {p0}, Lorg/rabochaya/projects/CacheExportActivity;->onBackPressed()V
 
     return-void
@@ -630,7 +630,7 @@
 .method protected onActivityResult(IILandroid/content/Intent;)V
     .locals 1
 
-    .line 12
+    .line 16
     invoke-super {p0, p1, p2, p3}, Landroid/app/Activity;->onActivityResult(IILandroid/content/Intent;)V
 
     iget-boolean v0, p0, Lorg/rabochaya/projects/CacheExportActivity;->snapshotFailed:Z
@@ -666,7 +666,7 @@
 .method public onBackPressed()V
     .locals 2
 
-    .line 20
+    .line 24
     iget-boolean v0, p0, Lorg/rabochaya/projects/CacheExportActivity;->running:Z
 
     if-eqz v0, :cond_0
@@ -712,9 +712,9 @@
 
     move-result-wide v2
 
-    const/4 v4, 0x1
+    const/4 v4, 0x0
 
-    const/4 v5, 0x0
+    const/4 v5, 0x1
 
     const-string v6, ""
 
@@ -833,7 +833,7 @@
 
     const-string v0, "single_source"
 
-    invoke-virtual {p1, v0, v5}, Landroid/content/Intent;->getBooleanExtra(Ljava/lang/String;Z)Z
+    invoke-virtual {p1, v0, v4}, Landroid/content/Intent;->getBooleanExtra(Ljava/lang/String;Z)Z
 
     move-result p1
 
@@ -873,7 +873,7 @@
     :catch_0
     move-exception p1
 
-    iput-boolean v4, p0, Lorg/rabochaya/projects/CacheExportActivity;->snapshotFailed:Z
+    iput-boolean v5, p0, Lorg/rabochaya/projects/CacheExportActivity;->snapshotFailed:Z
 
     new-instance v0, Ljava/lang/StringBuilder;
 
@@ -899,11 +899,51 @@
 
     .line 7
     :goto_2
+    iget-boolean p1, p0, Lorg/rabochaya/projects/CacheExportActivity;->snapshotFailed:Z
+
+    if-nez p1, :cond_6
+
+    .line 8
+    :try_start_1
+    iget-object p1, p0, Lorg/rabochaya/projects/CacheExportActivity;->composition:Lorg/rabochaya/projects/MapComposition;
+
+    if-eqz p1, :cond_5
+
+    iget-object p1, p0, Lorg/rabochaya/projects/CacheExportActivity;->composition:Lorg/rabochaya/projects/MapComposition;
+
+    invoke-static {p1}, Lorg/rabochaya/projects/CompositionCacheExport;->requireExportAllowed(Lorg/rabochaya/projects/MapComposition;)V
+
+    goto :goto_3
+
+    .line 9
+    :cond_5
+    iget-object p1, p0, Lorg/rabochaya/projects/CacheExportActivity;->source:Lorg/rabochaya/projects/TileSource;
+
+    invoke-static {p1}, Lorg/rabochaya/projects/TileSource;->requireExportAllowed(Lorg/rabochaya/projects/TileSource;)V
+    :try_end_1
+    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_1
+
+    .line 10
+    :goto_3
+    goto :goto_4
+
+    :catch_1
+    move-exception p1
+
+    iput-boolean v5, p0, Lorg/rabochaya/projects/CacheExportActivity;->snapshotFailed:Z
+
+    invoke-virtual {p1}, Ljava/io/IOException;->getMessage()Ljava/lang/String;
+
+    move-result-object v6
+
+    .line 11
+    :cond_6
+    :goto_4
     new-instance p1, Landroid/widget/LinearLayout;
 
     invoke-direct {p1, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
 
-    invoke-virtual {p1, v4}, Landroid/widget/LinearLayout;->setOrientation(I)V
+    invoke-virtual {p1, v5}, Landroid/widget/LinearLayout;->setOrientation(I)V
 
     const/16 v0, 0x14
 
@@ -961,27 +1001,27 @@
 
     iget-object v1, p0, Lorg/rabochaya/projects/CacheExportActivity;->composition:Lorg/rabochaya/projects/MapComposition;
 
-    if-eqz v1, :cond_5
+    if-eqz v1, :cond_7
 
     const-string v1, "\u041a\u043e\u043c\u043f\u043e\u0437\u0438\u0446\u0438\u044f \u0441\u043b\u043e\u0451\u0432"
 
-    goto :goto_3
+    goto :goto_5
 
-    :cond_5
+    :cond_7
     iget-object v1, p0, Lorg/rabochaya/projects/CacheExportActivity;->source:Lorg/rabochaya/projects/TileSource;
 
-    if-nez v1, :cond_6
+    if-nez v1, :cond_8
 
     const-string v1, "\u041a\u0430\u0440\u0442\u0430 \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u0430"
 
-    goto :goto_3
+    goto :goto_5
 
-    :cond_6
+    :cond_8
     iget-object v1, p0, Lorg/rabochaya/projects/CacheExportActivity;->source:Lorg/rabochaya/projects/TileSource;
 
     iget-object v1, v1, Lorg/rabochaya/projects/TileSource;->name:Ljava/lang/String;
 
-    :goto_3
+    :goto_5
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -1008,7 +1048,7 @@
 
     iget-object v3, p0, Lorg/rabochaya/projects/CacheExportActivity;->composition:Lorg/rabochaya/projects/MapComposition;
 
-    if-eqz v3, :cond_9
+    if-eqz v3, :cond_b
 
     iget-object v3, p0, Lorg/rabochaya/projects/CacheExportActivity;->composition:Lorg/rabochaya/projects/MapComposition;
 
@@ -1018,13 +1058,13 @@
 
     move-result-object v3
 
-    :cond_7
-    :goto_4
+    :cond_9
+    :goto_6
     invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v7
 
-    if-eqz v7, :cond_8
+    if-eqz v7, :cond_a
 
     invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1034,11 +1074,11 @@
 
     iget-boolean v8, v7, Lorg/rabochaya/projects/MapComposition$Layer;->visible:Z
 
-    if-eqz v8, :cond_7
+    if-eqz v8, :cond_9
 
     iget v8, v7, Lorg/rabochaya/projects/MapComposition$Layer;->opacity:I
 
-    if-lez v8, :cond_7
+    if-lez v8, :cond_9
 
     new-instance v8, Ljava/lang/StringBuilder;
 
@@ -1076,9 +1116,9 @@
 
     move-result-object v1
 
-    goto :goto_4
+    goto :goto_6
 
-    :cond_8
+    :cond_a
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -1097,7 +1137,7 @@
 
     move-result-object v1
 
-    :cond_9
+    :cond_b
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -1120,14 +1160,14 @@
 
     iget-boolean v7, p0, Lorg/rabochaya/projects/CacheExportActivity;->snapshotFailed:Z
 
-    if-eqz v7, :cond_a
+    if-eqz v7, :cond_c
 
-    goto :goto_5
+    goto :goto_7
 
-    :cond_a
+    :cond_c
     move-object v6, v1
 
-    :goto_5
+    :goto_7
     invoke-virtual {v3, v6}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
     iget-object v1, p0, Lorg/rabochaya/projects/CacheExportActivity;->status:Landroid/widget/TextView;
@@ -1138,7 +1178,7 @@
 
     const/high16 v3, 0x3f800000    # 1.0f
 
-    invoke-direct {v1, v2, v5, v3}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
+    invoke-direct {v1, v2, v4, v3}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
 
     invoke-virtual {p1, v0, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
@@ -1162,7 +1202,7 @@
 
     invoke-virtual {p1, v0, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 8
+    .line 12
     new-instance v0, Landroid/widget/Button;
 
     invoke-direct {v0, p0}, Landroid/widget/Button;-><init>(Landroid/content/Context;)V
@@ -1177,7 +1217,7 @@
 
     iget-object v0, p0, Lorg/rabochaya/projects/CacheExportActivity;->save:Landroid/widget/Button;
 
-    invoke-virtual {v0, v5}, Landroid/widget/Button;->setAllCaps(Z)V
+    invoke-virtual {v0, v4}, Landroid/widget/Button;->setAllCaps(Z)V
 
     iget-object v0, p0, Lorg/rabochaya/projects/CacheExportActivity;->save:Landroid/widget/Button;
 
@@ -1191,7 +1231,7 @@
 
     iget-boolean v1, p0, Lorg/rabochaya/projects/CacheExportActivity;->snapshotFailed:Z
 
-    xor-int/2addr v1, v4
+    xor-int/2addr v1, v5
 
     invoke-virtual {v0, v1}, Landroid/widget/Button;->setEnabled(Z)V
 
@@ -1207,7 +1247,7 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 9
+    .line 13
     new-instance v0, Landroid/widget/Button;
 
     invoke-direct {v0, p0}, Landroid/widget/Button;-><init>(Landroid/content/Context;)V
@@ -1216,7 +1256,7 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
 
-    invoke-virtual {v0, v5}, Landroid/widget/Button;->setAllCaps(Z)V
+    invoke-virtual {v0, v4}, Landroid/widget/Button;->setAllCaps(Z)V
 
     invoke-static {p0}, Lorg/rabochaya/projects/WorkspaceUi;->font(Landroid/app/Activity;)Landroid/graphics/Typeface;
 
@@ -1232,14 +1272,14 @@
 
     invoke-virtual {v0, p1}, Landroid/widget/Button;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 10
+    .line 14
     return-void
 .end method
 
 .method protected onDestroy()V
     .locals 1
 
-    .line 22
+    .line 26
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lorg/rabochaya/projects/CacheExportActivity;->disposed:Z
@@ -1258,7 +1298,7 @@
 .method protected onSaveInstanceState(Landroid/os/Bundle;)V
     .locals 5
 
-    .line 11
+    .line 15
     :try_start_0
     iget-object v0, p0, Lorg/rabochaya/projects/CacheExportActivity;->composition:Lorg/rabochaya/projects/MapComposition;
 
@@ -1394,7 +1434,7 @@
 .method protected onStop()V
     .locals 1
 
-    .line 21
+    .line 25
     iget-boolean v0, p0, Lorg/rabochaya/projects/CacheExportActivity;->running:Z
 
     if-eqz v0, :cond_0

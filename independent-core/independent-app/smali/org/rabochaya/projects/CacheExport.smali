@@ -728,6 +728,8 @@
     .end annotation
 
     .line 9
+    invoke-static {p1}, Lorg/rabochaya/projects/TileSource;->requireExportAllowed(Lorg/rabochaya/projects/TileSource;)V
+
     new-instance v0, Lorg/rabochaya/projects/CacheExport$$ExternalSyntheticLambda0;
 
     invoke-direct {v0, p0, p1, p3}, Lorg/rabochaya/projects/CacheExport$$ExternalSyntheticLambda0;-><init>(Landroid/content/Context;Lorg/rabochaya/projects/TileSource;Lorg/rabochaya/projects/CacheExport$Progress;)V

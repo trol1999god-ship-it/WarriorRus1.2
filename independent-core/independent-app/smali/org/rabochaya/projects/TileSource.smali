@@ -245,7 +245,7 @@
 
     if-eqz p6, :cond_1
 
-    invoke-static {p1}, Lorg/rabochaya/projects/TileSource;->isOpenStreetMapHost(Ljava/lang/String;)Z
+    invoke-static {p1}, Lorg/rabochaya/projects/TileSource;->isOfflineRestrictedHost(Ljava/lang/String;)Z
 
     move-result p1
 
@@ -382,7 +382,7 @@
 .method private constructor <init>(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;ZZ[Lorg/rabochaya/projects/TileSource;)V
     .locals 18
 
-    .line 31
+    .line 48
     move-object/from16 v1, p0
 
     move-object/from16 v2, p1
@@ -426,7 +426,7 @@
     :cond_0
     const/4 v10, 0x0
 
-    .line 32
+    .line 49
     :goto_0
     const/16 v11, 0xa
 
@@ -482,7 +482,7 @@
 
     goto/16 :goto_4
 
-    .line 33
+    .line 50
     :cond_2
     move v14, v13
 
@@ -588,7 +588,7 @@
 
     move-result-object v0
 
-    invoke-static {v0}, Lorg/rabochaya/projects/TileSource;->isOpenStreetMapHost(Ljava/lang/String;)Z
+    invoke-static {v0}, Lorg/rabochaya/projects/TileSource;->isOfflineRestrictedHost(Ljava/lang/String;)Z
 
     move-result v0
     :try_end_0
@@ -702,7 +702,7 @@
 
     move v13, v14
 
-    .line 34
+    .line 51
     :goto_4
     iput v13, v1, Lorg/rabochaya/projects/TileSource;->minZoom:I
 
@@ -786,10 +786,10 @@
     :try_end_2
     .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
 
-    .line 35
+    .line 52
     return-void
 
-    .line 34
+    .line 51
     :catch_1
     move-exception v0
 
@@ -803,7 +803,7 @@
 .method static builtin(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;ZZ)Lorg/rabochaya/projects/TileSource;
     .locals 8
 
-    .line 29
+    .line 46
     new-instance v7, Lorg/rabochaya/projects/TileSource;
 
     const/4 v6, 0x0
@@ -911,7 +911,7 @@
 .method static composite(Ljava/lang/String;[Lorg/rabochaya/projects/TileSource;)Lorg/rabochaya/projects/TileSource;
     .locals 10
 
-    .line 30
+    .line 47
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -968,17 +968,66 @@
     return-object v1
 .end method
 
-.method private static isOpenStreetMapHost(Ljava/lang/String;)Z
+.method private static domain(Ljava/lang/String;Ljava/lang/String;)Z
+    .locals 2
+
+    .line 41
+    invoke-virtual {p0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "."
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-virtual {p0, p1}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
+
+    move-result p0
+
+    if-eqz p0, :cond_0
+
+    goto :goto_0
+
+    :cond_0
+    const/4 p0, 0x0
+
+    goto :goto_1
+
+    :cond_1
+    :goto_0
+    const/4 p0, 0x1
+
+    :goto_1
+    return p0
+.end method
+
+.method private static isOfflineRestrictedHost(Ljava/lang/String;)Z
     .locals 3
 
-    .line 22
+    .line 34
     sget-object v0, Ljava/util/Locale;->ROOT:Ljava/util/Locale;
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->toLowerCase(Ljava/util/Locale;)Ljava/lang/String;
 
     move-result-object p0
 
-    .line 23
+    .line 35
     const-string v0, "."
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
@@ -1001,19 +1050,61 @@
 
     move-result-object p0
 
-    .line 24
+    .line 36
     :cond_0
     const-string v0, "openstreetmap.org"
 
-    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-static {p0, v0}, Lorg/rabochaya/projects/TileSource;->domain(Ljava/lang/String;Ljava/lang/String;)Z
 
     move-result v0
 
     if-nez v0, :cond_2
 
-    const-string v0, ".openstreetmap.org"
+    const-string v0, "google.com"
 
-    invoke-virtual {p0, v0}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
+    invoke-static {p0, v0}, Lorg/rabochaya/projects/TileSource;->domain(Ljava/lang/String;Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_2
+
+    .line 37
+    const-string v0, "tile.googleapis.com"
+
+    invoke-static {p0, v0}, Lorg/rabochaya/projects/TileSource;->domain(Ljava/lang/String;Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_2
+
+    const-string v0, "maps.googleapis.com"
+
+    invoke-static {p0, v0}, Lorg/rabochaya/projects/TileSource;->domain(Ljava/lang/String;Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_2
+
+    const-string v0, "maps.yandex.net"
+
+    invoke-static {p0, v0}, Lorg/rabochaya/projects/TileSource;->domain(Ljava/lang/String;Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_2
+
+    .line 38
+    const-string v0, "api-maps.yandex.ru"
+
+    invoke-static {p0, v0}, Lorg/rabochaya/projects/TileSource;->domain(Ljava/lang/String;Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_2
+
+    const-string v0, "arcgisonline.com"
+
+    invoke-static {p0, v0}, Lorg/rabochaya/projects/TileSource;->domain(Ljava/lang/String;Ljava/lang/String;)Z
 
     move-result p0
 
@@ -1024,15 +1115,21 @@
     :cond_1
     move v1, v2
 
+    goto :goto_1
+
     :cond_2
     :goto_0
+    nop
+
+    .line 36
+    :goto_1
     return v1
 .end method
 
 .method public static osm()Lorg/rabochaya/projects/TileSource;
     .locals 8
 
-    .line 36
+    .line 53
     new-instance v7, Lorg/rabochaya/projects/TileSource;
 
     const/16 v5, 0x13
@@ -1052,6 +1149,77 @@
     invoke-direct/range {v0 .. v6}, Lorg/rabochaya/projects/TileSource;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIZ)V
 
     return-object v7
+.end method
+
+.method static requireExportAllowed(Lorg/rabochaya/projects/TileSource;)V
+    .locals 4
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 29
+    invoke-virtual {p0}, Lorg/rabochaya/projects/TileSource;->leafs()[Lorg/rabochaya/projects/TileSource;
+
+    move-result-object p0
+
+    array-length v0, p0
+
+    const/4 v1, 0x0
+
+    :goto_0
+    if-ge v1, v0, :cond_1
+
+    aget-object v2, p0, v1
+
+    invoke-virtual {v2}, Lorg/rabochaya/projects/TileSource;->canExport()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_0
+
+    add-int/lit8 v1, v1, 0x1
+
+    goto :goto_0
+
+    .line 30
+    :cond_0
+    new-instance p0, Ljava/io/IOException;
+
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "\u041e\u0444\u043b\u0430\u0439\u043d-\u044d\u043a\u0441\u043f\u043e\u0440\u0442 \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u0435\u043d \u0434\u043b\u044f \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u0430 \u00ab"
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    iget-object v1, v2, Lorg/rabochaya/projects/TileSource;->name:Ljava/lang/String;
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v1, "\u00bb"
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-direct {p0, v0}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+
+    .line 32
+    :cond_1
+    return-void
 .end method
 
 
@@ -1090,7 +1258,7 @@
 
     if-eqz p1, :cond_1
 
-    invoke-static {p1}, Lorg/rabochaya/projects/TileSource;->isOpenStreetMapHost(Ljava/lang/String;)Z
+    invoke-static {p1}, Lorg/rabochaya/projects/TileSource;->isOfflineRestrictedHost(Ljava/lang/String;)Z
 
     move-result p1
     :try_end_0
@@ -1108,6 +1276,100 @@
 
     :cond_2
     :goto_0
+    return v1
+.end method
+
+.method public canExport()Z
+    .locals 6
+
+    .line 23
+    iget-object v0, p0, Lorg/rabochaya/projects/TileSource;->layers:[Lorg/rabochaya/projects/TileSource;
+
+    const/4 v1, 0x1
+
+    const/4 v2, 0x0
+
+    if-eqz v0, :cond_3
+
+    invoke-virtual {p0}, Lorg/rabochaya/projects/TileSource;->leafs()[Lorg/rabochaya/projects/TileSource;
+
+    move-result-object v0
+
+    array-length v3, v0
+
+    move v4, v2
+
+    :goto_0
+    if-ge v4, v3, :cond_1
+
+    aget-object v5, v0, v4
+
+    invoke-virtual {v5}, Lorg/rabochaya/projects/TileSource;->canExport()Z
+
+    move-result v5
+
+    if-nez v5, :cond_0
+
+    return v2
+
+    :cond_0
+    add-int/lit8 v4, v4, 0x1
+
+    goto :goto_0
+
+    :cond_1
+    iget-object v0, p0, Lorg/rabochaya/projects/TileSource;->layers:[Lorg/rabochaya/projects/TileSource;
+
+    array-length v0, v0
+
+    if-eqz v0, :cond_2
+
+    goto :goto_1
+
+    :cond_2
+    move v1, v2
+
+    :goto_1
+    return v1
+
+    .line 24
+    :cond_3
+    iget-boolean v0, p0, Lorg/rabochaya/projects/TileSource;->downloads:Z
+
+    if-nez v0, :cond_4
+
+    return v2
+
+    .line 25
+    :cond_4
+    iget v0, p0, Lorg/rabochaya/projects/TileSource;->minZoom:I
+
+    :goto_2
+    iget v3, p0, Lorg/rabochaya/projects/TileSource;->maxZoom:I
+
+    if-gt v0, v3, :cond_6
+
+    invoke-virtual {p0, v0}, Lorg/rabochaya/projects/TileSource;->hasZoom(I)Z
+
+    move-result v3
+
+    if-eqz v3, :cond_5
+
+    invoke-virtual {p0, v0}, Lorg/rabochaya/projects/TileSource;->canDownload(I)Z
+
+    move-result v3
+
+    if-nez v3, :cond_5
+
+    return v2
+
+    :cond_5
+    add-int/lit8 v0, v0, 0x1
+
+    goto :goto_2
+
+    .line 26
+    :cond_6
     return v1
 .end method
 
@@ -1148,7 +1410,7 @@
 .method public leafs()[Lorg/rabochaya/projects/TileSource;
     .locals 2
 
-    .line 27
+    .line 44
     iget-object v0, p0, Lorg/rabochaya/projects/TileSource;->layers:[Lorg/rabochaya/projects/TileSource;
 
     if-nez v0, :cond_0
@@ -1310,7 +1572,7 @@
 .method public zoomFor(I)I
     .locals 2
 
-    .line 26
+    .line 43
     iget v0, p0, Lorg/rabochaya/projects/TileSource;->minZoom:I
 
     iget v1, p0, Lorg/rabochaya/projects/TileSource;->maxZoom:I
