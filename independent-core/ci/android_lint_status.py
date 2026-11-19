@@ -12,6 +12,7 @@ import xml.etree.ElementTree as ET
 import zipfile
 
 ROOT = Path(__file__).resolve().parent.parent
+LINT_PACKAGE = "12.0"
 PROJECTS_ACTIVITY = "Lorg/rabochaya/projects/ProjectsActivity;"
 
 
@@ -50,7 +51,7 @@ def run_lint(sdk, apk, report_path):
     report_path.parent.mkdir(parents=True, exist_ok=True)
     issues_path = report_path.with_name(report_path.stem + "-issues.xml")
     log_path = report_path.with_name(report_path.stem + ".log")
-    lint = sdk / "cmdline-tools/latest/bin/lint"
+    lint = sdk / "cmdline-tools" / LINT_PACKAGE / "bin/lint"
     report = {
         "tool": "official Android lint",
         "executed": False,
@@ -93,8 +94,11 @@ def run_lint(sdk, apk, report_path):
                 result = subprocess.run(command, env={**os.environ, "ANDROID_HOME": str(sdk)},
                                         stdout=log, stderr=subprocess.STDOUT)
             report.update(executed=True, exit_code=result.returncode, source_files=len(sources))
-            severities = Counter(issue.attrib["severity"] for issue in ET.parse(issues_path).findall("issue"))
-            report.update(errors=severities["Error"] + severities["Fatal"], warnings=severities["Warning"])
+            issues = ET.parse(issues_path).findall("issue")
+            severities = Counter(issue.attrib["severity"] for issue in issues)
+            failures = Counter(issue.attrib["id"] for issue in issues if issue.attrib["severity"] in ("Error", "Fatal"))
+            report.update(errors=severities["Error"] + severities["Fatal"], warnings=severities["Warning"],
+                          error_ids=dict(failures))
             report["passed"] = result.returncode == 0 and report["errors"] == 0
     except (OSError, ValueError, ET.ParseError, subprocess.CalledProcessError, zipfile.BadZipFile) as error:
         report["failure"] = str(error)
