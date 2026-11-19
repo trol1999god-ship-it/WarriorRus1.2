@@ -7433,84 +7433,64 @@
 .end method
 
 .method private vertexFont(Landroid/view/View;)V
-    .locals 4
+    .locals 3
 
     .line 172
     instance-of v0, p1, Landroid/widget/TextView;
 
-    const/4 v1, 0x0
-
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_0
 
     move-object v0, p1
 
     check-cast v0, Landroid/widget/TextView;
 
-    invoke-static {p0}, Lorg/rabochaya/projects/WorkspaceUi;->font(Landroid/app/Activity;)Landroid/graphics/Typeface;
+    invoke-virtual {v0}, Landroid/widget/TextView;->getTypeface()Landroid/graphics/Typeface;
 
-    move-result-object v2
+    move-result-object v1
+
+    invoke-static {p0, v1}, Lorg/rabochaya/projects/WorkspaceUi;->styledFont(Landroid/app/Activity;Landroid/graphics/Typeface;)Landroid/graphics/Typeface;
+
+    move-result-object v1
 
     invoke-virtual {v0}, Landroid/widget/TextView;->getTypeface()Landroid/graphics/Typeface;
 
-    move-result-object v3
+    move-result-object v2
 
-    if-nez v3, :cond_0
+    invoke-virtual {v1, v2}, Landroid/graphics/Typeface;->equals(Ljava/lang/Object;)Z
 
-    move v3, v1
+    move-result v2
 
-    goto :goto_0
+    if-nez v2, :cond_0
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setTypeface(Landroid/graphics/Typeface;)V
 
     :cond_0
-    invoke-virtual {v0}, Landroid/widget/TextView;->getTypeface()Landroid/graphics/Typeface;
-
-    move-result-object v3
-
-    invoke-virtual {v3}, Landroid/graphics/Typeface;->getStyle()I
-
-    move-result v3
-
-    :goto_0
-    invoke-static {v2, v3}, Landroid/graphics/Typeface;->create(Landroid/graphics/Typeface;I)Landroid/graphics/Typeface;
-
-    move-result-object v2
-
-    invoke-virtual {v0}, Landroid/widget/TextView;->getTypeface()Landroid/graphics/Typeface;
-
-    move-result-object v3
-
-    invoke-virtual {v2, v3}, Landroid/graphics/Typeface;->equals(Ljava/lang/Object;)Z
-
-    move-result v3
-
-    if-nez v3, :cond_1
-
-    invoke-virtual {v0, v2}, Landroid/widget/TextView;->setTypeface(Landroid/graphics/Typeface;)V
-
-    :cond_1
     instance-of v0, p1, Landroid/view/ViewGroup;
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_1
 
     check-cast p1, Landroid/view/ViewGroup;
 
-    :goto_1
+    const/4 v0, 0x0
+
+    :goto_0
     invoke-virtual {p1}, Landroid/view/ViewGroup;->getChildCount()I
 
-    move-result v0
+    move-result v1
 
-    if-ge v1, v0, :cond_2
+    if-ge v0, v1, :cond_1
 
-    invoke-virtual {p1, v1}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
+    invoke-virtual {p1, v0}, Landroid/view/ViewGroup;->getChildAt(I)Landroid/view/View;
 
-    move-result-object v0
+    move-result-object v1
 
-    invoke-direct {p0, v0}, Lorg/rabochaya/projects/GeometryEditorActivity;->vertexFont(Landroid/view/View;)V
+    invoke-direct {p0, v1}, Lorg/rabochaya/projects/GeometryEditorActivity;->vertexFont(Landroid/view/View;)V
 
-    add-int/lit8 v1, v1, 0x1
+    add-int/lit8 v0, v0, 0x1
 
-    goto :goto_1
+    goto :goto_0
 
-    :cond_2
+    :cond_1
     return-void
 .end method
 

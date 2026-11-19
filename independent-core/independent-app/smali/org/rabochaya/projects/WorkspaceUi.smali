@@ -120,7 +120,7 @@
 .method public static icon(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/ImageButton;
     .locals 4
 
-    .line 12
+    .line 22
     new-instance v0, Landroid/widget/ImageButton;
 
     invoke-direct {v0, p0}, Landroid/widget/ImageButton;-><init>(Landroid/content/Context;)V
@@ -256,7 +256,7 @@
 
     throw p2
 
-    .line 13
+    .line 23
     :cond_3
     :goto_1
     invoke-virtual {v0, v1}, Landroid/widget/ImageButton;->setImageBitmap(Landroid/graphics/Bitmap;)V
@@ -305,7 +305,7 @@
 .method static synthetic lambda$icon$0(Ljava/lang/Runnable;Landroid/view/View;)V
     .locals 0
 
-    .line 13
+    .line 23
     invoke-interface {p0}, Ljava/lang/Runnable;->run()V
 
     return-void
@@ -314,7 +314,7 @@
 .method static synthetic lambda$icon$1(Landroid/app/Activity;Ljava/lang/String;Landroid/view/View;)Z
     .locals 0
 
-    .line 13
+    .line 23
     const/4 p2, 0x0
 
     invoke-static {p0, p1, p2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
@@ -331,7 +331,7 @@
 .method static synthetic lambda$menu$2(Landroid/widget/PopupWindow;Lorg/rabochaya/projects/WorkspaceUi$Item;Landroid/view/View;)V
     .locals 0
 
-    .line 21
+    .line 31
     invoke-virtual {p0}, Landroid/widget/PopupWindow;->dismiss()V
 
     iget-object p0, p1, Lorg/rabochaya/projects/WorkspaceUi$Item;->action:Ljava/lang/Runnable;
@@ -344,7 +344,7 @@
 .method public static varargs menu(Landroid/app/Activity;Landroid/view/View;Ljava/lang/String;[Lorg/rabochaya/projects/WorkspaceUi$Item;)Landroid/widget/PopupWindow;
     .locals 16
 
-    .line 17
+    .line 27
     move-object/from16 v0, p0
 
     move-object/from16 v1, p3
@@ -427,7 +427,7 @@
 
     invoke-virtual {v2, v5}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    .line 18
+    .line 28
     new-instance v5, Landroid/widget/ScrollView;
 
     invoke-direct {v5, v0}, Landroid/widget/ScrollView;-><init>(Landroid/content/Context;)V
@@ -460,7 +460,7 @@
 
     move-result v8
 
-    .line 19
+    .line 29
     array-length v9, v1
 
     add-int/2addr v9, v3
@@ -493,7 +493,7 @@
 
     move-result v9
 
-    .line 20
+    .line 30
     new-instance v11, Landroid/widget/PopupWindow;
 
     invoke-direct {v11, v5, v8, v9, v3}, Landroid/widget/PopupWindow;-><init>(Landroid/view/View;IIZ)V
@@ -516,7 +516,7 @@
 
     invoke-virtual {v11, v5}, Landroid/widget/PopupWindow;->setElevation(F)V
 
-    .line 21
+    .line 31
     array-length v5, v1
 
     :goto_0
@@ -602,7 +602,7 @@
 
     goto :goto_0
 
-    .line 22
+    .line 32
     :cond_0
     invoke-static {v0, v4}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
@@ -626,7 +626,7 @@
 .method public static panel()Landroid/graphics/drawable/GradientDrawable;
     .locals 3
 
-    .line 10
+    .line 20
     new-instance v0, Landroid/graphics/drawable/GradientDrawable;
 
     invoke-direct {v0}, Landroid/graphics/drawable/GradientDrawable;-><init>()V
@@ -646,4 +646,77 @@
     invoke-virtual {v0, v1, v2}, Landroid/graphics/drawable/GradientDrawable;->setStroke(II)V
 
     return-object v0
+.end method
+
+.method public static styledFont(Landroid/app/Activity;Landroid/graphics/Typeface;)Landroid/graphics/Typeface;
+    .locals 1
+
+    .line 11
+    invoke-static {p0}, Lorg/rabochaya/projects/WorkspaceUi;->font(Landroid/app/Activity;)Landroid/graphics/Typeface;
+
+    move-result-object p0
+
+    .line 12
+    const/4 v0, 0x0
+
+    if-nez p1, :cond_0
+
+    move p1, v0
+
+    goto :goto_0
+
+    :cond_0
+    invoke-virtual {p1}, Landroid/graphics/Typeface;->getStyle()I
+
+    move-result p1
+
+    .line 13
+    :goto_0
+    packed-switch p1, :pswitch_data_0
+
+    .line 17
+    invoke-static {p0, v0}, Landroid/graphics/Typeface;->create(Landroid/graphics/Typeface;I)Landroid/graphics/Typeface;
+
+    move-result-object p0
+
+    return-object p0
+
+    .line 16
+    :pswitch_0
+    const/4 p1, 0x3
+
+    invoke-static {p0, p1}, Landroid/graphics/Typeface;->create(Landroid/graphics/Typeface;I)Landroid/graphics/Typeface;
+
+    move-result-object p0
+
+    return-object p0
+
+    .line 15
+    :pswitch_1
+    const/4 p1, 0x2
+
+    invoke-static {p0, p1}, Landroid/graphics/Typeface;->create(Landroid/graphics/Typeface;I)Landroid/graphics/Typeface;
+
+    move-result-object p0
+
+    return-object p0
+
+    .line 14
+    :pswitch_2
+    const/4 p1, 0x1
+
+    invoke-static {p0, p1}, Landroid/graphics/Typeface;->create(Landroid/graphics/Typeface;I)Landroid/graphics/Typeface;
+
+    move-result-object p0
+
+    return-object p0
+
+    nop
+
+    :pswitch_data_0
+    .packed-switch 0x1
+        :pswitch_2
+        :pswitch_1
+        :pswitch_0
+    .end packed-switch
 .end method

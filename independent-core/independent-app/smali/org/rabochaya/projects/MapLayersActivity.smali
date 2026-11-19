@@ -78,7 +78,7 @@
 .method private add(Lorg/rabochaya/projects/MapComposition$Layer;)V
     .locals 3
 
-    .line 28
+    .line 40
     :try_start_0
     iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->snapshot:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
@@ -305,7 +305,7 @@
 .method private apply(Lorg/rabochaya/projects/MapComposition;Z)V
     .locals 7
 
-    .line 29
+    .line 41
     iget-boolean v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->disposed:Z
 
     if-nez v0, :cond_1
@@ -455,9 +455,9 @@
 
     aput-object v3, v4, v1
 
-    const v1, -0xff6978
+    const v1, -0xf7d1b4
 
-    const v2, -0x2f2937
+    const v2, -0xbd8257
 
     filled-new-array {v1, v2}, [I
 
@@ -595,18 +595,18 @@
 .end method
 
 .method private flushOpacity()V
-    .locals 3
+    .locals 9
 
-    .line 30
+    .line 42
     iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->pendingLayer:Ljava/lang/String;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_3
 
     iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->snapshot:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
     if-nez v0, :cond_0
 
-    goto :goto_0
+    goto :goto_3
 
     :cond_0
     iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->pendingLayer:Ljava/lang/String;
@@ -617,6 +617,7 @@
 
     iput-object v2, p0, Lorg/rabochaya/projects/MapLayersActivity;->pendingLayer:Ljava/lang/String;
 
+    .line 43
     :try_start_0
     iget-object v2, p0, Lorg/rabochaya/projects/MapLayersActivity;->snapshot:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
@@ -624,15 +625,61 @@
 
     invoke-virtual {v2, v0, v1}, Lorg/rabochaya/projects/MapComposition;->opacity(Ljava/lang/String;I)Lorg/rabochaya/projects/MapComposition;
 
-    move-result-object v0
+    move-result-object v7
 
-    const/4 v1, 0x1
+    .line 44
+    iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->snapshot:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
-    invoke-direct {p0, v0, v1}, Lorg/rabochaya/projects/MapLayersActivity;->apply(Lorg/rabochaya/projects/MapComposition;Z)V
+    iget-boolean v0, v0, Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;->enabled:Z
+
+    if-nez v0, :cond_1
+
+    const/4 v0, 0x1
+
+    goto :goto_0
+
+    :cond_1
+    const/4 v0, 0x0
+
+    .line 45
+    :goto_0
+    iget-wide v4, p0, Lorg/rabochaya/projects/MapLayersActivity;->project:J
+
+    iget-object v6, p0, Lorg/rabochaya/projects/MapLayersActivity;->snapshot:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
+
+    const/4 v8, 0x1
+
+    move-object v3, p0
+
+    invoke-static/range {v3 .. v8}, Lorg/rabochaya/projects/MapCompositionSettings;->save(Landroid/content/Context;JLorg/rabochaya/projects/MapCompositionSettings$Snapshot;Lorg/rabochaya/projects/MapComposition;Z)Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
+
+    move-result-object v1
+
+    iput-object v1, p0, Lorg/rabochaya/projects/MapLayersActivity;->snapshot:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    goto :goto_0
+    .line 46
+    const-string v1, ""
+
+    if-eqz v0, :cond_2
+
+    :try_start_1
+    invoke-direct {p0, v1}, Lorg/rabochaya/projects/MapLayersActivity;->show(Ljava/lang/String;)V
+
+    goto :goto_1
+
+    .line 47
+    :cond_2
+    iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->status:Landroid/widget/TextView;
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+
+    .line 48
+    :goto_1
+    goto :goto_2
 
     :catch_0
     move-exception v0
@@ -661,8 +708,12 @@
 
     invoke-direct {p0, v0}, Lorg/rabochaya/projects/MapLayersActivity;->reload(Ljava/lang/String;)V
 
-    :cond_1
-    :goto_0
+    :goto_2
+    return-void
+
+    .line 42
+    :cond_3
+    :goto_3
     return-void
 .end method
 
@@ -1053,7 +1104,7 @@
 .method private remove(Lorg/rabochaya/projects/MapComposition$Layer;)V
     .locals 3
 
-    .line 27
+    .line 39
     new-instance v0, Landroid/app/AlertDialog$Builder;
 
     invoke-direct {v0, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
@@ -1265,7 +1316,9 @@
 
     invoke-virtual {v2, v3}, Landroid/widget/CheckBox;->setText(Ljava/lang/CharSequence;)V
 
-    invoke-virtual {v2, v4}, Landroid/widget/CheckBox;->setTextColor(I)V
+    const v3, -0xf7d1b4
+
+    invoke-virtual {v2, v3}, Landroid/widget/CheckBox;->setTextColor(I)V
 
     invoke-static {p0}, Lorg/rabochaya/projects/WorkspaceUi;->font(Landroid/app/Activity;)Landroid/graphics/Typeface;
 
@@ -1371,7 +1424,7 @@
 
     invoke-virtual {v5, v3}, Landroid/widget/SeekBar;->setOnSeekBarChangeListener(Landroid/widget/SeekBar$OnSeekBarChangeListener;)V
 
-    .line 25
+    .line 37
     new-instance v2, Landroid/widget/LinearLayout;
 
     invoke-direct {v2, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
@@ -1469,7 +1522,7 @@
 
     goto :goto_3
 
-    .line 26
+    .line 38
     :cond_5
     return-void
 .end method
@@ -1678,7 +1731,7 @@
 
     iget-object v1, p0, Lorg/rabochaya/projects/MapLayersActivity;->root:Landroid/widget/LinearLayout;
 
-    const v3, -0xdcd2e3
+    const v3, -0x150b03
 
     invoke-virtual {v1, v3}, Landroid/widget/LinearLayout;->setBackgroundColor(I)V
 
@@ -1776,7 +1829,9 @@
 
     invoke-virtual {v3, v4}, Landroid/widget/CheckBox;->setText(Ljava/lang/CharSequence;)V
 
-    invoke-virtual {v3, v7}, Landroid/widget/CheckBox;->setTextColor(I)V
+    const v4, -0xf7d1b4
+
+    invoke-virtual {v3, v4}, Landroid/widget/CheckBox;->setTextColor(I)V
 
     invoke-static {p0}, Lorg/rabochaya/projects/WorkspaceUi;->font(Landroid/app/Activity;)Landroid/graphics/Typeface;
 
@@ -1984,7 +2039,7 @@
 
     invoke-virtual {v0, p1}, Landroid/widget/TextView;->setTextSize(F)V
 
-    const/4 p1, -0x1
+    const p1, -0xf7d1b4
 
     invoke-virtual {v0, p1}, Landroid/widget/TextView;->setTextColor(I)V
 
@@ -2262,7 +2317,7 @@
 .method synthetic lambda$remove$23$org-rabochaya-projects-MapLayersActivity(Lorg/rabochaya/projects/MapComposition$Layer;Landroid/content/DialogInterface;I)V
     .locals 0
 
-    .line 27
+    .line 39
     iget-object p2, p0, Lorg/rabochaya/projects/MapLayersActivity;->snapshot:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
     iget-object p2, p2, Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;->composition:Lorg/rabochaya/projects/MapComposition;
@@ -2283,7 +2338,7 @@
 .method synthetic lambda$remove$24$org-rabochaya-projects-MapLayersActivity(Landroid/app/AlertDialog;Landroid/content/DialogInterface;)V
     .locals 0
 
-    .line 27
+    .line 39
     invoke-virtual {p1}, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
 
     move-result-object p1
@@ -2321,7 +2376,7 @@
 .method synthetic lambda$row$20$org-rabochaya-projects-MapLayersActivity(Lorg/rabochaya/projects/MapComposition$Layer;I)V
     .locals 2
 
-    .line 25
+    .line 37
     iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->snapshot:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
     iget-object v0, v0, Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;->composition:Lorg/rabochaya/projects/MapComposition;
@@ -2344,7 +2399,7 @@
 .method synthetic lambda$row$21$org-rabochaya-projects-MapLayersActivity(Lorg/rabochaya/projects/MapComposition$Layer;I)V
     .locals 2
 
-    .line 25
+    .line 37
     iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->snapshot:Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;
 
     iget-object v0, v0, Lorg/rabochaya/projects/MapCompositionSettings$Snapshot;->composition:Lorg/rabochaya/projects/MapComposition;
@@ -2367,7 +2422,7 @@
 .method synthetic lambda$row$22$org-rabochaya-projects-MapLayersActivity(Lorg/rabochaya/projects/MapComposition$Layer;)V
     .locals 0
 
-    .line 25
+    .line 37
     invoke-direct {p0, p1}, Lorg/rabochaya/projects/MapLayersActivity;->remove(Lorg/rabochaya/projects/MapComposition$Layer;)V
 
     return-void
@@ -2560,7 +2615,7 @@
 .method protected onActivityResult(IILandroid/content/Intent;)V
     .locals 1
 
-    .line 31
+    .line 49
     invoke-super {p0, p1, p2, p3}, Landroid/app/Activity;->onActivityResult(IILandroid/content/Intent;)V
 
     const/16 v0, 0x11a9
@@ -2656,7 +2711,7 @@
 
     move-result-object v0
 
-    const v1, -0xe3dae8
+    const v1, -0xbd8257
 
     invoke-virtual {v0, v1}, Landroid/view/Window;->setStatusBarColor(I)V
 
@@ -2709,7 +2764,7 @@
 .method protected onDestroy()V
     .locals 1
 
-    .line 33
+    .line 51
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->disposed:Z
@@ -2722,7 +2777,7 @@
 .method protected onPause()V
     .locals 0
 
-    .line 33
+    .line 51
     invoke-direct {p0}, Lorg/rabochaya/projects/MapLayersActivity;->flushOpacity()V
 
     invoke-super {p0}, Landroid/app/Activity;->onPause()V
@@ -2733,7 +2788,7 @@
 .method protected onSaveInstanceState(Landroid/os/Bundle;)V
     .locals 2
 
-    .line 32
+    .line 50
     invoke-direct {p0}, Lorg/rabochaya/projects/MapLayersActivity;->flushOpacity()V
 
     iget-object v0, p0, Lorg/rabochaya/projects/MapLayersActivity;->scroll:Landroid/widget/ScrollView;

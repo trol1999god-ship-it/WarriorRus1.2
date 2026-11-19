@@ -18,6 +18,8 @@
 
 
 # instance fields
+.field private dragging:Z
+
 .field final synthetic this$0:Lorg/rabochaya/projects/MapLayersActivity;
 
 .field final synthetic val$amount:Landroid/widget/TextView;
@@ -51,7 +53,7 @@
 .method public onProgressChanged(Landroid/widget/SeekBar;IZ)V
     .locals 2
 
-    .line 24
+    .line 28
     iget-object p1, p0, Lorg/rabochaya/projects/MapLayersActivity$4;->val$amount:Landroid/widget/TextView;
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -80,8 +82,13 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    if-eqz p3, :cond_0
+    .line 29
+    if-nez p3, :cond_0
 
+    return-void
+
+    .line 30
+    :cond_0
     iget-object p1, p0, Lorg/rabochaya/projects/MapLayersActivity$4;->this$0:Lorg/rabochaya/projects/MapLayersActivity;
 
     iget-object p3, p0, Lorg/rabochaya/projects/MapLayersActivity$4;->val$layer:Lorg/rabochaya/projects/MapComposition$Layer;
@@ -90,25 +97,44 @@
 
     invoke-static {p1, p3}, Lorg/rabochaya/projects/MapLayersActivity;->access$102(Lorg/rabochaya/projects/MapLayersActivity;Ljava/lang/String;)Ljava/lang/String;
 
+    .line 31
     iget-object p1, p0, Lorg/rabochaya/projects/MapLayersActivity$4;->this$0:Lorg/rabochaya/projects/MapLayersActivity;
 
     invoke-static {p1, p2}, Lorg/rabochaya/projects/MapLayersActivity;->access$202(Lorg/rabochaya/projects/MapLayersActivity;I)I
 
-    :cond_0
+    .line 33
+    iget-boolean p1, p0, Lorg/rabochaya/projects/MapLayersActivity$4;->dragging:Z
+
+    if-nez p1, :cond_1
+
+    iget-object p1, p0, Lorg/rabochaya/projects/MapLayersActivity$4;->this$0:Lorg/rabochaya/projects/MapLayersActivity;
+
+    invoke-static {p1}, Lorg/rabochaya/projects/MapLayersActivity;->access$300(Lorg/rabochaya/projects/MapLayersActivity;)V
+
+    .line 34
+    :cond_1
     return-void
 .end method
 
 .method public onStartTrackingTouch(Landroid/widget/SeekBar;)V
     .locals 0
 
-    .line 24
+    .line 26
+    const/4 p1, 0x1
+
+    iput-boolean p1, p0, Lorg/rabochaya/projects/MapLayersActivity$4;->dragging:Z
+
     return-void
 .end method
 
 .method public onStopTrackingTouch(Landroid/widget/SeekBar;)V
     .locals 0
 
-    .line 24
+    .line 35
+    const/4 p1, 0x0
+
+    iput-boolean p1, p0, Lorg/rabochaya/projects/MapLayersActivity$4;->dragging:Z
+
     iget-object p1, p0, Lorg/rabochaya/projects/MapLayersActivity$4;->this$0:Lorg/rabochaya/projects/MapLayersActivity;
 
     invoke-static {p1}, Lorg/rabochaya/projects/MapLayersActivity;->access$300(Lorg/rabochaya/projects/MapLayersActivity;)V
