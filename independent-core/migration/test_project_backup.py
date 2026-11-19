@@ -5,6 +5,7 @@ import sqlite3
 import struct
 import tempfile
 import unittest
+from unittest.mock import patch
 import zlib
 from zipfile import ZipFile
 
@@ -80,6 +81,22 @@ class PortableProjectBackupTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "checksum"):
             restore(tampered, self.output)
         self.assertFalse(self.output.exists())
+
+    def test_cancels_after_first_file_is_published(self):
+        create(self.project, self.raster, self.backup)
+        original_link = os.link
+
+        def interrupted(source, target):
+            original_link(source, target)
+            raise KeyboardInterrupt
+
+        with patch("project_backup.os.link", side_effect=interrupted):
+            with self.assertRaises(KeyboardInterrupt):
+                restore(self.backup, self.output)
+        self.assertFalse(self.output.exists())
+        restore(self.backup, self.output)
+        self.assertEqual((self.output / PROJECT).read_bytes(), self.project.read_bytes())
+        self.assertEqual((self.output / MAP).read_bytes(), self.raster.read_bytes())
 
     def test_rejects_extra_unsafe_path(self):
         create(self.project, None, self.backup)

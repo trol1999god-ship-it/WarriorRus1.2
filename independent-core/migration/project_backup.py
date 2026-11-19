@@ -92,15 +92,17 @@ def restore(backup, output):
                     raise ValueError("Backup checksum mismatch: " + name)
         validate_exports(staged / PROJECT, staged / MAP if MAP in files else None)
         output.mkdir(mode=0o700)
-        published = []
         try:
             for name in files:
+                os.link(staged / name, output / name)
+        except (OSError, KeyboardInterrupt):
+            for name in files:
                 target = output / name
-                os.link(staged / name, target)
-                published.append(target)
-        except OSError:
-            for target in published:
-                target.unlink()
+                try:
+                    if os.path.samestat((staged / name).stat(), target.lstat()):
+                        target.unlink()
+                except FileNotFoundError:
+                    pass
             try:
                 output.rmdir()
             except OSError:
@@ -124,6 +126,8 @@ def main():
             create(args.kmz, args.mbtiles, args.out)
         else:
             restore(args.backup, args.out)
+    except KeyboardInterrupt:
+        parser.exit(130, "Cancelled\n")
     except (OSError, ValueError, RuntimeError, BadZipFile, sqlite3.Error) as error:
         parser.exit(1, str(error) + "\n")
     print(args.out)
