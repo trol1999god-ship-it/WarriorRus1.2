@@ -49,6 +49,8 @@ jobs:
           java-version: '17'
       - run: python3 ci/test_run_android_checks.py
         working-directory: independent-core
+      - run: python3 migration/test_project_backup.py
+        working-directory: independent-core
       - run: python3 security/privacy_audit.py --report "$RUNNER_TEMP/source-privacy.json"
         working-directory: independent-core
       - run: python3 owned-projects/verify_jvm.py

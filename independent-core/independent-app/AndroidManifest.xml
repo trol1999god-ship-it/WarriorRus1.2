@@ -15,5 +15,5 @@
   <activity android:name="org.rabochaya.projects.CompassActivity" android:exported="false"/>
   <activity android:name="org.rabochaya.projects.AttachmentsActivity" android:exported="false" android:configChanges="keyboardHidden|orientation|screenSize"/>
   <activity android:name="org.rabochaya.projects.MediaPlaybackActivity" android:exported="false"/>
-  <activity android:name="org.rabochaya.projects.LocalMapActivity" android:exported="false"/>
+  <activity android:name="org.rabochaya.projects.LocalMapActivity" android:exported="false" android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"/>
  </application></manifest>

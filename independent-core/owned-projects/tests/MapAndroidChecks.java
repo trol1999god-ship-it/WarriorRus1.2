@@ -466,6 +466,60 @@ public final class MapAndroidChecks extends Instrumentation {
   }catch(Exception e){state[0]="main map diagnostics failed: "+e;}});
   Bundle status=new Bundle();status.putString("stream","MAIN_MAP_STATE "+state[0]+"\n");sendStatus(0,status);
  }
+ void checkCompactMapDock()throws Exception {
+  Activity owner=activity;
+  float density=owner.getResources().getDisplayMetrics().density;
+  runOnMainSync(()->owner.getWindow().setLayout(Math.round(290*density),-1));
+  try {
+   Thread.sleep(500);
+   runOnMainSync(()->{
+    android.widget.LinearLayout root=(android.widget.LinearLayout)((android.view.ViewGroup)owner.findViewById(android.R.id.content)).getChildAt(0);
+    android.widget.LinearLayout dock=(android.widget.LinearLayout)root.getChildAt(1);
+    android.widget.HorizontalScrollView scroll=(android.widget.HorizontalScrollView)dock.getChildAt(0);
+    android.widget.LinearLayout tools=(android.widget.LinearLayout)scroll.getChildAt(0);
+    check(tools.getChildAt(0).getWidth()>=Math.round(48*density),"compact map retains a 48 dp tool target");
+    check(scroll.canScrollHorizontally(1),"compact map can reach tools beyond the window");
+    scroll.scrollTo(tools.getWidth(),0);
+    android.graphics.Rect visible=new android.graphics.Rect();
+    check(tools.getChildAt(5).getGlobalVisibleRect(visible)&&visible.width()>=Math.round(48*density),"last tool reachable at compact width");
+    check(dock.getChildAt(1).getGlobalVisibleRect(visible)&&visible.width()>=Math.round(48*density),"collapse remains pinned outside the scrolling area");
+   });
+  } finally {
+   runOnMainSync(()->owner.getWindow().setLayout(-1,-1));
+   waitForIdleSync();
+  }
+ }
+ void waitForMapOrientation(int orientation)throws Exception {
+  long until=android.os.SystemClock.uptimeMillis()+15000;
+  while(android.os.SystemClock.uptimeMillis()<until){
+   waitForIdleSync();
+   if(activity.getResources().getConfiguration().orientation==orientation)return;
+   Thread.sleep(100);
+  }
+  throw new AssertionError("Map window did not change orientation");
+ }
+ void mapWriteConflict(Object store,long project)throws Exception {
+  Object loaded=call(store,"load",new Class[]{long.class},project);
+  org.w3c.dom.Element old=element(loaded,"qa_point");
+  Object newer=call(store,"load",new Class[]{long.class},project);
+  org.w3c.dom.Element current=element(newer,"qa_point");
+  current.setAttribute("revision","newer");
+  byte[] payload={8,5,3,1};
+  assets(newer).put("icons/retained.bin",payload);
+  staticCall("ProjectWrites","savePreservingAssets",new Class[]{storeClass,long.class,codec},store,project,newer);
+  Class<?>[] signature={storeClass,long.class,org.w3c.dom.Element.class,String.class,String.class,String.class,List.class};
+  try {
+   staticCall("ObjectTreeWrites","saveMapFeature",signature,store,project,old,null,"Stale", "",null);
+   throw new AssertionError("stale feature edit was saved");
+  }catch(InvocationTargetException rejected){
+   check(rejected.getCause() instanceof IllegalStateException,"map write refuses a stale feature");
+  }
+  Object unchanged=call(store,"load",new Class[]{long.class},project);
+  check("newer".equals(element(unchanged,"qa_point").getAttribute("revision")),"stale write preserves newer feature");
+  org.w3c.dom.Element fresh=element(unchanged,"qa_point");
+  Object saved=staticCall("ObjectTreeWrites","saveMapFeature",signature,store,project,fresh,null,"QA_MAP_POINT","QA_PRIVATE_NOTE",null);
+  check(Arrays.equals(payload,assets(saved).get("icons/retained.bin")),"map write preserves other project payloads");
+ }
  void launcher()throws Exception{
   Context context=getTargetContext();installTileFixture();int networkBefore=requests.get();Object store=storeClass.getConstructor(Context.class).newInstance(context);long id=-1;
   android.content.SharedPreferences prefs=context.getSharedPreferences("workspace-session",0);long previous=prefs.getLong("last_project",-1);long legacyPrevious=context.getSharedPreferences("org.rabochaya.projects.OwnedHomeActivity",0).getLong("last_project",-1);boolean toolsPrevious=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).getBoolean("show_tools",true);boolean coordinatesPrevious=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).getBoolean("show_coordinates",true);context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).edit().putBoolean("show_coordinates",true).putBoolean("show_tools",true).commit();
@@ -486,7 +540,25 @@ public final class MapAndroidChecks extends Instrumentation {
    check(requests.get()==networkBefore,"local workspace reopen and overview do not request internet tiles");
    check(Arrays.equals(before,(byte[])call(call(store,"load",new Class[]{long.class},id),"xml",new Class[]{})),"launch and viewport preserve all object XML");
    clickDescription("Свернуть / развернуть координаты");clickDescription("Поиск на карте");inputs("qa_map_point");click("Найти");click("QA_MAP_POINT");waitText("QA_PRIVATE_NOTE");click("Закрыть");
-   clickDescription("Метки");click("Создать");click("Метка");inputs("QA_WORKSPACE_SECOND","Local note","21 31");click("Сохранить");waitText("4 видимых объектов");
+   checkCompactMapDock();
+   clickDescription("Метки");click("Создать");click("Метка");inputs("QA_WORKSPACE_SECOND","Local note","21 31");
+   Activity editorOwner=activity;
+   try {
+    check(getUiAutomation().setRotation(UiAutomation.ROTATION_FREEZE_90),"rotate with open point editor");
+    waitForMapOrientation(android.content.res.Configuration.ORIENTATION_LANDSCAPE);
+    List<android.widget.EditText> draftFields=new ArrayList<>();
+    runOnMainSync(()->collectInputs(activeDialogRoot(),draftFields));
+    check(activity==editorOwner&&!editorOwner.isDestroyed()&&draftFields.size()==3
+      &&"QA_WORKSPACE_SECOND".contentEquals(draftFields.get(0).getText())
+      &&"Local note".contentEquals(draftFields.get(1).getText())
+      &&"21 31".contentEquals(draftFields.get(2).getText()),"map editor preserves all uncommitted fields on rotation");
+   } finally {
+    getUiAutomation().setRotation(UiAutomation.ROTATION_FREEZE_0);
+    waitForMapOrientation(android.content.res.Configuration.ORIENTATION_PORTRAIT);
+    getUiAutomation().setRotation(UiAutomation.ROTATION_UNFREEZE);
+   }
+   click("Сохранить");waitText("4 видимых объектов");
+   mapWriteConflict(store,id);
    check(((List)call(call(store,"load",new Class[]{long.class},id),"features",new Class[]{boolean.class},false)).size()==4,"new toolbar retains marker creation and existing objects");
    capture("before-longpress");final android.view.View target=stableMainMap();setViewport(.5,.5,4);waitForIdleSync();check(target==(android.view.View)map()&&target.isAttachedToWindow(),"long press uses current attached map, not a replaced view");final int[] position=new int[2];final List<double[]> touchTrace=Collections.synchronizedList(new ArrayList<double[]>());runOnMainSync(new Runnable(){public void run(){target.getLocationOnScreen(position);target.setOnTouchListener(new android.view.View.OnTouchListener(){public boolean onTouch(android.view.View v,android.view.MotionEvent e){touchTrace.add(new double[]{e.getActionMasked(),e.getX(),e.getY()});return false;}});}});check(target.getWidth()>0&&target.getHeight()>0,"long press targets a laid out map");
    final long touchTime=android.os.SystemClock.uptimeMillis();android.view.MotionEvent down=android.view.MotionEvent.obtain(touchTime,touchTime,android.view.MotionEvent.ACTION_DOWN,position[0]+target.getWidth()*.7f,position[1]+target.getHeight()*.6f,0);down.setSource(android.view.InputDevice.SOURCE_TOUCHSCREEN);check(getUiAutomation().injectInputEvent(down,true),"touchscreen DOWN injected");down.recycle();

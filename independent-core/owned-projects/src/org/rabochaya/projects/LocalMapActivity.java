@@ -24,17 +24,29 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   status=label(description+(composition==null?" · "+features.size()+" видимых объектов":"")+(composition==null&&onlineMode?"\n"+source.attribution:""),11);status.setBackground(WorkspaceUi.panel());status.setTextColor(WorkspaceUi.TEXT);if(composition!=null){final String info=description;status.setMaxLines(3);status.setEllipsize(android.text.TextUtils.TruncateAt.END);status.setContentDescription("Состав и подписи карт");status.setOnClickListener(v->{AlertDialog d=new AlertDialog.Builder(this).setTitle("Состав и подписи карт").setMessage(info).setPositiveButton("Закрыть",null).create();d.setOnShowListener(w->compositionFont(d.getWindow().getDecorView()));d.show();});}FrameLayout.LayoutParams sp=new FrameLayout.LayoutParams(-2,-2,Gravity.BOTTOM|Gravity.LEFT);sp.rightMargin=WorkspaceUi.dp(this,54);scene.addView(status,sp);
   zoomButtons=new LinearLayout(this);zoomButtons.setOrientation(1);zoomButtons.setVisibility(getPreferences(0).getBoolean("show_zoom",true)?View.VISIBLE:View.GONE);scene.addView(zoomButtons,new FrameLayout.LayoutParams(WorkspaceUi.dp(this,48),-2,Gravity.BOTTOM|Gravity.RIGHT));
   zoomButtons.addView(WorkspaceUi.icon(this,"plus","+",()->map.step(1)),new LinearLayout.LayoutParams(-1,WorkspaceUi.dp(this,48)));zoomButtons.addView(WorkspaceUi.icon(this,"minus","−",()->map.step(-1)),new LinearLayout.LayoutParams(-1,WorkspaceUi.dp(this,48)));
-  LinearLayout toolbar=new LinearLayout(this);root.addView(toolbar,new LinearLayout.LayoutParams(-1,WorkspaceUi.dp(this,56)));
+  HorizontalScrollView tools=new HorizontalScrollView(this);
+  tools.setFillViewport(true);
+  tools.setHorizontalScrollBarEnabled(false);
+  LinearLayout toolbar=new LinearLayout(this);
+  tools.addView(toolbar,new FrameLayout.LayoutParams(-2,-1));
+  LinearLayout dock=new LinearLayout(this);
+  dock.addView(tools,new LinearLayout.LayoutParams(0,-1,1));
+  root.addView(dock,new LinearLayout.LayoutParams(-1,WorkspaceUi.dp(this,56)));
   tool(toolbar,"menu","Меню",()->mainMenu());tool(toolbar,"maps","Карты",()->mapsMenu());tool(toolbar,"marks","Метки",()->marksMenu());tool(toolbar,"files","Файловый менеджер",()->manager(false));tool(toolbar,"compass","Ориентирование",()->orientationMenu());tool(toolbar,"search","Поиск на карте",()->search());
   final boolean toolsVisible=getPreferences(0).getBoolean("show_tools",true);for(int i=0;i<toolbar.getChildCount();i++)toolbar.getChildAt(i).setVisibility(toolsVisible?View.VISIBLE:View.GONE);
-  toolbar.addView(WorkspaceUi.icon(this,"expand","Свернуть / развернуть инструменты",()->{boolean visible=toolbar.getChildAt(0).getVisibility()!=View.VISIBLE;for(int n=0;n<toolbar.getChildCount()-1;n++)toolbar.getChildAt(n).setVisibility(visible?View.VISIBLE:View.GONE);getPreferences(0).edit().putBoolean("show_tools",visible).commit();}),new LinearLayout.LayoutParams(WorkspaceUi.dp(this,48),-1));
+  dock.addView(WorkspaceUi.icon(this,"expand","Свернуть / развернуть инструменты",()->{boolean visible=toolbar.getChildAt(0).getVisibility()!=View.VISIBLE;for(int n=0;n<toolbar.getChildCount();n++)toolbar.getChildAt(n).setVisibility(visible?View.VISIBLE:View.GONE);getPreferences(0).edit().putBoolean("show_tools",visible).commit();}),new LinearLayout.LayoutParams(WorkspaceUi.dp(this,48),-1));
   drawingRow=null;if(pendingDrawType!=null&&pendingDrawPoints!=null){String type=pendingDrawType;ArrayList<double[]> points=pendingDrawPoints;pendingDrawType=null;pendingDrawPoints=null;if(("LineString".equals(type)||"Polygon".equals(type))&&points.size()<=2000){startDrawing(type);for(double[] c:points)if(c!=null&&c.length>=2)map.addDrawingPoint(c[0],c[1]);}}
   if(restore){SharedPreferences p=getPreferences(0);String key="view_"+projectId+"_";if(p.contains(key+"x"))try{map.restore(Double.parseDouble(p.getString(key+"x",".5")),Double.parseDouble(p.getString(key+"y",".5")),p.getFloat(key+"z",2));}catch(RuntimeException ignored){}}
  }
  public void longPressed(double lat,double lon){if(busy)return;menu(String.format(Locale.US,"%.6f, %.6f",lat,lon),item("Создать метку здесь",()->{creationPoint=new double[]{lon,lat};editObject(null,"Point");}),item("Начать маршрут здесь",()->{startDrawing("LineString");map.addDrawingPoint(lon,lat);}),item("Начать область здесь",()->{startDrawing("Polygon");map.addDrawingPoint(lon,lat);}),item("В центр карты",()->{double[] v=map.viewport();map.restore(MapMath.x(lon),MapMath.y(lat),v[2]);}));}
- private void tool(LinearLayout bar,String icon,String title,Runnable action){bar.addView(WorkspaceUi.icon(this,icon,title,()->{if(!busy)action.run();}),new LinearLayout.LayoutParams(0,-1,1));}
+ private void tool(LinearLayout bar,String icon,String title,Runnable action){bar.addView(WorkspaceUi.icon(this,icon,title,()->{if(!busy)action.run();}),new LinearLayout.LayoutParams(WorkspaceUi.dp(this,48),-1,1));}
  private WorkspaceUi.Item item(String title,Runnable action){return new WorkspaceUi.Item(title,action);}
  private void menu(String title,WorkspaceUi.Item...items){if(popup!=null)popup.dismiss();popup=WorkspaceUi.menu(this,root,title,items);}
+ @Override public void onConfigurationChanged(android.content.res.Configuration config) {
+  super.onConfigurationChanged(config);
+  // A popup anchored to the old window bounds must be opened again after resize.
+  if (popup != null) popup.dismiss();
+ }
  private boolean canLeave(){if(map!=null&&map.drawingType()!=null){error("Завершите или отмените рисунок");return false;}return true;}
  private void mainMenu(){menu("Меню",item("Проекты и файлы KML/KMZ",()->manager(true)),item("Новый проект",()->newProject()),item("Отображение",()->display()),item("Закрыть карту",()->onBackPressed()));}
  private void compositionFont(View view){if(view instanceof TextView)((TextView)view).setTypeface(WorkspaceUi.font(this));if(view instanceof ViewGroup)for(int i=0;i<((ViewGroup)view).getChildCount();i++)compositionFont(((ViewGroup)view).getChildAt(i));}
@@ -150,22 +162,31 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   ScrollView scroll=new ScrollView(this);scroll.addView(form);
   final AlertDialog dialog=new AlertDialog.Builder(this).setTitle(feature==null?"Новый объект":"Изменить объект").setView(scroll).setPositiveButton("Сохранить",null).setNegativeButton("Отмена",null).create();
   dialog.setOnShowListener(d->dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{
+   if(busy)return;
    final String title=name.getText().toString().trim(),description=note.getText().toString();
    if(title.isEmpty()||title.length()>1000){name.setError("Название: от 1 до 1000 символов");return;}
    if(description.length()>100000){note.setError("Описание: до 100 000 символов");return;}
    final List<double[]> points;
    try{points=coords==null?null:FeatureEdits.coordinates(coords.getText().toString(),feature==null?createType:"Point");}
    catch(IllegalArgumentException invalid){coords.setError(invalid.getMessage());return;}
-   final String id=feature==null?null:feature.element.getAttribute("id");
-   busy=true;status.setText("Сохранение объекта…");dialog.dismiss();
+   busy=true;status.setText("Сохранение объекта…");
+   dialog.setCancelable(false);
+   dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+   dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setEnabled(false);
    worker.execute(()->{ProjectStore store=new ProjectStore(this);try{
-    KmlProject project=store.load(projectId);
-    if(id==null)FeatureEdits.create(project.root(),createType,title,description,points);
-    else {org.w3c.dom.Element element=project.byId(id);if(element==null)throw new IOException("Объект больше не существует");FeatureEdits.metadata(element,title,description);if(points!=null)FeatureEdits.movePoint(element,points);}
-    store.saveDocument(projectId,project);
-    final KmlProject snapshot=store.load(projectId);final List<KmlProject.Feature> updated=snapshot.features(true);final KmlSymbolAssets icons=new KmlSymbolAssets(snapshot.root().getOwnerDocument(),snapshot.entry,snapshot.assets);
-    runOnUiThread(()->{if(!disposed){if(map!=null&&map.drawingType()!=null)map.cancelDrawing();features=updated;symbolAssets=icons;busy=false;show(true);Toast.makeText(this,"Объект сохранён",Toast.LENGTH_SHORT).show();}});
-   }catch(final Exception failure){runOnUiThread(()->{if(!disposed){busy=false;error("Не удалось сохранить: "+failure.getMessage());}});}finally{store.close();}});
+    final KmlProject snapshot=ObjectTreeWrites.saveMapFeature(
+      store,projectId,feature==null?null:feature.element,createType,title,description,points);
+    final List<KmlProject.Feature> updated=snapshot.features(true);
+    final KmlSymbolAssets icons=new KmlSymbolAssets(snapshot.root().getOwnerDocument(),snapshot.entry,snapshot.assets);
+    runOnUiThread(()->{if(!disposed){dialog.dismiss();if(map!=null&&map.drawingType()!=null)map.cancelDrawing();features=updated;symbolAssets=icons;busy=false;show(true);Toast.makeText(this,"Объект сохранён",Toast.LENGTH_SHORT).show();}});
+   }catch(final Exception failure){runOnUiThread(()->{if(!disposed){
+    busy=false;
+    dialog.setCancelable(true);
+    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+    dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setEnabled(true);
+    name.setError("Не удалось сохранить: "+failure.getMessage());
+    error("Не удалось сохранить: "+failure.getMessage());
+   }});}finally{store.close();}});
   }));dialog.show();
  }
  public void error(String text){warning=text==null?"Ошибка локальной карты":text;if(status!=null)status.setText(warning);long now=System.currentTimeMillis();if(now-lastError>5000){Toast.makeText(this,warning,Toast.LENGTH_LONG).show();lastError=now;}}

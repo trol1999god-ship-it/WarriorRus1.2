@@ -15,7 +15,9 @@ public final class WorkspaceUi {
  public static final class Item {final String title;final Runnable action;public Item(String t,Runnable r){title=t;action=r;}}
  public static PopupWindow menu(Activity a,View anchor,String title,Item...items){
   LinearLayout list=new LinearLayout(a);list.setOrientation(1);list.setPadding(dp(a,8),dp(a,8),dp(a,8),dp(a,8));list.setBackground(panel());TextView heading=new TextView(a);heading.setTypeface(font(a),Typeface.BOLD);heading.setText(title);heading.setTextSize(18);heading.setTextColor(TEXT);heading.setPadding(dp(a,12),dp(a,8),dp(a,12),dp(a,8));list.addView(heading);
-  ScrollView scroll=new ScrollView(a);scroll.addView(list);int width=Math.min(dp(a,320),a.getResources().getDisplayMetrics().widthPixels-dp(a,16));PopupWindow popup=new PopupWindow(scroll,width,Math.min(dp(a,52*(items.length+1)),Math.max(dp(a,48),anchor.getHeight()-dp(a,16))),true);popup.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));popup.setOutsideTouchable(true);popup.setElevation(dp(a,8));
+  ScrollView scroll=new ScrollView(a);scroll.addView(list);int width=Math.max(1,Math.min(dp(a,320),anchor.getWidth()-dp(a,16)));
+  int height=Math.max(1,Math.min(dp(a,52*(items.length+1)),anchor.getHeight()-dp(a,72)));
+  PopupWindow popup=new PopupWindow(scroll,width,height,true);popup.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));popup.setOutsideTouchable(true);popup.setElevation(dp(a,8));
   for(Item item:items){TextView row=new TextView(a);row.setText(item.title);row.setTypeface(font(a));row.setTextSize(16);row.setTextColor(TEXT);row.setGravity(Gravity.CENTER_VERTICAL);row.setPadding(dp(a,12),dp(a,10),dp(a,12),dp(a,10));row.setMinHeight(dp(a,48));row.setFocusable(true);row.setBackgroundResource(android.R.drawable.list_selector_background);list.addView(row,new LinearLayout.LayoutParams(-1,-2));row.setOnClickListener(v->{popup.dismiss();item.action.run();});}
   popup.showAtLocation(anchor,Gravity.BOTTOM|Gravity.LEFT,dp(a,8),dp(a,64));return popup;
  }

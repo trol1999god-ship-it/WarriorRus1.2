@@ -331,7 +331,7 @@
 .method static synthetic lambda$menu$2(Landroid/widget/PopupWindow;Lorg/rabochaya/projects/WorkspaceUi$Item;Landroid/view/View;)V
     .locals 0
 
-    .line 19
+    .line 21
     invoke-virtual {p0}, Landroid/widget/PopupWindow;->dismiss()V
 
     iget-object p0, p1, Lorg/rabochaya/projects/WorkspaceUi$Item;->action:Ljava/lang/Runnable;
@@ -440,15 +440,9 @@
 
     move-result v8
 
-    invoke-virtual/range {p0 .. p0}, Landroid/app/Activity;->getResources()Landroid/content/res/Resources;
+    invoke-virtual/range {p1 .. p1}, Landroid/view/View;->getWidth()I
 
-    move-result-object v9
-
-    invoke-virtual {v9}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
-
-    move-result-object v9
-
-    iget v9, v9, Landroid/util/DisplayMetrics;->widthPixels:I
+    move-result v9
 
     const/high16 v10, 0x41800000    # 16.0f
 
@@ -462,45 +456,47 @@
 
     move-result v8
 
-    new-instance v9, Landroid/widget/PopupWindow;
+    invoke-static {v3, v8}, Ljava/lang/Math;->max(II)I
 
-    array-length v11, v1
+    move-result v8
 
-    add-int/2addr v11, v3
+    .line 19
+    array-length v9, v1
 
-    mul-int/lit8 v11, v11, 0x34
+    add-int/2addr v9, v3
 
-    int-to-float v11, v11
+    mul-int/lit8 v9, v9, 0x34
 
-    invoke-static {v0, v11}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
+    int-to-float v9, v9
 
-    move-result v11
+    invoke-static {v0, v9}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
-    const/high16 v12, 0x42400000    # 48.0f
-
-    invoke-static {v0, v12}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
-
-    move-result v13
+    move-result v9
 
     invoke-virtual/range {p1 .. p1}, Landroid/view/View;->getHeight()I
 
-    move-result v14
-
-    invoke-static {v0, v10}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
-
-    move-result v15
-
-    sub-int/2addr v14, v15
-
-    invoke-static {v13, v14}, Ljava/lang/Math;->max(II)I
-
-    move-result v13
-
-    invoke-static {v11, v13}, Ljava/lang/Math;->min(II)I
-
     move-result v11
 
-    invoke-direct {v9, v5, v8, v11, v3}, Landroid/widget/PopupWindow;-><init>(Landroid/view/View;IIZ)V
+    const/high16 v12, 0x42900000    # 72.0f
+
+    invoke-static {v0, v12}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
+
+    move-result v12
+
+    sub-int/2addr v11, v12
+
+    invoke-static {v9, v11}, Ljava/lang/Math;->min(II)I
+
+    move-result v9
+
+    invoke-static {v3, v9}, Ljava/lang/Math;->max(II)I
+
+    move-result v9
+
+    .line 20
+    new-instance v11, Landroid/widget/PopupWindow;
+
+    invoke-direct {v11, v5, v8, v9, v3}, Landroid/widget/PopupWindow;-><init>(Landroid/view/View;IIZ)V
 
     new-instance v5, Landroid/graphics/drawable/ColorDrawable;
 
@@ -508,9 +504,9 @@
 
     invoke-direct {v5, v8}, Landroid/graphics/drawable/ColorDrawable;-><init>(I)V
 
-    invoke-virtual {v9, v5}, Landroid/widget/PopupWindow;->setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
+    invoke-virtual {v11, v5}, Landroid/widget/PopupWindow;->setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
 
-    invoke-virtual {v9, v3}, Landroid/widget/PopupWindow;->setOutsideTouchable(Z)V
+    invoke-virtual {v11, v3}, Landroid/widget/PopupWindow;->setOutsideTouchable(Z)V
 
     invoke-static {v0, v4}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
@@ -518,95 +514,95 @@
 
     int-to-float v5, v5
 
-    invoke-virtual {v9, v5}, Landroid/widget/PopupWindow;->setElevation(F)V
+    invoke-virtual {v11, v5}, Landroid/widget/PopupWindow;->setElevation(F)V
 
-    .line 19
+    .line 21
     array-length v5, v1
 
     :goto_0
     if-ge v8, v5, :cond_0
 
-    aget-object v11, v1, v8
+    aget-object v9, v1, v8
 
-    new-instance v13, Landroid/widget/TextView;
+    new-instance v12, Landroid/widget/TextView;
 
-    invoke-direct {v13, v0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
+    invoke-direct {v12, v0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
 
-    iget-object v14, v11, Lorg/rabochaya/projects/WorkspaceUi$Item;->title:Ljava/lang/String;
+    iget-object v13, v9, Lorg/rabochaya/projects/WorkspaceUi$Item;->title:Ljava/lang/String;
 
-    invoke-virtual {v13, v14}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+    invoke-virtual {v12, v13}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
     invoke-static/range {p0 .. p0}, Lorg/rabochaya/projects/WorkspaceUi;->font(Landroid/app/Activity;)Landroid/graphics/Typeface;
 
-    move-result-object v14
+    move-result-object v13
 
-    invoke-virtual {v13, v14}, Landroid/widget/TextView;->setTypeface(Landroid/graphics/Typeface;)V
+    invoke-virtual {v12, v13}, Landroid/widget/TextView;->setTypeface(Landroid/graphics/Typeface;)V
 
-    invoke-virtual {v13, v10}, Landroid/widget/TextView;->setTextSize(F)V
+    invoke-virtual {v12, v10}, Landroid/widget/TextView;->setTextSize(F)V
 
-    invoke-virtual {v13, v6}, Landroid/widget/TextView;->setTextColor(I)V
+    invoke-virtual {v12, v6}, Landroid/widget/TextView;->setTextColor(I)V
 
-    const/16 v14, 0x10
+    const/16 v13, 0x10
 
-    invoke-virtual {v13, v14}, Landroid/widget/TextView;->setGravity(I)V
-
-    invoke-static {v0, v7}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
-
-    move-result v14
-
-    const/high16 v15, 0x41200000    # 10.0f
-
-    invoke-static {v0, v15}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
-
-    move-result v6
+    invoke-virtual {v12, v13}, Landroid/widget/TextView;->setGravity(I)V
 
     invoke-static {v0, v7}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
-    move-result v10
+    move-result v13
 
-    invoke-static {v0, v15}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
+    const/high16 v14, 0x41200000    # 10.0f
+
+    invoke-static {v0, v14}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
     move-result v15
 
-    invoke-virtual {v13, v14, v6, v10, v15}, Landroid/widget/TextView;->setPadding(IIII)V
-
-    invoke-static {v0, v12}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
+    invoke-static {v0, v7}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
     move-result v6
 
-    invoke-virtual {v13, v6}, Landroid/widget/TextView;->setMinHeight(I)V
+    invoke-static {v0, v14}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
-    invoke-virtual {v13, v3}, Landroid/widget/TextView;->setFocusable(Z)V
+    move-result v14
+
+    invoke-virtual {v12, v13, v15, v6, v14}, Landroid/widget/TextView;->setPadding(IIII)V
+
+    const/high16 v6, 0x42400000    # 48.0f
+
+    invoke-static {v0, v6}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
+
+    move-result v6
+
+    invoke-virtual {v12, v6}, Landroid/widget/TextView;->setMinHeight(I)V
+
+    invoke-virtual {v12, v3}, Landroid/widget/TextView;->setFocusable(Z)V
 
     const v6, 0x1080062
 
-    invoke-virtual {v13, v6}, Landroid/widget/TextView;->setBackgroundResource(I)V
+    invoke-virtual {v12, v6}, Landroid/widget/TextView;->setBackgroundResource(I)V
 
     new-instance v6, Landroid/widget/LinearLayout$LayoutParams;
 
-    const/4 v10, -0x1
+    const/4 v13, -0x1
 
     const/4 v14, -0x2
 
-    invoke-direct {v6, v10, v14}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+    invoke-direct {v6, v13, v14}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
 
-    invoke-virtual {v2, v13, v6}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v2, v12, v6}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     new-instance v6, Lorg/rabochaya/projects/WorkspaceUi$$ExternalSyntheticLambda0;
 
-    invoke-direct {v6, v9, v11}, Lorg/rabochaya/projects/WorkspaceUi$$ExternalSyntheticLambda0;-><init>(Landroid/widget/PopupWindow;Lorg/rabochaya/projects/WorkspaceUi$Item;)V
+    invoke-direct {v6, v11, v9}, Lorg/rabochaya/projects/WorkspaceUi$$ExternalSyntheticLambda0;-><init>(Landroid/widget/PopupWindow;Lorg/rabochaya/projects/WorkspaceUi$Item;)V
 
-    invoke-virtual {v13, v6}, Landroid/widget/TextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+    invoke-virtual {v12, v6}, Landroid/widget/TextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
     add-int/lit8 v8, v8, 0x1
 
     const v6, -0xf7d1b4
 
-    const/high16 v10, 0x41800000    # 16.0f
-
     goto :goto_0
 
-    .line 20
+    .line 22
     :cond_0
     invoke-static {v0, v4}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
@@ -622,9 +618,9 @@
 
     move-object/from16 v3, p1
 
-    invoke-virtual {v9, v3, v2, v1, v0}, Landroid/widget/PopupWindow;->showAtLocation(Landroid/view/View;III)V
+    invoke-virtual {v11, v3, v2, v1, v0}, Landroid/widget/PopupWindow;->showAtLocation(Landroid/view/View;III)V
 
-    return-object v9
+    return-object v11
 .end method
 
 .method public static panel()Landroid/graphics/drawable/GradientDrawable;

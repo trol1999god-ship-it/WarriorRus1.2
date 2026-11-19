@@ -19,6 +19,33 @@ public final class ObjectTreeWrites {
   }finally{db.endTransaction();}
  }
 
+ /** Commit against the latest project without overwriting another editor's changes. */
+ public static KmlProject saveMapFeature(ProjectStore store, long id, Element original,
+                                         String type, String title, String description,
+                                         List<double[]> points) throws IOException {
+  SQLiteDatabase db = store.getWritableDatabase();
+  db.beginTransaction();
+  try {
+   KmlProject project = store.load(id);
+   if (original == null) {
+    FeatureEdits.create(project.root(), type, title, description, points);
+   } else {
+    Element current = project.byId(original.getAttribute("id"));
+    if (current == null || !current.isEqualNode(original)) {
+     throw new IllegalStateException("Объект изменился. Откройте его заново");
+    }
+    FeatureEdits.metadata(current, title, description);
+    if (points != null) FeatureEdits.movePoint(current, points);
+   }
+   ProjectWrites.savePreservingAssets(store, id, project);
+   KmlProject saved = store.load(id);
+   db.setTransactionSuccessful();
+   return saved;
+  } finally {
+   db.endTransaction();
+  }
+ }
+
  public static KmlProject assignSvg(ProjectStore store, long id, String key, String expected,
                                     InputStream input) throws IOException {
   byte[] bytes;

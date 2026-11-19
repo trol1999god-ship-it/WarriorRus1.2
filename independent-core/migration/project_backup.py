@@ -52,6 +52,7 @@ def create(project, raster, output):
         inputs.append((MAP, raster))
     with tempfile.TemporaryDirectory(dir=output.parent, prefix=".rk-backup-") as directory:
         staged = Path(directory) / "backup.zip"
+        staged.touch(mode=0o600, exist_ok=False)
         with ZipFile(staged, "w", compression=ZIP_STORED) as archive:
             files = {}
             for name, path in inputs:
@@ -90,7 +91,7 @@ def restore(backup, output):
                 if actual != details:
                     raise ValueError("Backup checksum mismatch: " + name)
         validate_exports(staged / PROJECT, staged / MAP if MAP in files else None)
-        output.mkdir()
+        output.mkdir(mode=0o700)
         published = []
         try:
             for name in files:
