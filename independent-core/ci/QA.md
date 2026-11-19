@@ -36,6 +36,18 @@ GET/no-output/no-redirect, DEX/native inventory. Runtime сетевые fixture 
 
 ## Реальный статус Android lint
 
+Официальный Android Lint выполняется существующим workflow после сборки APK.
+Локальная проверка на SDK Lint 8.2.0 с 88 Java-файлами: 0 ошибок, 114
+предупреждений. Перед запуском адаптер проверяет в dex собранного APK
+точный класс, суперкласс и публичный конструктор ProjectsActivity. Его
+compile-only описание доступно только анализатору. APK без ProjectsActivity
+отклоняется. Анализируются Java-исходники и classfiles, ресурсы и манифест.
+Тела smali остаются вне анализа. Результат и исходный XML Lint сохраняются
+в артефакте сборки с хешем проверенного APK. Реальная ошибка, сбой SDK или
+отсутствие отчёта завершают шаг с ошибкой.
+
+### История интеграции
+
 11ноября официальный SDK lint9.4.0-rc01 действительно запускался offline с source65,
 manifest/resources/compileSDK23. Получено3 ошибки и94 предупреждения: нет classfile
 classpath, ProjectsActivity существует только в owned smali и не виден frontend,

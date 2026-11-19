@@ -96,8 +96,8 @@ jobs:
         run: python3 security/privacy_audit.py --apk "$RUNNER_TEMP/rk-qa/app.apk" --report "$RUNNER_TEMP/rk-quality/privacy.json"
       - name: Record the real release-gate attempt (no publication)
         run: python3 ci/check_release_profile.py --sdk "$ANDROID_HOME" --tools "$RUNNER_TEMP/rk-tools" --out "$RUNNER_TEMP/rk-quality/release"
-      - name: Record Android lint integration gap honestly
-        run: python3 ci/android_lint_status.py --sdk "$ANDROID_HOME" --report "$RUNNER_TEMP/rk-quality/android-lint-support.json"
+      - name: Run official Android lint
+        run: python3 ci/android_lint_status.py --sdk "$ANDROID_HOME" --apk "$RUNNER_TEMP/rk-qa/app.apk" --report "$RUNNER_TEMP/rk-quality/android-lint-support.json"
       - name: Require hardware acceleration
         run: |
           test -c /dev/kvm
