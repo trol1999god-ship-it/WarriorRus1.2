@@ -51,7 +51,7 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectTree$Row;->type:Ljava/lang/String;
 
-    invoke-static {p3}, Lorg/rabochaya/projects/ObjectTree;->access$100(Lorg/w3c/dom/Element;)Z
+    invoke-static {p3}, Lorg/rabochaya/projects/ObjectTree;->container(Lorg/w3c/dom/Element;)Z
 
     move-result p1
 
@@ -59,7 +59,7 @@
 
     const-string p1, "name"
 
-    invoke-static {p3, p1}, Lorg/rabochaya/projects/ObjectTree;->access$200(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {p3, p1}, Lorg/rabochaya/projects/ObjectTree;->access$100(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object p1
 

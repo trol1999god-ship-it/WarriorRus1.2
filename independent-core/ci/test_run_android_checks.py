@@ -17,7 +17,7 @@ import zipfile
 class RunnerTests(unittest.TestCase):
     def run_modes(self, modes, failures=(), keep_going=True, pull_error=False, pull_png=False,
                   offline_once=(), boot_changed=False, permanent_offline=False, partial_pull=False, existing_output=False,
-                  progress_failure=''):
+                  progress_failure='', listing_only=False):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             adb = root / 'adb'
@@ -35,7 +35,7 @@ if ''' + repr(progress_failure) + ''' and args[:1]==['pull'] and not progress.ex
     progress.write_text('partial progress')
     target=Path(args[-1]);target.mkdir(parents=True)
     (target/'partial.txt').write_text('original partial preserved')
-    print('[  5%] /sdcard/Android/data/org.rabochaya.karta/files/map_mvisual-synthetic-failure.png: 100%')
+    print('pull: building file list...' if ''' + repr(listing_only) + ''' else '[  5%] /sdcard/Android/data/org.rabochaya.karta/files/map_mvisual-synthetic-failure.png: 100%')
     sys.exit(1)
 if ''' + repr(progress_failure) + '''=='offline' and args==['shell','cat','/proc/sys/kernel/random/boot_id'] and progress.exists() and not probed.exists():
     probed.write_text('explicit offline observed');print('adb: device offline',file=sys.stderr);sys.exit(1)
@@ -151,6 +151,14 @@ elif args[:3] == ['shell', 'am', 'instrument']:
         self.assertEqual(sum(c[:1]==['pull'] for c in result.adb_calls),1)
         self.assertEqual(result.transport_events,[])
         self.assertIn('probe_returncode=0',result.pull_diagnostics['cacheexport-artifact-pull.txt'])
+
+    def test_listing_only_failure_is_retried_only_after_explicit_offline(self):
+        for result_kind in ('offline','online'):
+            with self.subTest(result=result_kind):
+                result, records=self.run_modes(['cacheexport'],progress_failure=result_kind,listing_only=True,pull_png=True)
+                self.assertEqual(records[0]['passed'],result_kind=='offline')
+                self.assertEqual(sum(c[:1]==['pull'] for c in result.adb_calls),2 if result_kind=='offline' else 1)
+                self.assertEqual(sum(c[:3]==['shell','am','instrument'] for c in result.adb_calls),1)
 
     def test_partial_progress_cannot_rebind_a_changed_boot(self):
         for confirmation in ('offline','online'):

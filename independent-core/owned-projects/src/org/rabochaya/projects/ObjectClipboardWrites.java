@@ -15,6 +15,36 @@ public final class ObjectClipboardWrites {
  public static KmlProject paste(ProjectStore store,long project,String destination,String expected,String fingerprint)throws IOException{
   return pasteInFolder(store,project,destination,expected,fingerprint).project;
  }
+ public static KmlProject pasteAcrossProjects(ProjectStore store, long project, String destination,
+                                               String expected, String fingerprint) throws IOException {
+  SQLiteDatabase db = store.getWritableDatabase();
+  db.beginTransaction();
+  try {
+   ObjectClipboard clip = read(db);
+   if (clip == null || !clip.fingerprint().equals(fingerprint) || clip.project == project) {
+    throw new IllegalStateException("Буфер изменился. Откройте вставку повторно");
+   }
+   KmlProject target = store.load(project);
+   if (!ObjectTree.token(target.root()).equals(expected)) {
+    throw new IllegalStateException("Проект назначения изменился. Перечитайте список");
+   }
+   KmlProject source = store.load(clip.project);
+   ObjectTree.normalizeRoot(target.root());
+   ObjectProjectTransfer.append(source, target, clip.keys, clip.token, destination);
+   if (clip.cut) ObjectTree.delete(source.root(), clip.keys, clip.token);
+   ProjectWrites.savePreservingAssets(store, project, target);
+   if (clip.cut) {
+    ObjectTree.normalizeRoot(source.root());
+    ProjectWrites.savePreservingAssets(store, clip.project, source);
+    db.delete("object_clipboard", "slot=1", null);
+   }
+   KmlProject saved = store.load(project);
+   db.setTransactionSuccessful();
+   return saved;
+  } finally {
+   db.endTransaction();
+  }
+ }
  static ObjectTreeWrites.EditResult pasteInFolder(ProjectStore store,long project,String destination,String expected,String fingerprint)throws IOException{
   SQLiteDatabase db=store.getWritableDatabase();db.beginTransaction();try{KmlProject p=store.load(project);ObjectClipboard clip=read(db);if(clip==null)throw new IllegalStateException("Буфер объектов пуст");if(!clip.fingerprint().equals(fingerprint))throw new IllegalStateException("Буфер изменился. Откройте вставку повторно");if(clip.project!=project)throw new IllegalStateException("Буфер относится к другому проекту");if(!clip.token.equals(expected)||!expected.equals(ObjectTree.token(p.root())))throw new IllegalStateException("Проект изменился после заполнения буфера. Повторите выбор и копирование или вырезание");
    List<Node> trail = ObjectTree.folderTrail(p.root(), destination);

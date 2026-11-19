@@ -147,6 +147,186 @@
     return-object p0
 .end method
 
+.method public static pasteAcrossProjects(Lorg/rabochaya/projects/ProjectStore;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/rabochaya/projects/KmlProject;
+    .locals 4
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 20
+    invoke-virtual {p0}, Lorg/rabochaya/projects/ProjectStore;->getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase;
+
+    move-result-object v0
+
+    .line 21
+    invoke-virtual {v0}, Landroid/database/sqlite/SQLiteDatabase;->beginTransaction()V
+
+    .line 23
+    :try_start_0
+    invoke-static {v0}, Lorg/rabochaya/projects/ObjectClipboardWrites;->read(Landroid/database/sqlite/SQLiteDatabase;)Lorg/rabochaya/projects/ObjectClipboard;
+
+    move-result-object v1
+
+    .line 24
+    if-eqz v1, :cond_3
+
+    invoke-virtual {v1}, Lorg/rabochaya/projects/ObjectClipboard;->fingerprint()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v2, p5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result p5
+
+    if-eqz p5, :cond_3
+
+    iget-wide v2, v1, Lorg/rabochaya/projects/ObjectClipboard;->project:J
+
+    cmp-long p5, v2, p1
+
+    if-eqz p5, :cond_3
+
+    .line 27
+    invoke-virtual {p0, p1, p2}, Lorg/rabochaya/projects/ProjectStore;->load(J)Lorg/rabochaya/projects/KmlProject;
+
+    move-result-object p5
+
+    .line 28
+    invoke-virtual {p5}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
+
+    move-result-object v2
+
+    invoke-static {v2}, Lorg/rabochaya/projects/ObjectTree;->token(Lorg/w3c/dom/Element;)Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v2, p4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result p4
+
+    if-eqz p4, :cond_2
+
+    .line 31
+    iget-wide v2, v1, Lorg/rabochaya/projects/ObjectClipboard;->project:J
+
+    invoke-virtual {p0, v2, v3}, Lorg/rabochaya/projects/ProjectStore;->load(J)Lorg/rabochaya/projects/KmlProject;
+
+    move-result-object p4
+
+    .line 32
+    invoke-virtual {p5}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
+
+    move-result-object v2
+
+    invoke-static {v2}, Lorg/rabochaya/projects/ObjectTree;->normalizeRoot(Lorg/w3c/dom/Element;)V
+
+    .line 33
+    iget-object v2, v1, Lorg/rabochaya/projects/ObjectClipboard;->keys:Ljava/util/List;
+
+    iget-object v3, v1, Lorg/rabochaya/projects/ObjectClipboard;->token:Ljava/lang/String;
+
+    invoke-static {p4, p5, v2, v3, p3}, Lorg/rabochaya/projects/ObjectProjectTransfer;->append(Lorg/rabochaya/projects/KmlProject;Lorg/rabochaya/projects/KmlProject;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 34
+    iget-boolean p3, v1, Lorg/rabochaya/projects/ObjectClipboard;->cut:Z
+
+    if-eqz p3, :cond_0
+
+    invoke-virtual {p4}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
+
+    move-result-object p3
+
+    iget-object v2, v1, Lorg/rabochaya/projects/ObjectClipboard;->keys:Ljava/util/List;
+
+    iget-object v3, v1, Lorg/rabochaya/projects/ObjectClipboard;->token:Ljava/lang/String;
+
+    invoke-static {p3, v2, v3}, Lorg/rabochaya/projects/ObjectTree;->delete(Lorg/w3c/dom/Element;Ljava/util/Collection;Ljava/lang/String;)I
+
+    .line 35
+    :cond_0
+    invoke-static {p0, p1, p2, p5}, Lorg/rabochaya/projects/ProjectWrites;->savePreservingAssets(Lorg/rabochaya/projects/ProjectStore;JLorg/rabochaya/projects/KmlProject;)V
+
+    .line 36
+    iget-boolean p3, v1, Lorg/rabochaya/projects/ObjectClipboard;->cut:Z
+
+    if-eqz p3, :cond_1
+
+    .line 37
+    invoke-virtual {p4}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
+
+    move-result-object p3
+
+    invoke-static {p3}, Lorg/rabochaya/projects/ObjectTree;->normalizeRoot(Lorg/w3c/dom/Element;)V
+
+    .line 38
+    iget-wide v1, v1, Lorg/rabochaya/projects/ObjectClipboard;->project:J
+
+    invoke-static {p0, v1, v2, p4}, Lorg/rabochaya/projects/ProjectWrites;->savePreservingAssets(Lorg/rabochaya/projects/ProjectStore;JLorg/rabochaya/projects/KmlProject;)V
+
+    .line 39
+    const-string p3, "object_clipboard"
+
+    const-string p4, "slot=1"
+
+    const/4 p5, 0x0
+
+    invoke-virtual {v0, p3, p4, p5}, Landroid/database/sqlite/SQLiteDatabase;->delete(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)I
+
+    .line 41
+    :cond_1
+    invoke-virtual {p0, p1, p2}, Lorg/rabochaya/projects/ProjectStore;->load(J)Lorg/rabochaya/projects/KmlProject;
+
+    move-result-object p0
+
+    .line 42
+    invoke-virtual {v0}, Landroid/database/sqlite/SQLiteDatabase;->setTransactionSuccessful()V
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 43
+    nop
+
+    .line 45
+    invoke-virtual {v0}, Landroid/database/sqlite/SQLiteDatabase;->endTransaction()V
+
+    .line 43
+    return-object p0
+
+    .line 29
+    :cond_2
+    :try_start_1
+    new-instance p0, Ljava/lang/IllegalStateException;
+
+    const-string p1, "\u041f\u0440\u043e\u0435\u043a\u0442 \u043d\u0430\u0437\u043d\u0430\u0447\u0435\u043d\u0438\u044f \u0438\u0437\u043c\u0435\u043d\u0438\u043b\u0441\u044f. \u041f\u0435\u0440\u0435\u0447\u0438\u0442\u0430\u0439\u0442\u0435 \u0441\u043f\u0438\u0441\u043e\u043a"
+
+    invoke-direct {p0, p1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+
+    .line 25
+    :cond_3
+    new-instance p0, Ljava/lang/IllegalStateException;
+
+    const-string p1, "\u0411\u0443\u0444\u0435\u0440 \u0438\u0437\u043c\u0435\u043d\u0438\u043b\u0441\u044f. \u041e\u0442\u043a\u0440\u043e\u0439\u0442\u0435 \u0432\u0441\u0442\u0430\u0432\u043a\u0443 \u043f\u043e\u0432\u0442\u043e\u0440\u043d\u043e"
+
+    invoke-direct {p0, p1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    .line 45
+    :catchall_0
+    move-exception p0
+
+    invoke-virtual {v0}, Landroid/database/sqlite/SQLiteDatabase;->endTransaction()V
+
+    .line 46
+    throw p0
+.end method
+
 .method static pasteInFolder(Lorg/rabochaya/projects/ProjectStore;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/rabochaya/projects/ObjectTreeWrites$EditResult;
     .locals 10
     .annotation system Ldalvik/annotation/Throws;
@@ -155,7 +335,7 @@
         }
     .end annotation
 
-    .line 19
+    .line 49
     invoke-virtual {p0}, Lorg/rabochaya/projects/ProjectStore;->getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase;
 
     move-result-object v0
@@ -211,7 +391,7 @@
 
     if-eqz p5, :cond_8
 
-    .line 20
+    .line 50
     invoke-virtual {v1}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
 
     move-result-object p5
@@ -220,7 +400,7 @@
 
     move-result-object p5
 
-    .line 21
+    .line 51
     new-instance v3, Ljava/util/IdentityHashMap;
 
     invoke-direct {v3}, Ljava/util/IdentityHashMap;-><init>()V
@@ -229,19 +409,19 @@
 
     move-result-object v3
 
-    .line 22
+    .line 52
     iget-boolean v4, v2, Lorg/rabochaya/projects/ObjectClipboard;->cut:Z
 
     if-nez v4, :cond_1
 
-    .line 23
+    .line 53
     new-instance v4, Ljava/util/HashSet;
 
     iget-object v5, v2, Lorg/rabochaya/projects/ObjectClipboard;->keys:Ljava/util/List;
 
     invoke-direct {v4, v5}, Ljava/util/HashSet;-><init>(Ljava/util/Collection;)V
 
-    .line 24
+    .line 54
     invoke-virtual {v1}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
 
     move-result-object v5
@@ -267,7 +447,7 @@
 
     check-cast v6, Lorg/rabochaya/projects/ObjectTree$Row;
 
-    .line 25
+    .line 55
     iget-object v7, v6, Lorg/rabochaya/projects/ObjectTree$Row;->key:Ljava/lang/String;
 
     invoke-interface {v4, v7}, Ljava/util/Set;->contains(Ljava/lang/Object;)Z
@@ -280,11 +460,11 @@
 
     invoke-interface {v3, v6}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    .line 26
+    .line 56
     :cond_0
     goto :goto_0
 
-    .line 28
+    .line 58
     :cond_1
     iget-boolean v4, v2, Lorg/rabochaya/projects/ObjectClipboard;->cut:Z
 
@@ -309,7 +489,7 @@
 
     invoke-static {v4, v5, p3, p4}, Lorg/rabochaya/projects/ObjectTree;->copy(Lorg/w3c/dom/Element;Ljava/util/Collection;Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 29
+    .line 59
     :goto_1
     invoke-virtual {v1}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
 
@@ -319,7 +499,7 @@
 
     invoke-static {p0, p1, p2, v1}, Lorg/rabochaya/projects/ProjectWrites;->savePreservingAssets(Lorg/rabochaya/projects/ProjectStore;JLorg/rabochaya/projects/KmlProject;)V
 
-    .line 30
+    .line 60
     invoke-virtual {v1}, Lorg/rabochaya/projects/KmlProject;->root()Lorg/w3c/dom/Element;
 
     move-result-object p3
@@ -328,7 +508,7 @@
 
     move-result-object p3
 
-    .line 31
+    .line 61
     new-instance v9, Ljava/util/ArrayList;
 
     invoke-direct {v9}, Ljava/util/ArrayList;-><init>()V
@@ -401,7 +581,7 @@
 
     throw p0
 
-    .line 33
+    .line 63
     :cond_6
     :goto_3
     invoke-virtual {p0, p1, p2}, Lorg/rabochaya/projects/ProjectStore;->load(J)Lorg/rabochaya/projects/KmlProject;
@@ -443,7 +623,7 @@
 
     invoke-static {v0, p4}, Lorg/rabochaya/projects/ObjectClipboardWrites;->put(Landroid/database/sqlite/SQLiteDatabase;Lorg/rabochaya/projects/ObjectClipboard;)V
 
-    .line 34
+    .line 64
     :goto_4
     invoke-virtual {v0}, Landroid/database/sqlite/SQLiteDatabase;->setTransactionSuccessful()V
 
@@ -453,13 +633,13 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 35
+    .line 65
     invoke-virtual {v0}, Landroid/database/sqlite/SQLiteDatabase;->endTransaction()V
 
-    .line 34
+    .line 64
     return-object p1
 
-    .line 19
+    .line 49
     :cond_8
     :try_start_1
     new-instance p0, Ljava/lang/IllegalStateException;
@@ -500,7 +680,7 @@
 
     goto :goto_5
 
-    .line 35
+    .line 65
     :catchall_0
     move-exception p0
 

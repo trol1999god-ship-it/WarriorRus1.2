@@ -42,7 +42,7 @@
 
     iget-object v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda0;->f$2:Landroid/app/AlertDialog;
 
-    invoke-virtual {v0, v1, v2}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$write$53$org-rabochaya-projects-ObjectManagerActivity(Lorg/rabochaya/projects/ObjectManagerActivity$ProjectEdit;Landroid/app/AlertDialog;)V
+    invoke-virtual {v0, v1, v2}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$write$57$org-rabochaya-projects-ObjectManagerActivity(Lorg/rabochaya/projects/ObjectManagerActivity$ProjectEdit;Landroid/app/AlertDialog;)V
 
     return-void
 .end method

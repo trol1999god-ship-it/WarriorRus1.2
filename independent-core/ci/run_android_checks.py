@@ -67,10 +67,10 @@ def adb(*args,timeout=60,required=True):
   r=raw_adb(args,timeout)
   text=r.stdout+r.stderr
   recovery_deadline=None
-  # Some adb sync failures report only partial progress, with exit1; the very
+  # Some adb sync failures report only listing or partial progress, with exit1; the very
   # next read reports offline. Progress/exit1 alone never authorizes a retry.
   # Require an immediate explicit offline boot read, on this exact QA pull.
-  if r.returncode==1 and boot_id and not context_error and args[0]=='pull' and safe_retry(args) and re.search(r'(?m)^\[\s*\d+%\]\s+/sdcard/Android/data/org\.rabochaya\.karta/files/',text) and 'device offline' not in text.lower():
+  if r.returncode==1 and boot_id and not context_error and args[0]=='pull' and safe_retry(args) and re.search(r'(?m)^(?:pull: building file list\.\.\.[ \r]*$|\[\s*\d+%\]\s+/sdcard/Android/data/org\.rabochaya\.karta/files/)',text) and 'device offline' not in text.lower():
    recovery_deadline=time.monotonic()+a.transport_wait
    try:
     probe=raw_adb(('shell','cat',BOOT),min(3,a.transport_wait));probe_text=probe.stdout+probe.stderr

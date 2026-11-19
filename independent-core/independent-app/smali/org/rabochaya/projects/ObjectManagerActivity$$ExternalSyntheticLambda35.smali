@@ -62,7 +62,7 @@
 
     move-object v6, p1
 
-    invoke-virtual/range {v0 .. v6}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$write$50$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lorg/rabochaya/projects/ProjectStore;)Lorg/rabochaya/projects/ObjectTreeWrites$EditResult;
+    invoke-virtual/range {v0 .. v6}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$write$54$org-rabochaya-projects-ObjectManagerActivity(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lorg/rabochaya/projects/ProjectStore;)Lorg/rabochaya/projects/ObjectTreeWrites$EditResult;
 
     move-result-object p1
 

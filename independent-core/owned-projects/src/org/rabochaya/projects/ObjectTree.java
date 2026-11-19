@@ -74,15 +74,15 @@ public final class ObjectTree {
   Element probe=(Element)root.cloneNode(true),pt=resolve(probe,destination);for(Element e:clones)pt.appendChild(e);rows(probe);
   for(Element e:clones)target.appendChild(e);return clones.size();
  }
- private static void countIds(Element e,Map<String,Integer> counts,int depth){if(depth>128)throw new IllegalArgumentException("Слишком глубоко вложен XML");String id=e.getAttribute("id");if(!id.isEmpty())counts.put(id,counts.containsKey(id)?counts.get(id)+1:1);for(Element c:children(e))countIds(c,counts,depth+1);}
+ static void countIds(Element e,Map<String,Integer> counts,int depth){if(depth>128)throw new IllegalArgumentException("Слишком глубоко вложен XML");String id=e.getAttribute("id");if(!id.isEmpty())counts.put(id,counts.containsKey(id)?counts.get(id)+1:1);for(Element c:children(e))countIds(c,counts,depth+1);}
  private static String fresh(Set<String> used){String id;do{id="rk_"+UUID.randomUUID().toString();}while(!used.add(id));return id;}
- private static void newIds(Element e,Map<String,Integer> counts,Set<String> used,Map<String,String> ids,int depth){
+ static void newIds(Element e,Map<String,Integer> counts,Set<String> used,Map<String,String> ids,int depth){
   if(depth>128)throw new IllegalArgumentException("Слишком глубоко вложен XML");String ns=e.getNamespaceURI();boolean kml=ns==null||ns.isEmpty()||ns.equals("http://www.opengis.net/kml/2.2")||ns.matches("http://earth\\.google\\.com/kml/2\\.[012]");if(e.hasAttributeNS("http://www.w3.org/XML/1998/namespace","id")||(!kml&&e.hasAttribute("id")))throw new IllegalArgumentException("Копирование идентификаторов расширений пока не поддерживается");String old=e.getAttribute("id");
   if(!old.isEmpty()){if(counts.get(old)!=1||ids.containsKey(old))throw new IllegalArgumentException("Неоднозначные идентификаторы: копирование отменено");String id=fresh(used);ids.put(old,id);e.setAttribute("id",id);}else if(managed(e))e.setAttribute("id",fresh(used));
   for(Element c:children(e))newIds(c,counts,used,ids,depth+1);
  }
  private static String fragment(String text,Map<String,String> ids){String t=text.trim();if(t.startsWith("#")&&ids.containsKey(t.substring(1))){int at=text.indexOf(t);return text.substring(0,at)+"#"+ids.get(t.substring(1))+text.substring(at+t.length());}return text;}
- private static void rewrite(Element e,Map<String,String> ids,int depth){
+ static void rewrite(Element e,Map<String,String> ids,int depth){
   if(depth>128)throw new IllegalArgumentException("Слишком глубоко вложен XML");NamedNodeMap attrs=e.getAttributes();for(int i=0;i<attrs.getLength();i++){Node a=attrs.item(i);String name=a.getLocalName()==null?a.getNodeName():a.getLocalName(),v=a.getNodeValue();if(name.equals("href")||name.equals("schemaUrl"))a.setNodeValue(fragment(v,ids));else if(name.equals("targetId")&&ids.containsKey(v))a.setNodeValue(ids.get(v));}
   if(is(e,"styleUrl")||is(e,"href")){String before=e.getTextContent(),after=fragment(before,ids);if(!before.equals(after))e.setTextContent(after);}
   if(is(e,"description")){String before=e.getTextContent();java.util.regex.Pattern p=java.util.regex.Pattern.compile("(?i)(\\b(?:href|src)\\s*=\\s*)([\"'])#([^\"']+)\\2");java.util.regex.Matcher m=p.matcher(before);StringBuffer out=new StringBuffer();while(m.find()){String replacement=ids.get(m.group(3));m.appendReplacement(out,java.util.regex.Matcher.quoteReplacement(replacement==null?m.group():m.group(1)+m.group(2)+"#"+replacement+m.group(2)));}m.appendTail(out);if(!before.equals(out.toString()))e.setTextContent(out.toString());}
@@ -114,8 +114,8 @@ public final class ObjectTree {
  private static boolean managed(Element e){return is(e,"Folder")||is(e,"Document")||is(e,"Placemark")||is(e,"GroundOverlay")||is(e,"ScreenOverlay")||is(e,"PhotoOverlay")||is(e,"NetworkLink");}
  /** Imports may have a single feature directly under kml. Wrap only on explicit save. */
  static void normalizeRoot(Element root){if(!is(root,"kml"))return;Element document=element(root,"Document");document.setAttribute("id","rk_"+UUID.randomUUID().toString());List<Element> features=new ArrayList<>();for(Element e:children(root))if(managed(e))features.add(e);if(features.isEmpty()){root.appendChild(document);return;}root.insertBefore(document,features.get(0));for(Element e:features)document.appendChild(e);}
- private static boolean container(Element e){return is(e,"Folder")||is(e,"Document")||is(e,"kml");}
- private static boolean is(Element e,String tag){String ns=e.getNamespaceURI();return local(e).equals(tag)&&(ns==null||ns.isEmpty()||ns.equals("http://www.opengis.net/kml/2.2")||ns.matches("http://earth\\.google\\.com/kml/2\\.[012]"));}
+ static boolean container(Element e){return is(e,"Folder")||is(e,"Document")||is(e,"kml");}
+ static boolean is(Element e,String tag){String ns=e.getNamespaceURI();return local(e).equals(tag)&&(ns==null||ns.isEmpty()||ns.equals("http://www.opengis.net/kml/2.2")||ns.matches("http://earth\\.google\\.com/kml/2\\.[012]"));}
  private static String local(Element e){return e.getLocalName()==null?e.getTagName():e.getLocalName();}
  private static List<Element> children(Element e){List<Element> out=new ArrayList<>();for(Node n=e.getFirstChild();n!=null;n=n.getNextSibling())if(n instanceof Element)out.add((Element)n);return out;}
  private static Element child(Element e,String tag){for(Element c:children(e))if(is(c,tag))return c;return null;}

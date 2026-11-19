@@ -32,18 +32,7 @@
     return-object p0
 .end method
 
-.method static synthetic access$100(Lorg/w3c/dom/Element;)Z
-    .locals 0
-
-    .line 9
-    invoke-static {p0}, Lorg/rabochaya/projects/ObjectTree;->container(Lorg/w3c/dom/Element;)Z
-
-    move-result p0
-
-    return p0
-.end method
-
-.method static synthetic access$200(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
+.method static synthetic access$100(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
     .locals 0
 
     .line 9
@@ -454,7 +443,7 @@
     throw p0
 .end method
 
-.method private static container(Lorg/w3c/dom/Element;)Z
+.method static container(Lorg/w3c/dom/Element;)Z
     .locals 1
 
     .line 117
@@ -754,7 +743,7 @@
     throw p0
 .end method
 
-.method private static countIds(Lorg/w3c/dom/Element;Ljava/util/Map;I)V
+.method static countIds(Lorg/w3c/dom/Element;Ljava/util/Map;I)V
     .locals 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1509,7 +1498,7 @@
     throw p0
 .end method
 
-.method private static is(Lorg/w3c/dom/Element;Ljava/lang/String;)Z
+.method static is(Lorg/w3c/dom/Element;Ljava/lang/String;)Z
     .locals 1
 
     .line 118
@@ -1886,7 +1875,7 @@
     throw p0
 .end method
 
-.method private static newIds(Lorg/w3c/dom/Element;Ljava/util/Map;Ljava/util/Set;Ljava/util/Map;I)V
+.method static newIds(Lorg/w3c/dom/Element;Ljava/util/Map;Ljava/util/Set;Ljava/util/Map;I)V
     .locals 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -2511,7 +2500,7 @@
     throw p0
 .end method
 
-.method private static rewrite(Lorg/w3c/dom/Element;Ljava/util/Map;I)V
+.method static rewrite(Lorg/w3c/dom/Element;Ljava/util/Map;I)V
     .locals 8
     .annotation system Ldalvik/annotation/Signature;
         value = {

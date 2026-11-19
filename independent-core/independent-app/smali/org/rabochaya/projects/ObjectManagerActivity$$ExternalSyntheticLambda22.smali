@@ -3,17 +3,29 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/content/DialogInterface$OnClickListener;
+.implements Landroid/content/DialogInterface$OnShowListener;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-.field public final synthetic f$1:Ljava/util/List;
+.field public final synthetic f$1:Landroid/app/AlertDialog;
+
+.field public final synthetic f$2:Z
+
+.field public final synthetic f$3:Landroid/widget/EditText;
+
+.field public final synthetic f$4:Z
+
+.field public final synthetic f$5:Lorg/rabochaya/projects/ObjectEditorDraft;
+
+.field public final synthetic f$6:Z
+
+.field public final synthetic f$7:Landroid/widget/TextView;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Ljava/util/List;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Landroid/app/AlertDialog;ZLandroid/widget/EditText;ZLorg/rabochaya/projects/ObjectEditorDraft;ZLandroid/widget/TextView;)V
     .locals 0
 
     .line 0
@@ -21,22 +33,48 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$1:Ljava/util/List;
+    iput-object p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$1:Landroid/app/AlertDialog;
+
+    iput-boolean p3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$2:Z
+
+    iput-object p4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$3:Landroid/widget/EditText;
+
+    iput-boolean p5, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$4:Z
+
+    iput-object p6, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$5:Lorg/rabochaya/projects/ObjectEditorDraft;
+
+    iput-boolean p7, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$6:Z
+
+    iput-object p8, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$7:Landroid/widget/TextView;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final onClick(Landroid/content/DialogInterface;I)V
-    .locals 2
+.method public final onShow(Landroid/content/DialogInterface;)V
+    .locals 9
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$1:Ljava/util/List;
+    iget-object v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$1:Landroid/app/AlertDialog;
 
-    invoke-virtual {v0, v1, p1, p2}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$rowMenu$24$org-rabochaya-projects-ObjectManagerActivity(Ljava/util/List;Landroid/content/DialogInterface;I)V
+    iget-boolean v2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$2:Z
+
+    iget-object v3, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$3:Landroid/widget/EditText;
+
+    iget-boolean v4, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$4:Z
+
+    iget-object v5, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$5:Lorg/rabochaya/projects/ObjectEditorDraft;
+
+    iget-boolean v6, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$6:Z
+
+    iget-object v7, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda22;->f$7:Landroid/widget/TextView;
+
+    move-object v8, p1
+
+    invoke-virtual/range {v0 .. v8}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$openEditor$43$org-rabochaya-projects-ObjectManagerActivity(Landroid/app/AlertDialog;ZLandroid/widget/EditText;ZLorg/rabochaya/projects/ObjectEditorDraft;ZLandroid/widget/TextView;Landroid/content/DialogInterface;)V
 
     return-void
 .end method

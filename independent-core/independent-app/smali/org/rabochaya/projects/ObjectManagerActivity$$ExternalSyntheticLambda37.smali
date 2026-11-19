@@ -7,21 +7,17 @@
 
 
 # instance fields
-.field public final synthetic f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
-
-.field public final synthetic f$1:Z
+.field public final synthetic f$0:Landroid/view/View;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/ObjectManagerActivity;Z)V
+.method public synthetic constructor <init>(Landroid/view/View;)V
     .locals 0
 
     .line 0
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda37;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
-
-    iput-boolean p2, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda37;->f$1:Z
+    iput-object p1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda37;->f$0:Landroid/view/View;
 
     return-void
 .end method
@@ -29,14 +25,12 @@
 
 # virtual methods
 .method public final run()V
-    .locals 2
+    .locals 1
 
     .line 0
-    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda37;->f$0:Lorg/rabochaya/projects/ObjectManagerActivity;
+    iget-object v0, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda37;->f$0:Landroid/view/View;
 
-    iget-boolean v1, p0, Lorg/rabochaya/projects/ObjectManagerActivity$$ExternalSyntheticLambda37;->f$1:Z
-
-    invoke-virtual {v0, v1}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$load$13$org-rabochaya-projects-ObjectManagerActivity(Z)V
+    invoke-static {v0}, Lorg/rabochaya/projects/ObjectManagerActivity;->lambda$openEditor$39(Landroid/view/View;)V
 
     return-void
 .end method
