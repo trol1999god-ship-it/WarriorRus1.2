@@ -275,6 +275,9 @@ public final class MapAndroidChecks extends Instrumentation {
    Object gpx,geo;
    try(InputStream src=getContext().getAssets().open("navigation-exchange.gpx")){gpx=readExchange(src,false);}
    try(InputStream src=getContext().getAssets().open("navigation-exchange.geojson")){geo=readExchange(src,false);}
+   String gpxKml=new String((byte[])call(gpx,"xml",new Class[]{}),"UTF-8"),geoKml=new String((byte[])call(geo,"xml",new Class[]{}),"UTF-8");
+   check(gpxKml.indexOf("<TimeStamp>")>=0&&gpxKml.indexOf("<TimeStamp>")<gpxKml.indexOf("<ExtendedData>"),"KML timestamp precedes extension data");
+   check(geoKml.indexOf("<ExtendedData>")>=0&&geoKml.indexOf("<ExtendedData>")<geoKml.indexOf("<Point>"),"KML extension data precedes geometry");
    String roundGpx=new String(writeExchange(gpx,"gpx"),"UTF-8");
    check(roundGpx.contains("<rte>")&&roundGpx.contains("<trkseg>")&&roundGpx.contains("2026-01-01T08:02:00Z")&&roundGpx.contains("<sym>Flag</sym>"),"GPX keeps route, segments, time and symbol");
    check(roundGpx.split("<trkseg>",-1).length==3&&roundGpx.contains("<ele>9.25</ele>"),"GPX preserves two segments and elevation");

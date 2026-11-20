@@ -171,7 +171,14 @@ public final class ObjectExchange {
  }
  static void data(Element p,String key,String value){
   Element ext=child(p,"ExtendedData");
-  if(ext==null)ext=add(p,"ExtendedData",null);
+  if(ext==null){
+   ext=p.getOwnerDocument().createElementNS(KML,"ExtendedData");
+   Node firstShape=null;
+   for(Element node:children(p,null)){
+    if(Arrays.asList("Point","LineString","Polygon","MultiGeometry").contains(tag(node))){firstShape=node;break;}
+   }
+   p.insertBefore(ext,firstShape);
+  }
   Element d=add(ext,"Data",null);d.setAttribute("name",key);add(d,"value",value);
  }
  static Map<String,String> data(Element p){

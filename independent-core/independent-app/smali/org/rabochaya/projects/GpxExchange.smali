@@ -532,7 +532,7 @@
 .end method
 
 .method static read(Lorg/w3c/dom/Document;)Lorg/w3c/dom/Document;
-    .locals 16
+    .locals 17
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Exception;
@@ -750,40 +750,21 @@
 
     .line 28
     :cond_2
-    if-eqz v14, :cond_3
-
-    invoke-virtual {v6, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v4
-
-    if-eqz v4, :cond_3
-
-    goto :goto_3
-
-    :cond_3
-    move-object v13, v6
-
-    :goto_3
-    const-string v4, "rk-exchange-gpx-kind"
-
-    invoke-static {v8, v4, v13}, Lorg/rabochaya/projects/ObjectExchange;->data(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 29
     new-instance v4, Ljava/util/ArrayList;
 
     invoke-direct {v4}, Ljava/util/ArrayList;-><init>()V
 
-    .line 30
+    .line 29
     new-instance v12, Lorg/json/JSONArray;
 
     invoke-direct {v12}, Lorg/json/JSONArray;-><init>()V
 
-    .line 31
+    .line 30
     invoke-virtual {v6, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result v13
+    move-result v15
 
-    if-eqz v13, :cond_4
+    if-eqz v15, :cond_3
 
     invoke-static {v5}, Lorg/rabochaya/projects/GpxExchange;->coordinate(Lorg/w3c/dom/Element;)[D
 
@@ -795,15 +776,17 @@
 
     invoke-interface {v4, v9}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    goto :goto_5
+    move-object/from16 v16, v0
 
-    .line 32
-    :cond_4
+    goto :goto_4
+
+    .line 31
+    :cond_3
     invoke-virtual {v6, v9}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v9
 
-    if-eqz v9, :cond_5
+    if-eqz v9, :cond_4
 
     const-string v9, "rtept"
 
@@ -813,10 +796,12 @@
 
     invoke-interface {v4, v9}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    goto :goto_5
+    move-object/from16 v16, v0
 
-    .line 33
-    :cond_5
+    goto :goto_4
+
+    .line 32
+    :cond_4
     const-string v9, "trkseg"
 
     invoke-static {v5, v9}, Lorg/rabochaya/projects/ObjectExchange;->children(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/util/List;
@@ -827,102 +812,127 @@
 
     move-result-object v9
 
-    :goto_4
+    :goto_3
     invoke-interface {v9}, Ljava/util/Iterator;->hasNext()Z
 
-    move-result v13
+    move-result v15
 
-    if-eqz v13, :cond_6
+    if-eqz v15, :cond_5
 
     invoke-interface {v9}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    move-result-object v13
+    move-result-object v15
 
-    check-cast v13, Lorg/w3c/dom/Element;
+    check-cast v15, Lorg/w3c/dom/Element;
 
-    const-string v15, "trkpt"
+    move-object/from16 v16, v0
 
-    invoke-static {v13, v15, v12}, Lorg/rabochaya/projects/GpxExchange;->segment(Lorg/w3c/dom/Element;Ljava/lang/String;Lorg/json/JSONArray;)Ljava/util/List;
+    const-string v0, "trkpt"
 
-    move-result-object v13
+    invoke-static {v15, v0, v12}, Lorg/rabochaya/projects/GpxExchange;->segment(Lorg/w3c/dom/Element;Ljava/lang/String;Lorg/json/JSONArray;)Ljava/util/List;
 
-    invoke-interface {v4, v13}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+    move-result-object v0
 
-    goto :goto_4
+    invoke-interface {v4, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 34
-    :cond_6
-    :goto_5
+    move-object/from16 v0, v16
+
+    goto :goto_3
+
+    :cond_5
+    move-object/from16 v16, v0
+
+    .line 33
+    :goto_4
     invoke-interface {v4}, Ljava/util/List;->isEmpty()Z
 
-    move-result v9
+    move-result v0
 
-    if-nez v9, :cond_d
+    if-nez v0, :cond_d
 
-    .line 35
+    .line 34
     invoke-virtual {v6, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_6
+
+    const-string v0, "time"
+
+    invoke-static {v5, v0}, Lorg/rabochaya/projects/ObjectExchange;->text(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Ljava/lang/String;->isEmpty()Z
 
     move-result v7
 
-    if-eqz v7, :cond_7
+    if-nez v7, :cond_6
 
-    const-string v7, "time"
+    const-string v7, "TimeStamp"
 
-    invoke-static {v5, v7}, Lorg/rabochaya/projects/ObjectExchange;->text(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
+    const/4 v9, 0x0
 
-    move-result-object v9
+    invoke-static {v8, v7, v9}, Lorg/rabochaya/projects/ObjectExchange;->add(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Element;
 
-    invoke-virtual {v9}, Ljava/lang/String;->isEmpty()Z
+    move-result-object v7
 
-    move-result v9
+    const-string v9, "when"
 
-    if-nez v9, :cond_7
+    invoke-static {v5, v0}, Lorg/rabochaya/projects/ObjectExchange;->text(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
 
-    const-string v9, "TimeStamp"
+    move-result-object v0
 
-    const/4 v13, 0x0
+    invoke-static {v7, v9, v0}, Lorg/rabochaya/projects/ObjectExchange;->add(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Element;
 
-    invoke-static {v8, v9, v13}, Lorg/rabochaya/projects/ObjectExchange;->add(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Element;
+    .line 35
+    :cond_6
+    if-eqz v14, :cond_7
 
-    move-result-object v9
+    invoke-virtual {v6, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    const-string v13, "when"
+    move-result v0
 
-    invoke-static {v5, v7}, Lorg/rabochaya/projects/ObjectExchange;->text(Lorg/w3c/dom/Element;Ljava/lang/String;)Ljava/lang/String;
+    if-eqz v0, :cond_7
 
-    move-result-object v5
+    goto :goto_5
 
-    invoke-static {v9, v13, v5}, Lorg/rabochaya/projects/ObjectExchange;->add(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Element;
+    :cond_7
+    move-object v13, v6
+
+    :goto_5
+    const-string v0, "rk-exchange-gpx-kind"
+
+    invoke-static {v8, v0, v13}, Lorg/rabochaya/projects/ObjectExchange;->data(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;)V
 
     .line 36
-    :cond_7
     if-eqz v14, :cond_9
 
     invoke-virtual {v6, v10}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result v5
+    move-result v0
 
-    if-eqz v5, :cond_9
+    if-eqz v0, :cond_9
 
     .line 37
     invoke-interface {v4}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
-    move-result-object v5
+    move-result-object v0
 
     :goto_6
-    invoke-interface {v5}, Ljava/util/Iterator;->hasNext()Z
+    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
-    move-result v6
+    move-result v5
 
-    if-eqz v6, :cond_8
+    if-eqz v5, :cond_8
 
-    invoke-interface {v5}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    move-result-object v6
+    move-result-object v5
 
-    check-cast v6, Ljava/util/List;
+    check-cast v5, Ljava/util/List;
 
-    invoke-static {v6}, Lorg/rabochaya/projects/ObjectExchange;->requireRing(Ljava/util/List;)V
+    invoke-static {v5}, Lorg/rabochaya/projects/ObjectExchange;->requireRing(Ljava/util/List;)V
 
     goto :goto_6
 
@@ -930,7 +940,7 @@
     :cond_8
     invoke-static {v8, v4}, Lorg/rabochaya/projects/ObjectExchange;->polygon(Lorg/w3c/dom/Element;Ljava/util/List;)V
 
-    const/4 v7, 0x0
+    const/4 v6, 0x0
 
     goto :goto_a
 
@@ -938,26 +948,26 @@
     :cond_9
     invoke-interface {v4}, Ljava/util/List;->size()I
 
-    move-result v5
+    move-result v0
 
-    const/4 v6, 0x1
+    const/4 v5, 0x1
 
-    if-le v5, v6, :cond_a
+    if-le v0, v5, :cond_a
 
-    const-string v5, "MultiGeometry"
+    const-string v0, "MultiGeometry"
 
-    const/4 v7, 0x0
+    const/4 v6, 0x0
 
-    invoke-static {v8, v5, v7}, Lorg/rabochaya/projects/ObjectExchange;->add(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Element;
+    invoke-static {v8, v0, v6}, Lorg/rabochaya/projects/ObjectExchange;->add(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Element;
 
-    move-result-object v5
+    move-result-object v0
 
     goto :goto_7
 
     :cond_a
-    const/4 v7, 0x0
+    const/4 v6, 0x0
 
-    move-object v5, v8
+    move-object v0, v8
 
     .line 41
     :goto_7
@@ -968,57 +978,59 @@
     :goto_8
     invoke-interface {v4}, Ljava/util/Iterator;->hasNext()Z
 
-    move-result v9
+    move-result v7
 
-    if-eqz v9, :cond_c
+    if-eqz v7, :cond_c
 
     invoke-interface {v4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
-    move-result-object v9
+    move-result-object v7
 
-    check-cast v9, Ljava/util/List;
+    check-cast v7, Ljava/util/List;
 
-    invoke-interface {v9}, Ljava/util/List;->size()I
+    invoke-interface {v7}, Ljava/util/List;->size()I
 
-    move-result v10
+    move-result v9
 
-    if-ne v10, v6, :cond_b
+    if-ne v9, v5, :cond_b
 
-    const-string v10, "Point"
+    const-string v9, "Point"
 
     goto :goto_9
 
     :cond_b
-    const-string v10, "LineString"
+    const-string v9, "LineString"
 
     :goto_9
-    invoke-static {v5, v10, v9}, Lorg/rabochaya/projects/ObjectExchange;->geometry(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/util/List;)V
+    invoke-static {v0, v9, v7}, Lorg/rabochaya/projects/ObjectExchange;->geometry(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/util/List;)V
 
     goto :goto_8
 
     .line 43
     :cond_c
     :goto_a
-    const-string v4, "points"
+    const-string v0, "points"
 
-    invoke-virtual {v11, v4, v12}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
+    invoke-virtual {v11, v0, v12}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
-    move-result-object v4
+    move-result-object v0
 
-    invoke-virtual {v4}, Lorg/json/JSONObject;->toString()Ljava/lang/String;
+    invoke-virtual {v0}, Lorg/json/JSONObject;->toString()Ljava/lang/String;
 
-    move-result-object v4
+    move-result-object v0
 
-    const-string v5, "rk-exchange-gpx-data"
+    const-string v4, "rk-exchange-gpx-data"
 
-    invoke-static {v8, v5, v4}, Lorg/rabochaya/projects/ObjectExchange;->data(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;)V
+    invoke-static {v8, v4, v0}, Lorg/rabochaya/projects/ObjectExchange;->data(Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;)V
 
     .line 44
-    move-object v4, v7
+    move-object v4, v6
+
+    move-object/from16 v0, v16
 
     goto/16 :goto_0
 
-    .line 34
+    .line 33
     :cond_d
     const-string v0, "\u041f\u0443\u0441\u0442\u043e\u0439 \u0442\u0440\u0435\u043a GPX"
 
@@ -1030,7 +1042,9 @@
 
     .line 22
     :cond_e
-    move-object v7, v4
+    move-object/from16 v16, v0
+
+    move-object v6, v4
 
     goto/16 :goto_0
 

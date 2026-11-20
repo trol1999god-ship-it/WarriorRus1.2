@@ -25,7 +25,6 @@ final class GpxExchange {
    Element ext=child(e,"extensions");
    boolean area=false;
    if(ext!=null)for(Element option:children(ext,"area"))area|=EXT.equals(option.getNamespaceURI());
-   data(p,KIND,area&&type.equals("trk")?"area":type);
    List<List<double[]>> segments=new ArrayList<>();
    JSONArray points=new JSONArray();
    if(type.equals("wpt"))segments.add(Collections.singletonList(coordinate(e)));
@@ -33,6 +32,7 @@ final class GpxExchange {
    else for(Element s:children(e,"trkseg"))segments.add(segment(s,"trkpt",points));
    if(segments.isEmpty())throw invalid("Пустой трек GPX");
    if(type.equals("wpt")&&!text(e,"time").isEmpty())add(add(p,"TimeStamp",null),"when",text(e,"time"));
+   data(p,KIND,area&&type.equals("trk")?"area":type);
    if(area&&type.equals("trk")){
     for(List<double[]> ring:segments)requireRing(ring);
     polygon(p,segments);
