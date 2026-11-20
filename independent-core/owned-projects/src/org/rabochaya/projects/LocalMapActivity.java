@@ -2,7 +2,7 @@ package org.rabochaya.projects;
 import android.app.*;import android.content.*;import android.net.Uri;import android.os.*;import android.graphics.drawable.GradientDrawable;import android.widget.*;import android.view.*;import java.io.*;import java.util.*;import java.util.concurrent.*;
 /** Own raster map viewer with local MBTiles or explicit online sources. */
 public final class LocalMapActivity extends Activity implements LocalMapView.Listener {
- private static final int IMPORT_MAP=4301,IMPORT_TIFF=4302,IMPORT_OZI=4303,DEM=4602,CATALOG=4502,LAYERS=4503;private PopupWindow popup;private double[] creationPoint;private LinearLayout zoomButtons,mapDock;private long projectId;private LinearLayout root;private TextView coordinates,status;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
+ private static final int IMPORT_MAP=4301,IMPORT_TIFF=4302,IMPORT_OZI=4303,DEM=4602,CATALOG=4502,LAYERS=4503;private PopupWindow popup;private double[] creationPoint;private LinearLayout zoomButtons,mapDock;private long projectId;private LinearLayout root;private TextView coordinates,status;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
  private boolean busy,refreshOnResume,refreshMapOnResume;private volatile boolean disposed;private final ExecutorService worker=Executors.newSingleThreadExecutor();private String warning="";private long lastError;private LinearLayout drawingRow;private String pendingDrawType;private ArrayList<double[]> pendingDrawPoints;
  public static void open(Activity parent,long project){Intent i=new Intent(parent,LocalMapActivity.class);i.putExtra("project",project);parent.startActivity(i);}
  protected void onCreate(Bundle state){super.onCreate(state);projectId=getIntent().getLongExtra("project",-1);root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(0xffc7e1f8);setContentView(root);getWindow().setStatusBarColor(0xff427da9);getWindow().setNavigationBarColor(0xff427da9);if(state!=null){pendingDrawType=state.getString("drawing_type");Object saved=state.getSerializable("drawing_points");if(saved instanceof ArrayList)pendingDrawPoints=(ArrayList<double[]>)saved;}load();}
@@ -18,13 +18,19 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   FrameLayout scene=new FrameLayout(this);root.addView(scene,new LinearLayout.LayoutParams(-1,0,1));
   map=new LocalMapView(this,features,mapFile(),this,source,OnlineMapSettings.network(this),composition);scene.addView(map,new FrameLayout.LayoutParams(-1,-1));if(symbolAssets!=null)map.setSymbols(symbolAssets);
   int control=WorkspaceUi.dp(this,48),edge=WorkspaceUi.dp(this,4);
+  LinearLayout mapReadout=new LinearLayout(this);
+  mapReadout.setOrientation(LinearLayout.VERTICAL);
   LinearLayout coordinateBar=new LinearLayout(this);
   FrameLayout.LayoutParams cp=new FrameLayout.LayoutParams(-2,-2,Gravity.TOP|Gravity.LEFT);
-  cp.setMargins(edge,edge,edge,0);scene.addView(coordinateBar,cp);
+  cp.setMargins(edge,edge,edge,0);scene.addView(mapReadout,cp);
+  mapReadout.addView(coordinateBar,new LinearLayout.LayoutParams(-2,-2));
   coordinates=label("Координаты центра · WGS 84",12);coordinates.setBackground(WorkspaceUi.panel());coordinates.setTextColor(WorkspaceUi.TEXT);coordinates.setContentDescription("Настройки координат центра");coordinates.setOnClickListener(v->coordinateOptions());coordinates.setVisibility(getPreferences(0).getBoolean("show_coordinates",true)?View.VISIBLE:View.GONE);
   coordinateBar.addView(coordinates,new LinearLayout.LayoutParams(-2,-2,1));
   ImageButton collapse=WorkspaceUi.icon(this,"collapse","Свернуть / развернуть координаты",()->{boolean visible=coordinates.getVisibility()!=View.VISIBLE;coordinates.setVisibility(visible?View.VISIBLE:View.GONE);getPreferences(0).edit().putBoolean("show_coordinates",visible).commit();});
   coordinateBar.addView(collapse,new LinearLayout.LayoutParams(control,control));
+  mapScale=new MapScaleView(this);
+  LinearLayout.LayoutParams scaleLayout=new LinearLayout.LayoutParams(-2,-2);
+  scaleLayout.topMargin=edge;mapReadout.addView(mapScale,scaleLayout);
   String description=onlineMode?source.name+" · "+(OnlineMapSettings.network(this)?"онлайн + кеш":"только кеш"):mapFile().isFile()?"Локальная карта MBTiles":"Обзорная карта";
   if(composition!=null){StringBuilder names=new StringBuilder();LinkedHashSet<String> copyrights=new LinkedHashSet<>();int count=0;for(MapComposition.Layer layer:composition.layers)if(layer.visible&&layer.opacity>0){count++;if(names.length()>0)names.append(" · ");names.append(layer.name);TileSource raster=layer.source();if(raster!=null)copyrights.add(raster.attribution);}description="Композиция: "+count+" слоёв · "+features.size()+" видимых объектов"+(count==0?" · без подложки":"\n"+names.toString());for(String credit:copyrights)description+="\n"+credit;}if(!compositionError.isEmpty())description+="\n"+compositionError;
   status=label(description+(composition==null?" · "+features.size()+" видимых объектов":"")+(composition==null&&onlineMode?"\n"+source.attribution:""),11);status.setBackground(WorkspaceUi.panel());status.setTextColor(WorkspaceUi.TEXT);if(composition!=null){final String info=description;status.setMaxLines(3);status.setEllipsize(android.text.TextUtils.TruncateAt.END);status.setContentDescription("Состав и подписи карт");status.setOnClickListener(v->{AlertDialog d=new AlertDialog.Builder(this).setTitle("Состав и подписи карт").setMessage(info).setPositiveButton("Закрыть",null).create();d.setOnShowListener(w->compositionFont(d.getWindow().getDecorView()));d.show();});}LinearLayout rightControls=new LinearLayout(this);
@@ -144,6 +150,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  public void center(double lat,double lon,double zoom) {
   TextView panel = coordinates;
   if (panel == null) return;
+  if (mapScale != null) mapScale.update(lat, zoom);
   String text = CoordinateSettings.panel(this, lat, lon, zoom);
   if (dem != null) {
    try {

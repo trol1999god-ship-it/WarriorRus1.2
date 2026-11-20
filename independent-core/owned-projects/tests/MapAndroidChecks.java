@@ -554,6 +554,9 @@ public final class MapAndroidChecks extends Instrumentation {
    });
    check(fullPanel[0],"first map layout displays both coordinate formats without clipping");
    waitText("Высота: нет локальных данных");
+   setViewport(.5,.5,10);check(findDescription(getUiAutomation().getRootInActiveWindow(),"Масштаб карты: 10 км")!=null,"equator scale at zoom 10");
+   setViewport(.5,.5,11);check(findDescription(getUiAutomation().getRootInActiveWindow(),"Масштаб карты: 5 км")!=null,"scale follows magnification");
+   setViewport(.5,.25,11);check(findDescription(getUiAutomation().getRootInActiveWindow(),"Масштаб карты: 2 км")!=null,"scale follows the latitude at the centre");
    byte[] before=(byte[])call(call(store,"load",new Class[]{long.class},id),"xml",new Class[]{});
    double wx=(Double)staticCall("MapMath","x",new Class[]{double.class},37.6),wy=(Double)staticCall("MapMath","y",new Class[]{double.class},55.75);setViewport(wx,wy,8);waitText("55.750000, 37.600000");waitText("UTM · WGS 84");
    clickDescription("Настройки координат центра");clickDescription("Основной формат координат");click("MGRS · WGS 84");clickDescription("Дополнительный формат координат");click("WGS 84 · градусы, минуты, секунды");click("Сохранить");check(settings.getInt("primary",-1)==4&&settings.getInt("secondary",-1)==2,"UI persists both coordinate formats");waitText("Центр MGRS");waitText("55°45′00.00″ N");double[] viewport=(double[])call(map(),"viewport",new Class[]{});check(Math.abs(viewport[0]-wx)<1e-10&&Math.abs(viewport[1]-wy)<1e-10,"changing coordinate formats does not move map");
