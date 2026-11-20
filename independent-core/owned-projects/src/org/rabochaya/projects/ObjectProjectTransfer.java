@@ -19,6 +19,7 @@ final class ObjectProjectTransfer {
  private final Map<String, Element> originals = new HashMap<>();
  private final Set<String> included = new HashSet<>(), references = new LinkedHashSet<>();
  private final Map<String, byte[]> files = new LinkedHashMap<>();
+ private final Map<String, String> relocated = new HashMap<>();
 
  private ObjectProjectTransfer(KmlProject source, KmlProject destination) throws IOException {
   this.source = source;
@@ -48,7 +49,7 @@ final class ObjectProjectTransfer {
    Element item = ObjectTree.resolve(sourceRoot, key);
    verifyBase(item);
    items.add(item);
-   scan(item, 0);
+   scan(item, 0, false);
   }
   Set<String> checked = new HashSet<>();
   while (checked.size() < references.size()) {
@@ -62,7 +63,7 @@ final class ObjectProjectTransfer {
     }
     verifyBase(dependency);
     styles.add(dependency);
-    scan(dependency, 0);
+    scan(dependency, 0, false);
    }
   }
 
@@ -80,11 +81,13 @@ final class ObjectProjectTransfer {
   Node before = firstFeature(document);
   for (Element definition : definitions) {
    ObjectTree.rewrite(definition, rewritten, 0);
+   if (!relocated.isEmpty()) scan(definition, 0, true);
    // Definitions belong to the enclosing Document, not a Folder.
    document.insertBefore(definition, before);
   }
   for (Element copy : copies) {
    ObjectTree.rewrite(copy, rewritten, 0);
+   if (!relocated.isEmpty()) scan(copy, 0, true);
    target.appendChild(copy);
   }
   ObjectTree.rows(destinationRoot);
@@ -120,52 +123,77 @@ final class ObjectProjectTransfer {
   }
  }
 
- private void scan(Element element, int depth) throws IOException {
+ private void scan(Element element, int depth, boolean rewrite) throws IOException {
   if (depth > 128 || element.hasAttributeNS(XML, "base")) {
    throw new IOException("Недопустимая вложенность или база ссылок в KML");
   }
   String id = element.getAttribute("id");
-  if (!id.isEmpty()) included.add(id);
+  if (!rewrite && !id.isEmpty()) included.add(id);
   if (ObjectTree.is(element, "styleUrl") || ObjectTree.is(element, "href")) {
-   reference(element.getTextContent());
+   textReference(element, rewrite);
   }
-  if (element.hasAttribute("schemaUrl")) reference(element.getAttribute("schemaUrl"));
-  if (element.hasAttribute("targetId")) references.add(element.getAttribute("targetId"));
-  if (element.hasAttribute("href")) reference(element.getAttribute("href"));
+  attributeReference(element, "schemaUrl", rewrite);
+  if (!rewrite && element.hasAttribute("targetId")) references.add(element.getAttribute("targetId"));
+  attributeReference(element, "href", rewrite);
   if (ObjectTree.is(element, "value") && element.getParentNode() instanceof Element &&
       ((Element) element.getParentNode()).getAttribute("name").startsWith("rk-media-")) {
-   reference(element.getTextContent());
+   textReference(element, rewrite);
   }
   if (ObjectTree.is(element, "description")) {
-   Matcher matcher = HTML_LINK.matcher(element.getTextContent());
+   String body = element.getTextContent();
+   Matcher matcher = HTML_LINK.matcher(body);
+   StringBuilder changed = new StringBuilder();
+   int copied = 0;
    while (matcher.find()) {
-    String path = matcher.group(1) != null ? matcher.group(1) :
-      matcher.group(2) != null ? matcher.group(2) : matcher.group(3);
-    if (!path.startsWith("#")) reference(path.replace("&amp;", "&"));
+    int group = matcher.group(1) != null ? 1 : matcher.group(2) != null ? 2 : 3;
+    String path = matcher.group(group).replace("&amp;", "&");
+    if (path.startsWith("#")) continue;
+    String replacement = reference(path, rewrite);
+    if (!replacement.equals(path)) {
+     changed.append(body, copied, matcher.start(group)).append(replacement.replace("&", "&amp;"));
+     copied = matcher.end(group);
+    }
    }
+   if (copied != 0) element.setTextContent(changed.append(body, copied, body.length()).toString());
   }
   for (Node node = element.getFirstChild(); node != null; node = node.getNextSibling()) {
-   if (node instanceof Element) scan((Element) node, depth + 1);
+   if (node instanceof Element) scan((Element) node, depth + 1, rewrite);
   }
  }
 
- private void reference(String raw) throws IOException {
+ private void textReference(Element element, boolean rewrite) throws IOException {
+  String raw = element.getTextContent(), next = reference(raw, rewrite);
+  if (!raw.equals(next)) element.setTextContent(next);
+ }
+
+ private void attributeReference(Element element, String attribute, boolean rewrite) throws IOException {
+  String raw = element.getAttribute(attribute), next = reference(raw, rewrite);
+  if (!raw.equals(next)) element.setAttribute(attribute, next);
+ }
+
+ private String reference(String raw, boolean rewrite) throws IOException {
   String value = raw.trim();
-  if (value.isEmpty()) return;
+  if (value.isEmpty()) return raw;
   if (value.startsWith("#")) {
-   references.add(value.substring(1));
-   return;
+   if (!rewrite) references.add(value.substring(1));
+   return raw;
   }
   if (value.startsWith("//") || value.matches("(?is)[a-z][a-z0-9+.-]*:.*")) {
    // Absolute addresses are preserved as text. Transfers never access them.
-   return;
+   return raw;
   }
+  String pathPart = value.split("[?#]", 2)[0];
   String path;
   try {
-   path = KmlProject.safePath(URLDecoder.decode(value.split("[?#]", 2)[0].replace("+", "%2B"), "UTF-8"));
+   path = KmlProject.safePath(URLDecoder.decode(pathPart.replace("+", "%2B"), "UTF-8"));
   } catch (IllegalArgumentException invalid) {
    throw new IOException("Недопустимая ссылка на файл в проекте", invalid);
   }
+  if (rewrite) {
+   String alias = relocated.get(path);
+   return alias == null ? raw : alias + value.substring(pathPart.length());
+  }
+  if (relocated.containsKey(path)) return raw;
   byte[] data = source.assets.get(sourceDirectory + path);
   if (data == null) throw new IOException("В исходном проекте отсутствует файл «" + path + "»");
   String lower = path.toLowerCase(Locale.ROOT);
@@ -173,11 +201,27 @@ final class ObjectProjectTransfer {
    throw new IOException("Файл «" + path + "» содержит собственные ссылки. Перенесите его через KMZ");
   }
   String key = KmlProject.safePath(destinationDirectory + path);
-  byte[] previous = destination.assets.get(key);
-  if (key.equals(destination.entry) || (previous != null && !Arrays.equals(previous, data))) {
-   throw new IOException("В проекте назначения уже есть другой файл «" + path + "»");
+  if (occupied(key, data)) {
+   int slash = path.lastIndexOf('/'), dot = path.lastIndexOf('.');
+   String parent = path.startsWith("attachments/") ? "attachments/" : "rk-transfer/";
+   String extension = dot > slash ? path.substring(dot) : "";
+   if (!extension.matches("\\.[a-zA-Z0-9]{1,16}")) extension = "";
+   // Preserve managed-media paths and reuse the same copy on a repeated paste.
+   String alias = parent + "rk-" + UUID.nameUUIDFromBytes(data) + extension;
+   key = KmlProject.safePath(destinationDirectory + alias);
+   while (occupied(key, data)) {
+    alias = parent + "rk-" + UUID.randomUUID() + extension;
+    key = KmlProject.safePath(destinationDirectory + alias);
+   }
+   relocated.put(path, alias);
   }
-  if (previous == null) files.put(key, data);
+  if (!destination.assets.containsKey(key)) files.put(key, data);
+  return raw;
+ }
+
+ private boolean occupied(String key, byte[] data) {
+  byte[] previous = files.containsKey(key) ? files.get(key) : destination.assets.get(key);
+  return key.equals(destination.entry) || (previous != null && !Arrays.equals(previous, data));
  }
 
  private static String directory(String entry) throws IOException {

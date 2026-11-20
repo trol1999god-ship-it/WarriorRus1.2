@@ -203,12 +203,7 @@ public final class MapAndroidChecks extends Instrumentation {
    openTransferProject(sid);click("TRANSFER_LAYER");managerAction("Вырезать");geometryReady();
    String stamp=clipStamp(objectClip(store)), token=treeToken(destDoc);
    byte[] conflict={9,8};assets(destDoc).put("target/"+href,conflict);
-   staticCall("ProjectWrites","savePreservingAssets",new Class[]{storeClass,long.class,codec},store,did,destDoc);
-   boolean collision=false;
-   try{pasteAcross(store,did,"0",token,stamp);}catch(InvocationTargetException e){collision=e.getCause() instanceof IOException;}
-   check(collision&&Arrays.equals(conflict,assets(call(store,"load",new Class[]{long.class},did)).get("target/"+href)),"path collision preserves preexisting destination file");
-   check(stamp.equals(clipStamp(objectClip(store))),"path collision keeps the prepared cut");
-   assets(destDoc).put("target/"+href,photo);
+   assets(destDoc).put("target/icons/symbol.svg",conflict);
    staticCall("ProjectWrites","savePreservingAssets",new Class[]{storeClass,long.class,codec},store,did,destDoc);
    db=(SQLiteDatabase)call(store,"getWritableDatabase",new Class[]{});
    db.execSQL("CREATE TRIGGER qa_cross_abort BEFORE INSERT ON payloads WHEN NEW.project="+sid+" BEGIN SELECT RAISE(ABORT,'qa source write failure'); END");
@@ -216,12 +211,25 @@ public final class MapAndroidChecks extends Instrumentation {
    try{pasteAcross(store,did,"0",token,stamp);}catch(InvocationTargetException e){rejected=true;}finally{db.execSQL("DROP TRIGGER qa_cross_abort");}
    check(rejected&&treeToken(call(store,"load",new Class[]{long.class},did)).equals(token),"failed source write rolls back destination");
    check(Arrays.equals(before,(byte[])call(call(store,"load",new Class[]{long.class},sid),"xml",new Class[]{}))&&stamp.equals(clipStamp(objectClip(store))),"failed cross-project cut preserves source and clipboard");
+   check(assets(call(store,"load",new Class[]{long.class},did)).size()==2,"rollback leaves no relocated files");
    openTransferProject(did);managerAction("Вставить в эту папку");click("Вставить");geometryReady();waitText("Изменения сохранены");
    openTransferProject(did);
    sourceDoc=call(store,"load",new Class[]{long.class},sid);destDoc=call(store,"load",new Class[]{long.class},did);
    check(element(destDoc,"dest").getElementsByTagNameNS("*","Document").getLength()==2&&managerField("folder").equals("0"),"cut and reopened destination persist nested layers");
    check(((List)call(sourceDoc,"features",new Class[]{boolean.class},false)).size()==1&&objectClip(store)==null,"successful cut keeps unrelated point and consumes clipboard");
    check(Arrays.equals(photo,assets(sourceDoc).get("source/"+href)),"cut preserves source payload bytes for shared references");
+   org.w3c.dom.Element movedLayer=(org.w3c.dom.Element)element(destDoc,"dest").getElementsByTagNameNS("*","Document").item(1);
+   org.w3c.dom.Element moved=directElement(directElement(movedLayer,"Folder"),"Placemark");
+   String movedHref=value(link(destDoc,moved.getAttribute("id"),"transfer.jpg"),"href");
+   String movedMap=directElement(moved,"styleUrl").getTextContent().substring(1);
+   org.w3c.dom.Element movedPair=directElement(definition(destDoc,"StyleMap",movedMap),"Pair");
+   org.w3c.dom.Element movedStyle=definition(destDoc,"Style",directElement(movedPair,"styleUrl").getTextContent().substring(1));
+   String movedIcon=directElement(directElement(directElement(movedStyle,"IconStyle"),"Icon"),"href").getTextContent();
+   check(movedHref.startsWith("attachments/rk-")&&!href.equals(movedHref)&&Arrays.equals(photo,assets(destDoc).get("target/"+movedHref)),"collision relocates attachment with correct data");
+   String body=directElement(moved,"description").getTextContent();
+   check(body.contains("href=\""+movedHref+"\"")&&body.contains("src=\""+movedHref+"\""),"description link and image source follow relocated attachment");
+   check(!movedIcon.equals("icons/symbol.svg")&&Arrays.equals(svg,assets(destDoc).get("target/"+movedIcon)),"collision relocates SVG and updates its style");
+   check(Arrays.equals(conflict,assets(destDoc).get("target/"+href))&&Arrays.equals(conflict,assets(destDoc).get("target/icons/symbol.svg")),"collision keeps both preexisting files byte-for-byte");
   }finally{
    if(db!=null)db.execSQL("DROP TRIGGER IF EXISTS qa_cross_abort");
    if(activity!=null){Activity previous=activity;runOnMainSync(()->previous.finish());activity=null;}

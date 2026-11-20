@@ -537,7 +537,7 @@
     "WorkspaceUi$Item.smali",
     "WorkspaceUi.smali"
   ],
-  "replaced_classes": 530,
+  "replaced_classes": 535,
   "min_sdk": 23,
   "api_stubs_packaged": false,
   "sources": {
@@ -604,7 +604,7 @@
     "src/org/rabochaya/projects/ObjectListing.java": "03ed9988bce1ead92cb027766a25c34706aa4ac49d9cfdc37e7d3cf2e10315c0",
     "src/org/rabochaya/projects/ObjectManagerActivity.java": "9e1c09d15a500e3f2e02739062eaf65262f9669c2f0ee41649cdcecdb7dd4faf",
     "src/org/rabochaya/projects/ObjectMoveDraft.java": "4cb010f27a69f173d34c5c8bb519ae9d1c7ab41fa2c395ffa2977d4c0127b4bb",
-    "src/org/rabochaya/projects/ObjectProjectTransfer.java": "94279d7f9d547a7811f512471051c30e0c2de807974fa8534be8eba699edc0f1",
+    "src/org/rabochaya/projects/ObjectProjectTransfer.java": "12a93463512eea30dede41f5213dc4ff58581a26b56fd42e3716fbbd82d6b06d",
     "src/org/rabochaya/projects/ObjectSelectionState.java": "bee4aef6e8f3e6693d956aa036a06c38d2703ac00465b24e90aae70109819c77",
     "src/org/rabochaya/projects/ObjectTree.java": "dbbeb35211528b5756f9faca49b719189e396f57dfe29c673e83e2b151475654",
     "src/org/rabochaya/projects/ObjectTreeWrites.java": "6de5f86fbd92ded340ea873205f4d4149f5555524395d9d26dbbaf28096455b1",

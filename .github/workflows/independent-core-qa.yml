@@ -4,8 +4,6 @@ on:
   push:
     branches: [codex/independent-core-auto]
     paths: ['independent-core/**', '.github/workflows/independent-core-qa.yml']
-  pull_request:
-    paths: ['independent-core/**', '.github/workflows/independent-core-qa.yml']
 permissions:
   contents: read
 concurrency:
@@ -13,7 +11,7 @@ concurrency:
   # Finish the current Android matrix before testing the newest pending push.
   cancel-in-progress: false
 jobs:
-  # Push and manual dispatch run the build; PR events avoid duplicate runs.
+  # The branch push checks are visible in PR #14 without a second run.
   # Evidence-only runs validate their changed-file allowlist and read an old artifact;
   # they are not new build/test acceptance and cannot contain application changes.
   recover-saved-evidence:
@@ -93,7 +91,10 @@ jobs:
       - name: Prepare SDK
         run: '"$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-23" "build-tools;35.0.0" "cmdline-tools;12.0"'
       - name: Compile own application and instrumentation
-        run: python3 ci/build_android_qa.py --sdk "$ANDROID_HOME" --tools "$RUNNER_TEMP/rk-tools" --out "$RUNNER_TEMP/rk-qa" --debug --skip-jvm
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/rk-quality"
+          python3 ci/build_android_qa.py --sdk "$ANDROID_HOME" --tools "$RUNNER_TEMP/rk-tools" --out "$RUNNER_TEMP/rk-qa" --debug --skip-jvm 2>&1 | tee "$RUNNER_TEMP/rk-quality/build.log"
       - name: Audit the built APK (custom privacy checks, not Android lint)
         run: python3 security/privacy_audit.py --apk "$RUNNER_TEMP/rk-qa/app.apk" --report "$RUNNER_TEMP/rk-quality/privacy.json"
       - name: Record the real release-gate attempt (no publication)
