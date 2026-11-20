@@ -66,7 +66,8 @@ jobs:
   android:
     needs: jvm
     runs-on: ubuntu-22.04
-    timeout-minutes: 45
+    # API 35 reached maplayers after the previous 45-minute job budget.
+    timeout-minutes: 60
     strategy:
       fail-fast: false
       matrix:

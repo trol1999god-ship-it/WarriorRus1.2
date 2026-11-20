@@ -9,15 +9,13 @@
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-.field public final synthetic f$1:J
+.field public final synthetic f$1:D
 
-.field public final synthetic f$2:Ljava/lang/String;
-
-.field public final synthetic f$3:Ljava/lang/String;
+.field public final synthetic f$2:D
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;JLjava/lang/String;Ljava/lang/String;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;DD)V
     .locals 0
 
     .line 0
@@ -25,11 +23,9 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda87;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iput-wide p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda87;->f$1:J
+    iput-wide p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda87;->f$1:D
 
-    iput-object p4, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda87;->f$2:Ljava/lang/String;
-
-    iput-object p5, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda87;->f$3:Ljava/lang/String;
+    iput-wide p4, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda87;->f$2:D
 
     return-void
 .end method
@@ -42,13 +38,11 @@
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda87;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iget-wide v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda87;->f$1:J
+    iget-wide v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda87;->f$1:D
 
-    iget-object v3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda87;->f$2:Ljava/lang/String;
+    iget-wide v3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda87;->f$2:D
 
-    iget-object v4, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda87;->f$3:Ljava/lang/String;
-
-    invoke-virtual {v0, v1, v2, v3, v4}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$buildHillshade$64$org-rabochaya-projects-LocalMapActivity(JLjava/lang/String;Ljava/lang/String;)V
+    invoke-virtual {v0, v1, v2, v3, v4}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$longPressed$22$org-rabochaya-projects-LocalMapActivity(DD)V
 
     return-void
 .end method

@@ -230,6 +230,20 @@ public final class MapAndroidChecks extends Instrumentation {
    check(body.contains("href=\""+movedHref+"\"")&&body.contains("src=\""+movedHref+"\""),"description link and image source follow relocated attachment");
    check(!movedIcon.equals("icons/symbol.svg")&&Arrays.equals(svg,assets(destDoc).get("target/"+movedIcon)),"collision relocates SVG and updates its style");
    check(Arrays.equals(conflict,assets(destDoc).get("target/"+href))&&Arrays.equals(conflict,assets(destDoc).get("target/icons/symbol.svg")),"collision keeps both preexisting files byte-for-byte");
+   ByteArrayOutputStream kmz=new ByteArrayOutputStream();
+   call(destDoc,"kmz",new Class[]{OutputStream.class},kmz);
+   Object imported=codec.getMethod("read",InputStream.class,boolean.class)
+     .invoke(null,new ByteArrayInputStream(kmz.toByteArray()),true);
+   long importedId=(Long)call(store,"insert",new Class[]{codec,String.class},imported,"QA_TRANSFER_ROUNDTRIP");
+   try{
+    Object reopened=call(store,"load",new Class[]{long.class},importedId);
+    String movedId=moved.getAttribute("id");
+    check(treeToken(destDoc).equals(treeToken(reopened)),"KMZ roundtrip preserves folders, geometry and all style and HTML references");
+    check(value(link(reopened,movedId,"transfer.jpg"),"href").equals(movedHref),"KMZ reimport resolves relocated attachment metadata");
+    check(assets(reopened).keySet().equals(assets(destDoc).keySet()),"KMZ reimport preserves original and relocated member paths");
+    for(String key:assets(destDoc).keySet())
+     check(Arrays.equals(assets(destDoc).get(key),assets(reopened).get(key)),"KMZ reimport preserves bytes for "+key);
+   }finally{call(store,"remove",new Class[]{long.class},importedId);}
   }finally{
    if(db!=null)db.execSQL("DROP TRIGGER IF EXISTS qa_cross_abort");
    if(activity!=null){Activity previous=activity;runOnMainSync(()->previous.finish());activity=null;}
@@ -591,12 +605,13 @@ public final class MapAndroidChecks extends Instrumentation {
  void checkCompactMapDock()throws Exception {
   Activity owner=activity;
   float density=owner.getResources().getDisplayMetrics().density;
+  Field dockField=owner.getClass().getDeclaredField("mapDock");dockField.setAccessible(true);
+  android.widget.LinearLayout dock=(android.widget.LinearLayout)dockField.get(owner);
+  android.view.View mapView=(android.view.View)map();
   runOnMainSync(()->owner.getWindow().setLayout(Math.round(290*density),-1));
   try {
    Thread.sleep(500);
    runOnMainSync(()->{
-    android.widget.LinearLayout root=(android.widget.LinearLayout)((android.view.ViewGroup)owner.findViewById(android.R.id.content)).getChildAt(0);
-    android.widget.LinearLayout dock=(android.widget.LinearLayout)root.getChildAt(1);
     android.widget.HorizontalScrollView scroll=(android.widget.HorizontalScrollView)dock.getChildAt(0);
     android.widget.LinearLayout tools=(android.widget.LinearLayout)scroll.getChildAt(0);
     check(tools.getChildAt(0).getWidth()>=Math.round(48*density),"compact map retains a 48 dp tool target");
@@ -605,6 +620,7 @@ public final class MapAndroidChecks extends Instrumentation {
     android.graphics.Rect visible=new android.graphics.Rect();
     check(tools.getChildAt(5).getGlobalVisibleRect(visible)&&visible.width()>=Math.round(48*density),"last tool reachable at compact width");
     check(dock.getChildAt(1).getGlobalVisibleRect(visible)&&visible.width()>=Math.round(48*density),"collapse remains pinned outside the scrolling area");
+    check(mapView.getParent()==dock.getParent()&&mapView.getBottom()>dock.getBottom(),"dock floats over the map");
    });
   } finally {
    runOnMainSync(()->owner.getWindow().setLayout(-1,-1));
@@ -653,7 +669,13 @@ public final class MapAndroidChecks extends Instrumentation {
    for(String label:new String[]{"Меню","Карты","Метки","Файловый менеджер","Ориентирование","Поиск на карте"})check(findDescription(getUiAutomation().getRootInActiveWindow(),label)!=null,"workspace exposes "+label);
    Object overview=Class.forName("org.rabochaya.projects.BundledTiles",true,context.getClassLoader()).getConstructor(android.content.res.AssetManager.class).newInstance(context.getAssets());
    for(int z=1;z<=3;z++){int n=1<<z;for(int x=0;x<n;x++)for(int y=0;y<n;y++){Bitmap tile=(Bitmap)call(overview,"tile",new Class[]{int.class,int.class,int.class},z,x,y);check(tile!=null&&tile.getWidth()==256&&tile.getHeight()==256,"bundled overview tile decodes "+z+"/"+x+"/"+y);tile.recycle();}}
-   clickDescription("Свернуть / развернуть инструменты");check(findDescription(getUiAutomation().getRootInActiveWindow(),"Карты")==null,"collapse hides toolbar");clickDescription("Свернуть / развернуть инструменты");check(findDescription(getUiAutomation().getRootInActiveWindow(),"Карты")!=null,"expand restores toolbar");
+   capture("workspace-overlay");
+   android.view.View mapView=(android.view.View)map();int height=mapView.getHeight();
+   clickDescription("Свернуть / развернуть инструменты");check(findDescription(getUiAutomation().getRootInActiveWindow(),"Карты")==null,"collapse hides toolbar");
+   Field dockField=activity.getClass().getDeclaredField("mapDock");dockField.setAccessible(true);
+   android.view.View dock=(android.view.View)dockField.get(activity);
+   check(dock.getWidth()==Math.round(48*activity.getResources().getDisplayMetrics().density)&&mapView.getHeight()==height,"collapsed dock keeps one target and full map height");
+   clickDescription("Свернуть / развернуть инструменты");check(findDescription(getUiAutomation().getRootInActiveWindow(),"Карты")!=null,"expand restores toolbar");
    clickDescription("Свернуть / развернуть координаты");check(!context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).getBoolean("show_coordinates",true),"coordinate collapse persisted");
    setViewport(.4,.45,5);final Activity first=activity;runOnMainSync(new Runnable(){public void run(){first.finish();}});waitForIdleSync();launchWorkspace();
    final Activity reopened=activity;activity=first;stableMainMap();check(activity==reopened&&activity!=first,"stale finished launcher Activity resolves to the live reopened map");

@@ -42,7 +42,7 @@
 
     iget-object v2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda68;->f$2:[D
 
-    invoke-virtual {v0, v1, v2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$importFinished$70$org-rabochaya-projects-LocalMapActivity(Ljava/lang/String;[D)V
+    invoke-virtual {v0, v1, v2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$importFinished$71$org-rabochaya-projects-LocalMapActivity(Ljava/lang/String;[D)V
 
     return-void
 .end method

@@ -108,7 +108,25 @@ public final class LocalMapView extends View {
    else {Path path=new Path();path.setFillType(Path.FillType.EVEN_ODD);for(List<double[]> ring:g.rings){boolean first=true;double previous=0;for(double[] c:ring){double worldX=MapMath.x(c[0]);double px;if(first)px=MapMath.delta(worldX,cx);else px=previous+MapMath.delta(worldX,MapMath.wrap(cx+previous));previous=px;float x=(float)(getWidth()/2.0+px*world()),y=(float)(getHeight()/2.0+(MapMath.y(c[1])-cy)*world());if(label==null)label=new float[]{x,y};if(first){path.moveTo(x,y);first=false;}else path.lineTo(x,y);}if("Polygon".equals(g.type))path.close();}
     if("Polygon".equals(g.type)){if(!Boolean.FALSE.equals(style.fill)){paint.setStyle(Paint.Style.FILL);paint.setColor(style.polygon==null?(KmlComponentStyle.DEFAULT_COLOR&0xffffff)|0x45000000:style.polygon);canvas.drawPath(path,paint);}paint.setStyle(Paint.Style.STROKE);paint.setColor(line);if(!Boolean.FALSE.equals(style.outline)&&(style.width==null||style.width>0))canvas.drawPath(path,paint);}else if(style.width==null||style.width>0)canvas.drawPath(path,paint);
    }}
-   if(label!=null&&labels++<200&&(style.label==null||(style.label>>>24)!=0)&&(style.labelScale==null||style.labelScale>0)){paint.setColor(style.label==null?0xffffffff:style.label);paint.setStyle(Paint.Style.FILL);paint.setTextSize(14*getResources().getDisplayMetrics().scaledDensity*(style.labelScale==null?1:style.labelScale));paint.setShadowLayer(3,1,1,0xff000000);canvas.drawText(f.name,label[0]+14,label[1]-14,paint);paint.clearShadowLayer();}
+   if(label!=null&&labels++<200&&(style.label==null||(style.label>>>24)!=0)&&(style.labelScale==null||style.labelScale>0)){
+    float textX=label[0]+14,textY=label[1]-14;
+    paint.setTextSize(14*getResources().getDisplayMetrics().scaledDensity*(style.labelScale==null?1:style.labelScale));
+    if(style.label==null){
+     paint.setColor(0xeaffffff);
+     paint.setStyle(Paint.Style.STROKE);
+     paint.setStrokeWidth(2*getResources().getDisplayMetrics().density);
+     canvas.drawText(f.name,textX,textY,paint);
+     paint.setColor(0xff151515);
+     paint.setStyle(Paint.Style.FILL);
+     canvas.drawText(f.name,textX,textY,paint);
+    }else{
+     paint.setColor(style.label);
+     paint.setStyle(Paint.Style.FILL);
+     paint.setShadowLayer(3,1,1,0xff000000);
+     canvas.drawText(f.name,textX,textY,paint);
+     paint.clearShadowLayer();
+    }
+   }
   }
   drawDraft(canvas);paint.setStyle(Paint.Style.FILL);paint.setColor(0xfff0cf52);float x=getWidth()/2f,y=getHeight()/2f;canvas.drawCircle(x,y,3*getResources().getDisplayMetrics().density,paint);
  }

@@ -58,7 +58,7 @@
 
     move v6, p2
 
-    invoke-virtual/range {v0 .. v6}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$selectedOzi$57$org-rabochaya-projects-LocalMapActivity(Landroid/net/Uri;Landroid/net/Uri;Ljava/lang/String;Landroid/widget/CheckBox;Landroid/content/DialogInterface;I)V
+    invoke-virtual/range {v0 .. v6}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$selectedOzi$58$org-rabochaya-projects-LocalMapActivity(Landroid/net/Uri;Landroid/net/Uri;Ljava/lang/String;Landroid/widget/CheckBox;Landroid/content/DialogInterface;I)V
 
     return-void
 .end method

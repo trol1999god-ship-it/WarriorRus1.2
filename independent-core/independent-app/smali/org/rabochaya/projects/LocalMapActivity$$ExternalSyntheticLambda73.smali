@@ -36,7 +36,7 @@
 
     iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda73;->f$1:Landroid/app/AlertDialog;
 
-    invoke-virtual {v0, v1, p1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$selectedOzi$58$org-rabochaya-projects-LocalMapActivity(Landroid/app/AlertDialog;Landroid/content/DialogInterface;)V
+    invoke-virtual {v0, v1, p1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$selectedOzi$59$org-rabochaya-projects-LocalMapActivity(Landroid/app/AlertDialog;Landroid/content/DialogInterface;)V
 
     return-void
 .end method

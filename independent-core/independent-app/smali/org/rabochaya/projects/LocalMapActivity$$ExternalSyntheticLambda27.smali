@@ -3,19 +3,21 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Ljava/lang/Runnable;
+.implements Landroid/content/DialogInterface$OnClickListener;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-.field public final synthetic f$1:Ljava/util/List;
+.field public final synthetic f$1:Landroid/widget/Spinner;
 
-.field public final synthetic f$2:Lorg/rabochaya/projects/KmlSymbolAssets;
+.field public final synthetic f$2:Landroid/widget/Spinner;
+
+.field public final synthetic f$3:Landroid/widget/CheckBox;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/util/List;Lorg/rabochaya/projects/KmlSymbolAssets;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/Spinner;Landroid/widget/Spinner;Landroid/widget/CheckBox;)V
     .locals 0
 
     .line 0
@@ -23,26 +25,34 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;->f$1:Ljava/util/List;
+    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;->f$1:Landroid/widget/Spinner;
 
-    iput-object p3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;->f$2:Lorg/rabochaya/projects/KmlSymbolAssets;
+    iput-object p3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;->f$2:Landroid/widget/Spinner;
+
+    iput-object p4, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;->f$3:Landroid/widget/CheckBox;
 
     return-void
 .end method
 
 
 # virtual methods
-.method public final run()V
-    .locals 3
+.method public final onClick(Landroid/content/DialogInterface;I)V
+    .locals 6
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;->f$1:Ljava/util/List;
+    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;->f$1:Landroid/widget/Spinner;
 
-    iget-object v2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;->f$2:Lorg/rabochaya/projects/KmlSymbolAssets;
+    iget-object v2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;->f$2:Landroid/widget/Spinner;
 
-    invoke-virtual {v0, v1, v2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$load$1$org-rabochaya-projects-LocalMapActivity(Ljava/util/List;Lorg/rabochaya/projects/KmlSymbolAssets;)V
+    iget-object v3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda27;->f$3:Landroid/widget/CheckBox;
+
+    move-object v4, p1
+
+    move v5, p2
+
+    invoke-virtual/range {v0 .. v5}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$coordinateOptions$49$org-rabochaya-projects-LocalMapActivity(Landroid/widget/Spinner;Landroid/widget/Spinner;Landroid/widget/CheckBox;Landroid/content/DialogInterface;I)V
 
     return-void
 .end method

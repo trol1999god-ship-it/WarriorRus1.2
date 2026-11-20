@@ -7,17 +7,17 @@
 
 
 # instance fields
-.field public final synthetic f$0:Lorg/rabochaya/projects/LocalMapActivity;
+.field public final synthetic f$0:Landroid/widget/TextView;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+.method public synthetic constructor <init>(Landroid/widget/TextView;)V
     .locals 0
 
     .line 0
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda14;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
+    iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda14;->f$0:Landroid/widget/TextView;
 
     return-void
 .end method
@@ -28,9 +28,9 @@
     .locals 1
 
     .line 0
-    iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda14;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
+    iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda14;->f$0:Landroid/widget/TextView;
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$mainMenu$25$org-rabochaya-projects-LocalMapActivity()V
+    invoke-virtual {v0}, Landroid/view/View;->requestLayout()V
 
     return-void
 .end method

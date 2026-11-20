@@ -3,15 +3,25 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Lorg/rabochaya/projects/CacheExport$Progress;
+.implements Ljava/lang/Runnable;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
+.field public final synthetic f$1:Landroid/net/Uri;
+
+.field public final synthetic f$2:Landroid/net/Uri;
+
+.field public final synthetic f$3:Ljava/lang/String;
+
+.field public final synthetic f$4:Lorg/rabochaya/projects/OziCalibration$Encoding;
+
+.field public final synthetic f$5:Ljava/lang/String;
+
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/net/Uri;Landroid/net/Uri;Ljava/lang/String;Lorg/rabochaya/projects/OziCalibration$Encoding;Ljava/lang/String;)V
     .locals 0
 
     .line 0
@@ -19,18 +29,38 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda0;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
+    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda0;->f$1:Landroid/net/Uri;
+
+    iput-object p3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda0;->f$2:Landroid/net/Uri;
+
+    iput-object p4, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda0;->f$3:Ljava/lang/String;
+
+    iput-object p5, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda0;->f$4:Lorg/rabochaya/projects/OziCalibration$Encoding;
+
+    iput-object p6, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda0;->f$5:Ljava/lang/String;
+
     return-void
 .end method
 
 
 # virtual methods
-.method public final update(II)V
-    .locals 1
+.method public final run()V
+    .locals 6
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda0;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$buildHillshade$63$org-rabochaya-projects-LocalMapActivity(II)V
+    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda0;->f$1:Landroid/net/Uri;
+
+    iget-object v2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda0;->f$2:Landroid/net/Uri;
+
+    iget-object v3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda0;->f$3:Ljava/lang/String;
+
+    iget-object v4, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda0;->f$4:Lorg/rabochaya/projects/OziCalibration$Encoding;
+
+    iget-object v5, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda0;->f$5:Ljava/lang/String;
+
+    invoke-virtual/range {v0 .. v5}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$importOzi$61$org-rabochaya-projects-LocalMapActivity(Landroid/net/Uri;Landroid/net/Uri;Ljava/lang/String;Lorg/rabochaya/projects/OziCalibration$Encoding;Ljava/lang/String;)V
 
     return-void
 .end method
