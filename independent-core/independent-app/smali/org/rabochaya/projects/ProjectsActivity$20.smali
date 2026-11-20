@@ -110,7 +110,8 @@
     const/4 v2, 0x0
 
     :goto_0
-    invoke-static {v1, v2}, Lorg/rabochaya/projects/KmlProject;->read(Ljava/io/InputStream;Z)Lorg/rabochaya/projects/KmlProject;
+    iget-object v3, p0, Lorg/rabochaya/projects/ProjectsActivity$20;->this$0:Lorg/rabochaya/projects/ProjectsActivity;
+    invoke-static {v3, v1, v2}, Lorg/rabochaya/projects/ObjectExchange;->readForImport(Landroid/app/Activity;Ljava/io/InputStream;Z)Lorg/rabochaya/projects/KmlProject;
 
     move-result-object v1
 

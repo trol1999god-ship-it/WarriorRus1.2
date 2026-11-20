@@ -255,8 +255,99 @@ public final class MapAndroidChecks extends Instrumentation {
  }
  org.w3c.dom.Element directElement(org.w3c.dom.Element parent,String tag){for(org.w3c.dom.Node n=parent.getFirstChild();n!=null;n=n.getNextSibling())if(n instanceof org.w3c.dom.Element&&tag.equals(n.getLocalName()))return (org.w3c.dom.Element)n;throw new AssertionError("Missing child "+tag);}
  void uniqueIds(org.w3c.dom.Element root,Set<String> seen){String id=root.getAttribute("id");if(!id.isEmpty())check(seen.add(id),"copy identifiers unique "+id);for(org.w3c.dom.Node n=root.getFirstChild();n!=null;n=n.getNextSibling())if(n instanceof org.w3c.dom.Element)uniqueIds((org.w3c.dom.Element)n,seen);}
+ Object readExchange(InputStream stream,boolean zip)throws Exception{
+  return staticCall("ObjectExchange","read",new Class[]{InputStream.class,boolean.class},stream,zip);
+ }
+ byte[] writeExchange(Object document,String format)throws Exception{
+  return (byte[])staticCall("ObjectExchange","write",new Class[]{codec,String.class},document,format);
+ }
+ boolean awaitDescription(String label)throws Exception{
+  long until=android.os.SystemClock.uptimeMillis()+6000;
+  do{
+   if(findDescription(getUiAutomation().getRootInActiveWindow(),label)!=null)return true;
+   Thread.sleep(100);
+  }while(android.os.SystemClock.uptimeMillis()<until);
+  return false;
+ }
+ void formatsBeforeRestart()throws Exception{
+  Context context=getTargetContext();Object store=storeClass.getConstructor(Context.class).newInstance(context);
+  try{
+   Object gpx,geo;
+   try(InputStream src=getContext().getAssets().open("navigation-exchange.gpx")){gpx=readExchange(src,false);}
+   try(InputStream src=getContext().getAssets().open("navigation-exchange.geojson")){geo=readExchange(src,false);}
+   String roundGpx=new String(writeExchange(gpx,"gpx"),"UTF-8");
+   check(roundGpx.contains("<rte>")&&roundGpx.contains("<trkseg>")&&roundGpx.contains("2026-01-01T08:02:00Z")&&roundGpx.contains("<sym>Flag</sym>"),"GPX keeps route, segments, time and symbol");
+   check(roundGpx.split("<trkseg>",-1).length==3&&roundGpx.contains("<ele>9.25</ele>"),"GPX preserves two segments and elevation");
+   org.json.JSONObject geoRound=new org.json.JSONObject(new String(writeExchange(geo,"geojson"),"UTF-8"));
+   org.json.JSONArray f=geoRound.getJSONArray("features");
+   check(f.length()==3&&f.getJSONObject(0).getInt("id")==17&&f.getJSONObject(0).getJSONObject("properties").getJSONObject("quality").getBoolean("verified"),"GeoJSON keeps typed ID and nested properties");
+   check(f.getJSONObject(1).getJSONObject("geometry").getJSONArray("coordinates").getJSONArray(1).length()==2,"missing elevation stays missing");
+   check(f.getJSONObject(2).getJSONObject("geometry").getJSONArray("coordinates").length()==2,"GeoJSON preserves polygon hole");
+   Object areaReimport=readExchange(new ByteArrayInputStream(writeExchange(geo,"gpx")),false);
+   check(new String(writeExchange(areaReimport,"geojson"),"UTF-8").contains("\"Polygon\""),"private GPX area extension restores its polygon");
+   int count=((List)call(store,"list",new Class[]{})).size();
+   for(String invalid:new String[]{
+     "{\"type\":\"Point\",\"coordinates\":[181,0]}",
+     "<!DOCTYPE gpx [<!ENTITY x SYSTEM 'file:///etc/passwd'>]><gpx xmlns='http://www.topografix.com/GPX/1/1' version='1.1'>&x;</gpx>"
+   }){
+    boolean rejected=false;try{readExchange(new ByteArrayInputStream(invalid.getBytes("UTF-8")),false);}catch(InvocationTargetException e){rejected=e.getCause() instanceof IOException;}
+    check(rejected,"invalid exchange input rejected before storage");
+   }
+   check(((List)call(store,"list",new Class[]{})).size()==count,"malformed data leaves store unchanged");
+   File importFile=new File(context.getFilesDir(),"qa-import.gpx");
+   try(InputStream in=getContext().getAssets().open("navigation-exchange.gpx");OutputStream out=new FileOutputStream(importFile)){
+    byte[] buffer=new byte[4096];int n;while((n=in.read(buffer))!=-1)out.write(buffer,0,n);
+   }
+   Activity importer=startActivitySync(new Intent(Intent.ACTION_VIEW).setClassName(context.getPackageName(),
+     "org.rabochaya.projects.ProjectsActivity").setDataAndType(Uri.fromFile(importFile),"application/gpx+xml")
+     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+   try{
+    waitText("Тестовая метка");
+    List rows=(List)call(store,"list",new Class[]{});
+    check(rows.size()==count+1,"existing project importer commits the GPX as a new project");
+    long importedId=rows.get(0).getClass().getField("id").getLong(rows.get(0));
+    call(store,"remove",new Class[]{long.class},importedId);
+   }finally{runOnMainSync(()->importer.finish());importFile.delete();}
+   long id=(Long)call(store,"insert",new Class[]{codec,String.class},geo,"QA_FORMATS");
+   Class[] signature={storeClass,long.class,org.w3c.dom.Element.class,String.class,String.class,String.class,List.class};
+   Object created=staticCall("ObjectTreeWrites","saveMapFeature",signature,store,id,null,"Point","Lifecycle point","Before edit",Arrays.asList(new double[]{4.9,52.37,11}));
+   org.w3c.dom.Element root=(org.w3c.dom.Element)call(created,"root",new Class[]{});
+   org.w3c.dom.NodeList marks=root.getElementsByTagNameNS("*","Placemark");
+   org.w3c.dom.Element fresh=(org.w3c.dom.Element)marks.item(marks.getLength()-1);
+   String pointId=fresh.getAttribute("id");
+   Object edited=staticCall("ObjectTreeWrites","saveMapFeature",signature,store,id,fresh,null,"Lifecycle edited","After edit",Arrays.asList(new double[]{4.91,52.38,19}));
+   Object media=staticCall("MediaLinks","add",new Class[]{codec,org.w3c.dom.Element.class,String.class,String.class,byte[].class},edited,element(edited,pointId),"fixture.jpg","image/jpeg",new byte[]{3,9,7});
+   call(store,"saveDocument",new Class[]{long.class,codec},id,edited);
+   context.getSharedPreferences("qa_exchange",0).edit().putLong("project",id).putString("point",pointId).putString("href",value(media,"href")).commit();
+  }finally{call(store,"close",new Class[]{});}
+ }
+ void formatsAfterRestart()throws Exception{
+  Context context=getTargetContext();android.content.SharedPreferences state=context.getSharedPreferences("qa_exchange",0);
+  long id=state.getLong("project",-1);String point=state.getString("point",""),href=state.getString("href","");
+  check(id>0,"format lifecycle kept a real process restart handoff");
+  Object store=storeClass.getConstructor(Context.class).newInstance(context);
+  try{
+   Object doc=call(store,"load",new Class[]{long.class},id);
+   check(kmlCoordinate(doc,point).equals("4.91,52.38,19.0"),"edited height and position survive process restart");
+   check(Arrays.equals(assets(doc).get(href),new byte[]{3,9,7}),"attachment survives process restart");
+   ByteArrayOutputStream kmz=new ByteArrayOutputStream();call(doc,"kmz",new Class[]{OutputStream.class},kmz);
+   Object nativeCopy=readExchange(new ByteArrayInputStream(kmz.toByteArray()),true);
+   check(treeToken(doc).equals(treeToken(nativeCopy))&&Arrays.equals(assets(nativeCopy).get(href),new byte[]{3,9,7}),"KMZ roundtrip retains edited objects and attachment");
+   for(String format:new String[]{"gpx","geojson"}){
+    byte[] bytes=writeExchange(doc,format);Object imported=readExchange(new ByteArrayInputStream(bytes),false);
+    long copy=(Long)call(store,"insert",new Class[]{codec,String.class},imported,"QA_FORMAT_REIMPORT");
+    try{
+     Object reopened=call(store,"load",new Class[]{long.class},copy);
+     String content=new String(writeExchange(reopened,format),"UTF-8");
+     check(content.contains("Lifecycle edited")&&content.contains("After edit")&&content.contains("19"),"reimport preserves edited data "+format);
+     check(assets(reopened).isEmpty()&&!content.contains(href),"interchange keeps attachment paths private "+format);
+     try(OutputStream out=new FileOutputStream(new File(context.getExternalFilesDir(null),"exported-exchange."+format))){out.write(bytes);}
+    }finally{call(store,"remove",new Class[]{long.class},copy);}
+   }
+  }finally{call(store,"remove",new Class[]{long.class},id);call(store,"close",new Class[]{});state.edit().clear().commit();}
+ }
  void clipboardScreen()throws Exception{
-  clipboardAtomicChecks();crossProjectClipboardChecks();Context context=getTargetContext();installTileFixture();int network=requests.get();Object store=storeClass.getConstructor(Context.class).newInstance(context);long id=-1;boolean handoff=false;
+  formatsBeforeRestart();clipboardAtomicChecks();crossProjectClipboardChecks();Context context=getTargetContext();installTileFixture();int network=requests.get();Object store=storeClass.getConstructor(Context.class).newInstance(context);long id=-1;boolean handoff=false;
   final android.content.ClipboardManager[] systemHolder=new android.content.ClipboardManager[1];runOnMainSync(new Runnable(){public void run(){systemHolder[0]=(android.content.ClipboardManager)getTargetContext().getSystemService(Context.CLIPBOARD_SERVICE);systemHolder[0].setPrimaryClip(ClipData.newPlainText("QA","QA_SYSTEM_UNTOUCHED"));}});android.content.ClipboardManager system=systemHolder[0];
   String xml="<kml xmlns='http://www.opengis.net/kml/2.2'><Document><Folder id='clip_source'><name>CLIP_SOURCE</name><Style id='clip_style'><LineStyle><color>ff00ff00</color></LineStyle></Style><Placemark id='clip_one'><name>CLIP_ONE</name><styleUrl>#clip_style</styleUrl><MultiGeometry><LineString><altitudeMode>absolute</altitudeMode><coordinates>10,20,123 11,21,-4</coordinates></LineString><Polygon><outerBoundaryIs><LinearRing><coordinates>0,0,7 2,0,8 2,2,9 0,0,7</coordinates></LinearRing></outerBoundaryIs><innerBoundaryIs><LinearRing><coordinates>0.1,0.1,5 0.2,0.1,6 0.2,0.2,7 0.1,0.1,5</coordinates></LinearRing></innerBoundaryIs></Polygon></MultiGeometry></Placemark></Folder><Folder id='clip_dest'><name>CLIP_DEST</name></Folder></Document></kml>";
   try{
@@ -271,6 +362,7 @@ public final class MapAndroidChecks extends Instrumentation {
   }finally{if(!handoff){staticCall("ObjectClipboardWrites","clear",new Class[]{storeClass},store);if(id>0)call(store,"remove",new Class[]{long.class},id);}call(store,"close",new Class[]{});}
  }
  void clipboardReopen()throws Exception{
+  formatsAfterRestart();
   Context context=getTargetContext();android.content.SharedPreferences prefs=context.getSharedPreferences("qa_clip_handoff",0);long id=prefs.getLong("project",-1);check(id>0,"clipboard force-stop handoff exists");Object store=storeClass.getConstructor(Context.class).newInstance(context);
   try{Object doc=call(store,"load",new Class[]{long.class},id);check(treeToken(doc).equals(prefs.getString("token","")),"force-stop retains committed XML");Object clip=objectClip(store);check(clip!=null&&clipStamp(clip).equals(prefs.getString("stamp","")),"force-stop retains exact cut clipboard");check((Boolean)clip.getClass().getField("cut").get(clip),"cut mode survives process stop");activity=startActivitySync(new Intent().setClassName(context.getPackageName(),"org.rabochaya.projects.ObjectManagerActivity").putExtra("project",id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));geometryReady();openManagerFolder("CLIP_RECOVERY_DEST");managerAction("Вставить в эту папку");click("Вставить");geometryReady();waitText("Изменения сохранены");doc=call(store,"load",new Class[]{long.class},id);check(objectClip(store)==null,"recovered cut consumed atomically");org.w3c.dom.Element dest=element(doc,"clip_dest");check(dest.getParentNode() instanceof org.w3c.dom.Element&&((org.w3c.dom.Element)dest.getParentNode()).getElementsByTagNameNS("*","name").item(0).getTextContent().equals("CLIP_RECOVERY_DEST"),"recovered cut moves original destination group");check(element(doc,"clip_source").getParentNode()==dest,"recovered hierarchy retains original source");check(dest.getElementsByTagNameNS("*","Placemark").getLength()==3,"recovered hierarchy retains original and two copies");check(assets(doc).size()==1&&Arrays.equals(assets(doc).get(prefs.getString("href","")),new byte[]{1,2,3,4}),"recovered copies keep payload bytes");check(managerField("folder").equals("0"),"recovered paste remaps the open destination");final Activity pasted=activity;runOnMainSync(()->pasted.finish());activity=startActivitySync(new Intent().setClassName(context.getPackageName(),"org.rabochaya.projects.ObjectManagerActivity").putExtra("project",id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));geometryReady();check(managerField("folder").equals("0"),"reopened manager uses the committed folder and revision");uniqueIds((org.w3c.dom.Element)call(doc,"root",new Class[]{}),new HashSet<String>());capture("clipboard-after-restart");
   }finally{staticCall("ObjectClipboardWrites","clear",new Class[]{storeClass},store);if(activity!=null){final Activity last=activity;runOnMainSync(new Runnable(){public void run(){last.finish();}});}call(store,"remove",new Class[]{long.class},id);call(store,"close",new Class[]{});prefs.edit().clear().commit();}
@@ -554,9 +646,9 @@ public final class MapAndroidChecks extends Instrumentation {
    });
    check(fullPanel[0],"first map layout displays both coordinate formats without clipping");
    waitText("Высота: нет локальных данных");
-   setViewport(.5,.5,10);check(findDescription(getUiAutomation().getRootInActiveWindow(),"Масштаб карты: 10 км")!=null,"equator scale at zoom 10");
-   setViewport(.5,.5,11);check(findDescription(getUiAutomation().getRootInActiveWindow(),"Масштаб карты: 5 км")!=null,"scale follows magnification");
-   setViewport(.5,.25,11);check(findDescription(getUiAutomation().getRootInActiveWindow(),"Масштаб карты: 2 км")!=null,"scale follows the latitude at the centre");
+   setViewport(.5,.5,10);check(awaitDescription("Масштаб карты: 10 км"),"equator scale at zoom 10");
+   setViewport(.5,.5,11);check(awaitDescription("Масштаб карты: 5 км"),"scale follows magnification");
+   setViewport(.5,.25,11);check(awaitDescription("Масштаб карты: 2 км"),"scale follows the latitude at the centre");
    byte[] before=(byte[])call(call(store,"load",new Class[]{long.class},id),"xml",new Class[]{});
    double wx=(Double)staticCall("MapMath","x",new Class[]{double.class},37.6),wy=(Double)staticCall("MapMath","y",new Class[]{double.class},55.75);setViewport(wx,wy,8);waitText("55.750000, 37.600000");waitText("UTM · WGS 84");
    clickDescription("Настройки координат центра");clickDescription("Основной формат координат");click("MGRS · WGS 84");clickDescription("Дополнительный формат координат");click("WGS 84 · градусы, минуты, секунды");click("Сохранить");check(settings.getInt("primary",-1)==4&&settings.getInt("secondary",-1)==2,"UI persists both coordinate formats");waitText("Центр MGRS");waitText("55°45′00.00″ N");double[] viewport=(double[])call(map(),"viewport",new Class[]{});check(Math.abs(viewport[0]-wx)<1e-10&&Math.abs(viewport[1]-wy)<1e-10,"changing coordinate formats does not move map");

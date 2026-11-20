@@ -1427,7 +1427,7 @@
 .end method
 
 .method private more()V
-    .locals 4
+    .locals 5
 
     .line 133
     new-instance v0, Landroid/app/AlertDialog$Builder;
@@ -1446,7 +1446,9 @@
 
     const-string v3, "\u0412\u043b\u043e\u0436\u0435\u043d\u0438\u044f KMZ"
 
-    filled-new-array {v3, v1, v2}, [Ljava/lang/String;
+    const-string v4, "Экспорт GPX / GeoJSON"
+
+    filled-new-array {v3, v1, v2, v4}, [Ljava/lang/String;
 
     move-result-object v1
 
@@ -1758,7 +1760,7 @@
 .end method
 
 .method private pickImport()V
-    .locals 5
+    .locals 9
 
     .line 119
     new-instance v0, Landroid/content/Intent;
@@ -1781,17 +1783,19 @@
 
     invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
 
-    const-string v1, "application/xml"
-
-    const-string v2, "application/octet-stream"
-
-    const-string v3, "application/vnd.google-earth.kml+xml"
-
-    const-string v4, "application/vnd.google-earth.kmz"
-
-    filled-new-array {v3, v4, v1, v2}, [Ljava/lang/String;
+    move-object v8, v0
+    const-string v0, "application/xml"
+    const-string v1, "application/octet-stream"
+    const-string v2, "application/vnd.google-earth.kml+xml"
+    const-string v3, "application/vnd.google-earth.kmz"
+    const-string v4, "application/gpx+xml"
+    const-string v5, "application/geo+json"
+    const-string v6, "application/json"
+    const-string v7, "text/plain"
+    filled-new-array/range {v0 .. v7}, [Ljava/lang/String;
 
     move-result-object v1
+    move-object v0, v8
 
     const-string v2, "android.intent.extra.MIME_TYPES"
 

@@ -10,6 +10,7 @@ public final class KmlProject {
  public static String safePath(String p)throws IOException{throw new AssertionError("ABI stub");}
  public org.w3c.dom.Element root(){throw new AssertionError("ABI stub");}
  public org.w3c.dom.Element byId(String id){throw new AssertionError("ABI stub");}
+ public static KmlProject read(java.io.InputStream in, boolean zip)throws IOException{throw new AssertionError("ABI stub");}
  public static KmlProject parse(byte[] bytes)throws IOException{throw new AssertionError("ABI stub");}
  public static org.w3c.dom.Element child(org.w3c.dom.Element e,String name){throw new AssertionError("ABI stub");}
  public static String text(org.w3c.dom.Element e,String name){throw new AssertionError("ABI stub");}

@@ -85,6 +85,17 @@
 
     invoke-static {p1, v0, v1, p2}, Lorg/rabochaya/projects/ProjectsActivity;->access$1800(Lorg/rabochaya/projects/ProjectsActivity;JLjava/lang/String;)V
 
+    return-void
+
     :cond_2
+    const/4 p1, 0x3
+    if-ne p2, p1, :done
+
+    iget-object p1, p0, Lorg/rabochaya/projects/ProjectsActivity$22;->this$0:Lorg/rabochaya/projects/ProjectsActivity;
+    invoke-static {p1}, Lorg/rabochaya/projects/ProjectsActivity;->access$200(Lorg/rabochaya/projects/ProjectsActivity;)J
+    move-result-wide v0
+    invoke-static {p1, v0, v1}, Lorg/rabochaya/projects/FormatExportActivity;->open(Landroid/app/Activity;J)V
+
+    :done
     return-void
 .end method

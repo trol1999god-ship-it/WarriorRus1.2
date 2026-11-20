@@ -50,7 +50,9 @@ with tempfile.TemporaryDirectory(prefix='rk-independent-') as tmp:
  assert all(c.startswith('org/rabochaya/projects/') for c in defined)
  missing=sorted(c for c in refs if c.startswith('org/rabochaya/projects/') and c not in defined)
  assert not missing,missing
- unexpected=sorted(r for r in refs if not r.startswith(('android/','java/','javax/','org/w3c/','org/xml/','org/rabochaya/projects/','dalvik/')))
+ # Android's bundled JSON and XML pull parser APIs. No implementation is bundled in the APK.
+ android_format_apis={'org/json/JSONArray','org/json/JSONException','org/json/JSONObject','org/json/JSONTokener','org/xmlpull/v1/XmlPullParser'}
+ unexpected=sorted(r for r in refs if r not in android_format_apis and not r.startswith(('android/','java/','javax/','org/w3c/','org/xml/','org/rabochaya/projects/','dalvik/')))
  assert not unexpected,unexpected
  report={'debuggable':a.debug,'variant':'debug-qa' if a.debug else ('release-unsigned' if a.release else 'development-nondebug'),'qualification':'development-only; full 26.1 parity not established','replacement_release':a.release,'package':'org.rabochaya.karta','version_code':27,'min_sdk':23,'permissions':['android.permission.INTERNET'],'legacy_app_classes':False,'unexpected_class_references':unexpected,'owned_class_count':len(defined),'missing_owned_classes':missing,'native_libraries':[],'api_stubs_packaged':False,'unsigned_sha256':hashlib.sha256(out.read_bytes()).hexdigest()}
  (root/'security/standalone-build.json').write_text(json.dumps(report,indent=2)+'\n');print('Development APK built; not an accepted 26.1 replacement:',out.stat().st_size,'bytes')

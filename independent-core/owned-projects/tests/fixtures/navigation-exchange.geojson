@@ -1,0 +1,17 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type": "Feature", "id": 17,
+     "properties": {"name": "Тестовая метка", "description": "Синтетическая точка", "quality": {"verified": true, "labels": ["test", null]}},
+     "geometry": {"type": "Point", "coordinates": [4.8922, 52.3731, 8.5]}},
+    {"type": "Feature", "id": "route-1",
+     "properties": {"name": "Тестовый маршрут", "rk:gpx-kind": "rte"},
+     "geometry": {"type": "LineString", "coordinates": [[4.892, 52.371, 7], [4.894, 52.372]]}},
+    {"type": "Feature", "id": "area-1",
+     "properties": {"name": "Тестовая область"},
+     "geometry": {"type": "Polygon", "coordinates": [
+       [[4.891, 52.37, 8], [4.897, 52.37, 8], [4.897, 52.375, 8], [4.891, 52.375, 8], [4.891, 52.37, 8]],
+       [[4.892, 52.371], [4.892, 52.372], [4.894, 52.372], [4.892, 52.371]]
+     ]}}
+  ]
+}
