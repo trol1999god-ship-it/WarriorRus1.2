@@ -18,6 +18,7 @@ import android.widget.Toast;
 /** Map-only chrome and owned, density-independent pictograms. */
 final class MapHud {
  static final int INK = 0xffeaf5ff;
+ static final int BAR = 0xff1a344b;
  static final int SURFACE = 0xf21a344b;
  private static final int EDGE = 0xff5b86a7;
  private static final int ACCENT = 0xff81c5f2;

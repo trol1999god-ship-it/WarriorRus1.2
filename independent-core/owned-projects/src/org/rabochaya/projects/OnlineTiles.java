@@ -3,6 +3,7 @@ import android.content.*;import android.database.*;import android.database.sqlit
 /** GET-only tile transport and durable private MBTiles cache. No project/attachment access. */
 public final class OnlineTiles implements Closeable {
  public static final long MAX_BYTES=256L*1024*1024;private static final int MAX_TILE=1048576;private final SQLiteDatabase db;public final TileSource source;private volatile boolean closed;private volatile HttpsURLConnection active;
+ private long esriDnsRetryAt;
  public OnlineTiles(Context context,TileSource source)throws IOException{this.source=source;File dir=new File(context.getFilesDir(),"tile-cache");if(!dir.isDirectory()&&!dir.mkdirs())throw new IOException("Не удалось создать кеш");db=SQLiteDatabase.openOrCreateDatabase(new File(dir,source.id+".mbtiles"),null);
   db.execSQL("CREATE TABLE IF NOT EXISTS tiles(zoom_level INTEGER NOT NULL,tile_column INTEGER NOT NULL,tile_row INTEGER NOT NULL,tile_data BLOB NOT NULL,expires INTEGER NOT NULL,etag TEXT,modified TEXT,pinned INTEGER NOT NULL DEFAULT 0)");db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS tile_index ON tiles(zoom_level,tile_column,tile_row)");db.execSQL("CREATE TABLE IF NOT EXISTS metadata(name TEXT PRIMARY KEY,value TEXT)");putMeta("name",source.name);putMeta("attribution",source.attribution);putMeta("scheme","tms");putMeta("type","baselayer");}
  private void putMeta(String key,String value){ContentValues v=new ContentValues();v.put("name",key);v.put("value",value);db.insertWithOnConflict("metadata",null,v,SQLiteDatabase.CONFLICT_REPLACE);}
@@ -17,14 +18,49 @@ public final class OnlineTiles implements Closeable {
   try(Cursor c=db.rawQuery("SELECT tile_data,expires,etag,modified,pinned FROM tiles WHERE zoom_level=? AND tile_column=? AND tile_row=?",key)){if(c.moveToFirst()){old=c.getBlob(0);expires=c.getLong(1);etag=c.getString(2);modified=c.getString(3);pinned=c.getInt(4);}}
   if(old!=null&&(!network||pin||expires>System.currentTimeMillis())){if(pin&&pinned==0){ContentValues v=new ContentValues();v.put("pinned",1);if(db.update("tiles",v,"zoom_level=? AND tile_column=? AND tile_row=?",key)!=1)throw new IOException("Не удалось закрепить тайл в кеше. Повторите загрузку");}return old;}if(!network)return old;
   try {
-   HttpsURLConnection connection=(HttpsURLConnection)new URL(source.url(z,x,y)).openConnection();active=connection;connection.setInstanceFollowRedirects(false);connection.setConnectTimeout(10000);connection.setReadTimeout(15000);connection.setRequestMethod("GET");connection.setDoOutput(false);connection.setRequestProperty("User-Agent","RabochayaKarta/26 (Android; interactive raster map)");connection.setRequestProperty("Accept","image/png,image/jpeg,image/webp,image/*;q=0.8");if(etag!=null)connection.setRequestProperty("If-None-Match",etag);if(modified!=null)connection.setRequestProperty("If-Modified-Since",modified);
-   if(closed)throw new IOException("Загрузка отменена");int code=connection.getResponseCode();if(code!=200&&!(code==304&&old!=null))throw new IOException("Сервер карты: HTTP "+code+". Повторите позже или проверьте источник");
+   int code=connectTile(new URL(source.url(z,x,y)),etag,modified);
+   HttpsURLConnection connection=active;
+   if(code!=200&&!(code==304&&old!=null))throw new IOException("Сервер карты: HTTP "+code+". Повторите позже или проверьте источник");
    String control=connection.getHeaderField("Cache-Control");boolean noStore=control!=null&&control.toLowerCase(Locale.US).contains("no-store");if(pin&&noStore)throw new IOException("Сервер запрещает сохранять эти тайлы");byte[] result=old;
    if(code==200){long size=connection.getContentLength();if(size>MAX_TILE)throw new IOException("Тайл больше 1 МиБ");try(InputStream in=connection.getInputStream();ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] buffer=new byte[16384];int n;while((n=in.read(buffer))!=-1){if(closed)throw new IOException("Загрузка отменена");if(out.size()+n>MAX_TILE)throw new IOException("Тайл больше 1 МиБ");out.write(buffer,0,n);}result=out.toByteArray();}Bitmap checked=OfflineTiles.decode(result);if(checked==null)throw new IOException("Источник вернул не растровый тайл PNG/JPEG/WebP");checked.recycle();}
    if(closed)throw new IOException("Загрузка отменена");if(noStore){db.delete("tiles","zoom_level=? AND tile_column=? AND tile_row=?",key);return result;}
    long now=System.currentTimeMillis(),until=expiry(control,connection.getExpiration(),now);ContentValues v=new ContentValues();v.put("zoom_level",z);v.put("tile_column",x);v.put("tile_row",MapMath.tmsRow(z,y));v.put("tile_data",result);v.put("expires",until);String newEtag=connection.getHeaderField("ETag"),newModified=connection.getHeaderField("Last-Modified");v.put("etag",newEtag!=null?newEtag:(code==304?etag:null));v.put("modified",newModified!=null?newModified:(code==304?modified:null));v.put("pinned",pin?1:pinned);
    db.beginTransaction();try{long[] totals=stats();long replaced=0;try(Cursor c=db.rawQuery("SELECT length(tile_data) FROM tiles WHERE zoom_level=? AND tile_column=? AND tile_row=?",key)){if(c.moveToFirst())replaced=c.getLong(0);}if(totals[1]-replaced+result.length>MAX_BYTES)throw new IOException("Кеш источника заполнен (256 МиБ). Очистите его или уменьшите область");if(db.insertWithOnConflict("tiles",null,v,SQLiteDatabase.CONFLICT_REPLACE)<0)throw new IOException("Не удалось записать тайл в кеш. Проверьте свободное место и повторите загрузку");db.setTransactionSuccessful();}finally{db.endTransaction();}return result;
   }catch(IOException e){if(old!=null&&!pin)return old;throw e;}finally{HttpsURLConnection connection=active;active=null;if(connection!=null)connection.disconnect();}
+ }
+ // Retain the catalogue URL as the cache key. Only the transport host can change.
+ private int connectTile(URL url,String etag,String modified)throws IOException{
+  boolean hasEsriMirror="services.arcgisonline.com".equalsIgnoreCase(url.getHost())
+    &&url.getPath().matches("(?i)/arcgis/rest/services/World_Imagery/MapServer/tile/[0-9]+/[0-9]+/[0-9]+")
+    &&url.getQuery()==null;
+  if(!hasEsriMirror)return connect(url,etag,modified);
+  long now=android.os.SystemClock.elapsedRealtime();
+  if(now>=esriDnsRetryAt){
+   try{return connect(url,etag,modified);}
+   catch(UnknownHostException unresolved){
+    HttpsURLConnection failed=active;
+    active=null;
+    if(failed!=null)failed.disconnect();
+    esriDnsRetryAt=now+30000;
+   }
+  }
+  return connect(new URL("https","server.arcgisonline.com",url.getFile()),etag,modified);
+ }
+ private int connect(URL url,String etag,String modified)throws IOException{
+  if(closed)throw new IOException("Загрузка отменена");
+  HttpsURLConnection connection=(HttpsURLConnection)url.openConnection();
+  active=connection;
+  connection.setInstanceFollowRedirects(false);
+  connection.setConnectTimeout(10000);
+  connection.setReadTimeout(15000);
+  connection.setRequestMethod("GET");
+  connection.setDoOutput(false);
+  connection.setRequestProperty("User-Agent","RabochayaKarta/26 (Android; interactive raster map)");
+  connection.setRequestProperty("Accept","image/png,image/jpeg,image/webp,image/*;q=0.8");
+  if(etag!=null)connection.setRequestProperty("If-None-Match",etag);
+  if(modified!=null)connection.setRequestProperty("If-Modified-Since",modified);
+  if(closed)throw new IOException("Загрузка отменена");
+  return connection.getResponseCode();
  }
  public static long expiry(String control,long expires,long now){if(control!=null){for(String part:control.toLowerCase(Locale.US).split(",")){String p=part.trim();if(p.equals("no-cache"))return now;}
    for(String part:control.toLowerCase(Locale.US).split(",")){String p=part.trim();if(p.startsWith("max-age="))try{long seconds=Long.parseLong(p.substring(8).replace("\"",""));return now+Math.max(0,Math.min(31536000,seconds))*1000;}catch(NumberFormatException ignored){}}

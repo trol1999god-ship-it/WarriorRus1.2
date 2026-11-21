@@ -2,7 +2,7 @@ package org.rabochaya.projects;
 import android.content.*;import android.graphics.*;import android.os.Handler;import android.os.Looper;import android.util.LruCache;import android.view.*;import java.io.*;import java.util.*;import java.util.concurrent.*;
 /** Independent raster map + KML geometry, sharing one Web Mercator viewport. */
 public final class LocalMapView extends View {
- public interface Listener {void center(double lat,double lon,double zoom);void picked(KmlProject.Feature feature);void error(String message);void settled(double x,double y,double zoom);void draftChanged(int count);void longPressed(double lat,double lon);}
+ public interface Listener {void center(double lat,double lon,double zoom);void picked(KmlProject.Feature feature);void error(String message);default void tileError(String message){error(message);}void settled(double x,double y,double zoom);void draftChanged(int count);void longPressed(double lat,double lon);}
  private final IdentityHashMap<org.w3c.dom.Element,KmlComponentStyle> componentStyles=new IdentityHashMap<>();
  private final Handler mainHandler = new Handler(Looper.getMainLooper());
  private final IdentityHashMap<org.w3c.dom.Element,SymbolImage> symbolImages=new IdentityHashMap<>();
@@ -96,7 +96,7 @@ public final class LocalMapView extends View {
  }
  private void request(final String key,final int z,final int x,final int y,final int layer,final RasterLayer group){
   if(disposed||paused||pending.size()>=32||pending.contains(key)||missing.contains(key))return;pending.add(key);
-  worker.execute(new Runnable(){public void run(){Bitmap b=null;String error=null;try{if(!disposed&&!paused){if(group!=null)b=group.tile(z,x,y,layer,useNetwork);else if(online!=null)b=online[layer].tile(z,x,y,useNetwork);else if(tiles!=null)b=tiles.tile(z,x,y);else if(bundled!=null)b=bundled.tile(z,x,y);}}catch(Exception e){error="Ошибка чтения тайла: "+e.getMessage();}final Bitmap result=b;final String message=error;post(new Runnable(){public void run(){pending.remove(key);if(disposed){if(result!=null)result.recycle();return;}if(result!=null)cache.put(key,result);else if(!paused){if(missing.size()>512)missing.clear();missing.add(key);}if(message!=null)listener.error(message);invalidate();}});}});
+  worker.execute(new Runnable(){public void run(){Bitmap b=null;String error=null;try{if(!disposed&&!paused){if(group!=null)b=group.tile(z,x,y,layer,useNetwork);else if(online!=null)b=online[layer].tile(z,x,y,useNetwork);else if(tiles!=null)b=tiles.tile(z,x,y);else if(bundled!=null)b=bundled.tile(z,x,y);}}catch(java.net.UnknownHostException e){error="Не удалось найти сервер карты. Проверьте сеть или попробуйте позже.";}catch(java.net.SocketTimeoutException e){error="Сервер карты не ответил вовремя.";}catch(Exception e){error="Ошибка чтения тайла: "+e.getMessage();}final Bitmap result=b;final String message=error;post(new Runnable(){public void run(){pending.remove(key);if(disposed){if(result!=null)result.recycle();return;}if(result!=null)cache.put(key,result);else if(!paused){if(missing.size()>512)missing.clear();missing.add(key);}if(message!=null&&!paused)listener.tileError(message);invalidate();}});}});
  }
  protected void onDraw(Canvas canvas){
   super.onDraw(canvas);canvas.drawColor(0xff253020);
@@ -138,10 +138,10 @@ public final class LocalMapView extends View {
   paint.setStyle(Paint.Style.STROKE);
   paint.setStrokeWidth(3*density);
   paint.setColor(MapHud.INK);
-  canvas.drawCircle(x,y,3.5f*density,paint);
+  canvas.drawCircle(x,y,6f*density,paint);
   paint.setStrokeWidth(1.5f*density);
   paint.setColor(WorkspaceUi.TEXT);
-  canvas.drawCircle(x,y,3.5f*density,paint);
+  canvas.drawCircle(x,y,6f*density,paint);
   paint.setStyle(Paint.Style.FILL);
  }
  private void drawTiles(Canvas canvas,int layer,TileSource source){drawTiles(canvas,layer,source,null);}
@@ -175,6 +175,7 @@ public final class LocalMapView extends View {
  }
  public boolean performClick(){super.performClick();return true;}
  public double[] bounds(){double halfX=getWidth()/2.0/world(),halfY=getHeight()/2.0/world();return new double[]{halfX>=.5?-180:MapMath.lon(cx-halfX),MapMath.lat(Math.min(1,cy+halfY)),halfX>=.5?180:MapMath.lon(cx+halfX),MapMath.lat(Math.max(0,cy-halfY))};}
+ void retryTiles(){missing.clear();invalidate();}
  public void suspend(boolean value){paused=value;RasterLayer[] stack=compositionLayers;if(value&&stack!=null)for(RasterLayer layer:stack)layer.interrupt();if(value){OnlineTiles[] sources=online;if(sources!=null)for(OnlineTiles source:sources)source.interrupt();}else{missing.clear();invalidate();}}
  public void close(){if(disposed)return;disposed=true;RasterLayer[] stack=compositionLayers;if(stack!=null)for(RasterLayer layer:stack)layer.cancel();OnlineTiles[] sources=online;if(sources!=null)for(OnlineTiles source:sources)source.cancel();worker.execute(new Runnable(){public void run(){if(compositionLayers!=null)for(RasterLayer layer:compositionLayers)layer.close();if(tiles!=null)tiles.close();if(online!=null)for(OnlineTiles source:online)source.close();}});worker.shutdown();cache.evictAll();for(Bitmap bitmap:symbolBitmaps.values())bitmap.recycle();symbolBitmaps.clear();symbolImages.clear();}
 }

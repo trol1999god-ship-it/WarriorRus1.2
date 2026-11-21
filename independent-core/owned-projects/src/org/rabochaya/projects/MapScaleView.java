@@ -16,11 +16,11 @@ final class MapScaleView extends View {
 
  MapScaleView(Activity activity) {
   super(activity);
-  inset = WorkspaceUi.dp(activity, 6);
+  inset = WorkspaceUi.dp(activity, 4);
   barLimit = WorkspaceUi.dp(activity, 96);
   paint.setColor(MapHud.INK);
   paint.setTypeface(WorkspaceUi.font(activity));
-  paint.setTextSize(11 * getResources().getDisplayMetrics().scaledDensity);
+  paint.setTextSize(10 * getResources().getDisplayMetrics().scaledDensity);
   setBackground(MapHud.panel(activity));
   setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_YES);
  }
@@ -35,7 +35,7 @@ final class MapScaleView extends View {
   double distance = magnitude * (factor >= 5 ? 5 : factor >= 2 ? 2 : 1);
   barLength = (float)(distance / metresPerPixel);
   String label;
-  if (distance >= 1000) label = String.format(Locale.US, "%,.0f км", distance / 1000);
+  if (distance >= 1000) label = String.format(Locale.US, "%,.0f км", distance / 1000).replace(',', ' ');
   else if (distance >= 1) label = String.format(Locale.US, "%.0f м", distance);
   else label = String.format(Locale.US, "%.0f см", distance * 100);
   if (!label.equals(caption)) {
@@ -48,13 +48,13 @@ final class MapScaleView extends View {
  @Override protected void onMeasure(int widthSpec, int heightSpec) {
   Paint.FontMetrics font = paint.getFontMetrics();
   setMeasuredDimension(resolveSize(barLimit + inset * 2, widthSpec),
-    resolveSize((int)Math.ceil(font.bottom - font.top) + inset * 3, heightSpec));
+    resolveSize((int)Math.ceil(font.bottom - font.top) + inset * 2 + 2, heightSpec));
  }
 
  @Override protected void onDraw(Canvas canvas) {
   if (caption.isEmpty()) return;
   float y = getHeight() - inset;
-  float end = inset + Math.min(barLength, getWidth() - inset * 2);
+  float end = inset + Math.max(0, Math.min(barLength, getWidth() - inset * 2));
   paint.setStrokeWidth(Math.max(1, inset / 4f));
   canvas.drawLine(inset, y, end, y, paint);
   canvas.drawLine(inset, y - inset / 2f, inset, y, paint);
