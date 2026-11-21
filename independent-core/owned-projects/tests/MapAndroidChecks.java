@@ -1154,8 +1154,12 @@ public final class MapAndroidChecks extends Instrumentation {
   capture("catalog-dns-recovered");
   Context context=getTargetContext();
   staticCall("OnlineMapSettings","select",new Class[]{Context.class,String.class,long.class},context,"USGSIMGTOPO",project);
-  activity=startActivitySync(new Intent().setClassName(context.getPackageName(),
-    "org.rabochaya.projects.OnlineMapActivity").putExtra("project",project).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+  monitor=addMonitor("org.rabochaya.projects.OnlineMapActivity",null,false);
+  clickDescription("Карты");
+  click("Кеш / онлайн");
+  activity=waitForMonitorWithTimeout(monitor,45000);
+  removeMonitor(monitor);
+  check(activity!=null,"selected retired source opens through the real map menu");
   waitText("Поставщик завершил онлайн-доступ");
   check(!waitText("Загружать тайлы из интернета").isEnabled(),"retired source disables its website toggle");
   check(find(getUiAutomation().getRootInActiveWindow(),"Скачать область в кеш",true)==null,"retired service offers no download action");
