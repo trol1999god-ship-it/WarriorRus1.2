@@ -1,6 +1,6 @@
 # Матрица соответствия «Рабочей карты» v26.1
 
-Исправления по Fold5 внесены в `c01709d`, `53419cc` и `b235f2d`. [Проверки карты](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955422002) · [Проверка ESRI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955719634) · [Компактные координаты](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955998395).
+Исправления по Fold5 внесены в `c01709d`, `53419cc` и `b235f2d`. [Проверки карты](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955422002) · [Проверка ESRI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955719634) · [Компактные координаты](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955998395). [QA APK](https://chatgpt.com/library?file_id=libfile_ba11ecbd049481919d6cea2c6fe984ff&account_id=personal) · [Архив стендовых испытаний](https://chatgpt.com/library?file_id=libfile_61cd5f5950a081918b774bdd02f3a935&account_id=personal).
 
 Масштаб и смена ширины окна проверены на `528b793`. [Целевой CI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44952501428) · [QA APK](https://chatgpt.com/library?file_id=libfile_669447ed46608191894badcd540f0e58&account_id=personal) · [Архив испытаний](https://chatgpt.com/library?file_id=libfile_2119bbf51ae08191b89b6cad92cef85d&account_id=personal).
 

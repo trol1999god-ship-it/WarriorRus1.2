@@ -18,6 +18,11 @@ cachewrites (10), catalogscreen (38) на API 23 и 35. API 35 проверил 
 720×900 при 160 dpi со сжатием до 290 dp и обратным расширением.
 [Тесты второго адреса ESRI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955719634) и [компактного табло](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955998395) относятся к последующим коммитам.
 
+На итоговом коммите на API 23 и 35 прошли launcher (197) и coordinates (51). Проверены три строки табло при 290 dp, переход ширины 720 → 290 → 720 dp, поворот, повторное открытие и сохранение состояния. Официальный Android Lint — 0 ошибок и 121 предупреждение. Аудит собранного APK прошёл, разрешение только INTERNET. На коммите ESRI API 23 прошёл catalogscreen (40) и cachewrites (10). На первом прогоне API 35 системный диалог ANR Pixel Launcher прервал catalogscreen. Повторяется только незавершённое задание API 35.
+
+[QA APK](https://chatgpt.com/library?file_id=libfile_ba11ecbd049481919d6cea2c6fe984ff&account_id=personal), SHA-256 `750ef357625d89f6c4771222391d6b7b3ef22b7aafe0ebf7d5304cd427206045`. Профиль debug-qa, одноразовая подпись.
+[Архив стендовых испытаний](https://chatgpt.com/library?file_id=libfile_61cd5f5950a081918b774bdd02f3a935&account_id=personal), SHA-256 `2b2fb76a82abc4a6de680fa7991274d729be235acecb664467d28df75fbb900d`.
+
 В [замерах каталога](security/fold-feedback-2026-11-22/catalog-samples.json) 43 из 54 разовых запросов
 дали растровый тайл. Для [12 слоёв ESRI](security/fold-feedback-2026-11-22/esri-mirrors.json) тела
 контрольных ответов совпали побайтно. Остальные проблемы включают HTTP
