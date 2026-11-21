@@ -91,6 +91,26 @@
           "artifact": 14712636349
         }
       ]
+    },
+    "map_resize": {
+      "sha": "528b7933d72e1be566885d9522d606f002a00744",
+      "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44952501428",
+      "apk_url": "https://chatgpt.com/library?file_id=libfile_669447ed46608191894badcd540f0e58&account_id=personal",
+      "apk_sha256": "1462a537801223c4eddc7e454ee271ddaf2db20237c9e869984ef35da9812944",
+      "archive_url": "https://chatgpt.com/library?file_id=libfile_2119bbf51ae08191b89b6cad92cef85d&account_id=personal",
+      "archive_sha256": "a687e8c834e7d280d366d1acb06a631b740072ee2e6567d0d5db7d88468284aa",
+      "android_ci": {
+        "23": {
+          "assertions": 196,
+          "verified_files": 49,
+          "artifact": 14725449871
+        },
+        "35": {
+          "assertions": 196,
+          "verified_files": 49,
+          "artifact": 14726805119
+        }
+      }
     }
   },
   "status_values": [
@@ -161,17 +181,19 @@
       "screen": "Главная карта",
       "function": "Координаты, высота, линейка, прицел и зум",
       "reference_behavior": "Доступный кадр эталона показал линейку слева вверху, прицел и две кнопки масштаба справа. Полное табло закрыто системным состоянием приложения.",
-      "current_behavior": "Координаты и линейка оформлены в палитре панели. Прицел стал кольцевым, кнопки зума сохраняют зоны 48×48 dp.",
+      "current_behavior": "Координаты и линейка оформлены в палитре панели. Прицел стал кольцевым, кнопки зума сохраняют зоны 48×48 dp. Нижняя кнопка масштаба выровнена по панели инструментов. Подпись подложки отделена от зон нажатий.",
       "evidence_source": [
         "Пусковой кадр v26.1, QA launcher и coordinates",
-        "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+        "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44952501428",
+        "https://chatgpt.com/library?file_id=libfile_2119bbf51ae08191b89b6cad92cef85d&account_id=personal"
       ],
       "visual_difference": "Сохранены доступные признаки пускового кадра. Оформление, метки и набор полей эталона видны частично.",
       "functional_difference": "Полная работа координатного табло и вариантов масштаба в эталоне за диалогом недоступна.",
       "priority": "P0",
       "status": "MISMATCH",
-      "fixing_commit": "e940ae0f943ba66086dd1a87a742b6dd1b42a1b1",
-      "retest": "API 23 — launcher 183, coordinates 51, maplayers 342, maplayersreopen 78. API 35 — launcher 183, coordinates 51, maplayers 343, maplayersreopen 78.",
+      "fixing_commit": "528b7933d72e1be566885d9522d606f002a00744",
+      "retest": "Целевой launcher для 528b793. API 23 — 196 проверок, API 35 — 196 проверок.",
       "qa_verification": {
         "status": "DYNAMIC_VERIFIED",
         "scope": "Форматы координат и их восстановление, линейка и обе кнопки зума.",
@@ -636,5 +658,134 @@
         "REL-01"
       ]
     }
-  ]
+  ],
+  "screen_review": {
+    "index_source": "https://chatgpt.com/library?file_id=libfile_45650a1dbc3081918ef2632b51a29b8b&account_id=personal",
+    "reference_evidence": "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal",
+    "entries": [
+      {
+        "screen": "Рабочий стол / карта",
+        "matrix_ids": [
+          "MAP-01",
+          "MAP-03"
+        ],
+        "implementation": "LocalMapActivity, LocalMapView",
+        "reference_visibility": "Пусковой кадр",
+        "finding": "На кадре 480×800 центры «+» и «−» около y=665 и y=723. Кнопки перенесены к нижнему краю, подпись карты отведена влево. Динамика карты эталона за диалогом целостности."
+      },
+      {
+        "screen": "Панель координат",
+        "matrix_ids": [
+          "MAP-03"
+        ],
+        "implementation": "coordinateOptions, center",
+        "reference_visibility": "Фрагмент пускового кадра",
+        "finding": "Виден только фрагмент плашки и масштабная линейка. Основной и дополнительный форматы, высота и сворачивание подтверждены в независимой сборке."
+      },
+      {
+        "screen": "Панель инструментов",
+        "matrix_ids": [
+          "MAP-02"
+        ],
+        "implementation": "LocalMapActivity.show, sizeDock",
+        "reference_visibility": "Пусковой кадр",
+        "finding": "Видны пять инструментов. Порядок сопоставлен по кадру, прокрутка и отдельный переключатель проверяются в QA. Действия оригинала недоступны."
+      },
+      {
+        "screen": "Меню",
+        "matrix_ids": [
+          "MENU-01"
+        ],
+        "implementation": "mainMenu, mapsMenu, marksMenu, orientationMenu",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Доступны QA-переходы пяти инструментов. Пункты и порядок эталона открыты для сверки."
+      },
+      {
+        "screen": "Слои",
+        "matrix_ids": [
+          "LAYERS-01"
+        ],
+        "implementation": "MapLayersActivity",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Управление видимостью, непрозрачностью и порядком подтверждено сценариями maplayers и maplayersreopen."
+      },
+      {
+        "screen": "Карты и источники",
+        "matrix_ids": [
+          "LAYERS-01"
+        ],
+        "implementation": "MapCatalogActivity, OnlineMapActivity",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "QA проверил переходы к каталогу, выбор подложки и возврат к MBTiles. Нужна сверка структуры каталога эталона."
+      },
+      {
+        "screen": "Объекты / встроенный режим",
+        "matrix_ids": [
+          "OBJECTS-01"
+        ],
+        "implementation": "ObjectManagerActivity",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Групповые операции, поиск, фильтры и восстановление покрыты objectmanager и managerfilters."
+      },
+      {
+        "screen": "Файловый менеджер",
+        "matrix_ids": [
+          "FILES-01",
+          "FOLDER-01"
+        ],
+        "implementation": "ProjectsActivity, ObjectManagerActivity",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Штатный список проектов и межпроектные переносы покрыты objectmanager и clipboard. Требуется сравнение режимов и переходов."
+      },
+      {
+        "screen": "Карточка объекта",
+        "matrix_ids": [
+          "POINTS-01",
+          "MEDIA-01"
+        ],
+        "implementation": "LocalMapActivity.picked, AttachmentsActivity",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Открытие карточки и привязка фото подтверждены markerlifecycle и markerlifecyclereopen."
+      },
+      {
+        "screen": "Редактор точки и значков",
+        "matrix_ids": [
+          "POINTS-01",
+          "SVG-01"
+        ],
+        "implementation": "LocalMapActivity.editObject, ObjectManagerActivity",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Правка названия, координат, описания и SVG подтверждена после перезапуска и импорта KMZ."
+      },
+      {
+        "screen": "Маршруты и области",
+        "matrix_ids": [
+          "ROUTE-01",
+          "GEOM-01"
+        ],
+        "implementation": "GeometryEditorActivity, LocalMapActivity.startDrawing",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Рисование на карте, редактор вершин и черновики есть в независимой реализации. Сопоставление меню и полного цикла открыто."
+      },
+      {
+        "screen": "Импорт / экспорт",
+        "matrix_ids": [
+          "IO-01"
+        ],
+        "implementation": "ProjectsActivity, FormatExportActivity",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Архив QA подтверждает повторный импорт KMZ с SVG и фото. Параметры и порядок экранов эталона открыты для сверки."
+      },
+      {
+        "screen": "Настройки и офлайн-карты",
+        "matrix_ids": [
+          "SET-01",
+          "LAYERS-01"
+        ],
+        "implementation": "display, CacheExportActivity, CompositionDownloadActivity, DemActivity",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Настройки отображения и локальный кеш реализованы. Требуются сверка параметров эталона и проверка компаса на Fold5."
+      }
+    ]
+  }
 }
