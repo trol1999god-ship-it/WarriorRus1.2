@@ -153,10 +153,10 @@
         "apk_url": "https://chatgpt.com/library?file_id=libfile_ba11ecbd049481919d6cea2c6fe984ff&account_id=personal",
         "evidence_url": "https://chatgpt.com/library?file_id=libfile_61cd5f5950a081918b774bdd02f3a935&account_id=personal",
         "apk_sha256": "750ef357625d89f6c4771222391d6b7b3ef22b7aafe0ebf7d5304cd427206045",
-        "evidence_sha256": "2b2fb76a82abc4a6de680fa7991274d729be235acecb664467d28df75fbb900d",
+        "evidence_sha256": "ede33b7cf5a055caefa667d1da95432cafd8fe7e1fde71b7f93a98aa07b49fd8",
         "apk_commit": "b235f2d8f61455fdd81e4803d6b4f06cb83d862b",
         "apk_build_artifact": 14727711358,
-        "qa_summary": "На итоговом коммите на API 23 и 35 прошли launcher (197) и coordinates (51). Проверены три строки табло при 290 dp, переход ширины 720 → 290 → 720 dp, поворот, повторное открытие и сохранение состояния. Официальный Android Lint — 0 ошибок и 121 предупреждение. Аудит собранного APK прошёл, разрешение только INTERNET. На коммите ESRI API 23 прошёл catalogscreen (40) и cachewrites (10). На первом прогоне API 35 системный диалог ANR Pixel Launcher прервал catalogscreen. Повторяется только незавершённое задание API 35.",
+        "qa_summary": "На итоговом коммите на API 23 и 35 прошли launcher (197) и coordinates (51). Проверены три строки при 290 dp, поворот, повторное открытие и сохранение состояния. На API 35 проверен переход 720 → 290 → 720 dp. Официальный Android Lint — 0 ошибок и 121 предупреждение. Аудит APK прошёл, разрешение только INTERNET. На коммите ESRI на API 23 и 35 прошли catalogscreen (40) и cachewrites (10). Повтор незавершённого задания API 35 после ANR Pixel Launcher прошёл. В архиве сохранены обе попытки.",
         "android_qa": {
           "api23": {
             "launcher": {
@@ -193,7 +193,18 @@
           "api35_first_attempt": {
             "catalogscreen": "BLOCKED_BY_PIXEL_LAUNCHER_ANR",
             "cachewrites": 10
-          }
+          },
+          "api35_retry": {
+            "catalogscreen": {
+              "passed": true,
+              "assertions": 40
+            },
+            "cachewrites": {
+              "passed": true,
+              "assertions": 10
+            }
+          },
+          "api35_retry_artifact": 14728150713
         }
       }
     }
