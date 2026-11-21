@@ -13,6 +13,8 @@
 и подписи, сохранение проекта и восстановление состояния. Это проверка
 окна эмулятора. Физические шарнир и оба дисплея Fold5 остаются открытыми.
 
+Дополнительный [прогон API 35](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44952988154) с дисплеем 720×900 при 160 dpi прошёл 196 проверок. Ширина окна менялась 720 → 290 → 720 dp. Центр и зум сохранились, подпись и зоны управления не перекрылись. [Кадры и журналы](https://chatgpt.com/library?file_id=libfile_e357d775b5748191a3954469110bc63e&account_id=personal). Изменения после сборки QA касаются CI и документации.
+
 [QA APK](https://chatgpt.com/library?file_id=libfile_669447ed46608191894badcd540f0e58&account_id=personal), SHA-256 `1462a537801223c4eddc7e454ee271ddaf2db20237c9e869984ef35da9812944`. Сборка из задания API 35,
 профиль `debug-qa`, одноразовая подпись.
 [Архив доказательств](https://chatgpt.com/library?file_id=libfile_2119bbf51ae08191b89b6cad92cef85d&account_id=personal), SHA-256 `a687e8c834e7d280d366d1acb06a631b740072ee2e6567d0d5db7d88468284aa`.

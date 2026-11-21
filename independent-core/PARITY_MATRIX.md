@@ -2,6 +2,8 @@
 
 Масштаб и смена ширины окна проверены на `528b793`. [Целевой CI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44952501428) · [QA APK](https://chatgpt.com/library?file_id=libfile_669447ed46608191894badcd540f0e58&account_id=personal) · [Архив испытаний](https://chatgpt.com/library?file_id=libfile_2119bbf51ae08191b89b6cad92cef85d&account_id=personal).
 
+Широкое окно API 35 прошло 196 проверок при переходе 720 → 290 → 720 dp. [Кадры и журналы](https://chatgpt.com/library?file_id=libfile_e357d775b5748191a3954469110bc63e&account_id=personal).
+
 Метки, менеджеры, вложения и обмен KMZ проверены на API 23 и 35 в [CI для `9f19942`](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738). [QA APK](https://chatgpt.com/library?file_id=libfile_57c0c520868c8191804a9e96880151d0&account_id=personal) · [Архив](https://chatgpt.com/library?file_id=libfile_d4773435948c81918383d89b5103fcbb&account_id=personal).
 
 Код проверки главной карты `e940ae0`. При 480×800 и 160 dpi пять инструментов занимают 240×56 px, отступ снизу 2 px. У эталона примерно 244×58 px.

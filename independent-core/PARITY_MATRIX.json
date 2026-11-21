@@ -110,6 +110,28 @@
           "verified_files": 49,
           "artifact": 14726805119
         }
+      },
+      "wide_window_ci": {
+        "source_sha": "5fd4b69fa152a79deb495be42cd3e191b0e6abe4",
+        "run_id": "44952988154",
+        "api": 35,
+        "assertions": 196,
+        "verified_files": 49,
+        "display_px": [
+          720,
+          900
+        ],
+        "density_dpi": 160,
+        "initial_map_canvas_px": [
+          720,
+          844
+        ],
+        "compact_window_dp": 290,
+        "artifact_sha256": "b24ab313a47e69fb1bd27af0ad668b69ae3700df5494a836dba1ebc567b4f74d",
+        "evidence_sha256": "1e2af1f7f900699a2457496e6ad049a72492c7f8d62c4f918237a0febf59b5d6",
+        "artifact": 14726442862,
+        "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44952988154",
+        "evidence_url": "https://chatgpt.com/library?file_id=libfile_e357d775b5748191a3954469110bc63e&account_id=personal"
       }
     }
   },
