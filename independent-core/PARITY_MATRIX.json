@@ -1,15 +1,20 @@
 {
-  "baseline_commit": "c7783b151981751128b702565265758d6e3aeee9",
-  "code_commit": "d78ef75b4317d91d90ab13f79d65a91d48b98361",
+  "baseline_commit": "ad383b5d6f195ce3fa3e8bd75c108a24c53beb4e",
+  "code_commit": "7526eedbb89e13b051c6b17610a5e4e49f5275e5",
   "reference": {
     "file_name": "Rabochaya-karta-v26.1-main-update.apk",
     "library_file_id": "libfile_c00a22eeb3b4819189b3936a3e78464a",
     "sha256": "5ac3c7091cecae66942cdffee7c91ca0eb96be5eae902e85b0d6d9920643c142",
-    "sha256_status": "NOT_RUN"
+    "sha256_status": "VERIFIED"
   },
   "evidence": {
-    "baseline_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44815109202",
-    "fold5_owner_capture": "https://chatgpt.com/library?file_id=libfile_5d56799011288191b2165449d7745a51&account_id=personal"
+    "baseline_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44846383751",
+    "fold5_owner_capture": "https://chatgpt.com/library?file_id=libfile_5d56799011288191b2165449d7745a51&account_id=personal",
+    "current_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44873474331",
+    "qa_apk": "https://chatgpt.com/library?file_id=libfile_5c0a9c68a8e08191a0bca632a62ae51c&account_id=personal",
+    "qa_apk_sha256": "fba096e58f07b87cb4bacf1689bba8aa0269c8c77b4a4390ae3bb53e12bda6e8",
+    "evidence_archive": "https://chatgpt.com/library?file_id=libfile_46f8c388a9288191ae241f300901bd31&account_id=personal",
+    "api35": "API 35 на новом APK локально не запущен: программный эмулятор не завершил загрузку за 520 с. Полный CI новой ревизии ещё выполняется."
   },
   "status_values": [
     "NOT_INSPECTED",
@@ -26,16 +31,17 @@
       "screen": "Главная карта",
       "function": "Покрытие обзорной карты при первом открытии",
       "reference_behavior": "Полноэкранная картографическая область в утверждённом задании",
-      "current_behavior": "Кадр владельца показывает пустой проект при z=2. В базе высота мира фиксирована на 1024 px. В новой ревизии стартовый масштаб обзорной карты учитывает высоту Canvas. На широком окне можно выбрать менее подробные обзорные тайлы, чтобы сохранить покрытие в пределах установленного бюджета.",
+      "current_behavior": "Первый запуск пустого проекта заполняет высоту обзорным растром. При восстановлении z=2 координаты и зум сохранены, вне мира однотонный фон.",
       "evidence_source": [
-        "Кадр владельца и исходники MapMath / LocalMapView"
+        "launcher, кадры первого открытия и сохранённого зума",
+        "https://chatgpt.com/library?file_id=libfile_46f8c388a9288191ae241f300901bd31&account_id=personal"
       ],
-      "visual_difference": "Полоса сетки возможна при выходе окна за край мира.",
-      "functional_difference": "Покрытие при первом открытии пустого проекта. Сохранённые виды, сетка при недоступных тайлах и ручной зум проверяются отдельно.",
+      "visual_difference": "Сетка вне покрытия убрана. При сохранённом z=2 на высоком окне остаются поля за пределами проекции.",
+      "functional_difference": "Ограничения проекции и восстановление камеры подтверждены на проверенных размерах. Сравнение фактической подложки эталона блокировано.",
       "priority": "P0",
-      "status": "FIXED_UNVERIFIED",
-      "fixing_commit": "d78ef75b4317d91d90ab13f79d65a91d48b98361",
-      "retest": "Проверены расчёты на высотах 800–2480 px и выбор тайлов при ширине 900 и 1812 px. JVM и Android текущей ревизии требуют запуска."
+      "status": "DYNAMIC_VERIFIED",
+      "fixing_commit": "7526eedbb89e13b051c6b17610a5e4e49f5275e5",
+      "retest": "API 23: 151 проверка при окне 480×1360, 150 при 480×800. Высокий Canvas 480×1288, начальный z=2.3309169, восстановленный z=2. API 35 на новом APK локально не запущен: программный эмулятор не завершил загрузку за 520 с. Полный CI новой ревизии ещё выполняется."
     },
     {
       "id": "MAP-02",
@@ -44,30 +50,32 @@
       "reference_behavior": "В предыдущем запуске эталона наблюдались пять инструментов слева внизу.",
       "current_behavior": "Док из шести ярлыков и кнопки сворачивания. Добавлен резерв места справа на узком окне.",
       "evidence_source": [
-        "CODEX_NEXT.md; LocalMapActivity; launcher"
+        "launcher, проверка дока при окне 290 dp",
+        "https://chatgpt.com/library?file_id=libfile_46f8c388a9288191ae241f300901bd31&account_id=personal"
       ],
       "visual_difference": "Число и вид кнопок отличаются. Размеры эталона не измерены.",
       "functional_difference": "Состав и порядок действий остаются на сверку.",
       "priority": "P0",
-      "status": "FIXED_UNVERIFIED",
+      "status": "DYNAMIC_VERIFIED",
       "fixing_commit": "dae3171de841da7afc294e1b2061a2308126469d",
-      "retest": "В launcher добавлена проверка свободного пространства справа при ширине окна 290 dp. Повтор не выполнен."
+      "retest": "API 23 PASS. Доступны все ярлыки через прокрутку, сворачивание сохраняет высоту карты, справа остаётся место."
     },
     {
       "id": "MAP-03",
       "screen": "Главная карта",
       "function": "Координаты, высота, линейка, прицел и зум",
-      "reference_behavior": "Предыдущий доступный кадр, по отчёту, показал линейку слева вверху и малый прицел. Точные размеры не измерены.",
-      "current_behavior": "Центр WGS 84, дополнительный формат, высота DEM, линейка, прицел и зум существуют.",
+      "reference_behavior": "Доступный кадр эталона показал линейку слева вверху, прицел и две кнопки масштаба справа. Полное табло закрыто системным состоянием приложения.",
+      "current_behavior": "У координатного табло меньше вертикальные отступы. Видимые плашки зума меньше, каждая сенсорная зона 48 dp. Координаты, высота и линейка сохраняют действующие функции.",
       "evidence_source": [
-        "CODEX_NEXT.md; CoordinateSettings; LocalMapActivity; coordinates CI"
+        "пусковой кадр API 23 480×800; launcher; coordinates",
+        "https://chatgpt.com/library?file_id=libfile_46f8c388a9288191ae241f300901bd31&account_id=personal"
       ],
-      "visual_difference": "Размеры, отступы, цвет, вид кнопок и их положение требуют парного сравнения.",
-      "functional_difference": "Поведение на Fold5 и полный набор систем эталона не проверены.",
+      "visual_difference": "Глифы, отступы, состав панелей и палитра различаются.",
+      "functional_difference": "Полная работа координатного табло и вариантов масштаба в эталоне за диалогом недоступна.",
       "priority": "P0",
       "status": "MISMATCH",
-      "fixing_commit": null,
-      "retest": "Предыдущий CI только для независимой реализации."
+      "fixing_commit": "7526eedbb89e13b051c6b17610a5e4e49f5275e5",
+      "retest": "API 23 PASS, 50 проверок coordinates. launcher подтверждает нажатия +/−, область 48 dp и компактные отступы. API 35 на новом APK локально не запущен: программный эмулятор не завершил загрузку за 520 с. Полный CI новой ревизии ещё выполняется."
     },
     {
       "id": "MENU-01",
@@ -280,14 +288,9 @@
   ],
   "blocked_requirements": [
     {
-      "id": "REF-APK",
-      "scope": "Все экраны",
-      "reason": "Файл v26.1 найден. Текущая среда исполнения недоступна, поэтому SHA-256 в этом сеансе не вычислен."
-    },
-    {
       "id": "REF-ACCESS",
       "scope": "Меню и остальные состояния",
-      "reason": "В предыдущем запуске зафиксирован лицензионный диалог. Сверять только доступные состояния оригинального APK."
+      "reason": "Повторный запуск оригинального APK на API 23 показал EULA и диалог проверки целостности. Доступен пусковой кадр из предыдущего запуска APK с тем же SHA-256."
     },
     {
       "id": "REF-SCREENS",
@@ -297,7 +300,7 @@
     {
       "id": "RUNTIME",
       "scope": "API 23 и 35",
-      "reason": "Локальный эмулятор недоступен. Предыдущий CI прошёл, текущий коммит требует повторного прогона."
+      "reason": "API 23 проверен. API 35 на новом APK локально не запущен: программный эмулятор не завершил загрузку за 520 с. Полный CI новой ревизии ещё выполняется. Целевой эмулятор Fold5 отсутствует."
     },
     {
       "id": "FOLD",
