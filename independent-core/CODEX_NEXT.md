@@ -14,6 +14,11 @@ USGS Imagery Topo, MapQuest Open и три слоя старого Heidelberg и
 сохраняет ограничения поставщика. [Разбор всех 11 источников](security/catalog-reference-2026-11-22/provider-decisions.json).
 [Целевой CI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44958012998) проверяет каталог и кеш на API 23 и 35.
 
+На API 23 и 35 прошли cachewrites (29) и catalogscreen (46). Проверены действия каталога, возврат на карту из настроек, чтение прежних кешей и нулевой сетевой трафик закрытых источников. Android Lint — 0 ошибок и 121 предупреждение. Аудит APK прошёл, разрешение только INTERNET.
+
+[QA APK](https://chatgpt.com/library?file_id=libfile_0e6ae1e7455481918e27e7d18959dddc&account_id=personal) · [Архив испытаний и диагностики](https://chatgpt.com/library?file_id=libfile_3c72ec4ee97c8191ad8c19ec5be8b636&account_id=personal).
+SHA-256 APK `554af07bb126630bbc3c9539585fcaf942b903036672c777696594680c16052e`. Профиль debug-qa.
+
 Все [пять копий APK](security/catalog-reference-2026-11-22/reference-copies.sha256) совпали. Android ApkSig 8.7.3
 подтвердил криптографическую подпись для API 23, 24, 28, 35, 36 и 37. Сертификат
 `CN=Rabochaya Karta Review`, отпечаток сохранён в [протоколе](security/catalog-reference-2026-11-22/reference-apksig.txt).

@@ -1,6 +1,6 @@
 # Матрица соответствия «Рабочей карты» v26.1
 
-Каталог и настройки кеша обновлены. [Целевой CI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44958012998) · [Диагностика APK и источников](security/catalog-reference-2026-11-22/provider-decisions.json).
+Каталог и настройки кеша обновлены. [Целевой CI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44958012998) · [Диагностика APK и источников](security/catalog-reference-2026-11-22/provider-decisions.json). [QA APK](https://chatgpt.com/library?file_id=libfile_0e6ae1e7455481918e27e7d18959dddc&account_id=personal) · [Архив испытаний](https://chatgpt.com/library?file_id=libfile_3c72ec4ee97c8191ad8c19ec5be8b636&account_id=personal).
 
 Исправления по Fold5 внесены в `c01709d`, `53419cc` и `b235f2d`. [Проверки карты](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955422002) · [Проверка ESRI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955719634) · [Компактные координаты](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955998395). [QA APK](https://chatgpt.com/library?file_id=libfile_ba11ecbd049481919d6cea2c6fe984ff&account_id=personal) · [Архив стендовых испытаний](https://chatgpt.com/library?file_id=libfile_61cd5f5950a081918b774bdd02f3a935&account_id=personal).
 

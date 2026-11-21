@@ -214,7 +214,41 @@
       "integrity": "security/catalog-reference-2026-11-22/reference-apksig.txt",
       "apk_copy_hashes": "security/catalog-reference-2026-11-22/reference-copies.sha256",
       "resources": "security/catalog-reference-2026-11-22/reference-resource-delta.json",
-      "unavailable_sources": "security/catalog-reference-2026-11-22/provider-decisions.json"
+      "unavailable_sources": "security/catalog-reference-2026-11-22/provider-decisions.json",
+      "result": {
+        "apk_url": "https://chatgpt.com/library?file_id=libfile_0e6ae1e7455481918e27e7d18959dddc&account_id=personal",
+        "evidence_url": "https://chatgpt.com/library?file_id=libfile_3c72ec4ee97c8191ad8c19ec5be8b636&account_id=personal",
+        "apk_sha256": "554af07bb126630bbc3c9539585fcaf942b903036672c777696594680c16052e",
+        "evidence_sha256": "72f75189c97705cbecdb041e4fe6b0ae9e635e8ffdff177f2a99aee33a0202da",
+        "artifacts": {
+          "api23": 14728791071,
+          "api35": 14727554315,
+          "build35": 14727988065
+        },
+        "android": {
+          "api23": {
+            "cachewrites": {
+              "passed": true,
+              "assertions": 29
+            },
+            "catalogscreen": {
+              "passed": true,
+              "assertions": 46
+            }
+          },
+          "api35": {
+            "cachewrites": {
+              "passed": true,
+              "assertions": 29
+            },
+            "catalogscreen": {
+              "passed": true,
+              "assertions": 46
+            }
+          }
+        },
+        "summary": "На API 23 и 35 прошли cachewrites (29) и catalogscreen (46). Проверены действия каталога, возврат на карту из настроек, чтение прежних кешей и нулевой сетевой трафик закрытых источников. Android Lint — 0 ошибок и 121 предупреждение. Аудит APK прошёл, разрешение только INTERNET."
+      }
     }
   },
   "status_values": [
