@@ -133,6 +133,22 @@
         "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44952988154",
         "evidence_url": "https://chatgpt.com/library?file_id=libfile_e357d775b5748191a3954469110bc63e&account_id=personal"
       }
+    },
+    "fold_feedback": {
+      "hud_commit": "c01709d05b57d82673b9f51e474efbe82c38b0cd",
+      "esri_commit": "53419cc00ec53bbe12898b56d97cc2bc5174e667",
+      "compact_coordinates_commit": "b235f2d8f61455fdd81e4803d6b4f06cb83d862b",
+      "hud_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955422002",
+      "esri_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955719634",
+      "compact_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955998395",
+      "public_probe": {
+        "sampled": 54,
+        "decoded_rasters": 43,
+        "esri_equal_on_both_hosts": 12,
+        "report": "security/fold-feedback-2026-11-22/catalog-samples.json"
+      },
+      "reference_integrity": "security/fold-feedback-2026-11-22/reference-integrity.json",
+      "physical_fold5_after_fix": "NOT_RUN"
     }
   },
   "status_values": [
@@ -176,16 +192,17 @@
       "screen": "Главная карта",
       "function": "Нижняя сворачиваемая панель",
       "reference_behavior": "В предыдущем запуске эталона наблюдались пять инструментов слева внизу.",
-      "current_behavior": "Пять инструментов с собственными контурными значками, отдельное сворачивание. Поиск открывается через «Метки».",
+      "current_behavior": "Пять инструментов с собственными контурными значками, отдельное сворачивание. Поиск открывается через «Метки». Видимые кнопки уменьшены, области нажатия 48 dp сохранены. На узком экране ряд инструментов прокручивается, переключатель закреплён.",
       "evidence_source": [
         "Измерения 480×800, 160 dpi",
-        "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+        "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955422002"
       ],
-      "visual_difference": "При 480×800 и 160 dpi пять инструментов занимают 240×56 px, отступ снизу 2 px. У эталона примерно 244×58 px. Сохранена синяя палитра с более тёмными плашками и светлыми значками.",
+      "visual_difference": "Прежняя высота панели составляла 56 dp. По замечанию Fold5 высота уменьшена до 48 dp, видимая плашка каждой кнопки имеет отступы. Пусковой кадр эталона сохраняется как историческое измерение.",
       "functional_difference": "Работа инструментов QA проверена. Скрытые состояния эталона требуют наблюдения.",
       "priority": "P0",
       "status": "DYNAMIC_VERIFIED",
-      "fixing_commit": "e940ae0f943ba66086dd1a87a742b6dd1b42a1b1",
+      "fixing_commit": "c01709d05b57d82673b9f51e474efbe82c38b0cd",
       "retest": "API 23 — launcher 183, coordinates 51, maplayers 342, maplayersreopen 78. API 35 — launcher 183, coordinates 51, maplayers 343, maplayersreopen 78.",
       "qa_verification": {
         "status": "DYNAMIC_VERIFIED",
@@ -203,18 +220,19 @@
       "screen": "Главная карта",
       "function": "Координаты, высота, линейка, прицел и зум",
       "reference_behavior": "Доступный кадр эталона показал линейку слева вверху, прицел и две кнопки масштаба справа. Полное табло закрыто системным состоянием приложения.",
-      "current_behavior": "Координаты и линейка оформлены в палитре панели. Прицел стал кольцевым, кнопки зума сохраняют зоны 48×48 dp. Нижняя кнопка масштаба выровнена по панели инструментов. Подпись подложки отделена от зон нажатий.",
+      "current_behavior": "Координаты и линейка оформлены в палитре панели. Прицел стал кольцевым, кнопки зума сохраняют зоны 48×48 dp. Нижняя кнопка масштаба выровнена по панели инструментов. Подпись подложки отделена от зон нажатий. Уменьшены шрифт и отступы, сокращены повторяющиеся названия систем, компактнее отрисована линейка. Точность координат сохраняется. Прицел увеличен, полосы системы согласованы с панелями.",
       "evidence_source": [
         "Пусковой кадр v26.1, QA launcher и coordinates",
         "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal",
         "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44952501428",
-        "https://chatgpt.com/library?file_id=libfile_2119bbf51ae08191b89b6cad92cef85d&account_id=personal"
+        "https://chatgpt.com/library?file_id=libfile_2119bbf51ae08191b89b6cad92cef85d&account_id=personal",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955998395"
       ],
       "visual_difference": "Сохранены доступные признаки пускового кадра. Оформление, метки и набор полей эталона видны частично.",
       "functional_difference": "Полная работа координатного табло и вариантов масштаба в эталоне за диалогом недоступна.",
       "priority": "P0",
       "status": "MISMATCH",
-      "fixing_commit": "528b7933d72e1be566885d9522d606f002a00744",
+      "fixing_commit": "b235f2d8f61455fdd81e4803d6b4f06cb83d862b",
       "retest": "Целевой launcher для 528b793. API 23 — 196 проверок, API 35 — 196 проверок.",
       "qa_verification": {
         "status": "DYNAMIC_VERIFIED",
@@ -258,16 +276,17 @@
       "screen": "Карты и слои",
       "function": "Каталог, слои, кеш, порядок, прозрачность и офлайн-карты",
       "reference_behavior": "Порядок, исходные источники, форматы и области проверяются в эталоне.",
-      "current_behavior": "Проверены выбор источников из каталога, видимость, непрозрачность, порядок, возврат на локальный MBTiles и восстановление после force-stop.",
+      "current_behavior": "Проверены выбор источников из каталога, видимость, непрозрачность, порядок, возврат на локальный MBTiles и восстановление после force-stop. При сбое DNS встроенные слои ESRI используют второй адрес того же сервиса. 43 из 54 разовых проб дали растровый тайл. Для 12 слоёв ESRI байты совпали на двух хостах.",
       "evidence_source": [
         "maplayers, maplayersreopen, кадры, XML и журнал",
-        "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+        "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955719634"
       ],
       "visual_difference": "Парный снимок менеджера слоёв v26.1 отсутствует.",
       "functional_difference": "Композиция QA проверена на синтетических источниках и локальном растре. Реакция менеджера эталона закрыта.",
       "priority": "P1",
       "status": "DYNAMIC_VERIFIED",
-      "fixing_commit": null,
+      "fixing_commit": "53419cc00ec53bbe12898b56d97cc2bc5174e667",
       "retest": "API 23 — launcher 183, coordinates 51, maplayers 342, maplayersreopen 78. API 35 — launcher 183, coordinates 51, maplayers 343, maplayersreopen 78.",
       "qa_verification": {
         "status": "DYNAMIC_VERIFIED",
@@ -693,7 +712,7 @@
         ],
         "implementation": "LocalMapActivity, LocalMapView",
         "reference_visibility": "Пусковой кадр",
-        "finding": "На кадре 480×800 центры «+» и «−» около y=665 и y=723. Кнопки перенесены к нижнему краю, подпись карты отведена влево. Динамика карты эталона за диалогом целостности."
+        "finding": "На кадре 480×800 центры «+» и «−» около y=665 и y=723. Кнопки перенесены к нижнему краю, подпись карты отведена влево. Динамика карты эталона за диалогом целостности. По Fold5 увеличен контрастный прицел, системные полосы приведены к цвету панелей. Сетевой сбой открывается по отдельному индикатору в углу."
       },
       {
         "screen": "Панель координат",
@@ -702,7 +721,7 @@
         ],
         "implementation": "coordinateOptions, center",
         "reference_visibility": "Фрагмент пускового кадра",
-        "finding": "Виден только фрагмент плашки и масштабная линейка. Основной и дополнительный форматы, высота и сворачивание подтверждены в независимой сборке."
+        "finding": "Виден только фрагмент плашки и масштабная линейка. Основной и дополнительный форматы, высота и сворачивание подтверждены в независимой сборке. Уменьшены шрифт и отступы, сокращены повторяющиеся названия систем, компактнее отрисована линейка. Точность координат сохраняется."
       },
       {
         "screen": "Панель инструментов",
@@ -711,7 +730,7 @@
         ],
         "implementation": "LocalMapActivity.show, sizeDock",
         "reference_visibility": "Пусковой кадр",
-        "finding": "Видны пять инструментов. Порядок сопоставлен по кадру, прокрутка и отдельный переключатель проверяются в QA. Действия оригинала недоступны."
+        "finding": "Видны пять инструментов. Порядок сопоставлен по кадру, прокрутка и отдельный переключатель проверяются в QA. Действия оригинала недоступны. Видимые кнопки уменьшены, области нажатия 48 dp сохранены. На узком экране ряд инструментов прокручивается, переключатель закреплён."
       },
       {
         "screen": "Меню",
@@ -738,7 +757,7 @@
         ],
         "implementation": "MapCatalogActivity, OnlineMapActivity",
         "reference_visibility": "Закрыто диалогом целостности",
-        "finding": "QA проверил переходы к каталогу, выбор подложки и возврат к MBTiles. Нужна сверка структуры каталога эталона."
+        "finding": "QA проверил переходы к каталогу, выбор подложки и возврат к MBTiles. Нужна сверка структуры каталога эталона. При сбое DNS встроенные слои ESRI используют второй адрес того же сервиса. 43 из 54 разовых проб дали растровый тайл. Для 12 слоёв ESRI байты совпали на двух хостах."
       },
       {
         "screen": "Объекты / встроенный режим",
