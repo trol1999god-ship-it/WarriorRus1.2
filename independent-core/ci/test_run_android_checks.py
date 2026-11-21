@@ -223,9 +223,16 @@ elif args[:3] == ['shell', 'am', 'instrument']:
         self.assertNotIn('RUN objectmanagerreopen', result.stdout)
 
     def test_successful_fixture_allows_reopen(self):
-        result, records = self.run_modes(['objectmanager', 'objectmanagerreopen'])
+        result, records = self.run_modes(['geometrymap', 'geometrymapreopen'])
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertTrue(all(r['passed'] for r in records))
+
+    def test_manager_requires_action_evidence_even_when_instrumentation_passes(self):
+        result, records = self.run_modes(['objectmanager', 'objectmanagerreopen'])
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('MAP_ACTION_EVIDENCE_MISSING dock-manager-folder-before', result.stdout)
+        self.assertFalse(records[0]['passed'])
+        self.assertTrue(records[1]['skipped'])
 
     def test_missing_visual_pull_is_a_failure_with_transport_diagnostics(self):
         result, records = self.run_modes(['geometrynewholeguards', 'binary'], pull_error=True)
