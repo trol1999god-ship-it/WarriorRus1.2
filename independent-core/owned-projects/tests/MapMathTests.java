@@ -15,6 +15,9 @@ public class MapMathTests {
   for(int height:new int[]{1025,1920,2480}){
    eq(256*Math.pow(2,MapMath.overviewZoom(height)),height,1e-9);
   }
+  eq(MapMath.overviewTileZoom(3,2480,1812,2480,32),2,0);
+  eq(MapMath.overviewTileZoom(3,2480,900,2480,32),3,0);
+  eq(MapMath.overviewTileZoom(2,1024,480,800,32),2,0);
   System.out.println("PASS MapMath: "+checks+" assertions");
  }
 }

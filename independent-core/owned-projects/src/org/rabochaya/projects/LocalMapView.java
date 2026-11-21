@@ -133,7 +133,9 @@ public final class LocalMapView extends View {
  private void drawTiles(Canvas canvas,int layer,TileSource source){drawTiles(canvas,layer,source,null);}
  private void drawTiles(Canvas canvas,int layer,TileSource source,RasterLayer group){
   OfflineTiles local=group==null?tiles:group.offline;BundledTiles fallback=group==null?bundled:group.bundled;
-  int z=source==null?(local!=null?local.zoomFor((int)Math.floor(zoom)):fallback.zoomFor((int)Math.floor(zoom))):source.zoomFor((int)Math.floor(zoom)),n=1<<z;double tileSize=world()/n;boolean elliptical=source!=null&&source.ellipsoid;
+  int z=source==null?(local!=null?local.zoomFor((int)Math.floor(zoom)):fallback.zoomFor((int)Math.floor(zoom))):source.zoomFor((int)Math.floor(zoom));
+   if(fallback!=null)z=MapMath.overviewTileZoom(z,world(),getWidth(),getHeight(),32);
+   int n=1<<z;double tileSize=world()/n;boolean elliptical=source!=null&&source.ellipsoid;
   double screenTop=MapMath.clamp(cy-getHeight()/2.0/world(),0,1),screenBottom=MapMath.clamp(cy+getHeight()/2.0/world(),0,1);
   int left=(int)Math.floor(cx*n-getWidth()/2.0/tileSize),right=(int)Math.floor(cx*n+getWidth()/2.0/tileSize),top=(int)Math.floor(TileProjection.y(MapMath.lat(screenTop),elliptical)*n),bottom=(int)Math.floor(TileProjection.y(MapMath.lat(screenBottom),elliptical)*n);
   if((long)(right-left+1)*Math.max(0,Math.min(n-1,bottom)-Math.max(0,top)+1)>32){paint.setColor(-1);paint.setTextSize(14*getResources().getDisplayMetrics().scaledDensity);canvas.drawText("Увеличьте масштаб для этой карты",16,28,paint);return;}

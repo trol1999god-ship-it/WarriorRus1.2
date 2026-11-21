@@ -13,6 +13,17 @@ public final class MapMath {
  public static double overviewZoom(int viewportHeight){
   return viewportHeight<=1024?2:Math.log(viewportHeight/256.0)/Math.log(2);
  }
+ /** Reduce detail for the bundled overview if a wide canvas would exceed its tile budget. */
+ public static int overviewTileZoom(int requested,double world,int width,int height,int tileBudget){
+  for(int zoom=requested;zoom>1;zoom--){
+   int dimension=1<<zoom;
+   double tileSize=world/dimension;
+   double columns=Math.ceil(width/tileSize)+1;
+   double rows=Math.min(dimension,Math.ceil(height/tileSize)+1);
+   if(columns*rows<=tileBudget)return zoom;
+  }
+  return 1;
+ }
  public static double[] fit(double[][] coordinates,int width,int height){
   if(coordinates.length==0)return new double[]{.5,.5,2};
   double anchor=x(coordinates[0][0]),left=Double.POSITIVE_INFINITY,right=-left,top=left,bottom=-left;
