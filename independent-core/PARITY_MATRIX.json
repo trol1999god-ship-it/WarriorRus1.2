@@ -1,6 +1,6 @@
 {
-  "baseline_commit": "ad383b5d6f195ce3fa3e8bd75c108a24c53beb4e",
-  "code_commit": "7526eedbb89e13b051c6b17610a5e4e49f5275e5",
+  "baseline_commit": "15418c606f7f78281589e723bb1caecdee048fb3",
+  "code_commit": "67470871044ebd95ae9d172394885bda11bd3389",
   "reference": {
     "file_name": "Rabochaya-karta-v26.1-main-update.apk",
     "library_file_id": "libfile_c00a22eeb3b4819189b3936a3e78464a",
@@ -8,13 +8,14 @@
     "sha256_status": "VERIFIED"
   },
   "evidence": {
-    "baseline_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44846383751",
+    "baseline_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44873474331",
     "fold5_owner_capture": "https://chatgpt.com/library?file_id=libfile_5d56799011288191b2165449d7745a51&account_id=personal",
-    "current_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44873474331",
-    "qa_apk": "https://chatgpt.com/library?file_id=libfile_5c0a9c68a8e08191a0bca632a62ae51c&account_id=personal",
-    "qa_apk_sha256": "fba096e58f07b87cb4bacf1689bba8aa0269c8c77b4a4390ae3bb53e12bda6e8",
-    "evidence_archive": "https://chatgpt.com/library?file_id=libfile_46f8c388a9288191ae241f300901bd31&account_id=personal",
-    "api35": "API 35 на новом APK локально не запущен: программный эмулятор не завершил загрузку за 520 с. Полный CI новой ревизии ещё выполняется."
+    "current_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44913000694",
+    "qa_apk": "https://chatgpt.com/library?file_id=libfile_fbac6afe3d488191adcc061668c590db&account_id=personal",
+    "qa_apk_sha256": "73502736f062e581e88f10643d74a6f3aa4a0e3b184ed3dcbaaabff64acf2b42",
+    "evidence_archive": "https://chatgpt.com/library?file_id=libfile_8451f11703d08191ab8034f805818df7&account_id=personal",
+    "api35": "Целевой GitHub Actions 44913000694 прошёл JVM, launcher и coordinates на API 23 и API 35. На API 35 — 177 и 51 проверка.",
+    "main_screen_measurement": "480×800, 160 dpi, portrait"
   },
   "status_values": [
     "NOT_INSPECTED",
@@ -41,24 +42,42 @@
       "priority": "P0",
       "status": "DYNAMIC_VERIFIED",
       "fixing_commit": "7526eedbb89e13b051c6b17610a5e4e49f5275e5",
-      "retest": "API 23: 151 проверка при окне 480×1360, 150 при 480×800. Высокий Canvas 480×1288, начальный z=2.3309169, восстановленный z=2. API 35 на новом APK локально не запущен: программный эмулятор не завершил загрузку за 520 с. Полный CI новой ревизии ещё выполняется."
+      "retest": "Проверено открытие пустого проекта на Canvas 480×1288, стартовый z=2.3309169, восстановленный z=2. Целевой GitHub Actions 44913000694 прошёл JVM, launcher и coordinates на API 23 и API 35. На API 35 — 177 и 51 проверка.",
+      "qa_verification": {
+        "status": "DYNAMIC_VERIFIED",
+        "evidence": "https://chatgpt.com/library?file_id=libfile_8451f11703d08191ab8034f805818df7&account_id=personal"
+      },
+      "reference_parity": {
+        "status": "BLOCKED",
+        "scope": "Реакция viewport и повторное открытие заблокированы диалогом целостности."
+      }
     },
     {
       "id": "MAP-02",
       "screen": "Главная карта",
       "function": "Нижняя сворачиваемая панель",
       "reference_behavior": "В предыдущем запуске эталона наблюдались пять инструментов слева внизу.",
-      "current_behavior": "Док из шести ярлыков и кнопки сворачивания. Добавлен резерв места справа на узком окне.",
+      "current_behavior": "Пять основных действий и отдельное сворачивание. Поиск доступен из меню «Метки» и открывает карточку найденного объекта.",
       "evidence_source": [
-        "launcher, проверка дока при окне 290 dp",
-        "https://chatgpt.com/library?file_id=libfile_46f8c388a9288191ae241f300901bd31&account_id=personal"
+        "Измерения при 480×800, 160 dpi",
+        "9 пар кадров и деревьев UI, logcat",
+        "https://chatgpt.com/library?file_id=libfile_8451f11703d08191ab8034f805818df7&account_id=personal"
       ],
-      "visual_difference": "Число и вид кнопок отличаются. Размеры эталона не измерены.",
-      "functional_difference": "Состав и порядок действий остаются на сверку.",
+      "visual_difference": "v26.1 — около 244×58 px. QA — пять зон по 48 dp, основная группа 240×48 px, вся панель 288×48 px вместе со сворачиванием вместо 336×48 px. Значки, высота и палитра пока различаются.",
+      "functional_difference": "Пять видимых целей сопоставлены по пусковому кадру. Реакция эталона на нажатия недоступна.",
       "priority": "P0",
       "status": "DYNAMIC_VERIFIED",
-      "fixing_commit": "dae3171de841da7afc294e1b2061a2308126469d",
-      "retest": "API 23 PASS. Доступны все ярлыки через прокрутку, сворачивание сохраняет высоту карты, справа остаётся место."
+      "fixing_commit": "67470871044ebd95ae9d172394885bda11bd3389",
+      "retest": "API 23 — 177 проверок при 480×800 и 178 при 480×1360. Проверены ширина 290 dp, действие сворачивания и открытие разделов.",
+      "qa_verification": {
+        "status": "DYNAMIC_VERIFIED",
+        "evidence": "https://chatgpt.com/library?file_id=libfile_8451f11703d08191ab8034f805818df7&account_id=personal"
+      },
+      "reference_parity": {
+        "status": "BLOCKED",
+        "visual_status": "MISMATCH",
+        "scope": "На кадре до диалога видно пять инструментов. Эталонные нажатия заблокированы."
+      }
     },
     {
       "id": "MAP-03",
@@ -75,7 +94,16 @@
       "priority": "P0",
       "status": "MISMATCH",
       "fixing_commit": "7526eedbb89e13b051c6b17610a5e4e49f5275e5",
-      "retest": "API 23 PASS, 50 проверок coordinates. launcher подтверждает нажатия +/−, область 48 dp и компактные отступы. API 35 на новом APK локально не запущен: программный эмулятор не завершил загрузку за 520 с. Полный CI новой ревизии ещё выполняется."
+      "retest": "Сохранены кадры, дерево UI и отметки logcat для обеих кнопок зума. Целевой GitHub Actions 44913000694 прошёл JVM, launcher и coordinates на API 23 и API 35. На API 35 — 177 и 51 проверка.",
+      "qa_verification": {
+        "status": "DYNAMIC_VERIFIED",
+        "scope": "Зоны зума 48 dp, изменение масштаба и сохранение координат доступны."
+      },
+      "reference_parity": {
+        "status": "BLOCKED",
+        "visual_status": "MISMATCH",
+        "scope": "Сверка поведения и координат эталона закрыта проверкой целостности."
+      }
     },
     {
       "id": "MENU-01",
@@ -290,17 +318,12 @@
     {
       "id": "REF-ACCESS",
       "scope": "Меню и остальные состояния",
-      "reason": "Повторный запуск оригинального APK на API 23 показал EULA и диалог проверки целостности. Доступен пусковой кадр из предыдущего запуска APK с тем же SHA-256."
+      "reason": "Повторный запуск неизменённого эталона остановился на диалоге целостности. Сохранены снимок, дерево UI и logcat."
     },
     {
       "id": "REF-SCREENS",
       "scope": "13 экранов",
       "reason": "Обязательные разделы внесены в реестр. Полный набор парных снимков отсутствует."
-    },
-    {
-      "id": "RUNTIME",
-      "scope": "API 23 и 35",
-      "reason": "API 23 проверен. API 35 на новом APK локально не запущен: программный эмулятор не завершил загрузку за 520 с. Полный CI новой ревизии ещё выполняется. Целевой эмулятор Fold5 отсутствует."
     },
     {
       "id": "FOLD",
