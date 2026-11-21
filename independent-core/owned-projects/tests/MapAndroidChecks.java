@@ -757,10 +757,74 @@ public final class MapAndroidChecks extends Instrumentation {
   Object saved=staticCall("ObjectTreeWrites","saveMapFeature",signature,store,project,fresh,null,"QA_MAP_POINT","QA_PRIVATE_NOTE",null);
   check(Arrays.equals(payload,assets(saved).get("icons/retained.bin")),"map write preserves other project payloads");
  }
+ int overviewPixel(android.view.View surface,int x,int y){
+  int[] result=new int[1];
+  runOnMainSync(()->{
+   Bitmap frame=Bitmap.createBitmap(surface.getWidth(),surface.getHeight(),Bitmap.Config.ARGB_8888);
+   try{surface.draw(new Canvas(frame));result[0]=frame.getPixel(x,y);}
+   finally{frame.recycle();}
+  });
+  return result[0];
+ }
+ void emptyOverview(Object store)throws Exception{
+  Context context=getTargetContext();
+  byte[] kml="<kml xmlns='http://www.opengis.net/kml/2.2'><Document><name>QA_EMPTY_OVERVIEW</name></Document></kml>".getBytes("UTF-8");
+  Object document=codec.getMethod("parse",byte[].class).invoke(null,(Object)kml);
+  long id=(Long)call(store,"insert",new Class[]{codec,String.class},document,"QA_EMPTY_OVERVIEW");
+  try{
+   staticCall("ProjectSession","remember",new Class[]{Context.class,long.class},context,id);
+   Activity fresh=launchWorkspace();
+   android.view.View overview=(android.view.View)map();
+   double[] view=(double[])call(overview,"viewport",new Class[]{});
+   int width=overview.getWidth(),height=overview.getHeight();
+   check(fresh.getIntent().getLongExtra("project",-1)==id,"fresh overview opens empty project");
+   check(view[0]==.5&&view[1]==.5&&view[2]>=2&&256*Math.pow(2,view[2])+1e-8>=height,"first overview fits the measured canvas height");
+   int color=0xff253020;
+   long deadline=android.os.SystemClock.uptimeMillis()+10000;
+   while(overviewPixel(overview,width*4/5,4)==color&&android.os.SystemClock.uptimeMillis()<deadline)Thread.sleep(100);
+   check(overviewPixel(overview,width*4/5,4)!=color,"first overview paints raster at the top edge");
+   Field coordinatesField=fresh.getClass().getDeclaredField("coordinates");coordinatesField.setAccessible(true);
+   TextView coordinates=(TextView)coordinatesField.get(fresh);
+   Field zoomField=fresh.getClass().getDeclaredField("zoomButtons");zoomField.setAccessible(true);
+   android.widget.LinearLayout zoom=(android.widget.LinearLayout)zoomField.get(fresh);
+   int target=Math.round(48*fresh.getResources().getDisplayMetrics().density);
+   check(!coordinates.getIncludeFontPadding()&&coordinates.getPaddingTop()<=target/8,"coordinates use compact vertical padding");
+   for(int i=0;i<zoom.getChildCount();i++){
+    android.view.View button=zoom.getChildAt(i);
+    check(button.getWidth()>=target&&button.getHeight()>=target&&button.getBackground() instanceof android.graphics.drawable.InsetDrawable,
+      "zoom keeps a 48dp target around smaller artwork");
+   }
+   capture("empty-overview");
+   setViewport(.5,.5,2);
+   clickDescription("+");
+   check(((double[])call(map(),"viewport",new Class[]{}))[2]==3,"zoom button increases scale");
+   clickDescription("−");
+   check(((double[])call(map(),"viewport",new Class[]{}))[2]==2,"zoom button restores z=2");
+   runOnMainSync(fresh::finish);
+   waitForIdleSync();
+   Activity reopened=launchWorkspace();
+   double[] restored=(double[])call(map(),"viewport",new Class[]{});
+   check(reopened!=fresh&&restored[0]==.5&&restored[1]==.5&&restored[2]==2,"reopening retains the saved z=2 camera");
+   check(waitText("0 видимых объектов")!=null,"reopened overview stays empty");
+   android.view.View saved=(android.view.View)map();
+   if(saved.getHeight()>1040){
+    check(overviewPixel(saved,64,4)==color&&overviewPixel(saved,67,4)==color,"outside the saved world stays neutral, without a grid");
+   }
+   capture("saved-overview-z2");
+   Bundle status=new Bundle();
+   status.putString("stream","OVERVIEW viewport="+width+"x"+height+" initial="+Arrays.toString(view)+" restored="+Arrays.toString(restored)+"\n");
+   sendStatus(0,status);
+  }finally{
+   if(activity!=null){Activity current=activity;runOnMainSync(current::finish);waitForIdleSync();}
+   call(store,"remove",new Class[]{long.class},id);
+   staticCall("LocalMapActivity","cleanupDeletedProject",new Class[]{Context.class,long.class},context,id);
+  }
+ }
  void launcher()throws Exception{
   Context context=getTargetContext();installTileFixture();int networkBefore=requests.get();Object store=storeClass.getConstructor(Context.class).newInstance(context);long id=-1;
   android.content.SharedPreferences prefs=context.getSharedPreferences("workspace-session",0);long previous=prefs.getLong("last_project",-1);long legacyPrevious=context.getSharedPreferences("org.rabochaya.projects.OwnedHomeActivity",0).getLong("last_project",-1);boolean toolsPrevious=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).getBoolean("show_tools",true);boolean coordinatesPrevious=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).getBoolean("show_coordinates",true);context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).edit().putBoolean("show_coordinates",true).putBoolean("show_tools",true).commit();
   try{
+   emptyOverview(store);
    Object doc=codec.getMethod("parse",byte[].class).invoke(null,(Object)XML.getBytes("UTF-8"));id=(Long)call(store,"insert",new Class[]{codec,String.class},doc,"QA_WORKSPACE");
    staticCall("ProjectSession","remember",new Class[]{Context.class,long.class},context,id);
    int count=((List)call(store,"list",new Class[]{})).size();byte[] before=(byte[])call(doc,"xml",new Class[]{});

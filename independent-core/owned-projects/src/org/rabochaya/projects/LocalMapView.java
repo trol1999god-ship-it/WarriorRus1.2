@@ -99,8 +99,13 @@ public final class LocalMapView extends View {
   worker.execute(new Runnable(){public void run(){Bitmap b=null;String error=null;try{if(!disposed&&!paused){if(group!=null)b=group.tile(z,x,y,layer,useNetwork);else if(online!=null)b=online[layer].tile(z,x,y,useNetwork);else if(tiles!=null)b=tiles.tile(z,x,y);else if(bundled!=null)b=bundled.tile(z,x,y);}}catch(Exception e){error="Ошибка чтения тайла: "+e.getMessage();}final Bitmap result=b;final String message=error;post(new Runnable(){public void run(){pending.remove(key);if(disposed){if(result!=null)result.recycle();return;}if(result!=null)cache.put(key,result);else if(!paused){if(missing.size()>512)missing.clear();missing.add(key);}if(message!=null)listener.error(message);invalidate();}});}});
  }
  protected void onDraw(Canvas canvas){
-  super.onDraw(canvas);canvas.drawColor(0xff253020);paint.setColor(0xff3e4c35);paint.setStrokeWidth(1);
-  for(int x=0;x<getWidth();x+=64)canvas.drawLine(x,0,x,getHeight(),paint);for(int y=0;y<getHeight();y+=64)canvas.drawLine(0,y,getWidth(),y,paint);
+  super.onDraw(canvas);canvas.drawColor(0xff253020);
+  // A bundled world ends at the Mercator bounds. Empty space beyond it is not a map grid.
+  if(bundled==null){
+   paint.setColor(0xff3e4c35);paint.setStrokeWidth(1);
+   for(int x=0;x<getWidth();x+=64)canvas.drawLine(x,0,x,getHeight(),paint);
+   for(int y=0;y<getHeight();y+=64)canvas.drawLine(0,y,getWidth(),y,paint);
+  }
   if(mapReady){if(compositionLayers!=null){for(RasterLayer layer:compositionLayers){int saved=layer.model.opacity<100?canvas.saveLayerAlpha(0,0,getWidth(),getHeight(),Math.round(layer.model.opacity*255f/100f),Canvas.ALL_SAVE_FLAG):-1;if(layer.online!=null){for(int i=0;i<layer.online.length;i++)drawTiles(canvas,i,layer.online[i].source,layer);}else drawTiles(canvas,0,null,layer);if(saved!=-1)canvas.restoreToCount(saved);}}else if(online!=null){for(int layer=0;layer<online.length;layer++)drawTiles(canvas,layer,online[layer].source);}else drawTiles(canvas,0,null);}
   int labels=0;
   for(KmlProject.Feature f:features){KmlComponentStyle style=componentStyles.get(f.element);if(style==null)style=KmlComponentStyle.EMPTY;int line=style.line==null?KmlComponentStyle.DEFAULT_COLOR:style.line;float[] label=null;for(KmlProject.Geometry g:f.shapes){paint.setColor(line);paint.setStrokeWidth(style.width==null?3*getResources().getDisplayMetrics().density:style.width);paint.setStyle(Paint.Style.STROKE);

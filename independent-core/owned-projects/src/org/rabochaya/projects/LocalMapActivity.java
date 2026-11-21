@@ -25,6 +25,8 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   cp.setMargins(edge,edge,edge,0);scene.addView(mapReadout,cp);
   mapReadout.addView(coordinateBar,new LinearLayout.LayoutParams(-2,-2));
   coordinates=label("Координаты центра · WGS 84",12);coordinates.setBackground(WorkspaceUi.panel());coordinates.setTextColor(WorkspaceUi.TEXT);coordinates.setContentDescription("Настройки координат центра");coordinates.setOnClickListener(v->coordinateOptions());coordinates.setVisibility(getPreferences(0).getBoolean("show_coordinates",true)?View.VISIBLE:View.GONE);
+  coordinates.setIncludeFontPadding(false);
+  coordinates.setPadding(WorkspaceUi.dp(this,8),edge,WorkspaceUi.dp(this,8),edge);
   coordinateBar.addView(coordinates,new LinearLayout.LayoutParams(-2,-2,1));
   ImageButton collapse=WorkspaceUi.icon(this,"collapse","Свернуть / развернуть координаты",()->{boolean visible=coordinates.getVisibility()!=View.VISIBLE;coordinates.setVisibility(visible?View.VISIBLE:View.GONE);getPreferences(0).edit().putBoolean("show_coordinates",visible).commit();});
   coordinateBar.addView(collapse,new LinearLayout.LayoutParams(control,control));
@@ -39,7 +41,8 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   FrameLayout.LayoutParams sp=new FrameLayout.LayoutParams(-2,-2,Gravity.BOTTOM|Gravity.RIGHT);
   sp.setMargins(edge,0,edge,control+edge*2);scene.addView(rightControls,sp);
   zoomButtons=new LinearLayout(this);zoomButtons.setOrientation(LinearLayout.VERTICAL);zoomButtons.setVisibility(getPreferences(0).getBoolean("show_zoom",true)?View.VISIBLE:View.GONE);rightControls.addView(zoomButtons,new LinearLayout.LayoutParams(control,-2));
-  zoomButtons.addView(WorkspaceUi.icon(this,"plus","+",()->map.step(1)),new LinearLayout.LayoutParams(-1,WorkspaceUi.dp(this,48)));zoomButtons.addView(WorkspaceUi.icon(this,"minus","−",()->map.step(-1)),new LinearLayout.LayoutParams(-1,WorkspaceUi.dp(this,48)));
+  zoomButtons.addView(zoomButton("plus","+",()->map.step(1)),new LinearLayout.LayoutParams(control,control));
+  zoomButtons.addView(zoomButton("minus","−",()->map.step(-1)),new LinearLayout.LayoutParams(control,control));
   rightControls.addView(status,new LinearLayout.LayoutParams(-2,-2));
   HorizontalScrollView tools=new HorizontalScrollView(this);
   tools.setFillViewport(true);
@@ -66,6 +69,14 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   if(restore){SharedPreferences p=getPreferences(0);String key="view_"+projectId+"_";if(p.contains(key+"x"))try{map.restore(Double.parseDouble(p.getString(key+"x",".5")),Double.parseDouble(p.getString(key+"y",".5")),p.getFloat(key+"z",2));}catch(RuntimeException ignored){}}
  }
  public void longPressed(double lat,double lon){if(busy)return;menu(String.format(Locale.US,"%.6f, %.6f",lat,lon),item("Создать метку здесь",()->{creationPoint=new double[]{lon,lat};editObject(null,"Point");}),item("Начать маршрут здесь",()->{startDrawing("LineString");map.addDrawingPoint(lon,lat);}),item("Начать область здесь",()->{startDrawing("Polygon");map.addDrawingPoint(lon,lat);}),item("В центр карты",()->{double[] v=map.viewport();map.restore(MapMath.x(lon),MapMath.y(lat),v[2]);}));}
+ private ImageButton zoomButton(String icon, String label, Runnable action) {
+  ImageButton button=WorkspaceUi.icon(this,icon,label,action);
+  int inset=WorkspaceUi.dp(this,6);
+  button.setBackground(new android.graphics.drawable.InsetDrawable(WorkspaceUi.panel(),inset));
+  int insetIcon=WorkspaceUi.dp(this,14);
+  button.setPadding(insetIcon,insetIcon,insetIcon,insetIcon);
+  return button;
+ }
  private void sizeDock(FrameLayout scene, LinearLayout dock, int toolCount, int control, int edge, boolean visible) {
   int available=Math.max(control,scene.getWidth()-edge*2);
   // Leave map surface beside the expanded dock on narrow windows. Only the shortcuts scroll.

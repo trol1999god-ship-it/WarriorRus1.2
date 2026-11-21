@@ -50,7 +50,7 @@
 .method public static fit([[DII)[D
     .locals 25
 
-    .line 13
+    .line 28
     move-object/from16 v0, p0
 
     array-length v1, v0
@@ -65,7 +65,7 @@
 
     return-object v0
 
-    .line 14
+    .line 29
     :cond_0
     const/4 v1, 0x0
 
@@ -77,7 +77,7 @@
 
     move-result-wide v3
 
-    .line 15
+    .line 30
     array-length v5, v0
 
     const-wide/high16 v6, 0x7ff0000000000000L    # Double.POSITIVE_INFINITY
@@ -145,7 +145,7 @@
 
     goto :goto_0
 
-    .line 16
+    .line 31
     :cond_1
     add-int/lit8 v0, p1, -0x60
 
@@ -185,7 +185,7 @@
 
     move-result-wide v0
 
-    .line 17
+    .line 32
     const-wide/high16 v2, 0x4070000000000000L    # 256.0
 
     div-double/2addr v0, v2
@@ -210,7 +210,7 @@
 
     move-result-wide v0
 
-    .line 18
+    .line 33
     add-double/2addr v6, v10
 
     div-double/2addr v6, v2
@@ -317,6 +317,108 @@
     sub-double/2addr p0, v0
 
     return-wide p0
+.end method
+
+.method public static overviewTileZoom(IDIII)I
+    .locals 10
+
+    .line 18
+    nop
+
+    :goto_0
+    const/4 v0, 0x1
+
+    if-le p0, v0, :cond_1
+
+    .line 19
+    shl-int/2addr v0, p0
+
+    .line 20
+    int-to-double v0, v0
+
+    div-double v2, p1, v0
+
+    .line 21
+    int-to-double v4, p3
+
+    div-double/2addr v4, v2
+
+    invoke-static {v4, v5}, Ljava/lang/Math;->ceil(D)D
+
+    move-result-wide v4
+
+    const-wide/high16 v6, 0x3ff0000000000000L    # 1.0
+
+    add-double/2addr v4, v6
+
+    .line 22
+    int-to-double v8, p4
+
+    div-double/2addr v8, v2
+
+    invoke-static {v8, v9}, Ljava/lang/Math;->ceil(D)D
+
+    move-result-wide v2
+
+    add-double/2addr v2, v6
+
+    invoke-static {v0, v1, v2, v3}, Ljava/lang/Math;->min(DD)D
+
+    move-result-wide v0
+
+    .line 23
+    mul-double/2addr v4, v0
+
+    int-to-double v0, p5
+
+    cmpg-double v0, v4, v0
+
+    if-gtz v0, :cond_0
+
+    return p0
+
+    .line 18
+    :cond_0
+    add-int/lit8 p0, p0, -0x1
+
+    goto :goto_0
+
+    .line 25
+    :cond_1
+    return v0
+.end method
+
+.method public static overviewZoom(I)D
+    .locals 7
+
+    .line 14
+    const/16 v0, 0x400
+
+    const-wide/high16 v1, 0x4000000000000000L    # 2.0
+
+    if-gt p0, v0, :cond_0
+
+    goto :goto_0
+
+    :cond_0
+    int-to-double v3, p0
+
+    const-wide/high16 v5, 0x4070000000000000L    # 256.0
+
+    div-double/2addr v3, v5
+
+    invoke-static {v3, v4}, Ljava/lang/Math;->log(D)D
+
+    move-result-wide v3
+
+    invoke-static {v1, v2}, Ljava/lang/Math;->log(D)D
+
+    move-result-wide v0
+
+    div-double v1, v3, v0
+
+    :goto_0
+    return-wide v1
 .end method
 
 .method public static tmsRow(IJ)J
