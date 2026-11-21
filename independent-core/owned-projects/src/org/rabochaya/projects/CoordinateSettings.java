@@ -8,5 +8,16 @@ public final class CoordinateSettings {
  public static int secondary(Context context){return valid(prefs(context).getInt("secondary",Coordinates.UTM),Coordinates.UTM);}
  private static int valid(int value,int fallback){return value>=Coordinates.DD&&value<=Coordinates.MGRS?value:fallback;}
  public static String display(double lat,double lon,int format){try{return Coordinates.format(lat,lon,format);}catch(IllegalArgumentException e){return "вне диапазона выбранной системы";}}
- public static String panel(Context context,double lat,double lon,double zoom){int first=primary(context),second=secondary(context);String result=(first==Coordinates.DD?"Центр WGS 84":"Центр "+Coordinates.name(first))+": "+display(lat,lon,first)+String.format(java.util.Locale.US," · z %.1f",zoom);if(prefs(context).getBoolean("show_secondary",true))result+="\n"+Coordinates.name(second)+": "+display(lat,lon,second);return result;}
+ private static String panelName(int format){
+  if(format==Coordinates.UTM)return "UTM";
+  if(format==Coordinates.MGRS)return "MGRS";
+  return "WGS 84";
+ }
+ public static String panel(Context context,double lat,double lon,double zoom){
+  int first=primary(context),second=secondary(context);
+  String result=panelName(first)+": "+display(lat,lon,first)
+    +String.format(java.util.Locale.US," · z%.1f",zoom);
+  if(prefs(context).getBoolean("show_secondary",true))result+="\n"+panelName(second)+": "+display(lat,lon,second);
+  return result;
+ }
 }

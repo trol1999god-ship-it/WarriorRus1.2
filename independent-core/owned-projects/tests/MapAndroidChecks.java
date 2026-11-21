@@ -45,7 +45,7 @@ public final class MapAndroidChecks extends Instrumentation {
   ActivityMonitor monitor=addMonitor("org.rabochaya.projects.LocalMapActivity",null,false);click("Карта");activity=waitForMonitorWithTimeout(monitor,45000);removeMonitor(monitor);check(activity!=null,"manager map button opens owned map activity");waitText("Обзорная карта");
   result(good);waitText("Локальная карта MBTiles");Thread.sleep(2500);File copy=new File(getTargetContext().getFilesDir(),"local_basemap_"+project+".mbtiles");check(copy.isFile(),"private basemap copy exists");check(Arrays.equals(hash(good),hash(copy)),"copied basemap matches source");waitText("3 видимых объектов");
   byte[] before=hash(copy);result(new File(getTargetContext().getFilesDir(),"qa_vector.mbtiles"));waitText("Карта не заменена");check(Arrays.equals(before,hash(copy)),"invalid replacement preserves previous basemap");
-  setViewport(.5,.5,3);Thread.sleep(1500);check(waitText("Центр WGS 84: 0.000000, 0.000000")!=null,"center coordinates match viewport");
+  setViewport(.5,.5,3);Thread.sleep(1500);check(waitText("WGS 84: 0.000000, 0.000000")!=null,"center coordinates match viewport");
   click("+");double[] v=(double[])call(map(),"viewport",new Class[]{});check(Math.abs(v[2]-4)<1e-6,"zoom button updates viewport");click("−");
   final int[] location=new int[2];runOnMainSync(new Runnable(){public void run(){try{((android.view.View)map()).getLocationOnScreen(location);}catch(Exception e){throw new RuntimeException(e);}}});
   final List<double[]> delivered=Collections.synchronizedList(new ArrayList<double[]>());runOnMainSync(new Runnable(){public void run(){try{((android.view.View)map()).setOnTouchListener(new android.view.View.OnTouchListener(){public boolean onTouch(android.view.View v,android.view.MotionEvent e){delivered.add(new double[]{e.getActionMasked(),e.getX(),e.getY(),e.getRawX(),e.getEventTime()});return false;}});}catch(Exception e){throw new RuntimeException(e);}}});
@@ -660,9 +660,9 @@ public final class MapAndroidChecks extends Instrumentation {
    setViewport(.5,.5,11);check(awaitDescription("Масштаб карты: 5 км"),"scale follows magnification");
    setViewport(.5,.25,11);check(awaitDescription("Масштаб карты: 2 км"),"scale follows the latitude at the centre");
    byte[] before=(byte[])call(call(store,"load",new Class[]{long.class},id),"xml",new Class[]{});
-   double wx=(Double)staticCall("MapMath","x",new Class[]{double.class},37.6),wy=(Double)staticCall("MapMath","y",new Class[]{double.class},55.75);setViewport(wx,wy,8);waitText("55.750000, 37.600000");waitText("UTM · WGS 84");
-   clickDescription("Настройки координат центра");clickDescription("Основной формат координат");click("MGRS · WGS 84");clickDescription("Дополнительный формат координат");click("WGS 84 · градусы, минуты, секунды");click("Сохранить");check(settings.getInt("primary",-1)==4&&settings.getInt("secondary",-1)==2,"UI persists both coordinate formats");waitText("Центр MGRS");waitText("55°45′00.00″ N");double[] viewport=(double[])call(map(),"viewport",new Class[]{});check(Math.abs(viewport[0]-wx)<1e-10&&Math.abs(viewport[1]-wy)<1e-10,"changing coordinate formats does not move map");
-   final Activity first=activity;runOnMainSync(new Runnable(){public void run(){first.finish();}});waitForIdleSync();activity=startActivitySync(intent);waitText("Центр MGRS");waitText("55°45′00.00″ N");check(settings.getInt("primary",-1)==4,"format survives activity reopen");
+   double wx=(Double)staticCall("MapMath","x",new Class[]{double.class},37.6),wy=(Double)staticCall("MapMath","y",new Class[]{double.class},55.75);setViewport(wx,wy,8);waitText("55.750000, 37.600000");waitText("UTM:");
+   clickDescription("Настройки координат центра");clickDescription("Основной формат координат");click("MGRS · WGS 84");clickDescription("Дополнительный формат координат");click("WGS 84 · градусы, минуты, секунды");click("Сохранить");check(settings.getInt("primary",-1)==4&&settings.getInt("secondary",-1)==2,"UI persists both coordinate formats");waitText("MGRS:");waitText("55°45′00.00″ N");double[] viewport=(double[])call(map(),"viewport",new Class[]{});check(Math.abs(viewport[0]-wx)<1e-10&&Math.abs(viewport[1]-wy)<1e-10,"changing coordinate formats does not move map");
+   final Activity first=activity;runOnMainSync(new Runnable(){public void run(){first.finish();}});waitForIdleSync();activity=startActivitySync(intent);waitText("MGRS:");waitText("55°45′00.00″ N");check(settings.getInt("primary",-1)==4,"format survives activity reopen");
    clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("UTM · WGS 84");inputs("32 N 687071.44 6210141.33");click("Перейти");viewport=(double[])call(map(),"viewport",new Class[]{});double latitude=(Double)staticCall("MapMath","lat",new Class[]{double.class},viewport[1]),longitude=(Double)staticCall("MapMath","lon",new Class[]{double.class},viewport[0]);check(Math.abs(latitude-56)<1e-7&&Math.abs(longitude-12)<1e-7,"manual UTM moves centre to published control point");
    double[] valid=viewport.clone();clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("UTM · WGS 84");inputs("37 N 500000 -1");click("Перейти");check(find(getUiAutomation().getRootInActiveWindow(),"Перейти к координатам",true)!=null,"invalid UTM keeps input dialog open");viewport=(double[])call(map(),"viewport",new Class[]{});check(Arrays.equals(valid,viewport),"invalid coordinate leaves viewport intact");click("Отмена");
    clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("WGS 84 · градусы");inputs("85.1 0");click("Перейти");check(Arrays.equals(valid,(double[])call(map(),"viewport",new Class[]{})),"out-of-map latitude is rejected rather than silently clamped");click("Отмена");
@@ -745,6 +745,11 @@ public final class MapAndroidChecks extends Instrumentation {
    });
    check(mapView.getWidth()<fullWidth,"map receives a narrower window");
    check(Arrays.equals(camera,(double[])call(mapView,"viewport",new Class[]{})),"compact resize holds center and zoom");
+   Field coordinateField=owner.getClass().getDeclaredField("coordinates");
+   coordinateField.setAccessible(true);
+   android.widget.TextView compactCoordinates=(android.widget.TextView)coordinateField.get(owner);
+   runOnMainSync(()->check(compactCoordinates.getLineCount()==3,
+     "default coordinate formats and height fit on three lines at compact width"));
    checkMapControlBounds(dock,zoom,status);
    capture("map-resize-compact");
   } finally {
