@@ -1,0 +1,81 @@
+{
+  "feature_code": "3c87557aca59d52d105770b724e493ecfbeac208",
+  "verified_code": "1254a0b335497bfa6eb7821aae54c47a5a4df334",
+  "ci": 43114388829,
+  "ci_conclusion": "success",
+  "jvm": "33/81769, GeoTIFF215, host20",
+  "apis": {
+    "23": {
+      "job": 130838744398,
+      "passed": 46,
+      "skipped": 0,
+      "offlineformats_assertions": 200,
+      "managerrotation_assertions": 379,
+      "managerforms_assertions": 515,
+      "maplayers_assertions": 275,
+      "reopen_assertions": 66,
+      "geometrymap_and_reopen_pass": true,
+      "launches": [
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=1 actualProject=1 replaced=false firstDestroyed=false portrait=true",
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=2 actualProject=2 replaced=false firstDestroyed=false portrait=true",
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=3 actualProject=3 replaced=true firstDestroyed=true portrait=true",
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=4 actualProject=4 replaced=true firstDestroyed=true portrait=true",
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=5 actualProject=5 replaced=true firstDestroyed=true portrait=true",
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=6 actualProject=6 replaced=false firstDestroyed=false portrait=true",
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=7 actualProject=7 replaced=true firstDestroyed=true portrait=true",
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=8 actualProject=8 replaced=true firstDestroyed=true portrait=true",
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=9 actualProject=9 replaced=false firstDestroyed=false portrait=true"
+      ],
+      "actual_launch_replacements": 5,
+      "profile_proof": [
+        "INSTRUMENTATION_STATUS: stream=DEM_PROFILE_SCROLL legacyShown=false legacyId=16909047 legacyBounds=0 0 0 0 actualShown=true actualBounds=16 63 304 544 graphAncestor=true",
+        "INSTRUMENTATION_STATUS: stream=DEM_PROFILE Close/raw/cursor/stale/foreign/mainChanged/explicitMainSave PASS"
+      ],
+      "archive_sha256": "d182deba9489c13fd2e705ed473b37bde3e4722442ddf51e0dbf654814a2d121",
+      "inner_zip_sha256": "d781c56d68a86144bf570fa9057ad4145ac5b608e04a88be6f3fb4be1afc8737",
+      "all_members_sha_verified": 546,
+      "png_sha_verified_and_actually_viewed": 32,
+      "original_full_job_log_path": "/workspace/work/manager-confirm/tiled-final-1254-api23.log",
+      "original_full_job_log_sha256": "272d732832d911458be7fb24019613dea78df54da8b4e465c9eaff44cd5ba65b",
+      "summary_omits_only_visual_base64": true
+    },
+    "35": {
+      "job": 130838744428,
+      "passed": 46,
+      "skipped": 0,
+      "offlineformats_assertions": 200,
+      "managerrotation_assertions": 373,
+      "managerforms_assertions": 506,
+      "maplayers_assertions": 274,
+      "reopen_assertions": 66,
+      "geometrymap_and_reopen_pass": true,
+      "launches": [
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=1 actualProject=1 replaced=true firstDestroyed=true portrait=true",
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=2 actualProject=2 replaced=false firstDestroyed=false portrait=true",
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=3 actualProject=3 replaced=true firstDestroyed=true portrait=true",
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=4 actualProject=4 replaced=true firstDestroyed=true portrait=true",
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=5 actualProject=5 replaced=true firstDestroyed=true portrait=true",
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=6 actualProject=6 replaced=false firstDestroyed=false portrait=true",
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=7 actualProject=7 replaced=true firstDestroyed=true portrait=true",
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=8 actualProject=8 replaced=false firstDestroyed=false portrait=true",
+        "INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=9 actualProject=9 replaced=false firstDestroyed=false portrait=true"
+      ],
+      "actual_launch_replacements": 5,
+      "profile_proof": [
+        "INSTRUMENTATION_STATUS: stream=DEM_PROFILE_SCROLL legacyShown=false legacyId=16909487 legacyBounds=0 0 0 0 actualShown=true actualBounds=16 63 304 520 graphAncestor=true",
+        "INSTRUMENTATION_STATUS: stream=DEM_PROFILE Close/raw/cursor/stale/foreign/mainChanged/explicitMainSave PASS"
+      ],
+      "archive_sha256": "18ae50c8236c8b59c2e8c2f36f549489361782ba9fc4950fb2d23a974fdf111d",
+      "inner_zip_sha256": "aabe40a0b8c401e19c46c52256027c20d73b41fbaea6e9f1447f594312c28743",
+      "all_members_sha_verified": 549,
+      "png_sha_verified_and_actually_viewed": 32,
+      "original_full_job_log_path": "/workspace/work/manager-confirm/tiled-final-1254-api35.log",
+      "original_full_job_log_sha256": "0c0f9f6940e3176238e7b71fafe511ae7649db186ed0be1305691684e48cd1b1",
+      "summary_omits_only_visual_base64": true
+    }
+  },
+  "data_guards": "Exact KML/assets/HGT source/container/MBTiles/cache/otherproject checks passed; Cancel/failed import preserve old file; explicit MainSave remains separate; stale/foreign/mainChanged/raw/cursor guards unchanged",
+  "implementation_scope": "Bounded classic TIFF6 tiled RGB/gray8 raw/Deflate8/32946/predictor1/2; EPSG4326/3857; Arimo/name/min23/privacy unchanged. DEM profile read-only scoped. Launch helper adopts own recreated actual window before worker readiness.",
+  "acceptance": "Open; not full26.1 migration, not replacement release; accepted remains0; official Android lint gap not PASS",
+  "historical_runs": "43089751186 cancelled (45min upload/job timeout), lost Android logs/artifacts not recovered; 43100835572 failed adbOffline35; 43107394886 failed launch/relaunch35. All preserved as history, not current failure."
+}

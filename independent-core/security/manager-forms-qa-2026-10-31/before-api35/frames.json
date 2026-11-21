@@ -1,0 +1,18 @@
+[
+  {
+    "name": "map_mvisual-forms-dates-after.png",
+    "sha256": "ef1042c0e7f53b60c9082f6be222ae459e6435265a1414feee1a17d0d6189693"
+  },
+  {
+    "name": "map_mvisual-forms-dates-before.png",
+    "sha256": "97bf4f305b4de80dbac12aa3650d103f3c52d64a704c07fafb8f27484751e872"
+  },
+  {
+    "name": "map_mvisual-forms-search-after.png",
+    "sha256": "963911df4ac508fb4d7e295f50260ce16532e9c9c312ecf56746775caa4c456a"
+  },
+  {
+    "name": "map_mvisual-forms-search-before.png",
+    "sha256": "44541952ca5d768d7f20744dcfeb2f9ed05ab6c55c76aba5f9866e4ce9d1d8ef"
+  }
+]

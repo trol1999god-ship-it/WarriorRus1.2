@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-11-12T14:18:56.796618+00:00",
+  "attempts": [
+    {
+      "url": "https://developers.google.com/kml/documentation/kmlreference",
+      "http_status": 403,
+      "curl_exit": 22
+    },
+    {
+      "url": "https://schemas.opengis.net/kml/2.2.0/ogckml22.xsd",
+      "http_status": 403,
+      "curl_exit": 22
+    }
+  ],
+  "result": "No official document retrieved; no contract falsely claimed verified; no retry loop or TLS/network-policy changes",
+  "scope": "research of next width/scale function only; current component editor CI is unaffected"
+}

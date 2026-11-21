@@ -1,0 +1,50 @@
+{
+  "source": "66cb8ca7653c7bfd02898c98a9f5b02422303b24",
+  "ci_run": 41818076658,
+  "attempt": 2,
+  "conclusion": "success",
+  "api23": {
+    "executed_job": 126534032228,
+    "cached_attempt2_job": 126542772465,
+    "modes": 33,
+    "vertex_assertions": 369
+  },
+  "api35": {
+    "job": 126542692549,
+    "modes": 33,
+    "vertex_assertions": 364
+  },
+  "jvm_suites": 23,
+  "jvm_assertions": 81259,
+  "driver_tests": 12,
+  "own_classes": 426,
+  "min_sdk": 23,
+  "permissions": [
+    "android.permission.INTERNET"
+  ],
+  "unsigned_sha256": "b8bce8af747b5d13f698206fb9e8213cf1ba63ca29a4a4aee9aff07dde6d83a6",
+  "final_png_sha_verified_and_actually_reviewed": 32,
+  "all_visible_owned_text_arimo": true,
+  "real_recreation": "portrait to landscape and back; old different and isDestroyed asserted",
+  "cases": [
+    "exact valid/invalid raw text, selection1..3 and error",
+    "own project/feature/process/part/token/main-input identity",
+    "real IME and physical action/field bounds",
+    "full form after IME hide",
+    "Cancel and no ghost reopening",
+    "explicit route Apply changes only main draft; separate Save changes only selected vertex",
+    "stale geometry before/after and changed main input rejected",
+    "foreign project identical XML and foreign feature rejected",
+    "XML/assets unchanged except explicit intended Save"
+  ],
+  "initial_attempt_failure": "API35 paste908 instrumentation pass but PNG pull failed, next chooser adb offline; failure retained, one diagnosed API35 job re-run",
+  "visual_limitations": [
+    "At API35 landscape IME viewport82px, long inline validation/stale warning is outside current scroll viewport. Full validation after IME hide was reviewed; real touch scrolling to it with IME remains untested.",
+    "Only Point/LineString part0 replace has new Android restoration acceptance; before/after insertion, nonzero/multipart/hole raw forms have model bounds coverage but no new dual-API rotation acceptance.",
+    "No complete reference parity, Android16, physical device or migration acceptance."
+  ],
+  "release_gate_allowed": false,
+  "release_gate_blockers": 25,
+  "accepted_requirements": 0,
+  "full_migration_complete": false
+}

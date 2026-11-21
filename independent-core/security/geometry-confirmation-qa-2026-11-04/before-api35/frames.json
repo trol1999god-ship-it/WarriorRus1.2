@@ -1,0 +1,18 @@
+[
+  {
+    "name": "map_mvisual-geometry-delete-vertex-after.png",
+    "sha256": "0bed7de9bafc96e7870374980f389e8ae40f2359b13ba3d9f8e497fea5060b1f"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-before.png",
+    "sha256": "f536d237fefa8341e0f4f4294868563a43562b9877fee23e528f545b4922337c"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-after.png",
+    "sha256": "d66f204c4a7b506e54e213bb79ce992f54428ea0b27aa0500f9ce5db71fdda67"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-hole-before.png",
+    "sha256": "1068770c7f128829b0973fc3acf5ff59eff640f4bf21631a8b8e43598a4e724e"
+  }
+]

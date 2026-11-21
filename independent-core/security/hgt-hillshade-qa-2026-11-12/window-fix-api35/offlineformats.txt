@@ -1,0 +1,54 @@
+INSTRUMENTATION_STATUS: stream=START offlineformats
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-import-prompt toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 97, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и qa_ozi.png. По умолчанию UTF-8\/ASCII; Windows-1251 только по явному выбору ниже. WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MS","foreground":"#de000000","arimo":true,"bounds":"[16, 126, 288, 330]","visible":true,"visibleBounds":"[16,63][304,393]","fullyVisible":true},{"class":"CheckBox","text":"Кодировка .map: Windows-1251 (явно)","foreground":"#ff202020","arimo":true,"bounds":"[16, 456, 288, 48]","visible":true,"visibleBounds":"[16,393][304,441]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff008577","arimo":true,"bounds":"[59, 508, 84, 48]","visible":true,"visibleBounds":"[59,445][143,493]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff008577","arimo":true,"bounds":"[143, 508, 149, 48]","visible":true,"visibleBounds":"[143,445][292,493]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-import-saved toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-bmp-import-prompt toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 97, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и qa_ozi.bmp. По умолчанию UTF-8\/ASCII; Windows-1251 только по явному выбору ниже. WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MS","foreground":"#de000000","arimo":true,"bounds":"[16, 126, 288, 330]","visible":true,"visibleBounds":"[16,63][304,393]","fullyVisible":true},{"class":"CheckBox","text":"Кодировка .map: Windows-1251 (явно)","foreground":"#ff202020","arimo":true,"bounds":"[16, 456, 288, 48]","visible":true,"visibleBounds":"[16,393][304,441]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff008577","arimo":true,"bounds":"[59, 508, 84, 48]","visible":true,"visibleBounds":"[59,445][143,493]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff008577","arimo":true,"bounds":"[143, 508, 149, 48]","visible":true,"visibleBounds":"[143,445][292,493]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-bmp-import-saved toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-gif-import-prompt toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 97, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и qa_ozi.gif. По умолчанию UTF-8\/ASCII; Windows-1251 только по явному выбору ниже. WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MS","foreground":"#de000000","arimo":true,"bounds":"[16, 126, 288, 330]","visible":true,"visibleBounds":"[16,63][304,393]","fullyVisible":true},{"class":"CheckBox","text":"Кодировка .map: Windows-1251 (явно)","foreground":"#ff202020","arimo":true,"bounds":"[16, 456, 288, 48]","visible":true,"visibleBounds":"[16,393][304,441]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff008577","arimo":true,"bounds":"[59, 508, 84, 48]","visible":true,"visibleBounds":"[59,445][143,493]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff008577","arimo":true,"bounds":"[143, 508, 149, 48]","visible":true,"visibleBounds":"[143,445][292,493]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-gif-import-saved toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-windows-import-prompt toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 97, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и картаЁ.png. По умолчанию UTF-8\/ASCII; Windows-1251 только по явному выбору ниже. WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MS","foreground":"#de000000","arimo":true,"bounds":"[16, 126, 288, 330]","visible":true,"visibleBounds":"[16,63][304,393]","fullyVisible":true},{"class":"CheckBox","text":"Кодировка .map: Windows-1251 (явно)","foreground":"#ff202020","arimo":true,"bounds":"[16, 456, 288, 48]","visible":true,"visibleBounds":"[16,393][304,441]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff008577","arimo":true,"bounds":"[59, 508, 84, 48]","visible":true,"visibleBounds":"[59,445][143,493]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff008577","arimo":true,"bounds":"[143, 508, 149, 48]","visible":true,"visibleBounds":"[143,445][292,493]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-windows-import-saved toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=HILLSHADE_PROMPT [{"class":"DialogTitle","text":"Создать рельеф DEM","foreground":"#de000000","arimo":true,"bounds":"[40, 151, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Из установленного HGT будет создана серая отмывка: свет с азимута 315°, высота света 45°, без увеличения высот. WGS84, метры SRTM; прозрачные ячейки при NoData.","foreground":"#de000000","arimo":true,"bounds":"[16, 188, 288, 262]","visible":true,"visibleBounds":"[16,71][304,333]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff008577","arimo":true,"bounds":"[120, 454, 84, 48]","visible":true,"visibleBounds":"[120,337][204,385]","fullyVisible":true},{"class":"Button","text":"Создать","foreground":"#ff008577","arimo":true,"bounds":"[204, 454, 88, 48]","visible":true,"visibleBounds":"[204,337][292,385]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=HILLSHADE_READY elapsedMillis=3625 waitLimitMillis=45000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=HILLSHADE_CONVERTING preparedVisible=true busy=true
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=HILLSHADE_CONVERTING preparedVisible=true busy=true
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=PASS offlineformats: 1202 assertions
+
+INSTRUMENTATION_CODE: -1

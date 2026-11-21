@@ -1,0 +1,14 @@
+{
+  "tool": "official Android lint",
+  "source": "ab817b0 plus inline component error WIP; exact source hashes retained",
+  "source_count": 84,
+  "actual_classfiles": 160,
+  "exit_code": 1,
+  "passed": false,
+  "errors": [
+    "MissingClass",
+    "HardcodedDebugMode"
+  ],
+  "warnings": 114,
+  "scope": "actual Java overlay classfiles + separate ABI resolution; smali bodies not analyzed; adapter incomplete"
+}

@@ -1,0 +1,6 @@
+CASE 0 initial_valid=true emitted_valid=true
+CASE 1 initial_valid=true emitted_valid=true
+CASE 2 initial_valid=true emitted_valid=true
+CASE 3 initial_valid=true emitted_valid=true
+CASE 4 initial_valid=true emitted_valid=true
+RESULT invalid=0/5 externalSchemaAccess=disabled

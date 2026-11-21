@@ -1,0 +1,20 @@
+{
+  "production": "0e9d47d6ce144a6e961d7d58e78cd97e10454d2a",
+  "test": "07160375ea91d7796ab9a5387492f76762b54d03",
+  "run": 41946263354,
+  "conclusion": "success",
+  "jobs": {
+    "23": 126979263307,
+    "35": 126979263332
+  },
+  "scenarios_each": 40,
+  "map_assertions_each": 444,
+  "png_each": 14,
+  "all_png_viewed": true,
+  "jvm_suites": 24,
+  "jvm_assertions": 81323,
+  "host_ci": 15,
+  "host_local_expanded": 16,
+  "release_accepted": false,
+  "old_0e_scroll_frame_unknown": true
+}

@@ -1,0 +1,4 @@
+Warning: Unable to initialize metrics, ensure /home/agent/.android is writable, details: /home/agent/.android/analytics.settings (No such file or directory)
+Lint found 3 errors and 94 warnings. First failure:
+independent-app: Error: No .class files were found in project "independent-app", so none of the classfile based checks could be run. Does the project need to be built first? [LintError]
+

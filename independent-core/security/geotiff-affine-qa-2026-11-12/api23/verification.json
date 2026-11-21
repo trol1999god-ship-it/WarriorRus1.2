@@ -1,0 +1,15 @@
+{
+  "api": "23",
+  "source_sha": "90020f3656742cd8a86c548e3ade3f4caa6c4ba3",
+  "run_id": "43134277461",
+  "outer_path": "/workspace/attachments/8bea5324-b8dc-4c77-8c22-7887358064d1/affine-90020-api23.zip",
+  "outer_sha256": "f6685c9e4dea47695bdf8f49a4e1c7621a0ac4169777cda50cd5b97dba7fc5ae",
+  "inner_sha256": "f517670fc0073d07588b7a5f725915b6efb472e639f5424eb2ee6ca6f9bdea5c",
+  "all_member_hashes_verified": true,
+  "members": 546,
+  "records": 46,
+  "passed": 46,
+  "failed_or_skipped": [],
+  "frames": 22,
+  "visual_review": "22/22 frames actually viewed; generic end frames show launcher, not accepted app UI"
+}

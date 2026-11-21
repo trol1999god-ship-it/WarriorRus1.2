@@ -1,0 +1,35 @@
+2026-11-11T16:12:26.8626892Z INSTRUMENTATION_RESULT: stream=PASS offlineformats: 68 assertions
+2026-11-11T16:12:43.9424732Z INSTRUMENTATION_RESULT: stream=PASS cacheexport: 69 assertions
+2026-11-11T16:20:51.4821302Z INSTRUMENTATION_RESULT: stream=PASS managervisual: 237 assertions
+2026-11-11T16:22:15.0591595Z INSTRUMENTATION_RESULT: stream=PASS managerrotation: 345 assertions
+2026-11-11T16:23:51.8907246Z INSTRUMENTATION_RESULT: stream=PASS managerforms: 473 assertions
+2026-11-11T16:24:49.5323573Z INSTRUMENTATION_RESULT: stream=PASS managermove: 242 assertions
+2026-11-11T16:27:03.1236460Z INSTRUMENTATION_RESULT: stream=PASS managerconfirm: 706 assertions
+2026-11-11T16:29:52.2172284Z INSTRUMENTATION_RESULT: stream=PASS managerpasteconfirm: 908 assertions
+2026-11-11T16:31:19.4891151Z INSTRUMENTATION_RESULT: stream=PASS managerchooser: 401 assertions
+2026-11-11T16:32:36.6280235Z INSTRUMENTATION_RESULT: stream=PASS vertexrotation: 364 assertions
+2026-11-11T16:33:16.3914455Z INSTRUMENTATION_RESULT: stream=PASS vertexscroll: 314 assertions
+2026-11-11T16:34:16.2663522Z INSTRUMENTATION_RESULT: stream=PASS geometryvertexconfirm: 367 assertions
+2026-11-11T16:35:38.4049202Z INSTRUMENTATION_RESULT: stream=PASS geometryholeconfirm: 515 assertions
+2026-11-11T16:36:44.5320936Z INSTRUMENTATION_RESULT: stream=PASS vertexinsertion: 357 assertions
+2026-11-11T16:37:38.9593220Z INSTRUMENTATION_RESULT: stream=PASS geometrynewhole: 275 assertions
+2026-11-11T16:39:01.9275528Z INSTRUMENTATION_RESULT: stream=PASS geometrynewholeguards: 444 assertions
+2026-11-11T16:40:20.3350597Z INSTRUMENTATION_RESULT: stream=PASS mapvertexconfirm: 444 assertions
+2026-11-11T16:41:12.5958130Z INSTRUMENTATION_RESULT: stream=PASS mapholeconfirm: 325 assertions
+2026-11-11T16:42:18.5255866Z INSTRUMENTATION_RESULT: stream=PASS mapundorotation: 363 assertions
+2026-11-11T16:44:04.1120441Z INSTRUMENTATION_RESULT: stream=PASS mappartconfirm: 669 assertions
+2026-11-11T16:45:32.6955442Z INSTRUMENTATION_RESULT: stream=PASS geometrycloseconfirm: 563 assertions
+2026-11-11T16:46:37.1804089Z java.lang.AssertionError: profile has physical scroll viewport
+2026-11-11T16:46:37.1804917Z 	at org.rabochaya.maptests.DemProfileChecks.touchScroll(DemProfileChecks.java:10)
+2026-11-11T16:46:37.1805484Z 	at org.rabochaya.maptests.DemProfileChecks.run(DemProfileChecks.java:13)
+2026-11-11T16:46:37.5105170Z FAIL maplayers
+2026-11-11T16:46:37.5112503Z java.lang.AssertionError: profile has physical scroll viewport
+2026-11-11T16:46:37.5113418Z 	at org.rabochaya.maptests.DemProfileChecks.touchScroll(DemProfileChecks.java:10)
+2026-11-11T16:46:37.5113849Z 	at org.rabochaya.maptests.DemProfileChecks.run(DemProfileChecks.java:13)
+2026-11-11T16:46:37.5116158Z SKIP maplayersreopen: preceding fixture failed
+2026-11-11T16:46:40.8314512Z SHA256 digest of uploaded artifact zip is 01fbfb8728b95a8f40a8a384b56a10802a6797ed56058860e00c633f32dc1674
+2026-11-11T16:46:41.2171181Z Artifact independent-qa-api-35.zip successfully finalized. Artifact ID 13873358537
+2026-11-11T16:46:41.2171981Z Artifact independent-qa-api-35 has been successfully uploaded! Final size is 20050937 bytes. Artifact ID is 13873358537
+2026-11-11T16:46:42.6092045Z SHA256 digest of uploaded artifact zip is 33429260ea638cb7a359bff5ef101acf60537e2a4a47fa8b648ab6e14d1bdf1f
+2026-11-11T16:46:43.0016139Z Artifact independent-build-api-35.zip successfully finalized. Artifact ID 13873408360
+2026-11-11T16:46:43.0017129Z Artifact independent-build-api-35 has been successfully uploaded! Final size is 2455835 bytes. Artifact ID is 13873408360

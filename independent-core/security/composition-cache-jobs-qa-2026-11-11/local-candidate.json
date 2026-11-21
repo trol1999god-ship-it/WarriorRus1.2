@@ -1,0 +1,33 @@
+{
+  "status": "local debug build and SDK23 test compilation; Android runtime pending",
+  "qa": {
+    "debuggable": true,
+    "variant": "debug-qa",
+    "qualification": "development-only; full 26.1 parity not established",
+    "replacement_release": false,
+    "package": "org.rabochaya.karta",
+    "version_code": 27,
+    "min_sdk": 23,
+    "permissions": [
+      "android.permission.INTERNET"
+    ],
+    "legacy_app_classes": false,
+    "unexpected_class_references": [],
+    "owned_class_count": 501,
+    "missing_owned_classes": [],
+    "native_libraries": [],
+    "api_stubs_packaged": false,
+    "unsigned_sha256": "35d277dab281c1063857e53a170d3e60086e97043e849382a16d85e1d92ecbe4"
+  },
+  "source_count": 65,
+  "source_sha_exact": true,
+  "jvm_models": 30,
+  "jvm_assertions": 81493,
+  "job_model_assertions": 35,
+  "host_tests": 18,
+  "guard_tests_sha256": "aff9d5b602ecd48a6d23b8aa6dbc8c7fcab4198f6d53e1d550664b257a419789",
+  "privacy_audit_passed": true,
+  "release_build": "blocked; no APK; no production key",
+  "android_lint": "official probe failed integration: 3 errors/94 warnings; not a pass",
+  "accepted": 0
+}

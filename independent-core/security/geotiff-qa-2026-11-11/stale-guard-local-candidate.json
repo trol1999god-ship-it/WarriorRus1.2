@@ -1,0 +1,20 @@
+{
+  "status": "local compilation only; runtime pending",
+  "source_count": 69,
+  "source_hashes_exact": true,
+  "build_result_sha256": "4996c8bd41cc8d5e14582ba6baf34e5db216f6fffb03bdb6a483dbfb7303a04f",
+  "variant": "debug-qa",
+  "classes": 512,
+  "jvm_suites": 31,
+  "jvm_assertions": 81528,
+  "host_tests": 18,
+  "android_runtime_executed": false,
+  "accepted": false,
+  "regression": "stale removal dialog cannot delete a newly imported replacement map",
+  "files": {
+    "app.apk": "4f6c3eb59628096fc91b458a2129f062d5127535e4fed2c05b992ee0a85ee3f4",
+    "app-unsigned.apk": "15a9e1c00b28dc2eea335d656b37c92274d13925bc20424b9e3ae41894f1d4e6",
+    "tests-unsigned.apk": "4f08871d9bd090a39bc30d86a4178ace0283839ffc3c96b060d16c8b9a012545",
+    "tests.apk": "03173c1e458d043deb91e2fa06fab3a953f1dac016a8bce46ee7c6255bfb5aea"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "api": "23",
+  "source_sha": "ea9ff9f5ce38b996501b58bd683d4a3610f6a6df",
+  "run_id": "43280843162",
+  "outer_path": "/workspace/attachments/a9d1571f-c0f9-459b-9fc3-87094c4d234e/ea9-13976695533.zip",
+  "outer_sha256": "d08054035e63d183a9390a19d31a1c24f04f6740aa5f579175ab8958cb4e7111",
+  "inner_sha256": "5bc03bc32fc5c08929ac97bad211a86933fc4be9f0ae5fef9beb866200022285",
+  "all_member_hashes_verified": true,
+  "members": 529,
+  "records": 46,
+  "passed": 43,
+  "failed_or_skipped": [
+    {
+      "mode": "offlineformats",
+      "passed": false,
+      "seconds": 196.51
+    },
+    {
+      "mode": "maplayers",
+      "passed": false,
+      "seconds": 42.8
+    },
+    {
+      "mode": "maplayersreopen",
+      "passed": false,
+      "skipped": true,
+      "reason": "Preceding fixture failed",
+      "seconds": 0
+    }
+  ],
+  "frames": 13,
+  "visual_review": "pending actual view_image"
+}

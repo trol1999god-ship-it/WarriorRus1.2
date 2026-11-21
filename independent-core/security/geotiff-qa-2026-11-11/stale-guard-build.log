@@ -1,0 +1,56 @@
+PASS GeoTIFF/transform: 35 assertions
+PASS CompositionDownloadJob: 35 assertions
+PASS RasterExportFile: 9 assertions
+PASS MapComposition: 33 assertions
+PASS GeometryCloseDraft: 29 assertions
+PASS GeometryPartChoiceDraft: 32 assertions
+PASS GeometryMapUndoDraft: 32 assertions
+PASS GeometryConfirmationDraft: 64 assertions
+PASS VertexEditDraft: 69 assertions
+PASS ObjectConfirmationDraft: 60 assertions
+PASS ObjectMoveDraft: 34 assertions
+PASS ObjectFormDraft: 32 assertions
+PASS ObjectSelectionState: 20 assertions
+PASS ObjectEditorDraft: 30 assertions
+PASS KmlXml: 31 assertions
+PASS ObjectDescription: 169 assertions
+PASS KmlTimeFilter: 100 assertions
+PASS ObjectVisibility: 56 assertions
+PASS ObjectListing: 100 assertions
+PASS ObjectClipboard/Copy: 63 assertions
+PASS ObjectTree: 56 assertions
+PASS GeometryMapState: 52 assertions
+PASS GeometryVertices: 36 assertions
+PASS GeometryCoordinates: 26 assertions
+PASS GeometryEdits/Draft: 50 assertions
+PASS Coordinates: 71120 assertions
+PASS MapMath: 1828 assertions
+PASS MapHitTest: 37 assertions
+PASS CompassMath: 19 assertions
+PASS: 7225 tile region/source assertions
+PASS UiText: 46 assertions
+Note: /workspace/WarriorRus1.2/independent-core/owned-projects/src/org/rabochaya/projects/GeometryEditorActivity.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /workspace/WarriorRus1.2/independent-core/owned-projects/src/org/rabochaya/projects/LocalMapActivity.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+I: Using Apktool 2.11.1 on additions.apk with 3 threads
+I: Copying raw resources...
+I: Baksmaling classes.dex...
+I: Copying raw manifest...
+I: Copying original files...
+I: Copying unknown files...
+Added 446 classes; previous implementation preserved
+Assembled 512 classes. No APK built.
+Development APK built; not an accepted 26.1 replacement: 2175267 bytes
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Test APK ready 253987
+Generating 2,048 bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 2 days
+	for: CN=Disposable Android QA
+Note: /workspace/WarriorRus1.2/independent-core/security/SignReview.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Signed and synced
+Note: /workspace/WarriorRus1.2/independent-core/security/SignReview.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Signed and synced
+Isolated QA APKs ready; no replacement release was produced

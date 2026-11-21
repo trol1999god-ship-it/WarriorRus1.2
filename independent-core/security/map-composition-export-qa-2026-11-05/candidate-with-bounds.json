@@ -1,0 +1,36 @@
+{
+  "status": "local compilation; Android runtime pending",
+  "qa": {
+    "qualification": "development-only; full 26.1 parity not established",
+    "replacement_release": false,
+    "package": "org.rabochaya.karta",
+    "version_code": 27,
+    "min_sdk": 23,
+    "permissions": [
+      "android.permission.INTERNET"
+    ],
+    "legacy_app_classes": false,
+    "unexpected_class_references": [],
+    "owned_class_count": 485,
+    "missing_owned_classes": [],
+    "native_libraries": [],
+    "api_stubs_packaged": false,
+    "unsigned_sha256": "ed045c01a67e8f6eedae30611896ac0b9977e6f4bd6a5551127049f9f7046d99"
+  },
+  "source_hashes_verified": 62,
+  "jvm_models": 29,
+  "jvm_assertions": 81458,
+  "host_tests": 16,
+  "behavior": [
+    "composition group opacity/order/visibility",
+    "EPSG3857 TMS and actual written bounds including positive180",
+    "source zoomFor and EPSG3395 reprojection",
+    "File replacement only after successful build/sync; limit512MiB",
+    "no automatic deletion of arbitrary SAF URI",
+    "source cache/other project/KML/assets runtime tests prepared"
+  ],
+  "acceptance": "open",
+  "release_gate": false,
+  "instrumentation_bytes": 243183,
+  "instrumentation_sha256": "d3573a98473d99cc0ea726a7c45da639aff5324844ff6bcdbf00ac7eb452d508"
+}

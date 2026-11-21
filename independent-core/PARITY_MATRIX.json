@@ -1,0 +1,571 @@
+{
+  "baseline_commit": "d13dbbd2fe9038a422af317a45fda760ed35724c",
+  "code_commit": "e940ae0f943ba66086dd1a87a742b6dd1b42a1b1",
+  "reference": {
+    "file_name": "Rabochaya-karta-v26.1-main-update.apk",
+    "library_file_id": "libfile_c00a22eeb3b4819189b3936a3e78464a",
+    "sha256": "5ac3c7091cecae66942cdffee7c91ca0eb96be5eae902e85b0d6d9920643c142",
+    "sha256_status": "VERIFIED"
+  },
+  "evidence": {
+    "baseline_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44913000694",
+    "fold5_owner_capture": "https://chatgpt.com/library?file_id=libfile_5d56799011288191b2165449d7745a51&account_id=personal",
+    "current_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44915066071",
+    "qa_apk": "https://chatgpt.com/library?file_id=libfile_dc906987a2e08191a68677a78003b8b3&account_id=personal",
+    "qa_apk_sha256": "a16062835326f3cd886ca10416816ef1449bc1e75e91704ac5ddbb09d38bb300",
+    "evidence_archive": "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal",
+    "api35": "Целевой GitHub Actions 44913000694 прошёл JVM, launcher и coordinates на API 23 и API 35. На API 35 — 177 и 51 проверка.",
+    "main_screen_measurement": "480×800, 160 dpi, portrait",
+    "android_ci": [
+      {
+        "api": 23,
+        "assertions": {
+          "launcher": 183,
+          "coordinates": 51,
+          "maplayers": 342,
+          "maplayersreopen": 78
+        },
+        "ui_captures": {
+          "launcher": 18,
+          "coordinates": 0,
+          "maplayers": 9,
+          "maplayersreopen": 1
+        },
+        "verified_files": 134,
+        "artifact": 14712045408
+      },
+      {
+        "api": 35,
+        "assertions": {
+          "launcher": 183,
+          "coordinates": 51,
+          "maplayers": 343,
+          "maplayersreopen": 78
+        },
+        "ui_captures": {
+          "launcher": 18,
+          "coordinates": 0,
+          "maplayers": 9,
+          "maplayersreopen": 1
+        },
+        "verified_files": 134,
+        "artifact": 14711267596
+      }
+    ]
+  },
+  "status_values": [
+    "NOT_INSPECTED",
+    "STATIC_ONLY",
+    "DYNAMIC_VERIFIED",
+    "MISMATCH",
+    "FIXED_UNVERIFIED",
+    "VERIFIED",
+    "BLOCKED"
+  ],
+  "entries": [
+    {
+      "id": "MAP-01",
+      "screen": "Главная карта",
+      "function": "Покрытие обзорной карты при первом открытии",
+      "reference_behavior": "Полноэкранная картографическая область в утверждённом задании",
+      "current_behavior": "Первый запуск пустого проекта заполняет высоту обзорным растром. При восстановлении z=2 координаты и зум сохранены, вне мира однотонный фон.",
+      "evidence_source": [
+        "launcher, кадры первого открытия и сохранённого зума",
+        "https://chatgpt.com/library?file_id=libfile_46f8c388a9288191ae241f300901bd31&account_id=personal"
+      ],
+      "visual_difference": "Сетка вне покрытия убрана. При сохранённом z=2 на высоком окне остаются поля за пределами проекции.",
+      "functional_difference": "Ограничения проекции и восстановление камеры подтверждены на проверенных размерах. Сравнение фактической подложки эталона блокировано.",
+      "priority": "P0",
+      "status": "DYNAMIC_VERIFIED",
+      "fixing_commit": "7526eedbb89e13b051c6b17610a5e4e49f5275e5",
+      "retest": "API 23 локально 183 проверки при 480×800 и 184 при 480×1360. На высоком окне начальный z=2.3309169, восстановленный z=2.",
+      "qa_verification": {
+        "status": "DYNAMIC_VERIFIED",
+        "scope": "Начальный обзор и восстановление камеры с проверкой отрисовки.",
+        "evidence": "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+      },
+      "reference_parity": {
+        "status": "BLOCKED",
+        "scope": "Реакция viewport и повторное открытие закрыты диалогом целостности."
+      }
+    },
+    {
+      "id": "MAP-02",
+      "screen": "Главная карта",
+      "function": "Нижняя сворачиваемая панель",
+      "reference_behavior": "В предыдущем запуске эталона наблюдались пять инструментов слева внизу.",
+      "current_behavior": "Пять инструментов с собственными контурными значками, отдельное сворачивание. Поиск открывается через «Метки».",
+      "evidence_source": [
+        "Измерения 480×800, 160 dpi",
+        "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+      ],
+      "visual_difference": "При 480×800 и 160 dpi пять инструментов занимают 240×56 px, отступ снизу 2 px. У эталона примерно 244×58 px. Сохранена синяя палитра с более тёмными плашками и светлыми значками.",
+      "functional_difference": "Работа инструментов QA проверена. Скрытые состояния эталона требуют наблюдения.",
+      "priority": "P0",
+      "status": "DYNAMIC_VERIFIED",
+      "fixing_commit": "e940ae0f943ba66086dd1a87a742b6dd1b42a1b1",
+      "retest": "API 23 — launcher 183, coordinates 51, maplayers 342, maplayersreopen 78. API 35 — launcher 183, coordinates 51, maplayers 343, maplayersreopen 78.",
+      "qa_verification": {
+        "status": "DYNAMIC_VERIFIED",
+        "scope": "Каждый из пяти инструментов, сворачивание, поиск, сенсорные зоны от 48 dp.",
+        "evidence": "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+      },
+      "reference_parity": {
+        "status": "BLOCKED",
+        "scope": "Пусковой кадр показывает пять инструментов. Их нажатия и закрытые состояния недоступны.",
+        "visual_status": "MISMATCH"
+      }
+    },
+    {
+      "id": "MAP-03",
+      "screen": "Главная карта",
+      "function": "Координаты, высота, линейка, прицел и зум",
+      "reference_behavior": "Доступный кадр эталона показал линейку слева вверху, прицел и две кнопки масштаба справа. Полное табло закрыто системным состоянием приложения.",
+      "current_behavior": "Координаты и линейка оформлены в палитре панели. Прицел стал кольцевым, кнопки зума сохраняют зоны 48×48 dp.",
+      "evidence_source": [
+        "Пусковой кадр v26.1, QA launcher и coordinates",
+        "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+      ],
+      "visual_difference": "Сохранены доступные признаки пускового кадра. Оформление, метки и набор полей эталона видны частично.",
+      "functional_difference": "Полная работа координатного табло и вариантов масштаба в эталоне за диалогом недоступна.",
+      "priority": "P0",
+      "status": "MISMATCH",
+      "fixing_commit": "e940ae0f943ba66086dd1a87a742b6dd1b42a1b1",
+      "retest": "API 23 — launcher 183, coordinates 51, maplayers 342, maplayersreopen 78. API 35 — launcher 183, coordinates 51, maplayers 343, maplayersreopen 78.",
+      "qa_verification": {
+        "status": "DYNAMIC_VERIFIED",
+        "scope": "Форматы координат и их восстановление, линейка и обе кнопки зума.",
+        "evidence": "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+      },
+      "reference_parity": {
+        "status": "BLOCKED",
+        "scope": "Поведение кнопок и полное табло закрыты диалогом целостности.",
+        "visual_status": "MISMATCH"
+      }
+    },
+    {
+      "id": "MENU-01",
+      "screen": "Меню",
+      "function": "Доступные действия, переходы, долгое нажатие",
+      "reference_behavior": "Состав и последовательность эталона недоступны.",
+      "current_behavior": "Фактические переходы «Меню», «Карты», «Метки», «Файловый менеджер», «Ориентирование» и поиск проверены.",
+      "evidence_source": [
+        "Кадры, XML и журнал нажатий",
+        "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+      ],
+      "visual_difference": "Сверка меню заблокирована.",
+      "functional_difference": "Полное соответствие действий неизвестно.",
+      "priority": "P0",
+      "status": "BLOCKED",
+      "fixing_commit": null,
+      "retest": "API 23 — launcher 183, coordinates 51, maplayers 342, maplayersreopen 78. API 35 — launcher 183, coordinates 51, maplayers 343, maplayersreopen 78.",
+      "qa_verification": {
+        "status": "DYNAMIC_VERIFIED",
+        "scope": "Утверждения launcher подтверждают переходы и открытие найденного объекта.",
+        "evidence": "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+      },
+      "reference_parity": {
+        "status": "BLOCKED",
+        "scope": "Набор и порядок пунктов, переходы и долгие нажатия эталона недоступны."
+      }
+    },
+    {
+      "id": "LAYERS-01",
+      "screen": "Карты и слои",
+      "function": "Каталог, слои, кеш, порядок, прозрачность и офлайн-карты",
+      "reference_behavior": "Порядок, исходные источники, форматы и области проверяются в эталоне.",
+      "current_behavior": "Проверены выбор источников из каталога, видимость, непрозрачность, порядок, возврат на локальный MBTiles и восстановление после force-stop.",
+      "evidence_source": [
+        "maplayers, maplayersreopen, кадры, XML и журнал",
+        "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+      ],
+      "visual_difference": "Парный снимок менеджера слоёв v26.1 отсутствует.",
+      "functional_difference": "Композиция QA проверена на синтетических источниках и локальном растре. Реакция менеджера эталона закрыта.",
+      "priority": "P1",
+      "status": "DYNAMIC_VERIFIED",
+      "fixing_commit": null,
+      "retest": "API 23 — launcher 183, coordinates 51, maplayers 342, maplayersreopen 78. API 35 — launcher 183, coordinates 51, maplayers 343, maplayersreopen 78.",
+      "qa_verification": {
+        "status": "DYNAMIC_VERIFIED",
+        "scope": "Проверены выбор источников из каталога, видимость, непрозрачность, порядок, возврат на локальный MBTiles и восстановление после force-stop.",
+        "evidence": "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+      },
+      "reference_parity": {
+        "status": "BLOCKED",
+        "scope": "Менеджер слоёв эталона закрыт диалогом целостности."
+      }
+    },
+    {
+      "id": "POINTS-01",
+      "screen": "Метки",
+      "function": "Создание, название, описание, координаты, копирование и удаление",
+      "reference_behavior": "Полный цикл карточки эталона неизвестен.",
+      "current_behavior": "Есть сохранение метки в проект и повторное чтение.",
+      "evidence_source": [
+        "launcher; clipboard; clipboardreopen"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Полный цикл восстановления и сверка эталона открыты.",
+      "priority": "P1",
+      "status": "STATIC_ONLY",
+      "fixing_commit": null,
+      "retest": "Базовые сценарии прошли."
+    },
+    {
+      "id": "ROUTE-01",
+      "screen": "Маршруты и области",
+      "function": "Создание, изменение и сохранение геометрии",
+      "reference_behavior": "Полный набор операций эталона неизвестен.",
+      "current_behavior": "Редактирование поддержанных геометрий KML и черновики.",
+      "evidence_source": [
+        "migration/IMPLEMENTATION_PLAN.md; geometrymap"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Дополнительные операции и состояния требуют проверки.",
+      "priority": "P1",
+      "status": "STATIC_ONLY",
+      "fixing_commit": null,
+      "retest": "Базовые сценарии прошли."
+    },
+    {
+      "id": "OBJECTS-01",
+      "screen": "Менеджер объектов",
+      "function": "Выбор, поиск, фильтры и массовые операции",
+      "reference_behavior": "Требуется наблюдение экранов и переходов эталона.",
+      "current_behavior": "Доступны вложенная структура, фильтры и массовые действия.",
+      "evidence_source": [
+        "migration/IMPLEMENTATION_PLAN.md; objectmanager"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Граничные сценарии и точные действия эталона требуют проверки.",
+      "priority": "P1",
+      "status": "STATIC_ONLY",
+      "fixing_commit": null,
+      "retest": "Базовые сценарии прошли."
+    },
+    {
+      "id": "FILES-01",
+      "screen": "Менеджер файлов",
+      "function": "Штатный выбор и рабочий режим менеджера",
+      "reference_behavior": "Эталонная структура и переключение между режимами неизвестны.",
+      "current_behavior": "Используется системный выбор файлов и собственный менеджер проектов и объектов.",
+      "evidence_source": [
+        "migration/IMPLEMENTATION_PLAN.md; clipboard"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Полное соответствие обоих режимов не доказано.",
+      "priority": "P1",
+      "status": "BLOCKED",
+      "fixing_commit": null,
+      "retest": "NOT_RUN для сверки."
+    },
+    {
+      "id": "FOLDER-01",
+      "screen": "Папки и группы",
+      "function": "Структура, перенос между проектами и сохранение",
+      "reference_behavior": "Семантика папок и групп в эталоне недоступна.",
+      "current_behavior": "Транзакционный перенос проектов, объектов и вложений реализован.",
+      "evidence_source": [
+        "CODEX_NEXT.md; clipboard и clipboardreopen"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Сверка типов групп и действий эталона открыта.",
+      "priority": "P1",
+      "status": "STATIC_ONLY",
+      "fixing_commit": null,
+      "retest": "Базовые сценарии прошли."
+    },
+    {
+      "id": "GEOM-01",
+      "screen": "Редактор геометрии",
+      "function": "Ручное редактирование точек, вершин и колец",
+      "reference_behavior": "Состояния и действия эталона неизвестны.",
+      "current_behavior": "Редактор геометрии, перетаскивание, отмена и сохранение черновика.",
+      "evidence_source": [
+        "migration/IMPLEMENTATION_PLAN.md; geometryedit"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Полная топология и дополнительные действия требуют проверки.",
+      "priority": "P1",
+      "status": "STATIC_ONLY",
+      "fixing_commit": null,
+      "retest": "Базовые сценарии прошли."
+    },
+    {
+      "id": "SVG-01",
+      "screen": "SVG и стили",
+      "function": "Значок, цвет, оформление, масштаб и экспорт",
+      "reference_behavior": "Полный набор библиотек и состояний эталона не подтверждён.",
+      "current_behavior": "Выбор SVG, рендерер, стили KML и сохранение в KMZ.",
+      "evidence_source": [
+        "CODEX_NEXT.md; svg"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Полная библиотека и цикл всех свойств требуют сверки.",
+      "priority": "P1",
+      "status": "STATIC_ONLY",
+      "fixing_commit": null,
+      "retest": "Базовые сценарии прошли."
+    },
+    {
+      "id": "MEDIA-01",
+      "screen": "Вложения",
+      "function": "Фото, видео, аудио, заметки, привязка и удаление",
+      "reference_behavior": "Карточки и параметры эталона не наблюдались.",
+      "current_behavior": "Локальные связи, перенос байтов и привязка при повторном открытии.",
+      "evidence_source": [
+        "CODEX_NEXT.md; clipboardreopen"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Матрица типов вложений и полное поведение эталона открыты.",
+      "priority": "P1",
+      "status": "STATIC_ONLY",
+      "fixing_commit": null,
+      "retest": "Базовый цикл вложения прошёл."
+    },
+    {
+      "id": "IO-01",
+      "screen": "Импорт и экспорт",
+      "function": "KML/KMZ, GPX, GeoJSON и обмен по явному действию",
+      "reference_behavior": "Полный список и устройства импорта эталона не подтверждены.",
+      "current_behavior": "Поддержанные форматы прошли повторный импорт и проверки схем. KMZ сохраняет ресурсы.",
+      "evidence_source": [
+        "CODEX_NEXT.md; clipboardreopen; архив проверки форматов"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Импорт во внешние навигаторы и все состояния SAF остаются открыты.",
+      "priority": "P1",
+      "status": "STATIC_ONLY",
+      "fixing_commit": null,
+      "retest": "Базовые сценарии прошли."
+    },
+    {
+      "id": "SET-01",
+      "screen": "Настройки",
+      "function": "Настройки, компас, хранение и приватность",
+      "reference_behavior": "Доступность настроек эталона неизвестна. Ограничения приватности заданы владельцем.",
+      "current_behavior": "Настройки карты и координат сохраняются, компас отделён от геолокации.",
+      "evidence_source": [
+        "AGENTS.md; migration/requirements.json; coordinates"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Полный перечень настроек и поведение компаса на Fold5 открыты.",
+      "priority": "P2",
+      "status": "STATIC_ONLY",
+      "fixing_commit": null,
+      "retest": "Базовый CI и статическая проверка приватности."
+    },
+    {
+      "id": "REL-01",
+      "screen": "Приёмка",
+      "function": "Установка, миграция, независимость и Fold5",
+      "reference_behavior": "Прямое самостоятельное обновление эталона не подтверждено.",
+      "current_behavior": "Независимый QA APK имеет другой идентификатор и одноразовую подпись.",
+      "evidence_source": [
+        "AGENTS.md; migration/requirements.json; CI"
+      ],
+      "visual_difference": "Физический Fold5 не предоставлен.",
+      "functional_difference": "Миграция и пользовательская приёмка открыты.",
+      "priority": "P0",
+      "status": "BLOCKED",
+      "fixing_commit": null,
+      "retest": "NOT_RUN"
+    }
+  ],
+  "blocked_requirements": [
+    {
+      "id": "REF-ACCESS",
+      "scope": "Меню и остальные состояния",
+      "reason": "Повторный запуск неизменённого эталона остановился на диалоге целостности. Сохранены снимок, дерево UI и logcat."
+    },
+    {
+      "id": "REF-SCREENS",
+      "scope": "13 экранов",
+      "reason": "Обязательные разделы внесены в реестр. Полный набор парных снимков отсутствует."
+    },
+    {
+      "id": "FOLD",
+      "scope": "Samsung Galaxy Z Fold5",
+      "reason": "Физическая проверка и миграция требуют отдельной приёмки."
+    },
+    {
+      "id": "VENDORS",
+      "scope": "OsmAnd, Organic Maps и Locus Map",
+      "reason": "GDAL открыл образцы; независимый импорт в трёх приложениях не подтверждён."
+    }
+  ],
+  "repository_requirements": [
+    {
+      "id": "ui-map",
+      "title": "Главный экран карты, все панели, значки и управление",
+      "entries": [
+        "MAP-01",
+        "MAP-02",
+        "MAP-03"
+      ]
+    },
+    {
+      "id": "ui-menus",
+      "title": "Все меню, вкладки, диалоги и настройки",
+      "entries": [
+        "MENU-01"
+      ]
+    },
+    {
+      "id": "catalog",
+      "title": "54 онлайн-источника, 3 набора и 7 групп",
+      "entries": [
+        "LAYERS-01"
+      ]
+    },
+    {
+      "id": "layers",
+      "title": "Менеджер карт, наборов и слоёв",
+      "entries": [
+        "LAYERS-01"
+      ]
+    },
+    {
+      "id": "offline-formats",
+      "title": "Все ранее поддержанные офлайн-форматы",
+      "entries": [
+        "LAYERS-01",
+        "IO-01"
+      ]
+    },
+    {
+      "id": "cache",
+      "title": "Полный механизм кеша и скачивания областей",
+      "entries": [
+        "LAYERS-01"
+      ]
+    },
+    {
+      "id": "cache-export",
+      "title": "Перенос сохранённых карт одним файлом",
+      "entries": [
+        "LAYERS-01",
+        "IO-01"
+      ]
+    },
+    {
+      "id": "points",
+      "title": "Все действия с метками и карточкой метки",
+      "entries": [
+        "POINTS-01"
+      ]
+    },
+    {
+      "id": "geometry",
+      "title": "Маршруты, области, треки и рисунки",
+      "entries": [
+        "ROUTE-01",
+        "GEOM-01"
+      ]
+    },
+    {
+      "id": "manager",
+      "title": "Файловый менеджер объектов, папок и групп",
+      "entries": [
+        "OBJECTS-01",
+        "FILES-01",
+        "FOLDER-01"
+      ]
+    },
+    {
+      "id": "symbols",
+      "title": "Значки, SVG, цвета, подписи и собственные библиотеки",
+      "entries": [
+        "SVG-01"
+      ]
+    },
+    {
+      "id": "media",
+      "title": "Фото, видео, аудио и текстовые вложения",
+      "entries": [
+        "MEDIA-01"
+      ]
+    },
+    {
+      "id": "import-export",
+      "title": "Все форматы импорта и экспорта объектов",
+      "entries": [
+        "IO-01"
+      ]
+    },
+    {
+      "id": "filters",
+      "title": "Поиск, фильтры и видимость объектов",
+      "entries": [
+        "OBJECTS-01"
+      ]
+    },
+    {
+      "id": "bluetooth",
+      "title": "Передача файлов и объектов по Bluetooth",
+      "entries": [
+        "IO-01"
+      ]
+    },
+    {
+      "id": "coordinates",
+      "title": "Координатные системы, сетки и измерения",
+      "entries": [
+        "MAP-03"
+      ]
+    },
+    {
+      "id": "dem",
+      "title": "DEM, высоты, рельеф и связанные инструменты",
+      "entries": [
+        "MAP-03",
+        "LAYERS-01"
+      ]
+    },
+    {
+      "id": "compass",
+      "title": "Компас и остальные разрешённые датчики",
+      "entries": [
+        "SET-01"
+      ]
+    },
+    {
+      "id": "settings",
+      "title": "Все сохранённые настройки и локальное хранение",
+      "entries": [
+        "SET-01"
+      ]
+    },
+    {
+      "id": "migration",
+      "title": "Обновление 26.1 без удаления и потери данных",
+      "entries": [
+        "REL-01"
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": "Согласованные ограничения приватности",
+      "entries": [
+        "SET-01",
+        "REL-01"
+      ]
+    },
+    {
+      "id": "independence",
+      "title": "Самостоятельная реализация и воспроизводимая сборка",
+      "entries": [
+        "REL-01"
+      ]
+    },
+    {
+      "id": "stability",
+      "title": "Стабильность, minSdk 23 и проверка на устройствах",
+      "entries": [
+        "MAP-01",
+        "MAP-02",
+        "REL-01"
+      ]
+    }
+  ]
+}

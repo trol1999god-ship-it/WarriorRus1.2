@@ -1,0 +1,21 @@
+{
+  "qualification": "local candidate; Android runtime pending",
+  "source_count": 71,
+  "source_hashes_exact": true,
+  "classes": 527,
+  "variant": "debug-qa",
+  "jvm_suites": 32,
+  "jvm_assertions": 81561,
+  "hgt_assertions": 30,
+  "host_tests": 18,
+  "accepted": false,
+  "android_runtime_executed": false,
+  "instrumentation_bytes": 259072,
+  "build_result_sha256": "c0064448e5396d16b51ea1c8013069fee14b7a75ea70eafa443cc66362c7a53b",
+  "files": {
+    "app.apk": "f66105ed450d9e75435c97c16650ae7de5e8f1fba1e89cc47a1d1ba26502125b",
+    "app-unsigned.apk": "70a08297fd3a7cc603beebe565fd3f17d1aa6bd7e4e25246ebc1f95b73942963",
+    "tests-unsigned.apk": "c1eec530afe3ddd51448c39269b1927a77c6c851cc59713a1d4addab681b6515",
+    "tests.apk": "7e387ff19befab6b3847bce69e45e38c4bee2383c83c3d620b6956089902b9a2"
+  }
+}

@@ -1,0 +1,2 @@
+adb returncode=1
+[  5%] /sdcard/Android/data/org.rabochaya.karta/files/map_mvisual-vertex-scroll-invalid-field.png: 100%

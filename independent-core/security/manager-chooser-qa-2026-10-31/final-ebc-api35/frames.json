@@ -1,0 +1,66 @@
+[
+  {
+    "name": "map_mvisual-chooser-before.png",
+    "sha256": "592579667c85619c7149dce1a28a7b79fb6282a2aa2846bc0a7ebbeda4a03c73"
+  },
+  {
+    "name": "map_mvisual-chooser-cancel.png",
+    "sha256": "2fc7aca252f7b5a0ac569e89ce7ed25f78e52871b3d8ee156515ab6c6ff243ea"
+  },
+  {
+    "name": "map_mvisual-chooser-choice-cancel.png",
+    "sha256": "1d0e873e45e25d04d6ae9903be452d8c3302d18322289416047b7216d143c015"
+  },
+  {
+    "name": "map_mvisual-chooser-confirm-return.png",
+    "sha256": "99a19925bca2d3c182f896c42d1c769afae0f254003f321e988301ef9584fb82"
+  },
+  {
+    "name": "map_mvisual-chooser-foreign.png",
+    "sha256": "8a3e40c4cacd18f6a9ab055e1c34af886365ebad892fed18a95e79be8bf00121"
+  },
+  {
+    "name": "map_mvisual-chooser-rejected.png",
+    "sha256": "1819e65be6e10c9b9952d08ee2b2f965ff499c14a6282ed223ad87d4053eaefc"
+  },
+  {
+    "name": "map_mvisual-chooser-return.png",
+    "sha256": "632d99be04b7fd2849cf4e5147eb6a8149e17071f392c136b30dee1d08469dde"
+  },
+  {
+    "name": "map_mvisual-chooser-save.png",
+    "sha256": "c7b2e520b7ff20ea8dd2e29d4adbdd91a9bb57ef3fdb1553cb4b6edf2f6d2a2c"
+  },
+  {
+    "name": "map_mvisual-chooser-saved.png",
+    "sha256": "5031e71a8a1324e136b76e8a6d34d13e721bfbf7f938829dfdbd325cc1d8f0b1"
+  },
+  {
+    "name": "map_mvisual-chooser-scroll-before.png",
+    "sha256": "098839f15c6eb1ff1d52c87ec4af5fe62ebee358527467738966e7c05dfdcf22"
+  },
+  {
+    "name": "map_mvisual-chooser-scroll-land.png",
+    "sha256": "24bcb1c04bc42c081adc2551ddae6f44a862d8e4d1f099cce931123d96b88e3e"
+  },
+  {
+    "name": "map_mvisual-chooser-scroll-return.png",
+    "sha256": "132ed5714e721491754b11d34d1c8743520394f85bb037a908cc48fc94cacbe8"
+  },
+  {
+    "name": "map_mvisual-chooser-source-folder-return.png",
+    "sha256": "033c5829b9787ebf0d6724dacb9e33f85efe921c7e345b6f240290c97832f8c9"
+  },
+  {
+    "name": "map_mvisual-chooser-stale-after-return.png",
+    "sha256": "4ca1133babd117893c2aeba1c1894c9ae610b5ccb35c0ed90db1f66844bf4863"
+  },
+  {
+    "name": "map_mvisual-chooser-stale-after.png",
+    "sha256": "18d97b4a0244be1412b4cf82a3af4b525bfb7e32fc6807e339c566045a8e6e70"
+  },
+  {
+    "name": "map_mvisual-chooser-stale-before.png",
+    "sha256": "c7e005c990be09aa17bd608d6f5e518e99f0aa3601b32dc4457421111c088b71"
+  }
+]

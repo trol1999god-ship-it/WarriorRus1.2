@@ -1,0 +1,22 @@
+{
+  "run": 43089751186,
+  "source_sha": "d36f15f4e606fcad310a59cc25ba7940bbfbc205",
+  "annotations": [
+    {
+      "api": 23,
+      "job": 130763635944,
+      "annotation": "The job has exceeded the maximum execution time of 45m0s",
+      "summary_url": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/43089751186/job/130763635944",
+      "html_sha256": "706d61ca17f933723b244c0ba73e9442e7c26686dd5527b222ebb801854ed671"
+    },
+    {
+      "api": 35,
+      "job": 130763635965,
+      "annotation": "The job has exceeded the maximum execution time of 45m0s",
+      "summary_url": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/43089751186/job/130763635965",
+      "html_sha256": "11b955cf865de76e84afec607a17b18345032b2f1cb70e48c0e200b8bcac6a26"
+    }
+  ],
+  "confirmed": "Both jobs exceeded unchanged45min job timeout after scenario steps success; artifact delivery did not finish.",
+  "still_unknown": "Original artifact upload transport/server error; logs BlobNotFound."
+}

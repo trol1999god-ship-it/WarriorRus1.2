@@ -1,0 +1,22 @@
+{
+  "security/release_gate.py": {
+    "before": "2f37fbad70da27ec660b1c9730566bc27a23590f471266fbc9a3584a03a847a4",
+    "now": "2f37fbad70da27ec660b1c9730566bc27a23590f471266fbc9a3584a03a847a4"
+  },
+  "ci/run_android_checks.py": {
+    "before": "2826a1632910f31840d8b2961f959de9e6ab57ff1f9c67a7816737c20769b888",
+    "now": "2826a1632910f31840d8b2961f959de9e6ab57ff1f9c67a7816737c20769b888"
+  },
+  "owned-projects/tests/ManagerVisualChecks.java": {
+    "before": "bd86201e3a8300d1782b6fbe95747dec0722ba6dde4d658667125862420bcc62",
+    "now": "bd86201e3a8300d1782b6fbe95747dec0722ba6dde4d658667125862420bcc62"
+  },
+  "owned-projects/tests/VertexScrollChecks.java": {
+    "before": "79144079d971cb1ac1d5ea9ffb99a5ef6b359a92cdff755b9afeb4f62dbf083e",
+    "now": "79144079d971cb1ac1d5ea9ffb99a5ef6b359a92cdff755b9afeb4f62dbf083e"
+  },
+  "owned-projects/src/org/rabochaya/projects/ProjectWrites.java": {
+    "before": "729e4fa2f1a6a24e8142e45a40e6157ffab076fb2151924ac9b4c04630302c4b",
+    "now": "729e4fa2f1a6a24e8142e45a40e6157ffab076fb2151924ac9b4c04630302c4b"
+  }
+}

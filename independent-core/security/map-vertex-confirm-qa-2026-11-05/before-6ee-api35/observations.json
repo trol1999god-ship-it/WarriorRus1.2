@@ -1,0 +1,486 @@
+[
+  {
+    "stage": "before-land",
+    "layout": {
+      "activity": "org.rabochaya.projects.GeometryEditorActivity",
+      "destroyed": false,
+      "orientation": 1,
+      "frame": "0 24 320 616",
+      "decorWidth": 320,
+      "decorHeight": 640,
+      "mapMode": true,
+      "bodyWidth": 296,
+      "bodyHeight": 361,
+      "canvasPresent": true,
+      "surfaceWidth": 296,
+      "surfaceHeight": 313,
+      "surfaceLaidOut": true,
+      "surfaceShown": true,
+      "surfaceVisible": true,
+      "surfaceBounds": "12 171 308 484",
+      "interactiveThreshold": true,
+      "focusedRoot": "com.android.internal.policy.DecorView"
+    },
+    "present": true,
+    "key": "0",
+    "token": "4ee6c756fc8f1f207d959594f5dc56fd05a212272c554aea1cc0d5eed9ab5ec9",
+    "main": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "selected": 1,
+    "viewport": "[0.5319444444444444, 0.43881448761120856, 6.949949780371929]",
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Удалить выбранную вершину из текущего ввода?",
+        "foreground": "#de000000",
+        "arimo": false,
+        "bounds": "[16, 280, 288, 41]",
+        "visible": true,
+        "visibleBounds": "[16,34][304,75]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": false,
+        "bounds": "[120, 325, 82, 48]",
+        "visible": true,
+        "visibleBounds": "[120,79][202,127]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Удалить",
+        "foreground": "#ff008577",
+        "arimo": false,
+        "bounds": "[202, 325, 90, 48]",
+        "visible": true,
+        "visibleBounds": "[202,79][292,127]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "stage": "after-land",
+    "layout": {
+      "activity": "org.rabochaya.projects.GeometryEditorActivity",
+      "destroyed": false,
+      "orientation": 2,
+      "frame": "0 24 640 296",
+      "decorWidth": 640,
+      "decorHeight": 320,
+      "mapMode": true,
+      "bodyWidth": 616,
+      "bodyHeight": 55,
+      "canvasPresent": true,
+      "surfaceWidth": 616,
+      "surfaceHeight": 7,
+      "surfaceLaidOut": true,
+      "surfaceShown": true,
+      "surfaceVisible": true,
+      "surfaceBounds": "12 157 628 164",
+      "interactiveThreshold": false,
+      "focusedRoot": "com.android.internal.policy.DecorView"
+    },
+    "present": false,
+    "key": "0",
+    "token": "4ee6c756fc8f1f207d959594f5dc56fd05a212272c554aea1cc0d5eed9ab5ec9",
+    "main": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "selected": 1,
+    "viewport": "[0.5319444444444444, 0.43881448761120856, 6.949949780371929]",
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Координаты и контуры",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 36, 616, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][628,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия 0 · LineString",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 67, 568, 24]",
+        "visible": true,
+        "visibleBounds": "[12,67][580,91]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "WGS 84: широта долгота [высота], одна вершина в строке",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 91, 616, 18]",
+        "visible": true,
+        "visibleBounds": "[12,91][628,109]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Координаты списком",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 109, 616, 48]",
+        "visible": true,
+        "visibleBounds": "[12,109][628,157]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "+",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[580, 157, 48, 48]",
+        "visible": true,
+        "visibleBounds": "[580,157][628,164]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "−",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[580, 205, 48, 48]",
+        "visible": false,
+        "visibleBounds": "[568,48][616,96]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Обзорная карта",
+        "foreground": "#ffffffff",
+        "arimo": false,
+        "bounds": "[12, 157, 82, 7]",
+        "visible": true,
+        "visibleBounds": "[12,157][94,164]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Добавить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 164, 154, 48]",
+        "visible": true,
+        "visibleBounds": "[12,164][166,212]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Удалить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[166, 164, 154, 48]",
+        "visible": true,
+        "visibleBounds": "[166,164][320,212]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Шаг назад",
+        "foreground": "#42000000",
+        "arimo": true,
+        "bounds": "[320, 164, 154, 48]",
+        "visible": true,
+        "visibleBounds": "[320,164][474,212]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Охват",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[474, 164, 154, 48]",
+        "visible": true,
+        "visibleBounds": "[474,164][628,212]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Коснитесь вершины и перетащите. Свободное место — перемещение карты, два пальца — масштаб",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 212, 616, 18]",
+        "visible": true,
+        "visibleBounds": "[12,212][628,230]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 230, 205, 54]",
+        "visible": true,
+        "visibleBounds": "[12,230][217,284]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[217, 230, 205, 54]",
+        "visible": true,
+        "visibleBounds": "[217,230][422,284]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[422, 230, 206, 54]",
+        "visible": true,
+        "visibleBounds": "[422,230][628,284]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "stage": "before-return",
+    "layout": {
+      "activity": "org.rabochaya.projects.GeometryEditorActivity",
+      "destroyed": false,
+      "orientation": 2,
+      "frame": "0 24 640 296",
+      "decorWidth": 640,
+      "decorHeight": 320,
+      "mapMode": true,
+      "bodyWidth": 616,
+      "bodyHeight": 55,
+      "canvasPresent": true,
+      "surfaceWidth": 616,
+      "surfaceHeight": 7,
+      "surfaceLaidOut": true,
+      "surfaceShown": true,
+      "surfaceVisible": true,
+      "surfaceBounds": "12 157 628 164",
+      "interactiveThreshold": false,
+      "focusedRoot": "com.android.internal.policy.DecorView"
+    },
+    "present": true,
+    "key": "0",
+    "token": "4ee6c756fc8f1f207d959594f5dc56fd05a212272c554aea1cc0d5eed9ab5ec9",
+    "main": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "selected": 1,
+    "viewport": "[0.5319444444444444, 0.43881448761120856, 6.949949780371929]",
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Удалить выбранную вершину из текущего ввода?",
+        "foreground": "#de000000",
+        "arimo": false,
+        "bounds": "[128, 120, 384, 41]",
+        "visible": true,
+        "visibleBounds": "[16,34][400,75]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": false,
+        "bounds": "[328, 165, 82, 48]",
+        "visible": true,
+        "visibleBounds": "[216,79][298,127]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Удалить",
+        "foreground": "#ff008577",
+        "arimo": false,
+        "bounds": "[410, 165, 90, 48]",
+        "visible": true,
+        "visibleBounds": "[298,79][388,127]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "stage": "after-return",
+    "layout": {
+      "activity": "org.rabochaya.projects.GeometryEditorActivity",
+      "destroyed": false,
+      "orientation": 1,
+      "frame": "0 24 320 616",
+      "decorWidth": 320,
+      "decorHeight": 640,
+      "mapMode": true,
+      "bodyWidth": 296,
+      "bodyHeight": 333,
+      "canvasPresent": true,
+      "surfaceWidth": 296,
+      "surfaceHeight": 285,
+      "surfaceLaidOut": true,
+      "surfaceShown": true,
+      "surfaceVisible": true,
+      "surfaceBounds": "12 171 308 456",
+      "interactiveThreshold": true,
+      "focusedRoot": "com.android.internal.policy.DecorView"
+    },
+    "present": false,
+    "key": "0",
+    "token": "4ee6c756fc8f1f207d959594f5dc56fd05a212272c554aea1cc0d5eed9ab5ec9",
+    "main": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "selected": 1,
+    "viewport": "[0.5319444444444444, 0.43881448761120856, 6.949949780371929]",
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Координаты и контуры",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 36, 296, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][308,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия 0 · LineString",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 67, 248, 24]",
+        "visible": true,
+        "visibleBounds": "[12,67][260,91]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "WGS 84: широта долгота [высота], одна вершина в строке",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 91, 296, 32]",
+        "visible": true,
+        "visibleBounds": "[12,91][308,123]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Координаты списком",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 123, 296, 48]",
+        "visible": true,
+        "visibleBounds": "[12,123][308,171]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "+",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[260, 171, 48, 48]",
+        "visible": true,
+        "visibleBounds": "[260,171][308,219]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "−",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[260, 219, 48, 48]",
+        "visible": true,
+        "visibleBounds": "[260,219][308,267]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Обзорная карта",
+        "foreground": "#ffffffff",
+        "arimo": false,
+        "bounds": "[12, 438, 82, 18]",
+        "visible": true,
+        "visibleBounds": "[12,438][94,456]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Добавить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 456, 74, 48]",
+        "visible": true,
+        "visibleBounds": "[12,456][86,504]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Удалить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[86, 456, 74, 48]",
+        "visible": true,
+        "visibleBounds": "[86,456][160,504]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Шаг назад",
+        "foreground": "#42000000",
+        "arimo": true,
+        "bounds": "[160, 456, 74, 48]",
+        "visible": true,
+        "visibleBounds": "[160,456][234,504]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Охват",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[234, 456, 74, 48]",
+        "visible": true,
+        "visibleBounds": "[234,456][308,504]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Коснитесь вершины и перетащите. Свободное место — перемещение карты, два пальца — масштаб",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 504, 296, 46]",
+        "visible": true,
+        "visibleBounds": "[12,504][308,550]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 550, 98, 54]",
+        "visible": true,
+        "visibleBounds": "[12,550][110,604]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[110, 550, 99, 54]",
+        "visible": true,
+        "visibleBounds": "[110,550][209,604]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[209, 550, 99, 54]",
+        "visible": true,
+        "visibleBounds": "[209,550][308,604]",
+        "fullyVisible": true
+      }
+    ]
+  }
+]

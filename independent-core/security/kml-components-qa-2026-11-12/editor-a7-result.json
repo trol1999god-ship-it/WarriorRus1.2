@@ -1,0 +1,40 @@
+{
+  "source_sha": "a7f789a0b52c0512aff20bf263ec257acbbfc134",
+  "run_id": 43234511518,
+  "overall": "failure",
+  "jvm": {
+    "job": 131238174611,
+    "result": "success",
+    "suites": 39,
+    "assertions": 83317,
+    "driver_host_tests": 31
+  },
+  "api23": {
+    "job": 131238606010,
+    "passed": 45,
+    "scenarios": 46,
+    "failed": "offlineformats",
+    "hillshade_ready_ms": 4381,
+    "full_job_log_sha256": "e25aa69b3029b5d8638f6a945cccc77151642a987566cdebd1cf450fd5b5e906"
+  },
+  "api35": {
+    "job": 131238605912,
+    "passed": 45,
+    "scenarios": 46,
+    "failed": "offlineformats",
+    "hillshade_ready_ms": 3629,
+    "full_job_log_sha256": "776830ed826d69a34310a8a4f3f5847fbd60354c3a5aced9d2e7a8958b83a564"
+  },
+  "cause": "Both completed full jobs: NullPointerException at KmlComponentStyleChecks.editor line12, cloneNode on null. KmlProject.byId indexes only containers/Placemark, not shared Style/StyleMap. Test used a feature lookup for definitions.",
+  "scope_before_failure": "HGT full guards and initial KML controlled renderer pixels/independent defaults/Arimo/serialization-KMZ checks reached completion before editor fixture cloning. Full offlineformats has no PASS; no assertion total guessed.",
+  "not_executed": [
+    "component editor UI input/validation/IME/Cancel/Save/reset/stale/foreign",
+    "edited final main scene",
+    "final component fixture other-project/network guards"
+  ],
+  "visual_review": "Only six new scoped frames viewed: initial KML scene + HGT prompt/saved per API. Editor/error/postedit PNG not produced; no inheritance from prior runs. Other extracted frames not claimed viewed.",
+  "fix": "Test-only definition lookup uses project DOM + exact KML namespace/tag/id; requires exactly one original definition. Original equality/data guards retained. Production codec not changed.",
+  "next_candidate": "Local named preset function 0a031db also prepared; neither presets nor lookup fix belongs to this run. SDK23 corrected instrumentation compiled for next candidate; runtime pending.",
+  "transport": "No artifact pull failure in either completed job; new recovery branch not claimed exercised without event. Previous ca888b5 and130b failures remain failures.",
+  "acceptance": false
+}

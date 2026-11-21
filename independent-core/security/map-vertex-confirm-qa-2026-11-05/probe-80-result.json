@@ -1,0 +1,12 @@
+{
+  "source": "80b151255f9c4e9b261bea51dd75149a2ebbccd4",
+  "run": 41907636790,
+  "api23_job": 126846599545,
+  "api35_job": 126846599661,
+  "conclusion": "failure",
+  "api23": "portrait/selected1/key0/mainExact and before-land present=true; actual destroyed assertion crossed; postrotation mapEditorReady >80x80 timeout; no after PNG, dialog loss unproven",
+  "api35": "failure but exact cause unread; log tool Transport closed, alternate public fetch endpoint disallowed, artifact delivered as File Service reference but workspace download tunnel403; direct gh API Forbidden. No cause attribution from API23.",
+  "png_verified_reviewed": 1,
+  "production_changed": false,
+  "next": "test-only postrotate dimensions/visibility/model/dialog/PNG before strict80 evaluation; no threshold reduction, exact viewport guard, both rotations, bounded console previews preserving all artifact PNGs and validation"
+}

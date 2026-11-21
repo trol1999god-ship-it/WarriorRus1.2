@@ -1,0 +1,1 @@
+/sdcard/Android/data/org.rabochaya.karta/files/: 5 files pulled, 0 skipped. 13.6 MB/s (134890 bytes in 0.009s)

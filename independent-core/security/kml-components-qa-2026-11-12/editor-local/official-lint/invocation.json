@@ -1,0 +1,23 @@
+[
+  "/workspace/android-toolchain/sdk/cmdline-tools/latest/bin/lint",
+  "--offline",
+  "--quiet",
+  "--exitcode",
+  "--compile-sdk-version",
+  "23",
+  "--sdk-home",
+  "/workspace/android-toolchain/sdk",
+  "--java-language-level",
+  "1.8",
+  "--sources",
+  "/workspace/WarriorRus1.2/independent-core/owned-projects/src",
+  "--resources",
+  "/workspace/WarriorRus1.2/independent-core/independent-app/res",
+  "--classpath",
+  "/workspace/work/manager-confirm/official-lint-component-editor-7vuelvtn/classes",
+  "--libraries",
+  "/workspace/work/manager-confirm/official-lint-component-editor-7vuelvtn/abi",
+  "--xml",
+  "/workspace/work/manager-confirm/official-lint-component-editor-7vuelvtn/lint.xml",
+  "/workspace/WarriorRus1.2/independent-core/independent-app"
+]

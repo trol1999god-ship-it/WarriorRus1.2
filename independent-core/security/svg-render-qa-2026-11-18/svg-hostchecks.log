@@ -1,0 +1,13 @@
+..........F....................
+======================================================================
+FAIL: test_missing_visual_pull_is_a_failure_with_transport_diagnostics (__main__.RunnerTests.test_missing_visual_pull_is_a_failure_with_transport_diagnostics)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/WarriorRus1.2/independent-core/ci/test_run_android_checks.py", line 230, in test_missing_visual_pull_is_a_failure_with_transport_diagnostics
+    self.assertIn('device offline', result.pull_diagnostics['geometrynewholeguards-artifact-pull.txt'])
+AssertionError: 'device offline' not found in "Command '['/tmp/tmplq9hyk8y/adb', '-s', 'emulator-5554', 'shell', 'getprop', 'sys.boot_completed']' timed out after 0.01856662300269818 seconds"
+
+----------------------------------------------------------------------
+Ran 31 tests in 34.295s
+
+FAILED (failures=1)

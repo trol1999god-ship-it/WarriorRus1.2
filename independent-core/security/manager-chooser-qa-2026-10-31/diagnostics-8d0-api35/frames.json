@@ -1,0 +1,62 @@
+[
+  {
+    "name": "map_mvisual-chooser-before.png",
+    "sha256": "cf5687f9b7374719689fd2e452f26401737b1b3e3cc6e559212fc2e764762101"
+  },
+  {
+    "name": "map_mvisual-chooser-cancel.png",
+    "sha256": "6a169558b03b55672f60303a2223def45278ca3fc003681a319c5b624e310535"
+  },
+  {
+    "name": "map_mvisual-chooser-choice-cancel.png",
+    "sha256": "0599d0b37eaa095a1e15245ab944de09dcc52370fbe0c84df352ccbc31b30b4b"
+  },
+  {
+    "name": "map_mvisual-chooser-confirm-return.png",
+    "sha256": "3053e3a472cce9287c399775f64b1fc5f68ef4014eb34f1713c4ced0700f266d"
+  },
+  {
+    "name": "map_mvisual-chooser-foreign.png",
+    "sha256": "6563a3d7efececc00440472644d0c371afe171cf739e726d9e4ea32bba890522"
+  },
+  {
+    "name": "map_mvisual-chooser-rejected.png",
+    "sha256": "81d3bc97ea8fcd506d9d6dabaaada4bb1698ab5b22f55857ed3541728b9a2032"
+  },
+  {
+    "name": "map_mvisual-chooser-return.png",
+    "sha256": "1786b79f63af42b198e07a0a04543e4afcc36a520f1777242ab9345ba9613d28"
+  },
+  {
+    "name": "map_mvisual-chooser-save.png",
+    "sha256": "ad6c240551f249631cd7749d6297c92dc195c13bf3f6aab3c594fdffbaf974f2"
+  },
+  {
+    "name": "map_mvisual-chooser-saved.png",
+    "sha256": "569443cc285dceb2baf79565d74dcfcb35d7af30bbd4c94a5adfea8fc181bce2"
+  },
+  {
+    "name": "map_mvisual-chooser-scroll-before.png",
+    "sha256": "028a604ca7f8c043ed4dd75dc0716396da1e2c04004c88207474a4b35e3cdc4e"
+  },
+  {
+    "name": "map_mvisual-chooser-scroll-land.png",
+    "sha256": "9c8064de3f2170e9eb493a255d975f6de73b7de5910d780e6fbebf34c748b9a6"
+  },
+  {
+    "name": "map_mvisual-chooser-source-folder-return.png",
+    "sha256": "b8df9194a7902ae51f0dae7408869a97d10329e46fd62a6b0c83fcbdb8f0e583"
+  },
+  {
+    "name": "map_mvisual-chooser-stale-after-return.png",
+    "sha256": "e6338def849257022af097330e59497bd53567180761320aa6694b434d02f555"
+  },
+  {
+    "name": "map_mvisual-chooser-stale-after.png",
+    "sha256": "ad6c240551f249631cd7749d6297c92dc195c13bf3f6aab3c594fdffbaf974f2"
+  },
+  {
+    "name": "map_mvisual-chooser-stale-before.png",
+    "sha256": "2e7a2640e1ac2ef11266570ebe8bb721e3042814de1061f93ed6a6a7d8bb5a47"
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "api": "23",
+  "source_sha": "fbc64ea14ddc009e74a3ed1856885698a21d2865",
+  "run_id": "43139985094",
+  "outer_path": "/workspace/attachments/d97aa348-a8e0-4b71-be3d-02336f02b2f7/ozi-fbc-api23.zip",
+  "outer_sha256": "81652157aa83315df5c3fcbf51be9a224717e3d53276279a9a60a6605e1e0ad2",
+  "inner_sha256": "22e58b98b65d87acab7c4b48e92d8dbc9268e4cfc05d278187bad278ae4b93ba",
+  "all_member_hashes_verified": true,
+  "members": 548,
+  "records": 46,
+  "passed": 46,
+  "failed_or_skipped": [],
+  "frames": 24,
+  "visual_review": "Partial scoped actual review: 6 images per API, including recovered original offlineformats frames on35; remaining extracted PNG not claimed viewed"
+}

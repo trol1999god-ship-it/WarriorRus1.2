@@ -1,0 +1,15 @@
+{
+  "commit": "1c08403126671c4bad0ef722bd77ffdca7bfb716",
+  "run": 42014806917,
+  "api23_job": 127202746744,
+  "api23_pass": 43,
+  "api23_failure": "close SaveDraft button visible181 of187px in landscape",
+  "api35_job": 127202746713,
+  "api35_pass": 44,
+  "api35_close_assertions": 563,
+  "managerforms23": 482,
+  "managerforms35": 473,
+  "png_sha_verified": 19,
+  "png_reviewed": 19,
+  "stage_complete": false
+}

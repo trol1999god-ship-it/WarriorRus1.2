@@ -1,0 +1,156 @@
+[
+  {
+    "name": "maplayersreopen/map_dem-coverage.png",
+    "bytes": 70368,
+    "sha256": "b15ea875eb555dae19bc58c3728a756b17f44c2b29c1a2fe90e6db64ac597f6e",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_dem-import-ready.png",
+    "bytes": 46537,
+    "sha256": "139febe303d73110f8ae914f029f18793b2f6431a89d52055cecfc8e84b5e59e",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_dem-manual-centre.png",
+    "bytes": 38501,
+    "sha256": "7b58237b3bcc4e299e0daa350acbc026ba53dca363bb64c2f43492cdadad3bcf",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_maplayers.png",
+    "bytes": 55255,
+    "sha256": "48acc041890d856bc74487db47d9eb58ea9c130f59de2ca19ca5d223d62ebfcc",
+    "actually_viewed": true,
+    "observation": "Generic end-of-mode screenshot shows launcher after Activity finish; not app UI acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_maplayersreopen.png",
+    "bytes": 55255,
+    "sha256": "48acc041890d856bc74487db47d9eb58ea9c130f59de2ca19ca5d223d62ebfcc",
+    "actually_viewed": true,
+    "observation": "Generic end-of-mode screenshot shows launcher after Activity finish; not app UI acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-cachejob-complete.png",
+    "bytes": 32398,
+    "sha256": "0d0f46908ca901aeaeb3c36a83c902b17257561d3581896c6d79f21928b1d792",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-cachejob-form.png",
+    "bytes": 33309,
+    "sha256": "94618d92d32eae46c36287f4f412a6f5f70fb853a7006ed610aca6b011b882ef",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-cachejob-paused.png",
+    "bytes": 33350,
+    "sha256": "2321c8787716c1604a3c6267eaeec13a68d1ee0ac87bd6832cf0bc7a6c2fe601",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-cachejob-stale.png",
+    "bytes": 34743,
+    "sha256": "cd2087aa4c235fb828e929a2f33d2a0628c2e63bd64c33117442c54853980bff",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-dem-profile.png",
+    "bytes": 36900,
+    "sha256": "5627c88b48cf93274730c130636114b74a0368f4a894af7466df0d2a51bb00b4",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-dem-restarted.png",
+    "bytes": 38499,
+    "sha256": "448d1e2d128233e0b061516d30202f803af5eaed39122a6164892af44468a1aa",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-composed.png",
+    "bytes": 25745,
+    "sha256": "ce05fd53a72e08b929fa8da527f54be3c1e5ce8faf16b33504a41e4194fad974",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-final.png",
+    "bytes": 26285,
+    "sha256": "48bbcba0f9b9ec0d12266b92794788fe9a2eb28d53a13632805e9ac9ce99a0d4",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-manager.png",
+    "bytes": 28113,
+    "sha256": "c77bf04d5dce2e286c0f7d3efc6501961f44d8adbbdd966532d01779348640e3",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-opacity-after.png",
+    "bytes": 28113,
+    "sha256": "c77bf04d5dce2e286c0f7d3efc6501961f44d8adbbdd966532d01779348640e3",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-opacity-before.png",
+    "bytes": 28140,
+    "sha256": "1781feed78e16358f20d0dcd7c16aee92f451cc237319ccbc016dc996e36e433",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-reordered.png",
+    "bytes": 25095,
+    "sha256": "a08adf351cd9b577251f14e9dc6344c2aea2970e9ff85c150c42691f4e4eda3f",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-restarted-manager.png",
+    "bytes": 28072,
+    "sha256": "57b0788cab25119ad7083561e105c77dac2a775ab84ca28ba3904b4537a0c8fe",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-restarted.png",
+    "bytes": 26317,
+    "sha256": "ef4ec29a8039e6be683333e7e3ade17da6a8e11eb7b969b052dcdb2b76ed793a",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "offlineformats/map_mvisual-geotiff-import-prompt.png",
+    "bytes": 72987,
+    "sha256": "fcf0f0de08987a9e72c54ffc3b7687c1f26d2b0502744ade9be511383b5f2a41",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "offlineformats/map_mvisual-geotiff-import-saved.png",
+    "bytes": 40032,
+    "sha256": "e88065f89b1a6ddcbcfa891800175479cd2a8d411be863caa0814e93b91cfd27",
+    "actually_viewed": true,
+    "observation": "Current raster/layer/DEM/cache frame actually opened; scoped visual review, not reference acceptance"
+  },
+  {
+    "name": "offlineformats/map_offlineformats.png",
+    "bytes": 37197,
+    "sha256": "240e28310851ee4dd7970e4824a99f2e0c05a0e5149e40e44e7bdbc2c7821a63",
+    "actually_viewed": true,
+    "observation": "Generic end-of-mode screenshot shows launcher after Activity finish; not app UI acceptance"
+  }
+]

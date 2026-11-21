@@ -1,0 +1,50 @@
+[
+  {
+    "name": "map_mvisual-geometry-delete-vertex-after.png",
+    "sha256": "e0f8713bfdeb5f4d2ab381802dc7dd39780049cc7760817b9741b0a2a92ee75f"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-before-save.png",
+    "sha256": "e2f390afee9d62f448278f08d123cd2f4c596bce231bd50ca12e7bd1d49683ad"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-before.png",
+    "sha256": "dbd1f336563ddb45792851a0be24cc844c80f483c071aae29fd33cf19e448717"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-cancel-return.png",
+    "sha256": "fb85475aee0f24dd1a94c921bf354eff4dfd2ae7708ad38193bf7dada86fee32"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-confirm.png",
+    "sha256": "e0f8713bfdeb5f4d2ab381802dc7dd39780049cc7760817b9741b0a2a92ee75f"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-foreign-feature.png",
+    "sha256": "c7e1438346d603765e692f84390426730896bb32cc20c1a43583d30522646945"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-foreign-project.png",
+    "sha256": "1c9f567100274af90109023392214c52efab0e05b8a36bb7d5b2daed9ba04348"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-main-changed.png",
+    "sha256": "811db3defd33320eafe8f8d1c36cbfa357929c7909dbd5b5c3754ded9ea93c4b"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-saved.png",
+    "sha256": "470d0f896cbfcf632bd14fdcfc79bc156fc185d5f9936d500425286b15eac1e9"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-stale-after.png",
+    "sha256": "e56abe7ce2d5d6b61395a77cd2cd900206148f5c7faa419f49f5e6b5f3f1121c"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-stale-before.png",
+    "sha256": "c4bd4615d9c7a71203a7aa4e3636d449f1de99acde774e2b68cd410b1f547a23"
+  },
+  {
+    "name": "map_mvisual-geometry-delete-vertex-stale-save.png",
+    "sha256": "8fb3a2a8e00ceb0380cf4b37f462824ae11a23161fb056d209b7043bf7b77ba8"
+  }
+]

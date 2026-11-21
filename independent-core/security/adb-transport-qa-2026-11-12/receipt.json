@@ -1,0 +1,17 @@
+{
+  "basis": [
+    "90020/43134277461 API35 offline pull/managerrotation",
+    "fbc64ea/43139985094 API35 native581/pull offline and4 unexecuted modes"
+  ],
+  "observed": "explicit adb device offline; same adb path; no server version mismatch in original completed logs; underlying intermittent disconnect reason not established",
+  "host": 27,
+  "apk_production_change": "none in this transport fix",
+  "instrumentation_timeout": 480,
+  "job_timeout_minutes": 45,
+  "transport_wait_max_seconds": 15,
+  "repeat_policy": "at most1 retry after same-boot/qemu/boot-completed checks, idempotent preparation/readonly commands only; never instrumentation, timeout or native failure",
+  "same_boot_guard": "kernel boot UUID before/after each native run; changed boot blocks later required commands",
+  "artifacts": "fresh output, partial pull preserved outside validated current directory; failed pull remains fail even if valid PNG exists",
+  "runtime": "pending changed BMP candidate CI",
+  "official_lint": "not PASS; custom audit not replacement"
+}

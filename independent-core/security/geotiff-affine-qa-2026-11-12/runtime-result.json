@@ -1,0 +1,30 @@
+{
+  "source": "90020f3656742cd8a86c548e3ade3f4caa6c4ba3",
+  "run": 43134277461,
+  "conclusion": "failure; NOT full green",
+  "jvm": "success33/81986/Geo432/host20",
+  "api23": {
+    "job": 130905880127,
+    "conclusion": "success",
+    "records": 46,
+    "passed": 46,
+    "offlineformats": 391
+  },
+  "api35": {
+    "job": 130905880117,
+    "conclusion": "failure",
+    "records": 46,
+    "passed": 44,
+    "offlineformats": 391,
+    "managervisual": "native PASS243; artifact pull failed device offline; record remains failure",
+    "managerrotation": "adb device offline before instrumentation; not executed, NOT pass"
+  },
+  "scope": "OGC34264 2D affine/native resolution/AreaPoint/4326/3857/literal pixels/transparent footprint/unsupported transform CRS layout limits/Cancel/source old map exact; native passed both",
+  "data": "maplayers274 and reopen66 each; profile real graph ancestor/touch scroll/Arimo/Close/raw/cursor/stale/foreign/mainChanged; HGT manual centre0/restart/remove; KML/assets/HGT/MBTiles/cache/source/otherproject unchanged guards PASS",
+  "archives": "outer digests + original inner archive hashes + all546/534 members/sourceSHA verified",
+  "actual_images_viewed": 44,
+  "image_limits": "6 generic end-of-mode launcher frames are not app UI acceptance; remaining38 scoped raster/cache/layers/DEM frames only",
+  "next": "No blind rerun. Ozi changed production candidate must run full46 incl managerrotation on both APIs; current failure preserved separately. No app fix for adb transport.",
+  "acceptance": "open; accepted0/release gate unchanged",
+  "adb_offline_origin": "Transport failures confirmed; underlying reason for transient device offline not established, no app cause inferred."
+}

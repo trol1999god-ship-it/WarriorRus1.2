@@ -1,0 +1,16 @@
+{
+  "repository": "opengeospatial/ets-kml22",
+  "ref": "cd07d5db32b1f6d9cf01e2263d4b9302336ef641",
+  "kind": "official OGC executable test suite bundled normative schemas; reference data only, not runtime dependency",
+  "sources": {
+    "ogckml22.xsd": "src/main/resources/org/opengis/cite/kml22/xsd/ogc/kml/2.2.0/ogckml22.xsd",
+    "atom-author-link.xsd": "src/main/resources/org/opengis/cite/kml22/xsd/ogc/kml/2.2.0/atom-author-link.xsd",
+    "xAL.xsd": "src/main/resources/org/opengis/cite/kml22/xsd/oasis/ciq/2.0/xAL.xsd"
+  },
+  "sha256": {
+    "ogckml22.xsd": "67bb8fd82e7098245360f2aeb2afb561a8eb868ec3660dc06542475f67a4b665",
+    "atom-author-link.xsd": "62bb577edde174cfcc68c7edfdab04f49c455d194d83e2dfa9649605126fa884",
+    "xAL.xsd": "3e9d4887f3c8e41b1124a7dd3c610e60ee547c0d6a20ea814e59542358cef8d1"
+  },
+  "limits": "Tests deny external DTD/schema access. These files are not bundled into the application or Android test APK. Full OGC certification not claimed."
+}

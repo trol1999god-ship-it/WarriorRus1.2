@@ -1,0 +1,66 @@
+[
+  {
+    "name": "map_mvisual-map-hole-existing-cancel-before.png",
+    "sha256": "8a98f341d161ea57b7bf29acd277e0305546854e434a31fe0b54b738acdacdf3"
+  },
+  {
+    "name": "map_mvisual-map-hole-existing-cancel-cancelled.png",
+    "sha256": "8d89bd6b9e74a51b30cad07d171fa35e973bb10c51563891eda28c6f686d6951"
+  },
+  {
+    "name": "map_mvisual-map-hole-existing-cancel-land.png",
+    "sha256": "01e2fdcb7d46b23a24837389a6a4d849aca627b899f1bdef6cd1d4ced940bc0a"
+  },
+  {
+    "name": "map_mvisual-map-hole-existing-cancel-return.png",
+    "sha256": "143366f02c33ead6cb4f35fce83bd0e47cfe7c94c3577f8a483e7d034cb99eed"
+  },
+  {
+    "name": "map_mvisual-map-hole-existing-save-applied.png",
+    "sha256": "d92c5de63993b19e78b933b38921a6162c6e49f8b0afe60e2ae09173433419db"
+  },
+  {
+    "name": "map_mvisual-map-hole-existing-save-before.png",
+    "sha256": "8a98f341d161ea57b7bf29acd277e0305546854e434a31fe0b54b738acdacdf3"
+  },
+  {
+    "name": "map_mvisual-map-hole-existing-save-land.png",
+    "sha256": "01e2fdcb7d46b23a24837389a6a4d849aca627b899f1bdef6cd1d4ced940bc0a"
+  },
+  {
+    "name": "map_mvisual-map-hole-existing-save-return.png",
+    "sha256": "8cbd1bcd5d5edc479d9e729e4863491dc1e0e899fa3e0cf7126b8383b1476817"
+  },
+  {
+    "name": "map_mvisual-map-hole-new-cancel-before.png",
+    "sha256": "80fb5dffa271ac808744c64cbf082f2b5a0a587e525ec11e3d7d4119b316dd36"
+  },
+  {
+    "name": "map_mvisual-map-hole-new-cancel-cancelled.png",
+    "sha256": "d3a6eedf414078ac7f3e0c4401c8a0d7f9f8d1fe7ae0ba41b8591aa8e68fd0ee"
+  },
+  {
+    "name": "map_mvisual-map-hole-new-cancel-land.png",
+    "sha256": "f34987690b54820940c3957bf9065ccf037a83ed76e75fe9c630fd1d680626bd"
+  },
+  {
+    "name": "map_mvisual-map-hole-new-cancel-return.png",
+    "sha256": "e48e6d51714577a3e6c100510b1f9d8c91b41401183d7686670a4582eb532bb7"
+  },
+  {
+    "name": "map_mvisual-map-hole-new-save-applied.png",
+    "sha256": "85d4e559a691c7128bb4e9ba2d664ccd9d3364472a821a17dbbecb802d252470"
+  },
+  {
+    "name": "map_mvisual-map-hole-new-save-before.png",
+    "sha256": "2210519fa93b8f5e0f4238d8168690ea00009820fe94c9bd8b64268d32694df5"
+  },
+  {
+    "name": "map_mvisual-map-hole-new-save-land.png",
+    "sha256": "f34987690b54820940c3957bf9065ccf037a83ed76e75fe9c630fd1d680626bd"
+  },
+  {
+    "name": "map_mvisual-map-hole-new-save-return.png",
+    "sha256": "e48e6d51714577a3e6c100510b1f9d8c91b41401183d7686670a4582eb532bb7"
+  }
+]

@@ -1,0 +1,4375 @@
+{
+  "note": "Статический указатель текстов эталона; наличие строки не доказывает доступность функции. Не является списком реализованных возможностей.",
+  "strings": [
+    {
+      "id": "application_units",
+      "text": "Metric",
+      "category": "application"
+    },
+    {
+      "id": "application_language",
+      "text": "ru",
+      "category": "application"
+    },
+    {
+      "id": "core_submenu_title_display",
+      "text": "Информеры",
+      "category": "core"
+    },
+    {
+      "id": "core_submenu_title_options",
+      "text": "Опции",
+      "category": "core"
+    },
+    {
+      "id": "core_submenu_hide_menu",
+      "text": "Скрыть кнопки меню",
+      "category": "core"
+    },
+    {
+      "id": "core_submenu_lock_screen",
+      "text": "Блокировать экран",
+      "category": "core"
+    },
+    {
+      "id": "core_submenu_print_map",
+      "text": "Снимок экрана",
+      "category": "core"
+    },
+    {
+      "id": "core_submenu_screen_center_coordinates",
+      "text": "Координаты центра экрана",
+      "category": "core"
+    },
+    {
+      "id": "core_submenu_display_grid",
+      "text": "Координатная сетка",
+      "category": "core"
+    },
+    {
+      "id": "core_submenu_display_secondary_grid",
+      "text": "Доп. координатная сетка",
+      "category": "core"
+    },
+    {
+      "id": "core_submenu_display_radius_ruler",
+      "text": "Круговая масштабная линейка",
+      "category": "core"
+    },
+    {
+      "id": "core_submenu_night_mode",
+      "text": "Ночной режим",
+      "category": "core"
+    },
+    {
+      "id": "maps_submenu_title",
+      "text": "Карты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_submenu_available_maps",
+      "text": "Доступные карты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_submenu_displayed_maps",
+      "text": "Карты на экране",
+      "category": "maps"
+    },
+    {
+      "id": "maps_submenu_area_downloader",
+      "text": "Сохранить участок карты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_submenu_display_name",
+      "text": "Название карты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_submenu_display_scale_value",
+      "text": "Масштаб карты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_submenu_display_scale_bar",
+      "text": "Масштабная линейка",
+      "category": "maps"
+    },
+    {
+      "id": "maps_submenu_only_use_local_storage",
+      "text": "Использовать только сохранённый кэш карты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_submenu_show_storage_coverage",
+      "text": "Индикаторы загрузки карты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_submenu_correct_china_shift",
+      "text": "Исправить смещение карты над территорией Китая",
+      "category": "maps"
+    },
+    {
+      "id": "maps_submenu_favorites_title",
+      "text": "Избранные карты и наборы карт",
+      "category": "maps"
+    },
+    {
+      "id": "landmarks_submenu_title",
+      "text": "Метки",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_submenu_browse",
+      "text": "Все метки",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_submenu_create",
+      "text": "Новая метка",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_submenu_displayed_landmarks",
+      "text": "Метки на экране",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_submenu_control_time",
+      "text": "Время движения по треку",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_submenu_display_target_information",
+      "text": "Статус цели",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_submenu_display_target_line",
+      "text": "Линия до цели",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_submenu_display_labels",
+      "text": "Названия меток",
+      "category": "landmarks"
+    },
+    {
+      "id": "geolocation_submenu_title",
+      "text": "Файловый менеджер",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_submenu_dashboard",
+      "text": "Путевой компьютер",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_submenu_geolocation",
+      "text": "Работа в формате файлового менеджера",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_submenu_tracker",
+      "text": "Запись трека",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_submenu_barometer",
+      "text": "Барометр",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_submenu_rotate",
+      "text": "Вращать карту по движению",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_submenu_display_location_line",
+      "text": "Линия расстояния",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_submenu_display_information",
+      "text": "Статус позиционирования",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_submenu_tracker_information",
+      "text": "Статус записи трека",
+      "category": "geolocation"
+    },
+    {
+      "id": "orientation_submenu_title",
+      "text": "Ориентирование",
+      "category": "orientation"
+    },
+    {
+      "id": "orientation_submenu_compass",
+      "text": "Компас",
+      "category": "orientation"
+    },
+    {
+      "id": "orientation_submenu_rotate",
+      "text": "Вращать карту по компасу",
+      "category": "orientation"
+    },
+    {
+      "id": "orientation_submenu_compass_on_map",
+      "text": "Показать компас",
+      "category": "orientation"
+    },
+    {
+      "id": "orientation_submenu_status",
+      "text": "Статус компаса",
+      "category": "orientation"
+    },
+    {
+      "id": "core_button_about",
+      "text": "О приложении",
+      "category": "core"
+    },
+    {
+      "id": "core_button_activate",
+      "text": "Активировать",
+      "category": "core"
+    },
+    {
+      "id": "core_button_all",
+      "text": "Все",
+      "category": "core"
+    },
+    {
+      "id": "core_button_automatic",
+      "text": "Авто",
+      "category": "core"
+    },
+    {
+      "id": "core_button_backup",
+      "text": "Резервное копирование",
+      "category": "core"
+    },
+    {
+      "id": "core_button_browse",
+      "text": "Открыть",
+      "category": "core"
+    },
+    {
+      "id": "core_button_calibrate",
+      "text": "Калибровать",
+      "category": "core"
+    },
+    {
+      "id": "core_button_cancel",
+      "text": "Отмена",
+      "category": "core"
+    },
+    {
+      "id": "core_button_clipboard",
+      "text": "Буфер обмена",
+      "category": "core"
+    },
+    {
+      "id": "core_button_close",
+      "text": "Закрыть",
+      "category": "core"
+    },
+    {
+      "id": "core_button_compare",
+      "text": "Сравнить",
+      "category": "core"
+    },
+    {
+      "id": "core_button_contact_us",
+      "text": "Обратная связь",
+      "category": "core"
+    },
+    {
+      "id": "core_button_convert_to",
+      "text": "Конвертировать в",
+      "category": "core"
+    },
+    {
+      "id": "core_button_copy",
+      "text": "Копировать",
+      "category": "core"
+    },
+    {
+      "id": "core_button_create",
+      "text": "Создать",
+      "category": "core"
+    },
+    {
+      "id": "core_button_cut",
+      "text": "Вырезать",
+      "category": "core"
+    },
+    {
+      "id": "core_button_delete",
+      "text": "Удалить",
+      "category": "core"
+    },
+    {
+      "id": "core_button_details",
+      "text": "Детали",
+      "category": "core"
+    },
+    {
+      "id": "core_button_disable",
+      "text": "Запретить",
+      "category": "core"
+    },
+    {
+      "id": "core_button_display",
+      "text": "Показать",
+      "category": "core"
+    },
+    {
+      "id": "core_button_edit",
+      "text": "Изменить",
+      "category": "core"
+    },
+    {
+      "id": "core_button_edit_color",
+      "text": "Изменить цвет",
+      "category": "core"
+    },
+    {
+      "id": "core_button_edit_details",
+      "text": "Изменить свойства",
+      "category": "core"
+    },
+    {
+      "id": "core_button_empty",
+      "text": "Очистить",
+      "category": "core"
+    },
+    {
+      "id": "core_button_enter_coupon",
+      "text": "Введите код купона",
+      "category": "core"
+    },
+    {
+      "id": "core_button_exit",
+      "text": "Выход",
+      "category": "core"
+    },
+    {
+      "id": "core_button_export_as",
+      "text": "Экспортировать как",
+      "category": "core"
+    },
+    {
+      "id": "core_button_filter",
+      "text": "Фильтр",
+      "category": "core"
+    },
+    {
+      "id": "core_button_fullscreen",
+      "text": "Во весь экран",
+      "category": "core"
+    },
+    {
+      "id": "core_button_gallery",
+      "text": "Галерея",
+      "category": "core"
+    },
+    {
+      "id": "core_button_group",
+      "text": "Сгруппировать",
+      "category": "core"
+    },
+    {
+      "id": "core_button_hide",
+      "text": "Скрыть",
+      "category": "core"
+    },
+    {
+      "id": "core_button_import",
+      "text": "Импортировать",
+      "category": "core"
+    },
+    {
+      "id": "core_button_insert_here",
+      "text": "Вставить здесь",
+      "category": "core"
+    },
+    {
+      "id": "core_button_install",
+      "text": "Установить",
+      "category": "core"
+    },
+    {
+      "id": "core_button_jump_to",
+      "text": "Центрировать",
+      "category": "core"
+    },
+    {
+      "id": "core_button_more",
+      "text": "Ещё",
+      "category": "core"
+    },
+    {
+      "id": "core_button_move_bottom",
+      "text": "Переместить в конец списка",
+      "category": "core"
+    },
+    {
+      "id": "core_button_move_down",
+      "text": "Переместить вниз",
+      "category": "core"
+    },
+    {
+      "id": "core_button_move_top",
+      "text": "Переместить в начало списка",
+      "category": "core"
+    },
+    {
+      "id": "core_button_move_up",
+      "text": "Переместить вверх",
+      "category": "core"
+    },
+    {
+      "id": "core_button_no",
+      "text": "Нет",
+      "category": "core"
+    },
+    {
+      "id": "core_button_none",
+      "text": "Нет",
+      "category": "core"
+    },
+    {
+      "id": "core_button_ok",
+      "text": "Ok",
+      "category": "core"
+    },
+    {
+      "id": "core_button_online_help",
+      "text": "Помощь",
+      "category": "core"
+    },
+    {
+      "id": "core_button_open",
+      "text": "Открыть",
+      "category": "core"
+    },
+    {
+      "id": "core_button_open_url",
+      "text": "Открыть ссылку",
+      "category": "core"
+    },
+    {
+      "id": "core_button_open_with",
+      "text": "Открыть с помощью",
+      "category": "core"
+    },
+    {
+      "id": "core_button_paste",
+      "text": "Вставить",
+      "category": "core"
+    },
+    {
+      "id": "core_button_purchase",
+      "text": "Купить",
+      "category": "core"
+    },
+    {
+      "id": "core_button_refresh",
+      "text": "Обновить",
+      "category": "core"
+    },
+    {
+      "id": "core_button_rename",
+      "text": "Переименовать",
+      "category": "core"
+    },
+    {
+      "id": "core_button_report_errors",
+      "text": "Сохранить диагностику локально",
+      "category": "core"
+    },
+    {
+      "id": "core_button_reset",
+      "text": "Сбросить",
+      "category": "core"
+    },
+    {
+      "id": "core_button_restore",
+      "text": "Восстановить",
+      "category": "core"
+    },
+    {
+      "id": "core_button_resume",
+      "text": "Продолжить",
+      "category": "core"
+    },
+    {
+      "id": "core_button_reverse_order",
+      "text": "Обратный порядок",
+      "category": "core"
+    },
+    {
+      "id": "core_button_save",
+      "text": "Сохранить",
+      "category": "core"
+    },
+    {
+      "id": "core_button_search",
+      "text": "Поиск",
+      "category": "core"
+    },
+    {
+      "id": "core_button_select",
+      "text": "Выбрать",
+      "category": "core"
+    },
+    {
+      "id": "core_button_settings",
+      "text": "Настройки",
+      "category": "core"
+    },
+    {
+      "id": "core_button_share",
+      "text": "Поделиться",
+      "category": "core"
+    },
+    {
+      "id": "core_button_start",
+      "text": "Начать",
+      "category": "core"
+    },
+    {
+      "id": "core_button_start_new",
+      "text": "Начать новый",
+      "category": "core"
+    },
+    {
+      "id": "core_button_stop",
+      "text": "Остановить",
+      "category": "core"
+    },
+    {
+      "id": "core_button_undisplay",
+      "text": "Убрать",
+      "category": "core"
+    },
+    {
+      "id": "core_button_undisplay_all_other",
+      "text": "Убрать остальные",
+      "category": "core"
+    },
+    {
+      "id": "core_button_deselect",
+      "text": "Отменить",
+      "category": "core"
+    },
+    {
+      "id": "core_button_update",
+      "text": "Обновить",
+      "category": "core"
+    },
+    {
+      "id": "core_button_whats_new",
+      "text": "Что нового?",
+      "category": "core"
+    },
+    {
+      "id": "core_button_yes",
+      "text": "Да",
+      "category": "core"
+    },
+    {
+      "id": "core_button_zoom",
+      "text": "Масштаб",
+      "category": "core"
+    },
+    {
+      "id": "core_button_leave_comment",
+      "text": "Оставить отзыв",
+      "category": "core"
+    },
+    {
+      "id": "core_button_support_forum",
+      "text": "Форум поддержки",
+      "category": "core"
+    },
+    {
+      "id": "core_button_privacy_policy",
+      "text": "Политика конфиденциальности",
+      "category": "core"
+    },
+    {
+      "id": "core_button_terms_of_use",
+      "text": "Условия использования",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_item_1p",
+      "text": "%s элем.",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_items_1p",
+      "text": "%s элем.",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_error_1p",
+      "text": "%s ошиб.",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_errors_1p",
+      "text": "%s ошиб.",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_opacity_1p",
+      "text": "%s непрозрачн.",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_all_1p",
+      "text": "%s все",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_selected_1p",
+      "text": "%s выбран.",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_size_medium",
+      "text": "Средний",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_size_very_small",
+      "text": "Очень мелкий",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_size_small",
+      "text": "Мелкий",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_size_large",
+      "text": "Крупный",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_size_very_large",
+      "text": "Очень крупный",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_size_very_low",
+      "text": "Очень низкий",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_size_low",
+      "text": "Низкий",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_size_high",
+      "text": "Высокий",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_size_very_high",
+      "text": "Очень высокий",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_distance_meter",
+      "text": "метр",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_angle_degree",
+      "text": "градус",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_time_hour_abbrev",
+      "text": "ч",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_time_minute_abbrev",
+      "text": "мин",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_time_second_abbrev",
+      "text": "с",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_distance_meter_abbrev",
+      "text": "м",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_distance_kilometer_abbrev",
+      "text": "км",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_speed_kmh_abbrev",
+      "text": "км/ч",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_area_are_abbrev",
+      "text": "а",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_area_hectare_abbrev",
+      "text": "га",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_pressure_hpa_abbrev",
+      "text": "гПа",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_pressure_mmhg_abbrev",
+      "text": "мм рт.ст.",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_pressure_inhg_abbrev",
+      "text": "дюйм рт.ст.",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_weigth_kg_abbrev",
+      "text": "кг",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_energy_kcal_abbrev",
+      "text": "ккал",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_energy_wh_abbrev",
+      "text": "Втч",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_power_w_abbrev",
+      "text": "Вт",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_units_cardinals_abbrev",
+      "text": "С,Ю,В,З",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_default",
+      "text": "по умолчанию",
+      "category": "core"
+    },
+    {
+      "id": "core_utils_session_only",
+      "text": "только эта сессия",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_share_location_1p",
+      "text": "Место: %s",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_share_location_named_2p",
+      "text": "Место %s: %s",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_loading",
+      "text": "Загрузка",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_please_wait",
+      "text": "Подождите",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_success",
+      "text": "Успешно",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_aborted",
+      "text": "Отменено",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_optional",
+      "text": "Необязательно",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_other",
+      "text": "Прочее",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_field_required",
+      "text": "Это обязательное поле",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_long_press_edit",
+      "text": "Нажмите и удерживайте элемент, чтобы отредактировать его",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_custom",
+      "text": "Пользователь",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_custom_item",
+      "text": "Пользовательская кнопка",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_exported_items",
+      "text": "Экспортированные элементы",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error",
+      "text": "Ошибка",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_no_network",
+      "text": "Нет сети",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_network",
+      "text": "Ошибка сети",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_unknown",
+      "text": "Неизвестная ошибка",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_occured_s",
+      "text": "Произошла ошибка.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_data_corrupted_s",
+      "text": "Локальные данные могут быть повреждены.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_action_failed_s_1p",
+      "text": "Не удалось выполнить запрошенное действие «%s».",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_out_of_memory_s",
+      "text": "Недостаточно памяти, перезагрузите приложение.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_storage_s",
+      "text": "Не удалось обнаружить или использовать подходящее место хранения.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_storage_configure_s",
+      "text": "Настроить его сейчас?",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_limited_features_s",
+      "text": "Функциональность будет ограничена.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_write_no_space_left_s",
+      "text": "Свободное место на этом накопителе отсутствует.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_write_no_grants_s",
+      "text": "Недоступно для записи.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_intent_input_s",
+      "text": "Невозможно обработать внешний контент.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_service_unavailable_s",
+      "text": "Сервис недоступен.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_application_not_found_s_1p",
+      "text": "Приложение %s не найдено.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_application_found_s_1p",
+      "text": "Приложение %s найдено.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_device_locked_s",
+      "text": "Разблокируйте устройство.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_report_message_1p",
+      "text": "Спасибо за отправку отчета о %s ошиб.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_message_restart_application_s",
+      "text": "Перезагрузите приложение.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_message_item_saved_s",
+      "text": "Данные успешно сохранены.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_swipe_up_for_options",
+      "text": "Смахните вверх для выбора опций",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_permissions_location_name",
+      "text": "Доступ к местоположению",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_permissions_storage_name",
+      "text": "Доступ к хранилищу",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_permissions_background_location_description_s",
+      "text": "Для записи трека, подсказок на маршруте и уведомлении о сближении при свёрнутом приложении и выключенном экране требуется доступ к вашему местоположению в фоновом режиме.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_permissions_background_location_privacy_s",
+      "text": "Данные, собранные в фоновом режиме, используются исключительно для запрашиваемых функций и хранятся только в приложении.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_permissions_background_location_question_s",
+      "text": "Предоставить приложению доступ к геоданным в фоновом режиме в дополнение к обычному?",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_permissions_not_granted_s",
+      "text": "Необходимо предоставить требуемое разрешение для использования этой функции.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_question_are_you_sure_s",
+      "text": "Вы уверены?",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_question_do_not_ask_again_s",
+      "text": "Не задавать этот вопрос",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_question_confirm_exit_s",
+      "text": "Выйти из приложения?",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_question_file_already_imported_s",
+      "text": "Файл уже импортирован. Открыть его или импортировать заново?",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_question_replace_existing_item_s",
+      "text": "Этот элемент уже существует, заменить его?",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_address_device",
+      "text": "Устройство",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_address_sdcard",
+      "text": "SD-карта",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_address_storage",
+      "text": "Память устройства",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_address_downloads",
+      "text": "Мои загрузки",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_address_media",
+      "text": "Медиафайлы",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_cell_empty",
+      "text": "Папка пуста.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_file_doesnt_exist",
+      "text": "Файл отсутствует.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_scanning_1p",
+      "text": "Сканирование «%s»…",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_folder_create_desc",
+      "text": "Создать папку для меток.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_folder_permission_s",
+      "text": "Вы не предоставили приложению право доступа к файлам.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_folder_permission_limited_s",
+      "text": "Некоторые файлы могут не отображаться.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_bookmarks",
+      "text": "Закладки",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_bookmark",
+      "text": "Закладка",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_item_delete_success_s",
+      "text": "Элемент удалён.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_item_move_success_s",
+      "text": "Элемент перемещён.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_item_rename_success_s",
+      "text": "Элемент переименован.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_item_copy_success_s",
+      "text": "Элемент скопирован.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_context_group_sort_title",
+      "text": "Сортировать по",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_context_group_multiselect",
+      "text": "Мультивыбор",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_context_group_display_mode",
+      "text": "Режим отображения",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_context_group_display_mode_list",
+      "text": "Список",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_context_group_display_mode_preview",
+      "text": "Предварительный просмотр",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_category_files",
+      "text": "Файлы",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_category_files_typed_1p",
+      "text": "%s файл.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_category_folders",
+      "text": "Папки",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_category_importables",
+      "text": "Файлы для импорта",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_name_file",
+      "text": "Файл",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_name_file_typed_1p",
+      "text": "%s файл.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_name_folder",
+      "text": "Папка",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_nb_folder_1p",
+      "text": "%s папк.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_nb_folders_1p",
+      "text": "%s папк.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_nb_file_1p",
+      "text": "%s файл.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_nb_files_1p",
+      "text": "%s файл.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_nb_unknown_file_1p",
+      "text": "%s неизвестн. файл.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_nb_unknown_files_1p",
+      "text": "%s неизвестн. файл.",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_setting_fast_scroll",
+      "text": "Включить быструю прокрутку",
+      "category": "core"
+    },
+    {
+      "id": "core_explorer_setting_collapsible_sections",
+      "text": "Использовать сворачиваемые разделы",
+      "category": "core"
+    },
+    {
+      "id": "application_support_thanks_for_using_1p",
+      "text": "Спасибо за выбор %s!",
+      "category": "application"
+    },
+    {
+      "id": "application_support_comment_on_store_1p",
+      "text": "Для нас очень важно ваше мнение! Поддержите нас — напишите отзыв в %s!",
+      "category": "application"
+    },
+    {
+      "id": "application_help_title",
+      "text": "Нужна помощь?",
+      "category": "application"
+    },
+    {
+      "id": "application_help_content",
+      "text": "Чтобы получить помощь, задать любой вопрос, сообщить об ошибках, обращайтесь:",
+      "category": "application"
+    },
+    {
+      "id": "application_eula",
+      "text": "Перед использованием приложения прочитайте и примите условия лицензионного соглашения Psyberia:",
+      "category": "application"
+    },
+    {
+      "id": "application_disclaimer",
+      "text": "Все изображения, значения и измерения, содержащиеся в данном приложении, являются ориентировочными и могут иметь ошибки. Всегда пользуйтесь официальными источниками и руководствуйтесь здравым смыслом, убедитесь, что у вас есть необходимое оборудование и подготовка, принимайте все разумные меры предосторожности и оценивайте возможные риски.",
+      "category": "application"
+    },
+    {
+      "id": "core_loader_loading",
+      "text": "Загрузка компонентов…",
+      "category": "core"
+    },
+    {
+      "id": "core_loader_restoring",
+      "text": "Восстановление элементов…",
+      "category": "core"
+    },
+    {
+      "id": "core_beta_version",
+      "text": "Нестабильная бета-версия, используйте с осторожностью.",
+      "category": "core"
+    },
+    {
+      "id": "core_safecheck_bad_signature",
+      "text": "Эта версия приложения была незаконно изменена и может содержать вирусы. Пожалуйста, используйте только официальные версии.",
+      "category": "core"
+    },
+    {
+      "id": "core_workspace_switch",
+      "text": "Рабочая область",
+      "category": "core"
+    },
+    {
+      "id": "core_workspace_default",
+      "text": "По умолчанию",
+      "category": "core"
+    },
+    {
+      "id": "core_backups_list_empty_s",
+      "text": "У вас пока нет резервной копии.",
+      "category": "core"
+    },
+    {
+      "id": "core_backups_list_create_s",
+      "text": "Регулярно создавайте резервные копии данных приложения, чтобы избежать их потери.",
+      "category": "core"
+    },
+    {
+      "id": "core_backups_backup_large_data_s",
+      "text": "Большой объем данных, рекомендуется резервное копирование вручную.",
+      "category": "core"
+    },
+    {
+      "id": "core_backups_backup_too_large_s",
+      "text": "Объем данных для резервного копирования слишком велик.",
+      "category": "core"
+    },
+    {
+      "id": "core_backups_backup_success_s",
+      "text": "\"Почти готово! \n\nНе забудьте скопировать файл резервной копии в свой любимый облачный сервис, чтобы сохранить его в безопасности.\"",
+      "category": "core"
+    },
+    {
+      "id": "core_backups_restore_warning_s",
+      "text": "Этот процесс восстановления удалит и заменит некоторые файлы на вашем устройстве. Его следует использовать только после установки нового приложения.",
+      "category": "core"
+    },
+    {
+      "id": "core_backups_restore_restart_s",
+      "text": "По окончании процесса восстановления приложение перезапустится.",
+      "category": "core"
+    },
+    {
+      "id": "core_backups_restore_merge_s",
+      "text": "Файлы, уже имеющиеся на устройстве, не будут восстановлены.",
+      "category": "core"
+    },
+    {
+      "id": "core_backups_restore_replace_s",
+      "text": "Файлы, уже имеющиеся на устройстве, будут заменены.",
+      "category": "core"
+    },
+    {
+      "id": "core_menu_long_press_hint_s",
+      "text": "В режиме просмотра карты удерживайте кнопку главного меню для вызова действия, назначенного на первую пользовательскую кнопку.",
+      "category": "core"
+    },
+    {
+      "id": "core_locker_unlock_s",
+      "text": "Удерживайте кнопку Громкость (-) для блокировки и разблокировки экрана от случайных нажатий. Для разблокировки также используйте кнопку Назад.",
+      "category": "core"
+    },
+    {
+      "id": "core_locker_next_s",
+      "text": "Удерживайте кнопку Громкость (+) для переключения между окнами путевого компьютера.",
+      "category": "core"
+    },
+    {
+      "id": "core_advanced_settings",
+      "text": "Расширенные настройки",
+      "category": "core"
+    },
+    {
+      "id": "core_advanced_settings_displaimer_s",
+      "text": "Изменение дополнительных настроек может привести к нестабильной работе или сбоям, используйте с осторожностью.",
+      "category": "core"
+    },
+    {
+      "id": "core_screensaver_name",
+      "text": "Скринсейвер",
+      "category": "core"
+    },
+    {
+      "id": "core_features_get_more",
+      "text": "Получить больше возможностей!",
+      "category": "core"
+    },
+    {
+      "id": "core_features_manage",
+      "text": "Управление функциями",
+      "category": "core"
+    },
+    {
+      "id": "core_features_add_support_1p",
+      "text": "Поддержка %s",
+      "category": "core"
+    },
+    {
+      "id": "canvas_feature_disabled",
+      "text": "По юридическим причинам эта функция отключена для следующих карт:",
+      "category": "canvas"
+    },
+    {
+      "id": "maps_context_menu_layer",
+      "text": "Добавить как слой",
+      "category": "maps"
+    },
+    {
+      "id": "maps_context_menu_opacity",
+      "text": "Непрозрачность",
+      "category": "maps"
+    },
+    {
+      "id": "maps_context_menu_key",
+      "text": "Легенда карты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_context_menu_erase_color",
+      "text": "Удалить цвет",
+      "category": "maps"
+    },
+    {
+      "id": "maps_context_menu_calibrate",
+      "text": "Привязать",
+      "category": "maps"
+    },
+    {
+      "id": "maps_context_menu_reorder",
+      "text": "Упорядочить",
+      "category": "maps"
+    },
+    {
+      "id": "maps_confirm_outbound_title",
+      "text": "Карта за пределами экрана",
+      "category": "maps"
+    },
+    {
+      "id": "maps_confirm_outbound_desc",
+      "text": "Область покрытия выбранной карты находится за пределами текущего местоположения.",
+      "category": "maps"
+    },
+    {
+      "id": "maps_confirm_outbound_desc_slide",
+      "text": "Перейти к области покрытия карты? (Да - Перейти, Нет - Остаться в текущем местоположении, экран отобразится пустым)",
+      "category": "maps"
+    },
+    {
+      "id": "maps_favorites_set_empty",
+      "text": "Избранные карты и наборы карт не созданы",
+      "category": "maps"
+    },
+    {
+      "id": "maps_favorites_create_to_save_s",
+      "text": "Для сохранения изменений создайте/обновите избранную карту или набор карт.",
+      "category": "maps"
+    },
+    {
+      "id": "maps_favorites_unsaved_list_s",
+      "text": "Конфигурация отображаемых в данный момент карт будет заменена и утеряна.",
+      "category": "maps"
+    },
+    {
+      "id": "maps_favorites_ask_save_list_s",
+      "text": "Сохранить её в избранном наборе карт?",
+      "category": "maps"
+    },
+    {
+      "id": "maps_favorites_item",
+      "text": "Элемент избранного",
+      "category": "maps"
+    },
+    {
+      "id": "maps_favorites_save_as",
+      "text": "Сохранить в избранные",
+      "category": "maps"
+    },
+    {
+      "id": "maps_online_provider_title",
+      "text": "Онлайн-карты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_online_installed",
+      "text": "Установленные карты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_online_clear_data",
+      "text": "Очистить кэш",
+      "category": "maps"
+    },
+    {
+      "id": "maps_online_clear_data_confirm",
+      "text": "Удалить все сохранённые данные этой карты?",
+      "category": "maps"
+    },
+    {
+      "id": "maps_online_force_update_data",
+      "text": "Принудительное обновление сохранённых фрагментов карты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_online_add_new",
+      "text": "Добавление карт",
+      "category": "maps"
+    },
+    {
+      "id": "maps_online_add_new_desc",
+      "text": "Вы можете просматривать и устанавливать карты сообщества:",
+      "category": "maps"
+    },
+    {
+      "id": "maps_online_suggest",
+      "text": "Предложить",
+      "category": "maps"
+    },
+    {
+      "id": "maps_elevation_title",
+      "text": "Высота над уровнем моря",
+      "category": "maps"
+    },
+    {
+      "id": "maps_elevation_dem_activate",
+      "text": "Использовать данные высот",
+      "category": "maps"
+    },
+    {
+      "id": "maps_elevation_dem_download",
+      "text": "Автоматически загружать данные высот",
+      "category": "maps"
+    },
+    {
+      "id": "maps_elevation_dem_map",
+      "text": "Визуализация участков с загруженными данными высот",
+      "category": "maps"
+    },
+    {
+      "id": "maps_elevation_dem_source_1p",
+      "text": "Ориентировочные данные из %s",
+      "category": "maps"
+    },
+    {
+      "id": "maps_elevation_dem",
+      "text": "Цифровая модель рельефа (DEM)",
+      "category": "maps"
+    },
+    {
+      "id": "maps_elevation_map_heights",
+      "text": "DEM Высоты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_elevation_map_terrain",
+      "text": "DEM Рельеф",
+      "category": "maps"
+    },
+    {
+      "id": "maps_elevation_map_hillshade",
+      "text": "DEM Затенение склонов (слой)",
+      "category": "maps"
+    },
+    {
+      "id": "maps_elevation_map_slopes",
+      "text": "DEM Крутые склоны +30° (слой)",
+      "category": "maps"
+    },
+    {
+      "id": "maps_elevation_map_sensitive",
+      "text": "DEM Высоты (мельчайшие перепады высот)",
+      "category": "maps"
+    },
+    {
+      "id": "maps_area_downloader_creator_cell_tile_1p",
+      "text": "%s тайл.",
+      "category": "maps"
+    },
+    {
+      "id": "maps_area_downloader_creator_cell_tiles_1p",
+      "text": "%s тайл.",
+      "category": "maps"
+    },
+    {
+      "id": "maps_area_downloader_process_terminated",
+      "text": "Завершено успешно",
+      "category": "maps"
+    },
+    {
+      "id": "maps_area_downloader_process_working",
+      "text": "Сохранение данных в кэш",
+      "category": "maps"
+    },
+    {
+      "id": "maps_onboard_provider_title",
+      "text": "Карты на устройстве",
+      "category": "maps"
+    },
+    {
+      "id": "maps_onboard_import_folder_name",
+      "text": "Импортированные карты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_onboard_explorer_group_inbounds",
+      "text": "Карты в пределах экрана",
+      "category": "maps"
+    },
+    {
+      "id": "maps_onboard_explorer_group_outbounds",
+      "text": "Карты за пределами экрана",
+      "category": "maps"
+    },
+    {
+      "id": "maps_onboard_explorer_group_calibratable",
+      "text": "Изображения для привязки",
+      "category": "maps"
+    },
+    {
+      "id": "landmarks_explorer_category_areas",
+      "text": "Области",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_category_files",
+      "text": "Файлы меток",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_category_locations",
+      "text": "Местоположения",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_category_paths",
+      "text": "Пути",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_category_proximities",
+      "text": "Оповещения о сближении",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_category_routes",
+      "text": "Маршруты",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_category_segments",
+      "text": "Сегменты",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_category_sets",
+      "text": "Наборы точек",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_category_tracks",
+      "text": "Треки",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_category_waypoints",
+      "text": "Точки",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_name_area",
+      "text": "Область",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_name_audio",
+      "text": "Аудиоточка",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_name_file",
+      "text": "Файл меток",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_name_landmark",
+      "text": "Метка",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_name_location",
+      "text": "Позиция",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_name_path",
+      "text": "Путь",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_name_picture",
+      "text": "Фототочка",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_name_proximity",
+      "text": "Оповещение о сближении",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_name_route",
+      "text": "Маршрут",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_name_segment",
+      "text": "Сегмент",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_name_set",
+      "text": "Набор точек",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_name_slope",
+      "text": "Уклон",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_name_target",
+      "text": "Цель",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_name_track",
+      "text": "Трек",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_name_waypoint",
+      "text": "Путевая точка",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_cell_location_1p",
+      "text": "%s мест.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_cell_locations_1p",
+      "text": "%s мест.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_cell_segment_1p",
+      "text": "%s сегм.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_cell_segments_1p",
+      "text": "%s сегм.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_cell_waypoint_1p",
+      "text": "%s точ.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_cell_waypoints_1p",
+      "text": "%s точ.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_context_menu_auto_target",
+      "text": "Автомат. цель — ближ. точка",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_context_menu_edit_points",
+      "text": "Изменить точки",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_context_menu_edit_profile",
+      "text": "Изменить профиль",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_context_menu_dynamic_profile",
+      "text": "Динамический профиль",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_context_menu_split_here",
+      "text": "Разделить здесь",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_context_menu_split_points",
+      "text": "Разгруппировать точки",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_context_menu_target_remove",
+      "text": "Убрать цель",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_context_menu_target_set",
+      "text": "Задать цель",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_waypoint_desc",
+      "text": "Создать путевую точку на карте.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_picture_desc",
+      "text": "Создать снимок и связать его с путевой точкой на карте.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_set_desc",
+      "text": "Создать набор путевых точек на карте.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_route_desc",
+      "text": "Проложить маршрут на карте по заданным точкам.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_area_desc",
+      "text": "Начертить область на карте.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_path_desc",
+      "text": "Начертить путь на карте.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_file_desc",
+      "text": "Создать новый файл для размещения различных меток.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_proximity_desc",
+      "text": "Получать звуковые уведомления о приближении к этому месту.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_text_title",
+      "text": "Текст",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_text_desc",
+      "text": "Добавить текст на карту.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_circle_title",
+      "text": "Круг",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_circle_desc",
+      "text": "Создать круговую область с заданным радиусом.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_measure_title",
+      "text": "Измерение",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_measure_desc",
+      "text": "Измерить расстояние и азимут между точками.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_slope_title",
+      "text": "Уклон",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_slope_desc",
+      "text": "Рассчитать уклоны между точками.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_autorouting_title",
+      "text": "Автомаршрутизация",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_fastrouting_title",
+      "text": "Быстрая маршрутизация",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_autorouting_desc",
+      "text": "Проложить маршрут по дорогам на карте в автоматическом режиме.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_quick_waypoint",
+      "text": "Быстрая путевая точка",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_dialog_category_tools",
+      "text": "Инструменты",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_side_title",
+      "text": "Управление метками",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_side_add",
+      "text": "Добавить место",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_side_new_segment",
+      "text": "Новый сегмент",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_side_draw",
+      "text": "Начертить",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_side_save",
+      "text": "Сохранить и закрыть",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_create_side_move_to_center",
+      "text": "Переместить в центр",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_follow_path",
+      "text": "Движение по треку",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_follow_path_option_reverse",
+      "text": "В обратном направлении",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_follow_path_option_loop",
+      "text": "Зациклить движение",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_follow_path_option_distance_1p",
+      "text": "Минимальное расстояние до ближайшей целевой точки трека %s",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_follow_path_option_warn_me_1p",
+      "text": "Предупреждать об отклонении от трека более чем на %s",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_follow_path_option_dont_warn_me",
+      "text": "Не предупреждать об отклонении",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_proximity_alerts_repeat",
+      "text": "Повторять уведомления",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_control_time_bulk_start",
+      "text": "Синхронный старт (контроль времени движения по нескольким трекам одновременно)",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_folder_name_my_landmarks",
+      "text": "Мои метки",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_offline_provider_title",
+      "text": "Локальные метки",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_offline_folder_unsorted",
+      "text": "Несортированные метки",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_offline_folder_import",
+      "text": "Импортированные метки",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_offline_folder_export",
+      "text": "Экспортированные метки",
+      "category": "landmarks"
+    },
+    {
+      "id": "search_title",
+      "text": "Поиск на карте",
+      "category": "search"
+    },
+    {
+      "id": "search_desc",
+      "text": "Искать названия, координаты и прочее.",
+      "category": "search"
+    },
+    {
+      "id": "search_save_folder_name",
+      "text": "Поисковые запросы",
+      "category": "search"
+    },
+    {
+      "id": "search_format_name",
+      "text": "Поиск по имени",
+      "category": "search"
+    },
+    {
+      "id": "search_format_project",
+      "text": "Спроектировать местоположение",
+      "category": "search"
+    },
+    {
+      "id": "search_text_single",
+      "text": "Единое поле (для копирования/вставки)",
+      "category": "search"
+    },
+    {
+      "id": "search_text_format",
+      "text": "Критерий поиска",
+      "category": "search"
+    },
+    {
+      "id": "search_dialog_incorrect_location_p",
+      "text": "Неверный формат местоположения",
+      "category": "search"
+    },
+    {
+      "id": "search_dialog_geocoder_failed_p",
+      "text": "\"Поиск не удался.\nДля выполнения поиска местоположения по имени необходимо подключение к интернету.\"",
+      "category": "search"
+    },
+    {
+      "id": "search_dialog_no_results_p",
+      "text": "Не найдено",
+      "category": "search"
+    },
+    {
+      "id": "search_dialog_main_results",
+      "text": "Основные результаты",
+      "category": "search"
+    },
+    {
+      "id": "search_dialog_other_results",
+      "text": "Другие результаты",
+      "category": "search"
+    },
+    {
+      "id": "geolocation_state_waiting_location_1p",
+      "text": "Ожидание связи с «%s»…",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_state_listening_to_1p",
+      "text": "Используется «%s»…",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_state_source_disabled_1p",
+      "text": "Источник «%s» отключён!",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_state_not_active",
+      "text": "Нет сигнала",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_satellite_abbrev",
+      "text": "спут.",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_info_high_accuracy_disable_s",
+      "text": "Режим высокой точности определения местоположения отключён.",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_source_title",
+      "text": "Источник позиционирования",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_source_disabled",
+      "text": "Источник отключён",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_source_none_desc",
+      "text": "Источник позиционирования на данном устройстве отстутствует.",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_source_auto_title",
+      "text": "Автовыбор",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_source_auto_desc",
+      "text": "Местоположение, определённое по спутникам GPS/GNSS и сети сотовой связи.",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_source_gps_title",
+      "text": "GPS/GNSS",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_source_gps_desc",
+      "text": "Точное местоположение, определённое по спутникам GNSS (GPS/GLONASS/Galileo/BeiDou/IRNSS/QZSS). Наличие сети сотовой связи необязательно. Необходимо открытое пространство и время инициализации.",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_source_network_title",
+      "text": "Сеть",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_source_network_desc",
+      "text": "Примерное местоположение, определённое по базовым станциям операторов сотовой связи.",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_source_passive_title",
+      "text": "Стороннее приложение",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_source_passive_desc",
+      "text": "Местоположения, полученные из сторонних приложений, например, при использовании внешнего GNSS-приёмника.",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_rate_title",
+      "text": "Интервал записи",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_rate_second",
+      "text": "Кажд. секунду",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_rate_seconds_1p",
+      "text": "Кажд. %s",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_rate_precise_title",
+      "text": "Быстрая запись",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_rate_precise_desc",
+      "text": "\"Повышенное энергопотребление.\nДля коротких походов с непостоянной скоростью.\"",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_rate_medium_title",
+      "text": "Хорошая точность",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_rate_medium_desc",
+      "text": "\"Умеренное энергопотребление.\nДля многочасовых походов.\"",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_rate_economy_title",
+      "text": "Приемлемая точность",
+      "category": "geolocation"
+    },
+    {
+      "id": "geolocation_rate_economy_desc",
+      "text": "\"Экономное энергопотребление.\nДля многодневных походов.\"",
+      "category": "geolocation"
+    },
+    {
+      "id": "orientation_compass_not_available",
+      "text": "Невозможно активировать компас — в этом устройстве отсутствует магнитный датчик.",
+      "category": "orientation"
+    },
+    {
+      "id": "orientation_compass_calibrate_message",
+      "text": "Для калибровки компаса по очереди поверните устройство несколько раз по трём осям.",
+      "category": "orientation"
+    },
+    {
+      "id": "orientation_setting_sensor",
+      "text": "Датчик",
+      "category": "orientation"
+    },
+    {
+      "id": "orientation_setting_compass_standard_name",
+      "text": "Стандартный",
+      "category": "orientation"
+    },
+    {
+      "id": "orientation_setting_compass_standard_desc",
+      "text": "Стрелка вращается, градусная шкала неподвижна.",
+      "category": "orientation"
+    },
+    {
+      "id": "orientation_setting_compass_topochaix_desc",
+      "text": "Стрелка и градусная шкала вращаются.",
+      "category": "orientation"
+    },
+    {
+      "id": "orientation_setting_declination",
+      "text": "Вычислять магнитное склонение для получения истинного (географического) севера",
+      "category": "orientation"
+    },
+    {
+      "id": "barometer_calibrate_text",
+      "text": "\"Для получения точных показаний барометр необходимо откалибровать.\nВстаньте на каком-либо заранее известном возвышенном месте (можно использовать GNSS высоту) и введите значение высоты в качестве эталонного.\"",
+      "category": "barometer"
+    },
+    {
+      "id": "barometer_calibrate_current_2p",
+      "text": "Текущее эталонное давление составляет %s на высоте %s",
+      "category": "barometer"
+    },
+    {
+      "id": "barometer_calibrate_elevation",
+      "text": "Текущая высота",
+      "category": "barometer"
+    },
+    {
+      "id": "barometer_forecast_1p",
+      "text": "Прогноз: %s",
+      "category": "barometer"
+    },
+    {
+      "id": "barometer_forecast_good",
+      "text": "Ясно",
+      "category": "barometer"
+    },
+    {
+      "id": "barometer_forecast_variable",
+      "text": "Переменно",
+      "category": "barometer"
+    },
+    {
+      "id": "barometer_forecast_bad",
+      "text": "Осадки",
+      "category": "barometer"
+    },
+    {
+      "id": "tracker_state_desc_connecting",
+      "text": "Подключение к сервису…",
+      "category": "tracker"
+    },
+    {
+      "id": "tracker_state_desc_stopped",
+      "text": "Запись трека остановлена",
+      "category": "tracker"
+    },
+    {
+      "id": "tracker_save_folder_name",
+      "text": "Записанные треки",
+      "category": "tracker"
+    },
+    {
+      "id": "tracker_save_desc_1p",
+      "text": "Рабочая карта Трек %s",
+      "category": "tracker"
+    },
+    {
+      "id": "tracker_group_last_track",
+      "text": "Последний записанный трек",
+      "category": "tracker"
+    },
+    {
+      "id": "tracker_message_resume_track_s",
+      "text": "Продолжить последний записанный трек или начать новый?",
+      "category": "tracker"
+    },
+    {
+      "id": "tracker_message_save_track_failed_s",
+      "text": "Не удалось сохранить данные записанного трека. Удалить его?",
+      "category": "tracker"
+    },
+    {
+      "id": "tracker_settings_ignore_distance",
+      "text": "Не записывать во время остановок",
+      "category": "tracker"
+    },
+    {
+      "id": "tracker_settings_use_barometer_desc",
+      "text": "Записывать показания давления для точного расчёта значений барометрических высот",
+      "category": "tracker"
+    },
+    {
+      "id": "background_service_killed_s",
+      "text": "Сервис остановлен операционной системой!",
+      "category": "background"
+    },
+    {
+      "id": "background_service_request_disable_brand_optimizations_1p_s",
+      "text": "Для использования этой функции при выключенном экране в настройках устройства необходимо разрешить работу %s в фоновом режиме.",
+      "category": "background"
+    },
+    {
+      "id": "background_service_request_ignore_battery_optimizations_1p_s",
+      "text": "Для использования этой функции при выключенном экране необходимо отключить оптимизацию расхода заряда аккумулятора для %s.",
+      "category": "background"
+    },
+    {
+      "id": "settings_display_category",
+      "text": "Единицы",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_distances_title",
+      "text": "Формат расстояния",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_distances_metric",
+      "text": "Метрический",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_distances_metric_feet_elevations",
+      "text": "высота в футах",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_distances_imperial",
+      "text": "Английский",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_distances_imperial_metric_elevations",
+      "text": "высота в метрах",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_distances_imperial_deci_miles",
+      "text": "десятичные мили",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_distances_nautical",
+      "text": "Морской",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_location_title",
+      "text": "Формат местоположения",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_location_secondary_title",
+      "text": "Доп. формат местоположения",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_location_wgs84_second",
+      "text": "Широта/Долгота (Град. Мин. Сек.)",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_location_wgs84_minute",
+      "text": "Широта/Долгота (Град. Мин.)",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_location_wgs84_degree",
+      "text": "Широта/Долгота (Град.)",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_location_imported",
+      "text": "Импортированные форматы",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_areas_title",
+      "text": "Формат площади",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_bearings_title",
+      "text": "Азимут",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_bearings_degrees",
+      "text": "Градусы",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_bearings_gradians",
+      "text": "Грады",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_bearings_mils",
+      "text": "Тысячные",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_bearings_quadrants",
+      "text": "Румбы",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_slopes_title",
+      "text": "Уклон",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_slopes_percents",
+      "text": "Проценты",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_slopes_degrees",
+      "text": "Градусы",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_slopes_glide_ratio",
+      "text": "Коэффициент планирования",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_pressures_title",
+      "text": "Давление",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_pressures_pascals",
+      "text": "Гектопаскали/Миллибары",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_pressures_mmhg",
+      "text": "Миллиметры ртутного столба",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_pressures_inhg",
+      "text": "Дюймы ртутного столба",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_reference_north_title",
+      "text": "Направление на север",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_reference_north_geographic",
+      "text": "Истинный (географический) север",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_reference_north_grid",
+      "text": "Координатный север",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_reference_north_magnetic",
+      "text": "Магнитный север",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_heading_arrow",
+      "text": "Стрелка",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_heading_line",
+      "text": "Линия",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_heading_field_of_view",
+      "text": "Луч",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_category",
+      "text": "Общее",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_hide_status_bar_title",
+      "text": "Скрыть строку состояния",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_hide_status_bar_desc",
+      "text": "Для временного выхода из полноэкранного режима карты и отображения строки состояния коснитесь кнопки главного меню.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_hide_navigation_bar_title",
+      "text": "Режим погружения",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_hide_navigation_bar_desc",
+      "text": "Скрыть кнопки панели навигации устройства при отображении карты в полноэкранном режиме.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_screen_on_title",
+      "text": "Экран всегда включён",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_screen_on_desc",
+      "text": "Никогда не отключать экран в режиме просмотра карты.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_disable_keyguard_title",
+      "text": "На заблокированном экране",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_disable_keyguard_desc",
+      "text": "Для доступа к приложению разблокировка экрана не требуется.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_confirm_exit_title",
+      "text": "Подтверждать выход",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_confirm_exit_desc",
+      "text": "Запросить разрешение на выход.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_path_title",
+      "text": "Путь к кэшу карт",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_path_desc",
+      "text": "Выбрать место сохранения загруженных карт.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_path_dialog_app_path",
+      "text": "Путь приложения",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_path_dialog_warning_unavailable",
+      "text": "Запись данных по указанному пути заблокирована операционной системой.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_path_dialog_warning_removable",
+      "text": "При деинсталляции приложения все данные, расположенные по этому пути, будут удалены операционной системой.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_path_dialog_warning_vulnerable",
+      "text": "Данные, расположенные по этому пути, могут быть удалены приложениями, оптимизирующими операционную систему.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_path_dialog_warning_external",
+      "text": "Использование внешней памяти (MicroSD) не рекомендуется, поскольку это может привести к замедлению работы, зависаниям и возникновению проблем с файлами.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_technical_path_dialog_use_media_folder",
+      "text": "Используйте медиапапку для хранения изображений, аудиофайлов и экспортированных файлов.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_category",
+      "text": "Экран",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_infobox_style_title",
+      "text": "Стиль статус-панелей",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_infobox_style_desc",
+      "text": "Выбрать размер и цвет фона статус-панелей на карте.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_long_press_map_title",
+      "text": "Долгое нажатие на карту",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_long_press_map_desc",
+      "text": "Назначить действие на долгое нажатие.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_long_press_map_action_map_only",
+      "text": "Показать только карту",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_zoom_type_title",
+      "text": "Управление масштабом",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_zoom_type_desc",
+      "text": "Выбрать инструменты управления масштабом карты.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_zoom_type_mode_buttons",
+      "text": "Кнопки",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_zoom_type_mode_slider",
+      "text": "Слайдер",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_zoom_type_shortcuts_s",
+      "text": "\"Двойное касание карты в одной точке для увеличения масштаба.\nДвойное касание карты в разных точках для уменьшения масштаба.\"",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_zoom_type_volume_keys",
+      "text": "Масштабировать кнопками громкости",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_zoom_type_adjust_zoom",
+      "text": "Автоматическая подгонка масштаба к ближайшему уровню при масштабировании жестом или слайдером",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_zoom_type_long_press",
+      "text": "Изменять уровень детализации карты удерживанием кнопок масштабирования +/-",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_grids_title",
+      "text": "Вид координатных сеток",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_grids_desc",
+      "text": "Выбрать плотность и стиль отображения координатных сеток на карте.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_grids_option_minor_labels",
+      "text": "Отобразить надписи на вспомогательных линиях",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_multitouch_zoom_title",
+      "text": "Масштабирование жестом",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_multitouch_zoom_desc",
+      "text": "Масштабировать карту пальцами.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_multitouch_rotate_title",
+      "text": "Поворот карты жестом",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_multitouch_rotate_desc",
+      "text": "Изменить ориентацию вращением карты пальцами.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_multitouch_pitch_title",
+      "text": "Перспективный вид карты",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_multitouch_pitch_desc",
+      "text": "Изменить угол наклона смещением карты пальцами по вертикали.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_hres_map_title",
+      "text": "Уровень детализации",
+      "category": "settings"
+    },
+    {
+      "id": "settings_canvas_hres_map_desc",
+      "text": "Выбрать размер карты на экране.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_landmarks_display_size_title",
+      "text": "Размер меток",
+      "category": "settings"
+    },
+    {
+      "id": "settings_landmarks_display_size_desc",
+      "text": "Размер меток (треков, путевых точек, иконок), отображаемых на карте.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_landmarks_display_color_title",
+      "text": "Цвет меток",
+      "category": "settings"
+    },
+    {
+      "id": "settings_landmarks_display_color_desc",
+      "text": "Цвет меток, отображаемых на карте.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_landmarks_display_target_color_title",
+      "text": "Цвет цели",
+      "category": "settings"
+    },
+    {
+      "id": "settings_landmarks_display_target_color_desc",
+      "text": "Цвет целевых меток, отображаемых на карте.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_landmarks_display_tracks_style_title",
+      "text": "Стиль треков",
+      "category": "settings"
+    },
+    {
+      "id": "settings_landmarks_display_tracks_style_desc",
+      "text": "Параметры отображения на карте записанных треков.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_landmarks_display_tracks_style_time_bounds",
+      "text": "Границы времени записи трека",
+      "category": "settings"
+    },
+    {
+      "id": "settings_landmarks_display_tracks_style_events",
+      "text": "Показать события",
+      "category": "settings"
+    },
+    {
+      "id": "settings_landmarks_display_borders_title",
+      "text": "Контуры меток",
+      "category": "settings"
+    },
+    {
+      "id": "settings_landmarks_display_borders_desc",
+      "text": "Очертить контуры меток, отображаемых на карте.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_landmarks_display_shadows_title",
+      "text": "Тени от меток",
+      "category": "settings"
+    },
+    {
+      "id": "settings_landmarks_display_shadows_desc",
+      "text": "Добавить тени от меток, отображаемых на карте.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_landmarks_preprocess_title",
+      "text": "Предварительная обработка треков",
+      "category": "settings"
+    },
+    {
+      "id": "settings_landmarks_preprocess_desc",
+      "text": "Повысить точность треков за счёт фильтрации и корректировки точек перед отображением на экране.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_geolocation_relock_location_title",
+      "text": "Автовозврат в центр экрана",
+      "category": "settings"
+    },
+    {
+      "id": "settings_geolocation_relock_location_desc",
+      "text": "Автоматическая фиксация текущего GNSS местоположения в центре экрана после 10 с. неактивности.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_geolocation_auto_activate_explorer_mode_title",
+      "text": "Автостарт путевого компьютера",
+      "category": "settings"
+    },
+    {
+      "id": "settings_geolocation_auto_activate_explorer_mode_desc",
+      "text": "Автоматически активировать путевой компьютер смещением карты пальцами вниз.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_geolocation_previous_locations_title",
+      "text": "Предыдущие местоположения",
+      "category": "settings"
+    },
+    {
+      "id": "settings_geolocation_previous_locations_desc",
+      "text": "Отобразить на карте предыдущие GNSS местоположения.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_geolocation_course_display_type_title",
+      "text": "Направление движения",
+      "category": "settings"
+    },
+    {
+      "id": "settings_geolocation_course_display_type_desc",
+      "text": "Выбрать способ отображения на карте текущего GNSS направления движения.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_geolocation_disable_in_back_title",
+      "text": "Отключение в фоновом режиме",
+      "category": "settings"
+    },
+    {
+      "id": "settings_geolocation_disable_in_back_desc",
+      "text": "Отключить определение местоположения в фоновом режиме для экономии заряда аккумулятора.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_geolocation_disable_in_back_desc_tracker",
+      "text": "за исключением записи трека",
+      "category": "settings"
+    },
+    {
+      "id": "settings_geolocation_egm96_adjustment_title",
+      "text": "EGM96 корректировка GNSS высот",
+      "category": "settings"
+    },
+    {
+      "id": "settings_geolocation_egm96_adjustment_desc",
+      "text": "Точный расчёт значений GNSS высот с использованием модели геоида EGM96.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_orientation_heading_display_type_title",
+      "text": "Курс по компасу",
+      "category": "settings"
+    },
+    {
+      "id": "settings_orientation_heading_display_type_desc",
+      "text": "Выбрать способ отображения на карте текущего курса по компасу.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_tracker_signal_warnings_title",
+      "text": "Предупреждение о потере сигнала",
+      "category": "settings"
+    },
+    {
+      "id": "settings_tracker_signal_warnings_desc",
+      "text": "Аудиоуведомления в случае потери или слабого сигнала GNSS.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_tracker_ask_for_activity_title",
+      "text": "Режим движения",
+      "category": "settings"
+    },
+    {
+      "id": "settings_tracker_ask_for_activity_desc",
+      "text": "Выбрать режим движения перед началом записи трека или нового сегмента.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_tracker_reset_stats_on_new_segment_title",
+      "text": "Сбросить статистику",
+      "category": "settings"
+    },
+    {
+      "id": "settings_tracker_reset_stats_on_new_segment_desc",
+      "text": "Во время записи трека сбросить статистику «Пройдено» при создании нового сегмента.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_tracker_dash_mode_title",
+      "text": "Консоль",
+      "category": "settings"
+    },
+    {
+      "id": "settings_tracker_dash_mode_desc",
+      "text": "Приостановить и возобновить запись трека автоматически при выключении и запуске приложения. Первый старт записи трека выполнить вручную.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_location_import_import_desc_1p",
+      "text": "Введите любое описание системы координат формата WKT/PROJ или любой идентификатор EPSG/ESRI/SR-ORG из %s.",
+      "category": "settings"
+    },
+    {
+      "id": "settings_display_location_import_not_supported_1p",
+      "text": "Система координат «%s» пока не поддерживается. По всем вопросам обращайтесь на наш форум.",
+      "category": "settings"
+    },
+    {
+      "id": "core_details_no_information",
+      "text": "Нет информации",
+      "category": "core"
+    },
+    {
+      "id": "core_details_category_metadata",
+      "text": "Информация",
+      "category": "core"
+    },
+    {
+      "id": "atk_metadata_access_key",
+      "text": "Ключ доступа",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_address",
+      "text": "Адрес",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_audio",
+      "text": "Аудио",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_author",
+      "text": "Автор",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_battery",
+      "text": "Аккумулятор",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_charset",
+      "text": "Кодировка",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_color",
+      "text": "Цвет",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_comment",
+      "text": "Комментарий",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_copyright",
+      "text": "Авторское право",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_creator",
+      "text": "Создан",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_date",
+      "text": "Дата",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_data",
+      "text": "Данные",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_density",
+      "text": "Уровень плотности",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_description",
+      "text": "Описание",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_description_none",
+      "text": "Нет описания",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_direction",
+      "text": "Направление",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_dyncolor",
+      "text": "Динамический цвет",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_energy",
+      "text": "Энергия",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_file_data",
+      "text": "Файл данных",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_file_path",
+      "text": "Путь",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_group",
+      "text": "Группа",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_icon",
+      "text": "Иконка",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_keywords",
+      "text": "Ключевые слова",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location",
+      "text": "Местоположение",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location_accuracy",
+      "text": "Точность",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location_azimuth_grid",
+      "text": "Азимут (коор.)",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location_azimuth_mag",
+      "text": "Азимут (маг.)",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location_azimuth",
+      "text": "Азимут",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location_barometric_elevation",
+      "text": "Барометрическая высота",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location_convergence",
+      "text": "Конвергенция",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location_coordinates",
+      "text": "Координаты",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location_declination",
+      "text": "Склонен.",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location_elevation",
+      "text": "Высота",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location_heading",
+      "text": "Курс",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location_longitude",
+      "text": "Долгота",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location_latitude",
+      "text": "Широта",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location_satellites",
+      "text": "Спутники",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location_relative_1p",
+      "text": "Относительный %s",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location_reverse_1p",
+      "text": "Обратный %s",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_location_variation",
+      "text": "Вариация",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_mapping_crs_geoid",
+      "text": "Геоид",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_mapping_crs_projection",
+      "text": "Проекция",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_mapping_scale",
+      "text": "Масштаб",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_name",
+      "text": "Имя",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_network",
+      "text": "Сеть",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_password",
+      "text": "Пароль",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_phonenumber",
+      "text": "Телефон",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_picture",
+      "text": "Изображение",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_pictures",
+      "text": "Изображения",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_place",
+      "text": "Место",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_power",
+      "text": "Мощность",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_pressure",
+      "text": "Давление",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_pressure_sealevel",
+      "text": "Давление над уровнем моря",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_size",
+      "text": "Размер",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_source",
+      "text": "Источник",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics",
+      "text": "Статистика",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_area",
+      "text": "Область",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_average",
+      "text": "Средн.",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_calories",
+      "text": "Калории",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_distance",
+      "text": "Расстояние",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_distance_from_center",
+      "text": "Расстояние от центра экрана",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_duration",
+      "text": "Продолжительность",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_elevations",
+      "text": "Высота",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_elevations_gain",
+      "text": "Подъём",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_elevations_loss",
+      "text": "Спуск",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_elevations_mean_inclines",
+      "text": "Средние уклоны",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_eta",
+      "text": "Прибытие",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_ete",
+      "text": "Осталось",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_incline",
+      "text": "Уклон",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_in_motion",
+      "text": "В движении",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_length",
+      "text": "Длина",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_min",
+      "text": "Мин.",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_max",
+      "text": "Макс.",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_pace",
+      "text": "Темп",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_progress_done_so_far",
+      "text": "Пройдено",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_progress_remaining_on_path",
+      "text": "Осталось",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_progress_remaining_to_1p",
+      "text": "Осталось до «%s»",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_speed",
+      "text": "Скорость",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_speed_vertical",
+      "text": "Верт. скорость",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_stopped",
+      "text": "Остановки",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_time",
+      "text": "Время",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_statistics_total",
+      "text": "Итого",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_style",
+      "text": "Стиль",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_temperature",
+      "text": "Темпер.",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_type",
+      "text": "Тип",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_url",
+      "text": "Сайт",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_username",
+      "text": "Пользователь",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_version",
+      "text": "Версия",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_vertical",
+      "text": "Вертикальн.",
+      "category": "atk"
+    },
+    {
+      "id": "atk_metadata_weight",
+      "text": "Мой вес",
+      "category": "atk"
+    },
+    {
+      "id": "core_toolkit_error_intent",
+      "text": "Приложение для обработки данного действия на этом устройстве не установлено.",
+      "category": "core"
+    },
+    {
+      "id": "core_toolkit_error_intent_compat",
+      "text": "Используемое внешнее приложение несовместимо с данным приложением.",
+      "category": "core"
+    },
+    {
+      "id": "core_canvas_online_tile_queuing",
+      "text": "В очереди",
+      "category": "core"
+    },
+    {
+      "id": "core_canvas_online_tile_connecting",
+      "text": "Соединение",
+      "category": "core"
+    },
+    {
+      "id": "core_canvas_online_tile_not_available",
+      "text": "Недоступно",
+      "category": "core"
+    },
+    {
+      "id": "core_canvas_online_tile_local_storage_only",
+      "text": "Не загружено",
+      "category": "core"
+    },
+    {
+      "id": "core_button_open_with_external",
+      "text": "Другое приложение",
+      "category": "core"
+    },
+    {
+      "id": "core_button_open_with_direction",
+      "text": "Проложить маршрут",
+      "category": "core"
+    },
+    {
+      "id": "core_button_open_with_navigation",
+      "text": "Навигация",
+      "category": "core"
+    },
+    {
+      "id": "core_button_open_with_street_view",
+      "text": "Просмотр улиц (Google)",
+      "category": "core"
+    },
+    {
+      "id": "core_routing_method_driving",
+      "text": "Автомобиль",
+      "category": "core"
+    },
+    {
+      "id": "core_routing_method_walking",
+      "text": "Пешеход",
+      "category": "core"
+    },
+    {
+      "id": "core_routing_method_cycling",
+      "text": "Велосипед",
+      "category": "core"
+    },
+    {
+      "id": "core_routing_method_transit",
+      "text": "Общественный транспорт",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_category_profile",
+      "text": "Профиль",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_category_events",
+      "text": "События",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_not_enough_data",
+      "text": "Данных недостаточно",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_touch_profile",
+      "text": "Коснитесь экрана для управления профилем",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_title_y",
+      "text": "Установить по оси Y",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_title_x",
+      "text": "Установить по оси X",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_axis_none_desc",
+      "text": "Не использовать эту ось.",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_axis_altitude_geoid_desc",
+      "text": "Реальные высоты, рассчитанные по GNSS высотам и форме Земли.",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_axis_altitude_baro_desc",
+      "text": "Реальные высоты, рассчитанные по калиброванному уровню давления, как правило, более точные, чем GNSS высоты.",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_axis_altitude_diff_title",
+      "text": "Высота (разность)",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_axis_altitude_diff_desc",
+      "text": "Средние значения разности между барометрическими и геоидными высотами.",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_axis_speed_desc",
+      "text": "Мгновенные скорости, рассчитанные по GNSS местоположениям и времени движения.",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_axis_incline_desc",
+      "text": "Уклон между каждым последующим местоположением, рассчитанный по GNSS или барометрическим высотам (при наличии).",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_axis_pressure_raw_desc",
+      "text": "Некалиброванные значения давления по барометру.",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_axis_pressure_sl_desc",
+      "text": "Калиброванные значения давления над уровнем моря, рассчитанные по GNSS высотам и необработанным данным давления.",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_axis_accuracy_desc",
+      "text": "Точность определения местоположения с достоверностью 68%.",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_axis_battery_desc",
+      "text": "Уровень заряда аккумулятора.",
+      "category": "core"
+    },
+    {
+      "id": "core_graphics_axis_network_desc",
+      "text": "Уровень используемого сигнала сети (2G/3G/4G/5G).",
+      "category": "core"
+    },
+    {
+      "id": "maps_default_name",
+      "text": "Базовая карта",
+      "category": "maps"
+    },
+    {
+      "id": "maps_utils_nb_map_1p",
+      "text": "%s карт.",
+      "category": "maps"
+    },
+    {
+      "id": "maps_utils_nb_maps_1p",
+      "text": "%s карт.",
+      "category": "maps"
+    },
+    {
+      "id": "maps_utils_saturation",
+      "text": "Насыщенность",
+      "category": "maps"
+    },
+    {
+      "id": "maps_utils_contrast",
+      "text": "Контрастность",
+      "category": "maps"
+    },
+    {
+      "id": "maps_utils_brightness",
+      "text": "Яркость",
+      "category": "maps"
+    },
+    {
+      "id": "maps_utils_hue",
+      "text": "Оттенок",
+      "category": "maps"
+    },
+    {
+      "id": "maps_erase_color_at_center",
+      "text": "Для удаления использовать цвет под центром экрана",
+      "category": "maps"
+    },
+    {
+      "id": "maps_erase_color_range_width",
+      "text": "Диапазон удаления",
+      "category": "maps"
+    },
+    {
+      "id": "maps_edit_color_inverted",
+      "text": "Инверсия цветов",
+      "category": "maps"
+    },
+    {
+      "id": "maps_layer_blending_mode",
+      "text": "Режим смешивания слоёв",
+      "category": "maps"
+    },
+    {
+      "id": "maps_layer_blending_mode_normal",
+      "text": "Нормальный",
+      "category": "maps"
+    },
+    {
+      "id": "maps_layer_blending_mode_multiply",
+      "text": "Умножение",
+      "category": "maps"
+    },
+    {
+      "id": "maps_layer_blending_mode_screen",
+      "text": "Экран",
+      "category": "maps"
+    },
+    {
+      "id": "maps_layer_blending_mode_overlay",
+      "text": "Перекрытие",
+      "category": "maps"
+    },
+    {
+      "id": "maps_layer_blending_mode_lighten",
+      "text": "Замена светлым",
+      "category": "maps"
+    },
+    {
+      "id": "maps_layer_blending_mode_darken",
+      "text": "Затемнение",
+      "category": "maps"
+    },
+    {
+      "id": "maps_features_display_description_1p",
+      "text": "Позволяет отображать карты из файлов %s.",
+      "category": "maps"
+    },
+    {
+      "id": "maps_features_elevations_download_description",
+      "text": "Позволяет загружать и сохранять для автономного использования данные рельефа отдалённых регионов.",
+      "category": "maps"
+    },
+    {
+      "id": "maps_features_elevations_maps_description",
+      "text": "Добавляет новые карты и слои с сохранёнными данными рельефа, такими как высоты, ландшафт, холмы, склоны и т. п.",
+      "category": "maps"
+    },
+    {
+      "id": "maps_offline_provider_address_aq",
+      "text": "Мои карты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_offline_provider_recursive",
+      "text": "Рекурсивное сканирование",
+      "category": "maps"
+    },
+    {
+      "id": "maps_offline_confirm_oversized_title",
+      "text": "Недопустимый размер карты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_offline_confirm_oversized_desc",
+      "text": "\"Выбранная карта превышает допустимый размер для установленной версии Android, некоторые области могут не загрузиться.\nПопробуйте разделить эту карту на части до 2 Гб.\"",
+      "category": "maps"
+    },
+    {
+      "id": "maps_community_list_title",
+      "text": "Карты сообщества",
+      "category": "maps"
+    },
+    {
+      "id": "maps_community_list_world_title",
+      "text": "Карты мира",
+      "category": "maps"
+    },
+    {
+      "id": "maps_community_list_local_title",
+      "text": "Локальные карты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_community_list_featured_maps",
+      "text": "Популярные карты",
+      "category": "maps"
+    },
+    {
+      "id": "maps_community_list_refreshed_1p",
+      "text": "Список обновлён: %s нов. карт.",
+      "category": "maps"
+    },
+    {
+      "id": "maps_community_type_aeronautical",
+      "text": "Авиация",
+      "category": "maps"
+    },
+    {
+      "id": "maps_community_type_historical",
+      "text": "Историч.",
+      "category": "maps"
+    },
+    {
+      "id": "maps_community_type_nautical",
+      "text": "Морск.",
+      "category": "maps"
+    },
+    {
+      "id": "maps_community_type_roads",
+      "text": "Дорожн.",
+      "category": "maps"
+    },
+    {
+      "id": "maps_community_type_satellite",
+      "text": "Спутник",
+      "category": "maps"
+    },
+    {
+      "id": "maps_community_type_topo",
+      "text": "Топо",
+      "category": "maps"
+    },
+    {
+      "id": "landmarks_explorer_dialog_load_error_corrupt",
+      "text": "Не удалось загрузить весь файл. Возможно, он повреждён.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_explorer_dialog_load_error_memory",
+      "text": "Не удалось загрузить весь файл из-за нехватки памяти.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_moving_speeds",
+      "text": "В движении",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_moving_speeds_flat",
+      "text": "На равнине",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_moving_speeds_increase",
+      "text": "На подъёме",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_moving_speeds_decrease",
+      "text": "На спуске",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_moving_speeds_up",
+      "text": "Вверх",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_moving_speeds_down",
+      "text": "Вниз",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_events",
+      "text": "События",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_events_break_1p",
+      "text": "Остановка на %s",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_events_max_speed_1p",
+      "text": "Максимальная скорость %s",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_events_min_elevation_1p",
+      "text": "Минимальная высота %s",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_events_max_elevation_1p",
+      "text": "Максимальная высота %s",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_events_start_1p",
+      "text": "Старт в %s",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_events_end_1p",
+      "text": "Финиш в %s",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_settings_noise_reduction",
+      "text": "Уровень фильтрации помех",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_settings_moving_threshold",
+      "text": "Остановкой считать скорость ниже",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_settings_min_break_time",
+      "text": "Остановкой считать отсутствие движения дольше",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_statistics_settings_include_inter_segments",
+      "text": "Учитывать разрывы между сегментами трека",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_no_data_time",
+      "text": "Данные времени отсутствуют",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_details_no_data_elevation",
+      "text": "Данные высот отсутствуют",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_sym_group_accommodation",
+      "text": "Жильё",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_sym_group_amenity",
+      "text": "Быт",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_sym_group_food",
+      "text": "Питание",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_sym_group_health",
+      "text": "Здоровье",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_sym_group_manmade",
+      "text": "Сооружения",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_sym_group_natural",
+      "text": "Природа",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_sym_group_power",
+      "text": "Энергия",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_sym_group_shopping",
+      "text": "Покупки",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_sym_group_sport",
+      "text": "Спорт",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_sym_group_tourism",
+      "text": "Туризм",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_sym_group_transport",
+      "text": "Транспорт",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_sym_group_water",
+      "text": "Вода",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_sym_group_worship",
+      "text": "Вероисповедание",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity",
+      "text": "Режим движения",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_aeroplane",
+      "text": "Самолёт",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_air",
+      "text": "По воздуху",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_atv",
+      "text": "Квадроцикл",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_autobus",
+      "text": "Автобус",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_bicycle",
+      "text": "Велосипед",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_boat",
+      "text": "Лодка",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_cablecar",
+      "text": "Канатная дорога",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_canoe",
+      "text": "Каноэ",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_drive",
+      "text": "Автомобиль",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_helicopter",
+      "text": "Вертолёт",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_hike",
+      "text": "Поход",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_horse",
+      "text": "Верхом",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_motorcycle",
+      "text": "Мотоцикл",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_nordic",
+      "text": "Лыжи",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_offroad",
+      "text": "Внедорожник",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_paragliding",
+      "text": "Параплан",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_rickshaw",
+      "text": "Рикша",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_roller",
+      "text": "Ролики",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_run",
+      "text": "Бег",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_sail",
+      "text": "Парус",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_scooter",
+      "text": "Самокат",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_skate",
+      "text": "Скейтборд",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_ski",
+      "text": "Горные лыжи",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_skimo",
+      "text": "Ски-альпинизм",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_sled",
+      "text": "Сани",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_snowmobile",
+      "text": "Снегоход",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_snowshoe",
+      "text": "Снегоступы",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_trail",
+      "text": "Кросс",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_train",
+      "text": "Поезд",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_tram",
+      "text": "Трамвай",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_walk",
+      "text": "Прогулка",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_activity_water",
+      "text": "По воде",
+      "category": "landmarks"
+    },
+    {
+      "id": "core_details_category_geocaching",
+      "text": "Геокешинг",
+      "category": "core"
+    },
+    {
+      "id": "landmarks_features_import_description_1p",
+      "text": "Позволяет импортировать метки из файлов %s",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_features_export_description_1p",
+      "text": "Позволяет экспортировать метки в файлы %s",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_import_options_download_external_content",
+      "text": "Загрузить внешний контент",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_import_options_fix_gps_week_rollover",
+      "text": "Устранить проблемы с переносом номера недели GPS",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_import_xsv_separator",
+      "text": "Разделитель",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_import_xsv_assign",
+      "text": "Назначить на…",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_import_xsv_first_row_headers",
+      "text": "Заголовки в первой строке",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_provider_title",
+      "text": "Онлайн-метки — отключены",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_provider_unavailable",
+      "text": "Метки сообщества доступны только в полной или активированной версии",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_signin_desc",
+      "text": "В этой сборке отправка онлайн-меток и доступ к аккаунту отключены.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_signin_button",
+      "text": "Авторизация",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_signin_username_desc",
+      "text": "От 3 до 10 символов, а–я;А–Я;0–9",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_signin_password_desc",
+      "text": "От 3 до 30 символов",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_signin_failed",
+      "text": "Неверное имя пользователя или пароль. Попробуйте ещё раз.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_signup_desc",
+      "text": "Нет аккаунта? Создайте его сейчас, это бесплатно!",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_signup_button",
+      "text": "Создать аккаунт",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_signup_entry_exists_1p",
+      "text": "%s уже существует. Измените выбор.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_button_verify",
+      "text": "Подтвердить",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_verification_not_matching",
+      "text": "Не совпадает",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_verify_email_message_s",
+      "text": "Проверьте адрес электронной почты",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_verify_email_pin_sent",
+      "text": "ПИН-код, отправленный по электронной почте",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_toast_connection_failed",
+      "text": "Не удалось подключиться к серверу, работа в автономном режиме.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_toast_modify_success",
+      "text": "Изменения успешно отправлены на сервер.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_toast_update_tiles_1p",
+      "text": "Обновление данных с сервера (%s осталось)…",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_toast_update_success_1p",
+      "text": "%s нов. элем.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_dialog_modify_failed",
+      "text": "Не удалось отправить данные на сервер. Проверьте последние изменения.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_dialog_wrong_version",
+      "text": "Ваша версия больше не поддерживается. Пожалуйста, обновитесь.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_explorer_header_title_offline",
+      "text": "Автономный режим.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_explorer_header_up_to_date",
+      "text": "Обновлено.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_explorer_header_pendings_1p",
+      "text": "%s отложен. задан.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_context_menu_log_off",
+      "text": "Выйти",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_context_menu_account",
+      "text": "Мой аккаунт",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_context_menu_connect",
+      "text": "Доступ в сеть отключён",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_context_menu_disconnect",
+      "text": "Режим офлайн",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_context_menu_refresh_folder",
+      "text": "Обновить папку",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_context_menu_refresh_area",
+      "text": "Обновить область",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_explorer_category_hidden_folders",
+      "text": "Скрытые папки",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_explorer_category_users",
+      "text": "Пользователи",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_explorer_category_friends",
+      "text": "Друзья",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_explorer_category_public_waypoints",
+      "text": "Публичные путевые точки",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_explorer_name_user",
+      "text": "Пользователь",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_explorer_name_my_landmarks_title",
+      "text": "Мои путевые точки",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_explorer_name_my_landmarks_desc",
+      "text": "Ваши путевые точки онлайн.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_explorer_name_public_landmarks_title",
+      "text": "Мои публичные путевые точки",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_explorer_name_public_landmarks_desc",
+      "text": "Публичные путевые точки, созданные или изменённые вами.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_explorer_name_my_friends_title",
+      "text": "Мои друзья",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_explorer_name_my_friends_desc",
+      "text": "Добавление пользователей и получение доступа к их путевым точкам.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_create_folder_hidden_title",
+      "text": "Скрытая папка",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_create_folder_hidden_desc",
+      "text": "Позволяет просматривать скрытую подпапку.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_create_friend_title",
+      "text": "Друг",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_create_friend_desc",
+      "text": "Добавить нового пользователя в друзья и получить доступ к его путевым точкам.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_create_public_waypoint_title",
+      "text": "Публичные точки",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_create_public_waypoint_desc",
+      "text": "Поделитесь информацией об этом месте. Новая путевая точка появится на карте и будет видна всем пользователям.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_create_public_waypoint_disclaimer_check",
+      "text": "Перед созданием новой путевой точки убедитесь, что в данном месте нет другой путевой точки.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_create_public_waypoint_disclaimer_personal",
+      "text": "Публичные путевые точки видны всем пользователям. Не указывайте личную информацию.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_create_public_waypoint_disclaimer_correct",
+      "text": "Тщательно выберите иконку для путевой точки — она будет видна на карте всем пользователям.",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_details_line_visibility",
+      "text": "Видимость",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_details_line_visibility_private",
+      "text": "Частная",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_details_line_visibility_hidden",
+      "text": "Скрытая",
+      "category": "landmarks"
+    },
+    {
+      "id": "landmarks_ldks_details_line_visibility_public",
+      "text": "Публичная",
+      "category": "landmarks"
+    },
+    {
+      "id": "activation_dialog_title_lite",
+      "text": "Версия Lite",
+      "category": "activation"
+    },
+    {
+      "id": "activation_dialog_limited_feature_s",
+      "text": "Эта функция недоступна в бесплатной версии.",
+      "category": "activation"
+    },
+    {
+      "id": "activation_dialog_desc_lite_s",
+      "text": "Пользуйтесь всеми возможностями Рабочая карта и поддержите нас покупкой полной версии с дальнейшими обновлениями.",
+      "category": "activation"
+    },
+    {
+      "id": "activation_dialog_url_lite",
+      "text": "Нажмите для получения дополнительной информации",
+      "category": "activation"
+    },
+    {
+      "id": "activation_context_menu_activation",
+      "text": "Активация",
+      "category": "activation"
+    },
+    {
+      "id": "activation_description_s",
+      "text": "\"Активируйте приложение только по запросу.\nЕсли вы приобрели полную версию в Play Store, не активируйте, а используйте специальную версию.\"",
+      "category": "activation"
+    },
+    {
+      "id": "activation_status_activated",
+      "text": "Активировано",
+      "category": "activation"
+    },
+    {
+      "id": "activation_status_unactivated",
+      "text": "Не активировано",
+      "category": "activation"
+    },
+    {
+      "id": "activation_status_locked",
+      "text": "Блокировано другим устройством",
+      "category": "activation"
+    },
+    {
+      "id": "activation_info_line_status",
+      "text": "Статус",
+      "category": "activation"
+    }
+  ]
+}

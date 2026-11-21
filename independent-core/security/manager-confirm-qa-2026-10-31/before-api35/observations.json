@@ -1,0 +1,12 @@
+{
+  "source": "40c4d1c914217046e70a3880333d9b2a12de0bc0",
+  "run": 41160073360,
+  "job": 124415524394,
+  "states": [
+    "CONFIRM_BASELINE kind=delete restored=false project=1 unchanged=true",
+    "CONFIRM_BASELINE kind=show restored=false project=2 unchanged=true",
+    "CONFIRM_BASELINE kind=hide restored=false project=3 unchanged=true",
+    "CONFIRM_BASELINE kind=pastecopy restored=false project=4 unchanged=true",
+    "CONFIRM_BASELINE kind=pastecut restored=false project=5 unchanged=true"
+  ]
+}

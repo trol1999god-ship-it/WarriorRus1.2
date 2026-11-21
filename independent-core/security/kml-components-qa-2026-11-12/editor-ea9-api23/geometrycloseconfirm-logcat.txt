@@ -1,0 +1,742 @@
+--------- beginning of main
+11-12 19:09:10.730  6708  6708 I AndroidRuntime: VM exiting with result code 0.
+11-12 19:09:10.826  6721  6721 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+11-12 19:09:10.827  6721  6721 D AndroidRuntime: CheckJNI is OFF
+11-12 19:09:10.835  6721  6721 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+11-12 19:09:10.844  6721  6721 E memtrack: Couldn't load memtrack module (No such file or directory)
+11-12 19:09:10.844  6721  6721 E android.os.Debug: failed to load memtrack module: -2
+11-12 19:09:10.845  6721  6721 I Radio-JNI: register_android_hardware_Radio DONE
+11-12 19:09:10.850  6721  6721 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+--------- beginning of system
+11-12 19:09:10.852  1558  4382 I ActivityManager: Force stopping org.rabochaya.karta appid=10055 user=0: start instr
+11-12 19:09:10.855  6730  6730 I art     : Late-enabling -Xcheck:jni
+11-12 19:09:10.863  1558  4382 I ActivityManager: Start proc 6730:org.rabochaya.karta/u0a55 for added application org.rabochaya.karta
+11-12 19:09:10.867  6730  6730 W System  : ClassLoader referenced unknown path: /data/app/org.rabochaya.maptests-1/lib/x86
+11-12 19:09:10.867  6730  6730 W System  : ClassLoader referenced unknown path: /data/app/org.rabochaya.karta-1/lib/x86
+11-12 19:09:10.945  1558  4382 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (has extras)} from uid 10055 on display 0
+11-12 19:09:10.963  1246  1683 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+11-12 19:09:10.964  6730  6745 D OpenGLRenderer: Use EGL_SWAP_BEHAVIOR_PRESERVED: true
+11-12 19:09:10.971  6730  6730 D         : HostConnection::get() New Host Connection established 0xab3ef580, tid 6730
+11-12 19:09:10.979  1246  1282 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:10.998  6730  6745 D         : HostConnection::get() New Host Connection established 0xa3370040, tid 6745
+11-12 19:09:10.999  6730  6745 I OpenGLRenderer: Initialized EGL, version 1.4
+11-12 19:09:11.000  6730  6745 D EGL_emulation: eglCreateContext: 0xaec14f00: maj 3 min 0 rcv 3
+11-12 19:09:11.001  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:11.001  6730  6745 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008cdf
+11-12 19:09:11.001  6730  6745 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008824
+11-12 19:09:11.004  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:11.011  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:11.013  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407e240
+11-12 19:09:11.330  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity: +378ms
+11-12 19:09:12.679  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:12.700  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 19:09:12.827  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:13.254  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a5e0
+11-12 19:09:13.256  1558  1569 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@4ea146a attribute=null, token = android.os.BinderProxy@4a18ec8
+11-12 19:09:15.360  1558  1747 D VoldConnector: SND -> {58 volume mkdirs /storage/emulated/0/Android/data/org.rabochaya.karta/files/}
+11-12 19:09:15.362  1558  1609 D VoldConnector: RCV <- {200 58 Command succeeded}
+11-12 19:09:15.363  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:15.365  6721  6729 D         : HostConnection::get() New Host Connection established 0xae756200, tid 6729
+11-12 19:09:15.430  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:15.460  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:17.019  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:17.514  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:17.515  6721  6751 D         : HostConnection::get() New Host Connection established 0xb407f180, tid 6751
+11-12 19:09:17.549  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:17.555  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w640dp h296dp 160dpi nrml long land finger -keyb/v/h tball/v s.440}
+11-12 19:09:17.569  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:17.569  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a5e0
+11-12 19:09:17.576  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:09:17.576  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 1, mode 1, display id 0
+11-12 19:09:17.579  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a360
+11-12 19:09:17.592  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:09:17.593  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349be0
+11-12 19:09:17.594  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:09:17.609  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:17.638  1558  1577 I WindowManager: Screen frozen for +91ms due to Window{8d0d36 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}
+11-12 19:09:17.660  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:17.662  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:17.673  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349320
+11-12 19:09:17.676  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:17.685  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:18.550  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 72484107 , only wrote 72179217
+11-12 19:09:19.251  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:19.644  1558  1577 I art     : Starting a blocking GC Explicit
+11-12 19:09:19.651  1558  1577 I art     : Explicit concurrent mark sweep GC freed 7766(467KB) AllocSpace objects, 1(20KB) LOS objects, 33% free, 5MB/8MB, paused 129us total 6.568ms
+11-12 19:09:19.687  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:19.689  6721  6728 D         : HostConnection::get() New Host Connection established 0xb407f2c0, tid 6728
+11-12 19:09:19.719  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:19.720  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 19:09:19.722  1558  1700 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@b06832f attribute=null, token = android.os.BinderProxy@f446ed1
+11-12 19:09:19.723  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:20.347  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:20.362  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:20.363  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a4a0
+11-12 19:09:20.364  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:20.394  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:21.938  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:22.429  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:22.454  1246  1282 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:22.474  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w320dp h616dp 160dpi nrml long port finger -keyb/v/h tball/v s.441}
+11-12 19:09:22.475  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:09:22.475  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 0, mode 1, display id 0
+11-12 19:09:22.488  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:22.489  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 19:09:22.497  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3498c0
+11-12 19:09:22.512  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:09:22.513  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 19:09:22.514  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:09:22.529  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:22.562  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:22.565  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:22.569  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:22.575  1558  1577 I WindowManager: Screen frozen for +121ms due to Window{b6dae41 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}
+11-12 19:09:22.582  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:23.479  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 72507868 , only wrote 72344467
+11-12 19:09:24.154  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:24.580  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:24.583  1558  1577 I art     : Starting a blocking GC Explicit
+11-12 19:09:24.593  1558  1577 I art     : Explicit concurrent mark sweep GC freed 3704(212KB) AllocSpace objects, 1(20KB) LOS objects, 33% free, 5MB/8MB, paused 155us total 9.856ms
+11-12 19:09:24.614  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:24.614  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 19:09:24.616  1558  2042 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@8e1b0c3 attribute=null, token = android.os.BinderProxy@8e86c1a
+11-12 19:09:24.624  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:25.249  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:25.280  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:25.280  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 19:09:25.828  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a040
+11-12 19:09:25.831  1246  1282 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 19:09:25.837  1558  1747 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@2a4961f attribute=null, token = android.os.BinderProxy@8e86c1a
+11-12 19:09:25.857  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:25.857  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3498c0
+11-12 19:09:25.872  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:25.883  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(10)
+11-12 19:09:26.386  2422  2493 W OpenGLRenderer: Incorrectly called buildLayer on View: ShortcutAndWidgetContainer, destroying layer...
+11-12 19:09:26.386  2422  2493 W OpenGLRenderer: Incorrectly called buildLayer on View: ShortcutAndWidgetContainer, destroying layer...
+11-12 19:09:26.440  1558  4382 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (has extras)} from uid 10055 on display 0
+11-12 19:09:26.471  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:26.479  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:26.489  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:26.492  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407bd60
+11-12 19:09:26.497  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity: +52ms
+11-12 19:09:28.615  1246  1282 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:28.623  6721  6725 D         : HostConnection::get() New Host Connection established 0xae756400, tid 6725
+11-12 19:09:29.142  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:29.165  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 19:09:29.174  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:29.719  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a900
+11-12 19:09:29.722  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 19:09:29.734  1558  2042 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@f3231cc attribute=null, token = android.os.BinderProxy@c25450f
+11-12 19:09:29.748  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:29.750  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:29.751  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349320
+11-12 19:09:30.264  2422  2493 W OpenGLRenderer: Incorrectly called buildLayer on View: ShortcutAndWidgetContainer, destroying layer...
+11-12 19:09:30.264  2422  2493 W OpenGLRenderer: Incorrectly called buildLayer on View: ShortcutAndWidgetContainer, destroying layer...
+11-12 19:09:30.337  1558  2044 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (has extras)} from uid 10055 on display 0
+11-12 19:09:30.367  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:30.372  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:30.382  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:30.383  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407c260
+11-12 19:09:30.391  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity: +49ms
+11-12 19:09:31.903  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:31.928  1246  1282 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 19:09:31.949  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:31.949  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349320
+11-12 19:09:31.965  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:31.975  1558  4383 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (has extras)} from uid 10055 on display 0
+11-12 19:09:32.002  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:32.009  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:32.020  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity: +32ms
+11-12 19:09:32.030  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:32.031  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407c260
+11-12 19:09:32.281  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:32.767  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:32.869  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 73069716 , only wrote 72708017
+11-12 19:09:32.873  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:32.924  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 19:09:32.935  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:32.940  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:33.220  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:33.221  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a7c0
+11-12 19:09:33.471  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:33.537  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(3)
+11-12 19:09:34.564  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:34.588  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(9)
+11-12 19:09:34.595  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:35.139  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:35.149  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w640dp h296dp 160dpi nrml long land finger -keyb/v/h tball/v s.442}
+11-12 19:09:35.149  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:09:35.149  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 1, mode 1, display id 0
+11-12 19:09:35.173  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349fa0
+11-12 19:09:35.192  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:35.193  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 19:09:35.201  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:09:35.202  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349be0
+11-12 19:09:35.204  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:09:35.220  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:35.253  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:35.255  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:35.266  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a4a0
+11-12 19:09:35.270  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:35.279  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:35.283  1558  1577 I WindowManager: Screen frozen for +145ms due to Window{e35463 u0 org.rabochaya.karta}
+11-12 19:09:35.806  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a680
+11-12 19:09:35.808  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:35.834  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(9)
+11-12 19:09:36.392  1246  1282 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:36.407  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w320dp h616dp 160dpi nrml long port finger -keyb/v/h tball/v s.443}
+11-12 19:09:36.418  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:36.419  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a4a0
+11-12 19:09:36.432  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:09:36.432  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 0, mode 1, display id 0
+11-12 19:09:36.433  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a360
+11-12 19:09:36.446  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:09:36.447  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 19:09:36.449  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:09:36.463  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:36.495  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:36.498  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:36.509  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 19:09:36.513  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:36.522  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:36.525  1558  1577 I WindowManager: Screen frozen for +135ms due to Window{764ecdb u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}
+11-12 19:09:38.088  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:38.119  1246  1285 D hwcomposer: hw_composer sent 1755 syncs in 61s
+11-12 19:09:38.525  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:38.534  1558  1577 I art     : Starting a blocking GC Explicit
+11-12 19:09:38.545  1558  1577 I art     : Explicit concurrent mark sweep GC freed 7877(505KB) AllocSpace objects, 3(60KB) LOS objects, 33% free, 5MB/8MB, paused 190us total 8.683ms
+11-12 19:09:38.559  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:38.560  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a4a0
+11-12 19:09:38.562  1558  4384 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@cfbea8d attribute=null, token = android.os.BinderProxy@6d48a8c
+11-12 19:09:38.573  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:38.618  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(3)
+11-12 19:09:39.164  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 19:09:39.185  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:39.186  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a360
+11-12 19:09:39.199  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:39.205  1558  1747 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (has extras)} from uid 10055 on display 0
+11-12 19:09:39.228  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:39.244  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:39.245  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407c9e0
+11-12 19:09:39.250  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:39.267  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity: +37ms
+11-12 19:09:39.516  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:39.530  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:39.535  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:40.101  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:40.107  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:40.122  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:40.134  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:40.148  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 19:09:40.421  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:40.422  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a900
+11-12 19:09:40.705  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:40.769  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(6)
+11-12 19:09:41.798  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:41.824  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(5)
+11-12 19:09:41.830  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:42.377  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:42.399  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w640dp h296dp 160dpi nrml long land finger -keyb/v/h tball/v s.444}
+11-12 19:09:42.412  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a680
+11-12 19:09:42.421  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:09:42.421  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 1, mode 1, display id 0
+11-12 19:09:42.425  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:42.425  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349fa0
+11-12 19:09:42.437  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:09:42.437  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:42.438  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349be0
+11-12 19:09:42.439  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:09:42.469  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:42.472  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:42.483  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 19:09:42.487  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:42.496  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:42.499  1558  1577 I WindowManager: Screen frozen for +124ms due to Window{1c5b36d u0 org.rabochaya.karta}
+11-12 19:09:42.999  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:43.020  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w320dp h616dp 160dpi nrml long port finger -keyb/v/h tball/v s.445}
+11-12 19:09:43.035  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a7c0
+11-12 19:09:43.044  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:09:43.044  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 0, mode 1, display id 0
+11-12 19:09:43.045  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:43.046  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a360
+11-12 19:09:43.058  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:09:43.060  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 19:09:43.061  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:09:43.073  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:43.108  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:43.110  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:43.115  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:43.121  1558  1577 I WindowManager: Screen frozen for +123ms due to Window{5473b1c u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}
+11-12 19:09:43.128  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:44.699  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:44.918  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 73767728 , only wrote 73238800
+11-12 19:09:45.128  1558  1577 I art     : Starting a blocking GC Explicit
+11-12 19:09:45.135  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:45.136  1558  1577 I art     : Explicit concurrent mark sweep GC freed 7670(432KB) AllocSpace objects, 1(20KB) LOS objects, 33% free, 5MB/8MB, paused 129us total 6.444ms
+11-12 19:09:45.171  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:45.171  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a680
+11-12 19:09:45.173  1558  1569 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@98e1ec6 attribute=null, token = android.os.BinderProxy@3171969
+11-12 19:09:45.185  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:45.214  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 19:09:45.810  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:45.842  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:46.385  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349fa0
+11-12 19:09:46.387  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 19:09:46.392  1558  1747 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@6bd6152 attribute=null, token = android.os.BinderProxy@3171969
+11-12 19:09:46.405  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:46.405  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 19:09:46.433  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:46.947  2422  2493 W OpenGLRenderer: Incorrectly called buildLayer on View: ShortcutAndWidgetContainer, destroying layer...
+11-12 19:09:46.947  2422  2493 W OpenGLRenderer: Incorrectly called buildLayer on View: ShortcutAndWidgetContainer, destroying layer...
+11-12 19:09:46.997  1558  1701 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (has extras)} from uid 10055 on display 0
+11-12 19:09:47.032  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:47.039  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:47.049  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:47.051  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407c260
+11-12 19:09:47.059  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity: +59ms
+11-12 19:09:47.685  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 19:09:47.714  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:47.717  1558  1676 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (has extras)} from uid 10055 on display 0
+11-12 19:09:47.737  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:47.748  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:47.748  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 19:09:47.756  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:47.757  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407bd60
+11-12 19:09:47.758  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:47.777  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity: +39ms
+11-12 19:09:48.026  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:48.057  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:48.062  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:48.611  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:48.616  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:48.630  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:48.644  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:48.651  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 19:09:48.932  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:48.933  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34b300
+11-12 19:09:49.214  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:49.272  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(9)
+11-12 19:09:50.308  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:50.326  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(5)
+11-12 19:09:50.339  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:50.881  1246  1282 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:50.892  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w640dp h296dp 160dpi nrml long land finger -keyb/v/h tball/v s.446}
+11-12 19:09:50.906  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34b080
+11-12 19:09:50.914  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:09:50.914  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 1, mode 1, display id 0
+11-12 19:09:50.915  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:50.916  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a040
+11-12 19:09:50.929  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:09:50.931  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349be0
+11-12 19:09:50.933  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:09:50.947  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:50.979  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:50.982  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:50.994  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 19:09:50.997  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:51.006  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:51.010  1558  1577 I WindowManager: Screen frozen for +130ms due to Window{8c34261 u0 org.rabochaya.karta}
+11-12 19:09:51.513  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:51.531  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w320dp h616dp 160dpi nrml long port finger -keyb/v/h tball/v s.447}
+11-12 19:09:51.541  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a5e0
+11-12 19:09:51.553  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:09:51.553  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 0, mode 1, display id 0
+11-12 19:09:51.553  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:51.554  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a360
+11-12 19:09:51.567  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:09:51.568  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 19:09:51.569  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:51.569  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:09:51.602  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:51.604  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:51.609  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:51.614  1558  1577 I WindowManager: Screen frozen for +103ms due to Window{21821e0 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}
+11-12 19:09:51.622  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:53.209  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:53.410  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 73962712 , only wrote 73601689
+11-12 19:09:53.623  1558  1577 I art     : Starting a blocking GC Explicit
+11-12 19:09:53.629  1558  1577 I art     : Explicit concurrent mark sweep GC freed 5460(335KB) AllocSpace objects, 1(20KB) LOS objects, 33% free, 5MB/8MB, paused 148us total 6.449ms
+11-12 19:09:53.634  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:53.671  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:53.672  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a4a0
+11-12 19:09:53.674  1558  4382 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@b9b2f6a attribute=null, token = android.os.BinderProxy@590a39d
+11-12 19:09:53.678  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:53.724  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 19:09:54.303  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:54.334  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(6)
+11-12 19:09:54.335  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:54.884  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a040
+11-12 19:09:54.887  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 19:09:54.893  1558  1569 W InputMethodManagerService: Focus gain on non-focused client com.android.internal.view.IInputMethodClient$Stub$Proxy@b4d836 (uid=10055 pid=6730)
+11-12 19:09:54.926  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:54.937  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 19:09:54.954  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:54.956  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a360
+11-12 19:09:55.440  2422  2493 W OpenGLRenderer: Incorrectly called buildLayer on View: ShortcutAndWidgetContainer, destroying layer...
+11-12 19:09:55.440  2422  2493 W OpenGLRenderer: Incorrectly called buildLayer on View: ShortcutAndWidgetContainer, destroying layer...
+11-12 19:09:55.498  1558  1676 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (has extras)} from uid 10055 on display 0
+11-12 19:09:55.529  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:55.530  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:55.546  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:55.547  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407cb20
+11-12 19:09:55.549  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity: +47ms
+11-12 19:09:55.594  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:56.228  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 19:09:56.280  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:56.286  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:56.500  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:56.501  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a720
+11-12 19:09:56.774  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 19:09:56.789  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34ab80
+11-12 19:09:56.815  1558  2042 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (has extras)} from uid 10055 on display 0
+11-12 19:09:56.823  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:56.834  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:56.854  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:56.867  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:09:56.868  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407c9e0
+11-12 19:09:56.887  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity: +63ms
+11-12 19:09:57.122  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:57.606  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:57.712  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:57.727  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:57.740  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:58.028  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:58.029  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a7c0
+11-12 19:09:58.311  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:59.405  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:59.436  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:09:59.978  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:09:59.988  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w640dp h296dp 160dpi nrml long land finger -keyb/v/h tball/v s.448}
+11-12 19:09:59.989  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:09:59.989  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 1, mode 1, display id 0
+11-12 19:10:00.013  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3498c0
+11-12 19:10:00.027  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:00.028  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 19:10:00.044  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:00.045  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:00.045  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349be0
+11-12 19:10:00.048  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:00.072  1558  1577 I WindowManager: Screen frozen for +95ms due to Window{a68ac1b u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}
+11-12 19:10:00.513  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:00.526  1558  1577 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w320dp h616dp 160dpi nrml long port finger -keyb/v/h tball/v s.449}
+11-12 19:10:00.526  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:10:00.526  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 0, mode 1, display id 0
+11-12 19:10:00.538  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:00.539  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 19:10:00.563  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:00.564  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349be0
+11-12 19:10:00.564  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:00.566  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:00.593  1558  1577 I WindowManager: Screen frozen for +83ms due to Window{efe3164 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}
+11-12 19:10:02.307  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:02.329  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 19:10:02.337  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:02.337  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34ab80
+11-12 19:10:02.358  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:10:02.359  1558  1700 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (has extras)} from uid 10055 on display 0
+11-12 19:10:02.389  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:02.405  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:10:02.406  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407cb20
+11-12 19:10:02.410  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:02.428  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity: +40ms
+11-12 19:10:02.526  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 74379849 , only wrote 73991679
+11-12 19:10:02.678  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:02.708  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:02.713  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:03.262  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:03.268  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:03.283  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:03.295  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:03.297  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 19:10:03.582  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:03.583  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a5e0
+11-12 19:10:03.866  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:03.935  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 19:10:04.602  1558  1577 I art     : Starting a blocking GC Explicit
+11-12 19:10:04.610  1558  1577 I art     : Explicit concurrent mark sweep GC freed 6949(403KB) AllocSpace objects, 1(20KB) LOS objects, 33% free, 5MB/8MB, paused 132us total 7.944ms
+11-12 19:10:04.959  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:04.991  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:05.532  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:05.543  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w640dp h296dp 160dpi nrml long land finger -keyb/v/h tball/v s.450}
+11-12 19:10:05.555  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3493c0
+11-12 19:10:05.566  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:10:05.566  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 1, mode 1, display id 0
+11-12 19:10:05.566  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:05.567  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34ab80
+11-12 19:10:05.583  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:05.584  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349be0
+11-12 19:10:05.585  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:05.598  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:05.627  1558  1577 I WindowManager: Screen frozen for +96ms due to Window{a1631c4 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}
+11-12 19:10:06.068  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:06.080  1558  1577 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w320dp h616dp 160dpi nrml long port finger -keyb/v/h tball/v s.451}
+11-12 19:10:06.081  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:10:06.081  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 0, mode 1, display id 0
+11-12 19:10:06.093  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:06.094  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 19:10:06.118  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:06.119  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:06.120  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 19:10:06.123  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:06.149  1558  1577 I WindowManager: Screen frozen for +84ms due to Window{b3792a9 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}
+11-12 19:10:07.865  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:07.887  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 19:10:07.895  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:07.896  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34ab80
+11-12 19:10:07.915  1558  1701 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (has extras)} from uid 10055 on display 0
+11-12 19:10:07.926  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:10:07.939  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:07.967  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:07.981  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:10:07.982  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407cb20
+11-12 19:10:08.000  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity: +73ms
+11-12 19:10:08.077  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 74414167 , only wrote 74203860
+11-12 19:10:08.235  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:08.719  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:08.826  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:08.840  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:08.851  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 19:10:08.853  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:09.142  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:09.142  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a680
+11-12 19:10:09.424  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:10.158  1558  1577 I art     : Starting a blocking GC Explicit
+11-12 19:10:10.166  1558  1577 I art     : Explicit concurrent mark sweep GC freed 6803(389KB) AllocSpace objects, 1(20KB) LOS objects, 33% free, 5MB/8MB, paused 133us total 8.067ms
+11-12 19:10:10.517  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:10.548  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:11.091  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:11.101  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w640dp h296dp 160dpi nrml long land finger -keyb/v/h tball/v s.452}
+11-12 19:10:11.116  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a900
+11-12 19:10:11.124  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:10:11.124  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 1, mode 1, display id 0
+11-12 19:10:11.126  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:11.127  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 19:10:11.141  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:11.142  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349be0
+11-12 19:10:11.143  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:11.157  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:11.189  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:11.192  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:11.203  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 19:10:11.206  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:11.215  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:11.219  1558  1577 I WindowManager: Screen frozen for +130ms due to Window{abf4545 u0 org.rabochaya.karta}
+11-12 19:10:11.742  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a680
+11-12 19:10:11.744  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:11.777  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(8)
+11-12 19:10:12.328  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:12.344  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w320dp h616dp 160dpi nrml long port finger -keyb/v/h tball/v s.453}
+11-12 19:10:12.344  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:10:12.344  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 0, mode 1, display id 0
+11-12 19:10:12.366  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:12.367  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 19:10:12.384  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a7c0
+11-12 19:10:12.398  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:12.399  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 19:10:12.399  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:12.400  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:12.432  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:12.435  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:12.445  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34ab80
+11-12 19:10:12.449  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:12.458  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:12.462  1558  1577 I WindowManager: Screen frozen for +134ms due to Window{4add7fd u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}
+11-12 19:10:14.024  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:14.462  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:14.472  1558  1577 I art     : Starting a blocking GC Explicit
+11-12 19:10:14.479  1558  1577 I art     : Explicit concurrent mark sweep GC freed 5093(321KB) AllocSpace objects, 1(20KB) LOS objects, 33% free, 5MB/8MB, paused 130us total 6.255ms
+11-12 19:10:14.493  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:14.494  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a540
+11-12 19:10:14.496  1558  1747 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@8092c9f attribute=null, token = android.os.BinderProxy@1e8066
+11-12 19:10:14.509  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:14.560  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(2)
+11-12 19:10:15.098  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 19:10:15.120  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:15.121  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a7c0
+11-12 19:10:15.137  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:10:15.143  1558  2267 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (has extras)} from uid 10055 on display 0
+11-12 19:10:15.164  1246  1282 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:15.184  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:15.202  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:10:15.203  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity: +48ms
+11-12 19:10:15.204  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407c9e0
+11-12 19:10:15.453  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:15.937  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:16.043  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:16.057  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:16.071  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:16.357  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:16.359  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a540
+11-12 19:10:16.641  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:16.709  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(6)
+11-12 19:10:17.722  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:17.754  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:18.308  1246  1282 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:18.322  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w640dp h296dp 160dpi nrml long land finger -keyb/v/h tball/v s.454}
+11-12 19:10:18.335  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a7c0
+11-12 19:10:18.344  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:10:18.344  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 1, mode 1, display id 0
+11-12 19:10:18.345  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:18.346  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 19:10:18.360  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:18.361  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349be0
+11-12 19:10:18.362  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:18.369  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:18.409  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:18.411  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:18.423  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 19:10:18.427  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:18.436  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:18.440  1558  1577 I WindowManager: Screen frozen for +133ms due to Window{1d9667f u0 org.rabochaya.karta}
+11-12 19:10:18.963  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a7c0
+11-12 19:10:18.966  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:19.551  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:19.565  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w320dp h616dp 160dpi nrml long port finger -keyb/v/h tball/v s.455}
+11-12 19:10:19.572  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:19.572  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 19:10:19.589  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:10:19.589  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 0, mode 1, display id 0
+11-12 19:10:19.591  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a680
+11-12 19:10:19.604  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:19.607  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 19:10:19.609  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:19.620  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:19.652  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:19.655  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:19.667  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 19:10:19.671  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:19.679  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:19.683  1558  1577 I WindowManager: Screen frozen for +133ms due to Window{70fa677 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}
+11-12 19:10:21.246  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:21.683  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:21.695  1558  1577 I art     : Starting a blocking GC Explicit
+11-12 19:10:21.702  1558  1577 I art     : Explicit concurrent mark sweep GC freed 5579(326KB) AllocSpace objects, 1(20KB) LOS objects, 33% free, 5MB/8MB, paused 129us total 6.268ms
+11-12 19:10:21.717  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:21.718  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a4a0
+11-12 19:10:21.720  1558  2914 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@52e7749 attribute=null, token = android.os.BinderProxy@e2abb38
+11-12 19:10:21.730  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:22.321  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 19:10:22.341  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:22.341  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a680
+11-12 19:10:22.355  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:10:22.362  1558  2042 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (has extras)} from uid 10055 on display 0
+11-12 19:10:22.385  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:22.403  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:10:22.404  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407cb20
+11-12 19:10:22.406  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:22.424  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity: +39ms
+11-12 19:10:22.673  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:22.704  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:22.709  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:23.258  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:23.264  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:23.277  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:23.291  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:23.578  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:23.579  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34aa40
+11-12 19:10:23.862  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:24.955  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:24.976  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 19:10:24.987  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:25.529  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a7c0
+11-12 19:10:25.531  1558  2267 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@7ab6f3 attribute=null, token = android.os.BinderProxy@9ea1680
+11-12 19:10:26.131  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:26.143  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w640dp h296dp 160dpi nrml long land finger -keyb/v/h tball/v s.456}
+11-12 19:10:26.144  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:10:26.144  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 1, mode 1, display id 0
+11-12 19:10:26.154  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:26.154  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a680
+11-12 19:10:26.181  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:26.182  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:26.182  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349be0
+11-12 19:10:26.184  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:26.210  1558  1577 I WindowManager: Screen frozen for +79ms due to Window{4054e29 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}
+11-12 19:10:26.746  1246  1282 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:26.764  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w320dp h616dp 160dpi nrml long port finger -keyb/v/h tball/v s.457}
+11-12 19:10:26.776  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:26.777  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 19:10:26.786  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:10:26.786  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 0, mode 1, display id 0
+11-12 19:10:26.802  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:26.802  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:26.802  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 19:10:26.804  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:26.832  1558  1577 I WindowManager: Screen frozen for +87ms due to Window{bb2beba u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}
+11-12 19:10:28.684  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 75953668 , only wrote 75079685
+11-12 19:10:28.841  1558  1577 I art     : Starting a blocking GC Explicit
+11-12 19:10:28.848  1558  1577 I art     : Explicit concurrent mark sweep GC freed 6235(360KB) AllocSpace objects, 1(20KB) LOS objects, 33% free, 5MB/8MB, paused 133us total 6.740ms
+11-12 19:10:28.866  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:28.909  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 19:10:28.939  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:28.939  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a040
+11-12 19:10:28.952  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:10:28.958  1558  4383 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity (has extras)} from uid 10055 on display 0
+11-12 19:10:28.982  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:28.996  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:10:28.998  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407bd60
+11-12 19:10:29.000  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:29.018  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity: +38ms
+11-12 19:10:29.269  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:29.299  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:29.304  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:29.853  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:29.859  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:29.873  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:29.886  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:30.173  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:30.174  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34ad60
+11-12 19:10:30.457  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:31.551  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:31.581  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:32.125  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:32.134  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w640dp h296dp 160dpi nrml long land finger -keyb/v/h tball/v s.458}
+11-12 19:10:32.135  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:10:32.135  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 1, mode 1, display id 0
+11-12 19:10:32.159  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34aae0
+11-12 19:10:32.173  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:32.174  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 19:10:32.189  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:32.190  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:32.190  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349be0
+11-12 19:10:32.191  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:32.223  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:32.225  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:32.237  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a040
+11-12 19:10:32.240  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:32.249  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:32.256  1558  1577 I WindowManager: Screen frozen for +132ms due to Window{6f1b728 u0 org.rabochaya.karta}
+11-12 19:10:32.753  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a540
+11-12 19:10:32.754  1558  2100 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@6d8da72 attribute=null, token = android.os.BinderProxy@46cf8c5
+11-12 19:10:33.355  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:33.360  1558  1573 I ActivityManager: Config changes=480 {1.0 310mcc260mnc en_US ldltr sw320dp w320dp h616dp 160dpi nrml long port finger -keyb/v/h tball/v s.459}
+11-12 19:10:33.374  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:33.374  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 19:10:33.382  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000004
+11-12 19:10:33.382  1558  1607 I InputReader: Device reconfigured: id=0, name='qwerty2', size 320x640, orientation 0, mode 1, display id 0
+11-12 19:10:33.397  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:33.398  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:33.398  1766  2010 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 19:10:33.399  1766  2010 D EGL_emulation: eglMakeCurrent: 0xaec14c00: ver 3 0 (tinfo 0xaec12710)
+11-12 19:10:33.427  1558  1577 I WindowManager: Screen frozen for +74ms due to Window{65a4340 u0 org.rabochaya.karta/org.rabochaya.projects.GeometryEditorActivity}
+11-12 19:10:34.029  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(2)
+11-12 19:10:34.035  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:34.086  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:35.436  1558  1577 I art     : Starting a blocking GC Explicit
+11-12 19:10:35.443  1558  1577 I art     : Explicit concurrent mark sweep GC freed 6892(394KB) AllocSpace objects, 1(20KB) LOS objects, 33% free, 5MB/8MB, paused 131us total 6.672ms
+11-12 19:10:36.086  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:36.127  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 19:10:36.149  1558  2266 I NotificationService: cancelToast pkg=org.rabochaya.karta callback=android.app.ITransientNotification$Stub$Proxy@d953a58
+11-12 19:10:36.155  6730  6745 D EGL_emulation: eglMakeCurrent: 0xaec14f00: ver 3 0 (tinfo 0xa383dd70)
+11-12 19:10:36.155  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 19:10:36.157  6730  6745 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a4a0
+11-12 19:10:36.173  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 19:10:36.689  2422  2493 W OpenGLRenderer: Incorrectly called buildLayer on View: ShortcutAndWidgetContainer, destroying layer...
+11-12 19:10:36.689  2422  2493 W OpenGLRenderer: Incorrectly called buildLayer on View: ShortcutAndWidgetContainer, destroying layer...
+11-12 19:10:37.111  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 75717594 , only wrote 75399609
+11-12 19:10:37.673  1246  1282 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 19:10:37.709  1558  2266 W WindowManager: Attempted to remove non-existing token: android.os.Binder@c99490a
+11-12 19:10:37.712  6721  6721 D AndroidRuntime: Shutting down VM
+11-12 19:10:37.713  1558  2914 I ActivityManager: Force stopping org.rabochaya.karta appid=10055 user=0: finished inst
+11-12 19:10:37.713  1558  2914 I ActivityManager: Killing 6730:org.rabochaya.karta/u0a55 (adj 0): stop org.rabochaya.karta
+11-12 19:10:37.714  6721  6727 I art     : Starting a blocking GC HeapTrim
+11-12 19:10:37.750  1558  2042 D GraphicsStats: Buffer count: 3

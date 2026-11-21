@@ -1,0 +1,21 @@
+{
+  "api": "35",
+  "source_sha": "130b5224b1b999af066f22fd558f9e60f73be780",
+  "run_id": "43217403961",
+  "outer_path": "/workspace/attachments/a058605e-e857-4a08-8a8c-e09188f827ec/hgt-window-130b-api35.zip",
+  "outer_sha256": "0597cd460a7ab80f68fb060812693ce4c64f1ab28af1fe881e6f2eebf61c4548",
+  "inner_sha256": "d04089be306f06b426b8f0f1130c915ecb48a63c058183c880999c6cd8ce7bad",
+  "all_member_hashes_verified": true,
+  "members": 543,
+  "records": 46,
+  "passed": 45,
+  "failed_or_skipped": [
+    {
+      "mode": "mapundorotation",
+      "passed": false,
+      "seconds": 67.35
+    }
+  ],
+  "frames": 32,
+  "visual_review": "pending actual view_image"
+}

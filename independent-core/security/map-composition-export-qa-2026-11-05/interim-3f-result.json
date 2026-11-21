@@ -1,0 +1,29 @@
+{
+  "commit": "3f7295772b6b6a8d23c2f77b67264ebbb2294627",
+  "run": 42067960861,
+  "conclusion": "failure",
+  "jobs": {
+    "23": 127387727104,
+    "35": 127387727498
+  },
+  "passed_each": 45,
+  "failed_each": [
+    "cacheexport: lower maximum zoom scales beneath higher-zoom alpha layer"
+  ],
+  "confirmed_test_defect": "expected pure blue while onlineRaster fixture is RGB25/90/220",
+  "production_defect_confirmed": false,
+  "later_export_cancel_ui_data_guards": "not executed after early failed assertion",
+  "export_png": 0,
+  "layer_png_sha_verified": 16,
+  "layer_png_visually_reviewed": 16,
+  "release_gate": false,
+  "accepted": 0,
+  "log_sha256_23": "8c586e4d6b84b2e5c6ce67e55d158e64a282655d83b879a28e4a822abc242f49",
+  "managerforms_23": [
+    "482"
+  ],
+  "log_sha256_35": "b2547159694d20e3d1af5829b12d091f1f8bf15d45ba83cd801e339515b763a1",
+  "managerforms_35": [
+    "473"
+  ]
+}

@@ -1,0 +1,68 @@
+# Композиция карт и слоёв
+
+Production-кандидат добавляет «Карты → Слои карты» в существующий основной экран.
+Менеджер использует существующий каталог; «Добавить слой» позволяет добавить источник
+или фиксированный набор каталога, настроенный XYZ, текущий MBTiles проекта либо обзорную
+карту. Сохраняемый список показывает верхний слой первым: видимость, «Выше/Ниже»,
+непрозрачность0–100 и подтверждённое удаление меняют только композицию этого проекта.
+Удаление не удаляет карты/кеш/объекты. До16слоёв; импорт новых MBTiles остаётся в прежнем меню.
+
+`MapComposition` — immutable bottom-to-top model, checksum/owner/bounds-validated binary
+persistence. `MapCompositionSettings` хранит project-scoped snapshot; stale-window save
+отказывает вместо перезаписи другого состава. Настройки повреждённого состава не стираются.
+Отдельный переключатель позволяет вернуться к одиночной подложке, сохранив состав.
+Явный прежний выбор одиночной карты также приостанавливает, а не удаляет композицию.
+Каталог в layer-pick режиме не меняет single-map selection/network flag.
+
+`LocalMapView` повторно использует OnlineTiles/OfflineTiles/BundledTiles и общую проекцию.
+Каждый видимый слой рисуется в сохранённом порядке; alpha применяется к целому набору
+leafs через Canvas group, не отдельно к каждому входящему слою. Hidden/alpha0 не открывают
+readers/не запрашивают тайлы. Кеши сохраняют прежние leaf source IDs. Тот же renderer
+использован GeometryMapCanvas, без отдельного дублирующего tile pipeline.
+Объекты/вложения не передаются TileSource.url, network choice остаётся явным.
+
+Локально JVM28/81449 (MapComposition33), host16, QA479 own/min23/INTERNETonly,
+60sourceSHAexact/no legacy/native/stubs/missingrefs. App unsigned
+`a70a196e1b607d6a0919bb4f99654c81cabad94e69816f117e591737ede14c32`;
+последняя instrumentation237599/API23 compiled. Android runtime ещё НЕ проверен.
+
+Два относящихся к функции сценария maplayers→maplayersreopen проверяют реальные controls,
+opacity touch, renderer pixels для порядка/alpha/visibility, Cancel remove, XYZ/catalog,
+приостановку/включение без потери состава, KML/assets/MBTiles/source-cache/other-project
+сохранность и exact composition после реального force-stop. В первоначальном сценарии шесть PNG/API, прежние
+регрессии не ослабляются. Никаких дополнительных orphan/dialog baseline.
+
+Границы: это ещё не полная приёмка слоя/набора26.1. Именованные библиотеки наборов,
+несколько импортированных offline-файлов, новые форматы/DEM, compose-aware area jobs и
+экспорт фактической пользовательской композиции — следующие функциональные пункты плана.
+Старые single-source online/cache/export операции сохранены; их нельзя называть экспортом
+нового пользовательского состава. GateFalse25/0accepted; внутренний APK не готовый выпуск.
+
+## Факты первого runtime кандидата
+
+17ac3f9 / CI42028003488: API35job127247171605 success46/46,
+maplayers88 + maplayersreopen16. Все6 interim-17 PNG SHAverified/просмотрены:
+реальное смешение purple, reorder red, hidden/top +50%blue, тот же результат после
+force-stop; manager сохраняет visible/order/opacity. KML/assets/MBTiles/cache guards passed.
+API23job127247171704: прежние44pass, новый test failed на partial opacity после
+инжекции без установленного SOURCE_TOUCHSCREEN. Reopen SKIP, НЕpassed; новые слоевыеPNG
+не успели сниматься до assertion. Это пока не доказанный production дефект.
+Следующий шаг — исправить QA input source/настоящее drag по существующему mapTouch
+образцу, сохранить before/after кадры/числа ДО строгой оценки opacity и исполнитьCI46
+изменённого сценария. Условия partial opacity/restart/data/pixel guards не ослаблять.
+
+Следующий ограниченный кандидат задаёт SOURCE_TOUCHSCREEN и genuine DOWN/MOVE/UP
+с90ms между событиями, записывает widget/model opacity/geometry и before/after PNG
+до исходного строгого partial assertion. Теперь8PNG/API, cap16 не меняется.
+По реально просмотренному screenshot35 также повышен контраст unchecked checkbox
+в новом менеджере; бизнес-модель/renderer/data guards не изменены.
+LocalQA479/source60exact/min23/INTERNETonly/JVM28_81449 passed, SDK23 tests compiled;
+точные app/test SHA — local-build.json. Android новый кандидат ещёнеисполнен.
+
+## Финальный результат ограниченного участка
+
+Code dc16493 / CI42034901826 SUCCESS: обеAPI46/46, layers89/reopen16each;
+managerforms23=482/35=473 реальноpass. Все16 final-dc PNG SHAverified/просмотрены.
+Реальный touch: API23 45%, API35 50%; partial guard неизменён. Add/remove/visibility/
+order/alpha, force-stop/restart, KML/assets/cache/MBTiles/other-project passed.
+Production opacity не меняли ради теста. Полная приёмка остаётся открытой.

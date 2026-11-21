@@ -1,0 +1,38 @@
+{
+  "production_commit": "3f7295772b6b6a8d23c2f77b67264ebbb2294627",
+  "qa_fix_commit": "c230680b2ba03080e37c82e2cdc063225efde7d2",
+  "run": 42074949288,
+  "conclusion": "success",
+  "jobs": {
+    "23": 127412862356,
+    "35": 127412862334
+  },
+  "scenarios_each": 46,
+  "cacheexport_assertions_each": 69,
+  "original_source_color": "ff195adc",
+  "expected_blend": "ff8c2d6e",
+  "actual_blend_each": "ff8b2d6e",
+  "rgb_tolerance": 2,
+  "checked": [
+    "actual bounds, positive180, TMS/XYZ",
+    "order/visibility/group alpha",
+    "mixed zoom and EPSG3395",
+    "standard offline reader roundtrip and SQLite integrity",
+    "no network during export",
+    "File cancellation/empty failure retain previous file",
+    "explicit activity save and early-error destination retention",
+    "source cache and local MBTiles retain payloads",
+    "other project KML/assets unchanged"
+  ],
+  "export_png_sha_verified": 8,
+  "export_png_visually_reviewed": 8,
+  "recovery_only_run": 42989065292,
+  "recovery_jobs": {
+    "23": 130417192910,
+    "35": 130417193321
+  },
+  "recovery_retests": false,
+  "acceptance": "scoped implementation verified; full reference/SAF/formats acceptance open",
+  "release_gate": false,
+  "accepted": 0
+}

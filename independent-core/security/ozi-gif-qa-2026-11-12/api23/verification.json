@@ -1,0 +1,16 @@
+{
+  "api": "23",
+  "source_sha": "1be9e3a1e28ae9f245742f8ba7ee1654e212b380",
+  "run_id": "43172333048",
+  "outer_path": "/workspace/attachments/3da97ff5-e6be-4384-8743-5c2f55c9093c/gif-1be9-api23.zip",
+  "outer_sha256": "a8ff9dc9074684318fe114e18a018dbdc16e4921a3aae316cac7360c8c90dbb8",
+  "inner_sha256": "6e4e90bd02117aaebf960a6a9eb5fef51cfe4c2e62fed4706c25f4b64b30d714",
+  "all_member_hashes_verified": true,
+  "members": 552,
+  "records": 46,
+  "passed": 46,
+  "failed_or_skipped": [],
+  "frames": 28,
+  "visual_review": "8 raster frames actually viewed; remaining20 not claimed viewed; API23 BMP/GIF prompt actions overlapped by preceding CAS Toast",
+  "images_actually_viewed": 8
+}

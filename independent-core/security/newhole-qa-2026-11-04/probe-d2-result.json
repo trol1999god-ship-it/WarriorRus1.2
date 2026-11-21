@@ -1,0 +1,28 @@
+{
+  "source": "d2ddc5851ca56b9c99887dfcdc2d229e2d611e43",
+  "production_source": "1fc6b8f2448247990967a287b732980dcd4d7197",
+  "run": 41881298679,
+  "conclusion": "failure",
+  "jobs": {
+    "23": 126754413032,
+    "35": 126754412982,
+    "jvm": 126754154091
+  },
+  "modes_wrapper_passed_each": 38,
+  "modes_selected": 39,
+  "main_assertions_each": 275,
+  "guards_instrumentation_assertions": {
+    "23": 445,
+    "35": 444
+  },
+  "guards_wrapper_passed": false,
+  "cause": "New test screenshot names guard-invalid--1 / guard-invalid-0 / guard-invalid-1 contain digits; strict visual_evidence allowlist permits letters/hyphens only. Behavior instrumentation passes; visual collector stops after first5 guards PNGs. No full CI acceptance.",
+  "fix": "Use semantic before/land/return screenshot suffix only; keep visual allowlist, count/size limits, raw/cursor/error/physical/assertion checks and release gate unchanged.",
+  "png_sha_verified_and_actually_reviewed": 42,
+  "png_counts": {
+    "main_each": 16,
+    "partial_guards_each": 5
+  },
+  "production_changed": false,
+  "full_acceptance": false
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "map_mvisual-map-part-choice-after-land.png",
+    "sha256": "5536b8571f5915891d4290018e79b9417006381c076597a039fc5d7182a6f908"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-after-return.png",
+    "sha256": "e3c3b450ea07bfc457d5bac7a7686befc7b924c8a9fcdf12a24eeecdeba274fd"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-before-land.png",
+    "sha256": "4af46451c8032314255ed35a62bc27f78905efa33dfa27d5e69c8a2a43c5b711"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-before-return.png",
+    "sha256": "b577cee7357cef6979998d1b1c0de9f83b279d7f1d6db80c2b1832b0f9fd1985"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-cancelled.png",
+    "sha256": "28c32266a9be699f79dab22d753ba6133ad028fc2e8baef84c74b08efbd3c28f"
+  },
+  {
+    "name": "map_mvisual-map-part-choice-confirmed.png",
+    "sha256": "ad2a38718ce2f104d155e369ab4c69073f0c344e78c718fd5d341ab307676190"
+  }
+]

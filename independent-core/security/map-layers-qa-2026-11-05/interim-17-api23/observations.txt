@@ -1,0 +1,5 @@
+2026-11-05T13:07:19.6502664Z java.lang.AssertionError: real slider applies partial opacity
+2026-11-05T13:07:19.6507772Z VISUAL_EVIDENCE_FAILED No manager visual screenshots were collected
+2026-11-05T13:07:19.6509372Z FAIL maplayers
+2026-11-05T13:07:19.6510774Z java.lang.AssertionError: real slider applies partial opacity
+2026-11-05T13:07:19.6525264Z SKIP maplayersreopen: preceding fixture failed

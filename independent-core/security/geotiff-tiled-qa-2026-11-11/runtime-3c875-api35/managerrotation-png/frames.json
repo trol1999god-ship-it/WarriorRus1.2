@@ -1,0 +1,26 @@
+[
+  {
+    "name": "map_mvisual-rotation-name-before.png",
+    "sha256": "65d448a30c2a007c1e9da499e8ba653c265f0c24da55dd0575377b3592c71829",
+    "actually_viewed": true,
+    "scope": "last successful name cancel/save scenes before next launch timeout, not failing Activity readiness screenshot"
+  },
+  {
+    "name": "map_mvisual-rotation-name-cancel.png",
+    "sha256": "19c2887ef5a8dfd81c25a64247b5488ac3f3061f225e535449c39194e85bb57b",
+    "actually_viewed": true,
+    "scope": "last successful name cancel/save scenes before next launch timeout, not failing Activity readiness screenshot"
+  },
+  {
+    "name": "map_mvisual-rotation-name-return.png",
+    "sha256": "805ecd47369416a8450f139c12345b6f046e1587f077af5da4194a34c359cc96",
+    "actually_viewed": true,
+    "scope": "last successful name cancel/save scenes before next launch timeout, not failing Activity readiness screenshot"
+  },
+  {
+    "name": "map_mvisual-rotation-name-save.png",
+    "sha256": "51eedf61d84c60faf34ffb4febec2afa65b7530c1fb3583dc0982e072e18776d",
+    "actually_viewed": true,
+    "scope": "last successful name cancel/save scenes before next launch timeout, not failing Activity readiness screenshot"
+  }
+]

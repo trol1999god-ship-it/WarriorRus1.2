@@ -1,0 +1,50 @@
+[
+  {
+    "name": "map_mvisual-newhole-guard-delete-main-changed.png",
+    "sha256": "796e621ada69e70722e6a3fe92b393c210bc6941e016ecc6674d8215d330d7d5"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-delete-stale-after.png",
+    "sha256": "77923e1aba25891360a7e90f8472ca3b8d822de482bc440bf01f8b21b5ea7ffc"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-delete-stale-before.png",
+    "sha256": "77923e1aba25891360a7e90f8472ca3b8d822de482bc440bf01f8b21b5ea7ffc"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-foreign-feature.png",
+    "sha256": "b919a17a5c697d0b2e52470680beaadc39c1d24a9a6dbe99600f4d625e5c52b7"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-foreign-project.png",
+    "sha256": "a7555b19e32c70c73c6e64aef02ff6682ffa4ef4819bfdce94910a7cffc4c206"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-invalid-before.png",
+    "sha256": "1581b7ebc26e16e2d1c3f51abecd53c176e5fa8f2abe7437e8d3bb95c7d86082"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-invalid-land.png",
+    "sha256": "156d8cbd7496ebf8c3c9e33fda630de3de7d868ae49555974e7172b3048f11e0"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-invalid-return.png",
+    "sha256": "1581b7ebc26e16e2d1c3f51abecd53c176e5fa8f2abe7437e8d3bb95c7d86082"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-raw-main-changed.png",
+    "sha256": "8034bcdc1f0a636f15e3c8bbfd06bc23989a890f4159c3ee8de8f3ff12884d42"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-raw-stale-after.png",
+    "sha256": "1d78e29711bda43c6b1a0dd9b14bff3f0ed099a5c6d4a786aa4a00c4bd255d45"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-raw-stale-before.png",
+    "sha256": "1d78e29711bda43c6b1a0dd9b14bff3f0ed099a5c6d4a786aa4a00c4bd255d45"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-stale-save.png",
+    "sha256": "5ffbe509c3d1ce84602ed5e72d8b91113623c17958a173d127a220c01ad735f9"
+  }
+]

@@ -1,0 +1,238 @@
+[
+  {
+    "name": "maplayersreopen/map_dem-coverage.png",
+    "bytes": 73340,
+    "sha256": "a5c4ed26f9a7bc1defb6b1a4ce63e2d8bc315ceb0bceae30f3f28e672897f664",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_dem-import-ready.png",
+    "bytes": 50102,
+    "sha256": "9b3cdf81c85ee8fcdb1f86858aea580194540199276bd26845abd31cda72fba8",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_dem-manual-centre.png",
+    "bytes": 40912,
+    "sha256": "c88481bca9c4a64c44747c8f1999a0f5eff220045c753b65cd0c31bde62e656a",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_maplayers.png",
+    "bytes": 179751,
+    "sha256": "44b16ed1678c3dd394931d90fb6117d9f2bcfa692f532a4ddc2055a41e20928b",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_maplayersreopen.png",
+    "bytes": 179687,
+    "sha256": "abdad2f5cba37c1a4102fd3a6b599280d47df496528d882528de22781765cfaf",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-cachejob-complete.png",
+    "bytes": 36789,
+    "sha256": "228ce239aa7ee1cd2168deaa6ae323c92783ed1207088988f84efb4283e4ac34",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-cachejob-form.png",
+    "bytes": 33397,
+    "sha256": "55c4de1f27c2223770684e7c786622bca397327822364841372b3d8542586aee",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-cachejob-paused.png",
+    "bytes": 33610,
+    "sha256": "46863def64e66c1cfd2dd40c7749fad25854d5cbf0638a5463cf10e4cd2a0ba9",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-cachejob-stale.png",
+    "bytes": 35169,
+    "sha256": "53e742f38e0f72c7ddbcb66d6ba1f0b1bdbda10faafbc49adbb79ec49dceb54c",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-dem-profile.png",
+    "bytes": 36042,
+    "sha256": "911f22409b11981181335da14a2535c93d562b892273e680a404330e37ee6441",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-dem-restarted.png",
+    "bytes": 40824,
+    "sha256": "c56e62214eddf47091e304b9ea3b41e7283349f9089cfba970d72698cf6288ff",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-composed.png",
+    "bytes": 27331,
+    "sha256": "f4fa756f33ce2b47e2888f1be292080643aa0a75cb8379dc584abe976742e017",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-final.png",
+    "bytes": 27762,
+    "sha256": "41e78a599292493e464cbee1b21be7a0f54440a72ae28ea3f0aabb21a2b1f372",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-manager.png",
+    "bytes": 26884,
+    "sha256": "10eb2c0dc9aa7cfcfc2bca9f8b1a689a93b1e39b9616fb3ae4091a181e27cdba",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-opacity-after.png",
+    "bytes": 26884,
+    "sha256": "10eb2c0dc9aa7cfcfc2bca9f8b1a689a93b1e39b9616fb3ae4091a181e27cdba",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-opacity-before.png",
+    "bytes": 26751,
+    "sha256": "fb1c1d4d97245e07cbac91f99a555c703c62edc5e82716e255f32905acf207ac",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-preset-list.png",
+    "bytes": 32491,
+    "sha256": "81a45538837c31b30dfa17bcf8834b0db2d125ef19c340f1c801067d565f999b",
+    "actually_viewed": false,
+    "inherited_from": "maplayers/map_mvisual-layers-preset-list.png",
+    "not_new_reopen_capture": true
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-preset-name.png",
+    "bytes": 41620,
+    "sha256": "c385b5431bd99782375448d8733c6103afc4911dad55d3df3666b7ada07176cf",
+    "actually_viewed": false,
+    "inherited_from": "maplayers/map_mvisual-layers-preset-name.png",
+    "not_new_reopen_capture": true
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-reordered.png",
+    "bytes": 27086,
+    "sha256": "f464b606ca477644dca740942ef421bb0d8b8d4baa1941aa0e51897758ecdcce",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-restarted-manager.png",
+    "bytes": 27022,
+    "sha256": "6e742ac6b53ced11ada740450a5c1ea77b14f48c7d52f254dbdf1caf0784e19f",
+    "actually_viewed": true
+  },
+  {
+    "name": "maplayersreopen/map_mvisual-layers-restarted.png",
+    "bytes": 27892,
+    "sha256": "d5015cfef3149c0010bb4a3ca31a92ce0d379124ea12b1209823da860bd59528",
+    "actually_viewed": false
+  },
+  {
+    "name": "offlineformats/map_missing-text.png",
+    "bytes": 46306,
+    "sha256": "49061ac68ce0f62f05e8add97fb7871cb5af4bac7d1d854a4f886e79626b3a38",
+    "actually_viewed": true
+  },
+  {
+    "name": "offlineformats/map_mvisual-geotiff-import-prompt.png",
+    "bytes": 72506,
+    "sha256": "62f8549c663fe45b7347c47eb9fb386e7f75377caadcd5aaf8705516a47be9be",
+    "actually_viewed": false
+  },
+  {
+    "name": "offlineformats/map_mvisual-geotiff-import-saved.png",
+    "bytes": 40187,
+    "sha256": "2691e0b9dc1a736ce72e8efb6e12a2b20a70cba723de68717bc53f5644c03afd",
+    "actually_viewed": false
+  },
+  {
+    "name": "offlineformats/map_mvisual-hgt-hillshade-prompt.png",
+    "bytes": 66693,
+    "sha256": "86bae082ca82c62f2ccfe15eaa03e921bc25d869c62917aaf5bb6f1562621ee3",
+    "actually_viewed": false
+  },
+  {
+    "name": "offlineformats/map_mvisual-hgt-hillshade-saved.png",
+    "bytes": 22906,
+    "sha256": "f9d4fd8f0b4f5c86322bf4abb074a33dcd7612b0908783a5d1d7c180ceb92bba",
+    "actually_viewed": false
+  },
+  {
+    "name": "offlineformats/map_mvisual-kml-component-error.png",
+    "bytes": 46627,
+    "sha256": "5d480c0c413181404531532a1f638da70bbdcc562e5eb9ab37f41f2868a44dc3",
+    "actually_viewed": true
+  },
+  {
+    "name": "offlineformats/map_mvisual-kml-components.png",
+    "bytes": 203159,
+    "sha256": "1b22ab019e2244bd4b5d42462d2fd184ab1619329407da1f2f0239a80ace73a1",
+    "actually_viewed": true
+  },
+  {
+    "name": "offlineformats/map_mvisual-ozi-bmp-import-prompt.png",
+    "bytes": 70779,
+    "sha256": "feba3221ca9de2c35e4b58d119f81c942d8f3fb612f81410a6bdd96e3be82ca6",
+    "actually_viewed": false
+  },
+  {
+    "name": "offlineformats/map_mvisual-ozi-bmp-import-saved.png",
+    "bytes": 49709,
+    "sha256": "3f87fdee05db5dac8932924fda3cf18d090809535db42ac5674c4e686acc99c8",
+    "actually_viewed": false
+  },
+  {
+    "name": "offlineformats/map_mvisual-ozi-gif-import-prompt.png",
+    "bytes": 67190,
+    "sha256": "363cdf134a79d961c1ca707da445529870fcec5e38dd2bd5fa48f4c07bcc7703",
+    "actually_viewed": false
+  },
+  {
+    "name": "offlineformats/map_mvisual-ozi-gif-import-saved.png",
+    "bytes": 25693,
+    "sha256": "1ee0fa218d3e2306681348a05321ecf4101c61d188e8a39b30145d5b7628207a",
+    "actually_viewed": false
+  },
+  {
+    "name": "offlineformats/map_mvisual-ozi-import-prompt.png",
+    "bytes": 70828,
+    "sha256": "241357f7e3438b99557d57a0ce8666bd929d2ce08fd28144f9642a2f6477bb39",
+    "actually_viewed": false
+  },
+  {
+    "name": "offlineformats/map_mvisual-ozi-import-saved.png",
+    "bytes": 25760,
+    "sha256": "05fe749e5aa10716d6d231a4ff2c003ab6ed64873c5a066ae99ab339c50fd9d3",
+    "actually_viewed": false
+  },
+  {
+    "name": "offlineformats/map_mvisual-ozi-windows-import-prompt.png",
+    "bytes": 70996,
+    "sha256": "f05672b45cf248673c53247457d7a919ecd7d0a9dcb25f615df7520ea818112f",
+    "actually_viewed": false
+  },
+  {
+    "name": "offlineformats/map_mvisual-ozi-windows-import-saved.png",
+    "bytes": 25691,
+    "sha256": "6e9dd1baffcd467b11499900f752930a02649a5e141921f9a2aae0b073eefb04",
+    "actually_viewed": false
+  },
+  {
+    "name": "maplayers/map_mvisual-layers-preset-name.png",
+    "sha256": "c385b5431bd99782375448d8733c6103afc4911dad55d3df3666b7ada07176cf",
+    "bytes": 41620,
+    "actually_viewed": true,
+    "capture_mode": "maplayers",
+    "review": "Fresh preset dialog/list; Save/Cancel field/buttons visible with IME in name scene; Arimo verified by native guards"
+  },
+  {
+    "name": "maplayers/map_mvisual-layers-preset-list.png",
+    "sha256": "81a45538837c31b30dfa17bcf8834b0db2d125ef19c340f1c801067d565f999b",
+    "bytes": 32491,
+    "actually_viewed": true,
+    "capture_mode": "maplayers",
+    "review": "Fresh preset dialog/list; Save/Cancel field/buttons visible with IME in name scene; Arimo verified by native guards"
+  }
+]

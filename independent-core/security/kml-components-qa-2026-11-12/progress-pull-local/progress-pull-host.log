@@ -1,0 +1,13 @@
+...............F...............
+======================================================================
+FAIL: test_progress_exit1_with_online_boot_is_not_retried (__main__.RunnerTests.test_progress_exit1_with_online_boot_is_not_retried)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/WarriorRus1.2/independent-core/ci/test_run_android_checks.py", line 153, in test_progress_exit1_with_online_boot_is_not_retried
+    self.assertIn('probe_returncode=0',result.pull_diagnostics['cacheexport-artifact-pull.txt'])
+AssertionError: 'probe_returncode=0' not found in 'adb returncode=1\n[  5%] /sdcard/Android/data/org.rabochaya.karta/files/map_mvisual-synthetic-failure.png: 100%\n'
+
+----------------------------------------------------------------------
+Ran 31 tests in 13.377s
+
+FAILED (failures=1)

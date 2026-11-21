@@ -1,0 +1,340 @@
+[
+  {
+    "present": true,
+    "text": "21.25 31.75 41.5",
+    "start": 1,
+    "end": 3,
+    "error": "",
+    "name": "vertex-valid-before",
+    "orientation": 1,
+    "mainText": "20.5 10.5 30.5",
+    "imeWindows": [
+      "[0,402][320,748]"
+    ],
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Изменить координаты",
+        "foreground": "#de000000",
+        "arimo": false,
+        "bounds": "[40, 122, 240, 28]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,62]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Широта долгота [высота], разделитель — пробел",
+        "foreground": "#de000000",
+        "arimo": false,
+        "bounds": "[16, 168, 288, 41]",
+        "visible": true,
+        "visibleBounds": "[16,80][304,121]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "21.25 31.75 41.5",
+        "foreground": "#de000000",
+        "arimo": false,
+        "bounds": "[16, 209, 288, 46]",
+        "visible": true,
+        "visibleBounds": "[16,121][304,167]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": false,
+        "bounds": "[100, 261, 81, 48]",
+        "visible": true,
+        "visibleBounds": "[100,173][181,221]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Применить",
+        "foreground": "#ff009688",
+        "arimo": false,
+        "bounds": "[181, 261, 111, 48]",
+        "visible": true,
+        "visibleBounds": "[181,173][292,221]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": false,
+    "text": "",
+    "start": -1,
+    "end": -1,
+    "error": "",
+    "name": "vertex-valid-after",
+    "orientation": 2,
+    "mainText": "20.5 10.5 30.5",
+    "imeWindows": [
+      "[0,24][640,320]"
+    ],
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Координаты и контуры",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 36, 616, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][628,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия 0 · Point",
+        "foreground": "#de000000",
+        "arimo": false,
+        "bounds": "[12, 67, 592, 22]",
+        "visible": true,
+        "visibleBounds": "[12,67][604,89]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "WGS 84: широта долгота [высота], одна вершина в строке",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 89, 616, 18]",
+        "visible": true,
+        "visibleBounds": "[12,89][628,107]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Редактировать на карте",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 107, 616, 48]",
+        "visible": true,
+        "visibleBounds": "[12,107][628,155]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "20.5 10.5 30.5",
+        "foreground": "#ff202020",
+        "arimo": true,
+        "bounds": "[12, 155, 616, 81]",
+        "visible": true,
+        "visibleBounds": "[12,155][628,236]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Восстановлен локальный черновик",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 236, 616, 18]",
+        "visible": true,
+        "visibleBounds": "[12,236][628,254]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 254, 205, 54]",
+        "visible": true,
+        "visibleBounds": "[12,254][217,308]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[217, 254, 205, 54]",
+        "visible": true,
+        "visibleBounds": "[217,254][422,308]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[422, 254, 206, 54]",
+        "visible": true,
+        "visibleBounds": "[422,254][628,308]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": true,
+    "text": "91 0",
+    "start": 1,
+    "end": 3,
+    "error": "Широта от −90 до 90, долгота от −180 до 180; числа должны быть конечными",
+    "name": "vertex-invalid-before",
+    "orientation": 1,
+    "mainText": "20.5 10.5 30.5",
+    "imeWindows": [
+      "[0,394][320,740]"
+    ],
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Изменить координаты",
+        "foreground": "#de000000",
+        "arimo": false,
+        "bounds": "[40, 122, 240, 28]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,62]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Широта долгота [высота], разделитель — пробел",
+        "foreground": "#de000000",
+        "arimo": false,
+        "bounds": "[16, 168, 288, 41]",
+        "visible": true,
+        "visibleBounds": "[16,80][304,121]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "91 0",
+        "foreground": "#de000000",
+        "arimo": false,
+        "bounds": "[16, 209, 288, 46]",
+        "visible": true,
+        "visibleBounds": "[16,121][304,167]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": false,
+        "bounds": "[100, 261, 81, 48]",
+        "visible": true,
+        "visibleBounds": "[100,173][181,221]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Применить",
+        "foreground": "#ff009688",
+        "arimo": false,
+        "bounds": "[181, 261, 111, 48]",
+        "visible": true,
+        "visibleBounds": "[181,173][292,221]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": false,
+    "text": "",
+    "start": -1,
+    "end": -1,
+    "error": "",
+    "name": "vertex-invalid-after",
+    "orientation": 2,
+    "mainText": "20.5 10.5 30.5",
+    "imeWindows": [],
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Координаты и контуры",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 36, 616, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][628,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия 0 · Point",
+        "foreground": "#de000000",
+        "arimo": false,
+        "bounds": "[12, 67, 592, 22]",
+        "visible": true,
+        "visibleBounds": "[12,67][604,89]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "WGS 84: широта долгота [высота], одна вершина в строке",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 89, 616, 18]",
+        "visible": true,
+        "visibleBounds": "[12,89][628,107]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Редактировать на карте",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 107, 616, 48]",
+        "visible": true,
+        "visibleBounds": "[12,107][628,155]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "20.5 10.5 30.5",
+        "foreground": "#ff202020",
+        "arimo": true,
+        "bounds": "[12, 155, 616, 81]",
+        "visible": true,
+        "visibleBounds": "[12,155][628,236]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Восстановлен локальный черновик",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 236, 616, 18]",
+        "visible": true,
+        "visibleBounds": "[12,236][628,254]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 254, 205, 54]",
+        "visible": true,
+        "visibleBounds": "[12,254][217,308]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[217, 254, 205, 54]",
+        "visible": true,
+        "visibleBounds": "[217,254][422,308]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[422, 254, 206, 54]",
+        "visible": true,
+        "visibleBounds": "[422,254][628,308]",
+        "fullyVisible": true
+      }
+    ]
+  }
+]

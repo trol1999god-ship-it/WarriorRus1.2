@@ -1,0 +1,5 @@
+Exception in thread "main" java.lang.AssertionError: component edit 59
+	at KmlComponentStyleEditTests.ck(KmlComponentStyleEditTests.java:3)
+	at KmlComponentStyleEditTests.metrics(KmlComponentStyleEditTests.java:28)
+	at KmlComponentStyleEditTests.main(KmlComponentStyleEditTests.java:61)
+PASS map composition presets: 44 assertions

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" version="1.1" creator="Рабочая карта QA">
+  <wpt lat="52.3731" lon="4.8922"><ele>8.5</ele><time>2026-01-01T08:00:00Z</time><name>Тестовая метка</name><desc>Синтетическая точка</desc><sym>Flag</sym></wpt>
+  <rte>
+    <name>Тестовый маршрут</name><number>4</number>
+    <rtept lat="52.371" lon="4.892"><ele>7</ele><name>Начало</name></rtept>
+    <rtept lat="52.372" lon="4.894"><name>Конец</name></rtept>
+  </rte>
+  <trk>
+    <name>Тестовый трек</name>
+    <trkseg>
+      <trkpt lat="52.373" lon="4.893"><ele>9.25</ele><time>2026-01-01T08:01:00Z</time></trkpt>
+      <trkpt lat="52.374" lon="4.894"><ele>10</ele><time>2026-01-01T08:02:00Z</time></trkpt>
+    </trkseg>
+    <trkseg>
+      <trkpt lat="52.375" lon="4.895"><ele>11</ele></trkpt>
+      <trkpt lat="52.3755" lon="4.896"/>
+    </trkseg>
+  </trk>
+</gpx>

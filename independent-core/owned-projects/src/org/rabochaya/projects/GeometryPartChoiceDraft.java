@@ -1,0 +1,13 @@
+package org.rabochaya.projects;
+/** Bounded original navigation intention, never an automatic switch or a document write. */
+public final class GeometryPartChoiceDraft {
+ public final long project;public final String feature,session,sourceKey,sourceToken,sourceType,mainStamp,targetKey,targetToken,targetType;public final boolean sourceHole,addingHole,onMap,targetHole;
+ private static boolean key(String k,String type){return k!=null&&k.length()<=512&&k.matches("\\d+(?:\\.\\d+)*(?:/(?:outer|inner/\\d+))?")&&("Point".equals(type)||"LineString".equals(type)||"Polygon".equals(type))&&("Polygon".equals(type)||!k.contains("/"));}
+ private static boolean hash(String s){return s!=null&&s.matches("[a-f0-9]{64}");}
+ public GeometryPartChoiceDraft(long project,String feature,String session,String sourceKey,String sourceToken,String sourceType,boolean addingHole,boolean onMap,String mainStamp,String targetKey,String targetToken,String targetType){
+  if(project<=0||feature==null||feature.isEmpty()||feature.length()>4096||session==null||session.isEmpty()||session.length()>128||!key(sourceKey,sourceType)||!key(targetKey,targetType)||sourceKey.equals(targetKey)||!hash(sourceToken)||!hash(targetToken)||!hash(mainStamp)||addingHole&&(!"Polygon".equals(sourceType)||!sourceKey.endsWith("/outer")))throw new IllegalArgumentException("Недопустимое намерение смены контура");
+  this.project=project;this.feature=feature;this.session=session;this.sourceKey=sourceKey;this.sourceToken=sourceToken;this.sourceType=sourceType;this.addingHole=addingHole;this.onMap=onMap;this.mainStamp=mainStamp;this.targetKey=targetKey;this.targetToken=targetToken;this.targetType=targetType;sourceHole=sourceKey.contains("/inner/");targetHole=targetKey.contains("/inner/");
+ }
+ public boolean inSession(long project,String feature,String session){return this.project==project&&this.feature.equals(feature)&&this.session.equals(session);}
+ public boolean matches(long project,String feature,String session,String sourceKey,String expectedToken,String currentToken,String sourceType,boolean sourceHole,boolean addingHole,boolean onMap,String main,String targetKey,String targetToken,String targetType,boolean targetHole){return inSession(project,feature,session)&&this.sourceKey.equals(sourceKey)&&this.sourceToken.equals(expectedToken)&&this.sourceToken.equals(currentToken)&&this.sourceType.equals(sourceType)&&this.sourceHole==sourceHole&&this.addingHole==addingHole&&this.onMap==onMap&&main!=null&&main.length()<=500000&&mainStamp.equals(VertexEditDraft.stamp(main))&&this.targetKey.equals(targetKey)&&this.targetToken.equals(targetToken)&&this.targetType.equals(targetType)&&this.targetHole==targetHole;}
+}

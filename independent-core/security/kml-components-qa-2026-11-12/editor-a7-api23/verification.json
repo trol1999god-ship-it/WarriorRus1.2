@@ -1,0 +1,21 @@
+{
+  "api": "23",
+  "source_sha": "a7f789a0b52c0512aff20bf263ec257acbbfc134",
+  "run_id": "43234511518",
+  "outer_path": "/workspace/attachments/5ed9e029-ce13-4c0b-a703-3d8f2290c1b0/kml-editor-a7-api23.zip",
+  "outer_sha256": "21e2032b0ff01cd5fc6a3abe5aad4e2eb0c7fbdfd1e9cfde304bdb3712ce839a",
+  "inner_sha256": "58e2d69f887bab2591943528da6bf1b8061aa3e53825b59c8638071a1f95fe44",
+  "all_member_hashes_verified": true,
+  "members": 558,
+  "records": 46,
+  "passed": 45,
+  "failed_or_skipped": [
+    {
+      "mode": "offlineformats",
+      "passed": false,
+      "seconds": 186.27
+    }
+  ],
+  "frames": 32,
+  "visual_review": "pending actual view_image"
+}

@@ -1,0 +1,20 @@
+{
+  "scope": "test-only graph scroll ancestor; production exactly62794e4; tiled integration deferred",
+  "production_diff_vs627": false,
+  "tiled_wip_preserved_commit": "1e3e9ea",
+  "tiled_backup": "/workspace/work/manager-confirm/profile-scoped-preserve-lgehznjb",
+  "sdk23_instrumentation_bytes": 266580,
+  "sdk23_instrumentation_sha256": "8a10d4aef49f2994d2940af681711f134f901de39f5bbc21cc9b0bf0a89596a7",
+  "host_tests": 18,
+  "jvm_suites": 33,
+  "jvm_assertions": 81640,
+  "geotiff_assertions": 86,
+  "guards": "strict >80x80, real injected touch, Arimo/Close/raw/cursor/owner/stale/mainChanged/MainSave/KML/assets/HGT unchanged",
+  "android_runtime_executed": false,
+  "accepted": false,
+  "files": {
+    "sdk23-tests.log": "73788eb674671c53931ae391f4a0c764da6f0e6adcb495a9c5efc97cd4434387",
+    "jvm.log": "e23e9e4ef544939a7a04545d0cd5f13c22b17fa2fca97ea05a071a941d22f9cd",
+    "host.log": "dd23c26eba903c2702c70b4eb3eba072f265363a8a0f951eee6c17623f2ebb81"
+  }
+}

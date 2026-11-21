@@ -1,0 +1,62 @@
+{
+  "code": "6f19febed97f770cb4caeba214b0b8beb403c1bd",
+  "run": 43100835572,
+  "ci_conclusion": "failure",
+  "jvm": "success33/81640; host20",
+  "apis": {
+    "23": {
+      "job": 130791794269,
+      "passed": 46,
+      "records": 46,
+      "failures_or_skips": [],
+      "outer_archive_sha256": "f17d614c3e6bb190d19c29fe1da27ec9f3bf39e8e38ca215a46e0db7d87e2e2a",
+      "inner_archive_sha256": "5fc9ea0431f335f1c6f360b5e5081a2a7258f17e5d6b080958724844459c0632",
+      "all_member_sha_verified": true,
+      "members": 546,
+      "new_png_sha_verified_and_actually_viewed": 16,
+      "profile_proof": [
+        "INSTRUMENTATION_STATUS: stream=DEM_PROFILE_SCROLL legacyShown=false legacyId=16909047 legacyBounds=0 0 0 0 actualShown=true actualBounds=16 63 304 544 graphAncestor=true",
+        "INSTRUMENTATION_STATUS: stream=DEM_PROFILE Close/raw/cursor/stale/foreign/mainChanged/explicitMainSave PASS"
+      ],
+      "maplayers_assertions": 275,
+      "reopen_assertions": 66
+    },
+    "35": {
+      "job": 130791794371,
+      "passed": 44,
+      "records": 46,
+      "failures_or_skips": [
+        {
+          "mode": "geometrymap",
+          "passed": false,
+          "seconds": 0.71
+        },
+        {
+          "mode": "geometrymapreopen",
+          "passed": false,
+          "skipped": true,
+          "reason": "Preceding fixture failed",
+          "seconds": 0
+        }
+      ],
+      "outer_archive_sha256": "2d4cef611785e085c97c966b9828aa2c0e395ac8bb7678466bc973266bd22329",
+      "inner_archive_sha256": "f13ba5cc3731de480a86c0a8904814c8f380a11b227dd9abb58ec38de7a45ba4",
+      "all_member_sha_verified": true,
+      "members": 543,
+      "new_png_sha_verified_and_actually_viewed": 16,
+      "profile_proof": [
+        "INSTRUMENTATION_STATUS: stream=DEM_PROFILE_SCROLL legacyShown=false legacyId=16909487 legacyBounds=0 0 0 0 actualShown=true actualBounds=16 63 304 520 graphAncestor=true",
+        "INSTRUMENTATION_STATUS: stream=DEM_PROFILE Close/raw/cursor/stale/foreign/mainChanged/explicitMainSave PASS"
+      ],
+      "maplayers_assertions": 274,
+      "reopen_assertions": 66
+    }
+  },
+  "profile_scoped_runtime_verified_both": true,
+  "data_guards": "exact KML/assets/HGT source/container/MBTiles/cache/otherproject assertions passed in maplayers/reopen; explicit MainSave separate",
+  "delivery": "Both archives and build artifacts uploaded successfully in seconds; original d36 evidence remains unavailable",
+  "api35_failure": "geometrymap adb device offline, no successful instrumentation result; dependent reopen skipped; not app assertion and not success",
+  "next": "Reactivate preserved Tiled and run changed-candidate fullCI both, including actual geometrymap/reopen; no separate blind rerun",
+  "accepted": false,
+  "production_changed_for_profile_helper": false
+}

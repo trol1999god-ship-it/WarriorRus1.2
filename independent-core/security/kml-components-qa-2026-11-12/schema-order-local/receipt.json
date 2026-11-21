@@ -1,0 +1,15 @@
+{
+  "scope": "Local schema-order regression only; not Android runtime or complete OGC acceptance",
+  "baseline_commit": "ea9ff9f5ce38b996501b58bd683d4a3610f6a6df",
+  "baseline": "5/5 valid input documents became invalid after explicit edits",
+  "fix": "Insert only new KML nodes in schema order; do not reorder existing DOM or remove unknown data",
+  "after": "40 JVM suites PASS; component editor58 including five schema-validated edits and serialized roundtrips",
+  "external_schema_and_dtd_access": "disabled",
+  "android": "SDK23 app + matching tests built; source84 hashes verified; not runtime proof",
+  "source_sha256": "cb3fcf747d84e97b6806bb98f15fbc84871087267f448b368863439f0ba0c59a",
+  "host": "31 PASS fresh without concurrent compilation; previous 29/31 deadline failures preserved in work/host-checks.log",
+  "apks": {
+    "app.apk": "116a4378e04468c0ace0fdcfad1151cca317dd26583a6c21a2f59c9cfa6627fe",
+    "tests.apk": "ba75e3e7ba9765670fb925e7673985254c849895af1411c8d7bb91969b6400fc"
+  }
+}

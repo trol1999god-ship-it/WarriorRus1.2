@@ -1,0 +1,11 @@
+{
+  "source": "8b82ba6850819cd551d223fc43663e64338485b6",
+  "run": 41165395748,
+  "jobs": {
+    "23": 124431830280,
+    "35": 124431830275
+  },
+  "api23": "31 modes passed; actual destroyed/recreate lost chooser, XML/assets/settings and selection retained. Both PNGs reviewed.",
+  "api35": "31 modes passed; chooser precondition invalid: before PNG landscape orientation2, request landscape did not destroy Activity. No Android35 reproduction claimed. One PNG reviewed.",
+  "next": "Wait settled portrait and assert orientation1 before opening chooser; retain actual destroyed/recreate assertion. No production chooser changes yet."
+}

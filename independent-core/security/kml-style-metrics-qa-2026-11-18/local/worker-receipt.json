@@ -1,0 +1,7 @@
+{
+  "scope": "prepared pixel-helper only, no Android runtime execution",
+  "reason": "prevent geometry-only raster setup racing the constructor worker without waiting on UI thread",
+  "test_apk_sha256": "6682dac91b76ee29088d23f379b72e035dadf6e5b80b488fe3a7de497dd2eb91",
+  "source_sha256": "f4e4e7d6aa360100941b7aca6cbb5cdbf8bf6a1dee76eef959d840cbd5ea284b",
+  "guards": "unchanged width/label/zero/full pixel comparison, source/data/physical guards unchanged"
+}

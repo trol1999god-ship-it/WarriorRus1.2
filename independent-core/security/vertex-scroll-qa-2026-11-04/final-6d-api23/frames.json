@@ -1,0 +1,26 @@
+[
+  {
+    "name": "map_mvisual-vertex-scroll-invalid-field.png",
+    "sha256": "b461419ff31b3676b9f47bed7579ededd65bbb2714bdedb67e2cc39d2276e80b"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-invalid-message.png",
+    "sha256": "b461419ff31b3676b9f47bed7579ededd65bbb2714bdedb67e2cc39d2276e80b"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-invalid-return.png",
+    "sha256": "b461419ff31b3676b9f47bed7579ededd65bbb2714bdedb67e2cc39d2276e80b"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-stale-field.png",
+    "sha256": "9207d8c8d5d17d6c453468afdcc6c85ddab4f047e06b3151d506c97bcebe6092"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-stale-message.png",
+    "sha256": "6c3b778d41bb23682d6b3fd29f094fb190c4b63047a3cce8490e519d8ea1970c"
+  },
+  {
+    "name": "map_mvisual-vertex-scroll-stale-return.png",
+    "sha256": "6c3b778d41bb23682d6b3fd29f094fb190c4b63047a3cce8490e519d8ea1970c"
+  }
+]

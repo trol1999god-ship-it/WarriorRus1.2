@@ -1,0 +1,855 @@
+Архив прежней точки продолжения. Исторические статусы in_progress ниже не являются текущими инструкциями. Исходный каталог ссылок — independent-core/.
+
+<!-- CURRENT_RESUME_START -->
+# Актуальная точка продолжения — 5 ноября 2026
+
+КАНДИДАТ paddingfix послеinterimproof2ec3417: только landscape внутренний horizontalpadding3Close nativebuttons=8dp; текст/Arimo/высота/physicalthresholds unchanged. Это устраняет измеренный6pxoverflow, не понижает fullyVisible. Local QA443/sourceSHA57 exact/min23/INTERNETonly/no legacy/native/stubs/missingrefs, unsigned59ea3616b76ff6d9211c8b5ea59da45e320987e19be0d1e0f59e56d922bbc615; JVM27/81416passed. Нужен новый обоснованный fullCI44 по изменённому layout и32новыхPNG. API35 1c ужепрошёл44/44/563close/473managerforms; API23 1c толькоphysicalfail, неclaimготовностьдообеихAPI. Послеclose итогов — IMPLEMENTATION_PLAN всех23id и немедленноproductionслои, НЕ orphanbaseline.
+
+НОВЫЙ ПРИОРИТЕТ ПОЛЬЗОВАТЕЛЯ: завершить текущий close-кандидат и перейти к production функциональным блокам. НЕ запускать подготовленный orphan baseline, если не блокирует целостность данных. Обязателен migration/IMPLEMENTATION_PLAN.md — все23id, implementation отдельноотacceptance, конкретные пробелы/зависимости/критерии. Затем production композиция карт/слоёв: add/remove/visible/order/opacity/persist+restart, текущие экран/рендерер/каталог; сначала изучить существующее. Далее кеш/форматы/DEM → объекты/геометрия → import/export/style/SVG → вложения/явнаяпередача → UI/coordinates/compass/settings → безопаснаяmigration26.1/полнаяприёмка, уточнить зависимостями. Не бесконечно расширять QA-инфраструктуру; достаточные проверки нового пользовательского поведения и данных, releasegate/accepted unchanged.
+
+Close code1c08403 / CI42014806917: API35job127202746713 SUCCESS44/44, close563, managerforms473 реальноpass; API23job127202746744 прежние43pass (managerforms482 реальноpass), толькоclose physical failure. После actualland dialogpresent/Arimotrue, SaveDraft button187px/visible181px (6px nativehorizontalbar overflow) — thresholdнеослаблять. Все19 interim-1c PNG SHAverified/просмотрены (3/API23+16/API35). API23остальнаяматрица НЕдошлаиззаstrictfail; API35всеguards/DOM/assets/explicitSaveDraft+Discard/Cancel/stale/mainChanged/foreign/replacementpassed. Следующий ограниченныйfix: уменьшить только внутренний horizontalpadding3nativebuttons вlandscape, сохраняятекст/Arimo/48pxheight, затем обоснованный новыйfullCI44. Неblindrerun и не приписыватьAPI35 API23отказ.
+
+ТЕКУЩИЙ origin1c08403126671c4bad0ef722bd77ffdca7bfb716; close managed candidate fullCI44=42014806917 in_progress подтверждён. Baselineproof8431a66 тожеremote. Local JVM27/81416/host16/QA443/sourceSHA57 passed; runtime кандидата ЕЩЁНЕПРИНЯТ. Читать обаcompletedjob/новые16PNG/API, actualrot/Cancel/явныеSaveDraft+Discard/stale/mainChanged/foreign/replacement/DOMassets/Arimo/full3buttons и обязательный real managerforms35. НеpushпокаCIactive, неblindrerun, неослаблять80/82/physical/raw/owner/gate. Следующий после проверенного valid-part close baseline — missing-part/orphan native close, production этойветви пока unchanged. Prepared /workspace/work/manager-confirm/OrphanCloseConfirmationChecks.java.pending (5740bytes), Java/API23 compile-only passed в orphan-close-precompile-tym1o0w0; НЕподключён и НЕисполнен. Он различает privateKey0.1 и displayedKey0.0 после удаленияLineString, сохраняет exact privatefile/raw/expectedtoken/owner/process, обаactualrot/7PNG/Cancel/explicitSaveDraft+Discard/KMLassets; не объявлять потерю/исправлятьorphan до фактов.
+
+КАНДИДАТ close fix после baselineproof8431a66: GeometryCloseDraft bounded originalowner/feature/process/key/expectedtoken/type/hole/adding/map/mainStamp, Bundlemetadata/error; восстановление только диалога. Cancel/no ghost; явные SaveDraft/Discard работают только с собственным private draft под общей CAS-блокировкой; при замене чужой файл сохраняется, старый main блокируется. Завершённое явное закрытие не запускает повторный lifecycle persist. Stale KML не ребиндит expectedtoken: Close меняет только private draft, отдельный stale MainSave обязан отказать. Arimo/native landscape fullwidth для подтверждённого3buttonclipping. Исходный orphan/missing-part native close путь СОХРАНЁН без изменения, пока нет его отдельного baseline: не выдавать за проверенный managed case. Следующий после проверенного valid-part close участок — actual orphan close baseline обеAPI до изменения этого пути.
+Local JVM27/81416 (Close model29), instrumentation231188/API23 compiled, Финальная QA443/min23/INTERNETonly/no legacy/native/stubs/missingrefs собрана из source57 SHAexact с сохранённым прежним orphan поведением. Host16passed. Unsigned b2db0651077aa682be63f4108d4d38af1e319becc35f29f56edbcdd7c8c1a925; tests231188 SHA39d9572fac3ccdee1d107fecc79744b083476e29c57f5cde0c4b2c14f5e68d93. GateFalse25/0accepted. Runtime кандидата ЕЩЁНЕПРОВЕРЕН. FullCI44 нового кандидата:7baseline+9guardPNG=16/API; actual обеrot/realdrag/raw/Undo/selected/owner/key/token/viewport; mainChanged/stale-before+after/foreignproject+feature/replacedPrivateSave+Discard/Cancelghost/отдельныйMainSave и точныйDOM/assets. Строгие80/82/physical/releaseguards не менялись. API35 managerforms должен реально исполниться: prioradb offline неpass.
+
+ПОДТВЕРЖДЁН close baseline d4bd78b / CI41991451307 FAILURE. JVM127124390570 success26/81387, обе Androidсборкиsuccess. API23job127124520817: прежние43pass, только geometrycloseconfirm failure. API35job127124520804: прежние42pass, managerforms adb:device offline ДО instrumentation (неpassed; rotation-named16PNG унаследованы, не evidenceформ), geometrycloseconfirm failure. Обе API actualdestroyed land/return restoredfalse при original raw/Undo1/selected1/key/token/owner/process/viewport и точномKML/assets. Cancel/explicitSaveDraft→freshlaunch/Discard→freshlaunch passed безKMLwrite. Все14 новых closePNG SHAverified/просмотрены. NativeArimofalse обеAPI; API23landscape SaveDraft вне видимой области, Continueобрезано. Причина: onBackPressed plain local AlertDialog/closure без metadata handoff, native defaultfont/width. Теперь ограниченно managed originalowner/feature/process/key/token/main/mode/adding intent, только восстановлениедиалога/noautoaction, Cancel, explicitSaveDraft/Discard guards/privateDraft ownership + Arimo/полные3кнопки. Production дофактов оставалсяc1a55df. Неblindrerun; следующий fullCI44 будет изменённого обоснованного кандидата и обязан реально выполнить managerforms35. Строгийdecoder/cap16 не менялся: API35fullLog содержал 16inherited+7new; каждый исходный mode block выделен отдельно и строгоSHAvalidated.
+
+ТЕКУЩИЙ origin d4bd78bba186c28b863c9fb06fd8e018c6960187; fullCI44=41991451307 in_progress подтверждён. JVM127124390570 success; обе Androidсборкиsuccess, scenarios ещёin_progress (jobs127124520817/23,127124520804/35). Runtime нового geometrycloseconfirm ЕЩЁНЕПРОВЕРЕН. Читатьобаcompletedjob/7PNG/API преждеproductionfix, неblindrerun и неpushпокаrunактивен. Локальная testsAPK227181 SHAad038bb6e09c64377847e052b22ca25ff59fffca93306acbda63157f31c7c4e7.
+
+ТЕКУЩИЙ test-only geometrycloseconfirm подключён как44йрежим. Productionunchanged c1a55df, проверенный part-choice full43/32PNG сохранён remote52ceaf6. Новый baseline проверит обаactualdestroyed/recreate с realdrag/исходнымowner/process/key/token/raw/Undo1/selected1/viewport/80guard, Cancel и явные SaveDraft/Discard→freshlaunch безKML/assets write. 7PNG/API до общей strictоценки, nativeArimo/physicalmetrics записываются безпредположениядефекта. Local tests227181/API23 compilepassed, host16passed. Нужен обоснованный fullCI44, читать обаcompletedjob/PNG до productionfix; не blindrerun завершённых baseline.
+
+ПРОВЕРЕН managed part-choice code c1a55df3601dd788c49cb180e4825b0613547ff1 / CI41986306743 SUCCESS: API23 job127107916677, API35 job127107916746 по43/43; новый mappartconfirm669 each. JVMjob127107728623 success26/81387, host16. Все32 final-c1 PNG SHA-verified и ВСЕ просмотрены. После обоих actual destroyed/recreate восстанавливается только original dialog; realdrag/raw/Undo1/selected1/owner/feature/process/source+target keys/tokens/main/viewport сохранены. Cancel/no ghost, source/target stale before/after, mainChanged, missingTarget, foreign project/feature и explicitConfirm→отдельный targetSave прошли с точным остальнымDOM/assets. Arimo и обе полностью видимые кнопки проверены физически и PNG; API23 landscape обрезание устранено. Guards80/82/physical/raw/selection/viewport/releasegate неизменны. Full43 не rerun без причины.
+Локальные QA437 own/min23/INTERNETonly/no legacy/native/stubs/missingrefs,56sourceSHAexact, unsignedf966602e08ec33161bba242882d9eb54643d5ff70c88544c42ad4d7552b17bf6; instrumentation224840 SHA20bf8e7405158237e8b71df62aefa1054973f9089c707e3b6ca940d551036c7a. GateFalse25/0accepted. Это не полная миграционная приёмка и не исправление публикации reusable environment.
+
+СЛЕДУЮЩИЙ ограниченный baseline: открытое native подтверждение закрытия dirty GeometryEditorActivity (Сохранить черновик / Продолжить редактирование / Отменить ввод). Проверить actual destroyed/recreate обеих ориентаций/API23+35 после realdrag, original owner/process/key/token/raw/Undo/selected/viewport, Cancel и явные SaveDraft/Discard безKML/assets write. Production не менять до фактов. Новый launch должен начинать без прежней Undo, конфигурационное восстановление уже проверено. Подготовить новый test-only сценарий, собрать/проверить его и запустить обоснованный fullCI44; не повторять baseline завершённых участков вслепую.
+
+ПОДТВЕРЖДЁН native part-choice baseline981a692 / CI41980561298 FAILURE: JVM/обесборкиsuccess, прежние42 modes pass обеAPI (Undo363each), толькоmappartconfirm failed. Jobs127089572934/23,127089572804/35: обаactualdestroyed/recreate land/return restoredfalse, originalraw/Undo1/selected1/owner/process/key0.1/token/viewport/XML/assets сохранены, Cancel/explicitConfirm→target0.0 безKMLwrite passed. Все12 before-981 PNG SHAverified/просмотрены. Native dialog Arimofalse обеAPI; API23 before-return positiveButtonwidth150/visible102 fullyVisiblefalse, PNG текстобрезан. Причина: transient selector callback AlertDialog не хранитсяActivity/Bundle, целеваяпозиция толькоlambda; nativefont/layout default. Теперь можноограниченноmanaged original owner/process/sourcekey/token/mainStamp/targetkey+token/type/hole intent, тольковосстановлениедиалога/noautonavigation, Cancel/noXMLwrite, stale/mainChanged/foreign/destinationguards иArimo/fullbuttons. Production дофактов оставалсяb482d07; baseline не повторять.
+
+ТЕКУЩИЙ origin981a692486da24c3ac47e73dd9b7fbd5fdb01593; native part-confirm baseline fullCI43=41980561298 in_progress подтверждён. ЛокальныйtestsAPK221078 SHA57db0ae91081288c8e71f539c88fbe5baa6f3ce7f74e810f3f7fcea00c261dcc иhost16passed. Productionunchanged проверенныйb482d07. Прочитатьобаcompletedjob/6PNG/API и MAP_PART_CONFIRM_RECREATE до любогоproductionfix следующегоучастка. ПроверенныйUndo42/CI41976552076/32просмотренныхPNG иbaselineproofсохранены remote3138905. Не blindrerun и не pushпока currentCIactive.
+
+СЛЕДУЮЩИЙ test-only baseline mappartconfirm подключён как43йрежим: native dirty-part navigation confirmation0.1→0.0, обаactualdestroyed/recreate с realdrag/исходнымraw/Undo1/selected1/token/owner/process/viewport и точнойнеизменностьюXML/assets; Cancel иявныйConfirm меняюттолькоUIпослевыбора.6PNG/API дообщейstrictоценки. Productionunchangedb482d07; не объявлятьдефект/не исправлятьпредполагаемое дофактов23/35. ПроверенныйUndo42 не rerun вслепую; новыйfull43 обоснован новымbaseline.
+
+ПРОВЕРЕН Undo fix codeb482d07d91983d368f6b4ebdafe54e4b8f9dbd16 / CI41976552076 SUCCESS: API23 job127076750849 иAPI35 job127076750725 по42/42; новыйmapundorotation363 each. JVMjob127076632809 success25/81355, host16. Все32 final-b482 PNG SHA-verified и ВСЕ просмотрены. Обаactualdestroyed/recreate history1→1, реальныеUndoпослеобоихrot, триrealdrag/3LIFOstep, originalowner/feature/process/key/token/main/selected/viewport, Cancel/отдельныйSave/fullDOM/assets passed. Stalebefore/after/mainChanged/foreignsameXMLproject/feature/key не принимаютстаруюисторию; новаяprocesssession остаётсяfresh (прежнийgeometrymapreopen passed). Same-process config only, не recoveryUndoпослекill/newlaunch/полнаямиграционнаяприёмка. GateFalse25/0accepted, title/min23/Arimo/privacy/onlinecache сохранены.
+Следующийреализуемыйbaseline — открытое native confirmation сменыdirty-контура0.1→0.0: prepared MapPartConfirmationChecks.java.pending, precompiled221066 bytes, НЕ исполнен. Проверить actualbothrot иoriginalraw/Undo/selection/token/viewport/XML/assets, Cancel иявныйConfirm; productionb482дофактовне менять. BaselineUndo/проверенный42 не повторять без обоснования.
+
+ТЕКУЩИЙ originb482d07d91983d368f6b4ebdafe54e4b8f9dbd16, fix fullCI42=41976552076 in_progress подтверждён. Baselineproof33e287b тоже remote. Локальные QA431/sourceSHA55/JVM25_81355/host16 passed; Androidruntime fix ЕЩЁ НЕ ПРИНЯТ. Читать обаcompletedjob/новые16PNG/API, actualUndo/multiLIFO/stalebefore_after/mainChanged/foreignproject_feature_key/Cancel/Save/DOM/assets. Не rerunbaseline и не снижать80/82/raw/selected/viewport/physical/gate. Не push пока CIактивен. После проверенногоUndo следующий подготовленный baseline: /workspace/work/manager-confirm/MapPartConfirmationChecks.java.pending (НЕ подключён/НЕ исполнен), dirty-part native confirmation original0.1→target0.0/обаactualrecreate/realdrag/Cancel/explicitConfirm, original raw/Undo/selected/token/viewport и точныйXML/assets безSave. Production до фактов следующего участка не менять.
+
+КАНДИДАТ Undo fix после baseline33e287b: GeometryMapUndoDraft — in-memory nonconfiguration handoff независимой bounded копии GeometryMapState (32step/4Mchar без изменениялимитов); original project/feature/process/key/expected+current token/type/hole/adding/main SHA. Ни Bundle/disk history, ни Activity refs, ни autoUndo/autoSave. Activity принимает толькоoriginal same-owner saved map context, consumesonce; mismatch/stale/newermain/foreign дропаетисторию, private raw остаётся. Save/reload/newprocess начинаются без старойUndo.
+Локально JVM25/81355 (новаяmodel32), driver16, instrumentation219009 SHAad8cd3cfc86ded13f4c90afbe4e449b7150bcd40c4c80558685dc9a8b120f2d9; QA431 own/min23/INTERNET only/no legacy/native/stubs/missingrefs,55sourceSHA exact, unsignedd5f521d49eb9538b7ddb88c2ee82ff205808ee68823b922487f3ebf5a148df2a. GateFalse25/0accepted. Androidruntime ЕЩЁ НЕ ПРОВЕРЕН.
+FullCI42 должен проверить baseline + three real drag/LIFO Undo after bothactualrot, Cancel/Save, stalebefore/after/mainchanged/foreignproject/feature/key с исходнымиraw/selected/viewport и точнымDOM/assets; ровно16PNG/API, cap/80/82/physical guards сохранены. Читать обаcompletedjob/новыеPNG, исправлятьтолькореальныеотказы, не blindrerun.
+
+ПОДТВЕРЖДЁН Undo baseline7519313 / CI41962788919 FAILURE: JVMsuccess/обесборкиsuccess, прежние41 modes pass обеAPI, только mapundorotation failure. Actualjobs127032934409/23,127032934421/35: оба direction land/return oldDestroyed=true previous1 current0 restoredfalse; original raw/selected1/key/token/viewport exact, MAP_UNDO_SAVE_CANCEL PASS/fullDOM/assets. Все12 before-751 PNG SHA-verified/просмотрены. Причина: Activity сохраняет private draft/selection/viewport, но openMap послеload создаёт новый GeometryMapState с пустымDeque history; передачаUndoотсутствует. Теперь разрешён ограниченный same-process config retention с original owner/feature/process/key/token/main binding, без autoUndo/autoSave, без переносаисториивновыйпроцесс/чужойконтекст. Нужны modelcopy/guard tests, actualdrag/multiUndo обоихrot/stale/mainChanged/foreign и fullCI42 кандидата/новыеPNG. Baseline не rerun.
+
+ТЕКУЩИЙ origin7519313b5402625de0cfc47649e2362b672a4a17; Undo baseline fullCI42=41962788919 in_progress подтверждён. Test APK215588 SHA b21ba5938cc295803197e5b01fcf52bac3299114f716e095af6b26d389b47020, host16passed. Productionunchanged0e9d47d. Читать обаcompletedjob/новые map-undo PNG и actual before/after historyCount/canUndo/owner/feature/process/key/token/raw/selected/viewport. Базовая общаяstrictUndoоценка ПОСЛЕ обоихповоротов, Cancel и отдельногоSave/fullDOM/assets; не объявлять потерю до фактов. Проверенные41/41 и все final47PNG сохранены remote9d2a755, c342dd8 также remote. Никакого rerun41 без причины. Не push пока currentCI активен.
+
+ТЕКУЩИЙ test-only baseline mapundorotation подключён как42й режим, productionunchanged0e9d47d. Prepared проба усилена original owner/feature/process/key/token/raw/selected/viewport; обаactualrecreate/realdrag, Cancel native delete и отмена закрытия редактора не пишут данные; независимый явныйSave сравнивает полныйDOM/assets. ИсторияUndo измеряется до/после обеихориентаций, PNG сохраняются до общейstrictоценки, возможная потеря НЕ объявляется фактом до23/35. Следующийшаг локальнаяcompile/hostchecks, затем обоснованный fullCI42 нового теста и чтение фактов/PNG.
+
+ПРОВЕРЕН этап41: code90788252b3c45ff9fffaa8700d6a9e95c4c07490 / CI41950249469 SUCCESS attempt2. API23 actual126992346768 success41/41 (cached127003663605), API35 actual127003661058 success41/41; JVM actual126992228305 (cached127003662453) success24/81323, host16. Прочитан финальный повтор API35: mapholeconfirm325 и scroll314; все guards/DOM/assets passed. Final47PNG SHA-verified и ВСЕ просмотрены: map-hole/scroll probe-907-api23 + final-907-retry-api35; ещё25 API35 attempt1 сохранены/просмотрены. Оба actualdestroyed/recreate, existing second inner / new unsaved ring, исходные owner/feature/process/key/token/mainStamp/addingHole/selected/viewport, Cancel без записи, Confirm толькоprivate main и отдельныйSave ровноадресованного контура. Strictmap>80/scroll82/physical/raw/cursor/error guards сохранены. API35 frame82 invalid+stale с реальнойIME, touch-scroll читает обе строки warning/ошибку, возвращаетполе; ApplyCancel доступны. Productionunchanged0e9d47d, дополнительныйfix не требовался.
+
+Первый API35 attempt был failure39/41 из-за двух adb offline ДО instrumentation, не успех: trace сохранён; один failed-job-only retry того жеcode реально исполнил41/41. Это не починка reusable environment и не полная приёмка. Localc342dd8 сохранён. Следующий конкретный участок — подключить prepared MapUndoRotationChecks.java.pending, усилить исходный owner/feature/process и отдельные Cancel/Save cases, получить измеренныйbaseline обеAPI/оба actualrecreate с реальнымdrag; production Undo до фактов не менять. Java17/SDK/aapt2 работают; localadb read-onlyhome limitation не обходить/не запускатьlocalemu. Stash2/toolchain/api23-frame-log/артефакты сохранены. GateFalse25/0accepted.
+
+## История предыдущих запусков — статусы на момент записи
+
+CI41950249469 attempt1 completed FAILURE: API23 job126992346768 success41/41; API35 job126992346759 39/41, managermove и geometrynewhole не исполнены: adb device offline ДО instrumentation, exact trace probe-907-offline.txt. Новый mapholeconfirm325 each/все4cases passed обе; исходные key/addingHole/token/stamp/selected/viewport/actualrecreate/Cancel/Confirm→отдельныйSave/fullDOM/assets сохраняются. Все32 map-hole и15 scroll PNG SHA-verified/просмотрены (probe-907-api23/35). Scroll167/314: API23 frame112, API35 обе invalid/stale frame82, realIME/полныйтекстпострочно/поле/ApplyCancel/raw/cursor/error guards passed. После чтения точных двух infra errors выполнен ONE failed-job-only rerun того же9078825: новый API35job127003661058 in_progress, API23/JVM cached ids127003663605/127003662453 НЕ новые исполнения. Не считать offline/skip успехом; больше retry вслепую не делать. Ждать completed job35/новыеPNG прежде принятия всего41. Productionunchanged0e; текущее дерево толькоdocs+доказательства, не push пока activeCI (concurrency).
+
+Среда running/connected; Java17/SDK23/aapt2_35 и компиляция работают. Дополнительный local adb version: Cannot mkdir /home/agent/.android: Read-only file system; ANDROID_USER_HOME fresh work-dir не помог, binary strings не содержит этой переменной (есть HOME). HOME не менять/прав не менять/не повторять local adb/emulator ради этого; KVM не подтверждён. Это ограничение local adb, Android CI использует собственные исправные эмуляторы. Toolchain/данные сохранены, не выдавать за полное восстановление/публикацию reusable среды.
+
+ТЕКУЩИЙ origin90788252b3c45ff9fffaa8700d6a9e95c4c07490; CI41950249469 in_progress (подтверждён). Новый test-only mapholeconfirm/41 сценарий; локально tests APK213207 SHA024fd8cdce28408b25f126af28f95751bef72aa90d949f64648e0409d5377e7f, driver16/16. Дождаться обеих completed job и читать map-hole + vertexscroll traces/новыеPNG; не blind rerun. Production0e9d47d неизменён. Ветка/дерево сохранены, stash2/toolchain/api23-frame-log на месте. После проверенного41/PNG следующий подготовленный baseline — /workspace/work/manager-confirm/MapUndoRotationChecks.java.pending (precompile214815 bytes, НЕ подключён/НЕ исполнен): real drag + Undo history до/после обоих actualdestroyed/recreate, raw/selected/token/viewport/KML/assets,4 baseline PNG до общей строгой оценки. Source выглядит как rebuild нового GeometryMapState, но потерю Undo не считать фактом без23/35; production до фактов не менять.
+
+СЛЕДУЮЩИЙ test-only candidate подключает mapholeconfirm как41й режим: существующий второй внутренний контур и новый несохранённый контур, actualdestroyed/recreate обе стороны/owner/process/key/token/mainStamp/addingHole/selected/viewport, Cancel и явныйConfirm→отдельныйSave/fullDOM/assets.16PNG/API, productionunchanged0e9d47d. Фокус console на mapholeconfirm + vertexscroll для новых реальных82px/IME снимков; все прежние40 режимов по-прежнему выполняются/валидируют своиPNG. Driver16 с failed nonfocused PNG preview. До completed обеихAPI/просмотраPNG этот дополнительный участок НЕ проверен.
+
+ПРОВЕРЕН map confirmation: production0e9d47d + test0716037 / CI41946263354 completed SUCCESS, API23/API35 по40/40; mapvertexconfirm444 each, vertexscroll167/314; JVM24/81323, remote host15/local expanded16. Job126979263307/126979263332. Все28 новых final-071 PNG SHA-verified и просмотрены. Native dialog/Arimo/selected1/key/token/main/viewport/оба actualdestroyed/recreate/Cancel/explicitConfirm→отдельныйSave/stale-before/after/mainChanged/selectedChanged/foreign/точныеDOM/assets пройдены. Map surface landscape API23 616x124/API35 616x100, >80 guard сохранён. Strict scroll82 сохранён и прошёл после переноса screenshot/metrics перед оценкой; старый0e exact frame неизвестен, race/app дефект не объявлять доказанным. Полные scroll traces/PNG при успехе пока только в Actions artifact, следующий CI фокусирует vertexscroll вместе с новым polygon map probe для прямого просмотра. Gate False25/0accepted/полная миграция не принята. Следующий ограниченный участок: отдельная вершина EXISTING second inner ring / NEW unsaved inner ring на карте, исходные owner/process/key/token/mainStamp/addingHole, обаactualrecreate/Cancel/Confirm→отдельныйSave/fullDOM/assets. Production до фактов не менять.
+
+ТЕКУЩИЙ origin07160375ea91d7796ab9a5387492f76762b54d03; diagnostic CI41946263354 выполняется, JVMsuccess, обе Android сборкиsuccess/сценарии in_progress. Только test diagnostic/доказательства; strict82 и map>80 не снижены. Local дополнительно driver16/16 с regression failed-nonfocused PNG preview; instrumentation210571 API23 compiled SHA94d6676f348c57752c6b2d6104685e4abc02abb5500b67d5e84473f4ac8b24e6. Все28PNG0e просмотрены. Дождаться completed jobs, новые failure traces/PNG до решения. Не делать blind rerun. Подготовленная новая polygon map confirmation проба остаётся /workspace/work/manager-confirm/MapHoleConfirmationChecks.java.pending, precompiled213200 bytes, НЕ исполнена. Stash2/api23-frame-log/toolchain сохранены.
+
+ПРОВЕРЕНО исполнение candidate0e9d47d / CI41941913724 completed FAILURE: JVM success; API23 job126964701557 40/40 success; API35 job126964701544 39/40, только vertexscroll failure до screenshot: AssertionError API35 tight82px landscape with real IME, фактическая высота ещё не выведена. mapvertexconfirm444 assertions PASS на обеих, все28 PNG SHA-verified/просмотрены probe-0e-api23/35, actual destroyed/recreate/Cancel/Confirm→отдельныйSave/stale/mainChanged/selectedChanged/foreign/DOM/assets проходят. Landscape map API35 616x100 (stale86), исходный >80 и viewport guard сохранены. Этап целиком НЕ принят из-за regression vertexscroll. Следующий test-only diagnostic сохраняет field PNG/полные frame/IME/raw/line metrics ДО неизменного h==82; failed nonfocused modes тоже выводят полные PNG, старые validation caps сохранены. Production после0e неизменён. Слепого rerun нет; прочитать новый CI/реальные размеры, не ослаблять82/physical/raw/cursor/error guards.
+
+ТЕКУЩИЙ кандидат0e9d47d6ce144a6e961d7d58e78cd97e10454d2a отправлен в origin с baselineproof f0f49b7; CI40=41941913724 in_progress подтверждён. Читать оба completed Android job/14PNG each и matrix markers, до этого runtime не принят. Не повторять baseline и не понижать80/viewport/raw/selection/owner guards.
+
+КАНДИДАТ fix после доказанного baseline f0f49b7: managed onMap intent с original owner/feature/process/key/token/mainStamp/index/selection, Cancel/no auto-action, Confirm через существующий MapState undo/validation только private input, отдельныйSave. Landscape map row selector+mode сохраняет48px controls, скрывает повторные heading/hint и уменьшает только vertical padding;80x80/viewport guards не понижены. Arimo native dialog/credit из существующего ресурса. Local JVM24/81323 (model64), host15, tests APK210467/API23 compiled; QA430 own/min23/INTERNET only/no legacy/native/stubs/missing refs,54 SHA match; unsigned6f2e47cf3d6b098bb52ed70bb261d8ea0604a024b8b976208d182bff14a105e8. /workspace/work/manager-confirm/map-confirm-final-{build,tests,driver,gate}*, gateFalse25. Матрица14PNG/API: оба actualrotations/real map touch послеCancel, nonzero part explicit Confirm→Save/точныйDOM, stale-before/after/mainChanged/selectedChanged/staleSave/foreign sameXML project+feature, original context. Android runtime кандидата ещё НЕ проверен; сохранить/запуститьfullCI40, изучить обаcompletedjob/PNG до принятия.
+
+ПОДТВЕРЖДЁН baseline6ee902c /CI41936120579 FAILURE: прежние39 modes PASS обе API, новые actual destroyed/recreate оба направления прошли. confirmation restored=false оба направления обеAPI, raw/selected1/key0/token/centre+zoom/XML/assets exact.4PNG each SHA-verified и ВСЕ8 просмотрены before-6ee-api23/35. Landscape surface616x31/API23 и616x7/API35; portrait296x309/285. Strict80x80 не понижен, final FAIL обоснован. Native dialog Arimo=false. before-result.json.
+Причины: local Canvas AlertDialog не сохраняется Activity; вертикальный стек фиксированных controls съедает landscape body. Теперь можно ограниченно исправлять managed same-owner/process/key/token/mainStamp/index/selected map confirmation без auto-action, Cancel/Confirm→отдельныйSave/stale/mainChanged/foreign и compact landscape map layout без изменения ресурсов/порога. До этого production оставался1fc6b8f. Старый API35job126846599661 всё ещё unread; новая API35 причина измерена независимо, не выдавать за старый журнал.
+
+СРЕДА восстановлена running/connected, saved Java17.0.17/SDK доступны; публикация reusable-среды не подтверждена. Local B9 CODEX_NEXT diff сохранён /workspace/work/manager-confirm/resume-map-layout-khs0rcwk и отдельным новым stash; исходный stash сохранён. Checkout ff-only до origin80b1512, без reset/clean/новых веток/worktree. Native map baseline80 /CI41907636790 failure: API23 log прочитан, PRECONDITION portrait/selected1/key0/mainExact и before-land present=true; затем actual recreate check пройден и mapEditorReady >80x80 timeout. Потеря confirmation НЕ доказана, after PNG нет. Единственный до-поворотный PNG SHA-verified/просмотрен; native owned text Arimo=false. API35 job126846599661 failure, его точная причина отдельно НЕ прочитана: log API Transport closed; официальный artifact download даёт File Service refs, получение URL в workspace URLError; прямой gh API Forbidden. Сетевые ограничения/TLS не менялись. Не приписывать API35 отказ API23.
+Подготовлен только test diagnostic: layout Activity/frame/body/canvas/surface/visibleRect/mode и IDs old/new/destroyed; postrotate snapshot до оценки80x80, финальный исходный порог НЕ понижен. Дождаться стабильного layout, собрать обе ориентации/4PNG, сравнить raw/selected/key/token/viewport/XML/assets. Production unchanged1fc6b8f, до фактов двухAPI не менять. Нужен новый fullCI40 изменённого baseline, не blind rerun. Финальная сборка tests APK с API23 successful207563 с viewport guard (/workspace/work/manager-confirm/map-layout-viewport-diagnostic-*); JVM24/81315 passed, driver15/15 после compact logging. Новый helper сохраняет полный старый strict PNG validation/артефакты; console base64 только mapvertexconfirm (опция --visual-log-modes для других), прежние успешные modes дают SHA-манифесты, полные traces в artifacts. Причина — Transport closed большого лога и workspace artifact tunnel403; не считать это доказанной причиной отказа app/API35. Exact viewport centre/zoom guard добавлен, старые raw/selected/key/token/XML/assets guards сохранены.
+
+СРЕДА unavailable: штатный status observed_phase=running, connectivity=offline, failure=null; новые локальные команды НЕ выполнялись. GitHub read/write доступны. Локальный checkout последний B9 с незакоммиченным заголовком CODEX_NEXT о CI41902348265; при восстановлении сначала сохранить/сравнить локальный diff/stash, fetch без reset/clean, не перезаписывать toolchain/артефакты. Следующий commit сделан remote-only в той же ветке с expected HEAD lease, без новых веток/worktree.
+CI40 baseline b9d2039 /41902348265 completed FAILURE: обе API прежние39 modes pass; новый mapvertexconfirm НЕ дал воспроизведения/PNG. API23 AssertionError geometry input field до поворота: geometryInput ищет EditText в видимом дереве, map mode его удаляет из body; заменить на существующий editorText для owned hidden input. API35 Process crashed/no PNG (причина crash не подтверждена), не приписывать потерю состояния. Исправлены только4 чтения baseline на editorText + строгий portrait/main/key precondition и marker. Production unchanged1fc6b8f. Локальная компиляция сейчас невозможна; новый полный CI40 должен собрать/исполнить baseline и дать actual destroyed/recreate/4PNG обеAPI. Не менять production до фактов.
+
+ПРОВЕРЕН новый несохранённый контур: HEAD70cc7c5a0588f7cc45df1826b74b0402bc288236 / CI41892245044 SUCCESS attempt2. API23/API35 по39/39; newhole275 each, guards445/444; JVM24/81315, host13. API23 actual126792623810 (cached126809403155), API35 actual126809400911 retry, JVM actual126792407100 (cached126809403009).56 финальных PNG SHA-verified и ВСЕ просмотрены: final-70-main/guards-api23 + final-70-retry-main/guards-api35; ещё28 API35 attempt1 сохранены/просмотрены. final-result.json/trace и NEW_HOLE_STATE.md.
+Raw before/after в addingHole=true и delete-vertex native confirmation сохраняют исходные owner/feature/process/key/token/main stamp/op/index, main/raw/selection/error при обоих actual destroyed/recreate и realIME/physical guards. Cancel/invalid/stale-before/after/main-changed/foreign/отдельный stale MainSave без KML/assets write; Apply толькоmain, отдельный Save добавляет ровно третий0/inner/2 с полным остальнымDOM/assets. Production unchanged1fc6b8f,54sourceSHA matched/min23/no stubs. Ошибки QA-name и точный adb offline сохранены как failed history; ONE API35 rerun после точной диагностики прошёл весь39. Это не починка публикации reusable-среды и не полная приёмка.
+
+СЛЕДУЮЩИЙ участок — отдельный MAP confirmation deletion path: подключён prepared /workspace/work/manager-confirm/MapVertexConfirmationChecks.java.pending как mapvertexconfirm/CI40; tests APK206524/API23 compiled и host13 pass (/workspace/work/manager-confirm/map-confirm-baseline-{tests.apk,build.log,driver.log}). proof нового контура6744b69 сохранён локально. Настоящее touch выделение средней вершины, оба actualrotate old.isDestroyed, Cancel и точные raw/selected/address/token/KML/assets; production не менять до фактов обеих API.
+
+Исправленные имена test14984abd5ace54edc808733f6217a9dc02a27a3d / CI41886801966 completed FAILURE. API23 success39/39, новые275/445 и все28PNG собраны. API35 37/39: managermove adb offline (не считать исполненным), geometrynewholeguards instrumentation439 PASS, но PNG0/12 collected. geometrynewhole275 PASS с16PNG, остальные modes passed; ошибка имён больше не наблюдалась. Точная причина adb pull guards неизвестна — старый драйвер отбрасывал его ответ.44 PNG SHA-verified, просмотрены12API23guards+4API35main; остальные28 не выдавать за просмотренные. probe-149-result.json/observations-only. Production unchanged1fc6b8f.
+Добавлена только диагностика hostdriver code79f9c07: сохранять mode-artifact-pull.txt (cap16KiB), печатать cap4KiB при visual failure. Строгий FAIL отсутствия снимков/regex/лимиты/raw/cursor/error/physical/release unchanged. Новый смысловой host regression сохраняет failure при instrument PASS + adb pull offline, с независимым следующим mode;13/13 pass (/workspace/work/manager-confirm/newhole-pull-diagnostics-driver.log). Сохранить и выполнить полный диагностический CI39 изменённого драйвера, НЕ blind rerun старого failed run. Дождаться completed/API23+35 и всех28PNG each.
+
+ПРОБА d2ddc5851ca56b9c99887dfcdc2d229e2d611e43 / CI39=41881298679 completed FAILURE. JVM success, обе сборки success, обе API38/39 wrapper-pass. Новая geometrynewhole275 each PASS; geometrynewholeguards instrumentation445/444 PASS, но PNG-сбор FAILED Unexpected visual evidence name: имя guard-invalid--1/0/1 содержит цифры, строгий allowlist толькобуквы/дефисы. Это ошибка имён нового QA, не production; полную проверку НЕ принимать.32 main+10 partialguards PNG SHA-verified и ВСЕ просмотрены, security/newhole-qa-2026-11-04/probe-d2-*; observations содержит остальные guards, PNG которых не собраны. Исправлены только имена invalid на before/land/return, regex/count/size/raw/cursor/error/token/physical/release guards не менялись. Пересобрать tests/driver, сохранить и выполнить полный CI39 исправленного кода; дождаться completed обеих API и всех12guardsPNG/API. Production прежний1fc6b8f.
+
+ПРОВЕРЕНА raw insertion: teste28d4d47173c48d6309d3eafd0316dcf6c791bd0 / CI41859261415 SUCCESS37/37 обе API, vertexinsertion357 each; JVM24/81315/host12. Production unchanged1fc6b8f. Before/after index1 в nonzero MultiGeometry0.1 и second inner0.1/inner/1, оба actual destroyed/recreate, realIME/raw/selection1..3/error/token/physical controls, Cancel и Apply→отдельныйSave, точный remaining DOM+assets прошли.32 PNG SHA-verified и ВСЕ просмотрены: security/vertex-insertion-qa-2026-11-04/final-api23/35, final-result/trace. VERTEX_INSERTION_STATE.md.
+
+ПРОВЕРЕННЫЙ code1fc6b8f2448247990967a287b732980dcd4d7197 / CI41852078435 SUCCESS: обе API36/36, geometryvertexconfirm367/geometryholeconfirm515 each; JVM24/81315, driver12, own431/min23/INTERNET only, source SHA match.56 финальных PNG SHA-verified и все просмотрены: security/geometry-confirmation-qa-2026-11-04/final-vertex/hole-api23/35 + final-result/trace. Cancel/обаactualrecreate/explicit confirm→отдельныйSave/stale-before/after/main-changed/foreign, staged Cancel/mainChanged/foreign/rotation прошли. Ни confirmation, ни поворот не пишут KML; Save меняет только выбранную среднюю вершину/второй внутренний контур, DOM/assets сохранены. Intent process-scoped, private GeometryDraft v1 формат не менялся. GEOMETRY_CONFIRMATION_STATE.md.
+
+Только independent-core и codex/independent-core-auto; без reset/clean/веток/worktree/merge. Сохранённые toolchain, stash и артефакты оставить; новых агентов не создавать.
+
+Проверенный chooser: ebc29d5 / CI41796713928, API23/API35 по32/32; original-folder, first6/top0 после обоих actual destroyed/recreate, все32 PNG просмотрены. Baseline не повторять.
+Проверенный raw vertex replace: code66cb8ca7653c7bfd02898c98a9f5b02422303b24 / CI41818076658 SUCCESS attempt2. API23 executed126534032228 (cached126542772465), API35 повтор126542692549:33/33 each, vertex369/364. JVM23/81259, driver12;426 ownclasses/min23/INTERNET only, no legacy/native/stubs/missing refs; local unsigned b8bce8af747b5d13f698206fb9e8213cf1ba63ca29a4a4aee9aff07dde6d83a6, all source SHA match.
+Raw valid/invalid text, selection1..3/error, оба actual поворота, исходные owner/feature/process/part/token/main stamp, realIME/physical buttons/line, hideIME full form, Cancel/no ghost, explicit Apply then separate Save, stale-before/after/main-changed/foreign-project+feature passed. No automatic KML write; XML/assets exact comparisons.32 финальных SHA-verified PNG все просмотрены: security/vertex-form-qa-2026-11-04/final-66-api23/35 + final-result/trace.json. VERTEX_FORM_STATE.md — границы.
+Первая API35 попытка НЕ была успехом: paste908 instrumentation pass, но PNG pull fail; chooser не стартовал adb offline. Один diagnosed infrastructure-only re-run на том же source прошёл весь33, включая paste/chooser; не было blind loop/ослабления критериев. Старые неуспешные evidence сохранены.
+Touch-scroll ЗАВЕРШЁН ограниченно: test code6d5f2ce / CI41841673619, прежние34/34 passed обе API, vertexscroll167/314.15 финальных SHA-verified PNG все просмотрены; API35 Activity82px/content26px, error21px и warning18/19px полностью читаются ПО СТРОКАМ через реальные жесты с открытой IME, поле возвращается, Apply/Cancel доступны, raw/cursor/error/token/KML/assets неизменны. Production не менялся. VERTEX_SCROLL_STATE.md.
+Подтверждения удаления прошли ограниченную проверку на code1fc6b8f/CI41852078435, см. актуальный результат выше. Baseline6d/CI41841673619 остаётся historical FAILURE только новых двух режимов и подтверждает исходную потерю;8 baseline PNG сохранены. Его не повторять. Новые56 PNG/36 modes не означают полную приёмку переноса.
+Gate false25, requirements0accepted; полный перенос, физическая проверка/эталонный паритет и безопасная миграция НЕ завершены. Среда running/connected и saved Java17/SDK реально используются; публикация reusable-среды этим не исправлена/не подтверждена.
+<!-- CURRENT_RESUME_END -->
+
+---
+
+# Точка продолжения — 30 октября 2026
+
+Источник: Rabochaya-karta-v27-independent-source.zip, версия 16, SHA256 c0dd8e4bf195ba7a22a0a64e19be3d3970ed4ccc6a232d921769ee93e5377977.
+Это последняя сохранённая версия; несохранённые изменения прошлого сеанса не подтверждены.
+Исторические журналы/снимки и тестовые медиа не перенесены в публичный репозиторий; ссылки на них в старых отчётах относятся к исходному архиву.
+
+## Первая задача облачной среды
+
+1. Выполнить JVM-проверку и Android QA сборку с API23, собрать инструментацию.
+2. Проверить тему менеджера: тёмный фон/белый текст, светлый фон/тёмный текст, Arimo, согласованные значки. Проверить доступность кнопок при открытой клавиатуре, системных отступах и повороте. Исправлять по реальным наблюдениям, не по предположениям.
+3. Выполнить Android-сценарии на API23 и API35. Не считать чужие/исторические результаты проверкой текущего коммита. Не устанавливать одноразовые APK поверх пользовательского приложения.
+4. Сохранить изменения, фактические результаты и следующий пункт в этой инструкции; подготовить PR. Полная замена остаётся незавершённой.
+
+## Проверено в текущем сеансе
+
+30 октября: `python3 owned-projects/verify_jvm.py` — 16 наборов, 80 960 утверждений, успешно. Это не проверка интерфейса Android.
+
+## Настройка среды Codex
+
+Выбрать репозиторий trol1999god-ship-it/WarriorRus1.2, ветку codex/independent-core-auto.
+Попросить среду использовать Java 17, Python 3, Android SDK platform 23, build-tools 35.0.0, platform-tools и эмулятор.
+Команда установки из корня репозитория: `bash independent-core/ci/setup_codex.sh`.
+Для зависимостей нужны dl.google.com и GitHub releases (apktool); загрузки R8 и apktool сверяются по SHA256 в build_android_qa.py. Не передавать ключ основной подписи в среду.
+После успешной настройки опубликовать среду и запустить задачу из раздела выше.
+
+Подготовленный репозиторий и CI не доказывают, что облачная среда опубликована или задача запущена. Подтверждением запуска служит запись задачи в Codex с её статусом и результатом.
+
+## Диагностика GitHub Actions — 30 октября
+
+Проверен run 41020665022 для коммита 3cec6db02abdcc844ccafbac7c9e8f647109ef80.
+JVM успешно; сборка приложения и инструментации успешна на обеих матрицах.
+API23: binary, independence, offlineformats, cachewrites, cacheexport прошли;
+launcher завершился `current main map never became stable and attached`.
+Снимок перед отказом показывает карту после сохранения объекта. Причина потери
+готовности/фокуса пока не установлена; падение приложения этим не доказано.
+API35: первые четыре сценария прошли; cacheexport завершился
+`UI missing Сохранить MBTiles`. На диагностическом снимке кнопка видна с текстом
+в верхнем регистре. Проверить преобразование текста accessibility и состояние
+активного окна; ошибку экспорта данных этим не считать подтверждённой.
+
+Для CI добавлен `--keep-going`: после отказа выполняются остальные независимые
+сценарии; reopen после неуспешной подготовки помечается skipped, не passed.
+Итоговый код выхода остаётся ненулевым при любом отказе/пропуске. Текст ошибки
+инструментации выводится в журнал Actions. Локальный режим без флага сохраняет
+остановку на первом отказе. Четыре теста драйвера с подставным adb прошли.
+Это проверка управления CI, не успешное исполнение Android-сценариев.
+
+Следующий шаг: дождаться полного отчёта нового CI, изучить состояния окон и
+актуального map View в launcher, проверить доступный текст кнопок на API35.
+Не ослаблять проверки или release gate ради зелёной сборки.
+Облачная среда Codex и первая задача по-прежнему не подтверждены:
+защищённый запрос входа через Google в доступном браузере завершился таймаутом.
+GitHub Actions выполняет проверки; он не является непрерывным агентом разработки.
+
+## Продолжение в облачной задаче — 30 октября, 16:10 МСК
+
+Checkout восстановлен на существующей tracking-ветке `codex/independent-core-auto`,
+исходный HEAD `956a669e6dae2d968ac5714fc809e48ed29b1157`; пользовательских
+изменений до переключения не было. Это текущий облачный запуск команд,
+не подтверждение публикации reusable-среды или отдельной фоновой автоматизации.
+
+Инструменты подготовлены заново, а не восстановлены из снимка:
+`/workspace/android-toolchain/env.sh` задаёт Temurin 17.0.17+10, SDK platform23,
+build-tools35.0.0, platform-tools37.0.1 и emulator37.2.13. JDK проверен по SHA256
+официального релиза (`992f96e7995075ac7636bb1a8de52b0c61d71ed3137fafc979ab96b4ab78dd75`),
+command-line tools — по SHA1 официальных метаданных Google
+(`e025545c62a8e64c7559119566a569fb1dec5f60`). R8/apktool проверены штатными SHA256
+из build_android_qa.py. Существующие файлы toolchain не удалялись.
+
+`bash ci/setup_codex.sh` завершился успешно; Java17 JVM: 16 наборов,
+80 960 утверждений. QA APK приложения и инструментации собраны и подписаны
+одноразовым ключом. `python3 ci/test_run_android_checks.py`: 4 теста успешно,
+включая сохранение новой диагностики окон при отказе. `release_gate.py` вернул 1,
+`replacement_release_allowed=false`; требования и gate не ослаблялись.
+
+Через GitHub connector прочитаны актуальные логи PR14 run **41045493451**
+для исходного HEAD. Job **124028552578 / API23** прошёл все 25 сценариев,
+включая launcher; прежний отказ stableMainMap не является стабильным
+воспроизведением. Job **124028552619 / API35**: первые четыре сценария прошли,
+cacheexport — `UI missing Сохранить MBTiles`; последующие UI-сценарии также
+дали отказы (включая `видимых объектов`, `54 источника` и фокус формы).
+Поэтому регистр кнопки пока не считается объяснением всей матрицы API35.
+Прямой shell GitHub API запрещён (403); connector читает job logs.
+ZIP артефакта connector выдаёт, но его загрузка в executor запрещена политикой
+сети (403); ограничения не менялись, обход не применялся.
+
+Добавлена только диагностика отказов: ограниченный accessibility-tree при
+таймауте текста, состояние Activity/map/focus при таймауте stableMainMap,
+`*-window.txt` и `*-activity.txt` в результатах драйвера. Критерии прохождения,
+регистр сопоставления текста и ненулевой итог при отказах сохранены.
+Это ещё не исправление Android-сбоев. Локальные свежие API23/default/x86 и
+API35/google_apis/x86_64 загружаются без KVM в раздельных контейнерах без
+внешней сети; окончательный результат будет записан отдельно.
+
+Локальные попытки завершены: API23 загрузился за 465,4 с, но установка
+приложения `adb install -r --no-streaming` превысила 180 с; инструментация
+не началась. В системном logcat — ANR SystemUI/Launcher. API35 не завершил
+загрузку за 720 с; сервис activity в системном logcat недоступен.
+Это ошибки среды без KVM, не успешные Android-тесты и не подтверждение
+сбоя приложения. Логи и одноразовые QA-сборки сохранены вне Git в
+`/workspace/work/rk-investigation/`; toolchain сохранён отдельно.
+
+Диагностический коммит `5615a04d21b62ed2e3f6ce14d9efcefdc1d37829` отправлен
+в существующую удалённую ветку. Подтверждён новый PR CI run **41061160008**:
+JVM job **124080946541** успешен; Android jobs **124081103000 (23)** и
+**124081102882 (35)** на момент этой записи выполняются. Это GitHub Actions,
+а не публикация reusable-среды и не отдельная облачная автоматизация.
+
+Run 41061160008: API23 job **124081103000** завершился **success**,
+все 25 сценариев прошли, launcher — в том числе. Это второй успешный
+API23-прогон подряд для неизменённого production-кода; прежняя причина
+потери готовности/фокуса карты всё ещё не установлена и не объявляется
+исправленной. Таймаут и все условия stableMainMap сохранены.
+
+## Подтверждённая причина API35 — run 41061160008
+
+Job **124081102882** завершился failure. Диагностика cacheexport показывает
+правильное окно `org.rabochaya.karta`, видимый `android.widget.Button` с
+accessibility-текстом **СОХРАНИТЬ MBTILES**. Тест искал mixed-case
+`Сохранить MBTiles`. Аналогично подтверждены кнопки НАЙТИ, СОХРАНИТЬ,
+ЗАКРЫТЬ, ПРИМЕНИТЬ, ОТМЕНА и ПОНЯТНО в остальных UI-отказах.
+Это подтверждённая ошибка тестового адаптера к Android all-caps, а не
+доказанный отказ записи MBTiles или потери данных.
+
+Исправление ограничено тестовым `UiText`: прежнее точное/подстрочное
+сопоставление сохраняется; только `android.widget.Button` дополнительно
+принимает ожидаемую подпись после `toUpperCase(Locale.getDefault())`.
+Имена объектов, TextView, EditText и описания не приводятся к другому регистру;
+неверная/исчезнувшая кнопка по-прежнему даёт отказ. Production UI не менялся.
+Добавлены 46 JVM-регрессий, включая отрицательные примеры, exact/substring,
+русскую/английскую/турецкую локали. Java17: **17 наборов, 81 006 утверждений**;
+4 теста QA-драйвера успешны. Обновлённая инструментация собрана D8 min-api23
+и подписана тем же одноразовым QA-ключом для локальных синтетических APK.
+
+Отдельно в этом run API35 отказал `geometrymap` на
+`pinch starting on vertex hands off to map zoom`; зависимый reopen пропущен.
+Причина жеста не установлена. Для следующего прогона добавлен вывод размера
+surface, координат, минимального scaling span и итогового viewport;
+проверка увеличения масштаба сохранена. Исправление all-caps не является
+заявлением об успешности всей матрицы API35.
+
+## Проверка исправления кнопок и причина pinch — run 41063644711
+
+Commit `d90088e927f8e302fead0810ce267d8b16673dae`: JVM job
+124089374150 успешен; API23 **124089481039** — все 25 сценариев успешны.
+API35 **124089481119**: cacheexport и launcher успешны; все отказы all-caps
+исчезли. Остались только geometrymap и пропущенный зависимый geometrymapreopen.
+
+Подтверждённая диагностика API35: поверхность **296x315**, vertex
+`[148.0,143.81993]`, `minimumSpan=170`, исходные MOVE span **150,190**.
+Android15 ScaleGestureDetector при пересечении minSpan сбрасывает предыдущий
+span на текущий: последний MOVE лишь начинает масштабирование с коэффициентом 1.
+Последующего MOVE в старом тестовом жесте не было. Это объясняет отсутствие
+увеличения масштаба без изменения порога/production-кода.
+
+Исправлен только инжектор тестового жеста: 12 монотонных MOVE между начальным
+положением и краями фактического canvas с отступом 8 px. Оба пальца остаются
+внутри canvas; первый DOWN по-прежнему приходится на настоящую вершину.
+Добавлены проверки видимости исходной вершины и достаточного места относительно
+системного minSpan/touchSlop. Проверки увеличения масштаба, неизменности координат
+и отсутствия истории редактирования сохранены. Android-проверка этой правки
+требуется отдельно; результат предыдущего commit ей не приписывается.
+
+## Итог этой облачной задачи — 30 октября, 16:52 МСК
+
+Проверенный код: **9fd26ec3fd305bfceb2bd6d9ab437788a8506fc7**, потомок
+956a669e6dae2d968ac5714fc809e48ed29b1157 в той же ветке.
+PR CI **41065422386** завершился успешно:
+
+- JVM / QA driver job **124095317530** — success: 17 JVM-наборов,
+  81 006 утверждений и 4 теста QA-драйвера.
+- API23/default/x86 job **124095457655** — **25/25** сценариев, success.
+- API35/google_apis/x86_64 job **124095457919** — **25/25** сценариев, success.
+- На обеих матрицах прошли cacheexport, launcher, geometrymap и
+  geometrymapreopen. Логи jobs прочитаны через GitHub connector.
+
+Исправлены две подтверждённые причины отказов тестов: Android all-caps
+в accessibility-тексте Button и слишком короткая последовательность pinch,
+которая на API35 заканчивалась сразу при достижении минимального span.
+Production-код, ресурсы, minSdk23, название, манифест, migration/requirements.json
+и release_gate.py побайтно не отличаются от исходного 956a669.
+Историческая причина нестабильного фокуса launcher на API23 не установлена:
+она не воспроизвелась в последующих успешных прогонах; диагностические проверки
+готовности и фокуса сохранены. Успех новых прогонов не называется её исправлением.
+
+Текущая облачная задача фактически выполняла команды; отдельная облачная задача
+или автоматизация не создавалась. Инструменты установлены заново здесь, а не
+восстановлены из снимка. Публикация reusable-среды этим не исправлена и не проверена.
+Для последующего сеанса: `source /workspace/android-toolchain/env.sh` перед
+setup/build/JVM. adb37 на хосте требует недоступную для записи домашнюю папку;
+локальные попытки выполнялись в изолированных Docker-контейнерах с временным
+домашним каталогом. Их неуспешные результаты без KVM не заменены успехом CI:
+это разные среды. Повторная локальная эмуляция имеет смысл после восстановления
+аппаратного ускорения/работоспособной среды. SDK, архивы, QA-ключи и логи
+сохранены в workspace вне Git; ключи и пользовательские данные не опубликованы.
+
+Следующий участок исходной задачи: отдельная визуальная проверка темы менеджера,
+Arimo/иконок, клавиатуры, системных отступов и поворотов на исправной Android-среде.
+Физическое устройство, полная визуальная/функциональная равноценность и безопасная
+миграция 26.1 не приняты. Установочный выпуск не создавался; release gate остаётся
+заблокированным. Итоговый следующий коммит меняет только этот отчёт; результаты
+выше относятся к указанному проверенному коду 9fd26ec.
+
+## Визуальная проверка менеджера — начало следующего этапа
+
+Продолжение с 539d130: origin совпадает, дерево было чистым, другого агента
+не обнаружено. Toolchain сохранён; локальная эмуляция без KVM не повторяется.
+Добавлен отдельный `managervisual` в существующий полный Android CI.
+Он использует новый синтетический проект, реальные системные режимы night/day,
+портрет/альбом, диалоги имени/описания и настоящую soft keyboard. Сохраняются
+PNG, цвета/Typeface/границы/фактический uiMode/видимость IME в диагностике.
+Это пока сбор наблюдений, не приёмка оформления и не подтверждение эталонных иконок.
+
+Ограниченные PNG только этого синтетического сценария также копируются в журнал
+CI (base64 + SHA256, не более 16 кадров/2 MiB), чтобы прочитать их через доступный
+GitHub connector без недоступного executor-у ZIP artifact endpoint. Остальные
+режимы/пользовательские файлы этот механизм не публикует. Полные снимки остаются
+в обычном QA artifact. Отсутствие снимков/ошибка сбора даёт ненулевой результат.
+
+Первый визуальный CI 41071853087: обе матрицы выполнили 26 сценариев, но
+managervisual на этом commit означал сбор наблюдений, не визуальную приёмку.
+Получены и просмотрены 20 настоящих PNG с проверкой SHA256. Подтверждены:
+исчезновение списка и обрезание нижней кнопки в landscape; отсутствие Arimo;
+fullscreen extract IME на API35; светлый менеджер при системном nightMode.
+Два ошибочно классифицированных состояния сборщика исключены из приёмки.
+Подробности, исходные jobs и границы — MANAGER_VISUAL_REVIEW.md.
+
+По этим фактам исправлены только менеджер/его диалоги: ограниченная по высоте
+прокручиваемая шапка, Arimo, системная Material light/dark тема, запрет fullscreen
+IME и scroll/adjustResize описания. Сценарий усилен проверкой ориентации, реального
+окна IME, Typeface, списка/нижней кнопки и настоящим касанием Cancel при клавиатуре.
+Требуется новый CI и просмотр исправленных PNG; старый успех им не приписывается.
+
+Прогон 41075162927 не принят. API23 (124129478726): ранний DecorView диалога
+давал `requestFeature() must be called before adding content`; порядок исправлен
+на post-show без потери обработчиков валидации. API35 (124129478832): прежние
+25 сценариев успешны, managervisual отказал на видимости Save/Cancel. PNG и
+геометрия показывают 82 px окна приложения над IME, поле высотой 0 и обрезанные
+кнопки. Добавлен ограниченный compact-режим диалога при коротком landscape-окне,
+с восстановлением исходного оформления при скрытии IME. Навигация остаётся
+вне прокручиваемой шапки. Подробности и точные границы — MANAGER_VISUAL_REVIEW.md.
+
+Новая регрессия требует реальную IME, видимую строку ввода, полностью видимые
+Save/Cancel/навигацию, настоящие касания Cancel и возврат обычного диалога без
+потери введённого имени при скрытии IME. Добавлен воспроизводимый декодер PNG
+с SHA256 и защитой существующих файлов; 12 host-тестов успешно. Нужен новый CI
+с просмотром новых PNG; прошлые неуспешные состояния за успех не засчитываются.
+
+## Возобновление после лимита — 30 октября
+
+Другого агента нет; origin проверен на 2f6d736, локальные незакоммиченные
+исправления сохранены без reset/clean. compact-build/qa-build.json подтверждает
+сборку самостоятельного QA APK (minSdk23, только INTERNET, 406 собственных классов).
+compact-regression-tests.log: инструментация собрана; compact-regression-driver.log:
+12/12 host-тестов. Повторная JVM-проверка с сохранённой Java17: 17 наборов,
+81 006 утверждений. Все SHA256 исходников совпали с build_result.json;
+99 утверждённых графических ресурсов/Arimo также совпали с asset manifest.
+
+Исправления и декодер отправлены в той же ветке commit
+**4bc826d7d37fa7ccb07814d5bb132e666241d6b4**. Подтверждён новый PR CI
+**41105258550**: JVM job **124233227026** success; Android
+**124233600093 (API23)** и **124233600045 (API35)** пока выполняются.
+До завершения jobs и просмотра PNG Android-успех не заявляется.
+Release gate повторно вернул 1, replacement_release_allowed=false;
+requirements.json, gate и manifest не изменены. Toolchain сохранён, новая
+облачная задача не создавалась; публикация reusable-среды не проверена.
+
+41105258550 завершён: API35 26/26 success; API23 25/26, failure только launcher.
+managervisual успешен на обеих (200/196 утверждений). Все 28 PNG получены с
+проверкой SHA256 и просмотрены: список/навигация, темы, Arimo, поля/Save/Cancel
+над IME и возврат обычного диалога после Back подтверждены в этих сценах.
+Подробные границы и provenance — MANAGER_VISUAL_REVIEW.md.
+API23 MAIN_MAP_STATE доказал старую destroyed/finishing Activity в тесте при
+другом активном окне. Исправляется выбор живой Activity настоящего LocalMapView
+с сохранением строгих условий готовности и дополнительной проверкой project/root.
+Production карты не меняется. После завершённой проверки менеджера начат
+ближайший участок: реальные landscape+IME формы поиска и дат KML, включая
+Применить/Отмена/Сбросить и отсутствие записи настроек при Cancel. Нужен новый CI.
+
+## Проверенный итог возобновления — 30 октября 2026
+
+Проверенный код **78176dc4af8263a3a482515ae810da96c98e1292**, та же ветка,
+потомок 539d130/956a669. PR CI **41107524308** — success:
+JVM **124241525940** (17 наборов, 81 006 утверждений, 12 host-тестов);
+API23 **124241698685** и API35 **124241698650** — по **26/26** сценариев.
+В launcher прошла явная подстановка старой завершённой Activity с требованием
+найти именно новую живую карту. Все условия готовности/таймауты сохранены;
+production карты не менялся. Промежуточный 2a879d0 заменён 78176dc с этой регрессией.
+
+managervisual: **230/223 утверждения**, по 16 PNG, все **32 PNG просмотрены**
+после декодирования и проверки SHA256. Список/навигация, Arimo, темы,
+поля/Save/Cancel при настоящей IME и восстановление диалога после Back подтверждены
+в проверенных сценах. Ближайший участок также продолжен: поиск и первый ввод
+даты KML в day landscape; Apply/Cancel/Reset доступны, Cancel не пишет настройки.
+Новых подтверждённых production-дефектов этих форм не обнаружено.
+
+Доказательства сохранены в `security/manager-visual-qa-2026-10-30/`: 32 исходных
+итоговых PNG, 3 примера до исправлений, SHA256 manifests, наблюдения и results.json.
+Подробности/границы — MANAGER_VISUAL_REVIEW.md. Финальный следующий коммит
+добавляет только отчёт и QA-доказательства; результаты относятся к коду 78176dc.
+Требования accepted не отмечались, release gate заблокирован. minSdk23, название,
+99 утверждённых ресурсов, приватность, онлайн-карты/кеш и отсутствие GPS сохранены.
+Исходники, старые локальные артефакты и toolchain не удалялись; reset/clean,
+дополнительных веток/worktree, merge PR, основных ключей и данных телефона не было.
+
+**Следующая задача:** воспроизвести поворот открытого редактора имени/описания с
+несохранённым вводом и выбором объекта. Только после реального наблюдения исправлять
+состояние, с проверкой токена/адреса XML и отсутствия автоматической записи.
+Сейчас диалоги закрываются перед поворотом; проверка скрытия IME не доказывает
+восстановление при пересоздании Activity. Второе поле даты с IME, прочие размеры/
+масштабы, телефон, точные значки/палитра эталона и весь перенос остаются открытыми.
+Новая облачная задача/автоматизация не создавалась. Сохранённый Java17/SDK использован;
+публикация reusable-среды не исправлялась и не считается подтверждённой.
+
+## Начало проверки открытого редактора при повороте
+
+Исходный origin cfb1291 проверен, дерево чистое, другого агента нет;
+предыдущий CI 41109671291 успешен на обеих API. Добавлен отдельный синтетический
+managerrotation: имя и описание с Unicode/выделением текста, настоящая IME,
+портрет → landscape, проверка уничтожения старой Activity, PNG до/после,
+сравнение текста/курсора и неизменности XML. Production пока не менялся.
+Требуется фактический CI; наличие кода сохранения только folder/token само по себе
+ещё не считается воспроизведением потери редактора.
+
+CI 41119007901 для e701b1b завершён: обе API прошли прежние 26 режимов,
+managerrotation отказал. На обеих API оба редактора исчезают при подтверждённом
+уничтожении старой Activity; текст/курсор/выбор потеряны, XML не меняется.
+Все восемь PNG до/после просмотрены с SHA256. Реализовано восстановление Bundle
+с исходным project/token/адресом, текстом/выделением, без автоматической записи.
+Устаревший адрес не получает новый токен: Save заблокирован; изменение после
+восстановления проверяется транзакцией. Ошибка Save не теряет текст редактора.
+JVM: новый ObjectEditorDraftTests — 28 проверок, всего 18 наборов / 81 034.
+Android-регрессия расширена до восьми случаев (оба редактора × Cancel/Save/
+stale-before/stale-after), включает вложения и вложенный XML-адрес. Требуется
+новый CI; факты/границы — OBJECT_EDITOR_STATE.md. Release gate не изменён.
+
+Исправление сохранено в **f3058fce616674ab276ee55289e325485a9c3807**,
+CI **41121246714**. JVM **124287740376** success; Android
+**124287835783 (23)** выполняется, **124287835744 (35)** ожидает runner.
+Локальная QA-сборка fix-build-final успешна, 12 host-тестов прошли; Android
+ещё не принят. В дереве поверх f3058fc подготовлена обработка отказа черновика
+для импортированного имени >100 000 символов (уведомление вместо необработанного
+исключения) и две JVM-проверки предела/null. Эти локальные правки ещё не вошли
+в новый CI; перед их коммитом нужно пересобрать smali/build_result.
+
+**41121246714 завершён success:** API23 124287835783 и API35 124287835744 —
+по 27/27. managerrotation 304/299 утверждений; все восемь случаев прошли.
+Все 28 новых PNG SHA256-проверены и просмотрены; сохранены в
+security/manager-rotation-qa-2026-10-30/fixed-api23 и fixed-api35, вместе с
+baseline и results.json. Текст/выделение/выбранный объект восстановлены после
+реального уничтожения Activity, stale-before выключает Save, stale-after
+отклоняется транзакцией без потери введённого текста, Cancel не пишет XML/вложения,
+явный Save меняет только целевое свойство тестового объекта. Это scoped QA,
+не приёмка всего lifecycle или замены. Проверенный код f3058fc.
+
+Следующий реализуемый пробел: обычный массовый выбор менеджера без открытого
+редактора. load() всё ещё безусловно очищает его при пересоздании. Продолжить
+с сохранением выбранных индексов только для того же project/token и процесса,
+чтобы после force-stop выбор по-прежнему очищался. Текстовый черновик этим
+механизмом не подменять; изменившийся XML не должен восстанавливать старый выбор.
+
+Следующий участок реализован локально: ObjectSelectionState хранит ограниченный
+массив индексов полных rows с project/token/идентификатором процесса. В той же
+Activity-конфигурационной сессии восстанавливаются также скрытые выбранные строки;
+другой процесс/изменённый XML/неверные индексы очищают весь выбор. Force-stop по
+прежним reopen-сценариям должен оставлять выбор пустым. Добавлены два реальных
+поворота без редактора с проверкой папки/выбора/KML/вложений и stale token.
+Локально: 19 JVM-наборов / 81 056 утверждений (selection 20, draft 30), QA APK
+и инструментация собраны, 12 host-тестов. В этот же участок входит ранее
+незакоммиченный обработчик слишком большого имени. Нужен новый Android CI;
+исходники и build_result SHA256 совпали, release gate не изменён.
+
+Код следующего участка сохранён в **2aa62dcb64f5e85bf5f8260edaca5aeffffa77fd**;
+CI **41123869123**. JVM **124297808594** success (selection 20, draft 30,
+12 host-тестов); Android **124297964754 / API23** и **124297964852 / API35**
+выполняются. Не коммитить этот промежуточный отчёт до окончания текущего CI,
+чтобы не отменить его новым push; source-изменений после 2aa62dc нет.
+
+41123869123 завершился failure на обеих API: 26/27. Все editor/selection случаи
+managerrotation прошли (351/345 утверждений); normal-selection PNG просмотрены:
+два выбранных объекта (один вне папки) сохраняются, при изменённом XML выбор пуст.
+Отказ только managervisual, ManagerVisualChecks.java:71: старый тест после
+поворота повторным click снимал уже восстановленный выбор точки и открывал
+описание без выбранного объекта. Подготовка исправлена через реальный UI:
+«Снять весь выбор», выбрать точку, проверить единственный адрес `1`, открыть
+описание. Ни проверки Arimo/IME/границ/кнопок, ни production-код не ослаблены.
+Требуется новый полный CI для этой корректировки теста; не считать 26/27 успехом.
+
+Корректировка теста сохранена в **e3733ce84889bbef8025fecddf021f776734d20f**,
+CI **41125911710**. JVM **124304260471** success; Android
+**124304429027 (23)** и **124304428929 (35)** выполняются. Production по-прежнему
+тот же, что в 2aa62dc. Ждать результатов и новых PNG; не подменять ими старый
+неуспешный прогон. До завершения CI не push-ить только этот промежуточный отчёт.
+
+## Проверенный итог редакторов и обычного выбора
+
+Код **e3733ce84889bbef8025fecddf021f776734d20f**, production **2aa62dc**;
+CI **41125911710** завершён **success**. JVM **124304260471** — 19 наборов,
+81 056 утверждений, 12 host-тестов. API23 **124304429027** и API35
+**124304428929** — по **27/27**. managerrotation **351/345**, managervisual
+**242/235** утверждений. Все 32 новых PNG managerrotation SHA256-проверены и
+просмотрены. Вместе с 8 baseline и 28 первого исправления сохранены 68 PNG,
+manifests/наблюдения/results.json в security/manager-rotation-qa-2026-10-30/.
+Промежуточный failure 41123869123 не засчитан за success и записан в results.json.
+
+После реального destroyed/recreate сохраняются текст, выделение 3..8, project,
+исходные token/адрес и выбранный объект. Cancel сохраняет XML/вложения, явный Save
+меняет только целевое свойство. Stale-before блокирует Save и не выбирает новый
+объект по старому адресу; stale-after отклоняется внутри транзакции с сохранённым
+текстом редактора. Следующий функциональный пробел также закрыт: обычный выбор
+видимых/скрытых строк и папка переживают конфигурационное пересоздание; изменённый
+XML/другой процесс не восстанавливает этот выбор. Старые force-stop/reopen прошли.
+
+Источники/локальные изменения, toolchain и прежние артефакты сохранены. Reset/clean,
+новых веток/worktree, merge PR, основных ключей и данных телефона не было.
+99 утверждённых ресурсов сверены без расхождений; minSdk23, название, Arimo,
+онлайн-карты/кеш и ограничения приватности без GPS сохранены. release_gate.py,
+manifest и requirements.json не менялись: 25 причин блокировки, 0 accepted.
+Следующий коммит добавляет только этот отчёт/README/доказательства; код проверен
+на e3733ce. Новая облачная задача/автоматизация не создавалась, использован
+сохранённый Java17/SDK; публикация reusable-среды не исправлялась и не проверена.
+
+**Следующий конкретный участок:** сначала воспроизвести потерю несохранённых
+полей/спиннеров/флажков и сообщения валидации в формах «Поиск и фильтры» и «Даты KML»
+при настоящем пересоздании. Сейчас Bundle хранит editor и selection, но не эти
+формы. Восстанавливать raw UI-черновик только для своего проекта, не применять
+автоматически фильтры и не менять KML/вложения/применённые настройки по Cancel.
+Полная смерть процесса, поворот во время записи, телефон, другие размеры/масштабы,
+предельные проекты, точные иконки/палитра эталона и весь перенос остаются непринятыми.
+
+## Начало форм поиска/дат — 31 октября
+
+Origin/HEAD 665062a совпали, дерево чистое, другого агента нет. CI 41128138734
+успешен. Сохранённый Java17/SDK доступен; повторная локальная эмуляция без KVM
+не выполняется. Добавлен managerforms в полный CI: raw поля/выделение/focus,
+четыре спиннера/два флажка поиска, две даты/режим/сообщение валидации, настоящая
+IME (во втором поле даты), поворот 0→90 с обязательным destroyed старой Activity,
+PNG до/после, сравнение применённых настроек/KML/вложений без автоматического Apply.
+Production пока не менялся; требуется фактическое воспроизведение.
+
+Проба f9e9b4a, CI 41134649660: прежние 27 режимов прошли на обеих API.
+API23 124334111814: после destroyed/recreate исчезают поля/спиннеры/флажки и
+сообщение ошибки; применённые настройки/KML/вложения неизменны. Все 4 PNG просмотрены.
+API35 124334111844 остановился на портретной IME до поворота: Cancel выходит за
+окно; единственный PNG просмотрен. Это подтверждённый дефект доступности кнопок,
+но пока не доказательство потери формы API35. Проба теперь ловит ошибку layout,
+запоминает её как failure и продолжает реальные повороты обоих форм. Итоговый
+assert/код выхода остаётся отрицательным при любом таком отказе. Нужен новый CI.
+
+Повторная проба 9e72294, CI 41136878460: API23 124341521632 опять подтверждает
+потерю raw форм. API35 124341521627 непригоден: с cacheexport во всех UI_TIMEOUT
+в активном окне Pixel Launcher isn't responding / Close app / Wait, вместо
+приложения. Это системный ANR, не доказательство raw-состояния API35. Запрошен
+rerun только этого job на свежем runner; критерии и данные не меняются.
+Локально подготовлен ObjectFormDraft + 32 JVM-проверки raw значений/границ/своего
+project и обновлён verify_jvm.py; эти незакоммиченные файлы сохранять. UI ещё не
+подключён. Полная локальная JVM с моделью: 20 наборов / 81 088 утверждений.
+
+Поверх 9e72294 локально подключён FormUi/ObjectFormDraft: own-project Bundle с
+raw текстом/выделением/focus/спиннерами/флажками/error, восстановление после load,
+без авто-Apply. Нативные три action Button перемещены в отдельную строку внутри
+custom pane (стили/обработчики сохранены, min48dp), чтобы не обрезались у IME.
+JVM, QA APK и 12 host-тестов успешны, build_result SHA256 совпадает; это ещё не
+Android-подтверждение. Новый ManagerFormChecks требует Apply/Cancel/Reset, оба
+поворота, второе поле, сообщение ошибки, чужой project с идентичным XML и реальные
+границы IME; raw спиннеры/флажки отличаются от применённых seed значений. Есть
+отдельный collection-only кадр переноса для исследования следующего пробела,
+без приёмки переноса. Эти изменения/smali пока незакоммичены; сохранять без reset.
+Свежий API35 job retry **124347828329** того же CI 41136878460 ещё выполняется
+на исходном 9e72294; он нужен для исходного raw воспроизведения API35.
+
+Продолжение после лимита: среда running/connected, только root-агент, origin
+9e72294 подтверждён fetch; все локальные файлы/toolchain сохранены. API35 retry
+124347828329 завершился ожидаемым failure пробы: прежние 27 режимов прошли,
+обе raw формы исчезли после destroyed/recreate, кнопки обрезаны портретной IME.
+Launcher ANR в повторе нет. Baseline повторно не запускался. Восемь PNG обеих API
+просмотрены и сохранены в security/manager-forms-qa-2026-10-31/.
+ObjectFormDraft/FormUi и строгий managerforms готовы к полному CI; локальная
+QA-сборка forms-fix-build совпадает со всеми build_result SHA256. Подробности и
+границы — OBJECT_FORM_STATE.md. До фактического Android success исправление
+не считать проверенным на эмуляторах. Следом исследовать собранный move confirmation.
+
+Исправление сохранено/отправлено как a354f17; CI 41149424155, JVM124382125724
+success (20 / 81 088, host12). API35 124382222904 failure: native action row
+кнопки 57px высотой сдвинуты baseline-выравниванием на 3px вниз и обрезаны.
+PNG просмотрен, observations/frames сохранены в first-fix-api35. Не засчитан success.
+Clipboard и managerrotation в этом job не проверены: adb device offline;
+clipboardreopen закономерно skipped. Локально отключён baselineAligned action-row,
+горизонтальные padding кнопок уменьшены до4dp, цели48dp и критерии сохранены.
+Новая QA-сборка выполняется. API23 пока выполняется; дождаться до нового push.
+Локальный adb --version блокируется записью в /home/agent/.android (read-only),
+переменные Android home не помогли; локальная эмуляция не запускалась. Java17,
+компиляторы и SDK для сборки работают. Публикация reusable-среды не проверялась.
+
+API23 124382222918 завершён: прежние27 прошли, managerforms остановился на том же
+baseline-сдвиге57px кнопок на3px. PNG просмотрен и сохранён в first-fix-api23.
+Новая полная QA-сборка forms-row-fix-build успешна: unsigned SHA256
+4385051837d61f4bc03b2f0c3261109288f5fb5ef063eff43322ed857aee0b48,
+411 own classes, все Java source SHA256 совпали с build_result. Тесты не менялись.
+Нужен полный CI исправления строки кнопок; исходный a354f17 не принят.
+
+Строка исправлена/сохранена в 5c71c3d65b23b63423c4b97954b8d085d705aa8a,
+push в ту же ветку выполнен. CI41150648969: JVM124386097898 success;
+API23 124386166288 и API35 124386166295 выполняются. Нового baseline/rerun нет.
+Читать завершённые job, проверять формы и все прежние режимы, затем декодировать
+только map_mvisual-forms-* блоки (лимит16 кадров на сценарий не менять).
+Если формы пройдут, проверить MOVE_OBSERVATION и реальные два кадра переноса;
+только при подтверждённом исчезновении делать следующий ограниченный участок.
+
+CI41150648969 завершён success: API23/API35 по28/28, managerforms463/455;
+JVM20 /81088, host12. Все32 новых PNG проверены SHA256 и просмотрены; сохранены
+functional-api23/35 и results.json. Apply/Cancel/Reset, невалидная дата/error,
+второе поле с настоящей IME, оба destroyed/recreate, raw выделение/focus,
+чужой project с тем же XML и сохранность применённых options/KML/вложений прошли.
+Визуальный остаток: «ПРИМЕНИТЬ» в портретном поиске переносится внутри слова.
+Нужно дать положительной кнопке больше ширины и добавить line-count проверку;
+до нового PNG не объявлять визуальный итог. Затем следующий функциональный
+пробел: MOVE_OBSERVATION confirmationRestored=false обе API; кадры move-before/
+after просмотрены, подтверждение исчезает, XML автоматически не меняется.
+
+Локально исправлена только подтверждённая подпись: веса нативных кнопок
+Reset/Cancel/Apply = 1/.75/1.25, без уменьшения шрифта или цели48dp. В managerforms
+добавлено требование однострочного Apply/Cancel и search Reset при настоящей IME.
+Полная forms-label-fix-build успешна; требуется новый полный CI и просмотр PNG.
+
+Подписи отправлены в a3a4a98e8af57feab34899d43adecc51b6e639d2; CI41152234002:
+JVM124391153878 success, API23 124391260404 и API35 124391260318 выполняются.
+Параллельно ЛОКАЛЬНО подготовлен следующий подтверждённый пробел ObjectMoveDraft/
+openMove: project/process/XML-token/компактные индексы/исходное назначение,
+восстановление только подтверждения, disabled при stale-before и исходный токен
+в транзакции stale-after. Новый managermove включён в default suite(29 режимов)
+и в bounded visual emitter, критерии/лимиты не менялись. JVM21 /81122 (модель34),
+host12, QA414 успешны; исходники/smali/build_result сохранены незакоммиченными.
+НЕ считать перенос Android-проверенным. Не push-ить его до результата текущих
+подписей форм; сначала прочитать оба completed job и новые PNG, затем отдельный
+коммит и полный CI переноса. Подробности OBJECT_MOVE_STATE.md.
+
+Формы завершены в ограниченном объёме: a3a4a98, CI41152234002 success,
+JVM20 /81088 host12; API23 124391260404 и API35 124391260318 по28/28,
+managerforms492/482. Все32 финальных PNG SHA256-проверены и просмотрены;
+labels-api23/35 сохранены. Слово Apply теперь целое, без уменьшения шрифта;
+оба направления/второе поле/ошибка/Cancel/Apply/Reset/чужой project прошли.
+Всего74 PNG этапа, failures и промежуточная проблема подписи оставлены в истории.
+Далее разрешён отдельный push уже подготовленного кандидата переноса на полный
+CI29. Не считать его проверенным результатом форм: у него отдельный source SHA
+и нужны реальные move-state PNG. Финальная локальная сборка переноса
+move-state-final-build:414 own classes, unsigned SHA256
+cd6479a5633fa931157d9ea398ee13bd6975f83c57eaaf28b2cd5113b6d6d96e;
+build_result source SHA совпадают, JVM21 /81122 host12 успешны.
+
+Кандидат переноса сохранён/отправлен 063ce3f36aeea7bf52cda6cc727da7538612a9d9.
+CI41153634195 запущен,29 режимов, без новых веток/worktree/merge. До фактического
+success и просмотра move-state PNG не объявлять перенос готовым. Проверенные
+формы относятся к a3a4a98/CI41152234002; текущий кандидат содержит их же код.
+
+В CI41153634195 JVM124395518731 success (21 /81122, host12);
+Android23 124395605265, Android35 124395605262 выполняются. Чтение completed логов
+и извлечение только map_mvisual-move-state-* (не смешивать с forms/rotation,
+лимит16 на сценарий) — следующий шаг. После каждого нового UI отказа сначала
+просмотреть настоящий PNG/диагностику, не ослаблять проверки.
+
+CI41153634195 failure: новый managermove прошёл243/242 обе API, все20 PNG
+SHA256-проверены и просмотрены, сохранены manager-move-qa-2026-10-31/first-api*.
+Это НЕ полный success. objectmanager обе API ожидал автоматически закрытое
+подтверждение после stale-отказа; active-window содержит прежний Move-dialog,
+stack MapAndroidChecks.java:306. Новая семантика сохраняет подтверждение.
+Тест теперь проверяет исходный project/старый token в moveDraft, явно Cancel,
+ещё раз сравнивает новый XML, затем Refresh. Assertions сохранены и добавлены.
+API35 coordinates не выполнен: adb device offline. API35 managerforms прошёл
+все6 raw actions, но failed на немедленном foreign-project field/visibleText
+assert без PNG. Production-причина не доказана; код не менялся. Добавлены
+waitText ожидаемой строки, PNG ДО assert, actual/expected project в сообщении;
+исходный exact project и visibleText assert остаётся. Это синхронизация/диагностика,
+не доказательство исправленного production-дефекта. Новый tests APK compiled,
+host12 pass. Нужен полный CI29 текущих тестов; app по-прежнему 063ce3f/414 classes.
+
+Тесты/диагностика сохранены и отправлены c337a9d1d31fef5918cba3120c90dd399db22059;
+CI41155203098 выполняется. Production тот же 063ce3f. Не повторять baseline;
+дождаться обоих completed Android job, проверить objectmanager/reopen, foreign
+форму и новый managermove, просмотреть новые PNG и сохранить фактический итог.
+
+## Проверенный итог форм и следующего участка переноса — 31 октября
+
+Тесты/код c337a9d1d31fef5918cba3120c90dd399db22059, production
+063ce3f36aeea7bf52cda6cc727da7538612a9d9. CI41155203098 SUCCESS:
+JVM124400359776 —21 набор /81122, host12; Android23 124400472581 и Android35
+124400472639 —по29/29 без skip. managermove243/242, managerforms482/473;
+coordinates, objectmanager/reopen, оба foreign-project случая успешны.
+Production после первого move failure не менялся; исправлены протокол старого
+теста (явный Cancel сохранённого подтверждения + исходный token + неизменность
+нового XML) и ожидание/диагностика foreign-row с тем же строгим assert.
+Не объявлять прежний foreign-assert доказанным production-дефектом.
+
+Все52 PNG финального прогона (32 формы +20 перенос) проверены по SHA256 и
+просмотрены. Сохранены final-api23/35 в manager-move-qa-2026-10-31 и on-move-api23/35
+в manager-forms-qa-2026-10-31. Всего40 PNG переноса и106 форм всех этапов,
+manifests/observations/results.json; failures остались в истории.
+Raw поля/спиннеры/флажки/error/курсор/focus своего проекта, IME второго поля,
+оба настоящих destroyed/recreate и явные Apply/Cancel/Reset прошли. Подтверждение
+Move сохраняет исходные project/process/token/индексы/назначение/скрытый выбор;
+Cancel не меняет XML/вложения, явный Move совпадает с полным ожидаемым XML,
+stale-before выключает кнопку, stale-after отвергается транзакцией. Другой
+проект с идентичным XML не восстанавливает форму или Move. Android process-death
+для сохранённого Move отдельно не принят: process-session guard проверен JVM.
+
+Сохранённый Java17/SDK/R8/apktool использован, QA414 own classes и source SHA
+сверены. Локальная эмуляция не запускалась; adb version не работает из-за
+read-only /home/agent/.android, сборочные инструменты работают. Новая облачная
+задача/автоматизация не создавалась; выполнены реальные GitHub CI в этой задаче.
+Публикация reusable-среды не проверена и не объявлена исправленной.
+Манифест/minSdk23/название/Arimo/ресурсы/онлайн-карты/кеш/ограничения без GPS
+сохранены; release_gate.py и requirements.json не менялись:25 блокировок,
+0 accepted. Только синтетические данные/одноразовые ключи, без телефона.
+
+Следующий конкретный участок полного переноса: сначала реально воспроизвести
+состояние открытых подтверждений удаления/массовой видимости/вставки буфера при
+destroyed/recreate на23/35, затем сохранять только подтверждённо теряемое
+намерение со старым project/token и проверками явного действия/Cancel/stale.
+Не смешивать это с уже проверенным Move; chooser до подтверждения, весь эталон,
+Android36/физический компас/миграция и приёмка23 блоков ещё не завершены.
+Следующий коммит — только отчёты/доказательства; проверенный исходный код c337a9d.
+
+## Начало подтверждений Delete / visibility / paste — 31 октября
+
+HEAD/origin2460850 подтверждены fetch; дерево было чистым, другого агента нет.
+CI41156877080 все3 job success. Среда running/connected, сохранённый Java17/SDK
+доступен; сетевые ограничения/TLS не менялись, локальная эмуляция не запускалась.
+Добавлен baseline managerconfirm в полный CI30: delete/show/hide/pastecopy/pastecut,
+синтетические проекты/3 вложения, видимый и скрытый выбор, before/after PNG,
+настоящий destroyed/recreate90, сравнение XML/вложений/settings/fingerprint буфера.
+Проба собирает все5 случаев, итоговый assert остаётся failure при любой потере.
+Production не менялся; восстановление ещё не реализовывать до фактов обеих API.
+
+Проба40c4d1c отправлена; CI41160073360 выполняется: JVM124415466698 success,
+API23 124415524418 / API35 124415524394. Параллельная отдельная JVM-проба буфера
+на исходном коде подтвердила freshEquivalentCapturesHaveSameFingerprint=true:
+content hash не различает повторное capture идентичных данных. Для требуемой
+защиты замены локально подготовлено поколение UUID в формате2; decode/encode
+формата1 сохраняет исходные байты и fingerprint, без переписывания старого буфера.
+Это незакоммиченный кандидат ObjectClipboard.java/tests, не сбрасывать. JVM
+с ним успешен, freshEquivalentCapturesHaveSameFingerprint=false, roundtrip=true.
+Восстановление UI пока не подключено; дождаться реальных baseline обеих API.
+
+Baseline40c4d1c CI41160073360 завершён: обе API прежние29 passed, managerconfirm
+ожидаемо failure; все delete/show/hide/pastecopy/pastecut restored=false после
+настоящего destroyed/recreate. XML/settings/assets/clipboard unchanged=true.
+Job23 124415524418, job35 124415524394; все20 PNG SHA-проверены и просмотрены,
+сохранены security/manager-confirm-qa-2026-10-31/before-api23/35.
+Теперь локально подключён ObjectConfirmationDraft: original project/process/
+token/source indices/destination/preview/fingerprint; старый токен в транзакции,
+restore только диалога, disabled если XML/clipboard stale. Для paste сохранена
+подпись исходного назначения; для visibility не схлопывать parent+child выбор.
+Модель60 JVM assertions; с поколением буфера22 набора /81190. Новая QA-сборка
+выполняется, Android-готовности кандидата нет. Финальные проверки разделены на
+managerconfirm и managerpasteconfirm (полный CI31), не увеличивая480s/16PNG caps.
+Они включают Cancel/confirm, обе реальные ориентации, stale-before/after, foreign
+project с тем же XML, recapture идентичного буфера/clear до и после восстановления,
+точные XML/assets/settings/clipboard сравнения. Все незакоммиченные файлы сохранять.
+
+Кандидат локально собран confirmation-fix-build:415 own classes, minSdk23,
+INTERNET only, unsigned SHA256 d4d2493ebcb122f2e72219933278d42cef488fc950f668e4f980f2dd4625d08b.
+Все source SHA совпали с build_result; tests APK с финальным DOM-сравнением
+compiled, host12 pass. Старые stale-paste/visibility тесты дополнены проверкой
+сохранённого подтверждения, явным Cancel и повторной проверкой нового XML.
+Production-готовность пока не заявлять: нужен полный CI31 и новые PNG обеих API.
+Область/ограничения записаны OBJECT_CONFIRMATION_STATE.md.
+
+Кандидат сохранён/отправлен91cbee8749cdb0d297e95a6dd4f1db805519f853;
+CI41162028421 выполняется. Новые managerconfirm/managerpasteconfirm отдельны,
+каждый bounded16 PNG. При декодировании полного лога разделять confirm-pastecopy/
+pastecut от confirm-delete/show/hide/hierarchy, не повышать лимиты декодера.
+Читать completed job; проверить все31 режима и снимки, в особенности чужой
+проект с тем же XML и своим сохранённым root view. Старые результаты не заменяют
+проверку текущего source. Все baseline/логи/toolchain сохранены без reset/clean.
+
+CI91cbee /41162028421 завершён: JVM success, обе API30 passed, только managerpasteconfirm failure. Все16 copy/cut Cancel/confirm/stale/replace/clear прошли. Foreign-pastecopy выявил перенос folder=0 из чужого Bundle при одинаковом XML (оба PNG просмотрены); диалог/выбор отклонялись корректно. Исправлена привязка folder/token Bundle к viewProject; fallback — собственные prefs проекта. Критерии тестов не изменены. Промежуточные62 PNG сохранены first-actions/paste-api23/35, их полная визуальная приёмка не заявляется.
+Новая QA project-view-fix-build:415 classes, minSdk23, INTERNET only, unsigned eaa19f35e57da137b0dfe979c4574c6f069aaad8c0ed8be918833066addb637c; source SHA совпали, driver12 pass. Требуется новый полный CI31 обеих API.
+
+Проверенный результат de2fb84 / CI41163805624: все31/31 на обеих API; JVM success22/81190, host12. managerconfirm709/706, managerpasteconfirm910/908; все foreign-view теперь root собственного проекта.64 финальных SHA-проверенных PNG/observations сохранены final-actions/paste-api23/35;20 репрезентативных PNG фактически просмотрены, точные имена final-result.json. Диалоги/кнопки/назначение/disabled и отказы читаемы, Arimo всех видимых текстов подтверждён метаданными. Это не полная эталонная приёмка всех кадров. Gate unchanged false25; requirements0 accepted.
+Следующий реализуемый участок начат: chooser папки до Move. Подготовлена отдельная managerchooser-проба реального destroyed/recreate90, выбора и неизменности XML/assets/settings. Локально TestAPK172455, driver12 pass. Production для chooser не менялся; сначала факты обеих API, затем только подтверждённое исправление. Полный CI32 сохраняет предыдущие31 режима и bounded caps.
+
+Chooser8b82ba6 / CI41165395748: прежние31 passed обе API. API23 реально destroyed/recreate: chooser restored=false, выбор/XML/assets/settings сохранены,2 PNG просмотрены. API35 проба НЕ валидна: before уже landscape orientation2, запрос90 не уничтожил Activity, assert честно failure;1 PNG просмотрен. Причина в подготовке новой пробы: после v.launch отсутствовало v.rotate(0) с ожиданием settled portrait. Исправлена только эта синхронизация + явный assert orientation1; критерий old.isDestroyed сохранён. Production chooser ещё не менять до фактовAPI35; повторный CI обоснован исправлением precondition, не маскировкой app failure.
+
+Продолжение после лимита: root единственный агент, fetch HEAD/origin124822b, все локальные chooser/src/smali/tests/build artifacts/toolchain сохранены. Java17 работает. CI41166910485 оба completed job23=124436411980,35=124436411969: прежние31 passed; новая проба portrait1 -> landscape2, old.isDestroyed/different прошли, chooser restored=false. Все4 PNG просмотрены/проверены, settled-before-api23/35 и metadata сохранены. Ранняя API35 landscape-проба остаётся невалидной.
+Кандидат chooser сохраняет guarded ObjectMoveDraft source intent отдельно от Move, исходный view-folder через project-bound Bundle, позицию списка; только явный выбор открывает Move с прежним token/indices, поворот не пишет XML. Stale chooser блокирует выбор, foreign process/project не восстанавливается. Финальные тесты добавляют оба поворота, исходную папку, скрытый выбор, Cancel chooser/confirm, explicit Move, stale до/после, foreign sameXML, scroll. Первая локальная сборка app417 classes прошла, tests compile failed2 checked exceptions в lambdas; исправлены только вызовы reflection, новая QA-сборка выполняется. Android-готовность кандидата не заявлять до полногоCI32 и новых PNG.
+
+Chooser candidate локально собран chooser-final-candidate-build:417 own classes, minSdk23, INTERNET only, no legacy/native/stubs/missing refs. unsigned SHA256 6e4554f2d5340415b546cee748e0157b06157b2496c46db157f809c956ca7c90. Все source SHA совпадают с build_result; JVM22/81190, QA-driver12 pass, tests APK compiled. Новые16 bounded PNG-сцен включают оригинальную папку и scroll option6 на обоих поворотах. Нужен новый полный CI32; до фактических результатов/PNG этап не принят. Gate false25, requirements/resources/manifest неизменны.
+
+Кандидат a5086b291b94a94674384a82bed4df85cbcf2414 отправлен; полный CI32=41173465616 выполняется. Не повторять baseline: settled-before уже валидно подтвердил потерю chooser обеими API. Читать completed jobs, проверить все32, chooser16 PNG/API и явные действия, затем обновить результат.
+
+## Фактическая остановка chooser после CI a5086b2 — 31 октября
+
+CI41173465616 завершён FAILURE: JVM22/81190 и driver12 success; API23 job124456168296=31 passed +managerchooser failure; API35 job124456168273=30 passed, managermove не стартовал (adb: device offline), managerchooser failure. Не утверждать32/32 или принятие chooser.
+Обе API: Cancel chooser, выбор назначения/Cancel подтверждения, explicit Move, stale-before/after, foreign sameXML прошли с проверками XML/assets/settings. API23 упала ДО поворота длинного списка на precondition first==6; API35 first==6 прошёл, затем после actual destroyed/recreate/identity first!=6. Фактические значения позиции/момент сохранения не выведены: причина пока не доказана. Original-folder case после scroll НЕ ДОСТИГНУТ ни на одной API. Старые forms PNG в offline managermove не использовать как доказательство Move.
+Все25 новых chooser PNG (12/13) просмотрены, SHA256/signature/CRC/dimensions проверены непосредственно через GitHub; visible Arimo metadata true. Локальный PNG extractor для этих25 не запускался: машина стала unavailable. Оригиналы/frames/observations/result и JVM-лог сохранены в security/manager-chooser-qa-2026-10-31/candidate-a5086b2-*; полный отчёт OBJECT_CHOOSER_STATE.md. QA ZIP артефакты скачаны через connector:13031454329/API23 file_00000000581881f5a711d12ed8163407;13031984772/API35 file_00000000766881f5b3e497cca0bc45e8.
+Конкретный блокер: execution environment unavailable; после этого локальные команды/сборки не выполнялись. Исходники/tests/smali/build_result уже сохранены a5086b2 в той же ветке. Локальные незакоммиченные CODEX_NEXT/OBJECT_CHOOSER_STATE и артефакты/toolchain не сбрасывать: remote evidence docs записаны через GitHub поверх a5086b2 и могут опережать checkout. При восстановлении сначала сохранить/сравнить эти docs и fetch без reset/clean.
+Следующий шаг: диагностировать first-visible/adapter count и saved/restored first/top до/после реального поворота; first==6 не ослаблять. Original-folder запустить до/независимо scroll-отказа, критерий сохранить. Исправить подтверждённую причину, rebuild и полный CI32; не делать слепой rerun из-за adb offline при ещё открытом chooser failure. Только после этого следующий функциональный пробел: raw-форма координат отдельной вершины GeometryEditorActivity, сначала реальное воспроизведение потери на23/35.
+minSdk23/название/Arimo/ресурсы/онлайн-карты/кеш/privacy безGPS сохранены; release_gate/requirements не менялись, false25 и0 accepted. Основные ключи/данные телефона не использованы. Новая облачная задача не создана; публикация reusable-среды не исправлена наличием CI.
+
+## Восстановление среды и диагностика chooser — 31 октября
+Штатный environment_status: observations_current=true, running/connected, network restricted/enforced, failure=null; shell/Java17/SDK работают. Других агентов нет. Локальные docs сохранены /workspace/work/manager-confirm/resume-20261031-062531 и отдельным docs-only stash (не удалять). Сравнение CODEX показало, что local — prefix remote; checkout fast-forward6cf9c4a, без reset/clean/merge commit. Артефакты/toolchain сохранены. Публикация reusable-среды этим не доказана.
+Добавлена bounded диагностика RK_CHOOSER: actual/requested/saved/restored first/top, adapter/children count, size, selected/touch/layoutRequested; без object names/XML/координат/сети. QA-driver сохраняет/выводит tag-only logcat до256 строк/32768 chars. Тест логирует позиции до/после snapshot и настоящего recreate, first==6 сохранён; PNG делается до assert, original-folder выполняется ДО scroll. Поведение восстановления ещё не исправлялось без причины.
+Локальная QA diagnostics build 418 classes, minSdk23, INTERNET only; source SHA совпали, JVM22/81190 и driver12 pass, instrumentation compiled. unsigned 15ce83b50b7bd8b6780cd161f6fe731992595d1c8766252f2c8e18fb53de6745. Требуется полныйCI32 для новых фактов, не слепой rerun a5086b2.
+
+## 4 ноября: продолжение по завершённому диагностическому CI
+Штатный status running/connected/current, shell/Java17/SDK доступны; HEAD/origin8d0a0cf, дерево чистое, другой агент отсутствует. Stash/docs/все артефакты/toolchain сохранены. CI41176758819 completed23 job124465881927,35 job124465881897: previous31 passed на обеих API; chooser original-folder PASS на обеих. Диагностика:23 count20,paddingTop8, setSelection(6,0) даёт first5/top-40 (строка6top8); это абсолютный/относительный offset теста, не потеря после поворота.35 save6/top0 ->restoreBundle6/top0 ->show/layoutRequested=true ->после actual destroyed/recreate first0/top0. Сохранение token/indices/папки корректно; raw setSelection при показе не участвует в sync первого layout.29 PNG SHA-проверены;5 ключевых PNG фактически просмотрены (scroll23, folder23, scroll-before35, scroll-land35, folder35).
+Кандидат fix: test setSelection(6,-getListPaddingTop()), first==6 сохранён и добавлен top==0. App сохраняет ограниченный4096 bytes native ListView Parcelable (без XML/названий) и восстанавливает public onRestoreInstanceState; numeric fallback после устойчивого pre-draw с вычитанием padding. Project/process/token guards и отсутствие автоMove сохранены. Сборка выполняется; Android-готовность не заявлена.
+
+Fix QA chooser-native-final-build завершена:419 classes, minSdk23, INTERNET only, legacy/native/stubs/missingrefs=false; JVM22/81190, driver12 pass; all source hashes match build_result. unsigned9d15721ddb363d74bd16eced786068469bc9016452ab6886cce2c7749f6b505d. Native Parcelable потребляется однократно только после project/process/token/indices guards; blocked/foreign chooser не применяет native state. first==6 и absolute top==0 обязательны до/после обоих actual поворотов. Нужен полныйCI32 с новымкодом/PNG; критерии/releasegate не менялись.
+
+F5 CI41793608248 завершён failure обоих chooser (остальные31 passed, no skip/offline).23 precondition теперь first6/top0 PASS, original-folder обе API PASS. Однако native state в onShow при layoutRequested=true тоже сбрасывается: save6/top0, restoreBundle6/top0, native bytes136/152, после реального recreate first0/top8(23), first0/top0(35). Значит текущего onShow недостаточно, f5 не принят.30 PNG SHA-проверены/сохранены candidate-f5-api23/35;4 scroll-before/land PNG просмотрены. Новый кандидат переносит native restore на однократный pre-draw при childCount>0 и layoutRequested=false; числовой fallback там же, без таймеров и без ослабления first6/top0. Сборка chooser-predraw-build выполняется.
+
+Pre-draw candidate собран:420 classes; JVM22/81190, driver12 pass, source SHA совпали, unsignedc6c83d42c556e2978c46d3ead9a2742cc87d5c12452d0609f1c23b826bbe3a57. Требуется полныйCI32; f5 failure не выдавать за готовность. Отдельно подготовлен untracked VertexRotationChecks.java (test APK compiled180072 bytes, не запускался/не зарегистрирован): только будущая baseline raw vertex формы после проверенного chooser; production GeometryEditorActivity не менялся.
+
+ПРОВЕРЕННЫЙ chooser: ebc29d5 / CI41796713928 all success;23 job126462567978,35 job126462567993, JVM126462427301. ОбеAPI32/32 безskip/offline; chooser405/401; first6/top0 до/после обоих actual destroyed/recreate; original-folder и все Cancel/explicit Move/stale/foreign проверки passed.32 финальных PNG SHA-проверены и все фактически просмотрены, Arimo metadata true, final-ebc-api23/35/result сохранены. Gate expected false25, requirements0accepted. Это scoped emulator QA, не полная приёмка программы.
+Следующий участок начат: baseline VertexRotationChecks (valid/invalid rawtext,cursor1..3,error,realIME,dirty main draft), exact portrait и old.isDestroyed. AppGeometry ещё не менялся; сначала обаAPIфакты. Новый defaultCI33 сохраняет предыдущие32 и bounded480s/16PNG, Vertexprobe4 PNG; baseline не ослаблять при потере.
+
+Raw vertex baseline зарегистрирован: vertexrotation после прежних32 режимов; valid/invalid cases собираются до итоговогоassert, настоящий IME/portrait и exact cursor/error проверяются до actual destroyed/recreate, KML/assets/main draft сравниваются. Native GeometryEditor не менялся. Local testAPK180165 compiled, host12 pass. Ожидается новый полныйCI33; ни воспроизведение, ни исправление raw-form пока не заявлены. Архив verified chooser: /workspace/work/manager-confirm/chooser-ebc29d5-verified-evidence.zip (без APK/ключей).
+
+Vertex baseline0b574a2 / CI41800304932 завершён: прежние32 passed обе API; vertexrotation expected failure, valid/invalid restored=false на23/35 после actual destroyed/recreate. Portrait,exact raw/cursor1..3/error,realIME preconditions passed. Dirty main draft/KML/assets сохранены.8 PNG SHA-проверены и все просмотрены, before-api23/35 и before-result.json сохранены. Подтверждены также modal non-Arimo и перекрытие кнопок native errorPopup в portraitIME. Production GeometryEditor ещё не менялся; далее bounded owner/feature/process/key/token/main-input-stamp raw draft и inline validation без popup, explicit Apply только во ввод; KML Save отдельно.
+
+Raw vertex candidate: bounded owner/feature/process/key/token/main-input SHA256 draft сохраняет raw/selection/error, не выполняет Apply/Save после восстановления. Stale main/token блокирует Apply; foreign owner/feature/process отклоняется. Inline validation вместо перекрывающего кнопки popup; Arimo для формы/selector, compact landscape IME layout. JVM23/81259 (VertexEditDraft69), driver12 passed; QA425 own classes/minSdk23/INTERNET only, unsigned d1e4af21f6c155e29cc04acb5eb0179a208a84bed99cace395768853dd8d6ab5; all source SHA match build_result. Full CI33 ещё требуется; candidate не принят. Tests16 PNG/API: valid/invalid оба actual поворота и IME, Cancel/ghost, explicit route Apply затем отдельный Save, stale-before/after, changed main, foreign project/feature; exact raw/cursor/error и XML/assets guards.
+
+Vertex841843a / CI41809524186: JVM success23/81259, driver12; API23 job126505105617 SUCCESS33/33, vertexrotation348; all16 PNG SHA-verified and viewed, both rotations/raw/cursor/error/IME/Cancel/explicit Apply+Save/stale/foreign pass. API35 job126505105775 FAILURE: previous32 pass; new vertex test fails initial portrait precondition "real IME reduces vertex visible frame" before rotation. Actual SHA-verified PNG viewed: real keyboard, exact raw/cursor, Arimo and both actions visible. Therefore API35 recreation/functional cases NOT tested in this run; no full acceptance. Boot offline lines preceded successful scenarios, not counted as success for a failed mode. New test-only diagnostics logs Display real metrics, dialog/activity visible frame, decor dimensions/location and wm size; threshold100 retained, no production change. Need completed diagnostic CI to establish metrics cause, not blind rerun or weakening.17 candidate PNG retained candidate-841-api23/35; baseline preserved.
+
+Diagnostic352d74c / CI41812277514 completed: API23 job126514421899 success33/33; API35 job126514421499 failure only vertex initial metric. Confirmed metrics35 physical320x640, dialogFrame0,24,320,616 but ActivityFrame0,24,320,381 and IME381..616;23 both frames394 portrait/136 landscape. Native floating dialog visible-frame excludes IME on35. Candidate uses Activity frame for compact layout and same unchanged100px assertion, adds physical screen-coordinate button+editable-line guards against actual TYPE_INPUT_METHOD rectangle/system frame. No restore/token/raw criteria removed. Local new QA425 classes/min23/INTERNET only, unsigned05073b26bc3722ac3be57263a929a7a7c088fad420e68663b35dcd2a632f88a1; JVM23/81259, driver12 pass, source SHA match. Full CI33/new PNG still required. Diagnostic observations preserved; no API35 rotated success claimed.
+
+EA CI41815203438 completed FAILURE: previous32 passed BOTH;23 job126524132095 valid/invalid raw restored, physical IME/actions pass, but title not restored after invalid IME-hide;35 job126524139413 raw restored=true but landscape dialog remains narrow/noncompact, input/actions clipped.10 PNG SHA-verified retained candidate-ea-api23/35;2 actual failure PNG viewed (API35 valid-land-ime,23 invalid-land-ime). Frame already small in metrics but callback observes only floating dialog layout, misses later Activity frame updates; hidden-IME reverse suffers same separate-window update. New candidate listens to BOTH Activity+dialog global layouts, removes BOTH listeners synchronously on dismiss/Apply/Cancel/destroy. Layout still uses Activity frame. Hidden-IME PNG moved before title assertion so failure evidence retained; all predicates and physical checks preserved. Local QA426 ownclasses/min23/INTERNET only; unsignedb8bce8af747b5d13f698206fb9e8213cf1ba63ca29a4a4aee9aff07dde6d83a6, JVM23/81259, driver12, source SHA match. Need fullCI33/newPNG; raw stage NOT accepted yet.
+
+66cb8ca / CI41818076658 attempt1: API23 job126534032228 SUCCESS33/33, vertex369; API35 job126534033563 vertexrotation364 PASS all cases, but overall FAIL. managerpasteconfirm instrumentation908 PASS but PNG retrieval failed (No manager visual screenshots); next managerchooser failed before start adb device offline; NOT counted passed. New raw16PNG/API SHA verified and all32 actually viewed; Arimo true, field/actions above physicalIME, both actual rotations, exact raw/selection/error, hideIME full dialog, Cancel/no ghost, route Apply then explicit Save, stale/foreign checks pass. In82px-high API35 landscape viewport long validation/warning is outside current scroll viewport; after IME hide full message visible. No claim all text simultaneously visible or full visual parity. Requested ONE diagnosed infrastructure-only re-run of API35 job at same source66cb8ca; accepted=true NOT set until full33 pass. New job126542692549 running; no source change/retry loop. Saved attempt1 evidence candidate-66-attempt1-api23/35.
+
+FINAL66: CI41818076658 attempt2 all success, both33/33.32 final PNG SHA verified/all viewed. Historical attempt1 transport failure retained, not relabelled success. Scope and remaining short-landscape message accessibility noted in current header and VERTEX_FORM_STATE. No requirements accepted/gate weakened.
+
+Продолжение touch-scroll: environment running/connected/current, only root, HEAD/origin e5ee1c7 clean; stash/toolchain preserved, Java17/SDK confirmed. CI41824191397 completed success all jobs, historical raw baseline not repeated. Added TEST-ONLY vertexscroll: genuine injected touch swipes in real IME landscape, API35 exact82px Activity viewport, per-line physical message coverage, PNG upon new line exposure, reverse gestures restore field, raw/selection/error/owner/token/physical guards and real Apply/Cancel touches; KML/assets unchanged. Production unchanged. Local instrumentation compiled, JVM23/81259 and driver12 pass; default fullCI34 preserves previous33 +newmode, caps480s/16PNG unchanged. Need actual Android results/new PNG before claiming message reachability; Geometry delete-confirm baseline NOT yet started.
+
+Scroll2042d61 / CI41832736735 completed: JVM success; API35 job126583924899 success34/34, vertexscroll453. RealIME frame82px, content26px; error scrollY1→13→23 exposes full21px line; warning38→26→13→0 exposes both18/19px lines sequentially; field returns, raw/cursor1..3/error/token unchanged, physical Apply(invalid)/Cancel touches and no KML/assets changes. API23 job126583924515 previous33 pass; new probe fails only after8 needless reverse gestures at already-original scrollY0, which tap/move caret to4..4. This is probe trajectory defect (message already fully visible at0), NOT app state loss.12 PNG SHA-verified/all viewed, probe-2042 evidence retained. Test-only correction stops return gestures once original scrollY reached; all raw/cursor/error/token/physical criteria unchanged, including guard after each needed return gesture. Latest TestAPK compiled189636, driver12 pass; production unchanged. Need new fullCI34 for corrected probe; no blind rerun, no new raw baseline.
+
+Scroll027fb46 / CI41836738028 completed:35 job126597648647 success34/34, vertexscroll416; all lines reachable again with IME and raw guards.23 job126597648634 previous33 pass; invalid nowPASS; stale message both lines fully visible at scrollY1 (content64px), first touch→0 still raw1..3. Attempting to restore irrelevant1px despite field already available then fails strict raw/cursor/error guard; exact postfailure field was not logged, so do not claim exact changed cursor value for this case.2 actual stale-field/message23 PNG viewed show full message and field; all14 PNG SHA-verified retained probe-027-api23/35 (only2 reviewed this attempt). Test-only correction stops return when a full editable line is physically inside ScrollView/Activity clip, the same line-height threshold as existing guards; all final physical/raw/cursor/error/token assertions remain; added after-return raw diagnostics. Production unchanged. Need fullCI34; no Geometry confirm baseline yet.
+
+API35 target scroll proved twice on unchanged app (2042/027 runs34/34). Next fullCI36 combines final test-only API23 return-condition correction with INDEPENDENT new geometryvertexconfirm/geometryholeconfirm baselines (pm clear isolates modes). Baseline tests select middle of3 route vertices / second of2 inner rings, verify native Cancel without writes, portrait→actual destroyed/recreate90, exact main/key/token/owner and XML/assets, snapshot before/after. Native confirmations not assumed restored; expected failure if lost. No production changes before facts. Explicit post-restore confirm/stale/main-changed/foreign extension remains pending baseline results; do not claim those executed. Existing34 preserved,480s/16PNG caps unchanged.
+
+Guarded Geometry confirmation candidate (AFTER 6d baseline facts): new bounded immutable GeometryConfirmationDraft owner/feature/process/key/token/main SHA/type/kind/index/adding-hole, JVM56 new assertions; total24 suites81315. onSave saves only original primitives, restore never executes action; Cancel clears intent; source address/view Bundle now owner-bound. Explicit confirm rereads current geometry via public GeometryEdits.parts and rejects token/key/type/hole mismatch or changed UI; then vertex changes only main draft, hole stages readonly deletion awaiting separate MainSave. No draft-file format changes; pending intent process-scoped. Staged Cancel/Back safe, stale Save token protection retained, newer main preserved. Initial local compile failed using private GeometryEdits.token; corrected to public addressed parts/token API, no visibility weakened. Final local QA431 ownclasses/min23/INTERNET only/no legacy/native/stubs/missing refs, unsigned b3111d4d33250f4aa44f51802a450f102c27df7723d494f77e041614a38b2d5e; all source SHA match, tests APK compiled and sealed DEX contains latest stage/Save guards; driver12 pass. Gate false25, requirements0accepted.
+Expanded independent geometryvertexconfirm/geometryholeconfirm: original baseline Cancel/both actual rotations retained; explicit confirm+separateSave only selected middle vertex/second inner ring; stale-before/after, main-changed, stale Save, foreign project sameXML/feature, staged Cancel/mainchanged/foreign; up to12/16 bounded PNG per mode. Existing geometryedit now adds no-KML-before-Save assertion and explicitSave before its unchanged selected-hole-removed assertion, per user Save requirement. Production candidate is NOT accepted until fullCI36 and newPNG reviewed.
+
+После проверенного1fc/CI41852078435 продолжается следующий ограниченный функциональный пробел: test-only vertexinsertion (default fullCI37, old36 preserved). Before/after index1, nonzero MultiGeometry LineString0.1 / second inner0.1/inner1; dirty main/raw point/selection1..3/original owner+process+token+key+op+hash, realIME/оба actualrecreate, Cancel or explicit Apply→separate MainSave, exact full remaining DOM/assets.16 PNG total per API; caps unchanged. Production unchanged for this probe. New Android results NOT available yet; local compile/driver pending.
+
+Next insertion probe local compiled TestAPK, host12 passed. App source remains verified1fc (431/min23/INTERNET only; source SHA unchanged), no speculative production fix. FullCI37/new16PNG each required for actual before/after nonzero-part/inner-ring restore/explicit actions; no result claimed yet.

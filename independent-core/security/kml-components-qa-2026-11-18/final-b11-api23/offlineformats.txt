@@ -1,0 +1,69 @@
+INSTRUMENTATION_STATUS: stream=START offlineformats
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-import-prompt toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 100, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и qa_ozi.png. По умолчанию UTF-8\/ASCII; Windows-1251 только по явному выбору ниже. WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MS","foreground":"#de000000","arimo":true,"bounds":"[16, 147, 288, 330]","visible":true,"visibleBounds":"[16,81][304,411]","fullyVisible":true},{"class":"CheckBox","text":"Кодировка .map: Windows-1251 (явно)","foreground":"#ff202020","arimo":true,"bounds":"[16, 477, 288, 48]","visible":true,"visibleBounds":"[16,411][304,459]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[59, 529, 84, 48]","visible":true,"visibleBounds":"[59,463][143,511]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff009688","arimo":true,"bounds":"[143, 529, 149, 48]","visible":true,"visibleBounds":"[143,463][292,511]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-import-saved toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-bmp-import-prompt toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 100, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и qa_ozi.bmp. По умолчанию UTF-8\/ASCII; Windows-1251 только по явному выбору ниже. WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MS","foreground":"#de000000","arimo":true,"bounds":"[16, 147, 288, 330]","visible":true,"visibleBounds":"[16,81][304,411]","fullyVisible":true},{"class":"CheckBox","text":"Кодировка .map: Windows-1251 (явно)","foreground":"#ff202020","arimo":true,"bounds":"[16, 477, 288, 48]","visible":true,"visibleBounds":"[16,411][304,459]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[59, 529, 84, 48]","visible":true,"visibleBounds":"[59,463][143,511]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff009688","arimo":true,"bounds":"[143, 529, 149, 48]","visible":true,"visibleBounds":"[143,463][292,511]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-bmp-import-saved toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-gif-import-prompt toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 100, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и qa_ozi.gif. По умолчанию UTF-8\/ASCII; Windows-1251 только по явному выбору ниже. WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MS","foreground":"#de000000","arimo":true,"bounds":"[16, 147, 288, 330]","visible":true,"visibleBounds":"[16,81][304,411]","fullyVisible":true},{"class":"CheckBox","text":"Кодировка .map: Windows-1251 (явно)","foreground":"#ff202020","arimo":true,"bounds":"[16, 477, 288, 48]","visible":true,"visibleBounds":"[16,411][304,459]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[59, 529, 84, 48]","visible":true,"visibleBounds":"[59,463][143,511]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff009688","arimo":true,"bounds":"[143, 529, 149, 48]","visible":true,"visibleBounds":"[143,463][292,511]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-gif-import-saved toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-windows-import-prompt toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_PROMPT [{"class":"DialogTitle","text":"Импорт Ozi","foreground":"#de000000","arimo":true,"bounds":"[40, 100, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Явно выбраны .map и картаЁ.png. По умолчанию UTF-8\/ASCII; Windows-1251 только по явному выбору ниже. WGS 84 \/ Latitude–Longitude, affine по минимум 3 точкам, MS","foreground":"#de000000","arimo":true,"bounds":"[16, 147, 288, 330]","visible":true,"visibleBounds":"[16,81][304,411]","fullyVisible":true},{"class":"CheckBox","text":"Кодировка .map: Windows-1251 (явно)","foreground":"#ff202020","arimo":true,"bounds":"[16, 477, 288, 48]","visible":true,"visibleBounds":"[16,411][304,459]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[59, 529, 84, 48]","visible":true,"visibleBounds":"[59,463][143,511]","fullyVisible":true},{"class":"Button","text":"Импортировать","foreground":"#ff009688","arimo":true,"bounds":"[143, 529, 149, 48]","visible":true,"visibleBounds":"[143,463][292,511]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=OZI_CAPTURE frame=mvisual-ozi-windows-import-saved toastSettleMillis=8000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=HILLSHADE_PROMPT [{"class":"DialogTitle","text":"Создать рельеф DEM","foreground":"#de000000","arimo":true,"bounds":"[40, 158, 240, 29]","visible":true,"visibleBounds":"[40,34][280,63]","fullyVisible":true},{"class":"TextView","text":"Из установленного HGT будет создана серая отмывка: свет с азимута 315°, высота света 45°, без увеличения высот. WGS84, метры SRTM; прозрачные ячейки при NoData.","foreground":"#de000000","arimo":true,"bounds":"[16, 205, 288, 262]","visible":true,"visibleBounds":"[16,81][304,343]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[120, 471, 84, 48]","visible":true,"visibleBounds":"[120,347][204,395]","fullyVisible":true},{"class":"Button","text":"Создать","foreground":"#ff009688","arimo":true,"bounds":"[204, 471, 88, 48]","visible":true,"visibleBounds":"[204,347][292,395]","fullyVisible":true}]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=HILLSHADE_READY elapsedMillis=4394 waitLimitMillis=45000
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=HILLSHADE_CONVERTING preparedVisible=true busy=true
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=HILLSHADE_CONVERTING preparedVisible=true busy=true
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MANAGER_LAUNCH project=13 actualProject=13 replaced=false firstDestroyed=false portrait=true
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MANAGER_VISUAL {"name":"kml-component-error","visibleFrame":"[0,24][320,394]","orientation":1,"nightMask":16,"texts":[{"class":"DialogTitle","text":"Цвет линии и контура KML","foreground":"#de000000","arimo":true,"bounds":"[40, 58, 240, 27]","visible":true,"visibleBounds":"[40,34][280,61]","fullyVisible":true},{"class":"TextView","text":"Меняется только выбранное свойство этого объекта. Общий Style\/StyleMap и другие объекты сохраняются. Цвет: 8 знаков aabbggrr (ff0000ff — красный, 00 — прозрачно","foreground":"#8a000000","arimo":true,"bounds":"[32, 40, 256, 181]","visible":true,"visibleBounds":"[32,61][288,197]","fullyVisible":false},{"class":"EditText","text":"invalid","foreground":"#de000000","arimo":true,"bounds":"[32, 221, 256, 48]","visible":true,"visibleBounds":"[32,197][288,245]","fullyVisible":true},{"class":"TextView","text":"Введите 8 знаков aabbggrr, например ff0000ff — красный; пусто — наследование","foreground":"#ffb00020","arimo":true,"bounds":"[32, 269, 256, 53]","visible":true,"visibleBounds":"[32,245][288,298]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[100, 326, 84, 48]","visible":true,"visibleBounds":"[100,302][184,350]","fullyVisible":true},{"class":"Button","text":"Сохранить","foreground":"#ff009688","arimo":true,"bounds":"[184, 326, 108, 48]","visible":true,"visibleBounds":"[184,302][292,350]","fullyVisible":true}],"imeWindows":["[0,394][320,740]"],"keyboardRequested":true,"keyboardObserved":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MANAGER_VISUAL {"name":"kml-component-editor","visibleFrame":"[0,24][320,394]","orientation":1,"nightMask":16,"texts":[{"class":"DialogTitle","text":"Цвет линии и контура KML","foreground":"#de000000","arimo":true,"bounds":"[40, 58, 240, 27]","visible":true,"visibleBounds":"[40,34][280,61]","fullyVisible":true},{"class":"TextView","text":"Меняется только выбранное свойство этого объекта. Общий Style\/StyleMap и другие объекты сохраняются. Цвет: 8 знаков aabbggrr (ff0000ff — красный, 00 — прозрачно","foreground":"#8a000000","arimo":true,"bounds":"[32, 93, 256, 181]","visible":true,"visibleBounds":"[32,69][288,250]","fullyVisible":true},{"class":"EditText","text":"ff00ffff","foreground":"#de000000","arimo":true,"bounds":"[32, 274, 256, 48]","visible":true,"visibleBounds":"[32,250][288,298]","fullyVisible":true},{"class":"Button","text":"Отмена","foreground":"#ff009688","arimo":true,"bounds":"[100, 326, 84, 48]","visible":true,"visibleBounds":"[100,302][184,350]","fullyVisible":true},{"class":"Button","text":"Сохранить","foreground":"#ff009688","arimo":true,"bounds":"[184, 326, 108, 48]","visible":true,"visibleBounds":"[184,302][292,350]","fullyVisible":true}],"imeWindows":["[0,394][320,740]"],"keyboardRequested":true,"keyboardObserved":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=KML_STYLE_METRICS actual width12/2/zero and label2/1/zero pixel guards PASS
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=KML_COMPONENT_STYLE renderer/StyleMap/inline/alpha/fill/outline/KMZ/reopen/data PASS
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=PASS offlineformats: 1361 assertions
+
+INSTRUMENTATION_CODE: -1
