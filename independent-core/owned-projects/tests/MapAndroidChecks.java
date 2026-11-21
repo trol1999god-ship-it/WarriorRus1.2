@@ -713,6 +713,14 @@ public final class MapAndroidChecks extends Instrumentation {
   Field dockField=owner.getClass().getDeclaredField("mapDock");dockField.setAccessible(true);
   android.widget.LinearLayout dock=(android.widget.LinearLayout)dockField.get(owner);
   android.view.View mapView=(android.view.View)map();
+  double[] camera=(double[])call(mapView,"viewport",new Class[]{});
+  Field zoomField=owner.getClass().getDeclaredField("zoomButtons");zoomField.setAccessible(true);
+  android.view.View zoom=(android.view.View)zoomField.get(owner);
+  Field statusField=owner.getClass().getDeclaredField("status");statusField.setAccessible(true);
+  android.view.View status=(android.view.View)statusField.get(owner);
+  int fullWidth=mapView.getWidth();
+  checkMapControlBounds(dock,zoom,status);
+  capture("map-resize-wide");
   runOnMainSync(()->owner.getWindow().setLayout(Math.round(290*density),-1));
   try {
    Thread.sleep(500);
@@ -735,10 +743,25 @@ public final class MapAndroidChecks extends Instrumentation {
     check(dock.getChildAt(1).getGlobalVisibleRect(visible)&&visible.width()>=Math.round(48*density),"collapse remains pinned outside the scrolling area");
     check(mapView.getParent()==dock.getParent()&&mapView.getBottom()>dock.getBottom(),"dock floats over the map");
    });
+   check(mapView.getWidth()<fullWidth,"map receives a narrower window");
+   check(Arrays.equals(camera,(double[])call(mapView,"viewport",new Class[]{})),"compact resize holds center and zoom");
+   checkMapControlBounds(dock,zoom,status);
+   capture("map-resize-compact");
   } finally {
    runOnMainSync(()->owner.getWindow().setLayout(-1,-1));
-   waitForIdleSync();
+   stableMainMap();
   }
+  check(mapView.getWidth()==fullWidth,"map returns to full width");
+  check(Arrays.equals(camera,(double[])call(mapView,"viewport",new Class[]{})),"return to full width holds center and zoom");
+  checkMapControlBounds(dock,zoom,status);
+  capture("map-resize-restored");
+ }
+ void checkMapControlBounds(android.view.View dock,android.view.View zoom,android.view.View status) {
+  runOnMainSync(()->{
+   check(dock.getBottom()==zoom.getBottom(),"zoom out and shortcuts share the bottom inset");
+   check(dock.getRight()<=zoom.getLeft(),"tool buttons do not overlap zoom targets");
+   check(status.getRight()<zoom.getLeft()&&status.getBottom()<dock.getTop(),"attribution clears both control areas");
+  });
  }
  void waitForMapOrientation(int orientation)throws Exception {
   long until=android.os.SystemClock.uptimeMillis()+15000;

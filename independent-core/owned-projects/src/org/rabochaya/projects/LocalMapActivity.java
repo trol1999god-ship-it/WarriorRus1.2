@@ -35,15 +35,19 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   scaleLayout.topMargin=edge;mapReadout.addView(mapScale,scaleLayout);
   String description=onlineMode?source.name+" · "+(OnlineMapSettings.network(this)?"онлайн + кеш":"только кеш"):mapFile().isFile()?"Локальная карта MBTiles":"Обзорная карта";
   if(composition!=null){StringBuilder names=new StringBuilder();LinkedHashSet<String> copyrights=new LinkedHashSet<>();int count=0;for(MapComposition.Layer layer:composition.layers)if(layer.visible&&layer.opacity>0){count++;if(names.length()>0)names.append(" · ");names.append(layer.name);TileSource raster=layer.source();if(raster!=null)copyrights.add(raster.attribution);}description="Композиция: "+count+" слоёв · "+features.size()+" видимых объектов"+(count==0?" · без подложки":"\n"+names.toString());for(String credit:copyrights)description+="\n"+credit;}if(!compositionError.isEmpty())description+="\n"+compositionError;
-  status=label(description+(composition==null?" · "+features.size()+" видимых объектов":"")+(composition==null&&onlineMode?"\n"+source.attribution:""),11);status.setBackground(MapHud.panel(this));status.setTextColor(MapHud.INK);if(composition!=null){final String info=description;status.setMaxLines(3);status.setEllipsize(android.text.TextUtils.TruncateAt.END);status.setContentDescription("Состав и подписи карт");status.setOnClickListener(v->{AlertDialog d=new AlertDialog.Builder(this).setTitle("Состав и подписи карт").setMessage(info).setPositiveButton("Закрыть",null).create();d.setOnShowListener(w->compositionFont(d.getWindow().getDecorView()));d.show();});}LinearLayout rightControls=new LinearLayout(this);
-  rightControls.setOrientation(LinearLayout.VERTICAL);
-  rightControls.setGravity(Gravity.RIGHT);
-  FrameLayout.LayoutParams sp=new FrameLayout.LayoutParams(-2,-2,Gravity.BOTTOM|Gravity.RIGHT);
-  sp.setMargins(edge,0,edge,dockHeight+edge);scene.addView(rightControls,sp);
-  zoomButtons=new LinearLayout(this);zoomButtons.setOrientation(LinearLayout.VERTICAL);zoomButtons.setVisibility(getPreferences(0).getBoolean("show_zoom",true)?View.VISIBLE:View.GONE);rightControls.addView(zoomButtons,new LinearLayout.LayoutParams(control,-2));
-  zoomButtons.addView(zoomButton("plus","+",()->map.step(1)),new LinearLayout.LayoutParams(control,control));
-  zoomButtons.addView(zoomButton("minus","−",()->map.step(-1)),new LinearLayout.LayoutParams(control,control));
-  rightControls.addView(status,new LinearLayout.LayoutParams(-2,-2));
+  status=label(description+(composition==null?" · "+features.size()+" видимых объектов":"")+(composition==null&&onlineMode?"\n"+source.attribution:""),11);status.setBackground(MapHud.panel(this));status.setTextColor(MapHud.INK);if(composition!=null){final String info=description;status.setMaxLines(3);status.setEllipsize(android.text.TextUtils.TruncateAt.END);status.setContentDescription("Состав и подписи карт");status.setOnClickListener(v->{AlertDialog d=new AlertDialog.Builder(this).setTitle("Состав и подписи карт").setMessage(info).setPositiveButton("Закрыть",null).create();d.setOnShowListener(w->compositionFont(d.getWindow().getDecorView()));d.show();});}
+  int bottom=WorkspaceUi.dp(this,2);
+  FrameLayout.LayoutParams statusLayout=new FrameLayout.LayoutParams(-2,-2,Gravity.BOTTOM|Gravity.RIGHT);
+  statusLayout.setMargins(edge,0,control+2*edge,dockHeight+edge);
+  scene.addView(status,statusLayout);
+  zoomButtons=new LinearLayout(this);
+  zoomButtons.setOrientation(LinearLayout.VERTICAL);
+  zoomButtons.setVisibility(getPreferences(0).getBoolean("show_zoom",true)?View.VISIBLE:View.GONE);
+  FrameLayout.LayoutParams zoomLayout=new FrameLayout.LayoutParams(control,-2,Gravity.BOTTOM|Gravity.RIGHT);
+  zoomLayout.setMargins(0,0,edge,bottom);
+  scene.addView(zoomButtons,zoomLayout);
+  zoomButtons.addView(zoomButton("plus","+",()->map.step(1)),new LinearLayout.LayoutParams(control,dockHeight));
+  zoomButtons.addView(zoomButton("minus","−",()->map.step(-1)),new LinearLayout.LayoutParams(control,dockHeight));
   HorizontalScrollView tools=new HorizontalScrollView(this);
   tools.setFillViewport(true);
   tools.setHorizontalScrollBarEnabled(false);
@@ -52,7 +56,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   LinearLayout dock=new LinearLayout(this);mapDock=dock;
   dock.addView(tools,new LinearLayout.LayoutParams(0,-1,1));
   FrameLayout.LayoutParams dockLayout=new FrameLayout.LayoutParams(control,dockHeight,Gravity.BOTTOM|Gravity.LEFT);
-  dockLayout.setMargins(edge,0,edge,WorkspaceUi.dp(this,2));scene.addView(dock,dockLayout);
+  dockLayout.setMargins(edge,0,edge,bottom);scene.addView(dock,dockLayout);
   tool(toolbar,"menu","Меню",()->mainMenu());tool(toolbar,"maps","Карты",()->mapsMenu());tool(toolbar,"marks","Метки",()->marksMenu());tool(toolbar,"files","Файловый менеджер",()->manager(false));tool(toolbar,"compass","Ориентирование",()->orientationMenu());
   final boolean toolsVisible=getPreferences(0).getBoolean("show_tools",true);
   tools.setVisibility(toolsVisible?View.VISIBLE:View.GONE);
