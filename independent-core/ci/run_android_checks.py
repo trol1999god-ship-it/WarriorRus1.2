@@ -138,17 +138,20 @@ for mode in a.modes:
   try:pull_result=adb('pull','/sdcard/Android/data/org.rabochaya.karta/files',out/mode);pull_ok=True
   except Exception as error:pull_result=str(error);pull_ok=False
   (out/(mode+'-artifact-pull.txt')).write_text(pull_result[-16384:])
-  if mode=='launcher':
+  actions={
+   'launcher':[(step,phase) for step in ('zoom-in','zoom-out','menu','maps','orientation','files','collapse','marks','search') for phase in ('before','after')],
+   'maplayers':[(step,phase) for step in ('layers-source','layers-opacity','layers-order','layers-visibility') for phase in ('before','after')]+[('layers-reopen','before')],
+   'maplayersreopen':[('layers-reopen','after')],
+  }
+  if mode in actions:
    trace=adb('logcat','-d','-s','RK_MAP_UI:I','*:S',required=False)
-   (out/'launcher-map-actions.log').write_text(trace)
-   steps=('zoom-in','zoom-out','menu','maps','orientation','files','collapse','marks','search')
-   for step in steps:
-    for phase in ('before','after'):
-     stem=f'dock-{step}-{phase}'
-     if f'{step} {phase} target=' not in trace or not all(
-       path.is_file() and path.stat().st_size for path in (out/mode/f'map_{stem}.png',out/mode/f'{stem}.txt')):
-      passed=False
-      print(f'MAP_ACTION_EVIDENCE_MISSING {stem}',flush=True)
+   (out/(mode+'-map-actions.log')).write_text(trace)
+   for step,phase in actions[mode]:
+    stem=f'dock-{step}-{phase}'
+    if f'{step} {phase} target=' not in trace or not all(
+      path.is_file() and path.stat().st_size for path in (out/mode/f'map_{stem}.png',out/mode/f'{stem}.xml')):
+     passed=False
+     print(f'MAP_ACTION_EVIDENCE_MISSING {stem}',flush=True)
   if mode=='managerchooser':
    layout=adb('logcat','-d','-s','RK_CHOOSER:D','*:S',required=False)
    (out/'managerchooser-layout.txt').write_text(layout)

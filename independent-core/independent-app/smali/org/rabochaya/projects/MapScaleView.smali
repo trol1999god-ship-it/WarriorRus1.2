@@ -21,7 +21,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/app/Activity;)V
-    .locals 3
+    .locals 4
 
     .line 18
     invoke-direct {p0, p1}, Landroid/view/View;-><init>(Landroid/content/Context;)V
@@ -41,7 +41,7 @@
     iput-object v0, p0, Lorg/rabochaya/projects/MapScaleView;->caption:Ljava/lang/String;
 
     .line 19
-    const/high16 v0, 0x40e00000    # 7.0f
+    const/high16 v0, 0x40c00000    # 6.0f
 
     invoke-static {p1, v0}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
@@ -61,7 +61,7 @@
     .line 21
     iget-object v0, p0, Lorg/rabochaya/projects/MapScaleView;->paint:Landroid/graphics/Paint;
 
-    const v2, -0xf7d1b4
+    const v2, -0x150a01
 
     invoke-virtual {v0, v2}, Landroid/graphics/Paint;->setColor(I)V
 
@@ -70,31 +70,31 @@
 
     invoke-static {p1}, Lorg/rabochaya/projects/WorkspaceUi;->font(Landroid/app/Activity;)Landroid/graphics/Typeface;
 
-    move-result-object p1
+    move-result-object v2
 
-    invoke-virtual {v0, p1}, Landroid/graphics/Paint;->setTypeface(Landroid/graphics/Typeface;)Landroid/graphics/Typeface;
+    invoke-virtual {v0, v2}, Landroid/graphics/Paint;->setTypeface(Landroid/graphics/Typeface;)Landroid/graphics/Typeface;
 
     .line 23
-    iget-object p1, p0, Lorg/rabochaya/projects/MapScaleView;->paint:Landroid/graphics/Paint;
+    iget-object v0, p0, Lorg/rabochaya/projects/MapScaleView;->paint:Landroid/graphics/Paint;
 
     invoke-virtual {p0}, Lorg/rabochaya/projects/MapScaleView;->getResources()Landroid/content/res/Resources;
 
-    move-result-object v0
+    move-result-object v2
 
-    invoke-virtual {v0}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
+    invoke-virtual {v2}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
 
-    move-result-object v0
+    move-result-object v2
 
-    iget v0, v0, Landroid/util/DisplayMetrics;->scaledDensity:F
+    iget v2, v2, Landroid/util/DisplayMetrics;->scaledDensity:F
 
-    const/high16 v2, 0x41300000    # 11.0f
+    const/high16 v3, 0x41300000    # 11.0f
 
-    mul-float/2addr v0, v2
+    mul-float/2addr v2, v3
 
-    invoke-virtual {p1, v0}, Landroid/graphics/Paint;->setTextSize(F)V
+    invoke-virtual {v0, v2}, Landroid/graphics/Paint;->setTextSize(F)V
 
     .line 24
-    invoke-static {}, Lorg/rabochaya/projects/WorkspaceUi;->panel()Landroid/graphics/drawable/GradientDrawable;
+    invoke-static {p1}, Lorg/rabochaya/projects/MapHud;->panel(Landroid/app/Activity;)Landroid/graphics/drawable/GradientDrawable;
 
     move-result-object p1
 

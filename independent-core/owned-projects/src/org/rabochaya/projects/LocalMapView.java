@@ -133,7 +133,16 @@ public final class LocalMapView extends View {
     }
    }
   }
-  drawDraft(canvas);paint.setStyle(Paint.Style.FILL);paint.setColor(0xfff0cf52);float x=getWidth()/2f,y=getHeight()/2f;canvas.drawCircle(x,y,3*getResources().getDisplayMetrics().density,paint);
+  drawDraft(canvas);
+  float x=getWidth()/2f,y=getHeight()/2f,density=getResources().getDisplayMetrics().density;
+  paint.setStyle(Paint.Style.STROKE);
+  paint.setStrokeWidth(3*density);
+  paint.setColor(MapHud.INK);
+  canvas.drawCircle(x,y,3.5f*density,paint);
+  paint.setStrokeWidth(1.5f*density);
+  paint.setColor(WorkspaceUi.TEXT);
+  canvas.drawCircle(x,y,3.5f*density,paint);
+  paint.setStyle(Paint.Style.FILL);
  }
  private void drawTiles(Canvas canvas,int layer,TileSource source){drawTiles(canvas,layer,source,null);}
  private void drawTiles(Canvas canvas,int layer,TileSource source,RasterLayer group){

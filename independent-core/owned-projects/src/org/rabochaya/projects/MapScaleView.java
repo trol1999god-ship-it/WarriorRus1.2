@@ -16,12 +16,12 @@ final class MapScaleView extends View {
 
  MapScaleView(Activity activity) {
   super(activity);
-  inset = WorkspaceUi.dp(activity, 7);
+  inset = WorkspaceUi.dp(activity, 6);
   barLimit = WorkspaceUi.dp(activity, 96);
-  paint.setColor(WorkspaceUi.TEXT);
+  paint.setColor(MapHud.INK);
   paint.setTypeface(WorkspaceUi.font(activity));
   paint.setTextSize(11 * getResources().getDisplayMetrics().scaledDensity);
-  setBackground(WorkspaceUi.panel());
+  setBackground(MapHud.panel(activity));
   setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_YES);
  }
 

@@ -17,29 +17,29 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   MapComposition composition=null;String compositionError="";try{if(MapCompositionSettings.active(this,projectId))composition=MapCompositionSettings.load(this,projectId).composition;}catch(Exception e){compositionError="Состав карт не прочитан: "+e.getMessage();}
   FrameLayout scene=new FrameLayout(this);root.addView(scene,new LinearLayout.LayoutParams(-1,0,1));
   map=new LocalMapView(this,features,mapFile(),this,source,OnlineMapSettings.network(this),composition);scene.addView(map,new FrameLayout.LayoutParams(-1,-1));if(symbolAssets!=null)map.setSymbols(symbolAssets);
-  int control=WorkspaceUi.dp(this,48),edge=WorkspaceUi.dp(this,4);
+  int control=WorkspaceUi.dp(this,48),edge=WorkspaceUi.dp(this,4),dockHeight=WorkspaceUi.dp(this,56);
   LinearLayout mapReadout=new LinearLayout(this);
   mapReadout.setOrientation(LinearLayout.VERTICAL);
   LinearLayout coordinateBar=new LinearLayout(this);
   FrameLayout.LayoutParams cp=new FrameLayout.LayoutParams(-2,-2,Gravity.TOP|Gravity.LEFT);
   cp.setMargins(edge,edge,edge,0);scene.addView(mapReadout,cp);
   mapReadout.addView(coordinateBar,new LinearLayout.LayoutParams(-2,-2));
-  coordinates=label("Координаты центра · WGS 84",12);coordinates.setBackground(WorkspaceUi.panel());coordinates.setTextColor(WorkspaceUi.TEXT);coordinates.setContentDescription("Настройки координат центра");coordinates.setOnClickListener(v->coordinateOptions());coordinates.setVisibility(getPreferences(0).getBoolean("show_coordinates",true)?View.VISIBLE:View.GONE);
+  coordinates=label("Координаты центра · WGS 84",12);coordinates.setBackground(MapHud.panel(this));coordinates.setTextColor(MapHud.INK);coordinates.setContentDescription("Настройки координат центра");coordinates.setOnClickListener(v->coordinateOptions());coordinates.setVisibility(getPreferences(0).getBoolean("show_coordinates",true)?View.VISIBLE:View.GONE);
   coordinates.setIncludeFontPadding(false);
   coordinates.setPadding(WorkspaceUi.dp(this,8),edge,WorkspaceUi.dp(this,8),edge);
   coordinateBar.addView(coordinates,new LinearLayout.LayoutParams(-2,-2,1));
-  ImageButton collapse=WorkspaceUi.icon(this,"collapse","Свернуть / развернуть координаты",()->{boolean visible=coordinates.getVisibility()!=View.VISIBLE;coordinates.setVisibility(visible?View.VISIBLE:View.GONE);getPreferences(0).edit().putBoolean("show_coordinates",visible).commit();});
+  ImageButton collapse=MapHud.button(this,"collapse","Свернуть / развернуть координаты",()->{boolean visible=coordinates.getVisibility()!=View.VISIBLE;coordinates.setVisibility(visible?View.VISIBLE:View.GONE);getPreferences(0).edit().putBoolean("show_coordinates",visible).commit();});
   coordinateBar.addView(collapse,new LinearLayout.LayoutParams(control,control));
   mapScale=new MapScaleView(this);
   LinearLayout.LayoutParams scaleLayout=new LinearLayout.LayoutParams(-2,-2);
   scaleLayout.topMargin=edge;mapReadout.addView(mapScale,scaleLayout);
   String description=onlineMode?source.name+" · "+(OnlineMapSettings.network(this)?"онлайн + кеш":"только кеш"):mapFile().isFile()?"Локальная карта MBTiles":"Обзорная карта";
   if(composition!=null){StringBuilder names=new StringBuilder();LinkedHashSet<String> copyrights=new LinkedHashSet<>();int count=0;for(MapComposition.Layer layer:composition.layers)if(layer.visible&&layer.opacity>0){count++;if(names.length()>0)names.append(" · ");names.append(layer.name);TileSource raster=layer.source();if(raster!=null)copyrights.add(raster.attribution);}description="Композиция: "+count+" слоёв · "+features.size()+" видимых объектов"+(count==0?" · без подложки":"\n"+names.toString());for(String credit:copyrights)description+="\n"+credit;}if(!compositionError.isEmpty())description+="\n"+compositionError;
-  status=label(description+(composition==null?" · "+features.size()+" видимых объектов":"")+(composition==null&&onlineMode?"\n"+source.attribution:""),11);status.setBackground(WorkspaceUi.panel());status.setTextColor(WorkspaceUi.TEXT);if(composition!=null){final String info=description;status.setMaxLines(3);status.setEllipsize(android.text.TextUtils.TruncateAt.END);status.setContentDescription("Состав и подписи карт");status.setOnClickListener(v->{AlertDialog d=new AlertDialog.Builder(this).setTitle("Состав и подписи карт").setMessage(info).setPositiveButton("Закрыть",null).create();d.setOnShowListener(w->compositionFont(d.getWindow().getDecorView()));d.show();});}LinearLayout rightControls=new LinearLayout(this);
+  status=label(description+(composition==null?" · "+features.size()+" видимых объектов":"")+(composition==null&&onlineMode?"\n"+source.attribution:""),11);status.setBackground(MapHud.panel(this));status.setTextColor(MapHud.INK);if(composition!=null){final String info=description;status.setMaxLines(3);status.setEllipsize(android.text.TextUtils.TruncateAt.END);status.setContentDescription("Состав и подписи карт");status.setOnClickListener(v->{AlertDialog d=new AlertDialog.Builder(this).setTitle("Состав и подписи карт").setMessage(info).setPositiveButton("Закрыть",null).create();d.setOnShowListener(w->compositionFont(d.getWindow().getDecorView()));d.show();});}LinearLayout rightControls=new LinearLayout(this);
   rightControls.setOrientation(LinearLayout.VERTICAL);
   rightControls.setGravity(Gravity.RIGHT);
   FrameLayout.LayoutParams sp=new FrameLayout.LayoutParams(-2,-2,Gravity.BOTTOM|Gravity.RIGHT);
-  sp.setMargins(edge,0,edge,control+edge*2);scene.addView(rightControls,sp);
+  sp.setMargins(edge,0,edge,dockHeight+edge);scene.addView(rightControls,sp);
   zoomButtons=new LinearLayout(this);zoomButtons.setOrientation(LinearLayout.VERTICAL);zoomButtons.setVisibility(getPreferences(0).getBoolean("show_zoom",true)?View.VISIBLE:View.GONE);rightControls.addView(zoomButtons,new LinearLayout.LayoutParams(control,-2));
   zoomButtons.addView(zoomButton("plus","+",()->map.step(1)),new LinearLayout.LayoutParams(control,control));
   zoomButtons.addView(zoomButton("minus","−",()->map.step(-1)),new LinearLayout.LayoutParams(control,control));
@@ -51,12 +51,12 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   tools.addView(toolbar,new FrameLayout.LayoutParams(-2,-1));
   LinearLayout dock=new LinearLayout(this);mapDock=dock;
   dock.addView(tools,new LinearLayout.LayoutParams(0,-1,1));
-  FrameLayout.LayoutParams dockLayout=new FrameLayout.LayoutParams(control,control,Gravity.BOTTOM|Gravity.LEFT);
-  dockLayout.setMargins(edge,0,edge,edge);scene.addView(dock,dockLayout);
+  FrameLayout.LayoutParams dockLayout=new FrameLayout.LayoutParams(control,dockHeight,Gravity.BOTTOM|Gravity.LEFT);
+  dockLayout.setMargins(edge,0,edge,WorkspaceUi.dp(this,2));scene.addView(dock,dockLayout);
   tool(toolbar,"menu","Меню",()->mainMenu());tool(toolbar,"maps","Карты",()->mapsMenu());tool(toolbar,"marks","Метки",()->marksMenu());tool(toolbar,"files","Файловый менеджер",()->manager(false));tool(toolbar,"compass","Ориентирование",()->orientationMenu());
   final boolean toolsVisible=getPreferences(0).getBoolean("show_tools",true);
   tools.setVisibility(toolsVisible?View.VISIBLE:View.GONE);
-  dock.addView(WorkspaceUi.icon(this,"expand","Свернуть / развернуть инструменты",()->{
+  dock.addView(MapHud.button(this,"expand","Свернуть / развернуть инструменты",()->{
    boolean visible=tools.getVisibility()!=View.VISIBLE;
    tools.setVisibility(visible?View.VISIBLE:View.GONE);
    sizeDock(scene,dock,toolbar.getChildCount(),control,edge,visible);
@@ -70,10 +70,10 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  }
  public void longPressed(double lat,double lon){if(busy)return;menu(String.format(Locale.US,"%.6f, %.6f",lat,lon),item("Создать метку здесь",()->{creationPoint=new double[]{lon,lat};editObject(null,"Point");}),item("Начать маршрут здесь",()->{startDrawing("LineString");map.addDrawingPoint(lon,lat);}),item("Начать область здесь",()->{startDrawing("Polygon");map.addDrawingPoint(lon,lat);}),item("В центр карты",()->{double[] v=map.viewport();map.restore(MapMath.x(lon),MapMath.y(lat),v[2]);}));}
  private ImageButton zoomButton(String icon, String label, Runnable action) {
-  ImageButton button=WorkspaceUi.icon(this,icon,label,action);
+  ImageButton button=MapHud.button(this,icon,label,action);
   int inset=WorkspaceUi.dp(this,6);
-  button.setBackground(new android.graphics.drawable.InsetDrawable(WorkspaceUi.panel(),inset));
-  int insetIcon=WorkspaceUi.dp(this,14);
+  button.setBackground(new android.graphics.drawable.InsetDrawable(button.getBackground(),inset));
+  int insetIcon=WorkspaceUi.dp(this,10);
   button.setPadding(insetIcon,insetIcon,insetIcon,insetIcon);
   return button;
  }
@@ -85,7 +85,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   ViewGroup.LayoutParams bounds=dock.getLayoutParams();
   if(bounds.width!=target){bounds.width=target;dock.setLayoutParams(bounds);}
  }
- private void tool(LinearLayout bar,String icon,String title,Runnable action){bar.addView(WorkspaceUi.icon(this,icon,title,()->{if(!busy)action.run();}),new LinearLayout.LayoutParams(WorkspaceUi.dp(this,48),-1,1));}
+ private void tool(LinearLayout bar,String icon,String title,Runnable action){bar.addView(MapHud.button(this,icon,title,()->{if(!busy)action.run();}),new LinearLayout.LayoutParams(WorkspaceUi.dp(this,48),-1,1));}
  private WorkspaceUi.Item item(String title,Runnable action){return new WorkspaceUi.Item(title,action);}
  private void menu(String title,WorkspaceUi.Item...items){if(popup!=null)popup.dismiss();popup=WorkspaceUi.menu(this,root,title,items);}
  @Override public void onConfigurationChanged(android.content.res.Configuration config) {

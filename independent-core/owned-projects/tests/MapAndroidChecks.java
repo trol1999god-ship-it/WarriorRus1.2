@@ -713,6 +713,12 @@ public final class MapAndroidChecks extends Instrumentation {
     android.widget.HorizontalScrollView scroll=(android.widget.HorizontalScrollView)dock.getChildAt(0);
     android.widget.LinearLayout tools=(android.widget.LinearLayout)scroll.getChildAt(0);
     check(tools.getChildCount()==5,"dock contains exactly five primary tools");
+    check(dock.getHeight()==Math.round(56*density)&&mapView.getBottom()-dock.getBottom()==Math.round(2*density),"dock has compact 56 dp height and a 2 dp bottom inset");
+    for(int i=0;i<tools.getChildCount();i++){
+     android.widget.ImageButton button=(android.widget.ImageButton)tools.getChildAt(i);
+     check(button.getWidth()>=Math.round(48*density)&&button.getHeight()>=Math.round(48*density)
+       &&button.getDrawable().getClass().getSimpleName().equals("Glyph"),"primary map tool uses scalable artwork and a full hit target");
+    }
     check(tools.getChildAt(0).getWidth()>=Math.round(48*density),"compact map retains a 48 dp tool target");
     check(scroll.canScrollHorizontally(1),"compact map can reach tools beyond the window");
     check(mapView.getWidth()-dock.getWidth()>=Math.round(48*density),"expanded dock leaves map visible beside it");
@@ -767,27 +773,40 @@ public final class MapAndroidChecks extends Instrumentation {
   });
   return result[0];
  }
- void appendMapTree(AccessibilityNodeInfo node,StringBuilder tree,int depth,int[] remaining){
+ void appendMapTree(AccessibilityNodeInfo node,org.xmlpull.v1.XmlSerializer xml,int[] remaining)throws IOException{
   if(node==null||remaining[0]--<=0)return;
   Rect bounds=new Rect();
   node.getBoundsInScreen(bounds);
-  for(int i=0;i<depth;i++)tree.append("  ");
-  tree.append(node.getClassName()).append(" bounds=").append(bounds.toShortString())
-    .append(" text=").append(diagnosticText(node.getText()))
-    .append(" content-desc=").append(diagnosticText(node.getContentDescription()))
-    .append(" clickable=").append(node.isClickable()).append(" visible=").append(node.isVisibleToUser()).append('\n');
-  for(int i=0;i<node.getChildCount()&&remaining[0]>0;i++)appendMapTree(node.getChild(i),tree,depth+1,remaining);
+  xml.startTag(null,"node");
+  xml.attribute(null,"class",diagnosticText(node.getClassName()));
+  xml.attribute(null,"bounds",bounds.toShortString());
+  xml.attribute(null,"text",diagnosticText(node.getText()));
+  xml.attribute(null,"content-desc",diagnosticText(node.getContentDescription()));
+  xml.attribute(null,"clickable",Boolean.toString(node.isClickable()));
+  xml.attribute(null,"visible",Boolean.toString(node.isVisibleToUser()));
+  for(int i=0;i<node.getChildCount()&&remaining[0]>0;i++)appendMapTree(node.getChild(i),xml,remaining);
+  xml.endTag(null,"node");
  }
  void mapEvidence(String step,String phase,String target,String result)throws Exception{
   String name="dock-"+step+"-"+phase;
   capture(name);
   String marker=step+" "+phase+" target="+target+" result="+result;
-  StringBuilder tree=new StringBuilder(marker).append('\n');
   AccessibilityNodeInfo root=getUiAutomation().getRootInActiveWindow();
   check(root!=null,"window available for "+name);
-  appendMapTree(root,tree,0,new int[]{160});
   File directory=getTargetContext().getExternalFilesDir(null);
-  try(OutputStream out=new FileOutputStream(new File(directory,name+".txt"))){out.write(tree.toString().getBytes("UTF-8"));}
+  org.xmlpull.v1.XmlSerializer xml=android.util.Xml.newSerializer();
+  try(OutputStream out=new FileOutputStream(new File(directory,name+".xml"))){
+   xml.setOutput(out,"UTF-8");
+   xml.startDocument("UTF-8",true);
+   xml.startTag(null,"hierarchy");
+   xml.attribute(null,"step",step);
+   xml.attribute(null,"phase",phase);
+   xml.attribute(null,"target",target);
+   xml.attribute(null,"result",result);
+   appendMapTree(root,xml,new int[]{160});
+   xml.endTag(null,"hierarchy");
+   xml.endDocument();
+  }
   android.util.Log.i("RK_MAP_UI",marker);
  }
  void dockDestination(String step,String target,String expected)throws Exception{

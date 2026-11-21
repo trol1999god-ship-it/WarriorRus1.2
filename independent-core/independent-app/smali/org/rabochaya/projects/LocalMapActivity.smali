@@ -3956,7 +3956,7 @@
 .end method
 
 .method private show(Z)V
-    .locals 21
+    .locals 22
 
     .line 15
     move-object/from16 v9, p0
@@ -4224,534 +4224,548 @@
 
     move-result v7
 
+    const/high16 v1, 0x42600000    # 56.0f
+
+    invoke-static {v9, v1}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
+
+    move-result v1
+
     .line 21
-    new-instance v1, Landroid/widget/LinearLayout;
-
-    invoke-direct {v1, v9}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
-
-    .line 22
-    const/4 v6, 0x1
-
-    invoke-virtual {v1, v6}, Landroid/widget/LinearLayout;->setOrientation(I)V
-
-    .line 23
     new-instance v2, Landroid/widget/LinearLayout;
 
     invoke-direct {v2, v9}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
 
+    .line 22
+    const/4 v6, 0x1
+
+    invoke-virtual {v2, v6}, Landroid/widget/LinearLayout;->setOrientation(I)V
+
+    .line 23
+    new-instance v3, Landroid/widget/LinearLayout;
+
+    invoke-direct {v3, v9}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
+
     .line 24
-    new-instance v3, Landroid/widget/FrameLayout$LayoutParams;
+    new-instance v4, Landroid/widget/FrameLayout$LayoutParams;
 
-    const/16 v4, 0x33
+    const/16 v5, 0x33
 
-    const/4 v5, -0x2
+    const/4 v11, -0x2
 
-    invoke-direct {v3, v5, v5, v4}, Landroid/widget/FrameLayout$LayoutParams;-><init>(III)V
+    invoke-direct {v4, v11, v11, v5}, Landroid/widget/FrameLayout$LayoutParams;-><init>(III)V
 
     .line 25
-    const/4 v4, 0x0
+    const/4 v5, 0x0
 
-    invoke-virtual {v3, v7, v7, v7, v4}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
+    invoke-virtual {v4, v7, v7, v7, v5}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
 
-    invoke-virtual {v12, v1, v3}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v12, v2, v4}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 26
-    new-instance v3, Landroid/widget/LinearLayout$LayoutParams;
+    new-instance v4, Landroid/widget/LinearLayout$LayoutParams;
 
-    invoke-direct {v3, v5, v5}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+    invoke-direct {v4, v11, v11}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
 
-    invoke-virtual {v1, v2, v3}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v2, v3, v4}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 27
-    const-string v3, "\u041a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u044b \u0446\u0435\u043d\u0442\u0440\u0430 \u00b7 WGS 84"
+    const-string v4, "\u041a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u044b \u0446\u0435\u043d\u0442\u0440\u0430 \u00b7 WGS 84"
 
-    const/16 v4, 0xc
+    const/16 v5, 0xc
 
-    invoke-direct {v9, v3, v4}, Lorg/rabochaya/projects/LocalMapActivity;->label(Ljava/lang/String;I)Landroid/widget/TextView;
-
-    move-result-object v3
-
-    iput-object v3, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
-
-    iget-object v3, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
-
-    invoke-static {}, Lorg/rabochaya/projects/WorkspaceUi;->panel()Landroid/graphics/drawable/GradientDrawable;
+    invoke-direct {v9, v4, v5}, Lorg/rabochaya/projects/LocalMapActivity;->label(Ljava/lang/String;I)Landroid/widget/TextView;
 
     move-result-object v4
 
-    invoke-virtual {v3, v4}, Landroid/widget/TextView;->setBackground(Landroid/graphics/drawable/Drawable;)V
+    iput-object v4, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
 
-    iget-object v3, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
+    iget-object v4, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
 
-    const v4, -0xf7d1b4
+    invoke-static/range {p0 .. p0}, Lorg/rabochaya/projects/MapHud;->panel(Landroid/app/Activity;)Landroid/graphics/drawable/GradientDrawable;
 
-    invoke-virtual {v3, v4}, Landroid/widget/TextView;->setTextColor(I)V
+    move-result-object v5
 
-    iget-object v3, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
+    invoke-virtual {v4, v5}, Landroid/widget/TextView;->setBackground(Landroid/graphics/drawable/Drawable;)V
 
-    const-string v11, "\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 \u043a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442 \u0446\u0435\u043d\u0442\u0440\u0430"
+    iget-object v4, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
 
-    invoke-virtual {v3, v11}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
+    const v5, -0x150a01
 
-    iget-object v3, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
+    invoke-virtual {v4, v5}, Landroid/widget/TextView;->setTextColor(I)V
 
-    new-instance v11, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda49;
+    iget-object v4, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
 
-    invoke-direct {v11, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda49;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    const-string v5, "\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 \u043a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442 \u0446\u0435\u043d\u0442\u0440\u0430"
 
-    invoke-virtual {v3, v11}, Landroid/widget/TextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+    invoke-virtual {v4, v5}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
 
-    iget-object v3, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
+    iget-object v4, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
 
-    const/4 v11, 0x0
+    new-instance v5, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda49;
 
-    invoke-virtual {v9, v11}, Lorg/rabochaya/projects/LocalMapActivity;->getPreferences(I)Landroid/content/SharedPreferences;
+    invoke-direct {v5, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda49;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
-    move-result-object v4
+    invoke-virtual {v4, v5}, Landroid/widget/TextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    const-string v11, "show_coordinates"
+    iget-object v4, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
 
-    invoke-interface {v4, v11, v6}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
+    const/4 v5, 0x0
 
-    move-result v4
+    invoke-virtual {v9, v5}, Lorg/rabochaya/projects/LocalMapActivity;->getPreferences(I)Landroid/content/SharedPreferences;
 
-    if-eqz v4, :cond_6
+    move-result-object v11
 
-    const/4 v4, 0x0
+    const-string v5, "show_coordinates"
+
+    invoke-interface {v11, v5, v6}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_6
+
+    const/4 v5, 0x0
 
     goto :goto_4
 
     :cond_6
-    const/16 v4, 0x8
+    const/16 v5, 0x8
 
     :goto_4
-    invoke-virtual {v3, v4}, Landroid/widget/TextView;->setVisibility(I)V
+    invoke-virtual {v4, v5}, Landroid/widget/TextView;->setVisibility(I)V
 
     .line 28
-    iget-object v3, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
+    iget-object v4, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
 
-    const/4 v4, 0x0
+    const/4 v5, 0x0
 
-    invoke-virtual {v3, v4}, Landroid/widget/TextView;->setIncludeFontPadding(Z)V
+    invoke-virtual {v4, v5}, Landroid/widget/TextView;->setIncludeFontPadding(Z)V
 
     .line 29
-    iget-object v3, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
+    iget-object v4, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
 
-    const/high16 v4, 0x41000000    # 8.0f
+    const/high16 v5, 0x41000000    # 8.0f
 
-    invoke-static {v9, v4}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
+    invoke-static {v9, v5}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
     move-result v11
 
-    invoke-static {v9, v4}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
+    invoke-static {v9, v5}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
-    move-result v4
+    move-result v5
 
-    invoke-virtual {v3, v11, v7, v4, v7}, Landroid/widget/TextView;->setPadding(IIII)V
+    invoke-virtual {v4, v11, v7, v5, v7}, Landroid/widget/TextView;->setPadding(IIII)V
 
     .line 30
-    iget-object v3, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
+    iget-object v4, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
 
-    new-instance v4, Landroid/widget/LinearLayout$LayoutParams;
+    new-instance v5, Landroid/widget/LinearLayout$LayoutParams;
+
+    const/4 v6, -0x2
 
     const/high16 v11, 0x3f800000    # 1.0f
 
-    invoke-direct {v4, v5, v5, v11}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
+    invoke-direct {v5, v6, v6, v11}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
 
-    invoke-virtual {v2, v3, v4}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v3, v4, v5}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 31
-    new-instance v3, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda52;
+    new-instance v4, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda52;
 
-    invoke-direct {v3, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda52;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v4, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda52;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
-    const-string v4, "collapse"
+    const-string v5, "collapse"
 
-    const-string v11, "\u0421\u0432\u0435\u0440\u043d\u0443\u0442\u044c / \u0440\u0430\u0437\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u044b"
+    const-string v6, "\u0421\u0432\u0435\u0440\u043d\u0443\u0442\u044c / \u0440\u0430\u0437\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u044b"
 
-    invoke-static {v9, v4, v11, v3}, Lorg/rabochaya/projects/WorkspaceUi;->icon(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/ImageButton;
+    invoke-static {v9, v5, v6, v4}, Lorg/rabochaya/projects/MapHud;->button(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/ImageButton;
 
-    move-result-object v3
+    move-result-object v4
 
     .line 32
-    new-instance v4, Landroid/widget/LinearLayout$LayoutParams;
+    new-instance v5, Landroid/widget/LinearLayout$LayoutParams;
 
-    invoke-direct {v4, v8, v8}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+    invoke-direct {v5, v8, v8}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
 
-    invoke-virtual {v2, v3, v4}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v3, v4, v5}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 33
-    new-instance v2, Lorg/rabochaya/projects/MapScaleView;
+    new-instance v3, Lorg/rabochaya/projects/MapScaleView;
 
-    invoke-direct {v2, v9}, Lorg/rabochaya/projects/MapScaleView;-><init>(Landroid/app/Activity;)V
+    invoke-direct {v3, v9}, Lorg/rabochaya/projects/MapScaleView;-><init>(Landroid/app/Activity;)V
 
-    iput-object v2, v9, Lorg/rabochaya/projects/LocalMapActivity;->mapScale:Lorg/rabochaya/projects/MapScaleView;
+    iput-object v3, v9, Lorg/rabochaya/projects/LocalMapActivity;->mapScale:Lorg/rabochaya/projects/MapScaleView;
 
     .line 34
-    new-instance v2, Landroid/widget/LinearLayout$LayoutParams;
+    new-instance v3, Landroid/widget/LinearLayout$LayoutParams;
 
-    invoke-direct {v2, v5, v5}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+    const/4 v4, -0x2
+
+    invoke-direct {v3, v4, v4}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
 
     .line 35
-    iput v7, v2, Landroid/widget/LinearLayout$LayoutParams;->topMargin:I
+    iput v7, v3, Landroid/widget/LinearLayout$LayoutParams;->topMargin:I
 
-    iget-object v3, v9, Lorg/rabochaya/projects/LocalMapActivity;->mapScale:Lorg/rabochaya/projects/MapScaleView;
+    iget-object v4, v9, Lorg/rabochaya/projects/LocalMapActivity;->mapScale:Lorg/rabochaya/projects/MapScaleView;
 
-    invoke-virtual {v1, v3, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v2, v4, v3}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 36
-    const-string v1, " \u00b7 "
+    const-string v2, " \u00b7 "
 
     if-eqz v13, :cond_8
 
-    new-instance v2, Ljava/lang/StringBuilder;
+    new-instance v3, Ljava/lang/StringBuilder;
 
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 
-    iget-object v3, v14, Lorg/rabochaya/projects/TileSource;->name:Ljava/lang/String;
+    iget-object v4, v14, Lorg/rabochaya/projects/TileSource;->name:Ljava/lang/String;
 
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v2
+    move-result-object v3
 
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v2
+    move-result-object v3
 
     invoke-static/range {p0 .. p0}, Lorg/rabochaya/projects/OnlineMapSettings;->network(Landroid/content/Context;)Z
 
-    move-result v3
+    move-result v4
 
-    if-eqz v3, :cond_7
+    if-eqz v4, :cond_7
 
-    const-string v3, "\u043e\u043d\u043b\u0430\u0439\u043d + \u043a\u0435\u0448"
+    const-string v4, "\u043e\u043d\u043b\u0430\u0439\u043d + \u043a\u0435\u0448"
 
     goto :goto_5
 
     :cond_7
-    const-string v3, "\u0442\u043e\u043b\u044c\u043a\u043e \u043a\u0435\u0448"
+    const-string v4, "\u0442\u043e\u043b\u044c\u043a\u043e \u043a\u0435\u0448"
 
     :goto_5
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v2
+    move-result-object v3
 
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v2
+    move-result-object v3
 
     goto :goto_6
 
     :cond_8
     invoke-direct/range {p0 .. p0}, Lorg/rabochaya/projects/LocalMapActivity;->mapFile()Ljava/io/File;
 
-    move-result-object v2
+    move-result-object v3
 
-    invoke-virtual {v2}, Ljava/io/File;->isFile()Z
+    invoke-virtual {v3}, Ljava/io/File;->isFile()Z
 
-    move-result v2
+    move-result v3
 
-    if-eqz v2, :cond_9
+    if-eqz v3, :cond_9
 
-    const-string v2, "\u041b\u043e\u043a\u0430\u043b\u044c\u043d\u0430\u044f \u043a\u0430\u0440\u0442\u0430 MBTiles"
+    const-string v3, "\u041b\u043e\u043a\u0430\u043b\u044c\u043d\u0430\u044f \u043a\u0430\u0440\u0442\u0430 MBTiles"
 
     goto :goto_6
 
     :cond_9
-    const-string v2, "\u041e\u0431\u0437\u043e\u0440\u043d\u0430\u044f \u043a\u0430\u0440\u0442\u0430"
+    const-string v3, "\u041e\u0431\u0437\u043e\u0440\u043d\u0430\u044f \u043a\u0430\u0440\u0442\u0430"
 
     .line 37
     :goto_6
-    const-string v3, " \u0432\u0438\u0434\u0438\u043c\u044b\u0445 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432"
+    const-string v4, " \u0432\u0438\u0434\u0438\u043c\u044b\u0445 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432"
 
-    const-string v4, "\n"
+    const-string v5, "\n"
 
     if-eqz v0, :cond_e
-
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    new-instance v11, Ljava/util/LinkedHashSet;
-
-    invoke-direct {v11}, Ljava/util/LinkedHashSet;-><init>()V
-
-    iget-object v5, v0, Lorg/rabochaya/projects/MapComposition;->layers:Ljava/util/List;
-
-    invoke-interface {v5}, Ljava/util/List;->iterator()Ljava/util/Iterator;
-
-    move-result-object v5
-
-    const/4 v6, 0x0
-
-    :goto_7
-    invoke-interface {v5}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v19
-
-    if-eqz v19, :cond_c
-
-    invoke-interface {v5}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v19
-
-    move-object/from16 v20, v5
-
-    move-object/from16 v5, v19
-
-    check-cast v5, Lorg/rabochaya/projects/MapComposition$Layer;
-
-    move-object/from16 v19, v10
-
-    iget-boolean v10, v5, Lorg/rabochaya/projects/MapComposition$Layer;->visible:Z
-
-    if-eqz v10, :cond_b
-
-    iget v10, v5, Lorg/rabochaya/projects/MapComposition$Layer;->opacity:I
-
-    if-lez v10, :cond_b
-
-    add-int/lit8 v6, v6, 0x1
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->length()I
-
-    move-result v10
-
-    if-lez v10, :cond_a
-
-    invoke-virtual {v2, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    :cond_a
-    iget-object v10, v5, Lorg/rabochaya/projects/MapComposition$Layer;->name:Ljava/lang/String;
-
-    invoke-virtual {v2, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v5}, Lorg/rabochaya/projects/MapComposition$Layer;->source()Lorg/rabochaya/projects/TileSource;
-
-    move-result-object v5
-
-    if-eqz v5, :cond_b
-
-    iget-object v5, v5, Lorg/rabochaya/projects/TileSource;->attribution:Ljava/lang/String;
-
-    invoke-virtual {v11, v5}, Ljava/util/LinkedHashSet;->add(Ljava/lang/Object;)Z
-
-    :cond_b
-    move-object/from16 v10, v19
-
-    move-object/from16 v5, v20
-
-    goto :goto_7
-
-    :cond_c
-    move-object/from16 v19, v10
-
-    new-instance v5, Ljava/lang/StringBuilder;
-
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v10, "\u041a\u043e\u043c\u043f\u043e\u0437\u0438\u0446\u0438\u044f: "
-
-    invoke-virtual {v5, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    const-string v10, " \u0441\u043b\u043e\u0451\u0432 \u00b7 "
-
-    invoke-virtual {v5, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    iget-object v10, v9, Lorg/rabochaya/projects/LocalMapActivity;->features:Ljava/util/List;
-
-    invoke-interface {v10}, Ljava/util/List;->size()I
-
-    move-result v10
-
-    invoke-virtual {v5, v10}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    invoke-virtual {v5, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    if-nez v6, :cond_d
-
-    const-string v2, " \u00b7 \u0431\u0435\u0437 \u043f\u043e\u0434\u043b\u043e\u0436\u043a\u0438"
-
-    goto :goto_8
-
-    :cond_d
-    new-instance v6, Ljava/lang/StringBuilder;
-
-    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
-
-    invoke-virtual {v6, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v6
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-virtual {v6, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    :goto_8
-    invoke-virtual {v5, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-virtual {v11}, Ljava/util/LinkedHashSet;->iterator()Ljava/util/Iterator;
-
-    move-result-object v5
-
-    :goto_9
-    invoke-interface {v5}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v6
-
-    if-eqz v6, :cond_f
-
-    invoke-interface {v5}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v6
-
-    check-cast v6, Ljava/lang/String;
-
-    new-instance v10, Ljava/lang/StringBuilder;
-
-    invoke-direct {v10}, Ljava/lang/StringBuilder;-><init>()V
-
-    invoke-virtual {v10, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    goto :goto_9
-
-    :cond_e
-    move-object/from16 v19, v10
-
-    :cond_f
-    invoke-virtual {v15}, Ljava/lang/String;->isEmpty()Z
-
-    move-result v5
-
-    if-nez v5, :cond_10
-
-    new-instance v5, Ljava/lang/StringBuilder;
-
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
-
-    invoke-virtual {v5, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2, v15}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    .line 38
-    :cond_10
-    new-instance v5, Ljava/lang/StringBuilder;
-
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
-
-    invoke-virtual {v5, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    if-nez v0, :cond_11
-
-    new-instance v6, Ljava/lang/StringBuilder;
-
-    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
-
-    invoke-virtual {v6, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    iget-object v6, v9, Lorg/rabochaya/projects/LocalMapActivity;->features:Ljava/util/List;
-
-    invoke-interface {v6}, Ljava/util/List;->size()I
-
-    move-result v6
-
-    invoke-virtual {v1, v6}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v1
-
-    goto :goto_a
-
-    :cond_11
-    move-object/from16 v1, v16
-
-    :goto_a
-    invoke-virtual {v5, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    if-nez v0, :cond_12
-
-    if-eqz v13, :cond_12
 
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    new-instance v6, Ljava/util/LinkedHashSet;
+
+    invoke-direct {v6}, Ljava/util/LinkedHashSet;-><init>()V
+
+    iget-object v11, v0, Lorg/rabochaya/projects/MapComposition;->layers:Ljava/util/List;
+
+    invoke-interface {v11}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object v11
+
+    move-object/from16 v19, v10
+
+    const/4 v10, 0x0
+
+    :goto_7
+    invoke-interface {v11}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v20
+
+    if-eqz v20, :cond_c
+
+    invoke-interface {v11}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v20
+
+    move-object/from16 v21, v11
+
+    move-object/from16 v11, v20
+
+    check-cast v11, Lorg/rabochaya/projects/MapComposition$Layer;
+
+    move/from16 v20, v8
+
+    iget-boolean v8, v11, Lorg/rabochaya/projects/MapComposition$Layer;->visible:Z
+
+    if-eqz v8, :cond_b
+
+    iget v8, v11, Lorg/rabochaya/projects/MapComposition$Layer;->opacity:I
+
+    if-lez v8, :cond_b
+
+    add-int/lit8 v10, v10, 0x1
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->length()I
+
+    move-result v8
+
+    if-lez v8, :cond_a
+
+    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    :cond_a
+    iget-object v8, v11, Lorg/rabochaya/projects/MapComposition$Layer;->name:Ljava/lang/String;
+
+    invoke-virtual {v3, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v11}, Lorg/rabochaya/projects/MapComposition$Layer;->source()Lorg/rabochaya/projects/TileSource;
+
+    move-result-object v8
+
+    if-eqz v8, :cond_b
+
+    iget-object v8, v8, Lorg/rabochaya/projects/TileSource;->attribution:Ljava/lang/String;
+
+    invoke-virtual {v6, v8}, Ljava/util/LinkedHashSet;->add(Ljava/lang/Object;)Z
+
+    :cond_b
+    move/from16 v8, v20
+
+    move-object/from16 v11, v21
+
+    goto :goto_7
+
+    :cond_c
+    move/from16 v20, v8
+
+    new-instance v8, Ljava/lang/StringBuilder;
+
+    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v11, "\u041a\u043e\u043c\u043f\u043e\u0437\u0438\u0446\u0438\u044f: "
+
+    invoke-virtual {v8, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    invoke-virtual {v8, v10}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    const-string v11, " \u0441\u043b\u043e\u0451\u0432 \u00b7 "
+
+    invoke-virtual {v8, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    iget-object v11, v9, Lorg/rabochaya/projects/LocalMapActivity;->features:Ljava/util/List;
+
+    invoke-interface {v11}, Ljava/util/List;->size()I
+
+    move-result v11
+
+    invoke-virtual {v8, v11}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    invoke-virtual {v8, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v8
+
+    if-nez v10, :cond_d
+
+    const-string v3, " \u00b7 \u0431\u0435\u0437 \u043f\u043e\u0434\u043b\u043e\u0436\u043a\u0438"
+
+    goto :goto_8
+
+    :cond_d
+    new-instance v10, Ljava/lang/StringBuilder;
+
+    invoke-direct {v10}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v10, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v10
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v3
 
-    iget-object v4, v14, Lorg/rabochaya/projects/TileSource;->attribution:Ljava/lang/String;
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v10, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v3
 
     invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    :goto_8
+    invoke-virtual {v8, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-virtual {v6}, Ljava/util/LinkedHashSet;->iterator()Ljava/util/Iterator;
+
+    move-result-object v6
+
+    :goto_9
+    invoke-interface {v6}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v8
+
+    if-eqz v8, :cond_f
+
+    invoke-interface {v6}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v8
+
+    check-cast v8, Ljava/lang/String;
+
+    new-instance v10, Ljava/lang/StringBuilder;
+
+    invoke-direct {v10}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v10, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    goto :goto_9
+
+    :cond_e
+    move/from16 v20, v8
+
+    move-object/from16 v19, v10
+
+    :cond_f
+    invoke-virtual {v15}, Ljava/lang/String;->isEmpty()Z
+
+    move-result v6
+
+    if-nez v6, :cond_10
+
+    new-instance v6, Ljava/lang/StringBuilder;
+
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v6, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, v15}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    .line 38
+    :cond_10
+    new-instance v6, Ljava/lang/StringBuilder;
+
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v6, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v6
+
+    if-nez v0, :cond_11
+
+    new-instance v8, Ljava/lang/StringBuilder;
+
+    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v8, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    iget-object v8, v9, Lorg/rabochaya/projects/LocalMapActivity;->features:Ljava/util/List;
+
+    invoke-interface {v8}, Ljava/util/List;->size()I
+
+    move-result v8
+
+    invoke-virtual {v2, v8}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    goto :goto_a
+
+    :cond_11
+    move-object/from16 v2, v16
+
+    :goto_a
+    invoke-virtual {v6, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    if-nez v0, :cond_12
+
+    if-eqz v13, :cond_12
+
+    new-instance v4, Ljava/lang/StringBuilder;
+
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    iget-object v5, v14, Lorg/rabochaya/projects/TileSource;->attribution:Ljava/lang/String;
+
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v11
 
@@ -4761,63 +4775,63 @@
     move-object/from16 v11, v16
 
     :goto_b
-    invoke-virtual {v1, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v2, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v1
+    move-result-object v2
 
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v2
 
-    const/16 v3, 0xb
+    const/16 v4, 0xb
 
-    invoke-direct {v9, v1, v3}, Lorg/rabochaya/projects/LocalMapActivity;->label(Ljava/lang/String;I)Landroid/widget/TextView;
+    invoke-direct {v9, v2, v4}, Lorg/rabochaya/projects/LocalMapActivity;->label(Ljava/lang/String;I)Landroid/widget/TextView;
 
-    move-result-object v1
+    move-result-object v2
 
-    iput-object v1, v9, Lorg/rabochaya/projects/LocalMapActivity;->status:Landroid/widget/TextView;
+    iput-object v2, v9, Lorg/rabochaya/projects/LocalMapActivity;->status:Landroid/widget/TextView;
 
-    iget-object v1, v9, Lorg/rabochaya/projects/LocalMapActivity;->status:Landroid/widget/TextView;
+    iget-object v2, v9, Lorg/rabochaya/projects/LocalMapActivity;->status:Landroid/widget/TextView;
 
-    invoke-static {}, Lorg/rabochaya/projects/WorkspaceUi;->panel()Landroid/graphics/drawable/GradientDrawable;
+    invoke-static/range {p0 .. p0}, Lorg/rabochaya/projects/MapHud;->panel(Landroid/app/Activity;)Landroid/graphics/drawable/GradientDrawable;
 
-    move-result-object v3
+    move-result-object v4
 
-    invoke-virtual {v1, v3}, Landroid/widget/TextView;->setBackground(Landroid/graphics/drawable/Drawable;)V
+    invoke-virtual {v2, v4}, Landroid/widget/TextView;->setBackground(Landroid/graphics/drawable/Drawable;)V
 
-    iget-object v1, v9, Lorg/rabochaya/projects/LocalMapActivity;->status:Landroid/widget/TextView;
+    iget-object v2, v9, Lorg/rabochaya/projects/LocalMapActivity;->status:Landroid/widget/TextView;
 
-    const v3, -0xf7d1b4
+    const v4, -0x150a01
 
-    invoke-virtual {v1, v3}, Landroid/widget/TextView;->setTextColor(I)V
+    invoke-virtual {v2, v4}, Landroid/widget/TextView;->setTextColor(I)V
 
     if-eqz v0, :cond_13
 
     iget-object v0, v9, Lorg/rabochaya/projects/LocalMapActivity;->status:Landroid/widget/TextView;
 
-    const/4 v1, 0x3
+    const/4 v2, 0x3
 
-    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setMaxLines(I)V
-
-    iget-object v0, v9, Lorg/rabochaya/projects/LocalMapActivity;->status:Landroid/widget/TextView;
-
-    sget-object v1, Landroid/text/TextUtils$TruncateAt;->END:Landroid/text/TextUtils$TruncateAt;
-
-    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setEllipsize(Landroid/text/TextUtils$TruncateAt;)V
+    invoke-virtual {v0, v2}, Landroid/widget/TextView;->setMaxLines(I)V
 
     iget-object v0, v9, Lorg/rabochaya/projects/LocalMapActivity;->status:Landroid/widget/TextView;
 
-    const-string v1, "\u0421\u043e\u0441\u0442\u0430\u0432 \u0438 \u043f\u043e\u0434\u043f\u0438\u0441\u0438 \u043a\u0430\u0440\u0442"
+    sget-object v2, Landroid/text/TextUtils$TruncateAt;->END:Landroid/text/TextUtils$TruncateAt;
 
-    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
+    invoke-virtual {v0, v2}, Landroid/widget/TextView;->setEllipsize(Landroid/text/TextUtils$TruncateAt;)V
 
     iget-object v0, v9, Lorg/rabochaya/projects/LocalMapActivity;->status:Landroid/widget/TextView;
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda53;
+    const-string v2, "\u0421\u043e\u0441\u0442\u0430\u0432 \u0438 \u043f\u043e\u0434\u043f\u0438\u0441\u0438 \u043a\u0430\u0440\u0442"
 
-    invoke-direct {v1, v9, v2}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda53;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;)V
+    invoke-virtual {v0, v2}, Landroid/widget/TextView;->setContentDescription(Ljava/lang/CharSequence;)V
 
-    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+    iget-object v0, v9, Lorg/rabochaya/projects/LocalMapActivity;->status:Landroid/widget/TextView;
+
+    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda53;
+
+    invoke-direct {v2, v9, v3}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda53;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;)V
+
+    invoke-virtual {v0, v2}, Landroid/widget/TextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
     :cond_13
     new-instance v0, Landroid/widget/LinearLayout;
@@ -4825,61 +4839,59 @@
     invoke-direct {v0, v9}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
 
     .line 39
-    const/4 v1, 0x1
-
-    invoke-virtual {v0, v1}, Landroid/widget/LinearLayout;->setOrientation(I)V
-
-    .line 40
-    const/4 v1, 0x5
-
-    invoke-virtual {v0, v1}, Landroid/widget/LinearLayout;->setGravity(I)V
-
-    .line 41
-    new-instance v1, Landroid/widget/FrameLayout$LayoutParams;
-
-    const/16 v2, 0x55
-
-    const/4 v3, -0x2
-
-    invoke-direct {v1, v3, v3, v2}, Landroid/widget/FrameLayout$LayoutParams;-><init>(III)V
-
-    .line 42
-    mul-int/lit8 v2, v7, 0x2
-
-    add-int/2addr v2, v8
-
-    const/4 v3, 0x0
-
-    invoke-virtual {v1, v7, v3, v7, v2}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
-
-    invoke-virtual {v12, v0, v1}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
-
-    .line 43
-    new-instance v1, Landroid/widget/LinearLayout;
-
-    invoke-direct {v1, v9}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
-
-    iput-object v1, v9, Lorg/rabochaya/projects/LocalMapActivity;->zoomButtons:Landroid/widget/LinearLayout;
-
-    iget-object v1, v9, Lorg/rabochaya/projects/LocalMapActivity;->zoomButtons:Landroid/widget/LinearLayout;
-
     const/4 v2, 0x1
 
-    invoke-virtual {v1, v2}, Landroid/widget/LinearLayout;->setOrientation(I)V
+    invoke-virtual {v0, v2}, Landroid/widget/LinearLayout;->setOrientation(I)V
 
-    iget-object v1, v9, Lorg/rabochaya/projects/LocalMapActivity;->zoomButtons:Landroid/widget/LinearLayout;
+    .line 40
+    const/4 v2, 0x5
 
-    invoke-virtual {v9, v3}, Lorg/rabochaya/projects/LocalMapActivity;->getPreferences(I)Landroid/content/SharedPreferences;
+    invoke-virtual {v0, v2}, Landroid/widget/LinearLayout;->setGravity(I)V
 
-    move-result-object v4
+    .line 41
+    new-instance v2, Landroid/widget/FrameLayout$LayoutParams;
 
-    const-string v3, "show_zoom"
+    const/16 v3, 0x55
 
-    invoke-interface {v4, v3, v2}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
+    const/4 v4, -0x2
 
-    move-result v3
+    invoke-direct {v2, v4, v4, v3}, Landroid/widget/FrameLayout$LayoutParams;-><init>(III)V
 
-    if-eqz v3, :cond_14
+    .line 42
+    add-int v3, v1, v7
+
+    const/4 v4, 0x0
+
+    invoke-virtual {v2, v7, v4, v7, v3}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
+
+    invoke-virtual {v12, v0, v2}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 43
+    new-instance v2, Landroid/widget/LinearLayout;
+
+    invoke-direct {v2, v9}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
+
+    iput-object v2, v9, Lorg/rabochaya/projects/LocalMapActivity;->zoomButtons:Landroid/widget/LinearLayout;
+
+    iget-object v2, v9, Lorg/rabochaya/projects/LocalMapActivity;->zoomButtons:Landroid/widget/LinearLayout;
+
+    const/4 v3, 0x1
+
+    invoke-virtual {v2, v3}, Landroid/widget/LinearLayout;->setOrientation(I)V
+
+    iget-object v2, v9, Lorg/rabochaya/projects/LocalMapActivity;->zoomButtons:Landroid/widget/LinearLayout;
+
+    invoke-virtual {v9, v4}, Lorg/rabochaya/projects/LocalMapActivity;->getPreferences(I)Landroid/content/SharedPreferences;
+
+    move-result-object v5
+
+    const-string v4, "show_zoom"
+
+    invoke-interface {v5, v4, v3}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
+
+    move-result v4
+
+    if-eqz v4, :cond_14
 
     const/4 v6, 0x0
 
@@ -4889,70 +4901,72 @@
     const/16 v6, 0x8
 
     :goto_c
-    invoke-virtual {v1, v6}, Landroid/widget/LinearLayout;->setVisibility(I)V
+    invoke-virtual {v2, v6}, Landroid/widget/LinearLayout;->setVisibility(I)V
 
-    iget-object v1, v9, Lorg/rabochaya/projects/LocalMapActivity;->zoomButtons:Landroid/widget/LinearLayout;
+    iget-object v2, v9, Lorg/rabochaya/projects/LocalMapActivity;->zoomButtons:Landroid/widget/LinearLayout;
 
-    new-instance v2, Landroid/widget/LinearLayout$LayoutParams;
+    new-instance v3, Landroid/widget/LinearLayout$LayoutParams;
 
-    const/4 v3, -0x2
+    move/from16 v8, v20
 
-    invoke-direct {v2, v8, v3}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+    const/4 v4, -0x2
 
-    invoke-virtual {v0, v1, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-direct {v3, v8, v4}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+
+    invoke-virtual {v0, v2, v3}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 44
-    iget-object v1, v9, Lorg/rabochaya/projects/LocalMapActivity;->zoomButtons:Landroid/widget/LinearLayout;
+    iget-object v2, v9, Lorg/rabochaya/projects/LocalMapActivity;->zoomButtons:Landroid/widget/LinearLayout;
 
-    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda54;
+    new-instance v3, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda54;
 
-    invoke-direct {v2, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda54;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v3, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda54;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
-    const-string v3, "plus"
+    const-string v4, "plus"
 
-    const-string v4, "+"
+    const-string v5, "+"
 
-    invoke-direct {v9, v3, v4, v2}, Lorg/rabochaya/projects/LocalMapActivity;->zoomButton(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/ImageButton;
+    invoke-direct {v9, v4, v5, v3}, Lorg/rabochaya/projects/LocalMapActivity;->zoomButton(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/ImageButton;
 
-    move-result-object v2
+    move-result-object v3
 
-    new-instance v3, Landroid/widget/LinearLayout$LayoutParams;
+    new-instance v4, Landroid/widget/LinearLayout$LayoutParams;
 
-    invoke-direct {v3, v8, v8}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+    invoke-direct {v4, v8, v8}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
 
-    invoke-virtual {v1, v2, v3}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v2, v3, v4}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 45
-    iget-object v1, v9, Lorg/rabochaya/projects/LocalMapActivity;->zoomButtons:Landroid/widget/LinearLayout;
+    iget-object v2, v9, Lorg/rabochaya/projects/LocalMapActivity;->zoomButtons:Landroid/widget/LinearLayout;
 
-    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda55;
+    new-instance v3, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda55;
 
-    invoke-direct {v2, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda55;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v3, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda55;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
-    const-string v3, "minus"
+    const-string v4, "minus"
 
-    const-string v4, "\u2212"
+    const-string v5, "\u2212"
 
-    invoke-direct {v9, v3, v4, v2}, Lorg/rabochaya/projects/LocalMapActivity;->zoomButton(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/ImageButton;
+    invoke-direct {v9, v4, v5, v3}, Lorg/rabochaya/projects/LocalMapActivity;->zoomButton(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/ImageButton;
 
-    move-result-object v2
+    move-result-object v3
+
+    new-instance v4, Landroid/widget/LinearLayout$LayoutParams;
+
+    invoke-direct {v4, v8, v8}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+
+    invoke-virtual {v2, v3, v4}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 46
+    iget-object v2, v9, Lorg/rabochaya/projects/LocalMapActivity;->status:Landroid/widget/TextView;
 
     new-instance v3, Landroid/widget/LinearLayout$LayoutParams;
 
-    invoke-direct {v3, v8, v8}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+    const/4 v4, -0x2
 
-    invoke-virtual {v1, v2, v3}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-direct {v3, v4, v4}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
 
-    .line 46
-    iget-object v1, v9, Lorg/rabochaya/projects/LocalMapActivity;->status:Landroid/widget/TextView;
-
-    new-instance v2, Landroid/widget/LinearLayout$LayoutParams;
-
-    const/4 v3, -0x2
-
-    invoke-direct {v2, v3, v3}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
-
-    invoke-virtual {v0, v1, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v0, v2, v3}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 47
     new-instance v0, Landroid/widget/HorizontalScrollView;
@@ -4960,14 +4974,14 @@
     invoke-direct {v0, v9}, Landroid/widget/HorizontalScrollView;-><init>(Landroid/content/Context;)V
 
     .line 48
-    const/4 v1, 0x1
+    const/4 v2, 0x1
 
-    invoke-virtual {v0, v1}, Landroid/widget/HorizontalScrollView;->setFillViewport(Z)V
+    invoke-virtual {v0, v2}, Landroid/widget/HorizontalScrollView;->setFillViewport(Z)V
 
     .line 49
-    const/4 v1, 0x0
+    const/4 v2, 0x0
 
-    invoke-virtual {v0, v1}, Landroid/widget/HorizontalScrollView;->setHorizontalScrollBarEnabled(Z)V
+    invoke-virtual {v0, v2}, Landroid/widget/HorizontalScrollView;->setHorizontalScrollBarEnabled(Z)V
 
     .line 50
     new-instance v10, Landroid/widget/LinearLayout;
@@ -4975,15 +4989,15 @@
     invoke-direct {v10, v9}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
 
     .line 51
-    new-instance v1, Landroid/widget/FrameLayout$LayoutParams;
+    new-instance v2, Landroid/widget/FrameLayout$LayoutParams;
 
-    const/4 v2, -0x1
+    const/4 v3, -0x1
 
-    const/4 v3, -0x2
+    const/4 v4, -0x2
 
-    invoke-direct {v1, v3, v2}, Landroid/widget/FrameLayout$LayoutParams;-><init>(II)V
+    invoke-direct {v2, v4, v3}, Landroid/widget/FrameLayout$LayoutParams;-><init>(II)V
 
-    invoke-virtual {v0, v10, v1}, Landroid/widget/HorizontalScrollView;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v0, v10, v2}, Landroid/widget/HorizontalScrollView;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 52
     new-instance v11, Landroid/widget/LinearLayout;
@@ -4993,27 +5007,33 @@
     iput-object v11, v9, Lorg/rabochaya/projects/LocalMapActivity;->mapDock:Landroid/widget/LinearLayout;
 
     .line 53
-    new-instance v1, Landroid/widget/LinearLayout$LayoutParams;
+    new-instance v2, Landroid/widget/LinearLayout$LayoutParams;
 
-    const/high16 v3, 0x3f800000    # 1.0f
+    const/high16 v4, 0x3f800000    # 1.0f
 
-    const/4 v4, 0x0
+    const/4 v5, 0x0
 
-    invoke-direct {v1, v4, v2, v3}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
+    invoke-direct {v2, v5, v3, v4}, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
 
-    invoke-virtual {v11, v0, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-virtual {v11, v0, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 54
-    new-instance v1, Landroid/widget/FrameLayout$LayoutParams;
+    new-instance v2, Landroid/widget/FrameLayout$LayoutParams;
 
-    const/16 v2, 0x53
+    const/16 v3, 0x53
 
-    invoke-direct {v1, v8, v8, v2}, Landroid/widget/FrameLayout$LayoutParams;-><init>(III)V
+    invoke-direct {v2, v8, v1, v3}, Landroid/widget/FrameLayout$LayoutParams;-><init>(III)V
 
     .line 55
-    invoke-virtual {v1, v7, v4, v7, v7}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
+    const/high16 v13, 0x40000000    # 2.0f
 
-    invoke-virtual {v12, v11, v1}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
+    invoke-static {v9, v13}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
+
+    move-result v1
+
+    invoke-virtual {v2, v7, v5, v7, v1}, Landroid/widget/FrameLayout$LayoutParams;->setMargins(IIII)V
+
+    invoke-virtual {v12, v11, v2}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 56
     new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda56;
@@ -5095,9 +5115,9 @@
     invoke-virtual {v0, v1}, Landroid/widget/HorizontalScrollView;->setVisibility(I)V
 
     .line 59
-    new-instance v13, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda50;
+    new-instance v14, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda50;
 
-    move-object v1, v13
+    move-object v1, v14
 
     move-object/from16 v2, p0
 
@@ -5107,17 +5127,17 @@
 
     move-object v5, v11
 
-    move v14, v6
+    move v15, v6
 
     move-object v6, v10
 
-    move v15, v7
+    move/from16 v16, v7
 
     move v7, v8
 
-    move v14, v8
+    move v13, v8
 
-    move v8, v15
+    move/from16 v8, v16
 
     invoke-direct/range {v1 .. v8}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda50;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/HorizontalScrollView;Landroid/widget/FrameLayout;Landroid/widget/LinearLayout;Landroid/widget/LinearLayout;II)V
 
@@ -5125,7 +5145,7 @@
 
     const-string v2, "\u0421\u0432\u0435\u0440\u043d\u0443\u0442\u044c / \u0440\u0430\u0437\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u044b"
 
-    invoke-static {v9, v1, v2, v13}, Lorg/rabochaya/projects/WorkspaceUi;->icon(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/ImageButton;
+    invoke-static {v9, v1, v2, v14}, Lorg/rabochaya/projects/MapHud;->button(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/ImageButton;
 
     move-result-object v1
 
@@ -5133,14 +5153,14 @@
 
     const/4 v3, -0x1
 
-    invoke-direct {v2, v14, v3}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+    invoke-direct {v2, v13, v3}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
 
     invoke-virtual {v11, v1, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
     .line 65
-    new-instance v13, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda51;
+    new-instance v14, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda51;
 
-    move-object v1, v13
+    move-object v1, v14
 
     move-object/from16 v2, p0
 
@@ -5150,15 +5170,15 @@
 
     move-object v5, v10
 
-    move v6, v14
+    move v6, v13
 
-    move v7, v15
+    move/from16 v7, v16
 
     move-object v8, v0
 
     invoke-direct/range {v1 .. v8}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda51;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Landroid/widget/FrameLayout;Landroid/widget/LinearLayout;Landroid/widget/LinearLayout;IILandroid/widget/HorizontalScrollView;)V
 
-    invoke-virtual {v12, v13}, Landroid/widget/FrameLayout;->addOnLayoutChangeListener(Landroid/view/View$OnLayoutChangeListener;)V
+    invoke-virtual {v12, v14}, Landroid/widget/FrameLayout;->addOnLayoutChangeListener(Landroid/view/View$OnLayoutChangeListener;)V
 
     .line 68
     const/4 v1, 0x0
@@ -5212,6 +5232,7 @@
 
     move-result-object v0
 
+    :cond_17
     :goto_e
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
@@ -5239,16 +5260,9 @@
 
     aget-wide v4, v1, v3
 
-    const/4 v3, 0x1
-
-    aget-wide v6, v1, v3
+    aget-wide v6, v1, v15
 
     invoke-virtual {v2, v4, v5, v6, v7}, Lorg/rabochaya/projects/LocalMapView;->addDrawingPoint(DD)V
-
-    goto :goto_e
-
-    :cond_17
-    const/4 v3, 0x1
 
     goto :goto_e
 
@@ -5762,7 +5776,7 @@
 
     invoke-direct {v0, p0, p4}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda29;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/Runnable;)V
 
-    invoke-static {p0, p2, p3, v0}, Lorg/rabochaya/projects/WorkspaceUi;->icon(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/ImageButton;
+    invoke-static {p0, p2, p3, v0}, Lorg/rabochaya/projects/MapHud;->button(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/ImageButton;
 
     move-result-object p2
 
@@ -5789,7 +5803,7 @@
     .locals 1
 
     .line 73
-    invoke-static {p0, p1, p2, p3}, Lorg/rabochaya/projects/WorkspaceUi;->icon(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/ImageButton;
+    invoke-static {p0, p1, p2, p3}, Lorg/rabochaya/projects/MapHud;->button(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)Landroid/widget/ImageButton;
 
     move-result-object p1
 
@@ -5803,7 +5817,7 @@
     .line 75
     new-instance p3, Landroid/graphics/drawable/InsetDrawable;
 
-    invoke-static {}, Lorg/rabochaya/projects/WorkspaceUi;->panel()Landroid/graphics/drawable/GradientDrawable;
+    invoke-virtual {p1}, Landroid/widget/ImageButton;->getBackground()Landroid/graphics/drawable/Drawable;
 
     move-result-object v0
 
@@ -5812,7 +5826,7 @@
     invoke-virtual {p1, p3}, Landroid/widget/ImageButton;->setBackground(Landroid/graphics/drawable/Drawable;)V
 
     .line 76
-    const/high16 p2, 0x41600000    # 14.0f
+    const/high16 p2, 0x41200000    # 10.0f
 
     invoke-static {p0, p2}, Lorg/rabochaya/projects/WorkspaceUi;->dp(Landroid/app/Activity;F)I
 
