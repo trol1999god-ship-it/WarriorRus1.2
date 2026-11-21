@@ -1,5 +1,5 @@
 {
-  "added_classes": 560,
+  "added_classes": 563,
   "generated_files": [
     "AttachmentsActivity$$ExternalSyntheticLambda0.smali",
     "AttachmentsActivity$$ExternalSyntheticLambda1.smali",
@@ -535,6 +535,9 @@
     "OziImport.smali",
     "OziRaster.smali",
     "ProjectSession.smali",
+    "ProjectWrites$$ExternalSyntheticLambda0.smali",
+    "ProjectWrites$$ExternalSyntheticLambda1.smali",
+    "ProjectWrites$AttachmentEdit.smali",
     "ProjectWrites.smali",
     "RasterExportFile$Writer.smali",
     "RasterExportFile.smali",
@@ -562,11 +565,11 @@
     "WorkspaceUi$Item.smali",
     "WorkspaceUi.smali"
   ],
-  "replaced_classes": 556,
+  "replaced_classes": 560,
   "min_sdk": 23,
   "api_stubs_packaged": false,
   "sources": {
-    "src/org/rabochaya/projects/AttachmentsActivity.java": "926e3a09528b89c8c36853c09da38d2484a454c1501b9d7fb73556fd5357f6ba",
+    "src/org/rabochaya/projects/AttachmentsActivity.java": "5c52e019cfdd146f04914d47a1b0bad441c2e309ab4ed47961833dd26cdc622c",
     "src/org/rabochaya/projects/BmpRaster.java": "89d87d0ea86f66759629ddbe4b6d1538997d9691a3807fd26a51d403b5ee00a3",
     "src/org/rabochaya/projects/BundledTiles.java": "0baae391532260d7bfa68291c1e49122c3c3d0c03cc46a87be96d6dd10df5612",
     "src/org/rabochaya/projects/CacheExport.java": "d103f57f275315482da9c0813b56a1f77a86f34b5312fa01e38cb8f8893d618a",
@@ -649,7 +652,7 @@
     "src/org/rabochaya/projects/OziImport.java": "d530f48d93c9620627ae923adea6101e401890d8fd9212c3915bb571689f34c1",
     "src/org/rabochaya/projects/OziRaster.java": "1fab169b81126d0655f8f521925f46076f4733c1234498ccd94e7775791f50dc",
     "src/org/rabochaya/projects/ProjectSession.java": "ddcedf560b7342514471112ddc36cdabbf19ba4032b35dc66edc2d4a4d46392b",
-    "src/org/rabochaya/projects/ProjectWrites.java": "fbaf54a5d274e1253cdea4b85f686a18f4e8f6525cd9fa625fa97b94cc8e17d5",
+    "src/org/rabochaya/projects/ProjectWrites.java": "939afde6ee22f1aae7313ba26cc50173614ff4ba10014d0dab1a7e8f03adc642",
     "src/org/rabochaya/projects/RasterExportFile.java": "7aaa2895addbc992ef8179235ab35d0e993a2117f899d1ec247e810327e1d730",
     "src/org/rabochaya/projects/RasterMapImport.java": "117214555df61627071ae45bbd7e12a0b001d7cc5ec22c8fe15f8989d415a5c0",
     "src/org/rabochaya/projects/SvgIcon.java": "0e1abdc5ccbeb8a52a1f3eb9b6a6552532ad2dbd02871c82b9c18f8c3926cd98",

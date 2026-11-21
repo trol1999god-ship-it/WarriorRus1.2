@@ -578,371 +578,356 @@
 .end method
 
 .method synthetic lambda$importFile$12$org-rabochaya-projects-AttachmentsActivity(Landroid/net/Uri;)V
-    .locals 12
+    .locals 17
 
     .line 17
-    nop
+    move-object/from16 v1, p0
+
+    move-object/from16 v0, p1
 
     .line 18
-    const/4 v0, 0x0
+    const/4 v8, 0x0
 
     :try_start_0
-    invoke-virtual {p1}, Landroid/net/Uri;->getLastPathSegment()Ljava/lang/String;
+    invoke-virtual/range {p1 .. p1}, Landroid/net/Uri;->getLastPathSegment()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v9
 
-    invoke-virtual {p0}, Lorg/rabochaya/projects/AttachmentsActivity;->getContentResolver()Landroid/content/ContentResolver;
-
-    move-result-object v2
-
-    invoke-virtual {v2, p1}, Landroid/content/ContentResolver;->getType(Landroid/net/Uri;)Ljava/lang/String;
+    invoke-virtual/range {p0 .. p0}, Lorg/rabochaya/projects/AttachmentsActivity;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v2
 
-    const-string v3, "content"
+    invoke-virtual {v2, v0}, Landroid/content/ContentResolver;->getType(Landroid/net/Uri;)Ljava/lang/String;
 
-    invoke-virtual {p1}, Landroid/net/Uri;->getScheme()Ljava/lang/String;
+    move-result-object v15
 
-    move-result-object v4
+    const-string v2, "content"
 
-    invoke-virtual {v3, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual/range {p1 .. p1}, Landroid/net/Uri;->getScheme()Ljava/lang/String;
 
-    move-result v3
+    move-result-object v3
 
-    const/4 v4, 0x0
+    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    if-eqz v3, :cond_2
-
-    invoke-virtual {p0}, Lorg/rabochaya/projects/AttachmentsActivity;->getContentResolver()Landroid/content/ContentResolver;
-
-    move-result-object v5
-
-    const/4 v3, 0x1
-
-    new-array v7, v3, [Ljava/lang/String;
-
-    const-string v3, "_display_name"
-
-    aput-object v3, v7, v4
-
-    const/4 v9, 0x0
+    move-result v2
 
     const/4 v10, 0x0
 
-    const/4 v8, 0x0
+    if-eqz v2, :cond_3
 
-    move-object v6, p1
+    invoke-virtual/range {p0 .. p0}, Lorg/rabochaya/projects/AttachmentsActivity;->getContentResolver()Landroid/content/ContentResolver;
 
-    invoke-virtual/range {v5 .. v10}, Landroid/content/ContentResolver;->query(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+    move-result-object v2
 
-    move-result-object v3
+    const/4 v3, 0x1
+
+    new-array v4, v3, [Ljava/lang/String;
+
+    const-string v3, "_display_name"
+
+    aput-object v3, v4, v10
+
+    const/4 v6, 0x0
+
+    const/4 v7, 0x0
+
+    const/4 v5, 0x0
+
+    move-object/from16 v3, p1
+
+    invoke-virtual/range {v2 .. v7}, Landroid/content/ContentResolver;->query(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+
+    move-result-object v2
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
     .catchall {:try_start_0 .. :try_end_0} :catchall_5
 
-    if-eqz v3, :cond_1
+    if-eqz v2, :cond_1
 
     :try_start_1
-    invoke-interface {v3}, Landroid/database/Cursor;->moveToFirst()Z
+    invoke-interface {v2}, Landroid/database/Cursor;->moveToFirst()Z
 
-    move-result v5
+    move-result v3
 
-    if-eqz v5, :cond_1
+    if-eqz v3, :cond_1
 
-    invoke-interface {v3, v4}, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+    invoke-interface {v2, v10}, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v9
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     goto :goto_1
 
     :catchall_0
-    move-exception p1
+    move-exception v0
 
-    if-eqz v3, :cond_0
+    move-object v3, v0
+
+    if-eqz v2, :cond_0
 
     :try_start_2
-    invoke-interface {v3}, Landroid/database/Cursor;->close()V
+    invoke-interface {v2}, Landroid/database/Cursor;->close()V
     :try_end_2
     .catchall {:try_start_2 .. :try_end_2} :catchall_1
 
     goto :goto_0
 
     :catchall_1
-    move-exception v1
+    move-exception v0
+
+    move-object v2, v0
 
     :try_start_3
-    invoke-virtual {p1, v1}, Ljava/lang/Throwable;->addSuppressed(Ljava/lang/Throwable;)V
+    invoke-virtual {v3, v2}, Ljava/lang/Throwable;->addSuppressed(Ljava/lang/Throwable;)V
 
     :cond_0
     :goto_0
-    throw p1
+    throw v3
 
     :cond_1
     :goto_1
-    if-eqz v3, :cond_2
+    if-eqz v2, :cond_2
 
-    invoke-interface {v3}, Landroid/database/Cursor;->close()V
+    invoke-interface {v2}, Landroid/database/Cursor;->close()V
 
     .line 19
     :cond_2
-    new-instance v3, Ljava/io/ByteArrayOutputStream;
+    move-object v14, v9
 
-    invoke-direct {v3}, Ljava/io/ByteArrayOutputStream;-><init>()V
+    goto :goto_2
 
-    invoke-virtual {p0}, Lorg/rabochaya/projects/AttachmentsActivity;->getContentResolver()Landroid/content/ContentResolver;
+    .line 18
+    :cond_3
+    move-object v14, v9
 
-    move-result-object v5
+    .line 19
+    :goto_2
+    new-instance v2, Ljava/io/ByteArrayOutputStream;
 
-    invoke-virtual {v5, p1}, Landroid/content/ContentResolver;->openInputStream(Landroid/net/Uri;)Ljava/io/InputStream;
+    invoke-direct {v2}, Ljava/io/ByteArrayOutputStream;-><init>()V
 
-    move-result-object p1
+    invoke-virtual/range {p0 .. p0}, Lorg/rabochaya/projects/AttachmentsActivity;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v3
+
+    invoke-virtual {v3, v0}, Landroid/content/ContentResolver;->openInputStream(Landroid/net/Uri;)Ljava/io/InputStream;
+
+    move-result-object v3
     :try_end_3
     .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_1
     .catchall {:try_start_3 .. :try_end_3} :catchall_5
 
-    if-eqz p1, :cond_9
+    if-eqz v3, :cond_9
 
-    const/16 v5, 0x4000
+    const/16 v0, 0x4000
 
     :try_start_4
-    new-array v5, v5, [B
+    new-array v0, v0, [B
 
-    :goto_2
-    invoke-virtual {p1, v5}, Ljava/io/InputStream;->read([B)I
+    :goto_3
+    invoke-virtual {v3, v0}, Ljava/io/InputStream;->read([B)I
 
-    move-result v6
+    move-result v4
     :try_end_4
     .catchall {:try_start_4 .. :try_end_4} :catchall_3
 
-    const/4 v7, -0x1
+    const/4 v5, -0x1
 
-    const-string v8, "\u0418\u043c\u043f\u043e\u0440\u0442 \u043e\u0442\u043c\u0435\u043d\u0451\u043d"
+    const-string v6, "\u0418\u043c\u043f\u043e\u0440\u0442 \u043e\u0442\u043c\u0435\u043d\u0451\u043d"
 
-    if-eq v6, v7, :cond_5
+    if-eq v4, v5, :cond_6
 
     :try_start_5
-    iget-boolean v7, p0, Lorg/rabochaya/projects/AttachmentsActivity;->disposed:Z
+    iget-boolean v5, v1, Lorg/rabochaya/projects/AttachmentsActivity;->disposed:Z
 
-    if-nez v7, :cond_4
+    if-nez v5, :cond_5
 
-    invoke-virtual {v3}, Ljava/io/ByteArrayOutputStream;->size()I
+    invoke-virtual {v2}, Ljava/io/ByteArrayOutputStream;->size()I
 
-    move-result v7
+    move-result v5
 
-    add-int/2addr v7, v6
+    add-int/2addr v5, v4
 
-    const/high16 v8, 0x800000
+    const/high16 v6, 0x800000
 
-    if-gt v7, v8, :cond_3
+    if-gt v5, v6, :cond_4
 
-    invoke-virtual {v3, v5, v4, v6}, Ljava/io/ByteArrayOutputStream;->write([BII)V
-
-    goto :goto_2
-
-    :cond_3
-    new-instance v1, Ljava/io/IOException;
-
-    const-string v2, "\u041f\u0440\u0435\u0434\u0435\u043b \u043e\u0434\u043d\u043e\u0433\u043e \u0432\u043b\u043e\u0436\u0435\u043d\u0438\u044f \u2014 8 \u041c\u0438\u0411"
-
-    invoke-direct {v1, v2}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
-
-    :goto_3
-    throw v1
-
-    :cond_4
-    new-instance v1, Ljava/io/IOException;
-
-    invoke-direct {v1, v8}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
-    :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_3
+    invoke-virtual {v2, v0, v10, v4}, Ljava/io/ByteArrayOutputStream;->write([BII)V
 
     goto :goto_3
 
+    :cond_4
+    new-instance v0, Ljava/io/IOException;
+
+    const-string v2, "\u041f\u0440\u0435\u0434\u0435\u043b \u043e\u0434\u043d\u043e\u0433\u043e \u0432\u043b\u043e\u0436\u0435\u043d\u0438\u044f \u2014 8 \u041c\u0438\u0411"
+
+    invoke-direct {v0, v2}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    :goto_4
+    throw v0
+
     :cond_5
-    if-eqz p1, :cond_6
+    new-instance v0, Ljava/io/IOException;
+
+    invoke-direct {v0, v6}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+    :try_end_5
+    .catchall {:try_start_5 .. :try_end_5} :catchall_3
+
+    goto :goto_4
+
+    :cond_6
+    if-eqz v3, :cond_7
 
     :try_start_6
-    invoke-virtual {p1}, Ljava/io/InputStream;->close()V
+    invoke-virtual {v3}, Ljava/io/InputStream;->close()V
 
     .line 20
-    :cond_6
-    iget-boolean p1, p0, Lorg/rabochaya/projects/AttachmentsActivity;->disposed:Z
+    :cond_7
+    iget-boolean v0, v1, Lorg/rabochaya/projects/AttachmentsActivity;->disposed:Z
 
-    if-nez p1, :cond_8
+    if-nez v0, :cond_8
 
-    new-instance p1, Lorg/rabochaya/projects/ProjectStore;
+    new-instance v3, Lorg/rabochaya/projects/ProjectStore;
 
-    invoke-direct {p1, p0}, Lorg/rabochaya/projects/ProjectStore;-><init>(Landroid/content/Context;)V
+    invoke-direct {v3, v1}, Lorg/rabochaya/projects/ProjectStore;-><init>(Landroid/content/Context;)V
     :try_end_6
     .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_6} :catch_1
     .catchall {:try_start_6 .. :try_end_6} :catchall_5
 
     :try_start_7
-    iget-wide v4, p0, Lorg/rabochaya/projects/AttachmentsActivity;->projectId:J
+    iget-wide v11, v1, Lorg/rabochaya/projects/AttachmentsActivity;->projectId:J
 
-    invoke-virtual {p1, v4, v5}, Lorg/rabochaya/projects/ProjectStore;->load(J)Lorg/rabochaya/projects/KmlProject;
+    iget-object v13, v1, Lorg/rabochaya/projects/AttachmentsActivity;->featureId:Ljava/lang/String;
 
-    move-result-object v0
+    invoke-virtual {v2}, Ljava/io/ByteArrayOutputStream;->toByteArray()[B
 
-    iget-object v4, p0, Lorg/rabochaya/projects/AttachmentsActivity;->featureId:Ljava/lang/String;
+    move-result-object v16
 
-    invoke-virtual {v0, v4}, Lorg/rabochaya/projects/KmlProject;->byId(Ljava/lang/String;)Lorg/w3c/dom/Element;
+    move-object v10, v3
 
-    move-result-object v4
-
-    if-eqz v4, :cond_7
-
-    invoke-virtual {v3}, Ljava/io/ByteArrayOutputStream;->toByteArray()[B
-
-    move-result-object v3
-
-    invoke-static {v0, v4, v1, v2, v3}, Lorg/rabochaya/projects/MediaLinks;->add(Lorg/rabochaya/projects/KmlProject;Lorg/w3c/dom/Element;Ljava/lang/String;Ljava/lang/String;[B)Lorg/rabochaya/projects/MediaLinks$Item;
-
-    iget-wide v1, p0, Lorg/rabochaya/projects/AttachmentsActivity;->projectId:J
-
-    invoke-static {p1, v1, v2, v0}, Lorg/rabochaya/projects/ProjectWrites;->save(Lorg/rabochaya/projects/ProjectStore;JLorg/rabochaya/projects/KmlProject;)V
+    invoke-static/range {v10 .. v16}, Lorg/rabochaya/projects/ProjectWrites;->addAttachment(Lorg/rabochaya/projects/ProjectStore;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;[B)V
 
     .line 21
     new-instance v0, Lorg/rabochaya/projects/AttachmentsActivity$$ExternalSyntheticLambda8;
 
-    invoke-direct {v0, p0}, Lorg/rabochaya/projects/AttachmentsActivity$$ExternalSyntheticLambda8;-><init>(Lorg/rabochaya/projects/AttachmentsActivity;)V
+    invoke-direct {v0, v1}, Lorg/rabochaya/projects/AttachmentsActivity$$ExternalSyntheticLambda8;-><init>(Lorg/rabochaya/projects/AttachmentsActivity;)V
 
-    invoke-virtual {p0, v0}, Lorg/rabochaya/projects/AttachmentsActivity;->runOnUiThread(Ljava/lang/Runnable;)V
+    invoke-virtual {v1, v0}, Lorg/rabochaya/projects/AttachmentsActivity;->runOnUiThread(Ljava/lang/Runnable;)V
     :try_end_7
     .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_7} :catch_0
     .catchall {:try_start_7 .. :try_end_7} :catchall_2
 
     .line 22
-    invoke-virtual {p1}, Lorg/rabochaya/projects/ProjectStore;->close()V
+    invoke-virtual {v3}, Lorg/rabochaya/projects/ProjectStore;->close()V
 
-    goto :goto_7
+    goto :goto_8
 
-    .line 20
-    :cond_7
-    :try_start_8
-    new-instance v0, Ljava/io/IOException;
-
-    const-string v1, "\u041e\u0431\u044a\u0435\u043a\u0442 \u0443\u0434\u0430\u043b\u0451\u043d"
-
-    invoke-direct {v0, v1}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
-
-    throw v0
-    :try_end_8
-    .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_8} :catch_0
-    .catchall {:try_start_8 .. :try_end_8} :catchall_2
-
-    .line 22
     :catchall_2
     move-exception v0
 
-    move-object v11, v0
+    move-object v8, v3
 
-    move-object v0, p1
-
-    move-object p1, v11
-
-    goto :goto_8
+    goto :goto_9
 
     :catch_0
     move-exception v0
 
-    move-object v11, v0
+    move-object v8, v3
 
-    move-object v0, p1
-
-    move-object p1, v11
-
-    goto :goto_6
+    goto :goto_7
 
     .line 20
     :cond_8
-    :try_start_9
-    new-instance p1, Ljava/io/IOException;
+    :try_start_8
+    new-instance v0, Ljava/io/IOException;
 
-    invoke-direct {p1, v8}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+    invoke-direct {v0, v6}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
 
-    throw p1
-    :try_end_9
-    .catch Ljava/lang/Exception; {:try_start_9 .. :try_end_9} :catch_1
-    .catchall {:try_start_9 .. :try_end_9} :catchall_5
+    throw v0
+    :try_end_8
+    .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_8} :catch_1
+    .catchall {:try_start_8 .. :try_end_8} :catchall_5
 
     .line 19
     :catchall_3
-    move-exception v1
+    move-exception v0
 
-    goto :goto_4
-
-    :cond_9
-    :try_start_a
-    new-instance v1, Ljava/io/IOException;
-
-    const-string v2, "\u0424\u0430\u0439\u043b \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u0435\u043d"
-
-    invoke-direct {v1, v2}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
-    :try_end_a
-    .catchall {:try_start_a .. :try_end_a} :catchall_3
-
-    goto :goto_3
-
-    :goto_4
-    if-eqz p1, :cond_a
-
-    :try_start_b
-    invoke-virtual {p1}, Ljava/io/InputStream;->close()V
-    :try_end_b
-    .catchall {:try_start_b .. :try_end_b} :catchall_4
+    move-object v2, v0
 
     goto :goto_5
 
-    :catchall_4
-    move-exception p1
+    :cond_9
+    :try_start_9
+    new-instance v0, Ljava/io/IOException;
 
-    :try_start_c
-    invoke-virtual {v1, p1}, Ljava/lang/Throwable;->addSuppressed(Ljava/lang/Throwable;)V
+    const-string v2, "\u0424\u0430\u0439\u043b \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u0435\u043d"
+
+    invoke-direct {v0, v2}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+    :try_end_9
+    .catchall {:try_start_9 .. :try_end_9} :catchall_3
+
+    goto :goto_4
+
+    :goto_5
+    if-eqz v3, :cond_a
+
+    :try_start_a
+    invoke-virtual {v3}, Ljava/io/InputStream;->close()V
+    :try_end_a
+    .catchall {:try_start_a .. :try_end_a} :catchall_4
+
+    goto :goto_6
+
+    :catchall_4
+    move-exception v0
+
+    move-object v3, v0
+
+    :try_start_b
+    invoke-virtual {v2, v3}, Ljava/lang/Throwable;->addSuppressed(Ljava/lang/Throwable;)V
 
     :cond_a
-    :goto_5
-    throw v1
-    :try_end_c
-    .catch Ljava/lang/Exception; {:try_start_c .. :try_end_c} :catch_1
-    .catchall {:try_start_c .. :try_end_c} :catchall_5
+    :goto_6
+    throw v2
+    :try_end_b
+    .catch Ljava/lang/Exception; {:try_start_b .. :try_end_b} :catch_1
+    .catchall {:try_start_b .. :try_end_b} :catchall_5
 
     .line 22
     :catchall_5
-    move-exception p1
+    move-exception v0
 
-    goto :goto_8
+    goto :goto_9
 
     :catch_1
-    move-exception p1
+    move-exception v0
 
-    :goto_6
-    :try_start_d
-    new-instance v1, Lorg/rabochaya/projects/AttachmentsActivity$$ExternalSyntheticLambda9;
+    :goto_7
+    :try_start_c
+    new-instance v2, Lorg/rabochaya/projects/AttachmentsActivity$$ExternalSyntheticLambda9;
 
-    invoke-direct {v1, p0, p1}, Lorg/rabochaya/projects/AttachmentsActivity$$ExternalSyntheticLambda9;-><init>(Lorg/rabochaya/projects/AttachmentsActivity;Ljava/lang/Exception;)V
+    invoke-direct {v2, v1, v0}, Lorg/rabochaya/projects/AttachmentsActivity$$ExternalSyntheticLambda9;-><init>(Lorg/rabochaya/projects/AttachmentsActivity;Ljava/lang/Exception;)V
 
-    invoke-virtual {p0, v1}, Lorg/rabochaya/projects/AttachmentsActivity;->runOnUiThread(Ljava/lang/Runnable;)V
-    :try_end_d
-    .catchall {:try_start_d .. :try_end_d} :catchall_5
+    invoke-virtual {v1, v2}, Lorg/rabochaya/projects/AttachmentsActivity;->runOnUiThread(Ljava/lang/Runnable;)V
+    :try_end_c
+    .catchall {:try_start_c .. :try_end_c} :catchall_5
 
-    if-eqz v0, :cond_b
+    if-eqz v8, :cond_b
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/ProjectStore;->close()V
+    invoke-virtual {v8}, Lorg/rabochaya/projects/ProjectStore;->close()V
 
     :cond_b
-    :goto_7
+    :goto_8
     return-void
 
-    :goto_8
-    if-eqz v0, :cond_c
+    :goto_9
+    if-eqz v8, :cond_c
 
-    invoke-virtual {v0}, Lorg/rabochaya/projects/ProjectStore;->close()V
+    invoke-virtual {v8}, Lorg/rabochaya/projects/ProjectStore;->close()V
 
     :cond_c
-    throw p1
+    throw v0
 .end method
 
 .method synthetic lambda$load$1$org-rabochaya-projects-AttachmentsActivity(Ljava/util/List;Ljava/util/HashMap;)V
@@ -1280,23 +1265,9 @@
     :try_start_1
     iget-wide v2, p0, Lorg/rabochaya/projects/AttachmentsActivity;->projectId:J
 
-    invoke-virtual {v1, v2, v3}, Lorg/rabochaya/projects/ProjectStore;->load(J)Lorg/rabochaya/projects/KmlProject;
+    iget-object v0, p0, Lorg/rabochaya/projects/AttachmentsActivity;->featureId:Ljava/lang/String;
 
-    move-result-object v0
-
-    iget-object v2, p0, Lorg/rabochaya/projects/AttachmentsActivity;->featureId:Ljava/lang/String;
-
-    invoke-virtual {v0, v2}, Lorg/rabochaya/projects/KmlProject;->byId(Ljava/lang/String;)Lorg/w3c/dom/Element;
-
-    move-result-object v2
-
-    if-eqz v2, :cond_0
-
-    invoke-static {v0, v2, p1}, Lorg/rabochaya/projects/MediaLinks;->remove(Lorg/rabochaya/projects/KmlProject;Lorg/w3c/dom/Element;Ljava/lang/String;)V
-
-    iget-wide v2, p0, Lorg/rabochaya/projects/AttachmentsActivity;->projectId:J
-
-    invoke-static {v1, v2, v3, v0}, Lorg/rabochaya/projects/ProjectWrites;->save(Lorg/rabochaya/projects/ProjectStore;JLorg/rabochaya/projects/KmlProject;)V
+    invoke-static {v1, v2, v3, v0, p1}, Lorg/rabochaya/projects/ProjectWrites;->removeAttachment(Lorg/rabochaya/projects/ProjectStore;JLjava/lang/String;Ljava/lang/String;)V
 
     new-instance p1, Lorg/rabochaya/projects/AttachmentsActivity$$ExternalSyntheticLambda0;
 
@@ -1310,19 +1281,6 @@
     invoke-virtual {v1}, Lorg/rabochaya/projects/ProjectStore;->close()V
 
     goto :goto_1
-
-    :cond_0
-    :try_start_2
-    new-instance p1, Ljava/io/IOException;
-
-    const-string v0, "\u041e\u0431\u044a\u0435\u043a\u0442 \u0443\u0434\u0430\u043b\u0451\u043d"
-
-    invoke-direct {p1, v0}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
-
-    throw p1
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_0
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
 
     :catchall_0
     move-exception p1
@@ -1347,29 +1305,29 @@
     move-exception p1
 
     :goto_0
-    :try_start_3
+    :try_start_2
     new-instance v1, Lorg/rabochaya/projects/AttachmentsActivity$$ExternalSyntheticLambda1;
 
     invoke-direct {v1, p0, p1}, Lorg/rabochaya/projects/AttachmentsActivity$$ExternalSyntheticLambda1;-><init>(Lorg/rabochaya/projects/AttachmentsActivity;Ljava/lang/Exception;)V
 
     invoke-virtual {p0, v1}, Lorg/rabochaya/projects/AttachmentsActivity;->runOnUiThread(Ljava/lang/Runnable;)V
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_1
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_1
 
+    if-eqz v0, :cond_0
+
+    invoke-virtual {v0}, Lorg/rabochaya/projects/ProjectStore;->close()V
+
+    :cond_0
+    :goto_1
+    return-void
+
+    :goto_2
     if-eqz v0, :cond_1
 
     invoke-virtual {v0}, Lorg/rabochaya/projects/ProjectStore;->close()V
 
     :cond_1
-    :goto_1
-    return-void
-
-    :goto_2
-    if-eqz v0, :cond_2
-
-    invoke-virtual {v0}, Lorg/rabochaya/projects/ProjectStore;->close()V
-
-    :cond_2
     throw p1
 .end method
 

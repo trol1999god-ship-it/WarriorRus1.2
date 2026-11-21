@@ -12,6 +12,28 @@ public final class ProjectWrites {
  public static void savePreservingAssets(ProjectStore store,long id,KmlProject project)throws IOException{
   save(store,id,project,false);
  }
+ public static void addAttachment(ProjectStore store,long id,String featureId,String name,String type,byte[] bytes)throws IOException{
+  editAttachment(store,id,featureId,(project,feature)->MediaLinks.add(project,feature,name,type,bytes));
+ }
+ public static void removeAttachment(ProjectStore store,long id,String featureId,String itemId)throws IOException{
+  editAttachment(store,id,featureId,(project,feature)->MediaLinks.remove(project,feature,itemId));
+ }
+ private interface AttachmentEdit {
+  void apply(KmlProject project,org.w3c.dom.Element feature)throws IOException;
+ }
+ /** Read the current feature under the same transaction as the XML and payload replacement. */
+ private static void editAttachment(ProjectStore store,long id,String featureId,AttachmentEdit edit)throws IOException{
+  SQLiteDatabase db=store.getWritableDatabase();
+  db.beginTransaction();
+  try {
+   KmlProject current=store.load(id);
+   org.w3c.dom.Element feature=current.byId(featureId);
+   if(feature==null)throw new IOException("Объект удалён");
+   edit.apply(current,feature);
+   savePreservingAssets(store,id,current);
+   db.setTransactionSuccessful();
+  }finally{db.endTransaction();}
+ }
  /** The classic manager edits XML only. Keep the latest local assets when that XML still matches. */
  public static void saveClassicEdit(ProjectStore store, long id, KmlProject edited, byte[] before) throws IOException {
   SQLiteDatabase db = store.getWritableDatabase();
