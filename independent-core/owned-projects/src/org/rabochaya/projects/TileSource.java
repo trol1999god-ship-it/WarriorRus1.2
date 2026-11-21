@@ -17,13 +17,20 @@ public final class TileSource {
  private static String clean(String value,int max){if(value==null||value.trim().isEmpty()||value.length()>max)throw new IllegalArgumentException("Заполните название, адрес и подпись карты");for(int i=0;i<value.length();i++)if(Character.isWhitespace(value.charAt(i))&&value.charAt(i)!=' ')throw new IllegalArgumentException("Недопустимый символ в настройках");return value.trim();}
  public String url(int z,int x,int y){int n=1<<z;if(z<minZoom||z>maxZoom||x<0||y<0||x>=n||y>=n)throw new IllegalArgumentException("Тайл вне диапазона");String value=(levelTemplates==null?template:levelTemplates[z]);if(value==null)throw new IllegalArgumentException("Масштаб отсутствует в источнике");return value.replace("{z}",Integer.toString(z)).replace("{x}",Integer.toString(x)).replace("{y}",Integer.toString(y)).replace("{q}",TileProjection.quadkey(z,x,y)).replace("{s}","Galileo".substring(0,(3*x+y)%8)).replace("{bbox}",TileProjection.bbox(z,x,y));}
  boolean isCatalogueLeaf(){return levelTemplates!=null;}
+ /** Both services ended direct public tile delivery. Preserve their original local cache IDs. */
+ public boolean cacheOnly(){
+  return isCatalogueLeaf()&&(template.startsWith("https://tileproxy.cloud.mapquest.com/tiles/1.0.0/map/")
+    ||template.startsWith("https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/"));
+ }
+
  public boolean hasZoom(int z){return z>=minZoom&&z<=maxZoom&&(levelTemplates==null||levelTemplates[z]!=null);}
- public boolean canDownload(int z){if(!declaredDownloads||!hasZoom(z))return false;try{String host=new URI(url(z,0,0)).getHost();return host != null && !isOfflineRestrictedHost(host);}catch(Exception e){return false;}}
+ public boolean canDownload(int z){return !cacheOnly()&&allowsOfflineUse(z);}
+ private boolean allowsOfflineUse(int z){if(!declaredDownloads||!hasZoom(z))return false;try{String host=new URI(url(z,0,0)).getHost();return host != null && !isOfflineRestrictedHost(host);}catch(Exception e){return false;}}
  /** Export packages require permission for every contributing source and zoom. */
  public boolean canExport(){
   if(layers!=null){for(TileSource leaf:leafs())if(!leaf.canExport())return false;return layers.length!=0;}
   if(!downloads)return false;
-  for(int z=minZoom;z<=maxZoom;z++)if(hasZoom(z)&&!canDownload(z))return false;
+  for(int z=minZoom;z<=maxZoom;z++)if(hasZoom(z)&&!allowsOfflineUse(z))return false;
   return true;
  }
  static void requireExportAllowed(TileSource source)throws java.io.IOException{
@@ -34,7 +41,7 @@ public final class TileSource {
  private static boolean isOfflineRestrictedHost(String host) {
   String normalized=host.toLowerCase(Locale.ROOT);
   if(normalized.endsWith("."))normalized=normalized.substring(0,normalized.length()-1);
-  return domain(normalized,"openstreetmap.org")||domain(normalized,"google.com")
+  return domain(normalized,"openstreetmap.org")||domain(normalized,"openstreetmap.fr")||domain(normalized,"google.com")
    ||domain(normalized,"tile.googleapis.com")||domain(normalized,"maps.googleapis.com")||domain(normalized,"maps.yandex.net")
    ||domain(normalized,"api-maps.yandex.ru")||domain(normalized,"arcgisonline.com");
  }

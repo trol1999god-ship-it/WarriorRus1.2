@@ -15,13 +15,24 @@ public final class OnlineTiles implements Closeable {
  public synchronized List<int[]> keys()throws IOException{ArrayList<int[]> result=new ArrayList<>();try(Cursor c=db.rawQuery("SELECT zoom_level,tile_column,tile_row FROM tiles ORDER BY zoom_level,tile_column,tile_row",null)){while(c.moveToNext()){if(result.size()>=20000)throw new IOException("Для одного экспорта выберите кеш до 20 000 тайлов");int z=c.getInt(0),x=c.getInt(1);long row=c.getLong(2);if(z<0||z>23||x<0||x>=(1<<z)||row<0||row>=(1L<<z))throw new IOException("Некорректный индекс кеша");result.add(new int[]{z,x,(int)MapMath.tmsRow(z,row)});}}return result;}
  public synchronized Bitmap tile(int z,int x,int y,boolean network)throws IOException{byte[] bytes=bytes(z,x,y,network,false);return OfflineTiles.decode(bytes);}
  public synchronized boolean contains(int z,int x,int y){String[] key=args(z,x,y);try(Cursor c=db.rawQuery("SELECT 1 FROM tiles WHERE zoom_level=? AND tile_column=? AND tile_row=? AND typeof(tile_data)='blob' AND length(tile_data) BETWEEN 1 AND 1048576 LIMIT 1",key)){return c.moveToFirst();}}
- public synchronized void download(int z,int x,int y)throws IOException{if(!source.canDownload(z))throw new IOException("Источник разрешает только просмотр; выберите источник с разрешённым скачиванием");bytes(z,x,y,true,true);}
+ public synchronized void download(int z,int x,int y)throws IOException{if(source.cacheOnly())throw new IOException("Поставщик завершил онлайн-доступ. Доступен сохранённый кеш.");if(!source.canDownload(z))throw new IOException("Источник разрешает только просмотр; выберите источник с разрешённым скачиванием");bytes(z,x,y,true,true);}
  private byte[] bytes(int z,int x,int y,boolean network,boolean pin)throws IOException{
-  if(closed)throw new IOException("Загрузка отменена");String[] key=args(z,x,y);byte[] old=null;long expires=0;String etag=null,modified=null;int pinned=0;
+  if(closed)throw new IOException("Загрузка отменена");network=network&&!source.cacheOnly();String[] key=args(z,x,y);byte[] old=null;long expires=0;String etag=null,modified=null;int pinned=0;
   try(Cursor c=db.rawQuery("SELECT tile_data,expires,etag,modified,pinned FROM tiles WHERE zoom_level=? AND tile_column=? AND tile_row=?",key)){if(c.moveToFirst()){old=c.getBlob(0);expires=c.getLong(1);etag=c.getString(2);modified=c.getString(3);pinned=c.getInt(4);}}
   if(old!=null&&(!network||pin||expires>System.currentTimeMillis())){if(pin&&pinned==0){ContentValues v=new ContentValues();v.put("pinned",1);if(db.update("tiles",v,"zoom_level=? AND tile_column=? AND tile_row=?",key)!=1)throw new IOException("Не удалось закрепить тайл в кеше. Повторите загрузку");}return old;}if(!network)return old;
   try {
-   int code=connectTile(new URL(source.url(z,x,y)),etag,modified);
+   URL request=new URL(source.url(z,x,y));
+   if(source.isCatalogueLeaf()&&"elevation.nationalmap.gov".equals(request.getHost())
+     &&"/arcgis/rest/services/3DEPElevation/ImageServer/exportImage".equals(request.getPath())
+     &&request.getQuery()!=null&&request.getQuery().contains("Contour%2025")){
+    request=new URL("https://carto.nationalmap.gov/arcgis/rest/services/contours/MapServer/export"
+      +"?f=image&dpi=96&format=png32&transparent=true&bbox="+TileProjection.bbox(z,x,y)
+      +"&bboxSR=3857&imageSR=3857&size=256,256");
+    // Validators from the old ImageServer must not be used on the new MapServer.
+    etag=null;
+    modified=null;
+   }
+   int code=connectTile(request,etag,modified);
    HttpsURLConnection connection=active;
    if(code!=200&&!(code==304&&old!=null))throw new IOException("Сервер карты: HTTP "+code+". Повторите позже или проверьте источник");
    String control=connection.getHeaderField("Cache-Control");boolean noStore=control!=null&&control.toLowerCase(Locale.US).contains("no-store");if(pin&&noStore)throw new IOException("Сервер запрещает сохранять эти тайлы");byte[] result=old;

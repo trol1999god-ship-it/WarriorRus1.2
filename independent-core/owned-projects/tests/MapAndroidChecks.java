@@ -1152,6 +1152,17 @@ public final class MapAndroidChecks extends Instrumentation {
   check(requests.get()>beforeRetry,"retry requests missing tiles again without changing source");
   check(findDescription(getUiAutomation().getRootInActiveWindow(),"Ошибка загрузки карты")==null,"resolved failure leaves no overlay");
   capture("catalog-dns-recovered");
+  Context context=getTargetContext();
+  staticCall("OnlineMapSettings","select",new Class[]{Context.class,String.class,long.class},context,"USGSIMGTOPO",project);
+  activity=startActivitySync(new Intent().setClassName(context.getPackageName(),
+    "org.rabochaya.projects.OnlineMapActivity").putExtra("project",project).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+  waitText("Поставщик завершил онлайн-доступ");
+  check(!waitText("Загружать тайлы из интернета").isEnabled(),"retired source disables its website toggle");
+  check(find(getUiAutomation().getRootInActiveWindow(),"Скачать область в кеш",true)==null,"retired service offers no download action");
+  click("Показать выбранную карту");
+  waitText("только кеш");
+  capture("catalog-retired-cache-only");
+
 
  }
  void independence()throws Exception{
@@ -1222,6 +1233,42 @@ public final class MapAndroidChecks extends Instrumentation {
  }
  void cacheWrites()throws Exception{
   installTileFixture();Object src=source("write-failure",true),cache=onlineCache(src);
+  for(String key:new String[]{"USGSIMGTOPO","OSMMPQ"}){
+   Object retired=staticCall("MapCatalog","find",new Class[]{String.class},key);
+   Object retiredCache=onlineCache(retired);
+   try{
+    int before=requests.get();
+    check(onlineTile(retiredCache,4,4,3,true)==null&&requests.get()==before,"retired catalogue source remains cache-only: "+key);
+    boolean denied=false;
+    try{call(retiredCache,"download",new Class[]{int.class,int.class,int.class},4,4,3);}
+    catch(InvocationTargetException failure){denied=failure.getCause() instanceof IOException;}
+    check(denied&&requests.get()==before,"area download cannot contact retired endpoint");
+    File dbFile=new File(getTargetContext().getFilesDir(),"tile-cache/"+retired.getClass().getField("id").get(retired)+".mbtiles");
+    try(SQLiteDatabase writable=SQLiteDatabase.openDatabase(dbFile.getPath(),null,SQLiteDatabase.OPEN_READWRITE)){
+     writable.execSQL("INSERT INTO tiles(zoom_level,tile_column,tile_row,tile_data,expires) VALUES(4,4,12,?,0)",new Object[]{onlineRaster()});
+    }
+    Bitmap cached=onlineTile(retiredCache,4,4,3,true);
+    check(cached!=null&&requests.get()==before,"old cache remains readable with the network toggle on");
+    cached.recycle();
+   }finally{call(retiredCache,"close",new Class[]{});}
+  }
+  Object contours=staticCall("MapCatalog","find",new Class[]{String.class},"USGSCTL");
+  Object contourCache=onlineCache(contours);
+  try{
+   int before=requests.get();
+   Bitmap contour=onlineTile(contourCache,12,850,1549,true);
+   check(contour!=null&&requests.get()==before+1
+     &&requested.get(before).startsWith("https://carto.nationalmap.gov/arcgis/rest/services/contours/MapServer/export?")
+     &&requested.get(before).contains("transparent=true"),"USGS contours fetch matching Web Mercator imagery as a transparent overlay");
+   contour.recycle();
+   contour=onlineTile(contourCache,12,850,1549,false);
+   check(contour!=null&&requests.get()==before+1,"live contour survives in the same source cache offline");
+   contour.recycle();
+  }finally{call(contourCache,"close",new Class[]{});}
+  for(String key:new String[]{"OSMHOT","OSMFR"}){
+   Object restricted=staticCall("MapCatalog","find",new Class[]{String.class},key);
+   check(!(Boolean)call(restricted,"canDownload",new Class[]{int.class},4),"OSM France service remains available for viewing with no bulk downloads");
+  }
   Field field=owned("OnlineTiles").getDeclaredField("db");field.setAccessible(true);SQLiteDatabase db=(SQLiteDatabase)field.get(cache);
   call(cache,"clear",new Class[]{});
   try{
@@ -1273,7 +1320,7 @@ public final class MapAndroidChecks extends Instrumentation {
  }
  void catalog()throws Exception{
   getTargetContext().getSharedPreferences("online-map",0).edit().putBoolean("network",false).commit();installTileFixture();List entries=(List)staticCall("MapCatalog","entries",new Class[]{});check(entries.size()==57,"all 54 original sources and 3 composites bundled");int leaves=0,composites=0;
-  for(Object entry:entries){Object s=entry.getClass().getField("source").get(entry);Object[] children=(Object[])call(s,"leafs",new Class[]{});if(children.length>1){composites++;continue;}leaves++;int z=s.getClass().getField("minZoom").getInt(s);Object cache=onlineCache(s);call(cache,"clear",new Class[]{});Bitmap image=onlineTile(cache,z,0,0,true);check(image!=null,"original source transport and cache: "+entry.getClass().getField("key").get(entry));image.recycle();call(cache,"close",new Class[]{});}
+  for(Object entry:entries){Object s=entry.getClass().getField("source").get(entry);Object[] children=(Object[])call(s,"leafs",new Class[]{});if(children.length>1){composites++;continue;}leaves++;int z=s.getClass().getField("minZoom").getInt(s);Object cache=onlineCache(s);call(cache,"clear",new Class[]{});Bitmap image=onlineTile(cache,z,0,0,true);boolean cacheOnly=(Boolean)call(s,"cacheOnly",new Class[]{});check(cacheOnly?image==null:image!=null,"original source availability: "+entry.getClass().getField("key").get(entry));if(image!=null)image.recycle();call(cache,"close",new Class[]{});}
   check(leaves==54&&composites==3,"no source or ready-made mapset omitted");
   project=getTargetContext().getSharedPreferences("qa_online",0).getLong("project",-1);Object hybrid=staticCall("MapCatalog","find",new Class[]{String.class},"ESRI_IMAGERY_LABELS");for(Object leaf:(Object[])call(hybrid,"leafs",new Class[]{})){Object cache=onlineCache(leaf);call(cache,"clear",new Class[]{});call(cache,"close",new Class[]{});}
   activity=startActivitySync(new Intent().setClassName(getTargetContext().getPackageName(),"org.rabochaya.projects.LocalMapActivity").putExtra("project",project).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));final Activity resumedMap=activity;waitText("только кеш");ActivityMonitor monitor=addMonitor("org.rabochaya.projects.OnlineMapActivity",null,false);click("Кеш / онлайн");Activity panel=waitForMonitorWithTimeout(monitor,45000);removeMonitor(monitor);check(panel!=null,"catalogue accessible in main map flow");activity=panel;
