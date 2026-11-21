@@ -9,6 +9,10 @@ public final class MapMath {
  public static double lat(double y){return Math.toDegrees(Math.atan(Math.sinh(Math.PI*(1-2*clamp(y,0,1)))));}
  public static double delta(double x,double center){double d=x-center;return d-Math.floor(d+.5);}
  public static long tmsRow(int zoom,long xyzRow){if(zoom<0||zoom>23||xyzRow<0||xyzRow>=(1L<<zoom))throw new IllegalArgumentException("Invalid tile");return (1L<<zoom)-1-xyzRow;}
+ /** Initial bundled overview: keep the world tall enough for the measured canvas. */
+ public static double overviewZoom(int viewportHeight){
+  return viewportHeight<=1024?2:Math.log(viewportHeight/256.0)/Math.log(2);
+ }
  public static double[] fit(double[][] coordinates,int width,int height){
   if(coordinates.length==0)return new double[]{.5,.5,2};
   double anchor=x(coordinates[0][0]),left=Double.POSITIVE_INFINITY,right=-left,top=left,bottom=-left;

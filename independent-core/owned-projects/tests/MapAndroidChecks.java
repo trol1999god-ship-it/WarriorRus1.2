@@ -714,6 +714,7 @@ public final class MapAndroidChecks extends Instrumentation {
     android.widget.LinearLayout tools=(android.widget.LinearLayout)scroll.getChildAt(0);
     check(tools.getChildAt(0).getWidth()>=Math.round(48*density),"compact map retains a 48 dp tool target");
     check(scroll.canScrollHorizontally(1),"compact map can reach tools beyond the window");
+    check(mapView.getWidth()-dock.getWidth()>=Math.round(48*density),"expanded dock leaves map visible beside it");
     scroll.scrollTo(tools.getWidth(),0);
     android.graphics.Rect visible=new android.graphics.Rect();
     check(tools.getChildAt(5).getGlobalVisibleRect(visible)&&visible.width()>=Math.round(48*density),"last tool reachable at compact width");

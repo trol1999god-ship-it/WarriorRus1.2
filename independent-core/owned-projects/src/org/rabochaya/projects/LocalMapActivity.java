@@ -48,7 +48,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   tools.addView(toolbar,new FrameLayout.LayoutParams(-2,-1));
   LinearLayout dock=new LinearLayout(this);mapDock=dock;
   dock.addView(tools,new LinearLayout.LayoutParams(0,-1,1));
-  FrameLayout.LayoutParams dockLayout=new FrameLayout.LayoutParams(-1,control,Gravity.BOTTOM|Gravity.LEFT);
+  FrameLayout.LayoutParams dockLayout=new FrameLayout.LayoutParams(control,control,Gravity.BOTTOM|Gravity.LEFT);
   dockLayout.setMargins(edge,0,edge,edge);scene.addView(dock,dockLayout);
   tool(toolbar,"menu","Меню",()->mainMenu());tool(toolbar,"maps","Карты",()->mapsMenu());tool(toolbar,"marks","Метки",()->marksMenu());tool(toolbar,"files","Файловый менеджер",()->manager(false));tool(toolbar,"compass","Ориентирование",()->orientationMenu());tool(toolbar,"search","Поиск на карте",()->search());
   final boolean toolsVisible=getPreferences(0).getBoolean("show_tools",true);
@@ -67,7 +67,10 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  }
  public void longPressed(double lat,double lon){if(busy)return;menu(String.format(Locale.US,"%.6f, %.6f",lat,lon),item("Создать метку здесь",()->{creationPoint=new double[]{lon,lat};editObject(null,"Point");}),item("Начать маршрут здесь",()->{startDrawing("LineString");map.addDrawingPoint(lon,lat);}),item("Начать область здесь",()->{startDrawing("Polygon");map.addDrawingPoint(lon,lat);}),item("В центр карты",()->{double[] v=map.viewport();map.restore(MapMath.x(lon),MapMath.y(lat),v[2]);}));}
  private void sizeDock(FrameLayout scene, LinearLayout dock, int toolCount, int control, int edge, boolean visible) {
-  int target=Math.min(Math.max(control,scene.getWidth()-edge*2),control*(visible?toolCount+1:1));
+  int available=Math.max(control,scene.getWidth()-edge*2);
+  // Leave map surface beside the expanded dock on narrow windows. Only the shortcuts scroll.
+  int expanded=Math.min(available,Math.max(control*2,available-control));
+  int target=visible?Math.min(expanded,control*(toolCount+1)):control;
   ViewGroup.LayoutParams bounds=dock.getLayoutParams();
   if(bounds.width!=target){bounds.width=target;dock.setLayoutParams(bounds);}
  }

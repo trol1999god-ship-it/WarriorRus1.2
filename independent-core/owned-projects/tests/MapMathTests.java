@@ -10,6 +10,11 @@ public class MapMathTests {
   v=MapMath.fit(new double[][]{{10,20},{11,21}},720,1000);eq(MapMath.lon(v[0]),10.5,1e-10);if(MapMath.lat(v[1])<20||MapMath.lat(v[1])>21)throw new AssertionError();checks++;
   eq(MapMath.lat(MapMath.y(90)),85.05112878,1e-8);eq(MapMath.lat(MapMath.y(-90)),-85.05112878,1e-8);
   boolean bad=false;try{MapMath.tmsRow(24,0);}catch(IllegalArgumentException ok){bad=true;}if(!bad)throw new AssertionError();checks++;
+  eq(MapMath.overviewZoom(800),2,0);
+  eq(MapMath.overviewZoom(1024),2,0);
+  for(int height:new int[]{1025,1920,2480}){
+   eq(256*Math.pow(2,MapMath.overviewZoom(height)),height,1e-9);
+  }
   System.out.println("PASS MapMath: "+checks+" assertions");
  }
 }
