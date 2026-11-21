@@ -281,7 +281,10 @@ final class MarkerLifecycleChecks {
    JSONObject after=verify(load(store,imported));
    test.check(after.toString().equals(before.toString()),"KMZ import matches the saved marker and payloads");
    test.check(verify(load(store,source)).toString().equals(before.toString()),"export and import left the source unchanged");
-   map(imported);
+   Activity importedMap=child("LocalMapActivity","Карта",false);
+   test.check(importedMap.getIntent().getLongExtra("project",-1)==imported,"classic manager opens the imported project by its new id");
+   test.waitText("1 видимых объектов");
+   test.stableMainMap();
    card(NAME);
    test.waitText(NOTE);
    test.mapEvidence("marker-import","after","Импорт","name, coordinates, description, SVG and photo match");
