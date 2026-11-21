@@ -1237,7 +1237,7 @@ public final class MapAndroidChecks extends Instrumentation {
  }
  void cacheWrites()throws Exception{
   installTileFixture();Object src=source("write-failure",true),cache=onlineCache(src);
-  for(String key:new String[]{"USGSIMGTOPO","OSMMPQ"}){
+  for(String key:new String[]{"USGSIMGTOPO","OSMMPQ","OSMOMSCTR","OSMOMSHYB","OSMOMSAB"}){
    Object retired=staticCall("MapCatalog","find",new Class[]{String.class},key);
    Object retiredCache=onlineCache(retired);
    try{

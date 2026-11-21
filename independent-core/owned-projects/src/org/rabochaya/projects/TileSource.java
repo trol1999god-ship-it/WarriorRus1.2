@@ -17,10 +17,11 @@ public final class TileSource {
  private static String clean(String value,int max){if(value==null||value.trim().isEmpty()||value.length()>max)throw new IllegalArgumentException("Заполните название, адрес и подпись карты");for(int i=0;i<value.length();i++)if(Character.isWhitespace(value.charAt(i))&&value.charAt(i)!=' ')throw new IllegalArgumentException("Недопустимый символ в настройках");return value.trim();}
  public String url(int z,int x,int y){int n=1<<z;if(z<minZoom||z>maxZoom||x<0||y<0||x>=n||y>=n)throw new IllegalArgumentException("Тайл вне диапазона");String value=(levelTemplates==null?template:levelTemplates[z]);if(value==null)throw new IllegalArgumentException("Масштаб отсутствует в источнике");return value.replace("{z}",Integer.toString(z)).replace("{x}",Integer.toString(x)).replace("{y}",Integer.toString(y)).replace("{q}",TileProjection.quadkey(z,x,y)).replace("{s}","Galileo".substring(0,(3*x+y)%8)).replace("{bbox}",TileProjection.bbox(z,x,y));}
  boolean isCatalogueLeaf(){return levelTemplates!=null;}
- /** Both services ended direct public tile delivery. Preserve their original local cache IDs. */
+ /** These legacy services ended unauthenticated delivery. Preserve their original local cache IDs. */
  public boolean cacheOnly(){
   return isCatalogueLeaf()&&(template.startsWith("https://tileproxy.cloud.mapquest.com/tiles/1.0.0/map/")
-    ||template.startsWith("https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/"));
+    ||template.startsWith("https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/")
+    ||template.startsWith("https://korona.geog.uni-heidelberg.de/tiles/"));
  }
 
  public boolean hasZoom(int z){return z>=minZoom&&z<=maxZoom&&(levelTemplates==null||levelTemplates[z]!=null);}
