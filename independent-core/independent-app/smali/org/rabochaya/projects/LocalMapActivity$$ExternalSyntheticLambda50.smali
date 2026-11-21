@@ -66,7 +66,7 @@
 
     iget v6, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda50;->f$6:I
 
-    invoke-virtual/range {v0 .. v6}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$show$17$org-rabochaya-projects-LocalMapActivity(Landroid/widget/HorizontalScrollView;Landroid/widget/FrameLayout;Landroid/widget/LinearLayout;Landroid/widget/LinearLayout;II)V
+    invoke-virtual/range {v0 .. v6}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$show$16$org-rabochaya-projects-LocalMapActivity(Landroid/widget/HorizontalScrollView;Landroid/widget/FrameLayout;Landroid/widget/LinearLayout;Landroid/widget/LinearLayout;II)V
 
     return-void
 .end method

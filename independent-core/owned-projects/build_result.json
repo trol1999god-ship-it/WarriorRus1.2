@@ -558,7 +558,7 @@
     "WorkspaceUi$Item.smali",
     "WorkspaceUi.smali"
   ],
-  "replaced_classes": 555,
+  "replaced_classes": 556,
   "min_sdk": 23,
   "api_stubs_packaged": false,
   "sources": {
@@ -606,7 +606,7 @@
     "src/org/rabochaya/projects/KmlSymbolAssets.java": "67bcf0e1d4884a629959649ab568b186de26d92a4f79ca51cb936c0bde2ae602",
     "src/org/rabochaya/projects/KmlTimeFilter.java": "3c2dfbf8cad62e31d1998c931774d18e8d8a1bcb29c31629d5cf964f81238ddd",
     "src/org/rabochaya/projects/KmlXml.java": "5e4553e48f0f250d2f71b16b521a142c0144acb520c1837378b7e1dbd92d73e0",
-    "src/org/rabochaya/projects/LocalMapActivity.java": "c81754884ae7f56ac09de6358d28b8dcc768f44bf671a0771b1f6ab229697120",
+    "src/org/rabochaya/projects/LocalMapActivity.java": "82c8d8b58086bbc02fa8b5e2e785c9409bb8f51671da20942d14a608922eb04f",
     "src/org/rabochaya/projects/LocalMapView.java": "f948c952993e25efe4ad817ded3bfa9c5cd38571a0979cff7daad0909e246570",
     "src/org/rabochaya/projects/LocalRasterStore.java": "92539a12673ab354812174b1691376de32d5ddd6b2ce071f4e13d61b4728973e",
     "src/org/rabochaya/projects/MapCatalog.java": "3804579668c60226f90f2a8178f66235667d94f4bfdeeeaee150b20c4c66a4ff",

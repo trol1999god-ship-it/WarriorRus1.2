@@ -659,7 +659,7 @@ public final class MapAndroidChecks extends Instrumentation {
    clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("UTM · WGS 84");inputs("32 N 687071.44 6210141.33");click("Перейти");viewport=(double[])call(map(),"viewport",new Class[]{});double latitude=(Double)staticCall("MapMath","lat",new Class[]{double.class},viewport[1]),longitude=(Double)staticCall("MapMath","lon",new Class[]{double.class},viewport[0]);check(Math.abs(latitude-56)<1e-7&&Math.abs(longitude-12)<1e-7,"manual UTM moves centre to published control point");
    double[] valid=viewport.clone();clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("UTM · WGS 84");inputs("37 N 500000 -1");click("Перейти");check(find(getUiAutomation().getRootInActiveWindow(),"Перейти к координатам",true)!=null,"invalid UTM keeps input dialog open");viewport=(double[])call(map(),"viewport",new Class[]{});check(Arrays.equals(valid,viewport),"invalid coordinate leaves viewport intact");click("Отмена");
    clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("WGS 84 · градусы");inputs("85.1 0");click("Перейти");check(Arrays.equals(valid,(double[])call(map(),"viewport",new Class[]{})),"out-of-map latitude is rejected rather than silently clamped");click("Отмена");
-   click("Создать");click("Нарисовать маршрут");click("В центре");check(((List)call(map(),"drawingPoints",new Class[]{})).size()==1,"draft before blocked navigation");clickDescription("Поиск на карте");check(find(getUiAutomation().getRootInActiveWindow(),"Название среди видимых объектов проекта",true)==null,"search cannot open editor while drawing");check(((List)call(map(),"drawingPoints",new Class[]{})).size()==1,"search leaves drawing vertices intact");clickDescription("Ориентирование");click("Перейти к координатам");check(find(getUiAutomation().getRootInActiveWindow(),"Формат ввода",true)==null,"manual coordinate navigation blocked during drawing");check(((List)call(map(),"drawingPoints",new Class[]{})).size()==1,"coordinate navigation leaves draft intact");click("Отмена");click("Отменить рисунок");
+   click("Создать");click("Нарисовать маршрут");click("В центре");check(((List)call(map(),"drawingPoints",new Class[]{})).size()==1,"draft before blocked navigation");clickDescription("Метки");click("Поиск на карте");check(find(getUiAutomation().getRootInActiveWindow(),"Название среди видимых объектов проекта",true)==null,"search cannot open editor while drawing");check(((List)call(map(),"drawingPoints",new Class[]{})).size()==1,"search leaves drawing vertices intact");clickDescription("Ориентирование");click("Перейти к координатам");check(find(getUiAutomation().getRootInActiveWindow(),"Формат ввода",true)==null,"manual coordinate navigation blocked during drawing");check(((List)call(map(),"drawingPoints",new Class[]{})).size()==1,"coordinate navigation leaves draft intact");click("Отмена");click("Отменить рисунок");
    check(Arrays.equals(before,(byte[])call(call(store,"load",new Class[]{long.class},id),"xml",new Class[]{})),"presentation, search guards and coordinate navigation preserve every object");check(requests.get()==requestsBefore,"coordinate operations and local map do not request internet tiles");capture("coordinate-formats");
   }finally{
    if(activity!=null){final Activity last=activity;runOnMainSync(new Runnable(){public void run(){last.finish();}});waitForIdleSync();}
@@ -712,12 +712,13 @@ public final class MapAndroidChecks extends Instrumentation {
    runOnMainSync(()->{
     android.widget.HorizontalScrollView scroll=(android.widget.HorizontalScrollView)dock.getChildAt(0);
     android.widget.LinearLayout tools=(android.widget.LinearLayout)scroll.getChildAt(0);
+    check(tools.getChildCount()==5,"dock contains exactly five primary tools");
     check(tools.getChildAt(0).getWidth()>=Math.round(48*density),"compact map retains a 48 dp tool target");
     check(scroll.canScrollHorizontally(1),"compact map can reach tools beyond the window");
     check(mapView.getWidth()-dock.getWidth()>=Math.round(48*density),"expanded dock leaves map visible beside it");
     scroll.scrollTo(tools.getWidth(),0);
     android.graphics.Rect visible=new android.graphics.Rect();
-    check(tools.getChildAt(5).getGlobalVisibleRect(visible)&&visible.width()>=Math.round(48*density),"last tool reachable at compact width");
+    check(tools.getChildAt(tools.getChildCount()-1).getGlobalVisibleRect(visible)&&visible.width()>=Math.round(48*density),"last tool reachable at compact width");
     check(dock.getChildAt(1).getGlobalVisibleRect(visible)&&visible.width()>=Math.round(48*density),"collapse remains pinned outside the scrolling area");
     check(mapView.getParent()==dock.getParent()&&mapView.getBottom()>dock.getBottom(),"dock floats over the map");
    });
@@ -766,6 +767,37 @@ public final class MapAndroidChecks extends Instrumentation {
   });
   return result[0];
  }
+ void appendMapTree(AccessibilityNodeInfo node,StringBuilder tree,int depth,int[] remaining){
+  if(node==null||remaining[0]--<=0)return;
+  Rect bounds=new Rect();
+  node.getBoundsInScreen(bounds);
+  for(int i=0;i<depth;i++)tree.append("  ");
+  tree.append(node.getClassName()).append(" bounds=").append(bounds.toShortString())
+    .append(" text=").append(diagnosticText(node.getText()))
+    .append(" content-desc=").append(diagnosticText(node.getContentDescription()))
+    .append(" clickable=").append(node.isClickable()).append(" visible=").append(node.isVisibleToUser()).append('\n');
+  for(int i=0;i<node.getChildCount()&&remaining[0]>0;i++)appendMapTree(node.getChild(i),tree,depth+1,remaining);
+ }
+ void mapEvidence(String step,String phase,String target,String result)throws Exception{
+  String name="dock-"+step+"-"+phase;
+  capture(name);
+  String marker=step+" "+phase+" target="+target+" result="+result;
+  StringBuilder tree=new StringBuilder(marker).append('\n');
+  AccessibilityNodeInfo root=getUiAutomation().getRootInActiveWindow();
+  check(root!=null,"window available for "+name);
+  appendMapTree(root,tree,0,new int[]{160});
+  File directory=getTargetContext().getExternalFilesDir(null);
+  try(OutputStream out=new FileOutputStream(new File(directory,name+".txt"))){out.write(tree.toString().getBytes("UTF-8"));}
+  android.util.Log.i("RK_MAP_UI",marker);
+ }
+ void dockDestination(String step,String target,String expected)throws Exception{
+  mapEvidence(step,"before",target,"ready");
+  clickDescription(target);
+  check(waitText(expected)!=null,"destination opens for "+target);
+  mapEvidence(step,"after",target,expected);
+  sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);
+  stableMainMap();
+ }
  void emptyOverview(Object store)throws Exception{
   Context context=getTargetContext();
   byte[] kml="<kml xmlns='http://www.opengis.net/kml/2.2'><Document><name>QA_EMPTY_OVERVIEW</name></Document></kml>".getBytes("UTF-8");
@@ -796,10 +828,14 @@ public final class MapAndroidChecks extends Instrumentation {
    }
    capture("empty-overview");
    setViewport(.5,.5,2);
+   mapEvidence("zoom-in","before","+","z=2");
    clickDescription("+");
    check(((double[])call(map(),"viewport",new Class[]{}))[2]==3,"zoom button increases scale");
+   mapEvidence("zoom-in","after","+","z=3");
+   mapEvidence("zoom-out","before","−","z=3");
    clickDescription("−");
    check(((double[])call(map(),"viewport",new Class[]{}))[2]==2,"zoom button restores z=2");
+   mapEvidence("zoom-out","after","−","z=2");
    runOnMainSync(fresh::finish);
    waitForIdleSync();
    Activity reopened=launchWorkspace();
@@ -829,15 +865,21 @@ public final class MapAndroidChecks extends Instrumentation {
    staticCall("ProjectSession","remember",new Class[]{Context.class,long.class},context,id);
    int count=((List)call(store,"list",new Class[]{})).size();byte[] before=(byte[])call(doc,"xml",new Class[]{});
    launchWorkspace();check(activity.getIntent().getLongExtra("project",-1)==id,"launcher restores selected project");
-   for(String label:new String[]{"Меню","Карты","Метки","Файловый менеджер","Ориентирование","Поиск на карте"})check(findDescription(getUiAutomation().getRootInActiveWindow(),label)!=null,"workspace exposes "+label);
+   for(String label:new String[]{"Меню","Карты","Метки","Файловый менеджер","Ориентирование"})check(findDescription(getUiAutomation().getRootInActiveWindow(),label)!=null,"workspace exposes "+label);
    Object overview=Class.forName("org.rabochaya.projects.BundledTiles",true,context.getClassLoader()).getConstructor(android.content.res.AssetManager.class).newInstance(context.getAssets());
    for(int z=1;z<=3;z++){int n=1<<z;for(int x=0;x<n;x++)for(int y=0;y<n;y++){Bitmap tile=(Bitmap)call(overview,"tile",new Class[]{int.class,int.class,int.class},z,x,y);check(tile!=null&&tile.getWidth()==256&&tile.getHeight()==256,"bundled overview tile decodes "+z+"/"+x+"/"+y);tile.recycle();}}
    capture("workspace-overlay");
+   dockDestination("menu","Меню","Проекты и файлы KML/KMZ");
+   dockDestination("maps","Карты","Слои карты");
+   dockDestination("orientation","Ориентирование","Перейти к координатам");
+   dockDestination("files","Файловый менеджер","Объекты проекта");
    android.view.View mapView=(android.view.View)map();int height=mapView.getHeight();
+   mapEvidence("collapse","before","Свернуть / развернуть инструменты","five tools visible");
    clickDescription("Свернуть / развернуть инструменты");check(findDescription(getUiAutomation().getRootInActiveWindow(),"Карты")==null,"collapse hides toolbar");
    Field dockField=activity.getClass().getDeclaredField("mapDock");dockField.setAccessible(true);
    android.view.View dock=(android.view.View)dockField.get(activity);
    check(dock.getWidth()==Math.round(48*activity.getResources().getDisplayMetrics().density)&&mapView.getHeight()==height,"collapsed dock keeps one target and full map height");
+   mapEvidence("collapse","after","Свернуть / развернуть инструменты","single target and full map height");
    clickDescription("Свернуть / развернуть инструменты");check(findDescription(getUiAutomation().getRootInActiveWindow(),"Карты")!=null,"expand restores toolbar");
    clickDescription("Свернуть / развернуть координаты");check(!context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).getBoolean("show_coordinates",true),"coordinate collapse persisted");
    setViewport(.4,.45,5);final Activity first=activity;runOnMainSync(new Runnable(){public void run(){first.finish();}});waitForIdleSync();launchWorkspace();
@@ -846,7 +888,14 @@ public final class MapAndroidChecks extends Instrumentation {
    check(((List)call(store,"list",new Class[]{})).size()==count,"repeat launcher does not create duplicate project");
    check(requests.get()==networkBefore,"local workspace reopen and overview do not request internet tiles");
    check(Arrays.equals(before,(byte[])call(call(store,"load",new Class[]{long.class},id),"xml",new Class[]{})),"launch and viewport preserve all object XML");
-   clickDescription("Свернуть / развернуть координаты");clickDescription("Поиск на карте");inputs("qa_map_point");click("Найти");click("QA_MAP_POINT");waitText("QA_PRIVATE_NOTE");click("Закрыть");
+   clickDescription("Свернуть / развернуть координаты");
+   mapEvidence("marks","before","Метки","ready");
+   clickDescription("Метки");waitText("Поиск на карте");
+   mapEvidence("marks","after","Метки","search action visible");
+   mapEvidence("search","before","Поиск на карте","ready");
+   click("Поиск на карте");inputs("qa_map_point");click("Найти");click("QA_MAP_POINT");waitText("QA_PRIVATE_NOTE");
+   mapEvidence("search","after","Поиск на карте","matching point and private note opened");
+   click("Закрыть");
    checkCompactMapDock();
    clickDescription("Метки");click("Создать");click("Метка");inputs("QA_WORKSPACE_SECOND","Local note","21 31");
    Activity editorOwner=activity;

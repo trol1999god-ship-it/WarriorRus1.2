@@ -2565,9 +2565,9 @@
     .locals 8
 
     .line 99
-    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda39;
+    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda40;
 
-    invoke-direct {v0, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda39;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v0, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda40;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v1, "\u0421\u043b\u043e\u0438 \u043a\u0430\u0440\u0442\u044b"
 
@@ -2575,9 +2575,9 @@
 
     move-result-object v0
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda40;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda41;
 
-    invoke-direct {v1, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda40;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v1, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda41;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v2, "\u041e\u043d\u043b\u0430\u0439\u043d-\u043a\u0430\u0440\u0442\u044b"
 
@@ -2585,9 +2585,9 @@
 
     move-result-object v1
 
-    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda41;
+    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda42;
 
-    invoke-direct {v2, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda41;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v2, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda42;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v3, "\u041f\u043e\u0434\u043b\u043e\u0436\u043a\u0430"
 
@@ -2595,9 +2595,9 @@
 
     move-result-object v2
 
-    new-instance v3, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda42;
+    new-instance v3, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda43;
 
-    invoke-direct {v3, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda42;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v3, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda43;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v4, "\u041a\u0435\u0448 / \u043e\u043d\u043b\u0430\u0439\u043d"
 
@@ -2605,9 +2605,9 @@
 
     move-result-object v3
 
-    new-instance v4, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda43;
+    new-instance v4, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda44;
 
-    invoke-direct {v4, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda43;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v4, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda44;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v5, "\u0421\u043a\u0430\u0447\u0430\u0442\u044c \u043e\u0431\u043b\u0430\u0441\u0442\u044c \u0441\u043b\u043e\u0451\u0432"
 
@@ -2615,9 +2615,9 @@
 
     move-result-object v4
 
-    new-instance v5, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda44;
+    new-instance v5, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda45;
 
-    invoke-direct {v5, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda44;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v5, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda45;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v6, "\u042d\u043a\u0441\u043f\u043e\u0440\u0442 \u043a\u0435\u0448\u0430 MBTiles"
 
@@ -2661,7 +2661,7 @@
 .end method
 
 .method private marksMenu()V
-    .locals 5
+    .locals 6
 
     .line 100
     new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda34;
@@ -2688,31 +2688,45 @@
 
     invoke-direct {v2, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda36;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
-    const-string v3, "\u0412\u0441\u0435 \u043e\u0431\u044a\u0435\u043a\u0442\u044b"
+    const-string v3, "\u041f\u043e\u0438\u0441\u043a \u043d\u0430 \u043a\u0430\u0440\u0442\u0435"
 
     invoke-direct {p0, v3, v2}, Lorg/rabochaya/projects/LocalMapActivity;->item(Ljava/lang/String;Ljava/lang/Runnable;)Lorg/rabochaya/projects/WorkspaceUi$Item;
 
     move-result-object v2
 
-    const/4 v3, 0x3
+    new-instance v3, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda37;
 
-    new-array v3, v3, [Lorg/rabochaya/projects/WorkspaceUi$Item;
+    invoke-direct {v3, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda37;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
-    const/4 v4, 0x0
+    const-string v4, "\u0412\u0441\u0435 \u043e\u0431\u044a\u0435\u043a\u0442\u044b"
 
-    aput-object v0, v3, v4
+    invoke-direct {p0, v4, v3}, Lorg/rabochaya/projects/LocalMapActivity;->item(Ljava/lang/String;Ljava/lang/Runnable;)Lorg/rabochaya/projects/WorkspaceUi$Item;
+
+    move-result-object v3
+
+    const/4 v4, 0x4
+
+    new-array v4, v4, [Lorg/rabochaya/projects/WorkspaceUi$Item;
+
+    const/4 v5, 0x0
+
+    aput-object v0, v4, v5
 
     const/4 v0, 0x1
 
-    aput-object v1, v3, v0
+    aput-object v1, v4, v0
 
     const/4 v0, 0x2
 
-    aput-object v2, v3, v0
+    aput-object v2, v4, v0
+
+    const/4 v0, 0x3
+
+    aput-object v3, v4, v0
 
     const-string v0, "\u041c\u0435\u0442\u043a\u0438"
 
-    invoke-direct {p0, v0, v3}, Lorg/rabochaya/projects/LocalMapActivity;->menu(Ljava/lang/String;[Lorg/rabochaya/projects/WorkspaceUi$Item;)V
+    invoke-direct {p0, v0, v4}, Lorg/rabochaya/projects/LocalMapActivity;->menu(Ljava/lang/String;[Lorg/rabochaya/projects/WorkspaceUi$Item;)V
 
     return-void
 .end method
@@ -3330,9 +3344,9 @@
 
     move-result-object v1
 
-    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda45;
+    new-instance v2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda46;
 
-    invoke-direct {v2, p0, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda45;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;)V
+    invoke-direct {v2, p0, v0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda46;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;)V
 
     const-string v0, "\u0423\u0431\u0440\u0430\u0442\u044c"
 
@@ -4281,9 +4295,9 @@
 
     iget-object v3, v9, Lorg/rabochaya/projects/LocalMapActivity;->coordinates:Landroid/widget/TextView;
 
-    new-instance v11, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda48;
+    new-instance v11, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda49;
 
-    invoke-direct {v11, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda48;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v11, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda49;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     invoke-virtual {v3, v11}, Landroid/widget/TextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
@@ -5049,16 +5063,6 @@
     const-string v2, "compass"
 
     const-string v3, "\u041e\u0440\u0438\u0435\u043d\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435"
-
-    invoke-direct {v9, v10, v2, v3, v1}, Lorg/rabochaya/projects/LocalMapActivity;->tool(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)V
-
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda49;
-
-    invoke-direct {v1, v9}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda49;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
-
-    const-string v2, "search"
-
-    const-string v3, "\u041f\u043e\u0438\u0441\u043a \u043d\u0430 \u043a\u0430\u0440\u0442\u0435"
 
     invoke-direct {v9, v10, v2, v3, v1}, Lorg/rabochaya/projects/LocalMapActivity;->tool(Landroid/widget/LinearLayout;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Runnable;)V
 
@@ -6315,9 +6319,9 @@
     .catchall {:try_start_4 .. :try_end_4} :catchall_8
 
     :try_start_5
-    new-instance v4, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda47;
+    new-instance v4, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda48;
 
-    invoke-direct {v4, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda47;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v4, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda48;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     invoke-static {v0, p1, p2, v3, v4}, Lorg/rabochaya/projects/HgtHillshadeImport;->write(Ljava/io/File;JLjava/io/File;Lorg/rabochaya/projects/CacheExport$Progress;)I
 
@@ -7734,9 +7738,9 @@
 
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity;->map:Lorg/rabochaya/projects/LocalMapView;
 
-    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda46;
+    new-instance v1, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda47;
 
-    invoke-direct {v1, p0, v0, p2}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda46;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Lorg/rabochaya/projects/LocalMapView;[D)V
+    invoke-direct {v1, p0, v0, p2}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda47;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Lorg/rabochaya/projects/LocalMapView;[D)V
 
     invoke-virtual {v0, v1}, Lorg/rabochaya/projects/LocalMapView;->post(Ljava/lang/Runnable;)Z
 
@@ -8885,9 +8889,9 @@
 
     invoke-virtual {v0, p1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda37;
+    new-instance v0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda38;
 
-    invoke-direct {v0, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda37;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+    invoke-direct {v0, p0}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda38;-><init>(Lorg/rabochaya/projects/LocalMapActivity;)V
 
     const-string v1, "\u041a \u0441\u043f\u0438\u0441\u043a\u0443"
 
@@ -8973,7 +8977,7 @@
     throw v1
 .end method
 
-.method synthetic lambda$longPressed$19$org-rabochaya-projects-LocalMapActivity(DD)V
+.method synthetic lambda$longPressed$18$org-rabochaya-projects-LocalMapActivity(DD)V
     .locals 2
 
     .line 71
@@ -9000,7 +9004,7 @@
     return-void
 .end method
 
-.method synthetic lambda$longPressed$20$org-rabochaya-projects-LocalMapActivity(DD)V
+.method synthetic lambda$longPressed$19$org-rabochaya-projects-LocalMapActivity(DD)V
     .locals 1
 
     .line 71
@@ -9015,7 +9019,7 @@
     return-void
 .end method
 
-.method synthetic lambda$longPressed$21$org-rabochaya-projects-LocalMapActivity(DD)V
+.method synthetic lambda$longPressed$20$org-rabochaya-projects-LocalMapActivity(DD)V
     .locals 1
 
     .line 71
@@ -9030,7 +9034,7 @@
     return-void
 .end method
 
-.method synthetic lambda$longPressed$22$org-rabochaya-projects-LocalMapActivity(DD)V
+.method synthetic lambda$longPressed$21$org-rabochaya-projects-LocalMapActivity(DD)V
     .locals 8
 
     .line 71
@@ -9059,7 +9063,7 @@
     return-void
 .end method
 
-.method synthetic lambda$mainMenu$24$org-rabochaya-projects-LocalMapActivity()V
+.method synthetic lambda$mainMenu$23$org-rabochaya-projects-LocalMapActivity()V
     .locals 1
 
     .line 97
@@ -9070,7 +9074,7 @@
     return-void
 .end method
 
-.method synthetic lambda$mainMenu$25$org-rabochaya-projects-LocalMapActivity()V
+.method synthetic lambda$mainMenu$24$org-rabochaya-projects-LocalMapActivity()V
     .locals 0
 
     .line 97
@@ -9079,7 +9083,7 @@
     return-void
 .end method
 
-.method synthetic lambda$mainMenu$26$org-rabochaya-projects-LocalMapActivity()V
+.method synthetic lambda$mainMenu$25$org-rabochaya-projects-LocalMapActivity()V
     .locals 0
 
     .line 97
@@ -9088,7 +9092,7 @@
     return-void
 .end method
 
-.method synthetic lambda$mainMenu$27$org-rabochaya-projects-LocalMapActivity()V
+.method synthetic lambda$mainMenu$26$org-rabochaya-projects-LocalMapActivity()V
     .locals 0
 
     .line 97
@@ -9097,7 +9101,7 @@
     return-void
 .end method
 
-.method synthetic lambda$mapsMenu$28$org-rabochaya-projects-LocalMapActivity()V
+.method synthetic lambda$mapsMenu$27$org-rabochaya-projects-LocalMapActivity()V
     .locals 4
 
     .line 99
@@ -9133,7 +9137,7 @@
     return-void
 .end method
 
-.method synthetic lambda$mapsMenu$29$org-rabochaya-projects-LocalMapActivity()V
+.method synthetic lambda$mapsMenu$28$org-rabochaya-projects-LocalMapActivity()V
     .locals 4
 
     .line 99
@@ -9169,7 +9173,7 @@
     return-void
 .end method
 
-.method synthetic lambda$mapsMenu$30$org-rabochaya-projects-LocalMapActivity()V
+.method synthetic lambda$mapsMenu$29$org-rabochaya-projects-LocalMapActivity()V
     .locals 0
 
     .line 99
@@ -9178,7 +9182,7 @@
     return-void
 .end method
 
-.method synthetic lambda$mapsMenu$31$org-rabochaya-projects-LocalMapActivity()V
+.method synthetic lambda$mapsMenu$30$org-rabochaya-projects-LocalMapActivity()V
     .locals 0
 
     .line 99
@@ -9187,7 +9191,7 @@
     return-void
 .end method
 
-.method synthetic lambda$mapsMenu$32$org-rabochaya-projects-LocalMapActivity()V
+.method synthetic lambda$mapsMenu$31$org-rabochaya-projects-LocalMapActivity()V
     .locals 0
 
     .line 99
@@ -9196,7 +9200,7 @@
     return-void
 .end method
 
-.method synthetic lambda$mapsMenu$33$org-rabochaya-projects-LocalMapActivity()V
+.method synthetic lambda$mapsMenu$32$org-rabochaya-projects-LocalMapActivity()V
     .locals 4
 
     .line 99
@@ -9230,7 +9234,7 @@
     return-void
 .end method
 
-.method synthetic lambda$marksMenu$34$org-rabochaya-projects-LocalMapActivity()V
+.method synthetic lambda$marksMenu$33$org-rabochaya-projects-LocalMapActivity()V
     .locals 0
 
     .line 100
@@ -9239,13 +9243,22 @@
     return-void
 .end method
 
-.method synthetic lambda$marksMenu$35$org-rabochaya-projects-LocalMapActivity()V
+.method synthetic lambda$marksMenu$34$org-rabochaya-projects-LocalMapActivity()V
     .locals 1
 
     .line 100
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lorg/rabochaya/projects/LocalMapActivity;->manager(Z)V
+
+    return-void
+.end method
+
+.method synthetic lambda$marksMenu$35$org-rabochaya-projects-LocalMapActivity()V
+    .locals 0
+
+    .line 100
+    invoke-direct {p0}, Lorg/rabochaya/projects/LocalMapActivity;->search()V
 
     return-void
 .end method
@@ -9428,9 +9441,9 @@
 
     iget-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity;->worker:Ljava/util/concurrent/ExecutorService;
 
-    new-instance p2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda38;
+    new-instance p2, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda39;
 
-    invoke-direct {p2, p0, p3}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda38;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;)V
+    invoke-direct {p2, p0, p3}, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda39;-><init>(Lorg/rabochaya/projects/LocalMapActivity;Ljava/lang/String;)V
 
     invoke-interface {p1, p2}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
@@ -9983,16 +9996,7 @@
     return-void
 .end method
 
-.method synthetic lambda$show$16$org-rabochaya-projects-LocalMapActivity()V
-    .locals 0
-
-    .line 56
-    invoke-direct {p0}, Lorg/rabochaya/projects/LocalMapActivity;->search()V
-
-    return-void
-.end method
-
-.method synthetic lambda$show$17$org-rabochaya-projects-LocalMapActivity(Landroid/widget/HorizontalScrollView;Landroid/widget/FrameLayout;Landroid/widget/LinearLayout;Landroid/widget/LinearLayout;II)V
+.method synthetic lambda$show$16$org-rabochaya-projects-LocalMapActivity(Landroid/widget/HorizontalScrollView;Landroid/widget/FrameLayout;Landroid/widget/LinearLayout;Landroid/widget/LinearLayout;II)V
     .locals 9
 
     .line 60
@@ -10065,7 +10069,7 @@
     return-void
 .end method
 
-.method synthetic lambda$show$18$org-rabochaya-projects-LocalMapActivity(Landroid/widget/FrameLayout;Landroid/widget/LinearLayout;Landroid/widget/LinearLayout;IILandroid/widget/HorizontalScrollView;Landroid/view/View;IIIIIIII)V
+.method synthetic lambda$show$17$org-rabochaya-projects-LocalMapActivity(Landroid/widget/FrameLayout;Landroid/widget/LinearLayout;Landroid/widget/LinearLayout;IILandroid/widget/HorizontalScrollView;Landroid/view/View;IIIIIIII)V
     .locals 2
 
     .line 66
@@ -10326,7 +10330,7 @@
     return-void
 .end method
 
-.method synthetic lambda$tool$23$org-rabochaya-projects-LocalMapActivity(Ljava/lang/Runnable;)V
+.method synthetic lambda$tool$22$org-rabochaya-projects-LocalMapActivity(Ljava/lang/Runnable;)V
     .locals 1
 
     .line 88

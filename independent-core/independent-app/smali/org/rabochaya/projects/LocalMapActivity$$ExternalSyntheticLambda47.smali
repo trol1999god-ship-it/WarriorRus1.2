@@ -3,15 +3,19 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Lorg/rabochaya/projects/CacheExport$Progress;
+.implements Ljava/lang/Runnable;
 
 
 # instance fields
 .field public final synthetic f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
+.field public final synthetic f$1:Lorg/rabochaya/projects/LocalMapView;
+
+.field public final synthetic f$2:[D
+
 
 # direct methods
-.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;)V
+.method public synthetic constructor <init>(Lorg/rabochaya/projects/LocalMapActivity;Lorg/rabochaya/projects/LocalMapView;[D)V
     .locals 0
 
     .line 0
@@ -19,18 +23,26 @@
 
     iput-object p1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda47;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
+    iput-object p2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda47;->f$1:Lorg/rabochaya/projects/LocalMapView;
+
+    iput-object p3, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda47;->f$2:[D
+
     return-void
 .end method
 
 
 # virtual methods
-.method public final update(II)V
-    .locals 1
+.method public final run()V
+    .locals 3
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda47;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$buildHillshade$64$org-rabochaya-projects-LocalMapActivity(II)V
+    iget-object v1, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda47;->f$1:Lorg/rabochaya/projects/LocalMapView;
+
+    iget-object v2, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda47;->f$2:[D
+
+    invoke-virtual {v0, v1, v2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$importFinished$70$org-rabochaya-projects-LocalMapActivity(Lorg/rabochaya/projects/LocalMapView;[D)V
 
     return-void
 .end method

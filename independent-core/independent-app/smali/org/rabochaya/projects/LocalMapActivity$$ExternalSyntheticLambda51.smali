@@ -86,7 +86,7 @@
 
     move/from16 v16, p9
 
-    invoke-virtual/range {v1 .. v16}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$show$18$org-rabochaya-projects-LocalMapActivity(Landroid/widget/FrameLayout;Landroid/widget/LinearLayout;Landroid/widget/LinearLayout;IILandroid/widget/HorizontalScrollView;Landroid/view/View;IIIIIIII)V
+    invoke-virtual/range {v1 .. v16}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$show$17$org-rabochaya-projects-LocalMapActivity(Landroid/widget/FrameLayout;Landroid/widget/LinearLayout;Landroid/widget/LinearLayout;IILandroid/widget/HorizontalScrollView;Landroid/view/View;IIIIIIII)V
 
     return-void
 .end method

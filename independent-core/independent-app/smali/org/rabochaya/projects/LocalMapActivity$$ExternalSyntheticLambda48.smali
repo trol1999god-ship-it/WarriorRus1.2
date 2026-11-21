@@ -3,7 +3,7 @@
 .source "D8$$SyntheticClass"
 
 # interfaces
-.implements Landroid/view/View$OnClickListener;
+.implements Lorg/rabochaya/projects/CacheExport$Progress;
 
 
 # instance fields
@@ -24,13 +24,13 @@
 
 
 # virtual methods
-.method public final onClick(Landroid/view/View;)V
+.method public final update(II)V
     .locals 1
 
     .line 0
     iget-object v0, p0, Lorg/rabochaya/projects/LocalMapActivity$$ExternalSyntheticLambda48;->f$0:Lorg/rabochaya/projects/LocalMapActivity;
 
-    invoke-virtual {v0, p1}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$show$5$org-rabochaya-projects-LocalMapActivity(Landroid/view/View;)V
+    invoke-virtual {v0, p1, p2}, Lorg/rabochaya/projects/LocalMapActivity;->lambda$buildHillshade$64$org-rabochaya-projects-LocalMapActivity(II)V
 
     return-void
 .end method
