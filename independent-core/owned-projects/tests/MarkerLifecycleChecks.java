@@ -162,6 +162,13 @@ final class MarkerLifecycleChecks {
    Object saved=load(store,id);
    test.check("Concurrent edit".equals(text(test.element(saved,"probe"),"name")),"attachment retains the other editor's saved changes");
    test.check(Arrays.equals(original,test.assets(saved).get(orphan)),"adding a file leaves an unreferenced imported asset intact");
+   Object added=test.link(saved,"probe",PHOTO);
+   String attachmentPath=test.value(added,"href");
+   test.staticCall("ProjectWrites","removeAttachment",new Class[]{test.storeClass,long.class,String.class,String.class},
+    store,id,"probe",test.value(added,"id"));
+   Object reduced=load(store,id);
+   test.check(test.links(reduced,"probe").isEmpty()&&!test.assets(reduced).containsKey(attachmentPath),"deletion removes only the chosen link and its unused payload");
+   test.check(Arrays.equals(original,test.assets(reduced).get(orphan)),"deleting a file leaves the unrelated imported asset intact");
   }finally{erase(store,id);}
  }
 

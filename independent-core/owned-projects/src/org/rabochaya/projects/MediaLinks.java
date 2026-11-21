@@ -32,12 +32,15 @@ public final class MediaLinks {
   Element ext=KmlProject.child(feature,"ExtendedData");for(Node n=ext.getFirstChild();n!=null;){Node next=n.getNextSibling();if(n instanceof Element&&id.equals(((Element)n).getAttribute("name")))ext.removeChild(n);n=next;}
   Element description=KmlProject.child(feature,"description");if(description!=null){String s=description.getTextContent(),begin="<!--"+id+"-->",end="<!--/"+id+"-->";int a=s.indexOf(begin),b=a<0?-1:s.indexOf(end,a+begin.length());if(b>=0)description.setTextContent(s.substring(0,a)+s.substring(b+end.length()));}
   // Keep a shared file while any other object/style/description still references it.
-  collectUnused(project);
+  collectUnused(project,found.href);
  }
  public static void collectUnused(KmlProject project)throws IOException{
+  collectUnused(project,null);
+ }
+ private static void collectUnused(KmlProject project,String onlyHref)throws IOException{
   // Imported auxiliary files can contain their own references; keep them conservatively.
   String entry=KmlProject.safePath(project.entry);int slash=entry.lastIndexOf('/');String base=slash<0?"":entry.substring(0,slash+1);ArrayList<String> candidates=new ArrayList<>();
-  for(String key:project.assets.keySet()){if(!key.startsWith(base))return;String href=key.substring(base.length());try{path(project,href);}catch(IOException unsupported){return;}if("application/octet-stream".equals(mime(href)))return;candidates.add(key);}
+  for(String key:project.assets.keySet()){if(!key.startsWith(base))return;String href=key.substring(base.length());try{path(project,href);}catch(IOException unsupported){return;}if("application/octet-stream".equals(mime(href)))return;if(onlyHref==null||onlyHref.equals(href))candidates.add(key);}
   String xml=new String(project.xml(),"UTF-8");
   for(String key:candidates){String href=key.substring(base.length());if(xml.contains(href))continue;boolean referenced=false;byte[] needle=href.getBytes("UTF-8");for(Map.Entry<String,byte[]> other:project.assets.entrySet())if(!key.equals(other.getKey())&&contains(other.getValue(),needle)){referenced=true;break;}if(!referenced)project.assets.remove(key);}
  }

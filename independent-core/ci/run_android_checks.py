@@ -143,6 +143,10 @@ for mode in a.modes:
    'launcher':[(step,phase) for step in ('zoom-in','zoom-out','menu','maps','orientation','files','collapse','marks','search') for phase in ('before','after')],
    'markerlifecycle':[(step,phase) for step in ('marker-create','marker-edit','marker-svg','marker-photo') for phase in ('before','after')]+[('marker-reopen','before')],
    'markerlifecyclereopen':[('marker-reopen','after')]+[(step,phase) for step in ('marker-export','marker-import') for phase in ('before','after')],
+   'objectmanager':[(step,phase) for step in ('manager-folder','manager-move','manager-delete') for phase in ('before','after')]+[('manager-reopen','before')],
+   'objectmanagerreopen':[('manager-reopen','after')],
+   'managerfilters':[(step,phase) for step in ('manager-filter','manager-select') for phase in ('before','after')],
+   'clipboard':[(step,phase) for step in ('manager-cross-copy','manager-cross-move') for phase in ('before','after')],
    'maplayers':[(step,phase) for step in ('layers-source','layers-opacity','layers-order','layers-visibility') for phase in ('before','after')]+[('layers-reopen','before')],
    'maplayersreopen':[('layers-reopen','after')],
   }

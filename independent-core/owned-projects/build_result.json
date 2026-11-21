@@ -565,7 +565,7 @@
     "WorkspaceUi$Item.smali",
     "WorkspaceUi.smali"
   ],
-  "replaced_classes": 560,
+  "replaced_classes": 563,
   "min_sdk": 23,
   "api_stubs_packaged": false,
   "sources": {
@@ -626,7 +626,7 @@
     "src/org/rabochaya/projects/MapLayersActivity.java": "3225444a8e84ab2987f498fcd40dcf1fa2e84db93b3291f0f7899ff1c73cccfa",
     "src/org/rabochaya/projects/MapMath.java": "094f4d7ea86b9e04b624645c55a3d64d5bdeea4891ea46c74fd8e8d7a5078635",
     "src/org/rabochaya/projects/MapScaleView.java": "43c0da29af80aa70bc5a3133b24a5af09fcd09a5da555bdde9cb6ea83f09c1b3",
-    "src/org/rabochaya/projects/MediaLinks.java": "eabda5d03d36da4b02f56208e4d81f2c39771f6a8617eb0cd1b902c7e69fbfca",
+    "src/org/rabochaya/projects/MediaLinks.java": "6973ac5ef774c474f330ea1970c2afb420dfb8d75fa0aa00c5f6c55ffcc92885",
     "src/org/rabochaya/projects/MediaPlaybackActivity.java": "0943989b20d82aa474eee6a538cce1ffd5a3a83f99881dc08842d78cfb393622",
     "src/org/rabochaya/projects/ObjectClipboard.java": "f3632ad0c729cf4fbf70c0a164eeae49d00255e39d0e015057f1f4b46bd6e30b",
     "src/org/rabochaya/projects/ObjectClipboardWrites.java": "3418f3c9e59f764924a3bb3ce68b7042b05673267a5784f09b63d7c1358107c2",
