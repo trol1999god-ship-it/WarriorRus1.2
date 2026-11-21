@@ -1,0 +1,16 @@
+[
+  [
+    "catalog-original",
+    0,
+    "502 text/html",
+    null,
+    "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/exportImage?f=image&bandIds=&renderingRule=%7B%22rasterFunction%22%3A%22Contour%2025%22%7D&bbox=-11721159.665362068,4862617.991389772,-11711375.725741565,4872401.931010274&imageSR=102100&bboxSR=102100&size=256%2C256"
+  ],
+  [
+    "official-carto",
+    0,
+    "200 image/png",
+    14862,
+    "https://carto.nationalmap.gov/arcgis/rest/services/contours/MapServer/export?f=image&dpi=96&format=png32&transparent=true&bbox=-11721159.665362068,4862617.991389772,-11711375.725741565,4872401.931010274&bboxSR=3857&imageSR=3857&size=256,256"
+  ]
+]

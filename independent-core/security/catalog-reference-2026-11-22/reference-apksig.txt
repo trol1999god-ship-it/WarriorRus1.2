@@ -1,0 +1,12 @@
+API 23 valid=true v1=true v2=false v3=false errors=[] warnings=[]
+CN=Rabochaya Karta Review SHA-256 3edcb1aabed67020aff5b124ee8ba1e9bd4121674d33b15198eb334e2959efa7
+API 24 valid=true v1=false v2=true v3=false errors=[] warnings=[]
+CN=Rabochaya Karta Review SHA-256 3edcb1aabed67020aff5b124ee8ba1e9bd4121674d33b15198eb334e2959efa7
+API 28 valid=true v1=false v2=false v3=true errors=[] warnings=[]
+CN=Rabochaya Karta Review SHA-256 3edcb1aabed67020aff5b124ee8ba1e9bd4121674d33b15198eb334e2959efa7
+API 35 valid=true v1=false v2=false v3=true errors=[] warnings=[]
+CN=Rabochaya Karta Review SHA-256 3edcb1aabed67020aff5b124ee8ba1e9bd4121674d33b15198eb334e2959efa7
+API 36 valid=true v1=false v2=false v3=true errors=[] warnings=[]
+CN=Rabochaya Karta Review SHA-256 3edcb1aabed67020aff5b124ee8ba1e9bd4121674d33b15198eb334e2959efa7
+API 37 valid=true v1=false v2=false v3=true errors=[] warnings=[]
+CN=Rabochaya Karta Review SHA-256 3edcb1aabed67020aff5b124ee8ba1e9bd4121674d33b15198eb334e2959efa7

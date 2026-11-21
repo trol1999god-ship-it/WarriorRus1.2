@@ -1,0 +1,16 @@
+{
+  "sample_basis": "../fold-feedback-2026-11-22/catalog-samples.json",
+  "sources": [
+    {"id":"USGSCTL","result":"Switched transport to the official transparent USGS Contours MapServer with the previous SQLite key","source":"https://carto.nationalmap.gov/arcgis/rest/services/contours/MapServer"},
+    {"id":"USGSIMGTOPO","result":"Cache only, provider retired the exact service","source":"https://www.usgs.gov/the-national-map-data-delivery/news/imagery-topo-base-map-retirement"},
+    {"id":"OSMMPQ","result":"Cache only, provider closed direct public tile access","source":"https://lists.openstreetmap.org/pipermail/tile-serving/2016-June/003928.html"},
+    {"id":"OSMOMSCTR","result":"Cache only, public Heidelberg URL replaced by a token-based service","source":"https://heigit.org/the-future-of-openmapsurfers-tiles/"},
+    {"id":"OSMOMSHYB","result":"Cache only, public Heidelberg URL replaced by a token-based service","source":"https://heigit.org/the-future-of-openmapsurfers-tiles/"},
+    {"id":"OSMOMSAB","result":"Cache only, public Heidelberg URL replaced by a token-based service","source":"https://heigit.org/the-future-of-openmapsurfers-tiles/"},
+    {"id":"OSMHOT","result":"HTTP 403 reproduced in sampling network. Bulk download blocked for this host; direct viewing still subject to provider policy.","source":"https://www.openstreetmap.fr/usage/"},
+    {"id":"OSMFR","result":"HTTP 403 reproduced in sampling network. Bulk download blocked for this host; direct viewing still subject to provider policy.","source":"https://www.openstreetmap.fr/usage/"},
+    {"id":"BINGTERRAIN","result":"HTTP 503 reproduced. Bing Basic is retired. An equivalent authorized raster endpoint for this style was not established.","source":"https://learn.microsoft.com/en-us/bingmaps/articles/bing-maps-tile-system/"},
+    {"id":"BINGPT","result":"Returned text instead of a raster. An equivalent authorized transit raster overlay was not established.","source":"https://learn.microsoft.com/en-us/bingmaps/articles/bing-maps-tile-system/"},
+    {"id":"OSMSHD","result":"HTTP 503 reproduced. No verified equivalent public service for the exact old hillshading style."}
+  ]
+}

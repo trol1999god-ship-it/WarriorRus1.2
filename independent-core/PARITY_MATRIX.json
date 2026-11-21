@@ -207,6 +207,14 @@
           "api35_retry_artifact": 14728150713
         }
       }
+    },
+    "catalog_reference_stage": {
+      "source_sha": "11a206ca43780abb38c1a2b80d797fef2c272c5f",
+      "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44958012998",
+      "integrity": "security/catalog-reference-2026-11-22/reference-apksig.txt",
+      "apk_copy_hashes": "security/catalog-reference-2026-11-22/reference-copies.sha256",
+      "resources": "security/catalog-reference-2026-11-22/reference-resource-delta.json",
+      "unavailable_sources": "security/catalog-reference-2026-11-22/provider-decisions.json"
     }
   },
   "status_values": [
@@ -815,7 +823,7 @@
         ],
         "implementation": "MapCatalogActivity, OnlineMapActivity",
         "reference_visibility": "Закрыто диалогом целостности",
-        "finding": "QA проверил переходы к каталогу, выбор подложки и возврат к MBTiles. Нужна сверка структуры каталога эталона. При сбое DNS встроенные слои ESRI используют второй адрес того же сервиса. 43 из 54 разовых проб дали растровый тайл. Для 12 слоёв ESRI байты совпали на двух хостах."
+        "finding": "QA проверил переходы к каталогу, выбор подложки и возврат к MBTiles. Нужна сверка структуры каталога эталона. При сбое DNS встроенные слои ESRI используют второй адрес того же сервиса. 43 из 54 разовых проб дали растровый тайл. Для 12 слоёв ESRI байты совпали на двух хостах. Каталог и настройки кеша используют утверждённую синюю палитру. Названия проверены по строкам эталона. USGS Contours использует официальный рабочий адрес, закрытые источники показывают сохранённый кеш."
       },
       {
         "screen": "Объекты / встроенный режим",
@@ -883,7 +891,7 @@
         ],
         "implementation": "display, CacheExportActivity, CompositionDownloadActivity, DemActivity",
         "reference_visibility": "Закрыто диалогом целостности",
-        "finding": "Настройки отображения и локальный кеш реализованы. Требуются сверка параметров эталона и проверка компаса на Fold5."
+        "finding": "Настройки отображения и локальный кеш реализованы. Требуются сверка параметров эталона и проверка компаса на Fold5. Каталог и настройки кеша используют утверждённую синюю палитру. Названия проверены по строкам эталона. USGS Contours использует официальный рабочий адрес, закрытые источники показывают сохранённый кеш."
       }
     ]
   }
