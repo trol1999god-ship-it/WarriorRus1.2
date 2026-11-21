@@ -3,7 +3,10 @@ import android.content.*;import android.database.*;import android.database.sqlit
 /** GET-only tile transport and durable private MBTiles cache. No project/attachment access. */
 public final class OnlineTiles implements Closeable {
  public static final long MAX_BYTES=256L*1024*1024;private static final int MAX_TILE=1048576;private final SQLiteDatabase db;public final TileSource source;private volatile boolean closed;private volatile HttpsURLConnection active;
- private long esriDnsRetryAt;
+ private static final java.util.regex.Pattern ARCGIS_TILE=java.util.regex.Pattern.compile(
+   "/arcgis/rest/services/(?:[a-z0-9_]+/)+MapServer/tile/[0-9]+/[0-9]+/[0-9]+",
+   java.util.regex.Pattern.CASE_INSENSITIVE);
+ private volatile long esriDnsRetryAt;
  public OnlineTiles(Context context,TileSource source)throws IOException{this.source=source;File dir=new File(context.getFilesDir(),"tile-cache");if(!dir.isDirectory()&&!dir.mkdirs())throw new IOException("Не удалось создать кеш");db=SQLiteDatabase.openOrCreateDatabase(new File(dir,source.id+".mbtiles"),null);
   db.execSQL("CREATE TABLE IF NOT EXISTS tiles(zoom_level INTEGER NOT NULL,tile_column INTEGER NOT NULL,tile_row INTEGER NOT NULL,tile_data BLOB NOT NULL,expires INTEGER NOT NULL,etag TEXT,modified TEXT,pinned INTEGER NOT NULL DEFAULT 0)");db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS tile_index ON tiles(zoom_level,tile_column,tile_row)");db.execSQL("CREATE TABLE IF NOT EXISTS metadata(name TEXT PRIMARY KEY,value TEXT)");putMeta("name",source.name);putMeta("attribution",source.attribution);putMeta("scheme","tms");putMeta("type","baselayer");}
  private void putMeta(String key,String value){ContentValues v=new ContentValues();v.put("name",key);v.put("value",value);db.insertWithOnConflict("metadata",null,v,SQLiteDatabase.CONFLICT_REPLACE);}
@@ -30,8 +33,8 @@ public final class OnlineTiles implements Closeable {
  }
  // Retain the catalogue URL as the cache key. Only the transport host can change.
  private int connectTile(URL url,String etag,String modified)throws IOException{
-  boolean hasEsriMirror="services.arcgisonline.com".equalsIgnoreCase(url.getHost())
-    &&url.getPath().matches("(?i)/arcgis/rest/services/World_Imagery/MapServer/tile/[0-9]+/[0-9]+/[0-9]+")
+  boolean hasEsriMirror=source.isCatalogueLeaf()&&"services.arcgisonline.com".equalsIgnoreCase(url.getHost())
+    &&ARCGIS_TILE.matcher(url.getPath()).matches()
     &&url.getQuery()==null;
   if(!hasEsriMirror)return connect(url,etag,modified);
   long now=android.os.SystemClock.elapsedRealtime();
@@ -65,6 +68,7 @@ public final class OnlineTiles implements Closeable {
  public static long expiry(String control,long expires,long now){if(control!=null){for(String part:control.toLowerCase(Locale.US).split(",")){String p=part.trim();if(p.equals("no-cache"))return now;}
    for(String part:control.toLowerCase(Locale.US).split(",")){String p=part.trim();if(p.startsWith("max-age="))try{long seconds=Long.parseLong(p.substring(8).replace("\"",""));return now+Math.max(0,Math.min(31536000,seconds))*1000;}catch(NumberFormatException ignored){}}
   }return expires>0?expires:now+7L*24*3600*1000;}
+ void retryDns(){esriDnsRetryAt=0;}
  public void interrupt(){HttpsURLConnection connection=active;if(connection!=null)connection.disconnect();}
  public void cancel(){closed=true;HttpsURLConnection connection=active;if(connection!=null)connection.disconnect();}
  public synchronized void clear(){db.delete("tiles",null,null);db.execSQL("VACUUM");}

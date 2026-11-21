@@ -1109,6 +1109,17 @@ public final class MapAndroidChecks extends Instrumentation {
    check(preview!=null&&requests.get()==count+1,"fallback raster uses the original cache entry offline");
    preview.recycle();
   }finally{esriDnsFailure=false;call(cache,"close",new Class[]{});}
+  Object labels=staticCall("MapCatalog","find",new Class[]{String.class},"ESRI_PLACES_LAYER");
+  Object labelsCache=onlineCache(labels);
+  try{
+   esriDnsFailure=true;
+   int count=requests.get();
+   Bitmap tile=onlineTile(labelsCache,3,4,3,true);
+   check(tile!=null,"Esri reference overlay resolves through the same official host");
+   tile.recycle();
+   check(requests.get()==count+1&&requested.get(count).contains(
+     "server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/"),"nested service path is preserved");
+  }finally{esriDnsFailure=false;call(labelsCache,"clear",new Class[]{});call(labelsCache,"close",new Class[]{});}
   Object store=storeClass.getConstructor(Context.class).newInstance(getTargetContext());try{Object document=codec.getMethod("parse",byte[].class).invoke(null,(Object)XML.getBytes("UTF-8"));project=(Long)call(store,"insert",new Class[]{codec,String.class},document,"QA_CATALOG_SCREEN");}finally{call(store,"close",new Class[]{});}
   staticCall("OnlineMapSettings","select",new Class[]{Context.class,String.class,long.class},getTargetContext(),"GMAPS",project);getTargetContext().getSharedPreferences("catalog-ui",0).edit().clear().commit();int before=requests.get();File directory=new File(getTargetContext().getFilesDir(),"tile-cache");int files=directory.list().length;
   final Intent intent=new Intent().setClassName(getTargetContext().getPackageName(),"org.rabochaya.projects.MapCatalogActivity").putExtra("project",project).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);activity=startActivitySync(intent);waitText("54 источника");clickDescription("ESRI Community Maps");waitText("Кеш: 1 тайлов");check(requests.get()==before,"browsing catalogue makes no tile requests");check(directory.list().length==files,"cache statistics do not create empty databases for untouched maps");check("GMAPS".equals(getTargetContext().getSharedPreferences("online-map",0).getString("catalog","")),"expanding group does not change selected source");

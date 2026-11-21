@@ -175,7 +175,15 @@ public final class LocalMapView extends View {
  }
  public boolean performClick(){super.performClick();return true;}
  public double[] bounds(){double halfX=getWidth()/2.0/world(),halfY=getHeight()/2.0/world();return new double[]{halfX>=.5?-180:MapMath.lon(cx-halfX),MapMath.lat(Math.min(1,cy+halfY)),halfX>=.5?180:MapMath.lon(cx+halfX),MapMath.lat(Math.max(0,cy-halfY))};}
- void retryTiles(){missing.clear();invalidate();}
+ void retryTiles(){
+  OnlineTiles[] base=online;
+  if(base!=null)for(OnlineTiles reader:base)reader.retryDns();
+  RasterLayer[] layers=compositionLayers;
+  if(layers!=null)for(RasterLayer layer:layers)if(layer.online!=null)
+   for(OnlineTiles reader:layer.online)reader.retryDns();
+  missing.clear();
+  invalidate();
+ }
  public void suspend(boolean value){paused=value;RasterLayer[] stack=compositionLayers;if(value&&stack!=null)for(RasterLayer layer:stack)layer.interrupt();if(value){OnlineTiles[] sources=online;if(sources!=null)for(OnlineTiles source:sources)source.interrupt();}else{missing.clear();invalidate();}}
  public void close(){if(disposed)return;disposed=true;RasterLayer[] stack=compositionLayers;if(stack!=null)for(RasterLayer layer:stack)layer.cancel();OnlineTiles[] sources=online;if(sources!=null)for(OnlineTiles source:sources)source.cancel();worker.execute(new Runnable(){public void run(){if(compositionLayers!=null)for(RasterLayer layer:compositionLayers)layer.close();if(tiles!=null)tiles.close();if(online!=null)for(OnlineTiles source:online)source.close();}});worker.shutdown();cache.evictAll();for(Bitmap bitmap:symbolBitmaps.values())bitmap.recycle();symbolBitmaps.clear();symbolImages.clear();}
 }

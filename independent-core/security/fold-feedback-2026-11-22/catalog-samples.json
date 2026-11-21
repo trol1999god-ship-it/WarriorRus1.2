@@ -1,0 +1,762 @@
+{
+  "utc": "2026-11-21T22:12:29.939044+00:00",
+  "method": "One synthetic public tile per built-in leaf. No redirects, user coordinates, credentials or app cache. Single-point observations from the execution network.",
+  "results": [
+    {
+      "source": "BINGMAP",
+      "host": "ecn.t0.tiles.virtualearth.net",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "BINGTERRAIN",
+      "host": "ak.dynamic.t0.tiles.virtualearth.net",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 503,
+      "content_type": "text/plain",
+      "decoded_tile": false,
+      "error": null
+    },
+    {
+      "source": "BINGSAT",
+      "host": "ecn.t0.tiles.virtualearth.net",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "BINGHYB",
+      "host": "ecn.t0.tiles.virtualearth.net",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "BINGPT",
+      "host": "ecn.t0.tiles.virtualearth.net",
+      "zxy": [
+        10,
+        546,
+        364
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "text/plain",
+      "decoded_tile": false,
+      "error": null
+    },
+    {
+      "source": "ESRI_WORLD_IMAGERY",
+      "host": "services.arcgisonline.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "ESRI_WORLD_TOPO",
+      "host": "services.arcgisonline.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "ESRI_WORLD_STREETS",
+      "host": "services.arcgisonline.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "ESRI_NATGEO",
+      "host": "services.arcgisonline.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "ESRI_TERRAIN",
+      "host": "services.arcgisonline.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "ESRI_SHADED_RELIEF",
+      "host": "services.arcgisonline.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "ESRI_PHYSICAL",
+      "host": "services.arcgisonline.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "ESRI_OCEAN",
+      "host": "services.arcgisonline.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "ESRI_LIGHT_GRAY",
+      "host": "services.arcgisonline.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "ESRI_PLACES_LAYER",
+      "host": "services.arcgisonline.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "ESRI_ROADS_LAYER",
+      "host": "services.arcgisonline.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "ESRI_REFERENCE_LAYER",
+      "host": "services.arcgisonline.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "GMAPS",
+      "host": "mt0.google.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "GMBIKE",
+      "host": "mt0.google.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "GTERR",
+      "host": "mt0.google.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "GEARTH",
+      "host": "mt0.google.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "GMPT",
+      "host": "mt0.google.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "GMAPSLOC",
+      "host": "mt0.google.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "GROADS",
+      "host": "mt0.google.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "GBIKEL",
+      "host": "mt0.google.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "GROADSPTL",
+      "host": "mt0.google.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "OSMOMSROADS",
+      "host": "tile.openstreetmap.org",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "OSMOTM",
+      "host": "a.tile.opentopomap.org",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "OSMMPN",
+      "host": "tile.openstreetmap.org",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "OSMCYC",
+      "host": "a.tile.thunderforest.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "OSMTSP",
+      "host": "a.tile.thunderforest.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "OSMWMHC",
+      "host": "tile.waymarkedtrails.org",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "OSMWMCC",
+      "host": "tile.waymarkedtrails.org",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "OSMHOT",
+      "host": "a.tile.openstreetmap.fr",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 403,
+      "content_type": "text/html",
+      "decoded_tile": false,
+      "error": null
+    },
+    {
+      "source": "OSMFR",
+      "host": "a.tile.openstreetmap.fr",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 403,
+      "content_type": "text/html",
+      "decoded_tile": false,
+      "error": null
+    },
+    {
+      "source": "OSMHBMAP",
+      "host": "a.tile.opentopomap.org",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "OSMLAND",
+      "host": "a.tile.thunderforest.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "OSMOUTD",
+      "host": "a.tile.thunderforest.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "OSMMPQ",
+      "host": "tileproxy.cloud.mapquest.com",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 503,
+      "content_type": "text/plain",
+      "decoded_tile": false,
+      "error": null
+    },
+    {
+      "source": "OSMSHD",
+      "host": "tiles.wmflabs.org",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 503,
+      "content_type": "text/plain",
+      "decoded_tile": false,
+      "error": null
+    },
+    {
+      "source": "OSMOMSCTR",
+      "host": "korona.geog.uni-heidelberg.de",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 503,
+      "content_type": "text/plain",
+      "decoded_tile": false,
+      "error": null
+    },
+    {
+      "source": "OSMOMSHYB",
+      "host": "korona.geog.uni-heidelberg.de",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 503,
+      "content_type": "text/plain",
+      "decoded_tile": false,
+      "error": null
+    },
+    {
+      "source": "OSMOMSAB",
+      "host": "korona.geog.uni-heidelberg.de",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 503,
+      "content_type": "text/plain",
+      "decoded_tile": false,
+      "error": null
+    },
+    {
+      "source": "SMMAP",
+      "host": "tile.openstreetmap.org",
+      "zxy": [
+        6,
+        39,
+        20
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "USGSTOPO",
+      "host": "basemap.nationalmap.gov",
+      "zxy": [
+        6,
+        14,
+        24
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "USGSSCAN",
+      "host": "basemap.nationalmap.gov",
+      "zxy": [
+        6,
+        14,
+        24
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "USGSIMGTOPO",
+      "host": "basemap.nationalmap.gov",
+      "zxy": [
+        6,
+        14,
+        24
+      ],
+      "curl_status": 0,
+      "http_status": 404,
+      "content_type": "text/html;charset=utf-8",
+      "decoded_tile": false,
+      "error": null
+    },
+    {
+      "source": "USGSIMG",
+      "host": "basemap.nationalmap.gov",
+      "zxy": [
+        6,
+        14,
+        24
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "USGSRDL",
+      "host": "carto.nationalmap.gov",
+      "zxy": [
+        6,
+        14,
+        24
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "USGSCTL",
+      "host": "elevation.nationalmap.gov",
+      "zxy": [
+        8,
+        58,
+        97
+      ],
+      "curl_status": 28,
+      "http_status": 0,
+      "content_type": "",
+      "decoded_tile": false,
+      "error": "curl: (28) Operation timed out after 9002 milliseconds with 0 bytes received"
+    },
+    {
+      "source": "USGSHYD",
+      "host": "basemap.nationalmap.gov",
+      "zxy": [
+        6,
+        14,
+        24
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "YANDEX_MAP",
+      "host": "core-renderer-tiles.maps.yandex.net",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "YANDEX_SAT",
+      "host": "sat01.maps.yandex.net",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "decoded_tile": true,
+      "error": null
+    },
+    {
+      "source": "YANDEX_LABELS",
+      "host": "core-renderer-tiles.maps.yandex.net",
+      "zxy": [
+        6,
+        34,
+        22
+      ],
+      "curl_status": 0,
+      "http_status": 200,
+      "content_type": "image/png",
+      "decoded_tile": true,
+      "error": null
+    }
+  ]
+}
