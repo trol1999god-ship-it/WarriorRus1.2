@@ -51,7 +51,47 @@
         "verified_files": 134,
         "artifact": 14711267596
       }
-    ]
+    ],
+    "object_workflows": {
+      "source_sha": "9f19942751e8ae50a37e7384ff772122a9c3d543",
+      "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738",
+      "qa_apk": "https://chatgpt.com/library?file_id=libfile_57c0c520868c8191804a9e96880151d0&account_id=personal",
+      "qa_apk_sha256": "df44ceacbbd0bae965218aa0a3851801412004a890a3c43da69d8709dbde413a",
+      "archive": "https://chatgpt.com/library?file_id=libfile_d4773435948c81918383d89b5103fcbb&account_id=personal",
+      "archive_sha256": "27ca18e899e1c812c1286b52432fabe5ae4e7f729ba69db403e89a786641e763",
+      "android_ci": [
+        {
+          "api": 23,
+          "assertions": {
+            "markerlifecycle": 50,
+            "markerlifecyclereopen": 49,
+            "objectmanager": 83,
+            "objectmanagerreopen": 10,
+            "managerfilters": 98,
+            "managerfiltersreopen": 15,
+            "clipboard": 144,
+            "clipboardreopen": 35
+          },
+          "verified_files": 163,
+          "artifact": 14712716030
+        },
+        {
+          "api": 35,
+          "assertions": {
+            "markerlifecycle": 50,
+            "markerlifecyclereopen": 49,
+            "objectmanager": 83,
+            "objectmanagerreopen": 10,
+            "managerfilters": 98,
+            "managerfiltersreopen": 15,
+            "clipboard": 144,
+            "clipboardreopen": 35
+          },
+          "verified_files": 163,
+          "artifact": 14712636349
+        }
+      ]
+    }
   },
   "status_values": [
     "NOT_INSPECTED",
@@ -200,16 +240,19 @@
       "screen": "Метки",
       "function": "Создание, название, описание, координаты, копирование и удаление",
       "reference_behavior": "Полный цикл карточки эталона неизвестен.",
-      "current_behavior": "Есть сохранение метки в проект и повторное чтение.",
+      "current_behavior": "Создание и правка названия, координат и описания подтверждены после force-stop и импорта KMZ.",
       "evidence_source": [
-        "launcher; clipboard; clipboardreopen"
+        "launcher; clipboard; clipboardreopen",
+        "markerlifecycle",
+        "markerlifecyclereopen",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738"
       ],
       "visual_difference": "Парного снимка нет.",
-      "functional_difference": "Полный цикл восстановления и сверка эталона открыты.",
+      "functional_difference": "Открыта сверка карточки эталона.",
       "priority": "P1",
-      "status": "STATIC_ONLY",
+      "status": "DYNAMIC_VERIFIED",
       "fixing_commit": null,
-      "retest": "Базовые сценарии прошли."
+      "retest": "Целевые сценарии прошли на API 23 и 35."
     },
     {
       "id": "ROUTE-01",
@@ -232,48 +275,62 @@
       "screen": "Менеджер объектов",
       "function": "Выбор, поиск, фильтры и массовые операции",
       "reference_behavior": "Требуется наблюдение экранов и переходов эталона.",
-      "current_behavior": "Доступны вложенная структура, фильтры и массовые действия.",
+      "current_behavior": "Проверены поиск, фильтры, сортировка, массовый выбор, перемещение и удаление, сохранение данных после force-stop.",
       "evidence_source": [
-        "migration/IMPLEMENTATION_PLAN.md; objectmanager"
+        "migration/IMPLEMENTATION_PLAN.md; objectmanager",
+        "objectmanager",
+        "objectmanagerreopen",
+        "managerfilters",
+        "managerfiltersreopen",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738"
       ],
       "visual_difference": "Парного снимка нет.",
-      "functional_difference": "Граничные сценарии и точные действия эталона требуют проверки.",
+      "functional_difference": "Требуется сверка действий и экранов эталона.",
       "priority": "P1",
-      "status": "STATIC_ONLY",
+      "status": "DYNAMIC_VERIFIED",
       "fixing_commit": null,
-      "retest": "Базовые сценарии прошли."
+      "retest": "Целевые сценарии прошли на API 23 и 35."
     },
     {
       "id": "FILES-01",
       "screen": "Менеджер файлов",
       "function": "Штатный выбор и рабочий режим менеджера",
       "reference_behavior": "Эталонная структура и переключение между режимами неизвестны.",
-      "current_behavior": "Используется системный выбор файлов и собственный менеджер проектов и объектов.",
+      "current_behavior": "Проверены операции менеджеров проекта и объектов, экспорт и импорт с тестовым ответом на системный выбор файлов.",
       "evidence_source": [
-        "migration/IMPLEMENTATION_PLAN.md; clipboard"
+        "migration/IMPLEMENTATION_PLAN.md; clipboard",
+        "objectmanager",
+        "clipboard",
+        "markerlifecyclereopen",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738"
       ],
       "visual_difference": "Парного снимка нет.",
-      "functional_difference": "Полное соответствие обоих режимов не доказано.",
+      "functional_difference": "Открыта сверка обоих режимов с эталоном.",
       "priority": "P1",
       "status": "BLOCKED",
       "fixing_commit": null,
-      "retest": "NOT_RUN для сверки."
+      "retest": "Целевые сценарии прошли на API 23 и 35."
     },
     {
       "id": "FOLDER-01",
       "screen": "Папки и группы",
       "function": "Структура, перенос между проектами и сохранение",
       "reference_behavior": "Семантика папок и групп в эталоне недоступна.",
-      "current_behavior": "Транзакционный перенос проектов, объектов и вложений реализован.",
+      "current_behavior": "Проверены создание и переименование папок, перенос внутри проекта и между проектами с вложениями.",
       "evidence_source": [
-        "CODEX_NEXT.md; clipboard и clipboardreopen"
+        "CODEX_NEXT.md; clipboard и clipboardreopen",
+        "objectmanager",
+        "objectmanagerreopen",
+        "clipboard",
+        "clipboardreopen",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738"
       ],
       "visual_difference": "Парного снимка нет.",
       "functional_difference": "Сверка типов групп и действий эталона открыта.",
       "priority": "P1",
-      "status": "STATIC_ONLY",
+      "status": "DYNAMIC_VERIFIED",
       "fixing_commit": null,
-      "retest": "Базовые сценарии прошли."
+      "retest": "Целевые сценарии прошли на API 23 и 35."
     },
     {
       "id": "GEOM-01",
@@ -296,48 +353,60 @@
       "screen": "SVG и стили",
       "function": "Значок, цвет, оформление, масштаб и экспорт",
       "reference_behavior": "Полный набор библиотек и состояний эталона не подтверждён.",
-      "current_behavior": "Выбор SVG, рендерер, стили KML и сохранение в KMZ.",
+      "current_behavior": "Проверены назначение своего SVG, сохранение после force-stop и перенос SVG в KMZ.",
       "evidence_source": [
-        "CODEX_NEXT.md; svg"
+        "CODEX_NEXT.md; svg",
+        "markerlifecycle",
+        "markerlifecyclereopen",
+        "clipboard",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738"
       ],
       "visual_difference": "Парного снимка нет.",
       "functional_difference": "Полная библиотека и цикл всех свойств требуют сверки.",
       "priority": "P1",
-      "status": "STATIC_ONLY",
+      "status": "DYNAMIC_VERIFIED",
       "fixing_commit": null,
-      "retest": "Базовые сценарии прошли."
+      "retest": "Целевые сценарии прошли на API 23 и 35."
     },
     {
       "id": "MEDIA-01",
       "screen": "Вложения",
       "function": "Фото, видео, аудио, заметки, привязка и удаление",
       "reference_behavior": "Карточки и параметры эталона не наблюдались.",
-      "current_behavior": "Локальные связи, перенос байтов и привязка при повторном открытии.",
+      "current_behavior": "Проверена привязка фото и сохранность его байтов после force-stop, переноса и повторного импорта KMZ.",
       "evidence_source": [
-        "CODEX_NEXT.md; clipboardreopen"
+        "CODEX_NEXT.md; clipboardreopen",
+        "markerlifecycle",
+        "markerlifecyclereopen",
+        "objectmanager",
+        "clipboardreopen",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738"
       ],
       "visual_difference": "Парного снимка нет.",
-      "functional_difference": "Матрица типов вложений и полное поведение эталона открыты.",
+      "functional_difference": "Открыта проверка остальных типов вложений и сверка с эталоном.",
       "priority": "P1",
-      "status": "STATIC_ONLY",
+      "status": "DYNAMIC_VERIFIED",
       "fixing_commit": null,
-      "retest": "Базовый цикл вложения прошёл."
+      "retest": "Целевые сценарии прошли на API 23 и 35."
     },
     {
       "id": "IO-01",
       "screen": "Импорт и экспорт",
       "function": "KML/KMZ, GPX, GeoJSON и обмен по явному действию",
       "reference_behavior": "Полный список и устройства импорта эталона не подтверждены.",
-      "current_behavior": "Поддержанные форматы прошли повторный импорт и проверки схем. KMZ сохраняет ресурсы.",
+      "current_behavior": "Проверены экспорт и импорт KMZ со сверкой данных, SVG и фото. Ранее проверены GPX и GeoJSON.",
       "evidence_source": [
-        "CODEX_NEXT.md; clipboardreopen; архив проверки форматов"
+        "CODEX_NEXT.md; clipboardreopen; архив проверки форматов",
+        "markerlifecyclereopen",
+        "clipboardreopen",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738"
       ],
       "visual_difference": "Парного снимка нет.",
       "functional_difference": "Импорт во внешние навигаторы и все состояния SAF остаются открыты.",
       "priority": "P1",
-      "status": "STATIC_ONLY",
+      "status": "DYNAMIC_VERIFIED",
       "fixing_commit": null,
-      "retest": "Базовые сценарии прошли."
+      "retest": "Целевые сценарии прошли на API 23 и 35."
     },
     {
       "id": "SET-01",
