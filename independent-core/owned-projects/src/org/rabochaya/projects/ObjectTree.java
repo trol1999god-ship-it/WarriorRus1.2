@@ -104,7 +104,10 @@ public final class ObjectTree {
   for(Node c=n.getFirstChild();c!=null;c=c.getNextSibling())checkReferences(c,removed,ids,depth+1);
  }
  public static String token(Element root){
-  requireRoot(root);try{MessageDigest md=MessageDigest.getInstance("SHA-256");hash(root,md,0);StringBuilder b=new StringBuilder();for(byte x:md.digest())b.append(String.format(Locale.US,"%02x",x&255));return b.toString();}catch(java.security.NoSuchAlgorithmException e){throw new IllegalStateException(e);}
+  requireRoot(root);return nodeToken(root);
+ }
+ static String nodeToken(Element node){
+  try{MessageDigest md=MessageDigest.getInstance("SHA-256");hash(node,md,0);StringBuilder b=new StringBuilder();for(byte x:md.digest())b.append(String.format(Locale.US,"%02x",x&255));return b.toString();}catch(java.security.NoSuchAlgorithmException e){throw new IllegalStateException(e);}
  }
  private static void hash(Node n,MessageDigest md,int depth){if(depth>128)throw new IllegalArgumentException("Слишком глубоко вложен XML");part(md,""+n.getNodeType());part(md,n.getNamespaceURI());part(md,n.getNodeName());part(md,n.getNodeValue());NamedNodeMap attrs=n.getAttributes();TreeMap<String,String> sorted=new TreeMap<>();if(attrs!=null)for(int i=0;i<attrs.getLength();i++){Node a=attrs.item(i);sorted.put(a.getNodeName(),a.getNodeValue());}for(Map.Entry<String,String> a:sorted.entrySet()){part(md,a.getKey());part(md,a.getValue());}part(md,"children");for(Node c=n.getFirstChild();c!=null;c=c.getNextSibling())hash(c,md,depth+1);part(md,"end");}
  private static void part(MessageDigest md,String text){byte[] b=(text==null?"":text).getBytes(Charset.forName("UTF-8"));int n=b.length;md.update((byte)(n>>>24));md.update((byte)(n>>>16));md.update((byte)(n>>>8));md.update((byte)n);md.update(b);}

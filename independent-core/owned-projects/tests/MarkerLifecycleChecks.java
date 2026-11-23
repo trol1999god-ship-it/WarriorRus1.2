@@ -172,6 +172,26 @@ final class MarkerLifecycleChecks {
   }finally{erase(store,id);}
  }
 
+ private Activity recreateForm(Activity current,String title,String... values)throws Exception{
+  Instrumentation.ActivityMonitor monitor=test.addMonitor("org.rabochaya.projects.LocalMapActivity",null,false);
+  Activity recreated;
+  try{
+   test.runOnMainSync(current::recreate);
+   recreated=test.waitForMonitorWithTimeout(monitor,30000);
+  }finally{test.removeMonitor(monitor);}
+  test.check(recreated!=null&&current!=recreated,"Android recreated the map Activity");
+  test.activity=recreated;
+  test.waitText(title);
+  java.util.ArrayList<String> actual=new java.util.ArrayList<>();
+  test.runOnMainSync(()->{
+   java.util.ArrayList<android.widget.EditText> fields=new java.util.ArrayList<>();
+   test.collectInputs(test.activeDialogRoot(),fields);
+   for(android.widget.EditText field:fields)actual.add(field.getText().toString());
+  });
+  test.check(actual.equals(Arrays.asList(values)),"draft restored every field without persisting it");
+  return recreated;
+ }
+
  void run()throws Exception{
   Object store=store();
   long id=-1;
@@ -185,6 +205,8 @@ final class MarkerLifecycleChecks {
    test.click("Создать");
    test.click("Метка");
    test.inputs(INITIAL,"Draft note","55.7 37.6 170");
+   main=recreateForm(main,"Новый объект",INITIAL,"Draft note","55.7 37.6 170");
+   test.check(((List<?>)test.call(load(store,id),"features",new Class[]{boolean.class},false)).isEmpty(),"Activity recreation does not save an unfinished marker");
    test.click("Сохранить");
    test.waitText("1 видимых объектов");
    Element initial=marker(load(store,id),INITIAL);
@@ -194,6 +216,8 @@ final class MarkerLifecycleChecks {
    test.mapEvidence("marker-edit","before","Изменить","original marker card");
    test.click("Изменить");
    test.inputs(NAME,NOTE,"55.725 37.625 193");
+   main=recreateForm(main,"Изменить объект",NAME,NOTE,"55.725 37.625 193");
+   test.check(markerId.equals(marker(load(store,id),INITIAL).getAttribute("id")),"existing marker is unchanged until explicit Save");
    test.click("Сохранить");
    test.waitText("1 видимых объектов");
    test.stableMainMap();

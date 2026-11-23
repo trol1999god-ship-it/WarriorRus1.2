@@ -4,13 +4,31 @@ import android.app.*;import android.content.*;import android.net.Uri;import andr
 public final class LocalMapActivity extends Activity implements LocalMapView.Listener {
  private static final int IMPORT_MAP=4301,IMPORT_TIFF=4302,IMPORT_OZI=4303,DEM=4602,CATALOG=4502,LAYERS=4503;private PopupWindow popup;private double[] creationPoint;private LinearLayout zoomButtons,mapDock;private long projectId;private LinearLayout root;private TextView coordinates,status,tileNotice;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
  private boolean busy,refreshOnResume,refreshMapOnResume;private volatile boolean disposed;private final ExecutorService worker=Executors.newSingleThreadExecutor();private String warning="";private long lastError;private LinearLayout drawingRow;private String pendingDrawType;private ArrayList<double[]> pendingDrawPoints;
+ private Bundle pendingEdit;
+ private EditForm activeEdit;
+ private static final class EditForm {
+  final AlertDialog dialog;final String id,type,token;final EditText name,note,coords;
+  EditForm(AlertDialog dialog,String id,String type,String token,EditText name,EditText note,EditText coords){
+   this.dialog=dialog;this.id=id;this.type=type;this.token=token;this.name=name;this.note=note;this.coords=coords;
+  }
+  Bundle snapshot(long project){
+   String title=name.getText().toString(),description=note.getText().toString();
+   String positions=coords==null?null:coords.getText().toString();
+   // Keep the activity state comfortably below the Binder transaction limit.
+   if((long)title.length()+description.length()+(positions==null?0:positions.length())>200000)return null;
+   Bundle state=new Bundle();
+   state.putLong("project",project);state.putString("id",id);state.putString("type",type);state.putString("token",token);
+   state.putString("name",title);state.putString("note",description);state.putString("coords",positions);
+   return state;
+  }
+ }
  public static void open(Activity parent,long project){Intent i=new Intent(parent,LocalMapActivity.class);i.putExtra("project",project);parent.startActivity(i);}
- protected void onCreate(Bundle state){super.onCreate(state);projectId=getIntent().getLongExtra("project",-1);root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(0xffc7e1f8);setContentView(root);getWindow().setStatusBarColor(MapHud.BAR);getWindow().setNavigationBarColor(MapHud.BAR);if(state!=null){pendingDrawType=state.getString("drawing_type");Object saved=state.getSerializable("drawing_points");if(saved instanceof ArrayList)pendingDrawPoints=(ArrayList<double[]>)saved;}load();}
+ protected void onCreate(Bundle state){super.onCreate(state);projectId=getIntent().getLongExtra("project",-1);root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(0xffc7e1f8);setContentView(root);getWindow().setStatusBarColor(MapHud.BAR);getWindow().setNavigationBarColor(MapHud.BAR);if(state!=null){pendingEdit=state.getBundle("map_edit");pendingDrawType=state.getString("drawing_type");Object saved=state.getSerializable("drawing_points");if(saved instanceof ArrayList)pendingDrawPoints=(ArrayList<double[]>)saved;}load();}
  private TextView label(String s,int size){TextView t=new TextView(this);t.setText(s);t.setTypeface(WorkspaceUi.font(this));t.setTextColor(0xffffffff);t.setTextSize(size);t.setPadding(14,10,14,10);return t;}
  private void button(LinearLayout row,String name,final Runnable action){Button b=new Button(this);b.setText(name);b.setTypeface(WorkspaceUi.font(this));b.setAllCaps(false);b.setTextSize(12);b.setTextColor(0xffffffff);GradientDrawable bg=new GradientDrawable();bg.setColor(0xff374329);bg.setCornerRadius(8);b.setBackground(bg);LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(0,(int)(50*getResources().getDisplayMetrics().density),1);p.setMargins(2,2,2,2);row.addView(b,p);b.setOnClickListener(v->{if(!busy)action.run();});}
  private File mapFile(){return new File(getFilesDir(),"local_basemap_"+projectId+".mbtiles");}
  private void message(String s){root.removeAllViews();root.addView(label(s,17));}
- private void load(){busy=true;message("Открытие локальной карты…");worker.execute(()->{ProjectStore store=new ProjectStore(this);try{final KmlProject snapshot=store.load(projectId);final List<KmlProject.Feature> f=snapshot.features(true);final KmlSymbolAssets icons=new KmlSymbolAssets(snapshot.root().getOwnerDocument(),snapshot.entry,snapshot.assets);runOnUiThread(()->{if(!disposed){features=f;symbolAssets=icons;busy=false;ProjectSession.remember(this,projectId);show(true);}});}catch(final Exception e){runOnUiThread(()->{if(!disposed){busy=false;message("Не удалось открыть проект: "+e.getMessage());LinearLayout row=new LinearLayout(this);root.addView(row);button(row,"К списку",()->finish());}});}finally{store.close();}});}
+ private void load(){busy=true;message("Открытие локальной карты…");worker.execute(()->{ProjectStore store=new ProjectStore(this);try{final KmlProject snapshot=store.load(projectId);final List<KmlProject.Feature> f=snapshot.features(true);final KmlSymbolAssets icons=new KmlSymbolAssets(snapshot.root().getOwnerDocument(),snapshot.entry,snapshot.assets);runOnUiThread(()->{if(!disposed){features=f;symbolAssets=icons;busy=false;ProjectSession.remember(this,projectId);show(true);restoreEditForm();}});}catch(final Exception e){runOnUiThread(()->{if(!disposed){busy=false;message("Не удалось открыть проект: "+e.getMessage());LinearLayout row=new LinearLayout(this);root.addView(row);button(row,"К списку",()->finish());}});}finally{store.close();}});}
  private void show(boolean restore){
   if(disposed)return;if(map!=null){saveView();map.close();map=null;}closeDem();try{File terrain=DemActivity.file(this,projectId);if(terrain.isFile())dem=HgtRaster.owned(terrain,projectId);}catch(IOException e){warning="DEM недоступен: "+e.getMessage();}root.removeAllViews();
   boolean onlineMode=OnlineMapSettings.active(this,projectId);TileSource source=onlineMode?OnlineMapSettings.source(this):null;
@@ -152,7 +170,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  public void settled(double x,double y,double zoom){String key="view_"+projectId+"_";getPreferences(0).edit().putString(key+"x",Double.toString(x)).putString(key+"y",Double.toString(y)).putFloat(key+"z",(float)zoom).commit();}
  protected void onResume(){super.onResume();if(refreshOnResume&&!busy){refreshOnResume=false;refreshMapOnResume=false;load();}else if(refreshMapOnResume&&!busy){refreshMapOnResume=false;show(true);}if(map!=null)map.suspend(false);}
  protected void onPause(){if(popup!=null)popup.dismiss();saveView();if(map!=null)map.suspend(true);super.onPause();}
- protected void onDestroy(){disposed=true;closeDem();if(map!=null)map.close();worker.shutdown();super.onDestroy();}
+ protected void onDestroy(){disposed=true;if(activeEdit!=null)activeEdit.dialog.dismiss();closeDem();if(map!=null)map.close();worker.shutdown();super.onDestroy();}
  private void chooseMap(){if(map!=null&&map.drawingType()!=null){error("Завершите или отмените рисунок");return;}AlertDialog chooser=new AlertDialog.Builder(this).setTitle("Подложка карты").setItems(new String[]{"Онлайн-карта и кеш","Открыть MBTiles","Показать сохранённый MBTiles","Убрать MBTiles","Импорт GeoTIFF","Импорт Ozi (.map + PNG/JPEG/BMP/GIF)","Создать рельеф из DEM"},(d,w)->{if(w==0)onlineSettings();else if(w==1)pick();else if(w==2){OnlineMapSettings.use(this,projectId,false);show(true);}else if(w==3)removeMap();else if(w==4)pickTiff();else if(w==5)pickOzi();else confirmHillshade();}).setNegativeButton("Отмена",null).create();chooser.setOnShowListener(dlg->compositionFont(chooser.getWindow().getDecorView()));chooser.show();}
  private void compositionDownload(){if(!canLeave())return;refreshMapOnResume=true;Intent intent=new Intent(this,CompositionDownloadActivity.class).putExtra("project",projectId);if(map!=null)intent.putExtra("bounds",map.bounds()).putExtra("zoom",map.viewport()[2]);startActivity(intent);}
  private void onlineSettings(){if(map!=null&&map.drawingType()!=null){error("Завершите или отмените рисунок");return;}refreshMapOnResume=true;Intent intent=new Intent(this,OnlineMapActivity.class).putExtra("project",projectId);if(map!=null)intent.putExtra("bounds",map.bounds()).putExtra("zoom",map.viewport()[2]);startActivity(intent);}
@@ -217,27 +235,52 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  public void draftChanged(int count){if(status!=null&&count>=0)status.setText("Рисование: вершин "+count+" · касайтесь карты или добавляйте в центре");}
  private void discardDrawing(boolean leave){new AlertDialog.Builder(this).setMessage("Отменить несохранённый рисунок?").setPositiveButton("Отменить рисунок",(d,w)->{map.cancelDrawing();if(drawingRow!=null){root.removeView(drawingRow);drawingRow=null;}status.setText(mapFile().isFile()?"Локальная карта MBTiles":"Обзорная карта");if(leave)finish();}).setNegativeButton("Продолжить рисование",null).show();}
  public void onBackPressed(){if(map!=null&&map.drawingType()!=null)discardDrawing(true);else super.onBackPressed();}
- protected void onSaveInstanceState(Bundle state){if(map!=null&&map.drawingType()!=null){state.putString("drawing_type",map.drawingType());state.putSerializable("drawing_points",new ArrayList<double[]>(map.drawingPoints()));}super.onSaveInstanceState(state);}
+ protected void onSaveInstanceState(Bundle state){
+  if(activeEdit!=null&&!busy&&activeEdit.dialog.isShowing())state.putBundle("map_edit",activeEdit.snapshot(projectId));
+  else if(pendingEdit!=null)state.putBundle("map_edit",pendingEdit);
+  if(map!=null&&map.drawingType()!=null){state.putString("drawing_type",map.drawingType());state.putSerializable("drawing_points",new ArrayList<double[]>(map.drawingPoints()));}super.onSaveInstanceState(state);}
 
  private EditText field(LinearLayout form,String hint,String value,boolean multiline){
-  TextView caption=new TextView(this);caption.setText(hint);caption.setTextColor(0xff202020);form.addView(caption);
-  EditText input=new EditText(this);input.setText(value);input.setTextColor(0xff202020);input.setHintTextColor(0xff606060);input.setBackgroundColor(0xffffffff);input.setSingleLine(!multiline);input.setInputType(android.text.InputType.TYPE_CLASS_TEXT|(multiline?android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE:0));form.addView(input,new LinearLayout.LayoutParams(-1,-2));return input;
+  TextView caption=new TextView(this);caption.setText(hint);caption.setTypeface(WorkspaceUi.font(this));caption.setTextColor(WorkspaceUi.TEXT);form.addView(caption);
+  EditText input=new EditText(this);input.setText(value);input.setTextColor(0xff202020);input.setHintTextColor(0xff606060);input.setBackgroundColor(0xffffffff);input.setSingleLine(!multiline);input.setInputType(android.text.InputType.TYPE_CLASS_TEXT|(multiline?android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE:0));input.setTypeface(WorkspaceUi.font(this));form.addView(input,new LinearLayout.LayoutParams(-1,-2));return input;
  }
- private void editObject(final KmlProject.Feature feature,final String createType){
+ private void restoreEditForm(){
+  Bundle state=pendingEdit;
+  pendingEdit=null;
+  if(state==null||state.getLong("project",-1)!=projectId)return;
+  String type=state.getString("type"),id=state.getString("id");
+  if(id==null){
+   if("Point".equals(type)||"LineString".equals(type)||"Polygon".equals(type))editObject(null,type,state);
+   return;
+  }
+  for(KmlProject.Feature feature:features){
+   if(id.equals(feature.element.getAttribute("id"))&&ObjectTree.nodeToken(feature.element).equals(state.getString("token"))){
+    editObject(feature,null,state);
+    return;
+   }
+  }
+  Toast.makeText(this,"Объект изменился. Откройте его заново",Toast.LENGTH_SHORT).show();
+ }
+ private void editObject(KmlProject.Feature feature,String createType){editObject(feature,createType,null);}
+ private void editObject(final KmlProject.Feature feature,final String createType,Bundle state){
   if(busy||map==null)return;
   final boolean point=feature!=null&&feature.shapes.size()==1&&"Point".equals(feature.shapes.get(0).type)&&KmlProject.child(feature.element,"Point")!=null;
-  LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);form.setPadding(18,12,18,12);form.setBackgroundColor(0xfff3f5f0);
-  final EditText name=field(form,"Название",feature==null?"":feature.name,false);
-  final EditText note=field(form,"Описание",feature==null?"":MediaLinks.note(feature.element),true);
+  LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);form.setPadding(18,12,18,12);form.setBackgroundColor(0xffedf5fb);
+  final EditText name=field(form,"Название",state!=null?state.getString("name",""):feature==null?"":feature.name,false);
+  final EditText note=field(form,"Описание",state!=null?state.getString("note",""):feature==null?"":MediaLinks.note(feature.element),true);
   String initial="";
   if(point){double[] c=feature.shapes.get(0).rings.get(0).get(0);initial=c[1]+" "+c[0]+" "+c[2];}
   else if("Point".equals(createType)){double[] v=map.viewport();initial=String.format(Locale.US,"%.8f %.8f",MapMath.lat(v[1]),MapMath.lon(v[0]));}
   if(feature==null&&"Point".equals(createType)&&creationPoint!=null){initial=String.format(Locale.US,"%.8f %.8f",creationPoint[1],creationPoint[0]);creationPoint=null;}
   if(feature==null&&map.drawingType()!=null&&map.drawingType().equals(createType))initial=drawingCoordinates();
+  if(state!=null)initial=state.getString("coords","");
   final EditText coords=point||feature==null?field(form,"WGS 84: широта долгота [высота], одна вершина в строке",initial,true):null;
   if(coords!=null)coords.setMinLines(feature==null&&!"Point".equals(createType)?4:2);
   ScrollView scroll=new ScrollView(this);scroll.addView(form);
   final AlertDialog dialog=new AlertDialog.Builder(this).setTitle(feature==null?"Новый объект":"Изменить объект").setView(scroll).setPositiveButton("Сохранить",null).setNegativeButton("Отмена",null).create();
+  activeEdit=new EditForm(dialog,feature==null?null:feature.element.getAttribute("id"),createType,
+    feature==null?null:ObjectTree.nodeToken(feature.element),name,note,coords);
+  dialog.setOnDismissListener(d->{if(activeEdit!=null&&activeEdit.dialog==dialog)activeEdit=null;});
   dialog.setOnShowListener(d->dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{
    if(busy)return;
    final String title=name.getText().toString().trim(),description=note.getText().toString();
