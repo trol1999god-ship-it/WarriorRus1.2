@@ -112,7 +112,8 @@ jobs:
           target: ${{ matrix.target }}
           cores: ${{ matrix.api == 37 && '4' || '2' }}
           ram-size: ${{ matrix.api == 37 && '4096M' || '' }}
-          emulator-options: ${{ matrix.api == 37 && '-no-window -gpu swiftshader -feature -Vulkan -no-snapshot -noaudio -no-boot-anim -show-kernel' || '-no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim' }}
+          disk-size: ${{ matrix.api == 37 && '6144M' || '' }}
+          emulator-options: ${{ matrix.api == 37 && '-no-window -gpu swiftshader -feature -Vulkan -no-snapshot -noaudio -no-boot-anim' || '-no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim' }}
           disable-linux-hw-accel: false
           disable-animations: true
           disable-spellchecker: true
@@ -132,7 +133,7 @@ jobs:
         env:
           SCENARIO_OUTCOME: ${{ steps.android-scenarios.outcome }}
         run: |
-          if [ "$SCENARIO_OUTCOME" = failure ] && [ ! -d "$RUNNER_TEMP/rk-results" ]; then
+          if [ "$SCENARIO_OUTCOME" = failure ] && [ ! -f "$RUNNER_TEMP/rk-results/results.json" ]; then
             echo "Android scenarios failed before creating results."
             exit 0
           fi
