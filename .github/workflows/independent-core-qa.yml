@@ -100,6 +100,9 @@ jobs:
         run: |
           test -c /dev/kvm
           sudo chmod 666 /dev/kvm
+      - name: Start ADB before the Android 17 cold boot
+        if: ${{ matrix.api == 37 }}
+        run: '"$ANDROID_HOME/platform-tools/adb" start-server'
       - name: Run Android scenarios
         id: android-scenarios
         uses: reactivecircus/android-emulator-runner@v2
@@ -107,10 +110,13 @@ jobs:
           api-level: ${{ matrix.image || matrix.api }}
           arch: ${{ matrix.arch }}
           target: ${{ matrix.target }}
+          cores: ${{ matrix.api == 37 && '4' || '2' }}
+          ram-size: ${{ matrix.api == 37 && '4096M' || '' }}
+          emulator-options: ${{ matrix.api == 37 && '-no-window -gpu swiftshader -feature -Vulkan -no-snapshot -noaudio -no-boot-anim -show-kernel' || '-no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim' }}
           disable-linux-hw-accel: false
           disable-animations: true
           disable-spellchecker: true
-          emulator-boot-timeout: 600
+          emulator-boot-timeout: ${{ matrix.api == 37 && '300' || '600' }}
           working-directory: independent-core
           # Opt-in push profile. Ordinary pushes still execute the full suite.
           script: >-
