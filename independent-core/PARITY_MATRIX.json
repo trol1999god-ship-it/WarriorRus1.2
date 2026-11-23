@@ -252,9 +252,59 @@
     },
     "editor_draft_and_text": {
       "commit": "671a49f00f05fa20e23495fc68e577fa8c40726d",
-      "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45242903746",
+      "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45243852282",
       "signer_comparison": "security/map-editor-2026-11-23/reference-signer-comparison.json",
-      "static_ui": "security/map-editor-2026-11-23/reference-screen-controls.json"
+      "static_ui": "security/map-editor-2026-11-23/reference-screen-controls.json",
+      "tested_commit": "5427d4b77ab5163bc8f6422293308e9cf81b3219",
+      "build_artifact": 14853851195,
+      "qa_apk": "https://chatgpt.com/library?file_id=libfile_40bbfe1c9370819197fec1743d437e92&account_id=personal",
+      "qa_apk_sha256": "0c46ff0740c96879dc48d8543f2920dba0251c76d2c147598344a241b4ccb6d8",
+      "archive": "https://chatgpt.com/library?file_id=libfile_dce6763cf76c8191bdfe77bcc8c1fe70&account_id=personal",
+      "archive_sha256": "4c7f8f9e8b5dd4e2ce5481ab3bdba431ade6f4d4ad03101df0ed390a5c4da7c3",
+      "android_ci": [
+        {
+          "api": 23,
+          "artifact": 14852104967,
+          "verified_files": 64,
+          "scenarios": {
+            "markerlifecycle": {
+              "passed": true,
+              "assertions": 63
+            },
+            "markerlifecyclereopen": {
+              "passed": true,
+              "assertions": 55
+            }
+          },
+          "sha256": "4ffc2dcdb1dc0b6653ed803237ad611f0620c7ff64cd155620edd54555314f22",
+          "job_conclusion": "success"
+        },
+        {
+          "api": 35,
+          "artifact": 14853876159,
+          "verified_files": 64,
+          "scenarios": {
+            "markerlifecycle": {
+              "passed": true,
+              "assertions": 63
+            },
+            "markerlifecyclereopen": {
+              "passed": true,
+              "assertions": 55
+            }
+          },
+          "sha256": "9f66521f1ed670dc7951c243584816a77bc387a1f09f2bec532d4d1354e0a409",
+          "job_conclusion": "success"
+        }
+      ],
+      "android_17": "IN_PROGRESS",
+      "lint": {
+        "errors": 0,
+        "warnings": 122
+      },
+      "privacy_permissions": [
+        "android.permission.INTERNET"
+      ]
     }
   },
   "status_values": [
