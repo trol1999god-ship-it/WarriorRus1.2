@@ -19,6 +19,8 @@ import java.nio.charset.StandardCharsets;
 public final class LifecycleFixtureProvider extends ContentProvider {
  static final Uri SVG = uri("lifecycle.svg");
  static final Uri PHOTO = uri("lifecycle-photo.png");
+ static final String TEXT_CONTENT="Локальная заметка <b>как текст</b>";
+ static final Uri TEXT = uri("lifecycle-note.txt");
  static final Uri KMZ = uri("lifecycle-export.kmz");
 
  private static Uri uri(String name) {
@@ -30,6 +32,7 @@ public final class LifecycleFixtureProvider extends ContentProvider {
  @Override public String getType(Uri uri) {
   if(SVG.equals(uri))return "image/svg+xml";
   if(PHOTO.equals(uri))return "image/png";
+  if(TEXT.equals(uri))return "text/plain";
   if(KMZ.equals(uri))return "application/vnd.google-earth.kmz";
   throw new IllegalArgumentException("Unknown synthetic fixture");
  }
@@ -45,6 +48,8 @@ public final class LifecycleFixtureProvider extends ContentProvider {
     if(SVG.equals(uri)){
      out.write(("<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'>"
        +"<circle cx='12' cy='12' r='10' fill='#2166a9'/></svg>").getBytes(StandardCharsets.UTF_8));
+    }else if(TEXT.equals(uri)){
+     out.write(TEXT_CONTENT.getBytes(StandardCharsets.UTF_8));
     }else{
      Bitmap bitmap=Bitmap.createBitmap(24,24,Bitmap.Config.ARGB_8888);
      try{

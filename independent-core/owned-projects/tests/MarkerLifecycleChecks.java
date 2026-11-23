@@ -137,9 +137,14 @@ final class MarkerLifecycleChecks {
   String path=(String)test.staticCall("MediaLinks","path",new Class[]{test.codec,String.class},doc,href);
   byte[] photoBytes=test.assets(doc).get(path);
   test.check(Arrays.equals(photoBytes,bytes(LifecycleFixtureProvider.PHOTO)),"readback preserves photo bytes");
-  test.check(test.links(doc,id).size()==1&&test.assets(doc).size()==2,"exactly one attachment and one icon");
+  Object textFile=test.link(doc,id,LifecycleFixtureProvider.TEXT.getLastPathSegment());
+  String textPath=(String)test.staticCall("MediaLinks","path",new Class[]{test.codec,String.class},doc,test.value(textFile,"href"));
+  byte[] textBytes=test.assets(doc).get(textPath);
+  test.check("text/plain".equals(test.value(textFile,"mime")),"text attachment keeps its MIME type");
+  test.check(Arrays.equals(textBytes,bytes(LifecycleFixtureProvider.TEXT)),"readback preserves text bytes exactly");
+  test.check(test.links(doc,id).size()==2&&test.assets(doc).size()==3,"exactly two attachments and one icon");
   return new JSONObject().put("name",NAME).put("coordinate",COORDINATE).put("note",note).put("svg_sha256",digest(iconBytes))
-   .put("photo_sha256",digest(photoBytes)).put("photo_name",PHOTO);
+   .put("photo_sha256",digest(photoBytes)).put("photo_name",PHOTO).put("text_sha256",digest(textBytes));
  }
  private void writeEvidence(String name,byte[] bytes)throws Exception{
   try(OutputStream out=new FileOutputStream(new File(context.getExternalFilesDir(null),name))){out.write(bytes);}
@@ -236,13 +241,24 @@ final class MarkerLifecycleChecks {
    card(NAME);
    Activity panel=child("AttachmentsActivity","Вложения",false);
    test.waitText("Вложений: 0");
-   test.mapEvidence("marker-photo","before","Добавить фото, аудио или видео","no attachment");
-   picker(Intent.ACTION_OPEN_DOCUMENT,LifecycleFixtureProvider.PHOTO,"Добавить фото, аудио или видео");
+   test.mapEvidence("marker-photo","before","Добавить вложение","no attachment");
+   picker(Intent.ACTION_OPEN_DOCUMENT,LifecycleFixtureProvider.PHOTO,"Добавить вложение");
    test.waitText("Вложений: 1");
    test.waitText(PHOTO);
-   JSONObject readback=verify(load(store,id));
-   test.mapEvidence("marker-photo","after","Добавить фото, аудио или видео","photo bytes persisted");
+   test.mapEvidence("marker-photo","after","Добавить вложение","photo bytes persisted");
    test.openAttachment(PHOTO,"Фото готово");
+   picker(Intent.ACTION_OPEN_DOCUMENT,LifecycleFixtureProvider.TEXT,"Добавить вложение");
+   test.waitText("Вложений: 2");
+   test.click(LifecycleFixtureProvider.TEXT.getLastPathSegment());
+   Activity textPreview=child("MediaPlaybackActivity","Открыть",false);
+   test.waitText("Текст готов");
+   test.waitText(LifecycleFixtureProvider.TEXT_CONTENT);
+   test.capture("marker-text-preview");
+   test.runOnMainSync(textPreview::finish);
+   test.waitForIdleSync();
+   test.activity=panel;
+   test.waitText("Вложений: 2");
+   JSONObject readback=verify(load(store,id));
    finish(panel,main);
    test.mapEvidence("marker-reopen","before","Принудительная остановка","project and marker saved");
    test.check(state().edit().putLong("project",id).putString("readback",readback.toString()).commit(),"restart handoff committed");
@@ -279,7 +295,7 @@ final class MarkerLifecycleChecks {
     try{
      Object parsed=test.codec.getMethod("read",InputStream.class,boolean.class)
       .invoke(null,new ByteArrayInputStream(candidate),true);
-     if(test.assets(parsed).size()==2){kmz=candidate;break;}
+     if(test.assets(parsed).size()==3){kmz=candidate;break;}
     }catch(java.lang.reflect.InvocationTargetException incomplete){}
     Thread.sleep(150);
    }

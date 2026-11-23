@@ -14,7 +14,7 @@ public final class MediaLinks {
   return items;
  }
  public static String path(KmlProject project,String href)throws IOException{
-  if(!href.matches("attachments/rk-[a-f0-9-]{36}\\.(jpg|png|webp|gif|mp4|m4v|webm|3gp|mp3|wav|ogg|m4a|aac|bin)"))throw new IOException("Недопустимый путь вложения");
+  if(!href.matches("attachments/rk-[a-f0-9-]{36}\\.(jpg|png|webp|gif|mp4|m4v|webm|3gp|mp3|wav|ogg|m4a|aac|txt|bin)"))throw new IOException("Недопустимый путь вложения");
   String entry=KmlProject.safePath(project.entry);int slash=entry.lastIndexOf('/');return KmlProject.safePath((slash<0?"":entry.substring(0,slash+1))+href);
  }
  public static Item add(KmlProject project,Element feature,String originalName,String type,byte[] bytes)throws IOException{
@@ -45,8 +45,8 @@ public final class MediaLinks {
   for(String key:candidates){String href=key.substring(base.length());if(xml.contains(href))continue;boolean referenced=false;byte[] needle=href.getBytes("UTF-8");for(Map.Entry<String,byte[]> other:project.assets.entrySet())if(!key.equals(other.getKey())&&contains(other.getValue(),needle)){referenced=true;break;}if(!referenced)project.assets.remove(key);}
  }
  private static boolean contains(byte[] data,byte[] pattern){for(int i=0;i<=data.length-pattern.length;i++){int j=0;while(j<pattern.length&&data[i+j]==pattern[j])j++;if(j==pattern.length)return true;}return false;}
- public static String mime(String path){String s=path.toLowerCase(Locale.US);if(s.endsWith(".jpg")||s.endsWith(".jpeg"))return "image/jpeg";if(s.endsWith(".png"))return "image/png";if(s.endsWith(".gif"))return "image/gif";if(s.endsWith(".webp"))return "image/webp";if(s.endsWith(".mp4")||s.endsWith(".m4v"))return "video/mp4";if(s.endsWith(".webm"))return "video/webm";if(s.endsWith(".3gp"))return "video/3gpp";if(s.endsWith(".mp3"))return "audio/mpeg";if(s.endsWith(".wav"))return "audio/wav";if(s.endsWith(".ogg"))return "audio/ogg";if(s.endsWith(".m4a"))return "audio/mp4";if(s.endsWith(".aac"))return "audio/aac";return "application/octet-stream";}
- private static String extension(String type,String name){String[] extensions={"jpg","png","webp","gif","mp4","webm","3gp","mp3","wav","ogg","m4a","aac"};for(String ext:extensions)if(mime("x."+ext).equals(type))return ext;String s=name==null?"":name.toLowerCase(Locale.US);for(String ext:extensions)if(s.endsWith("."+ext))return ext;if(s.endsWith(".jpeg"))return "jpg";return "bin";}
+ public static String mime(String path){String s=path.toLowerCase(Locale.US);if(s.endsWith(".jpg")||s.endsWith(".jpeg"))return "image/jpeg";if(s.endsWith(".png"))return "image/png";if(s.endsWith(".gif"))return "image/gif";if(s.endsWith(".webp"))return "image/webp";if(s.endsWith(".mp4")||s.endsWith(".m4v"))return "video/mp4";if(s.endsWith(".webm"))return "video/webm";if(s.endsWith(".3gp"))return "video/3gpp";if(s.endsWith(".mp3"))return "audio/mpeg";if(s.endsWith(".wav"))return "audio/wav";if(s.endsWith(".ogg"))return "audio/ogg";if(s.endsWith(".m4a"))return "audio/mp4";if(s.endsWith(".aac"))return "audio/aac";if(s.endsWith(".txt"))return "text/plain";return "application/octet-stream";}
+ private static String extension(String type,String name){String[] extensions={"jpg","png","webp","gif","mp4","webm","3gp","mp3","wav","ogg","m4a","aac","txt"};for(String ext:extensions)if(mime("x."+ext).equals(type))return ext;String s=name==null?"":name.toLowerCase(Locale.US);for(String ext:extensions)if(s.endsWith("."+ext))return ext;if(s.endsWith(".jpeg"))return "jpg";return "bin";}
  private static String escape(String s){return s.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;").replace("\"","&quot;");}
  private static Element child(Element parent,String name){Element e=parent.getOwnerDocument().createElementNS(NS,name);parent.appendChild(e);return e;}
 }
