@@ -1,0 +1,10 @@
+{
+  "original_apk_sha256": "5ac3c7091cecae66942cdffee7c91ca0eb96be5eae902e85b0d6d9920643c142",
+  "dex_class": "aqp2.cca",
+  "method": "doesHaveValidSignature() runtime log label",
+  "actual_signer_certificate_sha1": "c3fb59347d907bf49da5479b3ebaa2aa136939fb",
+  "digest_algorithm_used_in_app": "SHA-1",
+  "configured_certificate_count": 1,
+  "matches_configured_certificate": false,
+  "scope": "Read-only static comparison against the stored app certificate. The reference APK and its checks were not modified."
+}

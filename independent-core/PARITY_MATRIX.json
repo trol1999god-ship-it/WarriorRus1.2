@@ -249,6 +249,12 @@
         },
         "summary": "На API 23 и 35 прошли cachewrites (29) и catalogscreen (46). Проверены действия каталога, возврат на карту из настроек, чтение прежних кешей и нулевой сетевой трафик закрытых источников. Android Lint — 0 ошибок и 121 предупреждение. Аудит APK прошёл, разрешение только INTERNET."
       }
+    },
+    "editor_draft_and_text": {
+      "commit": "671a49f00f05fa20e23495fc68e577fa8c40726d",
+      "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45242903746",
+      "signer_comparison": "security/map-editor-2026-11-23/reference-signer-comparison.json",
+      "static_ui": "security/map-editor-2026-11-23/reference-screen-controls.json"
     }
   },
   "status_values": [
@@ -886,7 +892,7 @@
         ],
         "implementation": "LocalMapActivity.picked, AttachmentsActivity",
         "reference_visibility": "Закрыто диалогом целостности",
-        "finding": "Открытие карточки и привязка фото подтверждены markerlifecycle и markerlifecyclereopen."
+        "finding": "Открытие карточки и привязка фото подтверждены markerlifecycle и markerlifecyclereopen. Добавлен локальный предпросмотр UTF-8 и хранение исходных байтов .txt в KMZ."
       },
       {
         "screen": "Редактор точки и значков",
@@ -896,7 +902,7 @@
         ],
         "implementation": "LocalMapActivity.editObject, ObjectManagerActivity",
         "reference_visibility": "Закрыто диалогом целостности",
-        "finding": "Правка названия, координат, описания и SVG подтверждена после перезапуска и импорта KMZ."
+        "finding": "Правка названия, координат, описания и SVG подтверждена после перезапуска и импорта KMZ. Черновик формы восстанавливается после пересоздания Activity при совпадении исходного объекта."
       },
       {
         "screen": "Маршруты и области",
