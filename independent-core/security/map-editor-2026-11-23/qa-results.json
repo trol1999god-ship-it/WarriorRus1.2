@@ -5,7 +5,7 @@
   "qa_apk": "https://chatgpt.com/library?file_id=libfile_40bbfe1c9370819197fec1743d437e92&account_id=personal",
   "qa_apk_sha256": "0c46ff0740c96879dc48d8543f2920dba0251c76d2c147598344a241b4ccb6d8",
   "archive": "https://chatgpt.com/library?file_id=libfile_dce6763cf76c8191bdfe77bcc8c1fe70&account_id=personal",
-  "archive_sha256": "4c7f8f9e8b5dd4e2ce5481ab3bdba431ade6f4d4ad03101df0ed390a5c4da7c3",
+  "archive_sha256": "6d0de115ae0608869f82e11554952cc73a7264d19119dad1bad207a48ce5ba5a",
   "android_ci": [
     {
       "api": 23,
@@ -42,7 +42,14 @@
       "job_conclusion": "success"
     }
   ],
-  "android_17": "IN_PROGRESS",
+  "android_17": {
+    "status": "BLOCKED_PACKAGE_SERVICE",
+    "retry_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45247768818",
+    "diagnostics": "security/map-editor-2026-11-23/api37-environment.json",
+    "tested_commit": "8e083aeb1d82054654de433e72128c402e062e95",
+    "scenarios_started": false,
+    "reason": "The emulator completed boot and resolved the Android framework package. Package service returned Broken pipe during setup, before instrumentation scenarios."
+  },
   "lint": {
     "errors": 0,
     "warnings": 122

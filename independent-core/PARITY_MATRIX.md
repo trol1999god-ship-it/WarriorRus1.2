@@ -1,7 +1,7 @@
 # Матрица соответствия «Рабочей карты» v26.1
 
 Редактор и текстовые вложения, код `671a49f`. [Целевой CI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45243852282) · [Диагностика подписи](security/map-editor-2026-11-23/reference-signer-comparison.json).
-API 23 — 63 + 55 проверок. API 35 — 63 + 55 проверок. API 37 — в процессе. [QA APK](https://chatgpt.com/library?file_id=libfile_40bbfe1c9370819197fec1743d437e92&account_id=personal) · [Архив проверки](https://chatgpt.com/library?file_id=libfile_dce6763cf76c8191bdfe77bcc8c1fe70&account_id=personal).
+API 23 — 63 + 55 проверок. API 35 — 63 + 55 проверок. API 37 — проверка приложения открыта. [Отдельный CI API 37](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45247768818). [QA APK](https://chatgpt.com/library?file_id=libfile_40bbfe1c9370819197fec1743d437e92&account_id=personal) · [Архив проверки](https://chatgpt.com/library?file_id=libfile_dce6763cf76c8191bdfe77bcc8c1fe70&account_id=personal).
 
 
 Каталог и настройки кеша обновлены. [Целевой CI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44958012998) · [Диагностика APK и источников](security/catalog-reference-2026-11-22/provider-decisions.json). [QA APK](https://chatgpt.com/library?file_id=libfile_0e6ae1e7455481918e27e7d18959dddc&account_id=personal) · [Архив испытаний](https://chatgpt.com/library?file_id=libfile_3c72ec4ee97c8191ad8c19ec5be8b636&account_id=personal).

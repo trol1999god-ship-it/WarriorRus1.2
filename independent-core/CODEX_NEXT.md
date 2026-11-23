@@ -14,7 +14,9 @@ UTF-8 без исполнения разметки и ограничивает �
 [Целевой CI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45243852282) проверяет пересоздание редактора, сохранение, SVG,
 вложения и повторный импорт KMZ после принудительной остановки.
 
-API 23 — 63 + 55 проверок. API 35 — 63 + 55 проверок. На API 35 сценарии прошли с окном 720×900 при 160 dpi. Проверка API 37 идёт в том же CI. Физический Fold5 и полный цикл всех 13 экранов остаются в приёмке.
+API 23 — 63 + 55 проверок. API 35 — 63 + 55 проверок. На API 35 сценарии прошли с окном 720×900 при 160 dpi. API 37 — проверка приложения открыта. [Результат отдельного прогона API 37](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45247768818). Эмулятор API 37 загрузился, затем служба установки пакетов вернула `Broken pipe (32)` до начала сценариев.
+[Журнал запуска](security/map-editor-2026-11-23/api37-environment.json).
+Физический Fold5 и полный цикл всех 13 экранов остаются в приёмке.
 Android Lint — 0 ошибок и 122 предупреждений. Аудит APK прошёл, разрешение только INTERNET.
 [QA APK](https://chatgpt.com/library?file_id=libfile_40bbfe1c9370819197fec1743d437e92&account_id=personal) · [Архив проверки](https://chatgpt.com/library?file_id=libfile_dce6763cf76c8191bdfe77bcc8c1fe70&account_id=personal). SHA-256 APK `0c46ff0740c96879dc48d8543f2920dba0251c76d2c147598344a241b4ccb6d8`.
 Сборка debug-qa подписана одноразовым ключом.
