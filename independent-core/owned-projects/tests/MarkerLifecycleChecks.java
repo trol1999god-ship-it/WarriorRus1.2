@@ -1,6 +1,10 @@
 package org.rabochaya.maptests;
 
 import android.app.Activity;
+import android.app.Application;
+import android.os.Bundle;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.TimeUnit;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
@@ -178,13 +182,25 @@ final class MarkerLifecycleChecks {
  }
 
  private Activity recreateForm(Activity current,String title,String... values)throws Exception{
-  Instrumentation.ActivityMonitor monitor=test.addMonitor("org.rabochaya.projects.LocalMapActivity",null,false);
+  Application app=current.getApplication();
+  ArrayBlockingQueue<Activity> resumed=new ArrayBlockingQueue<>(1);
+  Application.ActivityLifecycleCallbacks callbacks=new Application.ActivityLifecycleCallbacks(){
+   public void onActivityCreated(Activity activity,Bundle state){}
+   public void onActivityStarted(Activity activity){}
+   public void onActivityResumed(Activity activity){
+    if(activity!=current&&activity.getClass()==current.getClass())resumed.offer(activity);
+   }
+   public void onActivityPaused(Activity activity){}
+   public void onActivityStopped(Activity activity){}
+   public void onActivitySaveInstanceState(Activity activity,Bundle state){}
+   public void onActivityDestroyed(Activity activity){}
+  };
   Activity recreated;
   try{
-   test.runOnMainSync(current::recreate);
-   recreated=test.waitForMonitorWithTimeout(monitor,30000);
-  }finally{test.removeMonitor(monitor);}
-  test.check(recreated!=null&&current!=recreated,"Android recreated the map Activity");
+   test.runOnMainSync(()->{app.registerActivityLifecycleCallbacks(callbacks);current.recreate();});
+   recreated=resumed.poll(30,TimeUnit.SECONDS);
+  }finally{test.runOnMainSync(()->app.unregisterActivityLifecycleCallbacks(callbacks));}
+  test.check(recreated!=null,"Android recreated and resumed the map Activity");
   test.activity=recreated;
   test.waitText(title);
   java.util.ArrayList<String> actual=new java.util.ArrayList<>();
