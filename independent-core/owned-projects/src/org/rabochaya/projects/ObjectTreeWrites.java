@@ -71,6 +71,11 @@ public final class ObjectTreeWrites {
 
  public static KmlProject assignSvg(ProjectStore store, long id, String key, String expected,
                                     InputStream input) throws IOException {
+  return assignSvg(store, id, key, expected, input, null);
+ }
+
+ static KmlProject assignSvg(ProjectStore store, long id, String key, String expected,
+                             InputStream input, String color) throws IOException {
   byte[] bytes;
   try (InputStream selected = input) {
    bytes = readSvg(selected);
@@ -88,6 +93,7 @@ public final class ObjectTreeWrites {
     throw new IOException("SVG: путь значка уже занят");
    }
    if (present == null) project.assets.put(path, bytes);
+   if (color != null) KmlComponentStyleEdit.apply(project.root(), key, expected, "component-icon", color);
    KmlComponentStyleEdit.assignIcon(feature, href);
    ProjectWrites.savePreservingAssets(store, id, project);
    KmlProject saved = store.load(id);
@@ -98,7 +104,7 @@ public final class ObjectTreeWrites {
   }
  }
 
- private static byte[] readSvg(InputStream input) throws IOException {
+ static byte[] readSvg(InputStream input) throws IOException {
   if (input == null) throw new IOException("Не удалось открыть SVG");
   ByteArrayOutputStream out = new ByteArrayOutputStream();
   byte[] buffer = new byte[4096];

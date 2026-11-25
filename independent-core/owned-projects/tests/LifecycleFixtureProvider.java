@@ -18,6 +18,7 @@ import java.nio.charset.StandardCharsets;
 /** Synthetic, fixed files for returning SAF results on disposable emulators. */
 public final class LifecycleFixtureProvider extends ContentProvider {
  static final Uri SVG = uri("lifecycle.svg");
+ static final Uri PACK = uri("lifecycle-pack.zip");
  static final Uri PHOTO = uri("lifecycle-photo.png");
  static final String TEXT_CONTENT="Локальная заметка <b>как текст</b>";
  static final Uri TEXT = uri("lifecycle-note.txt");
@@ -31,6 +32,7 @@ public final class LifecycleFixtureProvider extends ContentProvider {
 
  @Override public String getType(Uri uri) {
   if(SVG.equals(uri))return "image/svg+xml";
+  if(PACK.equals(uri))return "application/zip";
   if(PHOTO.equals(uri))return "image/png";
   if(TEXT.equals(uri))return "text/plain";
   if(KMZ.equals(uri))return "application/vnd.google-earth.kmz";
@@ -45,7 +47,13 @@ public final class LifecycleFixtureProvider extends ContentProvider {
    }
    if(!"r".equals(mode))throw new FileNotFoundException("Fixture is read-only");
    if(!file.exists())try(FileOutputStream out=new FileOutputStream(file)){
-    if(SVG.equals(uri)){
+    if(PACK.equals(uri)){
+     try(java.util.zip.ZipOutputStream zip=new java.util.zip.ZipOutputStream(out)){
+      zip.putNextEntry(new java.util.zip.ZipEntry("Точки/pack-symbol.svg"));
+      zip.write("<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><circle cx='10' cy='10' r='8'/></svg>".getBytes(StandardCharsets.UTF_8));
+      zip.closeEntry();
+     }
+    }else if(SVG.equals(uri)){
      out.write(("<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'>"
        +"<circle cx='12' cy='12' r='10' fill='#2166a9'/></svg>").getBytes(StandardCharsets.UTF_8));
     }else if(TEXT.equals(uri)){

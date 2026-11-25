@@ -112,6 +112,59 @@ final class MarkerLifecycleChecks {
    test.check(monitor.getHits()==1,"requested system picker "+action+" for "+uri.getLastPathSegment());
   }finally{test.removeMonitor(monitor);}
  }
+ void iconLibrary()throws Exception{
+  Object store=store();
+  long id=insert(store,parse("<kml xmlns='http://www.opengis.net/kml/2.2'><Document><Placemark id='lib'><name>QA_ICON</name><Point><coordinates>37,55</coordinates></Point></Placemark></Document></kml>"),"QA_ICON_LIBRARY");
+  try{
+   test.openTransferProject(id);
+   test.managerAction("Менеджер значков");
+   test.click("Создать категорию");
+   test.inputs("Мои точки");
+   test.click("Создать");
+   test.click("Категория · Мои точки");
+   picker(Intent.ACTION_OPEN_DOCUMENT,LifecycleFixtureProvider.SVG,"Импортировать SVG");
+   test.waitText("lifecycle.svg");
+   test.click("Закрыть");
+   test.click("QA_ICON");
+   test.managerAction("Цвет и заливка KML");
+   test.click("Менеджер значков");
+   test.click("Категория · Мои точки");
+   test.click("lifecycle.svg");
+   test.check(test.awaitDescription("Предпросмотр значка"),"SVG preview is present");
+   test.inputs("ff0000ff");
+   test.capture("library-icon-preview");
+   test.click("Выбрать");
+   test.geometryReady();
+   test.waitText("Изменения сохранены");
+   Object saved=load(store,id);
+   Element point=marker(saved,"QA_ICON");
+   test.check("ff0000ff".equals(point.getElementsByTagNameNS("*","color").item(0).getTextContent()),"library preview tint persisted in KML");
+   String href=point.getElementsByTagNameNS("*","href").item(0).getTextContent();
+   test.check(Arrays.equals(test.assets(saved).get(href),bytes(LifecycleFixtureProvider.SVG)),"assigned icon bytes belong to the project");
+   test.managerAction("Менеджер значков");
+   picker(Intent.ACTION_OPEN_DOCUMENT,LifecycleFixtureProvider.PACK,"Установить набор значков (ZIP)");
+   test.click("Категория · lifecycle-pack");
+   test.click("Категория · Точки");
+   test.waitText("pack-symbol.svg");
+   test.click("Вверх");
+   test.click("Вверх");
+   test.click("Категория · Мои точки");
+   test.click("lifecycle.svg");
+   test.click("Удалить");
+   test.click("Удалить");
+   test.waitText("Удалить пустую категорию");
+   ByteArrayOutputStream out=new ByteArrayOutputStream();
+   test.call(load(store,id),"kmz",new Class[]{OutputStream.class},out);
+   Object restored=test.readExchange(new ByteArrayInputStream(out.toByteArray()),true);
+   test.check(Arrays.equals(test.assets(restored).get(href),bytes(LifecycleFixtureProvider.SVG)),"library deletion cannot remove the icon from KMZ");
+   test.check(marker(restored,"QA_ICON").getElementsByTagNameNS("*","color").item(0).getTextContent().equals("ff0000ff"),"KMZ round-trip retains chosen color");
+  }finally{
+   if(test.activity!=null)test.runOnMainSync(test.activity::finish);
+   erase(store,id);
+   test.call(store,"close",new Class[]{});
+  }
+ }
+
  private byte[] bytes(Uri uri)throws Exception{
   try(InputStream in=context.getContentResolver().openInputStream(uri);ByteArrayOutputStream out=new ByteArrayOutputStream()){
    byte[] buf=new byte[4096];

@@ -34,6 +34,7 @@ public final class ObjectExchange {
   int i=payload.length>=3&&(payload[0]&255)==239&&(payload[1]&255)==187&&(payload[2]&255)==191?3:0;
   while(i<payload.length&&(payload[i]==' '||payload[i]=='\n'||payload[i]=='\r'||payload[i]=='\t'))i++;
   try{
+   if(OziObjectImport.matches(payload,i))return imported(activity,OziObjectImport.read(payload,i));
    if(i<payload.length&&payload[i]=='{')return imported(activity,GeoJsonExchange.read(jsonText(payload,i)));
    XmlPullParser parser=parser(payload);
    int token;
