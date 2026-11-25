@@ -1,5 +1,7 @@
 # Матрица соответствия «Рабочей карты» v26.1
 
+26 ноября 2026. Кадры и действия по 13 экранам, исправления и ограничения выпуска описаны в [FINAL_ACCEPTANCE.md](FINAL_ACCEPTANCE.md).
+
 26 ноября 2026. Менеджер SVG, отдельный ZIP-набор и импорт WPT/PLT/OZF2. API 23 — значки 32, WPT/PLT 5, OZF2 10. API 35 — значки 32, WPT/PLT 5, OZF2 10. API 37 — значки 32, WPT/PLT 5, OZF2 10. [Менеджер и объекты OziExplorer](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45702567695) · [Растр OZF2](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45703116101).
 [Статические доказательства](security/reference-gaps-2026-11-26/static.json).
 
