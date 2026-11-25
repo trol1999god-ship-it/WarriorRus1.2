@@ -167,7 +167,8 @@ final class AcceptanceChecks {
    test.click("Менеджер значков");
    iconImport();
    shot("10-icons","Предпросмотр значка");
-   back();
+   test.click("Назад");
+   test.click("Закрыть");
    closeChild();
 
    test.clickDescription("Меню");
