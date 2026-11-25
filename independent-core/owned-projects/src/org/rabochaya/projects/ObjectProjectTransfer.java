@@ -9,8 +9,10 @@ import org.w3c.dom.*;
 
 /** Builds a local transfer from the selected objects and their document dependencies. */
 final class ObjectProjectTransfer {
- private static final Pattern HTML_LINK = Pattern.compile(
-   "(?i)\\b(?:href|src)\\s*=\\s*(?:\"([^\"]*)\"|'([^']*)'|([^\\s>]+))");
+ private static final Pattern HTML_TAG = Pattern.compile(
+   "<!--.*?-->|<[a-zA-Z][a-zA-Z0-9:-]*(?:[^<>\"']++|\"[^\"]*\"|'[^']*')*>", Pattern.DOTALL);
+ private static final Pattern HTML_ATTRIBUTE = Pattern.compile(
+   "\\s+([^\\s=/>]++)(?:\\s*=\\s*(?:\"([^\"]*)\"|'([^']*)'|([^\\s>]+)))?");
  private static final String XML = "http://www.w3.org/XML/1998/namespace";
 
  private final KmlProject source, destination;
@@ -136,29 +138,45 @@ final class ObjectProjectTransfer {
   if (!rewrite && element.hasAttribute("targetId")) references.add(element.getAttribute("targetId"));
   attributeReference(element, "href", rewrite);
   if (ObjectTree.is(element, "value") && element.getParentNode() instanceof Element &&
-      ((Element) element.getParentNode()).getAttribute("name").startsWith("rk-media-")) {
-   textReference(element, rewrite);
-  }
-  if (ObjectTree.is(element, "description")) {
-   String body = element.getTextContent();
-   Matcher matcher = HTML_LINK.matcher(body);
-   StringBuilder changed = new StringBuilder();
-   int copied = 0;
-   while (matcher.find()) {
-    int group = matcher.group(1) != null ? 1 : matcher.group(2) != null ? 2 : 3;
-    String path = matcher.group(group).replace("&amp;", "&");
-    if (path.startsWith("#")) continue;
-    String replacement = reference(path, rewrite);
-    if (!replacement.equals(path)) {
-     changed.append(body, copied, matcher.start(group)).append(replacement.replace("&", "&amp;"));
-     copied = matcher.end(group);
+      MediaLinks.isItemId(((Element) element.getParentNode()).getAttribute("name"))) {
+   if (!rewrite) {
+    String href = element.getTextContent();
+    byte[] payload = source.assets.get(MediaLinks.path(source, href));
+    if (payload == null || payload.length == 0) {
+     throw new IOException("В исходном проекте отсутствует или пуст файл вложения «" + href + "»");
     }
    }
-   if (copied != 0) element.setTextContent(changed.append(body, copied, body.length()).toString());
+   textReference(element, rewrite);
   }
+  if (ObjectTree.is(element, "description")) scanDescription(element, rewrite);
   for (Node node = element.getFirstChild(); node != null; node = node.getNextSibling()) {
    if (node instanceof Element) scan((Element) node, depth + 1, rewrite);
   }
+ }
+
+ private void scanDescription(Element element, boolean rewrite) throws IOException {
+  String body = element.getTextContent();
+  Matcher tags = HTML_TAG.matcher(body), attributes = HTML_ATTRIBUTE.matcher(body);
+  StringBuilder changed = new StringBuilder();
+  int copied = 0;
+  while (tags.find()) {
+   if (body.startsWith("<!--", tags.start())) continue;
+   attributes.region(tags.start(), tags.end());
+   while (attributes.find()) {
+    String name = attributes.group(1);
+    if (!name.equalsIgnoreCase("href") && !name.equalsIgnoreCase("src")) continue;
+    int group = attributes.start(2) >= 0 ? 2 : attributes.start(3) >= 0 ? 3 : 4;
+    if (attributes.start(group) < 0) continue;
+    String path = attributes.group(group).replace("&amp;", "&");
+    if (path.startsWith("#")) continue;
+    String replacement = reference(path, rewrite);
+    if (!replacement.equals(path)) {
+     changed.append(body, copied, attributes.start(group)).append(replacement.replace("&", "&amp;"));
+     copied = attributes.end(group);
+    }
+   }
+  }
+  if (copied != 0) element.setTextContent(changed.append(body, copied, body.length()).toString());
  }
 
  private void textReference(Element element, boolean rewrite) throws IOException {

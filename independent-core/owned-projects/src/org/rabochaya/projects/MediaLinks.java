@@ -8,9 +8,10 @@ public final class MediaLinks {
  public static void setNote(Element feature,String note){String old=KmlProject.text(feature,"description");StringBuilder content=new StringBuilder(note);for(Item item:list(feature)){String value=block(old,item.id);if(!value.isEmpty())content.append('\n').append(value);}Element e=KmlProject.child(feature,"description");if(e==null)e=child(feature,"description");e.setTextContent(content.toString());}
  private static String block(String description,String id){String start="<!--"+id+"-->",end="<!--/"+id+"-->";int a=description.indexOf(start),b=a<0?-1:description.indexOf(end,a+start.length());return b<0?"":description.substring(a,b+end.length());}
  public static final class Item {public final String id,name,href,mime;Item(String id,String name,String href,String mime){this.id=id;this.name=name;this.href=href;this.mime=mime;}}
+ static boolean isItemId(String id){return id.matches("rk-media-[a-f0-9-]{36}");}
  public static List<Item> list(Element feature){
   ArrayList<Item> items=new ArrayList<>();Element ext=KmlProject.child(feature,"ExtendedData");if(ext==null)return items;
-  for(Node n=ext.getFirstChild();n!=null;n=n.getNextSibling())if(n instanceof Element){Element e=(Element)n;String id=e.getAttribute("name");if(id.matches("rk-media-[a-f0-9-]{36}")){String name=KmlProject.text(e,"displayName"),href=KmlProject.text(e,"value");items.add(new Item(id,name,href,mime(href)));}}
+  for(Node n=ext.getFirstChild();n!=null;n=n.getNextSibling())if(n instanceof Element){Element e=(Element)n;String id=e.getAttribute("name");if(isItemId(id)){String name=KmlProject.text(e,"displayName"),href=KmlProject.text(e,"value");items.add(new Item(id,name,href,mime(href)));}}
   return items;
  }
  public static String path(KmlProject project,String href)throws IOException{

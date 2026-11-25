@@ -169,7 +169,7 @@ public final class MapAndroidChecks extends Instrumentation {
  }
  void crossProjectClipboardChecks()throws Exception{
   Object store=storeClass.getConstructor(Context.class).newInstance(getTargetContext());long sid=-1,did=-1;
-  SQLiteDatabase db=null;
+  SQLiteDatabase db=null;boolean handoff=false;
   try{
    String origin="<kml xmlns='http://www.opengis.net/kml/2.2'><Document><Style id='shared'><IconStyle><Icon><href>icons/symbol.svg</href></Icon></IconStyle></Style><StyleMap id='map'><Pair><key>normal</key><styleUrl>#shared</styleUrl></Pair></StyleMap><Document id='origin'><name>TRANSFER_LAYER</name><Folder id='nested'><name>TRANSFER_NESTED</name><Placemark id='pin'><name>TRANSFER_POINT</name><styleUrl>#map</styleUrl><Point><coordinates>1,2,3</coordinates></Point></Placemark></Folder></Document><Placemark id='other'><name>TRANSFER_OTHER</name><Point><coordinates>4,5,6</coordinates></Point></Placemark></Document></kml>";
    String target="<kml xmlns='http://www.opengis.net/kml/2.2'><Document><Style id='shared'><LabelStyle><scale>2</scale></LabelStyle></Style><Folder id='dest'><name>TRANSFER_DEST</name></Folder></Document></kml>";
@@ -178,6 +178,8 @@ public final class MapAndroidChecks extends Instrumentation {
    codec.getField("entry").set(sourceDoc,"source/doc.kml");codec.getField("entry").set(destDoc,"target/doc.kml");
    byte[] svg="<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16'><circle cx='8' cy='8' r='7'/></svg>".getBytes("UTF-8");
    assets(sourceDoc).put("source/icons/symbol.svg",svg);
+   String note="Заметка href=\"manual.pdf\" и <span title='src=missing.png' data-src='draft.png'>текст</span>";
+   staticCall("MediaLinks","setNote",new Class[]{org.w3c.dom.Element.class,String.class},element(sourceDoc,"pin"),note);
    byte[] photo={7,2,6};
    Object media=staticCall("MediaLinks","add",new Class[]{codec,org.w3c.dom.Element.class,String.class,String.class,byte[].class},sourceDoc,element(sourceDoc,"pin"),"transfer.jpg","image/jpeg",photo);
    String href=value(media,"href");
@@ -206,6 +208,21 @@ public final class MapAndroidChecks extends Instrumentation {
    byte[] conflict={9,8};assets(destDoc).put("target/"+href,conflict);
    assets(destDoc).put("target/icons/symbol.svg",conflict);
    staticCall("ProjectWrites","savePreservingAssets",new Class[]{storeClass,long.class,codec},store,did,destDoc);
+   String sourceAsset="source/"+href;
+   for(byte[] damaged:new byte[][]{null,new byte[0]}){
+    if(damaged==null)assets(sourceDoc).remove(sourceAsset);
+    else assets(sourceDoc).put(sourceAsset,damaged);
+    staticCall("ProjectWrites","savePreservingAssets",new Class[]{storeClass,long.class,codec},store,sid,sourceDoc);
+    boolean blocked=false;
+    try{pasteAcross(store,did,"0",token,stamp);}catch(InvocationTargetException e){blocked=e.getCause() instanceof IOException;}
+    check(blocked,"missing or empty attachment blocks a cross-project cut");
+    Object survivingSource=call(store,"load",new Class[]{long.class},sid);
+    Object untouchedTarget=call(store,"load",new Class[]{long.class},did);
+    check(Arrays.equals(before,(byte[])call(survivingSource,"xml",new Class[]{}))&&stamp.equals(clipStamp(objectClip(store))),"damaged attachment leaves source and cut clipboard intact");
+    check(treeToken(untouchedTarget).equals(token)&&Arrays.equals(conflict,assets(untouchedTarget).get("target/"+href)),"damaged attachment leaves destination intact");
+   }
+   assets(sourceDoc).put(sourceAsset,photo);
+   staticCall("ProjectWrites","savePreservingAssets",new Class[]{storeClass,long.class,codec},store,sid,sourceDoc);
    db=(SQLiteDatabase)call(store,"getWritableDatabase",new Class[]{});
    db.execSQL("CREATE TRIGGER qa_cross_abort BEFORE INSERT ON payloads WHEN NEW.project="+sid+" BEGIN SELECT RAISE(ABORT,'qa source write failure'); END");
    boolean rejected=false;
@@ -228,10 +245,40 @@ public final class MapAndroidChecks extends Instrumentation {
    String movedIcon=directElement(directElement(directElement(movedStyle,"IconStyle"),"Icon"),"href").getTextContent();
    check(movedHref.startsWith("attachments/rk-")&&!href.equals(movedHref)&&Arrays.equals(photo,assets(destDoc).get("target/"+movedHref)),"collision relocates attachment with correct data");
    String body=directElement(moved,"description").getTextContent();
+   check(body.startsWith(note),"transfer leaves literal text and non-link HTML attributes intact");
    check(body.contains("href=\""+movedHref+"\"")&&body.contains("src=\""+movedHref+"\""),"description link and image source follow relocated attachment");
    check(!movedIcon.equals("icons/symbol.svg")&&Arrays.equals(svg,assets(destDoc).get("target/"+movedIcon)),"collision relocates SVG and updates its style");
    check(Arrays.equals(conflict,assets(destDoc).get("target/"+href))&&Arrays.equals(conflict,assets(destDoc).get("target/icons/symbol.svg")),"collision keeps both preexisting files byte-for-byte");
    mapEvidence("manager-cross-move","after","Вставить","destination reopened; collisions retain both icons and attachments");
+   handoff=getTargetContext().getSharedPreferences("qa_cross_transfer",0).edit()
+    .putLong("source",sid).putLong("destination",did).putString("moved",moved.getAttribute("id"))
+    .putString("href",movedHref).putString("icon",movedIcon).putString("token",treeToken(destDoc)).commit();
+   check(handoff,"cross-project move has a durable force-stop handoff");
+  }finally{
+   if(db!=null)db.execSQL("DROP TRIGGER IF EXISTS qa_cross_abort");
+   if(activity!=null){Activity previous=activity;runOnMainSync(()->previous.finish());activity=null;}
+   staticCall("ObjectClipboardWrites","clear",new Class[]{storeClass},store);
+   if(!handoff&&sid>0)call(store,"remove",new Class[]{long.class},sid);
+   if(!handoff&&did>0)call(store,"remove",new Class[]{long.class},did);
+   call(store,"close",new Class[]{});
+  }
+ }
+ void crossProjectClipboardAfterRestart()throws Exception{
+  android.content.SharedPreferences state=getTargetContext().getSharedPreferences("qa_cross_transfer",0);
+  long sid=state.getLong("source",-1),did=state.getLong("destination",-1);
+  check(sid>0&&did>0,"cross-project force-stop handoff exists");
+  String movedId=state.getString("moved",""),movedHref=state.getString("href","");
+  Object store=storeClass.getConstructor(Context.class).newInstance(getTargetContext());
+  try{
+   Object destDoc=call(store,"load",new Class[]{long.class},did);
+   Object sourceDoc=call(store,"load",new Class[]{long.class},sid);
+   check(((List)call(sourceDoc,"features",new Class[]{boolean.class},false)).size()==1,"removed object stays moved after force-stop");
+   check(treeToken(destDoc).equals(state.getString("token","")),"destination KML remains identical after force-stop");
+   check(Arrays.equals(assets(destDoc).get("target/"+movedHref),new byte[]{7,2,6}),"relocated attachment survives force-stop");
+   check(assets(destDoc).get("target/"+state.getString("icon",""))!=null,"relocated SVG survives force-stop");
+   openTransferProject(did);
+   check(managerField("folder").equals("0"),"destination folder remains open after force-stop");
+   mapEvidence("manager-cross-reopen","after","Файловый менеджер","committed transfer restored after force-stop");
    ByteArrayOutputStream kmz=new ByteArrayOutputStream();
    call(destDoc,"kmz",new Class[]{OutputStream.class},kmz);
    Object imported=codec.getMethod("read",InputStream.class,boolean.class)
@@ -239,7 +286,6 @@ public final class MapAndroidChecks extends Instrumentation {
    long importedId=(Long)call(store,"insert",new Class[]{codec,String.class},imported,"QA_TRANSFER_ROUNDTRIP");
    try{
     Object reopened=call(store,"load",new Class[]{long.class},importedId);
-    String movedId=moved.getAttribute("id");
     check(treeToken(destDoc).equals(treeToken(reopened)),"KMZ roundtrip preserves folders, geometry and all style and HTML references");
     check(value(link(reopened,movedId,"transfer.jpg"),"href").equals(movedHref),"KMZ reimport resolves relocated attachment metadata");
     check(assets(reopened).keySet().equals(assets(destDoc).keySet()),"KMZ reimport preserves original and relocated member paths");
@@ -247,12 +293,11 @@ public final class MapAndroidChecks extends Instrumentation {
      check(Arrays.equals(assets(destDoc).get(key),assets(reopened).get(key)),"KMZ reimport preserves bytes for "+key);
    }finally{call(store,"remove",new Class[]{long.class},importedId);}
   }finally{
-   if(db!=null)db.execSQL("DROP TRIGGER IF EXISTS qa_cross_abort");
    if(activity!=null){Activity previous=activity;runOnMainSync(()->previous.finish());activity=null;}
-   staticCall("ObjectClipboardWrites","clear",new Class[]{storeClass},store);
-   if(sid>0)call(store,"remove",new Class[]{long.class},sid);
-   if(did>0)call(store,"remove",new Class[]{long.class},did);
+   call(store,"remove",new Class[]{long.class},sid);
+   call(store,"remove",new Class[]{long.class},did);
    call(store,"close",new Class[]{});
+   state.edit().clear().commit();
   }
  }
  org.w3c.dom.Element directElement(org.w3c.dom.Element parent,String tag){for(org.w3c.dom.Node n=parent.getFirstChild();n!=null;n=n.getNextSibling())if(n instanceof org.w3c.dom.Element&&tag.equals(n.getLocalName()))return (org.w3c.dom.Element)n;throw new AssertionError("Missing child "+tag);}
@@ -367,7 +412,7 @@ public final class MapAndroidChecks extends Instrumentation {
   }finally{if(!handoff){staticCall("ObjectClipboardWrites","clear",new Class[]{storeClass},store);if(id>0)call(store,"remove",new Class[]{long.class},id);}call(store,"close",new Class[]{});}
  }
  void clipboardReopen()throws Exception{
-  formatsAfterRestart();
+  formatsAfterRestart();crossProjectClipboardAfterRestart();
   Context context=getTargetContext();android.content.SharedPreferences prefs=context.getSharedPreferences("qa_clip_handoff",0);long id=prefs.getLong("project",-1);check(id>0,"clipboard force-stop handoff exists");Object store=storeClass.getConstructor(Context.class).newInstance(context);
   try{Object doc=call(store,"load",new Class[]{long.class},id);check(treeToken(doc).equals(prefs.getString("token","")),"force-stop retains committed XML");Object clip=objectClip(store);check(clip!=null&&clipStamp(clip).equals(prefs.getString("stamp","")),"force-stop retains exact cut clipboard");check((Boolean)clip.getClass().getField("cut").get(clip),"cut mode survives process stop");activity=startActivitySync(new Intent().setClassName(context.getPackageName(),"org.rabochaya.projects.ObjectManagerActivity").putExtra("project",id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));geometryReady();openManagerFolder("CLIP_RECOVERY_DEST");managerAction("Вставить в эту папку");click("Вставить");geometryReady();waitText("Изменения сохранены");doc=call(store,"load",new Class[]{long.class},id);check(objectClip(store)==null,"recovered cut consumed atomically");org.w3c.dom.Element dest=element(doc,"clip_dest");check(dest.getParentNode() instanceof org.w3c.dom.Element&&((org.w3c.dom.Element)dest.getParentNode()).getElementsByTagNameNS("*","name").item(0).getTextContent().equals("CLIP_RECOVERY_DEST"),"recovered cut moves original destination group");check(element(doc,"clip_source").getParentNode()==dest,"recovered hierarchy retains original source");check(dest.getElementsByTagNameNS("*","Placemark").getLength()==3,"recovered hierarchy retains original and two copies");check(assets(doc).size()==1&&Arrays.equals(assets(doc).get(prefs.getString("href","")),new byte[]{1,2,3,4}),"recovered copies keep payload bytes");check(managerField("folder").equals("0"),"recovered paste remaps the open destination");final Activity pasted=activity;runOnMainSync(()->pasted.finish());activity=startActivitySync(new Intent().setClassName(context.getPackageName(),"org.rabochaya.projects.ObjectManagerActivity").putExtra("project",id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));geometryReady();check(managerField("folder").equals("0"),"reopened manager uses the committed folder and revision");uniqueIds((org.w3c.dom.Element)call(doc,"root",new Class[]{}),new HashSet<String>());capture("clipboard-after-restart");
   }finally{staticCall("ObjectClipboardWrites","clear",new Class[]{storeClass},store);if(activity!=null){final Activity last=activity;runOnMainSync(new Runnable(){public void run(){last.finish();}});}call(store,"remove",new Class[]{long.class},id);call(store,"close",new Class[]{});prefs.edit().clear().commit();}
