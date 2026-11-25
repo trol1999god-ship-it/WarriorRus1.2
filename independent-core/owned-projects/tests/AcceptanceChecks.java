@@ -147,7 +147,7 @@ final class AcceptanceChecks {
 
    test.clickDescription("Карты");
    open("MapLayersActivity","Слои карты");
-   test.waitText("Подложек нет");
+   test.waitText("Показывать слой");
    shot("05-layers","Слои карты");
    closeChild();
 
