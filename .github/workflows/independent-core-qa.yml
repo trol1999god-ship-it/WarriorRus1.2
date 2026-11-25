@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: independent-core-${{ github.ref }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[map-edit-api37-qa]') && '-api37' || github.event_name == 'push' && contains(github.event.head_commit.message, '[object-formats-qa]') && '-formats' || '' }}
+  group: independent-core-${{ github.ref }}${{ github.event_name == 'push' && (contains(github.event.head_commit.message, '[map-edit-api37-qa]') || contains(github.event.head_commit.message, '[core-api37-qa]')) && '-api37' || github.event_name == 'push' && contains(github.event.head_commit.message, '[object-formats-qa]') && '-formats' || '' }}
   # Finish the current Android matrix before testing the newest pending push.
   cancel-in-progress: false
 jobs:
@@ -71,7 +71,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include: ${{ fromJSON(github.event_name == 'push' && contains(github.event.head_commit.message, '[transfer-integrity-qa]') && '[{"api":23,"arch":"x86","target":"default"},{"api":35,"arch":"x86_64","target":"google_apis"},{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis_ps16k"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[map-edit-api37-qa]') && '[{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[map-edit-draft-qa]') && '[{"api":23,"arch":"x86","target":"default"},{"api":35,"arch":"x86_64","target":"google_apis"},{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[wide-map-qa]') && '[{"api":35,"arch":"x86_64","target":"google_apis"}]' || '[{"api":23,"arch":"x86","target":"default"},{"api":35,"arch":"x86_64","target":"google_apis"}]') }}
+        include: ${{ fromJSON(github.event_name == 'push' && contains(github.event.head_commit.message, '[core-api37-qa]') && '[{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[transfer-integrity-qa]') && '[{"api":23,"arch":"x86","target":"default"},{"api":35,"arch":"x86_64","target":"google_apis"},{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis_ps16k"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[map-edit-api37-qa]') && '[{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[map-edit-draft-qa]') && '[{"api":23,"arch":"x86","target":"default"},{"api":35,"arch":"x86_64","target":"google_apis"},{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[wide-map-qa]') && '[{"api":35,"arch":"x86_64","target":"google_apis"}]' || '[{"api":23,"arch":"x86","target":"default"},{"api":35,"arch":"x86_64","target":"google_apis"}]') }}
     defaults:
       run:
         working-directory: independent-core
@@ -100,6 +100,14 @@ jobs:
         run: |
           test -c /dev/kvm
           sudo chmod 666 /dev/kvm
+      - name: Use an avdmanager that recognizes versioned Android 17 images
+        if: ${{ matrix.api == 37 }}
+        run: |
+          sdk_tools="$ANDROID_HOME/cmdline-tools"
+          "$sdk_tools/latest/bin/sdkmanager" "cmdline-tools;22.0"
+          mv "$sdk_tools/latest" "$sdk_tools/runner-default"
+          ln -s "22.0" "$sdk_tools/latest"
+          test "$("$sdk_tools/latest/bin/sdkmanager" --version | head -n 1)" = 22.0
       - name: Start ADB before the Android 17 cold boot
         if: ${{ matrix.api == 37 }}
         run: '"$ANDROID_HOME/platform-tools/adb" start-server'
@@ -113,7 +121,7 @@ jobs:
           cores: ${{ matrix.api == 37 && '4' || '2' }}
           ram-size: ${{ matrix.api == 37 && '4096M' || '' }}
           disk-size: ${{ matrix.api == 37 && '6144M' || '' }}
-          emulator-options: ${{ matrix.api == 37 && '-no-window -gpu swiftshader -feature -Vulkan -no-snapshot -noaudio -no-boot-anim' || '-no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim' }}
+          emulator-options: ${{ matrix.api == 37 && '-no-window -gpu software -no-snapshot -noaudio -no-boot-anim' || '-no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim' }}
           disable-linux-hw-accel: false
           disable-animations: true
           disable-spellchecker: true
@@ -125,7 +133,7 @@ jobs:
             ${{ github.event_name == 'push' && matrix.api == 35 && (contains(github.event.head_commit.message, '[transfer-integrity-qa]') || contains(github.event.head_commit.message, '[object-formats-qa]') || contains(github.event.head_commit.message, '[wide-map-qa]') || contains(github.event.head_commit.message, '[fold-feedback-qa]') || (contains(github.event.head_commit.message, '[compact-coordinates-qa]') || contains(github.event.head_commit.message, '[map-edit-draft-qa]'))) && 'adb -s emulator-5554 shell wm size 720x900 && adb -s emulator-5554 shell wm density 160 &&' || '' }}
             python3 ci/run_android_checks.py --keep-going --debug-qa
             ${{ matrix.api == 37 && '--no-streaming' || '' }}
-            ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[object-formats-qa]') && '--modes objectformats objectformatsreopen --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[transfer-integrity-qa]') && '--modes clipboard clipboardreopen --visual-log-modes' || github.event_name == 'push' && (contains(github.event.head_commit.message, '[map-edit-draft-qa]') || contains(github.event.head_commit.message, '[map-edit-api37-qa]')) && '--modes markerlifecycle markerlifecyclereopen --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[catalog-providers-qa]') && '--modes cachewrites catalogscreen --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[compact-coordinates-qa]') && '--modes launcher coordinates --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[esri-dns-qa]') && '--modes catalogscreen cachewrites --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[fold-feedback-qa]') && '--modes launcher coordinates cachewrites catalogscreen --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[objects-qa]') && '--modes markerlifecycle markerlifecyclereopen objectmanager objectmanagerreopen managerfilters managerfiltersreopen clipboard clipboardreopen --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[map-layers-qa]') && '--modes launcher coordinates maplayers maplayersreopen --visual-log-modes' || github.event_name == 'push' && (contains(github.event.head_commit.message, '[map-resize-qa]') || contains(github.event.head_commit.message, '[wide-map-qa]')) && '--modes launcher --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[map-ui-qa]') && '--modes launcher coordinates' || '--visual-log-modes offlineformats maplayersreopen' }}
+            ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[core-api37-qa]') && '--modes clipboard clipboardreopen objectformats objectformatsreopen --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[object-formats-qa]') && '--modes objectformats objectformatsreopen --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[transfer-integrity-qa]') && '--modes clipboard clipboardreopen --visual-log-modes' || github.event_name == 'push' && (contains(github.event.head_commit.message, '[map-edit-draft-qa]') || contains(github.event.head_commit.message, '[map-edit-api37-qa]')) && '--modes markerlifecycle markerlifecyclereopen --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[catalog-providers-qa]') && '--modes cachewrites catalogscreen --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[compact-coordinates-qa]') && '--modes launcher coordinates --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[esri-dns-qa]') && '--modes catalogscreen cachewrites --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[fold-feedback-qa]') && '--modes launcher coordinates cachewrites catalogscreen --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[objects-qa]') && '--modes markerlifecycle markerlifecyclereopen objectmanager objectmanagerreopen managerfilters managerfiltersreopen clipboard clipboardreopen --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[map-layers-qa]') && '--modes launcher coordinates maplayers maplayersreopen --visual-log-modes' || github.event_name == 'push' && (contains(github.event.head_commit.message, '[map-resize-qa]') || contains(github.event.head_commit.message, '[wide-map-qa]')) && '--modes launcher --visual-log-modes' || github.event_name == 'push' && contains(github.event.head_commit.message, '[map-ui-qa]') && '--modes launcher coordinates' || '--visual-log-modes offlineformats maplayersreopen' }}
             --adb "$ANDROID_HOME/platform-tools/adb" --serial emulator-5554
             --app "$RUNNER_TEMP/rk-qa/app.apk" --tests "$RUNNER_TEMP/rk-qa/tests.apk" --output "$RUNNER_TEMP/rk-results"
             ${{ matrix.api == 37 && '|| { adb -s emulator-5554 logcat -d -t 1800 > "$RUNNER_TEMP/rk-quality/api37-logcat.txt"; exit 1; }' || '' }}
