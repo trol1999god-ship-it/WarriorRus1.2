@@ -94,6 +94,10 @@ final class AcceptanceChecks {
    test.check(view != null && view.getDrawable() instanceof BitmapDrawable, "preview shows rasterized SVG");
    int size = ((BitmapDrawable)view.getDrawable()).getBitmap().getWidth();
    test.check(size > 24 && size <= 256, "preview uses a bounded raster larger than the 24-pixel source");
+   android.graphics.Rect visibleFrame = new android.graphics.Rect();
+   view.getWindowVisibleDisplayFrame(visibleFrame);
+   int windowHeight = test.activity.getWindow().getDecorView().getHeight();
+   test.check(visibleFrame.height() >= windowHeight * 0.8f, "preview opens without covering it with the keyboard");
   });
  }
 
@@ -185,7 +189,7 @@ final class AcceptanceChecks {
    shot("12-exchange","Подтверждение GPX после пересоздания");
    test.click("Отмена");
    back();
-   test.waitText(PROJECT);
+   test.waitText("Локальные проекты");
    closeChild();
 
    test.clickDescription("Метки");

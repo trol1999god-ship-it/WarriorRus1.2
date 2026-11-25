@@ -133,6 +133,8 @@ final class UserIconDialogs {
   AlertDialog dialog = activity.iconDialog().setTitle(name).setView(panel)
    .setPositiveButton(key == null ? "Закрыть" : "Выбрать", null).setNeutralButton("Удалить", (d, w) -> confirmDelete(category, name))
    .setNegativeButton("Назад", (d, w) -> reopen(category)).create();
+  dialog.getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+   | android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
   dialog.setOnDismissListener(d -> {
    preview.setImageDrawable(null);
    bitmap.recycle();
