@@ -1,5 +1,7 @@
 # Матрица соответствия «Рабочей карты» v26.1
 
+Проверка переноса и форматов от 25 ноября 2026. На API 23 и 35 прошли clipboard (145), clipboardreopen (49), objectformats (12) и objectformatsreopen (12). На API 37 после обновления avdmanager прошли clipboard (133), clipboardreopen (41), objectformats (12), objectformatsreopen (12). [Перенос](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45696533101) · [Форматы](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45696960561) · [API 37](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45697512876).
+
 Редактор и текстовые вложения, код `671a49f`. [Целевой CI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45243852282) · [Диагностика подписи](security/map-editor-2026-11-23/reference-signer-comparison.json).
 API 23 — 63 + 55 проверок. API 35 — 63 + 55 проверок. API 37 — проверка приложения открыта. [Отдельный CI API 37](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45247768818). [QA APK](https://chatgpt.com/library?file_id=libfile_40bbfe1c9370819197fec1743d437e92&account_id=personal) · [Архив проверки](https://chatgpt.com/library?file_id=libfile_dce6763cf76c8191bdfe77bcc8c1fe70&account_id=personal).
 

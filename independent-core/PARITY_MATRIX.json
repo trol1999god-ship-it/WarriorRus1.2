@@ -312,6 +312,140 @@
       "privacy_permissions": [
         "android.permission.INTERNET"
       ]
+    },
+    "functional_core_transfer_formats": {
+      "application_code": "ea254da5fbf2e8c0733f203e8afbfe5705578f23",
+      "transfer": {
+        "source_sha": "0f7e8d0f44022fd9aed40369832291f6c9c30592",
+        "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45696533101",
+        "android": [
+          {
+            "api": 23,
+            "artifact": 15060693427,
+            "sha256": "e83f80afb02a03bcac3b915c8c2e37c08a78fff12f2adf96a11d6c60b28035d7",
+            "verified_files": 34,
+            "scenarios": {
+              "clipboard": {
+                "passed": true,
+                "assertions": 145
+              },
+              "clipboardreopen": {
+                "passed": true,
+                "assertions": 49
+              }
+            }
+          },
+          {
+            "api": 35,
+            "artifact": 15060833526,
+            "sha256": "581a1d36c2074c1975873a4e682f5ad99b348d49224998aca09a884c38ab86d4",
+            "verified_files": 34,
+            "scenarios": {
+              "clipboard": {
+                "passed": true,
+                "assertions": 145
+              },
+              "clipboardreopen": {
+                "passed": true,
+                "assertions": 49
+              }
+            }
+          }
+        ],
+        "windows_px": {
+          "23": [
+            320,
+            640
+          ],
+          "35": [
+            720,
+            900
+          ]
+        },
+        "notes": "This older clipboard profile includes the format assertions that were later split out."
+      },
+      "exchange": {
+        "source_sha": "ea254da5fbf2e8c0733f203e8afbfe5705578f23",
+        "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45696960561",
+        "android": [
+          {
+            "api": 23,
+            "artifact": 15060118506,
+            "sha256": "a635c85d71d165401102e39245d3184014e641ba3db38ec9181a781e6f296e24",
+            "verified_files": 12,
+            "scenarios": {
+              "objectformats": {
+                "passed": true,
+                "assertions": 12
+              },
+              "objectformatsreopen": {
+                "passed": true,
+                "assertions": 12
+              }
+            }
+          },
+          {
+            "api": 35,
+            "artifact": 15061806983,
+            "sha256": "717477da5223ccd6239a4df1452f33d0f6aa038c9833c1df9ce843a595f509a4",
+            "verified_files": 12,
+            "scenarios": {
+              "objectformats": {
+                "passed": true,
+                "assertions": 12
+              },
+              "objectformatsreopen": {
+                "passed": true,
+                "assertions": 12
+              }
+            }
+          }
+        ]
+      },
+      "android_17": {
+        "status": "PASSED",
+        "source_sha": "7d74e62ff0f8ab780833b2e1292ce7d8427f9ac1",
+        "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45697512876",
+        "checks": {
+          "api": 37,
+          "artifact": 15061059068,
+          "sha256": "50aff8425a7f375d62198421110bd535597ae1d21b7abb13e0755a899229dc84",
+          "verified_files": 43,
+          "scenarios": {
+            "clipboard": {
+              "passed": true,
+              "assertions": 133
+            },
+            "clipboardreopen": {
+              "passed": true,
+              "assertions": 41
+            },
+            "objectformats": {
+              "passed": true,
+              "assertions": 12
+            },
+            "objectformatsreopen": {
+              "passed": true,
+              "assertions": 12
+            }
+          }
+        },
+        "diagnostics": "security/functional-core-2026-11-25/api37-emulator.json"
+      },
+      "qa_apk": "https://chatgpt.com/library?file_id=libfile_6c348040847481919b13c8c74908b4dc&account_id=personal",
+      "qa_apk_sha256": "b1a59c6075b1b3a26187b07605335d6a682078267d5ca6d129c063d8fc5cbc82",
+      "build_artifact": 15061737054,
+      "archive": "https://chatgpt.com/library?file_id=libfile_2766ce331d448191b4fcd1ee347fbc66&account_id=personal",
+      "archive_sha256": "fc193d04693a3bd230d6be9cb18a1175686cb68ce102512025714e94e5daa35c",
+      "lint": {
+        "errors": 0,
+        "warnings": 122
+      },
+      "permissions": [
+        "android.permission.INTERNET"
+      ],
+      "reference_parity": "not accepted",
+      "physical_fold5": "not tested"
     }
   },
   "status_values": [

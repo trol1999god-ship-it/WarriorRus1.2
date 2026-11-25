@@ -14,6 +14,11 @@
 и objectformatsreopen запускаются отдельно от менеджера. Маршруты, созданные
 на карте, сохраняют тип GPX rte и высоты вершин при обмене.
 
+На API 23 и 35 прошли clipboard (145), clipboardreopen (49), objectformats (12) и objectformatsreopen (12). Сценарии менеджера прошли в окнах 320×640 и 720×900 при 160 dpi. Приёмка шарнира и экранов физического Fold5 открыта.
+На API 37 после обновления avdmanager прошли clipboard (133), clipboardreopen (41), objectformats (12), objectformatsreopen (12).
+Lint — 0 ошибок. Аудит доставленного APK подтвердил одно разрешение INTERNET. [Перенос](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45696533101) · [Форматы](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45696960561) · [API 37](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45697512876).
+[QA APK](https://chatgpt.com/library?file_id=libfile_6c348040847481919b13c8c74908b4dc&account_id=personal) · [Архив доказательств](https://chatgpt.com/library?file_id=libfile_2766ce331d448191b4fcd1ee347fbc66&account_id=personal). SHA-256 APK `b1a59c6075b1b3a26187b07605335d6a682078267d5ca6d129c063d8fc5cbc82`.
+
 ## Черновик редактора и локальные вложения — 23 ноября 2026
 
 Код `671a49f00f05fa20e23495fc68e577fa8c40726d`. Карта сохраняет поля открытого редактора в состоянии Android
