@@ -49,7 +49,9 @@ public final class ObjectTreeWrites {
   try {
    KmlProject project = store.load(id);
    if (original == null) {
-    FeatureEdits.create(project.root(), type, title, description, points);
+    Element created = FeatureEdits.create(project.root(), type, title, description, points);
+    // The map's two route creation actions both store LineString geometry.
+    if ("LineString".equals(type)) ObjectExchange.data(created, ObjectExchange.KIND, "rte");
    } else {
     Element current = project.byId(original.getAttribute("id"));
     if (current == null || !current.isEqualNode(original)) {

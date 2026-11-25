@@ -123,6 +123,15 @@ final class GeoJsonExchange {
     String k=field.getKey();
     if(!k.startsWith("rk-")&&!properties.has(k))properties.put(k,field.getValue());
    }
+   Element extension=child(p,"ExtendedData");
+   if(extension!=null){
+    for(Element schema:children(extension,"SchemaData")){
+     for(Element field:children(schema,"SimpleData")){
+      String key=field.getAttribute("name");
+      if(!key.isEmpty()&&!key.startsWith("rk-")&&!properties.has(key))properties.put(key,field.getTextContent());
+     }
+    }
+   }
    updateProperty(properties,"name",text(p,"name"));
    updateProperty(properties,"description",description(p));
    JSONObject feature=new JSONObject().put("type","Feature");
