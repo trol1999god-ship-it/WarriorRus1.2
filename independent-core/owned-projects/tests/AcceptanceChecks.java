@@ -134,7 +134,7 @@ final class AcceptanceChecks {
   } finally { test.runOnMainSync(() -> app.unregisterActivityLifecycleCallbacks(listener)); }
  }
 
- void run() throws Exception {
+ void run(boolean resume) throws Exception {
   Object store = test.storeClass.getConstructor(Context.class).newInstance(context);
   Object doc = test.codec.getMethod("parse",byte[].class).invoke(null,(Object)KML.getBytes("UTF-8"));
   long id = (Long)test.call(store,"insert",new Class[]{test.codec,String.class},doc,PROJECT);
@@ -144,49 +144,52 @@ final class AcceptanceChecks {
    map = test.launchWorkspace();
    test.stableMainMap();
    double[] viewport = (double[])test.call(test.map(),"viewport",new Class[]{});
-   shot("01-map","Карта");
-   test.clickDescription("Настройки координат центра");
-   test.waitText("Основной формат");
-   shot("02-coordinates","Настройки координат центра");
-   test.click("Отмена");
-   test.clickDescription("Свернуть / развернуть инструменты");
-   test.check(test.findDescription(test.getUiAutomation().getRootInActiveWindow(),"Карты")==null,"dock collapses on screen");
-   shot("03-tools-collapsed","Свернуть инструменты");
-   test.clickDescription("Свернуть / развернуть инструменты");
-   shot("03-tools","Развернуть инструменты");
+   if (!resume) {
+    shot("01-map","Карта");
+    test.clickDescription("Настройки координат центра");
+    test.waitText("Основной формат");
+    shot("02-coordinates","Настройки координат центра");
+    test.click("Отмена");
+    test.clickDescription("Свернуть / развернуть инструменты");
+    test.check(test.findDescription(test.getUiAutomation().getRootInActiveWindow(),"Карты")==null,"dock collapses on screen");
+    shot("03-tools-collapsed","Свернуть инструменты");
+    test.clickDescription("Свернуть / развернуть инструменты");
+    shot("03-tools","Развернуть инструменты");
+    test.clickDescription("Меню");
+    test.waitText("Проекты и файлы KML/KMZ");
+    shot("04-menu","Меню");
+    back();
+
+    test.clickDescription("Карты");
+    open("MapLayersActivity","Слои карты");
+    test.waitText("Показывать слой");
+    shot("05-layers","Слои карты");
+    closeChild();
+
+    test.clickDescription("Карты");
+    open("MapCatalogActivity","Онлайн-карты");
+    test.waitText("Онлайн-карты");
+    shot("06-catalog","Онлайн-карты");
+    closeChild();
+
+    test.clickDescription("Метки");
+    open("ObjectManagerActivity","Список объектов");
+    test.geometryReady();
+    test.waitText(POINT);
+    shot("07-objects","Список объектов");
+    test.click(POINT);
+    test.managerAction("Цвет и заливка KML");
+    test.click("Менеджер значков");
+    iconImport();
+    shot("10-icons","Предпросмотр значка");
+    test.click("Назад");
+    test.click("Закрыть");
+    closeChild();
+
+   }
+
    test.clickDescription("Меню");
-   test.waitText("Проекты и файлы KML/KMZ");
-   shot("04-menu","Меню");
-   back();
-
-   test.clickDescription("Карты");
-   open("MapLayersActivity","Слои карты");
-   test.waitText("Показывать слой");
-   shot("05-layers","Слои карты");
-   closeChild();
-
-   test.clickDescription("Карты");
-   open("MapCatalogActivity","Онлайн-карты");
-   test.waitText("Онлайн-карты");
-   shot("06-catalog","Онлайн-карты");
-   closeChild();
-
-   test.clickDescription("Метки");
-   open("ObjectManagerActivity","Список объектов");
-   test.geometryReady();
-   test.waitText(POINT);
-   shot("07-objects","Список объектов");
-   test.click(POINT);
-   test.managerAction("Цвет и заливка KML");
-   test.click("Менеджер значков");
-   iconImport();
-   shot("10-icons","Предпросмотр значка");
-   test.click("Назад");
-   test.click("Закрыть");
-   closeChild();
-
-   test.clickDescription("Меню");
-   open("ProjectsActivity","Проекты и файлы KML/KMZ");
+   Activity projects = open("ProjectsActivity","Проекты и файлы KML/KMZ");
    test.waitText(PROJECT);
    test.runOnMainSync(() -> test.check(hasMapBlueBackground(test.activeDialogRoot()),
     "project manager uses the approved map palette"));
@@ -200,9 +203,13 @@ final class AcceptanceChecks {
    test.waitText("Экспорт GPX 1.1");
    shot("12-exchange","Подтверждение GPX после пересоздания");
    test.click("Отмена");
-   back();
-   test.waitText("Локальные проекты");
-   closeChild();
+   test.waitText(POINT);
+   test.click("Проекты");
+   test.waitText("Локальные KML/KMZ");
+   test.waitText(PROJECT);
+   test.runOnMainSync(projects::finish);
+   test.activity = map;
+   test.stableMainMap();
 
    test.clickDescription("Метки");
    test.click("Поиск на карте");
