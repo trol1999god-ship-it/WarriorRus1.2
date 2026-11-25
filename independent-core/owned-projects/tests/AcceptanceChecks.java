@@ -66,6 +66,16 @@ final class AcceptanceChecks {
   return null;
  }
 
+ private boolean hasMapBlueBackground(View view) {
+  if (view.getBackground() instanceof android.graphics.drawable.ColorDrawable &&
+      ((android.graphics.drawable.ColorDrawable)view.getBackground()).getColor() == 0xff1a344b) return true;
+  if (view instanceof ViewGroup) {
+   ViewGroup group = (ViewGroup)view;
+   for (int i = 0; i < group.getChildCount(); i++) if (hasMapBlueBackground(group.getChildAt(i))) return true;
+  }
+  return false;
+ }
+
  private boolean hasBlueDescription(View view) {
   if (view instanceof android.widget.TextView &&
     ((android.widget.TextView)view).getText().toString().contains("QA локальное описание")) {
@@ -178,6 +188,8 @@ final class AcceptanceChecks {
    test.clickDescription("Меню");
    open("ProjectsActivity","Проекты и файлы KML/KMZ");
    test.waitText(PROJECT);
+   test.runOnMainSync(() -> test.check(hasMapBlueBackground(test.activeDialogRoot()),
+    "project manager uses the approved map palette"));
    shot("08-projects","Проекты и файлы KML/KMZ");
    test.click(PROJECT);
    test.waitText(POINT);

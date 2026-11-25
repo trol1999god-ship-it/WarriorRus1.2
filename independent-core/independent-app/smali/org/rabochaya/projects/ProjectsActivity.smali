@@ -522,7 +522,7 @@
 
     invoke-direct {v1}, Landroid/graphics/drawable/GradientDrawable;-><init>()V
 
-    const v2, -0xc8bcd7
+    const v2, -0xd6b297
 
     invoke-virtual {v1, v2}, Landroid/graphics/drawable/GradientDrawable;->setColor(I)V
 
@@ -1413,7 +1413,7 @@
 
     invoke-virtual {v0, p1}, Landroid/widget/EditText;->setTextColor(I)V
 
-    const p1, -0xd4cadf
+    const p1, -0xdcbba3
 
     invoke-virtual {v0, p1}, Landroid/widget/EditText;->setBackgroundColor(I)V
 
@@ -2526,7 +2526,7 @@
 
     move-result-object v0
 
-    const v1, -0xe3dae8
+    const v1, -0xe5cbb5
 
     invoke-virtual {v0, v1}, Landroid/view/Window;->setStatusBarColor(I)V
 
@@ -2551,7 +2551,7 @@
 
     iget-object v0, p0, Lorg/rabochaya/projects/ProjectsActivity;->root:Landroid/widget/LinearLayout;
 
-    const v1, -0xdcd2e3
+    const v1, -0xe5cbb5
 
     invoke-virtual {v0, v1}, Landroid/widget/LinearLayout;->setBackgroundColor(I)V
 
