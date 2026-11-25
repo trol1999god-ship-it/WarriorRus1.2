@@ -14,8 +14,8 @@ p.add_argument('--keep-going',action='store_true',help='Collect independent fail
 p.add_argument('--no-streaming',action='store_true',help='Push APKs before installation when streamed install is unreliable')
 p.add_argument('--transport-wait',type=float,default=15,help='Bounded same-boot adb readiness wait (0 < seconds <= 15); never reruns instrumentation')
 modes=['binary','independence','offlineformats','ozf2','ozidata','iconlibrary','cachewrites','cacheexport','launcher','coordinates','catalogscreen','geometryedit','geometrymap','geometrymapreopen','objectmanager','objectmanagerreopen','clipboard','clipboardreopen','objectformats','objectformatsreopen','managerfilters','managerfiltersreopen','managervisibility','managervisibilityreopen','managerdates','managerdatesreopen','managerdescription','managerdescriptionreopen','managercontext','managercontextreopen','managervisual','managerrotation','managerforms','managermove','managerconfirm','managerpasteconfirm','managerchooser','vertexrotation','vertexscroll','geometryvertexconfirm','geometryholeconfirm','vertexinsertion','geometrynewhole','geometrynewholeguards','mapvertexconfirm','mapholeconfirm','mapundorotation','mappartconfirm','geometrycloseconfirm','maplayers','maplayersreopen','markerlifecycle','markerlifecyclereopen']
-p.add_argument('--visual-log-modes',nargs='*',choices=modes,default=['cacheexport','maplayersreopen'],help='Full console PNG previews for these modes; every visual mode still validates and retains all PNG artifacts')
-p.add_argument('--modes',nargs='+',choices=modes+['svg'],default=modes,help='Run the selected scenarios in this order; default: full suite')
+p.add_argument('--visual-log-modes',nargs='*',choices=modes+['acceptance'],default=['cacheexport','maplayersreopen'],help='Full console PNG previews for these modes; every visual mode still validates and retains all PNG artifacts')
+p.add_argument('--modes',nargs='+',choices=modes+['svg','acceptance'],default=modes,help='Run the selected scenarios in this order; default: full suite')
 a=p.parse_args();out=a.output.resolve();out.mkdir(parents=True,exist_ok=True)
 if any(out.iterdir()):p.error('Output must be fresh; existing artifacts are preserved, never inherited')
 if not 0<a.transport_wait<=15:p.error('--transport-wait must be positive and at most 15 seconds')
@@ -141,6 +141,7 @@ for mode in a.modes:
   except Exception as error:pull_result=str(error);pull_ok=False
   (out/(mode+'-artifact-pull.txt')).write_text(pull_result[-16384:])
   actions={
+   'acceptance':[(step,'after') for step in ('accept-01-map','accept-02-coordinates','accept-03-tools','accept-04-menu','accept-05-layers','accept-06-catalog','accept-07-objects','accept-08-projects','accept-09-card','accept-10-icons','accept-11-routes','accept-12-exchange','accept-13-settings')],
    'launcher':[(step,phase) for step in ('zoom-in','zoom-out','menu','maps','orientation','files','collapse','marks','search') for phase in ('before','after')],
    'markerlifecycle':[(step,phase) for step in ('marker-create','marker-edit','marker-svg','marker-photo') for phase in ('before','after')]+[('marker-reopen','before')],
    'markerlifecyclereopen':[('marker-reopen','after')]+[(step,phase) for step in ('marker-export','marker-import') for phase in ('before','after')],

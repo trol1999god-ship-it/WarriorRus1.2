@@ -102,7 +102,7 @@ final class UserIconDialogs {
   Bitmap bitmap;
   try {
    bytes = library.read(category, name);
-   bitmap = SvgRaster.render(SvgIcon.parse(bytes));
+   bitmap = SvgRaster.preview(SvgIcon.parse(bytes), WorkspaceUi.dp(activity, 96));
   } catch (IOException | IllegalArgumentException error) {
    activity.iconNotice(error.getMessage());
    return;

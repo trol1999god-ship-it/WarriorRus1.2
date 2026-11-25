@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.widget.Toast;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -18,7 +20,7 @@ public final class FormatExportActivity extends Activity {
  private volatile boolean disposed;
  private long projectId;
  private String format;
- private byte[] prepared;
+ private byte[] prepared, preparedDigest;
 
  public static void open(Activity activity,long projectId){
   activity.startActivity(new Intent(activity,FormatExportActivity.class).putExtra("project",projectId));
@@ -27,14 +29,19 @@ public final class FormatExportActivity extends Activity {
  @Override protected void onCreate(Bundle state){
   super.onCreate(state);
   projectId=getIntent().getLongExtra("project",-1);
-  if(state!=null)format=state.getString("format");
-  if(format!=null)return;
+  if(state!=null){
+   format=state.getString("format");
+   preparedDigest=state.getByteArray("preparedDigest");
+  }
+  if(preparedDigest!=null)return;
+  if(format!=null){confirm(format);return;}
   new AlertDialog.Builder(this).setTitle("Экспорт объектов")
    .setItems(new String[]{"GPX 1.1","GeoJSON"},(dialog,index)->confirm(index==0?"gpx":"geojson"))
    .setOnCancelListener(dialog->finish()).show();
  }
 
  private void confirm(String choice){
+  format=choice;
   String details="Сохраняются геометрия, высоты как записанные числа и поддерживаемые атрибуты. "
     +"Файлы вложений, SVG, оформление и структура папок сохраняются в KMZ. "
     +"Способ отсчёта высоты может отличаться между приложениями.";
@@ -57,7 +64,7 @@ public final class FormatExportActivity extends Activity {
     byte[] data=snapshot(choice);
     runOnUiThread(()->{
      if(disposed)return;
-     prepared=data;format=choice;
+     prepared=data;preparedDigest=digest(data);
      Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE)
       .setType(choice.equals("gpx")?"application/gpx+xml":"application/geo+json")
       .putExtra(Intent.EXTRA_TITLE,"project."+choice).putExtra(Intent.EXTRA_LOCAL_ONLY,true);
@@ -79,6 +86,9 @@ public final class FormatExportActivity extends Activity {
   worker.execute(()->{
    try{
     byte[] data=prepared!=null?prepared:snapshot(format);
+    if(preparedDigest==null||!MessageDigest.isEqual(preparedDigest,digest(data))){
+     throw new IOException("Проект изменился после подготовки экспорта. Откройте экспорт заново.");
+    }
     try(OutputStream stream=getContentResolver().openOutputStream(target,"wt")){
      if(stream==null)throw new IOException("Не удалось открыть файл");
      stream.write(data);
@@ -86,6 +96,11 @@ public final class FormatExportActivity extends Activity {
     runOnUiThread(()->{if(!disposed){Toast.makeText(this,"Объекты экспортированы",Toast.LENGTH_SHORT).show();finish();}});
    }catch(Exception error){runOnUiThread(()->failure(error));}
   });
+ }
+
+ private static byte[] digest(byte[] data){
+  try{return MessageDigest.getInstance("SHA-256").digest(data);}
+  catch(NoSuchAlgorithmException unavailable){throw new IllegalStateException(unavailable);}
  }
 
  private void failure(Exception error){
@@ -96,6 +111,7 @@ public final class FormatExportActivity extends Activity {
  @Override protected void onSaveInstanceState(Bundle state){
   super.onSaveInstanceState(state);
   state.putString("format",format);
+  state.putByteArray("preparedDigest",preparedDigest);
  }
 
  @Override protected void onDestroy(){disposed=true;worker.shutdown();super.onDestroy();}
