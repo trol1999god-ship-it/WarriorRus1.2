@@ -1,5 +1,8 @@
 # Матрица соответствия «Рабочей карты» v26.1
 
+26 ноября 2026. Менеджер SVG, отдельный ZIP-набор и импорт WPT/PLT/OZF2. API 23 — значки 32, WPT/PLT 5, OZF2 10. API 35 — значки 32, WPT/PLT 5, OZF2 10. API 37 — значки 32, WPT/PLT 5, OZF2 10. [Менеджер и объекты OziExplorer](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45702567695) · [Растр OZF2](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45703116101).
+[Статические доказательства](security/reference-gaps-2026-11-26/static.json).
+
 Проверка переноса и форматов от 25 ноября 2026. На API 23 и 35 прошли clipboard (145), clipboardreopen (49), objectformats (12) и objectformatsreopen (12). На API 37 после обновления avdmanager прошли clipboard (133), clipboardreopen (41), objectformats (12), objectformatsreopen (12). [Перенос](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45696533101) · [Форматы](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45696960561) · [API 37](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45697512876).
 
 Редактор и текстовые вложения, код `671a49f`. [Целевой CI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45243852282) · [Диагностика подписи](security/map-editor-2026-11-23/reference-signer-comparison.json).
