@@ -619,6 +619,60 @@
       ],
       "evidence": "security/preliminary-acceptance-2026-11-26/results.json",
       "report": "FINAL_ACCEPTANCE.md"
+    },
+    "map_window_update": {
+      "source_sha": "fd5ed2f8907d7e6aa0885dc32e49db49df1c3201",
+      "ci_run": 45726430853,
+      "modes": [
+        "launcher",
+        "coordinates"
+      ],
+      "api_results": {
+        "23": {
+          "launcher": 204,
+          "coordinates": 52
+        },
+        "35": {
+          "launcher": 204,
+          "coordinates": 52
+        },
+        "37": {
+          "launcher": 204,
+          "coordinates": 52
+        }
+      },
+      "apk_sha256": "da7e89a834833f65f08c8b6d1245e97717af09710ec2e80e57b53d47a1e4b17b",
+      "lint_errors": 0,
+      "permissions": [
+        "android.permission.INTERNET"
+      ],
+      "local_attachment_screen": {
+        "api": 23,
+        "mode": "acceptance-resume",
+        "assertions": 34,
+        "apk_sha256": "73266b68b741a93a7d46e5f6015dd35197a471c8533999034bb7b10565515b6e"
+      },
+      "artifacts": [
+        {
+          "id": 15074882634,
+          "sha256": "a9454996432b105576794ea5a1bf58aef40aa2386c6d13ca748060eaf50c45d6"
+        },
+        {
+          "id": 15074553421,
+          "sha256": "6bf63be28260f002e8f96d559ed4cf18ad9b7231f5e58304b8bc60f4e241c61a"
+        },
+        {
+          "id": 15074284120,
+          "sha256": "8248024511018966c0022df431b5ec6215a60503ebcd0934931352e9cfae6b5e"
+        },
+        {
+          "id": 15074797202,
+          "sha256": "8cace96a2b219eb6ee5ee60812f286be5a97f85d9d71fa529b16a38aea9da0f9"
+        }
+      ],
+      "ci_url": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45726430853",
+      "qa_apk": "https://chatgpt.com/library?file_id=libfile_04848819a63881919a90c85811afb2d2&account_id=personal",
+      "evidence_archive": "https://chatgpt.com/library?file_id=libfile_fb77d08843848191a5be360e51dbbed0&account_id=personal"
     }
   },
   "status_values": [
@@ -662,7 +716,7 @@
       "screen": "Главная карта",
       "function": "Нижняя сворачиваемая панель",
       "reference_behavior": "В предыдущем запуске эталона наблюдались пять инструментов слева внизу.",
-      "current_behavior": "Пять инструментов с собственными контурными значками, отдельное сворачивание. Поиск открывается через «Метки». Видимые кнопки уменьшены, области нажатия 48 dp сохранены. На узком экране ряд инструментов прокручивается, переключатель закреплён.",
+      "current_behavior": "Пять инструментов с собственными контурными значками, отдельное сворачивание. Поиск открывается через «Метки». Видимые кнопки уменьшены, области нажатия 48 dp сохранены. На узком экране ряд инструментов прокручивается, переключатель закреплён. При 320 dp видны все пять действий. Переключатель сворачивания над рядом освобождает место для кнопок.",
       "evidence_source": [
         "Измерения 480×800, 160 dpi",
         "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal",
@@ -720,7 +774,7 @@
       "screen": "Меню",
       "function": "Доступные действия, переходы, долгое нажатие",
       "reference_behavior": "Состав и последовательность эталона недоступны.",
-      "current_behavior": "Фактические переходы «Меню», «Карты», «Метки», «Файловый менеджер», «Ориентирование» и поиск проверены.",
+      "current_behavior": "Фактические переходы «Меню», «Карты», «Метки», «Файловый менеджер», «Ориентирование» и поиск проверены. Открытое меню перестраивается при сужении окна и располагается над кнопками.",
       "evidence_source": [
         "Кадры, XML и журнал нажатий",
         "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"

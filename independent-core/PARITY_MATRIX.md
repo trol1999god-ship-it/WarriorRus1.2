@@ -1,5 +1,7 @@
 # Матрица соответствия «Рабочей карты» v26.1
 
+Панель и меню карты, код `fd5ed2f`. В окне 320 dp доступны пять действий. В окне 290 dp действует прокрутка. Меню и переключатель не перекрывают основные кнопки. API 23 — карта 204, координаты 52 · API 35 — карта 204, координаты 52 · API 37 — карта 204, координаты 52. [CI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45726430853) · [QA APK](https://chatgpt.com/library?file_id=libfile_04848819a63881919a90c85811afb2d2&account_id=personal) · [Кадры и журналы](https://chatgpt.com/library?file_id=libfile_fb77d08843848191a5be360e51dbbed0&account_id=personal)
+
 26 ноября 2026. Кадры и действия по 13 экранам, исправления и ограничения выпуска описаны в [FINAL_ACCEPTANCE.md](FINAL_ACCEPTANCE.md).
 
 26 ноября 2026. Менеджер SVG, отдельный ZIP-набор и импорт WPT/PLT/OZF2. API 23 — значки 32, WPT/PLT 5, OZF2 10. API 35 — значки 32, WPT/PLT 5, OZF2 10. API 37 — значки 32, WPT/PLT 5, OZF2 10. [Менеджер и объекты OziExplorer](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45702567695) · [Растр OZF2](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45703116101).
