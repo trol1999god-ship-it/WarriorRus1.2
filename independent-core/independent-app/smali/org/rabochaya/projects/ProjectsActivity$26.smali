@@ -45,8 +45,22 @@
 
 # virtual methods
 .method public onClick(Landroid/content/DialogInterface;I)V
-    .locals 1
+    .locals 3
 
+    const/4 v0, 0x4
+    if-ne p2, v0, :existing
+    iget-object p1, p0, Lorg/rabochaya/projects/ProjectsActivity$26;->this$0:Lorg/rabochaya/projects/ProjectsActivity;
+    invoke-static {p1}, Lorg/rabochaya/projects/ProjectsActivity;->access$100(Lorg/rabochaya/projects/ProjectsActivity;)Z
+    move-result v0
+    if-nez v0, :done
+    invoke-static {p1}, Lorg/rabochaya/projects/ProjectsActivity;->access$200(Lorg/rabochaya/projects/ProjectsActivity;)J
+    move-result-wide v0
+    iget-object v2, p0, Lorg/rabochaya/projects/ProjectsActivity$26;->val$e:Lorg/w3c/dom/Element;
+    invoke-static {p1, v0, v1, v2}, Lorg/rabochaya/projects/WorkspaceUi;->editManagerPoints(Landroid/app/Activity;JLorg/w3c/dom/Element;)V
+    :done
+    return-void
+
+    :existing
     .line 138
     if-nez p2, :cond_0
 

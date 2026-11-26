@@ -17,6 +17,66 @@ public final class WorkspaceUi {
   return sorted;
  }
 
+ static final String MANAGER_DISPLAY = "Режим отображения";
+ static final String EDIT_MANAGER_POINTS = "Изменить точки";
+ static final String MANAGER_PREVIEW_PREF = "folder_preview";
+
+ public static void chooseManagerDisplay(Activity activity, boolean preview,
+                                         android.content.DialogInterface.OnClickListener change) {
+  android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(activity)
+    .setTitle(MANAGER_DISPLAY)
+    .setSingleChoiceItems(new String[]{"Список", "Предварительный просмотр"}, preview ? 1 : 0,
+      (dialog, which) -> {
+       dialog.dismiss();
+       change.onClick(dialog, which);
+      })
+    .setNegativeButton("Отмена", null);
+  showDialog(activity, builder);
+ }
+
+ static String managerPreviewText(org.w3c.dom.Element element) {
+  String description = KmlProject.text(element, "description");
+  String excerpt = ObjectListing.descriptionText(description).trim();
+  if (!excerpt.isEmpty()) return excerpt;
+  return ObjectListing.KINDS[ObjectListing.classify(element)];
+ }
+
+ public static void addManagerPreview(Activity activity, LinearLayout row,
+                                      org.w3c.dom.Element element) {
+  TextView preview = new TextView(activity);
+  preview.setText(managerPreviewText(element));
+  preview.setTypeface(font(activity));
+  preview.setTextSize(13);
+  preview.setMaxLines(3);
+  preview.setEllipsize(android.text.TextUtils.TruncateAt.END);
+  int margin = dp(activity, 12);
+  preview.setPadding(dp(activity, 48), 0, margin, dp(activity, 8));
+  row.addView(preview, new LinearLayout.LayoutParams(-1, -2));
+ }
+
+ public static void addClassicManagerRow(Activity activity, LinearLayout list, LinearLayout row,
+                                         org.w3c.dom.Element element, boolean preview) {
+  if (!preview) {
+   list.addView(row);
+   return;
+  }
+  LinearLayout card = new LinearLayout(activity);
+  card.setOrientation(LinearLayout.VERTICAL);
+  card.addView(row, new LinearLayout.LayoutParams(-1, -2));
+  addManagerPreview(activity, card, element);
+  list.addView(card);
+ }
+
+ public static boolean canEditManagerPoints(org.w3c.dom.Element element) {
+  if (element.getAttribute("id").isEmpty()) return false;
+  int kind = ObjectListing.classify(element);
+  return kind == 2 || kind == 3 || kind == 4 || kind == 6;
+ }
+
+ public static void editManagerPoints(Activity activity, long project, org.w3c.dom.Element element) {
+  GeometryEditorActivity.open(activity, project, element.getAttribute("id"));
+ }
+
  public static final int TEXT=0xff082e4c,PANEL=0xf2c7e1f8,MUTED=0xff427da9; // Confirmed blue palette: ReferenceMenu0b78cecc; not complete13-screen parity.
  private static Typeface font;private static final Map<String,Bitmap> icons=new HashMap<>();
  public static int dp(Activity a,float n){return (int)(a.getResources().getDisplayMetrics().density*n+.5f);}

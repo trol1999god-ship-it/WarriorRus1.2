@@ -1427,7 +1427,7 @@
 .end method
 
 .method private more()V
-    .locals 6
+    .locals 8
 
     .line 133
     new-instance v0, Landroid/app/AlertDialog$Builder;
@@ -1450,7 +1450,14 @@
 
     const-string v5, "Сортировать по"
 
-    filled-new-array {v3, v1, v2, v4, v5}, [Ljava/lang/String;
+    move-object v6, v1
+    move-object v1, v3
+    move-object v3, v2
+    move-object v2, v6
+    const-string v6, "Режим отображения"
+    const-string v7, "Мультивыбор"
+
+    filled-new-array/range {v1 .. v7}, [Ljava/lang/String;
 
     move-result-object v1
 
@@ -1487,6 +1494,59 @@
     const/4 v2, 0x0
     invoke-virtual {v0, v1, v2}, Landroid/app/AlertDialog$Builder;->setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
     invoke-static {p0, v0}, Lorg/rabochaya/projects/WorkspaceUi;->showDialog(Landroid/app/Activity;Landroid/app/AlertDialog$Builder;)V
+    return-void
+.end method
+
+.method showFolderDisplay()V
+    .locals 2
+    invoke-direct {p0}, Lorg/rabochaya/projects/ProjectsActivity;->folderPreview()Z
+    move-result v0
+    new-instance v1, Lorg/rabochaya/projects/ProjectsActivity$FolderDisplay;
+    invoke-direct {v1, p0}, Lorg/rabochaya/projects/ProjectsActivity$FolderDisplay;-><init>(Lorg/rabochaya/projects/ProjectsActivity;)V
+    invoke-static {p0, v0, v1}, Lorg/rabochaya/projects/WorkspaceUi;->chooseManagerDisplay(Landroid/app/Activity;ZLandroid/content/DialogInterface$OnClickListener;)V
+    return-void
+.end method
+
+.method private folderPreview()Z
+    .locals 3
+    const/4 v0, 0x0
+    invoke-virtual {p0, v0}, Lorg/rabochaya/projects/ProjectsActivity;->getPreferences(I)Landroid/content/SharedPreferences;
+    move-result-object v1
+    const-string v2, "folder_preview"
+    invoke-interface {v1, v2, v0}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
+    move-result v0
+    return v0
+.end method
+
+.method setFolderPreview(Z)V
+    .locals 2
+    iget-boolean v0, p0, Lorg/rabochaya/projects/ProjectsActivity;->busy:Z
+    if-nez v0, :done
+    const/4 v0, 0x0
+    invoke-virtual {p0, v0}, Lorg/rabochaya/projects/ProjectsActivity;->getPreferences(I)Landroid/content/SharedPreferences;
+    move-result-object v0
+    invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+    move-result-object v0
+    const-string v1, "folder_preview"
+    invoke-interface {v0, v1, p1}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
+    move-result-object v0
+    invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->apply()V
+    invoke-direct {p0}, Lorg/rabochaya/projects/ProjectsActivity;->showFolder()V
+    :done
+    return-void
+.end method
+
+.method openFolderSelection()V
+    .locals 3
+    iget-boolean v0, p0, Lorg/rabochaya/projects/ProjectsActivity;->busy:Z
+    if-nez v0, :done
+    iget-wide v0, p0, Lorg/rabochaya/projects/ProjectsActivity;->projectId:J
+    iget-object v2, p0, Lorg/rabochaya/projects/ProjectsActivity;->folderId:Ljava/lang/String;
+    if-nez v2, :open
+    const-string v2, ""
+    :open
+    invoke-static {p0, v0, v1, v2}, Lorg/rabochaya/projects/ObjectManagerActivity;->openFolder(Landroid/app/Activity;JLjava/lang/String;)V
+    :done
     return-void
 .end method
 
@@ -1698,7 +1758,7 @@
 .end method
 
 .method private nodeMenu(Lorg/w3c/dom/Element;)V
-    .locals 5
+    .locals 6
 
     .line 138
     new-instance v0, Landroid/app/AlertDialog$Builder;
@@ -1721,9 +1781,19 @@
 
     const-string v4, "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0440\u044f\u0434\u043e\u043c"
 
-    filled-new-array {v3, v4, v1, v2}, [Ljava/lang/String;
-
+    invoke-static {p1}, Lorg/rabochaya/projects/WorkspaceUi;->canEditManagerPoints(Lorg/w3c/dom/Element;)Z
+    move-result v5
+    if-eqz v5, :plain_menu
+    const-string v5, "Изменить точки"
+    filled-new-array {v3, v4, v1, v2, v5}, [Ljava/lang/String;
     move-result-object v1
+    goto :menu_items
+
+    :plain_menu
+    filled-new-array {v3, v4, v1, v2}, [Ljava/lang/String;
+    move-result-object v1
+
+    :menu_items
 
     new-instance v2, Lorg/rabochaya/projects/ProjectsActivity$26;
 
@@ -2119,7 +2189,10 @@
 
     iget-object v4, p0, Lorg/rabochaya/projects/ProjectsActivity;->content:Landroid/widget/LinearLayout;
 
-    invoke-virtual {v4, v3}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
+    invoke-direct {p0}, Lorg/rabochaya/projects/ProjectsActivity;->folderPreview()Z
+    move-result v5
+
+    invoke-static {p0, v4, v3, v2, v5}, Lorg/rabochaya/projects/WorkspaceUi;->addClassicManagerRow(Landroid/app/Activity;Landroid/widget/LinearLayout;Landroid/widget/LinearLayout;Lorg/w3c/dom/Element;Z)V
 
     .line 92
     new-instance v4, Landroid/widget/CheckBox;

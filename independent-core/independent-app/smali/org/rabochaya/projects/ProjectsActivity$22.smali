@@ -96,6 +96,20 @@
     return-void
 
     :formats
+    const/4 v0, 0x5
+    if-ne p2, v0, :multiselect
+    iget-object v0, p0, Lorg/rabochaya/projects/ProjectsActivity$22;->this$0:Lorg/rabochaya/projects/ProjectsActivity;
+    invoke-virtual {v0}, Lorg/rabochaya/projects/ProjectsActivity;->showFolderDisplay()V
+    return-void
+
+    :multiselect
+    const/4 v0, 0x6
+    if-ne p2, v0, :export
+    iget-object v0, p0, Lorg/rabochaya/projects/ProjectsActivity$22;->this$0:Lorg/rabochaya/projects/ProjectsActivity;
+    invoke-virtual {v0}, Lorg/rabochaya/projects/ProjectsActivity;->openFolderSelection()V
+    return-void
+
+    :export
     const/4 p1, 0x3
     if-ne p2, p1, :done
 
