@@ -743,6 +743,7 @@
         "maps_submenu_display_scale_value": "Карты → Масштаб карты: численный масштаб по центру и плотности экрана"
       },
       "partial": {
+        "settings_canvas_multitouch_rotate_title": "Поворот карты двумя пальцами с масштабированием вокруг опорной точки.",
         "settings_technical_disable_keyguard_title": "Экран карты: показ текущего окна при блокировке по явному выбору, без отключения системного замка.",
         "settings_canvas_infobox_style_title": "Опции: цвет и размер статус-панелей, включая координаты и масштаб.",
         "settings_landmarks_display_borders_title": "Включает обводку встроенных точечных символов.",
@@ -806,8 +807,7 @@
         ],
         "orientation": [],
         "settings": [
-            "settings_canvas_multitouch_rotate_title",
-          "settings_canvas_multitouch_pitch_title",
+            "settings_canvas_multitouch_pitch_title",
           "settings_canvas_hres_map_title",
           "settings_landmarks_display_target_color_title",
           "settings_landmarks_preprocess_title"

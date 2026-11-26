@@ -19,6 +19,7 @@ public final class LocalMapView extends View {
   inputLocked = locked;
   if (!locked) return;
   touchInProgress=false;
+  twisting=false;
   applyBearing();
   long now = android.os.SystemClock.uptimeMillis();
   MotionEvent cancel = MotionEvent.obtain(now, now, MotionEvent.ACTION_CANCEL, 0, 0, 0);
@@ -258,9 +259,26 @@ public final class LocalMapView extends View {
  }
 
  private float bearing, pendingBearing;
- private boolean touchInProgress;
+ private boolean touchInProgress, manualRotationEnabled, compassRotationEnabled;
+ private float manualBearing;
+ private boolean twisting;
+ private int twistFirst=-1,twistSecond=-1;
+ private double twistAngle,twistSpan,twistZoom,twistBearing,anchorX,anchorY;
  private final Matrix touchRotation=new Matrix();
 
+ void restoreManualBearing(float bearing){
+  manualBearing=Float.isNaN(bearing)||Float.isInfinite(bearing)?0:bearing%360;
+  if(!compassRotationEnabled)setBearing(manualRotationEnabled?manualBearing:0);
+ }
+ float manualBearing(){return manualBearing;}
+ void setManualRotation(boolean enabled){
+  manualRotationEnabled=enabled;
+  if(!compassRotationEnabled)setBearing(enabled?manualBearing:0);
+ }
+ void setCompassRotation(boolean enabled,double heading){
+  compassRotationEnabled=enabled;
+  setBearing(enabled?heading:manualRotationEnabled?manualBearing:0);
+ }
  void setBearing(double degrees){
   pendingBearing=Double.isNaN(degrees)?0:(float)degrees;
   if(!touchInProgress)applyBearing();
@@ -284,7 +302,15 @@ public final class LocalMapView extends View {
  public boolean onTouchEvent(MotionEvent event){
   if(inputLocked)return true;
   int action=event.getActionMasked();
-  if(action==MotionEvent.ACTION_DOWN)touchInProgress=true;
+
+  if(action==MotionEvent.ACTION_DOWN){
+   touchInProgress=true;
+   twisting=false;
+  }
+  if(twisting)return handleTwist(event,action);
+  if(action==MotionEvent.ACTION_POINTER_DOWN&&event.getPointerCount()==2&&manualRotationEnabled&&!compassRotationEnabled){
+   if(beginTwist(event))return true;
+  }
   MotionEvent projected=event;
   if(bearing!=0){
    projected=MotionEvent.obtain(event);
@@ -300,6 +326,58 @@ public final class LocalMapView extends View {
    }
   }
  }
+ private boolean beginTwist(MotionEvent event){
+  double dx=event.getX(1)-event.getX(0),dy=event.getY(1)-event.getY(0);
+  twistSpan=Math.hypot(dx,dy);
+  if(twistSpan<1)return false;
+  twistFirst=event.getPointerId(0);
+  twistSecond=event.getPointerId(1);
+  twistAngle=Math.atan2(dy,dx);
+  twistBearing=bearing;
+  twistZoom=zoom;
+  double x=(event.getX(0)+event.getX(1))/2-getWidth()/2.0;
+  double y=(event.getY(0)+event.getY(1))/2-getHeight()/2.0;
+  double radians=Math.toRadians(bearing),sin=Math.sin(radians),cos=Math.cos(radians);
+  anchorX=cx+(x*cos-y*sin)/world();
+  anchorY=cy+(x*sin+y*cos)/world();
+  MotionEvent cancel=MotionEvent.obtain(event);
+  cancel.setAction(MotionEvent.ACTION_CANCEL);
+  try{contextGesture.onTouchEvent(cancel);scale.onTouchEvent(cancel);}
+  finally{cancel.recycle();}
+  twisting=true;
+  return true;
+ }
+
+ private boolean handleTwist(MotionEvent event,int action){
+  int first=event.findPointerIndex(twistFirst),second=event.findPointerIndex(twistSecond);
+  if(action==MotionEvent.ACTION_MOVE&&first>=0&&second>=0){
+   double dx=event.getX(second)-event.getX(first),dy=event.getY(second)-event.getY(first);
+   double span=Math.hypot(dx,dy);
+   if(span>=1){
+    double angle=Math.atan2(dy,dx);
+    double degrees=twistBearing-Math.toDegrees(angle-twistAngle);
+    manualBearing=(float)(degrees-360*Math.floor(degrees/360));
+    pendingBearing=bearing=manualBearing;
+    zoom=MapMath.clamp(twistZoom+Math.log(span/twistSpan)/Math.log(2),0,23);
+    double x=(event.getX(first)+event.getX(second))/2-getWidth()/2.0;
+    double y=(event.getY(first)+event.getY(second))/2-getHeight()/2.0;
+    double radians=Math.toRadians(bearing),sin=Math.sin(radians),cos=Math.cos(radians);
+    cx=MapMath.wrap(anchorX-(x*cos-y*sin)/world());
+    cy=MapMath.clamp(anchorY-(x*sin+y*cos)/world(),0,1);
+    changed();
+   }
+  }else if(action==MotionEvent.ACTION_POINTER_UP){
+   int lifted=event.getPointerId(event.getActionIndex());
+   if(lifted==twistFirst||lifted==twistSecond){twistFirst=-1;twistSecond=-1;}
+  }else if(action==MotionEvent.ACTION_UP||action==MotionEvent.ACTION_CANCEL){
+   twisting=false;
+   touchInProgress=false;
+   applyBearing();
+   settle();
+  }
+  return true;
+ }
+
  private boolean handleMapTouch(MotionEvent event){
   if(inputLocked)return true;
   if(event.getActionMasked()==MotionEvent.ACTION_DOWN)longConsumed=false;contextGesture.onTouchEvent(event);scale.onTouchEvent(event);float x=event.getX(),y=event.getY();
