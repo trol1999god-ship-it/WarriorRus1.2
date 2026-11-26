@@ -24,6 +24,14 @@ final class MapScaleView extends View {
   setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_YES);
  }
 
+ void setAppearance(int size,int textColor,android.graphics.drawable.Drawable background){
+  paint.setColor(textColor);
+  paint.setTextSize(size*getResources().getDisplayMetrics().scaledDensity);
+  setBackground(background);
+  requestLayout();
+  invalidate();
+ }
+
  static double metresPerPixel(double latitude,double zoom) {
   return 2 * Math.PI * EARTH_RADIUS_METRES
     * Math.cos(Math.toRadians(latitude)) / (256 * Math.pow(2, zoom));

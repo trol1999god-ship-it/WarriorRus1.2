@@ -12,7 +12,7 @@ public final class LocalMapView extends View {
  private boolean inputLocked, geographicGridVisible, secondaryGridVisible, radiusRulerVisible, nightRaster;
  private int primaryGridFormat=Coordinates.DD, secondaryGridFormat=Coordinates.UTM;
  private final MapGrid grid=new MapGrid();
- private boolean labelsVisible = true;
+ private boolean labelsVisible = true, markerBorders=true, markerShadows;
 
  void setInputLocked(boolean locked) {
   if (inputLocked == locked) return;
@@ -35,6 +35,11 @@ public final class LocalMapView extends View {
   invalidate();
  }
 
+ void setMarkerAppearance(boolean borders,boolean shadows){
+  markerBorders=borders;
+  markerShadows=shadows;
+  invalidate();
+ }
  void setLabelsVisible(boolean visible) {
   if (labelsVisible == visible) return;
   labelsVisible = visible;
@@ -153,7 +158,27 @@ public final class LocalMapView extends View {
   }
   int labels=0;
   for(KmlProject.Feature f:features){KmlComponentStyle style=componentStyles.get(f.element);if(style==null)style=KmlComponentStyle.EMPTY;int line=style.line==null?KmlComponentStyle.DEFAULT_COLOR:style.line;float[] label=null;for(KmlProject.Geometry g:f.shapes){paint.setColor(line);paint.setStrokeWidth(style.width==null?3*getResources().getDisplayMetrics().density:style.width);paint.setStyle(Paint.Style.STROKE);
-   if("Point".equals(g.type)){paint.setStrokeWidth(3*getResources().getDisplayMetrics().density);float[] p=point(g.rings.get(0).get(0));if(!symbol(canvas,f.element,p[0],p[1])){paint.setColor(style.icon==null?KmlComponentStyle.DEFAULT_COLOR:style.icon);paint.setStyle(Paint.Style.FILL);canvas.drawCircle(p[0],p[1],7*getResources().getDisplayMetrics().density,paint);paint.setStyle(Paint.Style.STROKE);paint.setColor(style.icon==null?0xff000000:(style.icon&0xff000000));canvas.drawCircle(p[0],p[1],8*getResources().getDisplayMetrics().density,paint);}label=p;}
+   if("Point".equals(g.type)){
+    float density=getResources().getDisplayMetrics().density;
+    float[] point=point(g.rings.get(0).get(0));
+    if(markerShadows){
+     paint.setStyle(Paint.Style.FILL);
+     paint.setColor(0x66000000);
+     canvas.drawCircle(point[0]+2*density,point[1]+3*density,8*density,paint);
+    }
+    if(!symbol(canvas,f.element,point[0],point[1])){
+     paint.setColor(style.icon==null?KmlComponentStyle.DEFAULT_COLOR:style.icon);
+     paint.setStyle(Paint.Style.FILL);
+     canvas.drawCircle(point[0],point[1],7*density,paint);
+     if(markerBorders){
+      paint.setStrokeWidth(3*density);
+      paint.setStyle(Paint.Style.STROKE);
+      paint.setColor(style.icon==null?0xff000000:(style.icon&0xff000000));
+      canvas.drawCircle(point[0],point[1],8*density,paint);
+     }
+    }
+    label=point;
+   }
    else {Path path=new Path();path.setFillType(Path.FillType.EVEN_ODD);for(List<double[]> ring:g.rings){boolean first=true;double previous=0;for(double[] c:ring){double worldX=MapMath.x(c[0]);double px;if(first)px=MapMath.delta(worldX,cx);else px=previous+MapMath.delta(worldX,MapMath.wrap(cx+previous));previous=px;float x=(float)(getWidth()/2.0+px*world()),y=(float)(getHeight()/2.0+(MapMath.y(c[1])-cy)*world());if(label==null)label=new float[]{x,y};if(first){path.moveTo(x,y);first=false;}else path.lineTo(x,y);}if("Polygon".equals(g.type))path.close();}
     if("Polygon".equals(g.type)){if(!Boolean.FALSE.equals(style.fill)){paint.setStyle(Paint.Style.FILL);paint.setColor(style.polygon==null?(KmlComponentStyle.DEFAULT_COLOR&0xffffff)|0x45000000:style.polygon);canvas.drawPath(path,paint);}paint.setStyle(Paint.Style.STROKE);paint.setColor(line);if(!Boolean.FALSE.equals(style.outline)&&(style.width==null||style.width>0))canvas.drawPath(path,paint);}else if(style.width==null||style.width>0)canvas.drawPath(path,paint);
    }}

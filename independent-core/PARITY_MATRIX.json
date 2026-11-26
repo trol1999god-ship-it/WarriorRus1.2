@@ -743,6 +743,10 @@
         "maps_submenu_display_scale_value": "Карты → Масштаб карты: численный масштаб по центру и плотности экрана"
       },
       "partial": {
+        "settings_technical_disable_keyguard_title": "Экран карты: показ текущего окна при блокировке по явному выбору, без отключения системного замка.",
+        "settings_canvas_infobox_style_title": "Опции: цвет и размер статус-панелей, включая координаты и масштаб.",
+        "settings_landmarks_display_borders_title": "Включает обводку встроенных точечных символов.",
+        "settings_landmarks_display_shadows_title": "Добавляет локальную тень под значками меток.",
         "settings_display_reference_north_title": "Магнитный, истинный и координатный север. Поправки вычисляются по центру карты.",
         "settings_display_areas_title": "Формат площади применяется к карточке области, включая вычитание отверстий.",
         "settings_display_slopes_title": "Формат уклона применяется к подъёму и спуску в профиле DEM.",
@@ -802,14 +806,10 @@
         ],
         "orientation": [],
         "settings": [
-          "settings_technical_disable_keyguard_title",
-          "settings_canvas_infobox_style_title",
             "settings_canvas_multitouch_rotate_title",
           "settings_canvas_multitouch_pitch_title",
           "settings_canvas_hres_map_title",
           "settings_landmarks_display_target_color_title",
-          "settings_landmarks_display_borders_title",
-          "settings_landmarks_display_shadows_title",
           "settings_landmarks_preprocess_title"
         ]
       }

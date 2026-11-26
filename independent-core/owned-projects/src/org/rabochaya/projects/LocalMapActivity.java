@@ -107,6 +107,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
     dockAction("Меню",this::mainMenu),dockAction("Карты",this::mapsMenu),dockAction("Метки",this::marksMenu),
     dockAction("Файловый менеджер",()->manager(false)),dockAction("Ориентирование",this::orientationMenu));
   updateMapInputLock();
+  applyMapAppearance();
   drawingRow=null;if(pendingDrawType!=null&&pendingDrawPoints!=null){String type=pendingDrawType;ArrayList<double[]> points=pendingDrawPoints;pendingDrawType=null;pendingDrawPoints=null;if(("LineString".equals(type)||"Polygon".equals(type))&&points.size()<=2000){startDrawing(type);for(double[] c:points)if(c!=null&&c.length>=2)map.addDrawingPoint(c[0],c[1]);}}
   if(restore){SharedPreferences p=getPreferences(0);String key="view_"+projectId+"_";if(p.contains(key+"x"))try{map.restore(Double.parseDouble(p.getString(key+"x",".5")),Double.parseDouble(p.getString(key+"y",".5")),p.getFloat(key+"z",2));}catch(RuntimeException ignored){}}
  }
@@ -155,9 +156,9 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   menu("Опции",item("Координаты центра экрана",this::coordinateOptions),
     item("Кеш / онлайн",this::onlineSettings),item("Информеры",this::display),
     item("Экран карты",this::screenOptions),item("Вид координатных сеток",this::gridAppearance),
-    item("Единицы измерения",this::displayUnits));
+    item("Единицы измерения",this::displayUnits),item("Стиль статус-панелей",this::mapAppearance));
  }
- private static final String[] MAP_SCREEN_KEYS={"map_hide_status", "map_immersive", "map_keep_screen_on", "map_confirm_exit"};
+ private static final String[] MAP_SCREEN_KEYS={"map_hide_status", "map_immersive", "map_keep_screen_on", "map_confirm_exit", "map_show_locked"};
 
  private void applyGridAppearance() {
   SharedPreferences prefs=getPreferences(0);
@@ -220,9 +221,48 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
      refreshCompassPanel();
     }).setNegativeButton("Отмена",null));
  }
+ private void mapAppearance(){
+  SharedPreferences prefs=getPreferences(0);
+  LinearLayout form=coordinateForm();
+  form.addView(coordinateCaption("Размер статус-панелей"));
+  Spinner size=gridChoice(form,"Размер статус-панелей",new String[]{"Обычный","Средний","Крупный"},prefs.getInt("map_panel_size",0));
+  form.addView(coordinateCaption("Цвет фона"));
+  Spinner color=gridChoice(form,"Цвет фона",new String[]{"Синий","Светлый","Тёмный"},prefs.getInt("map_panel_color",0));
+  CheckBox borders=new CheckBox(this),shadows=new CheckBox(this);
+  borders.setText("Контуры меток");borders.setChecked(prefs.getBoolean("map_marker_borders",true));form.addView(borders);
+  shadows.setText("Тени от меток");shadows.setChecked(prefs.getBoolean("map_marker_shadows",false));form.addView(shadows);
+  ScrollView scroll=new ScrollView(this);scroll.addView(form);
+  WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setTitle("Стиль статус-панелей")
+   .setView(scroll).setPositiveButton("Сохранить",(dialog,which)->{
+    prefs.edit().putInt("map_panel_size",size.getSelectedItemPosition()).putInt("map_panel_color",color.getSelectedItemPosition())
+       .putBoolean("map_marker_borders",borders.isChecked()).putBoolean("map_marker_shadows",shadows.isChecked()).apply();
+    applyMapAppearance();
+   }).setNegativeButton("Отмена",null));
+ }
+ private android.graphics.drawable.Drawable statusBackground(int theme){
+  if(theme==0)return MapHud.panel(this);
+  return WorkspaceUi.panel(this,theme==1?0xf2eaf5ff:0xf2151b22,theme==1?0xff5b86a7:0xff708497,6);
+ }
+ private void applyMapAppearance(){
+  SharedPreferences prefs=getPreferences(0);
+  int theme=prefs.getInt("map_panel_color",0);
+  int size=11+2*Math.max(0,Math.min(2,prefs.getInt("map_panel_size",0)));
+  int ink=theme==1?WorkspaceUi.TEXT:MapHud.INK;
+  for(TextView view:new TextView[]{coordinates,scaleValue,status}){
+   view.setBackground(statusBackground(theme));
+   view.setTextColor(ink);
+   view.setTextSize(size);
+  }
+  mapScale.setAppearance(size-1,ink,statusBackground(theme));
+  compassPanel.setBackground(statusBackground(theme));
+  compassArrow.setTextColor(ink);
+  compassCourse.setTextColor(ink);
+  compassCourse.setTextSize(size+1);
+  map.setMarkerAppearance(prefs.getBoolean("map_marker_borders",true),prefs.getBoolean("map_marker_shadows",false));
+ }
  private void screenOptions() {
   SharedPreferences preferences = getPreferences(0);
-  String[] titles = {"Скрыть строку состояния", "Режим погружения", "Экран всегда включён", "Подтверждать выход"};
+  String[] titles = {"Скрыть строку состояния", "Режим погружения", "Экран всегда включён", "Подтверждать выход", "На заблокированном экране"};
   boolean[] selected = new boolean[titles.length];
   for (int i=0; i<selected.length; i++) selected[i] = preferences.getBoolean(MAP_SCREEN_KEYS[i], false);
   AlertDialog settings = new AlertDialog.Builder(this).setTitle("Экран карты")
@@ -236,6 +276,10 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void applyMapScreenOptions(boolean mainMenuOpen) {
   SharedPreferences preferences = getPreferences(0);
   Window window = getWindow();
+  boolean showLocked=preferences.getBoolean(MAP_SCREEN_KEYS[4],false);
+  if(Build.VERSION.SDK_INT>=27)setShowWhenLocked(showLocked);
+  else if(showLocked)window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+  else window.clearFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
   int keepAwake = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
   if (preferences.getBoolean(MAP_SCREEN_KEYS[2], false)) window.addFlags(keepAwake);
   else window.clearFlags(keepAwake);
