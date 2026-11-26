@@ -2,7 +2,7 @@ package org.rabochaya.projects;
 import android.app.*;import android.content.*;import android.net.Uri;import android.os.*;import android.widget.*;import android.view.*;import java.io.*;import java.util.*;import java.util.concurrent.*;
 /** Own raster map viewer with local MBTiles or explicit online sources. */
 public final class LocalMapActivity extends Activity implements LocalMapView.Listener {
- private static final int IMPORT_MAP=4301,IMPORT_TIFF=4302,IMPORT_OZI=4303,DEM=4602,CATALOG=4502,LAYERS=4503;private PopupWindow popup;private boolean mapInputLocked;
+ private static final int IMPORT_MAP=4301,IMPORT_TIFF=4302,IMPORT_OZI=4303,EXPORT_MAP_SNAPSHOT=4304,DEM=4602,CATALOG=4502,LAYERS=4503;private PopupWindow popup;private boolean mapInputLocked;private String pendingMapSnapshot;
  private MagneticHeading mapCompass;
  private TextView compassArrow,compassCourse;
  private LinearLayout compassPanel;
@@ -29,7 +29,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   }
  }
  public static void open(Activity parent,long project){Intent i=new Intent(parent,LocalMapActivity.class);i.putExtra("project",project);parent.startActivity(i);}
- protected void onCreate(Bundle state){super.onCreate(state);mapCompass=new MagneticHeading(this,this::displayCompassReading);projectId=getIntent().getLongExtra("project",-1);root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(MapHud.BAR);setContentView(root);WorkspaceUi.systemBars(this);applyMapScreenOptions(false);if(state!=null){mapInputLocked=state.getBoolean("map_input_locked");pendingEdit=state.getBundle("map_edit");pendingDrawType=state.getString("drawing_type");Object saved=state.getSerializable("drawing_points");if(saved instanceof ArrayList)pendingDrawPoints=(ArrayList<double[]>)saved;}load();}
+ protected void onCreate(Bundle state){super.onCreate(state);mapCompass=new MagneticHeading(this,this::displayCompassReading);projectId=getIntent().getLongExtra("project",-1);root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(MapHud.BAR);setContentView(root);WorkspaceUi.systemBars(this);applyMapScreenOptions(false);if(state!=null){pendingMapSnapshot=state.getString("pending_map_snapshot");mapInputLocked=state.getBoolean("map_input_locked");pendingEdit=state.getBundle("map_edit");pendingDrawType=state.getString("drawing_type");Object saved=state.getSerializable("drawing_points");if(saved instanceof ArrayList)pendingDrawPoints=(ArrayList<double[]>)saved;}load();}
  private TextView label(String s,int size){TextView t=new TextView(this);t.setText(s);t.setTypeface(WorkspaceUi.font(this));t.setTextColor(0xffffffff);t.setTextSize(size);t.setPadding(14,10,14,10);return t;}
  private void button(LinearLayout row,String name,final Runnable action){Button b=WorkspaceUi.button(this,name,()->{if(!busy)action.run();});b.setTextSize(12);LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(0,(int)(50*getResources().getDisplayMetrics().density),1);p.setMargins(2,2,2,2);row.addView(b,p);}
  private File mapFile(){return new File(getFilesDir(),"local_basemap_"+projectId+".mbtiles");}
@@ -130,7 +130,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
      getPreferences(0).edit().putBoolean("map_night_raster",enabled).apply();
      map.setNightRaster(enabled);
     }),
-    item("Закрыть карту", this::onBackPressed));
+    item("Снимок экрана",this::exportMapSnapshot),item("Закрыть карту", this::onBackPressed));
  }
  private void toggleMapInputLock() {
   if (!canLeave()) return;
@@ -490,7 +490,69 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void importOzi(final Uri calibration,final Uri image,final String imageName,final OziCalibration.Encoding encoding){final String expected;try{expected=LocalRasterStore.stamp(mapFile());}catch(IOException e){error(e.getMessage());return;}busy=true;status.setText("Проверка и преобразование Ozi…");worker.execute(()->{File mapSource=null,imageSource=null,prepared=null;String failure=null;double[] bounds=null;try{mapSource=File.createTempFile("ozi-calibration-",".map",getFilesDir());imageSource=File.createTempFile("ozi-image-",".tmp",getFilesDir());copyRasterInput(calibration,mapSource,OziCalibration.MAX_BYTES);copyRasterInput(image,imageSource,OziRaster.MAX_IMAGE);try(OziRaster raster=new OziRaster(mapSource,imageSource,imageName,encoding)){GeoRasterTransform t=raster.transform();bounds=new double[]{t.west,t.south,t.east,t.north};}prepared=File.createTempFile("ozi-map-",".mbtiles",getFilesDir());OziImport.write(mapSource,imageSource,imageName,prepared,(done,total)->{if(disposed)throw new IOException("Импорт отменён");},encoding);try(OfflineTiles checked=new OfflineTiles(prepared)){}synchronized(LocalRasterStore.class){if(disposed)throw new IOException("Импорт отменён");ProjectStore store=new ProjectStore(this);try{store.load(projectId);}finally{store.close();}LocalRasterStore.replace(prepared,mapFile(),expected);prepared=null;}}catch(Exception e){failure=e.getMessage();}finally{if(mapSource!=null)mapSource.delete();if(imageSource!=null)imageSource.delete();if(prepared!=null)prepared.delete();}importFinished(failure,bounds);});}
  private void confirmHillshade(){if(!canLeave())return;final long owner=projectId;try{final String sourceStamp,targetStamp;synchronized(LocalRasterStore.class){if(!DemActivity.file(this,owner).isFile())throw new IOException("Сначала установите DEM этого проекта");try(HgtRaster source=HgtRaster.owned(DemActivity.file(this,owner),owner)){}sourceStamp=LocalRasterStore.stamp(DemActivity.file(this,owner));targetStamp=LocalRasterStore.stamp(mapFile());}AlertDialog confirm=new AlertDialog.Builder(this).setTitle("Создать рельеф DEM").setMessage("Из установленного HGT будет создана серая отмывка: свет с азимута 315°, высота света 45°, без увеличения высот. WGS84, метры SRTM; прозрачные ячейки при NoData. \n\n«Создать» заменит сохранённую локальную карту этого проекта. Исходный DEM, объекты, вложения и кеш сохранятся. До 512 МиБ / 20 000 тайлов. В составе карт локальный слой добавляется явно.").setPositiveButton("Создать",(d,w)->buildHillshade(owner,sourceStamp,targetStamp)).setNegativeButton("Отмена",null).create();confirm.setOnShowListener(d->compositionFont(confirm.getWindow().getDecorView()));confirm.show();}catch(Exception e){error("Рельеф не создан: "+e.getMessage());}}
  private void buildHillshade(final long owner,final String sourceStamp,final String targetStamp){if(busy||disposed||projectId!=owner)return;busy=true;status.setText("Построение рельефа HGT…");worker.execute(()->{File prepared=null;String failure=null;double[] bounds=null;File source=DemActivity.file(this,owner),target=new File(getFilesDir(),"local_basemap_"+owner+".mbtiles");try{synchronized(LocalRasterStore.class){if(disposed||projectId!=owner)throw new IOException("Построение отменено");if(!LocalRasterStore.stamp(source).equals(sourceStamp))throw new IOException("DEM изменён после подтверждения");if(!LocalRasterStore.stamp(target).equals(targetStamp))throw new IOException("Карта изменена после подтверждения");try(HgtRaster dem=HgtRaster.owned(source,owner)){bounds=new double[]{dem.west,dem.south,dem.west+1,dem.south+1};}}prepared=File.createTempFile("hgt-shade-",".mbtiles",getFilesDir());HgtHillshadeImport.write(source,owner,prepared,(done,total)->{if(disposed)throw new IOException("Построение отменено");});try(OfflineTiles checked=new OfflineTiles(prepared)){}synchronized(LocalRasterStore.class){if(disposed||projectId!=owner)throw new IOException("Построение отменено");if(!LocalRasterStore.stamp(source).equals(sourceStamp))throw new IOException("DEM изменён при построении");try(HgtRaster dem=HgtRaster.owned(source,owner)){}ProjectStore store=new ProjectStore(this);try{if(!store.exists(owner))throw new IOException("Проект удалён");}finally{store.close();}LocalRasterStore.replace(prepared,target,targetStamp);prepared=null;}}catch(Exception e){failure=e.getMessage();}finally{if(prepared!=null)prepared.delete();}importFinished(failure,bounds);});}
- protected void onActivityResult(int request,int result,Intent intent){super.onActivityResult(request,result,intent);if(request==DEM){if(result==RESULT_OK)show(true);return;}if(request==LAYERS){refreshMapOnResume=false;if(result==RESULT_OK)show(true);return;}if(request==CATALOG){if(result==RESULT_OK){int action=intent==null?0:intent.getIntExtra(MapCatalogActivity.RESULT_ACTION,0);if(action==MapCatalogActivity.ACTION_SETTINGS)onlineSettings();else if(action==MapCatalogActivity.ACTION_EXPORT){refreshMapOnResume=true;startActivity(new Intent(this,CacheExportActivity.class).putExtra("project",projectId));}else show(true);}return;}if(request==IMPORT_OZI&&result==RESULT_OK&&intent!=null&&!busy){selectedOzi(intent);return;}if(request==IMPORT_TIFF&&result==RESULT_OK&&intent!=null&&intent.getData()!=null&&!busy){final Uri selected=intent.getData();AlertDialog confirm=new AlertDialog.Builder(this).setTitle("Импорт GeoTIFF").setMessage("Локальная копия заменит сохранённый MBTiles этого проекта после успешной проверки. Поддержаны RGB/gray8 strips/tiles: raw или Deflate, EPSG:4326/3857, без DEM. Поворот/скос: raw strips или TIFF tiles. До 512 МиБ/20 000 тайлов. Исходный файл и объекты сохраняются.").setPositiveButton("Импортировать",(d,w)->importMap(selected,true)).setNegativeButton("Отмена",null).create();confirm.setOnShowListener(d->compositionFont(confirm.getWindow().getDecorView()));confirm.show();return;}if(request!=IMPORT_MAP||result!=RESULT_OK||intent==null||intent.getData()==null||busy)return;importMap(intent.getData());}
+ private void exportMapSnapshot() {
+  if(busy||map==null||pendingMapSnapshot!=null)return;
+  View scene=(View)map.getParent();
+  int width=scene.getWidth(),height=scene.getHeight();
+  if(width<1||height<1){error("Карта ещё открывается");return;}
+  double scale=Math.min(1,Math.sqrt(8_000_000d/(width*(double)height)));
+  final android.graphics.Bitmap image;
+  try{
+   image=android.graphics.Bitmap.createBitmap(Math.max(1,(int)(width*scale)),
+     Math.max(1,(int)(height*scale)),android.graphics.Bitmap.Config.ARGB_8888);
+   android.graphics.Canvas canvas=new android.graphics.Canvas(image);
+   canvas.scale((float)scale,(float)scale);
+   scene.draw(canvas);
+  }catch(RuntimeException|OutOfMemoryError failure){error("Не удалось создать снимок карты");return;}
+  busy=true;
+  worker.execute(()->{
+   File file=null;
+   try{
+    file=File.createTempFile("map-snapshot-",".png",getCacheDir());
+    try(OutputStream output=new FileOutputStream(file)){
+     if(!image.compress(android.graphics.Bitmap.CompressFormat.PNG,100,output))
+      throw new IOException("Не удалось записать PNG");
+    }
+    final File ready=file;
+    runOnUiThread(()->{
+     if(disposed){ready.delete();return;}
+     busy=false;
+     pendingMapSnapshot=ready.getName();
+     Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE)
+       .setType("image/png").putExtra(Intent.EXTRA_TITLE,"Рабочая карта.png");
+     try{startActivityForResult(intent,EXPORT_MAP_SNAPSHOT);}
+     catch(ActivityNotFoundException failure){pendingMapSnapshot=null;ready.delete();error("Не найден выбор места сохранения");}
+    });
+   }catch(IOException failure){
+    if(file!=null)file.delete();
+    runOnUiThread(()->{if(!disposed){busy=false;error(failure.getMessage());}});
+   }finally{image.recycle();}
+  });
+ }
+
+ private void finishMapSnapshot(int result,Intent intent) {
+  String name=pendingMapSnapshot;
+  pendingMapSnapshot=null;
+  if(name==null||!name.matches("map-snapshot-[-0-9]+[.]png"))return;
+  File source=new File(getCacheDir(),name);
+  if(result!=RESULT_OK||intent==null||intent.getData()==null){source.delete();return;}
+  Uri destination=intent.getData();
+  if(!"content".equals(destination.getScheme())&&!"file".equals(destination.getScheme())){
+   source.delete();error("Выберите файл для снимка");return;
+  }
+  worker.execute(()->{
+   try(InputStream input=new FileInputStream(source);OutputStream output=getContentResolver().openOutputStream(destination,"w")){
+    if(output==null)throw new IOException("Не удалось открыть файл снимка");
+    byte[] buffer=new byte[65536];
+    for(int count;(count=input.read(buffer))!=-1;)output.write(buffer,0,count);
+   }catch(IOException|SecurityException failure){
+    runOnUiThread(()->{if(!disposed)error("Снимок не сохранён: "+failure.getMessage());});
+    return;
+   }finally{source.delete();}
+   runOnUiThread(()->{if(!disposed)Toast.makeText(this,"Снимок карты сохранён",Toast.LENGTH_SHORT).show();});
+  });
+ }
+ protected void onActivityResult(int request,int result,Intent intent){super.onActivityResult(request,result,intent);if(request==EXPORT_MAP_SNAPSHOT){finishMapSnapshot(result,intent);return;}if(request==DEM){if(result==RESULT_OK)show(true);return;}if(request==LAYERS){refreshMapOnResume=false;if(result==RESULT_OK)show(true);return;}if(request==CATALOG){if(result==RESULT_OK){int action=intent==null?0:intent.getIntExtra(MapCatalogActivity.RESULT_ACTION,0);if(action==MapCatalogActivity.ACTION_SETTINGS)onlineSettings();else if(action==MapCatalogActivity.ACTION_EXPORT){refreshMapOnResume=true;startActivity(new Intent(this,CacheExportActivity.class).putExtra("project",projectId));}else show(true);}return;}if(request==IMPORT_OZI&&result==RESULT_OK&&intent!=null&&!busy){selectedOzi(intent);return;}if(request==IMPORT_TIFF&&result==RESULT_OK&&intent!=null&&intent.getData()!=null&&!busy){final Uri selected=intent.getData();AlertDialog confirm=new AlertDialog.Builder(this).setTitle("Импорт GeoTIFF").setMessage("Локальная копия заменит сохранённый MBTiles этого проекта после успешной проверки. Поддержаны RGB/gray8 strips/tiles: raw или Deflate, EPSG:4326/3857, без DEM. Поворот/скос: raw strips или TIFF tiles. До 512 МиБ/20 000 тайлов. Исходный файл и объекты сохраняются.").setPositiveButton("Импортировать",(d,w)->importMap(selected,true)).setNegativeButton("Отмена",null).create();confirm.setOnShowListener(d->compositionFont(confirm.getWindow().getDecorView()));confirm.show();return;}if(request!=IMPORT_MAP||result!=RESULT_OK||intent==null||intent.getData()==null||busy)return;importMap(intent.getData());}
  private void importMap(final Uri uri){importMap(uri,false);}
  private void importMap(final Uri uri,final boolean tiff){
   if(!"content".equals(uri.getScheme())&&!"file".equals(uri.getScheme())){error("Выберите локальный файл");return;}
@@ -608,6 +670,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  public void onBackPressed(){if(map!=null&&map.drawingType()!=null)discardDrawing(true);else requestMapExit();}
  protected void onSaveInstanceState(Bundle state){
   state.putBoolean("map_input_locked",mapInputLocked);
+  state.putString("pending_map_snapshot",pendingMapSnapshot);
   if(activeEdit!=null&&!busy&&activeEdit.dialog.isShowing())state.putBundle("map_edit",activeEdit.snapshot(projectId));
   else if(pendingEdit!=null)state.putBundle("map_edit",pendingEdit);
   if(map!=null&&map.drawingType()!=null){state.putString("drawing_type",map.drawingType());state.putSerializable("drawing_points",new ArrayList<double[]>(map.drawingPoints()));}super.onSaveInstanceState(state);}

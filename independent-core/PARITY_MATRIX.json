@@ -743,6 +743,7 @@
         "maps_submenu_display_scale_value": "Карты → Масштаб карты: численный масштаб по центру и плотности экрана"
       },
       "partial": {
+        "core_submenu_print_map": "Меню: снимок области карты в PNG через явный Android-выбор места сохранения.",
         "orientation_submenu_compass_on_map": "Ориентирование → Показать компас: магнитный север и азимут без геолокации.",
         "orientation_submenu_status": "Ориентирование → Статус компаса: данные и калибровка.",
         "settings_orientation_heading_display_type_title": "Ориентирование → Курс по компасу: стрелка, азимут или оба.",
@@ -781,9 +782,7 @@
         "settings_tracker_signal_warnings_title"
       ],
       "open_by_domain": {
-        "core": [
-            "core_submenu_print_map"
-        ],
+        "core": [],
         "geolocation": [
           "geolocation_submenu_barometer"
         ],
