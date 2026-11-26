@@ -845,6 +845,11 @@
         ]
       }
     },
+    "reference_line_split": {
+      "reference": "landmarks_context_menu_split_here",
+      "scope": "Одиночный LineString, внутренняя вершина, два объекта в той же папке.",
+      "verification": "PENDING"
+    },
     "manager_display_modes": {
       "code_commit": "00ed9f89fbb4db58bc8195d660c644b335c23abd",
       "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45881157237",

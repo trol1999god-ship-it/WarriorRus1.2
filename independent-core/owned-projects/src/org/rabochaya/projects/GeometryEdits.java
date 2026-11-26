@@ -51,6 +51,52 @@ public final class GeometryEdits {
         target.coordinates.setTextContent(GeometryCoordinates.kml(points));
     }
 
+    public static boolean canSplitLine(Element feature) {
+        if (!is(feature,"Placemark")) return false;
+        int lines=0;
+        for (Element element : children(feature)) {
+            String name=local(element);
+            if (is(element,"LineString")) lines++;
+            else if (Arrays.asList("Point","Polygon","MultiGeometry","LinearRing","Model","Track","MultiTrack").contains(name))
+                return false;
+        }
+        return lines==1;
+    }
+
+    /** Split a saved standalone line. Both results share the selected endpoint. */
+    public static Element splitLine(Element feature,String key,String expected,int vertex) {
+        if (!canSplitLine(feature) || !(feature.getParentNode() instanceof Element))
+            throw new IllegalArgumentException("Можно разделить только отдельную линию");
+        Target target=checked(feature,key,expected);
+        if (!"LineString".equals(target.type)) throw new IllegalArgumentException("Нужна линия");
+        String source=target.coordinates.getTextContent();
+        editorText(source,"LineString");
+        String[] points=source.trim().split("\\s+");
+        if (vertex<=0 || vertex>=points.length-1)
+            throw new IllegalArgumentException("Выберите внутреннюю вершину");
+
+        Element copy=(Element)feature.cloneNode(true);
+        Map<String,Integer> counts=new HashMap<>();
+        ObjectTree.countIds(feature.getOwnerDocument().getDocumentElement(),counts,0);
+        Map<String,String> ids=new HashMap<>();
+        ObjectTree.newIds(copy,counts,new HashSet<>(counts.keySet()),ids,0);
+        ObjectTree.rewrite(copy,ids,0);
+        child(child(copy,"LineString"),"coordinates").setTextContent(
+            joinCoordinates(points,vertex,points.length));
+        target.coordinates.setTextContent(joinCoordinates(points,0,vertex+1));
+        feature.getParentNode().insertBefore(copy,feature.getNextSibling());
+        return copy;
+    }
+
+    private static String joinCoordinates(String[] points,int first,int end) {
+        StringBuilder output=new StringBuilder();
+        for (int i=first;i<end;i++) {
+            if (i>first) output.append(' ');
+            output.append(points[i]);
+        }
+        return output.toString();
+    }
+
     public static void addHole(Element feature, String key, String expected, String input) {
         Target target = checked(feature, key, expected);
         if (target.polygon == null || target.hole)

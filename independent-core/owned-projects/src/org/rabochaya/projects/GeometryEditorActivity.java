@@ -39,7 +39,7 @@ public final class GeometryEditorActivity extends Activity {
     private Button save,more,close;private AlertDialog profileDialog;
     private Toast notice;
     private final ExecutorService worker=Executors.newSingleThreadExecutor();
-    private boolean busy,disposed,selecting,addingHole,orphan,profileRunning;
+    private boolean busy,disposed,selecting,addingHole,orphan,profileRunning,canSplitLine;
     private int current=-1;
     private String expected,base="";
 
@@ -103,16 +103,46 @@ public final class GeometryEditorActivity extends Activity {
                 if(index>0){titles.add("Выше в списке");operations.add("up");}
                 if(index+1<rows.size()){titles.add("Ниже в списке");operations.add("down");}
                 titles.add("Удалить вершину");operations.add("delete");
+                if(canSplitLine && !dirty() && index>0 && index+1<rows.size()){
+                    titles.add("Разделить здесь");operations.add("split");
+                }
             }
             new AlertDialog.Builder(this).setTitle("Вершина "+(index+1)).setItems(titles.toArray(new String[titles.size()]),(dialog,which)->{
                 final String operation=operations.get(which);
                 if(operation.equals("replace")||operation.equals("before")||operation.equals("after")){
                     try{openVertexEditor(new VertexEditDraft(project,featureId,VERTEX_SESSION,parts.get(current).key,expected,VertexEditDraft.stamp(text),type,addingHole,index,operation,rows.get(index),0,rows.get(index).length(),""));}catch(IllegalArgumentException error){status.setText(error.getMessage());}
                 }else if(operation.equals("delete")){try{openGeometryConfirmation(new GeometryConfirmationDraft(project,featureId,VERTEX_SESSION,sourcePart.key,sourceToken,VertexEditDraft.stamp(text),type,"vertex",sourceAdding,index),"");}catch(IllegalArgumentException error){status.setText(error.getMessage());}}
+                else if(operation.equals("split"))confirmSplit(sourcePart,index);
                 else applyVertex(text,type,index,operation,null,null);
             }).setNegativeButton("Отмена",null).show();
         }).setNegativeButton("Закрыть",null).show();
     }
+    private void confirmSplit(GeometryEdits.Part source,int vertex){
+        WorkspaceUi.showDialog(this,new AlertDialog.Builder(this)
+            .setMessage("Разделить линию на два объекта в этой вершине?")
+            .setNegativeButton("Отмена",null).setPositiveButton("Разделить",(dialog,which)->{
+                if(busy||disposed||dirty()||current<0||parts.get(current)!=source||!source.token.equals(expected)){
+                    status.setText("Линия изменилась. Выберите вершину заново");
+                    return;
+                }
+                enabled(false);
+                status.setText("Разделение линии…");
+                worker.execute(()->{
+                    ProjectStore store=new ProjectStore(this);
+                    try{
+                        ObjectTreeWrites.splitLine(store,project,featureId,source.key,source.token,vertex);
+                        runOnUiThread(()->{
+                            if(disposed)return;
+                            Toast.makeText(this,"Линия разделена",Toast.LENGTH_SHORT).show();
+                            load();
+                        });
+                    }catch(Exception error){
+                        runOnUiThread(()->{if(!disposed){enabled(true);status.setText(error.getMessage());}});
+                    }finally{store.close();}
+                });
+            }));
+    }
+
     private boolean applyVertex(String original,String type,int index,String operation,String point,EditText field){return applyVertex(original,type,index,operation,point,field,null);}
     private boolean applyVertex(String original,String type,int index,String operation,String point,EditText field,TextView validation){
         if(busy||disposed||!input.getText().toString().equals(original)){status.setText("Ввод изменился; выберите вершину заново");return false;}
@@ -184,10 +214,11 @@ public final class GeometryEditorActivity extends Activity {
         enabled(false);status.setText("Открытие геометрии…");
         worker.execute(()->{ProjectStore store=new ProjectStore(this);try{
             Element feature=store.load(project).byId(featureId);if(feature==null)throw new IOException("Объект больше не существует");
+            final boolean splittable=GeometryEdits.canSplitLine(feature);
             final List<GeometryEdits.Part> found=GeometryEdits.parts(feature);if(found.isEmpty())throw new IOException("Нет поддерживаемых контуров для редактирования");
             GeometryDraft draft=null;String warning="";try{draft=GeometryDraft.load(drafts(),project,featureId);}catch(IOException e){warning=e.getMessage();}
             final GeometryDraft restored=draft;final String message=warning;
-            runOnUiThread(()->{if(!disposed){parts=found;build(restored,message);}});
+            runOnUiThread(()->{if(!disposed){parts=found;canSplitLine=splittable;build(restored,message);}});
         }catch(final Exception e){runOnUiThread(()->{if(!disposed){busy=false;status.setText("Не удалось открыть геометрию: "+e.getMessage());if(root.getChildCount()==1)button(root,"Закрыть",()->finish());}});}finally{store.close();}});
     }
     private void build(GeometryDraft draft,String warning){

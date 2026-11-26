@@ -19,7 +19,27 @@ public final class GeometryEditsTests {
  static String xml(Node node)throws Exception{StringWriter out=new StringWriter();Transformer t=TransformerFactory.newInstance().newTransformer();t.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION,"yes");t.transform(new DOMSource(node),new StreamResult(out));return out.toString();}
  static Element named(Document doc,String tag){NodeList values=doc.getElementsByTagNameNS("http://www.opengis.net/kml/2.2",tag);if(values.getLength()==0)values=doc.getElementsByTagNameNS("*",tag);return (Element)values.item(0);}
  static void invalid(Element feature,GeometryEdits.Part p,String text)throws Exception{String before=xml(feature);try{GeometryEdits.replace(feature,p.key,p.token,text);throw new AssertionError("accepted invalid input");}catch(IllegalArgumentException expected){checks++;}check(xml(feature).equals(before),"invalid input is atomic");}
+ static void splitStandaloneLine()throws Exception{
+  Document doc=parse("<kml><Document><Placemark id='route'><name>Маршрут</name><description>attachments/a.jpg</description>"
+    +"<Style id='style'><LineStyle><color>ff00ff00</color></LineStyle></Style><styleUrl>#style</styleUrl>"
+    +"<LineString id='line'><altitudeMode>absolute</altitudeMode><coordinates>10,20,1 11,21,2 12,22,3</coordinates></LineString>"
+    +"</Placemark></Document></kml>");
+  Element route=feature(doc); GeometryEdits.Part part=GeometryEdits.parts(route).get(0);
+  String original=xml(doc);
+  try{GeometryEdits.splitLine(route,part.key,part.token,0);throw new AssertionError("endpoint");}
+  catch(IllegalArgumentException expected){check(xml(doc).equals(original),"failed split leaves DOM unchanged");}
+  Element second=GeometryEdits.splitLine(route,part.key,part.token,1);
+  check(route.getNextSibling()==second,"second object remains in the original folder");
+  check(!route.getAttribute("id").equals(second.getAttribute("id")),"second object has an independent id");
+  check(GeometryEdits.parts(route).get(0).text.equals("20 10 1\n21 11 2"),"first line retains altitude and cut vertex");
+  check(GeometryEdits.parts(second).get(0).text.equals("21 11 2\n22 12 3"),"second line retains altitude and cut vertex");
+  check(xml(second).contains("attachments/a.jpg")&&xml(second).contains("absolute"),"metadata survives the split");
+  String newStyle=((Element)second.getElementsByTagName("Style").item(0)).getAttribute("id");
+  check(second.getElementsByTagName("styleUrl").item(0).getTextContent().equals("#"+newStyle),"cloned style reference follows new id");
+  check(!GeometryEdits.canSplitLine(feature(parse(XML))),"mixed geometry stays outside split operation");
+ }
  public static void main(String[] args)throws Exception{
+  splitStandaloneLine();
   Document doc=parse(XML);Element f=feature(doc);List<GeometryEdits.Part> parts=GeometryEdits.parts(f);check(parts.size()==4,"route, outer, inner and nested point only");GeometryEdits.Part route=parts.get(0),outer=parts.get(1),hole=parts.get(2),point=parts.get(3);check(route.key.equals("0.0")&&outer.key.equals("0.1/outer")&&hole.hole&&point.key.equals("0.2.0"),"stable geometry paths");check(route.text.equals("20 10 30\n21 11 40"),"editor axes and altitudes");
   String description=xml(named(doc,"description")),extended=xml(named(doc,"ExtendedData")),polygon=xml(named(doc,"Polygon")),track=xml(named(doc,"Track")),model=xml(named(doc,"Model"));
   invalid(f,route,"NaN 0\n1 2");invalid(f,route,"91 0\n1 2");invalid(f,route,"0 0");invalid(f,outer,"0 0\n0 0\n1 1");invalid(f,outer,"0 0\n-0 0\n0 -0");invalid(f,outer,"90 1\n90 2\n90 3");invalid(f,outer,"0 180\n0 -180\n1 1");

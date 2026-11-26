@@ -69,6 +69,22 @@ public final class ObjectTreeWrites {
   }
  }
 
+ static void splitLine(ProjectStore store,long projectId,String featureId,
+                       String key,String expected,int vertex)throws IOException {
+  SQLiteDatabase db=store.getWritableDatabase();
+  db.beginTransaction();
+  try {
+   KmlProject project=store.load(projectId);
+   Element feature=project.byId(featureId);
+   if(feature==null)throw new IOException("Объект больше не существует");
+   GeometryEdits.splitLine(feature,key,expected,vertex);
+   ProjectWrites.savePreservingAssets(store,projectId,project);
+   db.setTransactionSuccessful();
+  } finally {
+   db.endTransaction();
+  }
+ }
+
  public static KmlProject assignSvg(ProjectStore store, long id, String key, String expected,
                                     InputStream input) throws IOException {
   return assignSvg(store, id, key, expected, input, null);
