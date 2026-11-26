@@ -200,12 +200,17 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   Spinner distances=gridChoice(form,"Формат расстояния",DisplayUnits.DISTANCE,DisplayUnits.distanceMode(this));
   form.addView(coordinateCaption("Азимут"));
   Spinner bearings=gridChoice(form,"Азимут",DisplayUnits.BEARING,DisplayUnits.bearingMode(this));
+  form.addView(coordinateCaption("Формат площади"));
+  Spinner areas=gridChoice(form,"Формат площади",DisplayUnits.AREA,DisplayUnits.areaMode(this));
+  form.addView(coordinateCaption("Уклон"));
+  Spinner slopes=gridChoice(form,"Уклон",DisplayUnits.SLOPE,DisplayUnits.slopeMode(this));
   ScrollView scroll=new ScrollView(this);
   scroll.addView(form);
   WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setTitle("Единицы измерения")
     .setView(scroll).setPositiveButton("Сохранить",(dialog,which)->{
      DisplayUnits.prefs(this).edit().putInt("distance",distances.getSelectedItemPosition())
-       .putInt("bearing",bearings.getSelectedItemPosition()).apply();
+       .putInt("bearing",bearings.getSelectedItemPosition()).putInt("area",areas.getSelectedItemPosition())
+       .putInt("slope",slopes.getSelectedItemPosition()).apply();
      refreshCoordinates();
      map.invalidate();
      refreshCompassPanel();
@@ -656,6 +661,8 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
     for(List<double[]> ring:geometry.rings)points+=ring.size();
     String type="Polygon".equals(geometry.type)?"Область":"Путь";
     text.append(type).append("\nТочек: ").append(points).append("\n");
+    if("Polygon".equals(geometry.type))text.append("Площадь: ")
+      .append(DisplayUnits.area(SurfaceMeasurement.area(geometry.rings),DisplayUnits.areaMode(this))).append("\n");
    }
   }
   return text.append("\nВложения: ").append(MediaLinks.list(feature.element).size()).toString();

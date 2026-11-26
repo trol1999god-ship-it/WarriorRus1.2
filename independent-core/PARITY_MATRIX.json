@@ -743,6 +743,8 @@
         "maps_submenu_display_scale_value": "Карты → Масштаб карты: численный масштаб по центру и плотности экрана"
       },
       "partial": {
+        "settings_display_areas_title": "Формат площади применяется к карточке области, включая вычитание отверстий.",
+        "settings_display_slopes_title": "Формат уклона применяется к подъёму и спуску в профиле DEM.",
         "settings_display_distances_title": "Опции: метрический, английский и морской форматы линейки и DEM.",
         "settings_display_bearings_title": "Опции: градусы, грады, тысячные и румбы для магнитного курса.",
         "geolocation_submenu_barometer": "Ориентирование: локальное давление и калибровка по введённой высоте.",
@@ -799,8 +801,6 @@
         ],
         "orientation": [],
         "settings": [
-          "settings_display_areas_title",
-          "settings_display_slopes_title",
           "settings_display_reference_north_title",
           "settings_technical_disable_keyguard_title",
           "settings_canvas_infobox_style_title",

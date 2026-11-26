@@ -92,6 +92,24 @@ public final class GeometryEditorActivity extends Activity {
         if(mode!=0&&profile.valid>0)((TextView)content.getChildAt(content.getChildCount()-1)).setText("Отсчёты: min "
             +DisplayUnits.elevation(profile.min,mode)+"; max "+DisplayUnits.elevation(profile.max,mode)
             +". Набор "+DisplayUnits.elevation(profile.gain,mode)+"; спуск "+DisplayUnits.elevation(profile.loss,mode)+".");
+        int riseIndex=-1,fallIndex=-1;
+        double ascent=0,descent=0;
+        for(int i=1;i<profile.height.length;i++){
+            double run=profile.distance[i]-profile.distance[i-1];
+            double rise=profile.height[i]-profile.height[i-1];
+            if(!(run>0)||Double.isNaN(rise))continue;
+            if(rise/run>ascent){ascent=rise/run;riseIndex=i;}
+            if(rise/run<descent){descent=rise/run;fallIndex=i;}
+        }
+        if(riseIndex>=0||fallIndex>=0){
+            int slopeMode=DisplayUnits.slopeMode(this);
+            StringBuilder grades=new StringBuilder("Уклон DEM");
+            if(riseIndex>=0)grades.append(" · подъём ").append(DisplayUnits.slope(profile.distance[riseIndex]-profile.distance[riseIndex-1],
+                profile.height[riseIndex]-profile.height[riseIndex-1],slopeMode));
+            if(fallIndex>=0)grades.append(" · спуск ").append(DisplayUnits.slope(profile.distance[fallIndex]-profile.distance[fallIndex-1],
+                profile.height[fallIndex]-profile.height[fallIndex-1],slopeMode));
+            content.addView(label(grades.toString(),15));
+        }
         StringBuilder rows=new StringBuilder("Расстояние, км · высота DEM, м\n");for(int i=0;i<profile.height.length;i++)rows.append(String.format(java.util.Locale.US,"%.3f · %s\n",profile.distance[i]/1000,Double.isNaN(profile.height[i])?"нет данных":String.format(java.util.Locale.US,"%.1f",profile.height[i])));if(mode!=0){
             rows.setLength(0);rows.append("Расстояние · высота DEM\n");
             for(int i=0;i<profile.height.length;i++)rows.append(DisplayUnits.distance(profile.distance[i],mode))

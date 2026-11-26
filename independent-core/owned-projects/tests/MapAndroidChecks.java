@@ -727,6 +727,7 @@ public final class MapAndroidChecks extends Instrumentation {
   Context context=getTargetContext();Object store=storeClass.getConstructor(Context.class).newInstance(context);long id=-1;
   SharedPreferences prefs=context.getSharedPreferences("display-units",0);
   int oldDist=prefs.getInt("distance",0), oldBearing=prefs.getInt("bearing",0);
+  int oldArea=prefs.getInt("area",0), oldSlope=prefs.getInt("slope",0);
   long previousProject=context.getSharedPreferences("workspace-session",0).getLong("last_project",-1);
   try{
    prefs.edit().putInt("distance",0).putInt("bearing",0).commit();
@@ -738,18 +739,34 @@ public final class MapAndroidChecks extends Instrumentation {
    check(awaitDescription("Масштаб карты: 10 км"),"metric scale stays compatible");
    clickDescription("Меню");click("Опции");click("Единицы измерения");
    clickDescription("Формат расстояния");click("Морской");
-   clickDescription("Азимут");click("Грады");click("Сохранить");
+   clickDescription("Азимут");click("Грады");
+   clickDescription("Формат площади");click("Гектары");
+   clickDescription("Уклон");click("Коэффициент планирования");click("Сохранить");
    check(prefs.getInt("distance",-1)==5&&prefs.getInt("bearing",-1)==1,"distance and azimuth units persist");
    check(awaitDescription("Масштаб карты: 5 мор. ми"),"naval scale draws an integral native distance");
+   check(prefs.getInt("area",-1)==1&&prefs.getInt("slope",-1)==2,"area and slope units persist");
    Class<?> math=context.getClassLoader().loadClass("org.rabochaya.projects.DisplayUnits");
    Method azimuth=math.getDeclaredMethod("bearing",double.class,int.class);azimuth.setAccessible(true);
    check(azimuth.invoke(null,90d,1).equals("100 gon")&&azimuth.invoke(null,90d,2).equals("1600 тыс."),
      "right angle reported consistently in gradians and mils");
+   Method slope=math.getDeclaredMethod("slope",double.class,double.class,int.class);slope.setAccessible(true);
+   check(slope.invoke(null,100d,10d,0).equals("10.0 %")&&slope.invoke(null,100d,-10d,2).equals("10.0:1"),
+     "slope uses true run and rise");
+   Class<?> measure=context.getClassLoader().loadClass("org.rabochaya.projects.SurfaceMeasurement");
+   Method area=measure.getDeclaredMethod("area",List.class);area.setAccessible(true);
+   List<double[]> across=Arrays.asList(new double[]{179.5,0},new double[]{-179.5,0},
+     new double[]{-179.5,1},new double[]{179.5,1});
+   List<double[]> hole=Arrays.asList(new double[]{179.75,.25},new double[]{-179.75,.25},
+     new double[]{-179.75,.75},new double[]{179.75,.75});
+   double whole=(Double)area.invoke(null,Collections.singletonList(across));
+   double perforated=(Double)area.invoke(null,Arrays.asList(across,hole));
+   check(whole>1.23e10&&whole<1.24e10&&Math.abs(perforated/whole-.75)<.001,
+     "surface calculation wraps the antimeridian and subtracts the inner ring");
   }finally{
    if(activity!=null){Activity owner=activity;runOnMainSync(owner::finish);}
    if(id>0){call(store,"remove",new Class[]{long.class},id);staticCall("LocalMapActivity","cleanupDeletedProject",new Class[]{Context.class,long.class},context,id);}
    call(store,"close",new Class[]{});
-   prefs.edit().putInt("distance",oldDist).putInt("bearing",oldBearing).commit();
+   prefs.edit().putInt("distance",oldDist).putInt("bearing",oldBearing).putInt("area",oldArea).putInt("slope",oldSlope).commit();
    context.getSharedPreferences("workspace-session",0).edit().putLong("last_project",previousProject).commit();
   }
  }
