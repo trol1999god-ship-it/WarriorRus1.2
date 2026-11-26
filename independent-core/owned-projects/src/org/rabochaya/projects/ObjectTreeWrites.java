@@ -71,13 +71,26 @@ public final class ObjectTreeWrites {
 
  static void splitLine(ProjectStore store,long projectId,String featureId,
                        String key,String expected,int vertex)throws IOException {
+  changeGeometryFeature(store,projectId,featureId,feature->GeometryEdits.splitLine(feature,key,expected,vertex));
+ }
+
+ static void ungroupPoints(ProjectStore store,long projectId,String featureId,String expected)throws IOException {
+  changeGeometryFeature(store,projectId,featureId,feature->GeometryEdits.ungroupPoints(feature,expected));
+ }
+
+ private interface GeometryChange {
+  void apply(Element feature);
+ }
+
+ private static void changeGeometryFeature(ProjectStore store,long projectId,String featureId,
+                                           GeometryChange operation)throws IOException {
   SQLiteDatabase db=store.getWritableDatabase();
   db.beginTransaction();
   try {
    KmlProject project=store.load(projectId);
    Element feature=project.byId(featureId);
    if(feature==null)throw new IOException("Объект больше не существует");
-   GeometryEdits.splitLine(feature,key,expected,vertex);
+   operation.apply(feature);
    ProjectWrites.savePreservingAssets(store,projectId,project);
    db.setTransactionSuccessful();
   } finally {

@@ -850,10 +850,16 @@
       "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45893700531",
       "coordinates_passed_api": [23, 35, 37]
     },
+    "reference_point_ungroup": {
+      "reference": "landmarks_context_menu_split_points",
+      "scope": "Отдельные объекты из набора Point с сохранением идентификаторов точек.",
+      "verification": "PENDING"
+    },
     "reference_line_split": {
       "reference": "landmarks_context_menu_split_here",
       "scope": "Одиночный LineString, внутренняя вершина, два объекта в той же папке.",
-      "verification": "PENDING"
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45894524536",
+      "passed_api": [23, 35]
     },
     "manager_display_modes": {
       "code_commit": "00ed9f89fbb4db58bc8195d660c644b335c23abd",

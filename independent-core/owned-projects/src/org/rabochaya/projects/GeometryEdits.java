@@ -88,6 +88,73 @@ public final class GeometryEdits {
         return copy;
     }
 
+    public static boolean canUngroupPoints(Element feature) {
+        Element group=pointGroup(feature);
+        return group!=null && children(group).size()>=2;
+    }
+
+    private static Element pointGroup(Element feature) {
+        if(!is(feature,"Placemark"))return null;
+        Element group=null;
+        for(Element item:children(feature)){
+            if(is(item,"MultiGeometry")){
+                if(group!=null)return null;
+                group=item;
+            }else if(Arrays.asList("Point","LineString","LinearRing","Polygon","Model","Track","MultiTrack").contains(local(item)))return null;
+        }
+        if(group==null)return null;
+        for(Element point:children(group))if(!is(point,"Point")||child(point,"coordinates")==null)return null;
+        return group;
+    }
+
+    /** Preserve the original points and their ids while cloning only enclosing metadata. */
+    public static int ungroupPoints(Element feature,String expected) {
+        if(!canUngroupPoints(feature)||!(feature.getParentNode() instanceof Element))
+            throw new IllegalArgumentException("Нужен набор отдельных точек");
+        checked(feature,"0.0",expected);
+        Element group=pointGroup(feature);
+        List<Element> points=children(group);
+        for(Element point:points)editorText(child(point,"coordinates").getTextContent(),"Point");
+        Element template=(Element)feature.cloneNode(true);
+        Element empty=child(template,"MultiGeometry");
+        for(Element point:children(empty))empty.removeChild(point);
+        if (estimatedXmlCharacters(template)*(points.size()-1L)>4L*1024*1024)
+            throw new IllegalArgumentException("Разгруппировка превысит предел KML — 4 МиБ");
+        Map<String,Integer> counts=new HashMap<>();
+        ObjectTree.countIds(feature.getOwnerDocument().getDocumentElement(),counts,0);
+        Set<String> used=new HashSet<>(counts.keySet());
+        List<Element> separate=new ArrayList<>();
+        for(int i=1;i<points.size();i++){
+            Element copy=(Element)template.cloneNode(true);
+            Map<String,String> ids=new HashMap<>();
+            ObjectTree.newIds(copy,counts,used,ids,0);
+            ObjectTree.rewrite(copy,ids,0);
+            separate.add(copy);
+        }
+        Node parent=feature.getParentNode(), next=feature.getNextSibling();
+        for(int i=0;i<separate.size();i++){
+            Element copy=separate.get(i);
+            child(copy,"MultiGeometry").appendChild(points.get(i+1));
+            parent.insertBefore(copy,next);
+        }
+        return points.size();
+    }
+
+    private static long estimatedXmlCharacters(Node node) {
+        long length=0;
+        if(node instanceof Element) {
+            length=5+2L*node.getNodeName().length();
+            NamedNodeMap attributes=node.getAttributes();
+            for(int i=0;i<attributes.getLength();i++){
+                Node attr=attributes.item(i);
+                length+=4L+attr.getNodeName().length()+attr.getNodeValue().length();
+            }
+        }else if(node.getNodeValue()!=null)length=node.getNodeValue().length();
+        for(Node child=node.getFirstChild();child!=null;child=child.getNextSibling())
+            length+=estimatedXmlCharacters(child);
+        return length;
+    }
+
     private static String joinCoordinates(String[] points,int first,int end) {
         StringBuilder output=new StringBuilder();
         for (int i=first;i<end;i++) {

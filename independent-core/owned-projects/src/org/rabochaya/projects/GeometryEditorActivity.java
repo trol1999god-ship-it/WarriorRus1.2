@@ -39,7 +39,7 @@ public final class GeometryEditorActivity extends Activity {
     private Button save,more,close;private AlertDialog profileDialog;
     private Toast notice;
     private final ExecutorService worker=Executors.newSingleThreadExecutor();
-    private boolean busy,disposed,selecting,addingHole,orphan,profileRunning,canSplitLine;
+    private boolean busy,disposed,selecting,addingHole,orphan,profileRunning,canSplitLine,canUngroupPoints;
     private int current=-1;
     private String expected,base="";
 
@@ -62,9 +62,9 @@ public final class GeometryEditorActivity extends Activity {
         if(stagedHoleDeletion!=null)choices.add("Отменить удаление контура");
         else{if(!orphan&&!addingHole&&part.polygon&&!part.hole)choices.add("Добавить внутренний контур");
         if(!orphan&&!addingHole&&part.hole)choices.add("Удалить внутренний контур");
-        if(!orphan)choices.add("Редактировать вершины");if(!orphan&&!"Point".equals(part.type))choices.add("Профиль DEM");}
+        if(!orphan)choices.add("Редактировать вершины");if(!orphan&&canUngroupPoints&&!dirty())choices.add("Разгруппировать точки");if(!orphan&&!"Point".equals(part.type))choices.add("Профиль DEM");}
         choices.add("Копировать ввод");choices.add("Перечитать объект");
-        new AlertDialog.Builder(this).setTitle("Действия с контуром").setItems(choices.toArray(new String[choices.size()]),(d,w)->{String selected=choices.get(w);if(selected.equals("Отменить удаление контура")){cancelStagedHoleDeletion();}else if(selected.equals("Редактировать вершины")){textMode();vertices();}else if(selected.equals("Добавить внутренний контур"))newHole();else if(selected.equals("Удалить внутренний контур")){if(dirty()){status.setText("Сначала сохраните или отмените текущий ввод");return;}try{openGeometryConfirmation(new GeometryConfirmationDraft(project,featureId,VERTEX_SESSION,part.key,sourceToken,VertexEditDraft.stamp(sourceText),part.type,"hole",false,-1),"");}catch(IllegalArgumentException error){status.setText(error.getMessage());}}else if(selected.equals("Профиль DEM"))profile();else if(selected.equals("Перечитать объект"))discardReload();else{android.content.ClipboardManager clipboard=(android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);if(clipboard!=null)clipboard.setPrimaryClip(ClipData.newPlainText("Координаты WGS 84",input.getText().toString()));}}).setNegativeButton("Закрыть",null).show();
+        new AlertDialog.Builder(this).setTitle("Действия с контуром").setItems(choices.toArray(new String[choices.size()]),(d,w)->{String selected=choices.get(w);if(selected.equals("Отменить удаление контура")){cancelStagedHoleDeletion();}else if(selected.equals("Редактировать вершины")){textMode();vertices();}else if(selected.equals("Добавить внутренний контур"))newHole();else if(selected.equals("Удалить внутренний контур")){if(dirty()){status.setText("Сначала сохраните или отмените текущий ввод");return;}try{openGeometryConfirmation(new GeometryConfirmationDraft(project,featureId,VERTEX_SESSION,part.key,sourceToken,VertexEditDraft.stamp(sourceText),part.type,"hole",false,-1),"");}catch(IllegalArgumentException error){status.setText(error.getMessage());}}else if(selected.equals("Разгруппировать точки"))confirmUngroup(part);else if(selected.equals("Профиль DEM"))profile();else if(selected.equals("Перечитать объект"))discardReload();else{android.content.ClipboardManager clipboard=(android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);if(clipboard!=null)clipboard.setPrimaryClip(ClipData.newPlainText("Координаты WGS 84",input.getText().toString()));}}).setNegativeButton("Закрыть",null).show();
     }
     private void profile(){
         if(profileRunning||busy||disposed||orphan||current<0||stagedHoleDeletion!=null)return;
@@ -117,23 +117,38 @@ public final class GeometryEditorActivity extends Activity {
             }).setNegativeButton("Отмена",null).show();
         }).setNegativeButton("Закрыть",null).show();
     }
+    private interface SavedGeometryChange {
+        void apply(ProjectStore store)throws IOException;
+    }
+
     private void confirmSplit(GeometryEdits.Part source,int vertex){
-        WorkspaceUi.showDialog(this,new AlertDialog.Builder(this)
-            .setMessage("Разделить линию на два объекта в этой вершине?")
-            .setNegativeButton("Отмена",null).setPositiveButton("Разделить",(dialog,which)->{
+        confirmSavedGeometryChange(source,"Разделить линию на два объекта в этой вершине?","Разделить",
+            "Линия разделена",store->ObjectTreeWrites.splitLine(store,project,featureId,source.key,source.token,vertex));
+    }
+
+    private void confirmUngroup(GeometryEdits.Part source){
+        confirmSavedGeometryChange(source,"Сохранить каждую точку как отдельный объект?","Разгруппировать",
+            "Точки разгруппированы",store->ObjectTreeWrites.ungroupPoints(store,project,featureId,source.token));
+    }
+
+    private void confirmSavedGeometryChange(GeometryEdits.Part source,String message,String button,
+                                            String success,SavedGeometryChange operation){
+        WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setMessage(message)
+            .setNegativeButton("Отмена",null).setPositiveButton(button,(dialog,which)->{
                 if(busy||disposed||dirty()||current<0||parts.get(current)!=source||!source.token.equals(expected)){
-                    status.setText("Линия изменилась. Выберите вершину заново");
+                    status.setText("Геометрия изменилась. Откройте действие заново");
                     return;
                 }
                 enabled(false);
-                status.setText("Разделение линии…");
+                status.setText("Сохранение геометрии…");
                 worker.execute(()->{
                     ProjectStore store=new ProjectStore(this);
                     try{
-                        ObjectTreeWrites.splitLine(store,project,featureId,source.key,source.token,vertex);
+                        operation.apply(store);
                         runOnUiThread(()->{
                             if(disposed)return;
-                            Toast.makeText(this,"Линия разделена",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this,success,Toast.LENGTH_SHORT).show();
+                            preferredKey=source.key.equals("0")?"0":"0.0";
                             load();
                         });
                     }catch(Exception error){
@@ -214,11 +229,11 @@ public final class GeometryEditorActivity extends Activity {
         enabled(false);status.setText("Открытие геометрии…");
         worker.execute(()->{ProjectStore store=new ProjectStore(this);try{
             Element feature=store.load(project).byId(featureId);if(feature==null)throw new IOException("Объект больше не существует");
-            final boolean splittable=GeometryEdits.canSplitLine(feature);
+            final boolean splittable=GeometryEdits.canSplitLine(feature), pointGroup=GeometryEdits.canUngroupPoints(feature);
             final List<GeometryEdits.Part> found=GeometryEdits.parts(feature);if(found.isEmpty())throw new IOException("Нет поддерживаемых контуров для редактирования");
             GeometryDraft draft=null;String warning="";try{draft=GeometryDraft.load(drafts(),project,featureId);}catch(IOException e){warning=e.getMessage();}
             final GeometryDraft restored=draft;final String message=warning;
-            runOnUiThread(()->{if(!disposed){parts=found;canSplitLine=splittable;build(restored,message);}});
+            runOnUiThread(()->{if(!disposed){parts=found;canSplitLine=splittable;canUngroupPoints=pointGroup;build(restored,message);}});
         }catch(final Exception e){runOnUiThread(()->{if(!disposed){busy=false;status.setText("Не удалось открыть геометрию: "+e.getMessage());if(root.getChildCount()==1)button(root,"Закрыть",()->finish());}});}finally{store.close();}});
     }
     private void build(GeometryDraft draft,String warning){

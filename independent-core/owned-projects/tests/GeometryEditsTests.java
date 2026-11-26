@@ -40,6 +40,18 @@ public final class GeometryEditsTests {
  }
  public static void main(String[] args)throws Exception{
   splitStandaloneLine();
+  Document splitGroup=parse("<kml><Document><Placemark id='group'><description>Примечание</description>"
+    +"<MultiGeometry id='multi'><Point id='P1'><coordinates>1,2,3</coordinates></Point>"
+    +"<Point id='P2'><coordinates>4,5,6</coordinates></Point></MultiGeometry></Placemark></Document></kml>");
+  Element firstPointGroup=feature(splitGroup);
+  String groupToken=GeometryEdits.parts(firstPointGroup).get(0).token;
+  check(GeometryEdits.ungroupPoints(firstPointGroup,groupToken)==2,"ungroup creates one object per point");
+  Element following=(Element)firstPointGroup.getNextSibling();
+  check(!following.getAttribute("id").equals("group"),"ungroup allocates independent placemark id");
+  check(((Element)following.getElementsByTagName("Point").item(0)).getAttribute("id").equals("P2"),
+    "moving grouped points keeps their original ids");
+  check(xml(following).contains("Примечание")&&GeometryEdits.parts(following).get(0).text.equals("5 4 6"),
+    "ungroup retains shared metadata and point altitude");
   Document doc=parse(XML);Element f=feature(doc);List<GeometryEdits.Part> parts=GeometryEdits.parts(f);check(parts.size()==4,"route, outer, inner and nested point only");GeometryEdits.Part route=parts.get(0),outer=parts.get(1),hole=parts.get(2),point=parts.get(3);check(route.key.equals("0.0")&&outer.key.equals("0.1/outer")&&hole.hole&&point.key.equals("0.2.0"),"stable geometry paths");check(route.text.equals("20 10 30\n21 11 40"),"editor axes and altitudes");
   String description=xml(named(doc,"description")),extended=xml(named(doc,"ExtendedData")),polygon=xml(named(doc,"Polygon")),track=xml(named(doc,"Track")),model=xml(named(doc,"Model"));
   invalid(f,route,"NaN 0\n1 2");invalid(f,route,"91 0\n1 2");invalid(f,route,"0 0");invalid(f,outer,"0 0\n0 0\n1 1");invalid(f,outer,"0 0\n-0 0\n0 -0");invalid(f,outer,"90 1\n90 2\n90 3");invalid(f,outer,"0 180\n0 -180\n1 1");
