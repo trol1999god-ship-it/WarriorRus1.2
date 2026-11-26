@@ -4,6 +4,7 @@ import android.app.*;import android.content.*;import android.net.Uri;import andr
 public final class LocalMapActivity extends Activity implements LocalMapView.Listener {
  private static final int IMPORT_MAP=4301,IMPORT_TIFF=4302,IMPORT_OZI=4303,EXPORT_MAP_SNAPSHOT=4304,DEM=4602,CATALOG=4502,LAYERS=4503;private PopupWindow popup;private boolean mapInputLocked;private String pendingMapSnapshot;
  private MagneticHeading mapCompass;
+ private BarometerDialog barometer;
  private TextView compassArrow,compassCourse;
  private LinearLayout compassPanel;
  private boolean mapForeground;
@@ -334,10 +335,14 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   prefs.edit().putBoolean("rotate_map_compass",!prefs.getBoolean("rotate_map_compass",false)).apply();
   syncCompass();
  }
+ private void showBarometer(){
+  barometer=new BarometerDialog(this);
+  barometer.show();
+ }
  private void orientationMenu(){menu("Ориентирование",item("Компас",()->startActivity(new Intent(this,CompassActivity.class))),
     WorkspaceUi.Item.toggle("Показать компас",getPreferences(0).getBoolean("show_map_compass",false),this::toggleMapCompass),
     WorkspaceUi.Item.toggle("Вращать карту по компасу",getPreferences(0).getBoolean("rotate_map_compass",false),this::toggleCompassRotation),
-    item("Статус компаса",this::showCompassStatus),item("Курс по компасу",this::selectCompassDisplay),item("Перейти к координатам",()->goToCoordinates()),item("Форматы координат",()->coordinateOptions()),item("DEM / высота центра",()->{if(canLeave())startActivityForResult(new Intent(this,DemActivity.class).putExtra("project",projectId),DEM);}),item("Показать область DEM",()->showDemCoverage()));}
+    item("Статус компаса",this::showCompassStatus),item("Курс по компасу",this::selectCompassDisplay),item("Барометр",this::showBarometer),item("Перейти к координатам",()->goToCoordinates()),item("Форматы координат",()->coordinateOptions()),item("DEM / высота центра",()->{if(canLeave())startActivityForResult(new Intent(this,DemActivity.class).putExtra("project",projectId),DEM);}),item("Показать область DEM",()->showDemCoverage()));}
  private void showDemCoverage(){if(!canLeave()||map==null||!canMoveMap())return;try{double[] view;synchronized(LocalRasterStore.class){ProjectStore store=new ProjectStore(this);try{if(!store.exists(projectId))throw new IOException("Проект удалён");}finally{store.close();}try(HgtRaster owned=HgtRaster.owned(DemActivity.file(this,projectId),projectId)){view=owned.mapViewport(map.getWidth(),map.getHeight());}}map.restore(view[0],view[1],view[2]);saveView();}catch(IOException e){error("Область DEM недоступна: "+e.getMessage());}}
  private void manager(boolean all){if(!canLeave())return;refreshOnResume=true;if(!all){ObjectManagerActivity.open(this,projectId);return;}getSharedPreferences("org.rabochaya.projects.ProjectsActivity",0).edit().putLong("project",all?-1:projectId).putString("folder","").commit();startActivity(new Intent().setClassName(this,"org.rabochaya.projects.ProjectsActivity"));}
  private String namedMapStatus, anonymousMapStatus;
@@ -469,7 +474,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void saveView(){if(map!=null){double[] v=map.viewport();settled(v[0],v[1],v[2]);}}
  public void settled(double x,double y,double zoom){String key="view_"+projectId+"_";getPreferences(0).edit().putString(key+"x",Double.toString(x)).putString(key+"y",Double.toString(y)).putFloat(key+"z",(float)zoom).commit();}
  protected void onResume(){super.onResume();mapForeground=true;syncCompass();if(refreshOnResume&&!busy){refreshOnResume=false;refreshMapOnResume=false;load();}else if(refreshMapOnResume&&!busy){refreshMapOnResume=false;show(true);}if(map!=null)map.suspend(false);}
- protected void onPause(){mapForeground=false;mapCompass.stop();if(popup!=null)popup.dismiss();saveView();if(map!=null)map.suspend(true);super.onPause();}
+ protected void onPause(){if(barometer!=null){barometer.dismiss();barometer=null;}mapForeground=false;mapCompass.stop();if(popup!=null)popup.dismiss();saveView();if(map!=null)map.suspend(true);super.onPause();}
  protected void onDestroy(){disposed=true;if(activeEdit!=null)activeEdit.dialog.dismiss();closeDem();if(map!=null)map.close();worker.shutdown();super.onDestroy();}
  private void chooseMap(){if(map!=null&&map.drawingType()!=null){error("Завершите или отмените рисунок");return;}AlertDialog chooser=new AlertDialog.Builder(this).setTitle("Подложка карты").setItems(new String[]{"Онлайн-карта и кеш","Открыть MBTiles","Показать сохранённый MBTiles","Убрать MBTiles","Импорт GeoTIFF","Импорт Ozi (.map + изображение)","Создать рельеф из DEM"},(d,w)->{if(w==0)onlineSettings();else if(w==1)pick();else if(w==2){OnlineMapSettings.use(this,projectId,false);show(true);}else if(w==3)removeMap();else if(w==4)pickTiff();else if(w==5)pickOzi();else confirmHillshade();}).setNegativeButton("Отмена",null).create();chooser.setOnShowListener(dlg->compositionFont(chooser.getWindow().getDecorView()));chooser.show();}
  private void saveMapArea(){

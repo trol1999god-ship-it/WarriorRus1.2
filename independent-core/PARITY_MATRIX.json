@@ -743,6 +743,8 @@
         "maps_submenu_display_scale_value": "Карты → Масштаб карты: численный масштаб по центру и плотности экрана"
       },
       "partial": {
+        "geolocation_submenu_barometer": "Ориентирование: локальное давление и калибровка по введённой высоте.",
+        "settings_display_pressures_title": "Барометр: гПа, миллиметры или дюймы ртутного столба.",
         "orientation_submenu_rotate": "Ориентирование: поворот карты по магнитному курсу с преобразованием жестов.",
         "core_submenu_print_map": "Меню: снимок области карты в PNG через явный Android-выбор места сохранения.",
         "orientation_submenu_compass_on_map": "Ориентирование → Показать компас: магнитный север и азимут без геолокации.",
@@ -784,9 +786,7 @@
       ],
       "open_by_domain": {
         "core": [],
-        "geolocation": [
-          "geolocation_submenu_barometer"
-        ],
+        "geolocation": [],
         "landmarks": [
           "landmarks_submenu_control_time",
           "landmarks_submenu_display_target_information",
@@ -801,7 +801,6 @@
           "settings_display_areas_title",
           "settings_display_bearings_title",
           "settings_display_slopes_title",
-          "settings_display_pressures_title",
           "settings_display_reference_north_title",
           "settings_technical_disable_keyguard_title",
           "settings_canvas_infobox_style_title",
