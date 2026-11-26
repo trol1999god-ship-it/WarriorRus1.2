@@ -875,7 +875,7 @@
       "code_commit": "667217f8caa49fd5506d71440c62cc84d5aac9a1",
       "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45913559047",
       "scenario": "tiledetail",
-      "verification": "PENDING"
+      "passed_api": [23, 35]
     },
     "reference_map_snapshot": {
       "code_commit": "c441ea05033ad20e27a1727df5dbb9f417e41831",
