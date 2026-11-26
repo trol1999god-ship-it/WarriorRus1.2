@@ -818,8 +818,14 @@ public final class MapAndroidChecks extends Instrumentation {
   Field statusField=owner.getClass().getDeclaredField("status");statusField.setAccessible(true);
   android.view.View status=(android.view.View)statusField.get(owner);
   int fullWidth=mapView.getWidth();
+  Field toggleField=dock.getClass().getDeclaredField("toggle");toggleField.setAccessible(true);
+  android.view.View toggle=(android.view.View)toggleField.get(dock);
   checkMapControlBounds(dock,zoom,status);
   capture("map-resize-wide");
+  clickDescription("Карты");
+  waitText("Слои карты");
+  Field popupField=owner.getClass().getDeclaredField("popup");popupField.setAccessible(true);
+  android.widget.PopupWindow mapMenu=(android.widget.PopupWindow)popupField.get(owner);
   runOnMainSync(()->owner.getWindow().setLayout(Math.round(290*density),-1));
   try {
    Thread.sleep(500);
@@ -839,7 +845,11 @@ public final class MapAndroidChecks extends Instrumentation {
     scroll.scrollTo(tools.getWidth(),0);
     android.graphics.Rect visible=new android.graphics.Rect();
     check(tools.getChildAt(tools.getChildCount()-1).getGlobalVisibleRect(visible)&&visible.width()>=Math.round(48*density),"last tool reachable at compact width");
-    check(dock.getChildAt(1).getGlobalVisibleRect(visible)&&visible.width()>=Math.round(48*density),"collapse remains pinned outside the scrolling area");
+    check(toggle.getGlobalVisibleRect(visible)&&visible.width()>=Math.round(48*density)
+      &&toggle.getBottom()<=dock.getTop()&&toggle.getRight()<status.getLeft(),
+      "narrow dock disclosure is above the toolbar and does not obscure attribution");
+    check(mapMenu.isShowing()&&mapMenu.getWidth()<=mapView.getWidth()-Math.round(16*density),
+      "open map menu fits the narrowed window without dismissal");
     check(mapView.getParent()==dock.getParent()&&mapView.getBottom()>dock.getBottom(),"dock floats over the map");
    });
    check(mapView.getWidth()<fullWidth,"map receives a narrower window");
@@ -850,9 +860,23 @@ public final class MapAndroidChecks extends Instrumentation {
    runOnMainSync(()->check(compactCoordinates.getLineCount()==3,
      "default coordinate formats and height fit on three lines at compact width"));
    checkMapControlBounds(dock,zoom,status);
+   waitText("Слои карты");
+   capture("map-resize-menu-compact");
+   runOnMainSync(mapMenu::dismiss);
    capture("map-resize-compact");
+   runOnMainSync(()->owner.getWindow().setLayout(Math.round(320*density),-1));
+   Thread.sleep(350);
+   runOnMainSync(()->{
+    android.widget.HorizontalScrollView scroll=(android.widget.HorizontalScrollView)dock.getChildAt(0);
+    android.widget.LinearLayout tools=(android.widget.LinearLayout)scroll.getChildAt(0);
+    android.graphics.Rect visible=new android.graphics.Rect();
+    for(int i=0;i<tools.getChildCount();i++)
+     check(tools.getChildAt(i).getGlobalVisibleRect(visible)&&visible.width()>=Math.round(48*density),
+       "all five primary map actions fit a 320 dp window");
+   });
+   capture("map-resize-five-tools");
   } finally {
-   runOnMainSync(()->owner.getWindow().setLayout(-1,-1));
+   runOnMainSync(()->{mapMenu.dismiss();owner.getWindow().setLayout(-1,-1);});
    stableMainMap();
   }
   check(mapView.getWidth()==fullWidth,"map returns to full width");

@@ -1,8 +1,8 @@
 package org.rabochaya.projects;
-import android.app.*;import android.content.*;import android.net.Uri;import android.os.*;import android.graphics.drawable.GradientDrawable;import android.widget.*;import android.view.*;import java.io.*;import java.util.*;import java.util.concurrent.*;
+import android.app.*;import android.content.*;import android.net.Uri;import android.os.*;import android.widget.*;import android.view.*;import java.io.*;import java.util.*;import java.util.concurrent.*;
 /** Own raster map viewer with local MBTiles or explicit online sources. */
 public final class LocalMapActivity extends Activity implements LocalMapView.Listener {
- private static final int IMPORT_MAP=4301,IMPORT_TIFF=4302,IMPORT_OZI=4303,DEM=4602,CATALOG=4502,LAYERS=4503;private PopupWindow popup;private double[] creationPoint;private LinearLayout zoomButtons,mapDock;private long projectId;private LinearLayout root;private TextView coordinates,status,tileNotice;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
+ private static final int IMPORT_MAP=4301,IMPORT_TIFF=4302,IMPORT_OZI=4303,DEM=4602,CATALOG=4502,LAYERS=4503;private PopupWindow popup;private double[] creationPoint;private LinearLayout zoomButtons;private MapDock mapDock;private long projectId;private LinearLayout root;private TextView coordinates,status,tileNotice;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
  private boolean busy,refreshOnResume,refreshMapOnResume;private volatile boolean disposed;private final ExecutorService worker=Executors.newSingleThreadExecutor();private String warning="";private long lastError;private LinearLayout drawingRow;private String pendingDrawType;private ArrayList<double[]> pendingDrawPoints;
  private Bundle pendingEdit;
  private EditForm activeEdit;
@@ -23,9 +23,9 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   }
  }
  public static void open(Activity parent,long project){Intent i=new Intent(parent,LocalMapActivity.class);i.putExtra("project",project);parent.startActivity(i);}
- protected void onCreate(Bundle state){super.onCreate(state);projectId=getIntent().getLongExtra("project",-1);root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(0xffc7e1f8);setContentView(root);getWindow().setStatusBarColor(MapHud.BAR);getWindow().setNavigationBarColor(MapHud.BAR);if(state!=null){pendingEdit=state.getBundle("map_edit");pendingDrawType=state.getString("drawing_type");Object saved=state.getSerializable("drawing_points");if(saved instanceof ArrayList)pendingDrawPoints=(ArrayList<double[]>)saved;}load();}
+ protected void onCreate(Bundle state){super.onCreate(state);projectId=getIntent().getLongExtra("project",-1);root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(MapHud.BAR);setContentView(root);WorkspaceUi.systemBars(this);if(state!=null){pendingEdit=state.getBundle("map_edit");pendingDrawType=state.getString("drawing_type");Object saved=state.getSerializable("drawing_points");if(saved instanceof ArrayList)pendingDrawPoints=(ArrayList<double[]>)saved;}load();}
  private TextView label(String s,int size){TextView t=new TextView(this);t.setText(s);t.setTypeface(WorkspaceUi.font(this));t.setTextColor(0xffffffff);t.setTextSize(size);t.setPadding(14,10,14,10);return t;}
- private void button(LinearLayout row,String name,final Runnable action){Button b=new Button(this);b.setText(name);b.setTypeface(WorkspaceUi.font(this));b.setAllCaps(false);b.setTextSize(12);b.setTextColor(0xffffffff);GradientDrawable bg=new GradientDrawable();bg.setColor(0xff374329);bg.setCornerRadius(8);b.setBackground(bg);LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(0,(int)(50*getResources().getDisplayMetrics().density),1);p.setMargins(2,2,2,2);row.addView(b,p);b.setOnClickListener(v->{if(!busy)action.run();});}
+ private void button(LinearLayout row,String name,final Runnable action){Button b=WorkspaceUi.button(this,name,()->{if(!busy)action.run();});b.setTextSize(12);LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(0,(int)(50*getResources().getDisplayMetrics().density),1);p.setMargins(2,2,2,2);row.addView(b,p);}
  private File mapFile(){return new File(getFilesDir(),"local_basemap_"+projectId+".mbtiles");}
  private void message(String s){root.removeAllViews();root.addView(label(s,17));}
  private void load(){busy=true;message("Открытие локальной карты…");worker.execute(()->{ProjectStore store=new ProjectStore(this);try{final KmlProject snapshot=store.load(projectId);final List<KmlProject.Feature> f=snapshot.features(true);final KmlSymbolAssets icons=new KmlSymbolAssets(snapshot.root().getOwnerDocument(),snapshot.entry,snapshot.assets);runOnUiThread(()->{if(!disposed){features=f;symbolAssets=icons;busy=false;ProjectSession.remember(this,projectId);show(true);restoreEditForm();}});}catch(final Exception e){runOnUiThread(()->{if(!disposed){busy=false;message("Не удалось открыть проект: "+e.getMessage());LinearLayout row=new LinearLayout(this);root.addView(row);button(row,"К списку",()->finish());}});}finally{store.close();}});}
@@ -35,7 +35,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   MapComposition composition=null;String compositionError="";try{if(MapCompositionSettings.active(this,projectId))composition=MapCompositionSettings.load(this,projectId).composition;}catch(Exception e){compositionError="Состав карт не прочитан: "+e.getMessage();}
   FrameLayout scene=new FrameLayout(this);root.addView(scene,new LinearLayout.LayoutParams(-1,0,1));
   map=new LocalMapView(this,features,mapFile(),this,source,OnlineMapSettings.network(this),composition);scene.addView(map,new FrameLayout.LayoutParams(-1,-1));if(symbolAssets!=null)map.setSymbols(symbolAssets);
-  int control=WorkspaceUi.dp(this,48),edge=WorkspaceUi.dp(this,4),dockHeight=control;
+  int control=WorkspaceUi.dp(this,MapHud.TOUCH_DP),edge=WorkspaceUi.dp(this,4),dockHeight=control;
   LinearLayout mapReadout=new LinearLayout(this);
   mapReadout.setOrientation(LinearLayout.VERTICAL);
   LinearLayout coordinateBar=new LinearLayout(this);
@@ -47,14 +47,14 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   coordinates.setPadding(edge,WorkspaceUi.dp(this,2),edge,WorkspaceUi.dp(this,2));
   coordinateBar.addView(coordinates,new LinearLayout.LayoutParams(-2,-2,1));
   ImageButton collapse=MapHud.button(this,"collapse","Свернуть / развернуть координаты",()->{boolean visible=coordinates.getVisibility()!=View.VISIBLE;coordinates.setVisibility(visible?View.VISIBLE:View.GONE);getPreferences(0).edit().putBoolean("show_coordinates",visible).commit();});
-  insetMapButton(collapse,8,15);
+  MapHud.insetButton(this,collapse,8,15);
   coordinateBar.addView(collapse,new LinearLayout.LayoutParams(control,control));
   mapScale=new MapScaleView(this);
   LinearLayout.LayoutParams scaleLayout=new LinearLayout.LayoutParams(-2,-2);
   scaleLayout.topMargin=edge;mapReadout.addView(mapScale,scaleLayout);
   String description=onlineMode?source.name+" · "+(OnlineMapSettings.network(this)&&!source.cacheOnly()?"онлайн + кеш":"только кеш"):mapFile().isFile()?"Локальная карта MBTiles":"Обзорная карта";
   if(composition!=null){StringBuilder names=new StringBuilder();LinkedHashSet<String> copyrights=new LinkedHashSet<>();int count=0;for(MapComposition.Layer layer:composition.layers)if(layer.visible&&layer.opacity>0){count++;if(names.length()>0)names.append(" · ");names.append(layer.name);TileSource raster=layer.source();if(raster!=null)copyrights.add(raster.attribution);}description="Композиция: "+count+" слоёв · "+features.size()+" видимых объектов"+(count==0?" · без подложки":"\n"+names.toString());for(String credit:copyrights)description+="\n"+credit;}if(!compositionError.isEmpty())description+="\n"+compositionError;
-  status=label(description+(composition==null?" · "+features.size()+" видимых объектов":"")+(composition==null&&onlineMode?"\n"+source.attribution:""),11);status.setBackground(MapHud.panel(this));status.setTextColor(MapHud.INK);if(composition!=null){final String info=description;status.setMaxLines(3);status.setEllipsize(android.text.TextUtils.TruncateAt.END);status.setContentDescription("Состав и подписи карт");status.setOnClickListener(v->{AlertDialog d=new AlertDialog.Builder(this).setTitle("Состав и подписи карт").setMessage(info).setPositiveButton("Закрыть",null).create();d.setOnShowListener(w->compositionFont(d.getWindow().getDecorView()));d.show();});}
+  status=label(description+(composition==null?" · "+features.size()+" видимых объектов":"")+(composition==null&&onlineMode?"\n"+source.attribution:""),11);status.setBackground(MapHud.panel(this));status.setTextColor(MapHud.INK);status.setPadding(edge*2,edge,edge*2,edge);status.setIncludeFontPadding(false);if(composition!=null){final String info=description;status.setMaxLines(3);status.setEllipsize(android.text.TextUtils.TruncateAt.END);status.setContentDescription("Состав и подписи карт");status.setOnClickListener(v->{AlertDialog d=new AlertDialog.Builder(this).setTitle("Состав и подписи карт").setMessage(info).setPositiveButton("Закрыть",null).create();d.setOnShowListener(w->compositionFont(d.getWindow().getDecorView()));d.show();});}
   int bottom=WorkspaceUi.dp(this,2);
   FrameLayout.LayoutParams statusLayout=new FrameLayout.LayoutParams(-2,-2,Gravity.BOTTOM|Gravity.RIGHT);
   statusLayout.setMargins(edge,0,control+2*edge,dockHeight+edge);
@@ -81,64 +81,21 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   FrameLayout.LayoutParams noticeLayout=new FrameLayout.LayoutParams(control,control,Gravity.BOTTOM|Gravity.RIGHT);
   noticeLayout.setMargins(0,0,edge,bottom+2*dockHeight);
   scene.addView(tileNotice,noticeLayout);
-  HorizontalScrollView tools=new HorizontalScrollView(this);
-  tools.setFillViewport(true);
-  tools.setHorizontalScrollBarEnabled(false);
-  LinearLayout toolbar=new LinearLayout(this);
-  tools.addView(toolbar,new FrameLayout.LayoutParams(-2,-1));
-  LinearLayout dock=new LinearLayout(this);mapDock=dock;
-  dock.addView(tools,new LinearLayout.LayoutParams(0,-1,1));
-  FrameLayout.LayoutParams dockLayout=new FrameLayout.LayoutParams(control,dockHeight,Gravity.BOTTOM|Gravity.LEFT);
-  dockLayout.setMargins(edge,0,edge,bottom);scene.addView(dock,dockLayout);
-  tool(toolbar,"menu","Меню",()->mainMenu());tool(toolbar,"maps","Карты",()->mapsMenu());tool(toolbar,"marks","Метки",()->marksMenu());tool(toolbar,"files","Файловый менеджер",()->manager(false));tool(toolbar,"compass","Ориентирование",()->orientationMenu());
-  final boolean toolsVisible=getPreferences(0).getBoolean("show_tools",true);
-  tools.setVisibility(toolsVisible?View.VISIBLE:View.GONE);
-  ImageButton expand=MapHud.button(this,"expand","Свернуть / развернуть инструменты",()->{
-   boolean visible=tools.getVisibility()!=View.VISIBLE;
-   tools.setVisibility(visible?View.VISIBLE:View.GONE);
-   sizeDock(scene,dock,toolbar.getChildCount(),control,edge,visible);
-   getPreferences(0).edit().putBoolean("show_tools",visible).commit();
-  });
-  insetMapButton(expand,3,13);
-  dock.addView(expand,new LinearLayout.LayoutParams(control,-1));
-  scene.addOnLayoutChangeListener((v,l,t,r,b,ol,ot,or,ob)->{
-   if(r-l!=or-ol)sizeDock(scene,dock,toolbar.getChildCount(),control,edge,tools.getVisibility()==View.VISIBLE);
-  });
+  mapDock=new MapDock(this,scene,status,zoomButtons,
+    dockAction("Меню",this::mainMenu),dockAction("Карты",this::mapsMenu),dockAction("Метки",this::marksMenu),
+    dockAction("Файловый менеджер",()->manager(false)),dockAction("Ориентирование",this::orientationMenu));
   drawingRow=null;if(pendingDrawType!=null&&pendingDrawPoints!=null){String type=pendingDrawType;ArrayList<double[]> points=pendingDrawPoints;pendingDrawType=null;pendingDrawPoints=null;if(("LineString".equals(type)||"Polygon".equals(type))&&points.size()<=2000){startDrawing(type);for(double[] c:points)if(c!=null&&c.length>=2)map.addDrawingPoint(c[0],c[1]);}}
   if(restore){SharedPreferences p=getPreferences(0);String key="view_"+projectId+"_";if(p.contains(key+"x"))try{map.restore(Double.parseDouble(p.getString(key+"x",".5")),Double.parseDouble(p.getString(key+"y",".5")),p.getFloat(key+"z",2));}catch(RuntimeException ignored){}}
  }
  public void longPressed(double lat,double lon){if(busy)return;menu(String.format(Locale.US,"%.6f, %.6f",lat,lon),item("Создать метку здесь",()->{creationPoint=new double[]{lon,lat};editObject(null,"Point");}),item("Начать маршрут здесь",()->{startDrawing("LineString");map.addDrawingPoint(lon,lat);}),item("Начать область здесь",()->{startDrawing("Polygon");map.addDrawingPoint(lon,lat);}),item("В центр карты",()->{double[] v=map.viewport();map.restore(MapMath.x(lon),MapMath.y(lat),v[2]);}));}
  private ImageButton zoomButton(String icon, String label, Runnable action) {
   ImageButton button=MapHud.button(this,icon,label,action);
-  insetMapButton(button,6,11);
+  MapHud.insetButton(this,button,6,11);
   return button;
  }
- private void insetMapButton(ImageButton button,int surfaceInset,int iconInset){
-  int inset=WorkspaceUi.dp(this,surfaceInset);
-  button.setBackground(new android.graphics.drawable.InsetDrawable(button.getBackground(),inset));
-  int padding=WorkspaceUi.dp(this,iconInset);
-  button.setPadding(padding,padding,padding,padding);
- }
- private void sizeDock(FrameLayout scene, LinearLayout dock, int toolCount, int control, int edge, boolean visible) {
-  int available=Math.max(control,scene.getWidth()-edge*2);
-  // Leave map surface beside the expanded dock on narrow windows. Only the shortcuts scroll.
-  int expanded=Math.min(available,Math.max(control*2,available-control));
-  int target=visible?Math.min(expanded,control*(toolCount+1)):control;
-  ViewGroup.LayoutParams bounds=dock.getLayoutParams();
-  if(bounds.width!=target){bounds.width=target;dock.setLayoutParams(bounds);}
- }
- private void tool(LinearLayout bar,String icon,String title,Runnable action){
-  ImageButton button=MapHud.button(this,icon,title,()->{if(!busy)action.run();});
-  insetMapButton(button,3,13);
-  bar.addView(button,new LinearLayout.LayoutParams(WorkspaceUi.dp(this,48),-1,1));
- }
+ private WorkspaceUi.Item dockAction(String title,Runnable action){return item(title,()->{if(!busy)action.run();});}
  private WorkspaceUi.Item item(String title,Runnable action){return new WorkspaceUi.Item(title,action);}
  private void menu(String title,WorkspaceUi.Item...items){if(popup!=null)popup.dismiss();popup=WorkspaceUi.menu(this,root,title,items);}
- @Override public void onConfigurationChanged(android.content.res.Configuration config) {
-  super.onConfigurationChanged(config);
-  // A popup anchored to the old window bounds must be opened again after resize.
-  if (popup != null) popup.dismiss();
- }
  private boolean canLeave(){if(map!=null&&map.drawingType()!=null){error("Завершите или отмените рисунок");return false;}return true;}
  private void mainMenu(){menu("Меню",item("Проекты и файлы KML/KMZ",()->manager(true)),item("Новый проект",()->newProject()),item("Отображение",()->display()),item("Закрыть карту",()->onBackPressed()));}
  private void compositionFont(View view){if(view instanceof TextView)((TextView)view).setTypeface(WorkspaceUi.font(this));if(view instanceof ViewGroup)for(int i=0;i<((ViewGroup)view).getChildCount();i++)compositionFont(((ViewGroup)view).getChildAt(i));}
@@ -147,7 +104,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void orientationMenu(){menu("Ориентирование",item("Компас",()->startActivity(new Intent(this,CompassActivity.class))),item("Перейти к координатам",()->goToCoordinates()),item("Форматы координат",()->coordinateOptions()),item("DEM / высота центра",()->{if(canLeave())startActivityForResult(new Intent(this,DemActivity.class).putExtra("project",projectId),DEM);}),item("Показать область DEM",()->showDemCoverage()));}
  private void showDemCoverage(){if(!canLeave()||map==null)return;try{double[] view;synchronized(LocalRasterStore.class){ProjectStore store=new ProjectStore(this);try{if(!store.exists(projectId))throw new IOException("Проект удалён");}finally{store.close();}try(HgtRaster owned=HgtRaster.owned(DemActivity.file(this,projectId),projectId)){view=owned.mapViewport(map.getWidth(),map.getHeight());}}map.restore(view[0],view[1],view[2]);saveView();}catch(IOException e){error("Область DEM недоступна: "+e.getMessage());}}
  private void manager(boolean all){if(!canLeave())return;refreshOnResume=true;if(!all){ObjectManagerActivity.open(this,projectId);return;}getSharedPreferences("org.rabochaya.projects.ProjectsActivity",0).edit().putLong("project",all?-1:projectId).putString("folder","").commit();startActivity(new Intent().setClassName(this,"org.rabochaya.projects.ProjectsActivity"));}
- private void display(){final boolean[] values={coordinates.getVisibility()==View.VISIBLE,zoomButtons.getVisibility()==View.VISIBLE};new AlertDialog.Builder(this).setTitle("Отображение").setMultiChoiceItems(new String[]{"Координаты центра","Кнопки масштаба"},values,(d,w,on)->{values[w]=on;(w==0?coordinates:zoomButtons).setVisibility(on?View.VISIBLE:View.GONE);getPreferences(0).edit().putBoolean(w==0?"show_coordinates":"show_zoom",on).commit();}).setNeutralButton("Координаты",(d,w)->coordinateOptions()).setPositiveButton("Закрыть",null).show();}
+ private void display(){final boolean[] values={coordinates.getVisibility()==View.VISIBLE,zoomButtons.getVisibility()==View.VISIBLE};new AlertDialog.Builder(this).setTitle("Отображение").setMultiChoiceItems(new String[]{"Координаты центра","Кнопки масштаба"},values,(d,w,on)->{values[w]=on;(w==0?coordinates:zoomButtons).setVisibility(on?View.VISIBLE:View.GONE);if(w==1)mapDock.layoutControls();getPreferences(0).edit().putBoolean(w==0?"show_coordinates":"show_zoom",on).commit();}).setNeutralButton("Координаты",(d,w)->coordinateOptions()).setPositiveButton("Закрыть",null).show();}
  private void newProject(){if(!canLeave())return;final EditText name=new EditText(this);name.setTextColor(0xff202020);name.setBackgroundColor(-1);final AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Новый проект").setView(name).setPositiveButton("Создать",null).setNegativeButton("Отмена",null).create();dialog.setOnShowListener(d->dialog.getButton(-1).setOnClickListener(v->{String title=name.getText().toString().trim();if(title.isEmpty()||title.length()>1000){name.setError("Название: от 1 до 1000 символов");return;}busy=true;dialog.dismiss();worker.execute(()->{try{final long id=ProjectSession.create(this,title);runOnUiThread(()->{if(!disposed){LocalMapActivity.open(this,id);finish();}});}catch(final Exception e){runOnUiThread(()->{if(!disposed){busy=false;error("Не удалось создать проект: "+e.getMessage());}});}});}));dialog.show();}
  private TextView coordinateCaption(String text){TextView label=new TextView(this);label.setText(text);label.setTextColor(0xff202020);label.setTypeface(WorkspaceUi.font(this));return label;}
  private Spinner coordinateSpinner(LinearLayout form,int selected,String description){

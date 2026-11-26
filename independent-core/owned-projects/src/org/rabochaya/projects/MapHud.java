@@ -10,6 +10,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 /** Map-only chrome and owned, density-independent pictograms. */
 final class MapHud {
+ static final int TOUCH_DP = 48;
  static final int INK = 0xffeaf5ff;
  static final int BAR = 0xff1a344b;
  static final int SURFACE = 0xf21a344b;
@@ -26,11 +28,7 @@ final class MapHud {
  private MapHud() {}
 
  static GradientDrawable panel(Activity activity) {
-  GradientDrawable background = new GradientDrawable();
-  background.setColor(SURFACE);
-  background.setCornerRadius(WorkspaceUi.dp(activity, 6));
-  background.setStroke(WorkspaceUi.dp(activity, 1), EDGE);
-  return background;
+  return WorkspaceUi.panel(activity, SURFACE, EDGE, 6);
  }
 
  static ImageButton button(Activity activity, String name, String label, Runnable action) {
@@ -47,6 +45,12 @@ final class MapHud {
    return true;
   });
   return button;
+ }
+
+ static void insetButton(Activity activity, ImageButton button, int surfaceInset, int glyphInset) {
+  button.setBackground(new InsetDrawable(button.getBackground(), WorkspaceUi.dp(activity, surfaceInset)));
+  int padding = WorkspaceUi.dp(activity, glyphInset);
+  button.setPadding(padding, padding, padding, padding);
  }
 
  private static final class Glyph extends Drawable {

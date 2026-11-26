@@ -17,18 +17,93 @@ public final class WorkspaceUi {
    default:return Typeface.create(family,Typeface.NORMAL);
   }
  }
- public static GradientDrawable panel(){GradientDrawable bg=new GradientDrawable();bg.setColor(PANEL);bg.setCornerRadius(8);bg.setStroke(1,0xff6ca7d2);return bg;}
+ static void systemBars(Activity activity) {
+  activity.getWindow().setStatusBarColor(MapHud.BAR);
+  activity.getWindow().setNavigationBarColor(MapHud.BAR);
+ }
+ static GradientDrawable panel(Activity activity, int color, int edge, int radius) {
+  GradientDrawable background = new GradientDrawable();
+  background.setColor(color);
+  background.setCornerRadius(dp(activity, radius));
+  background.setStroke(dp(activity, 1), edge);
+  return background;
+ }
+ static GradientDrawable panel(Activity activity) {
+  return panel(activity, PANEL, 0xff6ca7d2, 8);
+ }
+ static Button button(Activity activity, String title, Runnable action) {
+  Button button = new Button(activity);
+  button.setText(title);
+  button.setAllCaps(false);
+  button.setTypeface(font(activity));
+  button.setTextColor(TEXT);
+  button.setBackground(new RippleDrawable(android.content.res.ColorStateList.valueOf(0x30082e4c), panel(activity), null));
+  button.setMinHeight(dp(activity, MapHud.TOUCH_DP));
+  button.setOnClickListener(view -> action.run());
+  return button;
+ }
  public static ImageButton icon(Activity a,String name,String title,Runnable action){
   ImageButton b=new ImageButton(a);Bitmap image=icons.get(name);if(image==null)try(InputStream in=a.getAssets().open("workspace-icons/"+name+".png")){image=BitmapFactory.decodeStream(in);if(image==null)throw new IOException(name);icons.put(name,image);}catch(IOException e){throw new IllegalStateException("Missing local icon: "+name,e);}
-  b.setImageBitmap(image);b.setColorFilter(TEXT,PorterDuff.Mode.SRC_IN);b.setScaleType(ImageView.ScaleType.FIT_CENTER);int p=dp(a,10);b.setPadding(p,p,p,p);b.setContentDescription(title);b.setBackground(panel());b.setOnClickListener(v->action.run());b.setOnLongClickListener(v->{Toast.makeText(a,title,Toast.LENGTH_SHORT).show();return true;});return b;
+  b.setImageBitmap(image);b.setColorFilter(TEXT,PorterDuff.Mode.SRC_IN);b.setScaleType(ImageView.ScaleType.FIT_CENTER);int p=dp(a,10);b.setPadding(p,p,p,p);b.setContentDescription(title);b.setBackground(panel(a));b.setOnClickListener(v->action.run());b.setOnLongClickListener(v->{Toast.makeText(a,title,Toast.LENGTH_SHORT).show();return true;});return b;
  }
  public static final class Item {final String title;final Runnable action;public Item(String t,Runnable r){title=t;action=r;}}
- public static PopupWindow menu(Activity a,View anchor,String title,Item...items){
-  LinearLayout list=new LinearLayout(a);list.setOrientation(LinearLayout.VERTICAL);list.setPadding(dp(a,8),dp(a,8),dp(a,8),dp(a,8));list.setBackground(panel());TextView heading=new TextView(a);heading.setTypeface(font(a),Typeface.BOLD);heading.setText(title);heading.setTextSize(18);heading.setTextColor(TEXT);heading.setPadding(dp(a,12),dp(a,8),dp(a,12),dp(a,8));list.addView(heading);
-  ScrollView scroll=new ScrollView(a);scroll.addView(list);int width=Math.max(1,Math.min(dp(a,320),anchor.getWidth()-dp(a,16)));
-  int height=Math.max(1,Math.min(dp(a,52*(items.length+1)),anchor.getHeight()-dp(a,72)));
-  PopupWindow popup=new PopupWindow(scroll,width,height,true);popup.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));popup.setOutsideTouchable(true);popup.setElevation(dp(a,8));
-  for(Item item:items){TextView row=new TextView(a);row.setText(item.title);row.setTypeface(font(a));row.setTextSize(16);row.setTextColor(TEXT);row.setGravity(Gravity.CENTER_VERTICAL);row.setPadding(dp(a,12),dp(a,10),dp(a,12),dp(a,10));row.setMinHeight(dp(a,48));row.setFocusable(true);row.setBackgroundResource(android.R.drawable.list_selector_background);list.addView(row,new LinearLayout.LayoutParams(-1,-2));row.setOnClickListener(v->{popup.dismiss();item.action.run();});}
-  popup.showAtLocation(anchor,Gravity.BOTTOM|Gravity.LEFT,dp(a,8),dp(a,64));return popup;
+ public static PopupWindow menu(Activity a, View anchor, String title, Item... items) {
+  LinearLayout list = new LinearLayout(a);
+  list.setOrientation(LinearLayout.VERTICAL);
+  int margin = dp(a, 8), offset = dp(a, 64);
+  list.setPadding(margin, margin, margin, margin);
+  list.setBackground(panel(a));
+
+  TextView heading = new TextView(a);
+  heading.setTypeface(font(a), Typeface.BOLD);
+  heading.setText(title);
+  heading.setTextSize(18);
+  heading.setTextColor(TEXT);
+  heading.setPadding(dp(a, 12), margin, dp(a, 12), margin);
+  list.addView(heading);
+
+  ScrollView scroll = new ScrollView(a);
+  scroll.addView(list);
+  PopupWindow popup = new PopupWindow(scroll, 1, 1, true);
+  popup.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+  popup.setOutsideTouchable(true);
+  popup.setElevation(margin);
+  for (Item item : items) {
+   TextView row = new TextView(a);
+   row.setText(item.title);
+   row.setTypeface(font(a));
+   row.setTextSize(16);
+   row.setTextColor(TEXT);
+   row.setGravity(Gravity.CENTER_VERTICAL);
+   row.setPadding(dp(a, 12), dp(a, 10), dp(a, 12), dp(a, 10));
+   row.setMinHeight(dp(a, MapHud.TOUCH_DP));
+   row.setFocusable(true);
+   row.setBackgroundResource(android.R.drawable.list_selector_background);
+   list.addView(row, new LinearLayout.LayoutParams(-1, -2));
+   row.setOnClickListener(view -> {
+    popup.dismiss();
+    item.action.run();
+   });
+  }
+
+  Runnable resize = () -> {
+   int width = Math.max(1, Math.min(dp(a, 320), anchor.getWidth() - 2 * margin));
+   list.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
+     View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+   int height = Math.max(1, Math.min(list.getMeasuredHeight(), anchor.getHeight() - offset - margin));
+   if (popup.isShowing()) popup.update(width, height);
+   else {
+    popup.setWidth(width);
+    popup.setHeight(height);
+   }
+  };
+  View.OnLayoutChangeListener reflow = (view, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+   if (right - left != oldRight - oldLeft || bottom - top != oldBottom - oldTop) resize.run();
+  };
+  resize.run();
+  popup.showAtLocation(anchor, Gravity.BOTTOM | Gravity.LEFT, margin, offset);
+  anchor.addOnLayoutChangeListener(reflow);
+  popup.setOnDismissListener(() -> anchor.removeOnLayoutChangeListener(reflow));
+  return popup;
  }
 }
