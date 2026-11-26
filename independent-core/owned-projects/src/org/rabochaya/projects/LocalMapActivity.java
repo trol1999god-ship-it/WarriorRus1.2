@@ -315,7 +315,51 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   // The initial viewport is calculated during layout, after the panel was measured.
   if (panel.isInLayout()) panel.post(panel::requestLayout);
  }
- public void picked(KmlProject.Feature f){if(busy)return;StringBuilder text=new StringBuilder();String note=android.text.Html.fromHtml(MediaLinks.note(f.element)).toString();if(!note.isEmpty())text.append(note).append("\n\n");for(KmlProject.Geometry geometry:f.shapes){int count=0;for(List<double[]> ring:geometry.rings)count+=ring.size();text.append(geometry.type).append(": ").append(count).append(" координат\n");if("Point".equals(geometry.type)){double[] c=geometry.rings.get(0).get(0);text.append("Широта: ").append(c[1]).append("\nДолгота: ").append(c[0]).append("\nВысота: ").append(c[2]).append(" м\n");}}text.append("\nВложения: ").append(MediaLinks.list(f.element).size());TextView message=label(text.toString(),16);message.setBackgroundColor(MapHud.BAR);message.setTextColor(MapHud.INK);message.setTextIsSelectable(true);LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);content.addView(message);ScrollView scroll=new ScrollView(this);scroll.addView(content);final AlertDialog card=new AlertDialog.Builder(this).setTitle(f.name).setView(scroll).setPositiveButton("Закрыть",null).setNeutralButton("Изменить",(d,w)->editObject(f,null)).setNegativeButton("Вложения",(d,w)->{refreshOnResume=true;Intent i=new Intent(this,AttachmentsActivity.class);i.putExtra("project",projectId).putExtra("feature",f.element.getAttribute("id"));startActivity(i);}).create();content.addView(WorkspaceUi.button(this,"Координаты и контуры",()->{if(canLeave()){card.dismiss();refreshOnResume=true;GeometryEditorActivity.open(this,projectId,f.element.getAttribute("id"));}}));card.setOnShowListener(dialog->compositionFont(card.getWindow().getDecorView()));card.show();}
+ private String cardText(KmlProject.Feature feature){
+  StringBuilder text=new StringBuilder();
+  String note=android.text.Html.fromHtml(MediaLinks.note(feature.element)).toString();
+  if(!note.isEmpty())text.append(note).append("\n\n");
+  for(KmlProject.Geometry geometry:feature.shapes){
+   if("Point".equals(geometry.type)){
+    double[] point=geometry.rings.get(0).get(0);
+    text.append("Путевая точка\nШирота: ").append(point[1])
+      .append("\nДолгота: ").append(point[0]).append("\nВысота: ").append(point[2]).append(" м\n");
+   }else{
+    int points=0;
+    for(List<double[]> ring:geometry.rings)points+=ring.size();
+    String type="Polygon".equals(geometry.type)?"Область":"Путь";
+    text.append(type).append("\nТочек: ").append(points).append("\n");
+   }
+  }
+  return text.append("\nВложения: ").append(MediaLinks.list(feature.element).size()).toString();
+ }
+ public void picked(KmlProject.Feature feature){
+  if(busy)return;
+  TextView message=label(cardText(feature),16);
+  message.setBackgroundColor(MapHud.BAR);
+  message.setTextColor(MapHud.INK);
+  message.setTextIsSelectable(true);
+  LinearLayout content=new LinearLayout(this);
+  content.setOrientation(LinearLayout.VERTICAL);
+  content.addView(message);
+  ScrollView scroll=new ScrollView(this);
+  scroll.addView(content);
+  String id=feature.element.getAttribute("id");
+  AlertDialog card=new AlertDialog.Builder(this).setTitle(feature.name).setView(scroll)
+    .setPositiveButton("Закрыть",null).setNeutralButton("Изменить",(dialog,which)->editObject(feature,null))
+    .setNegativeButton("Вложения",(dialog,which)->{
+     refreshOnResume=true;
+     startActivity(new Intent(this,AttachmentsActivity.class).putExtra("project",projectId).putExtra("feature",id));
+    }).create();
+  content.addView(WorkspaceUi.button(this,"Координаты и контуры",()->{
+   if(!canLeave())return;
+   card.dismiss();
+   refreshOnResume=true;
+   GeometryEditorActivity.open(this,projectId,id);
+  }));
+  card.setOnShowListener(dialog->compositionFont(card.getWindow().getDecorView()));
+  card.show();
+ }
  private void newObject(){if(map!=null&&map.drawingType()!=null){error("Завершите или отмените рисунок");return;}new AlertDialog.Builder(this).setTitle("Создать объект").setItems(new String[]{"Метка","Маршрут","Область","Нарисовать маршрут","Нарисовать область"},(d,w)->{if(w<3)editObject(null,new String[]{"Point","LineString","Polygon"}[w]);else startDrawing(w==3?"LineString":"Polygon");}).setNegativeButton("Отмена",null).show();}
  private void startDrawing(String type){if(map==null)return;map.beginDrawing(type);if(drawingRow!=null)root.removeView(drawingRow);drawingRow=new LinearLayout(this);root.addView(drawingRow,1);button(drawingRow,"В центре",()->map.addDrawingCenter());button(drawingRow,"Шаг назад",()->map.undoDrawing());button(drawingRow,"Записать",()->{try{FeatureEdits.coordinates(drawingCoordinates(),map.drawingType());editObject(null,map.drawingType());}catch(IllegalArgumentException invalid){error(invalid.getMessage());}});button(drawingRow,"Отмена",()->discardDrawing(false));}
  private String drawingCoordinates(){StringBuilder text=new StringBuilder();for(double[] c:map.drawingPoints()){if(text.length()>0)text.append('\n');text.append(c[1]).append(' ').append(c[0]).append(' ').append(c[2]);}return text.toString();}
