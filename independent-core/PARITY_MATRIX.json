@@ -844,6 +844,17 @@
         ]
       }
     },
+    "manager_display_modes": {
+      "code_commit": "00ed9f89fbb4db58bc8195d660c644b335c23abd",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45881157237",
+      "scenarios": ["launcher", "managerfilters", "managerfiltersreopen"],
+      "passed_api": [23, 35, 37]
+    },
+    "map_lock_geographic_grid": {
+      "code_commit": "c71303c4238f8856d977de34c2a40fd9f1acedf2",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45886047905",
+      "status": "PENDING"
+    },
     "map_screen_window_options": {
       "code_commit": "6a60f20a4995563211f43d63dd3b42acdd9feed8",
       "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45882516970",
@@ -1055,7 +1066,7 @@
       "screen": "Менеджер объектов",
       "function": "Выбор, поиск, фильтры и массовые операции",
       "reference_behavior": "Требуется наблюдение экранов и переходов эталона.",
-      "current_behavior": "Проверены поиск, фильтры, сортировка, массовый выбор, перемещение и удаление, сохранение данных после force-stop. Добавлены список и текстовый предпросмотр, контекстный вход в редактор точек. Android-перепроверка ожидается.",
+      "current_behavior": "Проверены поиск, фильтры, сортировка, массовый выбор, перемещение и удаление, сохранение данных после force-stop. Добавлены список и текстовый предпросмотр, контекстный вход в редактор точек. Целевой CI прошёл на API 23/35/37.",
       "evidence_source": [
         "migration/IMPLEMENTATION_PLAN.md; objectmanager",
         "objectmanager",
@@ -1076,7 +1087,7 @@
       "screen": "Менеджер файлов",
       "function": "Штатный выбор и рабочий режим менеджера",
       "reference_behavior": "Эталонная структура и переключение между режимами неизвестны.",
-      "current_behavior": "Проверены операции менеджеров проекта и объектов, экспорт и импорт с тестовым ответом на системный выбор файлов. Добавлены режимы списка и текстового предпросмотра, переход в мультивыбор текущей папки и контекстное редактирование точек. Android-перепроверка ожидается.",
+      "current_behavior": "Проверены операции менеджеров проекта и объектов, экспорт и импорт с тестовым ответом на системный выбор файлов. Добавлены режимы списка и текстового предпросмотра, переход в мультивыбор текущей папки и контекстное редактирование точек. Целевой CI прошёл на API 23/35/37.",
       "evidence_source": [
         "migration/IMPLEMENTATION_PLAN.md; clipboard",
         "objectmanager",
