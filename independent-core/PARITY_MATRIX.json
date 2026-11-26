@@ -843,6 +843,18 @@
           "managerfiltersreopen"
         ]
       }
+    },
+    "reference_workspace_ci": {
+      "application_commit": "404c1ed52f94fb3bc5e2920ae3f1f0a36ec29213",
+      "test_commit": "1441321ac7f4056b31e8964a77b179f169566fc8",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45858591505",
+      "launcher_passed_api": [
+        23,
+        35
+      ],
+      "local_api23_launcher_assertions": 226,
+      "qa_apk_sha256": "b2f5c111d418ee4cf0b3f3bfaed57f9fdb8a9f137c03df43b088ca0ace5e6ca4",
+      "qa_apk": "https://chatgpt.com/library?file_id=libfile_ccbaedfc6e548191b4ea246f38f85bb2&account_id=personal"
     }
   },
   "status_values": [
