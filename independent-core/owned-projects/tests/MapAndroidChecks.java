@@ -850,6 +850,11 @@ public final class MapAndroidChecks extends Instrumentation {
       "narrow dock disclosure is above the toolbar and does not obscure attribution");
     check(mapMenu.isShowing()&&mapMenu.getWidth()<=mapView.getWidth()-Math.round(16*density),
       "open map menu fits the narrowed window without dismissal");
+    int[] menuPosition=new int[2], togglePosition=new int[2];
+    mapMenu.getContentView().getLocationOnScreen(menuPosition);
+    toggle.getLocationOnScreen(togglePosition);
+    check(menuPosition[1]+mapMenu.getContentView().getHeight()<=togglePosition[1],
+      "open menu clears the disclosure and toolbar after resize");
     check(mapView.getParent()==dock.getParent()&&mapView.getBottom()>dock.getBottom(),"dock floats over the map");
    });
    check(mapView.getWidth()<fullWidth,"map receives a narrower window");

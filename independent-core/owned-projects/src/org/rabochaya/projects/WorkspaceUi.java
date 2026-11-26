@@ -47,10 +47,10 @@ public final class WorkspaceUi {
   b.setImageBitmap(image);b.setColorFilter(TEXT,PorterDuff.Mode.SRC_IN);b.setScaleType(ImageView.ScaleType.FIT_CENTER);int p=dp(a,10);b.setPadding(p,p,p,p);b.setContentDescription(title);b.setBackground(panel(a));b.setOnClickListener(v->action.run());b.setOnLongClickListener(v->{Toast.makeText(a,title,Toast.LENGTH_SHORT).show();return true;});return b;
  }
  public static final class Item {final String title;final Runnable action;public Item(String t,Runnable r){title=t;action=r;}}
- public static PopupWindow menu(Activity a, View anchor, String title, Item... items) {
+ static PopupWindow menu(Activity a, View anchor, MapDock dock, String title, Item... items) {
   LinearLayout list = new LinearLayout(a);
   list.setOrientation(LinearLayout.VERTICAL);
-  int margin = dp(a, 8), offset = dp(a, 64);
+  int margin = dp(a, 8);
   list.setPadding(margin, margin, margin, margin);
   list.setBackground(panel(a));
 
@@ -90,18 +90,21 @@ public final class WorkspaceUi {
    int width = Math.max(1, Math.min(dp(a, 320), anchor.getWidth() - 2 * margin));
    list.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
      View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-   int height = Math.max(1, Math.min(list.getMeasuredHeight(), anchor.getHeight() - offset - margin));
-   if (popup.isShowing()) popup.update(width, height);
-   else {
+   int clearance = dock.menuClearance(anchor.getWidth());
+   int height = Math.max(1, Math.min(list.getMeasuredHeight(), anchor.getHeight() - clearance - margin));
+   int yOffset = -height - clearance;
+   if (popup.isShowing()) {
+    popup.update(anchor, margin, yOffset, width, height);
+   } else {
     popup.setWidth(width);
     popup.setHeight(height);
+    popup.showAsDropDown(anchor, margin, yOffset, Gravity.LEFT);
    }
   };
   View.OnLayoutChangeListener reflow = (view, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
    if (right - left != oldRight - oldLeft || bottom - top != oldBottom - oldTop) resize.run();
   };
   resize.run();
-  popup.showAtLocation(anchor, Gravity.BOTTOM | Gravity.LEFT, margin, offset);
   anchor.addOnLayoutChangeListener(reflow);
   popup.setOnDismissListener(() -> anchor.removeOnLayoutChangeListener(reflow));
   return popup;

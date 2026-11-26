@@ -64,12 +64,24 @@ final class MapDock extends LinearLayout {
   });
  }
 
- void layoutControls() {
+ private int availableWidth(int width) {
   int zoomClearance = zoom.getVisibility() == VISIBLE ? touch + edge : 0;
-  int width = scene.getWidth();
-  int available = Math.max(touch, width - 2 * edge - zoomClearance);
+  return Math.max(touch, width - 2 * edge - zoomClearance);
+ }
+
+ private boolean hasSeparateToggle(int available) {
+  return expanded && available < toolsWidth + touch;
+ }
+
+ int menuClearance(int width) {
+  int rows = hasSeparateToggle(availableWidth(width)) ? 2 : 1;
+  return rows * touch + bottom + edge;
+ }
+
+ void layoutControls() {
+  int available = availableWidth(scene.getWidth());
   // The disclosure button can move up a row before it displaces any primary action.
-  boolean separate = expanded && available < toolsWidth + touch;
+  boolean separate = hasSeparateToggle(available);
   int strip = expanded ? Math.min(toolsWidth, available - (separate ? 0 : touch)) : touch;
   scroll.setVisibility(expanded ? VISIBLE : GONE);
   if (getLayoutParams().width != strip) {
