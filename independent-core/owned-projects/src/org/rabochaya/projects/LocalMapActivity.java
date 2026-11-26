@@ -2,7 +2,7 @@ package org.rabochaya.projects;
 import android.app.*;import android.content.*;import android.net.Uri;import android.os.*;import android.widget.*;import android.view.*;import java.io.*;import java.util.*;import java.util.concurrent.*;
 /** Own raster map viewer with local MBTiles or explicit online sources. */
 public final class LocalMapActivity extends Activity implements LocalMapView.Listener {
- private static final int IMPORT_MAP=4301,IMPORT_TIFF=4302,IMPORT_OZI=4303,DEM=4602,CATALOG=4502,LAYERS=4503;private PopupWindow popup;private double[] creationPoint;private LinearLayout zoomButtons;private MapDock mapDock;private long projectId;private LinearLayout root;private TextView coordinates,status,tileNotice,scaleValue;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
+ private static final int IMPORT_MAP=4301,IMPORT_TIFF=4302,IMPORT_OZI=4303,DEM=4602,CATALOG=4502,LAYERS=4503;private PopupWindow popup;private boolean mapInputLocked;private double[] creationPoint;private LinearLayout zoomButtons;private MapDock mapDock;private long projectId;private LinearLayout root;private TextView coordinates,status,tileNotice,scaleValue;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
  private boolean busy,refreshOnResume,refreshMapOnResume;private volatile boolean disposed;private final ExecutorService worker=Executors.newSingleThreadExecutor();private String warning="";private long lastError;private LinearLayout drawingRow;private String pendingDrawType;private ArrayList<double[]> pendingDrawPoints;
  private Bundle pendingEdit;
  private EditForm activeEdit;
@@ -23,7 +23,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   }
  }
  public static void open(Activity parent,long project){Intent i=new Intent(parent,LocalMapActivity.class);i.putExtra("project",project);parent.startActivity(i);}
- protected void onCreate(Bundle state){super.onCreate(state);projectId=getIntent().getLongExtra("project",-1);root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(MapHud.BAR);setContentView(root);WorkspaceUi.systemBars(this);applyMapScreenOptions(false);if(state!=null){pendingEdit=state.getBundle("map_edit");pendingDrawType=state.getString("drawing_type");Object saved=state.getSerializable("drawing_points");if(saved instanceof ArrayList)pendingDrawPoints=(ArrayList<double[]>)saved;}load();}
+ protected void onCreate(Bundle state){super.onCreate(state);projectId=getIntent().getLongExtra("project",-1);root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(MapHud.BAR);setContentView(root);WorkspaceUi.systemBars(this);applyMapScreenOptions(false);if(state!=null){mapInputLocked=state.getBoolean("map_input_locked");pendingEdit=state.getBundle("map_edit");pendingDrawType=state.getString("drawing_type");Object saved=state.getSerializable("drawing_points");if(saved instanceof ArrayList)pendingDrawPoints=(ArrayList<double[]>)saved;}load();}
  private TextView label(String s,int size){TextView t=new TextView(this);t.setText(s);t.setTypeface(WorkspaceUi.font(this));t.setTextColor(0xffffffff);t.setTextSize(size);t.setPadding(14,10,14,10);return t;}
  private void button(LinearLayout row,String name,final Runnable action){Button b=WorkspaceUi.button(this,name,()->{if(!busy)action.run();});b.setTextSize(12);LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(0,(int)(50*getResources().getDisplayMetrics().density),1);p.setMargins(2,2,2,2);row.addView(b,p);}
  private File mapFile(){return new File(getFilesDir(),"local_basemap_"+projectId+".mbtiles");}
@@ -52,6 +52,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   mapScale=new MapScaleView(this);
   mapScale.setVisibility(getPreferences(0).getBoolean("show_scale_bar",true)?View.VISIBLE:View.GONE);
   map.setLabelsVisible(getPreferences(0).getBoolean("show_labels",true));
+  map.setGeographicGridVisible(getPreferences(0).getBoolean("show_geographic_grid",false));
   LinearLayout.LayoutParams scaleLayout=new LinearLayout.LayoutParams(-2,-2);
   scaleLayout.topMargin=edge;mapReadout.addView(mapScale,scaleLayout);
   scaleValue=label("",11);
@@ -90,6 +91,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   mapDock=new MapDock(this,scene,status,zoomButtons,
     dockAction("Меню",this::mainMenu),dockAction("Карты",this::mapsMenu),dockAction("Метки",this::marksMenu),
     dockAction("Файловый менеджер",()->manager(false)),dockAction("Ориентирование",this::orientationMenu));
+  updateMapInputLock();
   drawingRow=null;if(pendingDrawType!=null&&pendingDrawPoints!=null){String type=pendingDrawType;ArrayList<double[]> points=pendingDrawPoints;pendingDrawType=null;pendingDrawPoints=null;if(("LineString".equals(type)||"Polygon".equals(type))&&points.size()<=2000){startDrawing(type);for(double[] c:points)if(c!=null&&c.length>=2)map.addDrawingPoint(c[0],c[1]);}}
   if(restore){SharedPreferences p=getPreferences(0);String key="view_"+projectId+"_";if(p.contains(key+"x"))try{map.restore(Double.parseDouble(p.getString(key+"x",".5")),Double.parseDouble(p.getString(key+"y",".5")),p.getFloat(key+"z",2));}catch(RuntimeException ignored){}}
  }
@@ -110,7 +112,19 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
     () -> applyMapScreenOptions(false),
     item("Проекты и файлы KML/KMZ", () -> manager(true)), item("Новый проект", this::newProject),
     item("Информеры", this::display), item("Опции", this::optionsMenu),
+    item(mapInputLocked ? "Разблокировать экран" : "Блокировать экран", this::toggleMapInputLock),
     item("Закрыть карту", this::onBackPressed));
+ }
+ private void toggleMapInputLock() {
+  if (!canLeave()) return;
+  mapInputLocked = !mapInputLocked;
+  updateMapInputLock();
+  Toast.makeText(this, mapInputLocked ? "Жесты карты заблокированы" : "Жесты карты разблокированы",
+    Toast.LENGTH_SHORT).show();
+ }
+ private void updateMapInputLock() {
+  map.setInputLocked(mapInputLocked);
+  for(int i=0;i<zoomButtons.getChildCount();i++)zoomButtons.getChildAt(i).setEnabled(!mapInputLocked);
  }
  private void optionsMenu(){
   menu("Опции",item("Координаты центра экрана",this::coordinateOptions),
@@ -245,10 +259,10 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  }
  private void display(){
   SharedPreferences preferences = getPreferences(0);
-  String[] options = {"Координаты центра", "Кнопки масштаба", "Масштабная линейка", "Названия меток", "Название карты"};
-  String[] keys = {"show_coordinates", "show_zoom", "show_scale_bar", "show_labels", "show_map_name"};
+  String[] options = {"Координаты центра", "Кнопки масштаба", "Масштабная линейка", "Названия меток", "Название карты", "Координатная сетка"};
+  String[] keys = {"show_coordinates", "show_zoom", "show_scale_bar", "show_labels", "show_map_name", "show_geographic_grid"};
   boolean[] checked = new boolean[options.length];
-  for (int i = 0; i < keys.length; i++) checked[i] = preferences.getBoolean(keys[i], true);
+  for (int i = 0; i < keys.length; i++) checked[i] = preferences.getBoolean(keys[i], i != 5);
   AlertDialog.Builder displayDialog=new AlertDialog.Builder(this).setTitle("Информеры")
     .setMultiChoiceItems(options, checked, (dialog, item, visible) -> {
      int visibility = visible ? View.VISIBLE : View.GONE;
@@ -270,6 +284,9 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
        break;
       case 4:
        if(previousStatus.contentEquals(status.getText()))status.setText(normalMapStatus());
+       break;
+      case 5:
+       map.setGeographicGridVisible(visible);
        break;
       default:
        throw new IllegalArgumentException("Unknown map display option " + item);
@@ -448,12 +465,13 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   WorkspaceUi.showDialog(this,card);
  }
  private void newObject(){if(map!=null&&map.drawingType()!=null){error("Завершите или отмените рисунок");return;}new AlertDialog.Builder(this).setTitle("Создать объект").setItems(new String[]{"Метка","Маршрут","Область","Нарисовать маршрут","Нарисовать область"},(d,w)->{if(w<3)editObject(null,new String[]{"Point","LineString","Polygon"}[w]);else startDrawing(w==3?"LineString":"Polygon");}).setNegativeButton("Отмена",null).show();}
- private void startDrawing(String type){if(map==null)return;map.beginDrawing(type);if(drawingRow!=null)root.removeView(drawingRow);drawingRow=new LinearLayout(this);root.addView(drawingRow,1);button(drawingRow,"В центре",()->map.addDrawingCenter());button(drawingRow,"Шаг назад",()->map.undoDrawing());button(drawingRow,"Записать",()->{try{FeatureEdits.coordinates(drawingCoordinates(),map.drawingType());editObject(null,map.drawingType());}catch(IllegalArgumentException invalid){error(invalid.getMessage());}});button(drawingRow,"Отмена",()->discardDrawing(false));}
+ private void startDrawing(String type){if(map==null)return;if(mapInputLocked){error("Разблокируйте экран в меню карты");return;}map.beginDrawing(type);if(drawingRow!=null)root.removeView(drawingRow);drawingRow=new LinearLayout(this);root.addView(drawingRow,1);button(drawingRow,"В центре",()->map.addDrawingCenter());button(drawingRow,"Шаг назад",()->map.undoDrawing());button(drawingRow,"Записать",()->{try{FeatureEdits.coordinates(drawingCoordinates(),map.drawingType());editObject(null,map.drawingType());}catch(IllegalArgumentException invalid){error(invalid.getMessage());}});button(drawingRow,"Отмена",()->discardDrawing(false));}
  private String drawingCoordinates(){StringBuilder text=new StringBuilder();for(double[] c:map.drawingPoints()){if(text.length()>0)text.append('\n');text.append(c[1]).append(' ').append(c[0]).append(' ').append(c[2]);}return text.toString();}
  public void draftChanged(int count){if(status!=null&&count>=0)status.setText("Рисование: вершин "+count+" · касайтесь карты или добавляйте в центре");}
  private void discardDrawing(boolean leave){new AlertDialog.Builder(this).setMessage("Отменить несохранённый рисунок?").setPositiveButton("Отменить рисунок",(d,w)->{map.cancelDrawing();if(drawingRow!=null){root.removeView(drawingRow);drawingRow=null;}status.setText(normalMapStatus());if(leave)finish();}).setNegativeButton("Продолжить рисование",null).show();}
  public void onBackPressed(){if(map!=null&&map.drawingType()!=null)discardDrawing(true);else super.onBackPressed();}
  protected void onSaveInstanceState(Bundle state){
+  state.putBoolean("map_input_locked",mapInputLocked);
   if(activeEdit!=null&&!busy&&activeEdit.dialog.isShowing())state.putBundle("map_edit",activeEdit.snapshot(projectId));
   else if(pendingEdit!=null)state.putBundle("map_edit",pendingEdit);
   if(map!=null&&map.drawingType()!=null){state.putString("drawing_type",map.drawingType());state.putSerializable("drawing_points",new ArrayList<double[]>(map.drawingPoints()));}super.onSaveInstanceState(state);}

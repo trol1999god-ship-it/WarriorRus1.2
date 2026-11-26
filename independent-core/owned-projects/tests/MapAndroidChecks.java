@@ -815,6 +815,7 @@ public final class MapAndroidChecks extends Instrumentation {
     markerLabel.recycle();
    }
    checkMapScreenOptions(intent,panels);
+   checkMapGestureLockAndGrid(panels);
    setViewport(wx,wy,8);
    clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("UTM · WGS 84");inputs("32 N 687071.44 6210141.33");click("Перейти");viewport=(double[])call(map(),"viewport",new Class[]{});double latitude=(Double)staticCall("MapMath","lat",new Class[]{double.class},viewport[1]),longitude=(Double)staticCall("MapMath","lon",new Class[]{double.class},viewport[0]);check(Math.abs(latitude-56)<1e-7&&Math.abs(longitude-12)<1e-7,"manual UTM moves centre to published control point");
    double[] valid=viewport.clone();clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("UTM · WGS 84");inputs("37 N 500000 -1");click("Перейти");check(find(getUiAutomation().getRootInActiveWindow(),"Перейти к координатам",true)!=null,"invalid UTM keeps input dialog open");viewport=(double[])call(map(),"viewport",new Class[]{});check(Arrays.equals(valid,viewport),"invalid coordinate leaves viewport intact");click("Отмена");
@@ -836,6 +837,53 @@ public final class MapAndroidChecks extends Instrumentation {
    if(id>0){call(store,"remove",new Class[]{long.class},id);staticCall("LocalMapActivity","cleanupDeletedProject",new Class[]{Context.class,long.class},context,id);}call(store,"close",new Class[]{});
    android.content.SharedPreferences.Editor restore=settings.edit().clear();for(Map.Entry<String,?> entry:original.entrySet()){Object value=entry.getValue();if(value instanceof Integer)restore.putInt(entry.getKey(),(Integer)value);else if(value instanceof Boolean)restore.putBoolean(entry.getKey(),(Boolean)value);else if(value instanceof String)restore.putString(entry.getKey(),(String)value);}restore.commit();panels.edit().putBoolean("show_tools",toolsBefore).putBoolean("show_coordinates",coordinatesBefore).putBoolean("show_labels",labelsBefore).putBoolean("show_scale_bar",scaleBefore).commit();context.getSharedPreferences("workspace-session",0).edit().putLong("last_project",sessionBefore).commit();
   }
+ }
+ void checkMapGestureLockAndGrid(SharedPreferences panels)throws Exception{
+  final boolean before=panels.getBoolean("show_geographic_grid",false);
+  final android.view.View surface=(android.view.View)map();
+  double[] viewport=(double[])call(surface,"viewport",new Class[]{});
+  try{
+   clickDescription("Меню");click("Блокировать экран");
+   dragMapSurface(surface);
+   check(Arrays.equals(viewport,(double[])call(surface,"viewport",new Class[]{})),
+     "locked map rejects a drag without moving the centre");
+   clickDescription("Меню");click("Разблокировать экран");
+   dragMapSurface(surface);
+   check(!Arrays.equals(viewport,(double[])call(surface,"viewport",new Class[]{})),
+     "unlocking restores pan gestures");
+   clickDescription("Меню");click("Информеры");click("Координатная сетка");click("Закрыть");
+   check(panels.getBoolean("show_geographic_grid",false)!=before,"grid setting saved");
+   final boolean[] different={false};
+   final Method grid=surface.getClass().getDeclaredMethod("setGeographicGridVisible",boolean.class);
+   grid.setAccessible(true);
+   runOnMainSync(()->{
+    Bitmap shown=Bitmap.createBitmap(surface.getWidth(),surface.getHeight(),Bitmap.Config.ARGB_8888);
+    Bitmap hidden=Bitmap.createBitmap(surface.getWidth(),surface.getHeight(),Bitmap.Config.ARGB_8888);
+    try{
+     grid.invoke(surface,true);surface.draw(new Canvas(shown));
+     grid.invoke(surface,false);surface.draw(new Canvas(hidden));
+     different[0]=!shown.sameAs(hidden);
+    }catch(ReflectiveOperationException error){throw new AssertionError(error);}
+    finally{shown.recycle();hidden.recycle();}
+   });
+   check(different[0],"geographic grid renders independently of the raster");
+  }finally{
+   panels.edit().putBoolean("show_geographic_grid",before).commit();
+   Method grid=surface.getClass().getDeclaredMethod("setGeographicGridVisible",boolean.class);
+   grid.setAccessible(true);
+   runOnMainSync(()->{try{grid.invoke(surface,before);}catch(ReflectiveOperationException error){throw new AssertionError(error);}});
+  }
+ }
+ void dragMapSurface(android.view.View surface){
+  runOnMainSync(()->{
+   long now=android.os.SystemClock.uptimeMillis();
+   float x=surface.getWidth()/2f,y=surface.getHeight()/2f;
+   int[] actions={android.view.MotionEvent.ACTION_DOWN,android.view.MotionEvent.ACTION_MOVE,android.view.MotionEvent.ACTION_UP};
+   for(int i=0;i<actions.length;i++){
+    android.view.MotionEvent event=android.view.MotionEvent.obtain(now,now+16*i,actions[i],x+40*i,y,0);
+    try{surface.dispatchTouchEvent(event);}finally{event.recycle();}
+   }
+  });
  }
  void checkMapScreenOptions(Intent intent,SharedPreferences panels)throws Exception{
   String[] keys={"map_hide_status","map_immersive","map_keep_screen_on"};

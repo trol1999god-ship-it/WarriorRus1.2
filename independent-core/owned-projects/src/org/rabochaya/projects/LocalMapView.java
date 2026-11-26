@@ -9,7 +9,27 @@ public final class LocalMapView extends View {
  private final Map<String,Bitmap> symbolBitmaps = new HashMap<>();
  private static final class SymbolImage {final Bitmap bitmap;final float scale,heading,anchorX,anchorY;final Integer color;SymbolImage(Bitmap bitmap,Map<String,String> values,Integer color){this.bitmap=bitmap;this.color=color;scale=symbolNumber(values.get("scale"),1,0,16);heading=symbolNumber(values.get("heading"),0,-360,360);anchorX=anchor(values,"x",bitmap.getWidth());anchorY=bitmap.getHeight()-anchor(values,"y",bitmap.getHeight());if(bitmap.getWidth()*scale>256||bitmap.getHeight()*scale>256)throw new IllegalArgumentException("SVG: масштаб больше256px");}private static float anchor(Map<String,String> values,String axis,int extent){String value=values.get("hotSpot."+axis);float n=symbolNumber(value,.5f,-4096,4096);String unit=values.get("hotSpot."+axis+"units");if(unit==null||unit.equals("fraction"))return n*extent;if(unit.equals("pixels"))return n;if(unit.equals("insetPixels"))return extent-n;throw new IllegalArgumentException("SVG: неподдержанная единица hotSpot");}}
  private static float symbolNumber(String text,float fallback,float min,float max){if(text==null)return fallback;if(text.length()>64||!text.matches("[+-]?(?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)(?:[eE][+-]?[0-9]+)?"))throw new IllegalArgumentException("SVG: некорректный scale/heading/hotSpot");try{float n=Float.parseFloat(text);if(Float.isNaN(n)||Float.isInfinite(n)||n<min||n>max)throw new NumberFormatException();return n;}catch(NumberFormatException e){throw new IllegalArgumentException("SVG: небезопасный scale/heading/hotSpot");}}
+ private boolean inputLocked, geographicGridVisible;
  private boolean labelsVisible = true;
+
+ void setInputLocked(boolean locked) {
+  if (inputLocked == locked) return;
+  inputLocked = locked;
+  if (!locked) return;
+  long now = android.os.SystemClock.uptimeMillis();
+  MotionEvent cancel = MotionEvent.obtain(now, now, MotionEvent.ACTION_CANCEL, 0, 0, 0);
+  try {
+   contextGesture.onTouchEvent(cancel);
+   scale.onTouchEvent(cancel);
+  } finally {
+   cancel.recycle();
+  }
+ }
+
+ void setGeographicGridVisible(boolean visible) {
+  geographicGridVisible = visible;
+  invalidate();
+ }
 
  void setLabelsVisible(boolean visible) {
   if (labelsVisible == visible) return;
@@ -106,6 +126,38 @@ public final class LocalMapView extends View {
   if(disposed||paused||pending.size()>=32||pending.contains(key)||missing.contains(key))return;pending.add(key);
   worker.execute(new Runnable(){public void run(){Bitmap b=null;String error=null;try{if(!disposed&&!paused){if(group!=null)b=group.tile(z,x,y,layer,useNetwork);else if(online!=null)b=online[layer].tile(z,x,y,useNetwork);else if(tiles!=null)b=tiles.tile(z,x,y);else if(bundled!=null)b=bundled.tile(z,x,y);}}catch(java.net.UnknownHostException e){error="Не удалось найти сервер карты. Проверьте сеть или попробуйте позже.";}catch(java.io.InterruptedIOException e){error="Сервер карты не ответил вовремя.";}catch(Exception e){error="Ошибка чтения тайла: "+e.getMessage();}final Bitmap result=b;final String message=error;post(new Runnable(){public void run(){pending.remove(key);if(disposed){if(result!=null)result.recycle();return;}if(result!=null)cache.put(key,result);else if(!paused){if(missing.size()>512)missing.clear();missing.add(key);}if(message!=null&&!paused)listener.tileError(message);invalidate();}});}});
  }
+ private static double gridStep(double span) {
+  double minimum = span / 6;
+  double order = Math.pow(10, Math.floor(Math.log10(minimum)));
+  double ratio = minimum / order;
+  return order * (ratio <= 1 ? 1 : ratio <= 2 ? 2 : ratio <= 5 ? 5 : 10);
+ }
+
+ private void drawGeographicGrid(Canvas canvas) {
+  double width = getWidth(), height = getHeight(), size = world();
+  if (width <= 0 || height <= 0) return;
+  double left = cx - width / (2 * size), right = cx + width / (2 * size);
+  double top = Math.max(0, cy - height / (2 * size));
+  double bottom = Math.min(1, cy + height / (2 * size));
+  if (bottom <= top) return;
+  double west = left * 360 - 180, east = right * 360 - 180;
+  double north = MapMath.lat(top), south = MapMath.lat(bottom);
+  double longitudeStep = gridStep(east - west), latitudeStep = gridStep(north - south);
+  float topPixel = (float) (height / 2 + (top - cy) * size);
+  float bottomPixel = (float) (height / 2 + (bottom - cy) * size);
+  paint.setStyle(Paint.Style.STROKE);
+  paint.setStrokeWidth(Math.max(1, getResources().getDisplayMetrics().density));
+  paint.setColor(0xbbcbe9fa);
+  for (double lon = Math.ceil(west / longitudeStep) * longitudeStep; lon <= east; lon += longitudeStep) {
+   float x = (float) (width / 2 + ((lon + 180) / 360 - cx) * size);
+   canvas.drawLine(x, topPixel, x, bottomPixel, paint);
+  }
+  for (double lat = Math.ceil(south / latitudeStep) * latitudeStep; lat <= north; lat += latitudeStep) {
+   float y = (float) (height / 2 + (MapMath.y(lat) - cy) * size);
+   canvas.drawLine(0, y, (float) width, y, paint);
+  }
+ }
+
  protected void onDraw(Canvas canvas){
   super.onDraw(canvas);canvas.drawColor(0xff253020);
   // A bundled world ends at the Mercator bounds. Empty space beyond it is not a map grid.
@@ -115,6 +167,7 @@ public final class LocalMapView extends View {
    for(int y=0;y<getHeight();y+=64)canvas.drawLine(0,y,getWidth(),y,paint);
   }
   if(mapReady){if(compositionLayers!=null){for(RasterLayer layer:compositionLayers){int saved=layer.model.opacity<100?canvas.saveLayerAlpha(0,0,getWidth(),getHeight(),Math.round(layer.model.opacity*255f/100f),Canvas.ALL_SAVE_FLAG):-1;if(layer.online!=null){for(int i=0;i<layer.online.length;i++)drawTiles(canvas,i,layer.online[i].source,layer);}else drawTiles(canvas,0,null,layer);if(saved!=-1)canvas.restoreToCount(saved);}}else if(online!=null){for(int layer=0;layer<online.length;layer++)drawTiles(canvas,layer,online[layer].source);}else drawTiles(canvas,0,null);}
+  if(geographicGridVisible)drawGeographicGrid(canvas);
   int labels=0;
   for(KmlProject.Feature f:features){KmlComponentStyle style=componentStyles.get(f.element);if(style==null)style=KmlComponentStyle.EMPTY;int line=style.line==null?KmlComponentStyle.DEFAULT_COLOR:style.line;float[] label=null;for(KmlProject.Geometry g:f.shapes){paint.setColor(line);paint.setStrokeWidth(style.width==null?3*getResources().getDisplayMetrics().density:style.width);paint.setStyle(Paint.Style.STROKE);
    if("Point".equals(g.type)){paint.setStrokeWidth(3*getResources().getDisplayMetrics().density);float[] p=point(g.rings.get(0).get(0));if(!symbol(canvas,f.element,p[0],p[1])){paint.setColor(style.icon==null?KmlComponentStyle.DEFAULT_COLOR:style.icon);paint.setStyle(Paint.Style.FILL);canvas.drawCircle(p[0],p[1],7*getResources().getDisplayMetrics().density,paint);paint.setStyle(Paint.Style.STROKE);paint.setColor(style.icon==null?0xff000000:(style.icon&0xff000000));canvas.drawCircle(p[0],p[1],8*getResources().getDisplayMetrics().density,paint);}label=p;}
@@ -171,6 +224,7 @@ public final class LocalMapView extends View {
   }
  }
  public boolean onTouchEvent(MotionEvent event){
+  if(inputLocked)return true;
   if(event.getActionMasked()==MotionEvent.ACTION_DOWN)longConsumed=false;contextGesture.onTouchEvent(event);scale.onTouchEvent(event);float x=event.getX(),y=event.getY();
   switch(event.getActionMasked()){
    case MotionEvent.ACTION_DOWN:downX=lastX=x;downY=lastY=y;moved=false;return true;
