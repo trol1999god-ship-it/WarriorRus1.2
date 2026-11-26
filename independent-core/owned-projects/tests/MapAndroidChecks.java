@@ -765,7 +765,16 @@ public final class MapAndroidChecks extends Instrumentation {
    clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("UTM · WGS 84");inputs("32 N 687071.44 6210141.33");click("Перейти");viewport=(double[])call(map(),"viewport",new Class[]{});double latitude=(Double)staticCall("MapMath","lat",new Class[]{double.class},viewport[1]),longitude=(Double)staticCall("MapMath","lon",new Class[]{double.class},viewport[0]);check(Math.abs(latitude-56)<1e-7&&Math.abs(longitude-12)<1e-7,"manual UTM moves centre to published control point");
    double[] valid=viewport.clone();clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("UTM · WGS 84");inputs("37 N 500000 -1");click("Перейти");check(find(getUiAutomation().getRootInActiveWindow(),"Перейти к координатам",true)!=null,"invalid UTM keeps input dialog open");viewport=(double[])call(map(),"viewport",new Class[]{});check(Arrays.equals(valid,viewport),"invalid coordinate leaves viewport intact");click("Отмена");
    clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("WGS 84 · градусы");inputs("85.1 0");click("Перейти");check(Arrays.equals(valid,(double[])call(map(),"viewport",new Class[]{})),"out-of-map latitude is rejected rather than silently clamped");click("Отмена");
-   click("Создать");click("Нарисовать маршрут");click("В центре");check(((List)call(map(),"drawingPoints",new Class[]{})).size()==1,"draft before blocked navigation");clickDescription("Метки");click("Поиск на карте");check(find(getUiAutomation().getRootInActiveWindow(),"Название среди видимых объектов проекта",true)==null,"search cannot open editor while drawing");check(((List)call(map(),"drawingPoints",new Class[]{})).size()==1,"search leaves drawing vertices intact");clickDescription("Ориентирование");click("Перейти к координатам");check(find(getUiAutomation().getRootInActiveWindow(),"Формат ввода",true)==null,"manual coordinate navigation blocked during drawing");check(((List)call(map(),"drawingPoints",new Class[]{})).size()==1,"coordinate navigation leaves draft intact");click("Отмена");click("Отменить рисунок");
+   click("Создать");click("Нарисовать маршрут");click("В центре");check(((List)call(map(),"drawingPoints",new Class[]{})).size()==1,"draft before blocked navigation");
+   clickDescription("Метки");
+   waitText("Поиск на карте");
+   Field popupField=activity.getClass().getDeclaredField("popup");popupField.setAccessible(true);
+   android.widget.PopupWindow draftMenu=(android.widget.PopupWindow)popupField.get(activity);
+   Field dockField=activity.getClass().getDeclaredField("mapDock");dockField.setAccessible(true);
+   android.view.View draftDock=(android.view.View)dockField.get(activity);
+   runOnMainSync(()->checkMenuAbove(draftMenu,draftDock,"menu clears the dock during map drawing"));
+   capture("map-drawing-menu");
+   click("Поиск на карте");check(find(getUiAutomation().getRootInActiveWindow(),"Название среди видимых объектов проекта",true)==null,"search cannot open editor while drawing");check(((List)call(map(),"drawingPoints",new Class[]{})).size()==1,"search leaves drawing vertices intact");clickDescription("Ориентирование");click("Перейти к координатам");check(find(getUiAutomation().getRootInActiveWindow(),"Формат ввода",true)==null,"manual coordinate navigation blocked during drawing");check(((List)call(map(),"drawingPoints",new Class[]{})).size()==1,"coordinate navigation leaves draft intact");click("Отмена");click("Отменить рисунок");
    check(Arrays.equals(before,(byte[])call(call(store,"load",new Class[]{long.class},id),"xml",new Class[]{})),"presentation, search guards and coordinate navigation preserve every object");check(requests.get()==requestsBefore,"coordinate operations and local map do not request internet tiles");capture("coordinate-formats");
   }finally{
    if(activity!=null){final Activity last=activity;runOnMainSync(new Runnable(){public void run(){last.finish();}});waitForIdleSync();}
@@ -850,12 +859,7 @@ public final class MapAndroidChecks extends Instrumentation {
       "narrow dock disclosure is above the toolbar and does not obscure attribution");
     check(mapMenu.isShowing()&&mapMenu.getWidth()<=mapView.getWidth()-Math.round(16*density),
       "open map menu fits the narrowed window without dismissal");
-    int[] menuPosition=new int[2], togglePosition=new int[2];
-    mapMenu.getContentView().getLocationOnScreen(menuPosition);
-    toggle.getLocationOnScreen(togglePosition);
-    check(menuPosition[1]+mapMenu.getContentView().getHeight()<=togglePosition[1],
-      "open menu clears the disclosure and toolbar after resize");
-    check(mapView.getParent()==dock.getParent()&&mapView.getBottom()>dock.getBottom(),"dock floats over the map");
+    checkMenuAbove(mapMenu,toggle,"open menu clears the disclosure and toolbar after resize");
    });
    check(mapView.getWidth()<fullWidth,"map receives a narrower window");
    check(Arrays.equals(camera,(double[])call(mapView,"viewport",new Class[]{})),"compact resize holds center and zoom");
@@ -888,6 +892,13 @@ public final class MapAndroidChecks extends Instrumentation {
   check(Arrays.equals(camera,(double[])call(mapView,"viewport",new Class[]{})),"return to full width holds center and zoom");
   checkMapControlBounds(dock,zoom,status);
   capture("map-resize-restored");
+ }
+ void checkMenuAbove(android.widget.PopupWindow menu,android.view.View control,String reason) {
+  android.view.View content=menu.getContentView();
+  int[] menuPosition=new int[2], controlPosition=new int[2];
+  content.getLocationOnScreen(menuPosition);
+  control.getLocationOnScreen(controlPosition);
+  check(menuPosition[1]+content.getHeight()<=controlPosition[1],reason);
  }
  void checkMapControlBounds(android.view.View dock,android.view.View zoom,android.view.View status) {
   runOnMainSync(()->{

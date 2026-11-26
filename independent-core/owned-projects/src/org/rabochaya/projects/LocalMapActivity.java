@@ -95,7 +95,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  }
  private WorkspaceUi.Item dockAction(String title,Runnable action){return item(title,()->{if(!busy)action.run();});}
  private WorkspaceUi.Item item(String title,Runnable action){return new WorkspaceUi.Item(title,action);}
- private void menu(String title,WorkspaceUi.Item...items){if(popup!=null)popup.dismiss();popup=WorkspaceUi.menu(this,root,mapDock,title,items);}
+ private void menu(String title,WorkspaceUi.Item...items){if(popup!=null)popup.dismiss();popup=WorkspaceUi.menu(this,(View)mapDock.getParent(),mapDock,title,items);}
  private boolean canLeave(){if(map!=null&&map.drawingType()!=null){error("Завершите или отмените рисунок");return false;}return true;}
  private void mainMenu(){menu("Меню",item("Проекты и файлы KML/KMZ",()->manager(true)),item("Новый проект",()->newProject()),item("Отображение",()->display()),item("Закрыть карту",()->onBackPressed()));}
  private void compositionFont(View view){if(view instanceof TextView)((TextView)view).setTypeface(WorkspaceUi.font(this));if(view instanceof ViewGroup)for(int i=0;i<((ViewGroup)view).getChildCount();i++)compositionFont(((ViewGroup)view).getChildAt(i));}
