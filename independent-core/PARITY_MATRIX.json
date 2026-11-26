@@ -843,6 +843,11 @@
         ]
       }
     },
+    "reference_map_snapshot": {
+      "code_commit": "c441ea05033ad20e27a1727df5dbb9f417e41831",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45898954501",
+      "verification": "PENDING"
+    },
     "reference_map_compass": {
       "code_commit": "3b82f4693061ac71bd3ba6a045044526a07c8784",
       "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45896177693",
@@ -863,7 +868,7 @@
       "scope": "Отдельные объекты из набора Point с сохранением идентификаторов точек.",
       "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45895265502",
       "retest": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45898240175",
-      "verification": "PENDING_DOM_RETEST"
+      "passed_api": [23, 35]
     },
     "reference_line_split": {
       "reference": "landmarks_context_menu_split_here",
