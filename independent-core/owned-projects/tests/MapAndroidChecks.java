@@ -726,10 +726,11 @@ public final class MapAndroidChecks extends Instrumentation {
  void mapCompassSettings()throws Exception{
   Context context=getTargetContext();Object store=storeClass.getConstructor(Context.class).newInstance(context);long id=-1;
   SharedPreferences prefs=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0);
+  boolean priorRotation=prefs.getBoolean("rotate_map_compass",false);
   boolean previousShow=prefs.getBoolean("show_map_compass",false);int previousCourse=prefs.getInt("map_compass_course",0);
   long previousProject=context.getSharedPreferences("workspace-session",0).getLong("last_project",-1);
   try{
-   prefs.edit().putBoolean("show_map_compass",false).putInt("map_compass_course",0).commit();
+   prefs.edit().putBoolean("rotate_map_compass",false).putBoolean("show_map_compass",false).putInt("map_compass_course",0).commit();
    Object doc=codec.getMethod("parse",byte[].class).invoke(null,(Object)XML.getBytes("UTF-8"));
    id=(Long)call(store,"insert",new Class[]{codec,String.class},doc,"QA_MAP_COMPASS");
    activity=startActivitySync(new Intent().setClassName(context.getPackageName(),"org.rabochaya.projects.LocalMapActivity")
@@ -742,15 +743,31 @@ public final class MapAndroidChecks extends Instrumentation {
    clickDescription("Ориентирование");click("Курс по компасу");click("Только азимут");
    check(prefs.getInt("map_compass_course",-1)==2,"course display is saved independently");
    clickDescription("Ориентирование");click("Показать компас");
-   check(!readout.isShown()&&!prefs.getBoolean("show_map_compass",true),"hiding the panel stops the map compass");
+   check(!readout.isShown()&&!prefs.getBoolean("show_map_compass",true),"compass panel can be hidden");
+   clickDescription("Ориентирование");click("Вращать карту по компасу");
+   check(prefs.getBoolean("rotate_map_compass",false)&&!readout.isShown(),"rotation works independently of the compass panel");
+   clickDescription("Ориентирование");click("Вращать карту по компасу");
+   check(!prefs.getBoolean("rotate_map_compass",true),"rotation can be disabled");
+   checkRotatedPan();
   }finally{
    if(activity!=null){Activity owner=activity;runOnMainSync(owner::finish);}
    if(id>0){call(store,"remove",new Class[]{long.class},id);staticCall("LocalMapActivity","cleanupDeletedProject",new Class[]{Context.class,long.class},context,id);}
    call(store,"close",new Class[]{});
-   prefs.edit().putBoolean("show_map_compass",previousShow).putInt("map_compass_course",previousCourse).commit();
+   prefs.edit().putBoolean("rotate_map_compass",priorRotation).putBoolean("show_map_compass",previousShow).putInt("map_compass_course",previousCourse).commit();
    context.getSharedPreferences("workspace-session",0).edit().putLong("last_project",previousProject).commit();
   }
  }
+ void checkRotatedPan()throws Exception{
+  android.view.View surface=(android.view.View)map();
+  setViewport(.5,.5,8);
+  Method heading=surface.getClass().getDeclaredMethod("setBearing",double.class);heading.setAccessible(true);
+  runOnMainSync(()->{try{heading.invoke(surface,90d);}catch(Exception failure){throw new AssertionError(failure);}});
+  dragMapSurface(surface);
+  double[] moved=(double[])call(surface,"viewport",new Class[]{});
+  check(Math.abs(moved[0]-.5)<1e-7&&moved[1]<.5,"rightward pan at 90 degrees moves along the projected meridian");
+  runOnMainSync(()->{try{heading.invoke(surface,0d);}catch(Exception failure){throw new AssertionError(failure);}});
+ }
+
  void gridStyle()throws Exception{
   Context context=getTargetContext();Object store=storeClass.getConstructor(Context.class).newInstance(context);long id=-1;
   SharedPreferences settings=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0);

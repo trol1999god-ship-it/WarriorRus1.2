@@ -743,6 +743,7 @@
         "maps_submenu_display_scale_value": "Карты → Масштаб карты: численный масштаб по центру и плотности экрана"
       },
       "partial": {
+        "orientation_submenu_rotate": "Ориентирование: поворот карты по магнитному курсу с преобразованием жестов.",
         "core_submenu_print_map": "Меню: снимок области карты в PNG через явный Android-выбор места сохранения.",
         "orientation_submenu_compass_on_map": "Ориентирование → Показать компас: магнитный север и азимут без геолокации.",
         "orientation_submenu_status": "Ориентирование → Статус компаса: данные и калибровка.",
@@ -794,9 +795,7 @@
         "maps": [
           "maps_submenu_correct_china_shift"
         ],
-        "orientation": [
-          "orientation_submenu_rotate"
-        ],
+        "orientation": [],
         "settings": [
           "settings_display_distances_title",
           "settings_display_areas_title",

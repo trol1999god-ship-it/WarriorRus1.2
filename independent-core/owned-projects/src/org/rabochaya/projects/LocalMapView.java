@@ -18,6 +18,8 @@ public final class LocalMapView extends View {
   if (inputLocked == locked) return;
   inputLocked = locked;
   if (!locked) return;
+  touchInProgress=false;
+  applyBearing();
   long now = android.os.SystemClock.uptimeMillis();
   MotionEvent cancel = MotionEvent.obtain(now, now, MotionEvent.ACTION_CANCEL, 0, 0, 0);
   try {
@@ -136,11 +138,18 @@ public final class LocalMapView extends View {
    for(int x=0;x<getWidth();x+=64)canvas.drawLine(x,0,x,getHeight(),paint);
    for(int y=0;y<getHeight();y+=64)canvas.drawLine(0,y,getWidth(),y,paint);
   }
-  if(mapReady){if(compositionLayers!=null){for(RasterLayer layer:compositionLayers){int saved=layer.model.opacity<100?canvas.saveLayerAlpha(0,0,getWidth(),getHeight(),Math.round(layer.model.opacity*255f/100f),Canvas.ALL_SAVE_FLAG):-1;if(layer.online!=null){for(int i=0;i<layer.online.length;i++)drawTiles(canvas,i,layer.online[i].source,layer);}else drawTiles(canvas,0,null,layer);if(saved!=-1)canvas.restoreToCount(saved);}}else if(online!=null){for(int layer=0;layer<online.length;layer++)drawTiles(canvas,layer,online[layer].source);}else drawTiles(canvas,0,null);}
+  int transformed=canvas.save();
+  canvas.rotate(-bearing,getWidth()/2f,getHeight()/2f);
+  int visibleWidth=visibleWidth(),visibleHeight=visibleHeight();
+  float left=(getWidth()-visibleWidth)/2f,top=(getHeight()-visibleHeight)/2f;
+  if(mapReady){if(compositionLayers!=null){for(RasterLayer layer:compositionLayers){int saved=layer.model.opacity<100?canvas.saveLayerAlpha(left,top,left+visibleWidth,top+visibleHeight,Math.round(layer.model.opacity*255f/100f),Canvas.ALL_SAVE_FLAG):-1;if(layer.online!=null){for(int i=0;i<layer.online.length;i++)drawTiles(canvas,i,layer.online[i].source,layer);}else drawTiles(canvas,0,null,layer);if(saved!=-1)canvas.restoreToCount(saved);}}else if(online!=null){for(int layer=0;layer<online.length;layer++)drawTiles(canvas,layer,online[layer].source);}else drawTiles(canvas,0,null);}
   if(nightRaster)canvas.drawColor(0x99091826);
   if(geographicGridVisible||secondaryGridVisible||radiusRulerVisible) {
-   grid.draw(canvas,cx,cy,world(),getWidth(),getHeight(),getResources().getDisplayMetrics().density, WorkspaceUi.font(getContext()),
+   int gridCanvas=canvas.save();
+   canvas.translate(left,top);
+   grid.draw(canvas,cx,cy,world(),visibleWidth,visibleHeight,getResources().getDisplayMetrics().density, WorkspaceUi.font(getContext()),
      geographicGridVisible?primaryGridFormat:-1,secondaryGridVisible?secondaryGridFormat:-1,radiusRulerVisible);
+   canvas.restoreToCount(gridCanvas);
   }
   int labels=0;
   for(KmlProject.Feature f:features){KmlComponentStyle style=componentStyles.get(f.element);if(style==null)style=KmlComponentStyle.EMPTY;int line=style.line==null?KmlComponentStyle.DEFAULT_COLOR:style.line;float[] label=null;for(KmlProject.Geometry g:f.shapes){paint.setColor(line);paint.setStrokeWidth(style.width==null?3*getResources().getDisplayMetrics().density:style.width);paint.setStyle(Paint.Style.STROKE);
@@ -149,6 +158,8 @@ public final class LocalMapView extends View {
     if("Polygon".equals(g.type)){if(!Boolean.FALSE.equals(style.fill)){paint.setStyle(Paint.Style.FILL);paint.setColor(style.polygon==null?(KmlComponentStyle.DEFAULT_COLOR&0xffffff)|0x45000000:style.polygon);canvas.drawPath(path,paint);}paint.setStyle(Paint.Style.STROKE);paint.setColor(line);if(!Boolean.FALSE.equals(style.outline)&&(style.width==null||style.width>0))canvas.drawPath(path,paint);}else if(style.width==null||style.width>0)canvas.drawPath(path,paint);
    }}
    if(labelsVisible&&label!=null&&labels++<200&&(style.label==null||(style.label>>>24)!=0)&&(style.labelScale==null||style.labelScale>0)){
+    int upright=canvas.save();
+    canvas.rotate(bearing,label[0],label[1]);
     float textX=label[0]+14,textY=label[1]-14;
     paint.setTextSize(14*getResources().getDisplayMetrics().scaledDensity*(style.labelScale==null?1:style.labelScale));
     if(style.label==null){
@@ -166,9 +177,11 @@ public final class LocalMapView extends View {
      canvas.drawText(f.name,textX,textY,paint);
      paint.clearShadowLayer();
     }
+    canvas.restoreToCount(upright);
    }
   }
   drawDraft(canvas);
+  canvas.restoreToCount(transformed);
   float x=getWidth()/2f,y=getHeight()/2f,density=getResources().getDisplayMetrics().density;
   paint.setStyle(Paint.Style.STROKE);
   paint.setStrokeWidth(3*density);
@@ -183,10 +196,10 @@ public final class LocalMapView extends View {
  private void drawTiles(Canvas canvas,int layer,TileSource source,RasterLayer group){
   OfflineTiles local=group==null?tiles:group.offline;BundledTiles fallback=group==null?bundled:group.bundled;
   int z=source==null?(local!=null?local.zoomFor((int)Math.floor(zoom)):fallback.zoomFor((int)Math.floor(zoom))):source.zoomFor((int)Math.floor(zoom));
-   if(fallback!=null)z=MapMath.overviewTileZoom(z,world(),getWidth(),getHeight(),32);
+   if(fallback!=null)z=MapMath.overviewTileZoom(z,world(),visibleWidth(),visibleHeight(),32);
    int n=1<<z;double tileSize=world()/n;boolean elliptical=source!=null&&source.ellipsoid;
-  double screenTop=MapMath.clamp(cy-getHeight()/2.0/world(),0,1),screenBottom=MapMath.clamp(cy+getHeight()/2.0/world(),0,1);
-  int left=(int)Math.floor(cx*n-getWidth()/2.0/tileSize),right=(int)Math.floor(cx*n+getWidth()/2.0/tileSize),top=(int)Math.floor(TileProjection.y(MapMath.lat(screenTop),elliptical)*n),bottom=(int)Math.floor(TileProjection.y(MapMath.lat(screenBottom),elliptical)*n);
+  double screenTop=MapMath.clamp(cy-visibleHeight()/2.0/world(),0,1),screenBottom=MapMath.clamp(cy+visibleHeight()/2.0/world(),0,1);
+  int left=(int)Math.floor(cx*n-visibleWidth()/2.0/tileSize),right=(int)Math.floor(cx*n+visibleWidth()/2.0/tileSize),top=(int)Math.floor(TileProjection.y(MapMath.lat(screenTop),elliptical)*n),bottom=(int)Math.floor(TileProjection.y(MapMath.lat(screenBottom),elliptical)*n);
   if((long)(right-left+1)*Math.max(0,Math.min(n-1,bottom)-Math.max(0,top)+1)>32){paint.setColor(-1);paint.setTextSize(14*getResources().getDisplayMetrics().scaledDensity);canvas.drawText("Увеличьте масштаб для этой карты",16,28,paint);return;}
   for(int y=Math.max(0,top);y<=Math.min(n-1,bottom);y++)for(int x=left;x<=right;x++){
    int tx=((x%n)+n)%n;String key=(group==null?"":group.model.id+"/")+layer+"/"+z+"/"+tx+"/"+y;Bitmap b=cache.get(key);float px=(float)(getWidth()/2.0+(x-cx*n)*tileSize);
@@ -219,7 +232,50 @@ public final class LocalMapView extends View {
   invalidate();
  }
 
+ private float bearing, pendingBearing;
+ private boolean touchInProgress;
+ private final Matrix touchRotation=new Matrix();
+
+ void setBearing(double degrees){
+  pendingBearing=Double.isNaN(degrees)?0:(float)degrees;
+  if(!touchInProgress)applyBearing();
+ }
+ private void applyBearing(){
+  if(bearing==pendingBearing)return;
+  bearing=pendingBearing;
+  invalidate();
+ }
+ private int visibleWidth(){
+  if(bearing==0)return getWidth();
+  double angle=Math.toRadians(bearing);
+  return (int)Math.ceil(Math.abs(getWidth()*Math.cos(angle))+Math.abs(getHeight()*Math.sin(angle)));
+ }
+ private int visibleHeight(){
+  if(bearing==0)return getHeight();
+  double angle=Math.toRadians(bearing);
+  return (int)Math.ceil(Math.abs(getWidth()*Math.sin(angle))+Math.abs(getHeight()*Math.cos(angle)));
+ }
+
  public boolean onTouchEvent(MotionEvent event){
+  if(inputLocked)return true;
+  int action=event.getActionMasked();
+  if(action==MotionEvent.ACTION_DOWN)touchInProgress=true;
+  MotionEvent projected=event;
+  if(bearing!=0){
+   projected=MotionEvent.obtain(event);
+   touchRotation.setRotate(bearing,getWidth()/2f,getHeight()/2f);
+   projected.transform(touchRotation);
+  }
+  try{return handleMapTouch(projected);}
+  finally{
+   if(projected!=event)projected.recycle();
+   if(action==MotionEvent.ACTION_UP||action==MotionEvent.ACTION_CANCEL){
+    touchInProgress=false;
+    applyBearing();
+   }
+  }
+ }
+ private boolean handleMapTouch(MotionEvent event){
   if(inputLocked)return true;
   if(event.getActionMasked()==MotionEvent.ACTION_DOWN)longConsumed=false;contextGesture.onTouchEvent(event);scale.onTouchEvent(event);float x=event.getX(),y=event.getY();
   switch(event.getActionMasked()){
@@ -232,7 +288,7 @@ public final class LocalMapView extends View {
   }return true;
  }
  public boolean performClick(){super.performClick();return true;}
- public double[] bounds(){double halfX=getWidth()/2.0/world(),halfY=getHeight()/2.0/world();return new double[]{halfX>=.5?-180:MapMath.lon(cx-halfX),MapMath.lat(Math.min(1,cy+halfY)),halfX>=.5?180:MapMath.lon(cx+halfX),MapMath.lat(Math.max(0,cy-halfY))};}
+ public double[] bounds(){double halfX=visibleWidth()/2.0/world(),halfY=visibleHeight()/2.0/world();return new double[]{halfX>=.5?-180:MapMath.lon(cx-halfX),MapMath.lat(Math.min(1,cy+halfY)),halfX>=.5?180:MapMath.lon(cx+halfX),MapMath.lat(Math.max(0,cy-halfY))};}
  void retryTiles(){
   OnlineTiles[] base=online;
   if(base!=null)for(OnlineTiles reader:base)reader.retryDns();

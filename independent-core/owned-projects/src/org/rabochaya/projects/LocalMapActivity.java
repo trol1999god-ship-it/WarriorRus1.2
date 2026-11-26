@@ -290,7 +290,9 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void syncCompass(){
   boolean show=getPreferences(0).getBoolean("show_map_compass",false);
   if(compassPanel!=null)compassPanel.setVisibility(show?View.VISIBLE:View.GONE);
-  if(mapForeground&&show)mapCompass.start();
+  boolean rotate=getPreferences(0).getBoolean("rotate_map_compass",false);
+  if(map!=null)map.setBearing(rotate?compassHeading:0);
+  if(mapForeground&&(show||rotate))mapCompass.start();
   else{
    mapCompass.stop();
    displayCompassReading(Double.NaN,0,"компас на карте выключен");
@@ -298,6 +300,8 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  }
  private void displayCompassReading(double heading,int accuracy,String reason){
   compassHeading=heading;
+  if(map!=null&&getPreferences(0).getBoolean("rotate_map_compass",false)&&!Double.isNaN(heading))
+   map.setBearing(heading);
   compassState=Double.isNaN(heading)?reason:String.format(Locale.US,"Магнитный азимут: %03.0f°%s",heading,
     accuracy==android.hardware.SensorManager.SENSOR_STATUS_UNRELIABLE?" · нужна калибровка":"");
   refreshCompassPanel();
@@ -325,8 +329,14 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
      dialog.dismiss();
     }).setNegativeButton("Отмена",null));
  }
+ private void toggleCompassRotation() {
+  SharedPreferences prefs=getPreferences(0);
+  prefs.edit().putBoolean("rotate_map_compass",!prefs.getBoolean("rotate_map_compass",false)).apply();
+  syncCompass();
+ }
  private void orientationMenu(){menu("Ориентирование",item("Компас",()->startActivity(new Intent(this,CompassActivity.class))),
     WorkspaceUi.Item.toggle("Показать компас",getPreferences(0).getBoolean("show_map_compass",false),this::toggleMapCompass),
+    WorkspaceUi.Item.toggle("Вращать карту по компасу",getPreferences(0).getBoolean("rotate_map_compass",false),this::toggleCompassRotation),
     item("Статус компаса",this::showCompassStatus),item("Курс по компасу",this::selectCompassDisplay),item("Перейти к координатам",()->goToCoordinates()),item("Форматы координат",()->coordinateOptions()),item("DEM / высота центра",()->{if(canLeave())startActivityForResult(new Intent(this,DemActivity.class).putExtra("project",projectId),DEM);}),item("Показать область DEM",()->showDemCoverage()));}
  private void showDemCoverage(){if(!canLeave()||map==null||!canMoveMap())return;try{double[] view;synchronized(LocalRasterStore.class){ProjectStore store=new ProjectStore(this);try{if(!store.exists(projectId))throw new IOException("Проект удалён");}finally{store.close();}try(HgtRaster owned=HgtRaster.owned(DemActivity.file(this,projectId),projectId)){view=owned.mapViewport(map.getWidth(),map.getHeight());}}map.restore(view[0],view[1],view[2]);saveView();}catch(IOException e){error("Область DEM недоступна: "+e.getMessage());}}
  private void manager(boolean all){if(!canLeave())return;refreshOnResume=true;if(!all){ObjectManagerActivity.open(this,projectId);return;}getSharedPreferences("org.rabochaya.projects.ProjectsActivity",0).edit().putLong("project",all?-1:projectId).putString("folder","").commit();startActivity(new Intent().setClassName(this,"org.rabochaya.projects.ProjectsActivity"));}
