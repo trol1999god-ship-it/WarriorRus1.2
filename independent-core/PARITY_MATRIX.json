@@ -744,6 +744,7 @@
       },
       "partial": {
         "core_submenu_display_grid": "Информеры: подписанная сетка выбранного основного формата, UTM/MGRS в зоне центра.",
+        "settings_canvas_grids_title": "Опции → Вид координатных сеток: плотность, стиль и подписи вспомогательных линий.",
         "core_submenu_display_secondary_grid": "Информеры: независимая дополнительная сетка по выбранному формату.",
         "core_submenu_display_radius_ruler": "Информеры: круговая линейка со сферическими расстояниями от центра.",
         "core_submenu_night_mode": "Меню: ночное затемнение растра с сохранением читаемости объектов.",
@@ -806,8 +807,7 @@
           "settings_display_reference_north_title",
           "settings_technical_disable_keyguard_title",
           "settings_canvas_infobox_style_title",
-          "settings_canvas_grids_title",
-          "settings_canvas_multitouch_rotate_title",
+            "settings_canvas_multitouch_rotate_title",
           "settings_canvas_multitouch_pitch_title",
           "settings_canvas_hres_map_title",
           "settings_landmarks_display_target_color_title",
@@ -844,6 +844,11 @@
           "managerfiltersreopen"
         ]
       }
+    },
+    "reference_grid_overlays": {
+      "code_commit": "5e0703067811abecb64ba29d93c8ba950e848abc",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45893700531",
+      "coordinates_passed_api": [23, 35, 37]
     },
     "reference_line_split": {
       "reference": "landmarks_context_menu_split_here",

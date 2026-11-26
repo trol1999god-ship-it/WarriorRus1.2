@@ -54,6 +54,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   map.setLabelsVisible(getPreferences(0).getBoolean("show_labels",true));
   map.setGeographicGridVisible(getPreferences(0).getBoolean("show_geographic_grid",false));
   map.setGridFormats(CoordinateSettings.primary(this),CoordinateSettings.secondary(this));
+  applyGridAppearance();
   map.setSecondaryGridVisible(getPreferences(0).getBoolean("show_secondary_grid",false));
   map.setRadiusRulerVisible(getPreferences(0).getBoolean("show_radius_ruler",false));
   map.setNightRaster(getPreferences(0).getBoolean("map_night_raster",false));
@@ -143,9 +144,46 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void optionsMenu(){
   menu("Опции",item("Координаты центра экрана",this::coordinateOptions),
     item("Кеш / онлайн",this::onlineSettings),item("Информеры",this::display),
-    item("Экран карты",this::screenOptions));
+    item("Экран карты",this::screenOptions),item("Вид координатных сеток",this::gridAppearance));
  }
  private static final String[] MAP_SCREEN_KEYS={"map_hide_status", "map_immersive", "map_keep_screen_on", "map_confirm_exit"};
+
+ private void applyGridAppearance() {
+  SharedPreferences prefs=getPreferences(0);
+  map.setGridAppearance(prefs.getInt("grid_density",1),prefs.getInt("grid_pattern",0),
+    prefs.getBoolean("grid_minor_labels",false));
+ }
+ private void gridAppearance() {
+  SharedPreferences prefs=getPreferences(0);
+  LinearLayout form=coordinateForm();
+  form.addView(coordinateCaption("Плотность линий"));
+  Spinner density=gridChoice(form,"Плотность линий",new String[]{"Редкая","Обычная","Плотная"},prefs.getInt("grid_density",1));
+  form.addView(coordinateCaption("Стиль линий"));
+  Spinner pattern=gridChoice(form,"Стиль линий",new String[]{"По типу сетки","Сплошные","Штриховые"},prefs.getInt("grid_pattern",0));
+  CheckBox labels=new CheckBox(this);
+  labels.setText("Отобразить надписи на вспомогательных линиях");
+  labels.setChecked(prefs.getBoolean("grid_minor_labels",false));
+  form.addView(labels);
+  ScrollView viewport=new ScrollView(this);
+  viewport.addView(form);
+  WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setTitle("Вид координатных сеток")
+   .setView(viewport).setPositiveButton("Сохранить",(dialog,which)->{
+     prefs.edit().putInt("grid_density",density.getSelectedItemPosition())
+       .putInt("grid_pattern",pattern.getSelectedItemPosition())
+       .putBoolean("grid_minor_labels",labels.isChecked()).apply();
+     applyGridAppearance();
+   }).setNegativeButton("Отмена",null));
+ }
+ private Spinner gridChoice(LinearLayout form,String label,String[] choices,int selected) {
+  Spinner spinner=new Spinner(this);
+  spinner.setContentDescription(label);
+  ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,choices);
+  adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+  spinner.setAdapter(adapter);
+  spinner.setSelection(Math.max(0,Math.min(choices.length-1,selected)));
+  form.addView(spinner);
+  return spinner;
+ }
 
  private void screenOptions() {
   SharedPreferences preferences = getPreferences(0);

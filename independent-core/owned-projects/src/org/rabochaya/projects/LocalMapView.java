@@ -197,6 +197,10 @@ public final class LocalMapView extends View {
    }
   }
  }
+ void setGridAppearance(int density,int pattern,boolean minorLabels) {
+  grid.setAppearance(density,pattern,minorLabels);
+  invalidate();
+ }
  void setGridFormats(int primary,int secondary) {
   primaryGridFormat=primary;
   secondaryGridFormat=secondary;

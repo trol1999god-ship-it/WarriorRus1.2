@@ -12,9 +12,17 @@ final class MapGrid {
     private static final int SAMPLES = 32;
     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Path path = new Path();
-    private DashPathEffect secondaryStyle;
+    private DashPathEffect dashed;
+    private int divisions=6, pattern;
+    private boolean minorLabels;
     private double cx, cy, world;
     private float width, height, inset, stroke;
+
+    void setAppearance(int density,int pattern,boolean minorLabels) {
+        divisions = density == 0 ? 3 : density == 2 ? 9 : 6;
+        this.pattern = pattern;
+        this.minorLabels = minorLabels;
+    }
 
     void draw(Canvas canvas, double cx, double cy, double world, int width, int height,
               float density, Typeface font, int primary, int secondary, boolean radiusRuler) {
@@ -29,7 +37,7 @@ final class MapGrid {
         paint.setStrokeWidth(stroke);
         paint.setTextSize(11 * density);
         paint.setTypeface(font);
-        if (secondaryStyle == null) secondaryStyle = new DashPathEffect(new float[]{6*density,4*density},0);
+        if (dashed == null) dashed = new DashPathEffect(new float[]{6*density,4*density},0);
         if (primary >= 0) drawGrid(canvas, primary, false, false);
         if (secondary >= 0 && secondary != primary) {
             boolean sameProjection = primary >= 0 && (primary < Coordinates.UTM)==(secondary < Coordinates.UTM);
@@ -40,7 +48,7 @@ final class MapGrid {
 
     private void drawGrid(Canvas canvas,int format,boolean secondary,boolean labelsOnly) {
         paint.setColor(secondary ? 0xfff0d99a : 0xffcbe9fa);
-        paint.setPathEffect(secondary ? secondaryStyle : null);
+        paint.setPathEffect(pattern == 2 || (pattern == 0 && secondary) ? dashed : null);
         if (format < Coordinates.UTM) drawGeographic(canvas,format,secondary,labelsOnly);
         else drawProjected(canvas,format,secondary,labelsOnly);
     }
@@ -56,8 +64,31 @@ final class MapGrid {
         double top = Math.max(0,cy-height/(2*world)), bottom = Math.min(1,cy+height/(2*world));
         if (bottom <= top) return;
         double north = MapMath.lat(top), south = MapMath.lat(bottom);
-        double lonStep = step((east-west)/6), latStep = step((north-south)/6);
+        double lonStep = step((east-west)/divisions), latStep = step((north-south)/divisions);
         float topPixel = pixelY(top), bottomPixel = pixelY(bottom);
+
+        double minorLon = lonStep/2, minorLat = latStep/2;
+        int color=paint.getColor();
+        paint.setAlpha(95);
+        for(long n=(long)Math.ceil(west/minorLon);n*minorLon<=east;n++){
+            if(n%2==0)continue;
+            double lon=n*minorLon;
+            float x=pixelX((lon+180)/360-cx);
+            if(!labelsOnly)line(canvas,x,topPixel,x,bottomPixel);
+            if(minorLabels)label(canvas,Coordinates.gridAngle(MapMath.lon(MapMath.x(lon)),false,format,precision(minorLon)),
+                x+inset,secondary?bottomPixel-inset:topPixel+paint.getTextSize()+inset);
+        }
+        for(long n=(long)Math.ceil(south/minorLat);n*minorLat<=north;n++){
+            if(n%2==0)continue;
+            double lat=n*minorLat;
+            float y=pixelY(MapMath.y(lat));
+            if(!labelsOnly)line(canvas,0,y,width,y);
+            if(minorLabels){
+                String text=Coordinates.gridAngle(lat,true,format,precision(minorLat));
+                label(canvas,text,secondary?width-paint.measureText(text)-inset:inset,y-inset);
+            }
+        }
+        paint.setColor(color);
         for (double lon = Math.ceil(west/lonStep)*lonStep; lon <= east; lon += lonStep) {
             float x = pixelX((lon+180)/360-cx);
             if (!labelsOnly) line(canvas,x,topPixel,x,bottomPixel);
@@ -73,7 +104,9 @@ final class MapGrid {
     }
 
     private static int precision(double step) {
-        return Math.max(0,Math.min(8,(int)Math.ceil(-Math.log10(step))));
+        int digits=Math.max(0,Math.min(8,(int)Math.ceil(-Math.log10(step))));
+        double scaled=step*Math.pow(10,digits);
+        return Math.min(8,Math.abs(scaled-Math.rint(scaled))>1e-8?digits+1:digits);
     }
 
     private void drawProjected(Canvas canvas,int format,boolean secondary,boolean labelsOnly) {
@@ -81,19 +114,26 @@ final class MapGrid {
         if (lat < -80 || lat >= 84) return;
         Coordinates.Grid centre = Coordinates.toUtm(lat,MapMath.lon(cx));
         double metresPerPixel = Math.cos(Math.toRadians(lat))*2*Math.PI*RADIUS/world;
-        double interval = step(Math.max(width,height)*metresPerPixel/6);
+        double interval = step(Math.max(width,height)*metresPerPixel/divisions);
         double reach = Math.min(2000000,Math.hypot(width,height)*metresPerPixel);
         for (boolean easting : new boolean[]{true,false}) {
             double origin=easting?centre.easting:centre.northing;
             double other=easting?centre.northing:centre.easting;
-            for(double fixed=Math.ceil((origin-reach)/interval)*interval;fixed<=origin+reach;fixed+=interval) {
-                projectedLine(canvas,centre,format,easting,fixed,other,reach,secondary,labelsOnly);
+            double minor=interval/2;
+            int color=paint.getColor();
+            for(long n=(long)Math.ceil((origin-reach)/minor);n*minor<=origin+reach;n++) {
+                boolean auxiliary=n%2!=0;
+                paint.setColor(color);
+                if(auxiliary)paint.setAlpha(95);
+                projectedLine(canvas,centre,format,easting,n*minor,other,reach,secondary,labelsOnly,!auxiliary||minorLabels);
             }
+            paint.setColor(color);
         }
     }
 
     private void projectedLine(Canvas canvas,Coordinates.Grid centre,int format,boolean easting,
-                               double fixed,double origin,double reach,boolean secondary,boolean labelsOnly) {
+                               double fixed,double origin,double reach,boolean secondary,boolean labelsOnly,
+                               boolean showLabel) {
         path.rewind();
         boolean segment=false;
         float labelX=0,labelY=0;
@@ -107,7 +147,7 @@ final class MapGrid {
                 float x=pixelX(MapMath.delta(MapMath.x(point.lon),cx)), y=pixelY(MapMath.y(point.lat));
                 if(segment)path.lineTo(x,y);else path.moveTo(x,y);
                 segment=true;
-                if(x>=inset&&x<width-inset&&y>=paint.getTextSize()&&y<height-inset
+                if(showLabel&&x>=inset&&x<width-inset&&y>=paint.getTextSize()&&y<height-inset
                     &&(labelled==null||secondary)){
                     labelX=x;
                     labelY=y;
@@ -165,7 +205,7 @@ final class MapGrid {
         paint.setPathEffect(null);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(3*stroke);
-        paint.setColor(0xff16344b);
+        paint.setColor((color&0xff000000)|0x16344b);
         canvas.drawText(text,x,y,paint);
         paint.setStrokeWidth(stroke);
         paint.setStyle(Paint.Style.FILL);
