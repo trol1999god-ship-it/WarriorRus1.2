@@ -141,7 +141,7 @@ final class AcceptanceChecks {
   String token = test.treeToken(test.call(store,"load",new Class[]{long.class},id));
   try {
    test.staticCall("ProjectSession","remember",new Class[]{Context.class,long.class},context,id);
-   map = test.launchWorkspace();
+   map = test.launchWorkspace(id);
    test.stableMainMap();
    double[] viewport = (double[])test.call(test.map(),"viewport",new Class[]{});
    if (!resume) {

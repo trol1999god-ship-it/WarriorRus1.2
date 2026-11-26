@@ -2,6 +2,21 @@ package org.rabochaya.projects;
 import android.app.Activity;import android.graphics.*;import android.graphics.drawable.*;import android.view.*;import android.widget.*;import java.io.*;import java.util.*;
 /** Own widgets using local artwork and the selected font. No external UI SDK. */
 public final class WorkspaceUi {
+ public static List<org.w3c.dom.Element> orderedChildren(List<org.w3c.dom.Element> children,int sort){
+  if(sort<=0||sort>=ObjectListing.SORTS.length)return children;
+  List<org.w3c.dom.Element> sorted=new ArrayList<>(children);
+  java.text.Collator collator=ObjectListing.listingCollator();
+  Map<org.w3c.dom.Element,Integer> kinds=new IdentityHashMap<>();
+  Map<org.w3c.dom.Element,String> names=new IdentityHashMap<>();
+  for(org.w3c.dom.Element element:children){
+   if(sort==3)kinds.put(element,ObjectListing.classify(element));
+   names.put(element,KmlProject.name(element));
+  }
+  Collections.sort(sorted,(a,b)->ObjectListing.compareEntries(collator,sort,
+    sort==3?kinds.get(a):0,sort==3?kinds.get(b):0,names.get(a),names.get(b)));
+  return sorted;
+ }
+
  public static final int TEXT=0xff082e4c,PANEL=0xf2c7e1f8,MUTED=0xff427da9; // Confirmed blue palette: ReferenceMenu0b78cecc; not complete13-screen parity.
  private static Typeface font;private static final Map<String,Bitmap> icons=new HashMap<>();
  public static int dp(Activity a,float n){return (int)(a.getResources().getDisplayMetrics().density*n+.5f);}
@@ -26,6 +41,13 @@ public final class WorkspaceUi {
    ViewGroup group = (ViewGroup)view;
    for (int i=0; i<group.getChildCount(); i++) applyFont(activity,group.getChildAt(i));
   }
+ }
+ public static void showDialog(Activity activity,android.app.AlertDialog.Builder builder) {
+  showDialog(activity,builder.create());
+ }
+ static void showDialog(Activity activity,android.app.AlertDialog dialog) {
+  dialog.show();
+  applyFont(activity,dialog.getWindow().getDecorView());
  }
  static void systemBars(Activity activity) {
   activity.getWindow().setStatusBarColor(MapHud.BAR);

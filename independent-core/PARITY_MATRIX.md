@@ -1,5 +1,7 @@
 # Матрица соответствия «Рабочей карты» v26.1
 
+По каталогу 83 позиций восстановлены «Опции», численный «Масштаб карты» и «Метки на экране». Сортировка содержимого папки доступна в обоих менеджерах. Динамическое соответствие эталону остаётся открытым. [Сопоставление пунктов по ресурсам](PARITY_MATRIX.json)
+
 Масштабная линейка и названия меток переключаются в разделе «Отображение» и восстанавливаются после повторного открытия карты. Код `796723f`. API 23 — 68 · API 35 — 68 · API 37 — 68. Расположение переключателей в работающем эталоне открыто. [Статическое подтверждение пунктов](security/reference-gaps-2026-11-26/ui-surface.json) · [CI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45729310081) · [QA APK](https://chatgpt.com/library?file_id=libfile_baa76c5ac91c8191a22ac91ea5bd1012&account_id=personal) · [Кадры и журналы](https://chatgpt.com/library?file_id=libfile_e114924d8c088191897cdaf02a7b81d6&account_id=personal)
 
 Панель и меню карты, код `fd5ed2f`. В окне 320 dp доступны пять действий. В окне 290 dp действует прокрутка. Меню и переключатель не перекрывают основные кнопки. API 23 — карта 204, координаты 52 · API 35 — карта 204, координаты 52 · API 37 — карта 204, координаты 52. [CI](https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45726430853) · [QA APK](https://chatgpt.com/library?file_id=libfile_04848819a63881919a90c85811afb2d2&account_id=personal) · [Кадры и журналы](https://chatgpt.com/library?file_id=libfile_fb77d08843848191a5be360e51dbbed0&account_id=personal)

@@ -73,7 +73,7 @@ public final class MapAndroidChecks extends Instrumentation {
   }
   capture("input_failure");throw new AssertionError("Expected focused form with "+values.length+" fields, found "+count[0]);
  }
- android.view.View activeDialogRoot(){try{Class<?> global=Class.forName("android.view.WindowManagerGlobal");Object instance=global.getMethod("getInstance").invoke(null);Field f=global.getDeclaredField("mViews");f.setAccessible(true);List views=(List)f.get(instance);for(int i=views.size()-1;i>=0;i--){android.view.View root=(android.view.View)views.get(i);if(root.isShown()&&root.hasWindowFocus())return root;}return (android.view.View)views.get(views.size()-1);}catch(Exception e){throw new RuntimeException(e);}}
+ android.view.View activeDialogRoot(){try{Class<?> global=Class.forName("android.view.WindowManagerGlobal");Object instance=global.getMethod("getInstance").invoke(null);Field f=global.getDeclaredField("mViews");f.setAccessible(true);List views=(List)f.get(instance);for(int i=views.size()-1;i>=0;i--){android.view.View root=(android.view.View)views.get(i);if(root.isShown()&&root.hasWindowFocus())return root;}return views.isEmpty()?null:(android.view.View)views.get(views.size()-1);}catch(Exception e){throw new RuntimeException(e);}}
  void collectInputs(android.view.View v,List<android.widget.EditText> fields){if(v instanceof android.widget.EditText)fields.add((android.widget.EditText)v);if(v instanceof android.view.ViewGroup){android.view.ViewGroup group=(android.view.ViewGroup)v;for(int i=0;i<group.getChildCount();i++)collectInputs(group.getChildAt(i),fields);}}
  Object projectDocument()throws Exception{Object store=storeClass.getConstructor(Context.class).newInstance(getTargetContext());try{return call(store,"load",new Class[]{long.class},project);}finally{call(store,"close",new Class[]{});}}
  List features()throws Exception{return (List)call(projectDocument(),"features",new Class[]{boolean.class},false);}
@@ -889,22 +889,27 @@ public final class MapAndroidChecks extends Instrumentation {
   });
   return crop;
  }
- Activity launchWorkspace()throws Exception{
-  ActivityMonitor monitor=addMonitor("org.rabochaya.projects.LocalMapActivity",null,false);
-  getTargetContext().startActivity(new Intent().setClassName(getTargetContext().getPackageName(),"org.rabochaya.projects.OwnedHomeActivity").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-  Activity map=waitForMonitorWithTimeout(monitor,45000);removeMonitor(monitor);check(map!=null,"launcher opens owned map directly");activity=map;waitText("видимых объектов");stableMainMap();return activity;
+ Activity launchWorkspace(long expectedProject)throws Exception{
+  Context context=getTargetContext();
+  context.startActivity(new Intent().setClassName(context.getPackageName(),"org.rabochaya.projects.OwnedHomeActivity").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+  stableMainMap(expectedProject,45000);
+  check(activity.getIntent().getLongExtra("project",-1)==expectedProject,"launcher opens the expected project directly");
+  return activity;
  }
  android.view.View findMainMap(android.view.View root){if(root.getClass().getName().equals("org.rabochaya.projects.LocalMapView"))return root;if(root instanceof android.view.ViewGroup){android.view.ViewGroup group=(android.view.ViewGroup)root;for(int i=0;i<group.getChildCount();i++){android.view.View found=findMainMap(group.getChildAt(i));if(found!=null)return found;}}return null;}
  android.view.View stableMainMap()throws Exception{
-  long end=System.currentTimeMillis()+15000;android.view.View previous=null;int stable=0;final long expectedProject=activity.getIntent().getLongExtra("project",-1);
+  return stableMainMap(activity.getIntent().getLongExtra("project",-1),15000);
+ }
+ android.view.View stableMainMap(long expectedProject,long timeout)throws Exception{
+  long end=System.currentTimeMillis()+timeout;android.view.View previous=null;int stable=0;
   while(System.currentTimeMillis()<end){final android.view.View[] current=new android.view.View[1];runOnMainSync(()->{try{
-   android.view.View root=activeDialogRoot(),view=findMainMap(root);if(view==null)return;
+   android.view.View root=activeDialogRoot();if(root==null)return;android.view.View view=findMainMap(root);if(view==null)return;
    Context owner=view.getContext();while(owner instanceof ContextWrapper&&!(owner instanceof Activity))owner=((ContextWrapper)owner).getBaseContext();
    if(!(owner instanceof Activity)||!owner.getClass().getName().equals("org.rabochaya.projects.LocalMapActivity"))return;Activity live=(Activity)owner;
    if(live.isFinishing()||live.isDestroyed()||live.getWindow().getDecorView()!=root||live.getIntent().getLongExtra("project",-1)!=expectedProject)return;
    Field busy=live.getClass().getDeclaredField("busy"),field=live.getClass().getDeclaredField("map");busy.setAccessible(true);field.setAccessible(true);
    if(!busy.getBoolean(live)&&view==field.get(live)&&view.isAttachedToWindow()&&view.isShown()&&view.hasWindowFocus()&&view.getWidth()>0&&view.getHeight()>0){
-    if(activity!=live){Bundle status=new Bundle();status.putString("stream","MAIN_MAP_REBOUND previous="+activity+" finishing="+activity.isFinishing()+" destroyed="+activity.isDestroyed()+" current="+live+" project="+expectedProject+" root="+root+"\n");sendStatus(0,status);}activity=live;current[0]=view;
+    if(activity!=null&&activity!=live){Bundle status=new Bundle();status.putString("stream","MAIN_MAP_REBOUND previous="+activity+" finishing="+activity.isFinishing()+" destroyed="+activity.isDestroyed()+" current="+live+" project="+expectedProject+" root="+root+"\n");sendStatus(0,status);}activity=live;current[0]=view;
    }
   }catch(Exception e){throw new RuntimeException(e);}});
    if(current[0]!=null&&current[0]==previous){if(++stable>=3)return current[0];}else stable=0;previous=current[0];Thread.sleep(100);
@@ -913,12 +918,13 @@ public final class MapAndroidChecks extends Instrumentation {
  void reportMainMapState(){
   final String[] state=new String[1];
   runOnMainSync(()->{try{
+   if(activity==null){state[0]="no map activity observed";return;}
    Field busy=activity.getClass().getDeclaredField("busy");busy.setAccessible(true);
    android.view.View view=(android.view.View)map();
    state[0]="activity="+activity+" finishing="+activity.isFinishing()+" destroyed="+activity.isDestroyed()+" busy="+busy.getBoolean(activity)
     +" decorFocus="+activity.getWindow().getDecorView().hasWindowFocus()+" map="+view;
    if(view!=null)state[0]+=" attached="+view.isAttachedToWindow()+" shown="+view.isShown()+" focus="+view.hasWindowFocus()+" size="+view.getWidth()+"x"+view.getHeight();
-   android.view.View top=activeDialogRoot();state[0]+=" activeRoot="+top+" activeRootFocus="+top.hasWindowFocus()+" mapRoot="+(view==null?null:view.getRootView());
+   android.view.View top=activeDialogRoot();state[0]+=" activeRoot="+top+" activeRootFocus="+(top!=null&&top.hasWindowFocus())+" mapRoot="+(view==null?null:view.getRootView());
   }catch(Exception e){state[0]="main map diagnostics failed: "+e;}});
   Bundle status=new Bundle();status.putString("stream","MAIN_MAP_STATE "+state[0]+"\n");sendStatus(0,status);
  }
@@ -1105,7 +1111,7 @@ public final class MapAndroidChecks extends Instrumentation {
   long id=(Long)call(store,"insert",new Class[]{codec,String.class},document,"QA_EMPTY_OVERVIEW");
   try{
    staticCall("ProjectSession","remember",new Class[]{Context.class,long.class},context,id);
-   Activity fresh=launchWorkspace();
+   Activity fresh=launchWorkspace(id);
    android.view.View overview=(android.view.View)map();
    double[] view=(double[])call(overview,"viewport",new Class[]{});
    int width=overview.getWidth(),height=overview.getHeight();
@@ -1138,7 +1144,7 @@ public final class MapAndroidChecks extends Instrumentation {
    mapEvidence("zoom-out","after","−","z=2");
    runOnMainSync(fresh::finish);
    waitForIdleSync();
-   Activity reopened=launchWorkspace();
+   Activity reopened=launchWorkspace(id);
    double[] restored=(double[])call(map(),"viewport",new Class[]{});
    check(reopened!=fresh&&restored[0]==.5&&restored[1]==.5&&restored[2]==2,"reopening retains the saved z=2 camera");
    check(waitText("0 видимых объектов")!=null,"reopened overview stays empty");
@@ -1156,6 +1162,42 @@ public final class MapAndroidChecks extends Instrumentation {
    staticCall("LocalMapActivity","cleanupDeletedProject",new Class[]{Context.class,long.class},context,id);
   }
  }
+ void referenceWorkspaceActions(Context context)throws Exception{
+  clickDescription("Меню");click("Опции");click("Координаты центра экрана");
+  waitText("Основной формат");click("Отмена");stableMainMap();
+
+  clickDescription("Карты");click("Масштаб карты");
+  Field scaleField=activity.getClass().getDeclaredField("scaleValue");
+  scaleField.setAccessible(true);
+  android.widget.TextView scale=(android.widget.TextView)scaleField.get(activity);
+  String before=scale.getText().toString();
+  check(scale.isShown()&&before.startsWith("1 : "),"numeric map scale is visible");
+  double[] viewport=(double[])call(map(),"viewport",new Class[]{});
+  setViewport(viewport[0],viewport[1],viewport[2]+1);
+  check(!before.contentEquals(scale.getText()),"numeric map scale tracks zoom");
+  clickDescription("Карты");click("Масштаб карты");
+  check(!scale.isShown(),"numeric map scale can be hidden independently");
+
+  clickDescription("Метки");click("Метки на экране");click("QA_MAP_POINT");
+  waitText("Путевая точка");click("Закрыть");stableMainMap();
+  setViewport(viewport[0],viewport[1],viewport[2]);
+
+  SharedPreferences classic=context.getSharedPreferences("org.rabochaya.projects.ProjectsActivity",0);
+  int sort=classic.getInt("folder_sort",0);
+  try{
+   clickDescription("Файловый менеджер");
+   click("Проекты, импорт и экспорт");
+   waitText("QA_MAP_POINT");click("Ещё");click("Сортировать по");click("Название А–Я");
+   android.graphics.Rect first=new android.graphics.Rect(),second=new android.graphics.Rect();
+   waitText("QA_MAP_AREA").getBoundsInScreen(first);
+   waitText("QA_MAP_POINT").getBoundsInScreen(second);
+   check(first.top<second.top,"classic manager sorts its folder without leaving it");
+   check(classic.getInt("folder_sort",0)==1,"classic manager remembers chosen ordering");
+   sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);waitText("QA_WORKSPACE");
+   sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);waitText("Объекты проекта");
+   sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);stableMainMap();
+  }finally{classic.edit().putInt("folder_sort",sort).commit();}
+ }
  void launcher()throws Exception{
   Context context=getTargetContext();installTileFixture();int networkBefore=requests.get();Object store=storeClass.getConstructor(Context.class).newInstance(context);long id=-1;
   android.content.SharedPreferences prefs=context.getSharedPreferences("workspace-session",0);long previous=prefs.getLong("last_project",-1);long legacyPrevious=context.getSharedPreferences("org.rabochaya.projects.OwnedHomeActivity",0).getLong("last_project",-1);boolean toolsPrevious=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).getBoolean("show_tools",true);boolean coordinatesPrevious=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).getBoolean("show_coordinates",true);context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).edit().putBoolean("show_coordinates",true).putBoolean("show_tools",true).commit();
@@ -1164,7 +1206,7 @@ public final class MapAndroidChecks extends Instrumentation {
    Object doc=codec.getMethod("parse",byte[].class).invoke(null,(Object)XML.getBytes("UTF-8"));id=(Long)call(store,"insert",new Class[]{codec,String.class},doc,"QA_WORKSPACE");
    staticCall("ProjectSession","remember",new Class[]{Context.class,long.class},context,id);
    int count=((List)call(store,"list",new Class[]{})).size();byte[] before=(byte[])call(doc,"xml",new Class[]{});
-   launchWorkspace();check(activity.getIntent().getLongExtra("project",-1)==id,"launcher restores selected project");
+   launchWorkspace(id);check(activity.getIntent().getLongExtra("project",-1)==id,"launcher restores selected project");
    for(String label:new String[]{"Меню","Карты","Метки","Файловый менеджер","Ориентирование"})check(findDescription(getUiAutomation().getRootInActiveWindow(),label)!=null,"workspace exposes "+label);
    Object overview=Class.forName("org.rabochaya.projects.BundledTiles",true,context.getClassLoader()).getConstructor(android.content.res.AssetManager.class).newInstance(context.getAssets());
    for(int z=1;z<=3;z++){int n=1<<z;for(int x=0;x<n;x++)for(int y=0;y<n;y++){Bitmap tile=(Bitmap)call(overview,"tile",new Class[]{int.class,int.class,int.class},z,x,y);check(tile!=null&&tile.getWidth()==256&&tile.getHeight()==256,"bundled overview tile decodes "+z+"/"+x+"/"+y);tile.recycle();}}
@@ -1173,6 +1215,8 @@ public final class MapAndroidChecks extends Instrumentation {
    dockDestination("maps","Карты","Карты на экране");
    dockDestination("orientation","Ориентирование","Перейти к координатам");
    dockDestination("files","Файловый менеджер","Объекты проекта");
+   referenceWorkspaceActions(context);
+
    android.view.View mapView=(android.view.View)map();int height=mapView.getHeight();
    mapEvidence("collapse","before","Свернуть / развернуть инструменты","five tools visible");
    clickDescription("Свернуть / развернуть инструменты");check(findDescription(getUiAutomation().getRootInActiveWindow(),"Карты")==null,"collapse hides toolbar");
@@ -1182,7 +1226,7 @@ public final class MapAndroidChecks extends Instrumentation {
    mapEvidence("collapse","after","Свернуть / развернуть инструменты","single target and full map height");
    clickDescription("Свернуть / развернуть инструменты");check(findDescription(getUiAutomation().getRootInActiveWindow(),"Карты")!=null,"expand restores toolbar");
    clickDescription("Свернуть / развернуть координаты");check(!context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).getBoolean("show_coordinates",true),"coordinate collapse persisted");
-   setViewport(.4,.45,5);final Activity first=activity;runOnMainSync(new Runnable(){public void run(){first.finish();}});waitForIdleSync();launchWorkspace();
+   setViewport(.4,.45,5);final Activity first=activity;runOnMainSync(new Runnable(){public void run(){first.finish();}});waitForIdleSync();launchWorkspace(id);
    final Activity reopened=activity;activity=first;stableMainMap();check(activity==reopened&&activity!=first,"stale finished launcher Activity resolves to the live reopened map");
    double[] view=(double[])call(map(),"viewport",new Class[]{});check(Math.abs(view[0]-.4)<1e-8&&Math.abs(view[1]-.45)<1e-8&&Math.abs(view[2]-5)<1e-8,"viewport restored after launcher reopen");
    check(((List)call(store,"list",new Class[]{})).size()==count,"repeat launcher does not create duplicate project");

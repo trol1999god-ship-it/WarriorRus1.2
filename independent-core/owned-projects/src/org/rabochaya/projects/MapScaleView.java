@@ -25,9 +25,13 @@ final class MapScaleView extends View {
   setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_YES);
  }
 
- void update(double latitude, double zoom) {
-  double metresPerPixel = 2 * Math.PI * EARTH_RADIUS_METRES
+ static double metresPerPixel(double latitude,double zoom) {
+  return 2 * Math.PI * EARTH_RADIUS_METRES
     * Math.cos(Math.toRadians(latitude)) / (256 * Math.pow(2, zoom));
+ }
+
+ void update(double latitude, double zoom) {
+  double metresPerPixel = metresPerPixel(latitude,zoom);
   double limit = barLimit * metresPerPixel;
   if (!(limit > 0) || Double.isInfinite(limit)) return;
   double magnitude = Math.pow(10, Math.floor(Math.log10(limit)));

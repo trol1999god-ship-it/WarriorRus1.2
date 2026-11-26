@@ -734,11 +734,12 @@
         "orientation_submenu_title": "Ориентирование",
         "orientation_submenu_compass": "Ориентирование → Компас",
         "settings_display_location_title": "Настройки координат → Основной формат",
-        "settings_display_location_secondary_title": "Настройки координат → Дополнительный формат"
+        "settings_display_location_secondary_title": "Настройки координат → Дополнительный формат",
+        "core_submenu_title_options": "Меню → Опции: координаты, настройки кэша и информеры",
+        "landmarks_submenu_displayed_landmarks": "Метки → Метки на экране → карточка видимого объекта",
+        "maps_submenu_display_scale_value": "Карты → Масштаб карты: численный масштаб по центру и плотности экрана"
       },
       "partial": {
-        "core_submenu_title_options": "Настройки распределены по разделам.",
-        "landmarks_submenu_displayed_landmarks": "Видимость управляется в менеджере объектов. Сверка панели открыта.",
         "maps_submenu_show_storage_coverage": "В каталоге есть остаток хранилища и счётчики кэша. Слой покрытия открыт.",
         "settings_technical_path_title": "Есть приватный кэш и импорт/экспорт; выбор каталога не воспроизведён.",
         "settings_canvas_long_press_map_title": "Работает контекстное меню; переназначение жеста открыто.",
@@ -784,7 +785,6 @@
           "landmarks_submenu_display_target_line"
         ],
         "maps": [
-          "maps_submenu_display_scale_value",
           "maps_submenu_correct_china_shift"
         ],
         "orientation": [
@@ -814,6 +814,33 @@
           "settings_landmarks_display_shadows_title",
           "settings_landmarks_preprocess_title",
           "settings_orientation_heading_display_type_title"
+        ]
+      }
+    },
+    "reference_menu_and_files_ci": {
+      "commit": "7129d63c477c58cdfd594883cdd748f29b5608ca",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45731372742",
+      "api23": {
+        "passed": [
+          "managerfilters",
+          "managerfiltersreopen"
+        ],
+        "failed": [
+          "launcher"
+        ]
+      },
+      "api35": {
+        "passed": [
+          "launcher",
+          "managerfilters",
+          "managerfiltersreopen"
+        ]
+      },
+      "api37": {
+        "passed": [
+          "launcher",
+          "managerfilters",
+          "managerfiltersreopen"
         ]
       }
     }

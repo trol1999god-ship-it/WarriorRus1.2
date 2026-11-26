@@ -1427,7 +1427,7 @@
 .end method
 
 .method private more()V
-    .locals 5
+    .locals 6
 
     .line 133
     new-instance v0, Landroid/app/AlertDialog$Builder;
@@ -1448,7 +1448,9 @@
 
     const-string v4, "Экспорт GPX / GeoJSON"
 
-    filled-new-array {v3, v1, v2, v4}, [Ljava/lang/String;
+    const-string v5, "Сортировать по"
+
+    filled-new-array {v3, v1, v2, v4, v5}, [Ljava/lang/String;
 
     move-result-object v1
 
@@ -1460,8 +1462,60 @@
 
     move-result-object v0
 
-    invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
+    invoke-static {p0, v0}, Lorg/rabochaya/projects/WorkspaceUi;->showDialog(Landroid/app/Activity;Landroid/app/AlertDialog$Builder;)V
 
+    return-void
+.end method
+
+.method showFolderSort()V
+    .locals 4
+
+    new-instance v0, Landroid/app/AlertDialog$Builder;
+    invoke-direct {v0, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+
+    const-string v1, "Сортировать по"
+    invoke-virtual {v0, v1}, Landroid/app/AlertDialog$Builder;->setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+
+    sget-object v1, Lorg/rabochaya/projects/ObjectListing;->SORTS:[Ljava/lang/String;
+    invoke-direct {p0}, Lorg/rabochaya/projects/ProjectsActivity;->folderSort()I
+    move-result v2
+    new-instance v3, Lorg/rabochaya/projects/ProjectsActivity$FolderSort;
+    invoke-direct {v3, p0}, Lorg/rabochaya/projects/ProjectsActivity$FolderSort;-><init>(Lorg/rabochaya/projects/ProjectsActivity;)V
+    invoke-virtual {v0, v1, v2, v3}, Landroid/app/AlertDialog$Builder;->setSingleChoiceItems([Ljava/lang/CharSequence;ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+
+    const-string v1, "Отмена"
+    const/4 v2, 0x0
+    invoke-virtual {v0, v1, v2}, Landroid/app/AlertDialog$Builder;->setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+    invoke-static {p0, v0}, Lorg/rabochaya/projects/WorkspaceUi;->showDialog(Landroid/app/Activity;Landroid/app/AlertDialog$Builder;)V
+    return-void
+.end method
+
+.method private folderSort()I
+    .locals 2
+    const/4 v0, 0x0
+    invoke-virtual {p0, v0}, Lorg/rabochaya/projects/ProjectsActivity;->getPreferences(I)Landroid/content/SharedPreferences;
+    move-result-object v1
+    const-string p0, "folder_sort"
+    invoke-interface {v1, p0, v0}, Landroid/content/SharedPreferences;->getInt(Ljava/lang/String;I)I
+    move-result v0
+    return v0
+.end method
+
+.method setFolderSort(I)V
+    .locals 2
+    iget-boolean v0, p0, Lorg/rabochaya/projects/ProjectsActivity;->busy:Z
+    if-nez v0, :done
+    const/4 v0, 0x0
+    invoke-virtual {p0, v0}, Lorg/rabochaya/projects/ProjectsActivity;->getPreferences(I)Landroid/content/SharedPreferences;
+    move-result-object v0
+    invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+    move-result-object v0
+    const-string v1, "folder_sort"
+    invoke-interface {v0, v1, p1}, Landroid/content/SharedPreferences$Editor;->putInt(Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;
+    move-result-object v0
+    invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->apply()V
+    invoke-direct {p0}, Lorg/rabochaya/projects/ProjectsActivity;->showFolder()V
+    :done
     return-void
 .end method
 
@@ -1679,7 +1733,10 @@
 
     move-result-object p1
 
-    invoke-virtual {p1}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
+    const-string v1, "Отмена"
+    const/4 v2, 0x0
+    invoke-virtual {p1, v1, v2}, Landroid/app/AlertDialog$Builder;->setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+    invoke-static {p0, p1}, Lorg/rabochaya/projects/WorkspaceUi;->showDialog(Landroid/app/Activity;Landroid/app/AlertDialog$Builder;)V
 
     return-void
 .end method
@@ -1995,6 +2052,11 @@
 
     invoke-virtual {v2, v1}, Lorg/rabochaya/projects/KmlProject;->children(Lorg/w3c/dom/Element;)Ljava/util/List;
 
+    move-result-object v1
+
+    invoke-direct {p0}, Lorg/rabochaya/projects/ProjectsActivity;->folderSort()I
+    move-result v2
+    invoke-static {v1, v2}, Lorg/rabochaya/projects/WorkspaceUi;->orderedChildren(Ljava/util/List;I)Ljava/util/List;
     move-result-object v1
 
     iget-object v2, p0, Lorg/rabochaya/projects/ProjectsActivity;->content:Landroid/widget/LinearLayout;

@@ -31,8 +31,22 @@ public final class ObjectListing {
  public List<Item> select(String folder,Options options){
   if(folder==null||(!folder.isEmpty()&&(get(folder)==null||!get(folder).row.folder)))throw new IllegalArgumentException("Папка не найдена");List<Item> out=new ArrayList<>();String query=searchable(options.query);
   for(Item item:items){boolean in=options.recursive?(folder.isEmpty()||item.row.key.startsWith(folder+"/")):item.row.parent.equals(folder);if(!in||!options.dates.matches(item.time)||(!query.isEmpty()&&!matches(item,query,options.searchField))||(options.kind!=0&&item.kind!=options.kind)||(options.visibility==1&&!item.visible)||(options.visibility==2&&item.visible))continue;out.add(item);}
-  final Collator collator=Collator.getInstance(new Locale("ru","RU"));collator.setStrength(Collator.PRIMARY);
-  Collections.sort(out,new Comparator<Item>(){public int compare(Item a,Item b){if(options.foldersFirst&&a.row.folder!=b.row.folder)return a.row.folder?-1:1;int compared=0;if(options.sort==3)compared=Integer.compare(a.kind,b.kind);if(compared==0&&options.sort!=0){compared=collator.compare(a.row.name,b.row.name);if(options.sort==2)compared=-compared;}return compared==0?Integer.compare(a.order,b.order):compared;}});return Collections.unmodifiableList(out);
+  Collator collator=listingCollator();
+  Collections.sort(out,(a,b)->{
+   if(options.foldersFirst&&a.row.folder!=b.row.folder)return a.row.folder?-1:1;
+   return compareEntries(collator,options.sort,a.kind,b.kind,a.row.name,b.row.name);
+  });
+  return Collections.unmodifiableList(out);
+ }
+ static Collator listingCollator(){
+  Collator collator=Collator.getInstance(new Locale("ru","RU"));
+  collator.setStrength(Collator.PRIMARY);
+  return collator;
+ }
+ static int compareEntries(Collator collator,int sort,int leftKind,int rightKind,String left,String right){
+  if(sort==0)return 0;
+  if(sort==3 && leftKind!=rightKind)return Integer.compare(leftKind,rightKind);
+  return sort==2?collator.compare(right,left):collator.compare(left,right);
  }
  private static boolean matches(Item item,String query,int field){return (field!=1&&item.search.contains(query))||(field!=0&&item.description.contains(query));}
  private static String searchable(String text){StringBuilder out=new StringBuilder();boolean space=false;for(int i=0;i<text.length();){int cp=text.codePointAt(i);i+=Character.charCount(cp);if(Character.isWhitespace(cp)||Character.isSpaceChar(cp)){space=out.length()>0;}else{if(space)out.append(' ');out.appendCodePoint(cp);space=false;}}return normalize(out.toString());}
@@ -72,7 +86,7 @@ public final class ObjectListing {
  public static String normalize(String text){return Normalizer.normalize(text,Normalizer.Form.NFC).toLowerCase(Locale.ROOT).replace('ё','е');}
  private static boolean ownVisible(Element e){return ObjectVisibility.own(e);}
 
- private static int classify(Element e){if(is(e,"Folder")||is(e,"Document"))return 1;if(!is(e,"Placemark"))return 7;Set<Integer> types=new HashSet<>();shapes(e,types,0);return types.size()==1?types.iterator().next():types.isEmpty()?7:6;}
+ static int classify(Element e){if(is(e,"Folder")||is(e,"Document"))return 1;if(!is(e,"Placemark"))return 7;Set<Integer> types=new HashSet<>();shapes(e,types,0);return types.size()==1?types.iterator().next():types.isEmpty()?7:6;}
  private static void shapes(Element parent,Set<Integer> types,int depth){if(depth>32){types.add(7);return;}for(Element c:children(parent)){if(is(c,"Point"))types.add(2);else if(is(c,"LineString")||is(c,"LinearRing"))types.add(3);else if(is(c,"Polygon"))types.add(4);else if(is(c,"MultiGeometry"))shapes(c,types,depth+1);else if(is(c,"Model"))types.add(7);else if("http://www.google.com/kml/ext/2.2".equals(c.getNamespaceURI())&&(local(c).equals("Track")||local(c).equals("MultiTrack")))types.add(5);}}
  private static boolean is(Element e,String tag){String ns=e.getNamespaceURI();return local(e).equals(tag)&&(ns==null||ns.isEmpty()||ns.equals("http://www.opengis.net/kml/2.2")||ns.matches("http://earth\\.google\\.com/kml/2\\.[012]"));}
  private static String local(Element e){return e.getLocalName()==null?e.getTagName():e.getLocalName();}

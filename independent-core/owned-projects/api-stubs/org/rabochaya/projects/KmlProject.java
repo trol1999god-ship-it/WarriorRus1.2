@@ -2,6 +2,7 @@ package org.rabochaya.projects;
 import java.util.List;import java.io.IOException;
 /** Compile-time ABI only. Never package this class. Production implementation is preserved smali. */
 public final class KmlProject {
+ public static String name(org.w3c.dom.Element element){throw new AssertionError("ABI stub");}
  public static final class Feature {public org.w3c.dom.Element element;public String name;public int color;public List<Geometry> shapes;}
  public static final class Geometry {public String type;public List<List<double[]>> rings;}
  public java.util.LinkedHashMap<String,byte[]> assets;

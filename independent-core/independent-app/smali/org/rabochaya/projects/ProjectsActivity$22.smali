@@ -88,6 +88,14 @@
     return-void
 
     :cond_2
+    const/4 v0, 0x4
+    if-ne p2, v0, :formats
+
+    iget-object v0, p0, Lorg/rabochaya/projects/ProjectsActivity$22;->this$0:Lorg/rabochaya/projects/ProjectsActivity;
+    invoke-virtual {v0}, Lorg/rabochaya/projects/ProjectsActivity;->showFolderSort()V
+    return-void
+
+    :formats
     const/4 p1, 0x3
     if-ne p2, p1, :done
 

@@ -2,7 +2,7 @@ package org.rabochaya.projects;
 import android.app.*;import android.content.*;import android.net.Uri;import android.os.*;import android.widget.*;import android.view.*;import java.io.*;import java.util.*;import java.util.concurrent.*;
 /** Own raster map viewer with local MBTiles or explicit online sources. */
 public final class LocalMapActivity extends Activity implements LocalMapView.Listener {
- private static final int IMPORT_MAP=4301,IMPORT_TIFF=4302,IMPORT_OZI=4303,DEM=4602,CATALOG=4502,LAYERS=4503;private PopupWindow popup;private double[] creationPoint;private LinearLayout zoomButtons;private MapDock mapDock;private long projectId;private LinearLayout root;private TextView coordinates,status,tileNotice;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
+ private static final int IMPORT_MAP=4301,IMPORT_TIFF=4302,IMPORT_OZI=4303,DEM=4602,CATALOG=4502,LAYERS=4503;private PopupWindow popup;private double[] creationPoint;private LinearLayout zoomButtons;private MapDock mapDock;private long projectId;private LinearLayout root;private TextView coordinates,status,tileNotice,scaleValue;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
  private boolean busy,refreshOnResume,refreshMapOnResume;private volatile boolean disposed;private final ExecutorService worker=Executors.newSingleThreadExecutor();private String warning="";private long lastError;private LinearLayout drawingRow;private String pendingDrawType;private ArrayList<double[]> pendingDrawPoints;
  private Bundle pendingEdit;
  private EditForm activeEdit;
@@ -54,6 +54,12 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   map.setLabelsVisible(getPreferences(0).getBoolean("show_labels",true));
   LinearLayout.LayoutParams scaleLayout=new LinearLayout.LayoutParams(-2,-2);
   scaleLayout.topMargin=edge;mapReadout.addView(mapScale,scaleLayout);
+  scaleValue=label("",11);
+  scaleValue.setTextColor(MapHud.INK);
+  scaleValue.setBackground(MapHud.panel(this));
+  scaleValue.setPadding(edge,WorkspaceUi.dp(this,2),edge,WorkspaceUi.dp(this,2));
+  scaleValue.setVisibility(getPreferences(0).getBoolean("show_scale_value",false)?View.VISIBLE:View.GONE);
+  mapReadout.addView(scaleValue,new LinearLayout.LayoutParams(-2,-2));
   setupMapStatus(source,composition,compositionError,edge);
   int bottom=WorkspaceUi.dp(this,2);
   FrameLayout.LayoutParams statusLayout=new FrameLayout.LayoutParams(-2,-2,Gravity.BOTTOM|Gravity.RIGHT);
@@ -97,13 +103,19 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private WorkspaceUi.Item item(String title,Runnable action){return new WorkspaceUi.Item(title,action);}
  private void menu(String title,WorkspaceUi.Item...items){if(popup!=null)popup.dismiss();popup=WorkspaceUi.menu(this,(View)mapDock.getParent(),mapDock,title,items);}
  private boolean canLeave(){if(map!=null&&map.drawingType()!=null){error("Завершите или отмените рисунок");return false;}return true;}
- private void mainMenu(){menu("Меню",item("Проекты и файлы KML/KMZ",()->manager(true)),item("Новый проект",()->newProject()),item("Информеры",()->display()),item("Закрыть карту",()->onBackPressed()));}
+ private void mainMenu(){menu("Меню",item("Проекты и файлы KML/KMZ",()->manager(true)),item("Новый проект",()->newProject()),item("Информеры",this::display),item("Опции",this::optionsMenu),item("Закрыть карту",()->onBackPressed()));}
+ private void optionsMenu(){
+  menu("Опции",item("Координаты центра экрана",this::coordinateOptions),
+    item("Кеш / онлайн",this::onlineSettings),item("Информеры",this::display));
+ }
  private void compositionFont(View view){WorkspaceUi.applyFont(this,view);}
  private void mapsMenu(){
   boolean cacheOnly=!OnlineMapSettings.network(this);
   menu("Карты",item("Доступные карты",this::openMapCatalog),item("Карты на экране",()->openMapLayers(false)),
     item("Избранные карты и наборы карт",()->openMapLayers(true)),
     item("Подложка",this::chooseMap),
+    WorkspaceUi.Item.toggle("Масштаб карты",scaleValue.getVisibility()==View.VISIBLE,
+      ()->showScaleValue(scaleValue.getVisibility()!=View.VISIBLE)),
     WorkspaceUi.Item.toggle("Использовать только сохранённый кэш карты",cacheOnly,()->setCacheOnly(!cacheOnly)),
     item("Сохранить участок карты",this::saveMapArea),
     item("Кеш / онлайн",this::onlineSettings),
@@ -126,9 +138,16 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   OnlineMapSettings.setNetwork(this,!cacheOnly);
   show(true);
  }
+ private void showScaleValue(boolean visible){
+  getPreferences(0).edit().putBoolean("show_scale_value",visible).apply();
+  scaleValue.setVisibility(visible?View.VISIBLE:View.GONE);
+  if(visible)refreshCoordinates();
+ }
  private void marksMenu(){
   menu("Метки",item("Все метки",()->manager(false)),item("Новая метка",()->{
    if(canLeave())editObject(null,"Point");
+  }),item("Метки на экране",()->{
+   if(canLeave())featureList("Метки на экране",features);
   }),item("Создать",this::newObject),item("Поиск на карте",this::search),item("Все объекты",()->map.fit()));
  }
  private void orientationMenu(){menu("Ориентирование",item("Компас",()->startActivity(new Intent(this,CompassActivity.class))),item("Перейти к координатам",()->goToCoordinates()),item("Форматы координат",()->coordinateOptions()),item("DEM / высота центра",()->{if(canLeave())startActivityForResult(new Intent(this,DemActivity.class).putExtra("project",projectId),DEM);}),item("Показать область DEM",()->showDemCoverage()));}
@@ -189,7 +208,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   String[] keys = {"show_coordinates", "show_zoom", "show_scale_bar", "show_labels", "show_map_name"};
   boolean[] checked = new boolean[options.length];
   for (int i = 0; i < keys.length; i++) checked[i] = preferences.getBoolean(keys[i], true);
-  new AlertDialog.Builder(this).setTitle("Информеры")
+  AlertDialog.Builder displayDialog=new AlertDialog.Builder(this).setTitle("Информеры")
     .setMultiChoiceItems(options, checked, (dialog, item, visible) -> {
      int visibility = visible ? View.VISIBLE : View.GONE;
      String previousStatus=normalMapStatus();
@@ -216,7 +235,8 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
      }
     })
     .setNeutralButton("Координаты",(dialog, item)->coordinateOptions())
-    .setPositiveButton("Закрыть",null).show();
+    .setPositiveButton("Закрыть",null);
+  WorkspaceUi.showDialog(this,displayDialog);
  }
  private void newProject(){if(!canLeave())return;final EditText name=new EditText(this);name.setTextColor(0xff202020);name.setBackgroundColor(-1);final AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Новый проект").setView(name).setPositiveButton("Создать",null).setNegativeButton("Отмена",null).create();dialog.setOnShowListener(d->dialog.getButton(-1).setOnClickListener(v->{String title=name.getText().toString().trim();if(title.isEmpty()||title.length()>1000){name.setError("Название: от 1 до 1000 символов");return;}busy=true;dialog.dismiss();worker.execute(()->{try{final long id=ProjectSession.create(this,title);runOnUiThread(()->{if(!disposed){LocalMapActivity.open(this,id);finish();}});}catch(final Exception e){runOnUiThread(()->{if(!disposed){busy=false;error("Не удалось создать проект: "+e.getMessage());}});}});}));dialog.show();}
  private TextView coordinateCaption(String text){TextView label=new TextView(this);label.setText(text);label.setTextColor(0xff202020);label.setTypeface(WorkspaceUi.font(this));return label;}
@@ -235,7 +255,21 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){public void onNothingSelected(AdapterView<?> parent){}public void onItemSelected(AdapterView<?> parent,View view,int position,long id){input.setText("");input.setError(null);if(position==Coordinates.DD)hint.setText("Широта долгота: 55.75 37.6");else if(position==Coordinates.DM)hint.setText("Широта; долгота: 55°45′ N; 37°36′ E");else if(position==Coordinates.DMS)hint.setText("Широта; долгота: 55°45′00″ N; 37°36′00″ E");else if(position==Coordinates.UTM)hint.setText("Зона, полушарие N/S, Easting, Northing (метры): 37 N 410000 6170000");else hint.setText("MGRS WGS 84: зона, широтный пояс, квадрат и уточнение E/N. Пример: 15S WC 80817 51205. Переход к центру ячейки.");}});
   ScrollView scroll=new ScrollView(this);scroll.addView(form);final AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Перейти к координатам").setView(scroll).setPositiveButton("Перейти",null).setNegativeButton("Отмена",null).create();dialog.setOnShowListener(d->dialog.getButton(-1).setOnClickListener(v->{try{Coordinates.Position position=Coordinates.parse(input.getText().toString(),format.getSelectedItemPosition());if(Math.abs(position.lat)>85.05112878)throw new IllegalArgumentException("Эта карта отображает широты до ±85.05112878°");double[] viewport=map.viewport();map.restore(MapMath.x(position.lon),MapMath.y(position.lat),viewport[2]);dialog.dismiss();}catch(IllegalArgumentException e){input.setError(e.getMessage());}}));dialog.show();
  }
- private void search(){if(!canLeave())return;final EditText query=new EditText(this);query.setTextColor(0xff202020);query.setBackgroundColor(-1);final AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Поиск на карте").setMessage("Название среди видимых объектов проекта").setView(query).setPositiveButton("Найти",null).setNegativeButton("Отмена",null).create();dialog.setOnShowListener(d->dialog.getButton(-1).setOnClickListener(v->{String text=query.getText().toString().trim().toLowerCase(Locale.ROOT);if(text.isEmpty()){query.setError("Введите название");return;}ArrayList<KmlProject.Feature> found=new ArrayList<>();for(KmlProject.Feature f:features)if(f.name.toLowerCase(Locale.ROOT).contains(text))found.add(f);if(found.isEmpty()){query.setError("Объекты не найдены");return;}String[] names=new String[found.size()];for(int n=0;n<names.length;n++)names[n]=found.get(n).name;dialog.dismiss();new AlertDialog.Builder(this).setTitle("Найденные объекты").setItems(names,(a,index)->{KmlProject.Feature f=found.get(index);map.focus(f);picked(f);}).setNegativeButton("Закрыть",null).show();}));dialog.show();}
+ private void search(){if(!canLeave())return;final EditText query=new EditText(this);query.setTextColor(0xff202020);query.setBackgroundColor(-1);final AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Поиск на карте").setMessage("Название среди видимых объектов проекта").setView(query).setPositiveButton("Найти",null).setNegativeButton("Отмена",null).create();dialog.setOnShowListener(d->dialog.getButton(-1).setOnClickListener(v->{String text=query.getText().toString().trim().toLowerCase(Locale.ROOT);if(text.isEmpty()){query.setError("Введите название");return;}ArrayList<KmlProject.Feature> found=new ArrayList<>();for(KmlProject.Feature f:features)if(f.name.toLowerCase(Locale.ROOT).contains(text))found.add(f);if(found.isEmpty()){query.setError("Объекты не найдены");return;}dialog.dismiss();featureList("Найденные объекты",found);}));dialog.show();}
+ private void featureList(String title,List<KmlProject.Feature> objects){
+  AlertDialog.Builder dialog=new AlertDialog.Builder(this).setTitle(title).setNegativeButton("Закрыть",null);
+  if(objects.isEmpty())dialog.setMessage("На карте нет видимых объектов");
+  else {
+   String[] names=new String[objects.size()];
+   for(int index=0;index<names.length;index++)names[index]=objects.get(index).name;
+   dialog.setItems(names,(window,index)->{
+    KmlProject.Feature feature=objects.get(index);
+    map.focus(feature);
+    picked(feature);
+   });
+  }
+  WorkspaceUi.showDialog(this,dialog);
+ }
  private void saveView(){if(map!=null){double[] v=map.viewport();settled(v[0],v[1],v[2]);}}
  public void settled(double x,double y,double zoom){String key="view_"+projectId+"_";getPreferences(0).edit().putString(key+"x",Double.toString(x)).putString(key+"y",Double.toString(y)).putFloat(key+"z",(float)zoom).commit();}
  protected void onResume(){super.onResume();if(refreshOnResume&&!busy){refreshOnResume=false;refreshMapOnResume=false;load();}else if(refreshMapOnResume&&!busy){refreshMapOnResume=false;show(true);}if(map!=null)map.suspend(false);}
@@ -298,6 +332,18 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   TextView panel = coordinates;
   if (panel == null) return;
   if (mapScale != null) mapScale.update(lat, zoom);
+  if (scaleValue != null && scaleValue.getVisibility()==View.VISIBLE){
+   // Use the physical x-axis density, with Android's logical density as fallback.
+   android.util.DisplayMetrics metrics=getResources().getDisplayMetrics();
+   double dpi=metrics.xdpi>0 && !Float.isInfinite(metrics.xdpi)?metrics.xdpi:metrics.densityDpi;
+   double ratio=MapScaleView.metresPerPixel(lat,zoom)*dpi/0.0254;
+   String scale=String.format(Locale.US,"1 : %,.0f",Math.max(1,ratio)).replace(',', '\u00a0');
+   if(!scale.contentEquals(scaleValue.getText())){
+    scaleValue.setText(scale);
+    scaleValue.setContentDescription("Масштаб карты: "+scale);
+    if(scaleValue.isInLayout())scaleValue.post(scaleValue::requestLayout);
+   }
+  }
   String text = CoordinateSettings.panel(this, lat, lon, zoom);
   if (dem != null) {
    try {
@@ -348,6 +394,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   AlertDialog card=new AlertDialog.Builder(this).setTitle(feature.name).setView(scroll)
     .setPositiveButton("Закрыть",null).setNeutralButton("Изменить",(dialog,which)->editObject(feature,null))
     .setNegativeButton("Вложения",(dialog,which)->{
+     if(!canLeave())return;
      refreshOnResume=true;
      startActivity(new Intent(this,AttachmentsActivity.class).putExtra("project",projectId).putExtra("feature",id));
     }).create();
@@ -357,8 +404,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
    refreshOnResume=true;
    GeometryEditorActivity.open(this,projectId,id);
   }));
-  card.setOnShowListener(dialog->compositionFont(card.getWindow().getDecorView()));
-  card.show();
+  WorkspaceUi.showDialog(this,card);
  }
  private void newObject(){if(map!=null&&map.drawingType()!=null){error("Завершите или отмените рисунок");return;}new AlertDialog.Builder(this).setTitle("Создать объект").setItems(new String[]{"Метка","Маршрут","Область","Нарисовать маршрут","Нарисовать область"},(d,w)->{if(w<3)editObject(null,new String[]{"Point","LineString","Polygon"}[w]);else startDrawing(w==3?"LineString":"Polygon");}).setNegativeButton("Отмена",null).show();}
  private void startDrawing(String type){if(map==null)return;map.beginDrawing(type);if(drawingRow!=null)root.removeView(drawingRow);drawingRow=new LinearLayout(this);root.addView(drawingRow,1);button(drawingRow,"В центре",()->map.addDrawingCenter());button(drawingRow,"Шаг назад",()->map.undoDrawing());button(drawingRow,"Записать",()->{try{FeatureEdits.coordinates(drawingCoordinates(),map.drawingType());editObject(null,map.drawingType());}catch(IllegalArgumentException invalid){error(invalid.getMessage());}});button(drawingRow,"Отмена",()->discardDrawing(false));}
