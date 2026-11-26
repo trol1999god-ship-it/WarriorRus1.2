@@ -681,8 +681,8 @@ public final class MapAndroidChecks extends Instrumentation {
    geometryReady();
    click("Действия");click("Разгруппировать точки");click("Разгруппировать");geometryReady();
    doc=call(store,"load",new Class[]{long.class},id);
-   org.w3c.dom.Element first=element(doc,"p1"),second=element(doc,"p2");
-   check(first!=null&&second!=null&&first.getParentNode().getParentNode()!=second.getParentNode().getParentNode(),
+   org.w3c.dom.Element first=definition(doc,"Point","p1"),second=definition(doc,"Point","p2");
+   check(first.getParentNode().getParentNode()!=second.getParentNode().getParentNode(),
      "ungroup persists separate objects and retains both point ids");
   }finally{
    if(activity!=null){Activity owner=activity;runOnMainSync(owner::finish);}
