@@ -782,8 +782,7 @@
       ],
       "open_by_domain": {
         "core": [
-            "core_submenu_print_map",
-          "core_submenu_night_mode"
+            "core_submenu_print_map"
         ],
         "geolocation": [
           "geolocation_submenu_barometer"
@@ -845,6 +844,11 @@
         ]
       }
     },
+    "reference_map_compass": {
+      "code_commit": "3b82f4693061ac71bd3ba6a045044526a07c8784",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45896177693",
+      "mapcompass_passed_api": [23, 35]
+    },
     "reference_grid_appearance": {
       "code_commit": "ee108c284cf62ace758f7355adb44e9ac1e6a230",
       "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45894785999",
@@ -859,6 +863,7 @@
       "reference": "landmarks_context_menu_split_points",
       "scope": "Отдельные объекты из набора Point с сохранением идентификаторов точек.",
       "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45895265502",
+      "retest": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45898240175",
       "verification": "PENDING_DOM_RETEST"
     },
     "reference_line_split": {
