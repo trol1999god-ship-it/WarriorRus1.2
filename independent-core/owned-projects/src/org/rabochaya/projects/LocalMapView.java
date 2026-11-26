@@ -219,14 +219,43 @@ public final class LocalMapView extends View {
   paint.setStyle(Paint.Style.FILL);
  }
  private void drawTiles(Canvas canvas,int layer,TileSource source){drawTiles(canvas,layer,source,null);}
+ void setTileDetail(int detail){
+  tileDetail=Math.max(-1,Math.min(1,detail));
+  invalidate();
+ }
+ static int requestedTileZoom(double zoom,int detail){
+  return (int)MapMath.clamp(Math.floor(zoom)+detail,0,23);
+ }
+ private int sourceTileZoom(TileSource source,OfflineTiles local,BundledTiles fallback,int requested){
+  int selected=source==null?(local!=null?local.zoomFor(requested):fallback.zoomFor(requested)):source.zoomFor(requested);
+  if(fallback!=null)selected=MapMath.overviewTileZoom(selected,world(),visibleWidth(),visibleHeight(),32);
+  return selected;
+ }
+ private static final class TileWindow {
+  final int left,right,top,bottom;
+  TileWindow(int left,int right,int top,int bottom){this.left=left;this.right=right;this.top=top;this.bottom=bottom;}
+  long size(){return (long)(right-left+1)*Math.max(0,bottom-top+1);}
+ }
+ private TileWindow tileWindow(int z,boolean elliptical){
+  int count=1<<z;
+  double halfX=visibleWidth()/2.0/world(),halfY=visibleHeight()/2.0/world();
+  double north=MapMath.lat(cy-halfY),south=MapMath.lat(cy+halfY);
+  return new TileWindow((int)Math.floor((cx-halfX)*count),(int)Math.floor((cx+halfX)*count),
+    Math.max(0,(int)Math.floor(TileProjection.y(north,elliptical)*count)),
+    Math.min(count-1,(int)Math.floor(TileProjection.y(south,elliptical)*count)));
+ }
  private void drawTiles(Canvas canvas,int layer,TileSource source,RasterLayer group){
   OfflineTiles local=group==null?tiles:group.offline;BundledTiles fallback=group==null?bundled:group.bundled;
-  int z=source==null?(local!=null?local.zoomFor((int)Math.floor(zoom)):fallback.zoomFor((int)Math.floor(zoom))):source.zoomFor((int)Math.floor(zoom));
-   if(fallback!=null)z=MapMath.overviewTileZoom(z,world(),visibleWidth(),visibleHeight(),32);
-   int n=1<<z;double tileSize=world()/n;boolean elliptical=source!=null&&source.ellipsoid;
-  double screenTop=MapMath.clamp(cy-visibleHeight()/2.0/world(),0,1),screenBottom=MapMath.clamp(cy+visibleHeight()/2.0/world(),0,1);
-  int left=(int)Math.floor(cx*n-visibleWidth()/2.0/tileSize),right=(int)Math.floor(cx*n+visibleWidth()/2.0/tileSize),top=(int)Math.floor(TileProjection.y(MapMath.lat(screenTop),elliptical)*n),bottom=(int)Math.floor(TileProjection.y(MapMath.lat(screenBottom),elliptical)*n);
-  if((long)(right-left+1)*Math.max(0,Math.min(n-1,bottom)-Math.max(0,top)+1)>32){paint.setColor(-1);paint.setTextSize(14*getResources().getDisplayMetrics().scaledDensity);canvas.drawText("Увеличьте масштаб для этой карты",16,28,paint);return;}
+  boolean elliptical=source!=null&&source.ellipsoid;
+  int z=sourceTileZoom(source,local,fallback,requestedTileZoom(zoom,tileDetail));
+  TileWindow window=tileWindow(z,elliptical);
+  if(tileDetail>0&&window.size()>32){
+   z=sourceTileZoom(source,local,fallback,requestedTileZoom(zoom,0));
+   window=tileWindow(z,elliptical);
+  }
+  if(window.size()>32){paint.setColor(-1);paint.setTextSize(14*getResources().getDisplayMetrics().scaledDensity);canvas.drawText("Увеличьте масштаб для этой карты",16,28,paint);return;}
+  int n=1<<z,left=window.left,right=window.right,top=window.top,bottom=window.bottom;
+  double tileSize=world()/n;
   for(int y=Math.max(0,top);y<=Math.min(n-1,bottom);y++)for(int x=left;x<=right;x++){
    int tx=((x%n)+n)%n;String key=(group==null?"":group.model.id+"/")+layer+"/"+z+"/"+tx+"/"+y;Bitmap b=cache.get(key);float px=(float)(getWidth()/2.0+(x-cx*n)*tileSize);
    if(b==null){request(key,z,tx,y,layer,group);continue;}paint.setColor(-1);paint.setAlpha(255);paint.setStyle(Paint.Style.FILL);
@@ -258,6 +287,7 @@ public final class LocalMapView extends View {
   invalidate();
  }
 
+ private int tileDetail;
  private float bearing, pendingBearing;
  private boolean touchInProgress, manualRotationEnabled, compassRotationEnabled;
  private float manualBearing;

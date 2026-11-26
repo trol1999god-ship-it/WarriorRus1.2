@@ -46,6 +46,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   map=new LocalMapView(this,features,mapFile(),this,source,OnlineMapSettings.network(this),composition);scene.addView(map,new FrameLayout.LayoutParams(-1,-1));if(symbolAssets!=null)map.setSymbols(symbolAssets);
   map.restoreManualBearing(getPreferences(0).getFloat("view_"+projectId+"_bearing",0));
   map.setManualRotation(getPreferences(0).getBoolean("rotate_map_touch",false));
+  map.setTileDetail(getPreferences(0).getInt("map_tile_detail",0));
   int control=WorkspaceUi.dp(this,MapHud.TOUCH_DP),edge=WorkspaceUi.dp(this,4),dockHeight=control;
   LinearLayout mapReadout=new LinearLayout(this);
   mapReadout.setOrientation(LinearLayout.VERTICAL);
@@ -158,7 +159,8 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   menu("Опции",item("Координаты центра экрана",this::coordinateOptions),
     item("Кеш / онлайн",this::onlineSettings),item("Информеры",this::display),
     item("Экран карты",this::screenOptions),item("Вид координатных сеток",this::gridAppearance),
-    item("Единицы измерения",this::displayUnits),item("Стиль статус-панелей",this::mapAppearance));
+    item("Единицы измерения",this::displayUnits),item("Стиль статус-панелей",this::mapAppearance),
+    item("Уровень детализации",this::tileDetail));
  }
  private static final String[] MAP_SCREEN_KEYS={"map_hide_status", "map_immersive", "map_keep_screen_on", "map_confirm_exit", "map_show_locked"};
 
@@ -222,6 +224,16 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
      map.invalidate();
      refreshCompassPanel();
     }).setNegativeButton("Отмена",null));
+ }
+ private void tileDetail(){
+  SharedPreferences prefs=getPreferences(0);
+  int selected=Math.max(0,Math.min(2,prefs.getInt("map_tile_detail",0)+1));
+  WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setTitle("Уровень детализации")
+   .setSingleChoiceItems(new String[]{"Уменьшенная детализация","Стандартная детализация","Повышенная детализация"},selected,(dialog,index)->{
+     prefs.edit().putInt("map_tile_detail",index-1).apply();
+     map.setTileDetail(index-1);
+     dialog.dismiss();
+   }).setNegativeButton("Отмена",null));
  }
  private void mapAppearance(){
   SharedPreferences prefs=getPreferences(0);
