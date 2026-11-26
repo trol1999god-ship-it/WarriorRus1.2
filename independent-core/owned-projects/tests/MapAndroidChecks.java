@@ -853,6 +853,7 @@ public final class MapAndroidChecks extends Instrumentation {
    int keepAwake=android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
    check((mapDecorFlags()&mask)==mask,"map applies fullscreen and immersive flags");
    check((activity.getWindow().getAttributes().flags&keepAwake)!=0,"map stays awake only with the option enabled");
+   acknowledgeImmersiveEducation();
    clickDescription("Меню");waitText("Опции");
    check((mapDecorFlags()&mask)==0,"main menu temporarily reveals the system bars");
    sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);waitForIdleSync();
@@ -862,6 +863,7 @@ public final class MapAndroidChecks extends Instrumentation {
    activity=startActivitySync(intent);waitText("видимых объектов");
    check((mapDecorFlags()&mask)==mask&&(activity.getWindow().getAttributes().flags&keepAwake)!=0,
      "map screen preferences survive reopening");
+   acknowledgeImmersiveEducation();
    clickDescription("Меню");click("Опции");click("Экран карты");
    click("Скрыть строку состояния");click("Режим погружения");click("Экран всегда включён");
    click("Закрыть");waitForIdleSync();
@@ -872,6 +874,20 @@ public final class MapAndroidChecks extends Instrumentation {
    for(int i=0;i<keys.length;i++)restore.putBoolean(keys[i],before[i]);
    restore.commit();
   }
+ }
+ void acknowledgeImmersiveEducation()throws Exception{
+  if(android.os.Build.VERSION.SDK_INT!=35)return;
+  long deadline=android.os.SystemClock.uptimeMillis()+3500;
+  do{
+   AccessibilityNodeInfo window=getUiAutomation().getRootInActiveWindow();
+   if(window!=null&&window.getPackageName()!=null&&"com.android.systemui".contentEquals(window.getPackageName())
+     &&find(window,"Viewing full screen",true)!=null){
+    click("Got it");
+    waitForIdleSync();
+    return;
+   }
+   Thread.sleep(100);
+  }while(android.os.SystemClock.uptimeMillis()<deadline);
  }
  int mapDecorFlags(){
   int[] flags={0};
