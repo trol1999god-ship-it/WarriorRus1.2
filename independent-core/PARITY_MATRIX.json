@@ -853,13 +853,13 @@
     "map_lock_geographic_grid": {
       "code_commit": "c71303c4238f8856d977de34c2a40fd9f1acedf2",
       "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45886047905",
-      "status": "PENDING"
+      "coordinates_passed_api": [23, 35, 37]
     },
     "map_screen_window_options": {
       "code_commit": "6a60f20a4995563211f43d63dd3b42acdd9feed8",
       "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45882516970",
       "coordinates_passed_api": [23, 37],
-      "api35_retest": "PENDING_SYSTEM_IMMERSIVE_EDUCATION"
+      "api35_retest": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45886047905"
     },
     "object_listing_html_headings": {
       "scope": "Поиск по описаниям KML в менеджере объектов сохраняет границы текста в HTML-заголовках.",
