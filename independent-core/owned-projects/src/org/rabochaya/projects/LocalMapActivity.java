@@ -279,8 +279,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   SharedPreferences preferences = getPreferences(0);
   Window window = getWindow();
   boolean showLocked=preferences.getBoolean(MAP_SCREEN_KEYS[4],false);
-  if(Build.VERSION.SDK_INT>=27)setShowWhenLocked(showLocked);
-  else if(showLocked)window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+  if(showLocked)window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
   else window.clearFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
   int keepAwake = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
   if (preferences.getBoolean(MAP_SCREEN_KEYS[2], false)) window.addFlags(keepAwake);
