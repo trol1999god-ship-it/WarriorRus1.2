@@ -673,6 +673,42 @@
       "ci_url": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45726430853",
       "qa_apk": "https://chatgpt.com/library?file_id=libfile_04848819a63881919a90c85811afb2d2&account_id=personal",
       "evidence_archive": "https://chatgpt.com/library?file_id=libfile_fb77d08843848191a5be360e51dbbed0&account_id=personal"
+    },
+    "reference_display_controls": {
+      "source_sha": "796723f1a2152bccd0948d8a438552302f9647b7",
+      "ci_run": 45729310081,
+      "coordinates": {
+        "23": 68,
+        "35": 68,
+        "37": 68
+      },
+      "apk_sha256": "2ea538f1b44e022859f5e538e357bcf78da780441c95fbdc75cb5c81b19a709a",
+      "lint_errors": 0,
+      "permissions": [
+        "android.permission.INTERNET"
+      ],
+      "qa_apk": "https://chatgpt.com/library?file_id=libfile_baa76c5ac91c8191a22ac91ea5bd1012&account_id=personal",
+      "evidence_archive": "https://chatgpt.com/library?file_id=libfile_e114924d8c088191897cdaf02a7b81d6&account_id=personal",
+      "artifacts": [
+        {
+          "id": 15076715290,
+          "sha256": "976469f7e1f26dcd5f078126d75e5b4c7aa97318e591fe09304334d1f1a34a6f"
+        },
+        {
+          "id": 15076391032,
+          "sha256": "7a41be99e88b196a2c5daea3a3a54123175f2cbc02dbb9fe9abc8b87fbde8fe3"
+        },
+        {
+          "id": 15075927313,
+          "sha256": "f88a41ba906f06fcf7dddc07863f1967559c1b90ad34323fd1fb199678bb9ae3"
+        },
+        {
+          "id": 15076131977,
+          "sha256": "08d6cf89cdc632809a44a886cace61bed16d5616c887aa6fd3fc1a40868aa363"
+        }
+      ],
+      "reference_resource_index": "security/reference-gaps-2026-11-26/ui-surface.json",
+      "placement_in_original_confirmed": false
     }
   },
   "status_values": [

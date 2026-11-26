@@ -7,8 +7,8 @@
   "observed_startup": "security/fold-feedback-2026-11-22/reference-integrity.json",
   "runtime_status": "Known package starts into the map and is blocked by its signature check; no newly observed reference transitions.",
   "resource_layout_counts": {
-    "layout-sw600dp": 1,
-    "layout": 56
+    "layout": 56,
+    "layout-sw600dp": 1
   },
   "ru_string_count": 874,
   "submenu_and_settings_ids": {
