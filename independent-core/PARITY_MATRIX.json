@@ -846,7 +846,7 @@
     "reference_map_snapshot": {
       "code_commit": "c441ea05033ad20e27a1727df5dbb9f417e41831",
       "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45898954501",
-      "verification": "PENDING"
+      "mapsnapshot_passed_api": [23, 35]
     },
     "reference_map_compass": {
       "code_commit": "3b82f4693061ac71bd3ba6a045044526a07c8784",
