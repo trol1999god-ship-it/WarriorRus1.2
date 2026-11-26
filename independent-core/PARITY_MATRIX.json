@@ -743,6 +743,9 @@
         "maps_submenu_display_scale_value": "Карты → Масштаб карты: численный масштаб по центру и плотности экрана"
       },
       "partial": {
+        "orientation_submenu_compass_on_map": "Ориентирование → Показать компас: магнитный север и азимут без геолокации.",
+        "orientation_submenu_status": "Ориентирование → Статус компаса: данные и калибровка.",
+        "settings_orientation_heading_display_type_title": "Ориентирование → Курс по компасу: стрелка, азимут или оба.",
         "core_submenu_display_grid": "Информеры: подписанная сетка выбранного основного формата, UTM/MGRS в зоне центра.",
         "settings_canvas_grids_title": "Опции → Вид координатных сеток: плотность, стиль и подписи вспомогательных линий.",
         "core_submenu_display_secondary_grid": "Информеры: независимая дополнительная сетка по выбранному формату.",
@@ -794,9 +797,7 @@
           "maps_submenu_correct_china_shift"
         ],
         "orientation": [
-          "orientation_submenu_rotate",
-          "orientation_submenu_compass_on_map",
-          "orientation_submenu_status"
+          "orientation_submenu_rotate"
         ],
         "settings": [
           "settings_display_distances_title",
@@ -813,8 +814,7 @@
           "settings_landmarks_display_target_color_title",
           "settings_landmarks_display_borders_title",
           "settings_landmarks_display_shadows_title",
-          "settings_landmarks_preprocess_title",
-          "settings_orientation_heading_display_type_title"
+          "settings_landmarks_preprocess_title"
         ]
       }
     },

@@ -2,7 +2,13 @@ package org.rabochaya.projects;
 import android.app.*;import android.content.*;import android.net.Uri;import android.os.*;import android.widget.*;import android.view.*;import java.io.*;import java.util.*;import java.util.concurrent.*;
 /** Own raster map viewer with local MBTiles or explicit online sources. */
 public final class LocalMapActivity extends Activity implements LocalMapView.Listener {
- private static final int IMPORT_MAP=4301,IMPORT_TIFF=4302,IMPORT_OZI=4303,DEM=4602,CATALOG=4502,LAYERS=4503;private PopupWindow popup;private boolean mapInputLocked;private double[] creationPoint;private LinearLayout zoomButtons;private MapDock mapDock;private long projectId;private LinearLayout root;private TextView coordinates,status,tileNotice,scaleValue;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
+ private static final int IMPORT_MAP=4301,IMPORT_TIFF=4302,IMPORT_OZI=4303,DEM=4602,CATALOG=4502,LAYERS=4503;private PopupWindow popup;private boolean mapInputLocked;
+ private MagneticHeading mapCompass;
+ private TextView compassArrow,compassCourse;
+ private LinearLayout compassPanel;
+ private boolean mapForeground;
+ private double compassHeading=Double.NaN;
+ private String compassState="ожидаются данные датчиков";private double[] creationPoint;private LinearLayout zoomButtons;private MapDock mapDock;private long projectId;private LinearLayout root;private TextView coordinates,status,tileNotice,scaleValue;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
  private boolean busy,refreshOnResume,refreshMapOnResume;private volatile boolean disposed;private final ExecutorService worker=Executors.newSingleThreadExecutor();private String warning="";private long lastError;private LinearLayout drawingRow;private String pendingDrawType;private ArrayList<double[]> pendingDrawPoints;
  private Bundle pendingEdit;
  private EditForm activeEdit;
@@ -23,7 +29,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   }
  }
  public static void open(Activity parent,long project){Intent i=new Intent(parent,LocalMapActivity.class);i.putExtra("project",project);parent.startActivity(i);}
- protected void onCreate(Bundle state){super.onCreate(state);projectId=getIntent().getLongExtra("project",-1);root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(MapHud.BAR);setContentView(root);WorkspaceUi.systemBars(this);applyMapScreenOptions(false);if(state!=null){mapInputLocked=state.getBoolean("map_input_locked");pendingEdit=state.getBundle("map_edit");pendingDrawType=state.getString("drawing_type");Object saved=state.getSerializable("drawing_points");if(saved instanceof ArrayList)pendingDrawPoints=(ArrayList<double[]>)saved;}load();}
+ protected void onCreate(Bundle state){super.onCreate(state);mapCompass=new MagneticHeading(this,this::displayCompassReading);projectId=getIntent().getLongExtra("project",-1);root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(MapHud.BAR);setContentView(root);WorkspaceUi.systemBars(this);applyMapScreenOptions(false);if(state!=null){mapInputLocked=state.getBoolean("map_input_locked");pendingEdit=state.getBundle("map_edit");pendingDrawType=state.getString("drawing_type");Object saved=state.getSerializable("drawing_points");if(saved instanceof ArrayList)pendingDrawPoints=(ArrayList<double[]>)saved;}load();}
  private TextView label(String s,int size){TextView t=new TextView(this);t.setText(s);t.setTypeface(WorkspaceUi.font(this));t.setTextColor(0xffffffff);t.setTextSize(size);t.setPadding(14,10,14,10);return t;}
  private void button(LinearLayout row,String name,final Runnable action){Button b=WorkspaceUi.button(this,name,()->{if(!busy)action.run();});b.setTextSize(12);LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(0,(int)(50*getResources().getDisplayMetrics().density),1);p.setMargins(2,2,2,2);row.addView(b,p);}
  private File mapFile(){return new File(getFilesDir(),"local_basemap_"+projectId+".mbtiles");}
@@ -42,6 +48,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   FrameLayout.LayoutParams cp=new FrameLayout.LayoutParams(-2,-2,Gravity.TOP|Gravity.LEFT);
   cp.setMargins(edge,edge,edge,0);scene.addView(mapReadout,cp);
   mapReadout.addView(coordinateBar,new LinearLayout.LayoutParams(-2,-2));
+  createCompassPanel(scene,edge);
   coordinates=label("Координаты центра · WGS 84",11);coordinates.setBackground(MapHud.panel(this));coordinates.setTextColor(MapHud.INK);coordinates.setContentDescription("Настройки координат центра");coordinates.setOnClickListener(v->coordinateOptions());coordinates.setVisibility(getPreferences(0).getBoolean("show_coordinates",true)?View.VISIBLE:View.GONE);
   coordinates.setIncludeFontPadding(false);
   coordinates.setPadding(edge,WorkspaceUi.dp(this,2),edge,WorkspaceUi.dp(this,2));
@@ -257,7 +264,70 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
    if(canLeave())featureList("Метки на экране",features);
   }),item("Создать",this::newObject),item("Поиск на карте",this::search),item("Все объекты",()->map.fit()));
  }
- private void orientationMenu(){menu("Ориентирование",item("Компас",()->startActivity(new Intent(this,CompassActivity.class))),item("Перейти к координатам",()->goToCoordinates()),item("Форматы координат",()->coordinateOptions()),item("DEM / высота центра",()->{if(canLeave())startActivityForResult(new Intent(this,DemActivity.class).putExtra("project",projectId),DEM);}),item("Показать область DEM",()->showDemCoverage()));}
+ private void createCompassPanel(FrameLayout scene,int edge) {
+  compassPanel=new LinearLayout(this);
+  compassPanel.setOrientation(LinearLayout.VERTICAL);
+  compassPanel.setGravity(Gravity.CENTER);
+  compassPanel.setBackground(MapHud.panel(this));
+  compassArrow=label("↑",20);
+  compassCourse=label("—",12);
+  for(TextView readout:new TextView[]{compassArrow,compassCourse}){
+   readout.setPadding(edge,0,edge,0);
+   readout.setTextColor(MapHud.INK);
+   compassPanel.addView(readout);
+  }
+  FrameLayout.LayoutParams position=new FrameLayout.LayoutParams(-2,-2,Gravity.TOP|Gravity.RIGHT);
+  position.setMargins(0,edge,edge,0);
+  scene.addView(compassPanel,position);
+  refreshCompassPanel();
+  syncCompass();
+ }
+ private void toggleMapCompass(){
+  SharedPreferences prefs=getPreferences(0);
+  prefs.edit().putBoolean("show_map_compass",!prefs.getBoolean("show_map_compass",false)).apply();
+  syncCompass();
+ }
+ private void syncCompass(){
+  boolean show=getPreferences(0).getBoolean("show_map_compass",false);
+  if(compassPanel!=null)compassPanel.setVisibility(show?View.VISIBLE:View.GONE);
+  if(mapForeground&&show)mapCompass.start();
+  else{
+   mapCompass.stop();
+   displayCompassReading(Double.NaN,0,"компас на карте выключен");
+  }
+ }
+ private void displayCompassReading(double heading,int accuracy,String reason){
+  compassHeading=heading;
+  compassState=Double.isNaN(heading)?reason:String.format(Locale.US,"Магнитный азимут: %03.0f°%s",heading,
+    accuracy==android.hardware.SensorManager.SENSOR_STATUS_UNRELIABLE?" · нужна калибровка":"");
+  refreshCompassPanel();
+ }
+ private void refreshCompassPanel(){
+  if(compassPanel==null)return;
+  boolean available=!Double.isNaN(compassHeading);
+  int format=getPreferences(0).getInt("map_compass_course",0);
+  compassArrow.setVisibility(available&&format!=2?View.VISIBLE:View.GONE);
+  compassArrow.setRotation(available?(float)-compassHeading:0);
+  compassCourse.setVisibility(!available||format!=1?View.VISIBLE:View.GONE);
+  compassCourse.setText(available?String.format(Locale.US,"%03.0f°",compassHeading):"—");
+  compassPanel.setContentDescription("Компас на карте · "+compassState);
+ }
+ private void showCompassStatus(){
+  WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setTitle("Статус компаса")
+    .setMessage(compassState).setPositiveButton("Закрыть",null));
+ }
+ private void selectCompassDisplay(){
+  SharedPreferences prefs=getPreferences(0);
+  WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setTitle("Курс по компасу")
+    .setSingleChoiceItems(new String[]{"Стрелка и азимут","Только стрелка","Только азимут"},prefs.getInt("map_compass_course",0),(dialog,index)->{
+     prefs.edit().putInt("map_compass_course",index).apply();
+     refreshCompassPanel();
+     dialog.dismiss();
+    }).setNegativeButton("Отмена",null));
+ }
+ private void orientationMenu(){menu("Ориентирование",item("Компас",()->startActivity(new Intent(this,CompassActivity.class))),
+    WorkspaceUi.Item.toggle("Показать компас",getPreferences(0).getBoolean("show_map_compass",false),this::toggleMapCompass),
+    item("Статус компаса",this::showCompassStatus),item("Курс по компасу",this::selectCompassDisplay),item("Перейти к координатам",()->goToCoordinates()),item("Форматы координат",()->coordinateOptions()),item("DEM / высота центра",()->{if(canLeave())startActivityForResult(new Intent(this,DemActivity.class).putExtra("project",projectId),DEM);}),item("Показать область DEM",()->showDemCoverage()));}
  private void showDemCoverage(){if(!canLeave()||map==null||!canMoveMap())return;try{double[] view;synchronized(LocalRasterStore.class){ProjectStore store=new ProjectStore(this);try{if(!store.exists(projectId))throw new IOException("Проект удалён");}finally{store.close();}try(HgtRaster owned=HgtRaster.owned(DemActivity.file(this,projectId),projectId)){view=owned.mapViewport(map.getWidth(),map.getHeight());}}map.restore(view[0],view[1],view[2]);saveView();}catch(IOException e){error("Область DEM недоступна: "+e.getMessage());}}
  private void manager(boolean all){if(!canLeave())return;refreshOnResume=true;if(!all){ObjectManagerActivity.open(this,projectId);return;}getSharedPreferences("org.rabochaya.projects.ProjectsActivity",0).edit().putLong("project",all?-1:projectId).putString("folder","").commit();startActivity(new Intent().setClassName(this,"org.rabochaya.projects.ProjectsActivity"));}
  private String namedMapStatus, anonymousMapStatus;
@@ -388,8 +458,8 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  }
  private void saveView(){if(map!=null){double[] v=map.viewport();settled(v[0],v[1],v[2]);}}
  public void settled(double x,double y,double zoom){String key="view_"+projectId+"_";getPreferences(0).edit().putString(key+"x",Double.toString(x)).putString(key+"y",Double.toString(y)).putFloat(key+"z",(float)zoom).commit();}
- protected void onResume(){super.onResume();if(refreshOnResume&&!busy){refreshOnResume=false;refreshMapOnResume=false;load();}else if(refreshMapOnResume&&!busy){refreshMapOnResume=false;show(true);}if(map!=null)map.suspend(false);}
- protected void onPause(){if(popup!=null)popup.dismiss();saveView();if(map!=null)map.suspend(true);super.onPause();}
+ protected void onResume(){super.onResume();mapForeground=true;syncCompass();if(refreshOnResume&&!busy){refreshOnResume=false;refreshMapOnResume=false;load();}else if(refreshMapOnResume&&!busy){refreshMapOnResume=false;show(true);}if(map!=null)map.suspend(false);}
+ protected void onPause(){mapForeground=false;mapCompass.stop();if(popup!=null)popup.dismiss();saveView();if(map!=null)map.suspend(true);super.onPause();}
  protected void onDestroy(){disposed=true;if(activeEdit!=null)activeEdit.dialog.dismiss();closeDem();if(map!=null)map.close();worker.shutdown();super.onDestroy();}
  private void chooseMap(){if(map!=null&&map.drawingType()!=null){error("Завершите или отмените рисунок");return;}AlertDialog chooser=new AlertDialog.Builder(this).setTitle("Подложка карты").setItems(new String[]{"Онлайн-карта и кеш","Открыть MBTiles","Показать сохранённый MBTiles","Убрать MBTiles","Импорт GeoTIFF","Импорт Ozi (.map + изображение)","Создать рельеф из DEM"},(d,w)->{if(w==0)onlineSettings();else if(w==1)pick();else if(w==2){OnlineMapSettings.use(this,projectId,false);show(true);}else if(w==3)removeMap();else if(w==4)pickTiff();else if(w==5)pickOzi();else confirmHillshade();}).setNegativeButton("Отмена",null).create();chooser.setOnShowListener(dlg->compositionFont(chooser.getWindow().getDecorView()));chooser.show();}
  private void saveMapArea(){
