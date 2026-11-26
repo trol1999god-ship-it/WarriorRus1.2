@@ -9,6 +9,14 @@ public final class LocalMapView extends View {
  private final Map<String,Bitmap> symbolBitmaps = new HashMap<>();
  private static final class SymbolImage {final Bitmap bitmap;final float scale,heading,anchorX,anchorY;final Integer color;SymbolImage(Bitmap bitmap,Map<String,String> values,Integer color){this.bitmap=bitmap;this.color=color;scale=symbolNumber(values.get("scale"),1,0,16);heading=symbolNumber(values.get("heading"),0,-360,360);anchorX=anchor(values,"x",bitmap.getWidth());anchorY=bitmap.getHeight()-anchor(values,"y",bitmap.getHeight());if(bitmap.getWidth()*scale>256||bitmap.getHeight()*scale>256)throw new IllegalArgumentException("SVG: масштаб больше256px");}private static float anchor(Map<String,String> values,String axis,int extent){String value=values.get("hotSpot."+axis);float n=symbolNumber(value,.5f,-4096,4096);String unit=values.get("hotSpot."+axis+"units");if(unit==null||unit.equals("fraction"))return n*extent;if(unit.equals("pixels"))return n;if(unit.equals("insetPixels"))return extent-n;throw new IllegalArgumentException("SVG: неподдержанная единица hotSpot");}}
  private static float symbolNumber(String text,float fallback,float min,float max){if(text==null)return fallback;if(text.length()>64||!text.matches("[+-]?(?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)(?:[eE][+-]?[0-9]+)?"))throw new IllegalArgumentException("SVG: некорректный scale/heading/hotSpot");try{float n=Float.parseFloat(text);if(Float.isNaN(n)||Float.isInfinite(n)||n<min||n>max)throw new NumberFormatException();return n;}catch(NumberFormatException e){throw new IllegalArgumentException("SVG: небезопасный scale/heading/hotSpot");}}
+ private boolean labelsVisible = true;
+
+ void setLabelsVisible(boolean visible) {
+  if (labelsVisible == visible) return;
+  labelsVisible = visible;
+  invalidate();
+ }
+
  public void setSymbols(final KmlSymbolAssets assets) {
   if (disposed) return;
   worker.execute(() -> {
@@ -113,7 +121,7 @@ public final class LocalMapView extends View {
    else {Path path=new Path();path.setFillType(Path.FillType.EVEN_ODD);for(List<double[]> ring:g.rings){boolean first=true;double previous=0;for(double[] c:ring){double worldX=MapMath.x(c[0]);double px;if(first)px=MapMath.delta(worldX,cx);else px=previous+MapMath.delta(worldX,MapMath.wrap(cx+previous));previous=px;float x=(float)(getWidth()/2.0+px*world()),y=(float)(getHeight()/2.0+(MapMath.y(c[1])-cy)*world());if(label==null)label=new float[]{x,y};if(first){path.moveTo(x,y);first=false;}else path.lineTo(x,y);}if("Polygon".equals(g.type))path.close();}
     if("Polygon".equals(g.type)){if(!Boolean.FALSE.equals(style.fill)){paint.setStyle(Paint.Style.FILL);paint.setColor(style.polygon==null?(KmlComponentStyle.DEFAULT_COLOR&0xffffff)|0x45000000:style.polygon);canvas.drawPath(path,paint);}paint.setStyle(Paint.Style.STROKE);paint.setColor(line);if(!Boolean.FALSE.equals(style.outline)&&(style.width==null||style.width>0))canvas.drawPath(path,paint);}else if(style.width==null||style.width>0)canvas.drawPath(path,paint);
    }}
-   if(label!=null&&labels++<200&&(style.label==null||(style.label>>>24)!=0)&&(style.labelScale==null||style.labelScale>0)){
+   if(labelsVisible&&label!=null&&labels++<200&&(style.label==null||(style.label>>>24)!=0)&&(style.labelScale==null||style.labelScale>0)){
     float textX=label[0]+14,textY=label[1]-14;
     paint.setTextSize(14*getResources().getDisplayMetrics().scaledDensity*(style.labelScale==null?1:style.labelScale));
     if(style.label==null){

@@ -50,6 +50,8 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   MapHud.insetButton(this,collapse,8,15);
   coordinateBar.addView(collapse,new LinearLayout.LayoutParams(control,control));
   mapScale=new MapScaleView(this);
+  mapScale.setVisibility(getPreferences(0).getBoolean("show_scale_bar",true)?View.VISIBLE:View.GONE);
+  map.setLabelsVisible(getPreferences(0).getBoolean("show_labels",true));
   LinearLayout.LayoutParams scaleLayout=new LinearLayout.LayoutParams(-2,-2);
   scaleLayout.topMargin=edge;mapReadout.addView(mapScale,scaleLayout);
   String description=onlineMode?source.name+" · "+(OnlineMapSettings.network(this)&&!source.cacheOnly()?"онлайн + кеш":"только кеш"):mapFile().isFile()?"Локальная карта MBTiles":"Обзорная карта";
@@ -104,7 +106,37 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void orientationMenu(){menu("Ориентирование",item("Компас",()->startActivity(new Intent(this,CompassActivity.class))),item("Перейти к координатам",()->goToCoordinates()),item("Форматы координат",()->coordinateOptions()),item("DEM / высота центра",()->{if(canLeave())startActivityForResult(new Intent(this,DemActivity.class).putExtra("project",projectId),DEM);}),item("Показать область DEM",()->showDemCoverage()));}
  private void showDemCoverage(){if(!canLeave()||map==null)return;try{double[] view;synchronized(LocalRasterStore.class){ProjectStore store=new ProjectStore(this);try{if(!store.exists(projectId))throw new IOException("Проект удалён");}finally{store.close();}try(HgtRaster owned=HgtRaster.owned(DemActivity.file(this,projectId),projectId)){view=owned.mapViewport(map.getWidth(),map.getHeight());}}map.restore(view[0],view[1],view[2]);saveView();}catch(IOException e){error("Область DEM недоступна: "+e.getMessage());}}
  private void manager(boolean all){if(!canLeave())return;refreshOnResume=true;if(!all){ObjectManagerActivity.open(this,projectId);return;}getSharedPreferences("org.rabochaya.projects.ProjectsActivity",0).edit().putLong("project",all?-1:projectId).putString("folder","").commit();startActivity(new Intent().setClassName(this,"org.rabochaya.projects.ProjectsActivity"));}
- private void display(){final boolean[] values={coordinates.getVisibility()==View.VISIBLE,zoomButtons.getVisibility()==View.VISIBLE};new AlertDialog.Builder(this).setTitle("Отображение").setMultiChoiceItems(new String[]{"Координаты центра","Кнопки масштаба"},values,(d,w,on)->{values[w]=on;(w==0?coordinates:zoomButtons).setVisibility(on?View.VISIBLE:View.GONE);if(w==1)mapDock.layoutControls();getPreferences(0).edit().putBoolean(w==0?"show_coordinates":"show_zoom",on).commit();}).setNeutralButton("Координаты",(d,w)->coordinateOptions()).setPositiveButton("Закрыть",null).show();}
+ private void display(){
+  SharedPreferences preferences = getPreferences(0);
+  String[] options = {"Координаты центра", "Кнопки масштаба", "Масштабная линейка", "Названия меток"};
+  String[] keys = {"show_coordinates", "show_zoom", "show_scale_bar", "show_labels"};
+  boolean[] checked = new boolean[options.length];
+  for (int i = 0; i < keys.length; i++) checked[i] = preferences.getBoolean(keys[i], true);
+  new AlertDialog.Builder(this).setTitle("Отображение")
+    .setMultiChoiceItems(options, checked, (dialog, item, visible) -> {
+     int visibility = visible ? View.VISIBLE : View.GONE;
+     switch (item) {
+      case 0:
+       coordinates.setVisibility(visibility);
+       break;
+      case 1:
+       zoomButtons.setVisibility(visibility);
+       mapDock.layoutControls();
+       break;
+      case 2:
+       mapScale.setVisibility(visibility);
+       break;
+      case 3:
+       map.setLabelsVisible(visible);
+       break;
+      default:
+       throw new IllegalArgumentException("Unknown map display option " + item);
+     }
+     preferences.edit().putBoolean(keys[item], visible).apply();
+    })
+    .setNeutralButton("Координаты",(dialog, item)->coordinateOptions())
+    .setPositiveButton("Закрыть",null).show();
+ }
  private void newProject(){if(!canLeave())return;final EditText name=new EditText(this);name.setTextColor(0xff202020);name.setBackgroundColor(-1);final AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Новый проект").setView(name).setPositiveButton("Создать",null).setNegativeButton("Отмена",null).create();dialog.setOnShowListener(d->dialog.getButton(-1).setOnClickListener(v->{String title=name.getText().toString().trim();if(title.isEmpty()||title.length()>1000){name.setError("Название: от 1 до 1000 символов");return;}busy=true;dialog.dismiss();worker.execute(()->{try{final long id=ProjectSession.create(this,title);runOnUiThread(()->{if(!disposed){LocalMapActivity.open(this,id);finish();}});}catch(final Exception e){runOnUiThread(()->{if(!disposed){busy=false;error("Не удалось создать проект: "+e.getMessage());}});}});}));dialog.show();}
  private TextView coordinateCaption(String text){TextView label=new TextView(this);label.setText(text);label.setTextColor(0xff202020);label.setTypeface(WorkspaceUi.font(this));return label;}
  private Spinner coordinateSpinner(LinearLayout form,int selected,String description){

@@ -738,7 +738,7 @@ public final class MapAndroidChecks extends Instrumentation {
  }
 
  void coordinateScreen()throws Exception{
-  Context context=getTargetContext();installTileFixture();int requestsBefore=requests.get();long sessionBefore=context.getSharedPreferences("workspace-session",0).getLong("last_project",-1);android.content.SharedPreferences panels=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0);boolean toolsBefore=panels.getBoolean("show_tools",true),coordinatesBefore=panels.getBoolean("show_coordinates",true);panels.edit().putBoolean("show_tools",true).putBoolean("show_coordinates",true).commit();Object store=storeClass.getConstructor(Context.class).newInstance(context);android.content.SharedPreferences settings=context.getSharedPreferences("coordinate-display",0);Map<String,?> original=new HashMap<String,Object>(settings.getAll());long id=-1;
+  Context context=getTargetContext();installTileFixture();int requestsBefore=requests.get();long sessionBefore=context.getSharedPreferences("workspace-session",0).getLong("last_project",-1);android.content.SharedPreferences panels=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0);boolean toolsBefore=panels.getBoolean("show_tools",true),coordinatesBefore=panels.getBoolean("show_coordinates",true);boolean labelsBefore=panels.getBoolean("show_labels",true),scaleBefore=panels.getBoolean("show_scale_bar",true);panels.edit().putBoolean("show_tools",true).putBoolean("show_coordinates",true).putBoolean("show_labels",true).putBoolean("show_scale_bar",true).commit();Object store=storeClass.getConstructor(Context.class).newInstance(context);android.content.SharedPreferences settings=context.getSharedPreferences("coordinate-display",0);Map<String,?> original=new HashMap<String,Object>(settings.getAll());long id=-1;
   try{
    settings.edit().clear().putInt("primary",0).putInt("secondary",3).putBoolean("show_secondary",true).commit();
    Object doc=codec.getMethod("parse",byte[].class).invoke(null,(Object)XML.getBytes("UTF-8"));id=(Long)call(store,"insert",new Class[]{codec,String.class},doc,"QA_COORDINATES");final Intent intent=new Intent().setClassName(context.getPackageName(),"org.rabochaya.projects.LocalMapActivity").putExtra("project",id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);activity=startActivitySync(intent);waitText("видимых объектов");
@@ -762,6 +762,42 @@ public final class MapAndroidChecks extends Instrumentation {
    double wx=(Double)staticCall("MapMath","x",new Class[]{double.class},37.6),wy=(Double)staticCall("MapMath","y",new Class[]{double.class},55.75);setViewport(wx,wy,8);waitText("55.750000, 37.600000");waitText("UTM:");
    clickDescription("Настройки координат центра");clickDescription("Основной формат координат");click("MGRS · WGS 84");clickDescription("Дополнительный формат координат");click("WGS 84 · градусы, минуты, секунды");click("Сохранить");check(settings.getInt("primary",-1)==4&&settings.getInt("secondary",-1)==2,"UI persists both coordinate formats");waitText("MGRS:");waitText("55°45′00.00″ N");double[] viewport=(double[])call(map(),"viewport",new Class[]{});check(Math.abs(viewport[0]-wx)<1e-10&&Math.abs(viewport[1]-wy)<1e-10,"changing coordinate formats does not move map");
    final Activity first=activity;runOnMainSync(new Runnable(){public void run(){first.finish();}});waitForIdleSync();activity=startActivitySync(intent);waitText("MGRS:");waitText("55°45′00.00″ N");check(settings.getInt("primary",-1)==4,"format survives activity reopen");
+   double markerX=(Double)staticCall("MapMath","x",new Class[]{double.class},10.0);
+   double markerY=(Double)staticCall("MapMath","y",new Class[]{double.class},10.0);
+   setViewport(markerX,markerY,10);
+   check(awaitDescription("Масштаб карты: 10 км"),"scale bar visible before display change");
+   Bitmap markerLabel=mapLabelCrop();
+   try {
+    clickDescription("Меню");click("Отображение");
+    click("Масштабная линейка");click("Названия меток");click("Закрыть");
+    check(findDescription(getUiAutomation().getRootInActiveWindow(),"Масштаб карты: 10 км")==null,
+      "hidden scale bar leaves the accessibility tree");
+    Bitmap hiddenLabel=mapLabelCrop();
+    try {
+     check(!markerLabel.sameAs(hiddenLabel),"disabling labels changes rendered pixels near the point");
+    } finally {
+     hiddenLabel.recycle();
+    }
+    capture("display-controls-hidden");
+    Activity hiddenOwner=activity;
+    runOnMainSync(hiddenOwner::finish);waitForIdleSync();
+    activity=startActivitySync(intent);waitText("видимых объектов");
+    Bitmap restoredHidden=mapLabelCrop();
+    try {
+     check(findDescription(getUiAutomation().getRootInActiveWindow(),"Масштаб карты: 10 км")==null,
+       "hidden scale bar survives reopening the map");
+     check(!markerLabel.sameAs(restoredHidden),"marker names stay hidden after reopening");
+    } finally {
+     restoredHidden.recycle();
+    }
+    clickDescription("Меню");click("Отображение");
+    click("Масштабная линейка");click("Названия меток");click("Закрыть");
+    check(awaitDescription("Масштаб карты: 10 км"),"scale bar returns without changing zoom");
+    capture("display-controls-restored");
+   } finally {
+    markerLabel.recycle();
+   }
+   setViewport(wx,wy,8);
    clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("UTM · WGS 84");inputs("32 N 687071.44 6210141.33");click("Перейти");viewport=(double[])call(map(),"viewport",new Class[]{});double latitude=(Double)staticCall("MapMath","lat",new Class[]{double.class},viewport[1]),longitude=(Double)staticCall("MapMath","lon",new Class[]{double.class},viewport[0]);check(Math.abs(latitude-56)<1e-7&&Math.abs(longitude-12)<1e-7,"manual UTM moves centre to published control point");
    double[] valid=viewport.clone();clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("UTM · WGS 84");inputs("37 N 500000 -1");click("Перейти");check(find(getUiAutomation().getRootInActiveWindow(),"Перейти к координатам",true)!=null,"invalid UTM keeps input dialog open");viewport=(double[])call(map(),"viewport",new Class[]{});check(Arrays.equals(valid,viewport),"invalid coordinate leaves viewport intact");click("Отмена");
    clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("WGS 84 · градусы");inputs("85.1 0");click("Перейти");check(Arrays.equals(valid,(double[])call(map(),"viewport",new Class[]{})),"out-of-map latitude is rejected rather than silently clamped");click("Отмена");
@@ -779,8 +815,18 @@ public final class MapAndroidChecks extends Instrumentation {
   }finally{
    if(activity!=null){final Activity last=activity;runOnMainSync(new Runnable(){public void run(){last.finish();}});waitForIdleSync();}
    if(id>0){call(store,"remove",new Class[]{long.class},id);staticCall("LocalMapActivity","cleanupDeletedProject",new Class[]{Context.class,long.class},context,id);}call(store,"close",new Class[]{});
-   android.content.SharedPreferences.Editor restore=settings.edit().clear();for(Map.Entry<String,?> entry:original.entrySet()){Object value=entry.getValue();if(value instanceof Integer)restore.putInt(entry.getKey(),(Integer)value);else if(value instanceof Boolean)restore.putBoolean(entry.getKey(),(Boolean)value);else if(value instanceof String)restore.putString(entry.getKey(),(String)value);}restore.commit();panels.edit().putBoolean("show_tools",toolsBefore).putBoolean("show_coordinates",coordinatesBefore).commit();context.getSharedPreferences("workspace-session",0).edit().putLong("last_project",sessionBefore).commit();
+   android.content.SharedPreferences.Editor restore=settings.edit().clear();for(Map.Entry<String,?> entry:original.entrySet()){Object value=entry.getValue();if(value instanceof Integer)restore.putInt(entry.getKey(),(Integer)value);else if(value instanceof Boolean)restore.putBoolean(entry.getKey(),(Boolean)value);else if(value instanceof String)restore.putString(entry.getKey(),(String)value);}restore.commit();panels.edit().putBoolean("show_tools",toolsBefore).putBoolean("show_coordinates",coordinatesBefore).putBoolean("show_labels",labelsBefore).putBoolean("show_scale_bar",scaleBefore).commit();context.getSharedPreferences("workspace-session",0).edit().putLong("last_project",sessionBefore).commit();
   }
+ }
+ Bitmap mapLabelCrop()throws Exception{
+  android.view.View surface=(android.view.View)map();
+  Bitmap crop=Bitmap.createBitmap(120,30,Bitmap.Config.ARGB_8888);
+  runOnMainSync(()->{
+   Canvas canvas=new Canvas(crop);
+   canvas.translate(-surface.getWidth()/2f-14,-surface.getHeight()/2f+42);
+   surface.draw(canvas);
+  });
+  return crop;
  }
  Activity launchWorkspace()throws Exception{
   ActivityMonitor monitor=addMonitor("org.rabochaya.projects.LocalMapActivity",null,false);
