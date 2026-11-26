@@ -1193,7 +1193,7 @@ public final class MapAndroidChecks extends Instrumentation {
    waitText("QA_MAP_POINT").getBoundsInScreen(second);
    check(first.top<second.top,"classic manager sorts its folder without leaving it");
    check(classic.getInt("folder_sort",0)==1,"classic manager remembers chosen ordering");
-   sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);waitText("QA_WORKSPACE");
+   sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);waitText("Локальные KML/KMZ");
    sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);waitText("Объекты проекта");
    sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);stableMainMap();
   }finally{classic.edit().putInt("folder_sort",sort).commit();}
