@@ -709,6 +709,113 @@
       ],
       "reference_resource_index": "security/reference-gaps-2026-11-26/ui-surface.json",
       "placement_in_original_confirmed": false
+    },
+    "reference_ui_catalog_links": {
+      "source": "security/reference-gaps-2026-11-26/ui-surface.json",
+      "scope": "Сопоставление кода со строками ресурсов. Связь с функцией не подтверждает визуальную или динамическую идентичность.",
+      "linked": {
+        "core_submenu_title_display": "Меню → Информеры",
+        "core_submenu_hide_menu": "Переключатель нижней панели",
+        "core_submenu_screen_center_coordinates": "Табло и Меню → Информеры",
+        "geolocation_submenu_title": "Файловый менеджер",
+        "geolocation_submenu_geolocation": "Файловый менеджер → Объекты проекта и Меню → Проекты",
+        "landmarks_submenu_title": "Метки",
+        "landmarks_submenu_browse": "Метки → Все метки",
+        "landmarks_submenu_create": "Метки → Новая метка",
+        "landmarks_submenu_display_labels": "Меню → Информеры → Названия меток",
+        "maps_submenu_title": "Карты",
+        "maps_submenu_available_maps": "Карты → Доступные карты",
+        "maps_submenu_displayed_maps": "Карты → Карты на экране",
+        "maps_submenu_area_downloader": "Карты → Сохранить участок карты",
+        "maps_submenu_display_name": "Меню → Информеры → Название карты",
+        "maps_submenu_display_scale_bar": "Меню → Информеры → Масштабная линейка",
+        "maps_submenu_only_use_local_storage": "Карты → Использовать только сохранённый кэш карты",
+        "maps_submenu_favorites_title": "Карты → Избранные карты и наборы карт",
+        "orientation_submenu_title": "Ориентирование",
+        "orientation_submenu_compass": "Ориентирование → Компас",
+        "settings_display_location_title": "Настройки координат → Основной формат",
+        "settings_display_location_secondary_title": "Настройки координат → Дополнительный формат"
+      },
+      "partial": {
+        "core_submenu_title_options": "Настройки распределены по разделам.",
+        "landmarks_submenu_displayed_landmarks": "Видимость управляется в менеджере объектов. Сверка панели открыта.",
+        "maps_submenu_show_storage_coverage": "В каталоге есть остаток хранилища и счётчики кэша. Слой покрытия открыт.",
+        "settings_technical_path_title": "Есть приватный кэш и импорт/экспорт; выбор каталога не воспроизведён.",
+        "settings_canvas_long_press_map_title": "Работает контекстное меню; переназначение жеста открыто.",
+        "settings_canvas_zoom_type_title": "Работают кнопки и жесты; выбор типа открыт.",
+        "settings_canvas_multitouch_zoom_title": "Работает мультитач; настройка включения открыта.",
+        "settings_landmarks_display_size_title": "Масштаб настраивается для отдельных стилей KML.",
+        "settings_landmarks_display_color_title": "Цвет настраивается для отдельных стилей KML.",
+        "settings_landmarks_display_tracks_style_title": "Цвет и ширина линий редактируются в KML."
+      },
+      "privacy_exclusions": [
+        "geolocation_submenu_dashboard",
+        "geolocation_submenu_display_information",
+        "geolocation_submenu_display_location_line",
+        "geolocation_submenu_rotate",
+        "geolocation_submenu_tracker",
+        "geolocation_submenu_tracker_information",
+        "settings_geolocation_auto_activate_explorer_mode_title",
+        "settings_geolocation_course_display_type_title",
+        "settings_geolocation_disable_in_back_title",
+        "settings_geolocation_egm96_adjustment_title",
+        "settings_geolocation_previous_locations_title",
+        "settings_geolocation_relock_location_title",
+        "settings_tracker_ask_for_activity_title",
+        "settings_tracker_dash_mode_title",
+        "settings_tracker_reset_stats_on_new_segment_title",
+        "settings_tracker_signal_warnings_title"
+      ],
+      "open_by_domain": {
+        "core": [
+          "core_submenu_lock_screen",
+          "core_submenu_print_map",
+          "core_submenu_display_grid",
+          "core_submenu_display_secondary_grid",
+          "core_submenu_display_radius_ruler",
+          "core_submenu_night_mode"
+        ],
+        "geolocation": [
+          "geolocation_submenu_barometer"
+        ],
+        "landmarks": [
+          "landmarks_submenu_control_time",
+          "landmarks_submenu_display_target_information",
+          "landmarks_submenu_display_target_line"
+        ],
+        "maps": [
+          "maps_submenu_display_scale_value",
+          "maps_submenu_correct_china_shift"
+        ],
+        "orientation": [
+          "orientation_submenu_rotate",
+          "orientation_submenu_compass_on_map",
+          "orientation_submenu_status"
+        ],
+        "settings": [
+          "settings_display_distances_title",
+          "settings_display_areas_title",
+          "settings_display_bearings_title",
+          "settings_display_slopes_title",
+          "settings_display_pressures_title",
+          "settings_display_reference_north_title",
+          "settings_technical_hide_status_bar_title",
+          "settings_technical_hide_navigation_bar_title",
+          "settings_technical_screen_on_title",
+          "settings_technical_disable_keyguard_title",
+          "settings_technical_confirm_exit_title",
+          "settings_canvas_infobox_style_title",
+          "settings_canvas_grids_title",
+          "settings_canvas_multitouch_rotate_title",
+          "settings_canvas_multitouch_pitch_title",
+          "settings_canvas_hres_map_title",
+          "settings_landmarks_display_target_color_title",
+          "settings_landmarks_display_borders_title",
+          "settings_landmarks_display_shadows_title",
+          "settings_landmarks_preprocess_title",
+          "settings_orientation_heading_display_type_title"
+        ]
+      }
     }
   },
   "status_values": [

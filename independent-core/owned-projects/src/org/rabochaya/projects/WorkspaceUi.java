@@ -17,6 +17,16 @@ public final class WorkspaceUi {
    default:return Typeface.create(family,Typeface.NORMAL);
   }
  }
+ static void applyFont(Activity activity, View view) {
+  if (view instanceof TextView) {
+   TextView text = (TextView)view;
+   text.setTypeface(styledFont(activity,text.getTypeface()));
+  }
+  if (view instanceof ViewGroup) {
+   ViewGroup group = (ViewGroup)view;
+   for (int i=0; i<group.getChildCount(); i++) applyFont(activity,group.getChildAt(i));
+  }
+ }
  static void systemBars(Activity activity) {
   activity.getWindow().setStatusBarColor(MapHud.BAR);
   activity.getWindow().setNavigationBarColor(MapHud.BAR);
@@ -46,7 +56,20 @@ public final class WorkspaceUi {
   ImageButton b=new ImageButton(a);Bitmap image=icons.get(name);if(image==null)try(InputStream in=a.getAssets().open("workspace-icons/"+name+".png")){image=BitmapFactory.decodeStream(in);if(image==null)throw new IOException(name);icons.put(name,image);}catch(IOException e){throw new IllegalStateException("Missing local icon: "+name,e);}
   b.setImageBitmap(image);b.setColorFilter(TEXT,PorterDuff.Mode.SRC_IN);b.setScaleType(ImageView.ScaleType.FIT_CENTER);int p=dp(a,10);b.setPadding(p,p,p,p);b.setContentDescription(title);b.setBackground(panel(a));b.setOnClickListener(v->action.run());b.setOnLongClickListener(v->{Toast.makeText(a,title,Toast.LENGTH_SHORT).show();return true;});return b;
  }
- public static final class Item {final String title;final Runnable action;public Item(String t,Runnable r){title=t;action=r;}}
+ public static final class Item {
+  final String title;
+  final Runnable action;
+  final Boolean checked;
+  public Item(String title, Runnable action) { this(title, action, null); }
+  private Item(String title, Runnable action, Boolean checked) {
+   this.title=title;
+   this.action=action;
+   this.checked=checked;
+  }
+  static Item toggle(String title, boolean checked, Runnable action) {
+   return new Item(title,action,checked);
+  }
+ }
  static PopupWindow menu(Activity a, View anchor, MapDock dock, String title, Item... items) {
   LinearLayout list = new LinearLayout(a);
   list.setOrientation(LinearLayout.VERTICAL);
@@ -69,7 +92,13 @@ public final class WorkspaceUi {
   popup.setOutsideTouchable(true);
   popup.setElevation(margin);
   for (Item item : items) {
-   TextView row = new TextView(a);
+   TextView row;
+   if (item.checked != null) {
+    CheckBox checkable=new CheckBox(a);
+    checkable.setChecked(item.checked);
+    checkable.setButtonTintList(android.content.res.ColorStateList.valueOf(TEXT));
+    row=checkable;
+   } else row=new TextView(a);
    row.setText(item.title);
    row.setTypeface(font(a));
    row.setTextSize(16);

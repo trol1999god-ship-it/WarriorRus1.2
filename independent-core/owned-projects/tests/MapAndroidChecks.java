@@ -768,7 +768,7 @@ public final class MapAndroidChecks extends Instrumentation {
    check(awaitDescription("Масштаб карты: 10 км"),"scale bar visible before display change");
    Bitmap markerLabel=mapLabelCrop();
    try {
-    clickDescription("Меню");click("Отображение");
+    clickDescription("Меню");click("Информеры");
     click("Масштабная линейка");click("Названия меток");click("Закрыть");
     check(findDescription(getUiAutomation().getRootInActiveWindow(),"Масштаб карты: 10 км")==null,
       "hidden scale bar leaves the accessibility tree");
@@ -790,7 +790,7 @@ public final class MapAndroidChecks extends Instrumentation {
     } finally {
      restoredHidden.recycle();
     }
-    clickDescription("Меню");click("Отображение");
+    clickDescription("Меню");click("Информеры");
     click("Масштабная линейка");click("Названия меток");click("Закрыть");
     check(awaitDescription("Масштаб карты: 10 км"),"scale bar returns without changing zoom");
     capture("display-controls-restored");
@@ -812,10 +812,71 @@ public final class MapAndroidChecks extends Instrumentation {
    capture("map-drawing-menu");
    click("Поиск на карте");check(find(getUiAutomation().getRootInActiveWindow(),"Название среди видимых объектов проекта",true)==null,"search cannot open editor while drawing");check(((List)call(map(),"drawingPoints",new Class[]{})).size()==1,"search leaves drawing vertices intact");clickDescription("Ориентирование");click("Перейти к координатам");check(find(getUiAutomation().getRootInActiveWindow(),"Формат ввода",true)==null,"manual coordinate navigation blocked during drawing");check(((List)call(map(),"drawingPoints",new Class[]{})).size()==1,"coordinate navigation leaves draft intact");click("Отмена");click("Отменить рисунок");
    check(Arrays.equals(before,(byte[])call(call(store,"load",new Class[]{long.class},id),"xml",new Class[]{})),"presentation, search guards and coordinate navigation preserve every object");check(requests.get()==requestsBefore,"coordinate operations and local map do not request internet tiles");capture("coordinate-formats");
+   checkReferenceMapMenu(intent,id);
   }finally{
    if(activity!=null){final Activity last=activity;runOnMainSync(new Runnable(){public void run(){last.finish();}});waitForIdleSync();}
    if(id>0){call(store,"remove",new Class[]{long.class},id);staticCall("LocalMapActivity","cleanupDeletedProject",new Class[]{Context.class,long.class},context,id);}call(store,"close",new Class[]{});
    android.content.SharedPreferences.Editor restore=settings.edit().clear();for(Map.Entry<String,?> entry:original.entrySet()){Object value=entry.getValue();if(value instanceof Integer)restore.putInt(entry.getKey(),(Integer)value);else if(value instanceof Boolean)restore.putBoolean(entry.getKey(),(Boolean)value);else if(value instanceof String)restore.putString(entry.getKey(),(String)value);}restore.commit();panels.edit().putBoolean("show_tools",toolsBefore).putBoolean("show_coordinates",coordinatesBefore).putBoolean("show_labels",labelsBefore).putBoolean("show_scale_bar",scaleBefore).commit();context.getSharedPreferences("workspace-session",0).edit().putLong("last_project",sessionBefore).commit();
+  }
+ }
+ void checkReferenceMapMenu(Intent mapIntent,long id)throws Exception{
+  final String cacheSwitch="Использовать только сохранённый кэш карты";
+  final String favorites="Избранные карты и наборы карт";
+  Context context=getTargetContext();
+  SharedPreferences mapPrefs=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0);
+  SharedPreferences online=context.getSharedPreferences("online-map",0);
+  Map<String,?> previous=online.getAll();
+  boolean previousName=mapPrefs.getBoolean("show_map_name",true);
+  try{
+   clickDescription("Меню");click("Информеры");click("Название карты");click("Закрыть");
+   check(find(getUiAutomation().getRootInActiveWindow(),"Обзорная карта",false)==null,"map title can be hidden independently");
+   waitText("видимых объектов");
+
+   clickDescription("Карты");click(favorites);
+   waitText("Сохранить показанный состав");capture("reference-map-favorites");
+   click("Отмена");click("К карте");stableMainMap();
+
+   online.edit().putBoolean("network",true).commit();
+   clickDescription("Карты");
+   AccessibilityNodeInfo row=waitText(cacheSwitch);
+   check(row!=null&&row.isCheckable()&&!row.isChecked(),"cache-only action exposes its actual current state");
+   click(cacheSwitch);
+   clickDescription("Карты");
+   row=waitText(cacheSwitch);
+   check(row!=null&&row.isChecked(),"map menu marks cache-only mode");
+   capture("reference-map-cache-only");sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);stableMainMap();
+
+   int before=requests.get();
+   staticCall("OnlineMapSettings","select",new Class[]{Context.class,String.class,long.class},context,"ESRI_WORLD_IMAGERY",id);
+   check(!online.getBoolean("network",true),"choosing a catalogue source preserves cache-only mode");
+   Object synthetic=source("reference-menu",true);
+   staticCall("OnlineMapSettings","save",new Class[]{Context.class,owned("TileSource"),long.class},context,synthetic,id);
+   check(!online.getBoolean("network",true),"saving an XYZ source preserves cache-only mode");
+   Activity old=activity;
+   runOnMainSync(old::finish);waitForIdleSync();
+   activity=startActivitySync(mapIntent);waitText("только кеш");
+   waitText("QA synthetic tiles");
+   check(find(getUiAutomation().getRootInActiveWindow(),"QA_TILE_SOURCE",false)==null,"hidden online name survives reopening");
+   check(requests.get()==before,"cache-only map still shows attribution without tile transport");
+   capture("reference-map-hidden-name-with-credit");
+
+   clickDescription("Карты");click("Сохранить участок карты");
+   waitText("Включите загрузку тайлов из интернета");
+   click("Загружать тайлы из интернета");click("К карте");stableMainMap();
+   clickDescription("Карты");click("Сохранить участок карты");
+   waitText("Область для скачивания");
+   capture("reference-map-single-area");
+   click("Отмена");click("К карте");stableMainMap();
+  }finally{
+   mapPrefs.edit().putBoolean("show_map_name",previousName).commit();
+   SharedPreferences.Editor restore=online.edit().clear();
+   for(Map.Entry<String,?> entry:previous.entrySet()){
+    Object value=entry.getValue();
+    if(value instanceof String)restore.putString(entry.getKey(),(String)value);
+    else if(value instanceof Boolean)restore.putBoolean(entry.getKey(),(Boolean)value);
+    else if(value instanceof Integer)restore.putInt(entry.getKey(),(Integer)value);
+   }
+   restore.commit();
   }
  }
  Bitmap mapLabelCrop()throws Exception{
@@ -878,7 +939,7 @@ public final class MapAndroidChecks extends Instrumentation {
   checkMapControlBounds(dock,zoom,status);
   capture("map-resize-wide");
   clickDescription("Карты");
-  waitText("Слои карты");
+  waitText("Карты на экране");
   Field popupField=owner.getClass().getDeclaredField("popup");popupField.setAccessible(true);
   android.widget.PopupWindow mapMenu=(android.widget.PopupWindow)popupField.get(owner);
   runOnMainSync(()->owner.getWindow().setLayout(Math.round(290*density),-1));
@@ -915,7 +976,7 @@ public final class MapAndroidChecks extends Instrumentation {
    runOnMainSync(()->check(compactCoordinates.getLineCount()==3,
      "default coordinate formats and height fit on three lines at compact width"));
    checkMapControlBounds(dock,zoom,status);
-   waitText("Слои карты");
+   waitText("Карты на экране");
    capture("map-resize-menu-compact");
    runOnMainSync(mapMenu::dismiss);
    capture("map-resize-compact");
@@ -1109,7 +1170,7 @@ public final class MapAndroidChecks extends Instrumentation {
    for(int z=1;z<=3;z++){int n=1<<z;for(int x=0;x<n;x++)for(int y=0;y<n;y++){Bitmap tile=(Bitmap)call(overview,"tile",new Class[]{int.class,int.class,int.class},z,x,y);check(tile!=null&&tile.getWidth()==256&&tile.getHeight()==256,"bundled overview tile decodes "+z+"/"+x+"/"+y);tile.recycle();}}
    capture("workspace-overlay");
    dockDestination("menu","Меню","Проекты и файлы KML/KMZ");
-   dockDestination("maps","Карты","Слои карты");
+   dockDestination("maps","Карты","Карты на экране");
    dockDestination("orientation","Ориентирование","Перейти к координатам");
    dockDestination("files","Файловый менеджер","Объекты проекта");
    android.view.View mapView=(android.view.View)map();int height=mapView.getHeight();
@@ -1513,7 +1574,7 @@ public final class MapAndroidChecks extends Instrumentation {
   check(leaves==54&&composites==3,"no source or ready-made mapset omitted");
   project=getTargetContext().getSharedPreferences("qa_online",0).getLong("project",-1);Object hybrid=staticCall("MapCatalog","find",new Class[]{String.class},"ESRI_IMAGERY_LABELS");for(Object leaf:(Object[])call(hybrid,"leafs",new Class[]{})){Object cache=onlineCache(leaf);call(cache,"clear",new Class[]{});call(cache,"close",new Class[]{});}
   activity=startActivitySync(new Intent().setClassName(getTargetContext().getPackageName(),"org.rabochaya.projects.LocalMapActivity").putExtra("project",project).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));final Activity resumedMap=activity;waitText("только кеш");ActivityMonitor monitor=addMonitor("org.rabochaya.projects.OnlineMapActivity",null,false);click("Кеш / онлайн");Activity panel=waitForMonitorWithTimeout(monitor,45000);removeMonitor(monitor);check(panel!=null,"catalogue accessible in main map flow");activity=panel;
-  click("Все исходные карты и наборы");click("ESRI Community Maps");click("ESRI — спутник, дороги и названия · набор слоёв");waitText("Карта выбрана.");click("Показать выбранную карту");waitText("ESRI — спутник, дороги и названия");
+  click("Все исходные карты и наборы");click("ESRI Community Maps");click("ESRI — спутник, дороги и названия · набор слоёв");waitText("Карта выбрана.");check(!(Boolean)staticCall("OnlineMapSettings","network",new Class[]{Context.class},getTargetContext()),"selection preserves cache-only mode");click("Загружать тайлы из интернета");click("Показать выбранную карту");waitText("ESRI — спутник, дороги и названия");
   // The original map activity is resumed; find it via lifecycle rather than starting another.
   activity=resumedMap;setViewport(.5,.5,3);Thread.sleep(4000);
   Object selected=staticCall("OnlineMapSettings","source",new Class[]{Context.class},getTargetContext());check(((Object[])call(selected,"leafs",new Class[]{})).length==3,"composite choice persists all constituent layers");for(String expected:new String[]{"World_Imagery","World_Transportation","World_Boundaries_and_Places"}){boolean seen=false;for(String url:requested)if(url.contains(expected))seen=true;check(seen,"renderer requests mapset constituent "+expected);}final Bitmap[] composed=new Bitmap[1];runOnMainSync(new Runnable(){public void run(){try{android.view.View v=(android.view.View)map();composed[0]=Bitmap.createBitmap(v.getWidth(),v.getHeight(),Bitmap.Config.ARGB_8888);v.draw(new Canvas(composed[0]));}catch(Exception e){throw new RuntimeException(e);}}});int color=composed[0].getPixel(50,50);check(Color.red(color)>140&&Color.blue(color)<150,"both transparent reference layers blend over satellite base");composed[0].recycle();capture("catalog-hybrid");

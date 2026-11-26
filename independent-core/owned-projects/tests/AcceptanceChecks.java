@@ -161,19 +161,19 @@ final class AcceptanceChecks {
     back();
 
     test.clickDescription("Карты");
-    open("MapLayersActivity","Слои карты");
+    open("MapLayersActivity","Карты на экране");
     test.waitText("Показывать слой");
     shot("05-layers","Слои карты");
     closeChild();
 
     test.clickDescription("Карты");
-    open("MapCatalogActivity","Онлайн-карты");
+    open("MapCatalogActivity","Доступные карты");
     test.waitText("Онлайн-карты");
     shot("06-catalog","Онлайн-карты");
     closeChild();
 
     test.clickDescription("Метки");
-    open("ObjectManagerActivity","Список объектов");
+    open("ObjectManagerActivity","Все метки");
     test.geometryReady();
     test.waitText(POINT);
     shot("07-objects","Список объектов");
