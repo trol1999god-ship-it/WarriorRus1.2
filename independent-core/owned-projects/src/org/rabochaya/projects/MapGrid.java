@@ -25,7 +25,7 @@ final class MapGrid {
     }
 
     void draw(Canvas canvas, double cx, double cy, double world, int width, int height,
-              float density, Typeface font, int primary, int secondary, boolean radiusRuler) {
+              float density, Typeface font, int primary, int secondary, boolean radiusRuler,int distanceMode) {
         if (width <= 0 || height <= 0) return;
         this.cx = cx;
         this.cy = cy;
@@ -43,7 +43,7 @@ final class MapGrid {
             boolean sameProjection = primary >= 0 && (primary < Coordinates.UTM)==(secondary < Coordinates.UTM);
             drawGrid(canvas, secondary, true, sameProjection);
         }
-        if (radiusRuler) drawRuler(canvas);
+        if (radiusRuler) drawRuler(canvas,distanceMode);
     }
 
     private void drawGrid(Canvas canvas,int format,boolean secondary,boolean labelsOnly) {
@@ -167,7 +167,7 @@ final class MapGrid {
         }
     }
 
-    private void drawRuler(Canvas canvas) {
+    private void drawRuler(Canvas canvas,int distanceMode) {
         double metresPerPixel=Math.cos(Math.toRadians(MapMath.lat(cy)))*2*Math.PI*RADIUS/world;
         double interval=step(Math.min(width,height)*metresPerPixel/8);
         paint.setPathEffect(null);
@@ -189,7 +189,7 @@ final class MapGrid {
             }
             path.close();
             canvas.drawPath(path,paint);
-            String text=metres>=1000 ? (metres/1000)+" км" : Math.round(metres)+" м";
+            String text=DisplayUnits.scaleLabel(metres,DisplayUnits.scaleUnit(metres,distanceMode));
             label(canvas,text,width/2+inset,height/2-radius-inset);
         }
     }

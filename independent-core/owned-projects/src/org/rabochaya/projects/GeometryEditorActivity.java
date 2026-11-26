@@ -82,11 +82,21 @@ public final class GeometryEditorActivity extends Activity {
     }
     private boolean profileFeature(Element feature,GeometryCloseDraft context){if(feature==null)return false;for(GeometryEdits.Part part:GeometryEdits.parts(feature))if(part.key.equals(context.key)&&context.token.equals(part.token)&&part.type.equals(context.type)&&part.hole==context.hole)return true;return false;}
     private void showProfile(DemProfile profile){
+        int mode=DisplayUnits.distanceMode(this);
         LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);content.setFocusableInTouchMode(true);content.setPadding(12,8,12,8);content.setBackgroundColor(0xff232d1d);
         TextView explanation=label(String.format(java.util.Locale.US,"Снимок текущего ввода. %.3f км — сумма дуг по сфере между вершинами; %d/%d отсчётов DEM. Высоты исходного SRTM в метрах; без преобразования датума. Отсчёты линейно по широте/долготе. Координаты и высоты объекта не меняются.",profile.length/1000,profile.valid,profile.height.length),15);content.addView(label("Выбранный контур: "+parts.get(current).name,15));content.addView(explanation);
+        if(mode!=0)explanation.setText("Длина: "+DisplayUnits.distance(profile.length,mode)+". "+profile.valid+"/"+profile.height.length
+            +" отсчётов DEM. Высоты исходного SRTM без преобразования датума. Координаты и высоты объекта сохраняются.");
         content.addView(new DemProfileView(this,profile),new LinearLayout.LayoutParams(-1,WorkspaceUi.dp(this,180)));
         if(profile.valid>0)content.addView(label(String.format(java.util.Locale.US,"Отсчёты: min %.1f м; max %.1f м. Набор %.1f м; спуск %.1f м между соседними известными отсчётами. Пропуски не заполнены.",profile.min,profile.max,profile.gain,profile.loss),15));
-        StringBuilder rows=new StringBuilder("Расстояние, км · высота DEM, м\n");for(int i=0;i<profile.height.length;i++)rows.append(String.format(java.util.Locale.US,"%.3f · %s\n",profile.distance[i]/1000,Double.isNaN(profile.height[i])?"нет данных":String.format(java.util.Locale.US,"%.1f",profile.height[i])));TextView table=label(rows.toString(),14);table.setTextIsSelectable(true);content.addView(table);ScrollView scroll=new ScrollView(this);scroll.addView(content);
+        if(mode!=0&&profile.valid>0)((TextView)content.getChildAt(content.getChildCount()-1)).setText("Отсчёты: min "
+            +DisplayUnits.elevation(profile.min,mode)+"; max "+DisplayUnits.elevation(profile.max,mode)
+            +". Набор "+DisplayUnits.elevation(profile.gain,mode)+"; спуск "+DisplayUnits.elevation(profile.loss,mode)+".");
+        StringBuilder rows=new StringBuilder("Расстояние, км · высота DEM, м\n");for(int i=0;i<profile.height.length;i++)rows.append(String.format(java.util.Locale.US,"%.3f · %s\n",profile.distance[i]/1000,Double.isNaN(profile.height[i])?"нет данных":String.format(java.util.Locale.US,"%.1f",profile.height[i])));if(mode!=0){
+            rows.setLength(0);rows.append("Расстояние · высота DEM\n");
+            for(int i=0;i<profile.height.length;i++)rows.append(DisplayUnits.distance(profile.distance[i],mode))
+                .append(" · ").append(Double.isNaN(profile.height[i])?"нет данных":DisplayUnits.elevation(profile.height[i],mode)).append('\n');
+        }TextView table=label(rows.toString(),14);table.setTextIsSelectable(true);content.addView(table);ScrollView scroll=new ScrollView(this);scroll.addView(content);
         AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Профиль DEM").setView(scroll).setPositiveButton("Закрыть",null).create();android.view.inputmethod.InputMethodManager keyboard=(android.view.inputmethod.InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);if(keyboard!=null)keyboard.hideSoftInputFromWindow(root.getWindowToken(),0);profileDialog=dialog;dialog.setOnDismissListener(d->{if(profileDialog==dialog)profileDialog=null;});dialog.setOnShowListener(d->{vertexFont(dialog.getWindow().getDecorView());});dialog.show();status.setText("Профиль — только чтение. Для записи геометрии требуется отдельное «Сохранить»");
     }
     private void vertices(){

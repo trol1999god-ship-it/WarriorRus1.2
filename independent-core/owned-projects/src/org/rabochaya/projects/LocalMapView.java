@@ -148,7 +148,7 @@ public final class LocalMapView extends View {
    int gridCanvas=canvas.save();
    canvas.translate(left,top);
    grid.draw(canvas,cx,cy,world(),visibleWidth,visibleHeight,getResources().getDisplayMetrics().density, WorkspaceUi.font(getContext()),
-     geographicGridVisible?primaryGridFormat:-1,secondaryGridVisible?secondaryGridFormat:-1,radiusRulerVisible);
+     geographicGridVisible?primaryGridFormat:-1,secondaryGridVisible?secondaryGridFormat:-1,radiusRulerVisible,DisplayUnits.distanceMode(getContext()));
    canvas.restoreToCount(gridCanvas);
   }
   int labels=0;

@@ -152,7 +152,8 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void optionsMenu(){
   menu("Опции",item("Координаты центра экрана",this::coordinateOptions),
     item("Кеш / онлайн",this::onlineSettings),item("Информеры",this::display),
-    item("Экран карты",this::screenOptions),item("Вид координатных сеток",this::gridAppearance));
+    item("Экран карты",this::screenOptions),item("Вид координатных сеток",this::gridAppearance),
+    item("Единицы измерения",this::displayUnits));
  }
  private static final String[] MAP_SCREEN_KEYS={"map_hide_status", "map_immersive", "map_keep_screen_on", "map_confirm_exit"};
 
@@ -193,6 +194,23 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   return spinner;
  }
 
+ private void displayUnits() {
+  LinearLayout form=coordinateForm();
+  form.addView(coordinateCaption("Формат расстояния"));
+  Spinner distances=gridChoice(form,"Формат расстояния",DisplayUnits.DISTANCE,DisplayUnits.distanceMode(this));
+  form.addView(coordinateCaption("Азимут"));
+  Spinner bearings=gridChoice(form,"Азимут",DisplayUnits.BEARING,DisplayUnits.bearingMode(this));
+  ScrollView scroll=new ScrollView(this);
+  scroll.addView(form);
+  WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setTitle("Единицы измерения")
+    .setView(scroll).setPositiveButton("Сохранить",(dialog,which)->{
+     DisplayUnits.prefs(this).edit().putInt("distance",distances.getSelectedItemPosition())
+       .putInt("bearing",bearings.getSelectedItemPosition()).apply();
+     refreshCoordinates();
+     map.invalidate();
+     refreshCompassPanel();
+    }).setNegativeButton("Отмена",null));
+ }
  private void screenOptions() {
   SharedPreferences preferences = getPreferences(0);
   String[] titles = {"Скрыть строку состояния", "Режим погружения", "Экран всегда включён", "Подтверждать выход"};
@@ -303,8 +321,8 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   compassHeading=heading;
   if(map!=null&&getPreferences(0).getBoolean("rotate_map_compass",false)&&!Double.isNaN(heading))
    map.setBearing(heading);
-  compassState=Double.isNaN(heading)?reason:String.format(Locale.US,"Магнитный азимут: %03.0f°%s",heading,
-    accuracy==android.hardware.SensorManager.SENSOR_STATUS_UNRELIABLE?" · нужна калибровка":"");
+  compassState=Double.isNaN(heading)?reason:"Магнитный азимут: "+DisplayUnits.bearing(heading,DisplayUnits.bearingMode(this))
+    +(accuracy==android.hardware.SensorManager.SENSOR_STATUS_UNRELIABLE?" · нужна калибровка":"");
   refreshCompassPanel();
  }
  private void refreshCompassPanel(){
@@ -314,7 +332,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   compassArrow.setVisibility(available&&format!=2?View.VISIBLE:View.GONE);
   compassArrow.setRotation(available?(float)-compassHeading:0);
   compassCourse.setVisibility(!available||format!=1?View.VISIBLE:View.GONE);
-  compassCourse.setText(available?String.format(Locale.US,"%03.0f°",compassHeading):"—");
+  compassCourse.setText(available?DisplayUnits.bearing(compassHeading,DisplayUnits.bearingMode(this)):"—");
   compassPanel.setContentDescription("Компас на карте · "+compassState);
  }
  private void showCompassStatus(){

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
-import java.util.Locale;
 
 /** Distance represented in the horizontal Web Mercator scale at the map centre. */
 final class MapScaleView extends View {
@@ -34,14 +33,13 @@ final class MapScaleView extends View {
   double metresPerPixel = metresPerPixel(latitude,zoom);
   double limit = barLimit * metresPerPixel;
   if (!(limit > 0) || Double.isInfinite(limit)) return;
-  double magnitude = Math.pow(10, Math.floor(Math.log10(limit)));
-  double factor = limit / magnitude;
-  double distance = magnitude * (factor >= 5 ? 5 : factor >= 2 ? 2 : 1);
+  int mode=DisplayUnits.distanceMode(getContext());
+  double unit=DisplayUnits.scaleUnit(limit,mode);
+  double magnitude = Math.pow(10, Math.floor(Math.log10(limit/unit)));
+  double factor = limit / (unit*magnitude);
+  double distance = unit*magnitude*(factor >= 5 ? 5 : factor >= 2 ? 2 : 1);
   barLength = (float)(distance / metresPerPixel);
-  String label;
-  if (distance >= 1000) label = String.format(Locale.US, "%,.0f км", distance / 1000).replace(',', ' ');
-  else if (distance >= 1) label = String.format(Locale.US, "%.0f м", distance);
-  else label = String.format(Locale.US, "%.0f см", distance * 100);
+  String label=DisplayUnits.scaleLabel(distance,unit);
   if (!label.equals(caption)) {
    caption = label;
    setContentDescription("Масштаб карты: " + caption);

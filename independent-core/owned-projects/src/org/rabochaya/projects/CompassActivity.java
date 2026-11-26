@@ -9,8 +9,8 @@ public final class CompassActivity extends Activity {
  private void updateHeading(double degrees,int accuracy,String reason){
   heading=degrees;
   String text=Double.isNaN(degrees)?"Компас · "+reason:
-    String.format(Locale.US,"Магнитный азимут: %03.0f°%s",degrees,
-      accuracy==SensorManager.SENSOR_STATUS_UNRELIABLE?" · нужна калибровка":"");
+    "Магнитный азимут: "+DisplayUnits.bearing(degrees,DisplayUnits.bearingMode(this))
+      +(accuracy==SensorManager.SENSOR_STATUS_UNRELIABLE?" · нужна калибровка":"");
   status.setText(text);dial.setContentDescription(text);dial.invalidate();
  }
  private final class Dial extends View {
