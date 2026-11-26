@@ -816,6 +816,7 @@ public final class MapAndroidChecks extends Instrumentation {
    }
    checkMapScreenOptions(intent,panels);
    checkMapGestureLockAndGrid(panels);
+   checkExtendedMapDisplay(panels);
    setViewport(wx,wy,8);
    clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("UTM · WGS 84");inputs("32 N 687071.44 6210141.33");click("Перейти");viewport=(double[])call(map(),"viewport",new Class[]{});double latitude=(Double)staticCall("MapMath","lat",new Class[]{double.class},viewport[1]),longitude=(Double)staticCall("MapMath","lon",new Class[]{double.class},viewport[0]);check(Math.abs(latitude-56)<1e-7&&Math.abs(longitude-12)<1e-7,"manual UTM moves centre to published control point");
    double[] valid=viewport.clone();clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("UTM · WGS 84");inputs("37 N 500000 -1");click("Перейти");check(find(getUiAutomation().getRootInActiveWindow(),"Перейти к координатам",true)!=null,"invalid UTM keeps input dialog open");viewport=(double[])call(map(),"viewport",new Class[]{});check(Arrays.equals(valid,viewport),"invalid coordinate leaves viewport intact");click("Отмена");
@@ -872,6 +873,47 @@ public final class MapAndroidChecks extends Instrumentation {
    Method grid=surface.getClass().getDeclaredMethod("setGeographicGridVisible",boolean.class);
    grid.setAccessible(true);
    runOnMainSync(()->{try{grid.invoke(surface,before);}catch(ReflectiveOperationException error){throw new AssertionError(error);}});
+  }
+ }
+ void checkExtendedMapDisplay(SharedPreferences panels)throws Exception{
+  String[] options={"Доп. координатная сетка","Круговая масштабная линейка"};
+  String[] keys={"show_secondary_grid","show_radius_ruler","map_night_raster","map_confirm_exit"};
+  boolean[] before=new boolean[keys.length];
+  for(int i=0;i<keys.length;i++)before[i]=panels.getBoolean(keys[i],false);
+  try{
+   clickDescription("Меню");click("Информеры");
+   for(String option:options)click(option);
+   click("Закрыть");
+   for(int i=0;i<options.length;i++)check(panels.getBoolean(keys[i],false)!=before[i],options[i]+" changes its display preference");
+   clickDescription("Меню");click("Ночной режим");
+   check(panels.getBoolean(keys[2],false)!=before[2],"night raster setting changes independently");
+   clickDescription("Меню");click("Опции");click("Экран карты");
+   if(!before[3])click("Подтверждать выход");
+   click("Закрыть");
+   sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);waitText("Выйти из приложения?");click("Отмена");
+   check(!activity.isFinishing(),"cancelling exit leaves the map active");
+   android.view.View surface=(android.view.View)map();
+   Method formats=surface.getClass().getDeclaredMethod("setGridFormats",int.class,int.class);
+   formats.setAccessible(true);
+   Method secondary=surface.getClass().getDeclaredMethod("setSecondaryGridVisible",boolean.class);
+   secondary.setAccessible(true);
+   final boolean[] different={false};
+   runOnMainSync(()->{
+    Bitmap shown=Bitmap.createBitmap(surface.getWidth(),surface.getHeight(),Bitmap.Config.ARGB_8888);
+    Bitmap hidden=Bitmap.createBitmap(surface.getWidth(),surface.getHeight(),Bitmap.Config.ARGB_8888);
+    try{
+     formats.invoke(surface,0,3);
+     secondary.invoke(surface,true);surface.draw(new Canvas(shown));
+     secondary.invoke(surface,false);surface.draw(new Canvas(hidden));
+     different[0]=!shown.sameAs(hidden);
+    }catch(ReflectiveOperationException error){throw new AssertionError(error);}
+    finally{shown.recycle();hidden.recycle();}
+   });
+   check(different[0],"secondary UTM projection renders independently");
+  }finally{
+   SharedPreferences.Editor restore=panels.edit();
+   for(int i=0;i<keys.length;i++)restore.putBoolean(keys[i],before[i]);
+   restore.commit();
   }
  }
  void dragMapSurface(android.view.View surface){

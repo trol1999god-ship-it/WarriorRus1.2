@@ -53,6 +53,10 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   mapScale.setVisibility(getPreferences(0).getBoolean("show_scale_bar",true)?View.VISIBLE:View.GONE);
   map.setLabelsVisible(getPreferences(0).getBoolean("show_labels",true));
   map.setGeographicGridVisible(getPreferences(0).getBoolean("show_geographic_grid",false));
+  map.setGridFormats(CoordinateSettings.primary(this),CoordinateSettings.secondary(this));
+  map.setSecondaryGridVisible(getPreferences(0).getBoolean("show_secondary_grid",false));
+  map.setRadiusRulerVisible(getPreferences(0).getBoolean("show_radius_ruler",false));
+  map.setNightRaster(getPreferences(0).getBoolean("map_night_raster",false));
   LinearLayout.LayoutParams scaleLayout=new LinearLayout.LayoutParams(-2,-2);
   scaleLayout.topMargin=edge;mapReadout.addView(mapScale,scaleLayout);
   scaleValue=label("",11);
@@ -113,6 +117,11 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
     item("Проекты и файлы KML/KMZ", () -> manager(true)), item("Новый проект", this::newProject),
     item("Информеры", this::display), item("Опции", this::optionsMenu),
     item(mapInputLocked ? "Разблокировать экран" : "Блокировать экран", this::toggleMapInputLock),
+    WorkspaceUi.Item.toggle("Ночной режим",getPreferences(0).getBoolean("map_night_raster",false),()->{
+     boolean enabled=!getPreferences(0).getBoolean("map_night_raster",false);
+     getPreferences(0).edit().putBoolean("map_night_raster",enabled).apply();
+     map.setNightRaster(enabled);
+    }),
     item("Закрыть карту", this::onBackPressed));
  }
  private void toggleMapInputLock() {
@@ -121,6 +130,11 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   updateMapInputLock();
   Toast.makeText(this, mapInputLocked ? "Жесты карты заблокированы" : "Жесты карты разблокированы",
     Toast.LENGTH_SHORT).show();
+ }
+ private boolean canMoveMap() {
+  if (!mapInputLocked) return true;
+  error("Разблокируйте экран в меню карты");
+  return false;
  }
  private void updateMapInputLock() {
   map.setInputLocked(mapInputLocked);
@@ -131,11 +145,11 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
     item("Кеш / онлайн",this::onlineSettings),item("Информеры",this::display),
     item("Экран карты",this::screenOptions));
  }
- private static final String[] MAP_SCREEN_KEYS={"map_hide_status", "map_immersive", "map_keep_screen_on"};
+ private static final String[] MAP_SCREEN_KEYS={"map_hide_status", "map_immersive", "map_keep_screen_on", "map_confirm_exit"};
 
  private void screenOptions() {
   SharedPreferences preferences = getPreferences(0);
-  String[] titles = {"Скрыть строку состояния", "Режим погружения", "Экран всегда включён"};
+  String[] titles = {"Скрыть строку состояния", "Режим погружения", "Экран всегда включён", "Подтверждать выход"};
   boolean[] selected = new boolean[titles.length];
   for (int i=0; i<selected.length; i++) selected[i] = preferences.getBoolean(MAP_SCREEN_KEYS[i], false);
   AlertDialog settings = new AlertDialog.Builder(this).setTitle("Экран карты")
@@ -206,7 +220,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   }),item("Создать",this::newObject),item("Поиск на карте",this::search),item("Все объекты",()->map.fit()));
  }
  private void orientationMenu(){menu("Ориентирование",item("Компас",()->startActivity(new Intent(this,CompassActivity.class))),item("Перейти к координатам",()->goToCoordinates()),item("Форматы координат",()->coordinateOptions()),item("DEM / высота центра",()->{if(canLeave())startActivityForResult(new Intent(this,DemActivity.class).putExtra("project",projectId),DEM);}),item("Показать область DEM",()->showDemCoverage()));}
- private void showDemCoverage(){if(!canLeave()||map==null)return;try{double[] view;synchronized(LocalRasterStore.class){ProjectStore store=new ProjectStore(this);try{if(!store.exists(projectId))throw new IOException("Проект удалён");}finally{store.close();}try(HgtRaster owned=HgtRaster.owned(DemActivity.file(this,projectId),projectId)){view=owned.mapViewport(map.getWidth(),map.getHeight());}}map.restore(view[0],view[1],view[2]);saveView();}catch(IOException e){error("Область DEM недоступна: "+e.getMessage());}}
+ private void showDemCoverage(){if(!canLeave()||map==null||!canMoveMap())return;try{double[] view;synchronized(LocalRasterStore.class){ProjectStore store=new ProjectStore(this);try{if(!store.exists(projectId))throw new IOException("Проект удалён");}finally{store.close();}try(HgtRaster owned=HgtRaster.owned(DemActivity.file(this,projectId),projectId)){view=owned.mapViewport(map.getWidth(),map.getHeight());}}map.restore(view[0],view[1],view[2]);saveView();}catch(IOException e){error("Область DEM недоступна: "+e.getMessage());}}
  private void manager(boolean all){if(!canLeave())return;refreshOnResume=true;if(!all){ObjectManagerActivity.open(this,projectId);return;}getSharedPreferences("org.rabochaya.projects.ProjectsActivity",0).edit().putLong("project",all?-1:projectId).putString("folder","").commit();startActivity(new Intent().setClassName(this,"org.rabochaya.projects.ProjectsActivity"));}
  private String namedMapStatus, anonymousMapStatus;
  private String normalMapStatus(){
@@ -259,10 +273,10 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  }
  private void display(){
   SharedPreferences preferences = getPreferences(0);
-  String[] options = {"Координаты центра", "Кнопки масштаба", "Масштабная линейка", "Названия меток", "Название карты", "Координатная сетка"};
-  String[] keys = {"show_coordinates", "show_zoom", "show_scale_bar", "show_labels", "show_map_name", "show_geographic_grid"};
+  String[] options = {"Координаты центра", "Кнопки масштаба", "Масштабная линейка", "Названия меток", "Название карты", "Координатная сетка", "Доп. координатная сетка", "Круговая масштабная линейка"};
+  String[] keys = {"show_coordinates", "show_zoom", "show_scale_bar", "show_labels", "show_map_name", "show_geographic_grid", "show_secondary_grid", "show_radius_ruler"};
   boolean[] checked = new boolean[options.length];
-  for (int i = 0; i < keys.length; i++) checked[i] = preferences.getBoolean(keys[i], i != 5);
+  for (int i = 0; i < keys.length; i++) checked[i] = preferences.getBoolean(keys[i], i < 5);
   AlertDialog.Builder displayDialog=new AlertDialog.Builder(this).setTitle("Информеры")
     .setMultiChoiceItems(options, checked, (dialog, item, visible) -> {
      int visibility = visible ? View.VISIBLE : View.GONE;
@@ -288,6 +302,12 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
       case 5:
        map.setGeographicGridVisible(visible);
        break;
+      case 6:
+       map.setSecondaryGridVisible(visible);
+       break;
+      case 7:
+       map.setRadiusRulerVisible(visible);
+       break;
       default:
        throw new IllegalArgumentException("Unknown map display option " + item);
      }
@@ -306,10 +326,10 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void refreshCoordinates(){if(map!=null){double[] v=map.viewport();center(MapMath.lat(v[1]),MapMath.lon(v[0]),v[2]);}}
  private void coordinateOptions(){
   LinearLayout form=coordinateForm();form.addView(coordinateCaption("Основной формат"));final Spinner primary=coordinateSpinner(form,CoordinateSettings.primary(this),"Основной формат координат");form.addView(coordinateCaption("Дополнительный формат"));final Spinner secondary=coordinateSpinner(form,CoordinateSettings.secondary(this),"Дополнительный формат координат");final CheckBox enabled=new CheckBox(this);enabled.setText("Показывать дополнительные координаты");enabled.setTextColor(0xff202020);enabled.setTypeface(WorkspaceUi.font(this));enabled.setChecked(CoordinateSettings.prefs(this).getBoolean("show_secondary",true));form.addView(enabled);
-  ScrollView scroll=new ScrollView(this);scroll.addView(form);new AlertDialog.Builder(this).setTitle("Координаты центра карты").setView(scroll).setPositiveButton("Сохранить",(d,w)->{CoordinateSettings.prefs(this).edit().putInt("primary",primary.getSelectedItemPosition()).putInt("secondary",secondary.getSelectedItemPosition()).putBoolean("show_secondary",enabled.isChecked()).commit();refreshCoordinates();}).setNegativeButton("Отмена",null).setNeutralButton("Копировать",(d,w)->{if(map!=null){double[] v=map.viewport();android.content.ClipboardManager clipboard=(android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);if(clipboard!=null){int selected=primary.getSelectedItemPosition();double lat=MapMath.lat(v[1]),lon=MapMath.lon(v[0]);String text=Coordinates.name(selected)+": "+CoordinateSettings.display(lat,lon,selected);if(enabled.isChecked()){int second=secondary.getSelectedItemPosition();text+="\n"+Coordinates.name(second)+": "+CoordinateSettings.display(lat,lon,second);}clipboard.setPrimaryClip(ClipData.newPlainText("Координаты центра карты",text));Toast.makeText(this,"Координаты скопированы",Toast.LENGTH_SHORT).show();}}}).show();
+  ScrollView scroll=new ScrollView(this);scroll.addView(form);new AlertDialog.Builder(this).setTitle("Координаты центра карты").setView(scroll).setPositiveButton("Сохранить",(d,w)->{CoordinateSettings.prefs(this).edit().putInt("primary",primary.getSelectedItemPosition()).putInt("secondary",secondary.getSelectedItemPosition()).putBoolean("show_secondary",enabled.isChecked()).commit();map.setGridFormats(CoordinateSettings.primary(this),CoordinateSettings.secondary(this));refreshCoordinates();}).setNegativeButton("Отмена",null).setNeutralButton("Копировать",(d,w)->{if(map!=null){double[] v=map.viewport();android.content.ClipboardManager clipboard=(android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);if(clipboard!=null){int selected=primary.getSelectedItemPosition();double lat=MapMath.lat(v[1]),lon=MapMath.lon(v[0]);String text=Coordinates.name(selected)+": "+CoordinateSettings.display(lat,lon,selected);if(enabled.isChecked()){int second=secondary.getSelectedItemPosition();text+="\n"+Coordinates.name(second)+": "+CoordinateSettings.display(lat,lon,second);}clipboard.setPrimaryClip(ClipData.newPlainText("Координаты центра карты",text));Toast.makeText(this,"Координаты скопированы",Toast.LENGTH_SHORT).show();}}}).show();
  }
  private void goToCoordinates(){
-  if(!canLeave())return;LinearLayout form=coordinateForm();form.addView(coordinateCaption("Формат ввода"));final Spinner format=coordinateSpinner(form,CoordinateSettings.primary(this),"Формат ввода координат");final EditText input=new EditText(this);input.setTextColor(0xff202020);input.setBackgroundColor(-1);input.setTypeface(WorkspaceUi.font(this));input.setInputType(android.text.InputType.TYPE_CLASS_TEXT|android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE);input.setMinLines(2);form.addView(input,new LinearLayout.LayoutParams(-1,-2));final TextView hint=coordinateCaption("");form.addView(hint);
+  if(!canLeave()||!canMoveMap())return;LinearLayout form=coordinateForm();form.addView(coordinateCaption("Формат ввода"));final Spinner format=coordinateSpinner(form,CoordinateSettings.primary(this),"Формат ввода координат");final EditText input=new EditText(this);input.setTextColor(0xff202020);input.setBackgroundColor(-1);input.setTypeface(WorkspaceUi.font(this));input.setInputType(android.text.InputType.TYPE_CLASS_TEXT|android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE);input.setMinLines(2);form.addView(input,new LinearLayout.LayoutParams(-1,-2));final TextView hint=coordinateCaption("");form.addView(hint);
   format.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){public void onNothingSelected(AdapterView<?> parent){}public void onItemSelected(AdapterView<?> parent,View view,int position,long id){input.setText("");input.setError(null);if(position==Coordinates.DD)hint.setText("Широта долгота: 55.75 37.6");else if(position==Coordinates.DM)hint.setText("Широта; долгота: 55°45′ N; 37°36′ E");else if(position==Coordinates.DMS)hint.setText("Широта; долгота: 55°45′00″ N; 37°36′00″ E");else if(position==Coordinates.UTM)hint.setText("Зона, полушарие N/S, Easting, Northing (метры): 37 N 410000 6170000");else hint.setText("MGRS WGS 84: зона, широтный пояс, квадрат и уточнение E/N. Пример: 15S WC 80817 51205. Переход к центру ячейки.");}});
   ScrollView scroll=new ScrollView(this);scroll.addView(form);final AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Перейти к координатам").setView(scroll).setPositiveButton("Перейти",null).setNegativeButton("Отмена",null).create();dialog.setOnShowListener(d->dialog.getButton(-1).setOnClickListener(v->{try{Coordinates.Position position=Coordinates.parse(input.getText().toString(),format.getSelectedItemPosition());if(Math.abs(position.lat)>85.05112878)throw new IllegalArgumentException("Эта карта отображает широты до ±85.05112878°");double[] viewport=map.viewport();map.restore(MapMath.x(position.lon),MapMath.y(position.lat),viewport[2]);dialog.dismiss();}catch(IllegalArgumentException e){input.setError(e.getMessage());}}));dialog.show();
  }
@@ -322,7 +342,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
    for(int index=0;index<names.length;index++)names[index]=objects.get(index).name;
    dialog.setItems(names,(window,index)->{
     KmlProject.Feature feature=objects.get(index);
-    map.focus(feature);
+    if(!mapInputLocked)map.focus(feature);
     picked(feature);
    });
   }
@@ -465,11 +485,19 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   WorkspaceUi.showDialog(this,card);
  }
  private void newObject(){if(map!=null&&map.drawingType()!=null){error("Завершите или отмените рисунок");return;}new AlertDialog.Builder(this).setTitle("Создать объект").setItems(new String[]{"Метка","Маршрут","Область","Нарисовать маршрут","Нарисовать область"},(d,w)->{if(w<3)editObject(null,new String[]{"Point","LineString","Polygon"}[w]);else startDrawing(w==3?"LineString":"Polygon");}).setNegativeButton("Отмена",null).show();}
- private void startDrawing(String type){if(map==null)return;if(mapInputLocked){error("Разблокируйте экран в меню карты");return;}map.beginDrawing(type);if(drawingRow!=null)root.removeView(drawingRow);drawingRow=new LinearLayout(this);root.addView(drawingRow,1);button(drawingRow,"В центре",()->map.addDrawingCenter());button(drawingRow,"Шаг назад",()->map.undoDrawing());button(drawingRow,"Записать",()->{try{FeatureEdits.coordinates(drawingCoordinates(),map.drawingType());editObject(null,map.drawingType());}catch(IllegalArgumentException invalid){error(invalid.getMessage());}});button(drawingRow,"Отмена",()->discardDrawing(false));}
+ private void startDrawing(String type){if(map==null)return;if(!canMoveMap())return;map.beginDrawing(type);if(drawingRow!=null)root.removeView(drawingRow);drawingRow=new LinearLayout(this);root.addView(drawingRow,1);button(drawingRow,"В центре",()->map.addDrawingCenter());button(drawingRow,"Шаг назад",()->map.undoDrawing());button(drawingRow,"Записать",()->{try{FeatureEdits.coordinates(drawingCoordinates(),map.drawingType());editObject(null,map.drawingType());}catch(IllegalArgumentException invalid){error(invalid.getMessage());}});button(drawingRow,"Отмена",()->discardDrawing(false));}
  private String drawingCoordinates(){StringBuilder text=new StringBuilder();for(double[] c:map.drawingPoints()){if(text.length()>0)text.append('\n');text.append(c[1]).append(' ').append(c[0]).append(' ').append(c[2]);}return text.toString();}
  public void draftChanged(int count){if(status!=null&&count>=0)status.setText("Рисование: вершин "+count+" · касайтесь карты или добавляйте в центре");}
- private void discardDrawing(boolean leave){new AlertDialog.Builder(this).setMessage("Отменить несохранённый рисунок?").setPositiveButton("Отменить рисунок",(d,w)->{map.cancelDrawing();if(drawingRow!=null){root.removeView(drawingRow);drawingRow=null;}status.setText(normalMapStatus());if(leave)finish();}).setNegativeButton("Продолжить рисование",null).show();}
- public void onBackPressed(){if(map!=null&&map.drawingType()!=null)discardDrawing(true);else super.onBackPressed();}
+ private void discardDrawing(boolean leave){new AlertDialog.Builder(this).setMessage("Отменить несохранённый рисунок?").setPositiveButton("Отменить рисунок",(d,w)->{map.cancelDrawing();if(drawingRow!=null){root.removeView(drawingRow);drawingRow=null;}status.setText(normalMapStatus());if(leave)requestMapExit();}).setNegativeButton("Продолжить рисование",null).show();}
+ private void requestMapExit() {
+  if (!getPreferences(0).getBoolean(MAP_SCREEN_KEYS[3],false)) {
+   finish();
+   return;
+  }
+  WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setMessage("Выйти из приложения?")
+    .setPositiveButton("Выйти",(dialog,which)->finish()).setNegativeButton("Отмена",null));
+ }
+ public void onBackPressed(){if(map!=null&&map.drawingType()!=null)discardDrawing(true);else requestMapExit();}
  protected void onSaveInstanceState(Bundle state){
   state.putBoolean("map_input_locked",mapInputLocked);
   if(activeEdit!=null&&!busy&&activeEdit.dialog.isShowing())state.putBundle("map_edit",activeEdit.snapshot(projectId));

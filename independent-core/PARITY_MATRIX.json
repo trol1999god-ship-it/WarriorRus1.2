@@ -743,8 +743,12 @@
         "maps_submenu_display_scale_value": "Карты → Масштаб карты: численный масштаб по центру и плотности экрана"
       },
       "partial": {
-        "core_submenu_lock_screen": "Меню: блокируются жесты и кнопки зума, разблокировка доступна из меню.",
-        "core_submenu_display_grid": "Информеры: географическая сетка WGS 84 поверх растра.",
+        "core_submenu_display_grid": "Информеры: подписанная сетка выбранного основного формата, UTM/MGRS в зоне центра.",
+        "core_submenu_display_secondary_grid": "Информеры: независимая дополнительная сетка по выбранному формату.",
+        "core_submenu_display_radius_ruler": "Информеры: круговая линейка со сферическими расстояниями от центра.",
+        "core_submenu_night_mode": "Меню: ночное затемнение растра с сохранением читаемости объектов.",
+        "core_submenu_lock_screen": "Меню: блокирует жесты, масштабирование, переход по координатам и центрирование DEM.",
+        "settings_technical_confirm_exit_title": "Опции → Экран карты → Подтверждать выход.",
         "maps_submenu_show_storage_coverage": "В каталоге есть остаток хранилища и счётчики кэша. Слой покрытия открыт.",
         "settings_technical_path_title": "Есть приватный кэш и импорт/экспорт; выбор каталога не воспроизведён.",
         "settings_canvas_long_press_map_title": "Работает контекстное меню; переназначение жеста открыто.",
@@ -775,8 +779,6 @@
       "open_by_domain": {
         "core": [
             "core_submenu_print_map",
-            "core_submenu_display_secondary_grid",
-          "core_submenu_display_radius_ruler",
           "core_submenu_night_mode"
         ],
         "geolocation": [
@@ -803,7 +805,6 @@
           "settings_display_pressures_title",
           "settings_display_reference_north_title",
           "settings_technical_disable_keyguard_title",
-          "settings_technical_confirm_exit_title",
           "settings_canvas_infobox_style_title",
           "settings_canvas_grids_title",
           "settings_canvas_multitouch_rotate_title",
