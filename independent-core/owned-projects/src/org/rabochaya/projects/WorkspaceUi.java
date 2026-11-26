@@ -153,6 +153,11 @@ public final class WorkspaceUi {
   }
  }
  static PopupWindow menu(Activity a, View anchor, MapDock dock, String title, Item... items) {
+  return menu(a, anchor, dock, title, null, items);
+ }
+
+ static PopupWindow menu(Activity a, View anchor, MapDock dock, String title, Runnable onDismiss,
+                         Item... items) {
   LinearLayout list = new LinearLayout(a);
   list.setOrientation(LinearLayout.VERTICAL);
   int margin = dp(a, 8);
@@ -217,7 +222,10 @@ public final class WorkspaceUi {
   };
   resize.run();
   anchor.addOnLayoutChangeListener(reflow);
-  popup.setOnDismissListener(() -> anchor.removeOnLayoutChangeListener(reflow));
+  popup.setOnDismissListener(() -> {
+   anchor.removeOnLayoutChangeListener(reflow);
+   if (onDismiss != null) onDismiss.run();
+  });
   return popup;
  }
 }

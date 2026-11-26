@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: independent-core-${{ github.ref }}${{ github.event_name == 'push' && (contains(github.event.head_commit.message, '[map-edit-api37-qa]') || contains(github.event.head_commit.message, '[core-api37-qa]')) && '-api37' || github.event_name == 'push' && contains(github.event.head_commit.message, '[object-formats-qa]') && '-formats' || github.event_name == 'push' && contains(github.event.head_commit.message, '[ozf2-qa]') && '-ozf2' || '' }}
+  group: independent-core-${{ github.ref }}${{ github.event_name == 'push' && (contains(github.event.head_commit.message, '[map-edit-api37-qa]') || contains(github.event.head_commit.message, '[core-api37-qa]')) && '-api37' || github.event_name == 'push' && contains(github.event.head_commit.message, '[object-formats-qa]') && '-formats' || github.event_name == 'push' && contains(github.event.head_commit.message, '[ozf2-qa]') && '-ozf2' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-display-qa]') && '-reference-display' || '' }}
   # Finish the current Android matrix before testing the newest pending push.
   cancel-in-progress: false
 jobs:

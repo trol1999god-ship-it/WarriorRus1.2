@@ -814,6 +814,7 @@ public final class MapAndroidChecks extends Instrumentation {
    } finally {
     markerLabel.recycle();
    }
+   checkMapScreenOptions(intent,panels);
    setViewport(wx,wy,8);
    clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("UTM · WGS 84");inputs("32 N 687071.44 6210141.33");click("Перейти");viewport=(double[])call(map(),"viewport",new Class[]{});double latitude=(Double)staticCall("MapMath","lat",new Class[]{double.class},viewport[1]),longitude=(Double)staticCall("MapMath","lon",new Class[]{double.class},viewport[0]);check(Math.abs(latitude-56)<1e-7&&Math.abs(longitude-12)<1e-7,"manual UTM moves centre to published control point");
    double[] valid=viewport.clone();clickDescription("Ориентирование");click("Перейти к координатам");clickDescription("Формат ввода координат");click("UTM · WGS 84");inputs("37 N 500000 -1");click("Перейти");check(find(getUiAutomation().getRootInActiveWindow(),"Перейти к координатам",true)!=null,"invalid UTM keeps input dialog open");viewport=(double[])call(map(),"viewport",new Class[]{});check(Arrays.equals(valid,viewport),"invalid coordinate leaves viewport intact");click("Отмена");
@@ -835,6 +836,47 @@ public final class MapAndroidChecks extends Instrumentation {
    if(id>0){call(store,"remove",new Class[]{long.class},id);staticCall("LocalMapActivity","cleanupDeletedProject",new Class[]{Context.class,long.class},context,id);}call(store,"close",new Class[]{});
    android.content.SharedPreferences.Editor restore=settings.edit().clear();for(Map.Entry<String,?> entry:original.entrySet()){Object value=entry.getValue();if(value instanceof Integer)restore.putInt(entry.getKey(),(Integer)value);else if(value instanceof Boolean)restore.putBoolean(entry.getKey(),(Boolean)value);else if(value instanceof String)restore.putString(entry.getKey(),(String)value);}restore.commit();panels.edit().putBoolean("show_tools",toolsBefore).putBoolean("show_coordinates",coordinatesBefore).putBoolean("show_labels",labelsBefore).putBoolean("show_scale_bar",scaleBefore).commit();context.getSharedPreferences("workspace-session",0).edit().putLong("last_project",sessionBefore).commit();
   }
+ }
+ void checkMapScreenOptions(Intent intent,SharedPreferences panels)throws Exception{
+  String[] keys={"map_hide_status","map_immersive","map_keep_screen_on"};
+  boolean[] before=new boolean[keys.length];
+  for(int i=0;i<keys.length;i++)before[i]=panels.getBoolean(keys[i],false);
+  try{
+   clickDescription("Меню");click("Опции");click("Экран карты");
+   if(!before[0])click("Скрыть строку состояния");
+   if(!before[1])click("Режим погружения");
+   if(!before[2])click("Экран всегда включён");
+   click("Закрыть");waitForIdleSync();
+   int mask=android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
+     |android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+     |android.view.View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+   int keepAwake=android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+   check((mapDecorFlags()&mask)==mask,"map applies fullscreen and immersive flags");
+   check((activity.getWindow().getAttributes().flags&keepAwake)!=0,"map stays awake only with the option enabled");
+   clickDescription("Меню");waitText("Опции");
+   check((mapDecorFlags()&mask)==0,"main menu temporarily reveals the system bars");
+   sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);waitForIdleSync();
+   check((mapDecorFlags()&mask)==mask,"closing the main menu restores fullscreen");
+   Activity previous=activity;
+   runOnMainSync(previous::finish);waitForIdleSync();
+   activity=startActivitySync(intent);waitText("видимых объектов");
+   check((mapDecorFlags()&mask)==mask&&(activity.getWindow().getAttributes().flags&keepAwake)!=0,
+     "map screen preferences survive reopening");
+   clickDescription("Меню");click("Опции");click("Экран карты");
+   click("Скрыть строку состояния");click("Режим погружения");click("Экран всегда включён");
+   click("Закрыть");waitForIdleSync();
+   check((mapDecorFlags()&mask)==0&&(activity.getWindow().getAttributes().flags&keepAwake)==0,
+     "clearing screen preferences restores system bars and normal timeout");
+  }finally{
+   SharedPreferences.Editor restore=panels.edit();
+   for(int i=0;i<keys.length;i++)restore.putBoolean(keys[i],before[i]);
+   restore.commit();
+  }
+ }
+ int mapDecorFlags(){
+  int[] flags={0};
+  runOnMainSync(()->flags[0]=activity.getWindow().getDecorView().getSystemUiVisibility());
+  return flags[0];
  }
  void checkReferenceMapMenu(Intent mapIntent,long id)throws Exception{
   final String cacheSwitch="Использовать только сохранённый кэш карты";

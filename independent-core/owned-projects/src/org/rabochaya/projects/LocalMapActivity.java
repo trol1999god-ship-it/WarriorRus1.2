@@ -23,7 +23,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   }
  }
  public static void open(Activity parent,long project){Intent i=new Intent(parent,LocalMapActivity.class);i.putExtra("project",project);parent.startActivity(i);}
- protected void onCreate(Bundle state){super.onCreate(state);projectId=getIntent().getLongExtra("project",-1);root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(MapHud.BAR);setContentView(root);WorkspaceUi.systemBars(this);if(state!=null){pendingEdit=state.getBundle("map_edit");pendingDrawType=state.getString("drawing_type");Object saved=state.getSerializable("drawing_points");if(saved instanceof ArrayList)pendingDrawPoints=(ArrayList<double[]>)saved;}load();}
+ protected void onCreate(Bundle state){super.onCreate(state);projectId=getIntent().getLongExtra("project",-1);root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(MapHud.BAR);setContentView(root);WorkspaceUi.systemBars(this);applyMapScreenOptions(false);if(state!=null){pendingEdit=state.getBundle("map_edit");pendingDrawType=state.getString("drawing_type");Object saved=state.getSerializable("drawing_points");if(saved instanceof ArrayList)pendingDrawPoints=(ArrayList<double[]>)saved;}load();}
  private TextView label(String s,int size){TextView t=new TextView(this);t.setText(s);t.setTypeface(WorkspaceUi.font(this));t.setTextColor(0xffffffff);t.setTextSize(size);t.setPadding(14,10,14,10);return t;}
  private void button(LinearLayout row,String name,final Runnable action){Button b=WorkspaceUi.button(this,name,()->{if(!busy)action.run();});b.setTextSize(12);LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(0,(int)(50*getResources().getDisplayMetrics().density),1);p.setMargins(2,2,2,2);row.addView(b,p);}
  private File mapFile(){return new File(getFilesDir(),"local_basemap_"+projectId+".mbtiles");}
@@ -103,10 +103,51 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private WorkspaceUi.Item item(String title,Runnable action){return new WorkspaceUi.Item(title,action);}
  private void menu(String title,WorkspaceUi.Item...items){if(popup!=null)popup.dismiss();popup=WorkspaceUi.menu(this,(View)mapDock.getParent(),mapDock,title,items);}
  private boolean canLeave(){if(map!=null&&map.drawingType()!=null){error("Завершите или отмените рисунок");return false;}return true;}
- private void mainMenu(){menu("Меню",item("Проекты и файлы KML/KMZ",()->manager(true)),item("Новый проект",()->newProject()),item("Информеры",this::display),item("Опции",this::optionsMenu),item("Закрыть карту",()->onBackPressed()));}
+ private void mainMenu() {
+  if (popup != null) popup.dismiss();
+  applyMapScreenOptions(true);
+  popup = WorkspaceUi.menu(this, (View) mapDock.getParent(), mapDock, "Меню",
+    () -> applyMapScreenOptions(false),
+    item("Проекты и файлы KML/KMZ", () -> manager(true)), item("Новый проект", this::newProject),
+    item("Информеры", this::display), item("Опции", this::optionsMenu),
+    item("Закрыть карту", this::onBackPressed));
+ }
  private void optionsMenu(){
   menu("Опции",item("Координаты центра экрана",this::coordinateOptions),
-    item("Кеш / онлайн",this::onlineSettings),item("Информеры",this::display));
+    item("Кеш / онлайн",this::onlineSettings),item("Информеры",this::display),
+    item("Экран карты",this::screenOptions));
+ }
+ private static final String[] MAP_SCREEN_KEYS={"map_hide_status", "map_immersive", "map_keep_screen_on"};
+
+ private void screenOptions() {
+  SharedPreferences preferences = getPreferences(0);
+  String[] titles = {"Скрыть строку состояния", "Режим погружения", "Экран всегда включён"};
+  boolean[] selected = new boolean[titles.length];
+  for (int i=0; i<selected.length; i++) selected[i] = preferences.getBoolean(MAP_SCREEN_KEYS[i], false);
+  AlertDialog settings = new AlertDialog.Builder(this).setTitle("Экран карты")
+    .setMultiChoiceItems(titles, selected, (dialog, index, enabled) ->
+      preferences.edit().putBoolean(MAP_SCREEN_KEYS[index], enabled).apply())
+    .setPositiveButton("Закрыть", null).create();
+  settings.setOnDismissListener(dialog -> applyMapScreenOptions(false));
+  WorkspaceUi.showDialog(this, settings);
+ }
+
+ private void applyMapScreenOptions(boolean mainMenuOpen) {
+  SharedPreferences preferences = getPreferences(0);
+  Window window = getWindow();
+  int keepAwake = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+  if (preferences.getBoolean(MAP_SCREEN_KEYS[2], false)) window.addFlags(keepAwake);
+  else window.clearFlags(keepAwake);
+
+  int mask = View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+  int flags = window.getDecorView().getSystemUiVisibility() & ~mask;
+  if (!mainMenuOpen && preferences.getBoolean(MAP_SCREEN_KEYS[0], false)) {
+   flags |= View.SYSTEM_UI_FLAG_FULLSCREEN;
+   if (preferences.getBoolean(MAP_SCREEN_KEYS[1], false))
+    flags |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+  }
+  window.getDecorView().setSystemUiVisibility(flags);
  }
  private void compositionFont(View view){WorkspaceUi.applyFont(this,view);}
  private void mapsMenu(){
