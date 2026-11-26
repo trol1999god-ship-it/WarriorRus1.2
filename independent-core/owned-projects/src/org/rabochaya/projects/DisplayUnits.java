@@ -17,6 +17,7 @@ final class DisplayUnits {
     static int distanceMode(Context context){return Math.max(0,Math.min(DISTANCE.length-1,prefs(context).getInt("distance",0)));}
     static int bearingMode(Context context){return Math.max(0,Math.min(BEARING.length-1,prefs(context).getInt("bearing",0)));}
 
+    static int northMode(Context context){return Math.max(0,Math.min(NorthReference.NAMES.length-1,prefs(context).getInt("north",0)));}
     static int areaMode(Context context){return Math.max(0,Math.min(AREA.length-1,prefs(context).getInt("area",0)));}
     static int slopeMode(Context context){return Math.max(0,Math.min(SLOPE.length-1,prefs(context).getInt("slope",0)));}
 

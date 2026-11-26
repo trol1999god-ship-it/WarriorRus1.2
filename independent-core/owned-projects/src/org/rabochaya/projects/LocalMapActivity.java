@@ -9,7 +9,9 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private LinearLayout compassPanel;
  private boolean mapForeground;
  private double compassHeading=Double.NaN;
- private String compassState="ожидаются данные датчиков";private double[] creationPoint;private LinearLayout zoomButtons;private MapDock mapDock;private long projectId;private LinearLayout root;private TextView coordinates,status,tileNotice,scaleValue;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
+ private String compassReason="ожидаются данные датчиков";
+ private int headingAccuracy;
+ private final NorthReference northReference=new NorthReference();private double[] creationPoint;private LinearLayout zoomButtons;private MapDock mapDock;private long projectId;private LinearLayout root;private TextView coordinates,status,tileNotice,scaleValue;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
  private boolean busy,refreshOnResume,refreshMapOnResume;private volatile boolean disposed;private final ExecutorService worker=Executors.newSingleThreadExecutor();private String warning="";private long lastError;private LinearLayout drawingRow;private String pendingDrawType;private ArrayList<double[]> pendingDrawPoints;
  private Bundle pendingEdit;
  private EditForm activeEdit;
@@ -204,13 +206,15 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   Spinner areas=gridChoice(form,"Формат площади",DisplayUnits.AREA,DisplayUnits.areaMode(this));
   form.addView(coordinateCaption("Уклон"));
   Spinner slopes=gridChoice(form,"Уклон",DisplayUnits.SLOPE,DisplayUnits.slopeMode(this));
+  form.addView(coordinateCaption("Направление на север"));
+  Spinner north=gridChoice(form,"Направление на север",NorthReference.NAMES,DisplayUnits.northMode(this));
   ScrollView scroll=new ScrollView(this);
   scroll.addView(form);
   WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setTitle("Единицы измерения")
     .setView(scroll).setPositiveButton("Сохранить",(dialog,which)->{
      DisplayUnits.prefs(this).edit().putInt("distance",distances.getSelectedItemPosition())
        .putInt("bearing",bearings.getSelectedItemPosition()).putInt("area",areas.getSelectedItemPosition())
-       .putInt("slope",slopes.getSelectedItemPosition()).apply();
+       .putInt("slope",slopes.getSelectedItemPosition()).putInt("north",north.getSelectedItemPosition()).apply();
      refreshCoordinates();
      map.invalidate();
      refreshCompassPanel();
@@ -326,23 +330,43 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   compassHeading=heading;
   if(map!=null&&getPreferences(0).getBoolean("rotate_map_compass",false)&&!Double.isNaN(heading))
    map.setBearing(heading);
-  compassState=Double.isNaN(heading)?reason:"Магнитный азимут: "+DisplayUnits.bearing(heading,DisplayUnits.bearingMode(this))
-    +(accuracy==android.hardware.SensorManager.SENSOR_STATUS_UNRELIABLE?" · нужна калибровка":"");
+  compassReason=reason;
+  headingAccuracy=accuracy;
   refreshCompassPanel();
+ }
+ private NorthReference.Reading selectedHeading(){
+  double[] viewport=map==null?null:map.viewport();
+  return northReference.at(compassHeading,DisplayUnits.northMode(this),
+    viewport==null?Double.NaN:MapMath.lat(viewport[1]),viewport==null?Double.NaN:MapMath.lon(viewport[0]));
+ }
+ private String compassStatus(){
+  if(Double.isNaN(compassHeading))return compassReason;
+  NorthReference.Reading reading=selectedHeading();
+  return reading.label+": "+DisplayUnits.bearing(reading.degrees,DisplayUnits.bearingMode(this))
+    +(headingAccuracy==android.hardware.SensorManager.SENSOR_STATUS_UNRELIABLE?" · нужна калибровка":"");
+ }
+ private void openCompass(){
+  Intent intent=new Intent(this,CompassActivity.class);
+  if(map!=null){
+   double[] viewport=map.viewport();
+   intent.putExtra("map_lat",MapMath.lat(viewport[1])).putExtra("map_lon",MapMath.lon(viewport[0]));
+  }
+  startActivity(intent);
  }
  private void refreshCompassPanel(){
   if(compassPanel==null)return;
   boolean available=!Double.isNaN(compassHeading);
   int format=getPreferences(0).getInt("map_compass_course",0);
   compassArrow.setVisibility(available&&format!=2?View.VISIBLE:View.GONE);
-  compassArrow.setRotation(available?(float)-compassHeading:0);
+  double selected=available?selectedHeading().degrees:0;
+  compassArrow.setRotation((float)-selected);
   compassCourse.setVisibility(!available||format!=1?View.VISIBLE:View.GONE);
-  compassCourse.setText(available?DisplayUnits.bearing(compassHeading,DisplayUnits.bearingMode(this)):"—");
-  compassPanel.setContentDescription("Компас на карте · "+compassState);
+  compassCourse.setText(available?DisplayUnits.bearing(selected,DisplayUnits.bearingMode(this)):"—");
+  compassPanel.setContentDescription("Компас на карте · "+compassStatus());
  }
  private void showCompassStatus(){
   WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setTitle("Статус компаса")
-    .setMessage(compassState).setPositiveButton("Закрыть",null));
+    .setMessage(compassStatus()).setPositiveButton("Закрыть",null));
  }
  private void selectCompassDisplay(){
   SharedPreferences prefs=getPreferences(0);
@@ -362,7 +386,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   barometer=new BarometerDialog(this);
   barometer.show();
  }
- private void orientationMenu(){menu("Ориентирование",item("Компас",()->startActivity(new Intent(this,CompassActivity.class))),
+ private void orientationMenu(){menu("Ориентирование",item("Компас",this::openCompass),
     WorkspaceUi.Item.toggle("Показать компас",getPreferences(0).getBoolean("show_map_compass",false),this::toggleMapCompass),
     WorkspaceUi.Item.toggle("Вращать карту по компасу",getPreferences(0).getBoolean("rotate_map_compass",false),this::toggleCompassRotation),
     item("Статус компаса",this::showCompassStatus),item("Курс по компасу",this::selectCompassDisplay),item("Барометр",this::showBarometer),item("Перейти к координатам",()->goToCoordinates()),item("Форматы координат",()->coordinateOptions()),item("DEM / высота центра",()->{if(canLeave())startActivityForResult(new Intent(this,DemActivity.class).putExtra("project",projectId),DEM);}),item("Показать область DEM",()->showDemCoverage()));}
