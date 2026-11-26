@@ -841,6 +841,42 @@
         ]
       }
     },
+    "reference_compass_rotation": {
+      "code_commit": "28e1e49",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45901732636",
+      "scenario": "mapcompass",
+      "passed_api": [23, 35]
+    },
+    "reference_barometer": {
+      "code_commit": "718ef9d",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45902645502",
+      "scenario": "barometer",
+      "passed_api": [23, 35]
+    },
+    "reference_measurement_units": {
+      "code_commit": "0467b2a",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45903965348",
+      "scenario": "displayunits",
+      "passed_api": [23, 35]
+    },
+    "reference_north": {
+      "code_commit": "a3ebc3e",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45904878416",
+      "scenario": "northreference",
+      "passed_api": [23, 35]
+    },
+    "reference_map_twist_appearance": {
+      "code_commit": "7ac5a8d",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45913235998",
+      "scenario": "maptwist mapappearance",
+      "passed_api": [23, 35]
+    },
+    "reference_raster_detail": {
+      "code_commit": "667217f8caa49fd5506d71440c62cc84d5aac9a1",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45913559047",
+      "scenario": "tiledetail",
+      "verification": "PENDING"
+    },
     "reference_map_snapshot": {
       "code_commit": "c441ea05033ad20e27a1727df5dbb9f417e41831",
       "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45898954501",
