@@ -844,6 +844,11 @@
         ]
       }
     },
+    "object_listing_html_headings": {
+      "scope": "Поиск по описаниям KML в менеджере объектов сохраняет границы текста в HTML-заголовках.",
+      "jvm_assertions": 101,
+      "android_retest": "PENDING"
+    },
     "reference_workspace_ci": {
       "application_commit": "404c1ed52f94fb3bc5e2920ae3f1f0a36ec29213",
       "test_commit": "1441321ac7f4056b31e8964a77b179f169566fc8",

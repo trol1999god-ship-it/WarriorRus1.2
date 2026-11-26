@@ -60,7 +60,11 @@ public final class ObjectListing {
    char c=text.charAt(i);
    if(c=='<'&&i+1<text.length()){
     int start=i+1;boolean closing=text.charAt(start)=='/';if(closing)start++;
-    int n=start;while(n<text.length()&&asciiLetter(text.charAt(n)))n++;
+    int n=start;
+    if(n<text.length()&&asciiLetter(text.charAt(n))){
+     n++;
+     while(n<text.length()&&(asciiLetter(text.charAt(n))||(text.charAt(n)>='0'&&text.charAt(n)<='9')))n++;
+    }
     if(n>start&&(n==text.length()||Character.isWhitespace(text.charAt(n))||text.charAt(n)=='>'||text.charAt(n)=='/')){
      String tag=text.substring(start,n).toLowerCase(Locale.ROOT);int end=tagEnd(text,n);
      if(end<0){if(suppressed==null)out.append(text.substring(i));break;}

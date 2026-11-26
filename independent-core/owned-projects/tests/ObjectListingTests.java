@@ -33,6 +33,7 @@ public final class ObjectListingTests {
   check(noteIndex.select("",ObjectListing.Options.defaults()).size()==4);
   check(noteToken.equals(ObjectTree.token(notes)));
   invalid(()->new ObjectListing.Options("",0,0,0,false,false,-1));invalid(()->new ObjectListing.Options("",0,0,0,false,false,3));
+  check(ObjectListing.descriptionText("A<H2>Заголовок</H2>B").trim().replaceAll("\\s+", " ").equals("A Заголовок B"));
   check(ObjectListing.descriptionText("A<b title='>'>B</b><br>C").equals("AB C"));
   check(ObjectListing.descriptionText("2 < 3 &amp; 4 > 1").equals("2 < 3 & 4 > 1"));
   check(ObjectListing.descriptionText("&#128512; &#x1F600; &#0; &#xD800; &#1114112; &#-1; &#xZZ;").equals("😀 😀 &#0; &#xD800; &#1114112; &#-1; &#xZZ;"));
