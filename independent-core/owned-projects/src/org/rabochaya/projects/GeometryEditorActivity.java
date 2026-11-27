@@ -264,7 +264,10 @@ public final class GeometryEditorActivity extends Activity {
         enabled(false);status.setText("Открытие геометрии…");
         worker.execute(()->{ProjectStore store=new ProjectStore(this);try{
             Element feature=store.load(project).byId(featureId);if(feature==null)throw new IOException("Объект больше не существует");
-            final boolean splittable=GeometryEdits.canSplitLine(feature), pointGroup=GeometryEdits.canUngroupPoints(feature);
+            final boolean splittable=GeometryEdits.canSplitLine(feature)
+                ||("trk".equals(ObjectExchange.data(feature).get(ObjectExchange.KIND))
+                   &&GeometryEdits.trackSegmentCount(feature)==1&&GeometryEdits.singleTrackLine(feature)!=null);
+            final boolean pointGroup=GeometryEdits.canUngroupPoints(feature);
             final boolean segmented=GpxExchange.canSplitSegments(feature);
             final List<GeometryEdits.Part> found=GeometryEdits.parts(feature);if(found.isEmpty())throw new IOException("Нет поддерживаемых контуров для редактирования");
             GeometryDraft draft=null;String warning="";try{draft=GeometryDraft.load(drafts(),project,featureId);}catch(IOException e){warning=e.getMessage();}

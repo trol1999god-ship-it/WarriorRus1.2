@@ -63,9 +63,20 @@ public final class GeometryEdits {
         return lines==1;
     }
 
+    static Element singleTrackLine(Element feature) {
+        Element group=trackSegmentGroup(feature);
+        if(group==null)return child(feature,"LineString");
+        List<Element> segments=children(group);
+        return segments.size()==1 && is(segments.get(0),"LineString")?segments.get(0):null;
+    }
+
     /** Split a saved standalone line. Both results share the selected endpoint. */
     public static Element splitLine(Element feature,String key,String expected,int vertex) {
-        if (!canSplitLine(feature) || !(feature.getParentNode() instanceof Element))
+        return splitLine(feature,key,expected,vertex,false);
+    }
+
+    static Element splitLine(Element feature,String key,String expected,int vertex,boolean gpx) {
+        if (!(canSplitLine(feature)||(gpx&&trackSegmentCount(feature)==1&&singleTrackLine(feature)!=null)) || !(feature.getParentNode() instanceof Element))
             throw new IllegalArgumentException("Можно разделить только отдельную линию");
         Target target=checked(feature,key,expected);
         if (!"LineString".equals(target.type)) throw new IllegalArgumentException("Нужна линия");
@@ -81,7 +92,7 @@ public final class GeometryEdits {
         Map<String,String> ids=new HashMap<>();
         ObjectTree.newIds(copy,counts,new HashSet<>(counts.keySet()),ids,0);
         ObjectTree.rewrite(copy,ids,0);
-        child(child(copy,"LineString"),"coordinates").setTextContent(
+        child(gpx?singleTrackLine(copy):child(copy,"LineString"),"coordinates").setTextContent(
             joinCoordinates(points,vertex,points.length));
         target.coordinates.setTextContent(joinCoordinates(points,0,vertex+1));
         feature.getParentNode().insertBefore(copy,feature.getNextSibling());

@@ -112,8 +112,9 @@ final class GpxExchange {
  static void splitTrackLine(Element feature,String key,String expected,int vertex){
   Map<String,String> stored=data(feature);
   String saved=stored.get(GPX_DATA);
-  if(!"trk".equals(stored.get(KIND))||saved==null){
-   GeometryEdits.splitLine(feature,key,expected,vertex);
+  boolean track="trk".equals(stored.get(KIND));
+  if(!track||saved==null){
+   GeometryEdits.splitLine(feature,key,expected,vertex,track);
    return;
   }
   Element extended=child(feature,"ExtendedData");
@@ -122,7 +123,7 @@ final class GpxExchange {
    JSONObject metadata=new JSONObject(saved);
    JSONArray segments=metadata.optJSONArray("points");
    JSONArray points=segments!=null&&segments.length()==1?segments.optJSONArray(0):null;
-   Element line=child(feature,"LineString");
+   Element line=GeometryEdits.singleTrackLine(feature);
    if(line==null||points==null||points.length()!=positions(line).size()){
     GeometryEdits.splitLine(feature,key,expected,vertex);
     return;
