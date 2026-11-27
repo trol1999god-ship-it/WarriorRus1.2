@@ -798,10 +798,11 @@ public final class MapAndroidChecks extends Instrumentation {
  void tileDetail()throws Exception{
   Context context=getTargetContext();Object store=storeClass.getConstructor(Context.class).newInstance(context);long id=-1;
   SharedPreferences prefs=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0);
+  boolean oldIndicators=prefs.getBoolean("tile_indicators",false);
   int oldDetail=prefs.getInt("map_tile_detail",0);
   long previous=context.getSharedPreferences("workspace-session",0).getLong("last_project",-1);
   try{
-   prefs.edit().putInt("map_tile_detail",0).commit();
+   prefs.edit().putInt("map_tile_detail",0).putBoolean("tile_indicators",false).commit();
    Object doc=codec.getMethod("parse",byte[].class).invoke(null,(Object)XML.getBytes("UTF-8"));
    id=(Long)call(store,"insert",new Class[]{codec,String.class},doc,"QA_TILE_DETAIL");
    activity=startActivitySync(new Intent().setClassName(context.getPackageName(),"org.rabochaya.projects.LocalMapActivity")
@@ -811,6 +812,11 @@ public final class MapAndroidChecks extends Instrumentation {
    clickDescription("Меню");click("Опции");click("Уровень детализации");click("Повышенная детализация");
    check(prefs.getInt("map_tile_detail",0)==1,"detail preference applies");
    check(Arrays.equals(before,(double[])call(map(),"viewport",new Class[]{})),"detail preserves geographic viewport");
+   clickDescription("Карты");click("Индикаторы загрузки карты");
+   Field indicator=activity.getClass().getDeclaredField("tileCoverage");indicator.setAccessible(true);
+   check(prefs.getBoolean("tile_indicators",false)&&((android.view.View)indicator.get(activity)).getVisibility()==android.view.View.VISIBLE,
+       "visible tile indicators are available and persistent");
+   check(Arrays.equals(before,(double[])call(map(),"viewport",new Class[]{})),"tile indicators preserve the viewport");
    Method target=map().getClass().getDeclaredMethod("requestedTileZoom",double.class,int.class);
    target.setAccessible(true);
    check((Integer)target.invoke(null,10.4,1)==11&&(Integer)target.invoke(null,10.4,-1)==9
@@ -819,7 +825,7 @@ public final class MapAndroidChecks extends Instrumentation {
    if(activity!=null){Activity owner=activity;runOnMainSync(owner::finish);}
    if(id>0){call(store,"remove",new Class[]{long.class},id);staticCall("LocalMapActivity","cleanupDeletedProject",new Class[]{Context.class,long.class},context,id);}
    call(store,"close",new Class[]{});
-   prefs.edit().putInt("map_tile_detail",oldDetail).commit();
+   prefs.edit().putInt("map_tile_detail",oldDetail).putBoolean("tile_indicators",oldIndicators).commit();
    context.getSharedPreferences("workspace-session",0).edit().putLong("last_project",previous).commit();
   }
  }

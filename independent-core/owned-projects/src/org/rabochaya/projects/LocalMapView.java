@@ -2,7 +2,7 @@ package org.rabochaya.projects;
 import android.content.*;import android.graphics.*;import android.os.Handler;import android.os.Looper;import android.util.LruCache;import android.view.*;import java.io.*;import java.util.*;import java.util.concurrent.*;
 /** Independent raster map + KML geometry, sharing one Web Mercator viewport. */
 public final class LocalMapView extends View {
- public interface Listener {void center(double lat,double lon,double zoom);void picked(KmlProject.Feature feature);void error(String message);default void tileError(String message){error(message);}void settled(double x,double y,double zoom);void draftChanged(int count);void longPressed(double lat,double lon);}
+ public interface Listener {void center(double lat,double lon,double zoom);void picked(KmlProject.Feature feature);void error(String message);default void tileError(String message){error(message);}default void tileCoverage(int ready,int loading,int missing){}void settled(double x,double y,double zoom);void draftChanged(int count);void longPressed(double lat,double lon);}
  private double[] localTarget;
  private boolean localTargetLine;
  private int localTargetColor;
@@ -154,8 +154,14 @@ public final class LocalMapView extends View {
   if(disposed||paused||pending.size()>=32||pending.contains(key)||missing.contains(key))return;pending.add(key);
   worker.execute(new Runnable(){public void run(){Bitmap b=null;String error=null;try{if(!disposed&&!paused){if(group!=null)b=group.tile(z,x,y,layer,useNetwork);else if(online!=null)b=online[layer].tile(z,x,y,useNetwork);else if(tiles!=null)b=tiles.tile(z,x,y);else if(bundled!=null)b=bundled.tile(z,x,y);}}catch(java.net.UnknownHostException e){error="Не удалось найти сервер карты. Проверьте сеть или попробуйте позже.";}catch(java.io.InterruptedIOException e){error="Сервер карты не ответил вовремя.";}catch(Exception e){error="Ошибка чтения тайла: "+e.getMessage();}final Bitmap result=b;final String message=error;post(new Runnable(){public void run(){pending.remove(key);if(disposed){if(result!=null)result.recycle();return;}if(result!=null)cache.put(key,result);else if(!paused){if(missing.size()>512)missing.clear();missing.add(key);}if(message!=null&&!paused)listener.tileError(message);invalidate();}});}});
  }
+ private boolean tileIndicators;
+ private int visibleReady,visibleLoading,visibleMissing;
+
+ void setTileIndicators(boolean enabled){tileIndicators=enabled;invalidate();}
+
  protected void onDraw(Canvas canvas){
   super.onDraw(canvas);canvas.drawColor(0xff253020);
+  visibleReady=visibleLoading=visibleMissing=0;
   // A bundled world ends at the Mercator bounds. Empty space beyond it is not a map grid.
   if(bundled==null){
    paint.setColor(0xff3e4c35);paint.setStrokeWidth(1);
@@ -229,6 +235,7 @@ public final class LocalMapView extends View {
   drawLocalTarget(canvas);
   drawDraft(canvas);
   canvas.restoreToCount(transformed);
+  if(tileIndicators)listener.tileCoverage(visibleReady,visibleLoading,visibleMissing);
   float x=getWidth()/2f,y=getHeight()/2f,density=getResources().getDisplayMetrics().density;
   paint.setStyle(Paint.Style.STROKE);
   paint.setStrokeWidth(3*density);
@@ -317,13 +324,32 @@ public final class LocalMapView extends View {
   double tileSize=world()/n;
   for(int y=Math.max(0,top);y<=Math.min(n-1,bottom);y++)for(int x=left;x<=right;x++){
    int tx=((x%n)+n)%n;String key=(group==null?"":group.model.id+"/")+layer+"/"+z+"/"+tx+"/"+y;Bitmap b=cache.get(key);float px=(float)(getWidth()/2.0+(x-cx*n)*tileSize);
-   if(b==null){request(key,z,tx,y,layer,group);continue;}paint.setColor(-1);paint.setAlpha(255);paint.setStyle(Paint.Style.FILL);
+   if(b==null){
+    request(key,z,tx,y,layer,group);
+    if(tileIndicators)drawUnavailableTile(canvas,key,y,n,elliptical,px,tileSize);
+    continue;
+   }
+   if(tileIndicators)visibleReady++;
+   paint.setColor(-1);paint.setAlpha(255);paint.setStyle(Paint.Style.FILL);
    if(!elliptical){float py=(float)(getHeight()/2.0+(y-cy*n)*tileSize);canvas.drawBitmap(b,null,new RectF(px,py,(float)(px+tileSize+.5),(float)(py+tileSize+.5)),paint);}
    else { // Warp horizontal strips from EPSG:3395 to the shared WGS84/Web Mercator scene.
     int strip=Math.max(1,b.getHeight()/16);for(int row=0;row<b.getHeight();row+=strip){int end=Math.min(b.getHeight(),row+strip);double y0=MapMath.y(TileProjection.latitude((y+row/(double)b.getHeight())/n,true)),y1=MapMath.y(TileProjection.latitude((y+end/(double)b.getHeight())/n,true));float py=(float)(getHeight()/2.0+(y0-cy)*world()),bottomY=(float)(getHeight()/2.0+(y1-cy)*world());canvas.drawBitmap(b,new Rect(0,row,b.getWidth(),end),new RectF(px,py,(float)(px+tileSize+.5),bottomY+.5f),paint);}
    }
   }
  }
+ private void drawUnavailableTile(Canvas canvas,String key,int y,int n,boolean elliptical,float left,double size){
+  boolean unavailable=missing.contains(key);
+  if(unavailable)visibleMissing++;else visibleLoading++;
+  double y0=elliptical?MapMath.y(TileProjection.latitude(y/(double)n,true)):y/(double)n;
+  double y1=elliptical?MapMath.y(TileProjection.latitude((y+1)/(double)n,true)):(y+1)/(double)n;
+  float top=(float)(getHeight()/2.0+(y0-cy)*world()),bottom=(float)(getHeight()/2.0+(y1-cy)*world());
+  paint.setColor(unavailable?0xbbe38572:0xbb75d9f5);
+  paint.setStyle(Paint.Style.STROKE);
+  paint.setStrokeWidth(2*getResources().getDisplayMetrics().density);
+  canvas.drawRect(left,top,(float)(left+size),bottom,paint);
+  paint.setStyle(Paint.Style.FILL);
+ }
+
  void setGridAppearance(int density,int pattern,boolean minorLabels) {
   grid.setAppearance(density,pattern,minorLabels);
   invalidate();

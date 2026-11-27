@@ -11,7 +11,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private double compassHeading=Double.NaN;
  private String compassReason="ожидаются данные датчиков";
  private int headingAccuracy;
- private final NorthReference northReference=new NorthReference();private double[] creationPoint;private LinearLayout zoomButtons;private SeekBar zoomSlider;private boolean draggingZoomSlider;private MapDock mapDock;private long projectId;private LinearLayout root;private TextView coordinates,targetStatus;private double[] localTarget;private TextView status,tileNotice,scaleValue;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
+ private final NorthReference northReference=new NorthReference();private double[] creationPoint;private LinearLayout zoomButtons;private SeekBar zoomSlider;private boolean draggingZoomSlider;private MapDock mapDock;private long projectId;private LinearLayout root;private TextView coordinates,targetStatus,tileCoverage;private double[] localTarget;private TextView status,tileNotice,scaleValue;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
  private boolean busy,refreshOnResume,refreshMapOnResume;private volatile boolean disposed;private final ExecutorService worker=Executors.newSingleThreadExecutor();private String warning="";private long lastError;private LinearLayout drawingRow;private String pendingDrawType;private ArrayList<double[]> pendingDrawPoints;
  private Bundle pendingEdit;
  private EditForm activeEdit;
@@ -81,6 +81,11 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   targetStatus.setVisibility(View.GONE);
   targetStatus.setOnClickListener(view->targetMenu());
   mapReadout.addView(targetStatus,new LinearLayout.LayoutParams(-2,-2));
+  tileCoverage=label("",11);
+  tileCoverage.setTextColor(MapHud.INK);
+  tileCoverage.setBackground(MapHud.panel(this));
+  mapReadout.addView(tileCoverage,new LinearLayout.LayoutParams(-2,-2));
+  applyTileIndicators();
   applyTarget();
   ImageButton collapse=MapHud.button(this,"collapse","Свернуть / развернуть координаты",()->{boolean visible=coordinates.getVisibility()!=View.VISIBLE;coordinates.setVisibility(visible?View.VISIBLE:View.GONE);getPreferences(0).edit().putBoolean("show_coordinates",visible).commit();});
   MapHud.insetButton(this,collapse,8,15);
@@ -474,11 +479,36 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
     item("Подложка",this::chooseMap),
     WorkspaceUi.Item.toggle("Масштаб карты",scaleValue.getVisibility()==View.VISIBLE,
       ()->showScaleValue(scaleValue.getVisibility()!=View.VISIBLE)),
+    WorkspaceUi.Item.toggle("Индикаторы загрузки карты",getPreferences(0).getBoolean("tile_indicators",false),
+      this::toggleTileIndicators),
     WorkspaceUi.Item.toggle("Использовать только сохранённый кэш карты",cacheOnly,()->setCacheOnly(!cacheOnly)),
     item("Сохранить участок карты",this::saveMapArea),
     item("Кеш / онлайн",this::onlineSettings),
     item("Экспорт кеша MBTiles",()->{if(canLeave()){refreshMapOnResume=true;startActivity(new Intent(this,CacheExportActivity.class).putExtra("project",projectId));}}));
  }
+ private void toggleTileIndicators(){
+  SharedPreferences prefs=getPreferences(0);
+  prefs.edit().putBoolean("tile_indicators",!prefs.getBoolean("tile_indicators",false)).apply();
+  applyTileIndicators();
+ }
+
+ private void applyTileIndicators(){
+  boolean enabled=getPreferences(0).getBoolean("tile_indicators",false);
+  map.setTileIndicators(enabled);
+  tileCoverage.setVisibility(enabled?View.VISIBLE:View.GONE);
+ }
+
+ @Override public void tileCoverage(int ready,int loading,int missing){
+  TextView panel=tileCoverage;
+  if(panel==null||panel.getVisibility()!=View.VISIBLE)return;
+  String next="Тайлы: готово "+ready+" · загрузка "+loading+" · нет "+missing;
+  if(next.contentEquals(panel.getText()))return;
+  panel.post(()->{
+   if(panel==tileCoverage&&panel.getVisibility()==View.VISIBLE&&!next.contentEquals(panel.getText()))
+    panel.setText(next);
+  });
+ }
+
  private void openMapCatalog(){
   if(!canLeave())return;
   refreshMapOnResume=true;
