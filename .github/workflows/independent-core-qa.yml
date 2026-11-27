@@ -8,8 +8,8 @@ permissions:
   contents: read
 concurrency:
   group: independent-core-${{ github.ref }}${{ github.event_name == 'push' && (contains(github.event.head_commit.message, '[map-edit-api37-qa]') || contains(github.event.head_commit.message, '[core-api37-qa]')) && '-api37' || github.event_name == 'push' && contains(github.event.head_commit.message, '[object-formats-qa]') && '-formats' || github.event_name == 'push' && contains(github.event.head_commit.message, '[ozf2-qa]') && '-ozf2' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-display-qa]') && '-reference-display' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-ungroup-qa]') && '-ungroup' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-barometer-qa]') && '-barometer' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-units-qa]') && '-units' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-north-qa]') && '-north' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-appearance-qa]') && '-appearance' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-twist-qa]') && '-twist' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-detail-qa]') && '-detail' || '' }}
-  # Finish the current Android matrix before testing the newest pending push.
-  cancel-in-progress: false
+  # Ordinarily finish the active matrix. Use the marker to replace an intermediate run with the final candidate.
+  cancel-in-progress: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[supersede-qa]') }}
 jobs:
   # The branch push checks are visible in PR #14 without a second run.
   # Evidence-only runs validate their changed-file allowlist and read an old artifact;
