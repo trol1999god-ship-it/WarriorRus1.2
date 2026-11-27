@@ -555,8 +555,27 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   }),item("Метки на экране",()->{
    if(canLeave())featureList("Метки на экране",features);
   }),item("Создать",this::newObject),item("Поиск на карте",this::search),
+    item("Время движения по треку",this::trackMovementTime),
     item("Стиль треков",this::trackStyle),item("Все объекты",()->map.fit()));
  }
+ private void trackMovementTime(){
+  if(!canLeave())return;
+  List<KmlProject.Feature> tracks=new ArrayList<>();
+  for(KmlProject.Feature feature:features){
+   if(feature.element==null)continue;
+   boolean temporal="trk".equals(ObjectExchange.data(feature.element).get(ObjectExchange.KIND));
+   for(KmlProject.Geometry shape:feature.shapes)temporal|=shape.temporalTrack;
+   if(temporal)tracks.add(feature);
+  }
+  if(tracks.isEmpty()){
+   WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setTitle("Время движения по треку")
+       .setMessage("На карте нет видимых сохранённых треков")
+       .setPositiveButton("Закрыть",null));
+   return;
+  }
+  featureList("Время движения по треку",tracks);
+ }
+
  private void trackStyle(){
   SharedPreferences prefs=getPreferences(0);
   menu("Стиль треков",WorkspaceUi.Item.toggle("Границы времени записи трека",
