@@ -145,7 +145,8 @@ public final class LocalMapView extends View {
    for(int y=0;y<getHeight();y+=64)canvas.drawLine(0,y,getWidth(),y,paint);
   }
   int transformed=canvas.save();
-  canvas.rotate(-bearing,getWidth()/2f,getHeight()/2f);
+  syncProjection();
+  canvas.concat(projection);
   int visibleWidth=visibleWidth(),visibleHeight=visibleHeight();
   float left=(getWidth()-visibleWidth)/2f,top=(getHeight()-visibleHeight)/2f;
   if(mapReady){if(compositionLayers!=null){for(RasterLayer layer:compositionLayers){int saved=layer.model.opacity<100?canvas.saveLayerAlpha(left,top,left+visibleWidth,top+visibleHeight,Math.round(layer.model.opacity*255f/100f),Canvas.ALL_SAVE_FLAG):-1;if(layer.online!=null){for(int i=0;i<layer.online.length;i++)drawTiles(canvas,i,layer.online[i].source,layer);}else drawTiles(canvas,0,null,layer);if(saved!=-1)canvas.restoreToCount(saved);}}else if(online!=null){for(int layer=0;layer<online.length;layer++)drawTiles(canvas,layer,online[layer].source);}else drawTiles(canvas,0,null);}
@@ -185,8 +186,9 @@ public final class LocalMapView extends View {
    }}
    if(labelsVisible&&label!=null&&labels++<200&&(style.label==null||(style.label>>>24)!=0)&&(style.labelScale==null||style.labelScale>0)){
     int upright=canvas.save();
-    canvas.rotate(bearing,label[0],label[1]);
-    float textX=label[0]+14,textY=label[1]-14;
+    transformPoint(label[0],label[1],projection);
+    canvas.concat(inverseProjection);
+    float textX=transformedPoint[0]+14,textY=transformedPoint[1]-14;
     paint.setTextSize(14*getResources().getDisplayMetrics().scaledDensity*(style.labelScale==null?1:style.labelScale));
     if(style.label==null){
      paint.setColor(0xeaffffff);
@@ -294,7 +296,43 @@ public final class LocalMapView extends View {
  private boolean twisting;
  private int twistFirst=-1,twistSecond=-1;
  private double twistAngle,twistSpan,twistZoom,twistBearing,anchorX,anchorY;
- private final Matrix touchRotation=new Matrix();
+ private final Matrix projection=new Matrix(), inverseProjection=new Matrix();
+ private float pitch,manualPitch,projectionBearing=Float.NaN,projectionPitch=Float.NaN;
+ private boolean pitchEnabled;
+ private int projectionWidth=-1,projectionHeight=-1,projectedWidth,projectedHeight,gestureKind;
+ private float gesturePitch,gestureMidX,gestureMidY;
+ private final float[] transformedPoint=new float[2];
+
+ void setPitchEnabled(boolean enabled){pitchEnabled=enabled;pitch=enabled?manualPitch:0;invalidate();}
+ void restorePitch(float degrees){manualPitch=Float.isNaN(degrees)?0:Math.max(0,Math.min(50,degrees));}
+ float manualPitch(){return manualPitch;}
+ private void syncProjection(){
+  int width=getWidth(),height=getHeight();
+  if(width==projectionWidth&&height==projectionHeight&&bearing==projectionBearing&&pitch==projectionPitch)return;
+  projectionWidth=width;projectionHeight=height;projectionBearing=bearing;projectionPitch=pitch;
+  if(pitch==0)projection.setRotate(-bearing,width/2f,height/2f);
+  else{
+   double angle=Math.toRadians(pitch);
+   projection.setValues(new float[]{1,0,0,0,(float)Math.cos(angle),0,0,
+     (float)(-.6*Math.sin(angle)/Math.max(1,height)),1});
+   projection.preRotate(-bearing);
+   projection.preTranslate(-width/2f,-height/2f);
+   projection.postTranslate(width/2f,height/2f);
+  }
+  projection.invert(inverseProjection);
+  float[] corners={0,0,width,0,width,height,0,height};
+  inverseProjection.mapPoints(corners);
+  float w=0,h=0;
+  for(int i=0;i<corners.length;i+=2){
+   w=Math.max(w,Math.abs(corners[i]-width/2f));
+   h=Math.max(h,Math.abs(corners[i+1]-height/2f));
+  }
+  projectedWidth=(int)Math.ceil(w*2);
+  projectedHeight=(int)Math.ceil(h*2);
+ }
+ private void transformPoint(float x,float y,Matrix transform){
+  transformedPoint[0]=x;transformedPoint[1]=y;transform.mapPoints(transformedPoint);
+ }
 
  void restoreManualBearing(float bearing){
   manualBearing=Float.isNaN(bearing)||Float.isInfinite(bearing)?0:bearing%360;
@@ -318,16 +356,8 @@ public final class LocalMapView extends View {
   bearing=pendingBearing;
   invalidate();
  }
- private int visibleWidth(){
-  if(bearing==0)return getWidth();
-  double angle=Math.toRadians(bearing);
-  return (int)Math.ceil(Math.abs(getWidth()*Math.cos(angle))+Math.abs(getHeight()*Math.sin(angle)));
- }
- private int visibleHeight(){
-  if(bearing==0)return getHeight();
-  double angle=Math.toRadians(bearing);
-  return (int)Math.ceil(Math.abs(getWidth()*Math.sin(angle))+Math.abs(getHeight()*Math.cos(angle)));
- }
+ private int visibleWidth(){syncProjection();return projectedWidth;}
+ private int visibleHeight(){syncProjection();return projectedHeight;}
 
  public boolean onTouchEvent(MotionEvent event){
   if(inputLocked)return true;
@@ -338,14 +368,14 @@ public final class LocalMapView extends View {
    twisting=false;
   }
   if(twisting)return handleTwist(event,action);
-  if(action==MotionEvent.ACTION_POINTER_DOWN&&event.getPointerCount()==2&&manualRotationEnabled&&!compassRotationEnabled){
+  if(action==MotionEvent.ACTION_POINTER_DOWN&&event.getPointerCount()==2&&(pitchEnabled||manualRotationEnabled&&!compassRotationEnabled)){
    if(beginTwist(event))return true;
   }
   MotionEvent projected=event;
-  if(bearing!=0){
+  if(bearing!=0||pitch!=0){
+   syncProjection();
    projected=MotionEvent.obtain(event);
-   touchRotation.setRotate(bearing,getWidth()/2f,getHeight()/2f);
-   projected.transform(touchRotation);
+   projected.transform(inverseProjection);
   }
   try{return handleMapTouch(projected);}
   finally{
@@ -365,11 +395,13 @@ public final class LocalMapView extends View {
   twistAngle=Math.atan2(dy,dx);
   twistBearing=bearing;
   twistZoom=zoom;
-  double x=(event.getX(0)+event.getX(1))/2-getWidth()/2.0;
-  double y=(event.getY(0)+event.getY(1))/2-getHeight()/2.0;
-  double radians=Math.toRadians(bearing),sin=Math.sin(radians),cos=Math.cos(radians);
-  anchorX=cx+(x*cos-y*sin)/world();
-  anchorY=cy+(x*sin+y*cos)/world();
+  gestureKind=0;gesturePitch=pitch;
+  gestureMidX=(event.getX(0)+event.getX(1))/2;
+  gestureMidY=(event.getY(0)+event.getY(1))/2;
+  syncProjection();
+  transformPoint(gestureMidX,gestureMidY,inverseProjection);
+  anchorX=cx+(transformedPoint[0]-getWidth()/2.0)/world();
+  anchorY=cy+(transformedPoint[1]-getHeight()/2.0)/world();
   MotionEvent cancel=MotionEvent.obtain(event);
   cancel.setAction(MotionEvent.ACTION_CANCEL);
   try{contextGesture.onTouchEvent(cancel);scale.onTouchEvent(cancel);}
@@ -385,15 +417,31 @@ public final class LocalMapView extends View {
    double span=Math.hypot(dx,dy);
    if(span>=1){
     double angle=Math.atan2(dy,dx);
-    double degrees=twistBearing-Math.toDegrees(angle-twistAngle);
-    manualBearing=(float)(degrees-360*Math.floor(degrees/360));
-    pendingBearing=bearing=manualBearing;
-    zoom=MapMath.clamp(twistZoom+Math.log(span/twistSpan)/Math.log(2),0,23);
-    double x=(event.getX(first)+event.getX(second))/2-getWidth()/2.0;
-    double y=(event.getY(first)+event.getY(second))/2-getHeight()/2.0;
-    double radians=Math.toRadians(bearing),sin=Math.sin(radians),cos=Math.cos(radians);
-    cx=MapMath.wrap(anchorX-(x*cos-y*sin)/world());
-    cy=MapMath.clamp(anchorY-(x*sin+y*cos)/world(),0,1);
+    double turn=Math.atan2(Math.sin(angle-twistAngle),Math.cos(angle-twistAngle));
+    float x=(event.getX(first)+event.getX(second))/2,y=(event.getY(first)+event.getY(second))/2;
+    float deltaX=x-gestureMidX,deltaY=y-gestureMidY;
+    double scaleDelta=Math.log(span/twistSpan);
+    if(gestureKind==0){
+     float slop=android.view.ViewConfiguration.get(getContext()).getScaledTouchSlop();
+     if(Math.hypot(deltaX,deltaY)<slop&&Math.abs(turn)<.10&&Math.abs(scaleDelta)<.08)return true;
+     gestureKind=pitchEnabled&&Math.abs(deltaY)>1.5*Math.abs(deltaX)
+         &&Math.abs(turn)<.16&&Math.abs(scaleDelta)<.12?1:2;
+    }
+    if(gestureKind==1){
+     pitch=manualPitch=(float)MapMath.clamp(gesturePitch-deltaY*80/Math.max(1,getHeight()),0,50);
+     invalidate();
+     return true;
+    }
+    if(manualRotationEnabled&&!compassRotationEnabled){
+     double degrees=twistBearing-Math.toDegrees(turn);
+     manualBearing=(float)(degrees-360*Math.floor(degrees/360));
+     pendingBearing=bearing=manualBearing;
+    }
+    zoom=MapMath.clamp(twistZoom+scaleDelta/Math.log(2),0,23);
+    syncProjection();
+    transformPoint(x,y,inverseProjection);
+    cx=MapMath.wrap(anchorX-(transformedPoint[0]-getWidth()/2.0)/world());
+    cy=MapMath.clamp(anchorY-(transformedPoint[1]-getHeight()/2.0)/world());
     changed();
    }
   }else if(action==MotionEvent.ACTION_POINTER_UP){

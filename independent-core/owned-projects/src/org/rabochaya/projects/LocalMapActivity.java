@@ -46,6 +46,8 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   map=new LocalMapView(this,features,mapFile(),this,source,OnlineMapSettings.network(this),composition);scene.addView(map,new FrameLayout.LayoutParams(-1,-1));if(symbolAssets!=null)map.setSymbols(symbolAssets);
   map.restoreManualBearing(getPreferences(0).getFloat("view_"+projectId+"_bearing",0));
   map.setManualRotation(getPreferences(0).getBoolean("rotate_map_touch",false));
+  map.restorePitch(getPreferences(0).getFloat("view_"+projectId+"_pitch",0));
+  map.setPitchEnabled(getPreferences(0).getBoolean("map_pitch",false));
   map.setTileDetail(getPreferences(0).getInt("map_tile_detail",0));
   int control=WorkspaceUi.dp(this,MapHud.TOUCH_DP),edge=WorkspaceUi.dp(this,4),dockHeight=control;
   LinearLayout mapReadout=new LinearLayout(this);
@@ -434,6 +436,12 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
      dialog.dismiss();
     }).setNegativeButton("Отмена",null));
  }
+ private void togglePitch(){
+  SharedPreferences prefs=getPreferences(0);
+  boolean enabled=!prefs.getBoolean("map_pitch",false);
+  prefs.edit().putBoolean("map_pitch",enabled).apply();
+  map.setPitchEnabled(enabled);
+ }
  private void toggleTouchRotation(){
   SharedPreferences prefs=getPreferences(0);
   boolean enabled=!prefs.getBoolean("rotate_map_touch",false);
@@ -453,6 +461,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
     WorkspaceUi.Item.toggle("Показать компас",getPreferences(0).getBoolean("show_map_compass",false),this::toggleMapCompass),
     WorkspaceUi.Item.toggle("Вращать карту по компасу",getPreferences(0).getBoolean("rotate_map_compass",false),this::toggleCompassRotation),
     WorkspaceUi.Item.toggle("Поворот карты жестом",getPreferences(0).getBoolean("rotate_map_touch",false),this::toggleTouchRotation),
+    WorkspaceUi.Item.toggle("Перспективный вид карты",getPreferences(0).getBoolean("map_pitch",false),this::togglePitch),
     item("Статус компаса",this::showCompassStatus),item("Курс по компасу",this::selectCompassDisplay),item("Барометр",this::showBarometer),item("Перейти к координатам",()->goToCoordinates()),item("Форматы координат",()->coordinateOptions()),item("DEM / высота центра",()->{if(canLeave())startActivityForResult(new Intent(this,DemActivity.class).putExtra("project",projectId),DEM);}),item("Показать область DEM",()->showDemCoverage()));}
  private void showDemCoverage(){if(!canLeave()||map==null||!canMoveMap())return;try{double[] view;synchronized(LocalRasterStore.class){ProjectStore store=new ProjectStore(this);try{if(!store.exists(projectId))throw new IOException("Проект удалён");}finally{store.close();}try(HgtRaster owned=HgtRaster.owned(DemActivity.file(this,projectId),projectId)){view=owned.mapViewport(map.getWidth(),map.getHeight());}}map.restore(view[0],view[1],view[2]);saveView();}catch(IOException e){error("Область DEM недоступна: "+e.getMessage());}}
  private void manager(boolean all){if(!canLeave())return;refreshOnResume=true;if(!all){ObjectManagerActivity.open(this,projectId);return;}getSharedPreferences("org.rabochaya.projects.ProjectsActivity",0).edit().putLong("project",all?-1:projectId).putString("folder","").commit();startActivity(new Intent().setClassName(this,"org.rabochaya.projects.ProjectsActivity"));}
@@ -583,7 +592,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   WorkspaceUi.showDialog(this,dialog);
  }
  private void saveView(){if(map!=null){double[] v=map.viewport();settled(v[0],v[1],v[2]);}}
- public void settled(double x,double y,double zoom){String key="view_"+projectId+"_";getPreferences(0).edit().putString(key+"x",Double.toString(x)).putString(key+"y",Double.toString(y)).putFloat(key+"z",(float)zoom).putFloat(key+"bearing",map==null?0:map.manualBearing()).commit();}
+ public void settled(double x,double y,double zoom){String key="view_"+projectId+"_";getPreferences(0).edit().putString(key+"x",Double.toString(x)).putString(key+"y",Double.toString(y)).putFloat(key+"z",(float)zoom).putFloat(key+"bearing",map==null?0:map.manualBearing()).putFloat(key+"pitch",map==null?0:map.manualPitch()).commit();}
  protected void onResume(){super.onResume();mapForeground=true;syncCompass();if(refreshOnResume&&!busy){refreshOnResume=false;refreshMapOnResume=false;load();}else if(refreshMapOnResume&&!busy){refreshMapOnResume=false;show(true);}if(map!=null)map.suspend(false);}
  protected void onPause(){if(barometer!=null){barometer.dismiss();barometer=null;}mapForeground=false;mapCompass.stop();if(popup!=null)popup.dismiss();saveView();if(map!=null)map.suspend(true);super.onPause();}
  protected void onDestroy(){disposed=true;if(activeEdit!=null)activeEdit.dialog.dismiss();closeDem();if(map!=null)map.close();worker.shutdown();super.onDestroy();}
@@ -699,7 +708,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   });
  }
  private void importFinished(final String failed,final double[] importedBounds){runOnUiThread(()->{if(disposed)return;busy=false;if(failed!=null){error(failed);status.setText("Карта не заменена: "+failed);}else {warning="";OnlineMapSettings.use(this,projectId,false);show(true);if(importedBounds!=null&&map!=null){final LocalMapView importedView=map;importedView.post(()->{if(!disposed&&map==importedView){double[] fit=GeoRasterTransform.viewport(importedBounds[0],importedBounds[1],importedBounds[2],importedBounds[3],importedView.getWidth(),importedView.getHeight());importedView.restore(fit[0],fit[1],fit[2]);saveView();}});}Toast.makeText(this,importedBounds!=null&&MapCompositionSettings.active(this,projectId)?"Карта сохранена. При необходимости добавьте локальный слой в «Слои карты».":"Локальная карта сохранена",Toast.LENGTH_LONG).show();}});}
- public static void cleanupDeletedProject(final Context context,long project){context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).edit().remove("view_"+project+"_bearing").apply();DemActivity.cleanup(context,project);MapCompositionSettings.removeDeletedProject(context,project);CompositionDownloadSettings.removeDeletedProject(context,project);File file=new File(context.getFilesDir(),"local_basemap_"+project+".mbtiles");if(!LocalRasterStore.remove(file)&&context instanceof Activity)((Activity)context).runOnUiThread(()->Toast.makeText(context,"Проект удалён, но приватную копию карты удалить не удалось",Toast.LENGTH_LONG).show());OnlineMapSettings.prefs(context).edit().remove("project_"+project).commit();String key="view_"+project+"_";context.getSharedPreferences(LocalMapActivity.class.getName(),0).edit().remove(key+"x").remove(key+"y").remove(key+"z").commit();}
+ public static void cleanupDeletedProject(final Context context,long project){context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).edit().remove("view_"+project+"_bearing").remove("view_"+project+"_pitch").apply();DemActivity.cleanup(context,project);MapCompositionSettings.removeDeletedProject(context,project);CompositionDownloadSettings.removeDeletedProject(context,project);File file=new File(context.getFilesDir(),"local_basemap_"+project+".mbtiles");if(!LocalRasterStore.remove(file)&&context instanceof Activity)((Activity)context).runOnUiThread(()->Toast.makeText(context,"Проект удалён, но приватную копию карты удалить не удалось",Toast.LENGTH_LONG).show());OnlineMapSettings.prefs(context).edit().remove("project_"+project).commit();String key="view_"+project+"_";context.getSharedPreferences(LocalMapActivity.class.getName(),0).edit().remove(key+"x").remove(key+"y").remove(key+"z").commit();}
  private void removeMap(){if(map!=null&&map.drawingType()!=null){error("Завершите или отмените рисунок");return;}if(!mapFile().isFile()){error("Локальная подложка не выбрана");return;}final String original;try{original=LocalRasterStore.stamp(mapFile());}catch(IOException e){error(e.getMessage());return;}new AlertDialog.Builder(this).setMessage("Удалить приватную копию подложки? Объекты проекта и исходный MBTiles сохранятся.").setPositiveButton("Убрать",(d,w)->{saveView();if(map!=null){map.close();map=null;}try{LocalRasterStore.remove(mapFile(),original);}catch(IOException e){error(e.getMessage());}show(true);}).setNegativeButton("Отмена",null).show();}
  private void closeDem(){if(dem!=null){try{dem.close();}catch(IOException ignored){}dem=null;}}
  public void center(double lat,double lon,double zoom) {
