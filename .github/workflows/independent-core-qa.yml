@@ -96,6 +96,19 @@ jobs:
         run: python3 ci/check_release_profile.py --sdk "$ANDROID_HOME" --tools "$RUNNER_TEMP/rk-tools" --out "$RUNNER_TEMP/rk-quality/release"
       - name: Run official Android lint
         run: python3 ci/android_lint_status.py --sdk "$ANDROID_HOME" --apk "$RUNNER_TEMP/rk-qa/app.apk" --report "$RUNNER_TEMP/rk-quality/android-lint-support.json"
+      - name: Keep isolated QA build and metadata
+        if: always()
+        timeout-minutes: 3
+        uses: actions/upload-artifact@v4
+        with:
+          name: independent-build-api-${{ matrix.api }}
+          path: |
+            ${{ runner.temp }}/rk-qa/app.apk
+            ${{ runner.temp }}/rk-qa/tests.apk
+            ${{ runner.temp }}/rk-qa/qa-build.json
+            ${{ runner.temp }}/rk-quality
+          if-no-files-found: warn
+          retention-days: 7
       - name: Require hardware acceleration
         run: |
           test -c /dev/kvm
@@ -159,17 +172,4 @@ jobs:
           path: ${{ runner.temp }}/android-evidence.zip
           compression-level: 0
           if-no-files-found: error
-          retention-days: 7
-      - name: Keep isolated QA build and metadata
-        if: always()
-        timeout-minutes: 3
-        uses: actions/upload-artifact@v4
-        with:
-          name: independent-build-api-${{ matrix.api }}
-          path: |
-            ${{ runner.temp }}/rk-qa/app.apk
-            ${{ runner.temp }}/rk-qa/tests.apk
-            ${{ runner.temp }}/rk-qa/qa-build.json
-            ${{ runner.temp }}/rk-quality
-          if-no-files-found: warn
           retention-days: 7
