@@ -4,40 +4,60 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Locale;
+import java.util.Map;
 import org.w3c.dom.Element;
 
 import static org.rabochaya.projects.ObjectExchange.*;
 
 /** Opens the single local layer used by LIBKML-style KMZ indexes. */
-final class KmzLayerImport {
+public final class KmzLayerImport {
  private KmzLayerImport(){}
 
- static KmlProject open(KmlProject index)throws IOException{
-  if(!"doc.kml".equals(index.entry))return index;
-  Element root=index.root();
-  Element document="Document".equals(tag(root))?root:child(root,"Document");
-  if(document==null||children(document,"NetworkLink").size()!=1)return index;
-  for(Element element:children(document,null)){
-   String name=tag(element);
-   if("Placemark".equals(name)||"Document".equals(name)||"Folder".equals(name)
-       ||"GroundOverlay".equals(name)||"ScreenOverlay".equals(name)||"PhotoOverlay".equals(name))return index;
-  }
-  Element networkLink=child(document,"NetworkLink");
-  Element link=child(networkLink,"Link");
-  if(link==null)return index;
-  String path=layerPath(text(link,"href").trim());
-  if(path==null)return index;
-  byte[] bytes=index.assets.get(path);
-  if(bytes==null)return index;
+ public static KmlProject openIndex(byte[] index,String entry,Map<String,byte[]> assets)throws IOException{
+  if(!"doc.kml".equals(entry))return null;
+  boolean hasKml=false;
+  for(String path:assets.keySet())if(path.toLowerCase(Locale.ROOT).endsWith(".kml")){hasKml=true;break;}
+  if(!hasKml)return null;
+  final Element root;
+  try{root=xml(index).getDocumentElement();}
+  catch(IOException invalid){throw invalid;}
+  catch(Exception invalid){throw new IOException("Не удалось прочитать индекс KMZ",invalid);}
+  if(!named(root,"kml")||children(root,null).size()!=1)return null;
+  Element document=child(root,"Document");
+  if(!named(document,"Document"))return null;
+  Element networkLink=onlyChildWithMetadata(document,"NetworkLink");
+  Element link=onlyChildWithMetadata(networkLink,"Link");
+  if(!named(link,"Link")||children(link,null).size()!=1)return null;
+  Element href=child(link,"href");
+  if(!named(href,"href")||!children(href,null).isEmpty())return null;
+  String path=layerPath(href.getTextContent().trim());
+  if(path==null)return null;
+  byte[] bytes=assets.get(path);
+  if(bytes==null)return null;
 
   if(bytes.length>LIMIT)throw invalid("KML-слой больше 4 МиБ");
   KmlProject layer=KmlProject.parse(bytes);
-  if(features(layer.root()).isEmpty())return index;
+  if(features(layer.root()).isEmpty())return null;
   layer.entry=path;
-  layer.assets.putAll(index.assets);
+  layer.assets.putAll(assets);
   layer.assets.remove(path);
-  layer.assets.put(index.entry,index.xml());
+  layer.assets.put(entry,index);
   return layer;
+ }
+
+ private static boolean named(Element element,String name){
+  return element!=null&&KML.equals(element.getNamespaceURI())&&name.equals(tag(element));
+ }
+
+ private static Element onlyChildWithMetadata(Element parent,String name){
+  if(parent==null)return null;
+  Element result=null;
+  for(Element element:children(parent,null)){
+   if(named(element,name)){if(result!=null)return null;result=element;}
+   else if(!(named(element,"name")||named(element,"open")||named(element,"visibility"))
+       ||!children(element,null).isEmpty())return null;
+  }
+  return result;
  }
 
  private static String layerPath(String href)throws IOException{

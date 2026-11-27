@@ -29,7 +29,7 @@ public final class ObjectExchange {
  }
 
  public static KmlProject readForImport(Activity activity,InputStream stream,boolean zip)throws IOException{
-  if(zip)return KmzLayerImport.open(KmlProject.read(stream,true));
+  if(zip)return KmlProject.read(stream,true);
   byte[] payload=bounded(stream);
   int i=payload.length>=3&&(payload[0]&255)==239&&(payload[1]&255)==187&&(payload[2]&255)==191?3:0;
   while(i<payload.length&&(payload[i]==' '||payload[i]=='\n'||payload[i]=='\r'||payload[i]=='\t'))i++;
@@ -99,7 +99,7 @@ public final class ObjectExchange {
   return reader;
  }
 
- private static Document xml(byte[] payload)throws Exception{
+ static Document xml(byte[] payload)throws Exception{
   XmlPullParser parser=parser(payload);
   Document doc=newDocument();
   Node current=doc;
@@ -108,7 +108,7 @@ public final class ObjectExchange {
    switch(token){
     case XmlPullParser.DOCDECL: throw invalid("DTD запрещён");
     case XmlPullParser.START_TAG:
-     if(parser.getDepth()>DEPTH||++count>120000)throw invalid("Слишком сложный GPX");
+     if(parser.getDepth()>DEPTH||++count>120000)throw invalid("Слишком сложный XML");
      Element child=doc.createElementNS(parser.getNamespace(),parser.getName());
      for(int i=0;i<parser.getAttributeCount();i++){
       String namespace=parser.getAttributeNamespace(i);

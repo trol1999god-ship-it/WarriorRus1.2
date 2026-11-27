@@ -2007,6 +2007,17 @@
 
     if-gt v3, v1, :cond_a
 
+    invoke-static {p0, v0, p1}, Lorg/rabochaya/projects/KmzLayerImport;->openIndex([BLjava/lang/String;Ljava/util/Map;)Lorg/rabochaya/projects/KmlProject;
+
+    move-result-object v3
+
+    if-eqz v3, :rk_parse_main
+
+    move-object p0, v3
+
+    goto :rk_close_archive
+
+    :rk_parse_main
     .line 94
     invoke-static {p0}, Lorg/rabochaya/projects/KmlProject;->parse([B)Lorg/rabochaya/projects/KmlProject;
 
@@ -2017,6 +2028,7 @@
     iget-object v0, p0, Lorg/rabochaya/projects/KmlProject;->assets:Ljava/util/LinkedHashMap;
 
     invoke-virtual {v0, p1}, Ljava/util/LinkedHashMap;->putAll(Ljava/util/Map;)V
+    :rk_close_archive
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
