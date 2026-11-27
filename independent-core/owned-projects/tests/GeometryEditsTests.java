@@ -19,6 +19,24 @@ public final class GeometryEditsTests {
  static String xml(Node node)throws Exception{StringWriter out=new StringWriter();Transformer t=TransformerFactory.newInstance().newTransformer();t.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION,"yes");t.transform(new DOMSource(node),new StreamResult(out));return out.toString();}
  static Element named(Document doc,String tag){NodeList values=doc.getElementsByTagNameNS("http://www.opengis.net/kml/2.2",tag);if(values.getLength()==0)values=doc.getElementsByTagNameNS("*",tag);return (Element)values.item(0);}
  static void invalid(Element feature,GeometryEdits.Part p,String text)throws Exception{String before=xml(feature);try{GeometryEdits.replace(feature,p.key,p.token,text);throw new AssertionError("accepted invalid input");}catch(IllegalArgumentException expected){checks++;}check(xml(feature).equals(before),"invalid input is atomic");}
+ static void splitSegments()throws Exception{
+  Document doc=parse("<kml><Document><Placemark id='track'><MultiGeometry id='segments'>"
+      +"<LineString id='first'><coordinates>1,2 3,4</coordinates></LineString>"
+      +"<Point id='second'><coordinates>5,6</coordinates></Point>"
+      +"<LineString id='third'><coordinates>7,8 9,10</coordinates></LineString>"
+      +"</MultiGeometry></Placemark></Document></kml>");
+  Element track=feature(doc);
+  List<GeometryEdits.Part> parts=GeometryEdits.parts(track);
+  String before=xml(doc);
+  try{GeometryEdits.splitTrackSegments(track,parts.get(0).key,parts.get(0).token);throw new AssertionError("first segment");}
+  catch(IllegalArgumentException expected){check(before.equals(xml(doc)),"invalid split is atomic");}
+  Element following=GeometryEdits.splitTrackSegments(track,parts.get(1).key,parts.get(1).token);
+  check(GeometryEdits.parts(track).size()==1&&GeometryEdits.parts(following).size()==2,"segments move at boundary");
+  check(named(doc,"Point").getAttribute("id").equals("second")&&following.getPreviousSibling()==track
+      &&!following.getAttribute("id").equals(track.getAttribute("id")),"moved segment keeps identity and folder");
+  try{GeometryEdits.splitTrackSegments(following,parts.get(2).key,parts.get(2).token);throw new AssertionError("stale segments");}
+  catch(IllegalStateException expected){checks++;}
+ }
  static void splitStandaloneLine()throws Exception{
   Document doc=parse("<kml><Document><Placemark id='route'><name>Маршрут</name><description>attachments/a.jpg</description>"
     +"<Style id='style'><LineStyle><color>ff00ff00</color></LineStyle></Style><styleUrl>#style</styleUrl>"
@@ -40,6 +58,7 @@ public final class GeometryEditsTests {
  }
  public static void main(String[] args)throws Exception{
   splitStandaloneLine();
+  splitSegments();
   Document splitGroup=parse("<kml><Document><Placemark id='group'><description>Примечание</description>"
     +"<MultiGeometry id='multi'><Point id='P1'><coordinates>1,2,3</coordinates></Point>"
     +"<Point id='P2'><coordinates>4,5,6</coordinates></Point></MultiGeometry></Placemark></Document></kml>");

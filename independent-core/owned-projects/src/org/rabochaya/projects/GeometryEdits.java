@@ -88,6 +88,50 @@ public final class GeometryEdits {
         return copy;
     }
 
+    static int trackSegmentCount(Element feature) {
+        Element group=trackSegmentGroup(feature);
+        return group==null?0:children(group).size();
+    }
+
+    private static Element trackSegmentGroup(Element feature) {
+        if(!is(feature,"Placemark"))return null;
+        Element group=null;
+        for(Element element:children(feature)){
+            if(is(element,"MultiGeometry")){
+                if(group!=null)return null;
+                group=element;
+            }else if(Arrays.asList("Point","LineString","Polygon","LinearRing","Model","Track","MultiTrack").contains(local(element)))return null;
+        }
+        if(group==null)return null;
+        for(Element segment:children(group)){
+            if((!is(segment,"LineString")&&!is(segment,"Point"))||child(segment,"coordinates")==null)return null;
+        }
+        return group;
+    }
+
+    /** Split before the addressed segment, moving the complete remaining segments. */
+    public static Element splitTrackSegments(Element feature,String key,String expected) {
+        Element group=trackSegmentGroup(feature);
+        if(group==null||!(feature.getParentNode() instanceof Element))
+            throw new IllegalArgumentException("Требуется трек с несколькими сегментами");
+        Target target=checked(feature,key,expected);
+        List<Element> segments=children(group);
+        int boundary=segments.indexOf(target.coordinates.getParentNode());
+        if(boundary<=0)throw new IllegalArgumentException("Выберите сегмент после первого");
+
+        Element copy=(Element)feature.cloneNode(true);
+        Element copyGroup=child(copy,"MultiGeometry");
+        for(Element segment:children(copyGroup))copyGroup.removeChild(segment);
+        Map<String,Integer> counts=new HashMap<>();
+        ObjectTree.countIds(feature.getOwnerDocument().getDocumentElement(),counts,0);
+        Map<String,String> ids=new HashMap<>();
+        ObjectTree.newIds(copy,counts,new HashSet<>(counts.keySet()),ids,0);
+        ObjectTree.rewrite(copy,ids,0);
+        for(int i=boundary;i<segments.size();i++)copyGroup.appendChild(segments.get(i));
+        feature.getParentNode().insertBefore(copy,feature.getNextSibling());
+        return copy;
+    }
+
     public static boolean canUngroupPoints(Element feature) {
         Element group=pointGroup(feature);
         return group!=null && children(group).size()>=2;

@@ -138,6 +138,35 @@ final class GpxExchange {
   }
  }
 
+ static boolean canSplitSegments(Element feature){
+  return "trk".equals(data(feature).get(KIND))&&GeometryEdits.trackSegmentCount(feature)>1;
+ }
+
+ static void splitSegments(Element feature,String key,String expected){
+  if(!canSplitSegments(feature)||!key.matches("0\\.[1-9][0-9]*"))
+   throw new IllegalArgumentException("Выберите сегмент GPX после первого");
+  int boundary=Integer.parseInt(key.substring(2)),count=GeometryEdits.trackSegmentCount(feature);
+  if(boundary>=count)throw new IllegalArgumentException("Сегмент GPX больше не существует");
+  String saved=data(feature).get(GPX_DATA);
+  if(saved==null){
+   GeometryEdits.splitTrackSegments(feature,key,expected);
+   return;
+  }
+  Element value=trackMetadataValue(child(feature,"ExtendedData"));
+  try{
+   JSONObject metadata=new JSONObject(saved);
+   JSONArray segments=metadata.optJSONArray("points");
+   if(segments==null||segments.length()!=count)throw new IllegalArgumentException("Поля точек не соответствуют сегментам GPX");
+   String first=metadata.put("points",metadataSlice(segments,0,boundary)).toString();
+   String second=metadata.put("points",metadataSlice(segments,boundary,count)).toString();
+   Element copy=GeometryEdits.splitTrackSegments(feature,key,expected);
+   value.setTextContent(first);
+   trackMetadataValue(child(copy,"ExtendedData")).setTextContent(second);
+  }catch(JSONException invalid){
+   throw new IllegalArgumentException("Не удалось сохранить поля точек GPX",invalid);
+  }
+ }
+
  private static Element trackMetadataValue(Element extended){
   Element value=null;
   for(Element field:children(extended,"Data"))
@@ -146,9 +175,13 @@ final class GpxExchange {
  }
 
  private static String trackMetadataSlice(JSONObject metadata,JSONArray points,int start,int end)throws JSONException{
+  return metadata.put("points",new JSONArray().put(metadataSlice(points,start,end))).toString();
+ }
+
+ private static JSONArray metadataSlice(JSONArray source,int start,int end)throws JSONException{
   JSONArray slice=new JSONArray();
-  for(int index=start;index<end;index++)slice.put(points.get(index));
-  return metadata.put("points",new JSONArray().put(slice)).toString();
+  for(int index=start;index<end;index++)slice.put(source.get(index));
+  return slice;
  }
 
  static Document write(Element kml)throws Exception{

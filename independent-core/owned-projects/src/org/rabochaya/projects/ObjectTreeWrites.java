@@ -74,6 +74,11 @@ public final class ObjectTreeWrites {
   changeGeometryFeature(store,projectId,featureId,feature->GpxExchange.splitTrackLine(feature,key,expected,vertex));
  }
 
+ static void splitTrackSegments(ProjectStore store,long projectId,String featureId,
+                                String key,String expected)throws IOException {
+  changeGeometryFeature(store,projectId,featureId,feature->GpxExchange.splitSegments(feature,key,expected));
+ }
+
  static void ungroupPoints(ProjectStore store,long projectId,String featureId,String expected)throws IOException {
   changeGeometryFeature(store,projectId,featureId,feature->GeometryEdits.ungroupPoints(feature,expected));
  }
