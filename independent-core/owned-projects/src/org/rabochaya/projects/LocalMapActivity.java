@@ -2,7 +2,7 @@ package org.rabochaya.projects;
 import android.app.*;import android.content.*;import android.net.Uri;import android.os.*;import android.widget.*;import android.view.*;import java.io.*;import java.util.*;import java.util.concurrent.*;
 /** Own raster map viewer with local MBTiles or explicit online sources. */
 public final class LocalMapActivity extends Activity implements LocalMapView.Listener {
- private static final int IMPORT_MAP=4301,IMPORT_TIFF=4302,IMPORT_OZI=4303,EXPORT_MAP_SNAPSHOT=4304,DEM=4602,CATALOG=4502,LAYERS=4503;private PopupWindow popup;private boolean mapInputLocked;private String pendingMapSnapshot;
+ private static final int IMPORT_MAP=4301,IMPORT_TIFF=4302,IMPORT_OZI=4303,EXPORT_MAP_SNAPSHOT=4304,DEM=4602,CATALOG=4502,LAYERS=4503;private PopupWindow popup;private boolean mapInputLocked,mapOnly;private FrameLayout mapScene;private final IdentityHashMap<View,Integer> chromeAccessibility=new IdentityHashMap<>();private String pendingMapSnapshot;
  private MagneticHeading mapCompass;
  private BarometerDialog barometer;
  private TextView compassArrow,compassCourse;
@@ -32,7 +32,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   }
  }
  public static void open(Activity parent,long project){Intent i=new Intent(parent,LocalMapActivity.class);i.putExtra("project",project);parent.startActivity(i);}
- protected void onCreate(Bundle state){super.onCreate(state);mapCompass=new MagneticHeading(this,this::displayCompassReading);projectId=getIntent().getLongExtra("project",-1);root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(MapHud.BAR);setContentView(root);WorkspaceUi.systemBars(this);applyMapScreenOptions(false);if(state!=null){pendingMapSnapshot=state.getString("pending_map_snapshot");mapInputLocked=state.getBoolean("map_input_locked");pendingEdit=state.getBundle("map_edit");pendingDrawType=state.getString("drawing_type");Object saved=state.getSerializable("drawing_points");if(saved instanceof ArrayList)pendingDrawPoints=(ArrayList<double[]>)saved;}load();}
+ protected void onCreate(Bundle state){super.onCreate(state);mapCompass=new MagneticHeading(this,this::displayCompassReading);projectId=getIntent().getLongExtra("project",-1);root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(MapHud.BAR);setContentView(root);WorkspaceUi.systemBars(this);applyMapScreenOptions(false);if(state!=null){pendingMapSnapshot=state.getString("pending_map_snapshot");mapInputLocked=state.getBoolean("map_input_locked");mapOnly=state.getBoolean("map_only");pendingEdit=state.getBundle("map_edit");pendingDrawType=state.getString("drawing_type");Object saved=state.getSerializable("drawing_points");if(saved instanceof ArrayList)pendingDrawPoints=(ArrayList<double[]>)saved;}load();}
  private TextView label(String s,int size){TextView t=new TextView(this);t.setText(s);t.setTypeface(WorkspaceUi.font(this));t.setTextColor(0xffffffff);t.setTextSize(size);t.setPadding(14,10,14,10);return t;}
  private void button(LinearLayout row,String name,final Runnable action){Button b=WorkspaceUi.button(this,name,()->{if(!busy)action.run();});b.setTextSize(12);LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(0,(int)(50*getResources().getDisplayMetrics().density),1);p.setMargins(2,2,2,2);row.addView(b,p);}
  private File mapFile(){return new File(getFilesDir(),"local_basemap_"+projectId+".mbtiles");}
@@ -42,7 +42,19 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   if(disposed)return;if(map!=null){saveView();map.close();map=null;}closeDem();try{File terrain=DemActivity.file(this,projectId);if(terrain.isFile())dem=HgtRaster.owned(terrain,projectId);}catch(IOException e){warning="DEM недоступен: "+e.getMessage();}root.removeAllViews();
   boolean onlineMode=OnlineMapSettings.active(this,projectId);TileSource source=onlineMode?OnlineMapSettings.source(this):null;
   MapComposition composition=null;String compositionError="";try{if(MapCompositionSettings.active(this,projectId))composition=MapCompositionSettings.load(this,projectId).composition;}catch(Exception e){compositionError="Состав карт не прочитан: "+e.getMessage();}
-  FrameLayout scene=new FrameLayout(this);root.addView(scene,new LinearLayout.LayoutParams(-1,0,1));
+  FrameLayout scene=new FrameLayout(this){
+   private boolean touchMapOnly;
+   @Override protected boolean drawChild(android.graphics.Canvas canvas,View child,long time){
+    return (!mapOnly||child==map)&&super.drawChild(canvas,child,time);
+   }
+   @Override public boolean dispatchTouchEvent(MotionEvent event){
+    if(event.getActionMasked()==MotionEvent.ACTION_DOWN)touchMapOnly=mapOnly;
+    return touchMapOnly&&map!=null?map.dispatchTouchEvent(event):super.dispatchTouchEvent(event);
+   }
+  };
+  mapScene=scene;
+  chromeAccessibility.clear();
+  root.addView(scene,new LinearLayout.LayoutParams(-1,0,1));
   map=new LocalMapView(this,features,mapFile(),this,source,OnlineMapSettings.network(this),composition);scene.addView(map,new FrameLayout.LayoutParams(-1,-1));if(symbolAssets!=null)map.setSymbols(symbolAssets);
   map.restoreManualBearing(getPreferences(0).getFloat("view_"+projectId+"_bearing",0));
   map.setManualRotation(getPreferences(0).getBoolean("rotate_map_touch",false));
@@ -128,10 +140,11 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
     dockAction("Файловый менеджер",()->manager(false)),dockAction("Ориентирование",this::orientationMenu));
   updateMapInputLock();
   applyMapAppearance();
+  applyMapOnly();
   drawingRow=null;if(pendingDrawType!=null&&pendingDrawPoints!=null){String type=pendingDrawType;ArrayList<double[]> points=pendingDrawPoints;pendingDrawType=null;pendingDrawPoints=null;if(("LineString".equals(type)||"Polygon".equals(type))&&points.size()<=2000){startDrawing(type);for(double[] c:points)if(c!=null&&c.length>=2)map.addDrawingPoint(c[0],c[1]);}}
   if(restore){SharedPreferences p=getPreferences(0);String key="view_"+projectId+"_";if(p.contains(key+"x"))try{map.restore(Double.parseDouble(p.getString(key+"x",".5")),Double.parseDouble(p.getString(key+"y",".5")),p.getFloat(key+"z",2));}catch(RuntimeException ignored){}}
  }
- public void longPressed(double lat,double lon){if(busy)return;menu(String.format(Locale.US,"%.6f, %.6f",lat,lon),item("Задать цель здесь",()->setTarget(lat,lon)),item("Создать метку здесь",()->{creationPoint=new double[]{lon,lat};editObject(null,"Point");}),item("Начать маршрут здесь",()->{startDrawing("LineString");map.addDrawingPoint(lon,lat);}),item("Начать область здесь",()->{startDrawing("Polygon");map.addDrawingPoint(lon,lat);}),item("В центр карты",()->{double[] v=map.viewport();map.restore(MapMath.x(lon),MapMath.y(lat),v[2]);}));}
+ public void longPressed(double lat,double lon){if(busy)return;if(mapOnly||getPreferences(0).getBoolean("long_press_map_only",false)){mapOnly=!mapOnly;applyMapOnly();return;}menu(String.format(Locale.US,"%.6f, %.6f",lat,lon),item("Задать цель здесь",()->setTarget(lat,lon)),item("Создать метку здесь",()->{creationPoint=new double[]{lon,lat};editObject(null,"Point");}),item("Начать маршрут здесь",()->{startDrawing("LineString");map.addDrawingPoint(lon,lat);}),item("Начать область здесь",()->{startDrawing("Polygon");map.addDrawingPoint(lon,lat);}),item("В центр карты",()->{double[] v=map.viewport();map.restore(MapMath.x(lon),MapMath.y(lat),v[2]);}));}
  private void rebuildZoomControls(){
   zoomButtons.removeAllViews();
   zoomSlider=null;
@@ -215,12 +228,40 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void optionsMenu(){
   menu("Опции",item("Координаты центра экрана",this::coordinateOptions),
     item("Кеш / онлайн",this::onlineSettings),item("Информеры",this::display),
-    item("Экран карты",this::screenOptions),item("Управление масштабом",this::zoomOptions),item("Вид координатных сеток",this::gridAppearance),
+    item("Экран карты",this::screenOptions),item("Управление масштабом",this::zoomOptions),
+    item("Долгое нажатие на карту",this::longPressOptions),item("Вид координатных сеток",this::gridAppearance),
     item("Единицы измерения",this::displayUnits),item("Стиль статус-панелей",this::mapAppearance),
     item("Уровень детализации",this::tileDetail),item("Цель на карте",this::targetMenu),
     WorkspaceUi.Item.toggle("Предварительная обработка треков",
         getPreferences(0).getBoolean("preprocess_gpx_tracks",false),this::toggleTrackPreprocessing));
  }
+ private void longPressOptions(){
+  SharedPreferences prefs=getPreferences(0);
+  WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setTitle("Долгое нажатие на карту")
+      .setSingleChoiceItems(new String[]{"Контекстное меню","Показать только карту"},
+          prefs.getBoolean("long_press_map_only",false)?1:0,(dialog,index)->{
+           prefs.edit().putBoolean("long_press_map_only",index==1).apply();
+           dialog.dismiss();
+          }).setNegativeButton("Отмена",null));
+ }
+
+ private void applyMapOnly(){
+  if(mapScene==null)return;
+  for(int i=0;i<mapScene.getChildCount();i++){
+   View child=mapScene.getChildAt(i);
+   if(child==map)continue;
+   if(mapOnly){
+    if(!chromeAccessibility.containsKey(child))chromeAccessibility.put(child,child.getImportantForAccessibility());
+    child.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
+   }else{
+    Integer importance=chromeAccessibility.remove(child);
+    if(importance!=null)child.setImportantForAccessibility(importance);
+   }
+  }
+  applyMapScreenOptions(false);
+  mapScene.invalidate();
+ }
+
  private void zoomOptions(){
   SharedPreferences prefs=getPreferences(0);
   menu("Управление масштабом",item("Инструмент масштабирования",this::chooseZoomControl),
@@ -417,7 +458,8 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   int mask = View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
     | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
   int flags = window.getDecorView().getSystemUiVisibility() & ~mask;
-  if (!mainMenuOpen && preferences.getBoolean(MAP_SCREEN_KEYS[0], false)) {
+  if(mapOnly)flags|=View.SYSTEM_UI_FLAG_FULLSCREEN|View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+  else if (!mainMenuOpen && preferences.getBoolean(MAP_SCREEN_KEYS[0], false)) {
    flags |= View.SYSTEM_UI_FLAG_FULLSCREEN;
    if (preferences.getBoolean(MAP_SCREEN_KEYS[1], false))
     flags |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
@@ -1013,9 +1055,10 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setMessage("Выйти из приложения?")
     .setPositiveButton("Выйти",(dialog,which)->finish()).setNegativeButton("Отмена",null));
  }
- public void onBackPressed(){if(map!=null&&map.drawingType()!=null)discardDrawing(true);else requestMapExit();}
+ public void onBackPressed(){if(mapOnly){mapOnly=false;applyMapOnly();return;}if(map!=null&&map.drawingType()!=null)discardDrawing(true);else requestMapExit();}
  protected void onSaveInstanceState(Bundle state){
   state.putBoolean("map_input_locked",mapInputLocked);
+  state.putBoolean("map_only",mapOnly);
   state.putString("pending_map_snapshot",pendingMapSnapshot);
   if(activeEdit!=null&&!busy&&activeEdit.dialog.isShowing())state.putBundle("map_edit",activeEdit.snapshot(projectId));
   else if(pendingEdit!=null)state.putBundle("map_edit",pendingEdit);

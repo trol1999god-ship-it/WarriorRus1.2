@@ -827,9 +827,12 @@ public final class MapAndroidChecks extends Instrumentation {
   Context context=getTargetContext();Object store=storeClass.getConstructor(Context.class).newInstance(context);long id=-1;
   SharedPreferences prefs=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0);
   boolean oldManual=prefs.getBoolean("rotate_map_touch",false),oldMagnetic=prefs.getBoolean("rotate_map_compass",false);
+  boolean oldPinch=prefs.getBoolean("zoom_pinch",true),oldSlider=prefs.getBoolean("zoom_slider",false),
+      oldLongPress=prefs.getBoolean("long_press_map_only",false);
   long previous=context.getSharedPreferences("workspace-session",0).getLong("last_project",-1);
   try{
-   prefs.edit().putBoolean("rotate_map_touch",false).putBoolean("rotate_map_compass",false).commit();
+   prefs.edit().putBoolean("rotate_map_touch",false).putBoolean("rotate_map_compass",false)
+      .putBoolean("zoom_pinch",true).putBoolean("zoom_slider",false).putBoolean("long_press_map_only",false).commit();
    Object doc=codec.getMethod("parse",byte[].class).invoke(null,(Object)XML.getBytes("UTF-8"));
    id=(Long)call(store,"insert",new Class[]{codec,String.class},doc,"QA_MAP_TWIST");
    activity=startActivitySync(new Intent().setClassName(context.getPackageName(),"org.rabochaya.projects.LocalMapActivity")
@@ -851,11 +854,40 @@ public final class MapAndroidChecks extends Instrumentation {
    double[] center=(double[])call(surface,"viewport",new Class[]{});
    check(Math.abs(center[0]-.5)<1e-7&&Math.abs(center[1]-.5)<1e-7&&Math.abs(center[2]-8)<1e-7,
       "two-finger twist around the centre preserves map centre and scale");
+   clickDescription("Меню");click("Опции");click("Управление масштабом");click("Масштабирование жестом");
+   setViewport(.5,.5,8);
+   runOnMainSync(()->{
+    float x=surface.getWidth()/2f,y=surface.getHeight()/2f;
+    long now=android.os.SystemClock.uptimeMillis();
+    twistEvent(surface,now,0,0,x-50,y,x+50,y);
+    twistEvent(surface,now,1,5|(1<<8),x-50,y,x+50,y);
+    twistEvent(surface,now,2,2,x-100,y,x+100,y);
+    twistEvent(surface,now,3,6|(1<<8),x-100,y,x+100,y);
+    twistEvent(surface,now,4,1,x-100,y,x+100,y);
+   });
+   double[] fixed=(double[])call(surface,"viewport",new Class[]{});
+   check(!prefs.getBoolean("zoom_pinch",true)&&Math.abs(fixed[2]-8)<1e-7,
+      "pinch setting blocks scale even in the twist handler");
+   clickDescription("Меню");click("Опции");click("Управление масштабом");
+   click("Инструмент масштабирования");click("Слайдер");
+   Field slider=activity.getClass().getDeclaredField("zoomSlider");slider.setAccessible(true);
+   check(prefs.getBoolean("zoom_slider",false)&&slider.get(activity) instanceof android.widget.SeekBar,
+      "slider mode replaces the button controls and persists");
+   clickDescription("Меню");click("Опции");click("Долгое нажатие на карту");click("Показать только карту");
+   Field only=activity.getClass().getDeclaredField("mapOnly");only.setAccessible(true);
+   runOnMainSync(()->{
+    try{call(activity,"longPressed",new Class[]{double.class,double.class},0d,0d);}
+    catch(Exception error){throw new IllegalStateException(error);}
+   });
+   check(only.getBoolean(activity),"long press activates map-only mode");
+   runOnMainSync(()->activity.onBackPressed());
+   check(!only.getBoolean(activity)&&!activity.isFinishing(),"Back restores chrome and keeps the map open");
   }finally{
    if(activity!=null){Activity owner=activity;runOnMainSync(owner::finish);}
    if(id>0){call(store,"remove",new Class[]{long.class},id);staticCall("LocalMapActivity","cleanupDeletedProject",new Class[]{Context.class,long.class},context,id);}
    call(store,"close",new Class[]{});
-   prefs.edit().putBoolean("rotate_map_touch",oldManual).putBoolean("rotate_map_compass",oldMagnetic).commit();
+   prefs.edit().putBoolean("rotate_map_touch",oldManual).putBoolean("rotate_map_compass",oldMagnetic)
+      .putBoolean("zoom_pinch",oldPinch).putBoolean("zoom_slider",oldSlider).putBoolean("long_press_map_only",oldLongPress).commit();
    context.getSharedPreferences("workspace-session",0).edit().putLong("last_project",previous).commit();
   }
  }
