@@ -459,7 +459,7 @@ public final class LocalMapView extends View {
     syncProjection();
     transformPoint(x,y,inverseProjection);
     cx=MapMath.wrap(anchorX-(transformedPoint[0]-getWidth()/2.0)/world());
-    cy=MapMath.clamp(anchorY-(transformedPoint[1]-getHeight()/2.0)/world());
+    cy=MapMath.clamp(anchorY-(transformedPoint[1]-getHeight()/2.0)/world(),0,1);
     changed();
    }
   }else if(action==MotionEvent.ACTION_POINTER_UP){
