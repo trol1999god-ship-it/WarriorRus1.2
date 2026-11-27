@@ -192,11 +192,17 @@ public final class ObjectExchange {
   return text(e,"description").replaceAll("(?s)<!--rk-media-([a-f0-9-]+)-->.*?<!--/rk-media-\\1-->","");
  }
  static List<Element> geometries(Element e)throws IOException{
+  return geometries(e,false);
+ }
+ static List<Element> geometries(Element e,boolean includeTimedTracks)throws IOException{
   List<Element> list=new ArrayList<>();
   for(Element g:children(e,null)){
    switch(tag(g)){
     case "Point": case "LineString": case "Polygon": case "MultiGeometry": list.add(g);break;
-    case "Track": case "MultiTrack": case "Model": throw invalid("Геометрия "+tag(g)+" не поддерживается в этом экспорте");
+    case "Track": case "MultiTrack":
+     if(includeTimedTracks&&KmlTrackStatistics.GX.equals(g.getNamespaceURI())){list.add(g);break;}
+     throw invalid("Геометрия "+tag(g)+" не поддерживается в этом экспорте");
+    case "Model": throw invalid("Геометрия "+tag(g)+" не поддерживается в этом экспорте");
    }
   }
   return list;

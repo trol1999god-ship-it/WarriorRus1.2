@@ -7,18 +7,37 @@ import org.w3c.dom.Node;
 
 /** Reads saved gx tracks without joining separate segments or gaps in the samples. */
 final class KmlTrackStatistics {
- private static final String GX="http://www.google.com/kml/ext/2.2";
+ static final String GX="http://www.google.com/kml/ext/2.2";
  private static final String KML="http://www.opengis.net/kml/2.2";
 
  private KmlTrackStatistics(){}
 
  static TrackStatistics read(Element feature){
   TrackStatistics result=new TrackStatistics();
-  collect(feature,result,0);
+  for(Segment segment:segments(feature))result.addSegment(segment.vertices,segment.times);
   return result.points==0?null:result;
  }
 
- private static void collect(Element parent,TrackStatistics result,int depth){
+ static final class Segment {
+  final List<double[]> vertices;
+  final List<String> times;
+  Segment(List<double[]> vertices,List<String> times){
+   this.vertices=vertices;
+   this.times=times.size()==vertices.size()?times:null;
+  }
+ }
+
+ static List<Segment> segments(Element parent){
+  List<Segment> result=new ArrayList<>();
+  collect(parent,result,0);
+  return result;
+ }
+
+ private static void collect(Element parent,List<Segment> result,int depth){
+  if(GX.equals(parent.getNamespaceURI())&&"Track".equals(parent.getLocalName())){
+   addTrack(parent,result);
+   return;
+  }
   if(depth>64)return;
   for(Node node=parent.getFirstChild();node!=null;node=node.getNextSibling()){
    if(!(node instanceof Element))continue;
@@ -29,7 +48,7 @@ final class KmlTrackStatistics {
   }
  }
 
- private static void addTrack(Element track,TrackStatistics result){
+ private static void addTrack(Element track,List<Segment> result){
   List<double[]> vertices=new ArrayList<>();
   List<String> times=new ArrayList<>();
   for(Node node=track.getFirstChild();node!=null;node=node.getNextSibling()){
@@ -38,7 +57,7 @@ final class KmlTrackStatistics {
    if(GX.equals(namespace)&&"coord".equals(name))vertices.add(position(node.getTextContent()));
    else if(KML.equals(namespace)&&"when".equals(name))times.add(node.getTextContent());
   }
-  if(!vertices.isEmpty())result.addSegment(vertices,times.size()==vertices.size()?times:null);
+  if(!vertices.isEmpty())result.add(new Segment(vertices,times));
  }
 
  private static double[] position(String text){

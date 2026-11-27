@@ -237,7 +237,7 @@ final class GpxExchange {
    Map<String,String> data=data(p);
    String kind=data.get(KIND);
    JSONObject meta=data.containsKey(GPX_DATA)?new JSONObject(data.get(GPX_DATA)):new JSONObject();
-   List<Element> parts=flatten(geometries(p),0);
+   List<Element> parts=flatten(geometries(p,true),0,true);
    if("trk".equals(kind)&&!parts.isEmpty()&&onlyTrackParts(parts)){
     tracks.add(track(gpx,p,parts,false,meta));
     continue;
@@ -257,13 +257,17 @@ final class GpxExchange {
       JSONObject attributes=header(p,optFields(meta));
       Element time=child(p,"TimeStamp");
       String timestamp=time==null?"":text(time,"when");
-      if(timestamp.matches("-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]+)?(?:Z|[+-][0-9]{2}:[0-9]{2})?"))attributes.put("time",timestamp);
+      if(validTimestamp(timestamp))attributes.put("time",timestamp);
       else attributes.remove("time");
       writePoint(wpt,point.get(0),attributes);waypoints.add(wpt);break;
      case "LineString":
       tracks.add(track(gpx,p,Collections.singletonList(g),false,new JSONObject()));
       break;
      case "Polygon": tracks.add(track(gpx,p,Collections.singletonList(g),true,meta));break;
+     case "Track": case "MultiTrack":
+      Element timed=timedTrack(gpx,p,g);
+      if(timed!=null)tracks.add(timed);
+      break;
     }
    }
   }
@@ -273,14 +277,43 @@ final class GpxExchange {
  }
 
  private static List<Element> flatten(List<Element> geometry,int depth)throws IOException{
+  return flatten(geometry,depth,false);
+ }
+ private static List<Element> flatten(List<Element> geometry,int depth,boolean includeTimedTracks)throws IOException{
   if(depth>DEPTH)throw invalid("Слишком глубокая геометрия");
   List<Element> out=new ArrayList<>();
   for(Element e:geometry){
-   if("MultiGeometry".equals(tag(e)))out.addAll(flatten(geometries(e),depth+1));
+   if("MultiGeometry".equals(tag(e)))out.addAll(flatten(geometries(e,includeTimedTracks),depth+1,includeTimedTracks));
    else out.add(e);
   }
   return out;
  }
+ private static Element timedTrack(Element root,Element feature,Element geometry)throws JSONException{
+  Element track=detached(root,"trk");
+  writeFields(track,header(feature,new JSONObject()),COMMON);
+  boolean populated=false;
+  for(KmlTrackStatistics.Segment input:KmlTrackStatistics.segments(geometry)){
+   Element segment=null;
+   for(int i=0;i<input.vertices.size();i++){
+    double[] point=input.vertices.get(i);
+    if(point==null){segment=null;continue;}
+    if(segment==null)segment=add(track,"trkseg",null);
+    JSONObject metadata=new JSONObject();
+    if(input.times!=null){
+     String time=input.times.get(i).trim();
+     if(validTimestamp(time))metadata.put("time",time);
+    }
+    writePoint(add(segment,"trkpt",null),point,metadata);
+    populated=true;
+   }
+  }
+  return populated?track:null;
+ }
+
+ private static boolean validTimestamp(String value){
+  return value.matches("-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]+)?(?:Z|[+-][0-9]{2}:[0-9]{2})?");
+ }
+
  private static boolean onlyTrackParts(List<Element> list){
   for(Element g:list)if(!"LineString".equals(tag(g))&&!"Point".equals(tag(g)))return false;
   return true;
