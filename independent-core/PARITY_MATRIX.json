@@ -713,6 +713,65 @@
     "reference_ui_catalog_links": {
       "source": "security/reference-gaps-2026-11-26/ui-surface.json",
       "scope": "Сопоставление кода со строками ресурсов. Связь с функцией не подтверждает визуальную или динамическую идентичность.",
+      "closure_triage": {
+        "basis": "Одна основная причина на каждую из 39 частичных позиций. Разделы visual_review и acceptance_when_reference_available не имеют известных пробелов в коде заявленного объёма и ожидают окончательной приёмки. Эталонный контракт и недостающие испытания учитываются отдельно.",
+        "confirmed_code_gaps": 4,
+        "acceptance_only": 26,
+        "other_verification_or_contract": 9,
+        "groups": {
+          "missing_code": [
+            "landmarks_submenu_control_time",
+            "settings_technical_path_title"
+          ],
+          "incomplete_functionality": [
+            "maps_submenu_show_storage_coverage",
+            "settings_landmarks_display_tracks_style_title"
+          ],
+          "visual_review": [
+            "settings_canvas_infobox_style_title",
+            "settings_landmarks_display_borders_title",
+            "settings_landmarks_display_shadows_title",
+            "settings_canvas_grids_title",
+            "settings_landmarks_display_size_title",
+            "settings_landmarks_display_color_title"
+          ],
+          "insufficient_tests": [
+            "settings_canvas_multitouch_pitch_title",
+            "settings_technical_disable_keyguard_title",
+            "geolocation_submenu_barometer",
+            "settings_display_pressures_title",
+            "orientation_submenu_status"
+          ],
+          "reference_contract": [
+            "landmarks_submenu_display_target_information",
+            "landmarks_submenu_display_target_line",
+            "settings_landmarks_display_target_color_title",
+            "settings_landmarks_preprocess_title"
+          ],
+          "acceptance_when_reference_available": [
+            "settings_canvas_hres_map_title",
+            "settings_canvas_multitouch_rotate_title",
+            "settings_display_reference_north_title",
+            "settings_display_areas_title",
+            "settings_display_slopes_title",
+            "settings_display_distances_title",
+            "settings_display_bearings_title",
+            "orientation_submenu_rotate",
+            "core_submenu_print_map",
+            "orientation_submenu_compass_on_map",
+            "settings_orientation_heading_display_type_title",
+            "core_submenu_display_grid",
+            "core_submenu_display_secondary_grid",
+            "core_submenu_display_radius_ruler",
+            "core_submenu_night_mode",
+            "core_submenu_lock_screen",
+            "settings_technical_confirm_exit_title",
+            "settings_canvas_long_press_map_title",
+            "settings_canvas_zoom_type_title",
+            "settings_canvas_multitouch_zoom_title"
+          ]
+        }
+      },
       "linked": {
         "settings_technical_hide_status_bar_title": "Меню → Опции → Экран карты → Скрыть строку состояния",
         "settings_technical_hide_navigation_bar_title": "Меню → Опции → Экран карты → Режим погружения",
@@ -758,7 +817,7 @@
         "settings_display_reference_north_title": "Магнитный, истинный и координатный север. Поправки вычисляются по центру карты.",
         "settings_display_areas_title": "Формат площади применяется к карточке области, включая вычитание отверстий.",
         "settings_display_slopes_title": "Формат уклона применяется к подъёму и спуску в профиле DEM.",
-        "settings_display_distances_title": "Опции: метрический, английский и морской форматы линейки и DEM.",
+        "settings_display_distances_title": "Форматы линейки, DEM, высоты карточек точек и расстояния до цели. Сверка точного оформления ожидает эталона.",
         "settings_display_bearings_title": "Опции: градусы, грады, тысячные и румбы для магнитного курса.",
         "geolocation_submenu_barometer": "Ориентирование: локальное давление и калибровка по введённой высоте.",
         "settings_display_pressures_title": "Барометр: гПа, миллиметры или дюймы ртутного столба.",

@@ -1465,6 +1465,11 @@ public final class MapAndroidChecks extends Instrumentation {
      |android.view.View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
    int keepAwake=android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
    check((mapDecorFlags()&mask)==mask,"map applies fullscreen and immersive flags");
+   Field dockField=activity.getClass().getDeclaredField("mapDock");dockField.setAccessible(true);
+   android.view.View dock=(android.view.View)dockField.get(activity);
+   android.view.WindowInsets insets=dock.getRootWindowInsets();
+   check(insets!=null&&((android.widget.FrameLayout.LayoutParams)dock.getLayoutParams()).bottomMargin
+       >=insets.getStableInsetBottom(),"immersive dock stays above the stable system gesture area");
    check((activity.getWindow().getAttributes().flags&keepAwake)!=0,"map stays awake only with the option enabled");
    acknowledgeImmersiveEducation();
    clickDescription("Меню");waitText("Опции");
