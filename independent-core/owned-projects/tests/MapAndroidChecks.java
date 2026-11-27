@@ -2054,6 +2054,16 @@ public final class MapAndroidChecks extends Instrumentation {
   File audio=assetFixture("qa_audio.wav"),video=assetFixture("qa_video.mp4");int count=0;for(File file:new File[]{photo1,photo2,audio,video}){mediaResult(file);waitText("Вложений: "+(++count));}
   doc=mediaDocument();check(links(doc,"qa_point").size()==4&&assets(doc).size()==4,"four media attachments and their bytes saved in SQLite");
   String description=(String)codec.getMethod("text",org.w3c.dom.Element.class,String.class).invoke(null,element(doc,"qa_point"),"description");check(description.contains("<a href=\"attachments/")&&description.contains("<img src=\"attachments/"),"standard relative HTML media links added for KMZ consumers");
+  click("qa_photo1.png");click("Убрать из объекта");
+  ActivityMonitor restoredPanel=addMonitor("org.rabochaya.projects.AttachmentsActivity",null,false);
+  Activity previousPanel=activity;
+  runOnMainSync(previousPanel::recreate);
+  Activity reopenedPanel=waitForMonitorWithTimeout(restoredPanel,45000);removeMonitor(restoredPanel);
+  check(reopenedPanel!=null&&reopenedPanel!=previousPanel,"attachment list recreates");
+  activity=reopenedPanel;
+  waitText("Убрать это вложение из объекта?");
+  click("Отмена");waitText("Вложений: 4");
+  check(links(mediaDocument(),"qa_point").size()==4,"recreating confirmation does not remove the attachment");
   openAttachment("qa_photo1.png","Фото готово");openAttachment("qa_audio.wav","Аудио готово");openAttachment("qa_video.mp4","Видео готово");
   File huge=new File(getTargetContext().getExternalFilesDir(null),"qa_too_large.mp4");try(FileOutputStream out=new FileOutputStream(huge)){byte[] bytes=new byte[16384];for(int k=0;k<512;k++)out.write(bytes);out.write(1);}mediaResult(huge);waitText("Вложение не добавлено");check(assets(mediaDocument()).size()==4&&links(mediaDocument(),"qa_point").size()==4,"oversized input preserves earlier files and links");
   store=storeClass.getConstructor(Context.class).newInstance(getTargetContext());SQLiteDatabase db=(SQLiteDatabase)call(store,"getWritableDatabase",new Class[]{});byte[] before=(byte[])call(mediaDocument(),"xml",new Class[]{});
