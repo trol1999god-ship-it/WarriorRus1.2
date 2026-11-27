@@ -340,6 +340,38 @@ public final class MapAndroidChecks extends Instrumentation {
   }
  }
 
+ private void checkSavedGpxSplit(Object store)throws Exception{
+  String gpx="<gpx xmlns='http://www.topografix.com/GPX/1/1' version='1.1' creator='QA'>"
+      +"<trk><name>QA_GPX_SPLIT</name><trkseg>"
+      +"<trkpt lon='10' lat='20'><ele>1</ele><time>2026-11-27T00:00:00Z</time></trkpt>"
+      +"<trkpt lon='11' lat='21'><ele>2</ele><time>2026-11-27T00:00:10Z</time></trkpt>"
+      +"<trkpt lon='12' lat='22'><ele>3</ele><time>2026-11-27T00:00:20Z</time></trkpt>"
+      +"</trkseg></trk></gpx>";
+  Object project=readExchange(new ByteArrayInputStream(gpx.getBytes("UTF-8")),false);
+  long id=(Long)call(store,"insert",new Class[]{codec,String.class},project,"QA_GPX_SPLIT_PROJECT");
+  try{
+   Object saved=call(store,"load",new Class[]{long.class},id);
+   org.w3c.dom.Element root=(org.w3c.dom.Element)call(saved,"root",new Class[]{});
+   org.w3c.dom.Element feature=(org.w3c.dom.Element)root.getElementsByTagNameNS("*","Placemark").item(0);
+   ClassLoader loader=getTargetContext().getClassLoader();
+   Class<?> edits=Class.forName("org.rabochaya.projects.GeometryEdits",true,loader);
+   Object part=((List<?>)edits.getMethod("parts",org.w3c.dom.Element.class).invoke(null,feature)).get(0);
+   String key=(String)part.getClass().getField("key").get(part);
+   String token=(String)part.getClass().getField("token").get(part);
+   Class<?> writes=Class.forName("org.rabochaya.projects.ObjectTreeWrites",true,loader);
+   Method split=writes.getDeclaredMethod("splitLine",storeClass,long.class,String.class,String.class,String.class,int.class);
+   split.setAccessible(true);
+   split.invoke(null,store,id,feature.getAttribute("id"),key,token,1);
+   Object updated=call(store,"load",new Class[]{long.class},id);
+   String output=new String(writeExchange(updated,"gpx"),"UTF-8");
+   String[] tracks=output.split("</trk>",-1);
+   check(tracks.length==3,"two GPX tracks exported after saved split");
+   check(tracks[0].contains("00:00:00Z")&&tracks[0].contains("00:00:10Z")&&!tracks[0].contains("00:00:20Z")
+       &&!tracks[1].contains("00:00:00Z")&&tracks[1].contains("00:00:10Z")&&tracks[1].contains("00:00:20Z"),
+       "each half keeps its timestamps and shares the split point");
+  }finally{call(store,"remove",new Class[]{long.class},id);}
+ }
+
  void formatsBeforeRestart()throws Exception{
   Context context=getTargetContext();Object store=storeClass.getConstructor(Context.class).newInstance(context);
   try{
@@ -359,6 +391,7 @@ public final class MapAndroidChecks extends Instrumentation {
    check(f.getJSONObject(2).getJSONObject("geometry").getJSONArray("coordinates").length()==2,"GeoJSON preserves polygon hole");
    Object areaReimport=readExchange(new ByteArrayInputStream(writeExchange(geo,"gpx")),false);
    check(new String(writeExchange(areaReimport,"geojson"),"UTF-8").contains("\"Polygon\""),"private GPX area extension restores its polygon");
+   checkSavedGpxSplit(store);
    int count=((List)call(store,"list",new Class[]{})).size();
    for(String invalid:new String[]{
      "{\"type\":\"Point\",\"coordinates\":[181,0]}",
