@@ -398,6 +398,9 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   return super.dispatchKeyEvent(event);
  }
 
+ private static final float[] MARKER_SIZES={.8f,1f,1.25f,1.5f};
+ private static final int[] MARKER_COLORS={KmlComponentStyle.DEFAULT_COLOR,0xff7edbff,0xffffb438,0xffff7180,0xffb4e88b};
+
  private void mapAppearance(){
   SharedPreferences prefs=getPreferences(0);
   LinearLayout form=coordinateForm();
@@ -408,10 +411,17 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   CheckBox borders=new CheckBox(this),shadows=new CheckBox(this);
   borders.setText("Контуры меток");borders.setChecked(prefs.getBoolean("map_marker_borders",true));form.addView(borders);
   shadows.setText("Тени от меток");shadows.setChecked(prefs.getBoolean("map_marker_shadows",false));form.addView(shadows);
+  form.addView(coordinateCaption("Размер меток"));
+  Spinner markers=gridChoice(form,"Размер меток",new String[]{"Мелкий","Обычный","Средний","Крупный"},
+      prefs.getInt("map_marker_size",1));
+  form.addView(coordinateCaption("Цвет меток"));
+  Spinner markerColor=gridChoice(form,"Цвет меток",new String[]{"По умолчанию","Голубой","Янтарный","Коралловый","Салатовый"},
+      prefs.getInt("map_marker_color",0));
   ScrollView scroll=new ScrollView(this);scroll.addView(form);
   WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setTitle("Стиль статус-панелей")
    .setView(scroll).setPositiveButton("Сохранить",(dialog,which)->{
     prefs.edit().putInt("map_panel_size",size.getSelectedItemPosition()).putInt("map_panel_color",color.getSelectedItemPosition())
+       .putInt("map_marker_size",markers.getSelectedItemPosition()).putInt("map_marker_color",markerColor.getSelectedItemPosition())
        .putBoolean("map_marker_borders",borders.isChecked()).putBoolean("map_marker_shadows",shadows.isChecked()).apply();
     applyMapAppearance();
    }).setNegativeButton("Отмена",null));
@@ -425,7 +435,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   int theme=prefs.getInt("map_panel_color",0);
   int size=11+2*Math.max(0,Math.min(2,prefs.getInt("map_panel_size",0)));
   int ink=theme==1?WorkspaceUi.TEXT:MapHud.INK;
-  for(TextView view:new TextView[]{coordinates,scaleValue,status}){
+  for(TextView view:new TextView[]{coordinates,targetStatus,tileCoverage,scaleValue,status}){
    view.setBackground(statusBackground(theme));
    view.setTextColor(ink);
    view.setTextSize(size);
@@ -435,6 +445,9 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   compassArrow.setTextColor(ink);
   compassCourse.setTextColor(ink);
   compassCourse.setTextSize(size+1);
+  int markerSize=Math.max(0,Math.min(MARKER_SIZES.length-1,prefs.getInt("map_marker_size",1)));
+  int markerColor=Math.max(0,Math.min(MARKER_COLORS.length-1,prefs.getInt("map_marker_color",0)));
+  map.setMarkerDefaults(MARKER_SIZES[markerSize],MARKER_COLORS[markerColor]);
   map.setMarkerAppearance(prefs.getBoolean("map_marker_borders",true),prefs.getBoolean("map_marker_shadows",false));
  }
  private void screenOptions() {

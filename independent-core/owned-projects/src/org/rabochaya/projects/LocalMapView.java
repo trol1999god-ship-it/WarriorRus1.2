@@ -40,6 +40,15 @@ public final class LocalMapView extends View {
   invalidate();
  }
 
+ private float markerScale=1f;
+ private int markerColor=KmlComponentStyle.DEFAULT_COLOR;
+
+ void setMarkerDefaults(float scale,int color){
+  markerScale=scale;
+  markerColor=color;
+  invalidate();
+ }
+
  void setMarkerAppearance(boolean borders,boolean shadows){
   markerBorders=borders;
   markerShadows=shadows;
@@ -92,7 +101,7 @@ public final class LocalMapView extends View {
    });
   });
  }
- private boolean symbol(Canvas canvas,org.w3c.dom.Element feature,float x,float y){SymbolImage icon=symbolImages.get(feature);if(icon==null)return false;int saved=canvas.save();try{canvas.translate(x,y);canvas.rotate(icon.heading);canvas.scale(icon.scale,icon.scale);paint.setStyle(Paint.Style.FILL);paint.setColor(-1);paint.setAlpha(icon.color==null?255:icon.color>>>24);paint.setColorFilter(icon.color==null?null:new LightingColorFilter(icon.color&0xffffff,0));canvas.drawBitmap(icon.bitmap,-icon.anchorX,-icon.anchorY,paint);return true;}finally{paint.setColorFilter(null);paint.setAlpha(255);canvas.restoreToCount(saved);}}
+ private boolean symbol(Canvas canvas,org.w3c.dom.Element feature,float x,float y){SymbolImage icon=symbolImages.get(feature);if(icon==null)return false;int saved=canvas.save();try{canvas.translate(x,y);canvas.rotate(icon.heading);canvas.scale(icon.scale*markerScale,icon.scale*markerScale);paint.setStyle(Paint.Style.FILL);paint.setColor(-1);paint.setAlpha(icon.color==null?255:icon.color>>>24);paint.setColorFilter(icon.color==null?null:new LightingColorFilter(icon.color&0xffffff,0));canvas.drawBitmap(icon.bitmap,-icon.anchorX,-icon.anchorY,paint);return true;}finally{paint.setColorFilter(null);paint.setAlpha(255);canvas.restoreToCount(saved);}}
  private final List<KmlProject.Feature> features;private final Listener listener;private final Paint paint=new Paint(3);private final ExecutorService worker=Executors.newSingleThreadExecutor();
  private final LruCache<String,Bitmap> cache=new LruCache<String,Bitmap>(16*1024*1024){protected int sizeOf(String k,Bitmap b){return b.getByteCount();}};
  private final Set<String> pending=new HashSet<String>(),missing=new HashSet<String>();private OfflineTiles tiles;private BundledTiles bundled;private volatile OnlineTiles[] online;private final TileSource onlineSource;private final boolean useNetwork;private volatile boolean paused;private volatile boolean disposed;
@@ -183,9 +192,9 @@ public final class LocalMapView extends View {
    canvas.restoreToCount(gridCanvas);
   }
   int labels=0;
-  for(KmlProject.Feature f:features){KmlComponentStyle style=componentStyles.get(f.element);if(style==null)style=KmlComponentStyle.EMPTY;int line=style.line==null?KmlComponentStyle.DEFAULT_COLOR:style.line;float[] label=null;for(KmlProject.Geometry g:f.shapes){paint.setColor(line);paint.setStrokeWidth(style.width==null?3*getResources().getDisplayMetrics().density:style.width);paint.setStyle(Paint.Style.STROKE);
+  for(KmlProject.Feature f:features){KmlComponentStyle style=componentStyles.get(f.element);if(style==null)style=KmlComponentStyle.EMPTY;int line=style.line==null?markerColor:style.line;float[] label=null;for(KmlProject.Geometry g:f.shapes){paint.setColor(line);paint.setStrokeWidth((style.width==null?3*getResources().getDisplayMetrics().density:style.width)*markerScale);paint.setStyle(Paint.Style.STROKE);
    if("Point".equals(g.type)){
-    float density=getResources().getDisplayMetrics().density;
+    float density=getResources().getDisplayMetrics().density*markerScale;
     float[] point=point(g.rings.get(0).get(0));
     if(markerShadows){
      paint.setStyle(Paint.Style.FILL);
@@ -193,7 +202,7 @@ public final class LocalMapView extends View {
      canvas.drawCircle(point[0]+2*density,point[1]+3*density,8*density,paint);
     }
     if(!symbol(canvas,f.element,point[0],point[1])){
-     paint.setColor(style.icon==null?KmlComponentStyle.DEFAULT_COLOR:style.icon);
+     paint.setColor(style.icon==null?markerColor:style.icon);
      paint.setStyle(Paint.Style.FILL);
      canvas.drawCircle(point[0],point[1],7*density,paint);
      if(markerBorders){
