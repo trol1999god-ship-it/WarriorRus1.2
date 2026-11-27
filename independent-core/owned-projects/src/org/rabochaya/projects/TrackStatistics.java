@@ -13,6 +13,12 @@ final class TrackStatistics {
  private static final Pattern TIMESTAMP=Pattern.compile(
      "([0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2})(?:\\.([0-9]+))?(Z|[+-][0-9]{2}:[0-9]{2})");
  private final SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ",Locale.US);
+ static final class Sample {
+  final double[] point;
+  final String time;
+  Sample(double[] point,String time){this.point=point;this.time=time;}
+ }
+ Sample firstTimed,lastTimed;
  int segments,points,legs,timedLegs,elevationLegs;
  long timedMillis,movingMillis;
  double distance,gain,loss;
@@ -23,6 +29,8 @@ final class TrackStatistics {
   segments++;
   double[] previous=null;
   Long previousTime=null;
+  double[] tailPoint=null;
+  String tailTime=null;
   for(int i=0;i<vertices.size();i++){
    double[] point=vertices.get(i);
    if(point==null){
@@ -31,7 +39,13 @@ final class TrackStatistics {
     continue;
    }
    points++;
-   Long time=times==null?null:parseTime(times.get(i));
+   String storedTime=times==null?null:times.get(i);
+   Long time=parseTime(storedTime);
+   if(time!=null){
+    tailPoint=point;
+    tailTime=storedTime;
+    if(firstTimed==null)firstTimed=new Sample(point,storedTime.trim());
+   }
    if(previous!=null){
     legs++;
     double length=DemProfile.metres(previous[0],previous[1],point[0],point[1]);
@@ -52,6 +66,7 @@ final class TrackStatistics {
    previous=point;
    previousTime=time;
   }
+  if(tailPoint!=null)lastTimed=firstTimed.point==tailPoint?firstTimed:new Sample(tailPoint,tailTime.trim());
  }
 
  private Long parseTime(String text){

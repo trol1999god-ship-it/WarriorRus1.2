@@ -62,6 +62,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   map.restorePitch(getPreferences(0).getFloat("view_"+projectId+"_pitch",0));
   map.setPitchEnabled(getPreferences(0).getBoolean("map_pitch",false));
   map.setTrackPreprocessing(getPreferences(0).getBoolean("preprocess_gpx_tracks",false));
+  map.setTrackTimeBoundsVisible(getPreferences(0).getBoolean("track_time_bounds",false));
   map.setTileDetail(getPreferences(0).getInt("map_tile_detail",0));
   int control=WorkspaceUi.dp(this,MapHud.TOUCH_DP),edge=WorkspaceUi.dp(this,4),dockHeight=control;
   LinearLayout mapReadout=new LinearLayout(this);
@@ -552,8 +553,19 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
    if(canLeave())editObject(null,"Point");
   }),item("Метки на экране",()->{
    if(canLeave())featureList("Метки на экране",features);
-  }),item("Создать",this::newObject),item("Поиск на карте",this::search),item("Все объекты",()->map.fit()));
+  }),item("Создать",this::newObject),item("Поиск на карте",this::search),
+    item("Стиль треков",this::trackStyle),item("Все объекты",()->map.fit()));
  }
+ private void trackStyle(){
+  SharedPreferences prefs=getPreferences(0);
+  menu("Стиль треков",WorkspaceUi.Item.toggle("Границы времени записи трека",
+    prefs.getBoolean("track_time_bounds",false),()->{
+     boolean enabled=!prefs.getBoolean("track_time_bounds",false);
+     prefs.edit().putBoolean("track_time_bounds",enabled).apply();
+     map.setTrackTimeBoundsVisible(enabled);
+    }));
+ }
+
  private void createCompassPanel(FrameLayout scene,int edge) {
   compassPanel=new LinearLayout(this);
   compassPanel.setOrientation(LinearLayout.VERTICAL);

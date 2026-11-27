@@ -781,7 +781,7 @@
         "settings_canvas_multitouch_zoom_title": "Настройка включает или отключает масштабирование пальцами, включая совмещённый жест поворота. Эталонный прогон недоступен.",
         "settings_landmarks_display_size_title": "Глобальный размер встроенных и SVG-значков и ширины линий. Индивидуальные пропорции KML сохраняются. Сверка эталона открыта.",
         "settings_landmarks_display_color_title": "Сохраняемый цвет по умолчанию для встроенных меток и линий; явные цвета KML и исходное оформление SVG сохраняются. Палитра эталона требует сверки.",
-        "settings_landmarks_display_tracks_style_title": "Цвет и ширина линий редактируются в KML."
+        "settings_landmarks_display_tracks_style_title": "Цвет и ширина линий из KML; опциональные границы времени на карте для сохранённых GPX и KML. События записи и оформление эталона требуют сверки."
       },
       "privacy_exclusions": [
         "geolocation_submenu_dashboard",

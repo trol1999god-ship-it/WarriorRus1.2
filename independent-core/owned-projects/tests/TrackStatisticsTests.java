@@ -15,6 +15,9 @@ public final class TrackStatisticsTests {
       ||stats.timedMillis!=20125||stats.movingMillis!=10125
       ||stats.distance<3335||stats.distance>3337||stats.gain!=5||stats.loss!=0)
    throw new AssertionError("track totals");
+  if(!stats.firstTimed.time.equals("2026-11-27T01:00:00.125+01:00")||stats.firstTimed.point[0]!=179.99
+      ||!stats.lastTimed.time.equals("2026-11-27T10:00:00Z")||stats.lastTimed.point[1]!=80)
+   throw new AssertionError("saved GPX endpoint times");
   stats.addSegment(Arrays.asList(new double[]{1,2},new double[]{1,3}),
       Arrays.asList("2026-11-27T00:00:05Z","2026-11-27T00:00:04Z"));
   if(stats.timedLegs!=2)throw new AssertionError("reversed timestamps");
@@ -32,6 +35,8 @@ public final class TrackStatisticsTests {
       ||kmlStats.movingMillis!=10000||kmlStats.distance<2223||kmlStats.distance>2225
       ||kmlStats.gain!=10||kmlStats.loss!=10)
    throw new AssertionError("KML track totals");
+  if(kmlStats.lastTimed.point[1]!=20.01||!kmlStats.lastTimed.time.equals("2026-11-27T00:00:10Z"))
+   throw new AssertionError("unaligned KML timestamps must not become endpoint labels");
   System.out.println("Track statistics checks passed");
  }
 }
