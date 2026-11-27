@@ -1927,6 +1927,35 @@ public final class MapAndroidChecks extends Instrumentation {
    sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);stableMainMap();
   }finally{classic.edit().putInt("folder_sort",sort).commit();}
  }
+ private android.view.View workspaceButton(android.view.View root,String description){
+  if(description.contentEquals(root.getContentDescription()==null?"":root.getContentDescription()))return root;
+  if(root instanceof android.view.ViewGroup){
+   android.view.ViewGroup group=(android.view.ViewGroup)root;
+   for(int index=0;index<group.getChildCount();index++){
+    android.view.View child=workspaceButton(group.getChildAt(index),description);
+    if(child!=null)return child;
+   }
+  }
+  return null;
+ }
+ private void checkWorkspaceGlyphs(Context context)throws Exception{
+  android.view.View root=activity.getWindow().getDecorView();
+  String[][] controls={{"Меню","menu"},{"Карты","maps"},{"Метки","marks"},{"Ориентирование","compass"},{"+","plus"},{"−","minus"}};
+  for(String[] control:controls){
+   android.widget.ImageButton button=(android.widget.ImageButton)workspaceButton(root,control[0]);
+   check(button!=null&&button.getDrawable() instanceof android.graphics.drawable.BitmapDrawable,
+       "workspace renders the saved bitmap for "+control[0]);
+   try(InputStream stream=context.getAssets().open("workspace-icons/"+control[1]+".png")){
+    Bitmap expected=BitmapFactory.decodeStream(stream);
+    check(expected!=null&&expected.sameAs(((android.graphics.drawable.BitmapDrawable)button.getDrawable()).getBitmap()),
+        "workspace preserves original bitmap pixels for "+control[0]);
+    if(expected!=null)expected.recycle();
+   }
+  }
+  android.widget.ImageButton files=(android.widget.ImageButton)workspaceButton(root,"Файловый менеджер");
+  check(files!=null&&!(files.getDrawable() instanceof android.graphics.drawable.BitmapDrawable),
+      "file manager keeps its own folder glyph");
+ }
  void launcher()throws Exception{
   Context context=getTargetContext();installTileFixture();int networkBefore=requests.get();Object store=storeClass.getConstructor(Context.class).newInstance(context);long id=-1;
   android.content.SharedPreferences prefs=context.getSharedPreferences("workspace-session",0);long previous=prefs.getLong("last_project",-1);long legacyPrevious=context.getSharedPreferences("org.rabochaya.projects.OwnedHomeActivity",0).getLong("last_project",-1);boolean toolsPrevious=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).getBoolean("show_tools",true);boolean coordinatesPrevious=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).getBoolean("show_coordinates",true);context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).edit().putBoolean("show_coordinates",true).putBoolean("show_tools",true).commit();
@@ -1939,6 +1968,13 @@ public final class MapAndroidChecks extends Instrumentation {
    for(String label:new String[]{"Меню","Карты","Метки","Файловый менеджер","Ориентирование"})check(findDescription(getUiAutomation().getRootInActiveWindow(),label)!=null,"workspace exposes "+label);
    Object overview=Class.forName("org.rabochaya.projects.BundledTiles",true,context.getClassLoader()).getConstructor(android.content.res.AssetManager.class).newInstance(context.getAssets());
    for(int z=1;z<=3;z++){int n=1<<z;for(int x=0;x<n;x++)for(int y=0;y<n;y++){Bitmap tile=(Bitmap)call(overview,"tile",new Class[]{int.class,int.class,int.class},z,x,y);check(tile!=null&&tile.getWidth()==256&&tile.getHeight()==256,"bundled overview tile decodes "+z+"/"+x+"/"+y);tile.recycle();}}
+   checkWorkspaceGlyphs(context);
+   clickDescription("Меню");click("Скрыть кнопки меню");
+   check(!context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0).getBoolean("show_tools",true),
+       "menu action saves collapsed map dock");
+   check(findDescription(getUiAutomation().getRootInActiveWindow(),"Меню")==null,"collapsed map dock hides the menu button");
+   clickDescription("Свернуть / развернуть инструменты");
+   check(findDescription(getUiAutomation().getRootInActiveWindow(),"Меню")!=null,"disclosure restores the menu button");
    capture("workspace-overlay");
    dockDestination("menu","Меню","Проекты и файлы KML/KMZ");
    dockDestination("maps","Карты","Карты на экране");

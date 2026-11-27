@@ -206,6 +206,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
     () -> applyMapScreenOptions(false),
     item("Проекты и файлы KML/KMZ", () -> manager(true)), item("Новый проект", this::newProject),
     item("Информеры", this::display), item("Опции", this::optionsMenu),
+    item("Скрыть кнопки меню",mapDock::hideButtons),
     item(mapInputLocked ? "Разблокировать экран" : "Блокировать экран", this::toggleMapInputLock),
     WorkspaceUi.Item.toggle("Ночной режим",getPreferences(0).getBoolean("map_night_raster",false),()->{
      boolean enabled=!getPreferences(0).getBoolean("map_night_raster",false);

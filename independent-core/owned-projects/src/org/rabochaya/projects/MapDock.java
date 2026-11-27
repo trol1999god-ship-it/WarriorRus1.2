@@ -47,11 +47,7 @@ final class MapDock extends LinearLayout {
   }
   addView(scroll, new LayoutParams(-1, -1));
 
-  toggle = MapHud.button(activity, "expand", "Свернуть / развернуть инструменты", () -> {
-   expanded = !expanded;
-   preferences.edit().putBoolean("show_tools", expanded).commit();
-   layoutControls();
-  });
+  toggle = MapHud.button(activity, "expand", "Свернуть / развернуть инструменты", () -> setExpanded(!expanded));
   MapHud.insetButton(activity, toggle, 3, 13);
 
   FrameLayout.LayoutParams dock = new FrameLayout.LayoutParams(touch, touch, Gravity.LEFT | Gravity.BOTTOM);
@@ -72,6 +68,15 @@ final class MapDock extends LinearLayout {
   zoom.addOnLayoutChangeListener((view, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
    if (right - left != oldRight - oldLeft) layoutControls();
   });
+ }
+
+ void hideButtons(){setExpanded(false);}
+
+ private void setExpanded(boolean value){
+  if(expanded==value)return;
+  expanded=value;
+  preferences.edit().putBoolean("show_tools",value).apply();
+  layoutControls();
  }
 
  private int availableWidth(int width) {
