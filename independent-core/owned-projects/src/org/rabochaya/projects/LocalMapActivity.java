@@ -430,14 +430,14 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
    }).setNegativeButton("Отмена",null));
  }
  private android.graphics.drawable.Drawable statusBackground(int theme){
-  if(theme==0)return MapHud.panel(this);
+  if(theme==0)return WorkspaceUi.panel(this);
   return WorkspaceUi.panel(this,theme==1?0xf2eaf5ff:0xf2151b22,theme==1?0xff5b86a7:0xff708497,6);
  }
  private void applyMapAppearance(){
   SharedPreferences prefs=getPreferences(0);
   int theme=prefs.getInt("map_panel_color",0);
   int size=11+2*Math.max(0,Math.min(2,prefs.getInt("map_panel_size",0)));
-  int ink=theme==1?WorkspaceUi.TEXT:MapHud.INK;
+  int ink=theme==2?MapHud.INK:WorkspaceUi.TEXT;
   for(TextView view:new TextView[]{coordinates,targetStatus,tileCoverage,scaleValue,status}){
    view.setBackground(statusBackground(theme));
    view.setTextColor(ink);
