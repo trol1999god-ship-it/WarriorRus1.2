@@ -11,7 +11,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private double compassHeading=Double.NaN;
  private String compassReason="ожидаются данные датчиков";
  private int headingAccuracy;
- private final NorthReference northReference=new NorthReference();private double[] creationPoint;private LinearLayout zoomButtons;private MapDock mapDock;private long projectId;private LinearLayout root;private TextView coordinates,targetStatus;private double[] localTarget;private TextView status,tileNotice,scaleValue;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
+ private final NorthReference northReference=new NorthReference();private double[] creationPoint;private LinearLayout zoomButtons;private SeekBar zoomSlider;private boolean draggingZoomSlider;private MapDock mapDock;private long projectId;private LinearLayout root;private TextView coordinates,targetStatus;private double[] localTarget;private TextView status,tileNotice,scaleValue;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
  private boolean busy,refreshOnResume,refreshMapOnResume;private volatile boolean disposed;private final ExecutorService worker=Executors.newSingleThreadExecutor();private String warning="";private long lastError;private LinearLayout drawingRow;private String pendingDrawType;private ArrayList<double[]> pendingDrawPoints;
  private Bundle pendingEdit;
  private EditForm activeEdit;
@@ -101,8 +101,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   FrameLayout.LayoutParams zoomLayout=new FrameLayout.LayoutParams(control,-2,Gravity.BOTTOM|Gravity.RIGHT);
   zoomLayout.setMargins(0,0,edge,bottom);
   scene.addView(zoomButtons,zoomLayout);
-  zoomButtons.addView(zoomButton("plus","+",()->map.step(1)),new LinearLayout.LayoutParams(control,dockHeight));
-  zoomButtons.addView(zoomButton("minus","−",()->map.step(-1)),new LinearLayout.LayoutParams(control,dockHeight));
+  rebuildZoomControls();
   tileIssue=null;
   tileNotice=label("!",14);
   tileNotice.setTextColor(MapHud.INK);
@@ -117,6 +116,13 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   FrameLayout.LayoutParams noticeLayout=new FrameLayout.LayoutParams(control,control,Gravity.BOTTOM|Gravity.RIGHT);
   noticeLayout.setMargins(0,0,edge,bottom+2*dockHeight);
   scene.addView(tileNotice,noticeLayout);
+  zoomButtons.addOnLayoutChangeListener((view,left,top,right,edgeBottom,oldLeft,oldTop,oldRight,oldBottom)->{
+   int height=edgeBottom-top;
+   if(noticeLayout.bottomMargin!=bottom+height){
+    noticeLayout.bottomMargin=bottom+height;
+    tileNotice.setLayoutParams(noticeLayout);
+   }
+  });
   mapDock=new MapDock(this,scene,status,zoomButtons,
     dockAction("Меню",this::mainMenu),dockAction("Карты",this::mapsMenu),dockAction("Метки",this::marksMenu),
     dockAction("Файловый менеджер",()->manager(false)),dockAction("Ориентирование",this::orientationMenu));
@@ -126,8 +132,47 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   if(restore){SharedPreferences p=getPreferences(0);String key="view_"+projectId+"_";if(p.contains(key+"x"))try{map.restore(Double.parseDouble(p.getString(key+"x",".5")),Double.parseDouble(p.getString(key+"y",".5")),p.getFloat(key+"z",2));}catch(RuntimeException ignored){}}
  }
  public void longPressed(double lat,double lon){if(busy)return;menu(String.format(Locale.US,"%.6f, %.6f",lat,lon),item("Задать цель здесь",()->setTarget(lat,lon)),item("Создать метку здесь",()->{creationPoint=new double[]{lon,lat};editObject(null,"Point");}),item("Начать маршрут здесь",()->{startDrawing("LineString");map.addDrawingPoint(lon,lat);}),item("Начать область здесь",()->{startDrawing("Polygon");map.addDrawingPoint(lon,lat);}),item("В центр карты",()->{double[] v=map.viewport();map.restore(MapMath.x(lon),MapMath.y(lat),v[2]);}));}
- private ImageButton zoomButton(String icon, String label, Runnable action) {
-  ImageButton button=MapHud.button(this,icon,label,action);
+ private void rebuildZoomControls(){
+  zoomButtons.removeAllViews();
+  zoomSlider=null;
+  draggingZoomSlider=false;
+  int width=WorkspaceUi.dp(this,MapHud.TOUCH_DP);
+  if(getPreferences(0).getBoolean("zoom_slider",false)){
+   int length=width*4;
+   FrameLayout sliderFrame=new FrameLayout(this);
+   SeekBar slider=new SeekBar(this);
+   zoomSlider=slider;
+   slider.setMax(230);
+   slider.setContentDescription("Слайдер масштаба карты");
+   slider.setProgress((int)Math.round(map.viewport()[2]*10));
+   slider.setRotation(-90);
+   slider.setEnabled(!mapInputLocked);
+   sliderFrame.addView(slider,new FrameLayout.LayoutParams(length,width,Gravity.CENTER));
+   zoomButtons.addView(sliderFrame,new LinearLayout.LayoutParams(width,length));
+   slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+    public void onProgressChanged(SeekBar bar,int level,boolean fromUser){
+     if(fromUser)map.zoomFromSlider(level/10d,!draggingZoomSlider);
+    }
+    public void onStartTrackingTouch(SeekBar bar){draggingZoomSlider=true;}
+    public void onStopTrackingTouch(SeekBar bar){
+     draggingZoomSlider=false;
+     map.zoomFromSlider(bar.getProgress()/10d,true);
+    }
+   });
+  }else{
+   zoomButtons.addView(zoomButton("plus","+",1),new LinearLayout.LayoutParams(width,width));
+   zoomButtons.addView(zoomButton("minus","−",-1),new LinearLayout.LayoutParams(width,width));
+  }
+ }
+
+ private ImageButton zoomButton(String icon, String label, int step) {
+  ImageButton button=MapHud.button(this,icon,label,()->map.step(step));
+  button.setEnabled(!mapInputLocked);
+  button.setOnLongClickListener(view->{
+   if(mapInputLocked||!getPreferences(0).getBoolean("zoom_hold_detail",false))return false;
+   changeTileDetail(getPreferences(0).getInt("map_tile_detail",0)+step);
+   return true;
+  });
   MapHud.insetButton(this,button,6,11);
   return button;
  }
@@ -165,6 +210,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void updateMapInputLock() {
   map.setInputLocked(mapInputLocked);
   for(int i=0;i<zoomButtons.getChildCount();i++)zoomButtons.getChildAt(i).setEnabled(!mapInputLocked);
+  if(zoomSlider!=null)zoomSlider.setEnabled(!mapInputLocked);
  }
  private void optionsMenu(){
   menu("Опции",item("Координаты центра экрана",this::coordinateOptions),
@@ -177,11 +223,27 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  }
  private void zoomOptions(){
   SharedPreferences prefs=getPreferences(0);
-  menu("Управление масштабом",
+  menu("Управление масштабом",item("Инструмент масштабирования",this::chooseZoomControl),
       WorkspaceUi.Item.toggle("Масштабирование жестом",prefs.getBoolean("zoom_pinch",true),
           ()->toggleZoomGesture("zoom_pinch",true)),
       WorkspaceUi.Item.toggle("Подгонять масштаб к ближайшему уровню",prefs.getBoolean("zoom_snap",false),
-          ()->toggleZoomGesture("zoom_snap",false)));
+          ()->toggleZoomGesture("zoom_snap",false)),
+      WorkspaceUi.Item.toggle("Масштабировать кнопками громкости",prefs.getBoolean("zoom_volume",false),
+          ()->toggleZoomGesture("zoom_volume",false)),
+      WorkspaceUi.Item.toggle("Удерживание +/- меняет детализацию",prefs.getBoolean("zoom_hold_detail",false),
+          ()->toggleZoomGesture("zoom_hold_detail",false)));
+ }
+
+ private void chooseZoomControl(){
+  SharedPreferences prefs=getPreferences(0);
+  WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setTitle("Управление масштабом")
+      .setSingleChoiceItems(new String[]{"Кнопки","Слайдер"},prefs.getBoolean("zoom_slider",false)?1:0,
+          (dialog,index)->{
+           prefs.edit().putBoolean("zoom_slider",index==1).apply();
+           rebuildZoomControls();
+           if(mapDock!=null)mapDock.layoutControls();
+           dialog.dismiss();
+          }).setNegativeButton("Отмена",null));
  }
 
  private void toggleZoomGesture(String key,boolean initial){
@@ -270,11 +332,26 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   int selected=Math.max(0,Math.min(2,prefs.getInt("map_tile_detail",0)+1));
   WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setTitle("Уровень детализации")
    .setSingleChoiceItems(new String[]{"Уменьшенная детализация","Стандартная детализация","Повышенная детализация"},selected,(dialog,index)->{
-     prefs.edit().putInt("map_tile_detail",index-1).apply();
-     map.setTileDetail(index-1);
+     changeTileDetail(index-1);
      dialog.dismiss();
    }).setNegativeButton("Отмена",null));
  }
+ private void changeTileDetail(int detail){
+  int normalized=Math.max(-1,Math.min(1,detail));
+  getPreferences(0).edit().putInt("map_tile_detail",normalized).apply();
+  map.setTileDetail(normalized);
+ }
+
+ @Override public boolean dispatchKeyEvent(KeyEvent event){
+  int key=event.getKeyCode();
+  if((key==KeyEvent.KEYCODE_VOLUME_UP||key==KeyEvent.KEYCODE_VOLUME_DOWN)
+      &&map!=null&&!busy&&!mapInputLocked&&getPreferences(0).getBoolean("zoom_volume",false)){
+   if(event.getAction()==KeyEvent.ACTION_DOWN)map.step(key==KeyEvent.KEYCODE_VOLUME_UP?1:-1);
+   return true;
+  }
+  return super.dispatchKeyEvent(event);
+ }
+
  private void mapAppearance(){
   SharedPreferences prefs=getPreferences(0);
   LinearLayout form=coordinateForm();
@@ -819,6 +896,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void closeDem(){if(dem!=null){try{dem.close();}catch(IOException ignored){}dem=null;}}
  public void center(double lat,double lon,double zoom) {
   refreshTargetDistance(lat,lon);
+  if(zoomSlider!=null&&!draggingZoomSlider)zoomSlider.setProgress((int)Math.round(zoom*10));
   TextView panel = coordinates;
   if (panel == null) return;
   if (mapScale != null) mapScale.update(lat, zoom);
