@@ -71,7 +71,7 @@ public final class ObjectTreeWrites {
 
  static void splitLine(ProjectStore store,long projectId,String featureId,
                        String key,String expected,int vertex)throws IOException {
-  changeGeometryFeature(store,projectId,featureId,feature->GeometryEdits.splitLine(feature,key,expected,vertex));
+  changeGeometryFeature(store,projectId,featureId,feature->GpxExchange.splitTrackLine(feature,key,expected,vertex));
  }
 
  static void ungroupPoints(ProjectStore store,long projectId,String featureId,String expected)throws IOException {

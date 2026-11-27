@@ -108,6 +108,49 @@ final class GpxExchange {
   }catch(IOException invalid){return null;}
  }
 
+ /** Keep per-vertex fields aligned with both halves of a saved GPX track. */
+ static void splitTrackLine(Element feature,String key,String expected,int vertex){
+  Map<String,String> stored=data(feature);
+  String saved=stored.get(GPX_DATA);
+  if(!"trk".equals(stored.get(KIND))||saved==null){
+   GeometryEdits.splitLine(feature,key,expected,vertex);
+   return;
+  }
+  Element extended=child(feature,"ExtendedData");
+  Element value=trackMetadataValue(extended);
+  try{
+   JSONObject metadata=new JSONObject(saved);
+   JSONArray segments=metadata.optJSONArray("points");
+   JSONArray points=segments!=null&&segments.length()==1?segments.optJSONArray(0):null;
+   Element line=child(feature,"LineString");
+   if(line==null||points==null||points.length()!=positions(line).size()){
+    GeometryEdits.splitLine(feature,key,expected,vertex);
+    return;
+   }
+   if(vertex<=0||vertex>=points.length()-1)throw new IllegalArgumentException("Выберите внутреннюю вершину");
+   String first=trackMetadataSlice(metadata,points,0,vertex+1);
+   String second=trackMetadataSlice(metadata,points,vertex,points.length());
+   Element copy=GeometryEdits.splitLine(feature,key,expected,vertex);
+   value.setTextContent(first);
+   trackMetadataValue(child(copy,"ExtendedData")).setTextContent(second);
+  }catch(IOException|JSONException invalid){
+   throw new IllegalArgumentException("Не удалось сохранить поля точек GPX",invalid);
+  }
+ }
+
+ private static Element trackMetadataValue(Element extended){
+  Element value=null;
+  for(Element field:children(extended,"Data"))
+   if(GPX_DATA.equals(field.getAttribute("name")))value=child(field,"value");
+  return value;
+ }
+
+ private static String trackMetadataSlice(JSONObject metadata,JSONArray points,int start,int end)throws JSONException{
+  JSONArray slice=new JSONArray();
+  for(int index=start;index<end;index++)slice.put(points.get(index));
+  return metadata.put("points",new JSONArray().put(slice)).toString();
+ }
+
  static Document write(Element kml)throws Exception{
   Document document=newDocument();
   Element gpx=document.createElementNS(GPX,"gpx");
