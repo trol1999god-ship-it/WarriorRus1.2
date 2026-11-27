@@ -3,8 +3,11 @@ package org.rabochaya.projects;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Toast;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -21,6 +24,7 @@ public final class FormatExportActivity extends Activity {
  private long projectId;
  private String format;
  private byte[] prepared, preparedDigest;
+ private ExportWrite writing;
 
  public static void open(Activity activity,long projectId){
   activity.startActivity(new Intent(activity,FormatExportActivity.class).putExtra("project",projectId));
@@ -29,9 +33,15 @@ public final class FormatExportActivity extends Activity {
  @Override protected void onCreate(Bundle state){
   super.onCreate(state);
   projectId=getIntent().getLongExtra("project",-1);
+  writing=(ExportWrite)getLastNonConfigurationInstance();
   if(state!=null){
    format=state.getString("format");
    preparedDigest=state.getByteArray("preparedDigest");
+  }
+  if(writing!=null){showWriteProgress();writing.attach(this);return;}
+  if(state!=null&&state.getBoolean("writing")){
+   failure(new IOException("Запись прервалась. Проверьте выбранный файл и повторите экспорт при необходимости."));
+   return;
   }
   if(preparedDigest!=null)return;
   if(format!=null){confirm(format);return;}
@@ -52,8 +62,8 @@ public final class FormatExportActivity extends Activity {
    .setNegativeButton("Отмена",(dialog,button)->finish()).setOnCancelListener(dialog->finish()).show();
  }
 
- private byte[] snapshot(String choice)throws IOException{
-  ProjectStore store=new ProjectStore(this);
+ private static byte[] snapshot(Context context,long projectId,String choice)throws IOException{
+  ProjectStore store=new ProjectStore(context);
   try{return ObjectExchange.write(store.load(projectId),choice);}
   finally{store.close();}
  }
@@ -61,7 +71,7 @@ public final class FormatExportActivity extends Activity {
  private void prepare(String choice){
   worker.execute(()->{
    try{
-    byte[] data=snapshot(choice);
+    byte[] data=snapshot(this,projectId,choice);
     runOnUiThread(()->{
      if(disposed)return;
      prepared=data;preparedDigest=digest(data);
@@ -83,19 +93,78 @@ public final class FormatExportActivity extends Activity {
   if(!"content".equals(target.getScheme())&&!"file".equals(target.getScheme())){
    failure(new IOException("Выберите локальный файл"));return;
   }
-  worker.execute(()->{
+  if(writing!=null)return;
+  writing=new ExportWrite(getApplicationContext(),projectId,format,target,prepared,preparedDigest);
+  showWriteProgress();
+  writing.attach(this);
+  worker.execute(writing);
+ }
+
+ private void showWriteProgress(){
+  android.widget.TextView text=new android.widget.TextView(this);
+  text.setTypeface(WorkspaceUi.font(this));
+  int inset=WorkspaceUi.dp(this,16);
+  text.setPadding(inset,inset,inset,inset);
+  text.setText("Запись файла экспорта…");
+  setContentView(text);
+ }
+
+ @Override public Object onRetainNonConfigurationInstance(){
+  if(writing!=null)writing.detach(this);
+  return writing;
+ }
+
+ private void writeCompleted(Exception error){
+  writing=null;
+  if(error!=null){failure(error);return;}
+  Toast.makeText(this,"Объекты экспортированы",Toast.LENGTH_SHORT).show();
+  finish();
+ }
+
+ private static final class ExportWrite implements Runnable {
+  private final Context context;
+  private final long projectId;
+  private final String format;
+  private final Uri target;
+  private final byte[] prepared,digest;
+  private final Handler main=new Handler(Looper.getMainLooper());
+  private FormatExportActivity owner;
+  private boolean completed;
+  private Exception error;
+
+  ExportWrite(Context context,long projectId,String format,Uri target,byte[] prepared,byte[] digest){
+   this.context=context;this.projectId=projectId;this.format=format;
+   this.target=target;this.prepared=prepared;this.digest=digest;
+  }
+
+  void attach(FormatExportActivity activity){
+   owner=activity;
+   dispatch();
+  }
+
+  void detach(FormatExportActivity activity){if(owner==activity)owner=null;}
+
+  private void dispatch(){
+   if(!completed||owner==null)return;
+   FormatExportActivity activity=owner;
+   owner=null;
+   activity.writeCompleted(error);
+  }
+
+  @Override public void run(){
+   Exception failure=null;
    try{
-    byte[] data=prepared!=null?prepared:snapshot(format);
-    if(preparedDigest==null||!MessageDigest.isEqual(preparedDigest,digest(data))){
+    byte[] data=prepared!=null?prepared:snapshot(context,projectId,format);
+    if(digest==null||!MessageDigest.isEqual(digest,digest(data)))
      throw new IOException("Проект изменился после подготовки экспорта. Откройте экспорт заново.");
-    }
-    try(OutputStream stream=getContentResolver().openOutputStream(target,"wt")){
+    try(OutputStream stream=context.getContentResolver().openOutputStream(target,"wt")){
      if(stream==null)throw new IOException("Не удалось открыть файл");
      stream.write(data);
     }
-    runOnUiThread(()->{if(!disposed){Toast.makeText(this,"Объекты экспортированы",Toast.LENGTH_SHORT).show();finish();}});
-   }catch(Exception error){runOnUiThread(()->failure(error));}
-  });
+   }catch(Exception problem){failure=problem;}
+   final Exception outcome=failure;
+   main.post(()->{error=outcome;completed=true;dispatch();});
+  }
  }
 
  private static byte[] digest(byte[] data){
@@ -112,7 +181,8 @@ public final class FormatExportActivity extends Activity {
   super.onSaveInstanceState(state);
   state.putString("format",format);
   state.putByteArray("preparedDigest",preparedDigest);
+  state.putBoolean("writing",writing!=null);
  }
 
- @Override protected void onDestroy(){disposed=true;worker.shutdown();super.onDestroy();}
+ @Override protected void onDestroy(){disposed=true;if(writing!=null)writing.detach(this);worker.shutdown();super.onDestroy();}
 }
