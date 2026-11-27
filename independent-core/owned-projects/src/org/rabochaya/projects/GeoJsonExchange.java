@@ -113,7 +113,7 @@ final class GeoJsonExchange {
  static JSONObject write(Element kml)throws Exception{
   JSONArray features=new JSONArray();
   for(Element p:features(kml)){
-   List<Element> geometry=geometries(p);
+   List<Element> geometry=geometries(p,true);
    if(geometry.isEmpty())continue;
    Map<String,String> data=data(p);
    JSONObject meta=data.containsKey(GEO)?new JSONObject(data.get(GEO)):new JSONObject();
@@ -168,9 +168,32 @@ final class GeoJsonExchange {
      coordinates.put(array(ring));
     }
     return geometry("Polygon",coordinates);
-   case "MultiGeometry":return group(geometries(g),hint,depth+1);
+   case "MultiGeometry":return group(geometries(g,true),hint,depth+1);
+   case "Track": case "MultiTrack":return timedGeometry(g);
    default:throw invalid("Неподдерживаемая геометрия KML");
   }
+ }
+
+ private static JSONObject timedGeometry(Element geometry)throws Exception{
+  List<JSONObject> shapes=new ArrayList<>();
+  for(KmlTrackStatistics.Segment segment:KmlTrackStatistics.segments(geometry)){
+   List<double[]> points=new ArrayList<>();
+   for(double[] point:segment.vertices){
+    if(point==null){
+     addTimedGeometry(shapes,points);
+     points.clear();
+    }else points.add(point);
+   }
+   addTimedGeometry(shapes,points);
+  }
+  if(shapes.isEmpty())throw invalid("В треке KML нет координат");
+  if(shapes.size()==1)return shapes.get(0);
+  return new JSONObject().put("type","GeometryCollection").put("geometries",new JSONArray(shapes));
+ }
+
+ private static void addTimedGeometry(List<JSONObject> shapes,List<double[]> points)throws JSONException{
+  if(points.size()==1)shapes.add(geometry("Point",array(points.get(0))));
+  else if(!points.isEmpty())shapes.add(geometry("LineString",array(points)));
  }
 
  private static double orientation(List<double[]> ring){

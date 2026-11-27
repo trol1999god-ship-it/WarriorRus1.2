@@ -406,6 +406,10 @@ public final class MapAndroidChecks extends Instrumentation {
    check(temporalGpx.split("<trkseg>",-1).length==4&&temporalGpx.contains("08:01:00Z")
        &&!temporalGpx.contains("08:02:00Z")&&temporalGpx.contains("08:03:00Z")
        &&temporalGpx.contains("08:04:00Z"),"temporal KML export retains time alignment and coordinate gaps");
+   org.json.JSONObject temporalJson=new org.json.JSONObject(new String(writeExchange(temporalProject,"geojson"),"UTF-8"));
+   org.json.JSONObject temporalGeometry=temporalJson.getJSONArray("features").getJSONObject(0).getJSONObject("geometry");
+   check("GeometryCollection".equals(temporalGeometry.getString("type"))
+       &&temporalGeometry.getJSONArray("geometries").length()==3,"GeoJSON keeps temporal track spatial gaps");
    ByteArrayOutputStream indexedKmz=new ByteArrayOutputStream();
    try(java.util.zip.ZipOutputStream archive=new java.util.zip.ZipOutputStream(indexedKmz)){
     String[] paths={"doc.kml","layers/objects.kml","layers/files/payload.txt"};
