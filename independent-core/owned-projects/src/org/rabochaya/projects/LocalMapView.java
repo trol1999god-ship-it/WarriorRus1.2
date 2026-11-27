@@ -3,6 +3,7 @@ import android.content.*;import android.graphics.*;import android.os.Handler;imp
 /** Independent raster map + KML geometry, sharing one Web Mercator viewport. */
 public final class LocalMapView extends View {
  public interface Listener {void center(double lat,double lon,double zoom);void picked(KmlProject.Feature feature);void error(String message);default void tileError(String message){error(message);}void settled(double x,double y,double zoom);void draftChanged(int count);void longPressed(double lat,double lon);}
+ private final IdentityHashMap<KmlProject.Geometry,List<List<double[]>>> filteredTrackRings=new IdentityHashMap<>();
  private final IdentityHashMap<org.w3c.dom.Element,KmlComponentStyle> componentStyles=new IdentityHashMap<>();
  private final Handler mainHandler = new Handler(Looper.getMainLooper());
  private final IdentityHashMap<org.w3c.dom.Element,SymbolImage> symbolImages=new IdentityHashMap<>();
@@ -114,8 +115,8 @@ public final class LocalMapView extends View {
  private double world(){return 256*Math.pow(2,zoom);}
  public void restore(double x,double y,double z){if(Double.isNaN(x)||Double.isInfinite(x)||Double.isNaN(y)||Double.isInfinite(y)||Double.isNaN(z)||Double.isInfinite(z))return;cx=MapMath.wrap(x);cy=MapMath.clamp(y,0,1);zoom=MapMath.clamp(z,0,23);restored=true;fitted=true;changed();settle();}
  public double[] viewport(){return new double[]{cx,cy,zoom};}
- public void fit(){if(getWidth()<1||getHeight()<1){fitted=false;restored=false;return;}ArrayList<double[]> points=new ArrayList<double[]>();for(KmlProject.Feature f:features)for(KmlProject.Geometry g:f.shapes)for(List<double[]> ring:g.rings)points.addAll(ring);double[] v=MapMath.fit(points.toArray(new double[points.size()][]),getWidth(),getHeight());cx=v[0];cy=v[1];zoom=points.isEmpty()&&bundled!=null?MapMath.overviewZoom(getHeight()):v[2];fitted=true;changed();settle();}
- public void focus(KmlProject.Feature feature){ArrayList<double[]> points=new ArrayList<>();for(KmlProject.Geometry geometry:feature.shapes)for(List<double[]> ring:geometry.rings)points.addAll(ring);double[] v=MapMath.fit(points.toArray(new double[points.size()][]),Math.max(1,getWidth()),Math.max(1,getHeight()));restore(v[0],v[1],v[2]);}
+ public void fit(){if(getWidth()<1||getHeight()<1){fitted=false;restored=false;return;}ArrayList<double[]> points=new ArrayList<double[]>();for(KmlProject.Feature f:features)for(KmlProject.Geometry g:f.shapes)for(List<double[]> ring:displayedRings(g))points.addAll(ring);double[] v=MapMath.fit(points.toArray(new double[points.size()][]),getWidth(),getHeight());cx=v[0];cy=v[1];zoom=points.isEmpty()&&bundled!=null?MapMath.overviewZoom(getHeight()):v[2];fitted=true;changed();settle();}
+ public void focus(KmlProject.Feature feature){ArrayList<double[]> points=new ArrayList<>();for(KmlProject.Geometry geometry:feature.shapes)for(List<double[]> ring:displayedRings(geometry))points.addAll(ring);double[] v=MapMath.fit(points.toArray(new double[points.size()][]),Math.max(1,getWidth()),Math.max(1,getHeight()));restore(v[0],v[1],v[2]);}
  protected void onSizeChanged(int w,int h,int oldw,int oldh){super.onSizeChanged(w,h,oldw,oldh);if(!fitted&&!restored)fit();else changed();}
  public void step(double amount){zoomAt(amount,getWidth()/2f,getHeight()/2f);settle();}
  private void zoomAt(double amount,float px,float py){double before=world(),next=MapMath.clamp(zoom+amount,0,23);double wx=cx+(px-getWidth()/2.0)/before,wy=cy+(py-getHeight()/2.0)/before;zoom=next;double after=world();cx=MapMath.wrap(wx-(px-getWidth()/2.0)/after);cy=MapMath.clamp(wy-(py-getHeight()/2.0)/after,0,1);changed();}
@@ -181,7 +182,7 @@ public final class LocalMapView extends View {
     }
     label=point;
    }
-   else {Path path=new Path();path.setFillType(Path.FillType.EVEN_ODD);for(List<double[]> ring:g.rings){boolean first=true;double previous=0;for(double[] c:ring){double worldX=MapMath.x(c[0]);double px;if(first)px=MapMath.delta(worldX,cx);else px=previous+MapMath.delta(worldX,MapMath.wrap(cx+previous));previous=px;float x=(float)(getWidth()/2.0+px*world()),y=(float)(getHeight()/2.0+(MapMath.y(c[1])-cy)*world());if(label==null)label=new float[]{x,y};if(first){path.moveTo(x,y);first=false;}else path.lineTo(x,y);}if("Polygon".equals(g.type))path.close();}
+   else {Path path=new Path();path.setFillType(Path.FillType.EVEN_ODD);for(List<double[]> ring:displayedRings(g)){boolean first=true;double previous=0;for(double[] c:ring){double worldX=MapMath.x(c[0]);double px;if(first)px=MapMath.delta(worldX,cx);else px=previous+MapMath.delta(worldX,MapMath.wrap(cx+previous));previous=px;float x=(float)(getWidth()/2.0+px*world()),y=(float)(getHeight()/2.0+(MapMath.y(c[1])-cy)*world());if(label==null)label=new float[]{x,y};if(first){path.moveTo(x,y);first=false;}else path.lineTo(x,y);}if("Polygon".equals(g.type))path.close();}
     if("Polygon".equals(g.type)){if(!Boolean.FALSE.equals(style.fill)){paint.setStyle(Paint.Style.FILL);paint.setColor(style.polygon==null?(KmlComponentStyle.DEFAULT_COLOR&0xffffff)|0x45000000:style.polygon);canvas.drawPath(path,paint);}paint.setStyle(Paint.Style.STROKE);paint.setColor(line);if(!Boolean.FALSE.equals(style.outline)&&(style.width==null||style.width>0))canvas.drawPath(path,paint);}else if(style.width==null||style.width>0)canvas.drawPath(path,paint);
    }}
    if(labelsVisible&&label!=null&&labels++<200&&(style.label==null||(style.label>>>24)!=0)&&(style.labelScale==null||style.labelScale>0)){
@@ -221,6 +222,23 @@ public final class LocalMapView extends View {
   paint.setStyle(Paint.Style.FILL);
  }
  private void drawTiles(Canvas canvas,int layer,TileSource source){drawTiles(canvas,layer,source,null);}
+ void setTrackPreprocessing(boolean enabled){
+  filteredTrackRings.clear();
+  if(enabled)for(KmlProject.Feature feature:features){
+   if(feature.element==null||!"trk".equals(ObjectExchange.data(feature.element).get(ObjectExchange.KIND)))continue;
+   for(KmlProject.Geometry geometry:feature.shapes){
+    if(!"LineString".equals(geometry.type))continue;
+    List<List<double[]>> rings=new ArrayList<>(geometry.rings.size());
+    for(List<double[]> ring:geometry.rings)rings.add(TrackDisplayFilter.withoutSpikes(ring));
+    filteredTrackRings.put(geometry,rings);
+   }
+  }
+  invalidate();
+ }
+ private List<List<double[]>> displayedRings(KmlProject.Geometry geometry){
+  List<List<double[]>> rings=filteredTrackRings.get(geometry);
+  return rings==null?geometry.rings:rings;
+ }
  void setTileDetail(int detail){
   tileDetail=Math.max(-1,Math.min(1,detail));
   invalidate();
@@ -464,7 +482,7 @@ public final class LocalMapView extends View {
    case MotionEvent.ACTION_POINTER_DOWN:moved=true;return true;
    case MotionEvent.ACTION_POINTER_UP:int remain=event.getActionIndex()==0?1:0;lastX=event.getX(remain);lastY=event.getY(remain);return true;
    case MotionEvent.ACTION_MOVE:if(longConsumed)return true;if(event.getPointerCount()==1&&!scale.isInProgress()){cx=MapMath.wrap(cx-(x-lastX)/world());cy=MapMath.clamp(cy-(y-lastY)/world(),0,1);if(Math.abs(x-downX)+Math.abs(y-downY)>8)moved=true;changed();}lastX=x;lastY=y;return true;
-   case MotionEvent.ACTION_UP:if(longConsumed){settle();return true;}if(moved){cx=MapMath.wrap(cx-(x-lastX)/world());cy=MapMath.clamp(cy-(y-lastY)/world(),0,1);changed();}if(!moved){performClick();if(draft!=null){addDrawingPoint(MapMath.lon(cx+(x-getWidth()/2.0)/world()),MapMath.lat(cy+(y-getHeight()/2.0)/world()));}else{double radius=32*getResources().getDisplayMetrics().density,best=radius;int bestPriority=-1;KmlProject.Feature picked=null;for(KmlProject.Feature f:features)for(KmlProject.Geometry g:f.shapes){double d=MapHitTest.distance(g.type,g.rings,cx,cy,world(),getWidth(),getHeight(),x,y);int priority="Point".equals(g.type)?2:("LineString".equals(g.type)?1:0);if(d<=radius&&(priority>bestPriority||(priority==bestPriority&&d<=best))){best=d;bestPriority=priority;picked=f;}}if(picked!=null)listener.picked(picked);}}settle();return true;
+   case MotionEvent.ACTION_UP:if(longConsumed){settle();return true;}if(moved){cx=MapMath.wrap(cx-(x-lastX)/world());cy=MapMath.clamp(cy-(y-lastY)/world(),0,1);changed();}if(!moved){performClick();if(draft!=null){addDrawingPoint(MapMath.lon(cx+(x-getWidth()/2.0)/world()),MapMath.lat(cy+(y-getHeight()/2.0)/world()));}else{double radius=32*getResources().getDisplayMetrics().density,best=radius;int bestPriority=-1;KmlProject.Feature picked=null;for(KmlProject.Feature f:features)for(KmlProject.Geometry g:f.shapes){double d=MapHitTest.distance(g.type,displayedRings(g),cx,cy,world(),getWidth(),getHeight(),x,y);int priority="Point".equals(g.type)?2:("LineString".equals(g.type)?1:0);if(d<=radius&&(priority>bestPriority||(priority==bestPriority&&d<=best))){best=d;bestPriority=priority;picked=f;}}if(picked!=null)listener.picked(picked);}}settle();return true;
    case MotionEvent.ACTION_CANCEL:settle();return true;
   }return true;
  }

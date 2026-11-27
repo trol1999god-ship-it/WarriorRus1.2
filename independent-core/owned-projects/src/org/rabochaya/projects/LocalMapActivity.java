@@ -48,6 +48,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   map.setManualRotation(getPreferences(0).getBoolean("rotate_map_touch",false));
   map.restorePitch(getPreferences(0).getFloat("view_"+projectId+"_pitch",0));
   map.setPitchEnabled(getPreferences(0).getBoolean("map_pitch",false));
+  map.setTrackPreprocessing(getPreferences(0).getBoolean("preprocess_gpx_tracks",false));
   map.setTileDetail(getPreferences(0).getInt("map_tile_detail",0));
   int control=WorkspaceUi.dp(this,MapHud.TOUCH_DP),edge=WorkspaceUi.dp(this,4),dockHeight=control;
   LinearLayout mapReadout=new LinearLayout(this);
@@ -162,8 +163,17 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
     item("Кеш / онлайн",this::onlineSettings),item("Информеры",this::display),
     item("Экран карты",this::screenOptions),item("Вид координатных сеток",this::gridAppearance),
     item("Единицы измерения",this::displayUnits),item("Стиль статус-панелей",this::mapAppearance),
-    item("Уровень детализации",this::tileDetail));
+    item("Уровень детализации",this::tileDetail),
+    WorkspaceUi.Item.toggle("Предварительная обработка GPX-треков",
+        getPreferences(0).getBoolean("preprocess_gpx_tracks",false),this::toggleTrackPreprocessing));
  }
+ private void toggleTrackPreprocessing(){
+  SharedPreferences prefs=getPreferences(0);
+  boolean enabled=!prefs.getBoolean("preprocess_gpx_tracks",false);
+  prefs.edit().putBoolean("preprocess_gpx_tracks",enabled).apply();
+  map.setTrackPreprocessing(enabled);
+ }
+
  private static final String[] MAP_SCREEN_KEYS={"map_hide_status", "map_immersive", "map_keep_screen_on", "map_confirm_exit", "map_show_locked"};
 
  private void applyGridAppearance() {
