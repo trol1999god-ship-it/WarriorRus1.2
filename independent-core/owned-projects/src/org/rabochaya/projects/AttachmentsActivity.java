@@ -84,5 +84,5 @@ public final class AttachmentsActivity extends Activity {
   }catch(final Exception e){runOnUiThread(()->{if(!disposed){busy=false;status.setText("Вложение не добавлено: "+e.getMessage());}});}finally{if(store!=null)store.close();}});
  }
  private void remove(final String id){busy=true;status.setText("Удаление ссылки на вложение…");worker.execute(()->{ProjectStore store=null;try{store=new ProjectStore(this);ProjectWrites.removeAttachment(store,projectId,featureId,id);runOnUiThread(()->{if(!disposed){busy=false;load();}});}catch(final Exception e){runOnUiThread(()->{if(!disposed){busy=false;status.setText("Не удалось убрать вложение: "+e.getMessage());}});}finally{if(store!=null)store.close();}});}
- protected void onDestroy(){disposed=true;worker.shutdown();super.onDestroy();}
+ protected void onDestroy(){if(attachmentDialog!=null)attachmentDialog.dismiss();disposed=true;worker.shutdown();super.onDestroy();}
 }

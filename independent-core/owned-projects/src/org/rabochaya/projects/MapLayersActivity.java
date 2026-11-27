@@ -95,5 +95,5 @@ public final class MapLayersActivity extends Activity {
  }catch(Exception e){reload("Изменение не применено: "+e.getMessage());}}
  protected void onActivityResult(int request,int result,Intent data){super.onActivityResult(request,result,data);if(request==PICK_SOURCE&&result==RESULT_OK&&data!=null){try{apply(snapshot.composition.add(MapComposition.Layer.catalog(data.getStringExtra("catalog"))),true);}catch(Exception e){reload("Слой не добавлен: "+e.getMessage());}}}
  protected void onSaveInstanceState(Bundle out){flushOpacity();out.putInt("scroll",scroll==null?0:scroll.getScrollY());if(removalDialog!=null){out.putString("remove_layer",removalId);out.putByteArray("remove_revision",removalToken);}super.onSaveInstanceState(out);}
- protected void onPause(){flushOpacity();super.onPause();}protected void onDestroy(){disposed=true;super.onDestroy();}
+ protected void onPause(){flushOpacity();super.onPause();}protected void onDestroy(){if(removalDialog!=null)removalDialog.dismiss();disposed=true;super.onDestroy();}
 }
