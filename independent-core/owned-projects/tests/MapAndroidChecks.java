@@ -2046,6 +2046,28 @@ public final class MapAndroidChecks extends Instrumentation {
   capture(name.endsWith(".png")?"photo":name.endsWith(".wav")?"audio":"video");
   Field temp=preview.getClass().getDeclaredField("temporary");temp.setAccessible(true);File file=(File)temp.get(preview);if(file!=null)check(file.getCanonicalPath().startsWith(getTargetContext().getCacheDir().getCanonicalPath()+File.separator),"preview temporary stays private");runOnMainSync(new Runnable(){public void run(){preview.finish();}});waitForIdleSync();Thread.sleep(500);if(file!=null)check(!file.exists(),"closing media removes temporary copy");activity=panel;
  }
+ Activity recreateForStateCheck(Activity old)throws Exception{
+  java.util.concurrent.CountDownLatch resumed=new java.util.concurrent.CountDownLatch(1);
+  Activity[] result=new Activity[1];
+  Application.ActivityLifecycleCallbacks callback=new Application.ActivityLifecycleCallbacks(){
+   public void onActivityCreated(Activity activity,Bundle state){}
+   public void onActivityStarted(Activity activity){}
+   public void onActivityResumed(Activity activity){
+    if(activity!=old&&activity.getClass()==old.getClass()){result[0]=activity;resumed.countDown();}
+   }
+   public void onActivityPaused(Activity activity){}
+   public void onActivityStopped(Activity activity){}
+   public void onActivitySaveInstanceState(Activity activity,Bundle state){}
+   public void onActivityDestroyed(Activity activity){}
+  };
+  Application application=old.getApplication();
+  runOnMainSync(()->{application.registerActivityLifecycleCallbacks(callback);old.recreate();});
+  boolean recreated;
+  try{recreated=resumed.await(45,java.util.concurrent.TimeUnit.SECONDS);}
+  finally{runOnMainSync(()->application.unregisterActivityLifecycleCallbacks(callback));}
+  check(recreated&&result[0]!=null,"activity resumed after window recreation");
+  return result[0];
+ }
  void media()throws Exception{
   Object store=storeClass.getConstructor(Context.class).newInstance(getTargetContext());long id;
   try{Object doc=codec.getMethod("parse",byte[].class).invoke(null,(Object)XML.replace("QA_MAP_PROJECT","QA_MEDIA_PROJECT").getBytes("UTF-8"));id=(Long)call(store,"insert",new Class[]{codec,String.class},doc,"QA_MEDIA_PROJECT");}finally{call(store,"close",new Class[]{});}getTargetContext().getSharedPreferences("qa_media",0).edit().putLong("project",id).commit();
@@ -2055,12 +2077,7 @@ public final class MapAndroidChecks extends Instrumentation {
   doc=mediaDocument();check(links(doc,"qa_point").size()==4&&assets(doc).size()==4,"four media attachments and their bytes saved in SQLite");
   String description=(String)codec.getMethod("text",org.w3c.dom.Element.class,String.class).invoke(null,element(doc,"qa_point"),"description");check(description.contains("<a href=\"attachments/")&&description.contains("<img src=\"attachments/"),"standard relative HTML media links added for KMZ consumers");
   click("qa_photo1.png");click("Убрать из объекта");
-  ActivityMonitor restoredPanel=addMonitor("org.rabochaya.projects.AttachmentsActivity",null,false);
-  Activity previousPanel=activity;
-  runOnMainSync(previousPanel::recreate);
-  Activity reopenedPanel=waitForMonitorWithTimeout(restoredPanel,45000);removeMonitor(restoredPanel);
-  check(reopenedPanel!=null&&reopenedPanel!=previousPanel,"attachment list recreates");
-  activity=reopenedPanel;
+  activity=recreateForStateCheck(activity);
   waitText("Убрать это вложение из объекта?");
   click("Отмена");waitText("Вложений: 4");
   check(links(mediaDocument(),"qa_point").size()==4,"recreating confirmation does not remove the attachment");

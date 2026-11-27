@@ -51,10 +51,7 @@ final class MapLayersChecks {
  m.mapEvidence("layers-visibility","before","Показывать слой","top layer visible");
  m.click("Показывать слой");m.check(!(Boolean)f(layer(ka),"visible"),"explicit visibility disables top layer");
  m.mapEvidence("layers-visibility","after","Показывать слой","top layer hidden");addCatalog(a);m.click("Убрать");
-  android.app.Instrumentation.ActivityMonitor restore= m.addMonitor("org.rabochaya.projects.MapLayersActivity",null,false);
-  Activity former=m.activity; m.runOnMainSync(former::recreate);
-  m.activity=m.waitForMonitorWithTimeout(restore,45000);m.removeMonitor(restore);
-  m.check(m.activity!=null&&m.activity!=former,"layer removal survives recreation");
+  m.activity=m.recreateForStateCheck(m.activity);
   m.waitText("Убрать слой?");
   m.click("Убрать");m.check(layers().size()==2&&!(Boolean)f(layer(ka),"visible"),"removing duplicate source keeps original hidden row");closeManager(main);pixel(blend(0xff253020,Color.BLUE,alpha));m.setViewport(.5,.5,3);Thread.sleep(800);m.check(m.requests.get()==0,"uncached composition zoom respects disabled network");m.setViewport(.5,.5,2);pixel(blend(0xff253020,Color.BLUE,alpha));manager();byte[] beforeSuspend=encoded(model());m.click("Использовать композицию слоёв");m.check(!(Boolean)f(snapshot(),"enabled")&&Arrays.equals(beforeSuspend,encoded(model())),"suspending composition preserves exact saved layer set");m.click("К карте");m.activity=main;m.waitText("Локальная карта MBTiles");manager();m.click("Использовать композицию слоёв");m.check((Boolean)f(snapshot(),"enabled")&&Arrays.equals(beforeSuspend,encoded(model())),"explicit re-enable restores saved set without rebuilding layer identities");new CompositionPresetChecks(m,this).run(store,id,other);closeManager(main);pixel(blend(0xff253020,Color.BLUE,alpha));capture("final");cacheRetained(sa,Color.RED);cacheRetained(sb,Color.BLUE);unchanged(store,id,xml,assets);m.check(Arrays.equals(otherXml,r.xml(r.load(store,other)))&&!(Boolean)f(stored(other),"enabled"),"composition isolated from another project");m.check(Arrays.equals(localHash,m.hash(local)),"all composition actions retain exact local file");Object saved=stored(id);
  m.mapEvidence("layers-reopen","before","Повторное открытие проекта","composition ready for force-stop");
