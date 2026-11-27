@@ -19,6 +19,20 @@ public final class GeometryEditsTests {
  static String xml(Node node)throws Exception{StringWriter out=new StringWriter();Transformer t=TransformerFactory.newInstance().newTransformer();t.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION,"yes");t.transform(new DOMSource(node),new StreamResult(out));return out.toString();}
  static Element named(Document doc,String tag){NodeList values=doc.getElementsByTagNameNS("http://www.opengis.net/kml/2.2",tag);if(values.getLength()==0)values=doc.getElementsByTagNameNS("*",tag);return (Element)values.item(0);}
  static void invalid(Element feature,GeometryEdits.Part p,String text)throws Exception{String before=xml(feature);try{GeometryEdits.replace(feature,p.key,p.token,text);throw new AssertionError("accepted invalid input");}catch(IllegalArgumentException expected){checks++;}check(xml(feature).equals(before),"invalid input is atomic");}
+ static void mergeSegments()throws Exception{
+  Document d=parse("<kml><Document><Placemark id='a'><LineString id='first'><coordinates>1,2 3,4</coordinates></LineString></Placemark>"
+      +"<Placemark id='b'><Point id='second'><coordinates>5,6</coordinates></Point></Placemark></Document></kml>");
+  Element a=feature(d),b=(Element)d.getElementsByTagName("Placemark").item(1);
+  String before=xml(d);
+  String ta=GeometryEdits.parts(a).get(0).token,tb=GeometryEdits.parts(b).get(0).token;
+  java.lang.reflect.Method merge=GeometryEdits.class.getDeclaredMethod("mergedTrack",Element.class,Element.class,String.class,String.class);
+  merge.setAccessible(true);
+  Element merged=(Element)merge.invoke(null,a,b,ta,tb);
+  check(before.equals(xml(d)),"merge candidate does not edit sources");
+  List<GeometryEdits.Part> p=GeometryEdits.parts(merged);
+  check(p.size()==2&&p.get(0).text.startsWith("2 1")&&p.get(1).text.equals("6 5"),"merge keeps order and boundaries");
+  check(!merged.getAttribute("id").equals("a")&&!xml(merged).contains("id=\"second\""),"merge allocates fresh IDs");
+ }
  static void splitSegments()throws Exception{
   Document doc=parse("<kml><Document><Placemark id='track'><MultiGeometry id='segments'>"
       +"<LineString id='first'><coordinates>1,2 3,4</coordinates></LineString>"
@@ -59,6 +73,7 @@ public final class GeometryEditsTests {
  public static void main(String[] args)throws Exception{
   splitStandaloneLine();
   splitSegments();
+  mergeSegments();
   Document splitGroup=parse("<kml><Document><Placemark id='group'><description>Примечание</description>"
     +"<MultiGeometry id='multi'><Point id='P1'><coordinates>1,2,3</coordinates></Point>"
     +"<Point id='P2'><coordinates>4,5,6</coordinates></Point></MultiGeometry></Placemark></Document></kml>");

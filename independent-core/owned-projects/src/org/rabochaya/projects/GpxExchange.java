@@ -139,6 +139,48 @@ final class GpxExchange {
   }
  }
 
+ static boolean canMergeTrack(Element feature){
+  return feature!=null&&"trk".equals(data(feature).get(KIND))&&!GeometryEdits.trackParts(feature).isEmpty();
+ }
+
+ static void mergeTracks(Element first,Element second,String firstToken,String secondToken){
+  if(!canMergeTrack(first)||!canMergeTrack(second))throw new IllegalArgumentException("Требуются два трека GPX");
+  try{
+   JSONObject firstData=trackData(first),secondData=trackData(second);
+   JSONArray combined=new JSONArray();
+   appendTrackMetadata(combined,first,firstData);
+   appendTrackMetadata(combined,second,secondData);
+   String metadata=firstData.put("points",combined).toString();
+   Element result=GeometryEdits.mergedTrack(first,second,firstToken,secondToken);
+   Element ext=child(result,"ExtendedData");
+   Element value=ext==null?null:trackMetadataValue(ext);
+   if(value==null)data(result,GPX_DATA,metadata);else value.setTextContent(metadata);
+   Element name=child(result,"name");
+   if(name==null){
+    name=result.getOwnerDocument().createElementNS(result.getNamespaceURI(),"name");
+    result.insertBefore(name,result.getFirstChild());
+   }
+   String title=name.getTextContent().trim();
+   name.setTextContent(title.isEmpty()?"Объединённый трек":title+" — объединённый трек");
+   first.getParentNode().insertBefore(result,first.getNextSibling());
+  }catch(JSONException invalid){
+   throw new IllegalArgumentException("Не удалось сохранить поля точек GPX",invalid);
+  }
+ }
+
+ private static JSONObject trackData(Element track)throws JSONException{
+  String saved=data(track).get(GPX_DATA);
+  return saved==null?new JSONObject():new JSONObject(saved);
+ }
+
+ private static void appendTrackMetadata(JSONArray combined,Element track,JSONObject metadata)throws JSONException{
+  int count=GeometryEdits.trackParts(track).size();
+  JSONArray segments=metadata.optJSONArray("points");
+  if(segments!=null&&segments.length()!=count)
+   throw new IllegalArgumentException("Поля точек не соответствуют сегментам GPX");
+  for(int i=0;i<count;i++)combined.put(segments==null?new JSONArray():segments.getJSONArray(i));
+ }
+
  static boolean canSplitSegments(Element feature){
   return "trk".equals(data(feature).get(KIND))&&GeometryEdits.trackSegmentCount(feature)>1;
  }

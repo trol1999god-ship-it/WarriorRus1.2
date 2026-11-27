@@ -74,6 +74,18 @@ public final class ObjectTreeWrites {
   changeGeometryFeature(store,projectId,featureId,feature->GpxExchange.splitTrackLine(feature,key,expected,vertex));
  }
 
+ static void mergeTracks(ProjectStore store,long projectId,String firstId,String secondId,
+                         String firstToken,String secondToken)throws IOException {
+  SQLiteDatabase db=store.getWritableDatabase();
+  db.beginTransaction();
+  try{
+   KmlProject project=store.load(projectId);
+   GpxExchange.mergeTracks(project.byId(firstId),project.byId(secondId),firstToken,secondToken);
+   ProjectWrites.savePreservingAssets(store,projectId,project);
+   db.setTransactionSuccessful();
+  }finally{db.endTransaction();}
+ }
+
  static void splitTrackSegments(ProjectStore store,long projectId,String featureId,
                                 String key,String expected)throws IOException {
   changeGeometryFeature(store,projectId,featureId,feature->GpxExchange.splitSegments(feature,key,expected));

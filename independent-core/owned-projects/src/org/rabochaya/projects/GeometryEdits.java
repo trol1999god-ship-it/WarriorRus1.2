@@ -99,6 +99,43 @@ public final class GeometryEdits {
         return copy;
     }
 
+    static List<Element> trackParts(Element feature) {
+        Element group=trackSegmentGroup(feature);
+        if(group!=null)return children(group);
+        if(!is(feature,"Placemark"))return Collections.emptyList();
+        Element part=null;
+        for(Element element:children(feature)){
+            if(is(element,"LineString")||is(element,"Point")){
+                if(part!=null||child(element,"coordinates")==null)return Collections.emptyList();
+                part=element;
+            }else if(Arrays.asList("Polygon","MultiGeometry","LinearRing","Model","Track","MultiTrack").contains(local(element)))
+                return Collections.emptyList();
+        }
+        return part==null?Collections.emptyList():Collections.singletonList(part);
+    }
+
+    static Element mergedTrack(Element first,Element second,String firstToken,String secondToken) {
+        if(first==second||first.getParentNode()!=second.getParentNode()||!(first.getParentNode() instanceof Element))
+            throw new IllegalArgumentException("Выберите другой трек в той же папке");
+        if(!token(first).equals(firstToken)||!token(second).equals(secondToken))
+            throw new IllegalStateException("Треки изменились. Откройте действие заново");
+        List<Element> firstParts=trackParts(first),secondParts=trackParts(second);
+        if(firstParts.isEmpty()||secondParts.isEmpty())throw new IllegalArgumentException("Требуются два трека");
+        Element result=(Element)first.cloneNode(true);
+        Element oldGroup=trackSegmentGroup(result);
+        Element oldShape=oldGroup==null?trackParts(result).get(0):oldGroup;
+        Element combined=element(result,"MultiGeometry");
+        result.replaceChild(combined,oldShape);
+        for(Element part:firstParts)combined.appendChild(part.cloneNode(true));
+        for(Element part:secondParts)combined.appendChild(part.cloneNode(true));
+        Map<String,Integer> counts=new HashMap<>();
+        ObjectTree.countIds(first.getOwnerDocument().getDocumentElement(),counts,0);
+        Map<String,String> ids=new HashMap<>();
+        ObjectTree.newIds(result,counts,new HashSet<>(counts.keySet()),ids,0);
+        ObjectTree.rewrite(result,ids,0);
+        return result;
+    }
+
     static int trackSegmentCount(Element feature) {
         Element group=trackSegmentGroup(feature);
         return group==null?0:children(group).size();

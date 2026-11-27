@@ -39,7 +39,7 @@ public final class GeometryEditorActivity extends Activity {
     private Button save,more,close;private AlertDialog profileDialog;
     private Toast notice;
     private final ExecutorService worker=Executors.newSingleThreadExecutor();
-    private boolean busy,disposed,selecting,addingHole,orphan,profileRunning,canSplitLine,canUngroupPoints,canSplitTrackSegments;
+    private boolean busy,disposed,selecting,addingHole,orphan,profileRunning,canSplitLine,canUngroupPoints,canSplitTrackSegments,canMergeTrack;
     private int current=-1;
     private String expected,base="";
 
@@ -65,8 +65,9 @@ public final class GeometryEditorActivity extends Activity {
         if(!orphan)choices.add("Редактировать вершины");if(!orphan&&canUngroupPoints&&!dirty())choices.add("Разгруппировать точки");if(!orphan&&!"Point".equals(part.type))choices.add("Профиль DEM");}
         if(!orphan&&!addingHole&&stagedHoleDeletion==null&&canSplitTrackSegments&&!dirty()
                 &&part.key.matches("0\\.[1-9][0-9]*"))choices.add("Разделить перед сегментом");
+        if(!orphan&&!addingHole&&stagedHoleDeletion==null&&canMergeTrack&&!dirty())choices.add("Объединить с треком GPX");
         choices.add("Копировать ввод");choices.add("Перечитать объект");
-        new AlertDialog.Builder(this).setTitle("Действия с контуром").setItems(choices.toArray(new String[choices.size()]),(d,w)->{String selected=choices.get(w);if(selected.equals("Отменить удаление контура")){cancelStagedHoleDeletion();}else if(selected.equals("Редактировать вершины")){textMode();vertices();}else if(selected.equals("Добавить внутренний контур"))newHole();else if(selected.equals("Удалить внутренний контур")){if(dirty()){status.setText("Сначала сохраните или отмените текущий ввод");return;}try{openGeometryConfirmation(new GeometryConfirmationDraft(project,featureId,VERTEX_SESSION,part.key,sourceToken,VertexEditDraft.stamp(sourceText),part.type,"hole",false,-1),"");}catch(IllegalArgumentException error){status.setText(error.getMessage());}}else if(selected.equals("Разделить перед сегментом"))confirmTrackSplit(part);else if(selected.equals("Разгруппировать точки"))confirmUngroup(part);else if(selected.equals("Профиль DEM"))profile();else if(selected.equals("Перечитать объект"))discardReload();else{android.content.ClipboardManager clipboard=(android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);if(clipboard!=null)clipboard.setPrimaryClip(ClipData.newPlainText("Координаты WGS 84",input.getText().toString()));}}).setNegativeButton("Закрыть",null).show();
+        new AlertDialog.Builder(this).setTitle("Действия с контуром").setItems(choices.toArray(new String[choices.size()]),(d,w)->{String selected=choices.get(w);if(selected.equals("Отменить удаление контура")){cancelStagedHoleDeletion();}else if(selected.equals("Редактировать вершины")){textMode();vertices();}else if(selected.equals("Добавить внутренний контур"))newHole();else if(selected.equals("Удалить внутренний контур")){if(dirty()){status.setText("Сначала сохраните или отмените текущий ввод");return;}try{openGeometryConfirmation(new GeometryConfirmationDraft(project,featureId,VERTEX_SESSION,part.key,sourceToken,VertexEditDraft.stamp(sourceText),part.type,"hole",false,-1),"");}catch(IllegalArgumentException error){status.setText(error.getMessage());}}else if(selected.equals("Объединить с треком GPX"))chooseTrackToMerge(part);else if(selected.equals("Разделить перед сегментом"))confirmTrackSplit(part);else if(selected.equals("Разгруппировать точки"))confirmUngroup(part);else if(selected.equals("Профиль DEM"))profile();else if(selected.equals("Перечитать объект"))discardReload();else{android.content.ClipboardManager clipboard=(android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);if(clipboard!=null)clipboard.setPrimaryClip(ClipData.newPlainText("Координаты WGS 84",input.getText().toString()));}}).setNegativeButton("Закрыть",null).show();
     }
     private void profile(){
         if(profileRunning||busy||disposed||orphan||current<0||stagedHoleDeletion!=null)return;
@@ -154,6 +155,44 @@ public final class GeometryEditorActivity extends Activity {
     private void confirmSplit(GeometryEdits.Part source,int vertex){
         confirmSavedGeometryChange(source,"Разделить линию на два объекта в этой вершине?","Разделить",
             "Линия разделена",store->ObjectTreeWrites.splitLine(store,project,featureId,source.key,source.token,vertex));
+    }
+
+    private void chooseTrackToMerge(GeometryEdits.Part source){
+        enabled(false);
+        worker.execute(()->{
+            List<String> titles=new ArrayList<>(),ids=new ArrayList<>(),tokens=new ArrayList<>();
+            String failure=null;
+            ProjectStore store=new ProjectStore(this);
+            try{
+                Element first=store.load(project).byId(featureId);
+                if(first==null)throw new IOException("Трек больше не существует");
+                for(org.w3c.dom.Node node=first.getParentNode().getFirstChild();node!=null;node=node.getNextSibling()){
+                    if(!(node instanceof Element)||node==first||!GpxExchange.canMergeTrack((Element)node))continue;
+                    Element other=(Element)node;
+                    String id=other.getAttribute("id");
+                    if(id.isEmpty())continue;
+                    List<GeometryEdits.Part> segments=GeometryEdits.parts(other);
+                    if(segments.isEmpty())continue;
+                    String title=ObjectExchange.text(other,"name").trim();
+                    titles.add((title.isEmpty()?"Трек GPX":title)+" · "+segments.size()+" сегм.");
+                    ids.add(id);
+                    tokens.add(segments.get(0).token);
+                }
+            }catch(Exception error){failure=error.getMessage();}
+            finally{store.close();}
+            final String error=failure;
+            runOnUiThread(()->{
+                if(disposed)return;
+                enabled(true);
+                if(error!=null){status.setText(error);return;}
+                if(titles.isEmpty()){status.setText("В этой папке нет другого трека GPX");return;}
+                WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setTitle("Добавить сегменты из трека")
+                    .setItems(titles.toArray(new String[0]),(dialog,index)->confirmSavedGeometryChange(source,
+                        "Создать отдельный трек из двух наборов сегментов?","Создать","Объединённый трек сохранён",
+                        writer->ObjectTreeWrites.mergeTracks(writer,project,featureId,ids.get(index),source.token,tokens.get(index))))
+                    .setNegativeButton("Отмена",null));
+            });
+        });
     }
 
     private void confirmTrackSplit(GeometryEdits.Part source){
@@ -268,11 +307,11 @@ public final class GeometryEditorActivity extends Activity {
                 ||("trk".equals(ObjectExchange.data(feature).get(ObjectExchange.KIND))
                    &&GeometryEdits.trackSegmentCount(feature)==1&&GeometryEdits.singleTrackLine(feature)!=null);
             final boolean pointGroup=GeometryEdits.canUngroupPoints(feature);
-            final boolean segmented=GpxExchange.canSplitSegments(feature);
+            final boolean segmented=GpxExchange.canSplitSegments(feature), mergeable=GpxExchange.canMergeTrack(feature);
             final List<GeometryEdits.Part> found=GeometryEdits.parts(feature);if(found.isEmpty())throw new IOException("Нет поддерживаемых контуров для редактирования");
             GeometryDraft draft=null;String warning="";try{draft=GeometryDraft.load(drafts(),project,featureId);}catch(IOException e){warning=e.getMessage();}
             final GeometryDraft restored=draft;final String message=warning;
-            runOnUiThread(()->{if(!disposed){parts=found;canSplitLine=splittable;canUngroupPoints=pointGroup;canSplitTrackSegments=segmented;build(restored,message);}});
+            runOnUiThread(()->{if(!disposed){parts=found;canSplitLine=splittable;canUngroupPoints=pointGroup;canSplitTrackSegments=segmented;canMergeTrack=mergeable;build(restored,message);}});
         }catch(final Exception e){runOnUiThread(()->{if(!disposed){busy=false;status.setText("Не удалось открыть геометрию: "+e.getMessage());if(root.getChildCount()==1)button(root,"Закрыть",()->finish());}});}finally{store.close();}});
     }
     private void build(GeometryDraft draft,String warning){
