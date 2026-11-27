@@ -21,6 +21,7 @@ if any(out.iterdir()):p.error('Output must be fresh; existing artifacts are pres
 if not 0<a.transport_wait<=15:p.error('--transport-wait must be positive and at most 15 seconds')
 if len(a.modes)!=len(set(a.modes)):p.error('Duplicate modes would reuse artifact paths; use a fresh run instead')
 for i,mode in enumerate(a.modes):
+ if mode=='mediareopen' and (i==0 or a.modes[i-1]!='media'):p.error('mediareopen must immediately follow media')
  if mode=='managercontextreopen' and (i==0 or a.modes[i-1]!='managercontext'):p.error('managercontextreopen must immediately follow managercontext')
  if mode=='managerdescriptionreopen' and (i==0 or a.modes[i-1]!='managerdescription'):p.error('managerdescriptionreopen must immediately follow managerdescription')
  if mode=='managerdatesreopen' and (i==0 or a.modes[i-1]!='managerdates'):p.error('managerdatesreopen must immediately follow managerdates')
@@ -121,8 +122,8 @@ for mode in a.modes:
   same_boot()
   # Fixtures and settings never come from a personal installation.
   adb('shell','am','force-stop','org.rabochaya.karta')
-  if mode not in ['geometrymapreopen','objectmanagerreopen','clipboardreopen','objectformatsreopen','managerfiltersreopen','managervisibilityreopen','managerdatesreopen','managerdescriptionreopen','managercontextreopen','maplayersreopen','markerlifecyclereopen']:adb('shell','pm','clear','org.rabochaya.karta')
-  elif not records or records[-1]['mode']!=({'markerlifecyclereopen':'markerlifecycle','maplayersreopen':'maplayers','managercontextreopen':'managercontext','managerdescriptionreopen':'managerdescription','managerdatesreopen':'managerdates','geometrymapreopen':'geometrymap','objectmanagerreopen':'objectmanager','clipboardreopen':'clipboard','objectformatsreopen':'objectformats','managerfiltersreopen':'managerfilters','managervisibilityreopen':'managervisibility'}[mode]) or not records[-1]['passed']:raise RuntimeError('Missing successful map-edit handoff')
+  if mode not in ['mediareopen','geometrymapreopen','objectmanagerreopen','clipboardreopen','objectformatsreopen','managerfiltersreopen','managervisibilityreopen','managerdatesreopen','managerdescriptionreopen','managercontextreopen','maplayersreopen','markerlifecyclereopen']:adb('shell','pm','clear','org.rabochaya.karta')
+  elif not records or records[-1]['mode']!=({'mediareopen':'media','markerlifecyclereopen':'markerlifecycle','maplayersreopen':'maplayers','managercontextreopen':'managercontext','managerdescriptionreopen':'managerdescription','managerdatesreopen':'managerdates','geometrymapreopen':'geometrymap','objectmanagerreopen':'objectmanager','clipboardreopen':'clipboard','objectformatsreopen':'objectformats','managerfiltersreopen':'managerfilters','managervisibilityreopen':'managervisibility'}[mode]) or not records[-1]['passed']:raise RuntimeError('Missing successful map-edit handoff')
   adb('logcat','-c')
   text=adb('shell','am','instrument','-w','-r','-e','mode',mode,'-e','sha',sha,'-e','version','27','-e','debug_qa','true' if a.debug_qa else 'false','org.rabochaya.maptests/org.rabochaya.maptests.MapAndroidChecks',timeout=480)
   same_boot()
