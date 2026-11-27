@@ -171,7 +171,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
     item("Экран карты",this::screenOptions),item("Вид координатных сеток",this::gridAppearance),
     item("Единицы измерения",this::displayUnits),item("Стиль статус-панелей",this::mapAppearance),
     item("Уровень детализации",this::tileDetail),item("Цель на карте",this::targetMenu),
-    WorkspaceUi.Item.toggle("Предварительная обработка GPX-треков",
+    WorkspaceUi.Item.toggle("Предварительная обработка треков",
         getPreferences(0).getBoolean("preprocess_gpx_tracks",false),this::toggleTrackPreprocessing));
  }
  private void toggleTrackPreprocessing(){

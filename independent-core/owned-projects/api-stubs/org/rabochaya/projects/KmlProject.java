@@ -4,7 +4,7 @@ import java.util.List;import java.io.IOException;
 public final class KmlProject {
  public static String name(org.w3c.dom.Element element){throw new AssertionError("ABI stub");}
  public static final class Feature {public org.w3c.dom.Element element;public String name;public int color;public List<Geometry> shapes;}
- public static final class Geometry {public String type;public List<List<double[]>> rings;}
+ public static final class Geometry {public boolean temporalTrack;public String type;public List<List<double[]>> rings;}
  public java.util.LinkedHashMap<String,byte[]> assets;
  public String entry;
  public byte[] xml()throws IOException{throw new AssertionError("ABI stub");}

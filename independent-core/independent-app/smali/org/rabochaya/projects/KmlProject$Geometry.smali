@@ -25,6 +25,8 @@
     .end annotation
 .end field
 
+.field public temporalTrack:Z
+
 .field public type:Ljava/lang/String;
 
 

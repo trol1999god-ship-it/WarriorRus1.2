@@ -29,7 +29,7 @@ public final class KmlTimedTrackGeometry {
   if(vertices.isEmpty())return;
   KmlProject.Geometry geometry=new KmlProject.Geometry();
   geometry.type=vertices.size()==1?"Point":"LineString";
-  geometry.rings=new ArrayList<>();
+  geometry.temporalTrack=true;
   geometry.rings.add(vertices);
   output.add(geometry);
  }

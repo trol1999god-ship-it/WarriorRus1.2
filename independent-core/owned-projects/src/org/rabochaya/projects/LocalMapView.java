@@ -250,9 +250,9 @@ public final class LocalMapView extends View {
  void setTrackPreprocessing(boolean enabled){
   filteredTrackRings.clear();
   if(enabled)for(KmlProject.Feature feature:features){
-   if(feature.element==null||!"trk".equals(ObjectExchange.data(feature.element).get(ObjectExchange.KIND)))continue;
+   boolean gpx=feature.element!=null&&"trk".equals(ObjectExchange.data(feature.element).get(ObjectExchange.KIND));
    for(KmlProject.Geometry geometry:feature.shapes){
-    if(!"LineString".equals(geometry.type))continue;
+    if(!(gpx||geometry.temporalTrack)||!"LineString".equals(geometry.type))continue;
     List<List<double[]>> rings=new ArrayList<>(geometry.rings.size());
     for(List<double[]> ring:geometry.rings)rings.add(TrackDisplayFilter.withoutSpikes(ring));
     filteredTrackRings.put(geometry,rings);
