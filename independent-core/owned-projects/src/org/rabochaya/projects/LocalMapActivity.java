@@ -748,7 +748,9 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   StringBuilder text=new StringBuilder();
   String note=android.text.Html.fromHtml(MediaLinks.note(feature.element)).toString();
   if(!note.isEmpty())text.append(note).append("\n\n");
-  for(KmlProject.Geometry geometry:feature.shapes){
+  TrackStatistics track=GpxExchange.statistics(feature.element);
+  if(track!=null)appendTrackStatistics(text,track);
+  else for(KmlProject.Geometry geometry:feature.shapes){
    if("Point".equals(geometry.type)){
     double[] point=geometry.rings.get(0).get(0);
     text.append("Путевая точка\nШирота: ").append(point[1])
@@ -763,6 +765,24 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
    }
   }
   return text.append("\nВложения: ").append(MediaLinks.list(feature.element).size()).toString();
+ }
+ private void appendTrackStatistics(StringBuilder text,TrackStatistics track){
+  int mode=DisplayUnits.distanceMode(this);
+  text.append("Трек\nСегментов: ").append(track.segments)
+      .append("\nТочек: ").append(track.points)
+      .append("\nДлина: ").append(DisplayUnits.distance(track.distance,mode)).append('\n');
+  if(track.elevationLegs>0)text.append("Набор: ").append(DisplayUnits.elevation(track.gain,mode))
+      .append("\nСпуск: ").append(DisplayUnits.elevation(track.loss,mode)).append('\n');
+  if(track.timedLegs==0)text.append("Нет последовательных меток времени\n");
+  else{
+   text.append("Время по меткам: ").append(trackDuration(track.timedMillis))
+       .append("\nВремя движения по изменению координат: ").append(trackDuration(track.movingMillis))
+       .append("\nИнтервалы с временем: ").append(track.timedLegs).append('/').append(track.legs).append('\n');
+  }
+ }
+ private static String trackDuration(long millis){
+  long seconds=millis/1000;
+  return String.format(Locale.US,"%d:%02d:%02d",seconds/3600,seconds/60%60,seconds%60);
  }
  public void picked(KmlProject.Feature feature){
   if(busy)return;

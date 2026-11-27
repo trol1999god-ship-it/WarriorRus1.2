@@ -76,6 +76,38 @@ final class GpxExchange {
   return out;
  }
 
+ static TrackStatistics statistics(Element feature){
+  Map<String,String> stored=data(feature);
+  if(!"trk".equals(stored.get(KIND)))return null;
+  try{
+   List<Element> parts=flatten(geometries(feature),0);
+   if(parts.isEmpty()||!onlyTrackParts(parts))return null;
+   JSONObject metadata=new JSONObject();
+   String saved=stored.get(GPX_DATA);
+   if(saved!=null){
+    try{metadata=new JSONObject(saved);}catch(JSONException invalid){/* Coordinates remain usable. */}
+   }
+   JSONArray segments=metadata.optJSONArray("points");
+   TrackStatistics result=new TrackStatistics();
+   for(int i=0;i<parts.size();i++){
+    List<double[]> vertices=positions(parts.get(i));
+    JSONArray segment=segments!=null&&segments.length()==parts.size()?segments.optJSONArray(i):null;
+    List<String> times=null;
+    if(segment!=null&&segment.length()==vertices.size()){
+     times=new ArrayList<>(vertices.size());
+     for(int j=0;j<vertices.size();j++){
+      JSONObject point=segment.optJSONObject(j);
+      double[] vertex=vertices.get(j);
+      times.add(point!=null&&point.optDouble("_lon")==vertex[0]&&point.optDouble("_lat")==vertex[1]
+          ?point.optString("time",null):null);
+     }
+    }
+    result.addSegment(vertices,times);
+   }
+   return result;
+  }catch(IOException invalid){return null;}
+ }
+
  static Document write(Element kml)throws Exception{
   Document document=newDocument();
   Element gpx=document.createElementNS(GPX,"gpx");
