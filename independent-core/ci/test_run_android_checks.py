@@ -372,6 +372,20 @@ class VisualEvidenceTests(unittest.TestCase):
                 with self.assertRaisesRegex(RuntimeError, message):
                     emit_visual_summary(root)
 
+    def test_summary_can_hash_artifact_set_larger_than_console_budget(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            data = self.png + b'x' * (1024 * 1024)
+            for label in ('first', 'second', 'third'):
+                (root / f'map_mvisual-{label}.png').write_bytes(data)
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                emit_visual_summary(root)
+            self.assertEqual(output.getvalue().count('VISUAL_VALIDATED'), 3)
+            self.assertNotIn('RK_VISUAL_DATA', output.getvalue())
+            with self.assertRaisesRegex(RuntimeError, 'limit'):
+                emit_visual_evidence(root)
+
     def test_missing_frames_fail(self):
         with tempfile.TemporaryDirectory() as directory:
             with self.assertRaisesRegex(RuntimeError, 'No manager visual'):

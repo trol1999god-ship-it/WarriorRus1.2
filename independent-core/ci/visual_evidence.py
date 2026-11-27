@@ -7,22 +7,26 @@ from pathlib import Path
 import base64
 import hashlib
 import re
-import contextlib
-import io
 
 
-def emit_visual_evidence(directory):
+def visual_files(directory, *, max_total, max_frames):
     files = sorted(Path(directory).rglob('map_mvisual-*.png'))
     if not files:
         raise RuntimeError('No manager visual screenshots were collected')
-    if len(files) > 16 or sum(p.stat().st_size for p in files) > 2 * 1024 * 1024:
-        raise RuntimeError('Synthetic visual evidence exceeds the log limit')
+    sizes = [path.stat().st_size for path in files]
+    if len(files) > max_frames or max(sizes) > 2 * 1024 * 1024 or sum(sizes) > max_total:
+        raise RuntimeError('Synthetic visual evidence exceeds the limit')
     for path in files:
         if not re.fullmatch(r'map_mvisual-[a-z-]+\.png', path.name):
             raise RuntimeError('Unexpected visual evidence name')
         data = path.read_bytes()
         if not data.startswith(b'\x89PNG\r\n\x1a\n'):
             raise RuntimeError('Visual evidence is not PNG')
+        yield path, data
+
+
+def emit_visual_evidence(directory):
+    for path, data in visual_files(directory, max_total=2 * 1024 * 1024, max_frames=16):
         print(f'RK_VISUAL_BEGIN {path.name} {hashlib.sha256(data).hexdigest()}', flush=True)
         encoded = base64.b64encode(data).decode('ascii')
         for start in range(0, len(encoded), 1000):
@@ -32,12 +36,8 @@ def emit_visual_evidence(directory):
 
 def emit_visual_summary(directory):
     """Validate the same complete PNG set; retain files and log a compact manifest."""
-    output = io.StringIO()
-    with contextlib.redirect_stdout(output):
-        emit_visual_evidence(directory)
-    for line in output.getvalue().splitlines():
-        if line.startswith('RK_VISUAL_BEGIN '):
-            print('VISUAL_VALIDATED ' + line.removeprefix('RK_VISUAL_BEGIN '), flush=True)
+    for path, data in visual_files(directory, max_total=32 * 1024 * 1024, max_frames=64):
+        print(f'VISUAL_VALIDATED {path.name} {hashlib.sha256(data).hexdigest()}', flush=True)
 
 
 def decode_visual_log(text):

@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: independent-core-${{ github.ref }}${{ github.event_name == 'push' && (contains(github.event.head_commit.message, '[map-edit-api37-qa]') || contains(github.event.head_commit.message, '[core-api37-qa]')) && '-api37' || github.event_name == 'push' && contains(github.event.head_commit.message, '[object-formats-qa]') && '-formats' || github.event_name == 'push' && contains(github.event.head_commit.message, '[ozf2-qa]') && '-ozf2' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-display-qa]') && '-reference-display' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-ungroup-qa]') && '-ungroup' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-barometer-qa]') && '-barometer' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-units-qa]') && '-units' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-north-qa]') && '-north' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-appearance-qa]') && '-appearance' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-twist-qa]') && '-twist' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-detail-qa]') && '-detail' || '' }}
+  group: independent-core-${{ github.ref }}${{ github.event_name == 'push' && (contains(github.event.head_commit.message, '[map-edit-api37-qa]') || contains(github.event.head_commit.message, '[core-api37-qa]')) && '-api37' || github.event_name == 'push' && contains(github.event.head_commit.message, '[object-formats-qa]') && '-formats' || github.event_name == 'push' && contains(github.event.head_commit.message, '[ozf2-qa]') && '-ozf2' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-display-qa]') && '-reference-display' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-ungroup-qa]') && '-ungroup' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-barometer-qa]') && '-barometer' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-units-qa]') && '-units' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-north-qa]') && '-north' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-appearance-qa]') && '-appearance' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-twist-qa]') && '-twist' || '' }}${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-detail-qa]') && '-detail' || '' }}${{ contains(github.event.head_commit.message, '[visual-summary-qa]') && '-visual-summary' || '' }}
   # Ordinarily finish the active matrix. Use the marker to replace an intermediate run with the final candidate.
   cancel-in-progress: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[supersede-qa]') }}
 jobs:
@@ -65,13 +65,16 @@ jobs:
           retention-days: 7
   android:
     needs: jvm
+    permissions:
+      contents: read
+      actions: read
     runs-on: ubuntu-22.04
     # API 35 reached maplayers after the previous 45-minute job budget.
     timeout-minutes: 60
     strategy:
       fail-fast: false
       matrix:
-        include: ${{ fromJSON(github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-display-api35-qa]') && '[{"api":35,"arch":"x86_64","target":"google_apis"}]' || github.event_name == 'push' && (contains(github.event.head_commit.message, '[acceptance-resume]') || contains(github.event.head_commit.message, '[preliminary-acceptance]') || contains(github.event.head_commit.message, '[map-ui-qa]') || contains(github.event.head_commit.message, '[reference-display-qa]') || contains(github.event.head_commit.message, '[reference-menu-qa]') || contains(github.event.head_commit.message, '[reference-files-qa]') || contains(github.event.head_commit.message, '[reference-icons-ozi-qa]') || contains(github.event.head_commit.message, '[ozf2-qa]')) && '[{"api":23,"arch":"x86","target":"default"},{"api":35,"arch":"x86_64","target":"google_apis"},{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[core-api37-qa]') && '[{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[transfer-integrity-qa]') && '[{"api":23,"arch":"x86","target":"default"},{"api":35,"arch":"x86_64","target":"google_apis"},{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis_ps16k"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[map-edit-api37-qa]') && '[{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[map-edit-draft-qa]') && '[{"api":23,"arch":"x86","target":"default"},{"api":35,"arch":"x86_64","target":"google_apis"},{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[wide-map-qa]') && '[{"api":35,"arch":"x86_64","target":"google_apis"}]' || '[{"api":23,"arch":"x86","target":"default"},{"api":35,"arch":"x86_64","target":"google_apis"}]') }}
+        include: ${{ fromJSON(github.event_name == 'push' && contains(github.event.head_commit.message, '[visual-summary-qa]') && '[{"api":35,"arch":"x86_64","target":"google_apis"},{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[reference-display-api35-qa]') && '[{"api":35,"arch":"x86_64","target":"google_apis"}]' || github.event_name == 'push' && (contains(github.event.head_commit.message, '[acceptance-resume]') || contains(github.event.head_commit.message, '[preliminary-acceptance]') || contains(github.event.head_commit.message, '[map-ui-qa]') || contains(github.event.head_commit.message, '[reference-display-qa]') || contains(github.event.head_commit.message, '[reference-menu-qa]') || contains(github.event.head_commit.message, '[reference-files-qa]') || contains(github.event.head_commit.message, '[reference-icons-ozi-qa]') || contains(github.event.head_commit.message, '[ozf2-qa]')) && '[{"api":23,"arch":"x86","target":"default"},{"api":35,"arch":"x86_64","target":"google_apis"},{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[core-api37-qa]') && '[{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[transfer-integrity-qa]') && '[{"api":23,"arch":"x86","target":"default"},{"api":35,"arch":"x86_64","target":"google_apis"},{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis_ps16k"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[map-edit-api37-qa]') && '[{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[map-edit-draft-qa]') && '[{"api":23,"arch":"x86","target":"default"},{"api":35,"arch":"x86_64","target":"google_apis"},{"api":37,"image":"37.0","arch":"x86_64","target":"google_apis"}]' || github.event_name == 'push' && contains(github.event.head_commit.message, '[wide-map-qa]') && '[{"api":35,"arch":"x86_64","target":"google_apis"}]' || '[{"api":23,"arch":"x86","target":"default"},{"api":35,"arch":"x86_64","target":"google_apis"}]') }}
     defaults:
       run:
         working-directory: independent-core
@@ -109,12 +112,25 @@ jobs:
             ${{ runner.temp }}/rk-quality
           if-no-files-found: warn
           retention-days: 7
+      - name: Fetch archived offlineformats results
+        if: contains(github.event.head_commit.message, '[visual-summary-qa]')
+        uses: actions/download-artifact@v4
+        with:
+          name: independent-qa-api-${{ matrix.api }}
+          run-id: 45983602362
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/saved-offlineformats
+      - name: Validate the original offlineformats screenshot manifest
+        if: contains(github.event.head_commit.message, '[visual-summary-qa]')
+        working-directory: independent-core
+        run: python3 ci/verify_saved_visual_summary.py "$RUNNER_TEMP/saved-offlineformats/android-evidence.zip" "3dd7fe139219c146a59c043621c20f7d96655614" 45983602362
       - name: Require hardware acceleration
+        if: ${{ !contains(github.event.head_commit.message, '[visual-summary-qa]') }}
         run: |
           test -c /dev/kvm
           sudo chmod 666 /dev/kvm
       - name: Use an avdmanager that recognizes versioned Android 17 images
-        if: ${{ matrix.api == 37 }}
+        if: ${{ matrix.api == 37 && !contains(github.event.head_commit.message, '[visual-summary-qa]') }}
         run: |
           sdk_tools="$ANDROID_HOME/cmdline-tools"
           "$sdk_tools/latest/bin/sdkmanager" "cmdline-tools;22.0"
@@ -122,9 +138,10 @@ jobs:
           ln -s "22.0" "$sdk_tools/latest"
           test "$("$sdk_tools/latest/bin/sdkmanager" --version | head -n 1)" = 22.0
       - name: Start ADB before the Android 17 cold boot
-        if: ${{ matrix.api == 37 }}
+        if: ${{ matrix.api == 37 && !contains(github.event.head_commit.message, '[visual-summary-qa]') }}
         run: '"$ANDROID_HOME/platform-tools/adb" start-server'
       - name: Run Android scenarios
+        if: ${{ !contains(github.event.head_commit.message, '[visual-summary-qa]') }}
         id: android-scenarios
         uses: reactivecircus/android-emulator-runner@v2
         with:
