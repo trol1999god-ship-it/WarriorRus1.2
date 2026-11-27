@@ -1021,6 +1021,17 @@ public final class MapAndroidChecks extends Instrumentation {
    Method azimuth=math.getDeclaredMethod("bearing",double.class,int.class);azimuth.setAccessible(true);
    check(azimuth.invoke(null,90d,1).equals("100 gon")&&azimuth.invoke(null,90d,2).equals("1600 тыс."),
      "right angle reported consistently in gradians and mils");
+   check(azimuth.invoke(null,359.999d,1).equals("0 gon")&&azimuth.invoke(null,359.999d,2).equals("0 тыс."),
+     "rounded bearings wrap at the north boundary");
+   Method heightFormat=math.getDeclaredMethod("elevation",double.class,int.class);heightFormat.setAccessible(true);
+   check(heightFormat.invoke(null,30.48d,1).equals("100.0 фт")
+       &&heightFormat.invoke(null,Double.NaN,1).equals("—"),"height format handles feet and missing samples");
+   Object heightProject=codec.getMethod("parse",byte[].class).invoke(null,(Object)
+       "<kml><Document><Placemark><Point><coordinates>1,2,30.48</coordinates></Point></Placemark></Document></kml>".getBytes("UTF-8"));
+   Object heightPoint=((List<?>)call(heightProject,"features",new Class[]{boolean.class},true)).get(0);
+   Method card=activity.getClass().getDeclaredMethod("cardText",heightPoint.getClass());card.setAccessible(true);
+   prefs.edit().putInt("distance",1).commit();
+   check(((String)card.invoke(activity,heightPoint)).contains("100.0 фт"),"point card uses chosen height units");
    Method slope=math.getDeclaredMethod("slope",double.class,double.class,int.class);slope.setAccessible(true);
    check(slope.invoke(null,100d,10d,0).equals("10.0 %")&&slope.invoke(null,100d,-10d,2).equals("10.0:1"),
      "slope uses true run and rise");

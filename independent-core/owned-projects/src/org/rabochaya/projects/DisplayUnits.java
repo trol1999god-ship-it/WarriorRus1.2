@@ -55,13 +55,15 @@ final class DisplayUnits {
     }
     static String elevation(double metres,int mode){
         boolean feet=mode==1||mode==2||mode==4;
-        return String.format(Locale.US,"%.1f %s",feet?metres/FOOT:metres,feet?"фт":"м");
+        if(Double.isNaN(metres)||Double.isInfinite(metres))return "—";
+        double value=feet?metres/FOOT:metres;
+        return String.format(Locale.US,"%.1f %s",Math.abs(value)<.05?0:value,feet?"фт":"м");
     }
     static String bearing(double degrees,int mode){
         double angle=degrees-360*Math.floor(degrees/360);
         switch(mode){
-        case 1:return String.format(Locale.US,"%.0f gon",angle*10/9);
-        case 2:return String.format(Locale.US,"%.0f тыс.",angle*6400/360);
+        case 1:return String.format(Locale.US,"%d gon",Math.round(angle*10/9)%400);
+        case 2:return String.format(Locale.US,"%d тыс.",Math.round(angle*6400/360)%6400);
         case 3:
             String prefix=(angle<=90||angle>=270)?"С":"Ю";
             double offset=angle<=90?angle:angle<=180?180-angle:angle<=270?angle-180:360-angle;

@@ -1018,7 +1018,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
    try {
     double height = dem.height(lon, lat);
     text += Double.isNaN(height) ? "\nDEM: нет данных"
-      : "\nDEM: " + String.format(Locale.US, "%.1f", Math.abs(height) < .05 ? 0 : height) + " м · HGT";
+      : "\nDEM: " + DisplayUnits.elevation(height,DisplayUnits.distanceMode(this)) + " · HGT";
    } catch (IOException e) {
     text += "\nDEM недоступен";
    }
@@ -1040,7 +1040,8 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
    if("Point".equals(geometry.type)){
     double[] point=geometry.rings.get(0).get(0);
     text.append("Путевая точка\nШирота: ").append(point[1])
-      .append("\nДолгота: ").append(point[0]).append("\nВысота: ").append(point[2]).append(" м\n");
+      .append("\nДолгота: ").append(point[0]).append("\nВысота: ")
+      .append(point.length>2?DisplayUnits.elevation(point[2],DisplayUnits.distanceMode(this)):"—").append('\n');
    }else{
     int points=0;
     for(List<double[]> ring:geometry.rings)points+=ring.size();
