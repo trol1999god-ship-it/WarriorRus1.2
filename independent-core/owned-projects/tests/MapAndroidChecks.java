@@ -844,10 +844,10 @@ setListingForm("северного моста еж",0,0,0,true,false,0);check(ma
  void mapTwist()throws Exception{
   Context context=getTargetContext();Object store=storeClass.getConstructor(Context.class).newInstance(context);long id=-1;
   SharedPreferences prefs=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0);
-  boolean oldManual=prefs.getBoolean("rotate_map_touch",false),oldMagnetic=prefs.getBoolean("rotate_map_compass",false);
+  boolean oldManual=prefs.getBoolean("rotate_map_touch",true),oldMagnetic=prefs.getBoolean("rotate_map_compass",false);
   boolean oldPinch=prefs.getBoolean("zoom_pinch",true),oldSlider=prefs.getBoolean("zoom_slider",false),
       oldLongPress=prefs.getBoolean("long_press_map_only",false),oldTap=prefs.getBoolean("zoom_double_tap",false);
-  boolean oldPitch=prefs.getBoolean("map_pitch",false);
+  boolean oldPitch=prefs.getBoolean("map_pitch",true);
   long previous=context.getSharedPreferences("workspace-session",0).getLong("last_project",-1);
   try{
    prefs.edit().putBoolean("rotate_map_touch",false).putBoolean("rotate_map_compass",false)
@@ -959,7 +959,7 @@ setListingForm("северного моста еж",0,0,0,true,false,0);check(ma
   Context context=getTargetContext();Object store=storeClass.getConstructor(Context.class).newInstance(context);long id=-1;
   SharedPreferences prefs=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0);
   int oldSize=prefs.getInt("map_panel_size",0),oldColor=prefs.getInt("map_panel_color",0);
-  boolean oldBorder=prefs.getBoolean("map_marker_borders",true),oldShadow=prefs.getBoolean("map_marker_shadows",false);
+  boolean oldBorder=prefs.getBoolean("map_marker_borders",true),oldShadow=prefs.getBoolean("map_marker_shadows",true);
   boolean oldLocked=prefs.getBoolean("map_show_locked",false);
   long previousProject=context.getSharedPreferences("workspace-session",0).getLong("last_project",-1);
   try{
@@ -1480,7 +1480,12 @@ setListingForm("северного моста еж",0,0,0,true,false,0);check(ma
  void checkMapScreenOptions(Intent intent,SharedPreferences panels)throws Exception{
   String[] keys={"map_hide_status","map_immersive","map_keep_screen_on"};
   boolean[] before=new boolean[keys.length];
-  for(int i=0;i<keys.length;i++)before[i]=panels.getBoolean(keys[i],false);
+  boolean[] present=new boolean[keys.length];
+  for(int i=0;i<keys.length;i++){
+   present[i]=panels.contains(keys[i]);
+   before[i]=panels.getBoolean(keys[i],i<2);
+  }
+  acknowledgeImmersiveEducation();
   try{
    clickDescription("Меню");click("Опции");click("Экран карты");
    if(!before[0])click("Скрыть строку состояния");
@@ -1516,7 +1521,9 @@ setListingForm("северного моста еж",0,0,0,true,false,0);check(ma
      "clearing screen preferences restores system bars and normal timeout");
   }finally{
    SharedPreferences.Editor restore=panels.edit();
-   for(int i=0;i<keys.length;i++)restore.putBoolean(keys[i],before[i]);
+   for(int i=0;i<keys.length;i++){
+    if(present[i])restore.putBoolean(keys[i],before[i]);else restore.remove(keys[i]);
+   }
    restore.commit();
   }
  }

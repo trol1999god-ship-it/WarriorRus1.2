@@ -57,10 +57,10 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   root.addView(scene,new LinearLayout.LayoutParams(-1,0,1));
   map=new LocalMapView(this,features,mapFile(),this,source,OnlineMapSettings.network(this),composition);scene.addView(map,new FrameLayout.LayoutParams(-1,-1));if(symbolAssets!=null)map.setSymbols(symbolAssets);
   map.restoreManualBearing(getPreferences(0).getFloat("view_"+projectId+"_bearing",0));
-  map.setManualRotation(getPreferences(0).getBoolean("rotate_map_touch",false));
+  map.setManualRotation(getPreferences(0).getBoolean("rotate_map_touch",true));
   applyZoomGestureSettings();
   map.restorePitch(getPreferences(0).getFloat("view_"+projectId+"_pitch",0));
-  map.setPitchEnabled(getPreferences(0).getBoolean("map_pitch",false));
+  map.setPitchEnabled(getPreferences(0).getBoolean("map_pitch",true));
   map.setTrackPreprocessing(getPreferences(0).getBoolean("preprocess_gpx_tracks",false));
   applyTrackAnnotations();
   map.setTileDetail(getPreferences(0).getInt("map_tile_detail",0));
@@ -415,7 +415,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   Spinner color=gridChoice(form,"Цвет фона",new String[]{"Синий","Светлый","Тёмный"},prefs.getInt("map_panel_color",0));
   CheckBox borders=new CheckBox(this),shadows=new CheckBox(this);
   borders.setText("Контуры меток");borders.setChecked(prefs.getBoolean("map_marker_borders",true));form.addView(borders);
-  shadows.setText("Тени от меток");shadows.setChecked(prefs.getBoolean("map_marker_shadows",false));form.addView(shadows);
+  shadows.setText("Тени от меток");shadows.setChecked(prefs.getBoolean("map_marker_shadows",true));form.addView(shadows);
   form.addView(coordinateCaption("Размер меток"));
   Spinner markers=gridChoice(form,"Размер меток",new String[]{"Мелкий","Обычный","Средний","Крупный"},
       prefs.getInt("map_marker_size",1));
@@ -453,13 +453,16 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   int markerSize=Math.max(0,Math.min(MARKER_SIZES.length-1,prefs.getInt("map_marker_size",1)));
   int markerColor=Math.max(0,Math.min(MARKER_COLORS.length-1,prefs.getInt("map_marker_color",0)));
   map.setMarkerDefaults(MARKER_SIZES[markerSize],MARKER_COLORS[markerColor]);
-  map.setMarkerAppearance(prefs.getBoolean("map_marker_borders",true),prefs.getBoolean("map_marker_shadows",false));
+  map.setMarkerAppearance(prefs.getBoolean("map_marker_borders",true),prefs.getBoolean("map_marker_shadows",true));
+ }
+ private static boolean screenOption(SharedPreferences preferences, int index) {
+  return preferences.getBoolean(MAP_SCREEN_KEYS[index], index == 0 || index == 1);
  }
  private void screenOptions() {
   SharedPreferences preferences = getPreferences(0);
   String[] titles = {"Скрыть строку состояния", "Режим погружения", "Экран всегда включён", "Подтверждать выход", "На заблокированном экране"};
   boolean[] selected = new boolean[titles.length];
-  for (int i=0; i<selected.length; i++) selected[i] = preferences.getBoolean(MAP_SCREEN_KEYS[i], false);
+  for (int i=0; i<selected.length; i++) selected[i] = screenOption(preferences, i);
   AlertDialog settings = new AlertDialog.Builder(this).setTitle("Экран карты")
     .setMultiChoiceItems(titles, selected, (dialog, index, enabled) ->
       preferences.edit().putBoolean(MAP_SCREEN_KEYS[index], enabled).apply())
@@ -471,20 +474,20 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void applyMapScreenOptions(boolean mainMenuOpen) {
   SharedPreferences preferences = getPreferences(0);
   Window window = getWindow();
-  boolean showLocked=preferences.getBoolean(MAP_SCREEN_KEYS[4],false);
+  boolean showLocked=screenOption(preferences, 4);
   if(showLocked)window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
   else window.clearFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
   int keepAwake = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
-  if (preferences.getBoolean(MAP_SCREEN_KEYS[2], false)) window.addFlags(keepAwake);
+  if (screenOption(preferences, 2)) window.addFlags(keepAwake);
   else window.clearFlags(keepAwake);
 
   int mask = View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
     | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
   int flags = window.getDecorView().getSystemUiVisibility() & ~mask;
   if(mapOnly)flags|=View.SYSTEM_UI_FLAG_FULLSCREEN|View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-  else if (!mainMenuOpen && preferences.getBoolean(MAP_SCREEN_KEYS[0], false)) {
+  else if (!mainMenuOpen && screenOption(preferences, 0)) {
    flags |= View.SYSTEM_UI_FLAG_FULLSCREEN;
-   if (preferences.getBoolean(MAP_SCREEN_KEYS[1], false))
+   if (screenOption(preferences, 1))
     flags |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
   }
   window.getDecorView().setSystemUiVisibility(flags);
@@ -683,13 +686,13 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  }
  private void togglePitch(){
   SharedPreferences prefs=getPreferences(0);
-  boolean enabled=!prefs.getBoolean("map_pitch",false);
+  boolean enabled=!prefs.getBoolean("map_pitch",true);
   prefs.edit().putBoolean("map_pitch",enabled).apply();
   map.setPitchEnabled(enabled);
  }
  private void toggleTouchRotation(){
   SharedPreferences prefs=getPreferences(0);
-  boolean enabled=!prefs.getBoolean("rotate_map_touch",false);
+  boolean enabled=!prefs.getBoolean("rotate_map_touch",true);
   prefs.edit().putBoolean("rotate_map_touch",enabled).apply();
   map.setManualRotation(enabled);
  }
@@ -705,8 +708,8 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void orientationMenu(){menu("Ориентирование",item("Компас",this::openCompass),
     WorkspaceUi.Item.toggle("Показать компас",getPreferences(0).getBoolean("show_map_compass",false),this::toggleMapCompass),
     WorkspaceUi.Item.toggle("Вращать карту по компасу",getPreferences(0).getBoolean("rotate_map_compass",false),this::toggleCompassRotation),
-    WorkspaceUi.Item.toggle("Поворот карты жестом",getPreferences(0).getBoolean("rotate_map_touch",false),this::toggleTouchRotation),
-    WorkspaceUi.Item.toggle("Перспективный вид карты",getPreferences(0).getBoolean("map_pitch",false),this::togglePitch),
+    WorkspaceUi.Item.toggle("Поворот карты жестом",getPreferences(0).getBoolean("rotate_map_touch",true),this::toggleTouchRotation),
+    WorkspaceUi.Item.toggle("Перспективный вид карты",getPreferences(0).getBoolean("map_pitch",true),this::togglePitch),
     item("Статус компаса",this::showCompassStatus),item("Курс по компасу",this::selectCompassDisplay),item("Барометр",this::showBarometer),item("Перейти к координатам",()->goToCoordinates()),item("Форматы координат",()->coordinateOptions()),item("DEM / высота центра",()->{if(canLeave())startActivityForResult(new Intent(this,DemActivity.class).putExtra("project",projectId),DEM);}),item("Показать область DEM",()->showDemCoverage()));}
  private void showDemCoverage(){if(!canLeave()||map==null||!canMoveMap())return;try{double[] view;synchronized(LocalRasterStore.class){ProjectStore store=new ProjectStore(this);try{if(!store.exists(projectId))throw new IOException("Проект удалён");}finally{store.close();}try(HgtRaster owned=HgtRaster.owned(DemActivity.file(this,projectId),projectId)){view=owned.mapViewport(map.getWidth(),map.getHeight());}}map.restore(view[0],view[1],view[2]);saveView();}catch(IOException e){error("Область DEM недоступна: "+e.getMessage());}}
  private void manager(boolean all){if(!canLeave())return;refreshOnResume=true;if(!all){ObjectManagerActivity.open(this,projectId);return;}getSharedPreferences("org.rabochaya.projects.ProjectsActivity",0).edit().putLong("project",all?-1:projectId).putString("folder","").commit();startActivity(new Intent().setClassName(this,"org.rabochaya.projects.ProjectsActivity"));}
