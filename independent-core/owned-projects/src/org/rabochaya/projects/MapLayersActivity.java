@@ -4,8 +4,12 @@ import android.app.*;import android.content.*;import android.os.*;import android
 public final class MapLayersActivity extends Activity {
  static final String OPEN_PRESETS="open_presets";
  private static final String FAVORITES="Избранные карты и наборы карт";
+ private AlertDialog removalDialog;
+ private String removalId;
+ private byte[] removalToken;
  private static final int PICK_SOURCE=4521;private long project;private LinearLayout root,list;private ScrollView scroll;private TextView status;private MapCompositionSettings.Snapshot snapshot;private String pendingLayer;private int pendingOpacity,restoreY;private boolean disposed;
- protected void onCreate(Bundle saved){super.onCreate(saved);project=getIntent().getLongExtra("project",-1);getWindow().setStatusBarColor(WorkspaceUi.MUTED);getWindow().setNavigationBarColor(WorkspaceUi.MUTED);restoreY=saved==null?0:saved.getInt("scroll",0);setResult(RESULT_OK);if(project<=0){finish();return;}reload("");if(saved==null&&getIntent().getBooleanExtra(OPEN_PRESETS,false))presets();}
+ protected void onCreate(Bundle saved){super.onCreate(saved);project=getIntent().getLongExtra("project",-1);getWindow().setStatusBarColor(WorkspaceUi.MUTED);getWindow().setNavigationBarColor(WorkspaceUi.MUTED);restoreY=saved==null?0:saved.getInt("scroll",0);setResult(RESULT_OK);if(project<=0){finish();return;}reload("");if(saved==null&&getIntent().getBooleanExtra(OPEN_PRESETS,false))presets();
+  else if(saved!=null)restoreRemoval(saved);}
  private int dp(int value){return WorkspaceUi.dp(this,value);}
  private TextView text(String value,int size){TextView t=new TextView(this);t.setText(value);t.setTextSize(size);t.setTextColor(WorkspaceUi.TEXT);t.setTypeface(WorkspaceUi.font(this));t.setPadding(dp(8),dp(6),dp(8),dp(6));return t;}
  private Button button(LinearLayout parent,String title,Runnable action){Button b=new Button(this);b.setText(title);b.setAllCaps(false);b.setTextSize(14);b.setTypeface(WorkspaceUi.font(this));b.setMinHeight(dp(48));parent.addView(b,new LinearLayout.LayoutParams(-1,-2));b.setOnClickListener(v->action.run());return b;}
@@ -38,7 +42,48 @@ public final class MapLayersActivity extends Activity {
   });
   LinearLayout actions=new LinearLayout(this);card.addView(actions);Button up=button(actions,"Выше",()->apply(snapshot.composition.move(layer.id,index+1),true)),down=button(actions,"Ниже",()->apply(snapshot.composition.move(layer.id,index-1),true));up.setEnabled(index<snapshot.composition.layers.size()-1);down.setEnabled(index>0);button(actions,"Убрать",()->remove(layer));for(int i=0;i<actions.getChildCount();i++)actions.getChildAt(i).setLayoutParams(new LinearLayout.LayoutParams(0,dp(48),1));
  }
- private void remove(MapComposition.Layer layer){AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Убрать слой?").setMessage(layer.name+"\nИсходная карта, кеш и объекты останутся на устройстве.").setPositiveButton("Убрать",(d,w)->apply(snapshot.composition.remove(layer.id),true)).setNegativeButton("Отмена",null).create();dialog.setOnShowListener(v->font(dialog.getWindow().getDecorView()));dialog.show();}
+ private void remove(MapComposition.Layer layer){
+  flushOpacity();
+  if(snapshot==null)return;
+  byte[] token=removalRevision(snapshot);
+  if(token==null){status.setText("Не удалось проверить состав карт");return;}
+  confirmRemoval(layer,snapshot,token);
+ }
+
+ private void restoreRemoval(Bundle saved){
+  String id=saved.getString("remove_layer");
+  byte[] token=saved.getByteArray("remove_revision");
+  if(id==null||token==null||snapshot==null)return;
+  if(java.util.Arrays.equals(token,removalRevision(snapshot))){
+   for(MapComposition.Layer layer:snapshot.composition.layers)
+    if(layer.id.equals(id)){confirmRemoval(layer,snapshot,token);return;}
+  }
+  status.setText("Состав карт изменился. Выберите слой заново.");
+ }
+
+ private byte[] removalRevision(MapCompositionSettings.Snapshot composition){
+  try{
+   java.security.MessageDigest digest=java.security.MessageDigest.getInstance("SHA-256");
+   digest.update((byte)(composition.enabled?1:0));
+   return digest.digest(composition.composition.encode());
+  }catch(Exception error){return null;}
+ }
+
+ private void confirmRemoval(MapComposition.Layer layer,MapCompositionSettings.Snapshot expected,byte[] token){
+  AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Убрать слой?")
+      .setMessage(layer.name+"\nИсходная карта, кеш и объекты останутся на устройстве.")
+      .setPositiveButton("Убрать",(closed,which)->{
+       if(snapshot==expected)apply(expected.composition.remove(layer.id),true);
+       else status.setText("Состав карт изменился. Выберите слой заново.");
+      }).setNegativeButton("Отмена",null).create();
+  removalId=layer.id;removalToken=token;removalDialog=dialog;
+  dialog.setOnShowListener(view->font(dialog.getWindow().getDecorView()));
+  dialog.setOnDismissListener(closed->{
+   if(removalDialog==closed){removalDialog=null;removalId=null;removalToken=null;}
+  });
+  dialog.show();
+ }
+
  private void add(MapComposition.Layer layer){try{apply(snapshot.composition.add(layer),true);}catch(Exception e){status.setText("Слой не добавлен: "+e.getMessage());}}
  private void apply(MapComposition next,boolean enabled){if(disposed||snapshot==null)return;pendingLayer=null;try{snapshot=MapCompositionSettings.save(this,project,snapshot,next,enabled);show("");}catch(Exception e){reload("Изменение не применено: "+e.getMessage());}}
  private void flushOpacity(){if(pendingLayer==null||snapshot==null)return;String id=pendingLayer;int value=pendingOpacity;pendingLayer=null;try{
@@ -49,6 +94,6 @@ public final class MapLayersActivity extends Activity {
   else status.setText("");
  }catch(Exception e){reload("Изменение не применено: "+e.getMessage());}}
  protected void onActivityResult(int request,int result,Intent data){super.onActivityResult(request,result,data);if(request==PICK_SOURCE&&result==RESULT_OK&&data!=null){try{apply(snapshot.composition.add(MapComposition.Layer.catalog(data.getStringExtra("catalog"))),true);}catch(Exception e){reload("Слой не добавлен: "+e.getMessage());}}}
- protected void onSaveInstanceState(Bundle out){flushOpacity();out.putInt("scroll",scroll==null?0:scroll.getScrollY());super.onSaveInstanceState(out);}
+ protected void onSaveInstanceState(Bundle out){flushOpacity();out.putInt("scroll",scroll==null?0:scroll.getScrollY());if(removalDialog!=null){out.putString("remove_layer",removalId);out.putByteArray("remove_revision",removalToken);}super.onSaveInstanceState(out);}
  protected void onPause(){flushOpacity();super.onPause();}protected void onDestroy(){disposed=true;super.onDestroy();}
 }
