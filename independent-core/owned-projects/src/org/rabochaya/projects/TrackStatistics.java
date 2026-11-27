@@ -2,6 +2,7 @@ package org.rabochaya.projects;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -18,6 +19,12 @@ final class TrackStatistics {
   final String time;
   Sample(double[] point,String time){this.point=point;this.time=time;}
  }
+ static final class Event {
+  final double[] point;
+  final String label;
+  Event(double[] point,String label){this.point=point;this.label=label;}
+ }
+ final List<Event> events=new ArrayList<>();
  Sample firstTimed,lastTimed;
  int segments,points,legs,timedLegs,elevationLegs;
  long timedMillis,movingMillis;

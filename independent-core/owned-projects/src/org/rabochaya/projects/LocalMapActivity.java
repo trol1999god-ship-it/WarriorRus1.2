@@ -62,7 +62,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   map.restorePitch(getPreferences(0).getFloat("view_"+projectId+"_pitch",0));
   map.setPitchEnabled(getPreferences(0).getBoolean("map_pitch",false));
   map.setTrackPreprocessing(getPreferences(0).getBoolean("preprocess_gpx_tracks",false));
-  map.setTrackTimeBoundsVisible(getPreferences(0).getBoolean("track_time_bounds",false));
+  applyTrackAnnotations();
   map.setTileDetail(getPreferences(0).getInt("map_tile_detail",0));
   int control=WorkspaceUi.dp(this,MapHud.TOUCH_DP),edge=WorkspaceUi.dp(this,4),dockHeight=control;
   LinearLayout mapReadout=new LinearLayout(this);
@@ -579,11 +579,20 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void trackStyle(){
   SharedPreferences prefs=getPreferences(0);
   menu("Стиль треков",WorkspaceUi.Item.toggle("Границы времени записи трека",
-    prefs.getBoolean("track_time_bounds",false),()->{
-     boolean enabled=!prefs.getBoolean("track_time_bounds",false);
-     prefs.edit().putBoolean("track_time_bounds",enabled).apply();
-     map.setTrackTimeBoundsVisible(enabled);
-    }));
+    prefs.getBoolean("track_time_bounds",false),()->toggleTrackAnnotation("track_time_bounds")),
+    WorkspaceUi.Item.toggle("Показать события",
+    prefs.getBoolean("track_events",false),()->toggleTrackAnnotation("track_events")));
+ }
+
+ private void toggleTrackAnnotation(String key){
+  SharedPreferences prefs=getPreferences(0);
+  prefs.edit().putBoolean(key,!prefs.getBoolean(key,false)).apply();
+  applyTrackAnnotations();
+ }
+
+ private void applyTrackAnnotations(){
+  SharedPreferences prefs=getPreferences(0);
+  map.setTrackAnnotations(prefs.getBoolean("track_time_bounds",false),prefs.getBoolean("track_events",false));
  }
 
  private void createCompassPanel(FrameLayout scene,int edge) {

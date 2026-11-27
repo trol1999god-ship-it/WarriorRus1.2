@@ -76,7 +76,9 @@ final class GpxExchange {
   return out;
  }
 
- static TrackStatistics statistics(Element feature){
+ static TrackStatistics statistics(Element feature){return statistics(feature,false);}
+
+ static TrackStatistics statistics(Element feature,boolean includeEvents){
   Map<String,String> stored=data(feature);
   if(!"trk".equals(stored.get(KIND)))return null;
   try{
@@ -98,8 +100,12 @@ final class GpxExchange {
      for(int j=0;j<vertices.size();j++){
       JSONObject point=segment.optJSONObject(j);
       double[] vertex=vertices.get(j);
-      times.add(point!=null&&point.optDouble("_lon")==vertex[0]&&point.optDouble("_lat")==vertex[1]
-          ?point.optString("time",null):null);
+      boolean aligned=point!=null&&point.optDouble("_lon")==vertex[0]&&point.optDouble("_lat")==vertex[1];
+      times.add(aligned?point.optString("time",null):null);
+      if(aligned&&includeEvents&&result.events.size()<1000){
+       String name=point.optString("name","").replace('\n',' ').replace('\r',' ').trim();
+       if(!name.isEmpty())result.events.add(new TrackStatistics.Event(vertex,name.substring(0,Math.min(80,name.length()))));
+      }
      }
     }
     result.addSegment(vertices,times);

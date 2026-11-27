@@ -286,7 +286,7 @@ public final class LocalMapView extends View {
   drawLocalTarget(canvas);
   drawDraft(canvas);
   canvas.restoreToCount(transformed);
-  drawTrackTimeBounds(canvas);
+  drawTrackAnnotations(canvas);
   if(tileIndicators)listener.tileCoverage(visibleReady,visibleStored,visibleLoading,visibleMissing);
   float x=getWidth()/2f,y=getHeight()/2f,density=getResources().getDisplayMetrics().density;
   paint.setStyle(Paint.Style.STROKE);
@@ -320,57 +320,70 @@ public final class LocalMapView extends View {
   paint.setStyle(Paint.Style.FILL);
  }
 
- private boolean trackTimeBoundsVisible,trackBoundsLoading;
+ private boolean trackTimeBoundsVisible,trackEventsVisible,trackBoundsLoading;
  private List<TrackStatistics.Sample> trackBounds;
+ private List<TrackStatistics.Event> trackEvents;
 
- void setTrackTimeBoundsVisible(boolean visible){
-  trackTimeBoundsVisible=visible;
+ void setTrackAnnotations(boolean bounds,boolean events){
+  trackTimeBoundsVisible=bounds;
+  trackEventsVisible=events;
   invalidate();
-  if(!visible||trackBounds!=null||trackBoundsLoading||disposed)return;
+  if((!bounds&&!events)||trackBounds!=null||trackBoundsLoading||disposed)return;
   trackBoundsLoading=true;
   worker.execute(()->{
-   List<TrackStatistics.Sample> bounds=new ArrayList<>();
+   List<TrackStatistics.Sample> boundsList=new ArrayList<>();
+   List<TrackStatistics.Event> eventsList=new ArrayList<>();
    for(KmlProject.Feature feature:features){
     if(disposed)break;
     if(feature.element==null)continue;
-    TrackStatistics result=GpxExchange.statistics(feature.element);
+    TrackStatistics result=GpxExchange.statistics(feature.element,true);
     if(result==null)result=KmlTrackStatistics.read(feature.element);
-    if(result==null||result.firstTimed==null)continue;
-    bounds.add(result.firstTimed);
-    if(result.lastTimed!=result.firstTimed)bounds.add(result.lastTimed);
+    if(result==null)continue;
+    int available=10000-eventsList.size();
+    if(available>0)eventsList.addAll(result.events.subList(0,Math.min(available,result.events.size())));
+    if(result.firstTimed==null)continue;
+    boundsList.add(result.firstTimed);
+    if(result.lastTimed!=result.firstTimed)boundsList.add(result.lastTimed);
    }
    post(()->{
     if(disposed)return;
-    trackBounds=bounds;
+    trackBounds=boundsList;
+    trackEvents=eventsList;
     trackBoundsLoading=false;
     invalidate();
    });
   });
  }
 
- private void drawTrackTimeBounds(Canvas canvas){
-  if(!trackTimeBoundsVisible||trackBounds==null)return;
+ private void drawTrackAnnotations(Canvas canvas){
+  if(trackBounds==null||(!trackTimeBoundsVisible&&!trackEventsVisible))return;
   float density=getResources().getDisplayMetrics().density;
   paint.setTextSize(11*getResources().getDisplayMetrics().scaledDensity);
   int drawn=0;
-  for(TrackStatistics.Sample sample:trackBounds){
-   float[] location=point(sample.point);
-   transformPoint(location[0],location[1],projection);
-   float x=transformedPoint[0],y=transformedPoint[1];
-   if(x<0||x>getWidth()||y<0||y>getHeight())continue;
-   if(drawn++>=200)break;
-   paint.setStyle(Paint.Style.FILL);
-   paint.setColor(0xffd0efff);
-   canvas.drawCircle(x,y,4*density,paint);
-   String label=sample.time.replace('T',' ');
-   float width=paint.measureText(label);
-   float left=Math.max(0,Math.min(x+6*density,getWidth()-width-6*density));
-   float baseline=Math.max(18*density,y-4*density);
-   paint.setColor(0xe5163148);
-   canvas.drawRect(left,baseline-13*density,left+width+6*density,baseline+3*density,paint);
-   paint.setColor(0xffeffaff);
-   canvas.drawText(label,left+3*density,baseline,paint);
+  if(trackTimeBoundsVisible)for(TrackStatistics.Sample sample:trackBounds){
+   if(drawTrackAnnotation(canvas,sample.point,sample.time.replace('T',' '),density)&&++drawn>=200)return;
   }
+  if(trackEventsVisible)for(TrackStatistics.Event event:trackEvents){
+   if(drawTrackAnnotation(canvas,event.point,event.label,density)&&++drawn>=200)return;
+  }
+ }
+
+ private boolean drawTrackAnnotation(Canvas canvas,double[] point,String label,float density){
+  float[] location=point(point);
+  transformPoint(location[0],location[1],projection);
+  float x=transformedPoint[0],y=transformedPoint[1];
+  if(x<0||x>getWidth()||y<0||y>getHeight())return false;
+  paint.setStyle(Paint.Style.FILL);
+  paint.setColor(0xffd0efff);
+  canvas.drawCircle(x,y,4*density,paint);
+  float width=paint.measureText(label);
+  float left=Math.max(0,Math.min(x+6*density,getWidth()-width-6*density));
+  float baseline=Math.max(18*density,y-4*density);
+  paint.setColor(0xe5163148);
+  canvas.drawRect(left,baseline-13*density,left+width+6*density,baseline+3*density,paint);
+  paint.setColor(0xffeffaff);
+  canvas.drawText(label,left+3*density,baseline,paint);
+  return true;
  }
 
  void setTrackPreprocessing(boolean enabled){
