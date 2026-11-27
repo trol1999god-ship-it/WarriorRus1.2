@@ -1021,6 +1021,12 @@
 
     check-cast v0, Lorg/w3c/dom/Element;
 
+    invoke-static {v0, p2}, Lorg/rabochaya/projects/KmlTimedTrackGeometry;->append(Lorg/w3c/dom/Element;Ljava/util/List;)Z
+
+    move-result v1
+
+    if-nez v1, :goto_5
+
     invoke-static {v0}, Lorg/rabochaya/projects/KmlProject;->tag(Lorg/w3c/dom/Node;)Ljava/lang/String;
 
     move-result-object v1

@@ -391,6 +391,21 @@ public final class MapAndroidChecks extends Instrumentation {
    check(f.getJSONObject(2).getJSONObject("geometry").getJSONArray("coordinates").length()==2,"GeoJSON preserves polygon hole");
    Object areaReimport=readExchange(new ByteArrayInputStream(writeExchange(geo,"gpx")),false);
    check(new String(writeExchange(areaReimport,"geojson"),"UTF-8").contains("\"Polygon\""),"private GPX area extension restores its polygon");
+   String temporal="<kml xmlns='http://www.opengis.net/kml/2.2' xmlns:gx='http://www.google.com/kml/ext/2.2'>"
+       +"<Document><Placemark><name>QA_TEMPORAL</name><gx:MultiTrack><gx:Track>"
+       +"<when>2026-01-01T08:01:00Z</when><when>2026-01-01T08:02:00Z</when><when>2026-01-01T08:03:00Z</when>"
+       +"<gx:coord>30 50 7</gx:coord><gx:coord/><gx:coord>30.01 50.01 8</gx:coord>"
+       +"</gx:Track><gx:Track><when>2026-01-01T08:04:00Z</when><gx:coord>31 51 9</gx:coord>"
+       +"</gx:Track></gx:MultiTrack></Placemark></Document></kml>";
+   Object temporalProject=readExchange(new ByteArrayInputStream(temporal.getBytes("UTF-8")),false);
+   List<?> temporalFeatures=(List<?>)call(temporalProject,"features",new Class[]{boolean.class},true);
+   check(temporalFeatures.size()==1,"temporal track is available on the local map");
+   List<?> temporalShapes=(List<?>)temporalFeatures.get(0).getClass().getField("shapes").get(temporalFeatures.get(0));
+   check(temporalShapes.size()==3,"map geometry keeps separate temporal segments and gaps");
+   String temporalGpx=new String(writeExchange(temporalProject,"gpx"),"UTF-8");
+   check(temporalGpx.split("<trkseg>",-1).length==4&&temporalGpx.contains("08:01:00Z")
+       &&!temporalGpx.contains("08:02:00Z")&&temporalGpx.contains("08:03:00Z")
+       &&temporalGpx.contains("08:04:00Z"),"temporal KML export retains time alignment and coordinate gaps");
    checkSavedGpxSplit(store);
    int count=((List)call(store,"list",new Class[]{})).size();
    for(String invalid:new String[]{
