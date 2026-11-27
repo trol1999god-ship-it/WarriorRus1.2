@@ -29,7 +29,7 @@ public final class ObjectExchange {
  }
 
  public static KmlProject readForImport(Activity activity,InputStream stream,boolean zip)throws IOException{
-  if(zip)return KmlProject.read(stream,true);
+  if(zip)return KmzLayerImport.open(KmlProject.read(stream,true));
   byte[] payload=bounded(stream);
   int i=payload.length>=3&&(payload[0]&255)==239&&(payload[1]&255)==187&&(payload[2]&255)==191?3:0;
   while(i<payload.length&&(payload[i]==' '||payload[i]=='\n'||payload[i]=='\r'||payload[i]=='\t'))i++;

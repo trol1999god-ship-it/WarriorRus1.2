@@ -406,6 +406,26 @@ public final class MapAndroidChecks extends Instrumentation {
    check(temporalGpx.split("<trkseg>",-1).length==4&&temporalGpx.contains("08:01:00Z")
        &&!temporalGpx.contains("08:02:00Z")&&temporalGpx.contains("08:03:00Z")
        &&temporalGpx.contains("08:04:00Z"),"temporal KML export retains time alignment and coordinate gaps");
+   ByteArrayOutputStream indexedKmz=new ByteArrayOutputStream();
+   try(java.util.zip.ZipOutputStream archive=new java.util.zip.ZipOutputStream(indexedKmz)){
+    String[] paths={"doc.kml","layers/objects.kml","layers/files/payload.txt"};
+    String[] values={
+     "<kml xmlns='http://www.opengis.net/kml/2.2'><Document><NetworkLink><Link><href>layers/objects.kml</href></Link></NetworkLink></Document></kml>",
+     "<kml xmlns='http://www.opengis.net/kml/2.2'><Document><Placemark><name>Linked layer</name><Point><coordinates>30,50</coordinates></Point></Placemark></Document></kml>",
+     "Synthetic attachment"};
+    for(int index=0;index<paths.length;index++){
+     archive.putNextEntry(new java.util.zip.ZipEntry(paths[index]));
+     archive.write(values[index].getBytes("UTF-8"));
+     archive.closeEntry();
+    }
+   }
+   Object linkedProject=readExchange(new ByteArrayInputStream(indexedKmz.toByteArray()),true);
+   check("layers/objects.kml".equals(codec.getField("entry").get(linkedProject))
+       &&((List<?>)call(linkedProject,"features",new Class[]{boolean.class},true)).size()==1,
+       "KMZ local link resolves to an editable project layer");
+   Map<?,?> linkedAssets=(Map<?,?>)codec.getField("assets").get(linkedProject);
+   check(linkedAssets.containsKey("doc.kml")&&linkedAssets.containsKey("layers/files/payload.txt"),
+       "KMZ local index and layer-relative attachment are preserved");
    checkSavedGpxSplit(store);
    int count=((List)call(store,"list",new Class[]{})).size();
    for(String invalid:new String[]{
