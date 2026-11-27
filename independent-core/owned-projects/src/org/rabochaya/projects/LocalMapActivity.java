@@ -487,6 +487,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
     flags |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
   }
   window.getDecorView().setSystemUiVisibility(flags);
+  if(mapDock!=null)mapDock.setNavigationHidden((flags&View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)!=0);
  }
  private void compositionFont(View view){WorkspaceUi.applyFont(this,view);}
  private void mapsMenu(){

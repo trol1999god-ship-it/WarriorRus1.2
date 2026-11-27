@@ -17,13 +17,16 @@ final class MapDock extends LinearLayout {
  private final HorizontalScrollView scroll;
  private final ImageButton toggle;
  private final SharedPreferences preferences;
- private final int touch, edge, bottom, toolsWidth;
+ private final int touch, edge, bottom, toolsWidth, attributionBottom;
+ private boolean navigationHidden;
+ private int stableBottom;
  private boolean expanded;
 
  MapDock(Activity activity, FrameLayout scene, View attribution, View zoom, WorkspaceUi.Item... actions) {
   super(activity);
   this.scene = scene;
   this.attribution = attribution;
+  attributionBottom=((FrameLayout.LayoutParams)attribution.getLayoutParams()).bottomMargin;
   this.zoom = zoom;
   touch = WorkspaceUi.dp(activity, MapHud.TOUCH_DP);
   edge = WorkspaceUi.dp(activity, 4);
@@ -56,6 +59,13 @@ final class MapDock extends LinearLayout {
   scene.addView(this, dock);
   scene.addView(toggle, new FrameLayout.LayoutParams(touch, touch, Gravity.LEFT | Gravity.BOTTOM));
   scroll.setVisibility(expanded ? VISIBLE : GONE);
+  scene.setOnApplyWindowInsetsListener((view,insets)->{
+   updateStableBottom(insets.getStableInsetBottom());
+   return view.onApplyWindowInsets(insets);
+  });
+  android.view.WindowInsets insets=scene.getRootWindowInsets();
+  if(insets!=null)updateStableBottom(insets.getStableInsetBottom());
+  scene.requestApplyInsets();
   scene.addOnLayoutChangeListener((view, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
    if (right - left != oldRight - oldLeft) layoutControls();
   });
@@ -73,9 +83,23 @@ final class MapDock extends LinearLayout {
   return expanded && available < toolsWidth + touch;
  }
 
+ void setNavigationHidden(boolean hidden){
+  if(navigationHidden==hidden)return;
+  navigationHidden=hidden;
+  layoutControls();
+ }
+
+ private void updateStableBottom(int inset){
+  if(stableBottom==inset)return;
+  stableBottom=inset;
+  if(navigationHidden)layoutControls();
+ }
+
+ private int effectiveBottom(){return bottom+(navigationHidden?stableBottom:0);}
+
  int menuClearance(int width) {
   int rows = hasSeparateToggle(availableWidth(width)) ? 2 : 1;
-  return rows * touch + bottom + edge;
+  return rows * touch + effectiveBottom() + edge;
  }
 
  void layoutControls() {
@@ -84,13 +108,16 @@ final class MapDock extends LinearLayout {
   boolean separate = hasSeparateToggle(available);
   int strip = expanded ? Math.min(toolsWidth, available - (separate ? 0 : touch)) : touch;
   scroll.setVisibility(expanded ? VISIBLE : GONE);
-  if (getLayoutParams().width != strip) {
-   getLayoutParams().width = strip;
-   requestLayout();
+  FrameLayout.LayoutParams dock=(FrameLayout.LayoutParams)getLayoutParams();
+  int dockBottom=effectiveBottom();
+  if(dock.width!=strip||dock.bottomMargin!=dockBottom){
+   dock.width=strip;
+   dock.bottomMargin=dockBottom;
+   setLayoutParams(dock);
   }
   FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) toggle.getLayoutParams();
   int left = expanded && !separate ? edge + strip : edge;
-  int offset = separate ? bottom + touch : bottom;
+  int offset = separate ? dockBottom + touch : dockBottom;
   if (params.leftMargin != left || params.bottomMargin != offset) {
    params.leftMargin = left;
    params.bottomMargin = offset;
@@ -98,8 +125,10 @@ final class MapDock extends LinearLayout {
   }
   FrameLayout.LayoutParams status = (FrameLayout.LayoutParams) attribution.getLayoutParams();
   int statusLeft = separate ? edge * 2 + touch : edge;
-  if (status.leftMargin != statusLeft) {
+  int statusBottom=attributionBottom+dockBottom-bottom;
+  if (status.leftMargin != statusLeft||status.bottomMargin!=statusBottom) {
    status.leftMargin = statusLeft;
+   status.bottomMargin=statusBottom;
    attribution.setLayoutParams(status);
   }
  }
