@@ -743,6 +743,9 @@
         "maps_submenu_display_scale_value": "Карты → Масштаб карты: численный масштаб по центру и плотности экрана"
       },
       "partial": {
+        "landmarks_submenu_display_target_information": "Расстояние от центра карты до вручную выбранной точки проекта.",
+        "landmarks_submenu_display_target_line": "Переключаемая линия от центра карты до точки цели.",
+        "settings_landmarks_display_target_color_title": "Локальная палитра для точки и линии. Оформление эталона требует проверки.",
         "settings_landmarks_preprocess_title": "Выключаемая фильтрация одиночных выбросов GPX при отображении, без правки исходной геометрии. Алгоритм эталона требует сверки.",
         "landmarks_submenu_control_time": "Статистика сохранённых GPX и KML по имеющимся меткам. Управление временем движения по эталону требует сверки.",
         "settings_canvas_multitouch_pitch_title": "Перспективный вид: наклон вертикальным жестом двумя пальцами.",
@@ -802,16 +805,13 @@
         "core": [],
         "geolocation": [],
         "landmarks": [
-          "landmarks_submenu_control_time",
-          "landmarks_submenu_display_target_information",
-          "landmarks_submenu_display_target_line"
+          "landmarks_submenu_control_time"
         ],
         "maps": [
           "maps_submenu_correct_china_shift"
         ],
         "orientation": [],
         "settings": [
-            "settings_landmarks_display_target_color_title",
           "settings_landmarks_preprocess_title"
         ]
       }

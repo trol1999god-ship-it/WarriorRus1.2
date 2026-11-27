@@ -3,6 +3,9 @@ import android.content.*;import android.graphics.*;import android.os.Handler;imp
 /** Independent raster map + KML geometry, sharing one Web Mercator viewport. */
 public final class LocalMapView extends View {
  public interface Listener {void center(double lat,double lon,double zoom);void picked(KmlProject.Feature feature);void error(String message);default void tileError(String message){error(message);}void settled(double x,double y,double zoom);void draftChanged(int count);void longPressed(double lat,double lon);}
+ private double[] localTarget;
+ private boolean localTargetLine;
+ private int localTargetColor;
  private final IdentityHashMap<KmlProject.Geometry,List<List<double[]>>> filteredTrackRings=new IdentityHashMap<>();
  private final IdentityHashMap<org.w3c.dom.Element,KmlComponentStyle> componentStyles=new IdentityHashMap<>();
  private final Handler mainHandler = new Handler(Looper.getMainLooper());
@@ -209,6 +212,7 @@ public final class LocalMapView extends View {
     canvas.restoreToCount(upright);
    }
   }
+  drawLocalTarget(canvas);
   drawDraft(canvas);
   canvas.restoreToCount(transformed);
   float x=getWidth()/2f,y=getHeight()/2f,density=getResources().getDisplayMetrics().density;
@@ -222,6 +226,27 @@ public final class LocalMapView extends View {
   paint.setStyle(Paint.Style.FILL);
  }
  private void drawTiles(Canvas canvas,int layer,TileSource source){drawTiles(canvas,layer,source,null);}
+ void setLocalTarget(double[] point,boolean showLine,int color){
+  localTarget=point;
+  localTargetLine=showLine;
+  localTargetColor=color;
+  invalidate();
+ }
+
+ private void drawLocalTarget(Canvas canvas){
+  if(localTarget==null)return;
+  float[] target=point(localTarget);
+  float density=getResources().getDisplayMetrics().density;
+  paint.setColor(localTargetColor);
+  paint.setStyle(Paint.Style.STROKE);
+  paint.setStrokeWidth(2*density);
+  if(localTargetLine)canvas.drawLine(getWidth()/2f,getHeight()/2f,target[0],target[1],paint);
+  canvas.drawCircle(target[0],target[1],6*density,paint);
+  canvas.drawLine(target[0]-3*density,target[1],target[0]+3*density,target[1],paint);
+  canvas.drawLine(target[0],target[1]-3*density,target[0],target[1]+3*density,paint);
+  paint.setStyle(Paint.Style.FILL);
+ }
+
  void setTrackPreprocessing(boolean enabled){
   filteredTrackRings.clear();
   if(enabled)for(KmlProject.Feature feature:features){

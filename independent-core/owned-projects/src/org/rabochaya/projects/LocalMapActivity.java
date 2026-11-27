@@ -11,7 +11,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private double compassHeading=Double.NaN;
  private String compassReason="ожидаются данные датчиков";
  private int headingAccuracy;
- private final NorthReference northReference=new NorthReference();private double[] creationPoint;private LinearLayout zoomButtons;private MapDock mapDock;private long projectId;private LinearLayout root;private TextView coordinates,status,tileNotice,scaleValue;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
+ private final NorthReference northReference=new NorthReference();private double[] creationPoint;private LinearLayout zoomButtons;private MapDock mapDock;private long projectId;private LinearLayout root;private TextView coordinates,targetStatus;private double[] localTarget;private TextView status,tileNotice,scaleValue;private String tileIssue;private MapScaleView mapScale;private LocalMapView map;private HgtRaster dem;private List<KmlProject.Feature> features;private KmlSymbolAssets symbolAssets;
  private boolean busy,refreshOnResume,refreshMapOnResume;private volatile boolean disposed;private final ExecutorService worker=Executors.newSingleThreadExecutor();private String warning="";private long lastError;private LinearLayout drawingRow;private String pendingDrawType;private ArrayList<double[]> pendingDrawPoints;
  private Bundle pendingEdit;
  private EditForm activeEdit;
@@ -62,6 +62,13 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   coordinates.setIncludeFontPadding(false);
   coordinates.setPadding(edge,WorkspaceUi.dp(this,2),edge,WorkspaceUi.dp(this,2));
   coordinateBar.addView(coordinates,new LinearLayout.LayoutParams(-2,-2,1));
+  targetStatus=label("",11);
+  targetStatus.setBackground(MapHud.panel(this));
+  targetStatus.setTextColor(MapHud.INK);
+  targetStatus.setVisibility(View.GONE);
+  targetStatus.setOnClickListener(view->targetMenu());
+  mapReadout.addView(targetStatus,new LinearLayout.LayoutParams(-2,-2));
+  applyTarget();
   ImageButton collapse=MapHud.button(this,"collapse","Свернуть / развернуть координаты",()->{boolean visible=coordinates.getVisibility()!=View.VISIBLE;coordinates.setVisibility(visible?View.VISIBLE:View.GONE);getPreferences(0).edit().putBoolean("show_coordinates",visible).commit();});
   MapHud.insetButton(this,collapse,8,15);
   coordinateBar.addView(collapse,new LinearLayout.LayoutParams(control,control));
@@ -117,7 +124,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   drawingRow=null;if(pendingDrawType!=null&&pendingDrawPoints!=null){String type=pendingDrawType;ArrayList<double[]> points=pendingDrawPoints;pendingDrawType=null;pendingDrawPoints=null;if(("LineString".equals(type)||"Polygon".equals(type))&&points.size()<=2000){startDrawing(type);for(double[] c:points)if(c!=null&&c.length>=2)map.addDrawingPoint(c[0],c[1]);}}
   if(restore){SharedPreferences p=getPreferences(0);String key="view_"+projectId+"_";if(p.contains(key+"x"))try{map.restore(Double.parseDouble(p.getString(key+"x",".5")),Double.parseDouble(p.getString(key+"y",".5")),p.getFloat(key+"z",2));}catch(RuntimeException ignored){}}
  }
- public void longPressed(double lat,double lon){if(busy)return;menu(String.format(Locale.US,"%.6f, %.6f",lat,lon),item("Создать метку здесь",()->{creationPoint=new double[]{lon,lat};editObject(null,"Point");}),item("Начать маршрут здесь",()->{startDrawing("LineString");map.addDrawingPoint(lon,lat);}),item("Начать область здесь",()->{startDrawing("Polygon");map.addDrawingPoint(lon,lat);}),item("В центр карты",()->{double[] v=map.viewport();map.restore(MapMath.x(lon),MapMath.y(lat),v[2]);}));}
+ public void longPressed(double lat,double lon){if(busy)return;menu(String.format(Locale.US,"%.6f, %.6f",lat,lon),item("Задать цель здесь",()->setTarget(lat,lon)),item("Создать метку здесь",()->{creationPoint=new double[]{lon,lat};editObject(null,"Point");}),item("Начать маршрут здесь",()->{startDrawing("LineString");map.addDrawingPoint(lon,lat);}),item("Начать область здесь",()->{startDrawing("Polygon");map.addDrawingPoint(lon,lat);}),item("В центр карты",()->{double[] v=map.viewport();map.restore(MapMath.x(lon),MapMath.y(lat),v[2]);}));}
  private ImageButton zoomButton(String icon, String label, Runnable action) {
   ImageButton button=MapHud.button(this,icon,label,action);
   MapHud.insetButton(this,button,6,11);
@@ -163,7 +170,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
     item("Кеш / онлайн",this::onlineSettings),item("Информеры",this::display),
     item("Экран карты",this::screenOptions),item("Вид координатных сеток",this::gridAppearance),
     item("Единицы измерения",this::displayUnits),item("Стиль статус-панелей",this::mapAppearance),
-    item("Уровень детализации",this::tileDetail),
+    item("Уровень детализации",this::tileDetail),item("Цель на карте",this::targetMenu),
     WorkspaceUi.Item.toggle("Предварительная обработка GPX-треков",
         getPreferences(0).getBoolean("preprocess_gpx_tracks",false),this::toggleTrackPreprocessing));
  }
@@ -524,6 +531,74 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
    });
   }
  }
+ private static final int[] TARGET_COLORS={0xffffb438,0xff7edbff,0xffff7180,0xffb4e88b};
+
+ private String targetKey(){return "target_"+projectId;}
+
+ private void setTarget(double lat,double lon){
+  getPreferences(0).edit().putLong(targetKey()+"_lat",Double.doubleToLongBits(lat))
+      .putLong(targetKey()+"_lon",Double.doubleToLongBits(lon)).apply();
+  applyTarget();
+ }
+
+ private void targetMenu(){
+  SharedPreferences prefs=getPreferences(0);
+  List<WorkspaceUi.Item> options=new ArrayList<>();
+  options.add(WorkspaceUi.Item.toggle("Статус цели",prefs.getBoolean("show_target_status",true),
+      ()->toggleTargetOption("show_target_status",true)));
+  options.add(WorkspaceUi.Item.toggle("Линия до цели",prefs.getBoolean("show_target_line",true),
+      ()->toggleTargetOption("show_target_line",true)));
+  options.add(item("Цвет цели",this::targetColor));
+  if(localTarget!=null)options.add(item("Убрать цель",()->{
+   prefs.edit().remove(targetKey()+"_lat").remove(targetKey()+"_lon").apply();
+   applyTarget();
+  }));
+  menu("Цель на карте",options.toArray(new WorkspaceUi.Item[0]));
+ }
+
+ private void toggleTargetOption(String key,boolean defaultValue){
+  SharedPreferences prefs=getPreferences(0);
+  prefs.edit().putBoolean(key,!prefs.getBoolean(key,defaultValue)).apply();
+  applyTarget();
+ }
+
+ private void targetColor(){
+  SharedPreferences prefs=getPreferences(0);
+  WorkspaceUi.showDialog(this,new AlertDialog.Builder(this).setTitle("Цвет цели")
+      .setSingleChoiceItems(new String[]{"Янтарный","Голубой","Коралловый","Салатовый"},
+          targetColorIndex(prefs),(dialog,index)->{
+           prefs.edit().putInt("target_color",index).apply();
+           dialog.dismiss();
+           applyTarget();
+          }).setNegativeButton("Отмена",null));
+ }
+
+ private int targetColorIndex(SharedPreferences prefs){
+  return Math.max(0,Math.min(TARGET_COLORS.length-1,prefs.getInt("target_color",0)));
+ }
+
+ private void applyTarget(){
+  SharedPreferences prefs=getPreferences(0);
+  String key=targetKey();
+  localTarget=null;
+  if(prefs.contains(key+"_lat")&&prefs.contains(key+"_lon")){
+   double lat=Double.longBitsToDouble(prefs.getLong(key+"_lat",0));
+   double lon=Double.longBitsToDouble(prefs.getLong(key+"_lon",0));
+   if(Math.abs(lat)<=90&&Math.abs(lon)<=180)localTarget=new double[]{lon,lat};
+  }
+  map.setLocalTarget(localTarget,prefs.getBoolean("show_target_line",true),TARGET_COLORS[targetColorIndex(prefs)]);
+  targetStatus.setVisibility(localTarget!=null&&prefs.getBoolean("show_target_status",true)?View.VISIBLE:View.GONE);
+  double[] viewport=map.viewport();
+  refreshTargetDistance(MapMath.lat(viewport[1]),MapMath.lon(viewport[0]));
+ }
+
+ private void refreshTargetDistance(double lat,double lon){
+  if(localTarget==null||targetStatus==null||targetStatus.getVisibility()!=View.VISIBLE)return;
+  String text="До цели от центра: "+DisplayUnits.distance(
+      DemProfile.metres(lon,lat,localTarget[0],localTarget[1]),DisplayUnits.distanceMode(this));
+  if(!text.contentEquals(targetStatus.getText()))targetStatus.setText(text);
+ }
+
  private void display(){
   SharedPreferences preferences = getPreferences(0);
   String[] options = {"Координаты центра", "Кнопки масштаба", "Масштабная линейка", "Названия меток", "Название карты", "Координатная сетка", "Доп. координатная сетка", "Круговая масштабная линейка"};
@@ -722,6 +797,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void removeMap(){if(map!=null&&map.drawingType()!=null){error("Завершите или отмените рисунок");return;}if(!mapFile().isFile()){error("Локальная подложка не выбрана");return;}final String original;try{original=LocalRasterStore.stamp(mapFile());}catch(IOException e){error(e.getMessage());return;}new AlertDialog.Builder(this).setMessage("Удалить приватную копию подложки? Объекты проекта и исходный MBTiles сохранятся.").setPositiveButton("Убрать",(d,w)->{saveView();if(map!=null){map.close();map=null;}try{LocalRasterStore.remove(mapFile(),original);}catch(IOException e){error(e.getMessage());}show(true);}).setNegativeButton("Отмена",null).show();}
  private void closeDem(){if(dem!=null){try{dem.close();}catch(IOException ignored){}dem=null;}}
  public void center(double lat,double lon,double zoom) {
+  refreshTargetDistance(lat,lon);
   TextView panel = coordinates;
   if (panel == null) return;
   if (mapScale != null) mapScale.update(lat, zoom);
