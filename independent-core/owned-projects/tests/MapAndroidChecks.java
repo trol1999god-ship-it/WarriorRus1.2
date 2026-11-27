@@ -834,11 +834,12 @@ public final class MapAndroidChecks extends Instrumentation {
   SharedPreferences prefs=context.getSharedPreferences("org.rabochaya.projects.LocalMapActivity",0);
   boolean oldManual=prefs.getBoolean("rotate_map_touch",false),oldMagnetic=prefs.getBoolean("rotate_map_compass",false);
   boolean oldPinch=prefs.getBoolean("zoom_pinch",true),oldSlider=prefs.getBoolean("zoom_slider",false),
-      oldLongPress=prefs.getBoolean("long_press_map_only",false);
+      oldLongPress=prefs.getBoolean("long_press_map_only",false),oldTap=prefs.getBoolean("zoom_double_tap",false);
   long previous=context.getSharedPreferences("workspace-session",0).getLong("last_project",-1);
   try{
    prefs.edit().putBoolean("rotate_map_touch",false).putBoolean("rotate_map_compass",false)
-      .putBoolean("zoom_pinch",true).putBoolean("zoom_slider",false).putBoolean("long_press_map_only",false).commit();
+      .putBoolean("zoom_pinch",true).putBoolean("zoom_slider",false).putBoolean("long_press_map_only",false)
+      .putBoolean("zoom_double_tap",false).commit();
    Object doc=codec.getMethod("parse",byte[].class).invoke(null,(Object)XML.getBytes("UTF-8"));
    id=(Long)call(store,"insert",new Class[]{codec,String.class},doc,"QA_MAP_TWIST");
    activity=startActivitySync(new Intent().setClassName(context.getPackageName(),"org.rabochaya.projects.LocalMapActivity")
@@ -888,12 +889,33 @@ public final class MapAndroidChecks extends Instrumentation {
    check(only.getBoolean(activity),"long press activates map-only mode");
    runOnMainSync(()->activity.onBackPressed());
    check(!only.getBoolean(activity)&&!activity.isFinishing(),"Back restores chrome and keeps the map open");
+   clickDescription("Меню");click("Опции");click("Управление масштабом");click("Быстрые двойные касания");
+   setViewport(.5,.5,8);
+   runOnMainSync(()->{
+    float x=surface.getWidth()/2f,y=surface.getHeight()/2f;
+    long now=android.os.SystemClock.uptimeMillis();
+    twistEvent(surface,now,0,0,x,y,x,y);
+    twistEvent(surface,now,1,1,x,y,x,y);
+    twistEvent(surface,now,2,0,x,y,x,y);
+    twistEvent(surface,now,3,1,x,y,x,y);
+   });
+   check(((double[])call(surface,"viewport",new Class[]{}))[2]==9,"double tap on one point zooms in");
+   runOnMainSync(()->{
+    float x=surface.getWidth()/2f,y=surface.getHeight()/2f;
+    long now=android.os.SystemClock.uptimeMillis();
+    twistEvent(surface,now,0,0,x-60,y,x,y);
+    twistEvent(surface,now,1,1,x-60,y,x,y);
+    twistEvent(surface,now,2,0,x+60,y,x,y);
+    twistEvent(surface,now,3,1,x+60,y,x,y);
+   });
+   check(((double[])call(surface,"viewport",new Class[]{}))[2]==8,"double tap on different points zooms out");
   }finally{
    if(activity!=null){Activity owner=activity;runOnMainSync(owner::finish);}
    if(id>0){call(store,"remove",new Class[]{long.class},id);staticCall("LocalMapActivity","cleanupDeletedProject",new Class[]{Context.class,long.class},context,id);}
    call(store,"close",new Class[]{});
    prefs.edit().putBoolean("rotate_map_touch",oldManual).putBoolean("rotate_map_compass",oldMagnetic)
-      .putBoolean("zoom_pinch",oldPinch).putBoolean("zoom_slider",oldSlider).putBoolean("long_press_map_only",oldLongPress).commit();
+      .putBoolean("zoom_pinch",oldPinch).putBoolean("zoom_slider",oldSlider).putBoolean("long_press_map_only",oldLongPress)
+      .putBoolean("zoom_double_tap",oldTap).commit();
    context.getSharedPreferences("workspace-session",0).edit().putLong("last_project",previous).commit();
   }
  }

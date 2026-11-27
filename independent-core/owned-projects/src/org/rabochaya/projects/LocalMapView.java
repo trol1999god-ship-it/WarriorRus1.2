@@ -22,6 +22,7 @@ public final class LocalMapView extends View {
   if (inputLocked == locked) return;
   inputLocked = locked;
   if (!locked) return;
+  cancelPendingTap();
   touchInProgress=false;
   twisting=false;
   applyBearing();
@@ -114,7 +115,7 @@ public final class LocalMapView extends View {
   super(context);paint.setTypeface(WorkspaceUi.font(context));onlineSource=source;useNetwork=network;this.features=features;this.listener=listener;
   IdentityHashMap<org.w3c.dom.Document,KmlComponentStyle.Resolver> resolvers=new IdentityHashMap<>();
   for(KmlProject.Feature feature:features)if(feature.element!=null){org.w3c.dom.Document document=feature.element.getOwnerDocument();KmlComponentStyle.Resolver resolver=resolvers.get(document);if(resolver==null){resolver=new KmlComponentStyle.Resolver(document);resolvers.put(document,resolver);}componentStyles.put(feature.element,resolver.resolve(feature.element));}setContentDescription("Карта и объекты KML. Перемещение одним пальцем, масштаб двумя.");
-  contextGesture=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){public boolean onDown(MotionEvent e){return true;}public void onLongPress(MotionEvent e){if(!disposed&&!paused&&!moved&&draft==null&&e.getPointerCount()==1){longConsumed=true;listener.longPressed(MapMath.lat(cy+(e.getY()-getHeight()/2.0)/world()),MapMath.lon(cx+(e.getX()-getWidth()/2.0)/world()));}}});
+  contextGesture=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){public boolean onDown(MotionEvent e){return true;}public void onLongPress(MotionEvent e){if(!disposed&&!paused&&!moved&&draft==null&&e.getPointerCount()==1){longConsumed=true;cancelPendingTap();listener.longPressed(MapMath.lat(cy+(e.getY()-getHeight()/2.0)/world()),MapMath.lon(cx+(e.getX()-getWidth()/2.0)/world()));}}});
   scale=new ScaleGestureDetector(context,new ScaleGestureDetector.SimpleOnScaleGestureListener(){
    private float focusX,focusY;
    private boolean scaled;
@@ -144,7 +145,7 @@ public final class LocalMapView extends View {
  public void fit(){if(getWidth()<1||getHeight()<1){fitted=false;restored=false;return;}ArrayList<double[]> points=new ArrayList<double[]>();for(KmlProject.Feature f:features)for(KmlProject.Geometry g:f.shapes)for(List<double[]> ring:displayedRings(g))points.addAll(ring);double[] v=MapMath.fit(points.toArray(new double[points.size()][]),getWidth(),getHeight());cx=v[0];cy=v[1];zoom=points.isEmpty()&&bundled!=null?MapMath.overviewZoom(getHeight()):v[2];fitted=true;changed();settle();}
  public void focus(KmlProject.Feature feature){ArrayList<double[]> points=new ArrayList<>();for(KmlProject.Geometry geometry:feature.shapes)for(List<double[]> ring:displayedRings(geometry))points.addAll(ring);double[] v=MapMath.fit(points.toArray(new double[points.size()][]),Math.max(1,getWidth()),Math.max(1,getHeight()));restore(v[0],v[1],v[2]);}
  protected void onSizeChanged(int w,int h,int oldw,int oldh){super.onSizeChanged(w,h,oldw,oldh);if(!fitted&&!restored)fit();else changed();}
- public void step(double amount){zoomAt(amount,getWidth()/2f,getHeight()/2f);settle();}
+ public void step(double amount){cancelPendingTap();zoomAt(amount,getWidth()/2f,getHeight()/2f);settle();}
  private void zoomAt(double amount,float px,float py){double before=world(),next=MapMath.clamp(zoom+amount,0,23);double wx=cx+(px-getWidth()/2.0)/before,wy=cy+(py-getHeight()/2.0)/before;zoom=next;double after=world();cx=MapMath.wrap(wx-(px-getWidth()/2.0)/after);cy=MapMath.clamp(wy-(py-getHeight()/2.0)/after,0,1);changed();}
  private void settle(){listener.settled(cx,cy,zoom);}
  private void changed(){listener.center(MapMath.lat(cy),MapMath.lon(cx),zoom);invalidate();}
@@ -387,13 +388,16 @@ public final class LocalMapView extends View {
  private float manualBearing;
  private boolean twisting;
  private int twistFirst=-1,twistSecond=-1;
- private boolean pinchZoomEnabled=true,snapZoom;
+ private boolean pinchZoomEnabled=true,snapZoom,zoomShortcuts;
  private float lastTwistX,lastTwistY;
  private boolean twistScaled;
 
- void setZoomGestures(boolean enabled,boolean adjust){
+ void setZoomGestures(boolean enabled,boolean adjust,boolean shortcuts){
   pinchZoomEnabled=enabled;
   snapZoom=adjust;
+  zoomShortcuts=shortcuts;
+  scale.setQuickScaleEnabled(!shortcuts);
+  if(!shortcuts)cancelPendingTap();
  }
 
  private void snapZoomAt(float x,float y){
@@ -402,6 +406,7 @@ public final class LocalMapView extends View {
 
  void zoomFromSlider(double level,boolean finished){
   if(inputLocked)return;
+  cancelPendingTap();
   zoomAt(level-zoom,getWidth()/2f,getHeight()/2f);
   if(finished){
    snapZoomAt(getWidth()/2f,getHeight()/2f);
@@ -504,6 +509,7 @@ public final class LocalMapView extends View {
   double dx=event.getX(1)-event.getX(0),dy=event.getY(1)-event.getY(0);
   twistSpan=Math.hypot(dx,dy);
   if(twistSpan<1)return false;
+  cancelPendingTap();
   twistFirst=event.getPointerId(0);
   twistSecond=event.getPointerId(1);
   twistAngle=Math.atan2(dy,dx);
@@ -579,17 +585,84 @@ public final class LocalMapView extends View {
   return true;
  }
 
+ private long tapTime=-1;
+ private float tapX,tapY;
+ private final Runnable confirmMapTap=()->{
+  if(tapTime<0)return;
+  tapTime=-1;
+  if(!disposed&&!paused&&!inputLocked)pickMapPoint(tapX,tapY);
+ };
+
+ private void cancelPendingTap(){
+  tapTime=-1;
+  removeCallbacks(confirmMapTap);
+ }
+
+ private void mapTap(float x,float y,long time){
+  performClick();
+  if(draft!=null){
+   addDrawingPoint(MapMath.lon(cx+(x-getWidth()/2.0)/world()),MapMath.lat(cy+(y-getHeight()/2.0)/world()));
+   return;
+  }
+  if(!zoomShortcuts){pickMapPoint(x,y);return;}
+  int timeout=ViewConfiguration.getDoubleTapTimeout();
+  if(tapTime>=0&&time>=tapTime&&time-tapTime<=timeout){
+   int slop=ViewConfiguration.get(getContext()).getScaledTouchSlop();
+   boolean same=Math.hypot(x-tapX,y-tapY)<=slop;
+   float focusX=(x+tapX)/2,focusY=(y+tapY)/2;
+   cancelPendingTap();
+   zoomAt(same?1:-1,focusX,focusY);
+   return;
+  }
+  if(tapTime>=0)confirmMapTap.run();
+  tapX=x;tapY=y;tapTime=time;
+  removeCallbacks(confirmMapTap);
+  postDelayed(confirmMapTap,timeout);
+ }
+
+ private void pickMapPoint(float x,float y){
+  double radius=32*getResources().getDisplayMetrics().density,best=radius;
+  int bestPriority=-1;
+  KmlProject.Feature picked=null;
+  for(KmlProject.Feature feature:features)for(KmlProject.Geometry geometry:feature.shapes){
+   double distance=MapHitTest.distance(geometry.type,displayedRings(geometry),cx,cy,world(),getWidth(),getHeight(),x,y);
+   int priority="Point".equals(geometry.type)?2:("LineString".equals(geometry.type)?1:0);
+   if(distance<=radius&&(priority>bestPriority||(priority==bestPriority&&distance<=best))){
+    best=distance;bestPriority=priority;picked=feature;
+   }
+  }
+  if(picked!=null)listener.picked(picked);
+ }
+
  private boolean handleMapTouch(MotionEvent event){
   if(inputLocked)return true;
-  if(event.getActionMasked()==MotionEvent.ACTION_DOWN)longConsumed=false;contextGesture.onTouchEvent(event);scale.onTouchEvent(event);float x=event.getX(),y=event.getY();
-  switch(event.getActionMasked()){
+  int action=event.getActionMasked();
+  if(action==MotionEvent.ACTION_DOWN)longConsumed=false;
+  contextGesture.onTouchEvent(event);
+  scale.onTouchEvent(event);
+  float x=event.getX(),y=event.getY();
+  switch(action){
    case MotionEvent.ACTION_DOWN:downX=lastX=x;downY=lastY=y;moved=false;return true;
-   case MotionEvent.ACTION_POINTER_DOWN:moved=true;return true;
-   case MotionEvent.ACTION_POINTER_UP:int remain=event.getActionIndex()==0?1:0;lastX=event.getX(remain);lastY=event.getY(remain);return true;
-   case MotionEvent.ACTION_MOVE:if(longConsumed)return true;if(event.getPointerCount()==1&&!scale.isInProgress()){cx=MapMath.wrap(cx-(x-lastX)/world());cy=MapMath.clamp(cy-(y-lastY)/world(),0,1);if(Math.abs(x-downX)+Math.abs(y-downY)>8)moved=true;changed();}lastX=x;lastY=y;return true;
-   case MotionEvent.ACTION_UP:if(longConsumed){settle();return true;}if(moved){cx=MapMath.wrap(cx-(x-lastX)/world());cy=MapMath.clamp(cy-(y-lastY)/world(),0,1);changed();}if(!moved){performClick();if(draft!=null){addDrawingPoint(MapMath.lon(cx+(x-getWidth()/2.0)/world()),MapMath.lat(cy+(y-getHeight()/2.0)/world()));}else{double radius=32*getResources().getDisplayMetrics().density,best=radius;int bestPriority=-1;KmlProject.Feature picked=null;for(KmlProject.Feature f:features)for(KmlProject.Geometry g:f.shapes){double d=MapHitTest.distance(g.type,displayedRings(g),cx,cy,world(),getWidth(),getHeight(),x,y);int priority="Point".equals(g.type)?2:("LineString".equals(g.type)?1:0);if(d<=radius&&(priority>bestPriority||(priority==bestPriority&&d<=best))){best=d;bestPriority=priority;picked=f;}}if(picked!=null)listener.picked(picked);}}settle();return true;
-   case MotionEvent.ACTION_CANCEL:settle();return true;
-  }return true;
+   case MotionEvent.ACTION_POINTER_DOWN:cancelPendingTap();moved=true;return true;
+   case MotionEvent.ACTION_POINTER_UP:
+    int remain=event.getActionIndex()==0?1:0;lastX=event.getX(remain);lastY=event.getY(remain);return true;
+   case MotionEvent.ACTION_MOVE:
+    if(longConsumed)return true;
+    if(event.getPointerCount()==1&&!scale.isInProgress()){
+     cx=MapMath.wrap(cx-(x-lastX)/world());cy=MapMath.clamp(cy-(y-lastY)/world(),0,1);
+     if(Math.abs(x-downX)+Math.abs(y-downY)>8){cancelPendingTap();moved=true;}
+     changed();
+    }
+    lastX=x;lastY=y;return true;
+   case MotionEvent.ACTION_UP:
+    if(longConsumed){settle();return true;}
+    if(moved){
+     cx=MapMath.wrap(cx-(x-lastX)/world());cy=MapMath.clamp(cy-(y-lastY)/world(),0,1);changed();
+    }else mapTap(x,y,event.getEventTime());
+    settle();return true;
+   case MotionEvent.ACTION_CANCEL:cancelPendingTap();settle();return true;
+  }
+  return true;
  }
  public boolean performClick(){super.performClick();return true;}
  public double[] bounds(){double halfX=visibleWidth()/2.0/world(),halfY=visibleHeight()/2.0/world();return new double[]{halfX>=.5?-180:MapMath.lon(cx-halfX),MapMath.lat(Math.min(1,cy+halfY)),halfX>=.5?180:MapMath.lon(cx+halfX),MapMath.lat(Math.max(0,cy-halfY))};}
@@ -602,6 +675,6 @@ public final class LocalMapView extends View {
   missing.clear();
   invalidate();
  }
- public void suspend(boolean value){paused=value;RasterLayer[] stack=compositionLayers;if(value&&stack!=null)for(RasterLayer layer:stack)layer.interrupt();if(value){OnlineTiles[] sources=online;if(sources!=null)for(OnlineTiles source:sources)source.interrupt();}else{missing.clear();invalidate();}}
- public void close(){if(disposed)return;disposed=true;RasterLayer[] stack=compositionLayers;if(stack!=null)for(RasterLayer layer:stack)layer.cancel();OnlineTiles[] sources=online;if(sources!=null)for(OnlineTiles source:sources)source.cancel();worker.execute(new Runnable(){public void run(){if(compositionLayers!=null)for(RasterLayer layer:compositionLayers)layer.close();if(tiles!=null)tiles.close();if(online!=null)for(OnlineTiles source:online)source.close();}});worker.shutdown();cache.evictAll();for(Bitmap bitmap:symbolBitmaps.values())bitmap.recycle();symbolBitmaps.clear();symbolImages.clear();}
+ public void suspend(boolean value){paused=value;if(value)cancelPendingTap();RasterLayer[] stack=compositionLayers;if(value&&stack!=null)for(RasterLayer layer:stack)layer.interrupt();if(value){OnlineTiles[] sources=online;if(sources!=null)for(OnlineTiles source:sources)source.interrupt();}else{missing.clear();invalidate();}}
+ public void close(){if(disposed)return;disposed=true;cancelPendingTap();RasterLayer[] stack=compositionLayers;if(stack!=null)for(RasterLayer layer:stack)layer.cancel();OnlineTiles[] sources=online;if(sources!=null)for(OnlineTiles source:sources)source.cancel();worker.execute(new Runnable(){public void run(){if(compositionLayers!=null)for(RasterLayer layer:compositionLayers)layer.close();if(tiles!=null)tiles.close();if(online!=null)for(OnlineTiles source:online)source.close();}});worker.shutdown();cache.evictAll();for(Bitmap bitmap:symbolBitmaps.values())bitmap.recycle();symbolBitmaps.clear();symbolImages.clear();}
 }

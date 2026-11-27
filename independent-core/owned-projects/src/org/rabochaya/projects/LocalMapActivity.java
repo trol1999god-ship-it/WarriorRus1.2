@@ -274,6 +274,8 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
           ()->toggleZoomGesture("zoom_pinch",true)),
       WorkspaceUi.Item.toggle("Подгонять масштаб к ближайшему уровню",prefs.getBoolean("zoom_snap",false),
           ()->toggleZoomGesture("zoom_snap",false)),
+      WorkspaceUi.Item.toggle("Быстрые двойные касания",prefs.getBoolean("zoom_double_tap",false),
+          ()->toggleZoomGesture("zoom_double_tap",false)),
       WorkspaceUi.Item.toggle("Масштабировать кнопками громкости",prefs.getBoolean("zoom_volume",false),
           ()->toggleZoomGesture("zoom_volume",false)),
       WorkspaceUi.Item.toggle("Удерживание +/- меняет детализацию",prefs.getBoolean("zoom_hold_detail",false),
@@ -300,7 +302,8 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
 
  private void applyZoomGestureSettings(){
   SharedPreferences prefs=getPreferences(0);
-  map.setZoomGestures(prefs.getBoolean("zoom_pinch",true),prefs.getBoolean("zoom_snap",false));
+  map.setZoomGestures(prefs.getBoolean("zoom_pinch",true),prefs.getBoolean("zoom_snap",false),
+      prefs.getBoolean("zoom_double_tap",false));
  }
 
  private void toggleTrackPreprocessing(){
