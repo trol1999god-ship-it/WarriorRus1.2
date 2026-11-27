@@ -46,6 +46,7 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   map=new LocalMapView(this,features,mapFile(),this,source,OnlineMapSettings.network(this),composition);scene.addView(map,new FrameLayout.LayoutParams(-1,-1));if(symbolAssets!=null)map.setSymbols(symbolAssets);
   map.restoreManualBearing(getPreferences(0).getFloat("view_"+projectId+"_bearing",0));
   map.setManualRotation(getPreferences(0).getBoolean("rotate_map_touch",false));
+  applyZoomGestureSettings();
   map.restorePitch(getPreferences(0).getFloat("view_"+projectId+"_pitch",0));
   map.setPitchEnabled(getPreferences(0).getBoolean("map_pitch",false));
   map.setTrackPreprocessing(getPreferences(0).getBoolean("preprocess_gpx_tracks",false));
@@ -168,12 +169,32 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
  private void optionsMenu(){
   menu("Опции",item("Координаты центра экрана",this::coordinateOptions),
     item("Кеш / онлайн",this::onlineSettings),item("Информеры",this::display),
-    item("Экран карты",this::screenOptions),item("Вид координатных сеток",this::gridAppearance),
+    item("Экран карты",this::screenOptions),item("Управление масштабом",this::zoomOptions),item("Вид координатных сеток",this::gridAppearance),
     item("Единицы измерения",this::displayUnits),item("Стиль статус-панелей",this::mapAppearance),
     item("Уровень детализации",this::tileDetail),item("Цель на карте",this::targetMenu),
     WorkspaceUi.Item.toggle("Предварительная обработка треков",
         getPreferences(0).getBoolean("preprocess_gpx_tracks",false),this::toggleTrackPreprocessing));
  }
+ private void zoomOptions(){
+  SharedPreferences prefs=getPreferences(0);
+  menu("Управление масштабом",
+      WorkspaceUi.Item.toggle("Масштабирование жестом",prefs.getBoolean("zoom_pinch",true),
+          ()->toggleZoomGesture("zoom_pinch",true)),
+      WorkspaceUi.Item.toggle("Подгонять масштаб к ближайшему уровню",prefs.getBoolean("zoom_snap",false),
+          ()->toggleZoomGesture("zoom_snap",false)));
+ }
+
+ private void toggleZoomGesture(String key,boolean initial){
+  SharedPreferences prefs=getPreferences(0);
+  prefs.edit().putBoolean(key,!prefs.getBoolean(key,initial)).apply();
+  applyZoomGestureSettings();
+ }
+
+ private void applyZoomGestureSettings(){
+  SharedPreferences prefs=getPreferences(0);
+  map.setZoomGestures(prefs.getBoolean("zoom_pinch",true),prefs.getBoolean("zoom_snap",false));
+ }
+
  private void toggleTrackPreprocessing(){
   SharedPreferences prefs=getPreferences(0);
   boolean enabled=!prefs.getBoolean("preprocess_gpx_tracks",false);

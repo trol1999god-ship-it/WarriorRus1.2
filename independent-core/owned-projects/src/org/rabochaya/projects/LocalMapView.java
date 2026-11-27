@@ -106,7 +106,21 @@ public final class LocalMapView extends View {
   IdentityHashMap<org.w3c.dom.Document,KmlComponentStyle.Resolver> resolvers=new IdentityHashMap<>();
   for(KmlProject.Feature feature:features)if(feature.element!=null){org.w3c.dom.Document document=feature.element.getOwnerDocument();KmlComponentStyle.Resolver resolver=resolvers.get(document);if(resolver==null){resolver=new KmlComponentStyle.Resolver(document);resolvers.put(document,resolver);}componentStyles.put(feature.element,resolver.resolve(feature.element));}setContentDescription("Карта и объекты KML. Перемещение одним пальцем, масштаб двумя.");
   contextGesture=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){public boolean onDown(MotionEvent e){return true;}public void onLongPress(MotionEvent e){if(!disposed&&!paused&&!moved&&draft==null&&e.getPointerCount()==1){longConsumed=true;listener.longPressed(MapMath.lat(cy+(e.getY()-getHeight()/2.0)/world()),MapMath.lon(cx+(e.getX()-getWidth()/2.0)/world()));}}});
-  scale=new ScaleGestureDetector(context,new ScaleGestureDetector.SimpleOnScaleGestureListener(){public boolean onScale(ScaleGestureDetector s){zoomAt(Math.log(s.getScaleFactor())/Math.log(2),s.getFocusX(),s.getFocusY());moved=true;return true;}public void onScaleEnd(ScaleGestureDetector d){settle();}});
+  scale=new ScaleGestureDetector(context,new ScaleGestureDetector.SimpleOnScaleGestureListener(){
+   private float focusX,focusY;
+   private boolean scaled;
+   public boolean onScaleBegin(ScaleGestureDetector detector){scaled=false;return pinchZoomEnabled;}
+   public boolean onScale(ScaleGestureDetector detector){
+    focusX=detector.getFocusX();focusY=detector.getFocusY();
+    zoomAt(Math.log(detector.getScaleFactor())/Math.log(2),focusX,focusY);
+    scaled=moved=true;
+    return true;
+   }
+   public void onScaleEnd(ScaleGestureDetector detector){
+    if(scaled)snapZoomAt(focusX,focusY);
+    settle();
+   }
+  });
   if(composition!=null)openComposition(context,map,composition);
   else if(source!=null)worker.execute(()->{try{TileSource[] leaves=source.leafs();OnlineTiles[] readers=new OnlineTiles[leaves.length];try{for(int i=0;i<leaves.length;i++)readers[i]=new OnlineTiles(context,leaves[i]);}catch(Exception e){for(OnlineTiles reader:readers)if(reader!=null)reader.close();throw e;}online=readers;minZoom=source.minZoom;maxZoom=source.maxZoom;mapReady=true;post(()->{if(!disposed)invalidate();});}catch(final Exception e){post(()->{if(!disposed)listener.error(e.getMessage());});}});
   else if(map!=null&&map.isFile())worker.execute(new Runnable(){public void run(){try{tiles=new OfflineTiles(map);minZoom=tiles.minZoom;maxZoom=tiles.maxZoom;mapReady=true;post(new Runnable(){public void run(){if(!disposed)invalidate();}});}catch(final Exception e){post(new Runnable(){public void run(){if(!disposed)listener.error(e.getMessage());}});}}});
@@ -338,6 +352,28 @@ public final class LocalMapView extends View {
  private float manualBearing;
  private boolean twisting;
  private int twistFirst=-1,twistSecond=-1;
+ private boolean pinchZoomEnabled=true,snapZoom;
+ private float lastTwistX,lastTwistY;
+ private boolean twistScaled;
+
+ void setZoomGestures(boolean enabled,boolean adjust){
+  pinchZoomEnabled=enabled;
+  snapZoom=adjust;
+ }
+
+ private void snapZoomAt(float x,float y){
+  if(snapZoom)zoomAt(Math.round(zoom)-zoom,x,y);
+ }
+
+ void zoomFromSlider(double level,boolean finished){
+  if(inputLocked)return;
+  zoomAt(level-zoom,getWidth()/2f,getHeight()/2f);
+  if(finished){
+   snapZoomAt(getWidth()/2f,getHeight()/2f);
+   settle();
+  }
+ }
+
  private double twistAngle,twistSpan,twistZoom,twistBearing,anchorX,anchorY;
  private final Matrix projection=new Matrix(), inverseProjection=new Matrix();
  private float pitch,manualPitch,projectionBearing=Float.NaN,projectionPitch=Float.NaN;
@@ -438,7 +474,7 @@ public final class LocalMapView extends View {
   twistAngle=Math.atan2(dy,dx);
   twistBearing=bearing;
   twistZoom=zoom;
-  gestureKind=0;gesturePitch=pitch;
+  gestureKind=0;gesturePitch=pitch;twistScaled=false;
   gestureMidX=(event.getX(0)+event.getX(1))/2;
   gestureMidY=(event.getY(0)+event.getY(1))/2;
   syncProjection();
@@ -480,7 +516,11 @@ public final class LocalMapView extends View {
      manualBearing=(float)(degrees-360*Math.floor(degrees/360));
      pendingBearing=bearing=manualBearing;
     }
-    zoom=MapMath.clamp(twistZoom+scaleDelta/Math.log(2),0,23);
+    if(pinchZoomEnabled){
+     twistScaled|=Math.abs(scaleDelta)>.001;
+     zoom=MapMath.clamp(twistZoom+scaleDelta/Math.log(2),0,23);
+    }
+    lastTwistX=x;lastTwistY=y;
     syncProjection();
     transformPoint(x,y,inverseProjection);
     cx=MapMath.wrap(anchorX-(transformedPoint[0]-getWidth()/2.0)/world());
@@ -492,6 +532,11 @@ public final class LocalMapView extends View {
    if(lifted==twistFirst||lifted==twistSecond){twistFirst=-1;twistSecond=-1;}
   }else if(action==MotionEvent.ACTION_UP||action==MotionEvent.ACTION_CANCEL){
    twisting=false;
+   if(action==MotionEvent.ACTION_UP&&twistScaled&&snapZoom){
+    syncProjection();
+    transformPoint(lastTwistX,lastTwistY,inverseProjection);
+    snapZoomAt(transformedPoint[0],transformedPoint[1]);
+   }
    touchInProgress=false;
    applyBearing();
    settle();
