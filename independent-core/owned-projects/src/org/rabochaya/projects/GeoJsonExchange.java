@@ -91,7 +91,7 @@ final class GeoJsonExchange {
   int size=array.length();
   if(size<2||size>3)throw invalid("Позиция GeoJSON должна иметь 2 или 3 числа");
   for(int i=0;i<size;i++)if(!(array.get(i) instanceof Number))throw invalid("Координаты GeoJSON должны быть числами");
-  return position(array.getString(0),array.getString(1),size==3?array.getString(2):null);
+  return position(array.get(0).toString(),array.get(1).toString(),size==3?array.get(2).toString():null);
  }
 
  private static List<double[]> line(JSONArray array,int min)throws Exception{
