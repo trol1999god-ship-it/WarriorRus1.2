@@ -1,4 +1,6 @@
 package org.rabochaya.projects;
+import java.io.File;
+import java.io.IOException;
 import android.app.*;import android.content.*;import android.os.*;import android.widget.*;import android.text.InputType;import java.util.*;import java.util.concurrent.*;
 /** Explicit online-map setup and bounded foreground area download. Partial cache survives cancellation. */
 public final class OnlineMapActivity extends Activity {
@@ -12,8 +14,35 @@ public final class OnlineMapActivity extends Activity {
   button("Показать выбранную карту",()->{OnlineMapSettings.use(this,project,true);finish();});button("Локальная подложка MBTiles",()->{OnlineMapSettings.use(this,project,false);finish();});
   if(!s.cacheOnly()){button("Скачать область в кеш",()->region(false));if(OnlineMapSettings.prefs(this).contains("region_"+s.id))button("Продолжить предыдущую область",()->region(true));}
   button("Экспорт кеша MBTiles",()->startActivity(new Intent(this,CacheExportActivity.class).putExtra("project",project).putExtra("single_source",true)));button("Объём кеша",()->stats());button("Очистить кеш источника",()->new AlertDialog.Builder(this).setMessage("Удалить все скачанные и просмотренные тайлы источника «"+s.name+"»? Кеш общих слоёв будет удалён и для других наборов. Проекты и импортированные MBTiles сохранятся.").setPositiveButton("Очистить",(d,w)->clear()).setNegativeButton("Отмена",null).show());
+  button("Путь к кэшу карт",this::chooseCacheDirectory);
   button("К карте",()->finish());
  }
+ private void chooseCacheDirectory(){
+  List<File> choices=TileCacheDirectory.choices(this);
+  String selected=TileCacheDirectory.selected(this);
+  CharSequence[] labels=new CharSequence[choices.size()];
+  int checked=selected.isEmpty()?0:-1;
+  for(int i=0;i<choices.size();i++){
+   File path=choices.get(i);
+   labels[i]=(i==0?"Путь приложения":"Съёмный накопитель")+"\n"+path.getAbsolutePath();
+   if(path.getAbsolutePath().equals(selected))checked=i;
+  }
+  AlertDialog.Builder dialog=new AlertDialog.Builder(this).setTitle("Путь к кэшу карт")
+      .setSingleChoiceItems(labels,checked,(window,index)->{
+       window.dismiss();
+       running=true;
+       worker.execute(()->{
+        String message;
+        try{TileCacheDirectory.select(this,choices.get(index));
+         message="Путь кэша сохранён. Тайлы прежнего каталога доступны при возврате к нему.";
+        }catch(IOException error){message=error.getMessage();}
+        final String result=message;
+        runOnUiThread(()->{running=false;if(!disposed)show(result);});
+       });
+      }).setNegativeButton("Отмена",null);
+  WorkspaceUi.showDialog(this,dialog);
+ }
+
  private TextView text(String value,int size){TextView t=new TextView(this);t.setText(value);t.setTypeface(WorkspaceUi.font(this));t.setTextColor(-1);t.setTextSize(size);t.setPadding(2,8,2,8);root.addView(t);return t;}
  private void button(String value,Runnable action){Button b=new Button(this);b.setAllCaps(false);b.setTypeface(WorkspaceUi.font(this));b.setText(value);b.setTextColor(0xffffffff);android.graphics.drawable.GradientDrawable background=new android.graphics.drawable.GradientDrawable();background.setColor(WorkspaceUi.TEXT);background.setCornerRadius(8);background.setStroke(1,WorkspaceUi.MUTED);b.setBackground(background);root.addView(b,new LinearLayout.LayoutParams(-1,-2));b.setOnClickListener(v->{if(!running)action.run();else status.setText("Дождитесь завершения или отмените загрузку");});}
  private EditText input(LinearLayout form,String title,String value,boolean numeric){TextView caption=new TextView(this);caption.setText(title);caption.setTextColor(0xff202020);form.addView(caption);EditText field=new EditText(this);field.setText(value);field.setTextColor(0xff202020);field.setBackgroundColor(-1);field.setSingleLine(true);field.setInputType(numeric?InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL|InputType.TYPE_NUMBER_FLAG_SIGNED:InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);form.addView(field);return field;}
