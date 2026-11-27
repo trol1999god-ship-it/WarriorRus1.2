@@ -18,6 +18,7 @@ public final class ObjectManagerActivity extends Activity {
  private long project;private String folder="",expected;private Element snapshot;private List<ObjectTree.Row> rows=Collections.emptyList();
  private ObjectListing listing;private ObjectListing.Options viewOptions=ObjectListing.Options.defaults();private Button searchButton,dateButton;private TextView selectionInfo,viewInfo;private final Set<String> shownKeys=new HashSet<>();
  private final Set<String> selected=new LinkedHashSet<>();private final ExecutorService worker=Executors.newSingleThreadExecutor();
+ private static final String FAST_SCROLL="manager_fast_scroll";
  private boolean busy,disposed,refreshOnResume;private String initialFolderId;private TextView status,path;private Button actions,up;private ListView list;private Rows adapter;
  public static void open(Activity parent,long project){parent.startActivity(new Intent(parent,ObjectManagerActivity.class).putExtra("project",project));}
  public static void openFolder(Activity parent,long project,String folderId) {
@@ -33,7 +34,7 @@ public final class ObjectManagerActivity extends Activity {
   path=new TextView(this);header.addView(path);viewInfo=new TextView(this);viewInfo.setMaxLines(2);viewInfo.setEllipsize(android.text.TextUtils.TruncateAt.END);header.addView(viewInfo);selectionInfo=new TextView(this);header.addView(selectionInfo);status=new TextView(this);header.addView(status);
   LinearLayout bar=new LinearLayout(this);root.addView(bar);up=button(bar,"Вверх",()->parent());actions=button(bar,"Действия",()->menu());button(bar,"Закрыть",()->finish());
   searchButton=button(header,"Поиск и фильтры",()->searchOptions());dateButton=button(header,"Даты KML",()->dateOptions());
-  list=new ListView(this);adapter=new Rows();list.setAdapter(adapter);root.addView(list,new LinearLayout.LayoutParams(-1,0,1));
+  list=new ListView(this);list.setFastScrollEnabled(viewPrefs().getBoolean(FAST_SCROLL,false));adapter=new Rows();list.setAdapter(adapter);root.addView(list,new LinearLayout.LayoutParams(-1,0,1));
   button(root,"Проекты, импорт и экспорт",()->{refreshOnResume=true;getSharedPreferences("org.rabochaya.projects.ProjectsActivity",0).edit().putLong("project",project).putString("folder","").commit();startActivity(new Intent().setClassName(this,"org.rabochaya.projects.ProjectsActivity"));});
   load();
  }
@@ -131,9 +132,16 @@ public final class ObjectManagerActivity extends Activity {
   dialog().setTitle("Действия с выбором · "+selected.size()+" · вне списка "+outsideSelection()).setItems(titles.toArray(new String[0]),(d,w)->{if(!busy)commands.get(w).run();}).setNegativeButton("Отмена",null).show();
  }
  private void menu(){
-  String[] choices={"Новая папка / группа","Выбрать показанные","Снять весь выбор","Перенести выбранное","Удалить выбранное","Переименовать выбранное","Перечитать список","Копировать","Вырезать","Вставить в эту папку","Очистить буфер","Показать выбранные","Скрыть выбранные","Изменить описание","Цвет и заливка KML","Менеджер значков","Сортировать по",WorkspaceUi.MANAGER_DISPLAY};
-  dialog().setTitle("Действия · выбрано "+selected.size()+" · вне списка "+outsideSelection()).setItems(choices,(d,w)->{if(busy)return;switch(w){case 0:name(false);break;case 1:for(ObjectTree.Row r:visible)selected.add(r.key);render();break;case 2:selected.clear();render();break;case 3:destination();break;case 4:confirmDelete();break;case 5:name(true);break;case 6:load();break;case 7:capture(false);break;case 8:capture(true);break;case 9:paste();break;case 10:clearClipboard();break;case 11:visibility(true);break;case 12:visibility(false);break;case 13:description();break;case 14:componentStyle();break;case 15:openIconLibrary(null,null,"");break;case 16:sortMenu();break;case 17:displayMenu();break;}}).setNegativeButton("Отмена",null).show();
+  String[] choices={"Новая папка / группа","Выбрать показанные","Снять весь выбор","Перенести выбранное","Удалить выбранное","Переименовать выбранное","Перечитать список","Копировать","Вырезать","Вставить в эту папку","Очистить буфер","Показать выбранные","Скрыть выбранные","Изменить описание","Цвет и заливка KML","Менеджер значков","Сортировать по",WorkspaceUi.MANAGER_DISPLAY,
+    viewPrefs().getBoolean(FAST_SCROLL,false)?"Выключить быструю прокрутку":"Включить быструю прокрутку"};
+  dialog().setTitle("Действия · выбрано "+selected.size()+" · вне списка "+outsideSelection()).setItems(choices,(d,w)->{if(busy)return;switch(w){case 0:name(false);break;case 1:for(ObjectTree.Row r:visible)selected.add(r.key);render();break;case 2:selected.clear();render();break;case 3:destination();break;case 4:confirmDelete();break;case 5:name(true);break;case 6:load();break;case 7:capture(false);break;case 8:capture(true);break;case 9:paste();break;case 10:clearClipboard();break;case 11:visibility(true);break;case 12:visibility(false);break;case 13:description();break;case 14:componentStyle();break;case 15:openIconLibrary(null,null,"");break;case 16:sortMenu();break;case 17:displayMenu();break;case 18:toggleFastScroll();break;}}).setNegativeButton("Отмена",null).show();
  }
+ private void toggleFastScroll(){
+  boolean enabled=!viewPrefs().getBoolean(FAST_SCROLL,false);
+  viewPrefs().edit().putBoolean(FAST_SCROLL,enabled).apply();
+  list.setFastScrollEnabled(enabled);
+ }
+
  private void sortMenu(){
   dialog().setTitle("Сортировать по")
     .setSingleChoiceItems(ObjectListing.SORTS,viewOptions.sort,(menu,sort)->{
