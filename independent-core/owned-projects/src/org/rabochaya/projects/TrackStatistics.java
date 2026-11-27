@@ -21,11 +21,16 @@ final class TrackStatistics {
 
  void addSegment(List<double[]> vertices,List<String> times){
   segments++;
-  points+=vertices.size();
   double[] previous=null;
   Long previousTime=null;
   for(int i=0;i<vertices.size();i++){
    double[] point=vertices.get(i);
+   if(point==null){
+    previous=null;
+    previousTime=null;
+    continue;
+   }
+   points++;
    Long time=times==null?null:parseTime(times.get(i));
    if(previous!=null){
     legs++;

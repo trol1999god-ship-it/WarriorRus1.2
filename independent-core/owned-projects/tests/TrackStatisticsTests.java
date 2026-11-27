@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public final class TrackStatisticsTests {
- public static void main(String[] args) {
+ public static void main(String[] args) throws Exception {
   TrackStatistics stats=new TrackStatistics();
   stats.addSegment(Arrays.asList(new double[]{179.99,0,10},new double[]{-179.99,0,15},
       new double[]{-179.99,0,15},new double[]{-179.98,0}),
@@ -18,6 +18,20 @@ public final class TrackStatisticsTests {
   stats.addSegment(Arrays.asList(new double[]{1,2},new double[]{1,3}),
       Arrays.asList("2026-11-27T00:00:05Z","2026-11-27T00:00:04Z"));
   if(stats.timedLegs!=2)throw new AssertionError("reversed timestamps");
+  String kml="<Placemark xmlns='http://www.opengis.net/kml/2.2' xmlns:gx='http://www.google.com/kml/ext/2.2'>"
+      +"<gx:MultiTrack><gx:Track><when>2026-11-27T00:00:00Z</when>"
+      +"<when>2026-11-27T00:00:10Z</when><gx:coord>10 20 100</gx:coord><gx:coord>10 20.01 110</gx:coord>"
+      +"</gx:Track><gx:Track><when>2026-11-27T00:00:20Z</when><gx:coord>40 50 120</gx:coord>"
+      +"<gx:coord>40 50.01 110</gx:coord></gx:Track></gx:MultiTrack></Placemark>";
+  javax.xml.parsers.DocumentBuilderFactory factory=javax.xml.parsers.DocumentBuilderFactory.newInstance();
+  factory.setNamespaceAware(true);
+  org.w3c.dom.Element feature=factory.newDocumentBuilder()
+      .parse(new org.xml.sax.InputSource(new java.io.StringReader(kml))).getDocumentElement();
+  TrackStatistics kmlStats=KmlTrackStatistics.read(feature);
+  if(kmlStats.segments!=2||kmlStats.points!=4||kmlStats.timedLegs!=1||kmlStats.legs!=2
+      ||kmlStats.movingMillis!=10000||kmlStats.distance<2223||kmlStats.distance>2225
+      ||kmlStats.gain!=10||kmlStats.loss!=10)
+   throw new AssertionError("KML track totals");
   System.out.println("Track statistics checks passed");
  }
 }

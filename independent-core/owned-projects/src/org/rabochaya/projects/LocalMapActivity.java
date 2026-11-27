@@ -764,6 +764,10 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
       .append(DisplayUnits.area(SurfaceMeasurement.area(geometry.rings),DisplayUnits.areaMode(this))).append("\n");
    }
   }
+  if(track==null){
+   TrackStatistics kmlTrack=KmlTrackStatistics.read(feature.element);
+   if(kmlTrack!=null)appendTrackStatistics(text,kmlTrack);
+  }
   return text.append("\nВложения: ").append(MediaLinks.list(feature.element).size()).toString();
  }
  private void appendTrackStatistics(StringBuilder text,TrackStatistics track){
