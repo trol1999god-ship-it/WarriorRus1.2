@@ -2,12 +2,15 @@ package org.rabochaya.projects;
 
 import android.app.Activity;
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.InsetDrawable;
@@ -15,6 +18,8 @@ import android.graphics.drawable.RippleDrawable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+import java.io.IOException;
+import java.io.InputStream;
 
 /** Map-only chrome and owned, density-independent pictograms. */
 final class MapHud {
@@ -34,7 +39,7 @@ final class MapHud {
  static ImageButton button(Activity activity, String name, String label, Runnable action) {
   ImageButton button = new ImageButton(activity);
   button.setScaleType(ImageView.ScaleType.FIT_CENTER);
-  button.setImageDrawable(new Glyph(name));
+  button.setImageDrawable(controlIcon(activity,name));
   button.setContentDescription(label);
   button.setBackground(new RippleDrawable(ColorStateList.valueOf(0x4081c5f2), panel(activity), null));
   int padding = WorkspaceUi.dp(activity, 10);
@@ -45,6 +50,21 @@ final class MapHud {
    return true;
   });
   return button;
+ }
+
+ private static Drawable controlIcon(Activity activity,String name){
+  switch(name){
+   case "menu": case "maps": case "marks": case "compass":
+   case "plus": case "minus": case "collapse":
+    try(InputStream source=activity.getAssets().open("workspace-icons/"+name+".png")){
+     Bitmap bitmap=BitmapFactory.decodeStream(source);
+     if(bitmap!=null)return new BitmapDrawable(activity.getResources(),bitmap);
+    }catch(IOException unavailable){
+     // The local glyph remains available if an asset is missing from the APK.
+    }
+    break;
+  }
+  return new Glyph(name);
  }
 
  static void insetButton(Activity activity, ImageButton button, int surfaceInset, int glyphInset) {
