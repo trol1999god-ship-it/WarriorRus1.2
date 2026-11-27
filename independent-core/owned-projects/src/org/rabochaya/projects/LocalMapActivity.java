@@ -516,10 +516,10 @@ public final class LocalMapActivity extends Activity implements LocalMapView.Lis
   tileCoverage.setVisibility(enabled?View.VISIBLE:View.GONE);
  }
 
- @Override public void tileCoverage(int ready,int loading,int missing){
+ @Override public void tileCoverage(int ready,int stored,int loading,int missing){
   TextView panel=tileCoverage;
   if(panel==null||panel.getVisibility()!=View.VISIBLE)return;
-  String next="Тайлы: готово "+ready+" · загрузка "+loading+" · нет "+missing;
+  String next="Тайлы: на диске "+stored+" из "+ready+" готовых\nЗагрузка "+loading+" · нет "+missing;
   if(next.contentEquals(panel.getText()))return;
   panel.post(()->{
    if(panel==tileCoverage&&panel.getVisibility()==View.VISIBLE&&!next.contentEquals(panel.getText()))
