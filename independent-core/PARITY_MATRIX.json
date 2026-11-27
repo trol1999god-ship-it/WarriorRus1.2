@@ -714,33 +714,29 @@
       "source": "security/reference-gaps-2026-11-26/ui-surface.json",
       "scope": "Сопоставление кода со строками ресурсов. Связь с функцией не подтверждает визуальную или динамическую идентичность.",
       "closure_triage": {
-        "basis": "Одна основная причина на каждую из 39 частичных позиций. Разделы visual_review и acceptance_when_reference_available не имеют известных пробелов в коде заявленного объёма и ожидают окончательной приёмки. Эталонный контракт и недостающие испытания учитываются отдельно.",
-        "confirmed_code_gaps": 4,
-        "acceptance_only": 26,
-        "other_verification_or_contract": 9,
+        "basis": "Известные пробелы кода закрыты в подтверждённом локальном объёме. Сравнение эталонного поведения, физическая проверка и автоматизированные испытания приводятся отдельно. Четыре исходно заблокированных контракта остаются отдельной группой.",
+        "confirmed_code_gaps": 0,
+        "acceptance_only": 27,
+        "other_verification_or_contract": 12,
         "groups": {
-          "missing_code": [
-            "landmarks_submenu_control_time",
-            "settings_technical_path_title"
-          ],
-          "incomplete_functionality": [
-            "maps_submenu_show_storage_coverage",
-            "settings_landmarks_display_tracks_style_title"
-          ],
+          "missing_code": [],
+          "incomplete_functionality": [],
           "visual_review": [
             "settings_canvas_infobox_style_title",
             "settings_landmarks_display_borders_title",
             "settings_landmarks_display_shadows_title",
             "settings_canvas_grids_title",
             "settings_landmarks_display_size_title",
-            "settings_landmarks_display_color_title"
+            "settings_landmarks_display_color_title",
+            "maps_submenu_show_storage_coverage"
           ],
           "insufficient_tests": [
             "settings_canvas_multitouch_pitch_title",
             "settings_technical_disable_keyguard_title",
             "geolocation_submenu_barometer",
             "settings_display_pressures_title",
-            "orientation_submenu_status"
+            "orientation_submenu_status",
+            "settings_technical_path_title"
           ],
           "reference_contract": [
             "landmarks_submenu_display_target_information",
@@ -769,6 +765,10 @@
             "settings_canvas_long_press_map_title",
             "settings_canvas_zoom_type_title",
             "settings_canvas_multitouch_zoom_title"
+          ],
+          "local_scope_reference_review": [
+            "landmarks_submenu_control_time",
+            "settings_landmarks_display_tracks_style_title"
           ]
         }
       },
@@ -806,7 +806,7 @@
         "landmarks_submenu_display_target_line": "Переключаемая линия от центра карты до точки цели.",
         "settings_landmarks_display_target_color_title": "Локальная палитра для точки и линии. Оформление эталона требует проверки.",
         "settings_landmarks_preprocess_title": "Выключаемая фильтрация одиночных выбросов при отображении GPX и временных геометрий KML. Алгоритм эталона требует сверки.",
-        "landmarks_submenu_control_time": "Статистика сохранённых GPX и KML по имеющимся меткам. Управление временем движения по эталону требует сверки.",
+        "landmarks_submenu_control_time": "Действие Метки → Время движения по треку открывает статистику выбранного видимого GPX или KML, включая покрытие временными отсчётами. Эталонное управление временем движения требует сверки.",
         "settings_canvas_multitouch_pitch_title": "Перспективный вид: наклон вертикальным жестом двумя пальцами.",
         "settings_canvas_hres_map_title": "Опции: уровень тайла меняется в пределах подложки и лимита запросов без сдвига карты.",
         "settings_canvas_multitouch_rotate_title": "Поворот карты двумя пальцами с масштабированием вокруг опорной точки.",
@@ -833,14 +833,14 @@
         "core_submenu_night_mode": "Меню: ночное затемнение растра с сохранением читаемости объектов.",
         "core_submenu_lock_screen": "Меню: блокирует жесты, масштабирование, переход по координатам и центрирование DEM.",
         "settings_technical_confirm_exit_title": "Опции → Экран карты → Подтверждать выход.",
-        "maps_submenu_show_storage_coverage": "Карта показывает готовые, загружаемые и недоступные тайлы видимой области; недоступные и ожидающие тайлы выделяются. Карта покрытия всего хранилища и визуальная сверка открыты.",
-        "settings_technical_path_title": "Есть приватный кэш и импорт/экспорт; выбор каталога не воспроизведён.",
+        "maps_submenu_show_storage_coverage": "Индикаторы видимой области различают тайлы на диске, готовые только в памяти, ожидающие и недоступные. Геометрия карты и сетевой режим сохраняются.",
+        "settings_technical_path_title": "Выбор каталога тайлов приложения или доступного съёмного тома в области приложения на API 30 и выше. Старые тайлы остаются на месте; отключённый том не подменяется. Нужен физический тест.",
         "settings_canvas_long_press_map_title": "Выбор контекстного меню или режима только карты, возврат долгим нажатием или кнопкой Назад. Сверка с эталоном открыта.",
         "settings_canvas_zoom_type_title": "Кнопки или слайдер, опции громкости, округления и удержания кнопок для детализации. Быстрые двойные касания различают одну и две точки. Визуальная сверка и пороги эталона открыты.",
         "settings_canvas_multitouch_zoom_title": "Настройка включает или отключает масштабирование пальцами, включая совмещённый жест поворота. Эталонный прогон недоступен.",
         "settings_landmarks_display_size_title": "Глобальный размер встроенных и SVG-значков и ширины линий. Индивидуальные пропорции KML сохраняются. Сверка эталона открыта.",
         "settings_landmarks_display_color_title": "Сохраняемый цвет по умолчанию для встроенных меток и линий; явные цвета KML и исходное оформление SVG сохраняются. Палитра эталона требует сверки.",
-        "settings_landmarks_display_tracks_style_title": "Цвет и ширина линий из KML; опциональные границы времени на карте для сохранённых GPX и KML. События записи и оформление эталона требуют сверки."
+        "settings_landmarks_display_tracks_style_title": "Опциональные границы времени сохранённых GPX и KML и подписи именованных точек GPX. Формат специализированных событий оригинала требует сверки."
       },
       "privacy_exclusions": [
         "geolocation_submenu_dashboard",

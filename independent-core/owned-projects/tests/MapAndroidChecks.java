@@ -344,7 +344,7 @@ public final class MapAndroidChecks extends Instrumentation {
   String gpx="<gpx xmlns='http://www.topografix.com/GPX/1/1' version='1.1' creator='QA'>"
       +"<trk><name>QA_GPX_SPLIT</name><trkseg>"
       +"<trkpt lon='10' lat='20'><ele>1</ele><time>2026-11-27T00:00:00Z</time></trkpt>"
-      +"<trkpt lon='11' lat='21'><ele>2</ele><time>2026-11-27T00:00:10Z</time></trkpt>"
+      +"<trkpt lon='11' lat='21'><ele>2</ele><time>2026-11-27T00:00:10Z</time><name>QA_CHECKPOINT</name></trkpt>"
       +"<trkpt lon='12' lat='22'><ele>3</ele><time>2026-11-27T00:00:20Z</time></trkpt>"
       +"</trkseg></trk></gpx>";
   Object project=readExchange(new ByteArrayInputStream(gpx.getBytes("UTF-8")),false);
@@ -354,6 +354,15 @@ public final class MapAndroidChecks extends Instrumentation {
    org.w3c.dom.Element root=(org.w3c.dom.Element)call(saved,"root",new Class[]{});
    org.w3c.dom.Element feature=(org.w3c.dom.Element)root.getElementsByTagNameNS("*","Placemark").item(0);
    ClassLoader loader=getTargetContext().getClassLoader();
+   Class<?> gpxCodec=Class.forName("org.rabochaya.projects.GpxExchange",true,loader);
+   Method stats=gpxCodec.getDeclaredMethod("statistics",org.w3c.dom.Element.class,boolean.class);
+   stats.setAccessible(true);
+   Object values=stats.invoke(null,feature,true);
+   Field events=values.getClass().getDeclaredField("events");events.setAccessible(true);
+   List<?> labels=(List<?>)events.get(values);
+   check(labels.size()==1,"named GPX sample is available as a local track event");
+   Field label=labels.get(0).getClass().getDeclaredField("label");label.setAccessible(true);
+   check("QA_CHECKPOINT".equals(label.get(labels.get(0))),"local event uses the saved point name");
    Class<?> edits=Class.forName("org.rabochaya.projects.GeometryEdits",true,loader);
    Object part=((List<?>)edits.getMethod("parts",org.w3c.dom.Element.class).invoke(null,feature)).get(0);
    String key=(String)part.getClass().getField("key").get(part);
@@ -835,11 +844,12 @@ public final class MapAndroidChecks extends Instrumentation {
   boolean oldManual=prefs.getBoolean("rotate_map_touch",false),oldMagnetic=prefs.getBoolean("rotate_map_compass",false);
   boolean oldPinch=prefs.getBoolean("zoom_pinch",true),oldSlider=prefs.getBoolean("zoom_slider",false),
       oldLongPress=prefs.getBoolean("long_press_map_only",false),oldTap=prefs.getBoolean("zoom_double_tap",false);
+  boolean oldPitch=prefs.getBoolean("map_pitch",false);
   long previous=context.getSharedPreferences("workspace-session",0).getLong("last_project",-1);
   try{
    prefs.edit().putBoolean("rotate_map_touch",false).putBoolean("rotate_map_compass",false)
       .putBoolean("zoom_pinch",true).putBoolean("zoom_slider",false).putBoolean("long_press_map_only",false)
-      .putBoolean("zoom_double_tap",false).commit();
+      .putBoolean("zoom_double_tap",false).putBoolean("map_pitch",false).commit();
    Object doc=codec.getMethod("parse",byte[].class).invoke(null,(Object)XML.getBytes("UTF-8"));
    id=(Long)call(store,"insert",new Class[]{codec,String.class},doc,"QA_MAP_TWIST");
    activity=startActivitySync(new Intent().setClassName(context.getPackageName(),"org.rabochaya.projects.LocalMapActivity")
@@ -909,13 +919,25 @@ public final class MapAndroidChecks extends Instrumentation {
     twistEvent(surface,now,3,1,x+60,y,x,y);
    });
    check(((double[])call(surface,"viewport",new Class[]{}))[2]==8,"double tap on different points zooms out");
+   clickDescription("Ориентирование");click("Перспективный вид карты");
+   runOnMainSync(()->{
+    float x=surface.getWidth()/2f,y=surface.getHeight()/2f;
+    long now=android.os.SystemClock.uptimeMillis();
+    twistEvent(surface,now,0,0,x-50,y,x+50,y);
+    twistEvent(surface,now,1,5|(1<<8),x-50,y,x+50,y);
+    twistEvent(surface,now,2,2,x-50,y-100,x+50,y-100);
+    twistEvent(surface,now,3,6|(1<<8),x-50,y-100,x+50,y-100);
+    twistEvent(surface,now,4,1,x-50,y-100,x+50,y-100);
+   });
+   check(prefs.getFloat("view_"+id+"_pitch",0)>0,"parallel vertical gesture persists perspective angle");
+   check(((double[])call(surface,"viewport",new Class[]{}))[2]==8,"perspective gesture preserves zoom");
   }finally{
    if(activity!=null){Activity owner=activity;runOnMainSync(owner::finish);}
    if(id>0){call(store,"remove",new Class[]{long.class},id);staticCall("LocalMapActivity","cleanupDeletedProject",new Class[]{Context.class,long.class},context,id);}
    call(store,"close",new Class[]{});
    prefs.edit().putBoolean("rotate_map_touch",oldManual).putBoolean("rotate_map_compass",oldMagnetic)
       .putBoolean("zoom_pinch",oldPinch).putBoolean("zoom_slider",oldSlider).putBoolean("long_press_map_only",oldLongPress)
-      .putBoolean("zoom_double_tap",oldTap).commit();
+      .putBoolean("zoom_double_tap",oldTap).putBoolean("map_pitch",oldPitch).commit();
    context.getSharedPreferences("workspace-session",0).edit().putLong("last_project",previous).commit();
   }
  }
@@ -1071,6 +1093,8 @@ public final class MapAndroidChecks extends Instrumentation {
    Class<?> math=context.getClassLoader().loadClass("org.rabochaya.projects.BarometerDialog");
    Method convert=math.getDeclaredMethod("convert",double.class,int.class);convert.setAccessible(true);
    check(Math.abs((Double)convert.invoke(null,1013.25,1)-760)<.01,"standard atmosphere converts to 760 mmHg");
+   check(Math.abs((Double)convert.invoke(null,1013.25,0)-1013.25)<.01
+       &&Math.abs((Double)convert.invoke(null,1013.25,2)-29.92)<.01,"hPa and inHg preserve the selected pressure scale");
    Method baseline=math.getDeclaredMethod("seaLevel",double.class,double.class);baseline.setAccessible(true);
    Method height=math.getDeclaredMethod("elevation",double.class,double.class);height.setAccessible(true);
    double calibrated=(Double)baseline.invoke(null,900d,1200d);
@@ -2231,6 +2255,25 @@ public final class MapAndroidChecks extends Instrumentation {
   new CompositionExportChecks(this).run();
  }
  void cacheWrites()throws Exception{
+  Context context=getTargetContext();
+  SharedPreferences storage=context.getSharedPreferences("online-map",0);
+  String cachePath=storage.getString("tile_cache_directory",null);
+  try{
+   storage.edit().remove("tile_cache_directory").commit();
+   Method directory=owned("TileCacheDirectory").getDeclaredMethod("directory",Context.class);
+   directory.setAccessible(true);
+   check(new File(context.getFilesDir(),"tile-cache").equals(directory.invoke(null,context)),
+       "default cache path preserves existing installations");
+   storage.edit().putString("tile_cache_directory","/missing-removable-test/cache").commit();
+   boolean rejected=false;
+   try{directory.invoke(null,context);}
+   catch(InvocationTargetException error){rejected=error.getCause() instanceof IOException;}
+   check(rejected,"detached cache volume does not silently redirect or create arbitrary paths");
+  }finally{
+   SharedPreferences.Editor restore=storage.edit();
+   if(cachePath==null)restore.remove("tile_cache_directory");else restore.putString("tile_cache_directory",cachePath);
+   restore.commit();
+  }
   installTileFixture();Object src=source("write-failure",true),cache=onlineCache(src);
   for(String key:new String[]{"USGSIMGTOPO","OSMMPQ","OSMOMSCTR","OSMOMSHYB","OSMOMSAB"}){
    Object retired=staticCall("MapCatalog","find",new Class[]{String.class},key);
