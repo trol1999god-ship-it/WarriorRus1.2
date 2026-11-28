@@ -100,12 +100,69 @@ public final class ObjectManagerActivity extends Activity {
  private void navigate(String key){folder=key;viewOptions=new ObjectListing.Options("",0,0,viewOptions.sort,false,viewOptions.foldersFirst);rememberView();render();}
  private void parent(){if(folder.isEmpty())return;int slash=folder.lastIndexOf('/');navigate(slash<0?"":folder.substring(0,slash));}
  private final class Rows extends BaseAdapter {
+  private final java.text.SimpleDateFormat rowDate=new java.text.SimpleDateFormat("dd.MM.yyyy\nHH:mm",Locale.ROOT);
+  private int dp(int value){return WorkspaceUi.dp(ObjectManagerActivity.this,value);}
+  private void paintSelection(View row,boolean checked){
+   row.setBackground(WorkspaceUi.panel(ObjectManagerActivity.this,checked?0xff4a4928:0xff232d1d,0x334c6d42,9));
+  }
+  private void bindWidth(CheckBox check,TextView date,String name,String detail,String stamp,int width){
+   boolean compact=width<dp(330);
+   date.setVisibility(compact?View.GONE:View.VISIBLE);
+   String body=compact?detail+"\n"+stamp.replace('\n',' '):detail;
+   android.text.SpannableString text=new android.text.SpannableString(name+"\n"+body);
+   text.setSpan(new android.text.style.RelativeSizeSpan(11f/16f),name.length()+1,text.length(),0);
+   text.setSpan(new android.text.style.ForegroundColorSpan(0xffc3cbbd),name.length()+1,text.length(),0);
+   check.setMaxLines(compact?5:4);
+   check.setText(text);
+  }
   public int getCount(){return visible.size();}public Object getItem(int i){return visible.get(i);}public long getItemId(int i){return i;}
   public View getView(int i,View old,android.view.ViewGroup parent){ObjectTree.Row row=visible.get(i);LinearLayout line=new LinearLayout(ObjectManagerActivity.this);line.setGravity(Gravity.CENTER_VERTICAL);
-   CheckBox check=new CheckBox(ObjectManagerActivity.this);ObjectListing.Item item=listing.get(row.key);check.setText(row.name+"\n"+ObjectListing.KINDS[item.kind]+(item.visible?"":" · Скрыто по KML")+(viewOptions.recursive?"\n"+item.path:""));check.setMaxLines(3);check.setEllipsize(android.text.TextUtils.TruncateAt.END);check.setChecked(selected.contains(row.key));check.setEnabled(!busy);line.addView(check,new LinearLayout.LayoutParams(0,-2,1));check.setOnCheckedChangeListener((b,on)->{if(busy)return;if(on)selected.add(row.key);else selected.remove(row.key);selectionSummary();status.setText("Выбрано: "+selected.size());});
+   ObjectListing.Item item=listing.get(row.key);
+   line.setMinimumHeight(WorkspaceUi.dp(ObjectManagerActivity.this,70));
+   line.setPadding(dp(4),dp(7),dp(5),dp(7));
+   CheckBox check=new CheckBox(ObjectManagerActivity.this);
+   check.setButtonTintList(android.content.res.ColorStateList.valueOf(0xffc8b65c));
+   check.setTextColor(0xffffffff);
+   check.setTextSize(16);
+   check.setEllipsize(android.text.TextUtils.TruncateAt.END);
+   check.setChecked(selected.contains(row.key));
+   check.setEnabled(!busy);
+   line.addView(check,new LinearLayout.LayoutParams(0,-2,1));
+
+   Date instant=item.time.instant();
+   String stamp=instant==null?"—":rowDate.format(instant);
+   TextView date=new TextView(ObjectManagerActivity.this);
+   date.setText(stamp);
+   date.setTextSize(11);
+   date.setTextColor(0xffffffff);
+   date.setGravity(Gravity.CENTER);
+   line.addView(date,new LinearLayout.LayoutParams(dp(83),-2));
+   String details=row.folder?"Папка":WorkspaceUi.managerPreviewText(row.element);
+   String detail=details+(item.visible?"":" · Скрыто по KML")+(viewOptions.recursive?"\n"+item.path:"");
+   bindWidth(check,date,row.name,detail,stamp,parent.getWidth());
+   line.addOnLayoutChangeListener((v,l,t,r,b,ol,ot,or,ob)->{
+    if(r-l!=or-ol)bindWidth(check,date,row.name,detail,stamp,r-l);
+   });
+   paintSelection(line,check.isChecked());
+   check.setOnCheckedChangeListener((b,on)->{
+    if(busy)return;
+    if(on)selected.add(row.key);else selected.remove(row.key);
+    paintSelection(line,on);
+    selectionSummary();
+    status.setText("Выбрано: "+selected.size());
+   });
    View.OnLongClickListener context=v->{if(busy||snapshot==null)return true;if(!selected.contains(row.key)){selected.clear();selected.add(row.key);render();}rowMenu(row);return true;};
    line.setOnLongClickListener(context);check.setOnLongClickListener(context);
    if(row.folder){Button open=button(line,"Открыть",()->navigate(row.key));open.setOnLongClickListener(context);}
+   TextView more=new TextView(ObjectManagerActivity.this);
+   more.setText("⋮");
+   more.setTextSize(23);
+   more.setTextColor(0xffffffff);
+   more.setGravity(Gravity.CENTER);
+   more.setFocusable(true);
+   more.setContentDescription("Действия · "+row.name);
+   more.setOnClickListener(v->context.onLongClick(v));
+   line.addView(more,new LinearLayout.LayoutParams(dp(30),dp(48)));
    if (!previewRows()) return line;
    LinearLayout preview = new LinearLayout(ObjectManagerActivity.this);
    preview.setOrientation(LinearLayout.VERTICAL);

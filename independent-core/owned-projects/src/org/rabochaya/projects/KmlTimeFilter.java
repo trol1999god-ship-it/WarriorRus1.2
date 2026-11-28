@@ -29,6 +29,10 @@ public final class KmlTimeFilter {
  }
  public static final class Entry {
   public final int status;private final BigDecimal begin,end;private final boolean endInclusive;
+  Date instant(){
+   if(status!=VALID||!endInclusive||begin==null||end==null||begin.compareTo(end)!=0)return null;
+   return new Date(begin.movePointRight(3).setScale(0,java.math.RoundingMode.FLOOR).longValueExact());
+  }
   private Entry(int status,BigDecimal begin,BigDecimal end,boolean inclusive){this.status=status;this.begin=begin;this.end=end;endInclusive=inclusive;}
  }
  private static final class Value {
