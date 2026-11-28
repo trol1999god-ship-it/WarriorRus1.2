@@ -18,6 +18,11 @@ public final class ObjectManagerActivity extends Activity {
  private long project;private String folder="",expected;private Element snapshot;private List<ObjectTree.Row> rows=Collections.emptyList();
  private ObjectListing listing;private ObjectListing.Options viewOptions=ObjectListing.Options.defaults();private Button searchButton,dateButton;private TextView selectionInfo,viewInfo;private final Set<String> shownKeys=new HashSet<>();
  private final Set<String> selected=new LinkedHashSet<>();private final ExecutorService worker=Executors.newSingleThreadExecutor();
+ private boolean dual,rightActive;
+ private Pane leftPane,rightPane;
+ private LinearLayout transferBar;
+ private Button moveAcross,copyAcross,singleMode,dualMode;
+ private Bundle pendingOther;
  private static final String FAST_SCROLL="manager_fast_scroll";
  private boolean busy,disposed,refreshOnResume;private String initialFolderId;private TextView status,path;private Button actions,up;private ListView list;private Rows adapter;
  public static void open(Activity parent,long project){parent.startActivity(new Intent(parent,ObjectManagerActivity.class).putExtra("project",project));}
@@ -27,6 +32,9 @@ public final class ObjectManagerActivity extends Activity {
  }
  protected void onCreate(Bundle state){setTheme((getResources().getConfiguration().uiMode&android.content.res.Configuration.UI_MODE_NIGHT_MASK)==android.content.res.Configuration.UI_MODE_NIGHT_YES?android.R.style.Theme_Material_NoActionBar:android.R.style.Theme_Material_Light_NoActionBar);super.onCreate(state);project=getIntent().getLongExtra("project",-1);
   initialFolderId=state==null?getIntent().getStringExtra("initialFolderId"):state.getString("initialFolderId");
+  dual=viewPrefs().getBoolean("dual",false);
+  rightActive=dual&&state!=null&&state.getBoolean("rightActive");
+  pendingOther=state==null?null:state.getBundle("otherPane");
   restoreView();if(state!=null){if(state.getLong("viewProject",-1)==project){folder=state.getString("folder","");expected=state.getString("token");pendingSvg=state.getBundle("svg");pendingIconLibrary=state.getBundle("iconLibrary");}pendingEditor=readEditor(state.getBundle("editor"));pendingSelection=state.getBundle("selection");pendingForm=readForm(state.getBundle("form"));pendingMove=readMove(state.getBundle("move"));pendingChooser=readMove(state.getBundle("chooser"));if(state.getBundle("chooser")!=null){chooserFirst=Math.max(0,Math.min(9999,state.getBundle("chooser").getInt("first")));chooserTop=Math.max(-10000,Math.min(10000,state.getBundle("chooser").getInt("top")));chooserListState=state.getBundle("chooser").getParcelable("listState");}pendingConfirmation=readConfirmation(state.getBundle("confirmation"));}
   LinearLayout root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setPadding(12,12,12,12);setContentView(root);watchFont(root);
   LinearLayout header=new LinearLayout(this);header.setOrientation(LinearLayout.VERTICAL);ScrollView headerScroll=new ScrollView(this){protected void onMeasure(int width,int height){int available=View.MeasureSpec.getSize(height);int limit=Math.max(WorkspaceUi.dp(ObjectManagerActivity.this,48),available-WorkspaceUi.dp(ObjectManagerActivity.this,192));super.onMeasure(width,View.MeasureSpec.makeMeasureSpec(limit,View.MeasureSpec.AT_MOST));}};headerScroll.addView(header);root.addView(headerScroll,new LinearLayout.LayoutParams(-1,-2));
@@ -34,9 +42,141 @@ public final class ObjectManagerActivity extends Activity {
   path=new TextView(this);header.addView(path);viewInfo=new TextView(this);viewInfo.setMaxLines(2);viewInfo.setEllipsize(android.text.TextUtils.TruncateAt.END);header.addView(viewInfo);selectionInfo=new TextView(this);header.addView(selectionInfo);status=new TextView(this);header.addView(status);
   LinearLayout bar=new LinearLayout(this);root.addView(bar);up=button(bar,"Вверх",()->parent());actions=button(bar,"Действия",()->menu());button(bar,"Закрыть",()->finish());
   searchButton=button(header,"Поиск и фильтры",()->searchOptions());dateButton=button(header,"Даты KML",()->dateOptions());
-  list=new ListView(this);list.setFastScrollEnabled(viewPrefs().getBoolean(FAST_SCROLL,false));adapter=new Rows();list.setAdapter(adapter);root.addView(list,new LinearLayout.LayoutParams(-1,0,1));
+  LinearLayout modeBar=new LinearLayout(this);
+  header.addView(modeBar,0);
+  singleMode=button(modeBar,"1 список",()->setDual(false));
+  dualMode=button(modeBar,"2 панели",()->setDual(true));
+  LinearLayout panes=new LinearLayout(this);
+  root.addView(panes,new LinearLayout.LayoutParams(-1,0,1));
+  leftPane=new Pane(panes,false);
+  rightPane=new Pane(panes,true);
+  bindActivePane();
+  transferBar=new LinearLayout(this);
+  root.addView(transferBar);
+  moveAcross=button(transferBar,"Перенести →",()->transfer(true));
+  copyAcross=button(transferBar,"Копировать →",()->transfer(false));
+  updatePaneControls();
   button(root,"Проекты, импорт и экспорт",()->{refreshOnResume=true;getSharedPreferences("org.rabochaya.projects.ProjectsActivity",0).edit().putLong("project",project).putString("folder","").commit();startActivity(new Intent().setClassName(this,"org.rabochaya.projects.ProjectsActivity"));});
   load();
+ }
+ private final class Pane {
+  final LinearLayout body;
+  final Button heading;
+  final ListView files;
+  final Rows cells;
+  final boolean right;
+  String location="",revision,folderId="";
+  ObjectListing.Options options=ObjectListing.Options.defaults();
+  final Set<String> selection=new LinkedHashSet<>();
+  final List<ObjectTree.Row> contents=new ArrayList<>();
+  Pane(LinearLayout parent,boolean right){
+   this.right=right;
+   body=new LinearLayout(ObjectManagerActivity.this);
+   body.setOrientation(LinearLayout.VERTICAL);
+   parent.addView(body,new LinearLayout.LayoutParams(0,-1,1));
+   heading=button(body,right?"Куда":"Откуда",()->activate(this));
+   files=new ListView(ObjectManagerActivity.this);
+   files.setFastScrollEnabled(viewPrefs().getBoolean(FAST_SCROLL,false));
+   cells=new Rows(this);
+   files.setAdapter(cells);
+   body.addView(files,new LinearLayout.LayoutParams(-1,0,1));
+  }
+ }
+ private Pane activePane(){return rightActive?rightPane:leftPane;}
+ private Pane otherPane(){return rightActive?leftPane:rightPane;}
+ private void bindActivePane(){
+  list=activePane().files;
+  adapter=activePane().cells;
+ }
+ private void activate(Pane pane){
+  if(busy||listing==null||pane==activePane())return;
+  Pane old=activePane();
+  rememberView();
+  old.location=folder;
+  old.revision=expected;
+  old.folderId=folder.isEmpty()?"":listing.get(folder).row.element.getAttribute("id");
+  old.options=viewOptions;
+  old.selection.clear();
+  old.selection.addAll(selected);
+  rightActive=pane.right;
+  folder=pane.location;
+  viewOptions=pane.options;
+  selected.clear();
+  selected.addAll(pane.selection);
+  bindActivePane();
+  rememberView();
+  render();
+ }
+ private void setDual(boolean value){
+  if(dual==value||busy||listing==null)return;
+  if(!value)activate(leftPane);
+  dual=value;
+  viewPrefs().edit().putBoolean("dual",value).apply();
+  render();
+ }
+ private void updatePaneControls(){
+  rightPane.body.setVisibility(dual?View.VISIBLE:View.GONE);
+  leftPane.heading.setVisibility(dual?View.VISIBLE:View.GONE);
+  transferBar.setVisibility(dual?View.VISIBLE:View.GONE);
+  singleMode.setEnabled(!busy&&dual);
+  dualMode.setEnabled(!busy&&!dual);
+  moveAcross.setText(rightActive?"← Перенести":"Перенести →");
+  copyAcross.setText(rightActive?"← Копировать":"Копировать →");
+  boolean canTransfer=dual&&!busy&&!selected.isEmpty();
+  moveAcross.setEnabled(canTransfer);
+  copyAcross.setEnabled(canTransfer);
+ }
+ private void renderPanes(){
+  updatePaneControls();
+  if(!dual)return;
+  Pane other=otherPane();
+  if(!expected.equals(other.revision)){
+   String next=other.revision==null?folder:"";
+   if(other.revision!=null&&!other.folderId.isEmpty()){
+    String found=null;
+    for(ObjectTree.Row row:rows){
+     if(row.folder&&other.folderId.equals(row.element.getAttribute("id"))){
+      if(found!=null){found=null;break;}
+      found=row.key;
+     }
+    }
+    if(found!=null)next=found;
+   }
+   other.location=next;
+   other.folderId=next.isEmpty()?"":listing.get(next).row.element.getAttribute("id");
+   other.selection.clear();
+   other.revision=expected;
+  }
+  other.contents.clear();
+  for(ObjectListing.Item item:listing.select(other.location,other.options))other.contents.add(item.row);
+  for(Pane pane:new Pane[]{leftPane,rightPane}){
+   String here=pane==activePane()?folder:pane.location;
+   String label=here.isEmpty()?"Корень проекта":listing.get(here).row.name;
+   pane.heading.setText((pane.right?"Куда":"Откуда")+" · "+label);
+   pane.heading.setTypeface(WorkspaceUi.font(this),pane==activePane()?android.graphics.Typeface.BOLD:android.graphics.Typeface.NORMAL);
+   pane.heading.setSelected(pane==activePane());
+  }
+  other.cells.notifyDataSetChanged();
+ }
+ private void transfer(boolean cut){
+  if(!dual||busy||snapshot==null)return;
+  List<String> keys=selection();
+  if(keys==null)return;
+  String token=expected;
+  Pane target=otherPane();
+  enabled(false);
+  worker.execute(()->{
+   ProjectStore store=new ProjectStore(this);
+   try{
+    String stamp=ObjectClipboardWrites.captureForPaste(store,project,cut,keys,token);
+    runOnUiThread(()->{
+     if(disposed)return;
+     enabled(true);
+     activate(target);
+     paste(stamp);
+    });
+   }catch(Exception failure){clipboardError(failure);}finally{store.close();}
+  });
  }
  private EditText input(){EditText field=new EditText(this);field.setImeOptions(field.getImeOptions()|android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI|android.view.inputmethod.EditorInfo.IME_FLAG_NO_FULLSCREEN);return field;}
  private ScrollView scroll(View child){ScrollView scroll=new ScrollView(this);scroll.addView(child);return scroll;}
@@ -63,8 +203,8 @@ public final class ObjectManagerActivity extends Activity {
  }
  private AlertDialog.Builder dialog(){return new AlertDialog.Builder(this){public AlertDialog create(){AlertDialog dialog=super.create();dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);return dialog;}public AlertDialog show(){AlertDialog dialog=super.show();styleDialog(dialog);return dialog;}};}
  private Button button(LinearLayout parent,String title,Runnable action){Button b=new Button(this);b.setText(title);b.setAllCaps(false);parent.addView(b);b.setOnClickListener(v->{if(!busy)action.run();});return b;}
- private void enabled(boolean yes){busy=!yes;actions.setEnabled(yes&&snapshot!=null);up.setEnabled(yes&&!folder.isEmpty());list.setEnabled(yes);searchButton.setEnabled(yes&&listing!=null);dateButton.setEnabled(yes&&listing!=null);if(adapter!=null)adapter.notifyDataSetChanged();}
- private void load(){if(busy)return;final boolean needsClipboard=pendingConfirmation!=null&&pendingConfirmation.paste();enabled(false);status.setText("Чтение локального проекта…");worker.execute(()->{ProjectStore store=new ProjectStore(this);try{KmlProject p=store.load(project);final Element root=p.root();final List<ObjectTree.Row> data=ObjectTree.rows(root);final String token=ObjectTree.token(root);final ObjectListing index=ObjectListing.build(root,data);final String clipboard=needsClipboard?clipboardStamp(store):"";runOnUiThread(()->{if(disposed)return;if(expected==null||!expected.equals(token))folder="";snapshot=root;rows=data;listing=index;expected=token;applyInitialFolder(data);if(!folder.isEmpty()&&(listing.get(folder)==null||!listing.get(folder).row.folder))folder="";selected.clear();restoreSelection();rememberView();render();enabled(true);status.setText("Флажки — выбор, долгое нажатие — действия, «Открыть» — вход в папку");restoreEditor();restoreForm();restoreMove();restoreConfirmation(clipboard);restoreChooser();applySelectedSvg();});}catch(Exception error){runOnUiThread(()->{if(disposed)return;enabled(true);status.setText(error.getMessage());dialog().setMessage("Не удалось открыть менеджер: "+error.getMessage()).setPositiveButton("Повторить",(d,w)->load()).setNegativeButton("Закрыть",(d,w)->finish()).show();});}finally{store.close();}});}
+ private void enabled(boolean yes){busy=!yes;actions.setEnabled(yes&&snapshot!=null);up.setEnabled(yes&&!folder.isEmpty());list.setEnabled(yes);searchButton.setEnabled(yes&&listing!=null);dateButton.setEnabled(yes&&listing!=null);if(adapter!=null){adapter.notifyDataSetChanged();otherPane().cells.notifyDataSetChanged();otherPane().files.setEnabled(yes);updatePaneControls();}}
+ private void load(){if(busy)return;final boolean needsClipboard=pendingConfirmation!=null&&pendingConfirmation.paste();enabled(false);status.setText("Чтение локального проекта…");worker.execute(()->{ProjectStore store=new ProjectStore(this);try{KmlProject p=store.load(project);final Element root=p.root();final List<ObjectTree.Row> data=ObjectTree.rows(root);final String token=ObjectTree.token(root);final ObjectListing index=ObjectListing.build(root,data);final String clipboard=needsClipboard?clipboardStamp(store):"";runOnUiThread(()->{if(disposed)return;if(expected==null||!expected.equals(token))folder="";snapshot=root;rows=data;listing=index;expected=token;applyInitialFolder(data);if(!folder.isEmpty()&&(listing.get(folder)==null||!listing.get(folder).row.folder))folder="";selected.clear();restoreSelection();restoreOtherPane();rememberView();render();enabled(true);status.setText("Флажки — выбор, долгое нажатие — действия, «Открыть» — вход в папку");restoreEditor();restoreForm();restoreMove();restoreConfirmation(clipboard);restoreChooser();applySelectedSvg();});}catch(Exception error){runOnUiThread(()->{if(disposed)return;enabled(true);status.setText(error.getMessage());dialog().setMessage("Не удалось открыть менеджер: "+error.getMessage()).setPositiveButton("Повторить",(d,w)->load()).setNegativeButton("Закрыть",(d,w)->finish()).show();});}finally{store.close();}});}
  private void applyInitialFolder(List<ObjectTree.Row> data) {
   if (initialFolderId == null) return;
   folder = "";
@@ -88,7 +228,7 @@ public final class ObjectManagerActivity extends Activity {
   WorkspaceUi.chooseManagerDisplay(this, previewRows(), (dialog, which) -> {
    if (busy) return;
    viewPrefs().edit().putBoolean(WorkspaceUi.MANAGER_PREVIEW_PREF, which == 1).apply();
-   adapter.notifyDataSetChanged();
+   render();
   });
  }
 
@@ -96,10 +236,14 @@ public final class ObjectManagerActivity extends Activity {
  private int outsideSelection(){int n=0;for(String key:selected)if(!shownKeys.contains(key))n++;return n;}
  private void selectionSummary(){selectionInfo.setText("Выбрано: "+selected.size()+" · вне списка: "+outsideSelection());}
  private void render(){visible=new ArrayList<>();shownKeys.clear();if(listing==null)return;for(ObjectListing.Item item:listing.select(folder,viewOptions)){visible.add(item.row);shownKeys.add(item.row.key);}String title=folder.isEmpty()?"Корень проекта":listing.get(folder).row.name;
-  dateButton.setText(viewOptions.dates.mode==0?"Даты KML":"Даты KML · "+KmlTimeFilter.MODES[viewOptions.dates.mode]+(viewOptions.dates.mode==2?" UTC: "+(viewOptions.dates.from.isEmpty()?"…":viewOptions.dates.from)+" — "+(viewOptions.dates.to.isEmpty()?"…":viewOptions.dates.to):""));path.setText(title+" · показано: "+visible.size());String summary=(viewOptions.query.isEmpty()?"":ObjectListing.SEARCH_FIELDS[viewOptions.searchField]+": «"+viewOptions.query+"». ")+ObjectListing.KINDS[viewOptions.kind]+" · "+ObjectListing.VISIBILITY[viewOptions.visibility]+" · "+(viewOptions.recursive?"С вложенными папками":"Эта папка")+" · "+ObjectListing.SORTS[viewOptions.sort]+(viewOptions.foldersFirst?" · Папки вначале":"");if(viewOptions.dates.mode!=0)summary+=" · "+KmlTimeFilter.MODES[viewOptions.dates.mode]+(viewOptions.dates.mode==2?" UTC: "+(viewOptions.dates.from.isEmpty()?"…":viewOptions.dates.from)+" — "+(viewOptions.dates.to.isEmpty()?"…":viewOptions.dates.to):"");viewInfo.setText(summary);viewInfo.setVisibility(viewOptions.filtered()||viewOptions.sort!=0||viewOptions.foldersFirst?View.VISIBLE:View.GONE);selectionSummary();status.setText("Выбрано: "+selected.size());up.setEnabled(!busy&&!folder.isEmpty());adapter.notifyDataSetChanged();}
+  dateButton.setText(viewOptions.dates.mode==0?"Даты KML":"Даты KML · "+KmlTimeFilter.MODES[viewOptions.dates.mode]+(viewOptions.dates.mode==2?" UTC: "+(viewOptions.dates.from.isEmpty()?"…":viewOptions.dates.from)+" — "+(viewOptions.dates.to.isEmpty()?"…":viewOptions.dates.to):""));path.setText(title+" · показано: "+visible.size());String summary=(viewOptions.query.isEmpty()?"":ObjectListing.SEARCH_FIELDS[viewOptions.searchField]+": «"+viewOptions.query+"». ")+ObjectListing.KINDS[viewOptions.kind]+" · "+ObjectListing.VISIBILITY[viewOptions.visibility]+" · "+(viewOptions.recursive?"С вложенными папками":"Эта папка")+" · "+ObjectListing.SORTS[viewOptions.sort]+(viewOptions.foldersFirst?" · Папки вначале":"");if(viewOptions.dates.mode!=0)summary+=" · "+KmlTimeFilter.MODES[viewOptions.dates.mode]+(viewOptions.dates.mode==2?" UTC: "+(viewOptions.dates.from.isEmpty()?"…":viewOptions.dates.from)+" — "+(viewOptions.dates.to.isEmpty()?"…":viewOptions.dates.to):"");viewInfo.setText(summary);viewInfo.setVisibility(viewOptions.filtered()||viewOptions.sort!=0||viewOptions.foldersFirst?View.VISIBLE:View.GONE);selectionSummary();status.setText("Выбрано: "+selected.size());renderPanes();up.setEnabled(!busy&&!folder.isEmpty());adapter.notifyDataSetChanged();}
  private void navigate(String key){folder=key;viewOptions=new ObjectListing.Options("",0,0,viewOptions.sort,false,viewOptions.foldersFirst);rememberView();render();}
  private void parent(){if(folder.isEmpty())return;int slash=folder.lastIndexOf('/');navigate(slash<0?"":folder.substring(0,slash));}
  private final class Rows extends BaseAdapter {
+  final Pane pane;
+  Rows(Pane pane){this.pane=pane;}
+  List<ObjectTree.Row> items(){return pane==activePane()?visible:pane.contents;}
+
   private final java.text.SimpleDateFormat rowDate=new java.text.SimpleDateFormat("dd.MM.yyyy\nHH:mm",Locale.ROOT);
   private int dp(int value){return WorkspaceUi.dp(ObjectManagerActivity.this,value);}
   private void paintSelection(View row,boolean checked){
@@ -115,8 +259,8 @@ public final class ObjectManagerActivity extends Activity {
    check.setMaxLines(compact?5:4);
    check.setText(text);
   }
-  public int getCount(){return visible.size();}public Object getItem(int i){return visible.get(i);}public long getItemId(int i){return i;}
-  public View getView(int i,View old,android.view.ViewGroup parent){ObjectTree.Row row=visible.get(i);LinearLayout line=new LinearLayout(ObjectManagerActivity.this);line.setGravity(Gravity.CENTER_VERTICAL);
+  public int getCount(){return items().size();}public Object getItem(int i){return items().get(i);}public long getItemId(int i){return i;}
+  public View getView(int i,View old,android.view.ViewGroup parent){ObjectTree.Row row=items().get(i);LinearLayout line=new LinearLayout(ObjectManagerActivity.this);line.setGravity(Gravity.CENTER_VERTICAL);
    ObjectListing.Item item=listing.get(row.key);
    line.setMinimumHeight(WorkspaceUi.dp(ObjectManagerActivity.this,70));
    line.setPadding(dp(4),dp(7),dp(5),dp(7));
@@ -125,7 +269,7 @@ public final class ObjectManagerActivity extends Activity {
    check.setTextColor(0xffffffff);
    check.setTextSize(16);
    check.setEllipsize(android.text.TextUtils.TruncateAt.END);
-   check.setChecked(selected.contains(row.key));
+   check.setChecked((pane==activePane()?selected:pane.selection).contains(row.key));
    check.setEnabled(!busy);
    line.addView(check,new LinearLayout.LayoutParams(0,-2,1));
 
@@ -138,7 +282,7 @@ public final class ObjectManagerActivity extends Activity {
    date.setGravity(Gravity.CENTER);
    line.addView(date,new LinearLayout.LayoutParams(dp(83),-2));
    String details=row.folder?"Папка":WorkspaceUi.managerPreviewText(row.element);
-   String detail=details+(item.visible?"":" · Скрыто по KML")+(viewOptions.recursive?"\n"+item.path:"");
+   String detail=details+(item.visible?"":" · Скрыто по KML")+((pane==activePane()?viewOptions:pane.options).recursive?"\n"+item.path:"");
    bindWidth(check,date,row.name,detail,stamp,parent.getWidth());
    line.addOnLayoutChangeListener((v,l,t,r,b,ol,ot,or,ob)->{
     if(r-l!=or-ol)bindWidth(check,date,row.name,detail,stamp,r-l);
@@ -146,14 +290,27 @@ public final class ObjectManagerActivity extends Activity {
    paintSelection(line,check.isChecked());
    check.setOnCheckedChangeListener((b,on)->{
     if(busy)return;
+    activate(pane);
     if(on)selected.add(row.key);else selected.remove(row.key);
     paintSelection(line,on);
+    updatePaneControls();
     selectionSummary();
     status.setText("Выбрано: "+selected.size());
    });
-   View.OnLongClickListener context=v->{if(busy||snapshot==null)return true;if(!selected.contains(row.key)){selected.clear();selected.add(row.key);render();}rowMenu(row);return true;};
+   View.OnLongClickListener context=v->{if(busy||snapshot==null)return true;activate(pane);if(!selected.contains(row.key)){selected.clear();selected.add(row.key);render();}rowMenu(row);return true;};
    line.setOnLongClickListener(context);check.setOnLongClickListener(context);
-   if(row.folder){Button open=button(line,"Открыть",()->navigate(row.key));open.setOnLongClickListener(context);}
+   if(row.folder){
+    Button open=button(line,"Открыть",()->{activate(pane);navigate(row.key);});
+    open.setOnLongClickListener(context);
+    if(dual){
+     open.setText("›");
+     open.setContentDescription("Открыть · "+row.name);
+     open.setMinWidth(0);
+     open.setMinimumWidth(0);
+     open.setPadding(0,0,0,0);
+     open.setLayoutParams(new LinearLayout.LayoutParams(dp(36),dp(48)));
+    }
+   }
    TextView more=new TextView(ObjectManagerActivity.this);
    more.setText("⋮");
    more.setTextSize(23);
@@ -196,7 +353,8 @@ public final class ObjectManagerActivity extends Activity {
  private void toggleFastScroll(){
   boolean enabled=!viewPrefs().getBoolean(FAST_SCROLL,false);
   viewPrefs().edit().putBoolean(FAST_SCROLL,enabled).apply();
-  list.setFastScrollEnabled(enabled);
+  leftPane.files.setFastScrollEnabled(enabled);
+  rightPane.files.setFastScrollEnabled(enabled);
  }
 
  private void sortMenu(){
@@ -217,7 +375,8 @@ public final class ObjectManagerActivity extends Activity {
  private void clipboardError(Exception e){runOnUiThread(()->{if(disposed)return;enabled(true);status.setText(e.getMessage());notice(e.getMessage());});}
  private String destinationLabel(String key){String label="Корень проекта",at="";if(!key.isEmpty())for(String part:key.split("/")){at=at.isEmpty()?part:at+"/"+part;ObjectListing.Item item=listing.get(at);if(item==null||!item.row.folder)throw new IllegalArgumentException("Папка назначения недоступна");label+=" / "+item.row.name;if(label.length()>40000)throw new IllegalArgumentException("Слишком длинный путь назначения");}return label;}
  private String clipboardStamp(ProjectStore store){try{ObjectClipboard clip=ObjectClipboardWrites.get(store);return clip==null?"":clip.fingerprint();}catch(Exception error){return "";}}
- private void paste(){final String token=expected,destination=folder,label;try{label=destinationLabel(destination);}catch(IllegalArgumentException error){notice(error.getMessage());return;}final Element view=snapshot;final List<ObjectTree.Row> originalRows=rows;enabled(false);worker.execute(()->{ProjectStore store=new ProjectStore(this);try{ObjectClipboard clip=ObjectClipboardWrites.get(store);if(clip==null)throw new IllegalStateException("Буфер объектов пуст");if(clip.project!=project){prepareCrossProjectPaste(store,clip,destination,label,token);return;}if(!clip.token.equals(token))throw new IllegalStateException("Проект изменился после заполнения буфера. Повторите выбор и копирование или вырезание");final String fingerprint=clip.fingerprint();final int total=ObjectTree.selectedCount(view,clip.keys);final ObjectConfirmationDraft draft=ObjectConfirmationDraft.capture(project,clip.cut?"pastecut":"pastecopy",token,SELECTION_SESSION,originalRows,clip.keys,destination,label,fingerprint,clip.cut?"Перенести из буфера?":"Создать копии из буфера?","Объектов и папок с содержимым: "+total+". Вставить в открытую папку? Видимость будет зависеть от неё."+(clip.cut?" Исходные объекты будут перенесены после подтверждения.":" Имена и ссылки на файлы вложений сохранятся; идентификаторы копий будут новыми.")+" Назначение: «"+label+"».",0);runOnUiThread(()->{if(disposed)return;enabled(true);openConfirmation(draft,fingerprint);});}catch(Exception e){clipboardError(e);}finally{store.close();}});}
+ private void paste(){paste(null);}
+ private void paste(String requiredStamp){final String token=expected,destination=folder,label;try{label=destinationLabel(destination);}catch(IllegalArgumentException error){notice(error.getMessage());return;}final Element view=snapshot;final List<ObjectTree.Row> originalRows=rows;enabled(false);worker.execute(()->{ProjectStore store=new ProjectStore(this);try{ObjectClipboard clip=ObjectClipboardWrites.get(store);if(clip==null)throw new IllegalStateException("Буфер объектов пуст");if(requiredStamp!=null&&!requiredStamp.equals(clip.fingerprint()))throw new IllegalStateException("Буфер изменился. Повторите перенос между панелями");if(clip.project!=project){prepareCrossProjectPaste(store,clip,destination,label,token);return;}if(!clip.token.equals(token))throw new IllegalStateException("Проект изменился после заполнения буфера. Повторите выбор и копирование или вырезание");final String fingerprint=clip.fingerprint();final int total=ObjectTree.selectedCount(view,clip.keys);final ObjectConfirmationDraft draft=ObjectConfirmationDraft.capture(project,clip.cut?"pastecut":"pastecopy",token,SELECTION_SESSION,originalRows,clip.keys,destination,label,fingerprint,clip.cut?"Перенести из буфера?":"Создать копии из буфера?","Объектов и папок с содержимым: "+total+". Вставить в открытую папку? Видимость будет зависеть от неё."+(clip.cut?" Исходные объекты будут перенесены после подтверждения.":" Имена и ссылки на файлы вложений сохранятся; идентификаторы копий будут новыми.")+" Назначение: «"+label+"».",0);runOnUiThread(()->{if(disposed)return;enabled(true);openConfirmation(draft,fingerprint);});}catch(Exception e){clipboardError(e);}finally{store.close();}});}
  private void prepareCrossProjectPaste(ProjectStore store, ObjectClipboard clip, String destination,
                                        String label, String token) throws IOException {
   KmlProject source = store.load(clip.project);
@@ -248,6 +407,32 @@ public final class ObjectManagerActivity extends Activity {
    });
    confirmation.show();
   });
+ }
+ private Bundle saveOtherPane(){
+  if(snapshot==null)return pendingOther;
+  Pane other=otherPane();
+  Bundle out=new Bundle();
+  out.putString("folder",other.location);
+  out.putString("token",other.revision);
+  out.putLong("project",project);
+  out.putString("session",SELECTION_SESSION);
+  out.putIntArray("indices",ObjectSelectionState.capture(project,expected,SELECTION_SESSION,rows,other.selection).indices());
+  return out;
+ }
+ private void restoreOtherPane(){
+  if(pendingOther==null||listing==null)return;
+  Bundle saved=pendingOther;
+  pendingOther=null;
+  if(saved.getLong("project")!=project||!expected.equals(saved.getString("token")))return;
+  Pane other=otherPane();
+  String location=saved.getString("folder","");
+  if(!location.isEmpty()&&(listing.get(location)==null||!listing.get(location).row.folder))return;
+  other.revision=expected;
+  other.location=location;
+  other.folderId=location.isEmpty()?"":listing.get(location).row.element.getAttribute("id");
+  other.options=readOptions(viewPrefs(),project+(other.right?"_right_":"_"));
+  ObjectSelectionState selection=new ObjectSelectionState(project,expected,saved.getString("session"),saved.getIntArray("indices"));
+  other.selection.addAll(selection.restore(project,snapshot,SELECTION_SESSION));
  }
  private Bundle saveSelection(){if(snapshot==null)return pendingSelection;ObjectSelectionState selection=ObjectSelectionState.capture(project,expected,SELECTION_SESSION,rows,selected);Bundle state=new Bundle();state.putLong("project",selection.project);state.putString("token",selection.token);state.putString("session",selection.session);state.putIntArray("indices",selection.indices());return state;}
  private void restoreSelection(){Bundle state=pendingSelection;pendingSelection=null;if(state==null)return;try{ObjectSelectionState selection=new ObjectSelectionState(state.getLong("project"),state.getString("token"),state.getString("session"),state.getIntArray("indices"));selected.addAll(selection.restore(project,snapshot,SELECTION_SESSION));}catch(IllegalArgumentException error){selected.clear();}}
@@ -444,9 +629,13 @@ public final class ObjectManagerActivity extends Activity {
    }catch(Exception e){runOnUiThread(()->{if(disposed)return;enabled(true);adapter.notifyDataSetChanged();status.setText("Изменения не сохранены: "+e.getMessage());if(editing!=null){editing.getButton(-1).setEnabled(true);editing.getButton(-2).setEnabled(true);editing.setCancelable(true);}notice(e.getMessage());});}finally{store.close();}});
  }
  private SharedPreferences viewPrefs(){return getSharedPreferences("object-manager-view",0);}
- private void restoreView(){SharedPreferences prefs=viewPrefs();String prefix=project+"_";try{folder=prefs.getString(prefix+"folder","");if(folder==null)folder="";expected=prefs.getString(prefix+"token",null);viewOptions=new ObjectListing.Options(prefs.getString(prefix+"query",""),prefs.getInt(prefix+"kind",0),prefs.getInt(prefix+"visibility",0),prefs.getInt(prefix+"sort",0),prefs.getBoolean(prefix+"recursive",false),prefs.getBoolean(prefix+"foldersFirst",false),prefs.getInt(prefix+"searchField",0),prefs.getInt(prefix+"dateMode",0),prefs.getString(prefix+"dateFrom",""),prefs.getString(prefix+"dateTo",""));}catch(RuntimeException bad){folder="";expected=null;viewOptions=ObjectListing.Options.defaults();}}
+ private void restoreView(){SharedPreferences prefs=viewPrefs();String prefix=project+(rightActive?"_right_":"_");try{folder=prefs.getString(prefix+"folder","");if(folder==null)folder="";expected=prefs.getString(prefix+"token",null);viewOptions=readOptions(prefs,prefix);}catch(RuntimeException bad){folder="";expected=null;viewOptions=ObjectListing.Options.defaults();}}
+ private ObjectListing.Options readOptions(SharedPreferences prefs,String prefix){
+  return new ObjectListing.Options(prefs.getString(prefix+"query",""),prefs.getInt(prefix+"kind",0),prefs.getInt(prefix+"visibility",0),prefs.getInt(prefix+"sort",0),prefs.getBoolean(prefix+"recursive",false),prefs.getBoolean(prefix+"foldersFirst",false),prefs.getInt(prefix+"searchField",0),prefs.getInt(prefix+"dateMode",0),prefs.getString(prefix+"dateFrom",""),prefs.getString(prefix+"dateTo",""));
+ }
 
- private void rememberView(){String prefix=project+"_";viewPrefs().edit().putString(prefix+"folder",folder).putString(prefix+"token",expected).putString(prefix+"query",viewOptions.query).putInt(prefix+"searchField",viewOptions.searchField).putInt(prefix+"dateMode",viewOptions.dates.mode).putString(prefix+"dateFrom",viewOptions.dates.from).putString(prefix+"dateTo",viewOptions.dates.to).putInt(prefix+"kind",viewOptions.kind).putInt(prefix+"visibility",viewOptions.visibility).putInt(prefix+"sort",viewOptions.sort).putBoolean(prefix+"recursive",viewOptions.recursive).putBoolean(prefix+"foldersFirst",viewOptions.foldersFirst).commit();}
+
+ private void rememberView(){String prefix=project+(rightActive?"_right_":"_");viewPrefs().edit().putString(prefix+"folder",folder).putString(prefix+"token",expected).putString(prefix+"query",viewOptions.query).putInt(prefix+"searchField",viewOptions.searchField).putInt(prefix+"dateMode",viewOptions.dates.mode).putString(prefix+"dateFrom",viewOptions.dates.from).putString(prefix+"dateTo",viewOptions.dates.to).putInt(prefix+"kind",viewOptions.kind).putInt(prefix+"visibility",viewOptions.visibility).putInt(prefix+"sort",viewOptions.sort).putBoolean(prefix+"recursive",viewOptions.recursive).putBoolean(prefix+"foldersFirst",viewOptions.foldersFirst).commit();}
  private Spinner option(LinearLayout form,String title,String[] names,int current){TextView label=new TextView(this);label.setText(title);form.addView(label);Spinner spinner=new Spinner(this);spinner.setContentDescription(title);ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,names);adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);spinner.setAdapter(adapter);spinner.setSelection(current);form.addView(spinner);return spinner;}
  private CheckBox option(LinearLayout form,String title,boolean current){CheckBox box=new CheckBox(this);box.setText(title);box.setChecked(current);form.addView(box);return box;}
  private ObjectFormDraft readForm(Bundle state){if(state==null)return null;try{return new ObjectFormDraft(state.getLong("project"),state.getString("kind"),state.getStringArray("texts"),state.getIntArray("starts"),state.getIntArray("ends"),state.getInt("focus",-1),state.getIntArray("choices"),state.getBooleanArray("checks"),state.getString("error"));}catch(IllegalArgumentException e){return null;}}
@@ -486,7 +675,7 @@ public final class ObjectManagerActivity extends Activity {
  }
 
  private void notice(String text){dialog().setMessage(text).setPositiveButton("Понятно",null).show();}
- protected void onSaveInstanceState(Bundle out){out.putString("initialFolderId",initialFolderId);super.onSaveInstanceState(out);out.putLong("viewProject",project);out.putString("folder",folder);out.putString("token",expected);out.putBundle("svg",pendingSvg);out.putBundle("iconLibrary",pendingIconLibrary);out.putBundle("editor",saveEditor());out.putBundle("selection",saveSelection());out.putBundle("form",saveForm());out.putBundle("move",saveMove());out.putBundle("chooser",saveChooser());out.putBundle("confirmation",saveConfirmation());rememberView();}
+ protected void onSaveInstanceState(Bundle out){out.putBoolean("rightActive",rightActive);out.putBundle("otherPane",saveOtherPane());out.putString("initialFolderId",initialFolderId);super.onSaveInstanceState(out);out.putLong("viewProject",project);out.putString("folder",folder);out.putString("token",expected);out.putBundle("svg",pendingSvg);out.putBundle("iconLibrary",pendingIconLibrary);out.putBundle("editor",saveEditor());out.putBundle("selection",saveSelection());out.putBundle("form",saveForm());out.putBundle("move",saveMove());out.putBundle("chooser",saveChooser());out.putBundle("confirmation",saveConfirmation());rememberView();}
  protected void onResume(){super.onResume();if(refreshOnResume&&!busy){refreshOnResume=false;load();}}
  public void onBackPressed(){if(busy)return;if(viewOptions.filtered()){viewOptions=new ObjectListing.Options("",0,0,viewOptions.sort,false,viewOptions.foldersFirst);rememberView();render();return;}if(!folder.isEmpty())parent();else super.onBackPressed();}
  protected void onDestroy(){disposed=true;if(editorDialog!=null)editorDialog.dismiss();if(activeForm!=null)activeForm.dialog.dismiss();if(moveDialog!=null)moveDialog.dismiss();if(chooserDialog!=null)chooserDialog.dismiss();if(confirmationDialog!=null)confirmationDialog.dismiss();worker.shutdown();super.onDestroy();}

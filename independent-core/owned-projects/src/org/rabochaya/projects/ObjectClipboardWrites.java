@@ -10,7 +10,21 @@ public final class ObjectClipboardWrites {
  public static ObjectClipboard get(ProjectStore store)throws IOException{return read(store.getWritableDatabase());}
  public static void clear(ProjectStore store){SQLiteDatabase db=store.getWritableDatabase();table(db);db.delete("object_clipboard","slot=1",null);}
  public static void capture(ProjectStore store,long project,boolean cut,List<String> keys,String expected)throws IOException{
-  SQLiteDatabase db=store.getWritableDatabase();db.beginTransaction();try{KmlProject p=store.load(project);List<String> chosen=ObjectTree.selection(p.root(),keys,expected);table(db);put(db,new ObjectClipboard(project,cut,expected,chosen));db.setTransactionSuccessful();}finally{db.endTransaction();}
+  captureForPaste(store,project,cut,keys,expected);
+ }
+ static String captureForPaste(ProjectStore store,long project,boolean cut,List<String> keys,String expected)throws IOException{
+  SQLiteDatabase db=store.getWritableDatabase();
+  db.beginTransaction();
+  try{
+   KmlProject p=store.load(project);
+   List<String> chosen=ObjectTree.selection(p.root(),keys,expected);
+   ObjectClipboard clip=new ObjectClipboard(project,cut,expected,chosen);
+   String fingerprint=clip.fingerprint();
+   table(db);
+   put(db,clip);
+   db.setTransactionSuccessful();
+   return fingerprint;
+  }finally{db.endTransaction();}
  }
  public static KmlProject paste(ProjectStore store,long project,String destination,String expected,String fingerprint)throws IOException{
   return pasteInFolder(store,project,destination,expected,fingerprint).project;
