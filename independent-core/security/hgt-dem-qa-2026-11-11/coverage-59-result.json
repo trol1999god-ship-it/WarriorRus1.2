@@ -1,0 +1,37 @@
+{
+  "code": "59fdd159883bbee1c284cbc60e7844fa167a0736",
+  "production": "2fefdfd",
+  "run": 43047764920,
+  "conclusion": "success",
+  "api23": {
+    "job": 130616502327,
+    "name": "android (23, x86, default)",
+    "passed_modes": 46,
+    "managerforms": 482,
+    "maplayers": 199,
+    "maplayersreopen": 66,
+    "offlineformats": 68,
+    "full_log_sha256": "0d4c97c10453ac7920bb8b835bb8fba88a849c2cd7fc0bc62bc507a69b3ffc10"
+  },
+  "api35": {
+    "job": 130616501859,
+    "name": "android (35, x86_64, google_apis)",
+    "passed_modes": 46,
+    "managerforms": 473,
+    "maplayers": 199,
+    "maplayersreopen": 66,
+    "offlineformats": 68,
+    "full_log_sha256": "64e9282431b0c20e0ef85a56bdb96c5b8d3c140bee20b44eb38a3539d47e97dc"
+  },
+  "all_32_new_png_sha_verified_and_actually_viewed": true,
+  "coverage_centre": {
+    "lat": 10.500404,
+    "lon": 5.5,
+    "zoom": 8.3,
+    "height_m_rounded": -0.5
+  },
+  "guards": "explicit coverage menu, owned project/file, foreign replacement exact viewport and foreign bytes retained; prior Cancel/install/remove/restart/KML/assets/source/cache/otherproject/network guards pass",
+  "label_correction": "Initial progress message swapped new run job IDs. Corrected using Complete job name and api-level in full logs; no API23 evidence used as API35. Correct provenance files accompany frames.",
+  "accepted": false,
+  "profile_runtime_included": false
+}

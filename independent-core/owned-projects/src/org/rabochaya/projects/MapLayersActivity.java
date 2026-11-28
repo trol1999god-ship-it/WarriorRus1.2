@@ -1,0 +1,99 @@
+package org.rabochaya.projects;
+import android.app.*;import android.content.*;import android.os.*;import android.view.*;import android.widget.*;import java.io.*;import java.util.*;
+/** User-managed project composition. Every accepted control action persists its own stack only. */
+public final class MapLayersActivity extends Activity {
+ static final String OPEN_PRESETS="open_presets";
+ private static final String FAVORITES="Избранные карты и наборы карт";
+ private AlertDialog removalDialog;
+ private String removalId;
+ private byte[] removalToken;
+ private static final int PICK_SOURCE=4521;private long project;private LinearLayout root,list;private ScrollView scroll;private TextView status;private MapCompositionSettings.Snapshot snapshot;private String pendingLayer;private int pendingOpacity,restoreY;private boolean disposed;
+ protected void onCreate(Bundle saved){super.onCreate(saved);project=getIntent().getLongExtra("project",-1);getWindow().setStatusBarColor(WorkspaceUi.MUTED);getWindow().setNavigationBarColor(WorkspaceUi.MUTED);restoreY=saved==null?0:saved.getInt("scroll",0);setResult(RESULT_OK);if(project<=0){finish();return;}reload("");if(saved==null&&getIntent().getBooleanExtra(OPEN_PRESETS,false))presets();
+  else if(saved!=null)restoreRemoval(saved);}
+ private int dp(int value){return WorkspaceUi.dp(this,value);}
+ private TextView text(String value,int size){TextView t=new TextView(this);t.setText(value);t.setTextSize(size);t.setTextColor(WorkspaceUi.TEXT);t.setTypeface(WorkspaceUi.font(this));t.setPadding(dp(8),dp(6),dp(8),dp(6));return t;}
+ private Button button(LinearLayout parent,String title,Runnable action){Button b=new Button(this);b.setText(title);b.setAllCaps(false);b.setTextSize(14);b.setTypeface(WorkspaceUi.font(this));b.setMinHeight(dp(48));parent.addView(b,new LinearLayout.LayoutParams(-1,-2));b.setOnClickListener(v->action.run());return b;}
+ private void font(View v){WorkspaceUi.applyFont(this,v);}
+ private void checkTint(CheckBox box){box.setButtonTintList(new android.content.res.ColorStateList(new int[][]{new int[]{android.R.attr.state_checked},new int[]{}},new int[]{WorkspaceUi.TEXT,WorkspaceUi.MUTED}));}
+ private void reload(String message){try{snapshot=MapCompositionSettings.load(this,project);show(message);}catch(Exception e){snapshot=null;show("Не удалось прочитать состав: "+e.getMessage()+". Сохранённые настройки не изменены.");}}
+ private void show(String message){if(disposed)return;int y=scroll==null?restoreY:scroll.getScrollY();root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setPadding(dp(8),dp(4),dp(8),dp(4));root.setBackgroundColor(0xffeaf4fd);setContentView(root);root.addView(text("Слои карты",22));status=text(message,14);status.setMaxLines(3);root.addView(status);if(snapshot==null){button(root,"К карте",()->finish());return;}
+  scroll=new ScrollView(this);LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);scroll.addView(content);root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));CheckBox enabled=new CheckBox(this);enabled.setText("Использовать композицию слоёв");enabled.setTextColor(WorkspaceUi.TEXT);enabled.setTypeface(WorkspaceUi.font(this));checkTint(enabled);enabled.setChecked(snapshot.enabled);content.addView(enabled);enabled.setOnCheckedChangeListener((view,on)->apply(snapshot.composition,on));
+  content.addView(text("До "+MapComposition.MAX_LAYERS+" слоёв. Верхний слой показан первым. Удаление слоя сохраняет карты, кеш и объекты. "+(OnlineMapSettings.network(this)?"Онлайн и кеш.":"Только кеш; интернет включается в меню карты."),12));Button add=button(content,"Добавить слой",()->addChoices());add.setEnabled(snapshot.composition.layers.size()<MapComposition.MAX_LAYERS);button(content,FAVORITES,()->presets());
+  list=new LinearLayout(this);list.setOrientation(LinearLayout.VERTICAL);content.addView(list);if(snapshot.composition.layers.isEmpty())list.addView(text("Подложек нет. Объекты остаются на карте.",16));for(int i=snapshot.composition.layers.size()-1;i>=0;i--)row(snapshot.composition.layers.get(i),i);button(root,"К карте",()->{flushOpacity();finish();});scroll.post(()->{if(!disposed)scroll.scrollTo(0,y);});
+ }
+ private AlertDialog prepared(AlertDialog dialog){dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);dialog.setOnShowListener(v->font(dialog.getWindow().getDecorView()));return dialog;}
+ private void presets(){flushOpacity();if(disposed||snapshot==null)return;try{final MapCompositionSettings.PresetsSnapshot library=MapCompositionSettings.loadPresets(this,project);final MapCompositionSettings.Snapshot composition=snapshot;ArrayList<String> names=new ArrayList<>();names.add("Сохранить показанный состав");for(MapCompositionPresets.Entry entry:library.presets.entries)names.add(entry.name+" · слоёв: "+entry.composition.layers.size());ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.select_dialog_item,names){public View getView(int position,View old,ViewGroup parent){View view=super.getView(position,old,parent);font(view);return view;}};prepared(new AlertDialog.Builder(this).setTitle(FAVORITES).setAdapter(adapter,(dialog,index)->{if(index==0)savePreset(library,composition);else presetActions(library,composition,library.presets.entries.get(index-1));}).setNegativeButton("Отмена",null).create()).show();}catch(Exception e){status.setText("Наборы не изменены: "+e.getMessage());}}
+ private void savePreset(final MapCompositionSettings.PresetsSnapshot library,final MapCompositionSettings.Snapshot composition){LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);form.setPadding(dp(12),dp(8),dp(12),dp(8));TextView help=new TextView(this);help.setText("Запоминаются показанные слои, порядок, видимость и прозрачность. Карты, кеш и объекты не копируются и не меняются. Сохранение не применяет набор; применение позже явно включит композицию. До "+MapCompositionPresets.MAX_PRESETS+" наборов этого проекта.");form.addView(help);final EditText name=new EditText(this);name.setHint("Название набора");name.setSingleLine(true);name.setImeOptions(android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI|android.view.inputmethod.EditorInfo.IME_FLAG_NO_FULLSCREEN);name.setFilters(new android.text.InputFilter[]{new android.text.InputFilter.LengthFilter(MapCompositionPresets.MAX_NAME)});form.addView(name);ScrollView body=new ScrollView(this);body.addView(form);AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Сохранить набор слоёв").setView(body).setPositiveButton("Сохранить",null).setNegativeButton("Отмена",null).create();prepared(dialog);dialog.setOnShowListener(v->{font(dialog.getWindow().getDecorView());dialog.getButton(-1).setOnClickListener(button->{try{MapCompositionSettings.savePreset(this,project,library,composition,name.getText().toString());dialog.dismiss();reload("Набор сохранён: "+name.getText().toString().trim());}catch(Exception e){name.setError(e.getMessage());}});});dialog.show();name.requestFocus();}
+ private void presetActions(final MapCompositionSettings.PresetsSnapshot library,final MapCompositionSettings.Snapshot composition,final MapCompositionPresets.Entry entry){ArrayAdapter<String> actions=new ArrayAdapter<String>(this,android.R.layout.select_dialog_item,new String[]{"Применить набор","Удалить набор"}){public View getView(int position,View old,ViewGroup parent){View view=super.getView(position,old,parent);font(view);return view;}};prepared(new AlertDialog.Builder(this).setTitle(entry.name).setAdapter(actions,(dialog,index)->{if(index==0)confirmPreset(library,composition,entry,false);else confirmPreset(library,composition,entry,true);}).setNegativeButton("Отмена",null).create()).show();}
+ private void confirmPreset(final MapCompositionSettings.PresetsSnapshot library,final MapCompositionSettings.Snapshot composition,final MapCompositionPresets.Entry entry,final boolean remove){String message=remove?"Будет удалено только сохранённое имя и состав набора. Текущие слои, карты, кеш и объекты останутся.":"Показанный состав будет заменён сохранёнными слоями, порядком, видимостью и прозрачностью; композиция будет включена. Файлы карт, кеш и объекты сохраняются. Локальный слой использует установленный сейчас MBTiles этого проекта, набор не хранит копию файла.";prepared(new AlertDialog.Builder(this).setTitle(remove?"Удалить набор?":"Применить набор?").setMessage(entry.name+"\n"+message).setPositiveButton(remove?"Удалить":"Применить",(dialog,which)->{try{if(remove)MapCompositionSettings.deletePreset(this,project,library,entry.name);else snapshot=MapCompositionSettings.applyPreset(this,project,composition,library,entry.name);reload(remove?"Набор удалён":"Набор применён");}catch(Exception e){reload("Наборы не изменены: "+e.getMessage());}}).setNegativeButton("Отмена",null).create()).show();}
+ private void addChoices(){flushOpacity();ArrayList<String> names=new ArrayList<>();ArrayList<Runnable> actions=new ArrayList<>();names.add("Из каталога");actions.add(()->startActivityForResult(new Intent(this,MapCatalogActivity.class).putExtra("project",project).putExtra("layer_pick",true),PICK_SOURCE));if(OnlineMapSettings.prefs(this).getString("catalog","").isEmpty()&&OnlineMapSettings.prefs(this).contains("template")){names.add("Настроенный XYZ-источник");actions.add(()->add(MapComposition.Layer.custom(OnlineMapSettings.source(this))));}if(new File(getFilesDir(),"local_basemap_"+project+".mbtiles").isFile()){names.add("MBTiles проекта");actions.add(()->add(MapComposition.Layer.local()));}names.add("Обзорная карта");actions.add(()->add(MapComposition.Layer.bundled()));ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.select_dialog_item,names){public View getView(int position,View convert,ViewGroup parent){View v=super.getView(position,convert,parent);font(v);return v;}};AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Добавить слой").setAdapter(adapter,(d,w)->actions.get(w).run()).setNegativeButton("Отмена",null).create();dialog.setOnShowListener(v->font(dialog.getWindow().getDecorView()));dialog.show();}
+ private void row(final MapComposition.Layer layer,final int index){LinearLayout card=new LinearLayout(this);card.setOrientation(LinearLayout.VERTICAL);card.setPadding(dp(6),dp(6),dp(6),dp(8));card.setBackground(WorkspaceUi.panel(this));card.setTag(layer.id);LinearLayout.LayoutParams outer=new LinearLayout.LayoutParams(-1,-2);outer.setMargins(0,dp(4),0,dp(4));list.addView(card,outer);card.addView(text(layer.name,18));String detail="local".equals(layer.kind)?"MBTiles проекта":"bundled".equals(layer.kind)?"Обзорная карта":layer.source()==null?"Источник каталога недоступен":layer.source().attribution;card.addView(text(detail,12));CheckBox visible=new CheckBox(this);visible.setText("Показывать слой");visible.setTextColor(WorkspaceUi.TEXT);visible.setTypeface(WorkspaceUi.font(this));checkTint(visible);visible.setChecked(layer.visible);card.addView(visible);visible.setOnCheckedChangeListener((view,on)->apply(snapshot.composition.visible(layer.id,on),true));TextView amount=text("Непрозрачность: "+layer.opacity+"%",14);card.addView(amount);SeekBar opacity=new SeekBar(this);opacity.setContentDescription("Непрозрачность: "+layer.name);opacity.setMax(100);opacity.setProgress(layer.opacity);card.addView(opacity,new LinearLayout.LayoutParams(-1,dp(48)));opacity.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+   private boolean dragging;
+   public void onStartTrackingTouch(SeekBar bar){dragging=true;}
+   public void onProgressChanged(SeekBar bar,int value,boolean user){
+    amount.setText("Непрозрачность: "+value+"%");
+    if(!user)return;
+    pendingLayer=layer.id;
+    pendingOpacity=value;
+    // Keyboard and accessibility adjustments have no touch-stop callback.
+    if(!dragging)flushOpacity();
+   }
+   public void onStopTrackingTouch(SeekBar bar){dragging=false;flushOpacity();}
+  });
+  LinearLayout actions=new LinearLayout(this);card.addView(actions);Button up=button(actions,"Выше",()->apply(snapshot.composition.move(layer.id,index+1),true)),down=button(actions,"Ниже",()->apply(snapshot.composition.move(layer.id,index-1),true));up.setEnabled(index<snapshot.composition.layers.size()-1);down.setEnabled(index>0);button(actions,"Убрать",()->remove(layer));for(int i=0;i<actions.getChildCount();i++)actions.getChildAt(i).setLayoutParams(new LinearLayout.LayoutParams(0,dp(48),1));
+ }
+ private void remove(MapComposition.Layer layer){
+  flushOpacity();
+  if(snapshot==null)return;
+  byte[] token=removalRevision(snapshot);
+  if(token==null){status.setText("Не удалось проверить состав карт");return;}
+  confirmRemoval(layer,snapshot,token);
+ }
+
+ private void restoreRemoval(Bundle saved){
+  String id=saved.getString("remove_layer");
+  byte[] token=saved.getByteArray("remove_revision");
+  if(id==null||token==null||snapshot==null)return;
+  if(java.util.Arrays.equals(token,removalRevision(snapshot))){
+   for(MapComposition.Layer layer:snapshot.composition.layers)
+    if(layer.id.equals(id)){confirmRemoval(layer,snapshot,token);return;}
+  }
+  status.setText("Состав карт изменился. Выберите слой заново.");
+ }
+
+ private byte[] removalRevision(MapCompositionSettings.Snapshot composition){
+  try{
+   java.security.MessageDigest digest=java.security.MessageDigest.getInstance("SHA-256");
+   digest.update((byte)(composition.enabled?1:0));
+   return digest.digest(composition.composition.encode());
+  }catch(Exception error){return null;}
+ }
+
+ private void confirmRemoval(MapComposition.Layer layer,MapCompositionSettings.Snapshot expected,byte[] token){
+  AlertDialog dialog=new AlertDialog.Builder(this).setTitle("Убрать слой?")
+      .setMessage(layer.name+"\nИсходная карта, кеш и объекты останутся на устройстве.")
+      .setPositiveButton("Убрать",(closed,which)->{
+       if(snapshot==expected)apply(expected.composition.remove(layer.id),true);
+       else status.setText("Состав карт изменился. Выберите слой заново.");
+      }).setNegativeButton("Отмена",null).create();
+  removalId=layer.id;removalToken=token;removalDialog=dialog;
+  dialog.setOnShowListener(view->font(dialog.getWindow().getDecorView()));
+  dialog.setOnDismissListener(closed->{
+   if(removalDialog==closed){removalDialog=null;removalId=null;removalToken=null;}
+  });
+  dialog.show();
+ }
+
+ private void add(MapComposition.Layer layer){try{apply(snapshot.composition.add(layer),true);}catch(Exception e){status.setText("Слой не добавлен: "+e.getMessage());}}
+ private void apply(MapComposition next,boolean enabled){if(disposed||snapshot==null)return;pendingLayer=null;try{snapshot=MapCompositionSettings.save(this,project,snapshot,next,enabled);show("");}catch(Exception e){reload("Изменение не применено: "+e.getMessage());}}
+ private void flushOpacity(){if(pendingLayer==null||snapshot==null)return;String id=pendingLayer;int value=pendingOpacity;pendingLayer=null;try{
+  MapComposition next=snapshot.composition.opacity(id,value);
+  boolean redraw=!snapshot.enabled;
+  snapshot=MapCompositionSettings.save(this,project,snapshot,next,true);
+  if(redraw)show("");
+  else status.setText("");
+ }catch(Exception e){reload("Изменение не применено: "+e.getMessage());}}
+ protected void onActivityResult(int request,int result,Intent data){super.onActivityResult(request,result,data);if(request==PICK_SOURCE&&result==RESULT_OK&&data!=null){try{apply(snapshot.composition.add(MapComposition.Layer.catalog(data.getStringExtra("catalog"))),true);}catch(Exception e){reload("Слой не добавлен: "+e.getMessage());}}}
+ protected void onSaveInstanceState(Bundle out){flushOpacity();out.putInt("scroll",scroll==null?0:scroll.getScrollY());if(removalDialog!=null){out.putString("remove_layer",removalId);out.putByteArray("remove_revision",removalToken);}super.onSaveInstanceState(out);}
+ protected void onPause(){flushOpacity();super.onPause();}protected void onDestroy(){if(removalDialog!=null)removalDialog.dismiss();disposed=true;super.onDestroy();}
+}

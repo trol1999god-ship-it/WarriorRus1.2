@@ -1,0 +1,15 @@
+[
+  {
+    "mode": "mappartconfirm",
+    "command": [
+      "shell",
+      "cat",
+      "/proc/sys/kernel/random/boot_id"
+    ],
+    "retry": 1,
+    "same_boot": true,
+    "first_rejection": "adb: device offline\n",
+    "retry_returncode": 0,
+    "retry_output": "2dedfcc1-206c-4175-951b-ddbc94b05aab\n"
+  }
+]

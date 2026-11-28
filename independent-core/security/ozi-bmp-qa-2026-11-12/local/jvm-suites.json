@@ -1,0 +1,142 @@
+[
+  {
+    "test": "BmpTests",
+    "result": "BMP: 754 assertions passed"
+  },
+  {
+    "test": "OziTests",
+    "result": "Ozi: 66 assertions passed"
+  },
+  {
+    "test": "DemProfileTests",
+    "result": "PASS DEM profile: 23 assertions"
+  },
+  {
+    "test": "HgtTests",
+    "result": "PASS HGT DEM: 38 assertions"
+  },
+  {
+    "test": "GeoTiffTests",
+    "result": "PASS GeoTIFF/transform: 432 assertions"
+  },
+  {
+    "test": "CompositionDownloadJobTests",
+    "result": "PASS CompositionDownloadJob: 35 assertions"
+  },
+  {
+    "test": "RasterExportFileTests",
+    "result": "PASS RasterExportFile: 9 assertions"
+  },
+  {
+    "test": "MapCompositionTests",
+    "result": "PASS MapComposition: 33 assertions"
+  },
+  {
+    "test": "GeometryCloseDraftTests",
+    "result": "PASS GeometryCloseDraft: 29 assertions"
+  },
+  {
+    "test": "GeometryPartChoiceDraftTests",
+    "result": "PASS GeometryPartChoiceDraft: 32 assertions"
+  },
+  {
+    "test": "GeometryMapUndoDraftTests",
+    "result": "PASS GeometryMapUndoDraft: 32 assertions"
+  },
+  {
+    "test": "GeometryConfirmationDraftTests",
+    "result": "PASS GeometryConfirmationDraft: 64 assertions"
+  },
+  {
+    "test": "VertexEditDraftTests",
+    "result": "PASS VertexEditDraft: 69 assertions"
+  },
+  {
+    "test": "ObjectConfirmationDraftTests",
+    "result": "PASS ObjectConfirmationDraft: 60 assertions"
+  },
+  {
+    "test": "ObjectMoveDraftTests",
+    "result": "PASS ObjectMoveDraft: 34 assertions"
+  },
+  {
+    "test": "ObjectFormDraftTests",
+    "result": "PASS ObjectFormDraft: 32 assertions"
+  },
+  {
+    "test": "ObjectSelectionStateTests",
+    "result": "PASS ObjectSelectionState: 20 assertions"
+  },
+  {
+    "test": "ObjectEditorDraftTests",
+    "result": "PASS ObjectEditorDraft: 30 assertions"
+  },
+  {
+    "test": "KmlXmlTests",
+    "result": "PASS KmlXml: 31 assertions"
+  },
+  {
+    "test": "ObjectDescriptionTests",
+    "result": "PASS ObjectDescription: 169 assertions"
+  },
+  {
+    "test": "KmlTimeFilterTests",
+    "result": "PASS KmlTimeFilter: 100 assertions"
+  },
+  {
+    "test": "ObjectVisibilityTests",
+    "result": "PASS ObjectVisibility: 56 assertions"
+  },
+  {
+    "test": "ObjectListingTests",
+    "result": "PASS ObjectListing: 100 assertions"
+  },
+  {
+    "test": "ObjectClipboardTests",
+    "result": "PASS ObjectClipboard/Copy: 63 assertions"
+  },
+  {
+    "test": "ObjectTreeTests",
+    "result": "PASS ObjectTree: 56 assertions"
+  },
+  {
+    "test": "GeometryMapStateTests",
+    "result": "PASS GeometryMapState: 52 assertions"
+  },
+  {
+    "test": "GeometryVerticesTests",
+    "result": "PASS GeometryVertices: 36 assertions"
+  },
+  {
+    "test": "GeometryCoordinatesTests",
+    "result": "PASS GeometryCoordinates: 26 assertions"
+  },
+  {
+    "test": "GeometryEditsTests",
+    "result": "PASS GeometryEdits/Draft: 50 assertions"
+  },
+  {
+    "test": "CoordinateTests",
+    "result": "PASS Coordinates: 71120 assertions"
+  },
+  {
+    "test": "MapMathTests",
+    "result": "PASS MapMath: 1828 assertions"
+  },
+  {
+    "test": "MapHitTestTests",
+    "result": "PASS MapHitTest: 37 assertions"
+  },
+  {
+    "test": "CompassMathTests",
+    "result": "PASS CompassMath: 19 assertions"
+  },
+  {
+    "test": "TileRegionTests",
+    "result": "PASS: 7225 tile region/source assertions"
+  },
+  {
+    "test": "UiTextTests",
+    "result": "PASS UiText: 46 assertions"
+  }
+]

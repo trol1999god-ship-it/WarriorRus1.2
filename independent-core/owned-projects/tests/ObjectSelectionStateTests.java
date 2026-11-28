@@ -1,0 +1,13 @@
+import org.rabochaya.projects.*;import org.w3c.dom.*;import javax.xml.parsers.*;import java.io.*;import java.util.*;
+public final class ObjectSelectionStateTests {
+ static int checks;static void check(boolean value){checks++;if(!value)throw new AssertionError("selection check "+checks);}
+ public static void main(String[] args)throws Exception{
+  DocumentBuilderFactory f=DocumentBuilderFactory.newInstance();f.setNamespaceAware(true);Element root=f.newDocumentBuilder().parse(new ByteArrayInputStream("<Document xmlns='http://www.opengis.net/kml/2.2'><Folder><name>Folder</name><Placemark><name>Nested</name></Placemark></Folder><Placemark><name>Point</name></Placemark><Placemark><name>Other</name></Placemark></Document>".getBytes("UTF-8"))).getDocumentElement();String token=ObjectTree.token(root);List<String> selected=Arrays.asList("1","0/0");ObjectSelectionState state=ObjectSelectionState.capture(7,token,"process-a",ObjectTree.rows(root),selected);
+  check(new HashSet<>(state.restore(7,root,"process-a")).equals(new HashSet<>(selected)));check(state.indices().length==2);check(state.restore(8,root,"process-a").isEmpty());check(state.restore(7,root,"process-b").isEmpty());check(state.restore(7,root,null).isEmpty());check(state.restore(7,null,"process-a").isEmpty());
+  int[] copy=state.indices();copy[0]=99;check(state.restore(7,root,"process-a").size()==2);int[] input={1};ObjectSelectionState defensive=new ObjectSelectionState(7,token,"process-a",input);input[0]=99;check(defensive.restore(7,root,"process-a").equals(Arrays.asList("0/0")));
+  for(int[] invalid:new int[][]{{-1},{99},{1,1},{1,99}})check(new ObjectSelectionState(7,token,"process-a",invalid).restore(7,root,"process-a").isEmpty());
+  check(new ObjectSelectionState(7,null,"process-a",new int[]{1}).restore(7,root,"process-a").isEmpty());check(new ObjectSelectionState(7,token,null,new int[]{1}).restore(7,root,"process-a").isEmpty());check(ObjectSelectionState.capture(7,token,"process-a",ObjectTree.rows(root),Arrays.asList("1","bad")).restore(7,root,"process-a").isEmpty());check(ObjectSelectionState.capture(7,token,"process-a",ObjectTree.rows(root),Collections.emptyList()).restore(7,root,"process-a").isEmpty());check(ObjectTree.token(root).equals(token));
+  Element point=ObjectTree.resolve(root,"1"),other=ObjectTree.resolve(root,"2");root.insertBefore(other,point);check(state.restore(7,root,"process-a").isEmpty());check(ObjectTree.rows(root).get(2).name.equals("Other"));boolean bounded=false;try{new ObjectSelectionState(7,token,"process-a",new int[10001]);}catch(IllegalArgumentException e){bounded=true;}check(bounded);
+  System.out.println("PASS ObjectSelectionState: "+checks+" assertions");
+ }
+}

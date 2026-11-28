@@ -1,0 +1,10 @@
+{
+  "reference_sha256": "5ac3c7091cecae66942cdffee7c91ca0eb96be5eae902e85b0d6d9920643c142",
+  "method": "Read the installed reference's DEX in a disposable output directory. No changes to reference APK.",
+  "findings": {
+    "map_editor": "LocalMapActivity saves drawing data in onSaveInstanceState. There is no evidence this hook saves the text fields of the object dialog.",
+    "attachments": "AttachmentsActivity opens the Android document picker and has Open and Remove from object actions. The observed background is #232D1D. The project-approved QA style uses the blue palette and Arimo.",
+    "playback": "MediaPlaybackActivity builds a local preview with a Back button. Its observed reference background is #232D1D.",
+    "limits": "Static observations do not establish running layout or behavior parity. Text attachment preview is an agreed requirement of the independent app."
+  }
+}

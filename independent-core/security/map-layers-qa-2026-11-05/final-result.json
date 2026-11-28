@@ -1,0 +1,32 @@
+{
+  "commit": "dc1649303ed19b75fa2543c59a89339bbeba3e7f",
+  "run": 42034901826,
+  "conclusion": "success",
+  "jobs": {
+    "23": 127270591123,
+    "35": 127270591391
+  },
+  "scenarios_each": 46,
+  "layers_assertions_each": 89,
+  "restart_assertions_each": 16,
+  "managerforms": {
+    "23": 482,
+    "35": 473
+  },
+  "png_sha_verified": 16,
+  "png_visually_reviewed": 16,
+  "actual_partial_opacity": {
+    "23": 45,
+    "35": 50
+  },
+  "checked": [
+    "explicit add/remove/catalog/visibility/order/opacity",
+    "real touch and renderer pixels",
+    "actual force-stop restart",
+    "KML/assets/cache/MBTiles/other-project retained"
+  ],
+  "acceptance": "scoped implementation verified; full acceptance open",
+  "release_gate": false,
+  "job_log_sha256_23": "ed711946c0ff4b1e08ba7688d7412eeb38074e3c26f590f432da6a00a2658d4b",
+  "job_log_sha256_35": "5f4a80badc7282796bca2f70fa9cc48511f884d8816c6c1c11278bd768fee41f"
+}

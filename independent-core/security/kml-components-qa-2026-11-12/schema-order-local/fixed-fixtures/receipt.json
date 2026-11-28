@@ -1,0 +1,19 @@
+{
+  "source_commit": "844fe6e",
+  "scope": "standalone JVM official offline XSD regression for preserved schema-order fix; not Android CI",
+  "initial_valid": 5,
+  "emitted_valid": 5,
+  "external_schema_access": "disabled",
+  "files": {
+    "case-0-before.kml": "34116bf78280699ccea9b9f663ccc6d84607e3f78424ff964a9ee2c8c346fc8a",
+    "case-2-before.kml": "66ffb406ca944dbc3de5d52eb580abf6c0f8c67f2f4ef4eae784e9e2f74c9c56",
+    "case-3-after.kml": "41268a3ccd7e206dd940d5be67f42719a9eded8b454592225ed2c6b57d47d763",
+    "case-2-after.kml": "a38d3234668ac7499d1756be59d03105bc510cd198e5f8810577ff5ef09de97c",
+    "case-0-after.kml": "b5338e2da0c5ba958fc03b357e873e730e66c5b16506ca1b1ffd023ad9606366",
+    "case-3-before.kml": "67375731b7a522b9d39a49f47a5eeafc0275b89b5ecb67397959a0884b6f51bb",
+    "case-1-before.kml": "61386415b4ed235181929811cb648034c938811f037556cc391cfc328204bece",
+    "case-4-after.kml": "8c1b00e4dd135a3fc593bb02d7f950ae702b02271e003ad36aeabf156d9f02b4",
+    "case-1-after.kml": "7ecd7bbf8643892fb2f27ecee410d1256006fb57d4e23722cb9cc188f166e6bc",
+    "case-4-before.kml": "a0dcc17aba7b16c70416dbb8246385843388239022cc76bb70a9e3845171388a"
+  }
+}

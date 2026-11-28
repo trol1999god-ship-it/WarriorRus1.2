@@ -1,0 +1,751 @@
+--------- beginning of main
+11-12 18:34:57.452  2812  2812 I AndroidRuntime: VM exiting with result code 0.
+11-12 18:34:57.545  2824  2824 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+11-12 18:34:57.546  2824  2824 D AndroidRuntime: CheckJNI is OFF
+11-12 18:34:57.553  2824  2824 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+11-12 18:34:57.562  2824  2824 E memtrack: Couldn't load memtrack module (No such file or directory)
+11-12 18:34:57.562  2824  2824 E android.os.Debug: failed to load memtrack module: -2
+11-12 18:34:57.563  2824  2824 I Radio-JNI: register_android_hardware_Radio DONE
+11-12 18:34:57.568  2824  2824 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+--------- beginning of system
+11-12 18:34:57.571  1558  2100 I ActivityManager: Force stopping org.rabochaya.karta appid=10055 user=0: start instr
+11-12 18:34:57.573  2833  2833 I art     : Late-enabling -Xcheck:jni
+11-12 18:34:57.581  1558  2100 I ActivityManager: Start proc 2833:org.rabochaya.karta/u0a55 for added application org.rabochaya.karta
+11-12 18:34:57.585  2833  2833 W System  : ClassLoader referenced unknown path: /data/app/org.rabochaya.maptests-1/lib/x86
+11-12 18:34:57.585  2833  2833 W System  : ClassLoader referenced unknown path: /data/app/org.rabochaya.karta-1/lib/x86
+11-12 18:34:58.186  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000010
+11-12 18:34:58.193  2683  2721 D Documents: Update found 6 roots in 1ms
+11-12 18:34:58.199  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000010
+11-12 18:34:58.208  2683  2767 D Documents: Update found 6 roots in 2ms
+11-12 18:34:58.209  1558  1607 I InputReader: Reconfiguring input devices.  changes=0x00000010
+11-12 18:34:58.216  2683  2700 D Documents: Update found 6 roots in 1ms
+11-12 18:34:58.377  1558  1700 D AlarmManagerService: Kernel timezone updated to 0 minutes west of GMT
+11-12 18:34:58.377  1558  1570 D AlarmManagerService: Setting time of day to sec=1794508498
+11-12 18:34:58.001  1558  1570 W AlarmManagerService: Unable to set rtc to 1794508498: No such device
+11-12 18:35:01.423  1558  2267 I ActivityManager: Killing 2056:com.android.printspooler/u0a41 (adj 15): empty #17
+11-12 18:35:03.016  1558  1572 I ActivityManager: Waited long enough for: ServiceRecord{dec1f87 u0 com.android.calendar/.alerts.InitAlarmsService}
+11-12 18:35:07.007  1558  1701 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} from uid 10055 on display 0
+11-12 18:35:07.026  1246  2011 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+11-12 18:35:07.027  2833  2848 D OpenGLRenderer: Use EGL_SWAP_BEHAVIOR_PRESERVED: true
+11-12 18:35:07.031  2833  2833 D         : HostConnection::get() New Host Connection established 0xaac3c880, tid 2833
+11-12 18:35:07.042  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:35:07.056  2833  2848 D         : HostConnection::get() New Host Connection established 0xa2ee2040, tid 2848
+11-12 18:35:07.056  2833  2848 I OpenGLRenderer: Initialized EGL, version 1.4
+11-12 18:35:07.058  2833  2848 D EGL_emulation: eglCreateContext: 0xaec14ae0: maj 3 min 0 rcv 3
+11-12 18:35:07.059  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:35:07.059  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407d8e0
+11-12 18:35:07.063  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:07.063  2833  2848 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008cdf
+11-12 18:35:07.063  2833  2848 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008824
+11-12 18:35:07.066  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:07.066  1246  2011 D         : HostConnection::get() New Host Connection established 0xb6cd42c0, tid 2011
+11-12 18:35:07.562  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity: +549ms
+11-12 18:35:07.873  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:07.889  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:07.890  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a360
+11-12 18:35:07.891  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:09.676  1558  1569 D VoldConnector: SND -> {25 volume mkdirs /storage/emulated/0/Android/data/org.rabochaya.karta/files/}
+11-12 18:35:09.677  1558  1609 D VoldConnector: RCV <- {200 25 Command succeeded}
+11-12 18:35:09.679  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:35:09.681  2824  2831 D         : HostConnection::get() New Host Connection established 0xb3fff100, tid 2831
+11-12 18:35:09.740  1558  1644 W AudioTrack: AUDIO_OUTPUT_FLAG_FAST denied by client; transfer 4, track 48000 Hz, output 44100 Hz
+11-12 18:35:09.741  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:09.742  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a860
+11-12 18:35:09.744  1558  2042 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@798491 attribute=null, token = android.os.BinderProxy@bfb1121
+11-12 18:35:10.375  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:10.390  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:10.390  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a9a0
+11-12 18:35:10.392  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:10.633  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:10.636  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a360
+11-12 18:35:10.642  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:10.643  1558  1701 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@5165e64 attribute=null, token = android.os.BinderProxy@bfb1121
+11-12 18:35:10.846  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:10.898  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:12.734  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:35:12.736  2824  2832 D         : HostConnection::get() New Host Connection established 0xae6d6140, tid 2832
+11-12 18:35:12.794  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:12.809  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:12.810  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34aa40
+11-12 18:35:12.811  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:13.050  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:13.051  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 18:35:13.052  1558  1569 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@f6bb2da attribute=null, token = android.os.BinderProxy@bfb1121
+11-12 18:35:13.113  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(5)
+11-12 18:35:13.656  1246  2536 D PermissionCache: checking android.permission.READ_FRAME_BUFFER for uid=1000 => granted (36 us)
+11-12 18:35:13.656  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 18:35:13.657  1558  1748 D         : HostConnection::get() New Host Connection established 0x9f67ff40, tid 1748
+11-12 18:35:13.705  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349e60
+11-12 18:35:13.732  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:35:14.312  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a900
+11-12 18:35:16.197  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 565275 , only wrote 283569
+11-12 18:35:18.048  2212  2513 D InitAlarmsService: Clearing and rescheduling alarms.
+11-12 18:35:18.058  1558  1747 I ActivityManager: Killing 2029:com.android.settings:CryptKeeper/1000 (adj 15): empty #17
+11-12 18:35:18.179  1558  2042 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} from uid 10055 on display 0
+11-12 18:35:18.201  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:18.210  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:35:18.228  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:35:18.228  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity: +45ms
+11-12 18:35:18.229  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407de80
+11-12 18:35:18.280  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:18.854  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:18.854  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349820
+11-12 18:35:18.884  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:18.898  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:18.900  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349820
+11-12 18:35:18.901  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:18.914  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 18:35:18.965  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:19.463  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349960
+11-12 18:35:19.472  1558  1701 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@b0380f4 attribute=null, token = android.os.BinderProxy@58184fb
+11-12 18:35:19.488  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:19.491  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:19.503  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349960
+11-12 18:35:19.506  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:22.620  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 666424 , only wrote 475920
+11-12 18:35:29.569  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:35:29.607  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:29.607  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:35:29.613  1558  1747 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@646c292 attribute=null, token = android.os.BinderProxy@58184fb
+11-12 18:35:30.239  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:30.256  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:30.256  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34acc0
+11-12 18:35:30.257  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:30.497  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:30.498  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349140
+11-12 18:35:30.506  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:30.507  1558  1676 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@f38f119 attribute=null, token = android.os.BinderProxy@58184fb
+11-12 18:35:30.560  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 18:35:30.726  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:30.728  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:30.732  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:30.742  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:33.650  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 829651 , only wrote 653729
+11-12 18:35:34.183  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:35:34.246  1246  1285 D hwcomposer: hw_composer sent 592 syncs in 61s
+11-12 18:35:37.842  1558  2044 I MediaFocusControl:  AudioFocus  abandonAudioFocus() from android.media.AudioManager@3cd90fbcom.android.music.MediaPlaybackService$3@dd56518
+11-12 18:35:37.843  1558  2042 I ActivityManager: Killing 2114:com.android.music/u0a36 (adj 15): empty #17
+11-12 18:35:40.603  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:35:40.653  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:40.667  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:40.669  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:35:40.670  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:40.911  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:40.911  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3493c0
+11-12 18:35:40.913  1558  1701 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@c29a8d attribute=null, token = android.os.BinderProxy@58184fb
+11-12 18:35:41.538  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:41.555  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:41.556  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3493c0
+11-12 18:35:41.557  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:41.796  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:41.796  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 18:35:41.805  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:41.806  1558  1747 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@f3f990 attribute=null, token = android.os.BinderProxy@58184fb
+11-12 18:35:41.860  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(2)
+11-12 18:35:42.599  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:42.618  2833  2848 V RenderScript: 0xa3463000 Launching thread(s), CPUs 2
+11-12 18:35:42.648  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 18:35:42.650  1558  1676 D         : HostConnection::get() New Host Connection established 0x9c670fc0, tid 1676
+11-12 18:35:42.656  2833  2864 W SQLiteLog: (28) file unlinked while open: /data/user/0/org.rabochaya.karta/files/local_basemap_3.mbtiles
+11-12 18:35:42.657  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a360
+11-12 18:35:42.661  1558  1747 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} from uid 10055 on display 0
+11-12 18:35:42.683  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:35:42.685  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:42.694  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:35:42.710  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity: +42ms
+11-12 18:35:42.713  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:35:42.714  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407de80
+11-12 18:35:42.743  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 18:35:42.744  1558  2042 D         : HostConnection::get() New Host Connection established 0x9d2e4d00, tid 2042
+11-12 18:35:42.820  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:35:42.841  2833  2869 W SQLiteLog: (28) file unlinked while open: /data/user/0/org.rabochaya.karta/files/local_basemap_3.mbtiles
+11-12 18:35:42.843  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:42.843  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a900
+11-12 18:35:42.846  1558  1676 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} from uid 10055 on display 0
+11-12 18:35:42.888  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:35:42.889  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:42.896  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:35:42.897  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407db60
+11-12 18:35:42.912  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity: +60ms
+11-12 18:35:42.953  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:43.524  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:43.525  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 18:35:43.555  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:43.570  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:43.571  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 18:35:43.572  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:43.584  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(2)
+11-12 18:35:43.637  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:44.133  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:35:44.140  1558  2042 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@75b3049 attribute=null, token = android.os.BinderProxy@c1d41b4
+11-12 18:35:44.161  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:44.163  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:44.175  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:35:44.176  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:46.059  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349820
+11-12 18:35:47.277  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 1212318 , only wrote 933993
+11-12 18:35:54.239  1246  2011 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:35:54.275  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:54.276  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a360
+11-12 18:35:54.277  1558  1747 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@597e77c attribute=null, token = android.os.BinderProxy@c1d41b4
+11-12 18:35:54.909  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:54.924  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:54.925  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 18:35:54.926  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:55.168  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:55.170  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:35:55.176  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:55.177  1558  1747 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@51a6826 attribute=null, token = android.os.BinderProxy@c1d41b4
+11-12 18:35:55.381  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:55.383  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:55.388  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:55.397  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:35:58.318  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 1287763 , only wrote 1111802
+11-12 18:35:58.839  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a360
+11-12 18:36:05.275  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:36:05.282  2824  2828 D         : HostConnection::get() New Host Connection established 0xb3fff380, tid 2828
+11-12 18:36:05.345  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:05.360  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:05.362  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a360
+11-12 18:36:05.363  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:05.604  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:05.605  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 18:36:05.606  1558  2044 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@6d3d40a attribute=null, token = android.os.BinderProxy@c1d41b4
+11-12 18:36:06.236  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:06.252  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:06.252  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 18:36:06.253  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:06.493  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:06.494  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a360
+11-12 18:36:06.502  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:06.502  1558  1569 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@3626af1 attribute=null, token = android.os.BinderProxy@c1d41b4
+11-12 18:36:07.293  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:07.346  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 18:36:07.353  1558  1701 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} from uid 10055 on display 0
+11-12 18:36:07.354  2833  2872 W SQLiteLog: (28) file unlinked while open: /data/user/0/org.rabochaya.karta/files/local_basemap_5.mbtiles
+11-12 18:36:07.358  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a900
+11-12 18:36:07.376  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:36:07.427  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:07.448  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity: +72ms
+11-12 18:36:07.478  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 18:36:07.497  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:36:07.525  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:07.527  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34ac20
+11-12 18:36:07.530  2833  2874 W SQLiteLog: (28) file unlinked while open: /data/user/0/org.rabochaya.karta/files/local_basemap_5.mbtiles
+11-12 18:36:07.532  1558  1676 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} from uid 10055 on display 0
+11-12 18:36:07.550  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:07.558  1246  1282 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:36:07.572  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity: +38ms
+11-12 18:36:07.576  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:36:07.576  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407de80
+11-12 18:36:07.611  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:08.195  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:08.195  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 18:36:08.234  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:08.248  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:08.249  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 18:36:08.251  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:08.314  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:08.806  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34aa40
+11-12 18:36:08.811  1558  1676 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@d069996 attribute=null, token = android.os.BinderProxy@41d41c5
+11-12 18:36:08.839  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:08.840  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:08.853  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34aa40
+11-12 18:36:08.855  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:10.743  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:36:11.955  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 1669141 , only wrote 1391405
+11-12 18:36:18.912  1246  1282 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:36:18.951  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:18.951  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3491e0
+11-12 18:36:18.953  1558  1747 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@3b6e6ed attribute=null, token = android.os.BinderProxy@41d41c5
+11-12 18:36:19.587  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:19.602  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:19.603  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 18:36:19.604  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:19.844  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:19.845  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34aa40
+11-12 18:36:19.853  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:19.854  1558  2266 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@22c440f attribute=null, token = android.os.BinderProxy@41d41c5
+11-12 18:36:20.058  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:20.060  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:20.064  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:20.072  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:23.010  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 1746477 , only wrote 1569875
+11-12 18:36:23.521  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3491e0
+11-12 18:36:29.950  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:36:30.002  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:30.016  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:30.018  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3491e0
+11-12 18:36:30.020  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:30.260  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:30.261  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 18:36:30.262  1558  2266 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@7e59ba3 attribute=null, token = android.os.BinderProxy@41d41c5
+11-12 18:36:30.892  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:30.907  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:30.909  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 18:36:30.910  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:31.149  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:31.150  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3491e0
+11-12 18:36:31.158  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:31.158  1558  1676 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@93de61e attribute=null, token = android.os.BinderProxy@41d41c5
+11-12 18:36:31.204  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(1)
+11-12 18:36:31.933  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:32.032  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:32.048  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:32.050  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 18:36:32.051  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:32.290  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:32.291  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:36:32.301  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:32.303  1558  1701 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@ac1a164 attribute=null, token = android.os.BinderProxy@41d41c5
+11-12 18:36:32.351  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(10)
+11-12 18:36:32.890  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 18:36:32.892  1558  1570 D         : HostConnection::get() New Host Connection established 0x9d764d40, tid 1570
+11-12 18:36:32.901  2833  2878 W SQLiteLog: (28) file unlinked while open: /data/user/0/org.rabochaya.karta/files/local_basemap_7.mbtiles
+11-12 18:36:32.902  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:32.903  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34ac20
+11-12 18:36:32.923  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:36:32.952  1558  1676 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} from uid 10055 on display 0
+11-12 18:36:32.979  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:32.987  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:36:32.998  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity: +41ms
+11-12 18:36:33.004  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:36:33.006  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407db60
+11-12 18:36:33.021  1246  1282 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 18:36:33.022  1558  1747 D         : HostConnection::get() New Host Connection established 0x9d8bfe80, tid 1747
+11-12 18:36:33.094  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:36:33.112  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:33.116  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349e60
+11-12 18:36:33.119  2833  2880 W SQLiteLog: (28) file unlinked while open: /data/user/0/org.rabochaya.karta/files/local_basemap_7.mbtiles
+11-12 18:36:33.124  1558  1569 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} from uid 10055 on display 0
+11-12 18:36:33.156  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:36:33.164  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:33.172  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:36:33.173  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407de80
+11-12 18:36:33.186  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity: +55ms
+11-12 18:36:33.226  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:33.802  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:33.802  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:36:33.831  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:33.845  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:33.846  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:36:33.849  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:33.864  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 18:36:33.911  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:34.078  1246  1285 D hwcomposer: hw_composer sent 845 syncs in 60s
+11-12 18:36:34.411  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 18:36:34.417  1558  1700 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@7295224 attribute=null, token = android.os.BinderProxy@91c61eb
+11-12 18:36:34.436  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:34.438  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:34.450  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 18:36:34.453  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:35.409  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34aa40
+11-12 18:36:38.154  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 2263397 , only wrote 1917561
+11-12 18:36:44.518  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:36:44.554  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:44.555  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 18:36:44.556  1558  2267 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@b21ab53 attribute=null, token = android.os.BinderProxy@91c61eb
+11-12 18:36:45.184  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:45.200  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:45.201  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:36:45.202  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:45.494  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(9)
+11-12 18:36:45.536  1558  1644 W AudioTrack: AUDIO_OUTPUT_FLAG_FAST denied by client; transfer 4, track 48000 Hz, output 44100 Hz
+11-12 18:36:45.556  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:45.556  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:36:45.571  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:45.572  1558  2100 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@b6bf545 attribute=null, token = android.os.BinderProxy@91c61eb
+11-12 18:36:45.805  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:45.807  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:45.811  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:45.819  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:48.688  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 2279178 , only wrote 2099336
+11-12 18:36:49.264  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34ac20
+11-12 18:36:55.643  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:36:55.699  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:55.715  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:55.716  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34ac20
+11-12 18:36:55.717  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:55.958  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:55.959  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:36:55.960  1558  2266 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@c12a6f9 attribute=null, token = android.os.BinderProxy@91c61eb
+11-12 18:36:56.591  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:56.605  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:56.606  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:36:56.607  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:56.898  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(9)
+11-12 18:36:56.961  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:56.962  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:36:56.974  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:56.976  1558  1676 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@a6811ec attribute=null, token = android.os.BinderProxy@91c61eb
+11-12 18:36:57.732  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:57.797  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 18:36:57.799  1558  2267 D         : HostConnection::get() New Host Connection established 0x9d2e4e00, tid 2267
+11-12 18:36:57.806  2833  2884 W SQLiteLog: (28) file unlinked while open: /data/user/0/org.rabochaya.karta/files/local_basemap_9.mbtiles
+11-12 18:36:57.808  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349e60
+11-12 18:36:57.809  1558  2042 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} from uid 10055 on display 0
+11-12 18:36:57.830  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:36:57.835  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:36:57.845  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:36:57.846  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407de80
+11-12 18:36:57.883  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:57.903  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity: +74ms
+11-12 18:36:57.928  1246  1282 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 18:36:57.952  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:36:57.981  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:36:57.982  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a900
+11-12 18:36:57.986  2833  2886 W SQLiteLog: (28) file unlinked while open: /data/user/0/org.rabochaya.karta/files/local_basemap_9.mbtiles
+11-12 18:37:00.091  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 2460996 , only wrote 2281111
+11-12 18:37:01.191  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 18:37:02.351  1558  1747 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} from uid 10055 on display 0
+11-12 18:37:02.376  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:37:02.399  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:02.410  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:37:02.412  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407de80
+11-12 18:37:02.421  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity: +65ms
+11-12 18:37:02.462  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:03.037  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:03.038  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a900
+11-12 18:37:03.066  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:03.081  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:03.083  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a900
+11-12 18:37:03.084  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:03.149  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:03.649  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3491e0
+11-12 18:37:03.672  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:03.686  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:03.687  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3491e0
+11-12 18:37:03.689  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:03.709  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(2)
+11-12 18:37:06.803  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 2663903 , only wrote 2473462
+11-12 18:37:13.755  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:37:13.757  2824  2856 D         : HostConnection::get() New Host Connection established 0xb3fff040, tid 2856
+11-12 18:37:13.794  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:13.794  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 18:37:13.796  1558  1676 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@5a76f0a attribute=null, token = android.os.BinderProxy@fbe8a7c
+11-12 18:37:14.467  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:14.494  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(9)
+11-12 18:37:15.037  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:15.037  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 18:37:15.070  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:15.086  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:15.087  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 18:37:15.088  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:15.096  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(6)
+11-12 18:37:15.650  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:15.650  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3491e0
+11-12 18:37:15.675  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:15.690  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:15.693  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3491e0
+11-12 18:37:15.694  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:16.256  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:16.256  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 18:37:16.260  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:16.261  1558  2267 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@f04cc2d attribute=null, token = android.os.BinderProxy@fbe8a7c
+11-12 18:37:16.314  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:16.316  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(2)
+11-12 18:37:16.883  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:16.917  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(2)
+11-12 18:37:17.463  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:17.463  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a9a0
+11-12 18:37:17.488  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:17.502  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:17.503  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a9a0
+11-12 18:37:17.506  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:18.078  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:18.078  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34aae0
+11-12 18:37:18.108  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:18.125  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:18.126  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34aae0
+11-12 18:37:18.127  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:18.134  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 18:37:18.685  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:18.685  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a9a0
+11-12 18:37:18.693  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:18.693  1558  1569 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@3af8947 attribute=null, token = android.os.BinderProxy@fbe8a7c
+11-12 18:37:18.736  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(10)
+11-12 18:37:19.762  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a900
+11-12 18:37:21.823  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 3178858 , only wrote 2827097
+11-12 18:37:22.991  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:23.008  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:26.461  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 18:37:32.561  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:37:32.603  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:33.187  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:33.187  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a900
+11-12 18:37:33.225  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:33.240  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(6)
+11-12 18:37:33.241  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:33.241  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a900
+11-12 18:37:33.243  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:33.800  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:33.800  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a9a0
+11-12 18:37:33.830  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:33.844  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:33.845  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a9a0
+11-12 18:37:33.847  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:34.076  1246  1285 D hwcomposer: hw_composer sent 726 syncs in 60s
+11-12 18:37:34.406  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:34.406  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a900
+11-12 18:37:34.408  1558  2266 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@5875237 attribute=null, token = android.os.BinderProxy@fbe8a7c
+11-12 18:37:34.467  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(9)
+11-12 18:37:35.037  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:35.618  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:35.619  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 18:37:35.657  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:35.673  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:35.674  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 18:37:35.675  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:36.234  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:36.235  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a9a0
+11-12 18:37:36.263  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:36.276  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:36.277  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a9a0
+11-12 18:37:36.279  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:36.287  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(2)
+11-12 18:37:36.842  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:36.843  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 18:37:36.848  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:36.849  1558  2100 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@c5cd30e attribute=null, token = android.os.BinderProxy@fbe8a7c
+11-12 18:37:39.999  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 3478274 , only wrote 3153631
+11-12 18:37:41.075  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:41.242  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:41.813  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:41.813  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3491e0
+11-12 18:37:41.847  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:41.862  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:41.863  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3491e0
+11-12 18:37:41.864  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:41.865  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(6)
+11-12 18:37:42.427  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:42.428  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349960
+11-12 18:37:42.451  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:42.465  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:42.467  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349960
+11-12 18:37:42.469  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:42.489  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 18:37:43.034  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:43.035  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3491e0
+11-12 18:37:43.040  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:43.041  1558  2042 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@e30b340 attribute=null, token = android.os.BinderProxy@fbe8a7c
+11-12 18:37:43.089  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 18:37:44.539  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a900
+11-12 18:37:46.180  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 3589305 , only wrote 3372422
+11-12 18:37:47.316  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:47.447  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:48.024  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:48.025  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349960
+11-12 18:37:48.054  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:48.067  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:48.068  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349960
+11-12 18:37:48.070  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:48.634  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:48.635  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a9a0
+11-12 18:37:48.638  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:48.638  1558  1676 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@dc9b422 attribute=null, token = android.os.BinderProxy@fbe8a7c
+11-12 18:37:49.296  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:49.320  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(5)
+11-12 18:37:49.865  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:49.865  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3491e0
+11-12 18:37:49.899  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:49.913  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:49.915  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3491e0
+11-12 18:37:49.916  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:49.922  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(6)
+11-12 18:37:50.479  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:50.479  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349960
+11-12 18:37:50.506  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:50.519  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:50.520  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349960
+11-12 18:37:50.522  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:50.775  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 18:37:51.084  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:51.085  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3491e0
+11-12 18:37:51.088  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:51.089  1558  2266 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@b5ad12b attribute=null, token = android.os.BinderProxy@fbe8a7c
+11-12 18:37:51.145  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 18:37:51.685  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 18:37:51.686  1558  2266 D         : HostConnection::get() New Host Connection established 0x9da3e200, tid 2266
+11-12 18:37:51.692  2833  2889 W SQLiteLog: (28) file unlinked while open: /data/user/0/org.rabochaya.karta/files/local_basemap_11.mbtiles
+11-12 18:37:51.694  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:51.694  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349460
+11-12 18:37:51.727  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:37:51.756  1558  2044 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} from uid 10055 on display 0
+11-12 18:37:51.780  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:37:51.802  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:51.814  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:37:51.818  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407d8e0
+11-12 18:37:51.822  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity: +61ms
+11-12 18:37:51.837  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 18:37:51.838  1558  2044 D         : HostConnection::get() New Host Connection established 0x9da3ea00, tid 2044
+11-12 18:37:51.847  1558  1748 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.DemActivity (has extras)} from uid 10055 on display 0
+11-12 18:37:51.885  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:37:51.885  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:37:51.894  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:51.895  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:37:51.908  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:51.916  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:37:51.918  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407d8e0
+11-12 18:37:52.081  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.DemActivity: +194ms
+11-12 18:37:52.185  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:52.196  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(9)
+11-12 18:37:52.201  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:52.202  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349820
+11-12 18:37:52.203  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:52.233  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:52.755  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a900
+11-12 18:37:52.771  1558  2044 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@ec4cfad attribute=null, token = android.os.BinderProxy@a6abc2c
+11-12 18:37:52.822  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(5)
+11-12 18:37:53.357  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 18:37:53.378  1558  1747 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} from uid 10055 on display 0
+11-12 18:37:53.384  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:37:53.412  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:37:53.413  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:53.419  1558  1701 W InputMethodManagerService: Starting input on non-focused client com.android.internal.view.IInputMethodClient$Stub$Proxy@a2d4bde (uid=10008 pid=2422)
+11-12 18:37:53.430  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:37:53.431  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity: +46ms
+11-12 18:37:53.432  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349780
+11-12 18:37:53.432  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407cbc0
+11-12 18:37:53.477  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:53.513  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 18:37:54.056  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:54.057  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 18:37:54.081  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:54.097  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:54.099  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349500
+11-12 18:37:54.100  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:54.113  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 18:37:54.164  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:54.667  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3495a0
+11-12 18:37:54.677  1558  1676 W InputMethodManagerService: Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@7cbea42 attribute=null, token = android.os.BinderProxy@996ce48
+11-12 18:37:54.704  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:55.298  1246  2536 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 18:37:55.299  1558  1569 D         : HostConnection::get() New Host Connection established 0x9d2e4080, tid 1569
+11-12 18:37:55.327  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:37:55.351  1558  2042 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} from uid 10055 on display 0
+11-12 18:37:55.357  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a900
+11-12 18:37:55.373  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:37:55.389  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:37:55.392  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407db60
+11-12 18:37:55.396  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:55.428  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity: +74ms
+11-12 18:37:56.114  2833  2893 W SQLiteLog: (28) file unlinked while open: /data/user/0/org.rabochaya.karta/files/local_basemap_11.mbtiles
+11-12 18:37:57.818  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 4286770 , only wrote 3830495
+11-12 18:37:58.170  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349140
+11-12 18:37:58.951  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:37:59.029  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 18:37:59.036  1558  1747 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} from uid 10055 on display 0
+11-12 18:37:59.070  1246  1282 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:37:59.072  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:37:59.075  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:37:59.101  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity: +48ms
+11-12 18:37:59.105  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:37:59.105  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34a2c0
+11-12 18:37:59.105  2422  2493 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407db60
+11-12 18:38:01.126  1246  1284 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 18:38:01.139  1558  2100 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.ObjectManagerActivity (has extras)} from uid 10055 on display 0
+11-12 18:38:01.165  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-12 18:38:01.201  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:01.203  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab349820
+11-12 18:38:01.336  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.ObjectManagerActivity: +170ms
+11-12 18:38:02.329  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:02.360  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(11)
+11-12 18:38:02.399  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:03.003  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:03.016  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:03.020  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:03.031  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:03.037  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:03.048  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:03.053  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:03.065  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:03.069  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:03.361  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:03.362  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3491e0
+11-12 18:38:03.388  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:03.411  1257  1597 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(9)
+11-12 18:38:03.976  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:03.976  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab3491e0
+11-12 18:38:04.009  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:04.024  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:04.026  1974  1974 W RichInputMethodSubtype: Can't find emoji subtype
+11-12 18:38:04.026  1974  1974 W RichInputMethodSubtype: No input method subtype found; returning dummy subtype: Multi-lingual subtype: android.view.inputmethod.InputMethodSubtype@d78b2ed0, zz
+11-12 18:38:04.027  2833  2848 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab34aea0
+11-12 18:38:04.027  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:04.046  1974  1974 W ViewPager: Requested offscreen page limit 0 too small; defaulting to 1
+11-12 18:38:04.049  1974  1974 I LatinIME: Starting input. Cursor position = 0,0
+11-12 18:38:04.326  1246  1683 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+11-12 18:38:04.327  1974  2910 D OpenGLRenderer: Use EGL_SWAP_BEHAVIOR_PRESERVED: true
+11-12 18:38:04.331  1974  1974 D         : HostConnection::get() New Host Connection established 0xb2ef0cc0, tid 1974
+11-12 18:38:04.361  1974  2910 D         : HostConnection::get() New Host Connection established 0xb2ef0ec0, tid 2910
+11-12 18:38:04.362  1974  2910 I OpenGLRenderer: Initialized EGL, version 1.4
+11-12 18:38:04.363  1974  2910 D EGL_emulation: eglCreateContext: 0xad979cc0: maj 3 min 0 rcv 3
+11-12 18:38:04.364  1974  2910 D EGL_emulation: eglMakeCurrent: 0xad979cc0: ver 3 0 (tinfo 0xa313cf90)
+11-12 18:38:04.364  1974  2910 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008cdf
+11-12 18:38:04.364  1974  2910 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008824
+11-12 18:38:04.367  1974  2910 D EGL_emulation: eglMakeCurrent: 0xad979cc0: ver 3 0 (tinfo 0xa313cf90)
+11-12 18:38:04.378  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:04.534  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:04.734  1558  2044 W art     : Long monitor contention event with owner method=void com.android.server.wm.WindowAnimator$1.doFrame(long) from WindowAnimator.java:121 waiters=0 for 139ms
+11-12 18:38:04.819  1974  1974 I LatinIME: Starting input. Cursor position = 0,0
+11-12 18:38:05.035  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:05.067  2833  2848 D EGL_emulation: eglMakeCurrent: 0xaec14ae0: ver 3 0 (tinfo 0xab361270)
+11-12 18:38:08.015  1257  1597 W audio_hw_generic: Not supplying enough data to HAL, expected position 4385188 , only wrote 4108776
+11-12 18:38:12.503  1246  1683 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 147456
+11-12 18:38:12.523  1558  1700 W WindowManager: Attempted to remove non-existing token: android.os.Binder@7f76ba0
+11-12 18:38:12.527  2824  2824 D AndroidRuntime: Shutting down VM
+11-12 18:38:12.527  1558  1676 I ActivityManager: Force stopping org.rabochaya.karta appid=10055 user=0: finished inst
+11-12 18:38:12.527  1558  1676 I ActivityManager: Killing 2833:org.rabochaya.karta/u0a55 (adj 0): stop org.rabochaya.karta
+11-12 18:38:12.541  2422  2493 D EGL_emulation: eglMakeCurrent: 0xad97b640: ver 3 0 (tinfo 0xaac3d5a0)
+11-12 18:38:12.589  1558  1606 W InputDispatcher: channel 'c70a0a org.rabochaya.karta/org.rabochaya.projects.ObjectManagerActivity (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+11-12 18:38:12.589  1558  1606 E InputDispatcher: channel 'c70a0a org.rabochaya.karta/org.rabochaya.projects.ObjectManagerActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+11-12 18:38:12.589  1558  1606 W InputDispatcher: channel 'a27ce4f PopupWindow:546f0ee (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+11-12 18:38:12.589  1558  1606 E InputDispatcher: channel 'a27ce4f PopupWindow:546f0ee (server)' ~ Channel is unrecoverably broken and will be disposed!
+11-12 18:38:12.589  1558  1606 W InputDispatcher: channel 'bae7a67 org.rabochaya.karta/org.rabochaya.projects.ObjectManagerActivity (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+11-12 18:38:12.589  1558  1606 E InputDispatcher: channel 'bae7a67 org.rabochaya.karta/org.rabochaya.projects.ObjectManagerActivity (server)' ~ Channel is unrecoverably broken and will be disposed!
+11-12 18:38:12.591  1558  1570 D GraphicsStats: Buffer count: 3
+11-12 18:38:12.591  1558  2042 I WindowState: WIN DEATH: Window{bae7a67 u0 org.rabochaya.karta/org.rabochaya.projects.ObjectManagerActivity}
+11-12 18:38:12.591  1558  2042 W InputDispatcher: Attempted to unregister already unregistered input channel 'bae7a67 org.rabochaya.karta/org.rabochaya.projects.ObjectManagerActivity (server)'
+11-12 18:38:12.592  1558  2266 I WindowState: WIN DEATH: Window{c70a0a u0 org.rabochaya.karta/org.rabochaya.projects.ObjectManagerActivity}
+11-12 18:38:12.592  1558  2266 W InputDispatcher: Attempted to unregister already unregistered input channel 'c70a0a org.rabochaya.karta/org.rabochaya.projects.ObjectManagerActivity (server)'
+11-12 18:38:12.592  1558  1701 I WindowState: WIN DEATH: Window{a27ce4f u0 PopupWindow:546f0ee}
+11-12 18:38:12.592  1558  1701 W InputDispatcher: Attempted to unregister already unregistered input channel 'a27ce4f PopupWindow:546f0ee (server)'
+11-12 18:38:12.596  1558  2044 W InputMethodManagerService: Got RemoteException sending setActive(false) notification to pid 2833 uid 10055
+11-12 18:38:12.601  1558  1577 W WindowAnimator: Failed to dispatch window animation state change.
+11-12 18:38:12.601  1558  1577 W WindowAnimator: android.os.DeadObjectException
+11-12 18:38:12.601  1558  1577 W WindowAnimator: 	at android.os.BinderProxy.transactNative(Native Method)
+11-12 18:38:12.601  1558  1577 W WindowAnimator: 	at android.os.BinderProxy.transact(Binder.java:503)
+11-12 18:38:12.601  1558  1577 W WindowAnimator: 	at android.view.IWindow$Stub$Proxy.onAnimationStarted(IWindow.java:520)
+11-12 18:38:12.601  1558  1577 W WindowAnimator: 	at com.android.server.wm.WindowAnimator.updateWindowsLocked(WindowAnimator.java:282)
+11-12 18:38:12.601  1558  1577 W WindowAnimator: 	at com.android.server.wm.WindowAnimator.animateLocked(WindowAnimator.java:678)
+11-12 18:38:12.601  1558  1577 W WindowAnimator: 	at com.android.server.wm.WindowAnimator.-wrap0(WindowAnimator.java)
+11-12 18:38:12.601  1558  1577 W WindowAnimator: 	at com.android.server.wm.WindowAnimator$1.doFrame(WindowAnimator.java:123)
+11-12 18:38:12.601  1558  1577 W WindowAnimator: 	at android.view.Choreographer$CallbackRecord.run(Choreographer.java:856)
+11-12 18:38:12.601  1558  1577 W WindowAnimator: 	at android.view.Choreographer.doCallbacks(Choreographer.java:670)
+11-12 18:38:12.601  1558  1577 W WindowAnimator: 	at android.view.Choreographer.doFrame(Choreographer.java:603)
+11-12 18:38:12.601  1558  1577 W WindowAnimator: 	at android.view.Choreographer$FrameDisplayEventReceiver.run(Choreographer.java:844)
+11-12 18:38:12.601  1558  1577 W WindowAnimator: 	at android.os.Handler.handleCallback(Handler.java:739)
+11-12 18:38:12.601  1558  1577 W WindowAnimator: 	at android.os.Handler.dispatchMessage(Handler.java:95)
+11-12 18:38:12.601  1558  1577 W WindowAnimator: 	at android.os.Looper.loop(Looper.java:148)
+11-12 18:38:12.601  1558  1577 W WindowAnimator: 	at android.os.HandlerThread.run(HandlerThread.java:61)
+11-12 18:38:12.601  1558  1577 W WindowAnimator: 	at com.android.server.ServiceThread.run(ServiceThread.java:46)
+11-12 18:38:12.602  1558  1577 W WindowAnimator: Failed to dispatch window animation state change.
+11-12 18:38:12.602  1558  1577 W WindowAnimator: android.os.DeadObjectException
+11-12 18:38:12.602  1558  1577 W WindowAnimator: 	at android.os.BinderProxy.transactNative(Native Method)
+11-12 18:38:12.602  1558  1577 W WindowAnimator: 	at android.os.BinderProxy.transact(Binder.java:503)
+11-12 18:38:12.602  1558  1577 W WindowAnimator: 	at android.view.IWindow$Stub$Proxy.onAnimationStarted(IWindow.java:520)
+11-12 18:38:12.602  1558  1577 W WindowAnimator: 	at com.android.server.wm.WindowAnimator.updateWindowsLocked(WindowAnimator.java:282)
+11-12 18:38:12.602  1558  1577 W WindowAnimator: 	at com.android.server.wm.WindowAnimator.animateLocked(WindowAnimator.java:678)
+11-12 18:38:12.602  1558  1577 W WindowAnimator: 	at com.android.server.wm.WindowAnimator.-wrap0(WindowAnimator.java)
+11-12 18:38:12.602  1558  1577 W WindowAnimator: 	at com.android.server.wm.WindowAnimator$1.doFrame(WindowAnimator.java:123)
+11-12 18:38:12.602  1558  1577 W WindowAnimator: 	at android.view.Choreographer$CallbackRecord.run(Choreographer.java:856)
+11-12 18:38:12.602  1558  1577 W WindowAnimator: 	at android.view.Choreographer.doCallbacks(Choreographer.java:670)
+11-12 18:38:12.602  1558  1577 W WindowAnimator: 	at android.view.Choreographer.doFrame(Choreographer.java:603)
+11-12 18:38:12.602  1558  1577 W WindowAnimator: 	at android.view.Choreographer$FrameDisplayEventReceiver.run(Choreographer.java:844)
+11-12 18:38:12.602  1558  1577 W WindowAnimator: 	at android.os.Handler.handleCallback(Handler.java:739)
+11-12 18:38:12.602  1558  1577 W WindowAnimator: 	at android.os.Handler.dispatchMessage(Handler.java:95)
+11-12 18:38:12.602  1558  1577 W WindowAnimator: 	at android.os.Looper.loop(Looper.java:148)
+11-12 18:38:12.602  1558  1577 W WindowAnimator: 	at android.os.HandlerThread.run(HandlerThread.java:61)
+11-12 18:38:12.602  1558  1577 W WindowAnimator: 	at com.android.server.ServiceThread.run(ServiceThread.java:46)
+11-12 18:38:12.603  1974  2910 D EGL_emulation: eglMakeCurrent: 0xad979cc0: ver 3 0 (tinfo 0xa313cf90)
+11-12 18:38:12.605  1974  2910 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407c080

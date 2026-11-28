@@ -1,0 +1,46 @@
+{
+  "source": "de2fb84dd40707535850c3bf4a4c3ca50c31c53d",
+  "run": 41163805624,
+  "jobs": {
+    "23": 124426994943,
+    "35": 124426994877,
+    "jvm": 124426905096
+  },
+  "passed_modes": {
+    "23": 31,
+    "35": 31
+  },
+  "assertions": {
+    "23": {
+      "managerconfirm": 709,
+      "managerpasteconfirm": 910
+    },
+    "35": {
+      "managerconfirm": 706,
+      "managerpasteconfirm": 908
+    }
+  },
+  "jvm_suites": 22,
+  "jvm_assertions": 81190,
+  "driver_tests": 12,
+  "qa_sha256": "eaa19f35e57da137b0dfe979c4574c6f069aaad8c0ed8be918833066addb637c",
+  "verified_png_count": 64,
+  "reviewed_png_count": 20,
+  "reviewed_actions_each_api": [
+    "delete-cancel",
+    "show-return",
+    "hide-cancel",
+    "delete-stale-before"
+  ],
+  "reviewed_paste_each_api": [
+    "pastecopy-cancel",
+    "pastecut-return",
+    "pastecopy-foreign",
+    "pastecut-foreign",
+    "pastecopy-rejected-replace-after",
+    "pastecut-stale-before"
+  ],
+  "full_acceptance": false,
+  "release_allowed": false,
+  "release_blockers": 25
+}

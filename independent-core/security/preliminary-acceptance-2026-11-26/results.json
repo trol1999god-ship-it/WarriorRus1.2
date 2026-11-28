@@ -1,0 +1,500 @@
+{
+  "source_sha": "5b7915b4523fa3dbac30534ee91fdb6dd83e093e",
+  "ci_run": 45722360572,
+  "base_source_sha": "5d7f7d1433d93838d9e7c5d155baa41f92aa07d1",
+  "base_ci_run": 45707989761,
+  "earlier_complete_ci_run": 45707187711,
+  "baseline": [
+    {
+      "api": 23,
+      "passed": false,
+      "checks": null,
+      "screens": {
+        "01-map": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance/map_dock-accept-01-map-after.png",
+          "xml": "acceptance/dock-accept-01-map-after.xml"
+        },
+        "02-coordinates": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance/map_dock-accept-02-coordinates-after.png",
+          "xml": "acceptance/dock-accept-02-coordinates-after.xml"
+        },
+        "03-tools": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance/map_dock-accept-03-tools-after.png",
+          "xml": "acceptance/dock-accept-03-tools-after.xml"
+        },
+        "03-tools-collapsed": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance/map_dock-accept-03-tools-collapsed-after.png",
+          "xml": "acceptance/dock-accept-03-tools-collapsed-after.xml"
+        },
+        "04-menu": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance/map_dock-accept-04-menu-after.png",
+          "xml": "acceptance/dock-accept-04-menu-after.xml"
+        },
+        "05-layers": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance/map_dock-accept-05-layers-after.png",
+          "xml": "acceptance/dock-accept-05-layers-after.xml"
+        },
+        "06-catalog": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance/map_dock-accept-06-catalog-after.png",
+          "xml": "acceptance/dock-accept-06-catalog-after.xml"
+        },
+        "07-objects": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance/map_dock-accept-07-objects-after.png",
+          "xml": "acceptance/dock-accept-07-objects-after.xml"
+        },
+        "08-projects": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance/map_dock-accept-08-projects-after.png",
+          "xml": "acceptance/dock-accept-08-projects-after.xml"
+        },
+        "10-icons": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance/map_dock-accept-10-icons-after.png",
+          "xml": "acceptance/dock-accept-10-icons-after.xml"
+        },
+        "12-exchange": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance/map_dock-accept-12-exchange-after.png",
+          "xml": "acceptance/dock-accept-12-exchange-after.xml"
+        }
+      },
+      "failure": "java.lang.AssertionError: current main map never became stable and attached"
+    },
+    {
+      "api": 35,
+      "passed": false,
+      "checks": null,
+      "screens": {
+        "01-map": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-01-map-after.png",
+          "xml": "acceptance/dock-accept-01-map-after.xml"
+        },
+        "02-coordinates": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-02-coordinates-after.png",
+          "xml": "acceptance/dock-accept-02-coordinates-after.xml"
+        },
+        "03-tools": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-03-tools-after.png",
+          "xml": "acceptance/dock-accept-03-tools-after.xml"
+        },
+        "03-tools-collapsed": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-03-tools-collapsed-after.png",
+          "xml": "acceptance/dock-accept-03-tools-collapsed-after.xml"
+        },
+        "04-menu": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-04-menu-after.png",
+          "xml": "acceptance/dock-accept-04-menu-after.xml"
+        },
+        "05-layers": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-05-layers-after.png",
+          "xml": "acceptance/dock-accept-05-layers-after.xml"
+        },
+        "06-catalog": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-06-catalog-after.png",
+          "xml": "acceptance/dock-accept-06-catalog-after.xml"
+        },
+        "07-objects": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-07-objects-after.png",
+          "xml": "acceptance/dock-accept-07-objects-after.xml"
+        },
+        "08-projects": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-08-projects-after.png",
+          "xml": "acceptance/dock-accept-08-projects-after.xml"
+        },
+        "10-icons": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-10-icons-after.png",
+          "xml": "acceptance/dock-accept-10-icons-after.xml"
+        },
+        "12-exchange": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-12-exchange-after.png",
+          "xml": "acceptance/dock-accept-12-exchange-after.xml"
+        }
+      },
+      "failure": "java.lang.AssertionError: UI missing Локальные проекты"
+    },
+    {
+      "api": 37,
+      "passed": false,
+      "checks": null,
+      "screens": {
+        "01-map": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-01-map-after.png",
+          "xml": "acceptance/dock-accept-01-map-after.xml"
+        },
+        "02-coordinates": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-02-coordinates-after.png",
+          "xml": "acceptance/dock-accept-02-coordinates-after.xml"
+        },
+        "03-tools": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-03-tools-after.png",
+          "xml": "acceptance/dock-accept-03-tools-after.xml"
+        },
+        "03-tools-collapsed": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-03-tools-collapsed-after.png",
+          "xml": "acceptance/dock-accept-03-tools-collapsed-after.xml"
+        },
+        "04-menu": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-04-menu-after.png",
+          "xml": "acceptance/dock-accept-04-menu-after.xml"
+        },
+        "05-layers": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-05-layers-after.png",
+          "xml": "acceptance/dock-accept-05-layers-after.xml"
+        },
+        "06-catalog": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-06-catalog-after.png",
+          "xml": "acceptance/dock-accept-06-catalog-after.xml"
+        },
+        "07-objects": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-07-objects-after.png",
+          "xml": "acceptance/dock-accept-07-objects-after.xml"
+        },
+        "08-projects": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-08-projects-after.png",
+          "xml": "acceptance/dock-accept-08-projects-after.xml"
+        },
+        "10-icons": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-10-icons-after.png",
+          "xml": "acceptance/dock-accept-10-icons-after.xml"
+        },
+        "12-exchange": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance/map_dock-accept-12-exchange-after.png",
+          "xml": "acceptance/dock-accept-12-exchange-after.xml"
+        }
+      },
+      "failure": "java.lang.AssertionError: UI missing Локальные проекты"
+    }
+  ],
+  "resume": [
+    {
+      "api": 23,
+      "passed": true,
+      "checks": 34,
+      "screens": {
+        "08-projects": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance-resume/map_dock-accept-08-projects-after.png",
+          "xml": "acceptance-resume/dock-accept-08-projects-after.xml"
+        },
+        "09-attachments": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance-resume/map_dock-accept-09-attachments-after.png",
+          "xml": "acceptance-resume/dock-accept-09-attachments-after.xml"
+        },
+        "09-card": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance-resume/map_dock-accept-09-card-after.png",
+          "xml": "acceptance-resume/dock-accept-09-card-after.xml"
+        },
+        "11-routes": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance-resume/map_dock-accept-11-routes-after.png",
+          "xml": "acceptance-resume/dock-accept-11-routes-after.xml"
+        },
+        "12-exchange": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance-resume/map_dock-accept-12-exchange-after.png",
+          "xml": "acceptance-resume/dock-accept-12-exchange-after.xml"
+        },
+        "13-settings": {
+          "size_px": [
+            320,
+            640
+          ],
+          "png": "acceptance-resume/map_dock-accept-13-settings-after.png",
+          "xml": "acceptance-resume/dock-accept-13-settings-after.xml"
+        }
+      },
+      "failure": null
+    },
+    {
+      "api": 35,
+      "passed": true,
+      "checks": 34,
+      "screens": {
+        "08-projects": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance-resume/map_dock-accept-08-projects-after.png",
+          "xml": "acceptance-resume/dock-accept-08-projects-after.xml"
+        },
+        "09-attachments": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance-resume/map_dock-accept-09-attachments-after.png",
+          "xml": "acceptance-resume/dock-accept-09-attachments-after.xml"
+        },
+        "09-card": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance-resume/map_dock-accept-09-card-after.png",
+          "xml": "acceptance-resume/dock-accept-09-card-after.xml"
+        },
+        "11-routes": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance-resume/map_dock-accept-11-routes-after.png",
+          "xml": "acceptance-resume/dock-accept-11-routes-after.xml"
+        },
+        "12-exchange": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance-resume/map_dock-accept-12-exchange-after.png",
+          "xml": "acceptance-resume/dock-accept-12-exchange-after.xml"
+        },
+        "13-settings": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance-resume/map_dock-accept-13-settings-after.png",
+          "xml": "acceptance-resume/dock-accept-13-settings-after.xml"
+        }
+      },
+      "failure": null
+    },
+    {
+      "api": 37,
+      "passed": true,
+      "checks": 34,
+      "screens": {
+        "08-projects": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance-resume/map_dock-accept-08-projects-after.png",
+          "xml": "acceptance-resume/dock-accept-08-projects-after.xml"
+        },
+        "09-attachments": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance-resume/map_dock-accept-09-attachments-after.png",
+          "xml": "acceptance-resume/dock-accept-09-attachments-after.xml"
+        },
+        "09-card": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance-resume/map_dock-accept-09-card-after.png",
+          "xml": "acceptance-resume/dock-accept-09-card-after.xml"
+        },
+        "11-routes": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance-resume/map_dock-accept-11-routes-after.png",
+          "xml": "acceptance-resume/dock-accept-11-routes-after.xml"
+        },
+        "12-exchange": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance-resume/map_dock-accept-12-exchange-after.png",
+          "xml": "acceptance-resume/dock-accept-12-exchange-after.xml"
+        },
+        "13-settings": {
+          "size_px": [
+            720,
+            900
+          ],
+          "png": "acceptance-resume/map_dock-accept-13-settings-after.png",
+          "xml": "acceptance-resume/dock-accept-13-settings-after.xml"
+        }
+      },
+      "failure": null
+    }
+  ],
+  "apk_sha256": "d349b2af1c52f1d03939d996b266113a107e7a54d358743798681c7dc64350c4",
+  "permissions": [
+    "android.permission.INTERNET"
+  ],
+  "lint_errors": 0,
+  "archive_sha256": "9e3e7960eb77cab92e39bb7eda03c940ef9f3576e7c80866b7659a7f69df18ab",
+  "qa_apk": "https://chatgpt.com/library?file_id=libfile_c22d4e67cecc81919b7d2b59d14117a7&account_id=personal",
+  "archive_url": "https://chatgpt.com/library?file_id=libfile_067a34d92b248191ad6e1d154e0a8ddc&account_id=personal",
+  "artifacts": {
+    "resume": {
+      "23": 15073196147,
+      "35": 15072772905,
+      "37": 15073196274
+    },
+    "build35": 15072557509
+  },
+  "baseline_artifacts": [
+    {
+      "id": 15066837664,
+      "path": "rk-acceptance-final/head-coverage-23.zip",
+      "sha256": "2964c7b61e6b5fe05a02b06b86026d4266910d1e3831b52ccce45dadc5c65677"
+    },
+    {
+      "id": 15067555201,
+      "path": "rk-acceptance-final/head-coverage-35.zip",
+      "sha256": "35ddff0b5cb090bd6ee391bafc724e5a568daebe8b9cbe0b1332579f529bca35"
+    },
+    {
+      "id": 15065464883,
+      "path": "rk-acceptance-final/head-coverage-37.zip",
+      "sha256": "2a0440c39a686378c80f27496eb81d347eb9510ea5decc91f06b9cc86828d729"
+    }
+  ]
+}

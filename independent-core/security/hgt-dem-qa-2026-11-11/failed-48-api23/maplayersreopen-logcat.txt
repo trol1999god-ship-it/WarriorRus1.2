@@ -1,0 +1,91 @@
+--------- beginning of main
+11-11 11:29:50.471  6712  6712 D AndroidRuntime: Shutting down VM
+11-11 11:29:50.753  6723  6723 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+11-11 11:29:50.754  6723  6723 D AndroidRuntime: CheckJNI is OFF
+11-11 11:29:50.760  6723  6723 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+11-11 11:29:50.768  6723  6723 E memtrack: Couldn't load memtrack module (No such file or directory)
+11-11 11:29:50.768  6723  6723 E android.os.Debug: failed to load memtrack module: -2
+11-11 11:29:50.769  6723  6723 I Radio-JNI: register_android_hardware_Radio DONE
+11-11 11:29:50.772  6723  6723 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+--------- beginning of system
+11-11 11:29:50.775  1558  1569 I ActivityManager: Force stopping org.rabochaya.karta appid=10055 user=0: start instr
+11-11 11:29:50.777  6732  6732 I art     : Late-enabling -Xcheck:jni
+11-11 11:29:50.785  1558  1569 I ActivityManager: Start proc 6732:org.rabochaya.karta/u0a55 for added application org.rabochaya.karta
+11-11 11:29:50.788  6732  6732 W System  : ClassLoader referenced unknown path: /data/app/org.rabochaya.maptests-1/lib/x86
+11-11 11:29:50.788  6732  6732 W System  : ClassLoader referenced unknown path: /data/app/org.rabochaya.karta-1/lib/x86
+11-11 11:29:50.828  1558  1569 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} from uid 10055 on display 0
+11-11 11:29:50.845  1227  2541 E SurfaceFlinger: ro.sf.lcd_density must be defined as a build property
+11-11 11:29:50.846  6732  6749 D OpenGLRenderer: Use EGL_SWAP_BEHAVIOR_PRESERVED: true
+11-11 11:29:50.853  6732  6732 D         : HostConnection::get() New Host Connection established 0xab242640, tid 6732
+11-11 11:29:50.853  1227  2541 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-11 11:29:50.869  2434  2503 D EGL_emulation: eglMakeCurrent: 0xad996a00: ver 3 0 (tinfo 0xab2adc40)
+11-11 11:29:50.871  2434  2503 E Surface : getSlotFromBufferLocked: unknown buffer: 0xb407d3e0
+11-11 11:29:50.872  6732  6749 D         : HostConnection::get() New Host Connection established 0xab242b80, tid 6749
+11-11 11:29:50.873  6732  6749 I OpenGLRenderer: Initialized EGL, version 1.4
+11-11 11:29:50.874  6732  6749 D EGL_emulation: eglCreateContext: 0xaec14cc0: maj 3 min 0 rcv 3
+11-11 11:29:50.874  6732  6749 D EGL_emulation: eglMakeCurrent: 0xaec14cc0: ver 3 0 (tinfo 0xaec12fd0)
+11-11 11:29:50.875  6732  6749 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008cdf
+11-11 11:29:50.875  6732  6749 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008824
+11-11 11:29:50.877  6732  6749 D EGL_emulation: eglMakeCurrent: 0xaec14cc0: ver 3 0 (tinfo 0xaec12fd0)
+11-11 11:29:51.404  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity: +573ms
+11-11 11:29:53.255  1227  1261 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-11 11:29:53.257  6723  6730 D         : HostConnection::get() New Host Connection established 0xb40bf100, tid 6730
+11-11 11:29:53.309  6732  6749 D EGL_emulation: eglMakeCurrent: 0xaec14cc0: ver 3 0 (tinfo 0xaec12fd0)
+11-11 11:29:53.883  6732  6749 D EGL_emulation: eglMakeCurrent: 0xaec14cc0: ver 3 0 (tinfo 0xaec12fd0)
+11-11 11:29:53.884  6732  6749 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab2ca540
+11-11 11:29:53.885  1558  4260 I ActivityManager: START u0 {cmp=org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity (has extras)} from uid 10055 on display 0
+11-11 11:29:53.927  6732  6749 D EGL_emulation: eglMakeCurrent: 0xaec14cc0: ver 3 0 (tinfo 0xaec12fd0)
+11-11 11:29:53.943  1271  1622 D AudioFlinger: mixer(0xb43c0000) throttle end: throttle time(2)
+11-11 11:29:54.194  6732  6749 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab2c9aa0
+11-11 11:29:54.210  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity: +322ms
+11-11 11:29:55.990  1227  1702 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-11 11:29:55.992  6723  6757 D         : HostConnection::get() New Host Connection established 0xb40bf380, tid 6757
+11-11 11:29:56.028  6732  6749 D EGL_emulation: eglMakeCurrent: 0xaec14cc0: ver 3 0 (tinfo 0xaec12fd0)
+11-11 11:29:56.067  6732  6749 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab2caa40
+11-11 11:29:56.075  1558  4254 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity (has extras)} from uid 10055 on display 0
+11-11 11:29:56.110  6732  6749 D EGL_emulation: eglMakeCurrent: 0xaec14cc0: ver 3 0 (tinfo 0xaec12fd0)
+11-11 11:29:56.144  1558  1577 I ActivityManager: Displayed org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity: +67ms
+11-11 11:29:56.147  1978  1978 I LatinIME: Starting input. Cursor position = 0,0
+11-11 11:29:56.159  6732  6749 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab2c9460
+11-11 11:29:56.199  1978  3236 D EGL_emulation: eglMakeCurrent: 0xad995500: ver 3 0 (tinfo 0xa31888f0)
+11-11 11:29:59.690  6764  6764 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+11-11 11:29:59.690  6764  6764 D AndroidRuntime: CheckJNI is OFF
+11-11 11:29:59.697  6764  6764 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+11-11 11:29:59.704  6764  6764 E memtrack: Couldn't load memtrack module (No such file or directory)
+11-11 11:29:59.704  6764  6764 E android.os.Debug: failed to load memtrack module: -2
+11-11 11:29:59.705  6764  6764 I Radio-JNI: register_android_hardware_Radio DONE
+11-11 11:29:59.709  6764  6764 D AndroidRuntime: Calling main entry com.android.commands.settings.SettingsCmd
+11-11 11:29:59.711  6764  6764 D AndroidRuntime: Shutting down VM
+11-11 11:29:59.984  6774  6774 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+11-11 11:29:59.985  6774  6774 D AndroidRuntime: CheckJNI is OFF
+11-11 11:29:59.992  6774  6774 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+11-11 11:30:00.002  6774  6774 E memtrack: Couldn't load memtrack module (No such file or directory)
+11-11 11:30:00.002  6774  6774 E android.os.Debug: failed to load memtrack module: -2
+11-11 11:30:00.003  6774  6774 I Radio-JNI: register_android_hardware_Radio DONE
+11-11 11:30:00.008  6774  6774 D AndroidRuntime: Calling main entry com.android.commands.settings.SettingsCmd
+11-11 11:30:00.009  6774  6774 D AndroidRuntime: Shutting down VM
+11-11 11:30:00.048  1271  1622 W audio_hw_generic: Not supplying enough data to HAL, expected position 73815266 , only wrote 73519064
+11-11 11:30:01.716  1227  1263 D gralloc_ranchu: gralloc_alloc: Creating ashmem region of size 819200
+11-11 11:30:03.021  6783  6783 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+11-11 11:30:03.022  6783  6783 D AndroidRuntime: CheckJNI is OFF
+11-11 11:30:03.029  6783  6783 D ICU     : No timezone override file found: /data/misc/zoneinfo/current/icu/icu_tzdata.dat
+11-11 11:30:03.036  6783  6783 E memtrack: Couldn't load memtrack module (No such file or directory)
+11-11 11:30:03.036  6783  6783 E android.os.Debug: failed to load memtrack module: -2
+11-11 11:30:03.037  6783  6783 I Radio-JNI: register_android_hardware_Radio DONE
+11-11 11:30:03.041  6783  6783 D AndroidRuntime: Calling main entry com.android.commands.settings.SettingsCmd
+11-11 11:30:03.043  6783  6783 D AndroidRuntime: Shutting down VM
+11-11 11:30:03.265  6732  6749 D EGL_emulation: eglMakeCurrent: 0xaec14cc0: ver 3 0 (tinfo 0xaec12fd0)
+11-11 11:30:03.281  1978  3236 D EGL_emulation: eglMakeCurrent: 0xad995500: ver 3 0 (tinfo 0xa31888f0)
+11-11 11:30:03.282  1978  3236 E Surface : getSlotFromBufferLocked: unknown buffer: 0xa18a63a0
+11-11 11:30:03.295  6732  6749 E Surface : getSlotFromBufferLocked: unknown buffer: 0xab2caa40
+11-11 11:30:03.313  1558  1699 I ActivityManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} from uid 10055 on display 0
+11-11 11:30:05.515  1271  1622 W audio_hw_generic: Not supplying enough data to HAL, expected position 73849014 , only wrote 73684975
+11-11 11:31:00.043  1227  1275 D hwcomposer: hw_composer sent 761 syncs in 89s
+11-11 11:32:00.032  1227  1275 D hwcomposer: hw_composer sent 3 syncs in 60s
+11-11 11:33:00.051  1227  1275 D hwcomposer: hw_composer sent 3 syncs in 60s
+11-11 11:34:00.047  1227  1275 D hwcomposer: hw_composer sent 2 syncs in 60s
+11-11 11:35:00.041  1227  1275 D hwcomposer: hw_composer sent 3 syncs in 60s
+11-11 11:36:00.037  1227  1275 D hwcomposer: hw_composer sent 3 syncs in 60s
+11-11 11:36:36.423  1558  1571 I UsageStatsService: User[0] Flushing usage stats to disk
+11-11 11:37:00.040  1227  1275 D hwcomposer: hw_composer sent 3 syncs in 60s
+11-11 11:37:50.704  1558  1749 W WindowManager: Attempted to remove non-existing token: android.os.Binder@3702a22

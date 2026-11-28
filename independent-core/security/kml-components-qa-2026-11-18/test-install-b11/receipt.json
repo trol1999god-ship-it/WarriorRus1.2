@@ -1,0 +1,38 @@
+{
+  "source_sha": "b11f6b635707010dfd5869a058245faf7338ecdb",
+  "run_id": 44296647517,
+  "artifact_id": 14427555390,
+  "artifact_url": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44296647517/artifacts/14427555390",
+  "artifact_sha256": "130a08cccd16b7b957424969cea91741ab764092b1a0d9b0465d98adb82dc13d",
+  "apk_sha256": "63ef99c33641936f50b346927c5fc05e41d9ccbd1c0016f6272ba5367bec6563",
+  "package": "org.rabochaya.karta",
+  "version_code": 27,
+  "version_name": "27-independent-core",
+  "min_sdk": 23,
+  "target_sdk": 33,
+  "variant": "debug-qa",
+  "debuggable": true,
+  "replacement_release": false,
+  "certificate_sha256": "9871e3594870114076205c565781dfe8de30ecba8c37a62ba582267cc3e8af9d",
+  "signing": "Disposable Android QA RSA2048; v1/v2/v3 verified; no private keys in archive",
+  "archive_members": 7,
+  "forbidden_data_or_key_members": [],
+  "accepted": 0,
+  "release_gate_blockers": 25,
+  "official_lint": "NOT PASS: MissingClass/HardcodedDebugMode;114 warnings",
+  "critical_runtime_pass": [
+    "launcher: initial point plus explicit second marker, save and reopen guards",
+    "geometrymap/reopen",
+    "objectmanager/reopen",
+    "maplayers330/reopen77",
+    "offlineformats1361: KML/KMZ/editor/metrics/data",
+    "binary/independence; custom source+DEX privacy; network/data guards"
+  ],
+  "limits": [
+    "Synthetic emulator API23/35 only; not physical-device acceptance",
+    "No 26.1 replacement, upgrade or migration proof",
+    "Do not install over main app; use only synthetic test projects",
+    "Disposable signing identity not stable for future updates",
+    "SVG and full 23-requirement parity remain open"
+  ]
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "name": "map_mvisual-rotation-description-before.png",
+    "sha256": "f007074a2b2c3edc789a737500974b8070d94ce8cabaa0510f1a0505230343ab",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-rotation-description-cancel.png",
+    "sha256": "a22ebb1db6a3fbbbc27003e399e4ca1379e67e35b440aea7fc96d1f063cbce0f",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-rotation-description-rejected.png",
+    "sha256": "7bb7441ce6d2e3c7ebbe737adfc8b5dbf55d235b2b7e71dfe6abd520373d67de",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-rotation-description-return.png",
+    "sha256": "39ece21646cbd671b31c43db06203d883686afb3ca0e87f40cbc788232776bb0",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-rotation-description-save.png",
+    "sha256": "a22ebb1db6a3fbbbc27003e399e4ca1379e67e35b440aea7fc96d1f063cbce0f",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-rotation-description-stale-after.png",
+    "sha256": "a22ebb1db6a3fbbbc27003e399e4ca1379e67e35b440aea7fc96d1f063cbce0f",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-rotation-description-stale-before.png",
+    "sha256": "929ed403884215aefa3cf95eb144c08f06341c865a6c50dd2fd8840e51ea7ba2",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-rotation-name-before.png",
+    "sha256": "903f7cf47447a8dc29adaf9edf98fb05e761441a10445ef224e5dae448b7ae27",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-rotation-name-cancel.png",
+    "sha256": "df06fa699d5b3af9ec726b620a75bfcdc5da192c1766f0ad3c0cef0287a64809",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-rotation-name-rejected.png",
+    "sha256": "b83ba27911188f2f3f68cfe030c4caf0493683317759375e87b143a7a7c371c3",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-rotation-name-return.png",
+    "sha256": "c0f6443fdfde157b7104fd10412dc5fbda37c9c5272c8132232d6d8de2661bcc",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-rotation-name-save.png",
+    "sha256": "a6a1a38fd4e33923c6ff7d9b1d2294904211e36e9801fe5259533b7d1de223dc",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-rotation-name-stale-after.png",
+    "sha256": "bf3c633976739d96e7dd93a870fb7cc495973852959f009d988d6cef71e011c5",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-rotation-name-stale-before.png",
+    "sha256": "6aa1f046ebf80b98967e5ea1a0b49cbe7ad6fd76373520e55cc3d0c77032b076",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-rotation-selection-restored.png",
+    "sha256": "4ba88b77d9a2ccedcf9f1439148134c728dd04f113d0297fb55aa07458e32ee6",
+    "actually_viewed": true
+  },
+  {
+    "name": "map_mvisual-rotation-selection-stale.png",
+    "sha256": "02313a4dafa42e45ce1485887135cfce9af91177f8329b5b72547ea656e6d3b7",
+    "actually_viewed": true
+  }
+]

@@ -1,0 +1,1490 @@
+[
+  {
+    "present": true,
+    "text": "21.25 11.25 99.5",
+    "start": 1,
+    "end": 3,
+    "error": "",
+    "name": "vertex-insert-line-before-before",
+    "orientation": 1,
+    "mainText": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "imeWindows": [
+      "[0,381][320,616]"
+    ],
+    "metrics": {
+      "realWidth": 320,
+      "realHeight": 640,
+      "dialogFrame": "0 24 320 381",
+      "activityFrame": "0 24 320 381",
+      "decorWidth": 320,
+      "decorHeight": 220,
+      "screen": "[0, 92]",
+      "window": "[0, 0]",
+      "wmSize": "Physical size: 320x640"
+    },
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Вставить перед",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[40, 126, 240, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия или исходный ввод изменились. Применение заблокировано; отмените форму и выберите вершину заново.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 155, 0, 0]",
+        "visible": false,
+        "visibleBounds": "[0,0][0,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Широта долгота [высота], разделитель — пробел",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 155, 288, 37]",
+        "visible": true,
+        "visibleBounds": "[16,63][304,100]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "21.25 11.25 99.5",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 192, 288, 48]",
+        "visible": true,
+        "visibleBounds": "[16,100][304,148]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[96, 244, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[96,152][180,200]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Применить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[180, 244, 112, 48]",
+        "visible": true,
+        "visibleBounds": "[180,152][292,200]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": true,
+    "text": "21.25 11.25 99.5",
+    "start": 1,
+    "end": 3,
+    "error": "",
+    "name": "vertex-insert-line-before-land",
+    "orientation": 2,
+    "mainText": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "imeWindows": [
+      "[0,106][640,296]"
+    ],
+    "metrics": {
+      "realWidth": 640,
+      "realHeight": 320,
+      "dialogFrame": "0 24 640 106",
+      "activityFrame": "0 24 640 106",
+      "decorWidth": 640,
+      "decorHeight": 82,
+      "screen": "[0, 24]",
+      "window": "[0, 0]",
+      "wmSize": "Physical size: 320x640"
+    },
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Вставить перед",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 42, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия или исходный ввод изменились. Применение заблокировано; отмените форму и выберите вершину заново.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[0, 23, 0, 0]",
+        "visible": false,
+        "visibleBounds": "[0,0][0,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Широта долгота [высота], разделитель — пробел",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[0, 23, 384, 21]",
+        "visible": true,
+        "visibleBounds": "[0,0][384,20]",
+        "fullyVisible": false
+      },
+      {
+        "class": "EditText",
+        "text": "21.25 11.25 99.5",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[0, 23, 640, 28]",
+        "visible": true,
+        "visibleBounds": "[0,0][640,26]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[432, 54, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[432,30][516,78]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Применить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[516, 54, 112, 48]",
+        "visible": true,
+        "visibleBounds": "[516,30][628,78]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": true,
+    "text": "21.25 11.25 99.5",
+    "start": 1,
+    "end": 3,
+    "error": "",
+    "name": "vertex-insert-line-before-return",
+    "orientation": 1,
+    "mainText": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "imeWindows": [
+      "[0,381][320,616]"
+    ],
+    "metrics": {
+      "realWidth": 320,
+      "realHeight": 640,
+      "dialogFrame": "0 24 320 381",
+      "activityFrame": "0 24 320 381",
+      "decorWidth": 320,
+      "decorHeight": 220,
+      "screen": "[0, 92]",
+      "window": "[0, 0]",
+      "wmSize": "Physical size: 320x640"
+    },
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Вставить перед",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[40, 126, 240, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия или исходный ввод изменились. Применение заблокировано; отмените форму и выберите вершину заново.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 155, 0, 0]",
+        "visible": false,
+        "visibleBounds": "[0,0][0,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Широта долгота [высота], разделитель — пробел",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 155, 288, 37]",
+        "visible": true,
+        "visibleBounds": "[16,63][304,100]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "21.25 11.25 99.5",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 192, 288, 48]",
+        "visible": true,
+        "visibleBounds": "[16,100][304,148]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[96, 244, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[96,152][180,200]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Применить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[180, 244, 112, 48]",
+        "visible": true,
+        "visibleBounds": "[180,152][292,200]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": false,
+    "text": "",
+    "start": -1,
+    "end": -1,
+    "error": "",
+    "name": "vertex-insert-line-before-cancelled",
+    "orientation": 1,
+    "mainText": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "imeWindows": [],
+    "metrics": {
+      "realWidth": 320,
+      "realHeight": 640,
+      "dialogFrame": "0 24 320 616",
+      "activityFrame": "0 24 320 616",
+      "decorWidth": 320,
+      "decorHeight": 640,
+      "screen": "[0, 0]",
+      "window": "[0, 0]",
+      "wmSize": "Physical size: 320x640"
+    },
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Координаты и контуры",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 36, 296, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][308,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия 0.1 · LineString",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 67, 248, 24]",
+        "visible": true,
+        "visibleBounds": "[12,67][260,91]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "WGS 84: широта долгота [высота], одна вершина в строке",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 91, 296, 32]",
+        "visible": true,
+        "visibleBounds": "[12,91][308,123]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Редактировать на карте",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 123, 296, 48]",
+        "visible": true,
+        "visibleBounds": "[12,123][308,171]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+        "foreground": "#ff202020",
+        "arimo": true,
+        "bounds": "[12, 171, 296, 361]",
+        "visible": true,
+        "visibleBounds": "[12,171][308,532]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Восстановлен локальный черновик",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 532, 296, 18]",
+        "visible": true,
+        "visibleBounds": "[12,532][308,550]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 550, 98, 54]",
+        "visible": true,
+        "visibleBounds": "[12,550][110,604]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[110, 550, 99, 54]",
+        "visible": true,
+        "visibleBounds": "[110,550][209,604]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[209, 550, 99, 54]",
+        "visible": true,
+        "visibleBounds": "[209,550][308,604]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": true,
+    "text": "21.25 11.25 99.5",
+    "start": 1,
+    "end": 3,
+    "error": "",
+    "name": "vertex-insert-line-after-before",
+    "orientation": 1,
+    "mainText": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "imeWindows": [
+      "[0,381][320,616]"
+    ],
+    "metrics": {
+      "realWidth": 320,
+      "realHeight": 640,
+      "dialogFrame": "0 24 320 616",
+      "activityFrame": "0 24 320 381",
+      "decorWidth": 320,
+      "decorHeight": 220,
+      "screen": "[0, 92]",
+      "window": "[0, 0]",
+      "wmSize": "Physical size: 320x640"
+    },
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Вставить после",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[40, 126, 240, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия или исходный ввод изменились. Применение заблокировано; отмените форму и выберите вершину заново.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 155, 0, 0]",
+        "visible": false,
+        "visibleBounds": "[0,0][0,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Широта долгота [высота], разделитель — пробел",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 155, 288, 37]",
+        "visible": true,
+        "visibleBounds": "[16,63][304,100]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "21.25 11.25 99.5",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 192, 288, 48]",
+        "visible": true,
+        "visibleBounds": "[16,100][304,148]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[96, 244, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[96,152][180,200]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Применить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[180, 244, 112, 48]",
+        "visible": true,
+        "visibleBounds": "[180,152][292,200]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": true,
+    "text": "21.25 11.25 99.5",
+    "start": 1,
+    "end": 3,
+    "error": "",
+    "name": "vertex-insert-line-after-land",
+    "orientation": 2,
+    "mainText": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "imeWindows": [
+      "[0,106][640,296]"
+    ],
+    "metrics": {
+      "realWidth": 640,
+      "realHeight": 320,
+      "dialogFrame": "0 24 640 106",
+      "activityFrame": "0 24 640 106",
+      "decorWidth": 640,
+      "decorHeight": 82,
+      "screen": "[0, 24]",
+      "window": "[0, 0]",
+      "wmSize": "Physical size: 320x640"
+    },
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Вставить после",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 42, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия или исходный ввод изменились. Применение заблокировано; отмените форму и выберите вершину заново.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[0, 23, 0, 0]",
+        "visible": false,
+        "visibleBounds": "[0,0][0,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Широта долгота [высота], разделитель — пробел",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[0, 23, 384, 21]",
+        "visible": true,
+        "visibleBounds": "[0,0][384,20]",
+        "fullyVisible": false
+      },
+      {
+        "class": "EditText",
+        "text": "21.25 11.25 99.5",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[0, 23, 640, 28]",
+        "visible": true,
+        "visibleBounds": "[0,0][640,26]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[432, 54, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[432,30][516,78]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Применить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[516, 54, 112, 48]",
+        "visible": true,
+        "visibleBounds": "[516,30][628,78]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": true,
+    "text": "21.25 11.25 99.5",
+    "start": 1,
+    "end": 3,
+    "error": "",
+    "name": "vertex-insert-line-after-return",
+    "orientation": 1,
+    "mainText": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "imeWindows": [
+      "[0,381][320,616]"
+    ],
+    "metrics": {
+      "realWidth": 320,
+      "realHeight": 640,
+      "dialogFrame": "0 24 320 381",
+      "activityFrame": "0 24 320 381",
+      "decorWidth": 320,
+      "decorHeight": 220,
+      "screen": "[0, 92]",
+      "window": "[0, 0]",
+      "wmSize": "Physical size: 320x640"
+    },
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Вставить после",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[40, 126, 240, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия или исходный ввод изменились. Применение заблокировано; отмените форму и выберите вершину заново.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 155, 0, 0]",
+        "visible": false,
+        "visibleBounds": "[0,0][0,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Широта долгота [высота], разделитель — пробел",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 155, 288, 37]",
+        "visible": true,
+        "visibleBounds": "[16,63][304,100]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "21.25 11.25 99.5",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 192, 288, 48]",
+        "visible": true,
+        "visibleBounds": "[16,100][304,148]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[96, 244, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[96,152][180,200]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Применить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[180, 244, 112, 48]",
+        "visible": true,
+        "visibleBounds": "[180,152][292,200]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": false,
+    "text": "",
+    "start": -1,
+    "end": -1,
+    "error": "",
+    "name": "vertex-insert-line-after-applied",
+    "orientation": 1,
+    "mainText": "20.5 10.5 30.5\n21.5 11.5 31.5\n21.25 11.25 99.5\n22.5 12.5 32.5",
+    "imeWindows": [],
+    "metrics": {
+      "realWidth": 320,
+      "realHeight": 640,
+      "dialogFrame": "0 24 320 616",
+      "activityFrame": "0 24 320 616",
+      "decorWidth": 320,
+      "decorHeight": 640,
+      "screen": "[0, 0]",
+      "window": "[0, 0]",
+      "wmSize": "Physical size: 320x640"
+    },
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Координаты и контуры",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 36, 296, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][308,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия 0.1 · LineString",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 67, 248, 24]",
+        "visible": true,
+        "visibleBounds": "[12,67][260,91]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "WGS 84: широта долгота [высота], одна вершина в строке",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 91, 296, 32]",
+        "visible": true,
+        "visibleBounds": "[12,91][308,123]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Редактировать на карте",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 123, 296, 48]",
+        "visible": true,
+        "visibleBounds": "[12,123][308,171]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "20.5 10.5 30.5\n21.5 11.5 31.5\n21.25 11.25 99.5\n22.5 12.5 32.5",
+        "foreground": "#ff202020",
+        "arimo": true,
+        "bounds": "[12, 171, 296, 347]",
+        "visible": true,
+        "visibleBounds": "[12,171][308,518]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Вершины изменены во вводе. Для записи объекта нажмите «Сохранить»",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 518, 296, 32]",
+        "visible": true,
+        "visibleBounds": "[12,518][308,550]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 550, 98, 54]",
+        "visible": true,
+        "visibleBounds": "[12,550][110,604]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[110, 550, 99, 54]",
+        "visible": true,
+        "visibleBounds": "[110,550][209,604]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[209, 550, 99, 54]",
+        "visible": true,
+        "visibleBounds": "[209,550][308,604]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": true,
+    "text": "1.25 3.5 99.5",
+    "start": 1,
+    "end": 3,
+    "error": "",
+    "name": "vertex-insert-hole-before-before",
+    "orientation": 1,
+    "mainText": "1 3 21.5\n1 4 22.5\n2 4 23.5\n1 3 21.5",
+    "imeWindows": [
+      "[0,381][320,616]"
+    ],
+    "metrics": {
+      "realWidth": 320,
+      "realHeight": 640,
+      "dialogFrame": "0 24 320 616",
+      "activityFrame": "0 24 320 381",
+      "decorWidth": 320,
+      "decorHeight": 220,
+      "screen": "[0, 92]",
+      "window": "[0, 0]",
+      "wmSize": "Physical size: 320x640"
+    },
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Вставить перед",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[40, 126, 240, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия или исходный ввод изменились. Применение заблокировано; отмените форму и выберите вершину заново.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 155, 0, 0]",
+        "visible": false,
+        "visibleBounds": "[0,0][0,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Широта долгота [высота], разделитель — пробел",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 155, 288, 37]",
+        "visible": true,
+        "visibleBounds": "[16,63][304,100]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "1.25 3.5 99.5",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 192, 288, 48]",
+        "visible": true,
+        "visibleBounds": "[16,100][304,148]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[96, 244, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[96,152][180,200]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Применить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[180, 244, 112, 48]",
+        "visible": true,
+        "visibleBounds": "[180,152][292,200]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": true,
+    "text": "1.25 3.5 99.5",
+    "start": 1,
+    "end": 3,
+    "error": "",
+    "name": "vertex-insert-hole-before-land",
+    "orientation": 2,
+    "mainText": "1 3 21.5\n1 4 22.5\n2 4 23.5\n1 3 21.5",
+    "imeWindows": [
+      "[0,106][640,296]"
+    ],
+    "metrics": {
+      "realWidth": 640,
+      "realHeight": 320,
+      "dialogFrame": "0 24 640 106",
+      "activityFrame": "0 24 640 106",
+      "decorWidth": 640,
+      "decorHeight": 82,
+      "screen": "[0, 24]",
+      "window": "[0, 0]",
+      "wmSize": "Physical size: 320x640"
+    },
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Вставить перед",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 42, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия или исходный ввод изменились. Применение заблокировано; отмените форму и выберите вершину заново.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[0, 23, 0, 0]",
+        "visible": false,
+        "visibleBounds": "[0,0][0,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Широта долгота [высота], разделитель — пробел",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[0, 23, 384, 21]",
+        "visible": true,
+        "visibleBounds": "[0,0][384,20]",
+        "fullyVisible": false
+      },
+      {
+        "class": "EditText",
+        "text": "1.25 3.5 99.5",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[0, 23, 640, 28]",
+        "visible": true,
+        "visibleBounds": "[0,0][640,26]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[432, 54, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[432,30][516,78]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Применить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[516, 54, 112, 48]",
+        "visible": true,
+        "visibleBounds": "[516,30][628,78]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": true,
+    "text": "1.25 3.5 99.5",
+    "start": 1,
+    "end": 3,
+    "error": "",
+    "name": "vertex-insert-hole-before-return",
+    "orientation": 1,
+    "mainText": "1 3 21.5\n1 4 22.5\n2 4 23.5\n1 3 21.5",
+    "imeWindows": [
+      "[0,381][320,616]"
+    ],
+    "metrics": {
+      "realWidth": 320,
+      "realHeight": 640,
+      "dialogFrame": "0 24 320 616",
+      "activityFrame": "0 24 320 381",
+      "decorWidth": 320,
+      "decorHeight": 220,
+      "screen": "[0, 92]",
+      "window": "[0, 0]",
+      "wmSize": "Physical size: 320x640"
+    },
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Вставить перед",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[40, 126, 240, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия или исходный ввод изменились. Применение заблокировано; отмените форму и выберите вершину заново.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 155, 0, 0]",
+        "visible": false,
+        "visibleBounds": "[0,0][0,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Широта долгота [высота], разделитель — пробел",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 155, 288, 37]",
+        "visible": true,
+        "visibleBounds": "[16,63][304,100]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "1.25 3.5 99.5",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 192, 288, 48]",
+        "visible": true,
+        "visibleBounds": "[16,100][304,148]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[96, 244, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[96,152][180,200]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Применить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[180, 244, 112, 48]",
+        "visible": true,
+        "visibleBounds": "[180,152][292,200]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": false,
+    "text": "",
+    "start": -1,
+    "end": -1,
+    "error": "",
+    "name": "vertex-insert-hole-before-applied",
+    "orientation": 1,
+    "mainText": "1.0 3.0 21.5\n1.25 3.5 99.5\n1.0 4.0 22.5\n2.0 4.0 23.5",
+    "imeWindows": [],
+    "metrics": {
+      "realWidth": 320,
+      "realHeight": 640,
+      "dialogFrame": "0 24 320 616",
+      "activityFrame": "0 24 320 616",
+      "decorWidth": 320,
+      "decorHeight": 640,
+      "screen": "[0, 0]",
+      "window": "[0, 0]",
+      "wmSize": "Physical size: 320x640"
+    },
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Координаты и контуры",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 36, 296, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][308,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия 0.1 · внутренний контур 2",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 67, 248, 24]",
+        "visible": true,
+        "visibleBounds": "[12,67][260,91]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "WGS 84: широта долгота [высота], одна вершина в строке",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 91, 296, 32]",
+        "visible": true,
+        "visibleBounds": "[12,91][308,123]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Редактировать на карте",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 123, 296, 48]",
+        "visible": true,
+        "visibleBounds": "[12,123][308,171]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "1.0 3.0 21.5\n1.25 3.5 99.5\n1.0 4.0 22.5\n2.0 4.0 23.5",
+        "foreground": "#ff202020",
+        "arimo": true,
+        "bounds": "[12, 171, 296, 347]",
+        "visible": true,
+        "visibleBounds": "[12,171][308,518]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Вершины изменены во вводе. Для записи объекта нажмите «Сохранить»",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 518, 296, 32]",
+        "visible": true,
+        "visibleBounds": "[12,518][308,550]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 550, 98, 54]",
+        "visible": true,
+        "visibleBounds": "[12,550][110,604]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[110, 550, 99, 54]",
+        "visible": true,
+        "visibleBounds": "[110,550][209,604]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[209, 550, 99, 54]",
+        "visible": true,
+        "visibleBounds": "[209,550][308,604]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": true,
+    "text": "1.25 3.5 99.5",
+    "start": 1,
+    "end": 3,
+    "error": "",
+    "name": "vertex-insert-hole-after-before",
+    "orientation": 1,
+    "mainText": "1 3 21.5\n1 4 22.5\n2 4 23.5\n1 3 21.5",
+    "imeWindows": [
+      "[0,381][320,616]"
+    ],
+    "metrics": {
+      "realWidth": 320,
+      "realHeight": 640,
+      "dialogFrame": "0 24 320 616",
+      "activityFrame": "0 24 320 381",
+      "decorWidth": 320,
+      "decorHeight": 220,
+      "screen": "[0, 92]",
+      "window": "[0, 0]",
+      "wmSize": "Physical size: 320x640"
+    },
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Вставить после",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[40, 126, 240, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия или исходный ввод изменились. Применение заблокировано; отмените форму и выберите вершину заново.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 155, 0, 0]",
+        "visible": false,
+        "visibleBounds": "[0,0][0,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Широта долгота [высота], разделитель — пробел",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 155, 288, 37]",
+        "visible": true,
+        "visibleBounds": "[16,63][304,100]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "1.25 3.5 99.5",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 192, 288, 48]",
+        "visible": true,
+        "visibleBounds": "[16,100][304,148]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[96, 244, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[96,152][180,200]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Применить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[180, 244, 112, 48]",
+        "visible": true,
+        "visibleBounds": "[180,152][292,200]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": true,
+    "text": "1.25 3.5 99.5",
+    "start": 1,
+    "end": 3,
+    "error": "",
+    "name": "vertex-insert-hole-after-land",
+    "orientation": 2,
+    "mainText": "1 3 21.5\n1 4 22.5\n2 4 23.5\n1 3 21.5",
+    "imeWindows": [
+      "[0,106][640,296]"
+    ],
+    "metrics": {
+      "realWidth": 640,
+      "realHeight": 320,
+      "dialogFrame": "0 24 640 106",
+      "activityFrame": "0 24 640 106",
+      "decorWidth": 640,
+      "decorHeight": 82,
+      "screen": "[0, 24]",
+      "window": "[0, 0]",
+      "wmSize": "Physical size: 320x640"
+    },
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Вставить после",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[24, 42, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[24,18][360,47]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия или исходный ввод изменились. Применение заблокировано; отмените форму и выберите вершину заново.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[0, 23, 0, 0]",
+        "visible": false,
+        "visibleBounds": "[0,0][0,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Широта долгота [высота], разделитель — пробел",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[0, 23, 384, 21]",
+        "visible": true,
+        "visibleBounds": "[0,0][384,20]",
+        "fullyVisible": false
+      },
+      {
+        "class": "EditText",
+        "text": "1.25 3.5 99.5",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[0, 23, 640, 28]",
+        "visible": true,
+        "visibleBounds": "[0,0][640,26]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[432, 54, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[432,30][516,78]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Применить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[516, 54, 112, 48]",
+        "visible": true,
+        "visibleBounds": "[516,30][628,78]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": true,
+    "text": "1.25 3.5 99.5",
+    "start": 1,
+    "end": 3,
+    "error": "",
+    "name": "vertex-insert-hole-after-return",
+    "orientation": 1,
+    "mainText": "1 3 21.5\n1 4 22.5\n2 4 23.5\n1 3 21.5",
+    "imeWindows": [
+      "[0,381][320,616]"
+    ],
+    "metrics": {
+      "realWidth": 320,
+      "realHeight": 640,
+      "dialogFrame": "0 24 320 616",
+      "activityFrame": "0 24 320 381",
+      "decorWidth": 320,
+      "decorHeight": 220,
+      "screen": "[0, 92]",
+      "window": "[0, 0]",
+      "wmSize": "Physical size: 320x640"
+    },
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Вставить после",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[40, 126, 240, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия или исходный ввод изменились. Применение заблокировано; отмените форму и выберите вершину заново.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 155, 0, 0]",
+        "visible": false,
+        "visibleBounds": "[0,0][0,0]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Широта долгота [высота], разделитель — пробел",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 155, 288, 37]",
+        "visible": true,
+        "visibleBounds": "[16,63][304,100]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "1.25 3.5 99.5",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 192, 288, 48]",
+        "visible": true,
+        "visibleBounds": "[16,100][304,148]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[96, 244, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[96,152][180,200]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Применить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[180, 244, 112, 48]",
+        "visible": true,
+        "visibleBounds": "[180,152][292,200]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "present": false,
+    "text": "",
+    "start": -1,
+    "end": -1,
+    "error": "",
+    "name": "vertex-insert-hole-after-cancelled",
+    "orientation": 1,
+    "mainText": "1 3 21.5\n1 4 22.5\n2 4 23.5\n1 3 21.5",
+    "imeWindows": [],
+    "metrics": {
+      "realWidth": 320,
+      "realHeight": 640,
+      "dialogFrame": "0 24 320 616",
+      "activityFrame": "0 24 320 616",
+      "decorWidth": 320,
+      "decorHeight": 640,
+      "screen": "[0, 0]",
+      "window": "[0, 0]",
+      "wmSize": "Physical size: 320x640"
+    },
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Координаты и контуры",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 36, 296, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][308,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия 0.1 · внутренний контур 2",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 67, 248, 24]",
+        "visible": true,
+        "visibleBounds": "[12,67][260,91]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "WGS 84: широта долгота [высота], одна вершина в строке",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 91, 296, 32]",
+        "visible": true,
+        "visibleBounds": "[12,91][308,123]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Редактировать на карте",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 123, 296, 48]",
+        "visible": true,
+        "visibleBounds": "[12,123][308,171]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "1 3 21.5\n1 4 22.5\n2 4 23.5\n1 3 21.5",
+        "foreground": "#ff202020",
+        "arimo": true,
+        "bounds": "[12, 171, 296, 361]",
+        "visible": true,
+        "visibleBounds": "[12,171][308,532]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Восстановлен локальный черновик",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 532, 296, 18]",
+        "visible": true,
+        "visibleBounds": "[12,532][308,550]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 550, 98, 54]",
+        "visible": true,
+        "visibleBounds": "[12,550][110,604]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[110, 550, 99, 54]",
+        "visible": true,
+        "visibleBounds": "[110,550][209,604]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[209, 550, 99, 54]",
+        "visible": true,
+        "visibleBounds": "[209,550][308,604]",
+        "fullyVisible": true
+      }
+    ]
+  }
+]

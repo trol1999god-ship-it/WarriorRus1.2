@@ -1,0 +1,84 @@
+{
+  "emulator": {
+    "api": 23,
+    "resolution_px": [
+      480,
+      800
+    ],
+    "density_dpi": 160,
+    "source_sha": "346ffd818390ebd34ed3b72794c85be631e4c688",
+    "scenario_scope": "start through menu screenshots retained"
+  },
+  "qa_accessibility_bounds": {
+    "Меню": [
+      4,
+      702,
+      52,
+      750
+    ],
+    "Карты": [
+      52,
+      702,
+      100,
+      750
+    ],
+    "Метки": [
+      100,
+      702,
+      148,
+      750
+    ],
+    "Файловый менеджер": [
+      148,
+      702,
+      196,
+      750
+    ],
+    "Ориентирование": [
+      196,
+      702,
+      244,
+      750
+    ],
+    "Настройки координат центра": [
+      4,
+      28,
+      204,
+      68
+    ],
+    "+": [
+      428,
+      654,
+      476,
+      702
+    ],
+    "−": [
+      428,
+      702,
+      476,
+      750
+    ]
+  },
+  "reference_saved_frame": {
+    "resolution_px": [
+      480,
+      800
+    ],
+    "approximate_five_tool_visual_bounds": [
+      3,
+      694,
+      247,
+      752
+    ],
+    "approximate_zoom_centers_px": [
+      [
+        451,
+        665
+      ],
+      [
+        451,
+        723
+      ]
+    ]
+  }
+}

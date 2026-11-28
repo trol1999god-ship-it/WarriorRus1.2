@@ -1,0 +1,37 @@
+2026-11-11T14:07:43.5694944Z INSTRUMENTATION_RESULT: stream=PASS offlineformats: 68 assertions
+2026-11-11T14:07:55.5941651Z INSTRUMENTATION_RESULT: stream=PASS cacheexport: 69 assertions
+2026-11-11T14:16:00.4040148Z INSTRUMENTATION_RESULT: stream=PASS managervisual: 242 assertions
+2026-11-11T14:17:23.6271745Z INSTRUMENTATION_RESULT: stream=PASS managerrotation: 350 assertions
+2026-11-11T14:19:03.3288753Z INSTRUMENTATION_RESULT: stream=PASS managerforms: 482 assertions
+2026-11-11T14:20:00.1307084Z INSTRUMENTATION_RESULT: stream=PASS managermove: 243 assertions
+2026-11-11T14:22:12.4910383Z INSTRUMENTATION_RESULT: stream=PASS managerconfirm: 709 assertions
+2026-11-11T14:24:44.0080976Z INSTRUMENTATION_RESULT: stream=PASS managerpasteconfirm: 910 assertions
+2026-11-11T14:26:11.1730163Z INSTRUMENTATION_RESULT: stream=PASS managerchooser: 405 assertions
+2026-11-11T14:27:35.6063578Z INSTRUMENTATION_RESULT: stream=PASS vertexrotation: 369 assertions
+2026-11-11T14:28:06.8016225Z INSTRUMENTATION_RESULT: stream=PASS vertexscroll: 167 assertions
+2026-11-11T14:29:06.7323039Z INSTRUMENTATION_RESULT: stream=PASS geometryvertexconfirm: 367 assertions
+2026-11-11T14:30:28.7566064Z INSTRUMENTATION_RESULT: stream=PASS geometryholeconfirm: 515 assertions
+2026-11-11T14:31:42.0946936Z INSTRUMENTATION_RESULT: stream=PASS vertexinsertion: 357 assertions
+2026-11-11T14:32:37.8429082Z INSTRUMENTATION_RESULT: stream=PASS geometrynewhole: 275 assertions
+2026-11-11T14:34:01.9340243Z INSTRUMENTATION_RESULT: stream=PASS geometrynewholeguards: 445 assertions
+2026-11-11T14:35:09.2101369Z INSTRUMENTATION_RESULT: stream=PASS mapvertexconfirm: 444 assertions
+2026-11-11T14:36:01.4597973Z INSTRUMENTATION_RESULT: stream=PASS mapholeconfirm: 325 assertions
+2026-11-11T14:37:07.6676361Z INSTRUMENTATION_RESULT: stream=PASS mapundorotation: 363 assertions
+2026-11-11T14:38:48.7347551Z INSTRUMENTATION_RESULT: stream=PASS mappartconfirm: 669 assertions
+2026-11-11T14:40:17.5176427Z INSTRUMENTATION_RESULT: stream=PASS geometrycloseconfirm: 563 assertions
+2026-11-11T14:41:17.9365945Z INSTRUMENTATION_RESULT: stream=PASS maplayers: 191 assertions
+2026-11-11T14:41:36.5823105Z INSTRUMENTATION_STATUS: stream=DEM_PHASE reopen-enter
+2026-11-11T14:41:36.5825208Z INSTRUMENTATION_STATUS: stream=DEM_PHASE reopen-owned-and-source-hashes-exact
+2026-11-11T14:41:36.5827148Z INSTRUMENTATION_STATUS: stream=DEM_PHASE before-fresh-main-launch owner=4
+2026-11-11T14:41:36.5829295Z INSTRUMENTATION_STATUS: stream=DEM_PHASE fresh-main-created owner=4 task=206
+2026-11-11T14:41:36.5831568Z INSTRUMENTATION_STATUS: stream=DEM_PHASE manual-centre-height-zero
+2026-11-11T14:41:36.5834190Z INSTRUMENTATION_STATUS: stream=DEM_PHASE reopen-height-png-saved
+2026-11-11T14:41:36.5837036Z INSTRUMENTATION_STATUS: stream=DEM_PHASE before-owned-remove-screen
+2026-11-11T14:41:36.5838534Z INSTRUMENTATION_STATUS: stream=DEM_PHASE owned-remove-complete
+2026-11-11T14:41:36.5839975Z INSTRUMENTATION_RESULT: stream=PASS maplayersreopen: 66 assertions
+2026-11-11T14:41:38.8960380Z SHA256 digest of uploaded artifact zip is 4f886a1084dc512c7ff3f5e077c83d64b19cacd9f6ead53b9e6c9fab3b0b4a4c
+2026-11-11T14:41:39.2669786Z Artifact independent-qa-api-23.zip successfully finalized. Artifact ID 13863879593
+2026-11-11T14:41:39.2672157Z Artifact independent-qa-api-23 has been successfully uploaded! Final size is 14109924 bytes. Artifact ID is 13863879593
+2026-11-11T14:41:40.0077981Z SHA256 digest of uploaded artifact zip is 56b4eb61ad7958811b7f76f60e9e5625178158a1c39bf141aa2fad449981082d
+2026-11-11T14:41:40.3888279Z Artifact independent-build-api-23.zip successfully finalized. Artifact ID 13863884976
+2026-11-11T14:41:40.3889994Z Artifact independent-build-api-23 has been successfully uploaded! Final size is 2446104 bytes. Artifact ID is 13863884976

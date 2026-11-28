@@ -1,0 +1,2 @@
+FAIL icon_amen_wastebin.svg java.lang.IllegalArgumentException: SVG: неподдержанная функция или некорректные данные
+reference resources parse PASS=260 FAIL=1; not runtime/pixel or26.1 acceptance

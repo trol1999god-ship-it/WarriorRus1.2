@@ -1,0 +1,1687 @@
+{
+  "baseline_commit": "d13dbbd2fe9038a422af317a45fda760ed35724c",
+  "code_commit": "e940ae0f943ba66086dd1a87a742b6dd1b42a1b1",
+  "reference": {
+    "file_name": "Rabochaya-karta-v26.1-main-update.apk",
+    "library_file_id": "libfile_c00a22eeb3b4819189b3936a3e78464a",
+    "sha256": "5ac3c7091cecae66942cdffee7c91ca0eb96be5eae902e85b0d6d9920643c142",
+    "sha256_status": "VERIFIED"
+  },
+  "evidence": {
+    "baseline_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44913000694",
+    "fold5_owner_capture": "https://chatgpt.com/library?file_id=libfile_5d56799011288191b2165449d7745a51&account_id=personal",
+    "current_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44915066071",
+    "qa_apk": "https://chatgpt.com/library?file_id=libfile_dc906987a2e08191a68677a78003b8b3&account_id=personal",
+    "qa_apk_sha256": "a16062835326f3cd886ca10416816ef1449bc1e75e91704ac5ddbb09d38bb300",
+    "evidence_archive": "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal",
+    "api35": "Целевой GitHub Actions 44913000694 прошёл JVM, launcher и coordinates на API 23 и API 35. На API 35 — 177 и 51 проверка.",
+    "main_screen_measurement": "480×800, 160 dpi, portrait",
+    "android_ci": [
+      {
+        "api": 23,
+        "assertions": {
+          "launcher": 183,
+          "coordinates": 51,
+          "maplayers": 342,
+          "maplayersreopen": 78
+        },
+        "ui_captures": {
+          "launcher": 18,
+          "coordinates": 0,
+          "maplayers": 9,
+          "maplayersreopen": 1
+        },
+        "verified_files": 134,
+        "artifact": 14712045408
+      },
+      {
+        "api": 35,
+        "assertions": {
+          "launcher": 183,
+          "coordinates": 51,
+          "maplayers": 343,
+          "maplayersreopen": 78
+        },
+        "ui_captures": {
+          "launcher": 18,
+          "coordinates": 0,
+          "maplayers": 9,
+          "maplayersreopen": 1
+        },
+        "verified_files": 134,
+        "artifact": 14711267596
+      }
+    ],
+    "object_workflows": {
+      "source_sha": "9f19942751e8ae50a37e7384ff772122a9c3d543",
+      "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738",
+      "qa_apk": "https://chatgpt.com/library?file_id=libfile_57c0c520868c8191804a9e96880151d0&account_id=personal",
+      "qa_apk_sha256": "df44ceacbbd0bae965218aa0a3851801412004a890a3c43da69d8709dbde413a",
+      "archive": "https://chatgpt.com/library?file_id=libfile_d4773435948c81918383d89b5103fcbb&account_id=personal",
+      "archive_sha256": "27ca18e899e1c812c1286b52432fabe5ae4e7f729ba69db403e89a786641e763",
+      "android_ci": [
+        {
+          "api": 23,
+          "assertions": {
+            "markerlifecycle": 50,
+            "markerlifecyclereopen": 49,
+            "objectmanager": 83,
+            "objectmanagerreopen": 10,
+            "managerfilters": 98,
+            "managerfiltersreopen": 15,
+            "clipboard": 144,
+            "clipboardreopen": 35
+          },
+          "verified_files": 163,
+          "artifact": 14712716030
+        },
+        {
+          "api": 35,
+          "assertions": {
+            "markerlifecycle": 50,
+            "markerlifecyclereopen": 49,
+            "objectmanager": 83,
+            "objectmanagerreopen": 10,
+            "managerfilters": 98,
+            "managerfiltersreopen": 15,
+            "clipboard": 144,
+            "clipboardreopen": 35
+          },
+          "verified_files": 163,
+          "artifact": 14712636349
+        }
+      ]
+    },
+    "map_resize": {
+      "sha": "528b7933d72e1be566885d9522d606f002a00744",
+      "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44952501428",
+      "apk_url": "https://chatgpt.com/library?file_id=libfile_669447ed46608191894badcd540f0e58&account_id=personal",
+      "apk_sha256": "1462a537801223c4eddc7e454ee271ddaf2db20237c9e869984ef35da9812944",
+      "archive_url": "https://chatgpt.com/library?file_id=libfile_2119bbf51ae08191b89b6cad92cef85d&account_id=personal",
+      "archive_sha256": "a687e8c834e7d280d366d1acb06a631b740072ee2e6567d0d5db7d88468284aa",
+      "android_ci": {
+        "23": {
+          "assertions": 196,
+          "verified_files": 49,
+          "artifact": 14725449871
+        },
+        "35": {
+          "assertions": 196,
+          "verified_files": 49,
+          "artifact": 14726805119
+        }
+      },
+      "wide_window_ci": {
+        "source_sha": "5fd4b69fa152a79deb495be42cd3e191b0e6abe4",
+        "run_id": "44952988154",
+        "api": 35,
+        "assertions": 196,
+        "verified_files": 49,
+        "display_px": [
+          720,
+          900
+        ],
+        "density_dpi": 160,
+        "initial_map_canvas_px": [
+          720,
+          844
+        ],
+        "compact_window_dp": 290,
+        "artifact_sha256": "b24ab313a47e69fb1bd27af0ad668b69ae3700df5494a836dba1ebc567b4f74d",
+        "evidence_sha256": "1e2af1f7f900699a2457496e6ad049a72492c7f8d62c4f918237a0febf59b5d6",
+        "artifact": 14726442862,
+        "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44952988154",
+        "evidence_url": "https://chatgpt.com/library?file_id=libfile_e357d775b5748191a3954469110bc63e&account_id=personal"
+      }
+    },
+    "fold_feedback": {
+      "hud_commit": "c01709d05b57d82673b9f51e474efbe82c38b0cd",
+      "esri_commit": "53419cc00ec53bbe12898b56d97cc2bc5174e667",
+      "compact_coordinates_commit": "b235f2d8f61455fdd81e4803d6b4f06cb83d862b",
+      "hud_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955422002",
+      "esri_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955719634",
+      "compact_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955998395",
+      "public_probe": {
+        "sampled": 54,
+        "decoded_rasters": 43,
+        "esri_equal_on_both_hosts": 12,
+        "report": "security/fold-feedback-2026-11-22/catalog-samples.json"
+      },
+      "reference_integrity": "security/fold-feedback-2026-11-22/reference-integrity.json",
+      "physical_fold5_after_fix": "NOT_RUN",
+      "result": {
+        "apk_url": "https://chatgpt.com/library?file_id=libfile_ba11ecbd049481919d6cea2c6fe984ff&account_id=personal",
+        "evidence_url": "https://chatgpt.com/library?file_id=libfile_61cd5f5950a081918b774bdd02f3a935&account_id=personal",
+        "apk_sha256": "750ef357625d89f6c4771222391d6b7b3ef22b7aafe0ebf7d5304cd427206045",
+        "evidence_sha256": "ede33b7cf5a055caefa667d1da95432cafd8fe7e1fde71b7f93a98aa07b49fd8",
+        "apk_commit": "b235f2d8f61455fdd81e4803d6b4f06cb83d862b",
+        "apk_build_artifact": 14727711358,
+        "qa_summary": "На итоговом коммите на API 23 и 35 прошли launcher (197) и coordinates (51). Проверены три строки при 290 dp, поворот, повторное открытие и сохранение состояния. На API 35 проверен переход 720 → 290 → 720 dp. Официальный Android Lint — 0 ошибок и 121 предупреждение. Аудит APK прошёл, разрешение только INTERNET. На коммите ESRI на API 23 и 35 прошли catalogscreen (40) и cachewrites (10). Повтор незавершённого задания API 35 после ANR Pixel Launcher прошёл. В архиве сохранены обе попытки.",
+        "android_qa": {
+          "api23": {
+            "launcher": {
+              "passed": true,
+              "assertions": 197
+            },
+            "coordinates": {
+              "passed": true,
+              "assertions": 51
+            }
+          },
+          "api35": {
+            "launcher": {
+              "passed": true,
+              "assertions": 197
+            },
+            "coordinates": {
+              "passed": true,
+              "assertions": 51
+            }
+          }
+        },
+        "dns_qa": {
+          "api23": {
+            "catalogscreen": {
+              "passed": true,
+              "assertions": 40
+            },
+            "cachewrites": {
+              "passed": true,
+              "assertions": 10
+            }
+          },
+          "api35_first_attempt": {
+            "catalogscreen": "BLOCKED_BY_PIXEL_LAUNCHER_ANR",
+            "cachewrites": 10
+          },
+          "api35_retry": {
+            "catalogscreen": {
+              "passed": true,
+              "assertions": 40
+            },
+            "cachewrites": {
+              "passed": true,
+              "assertions": 10
+            }
+          },
+          "api35_retry_artifact": 14728150713
+        }
+      }
+    },
+    "catalog_reference_stage": {
+      "source_sha": "11a206ca43780abb38c1a2b80d797fef2c272c5f",
+      "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44958012998",
+      "integrity": "security/catalog-reference-2026-11-22/reference-apksig.txt",
+      "apk_copy_hashes": "security/catalog-reference-2026-11-22/reference-copies.sha256",
+      "resources": "security/catalog-reference-2026-11-22/reference-resource-delta.json",
+      "unavailable_sources": "security/catalog-reference-2026-11-22/provider-decisions.json",
+      "result": {
+        "apk_url": "https://chatgpt.com/library?file_id=libfile_0e6ae1e7455481918e27e7d18959dddc&account_id=personal",
+        "evidence_url": "https://chatgpt.com/library?file_id=libfile_3c72ec4ee97c8191ad8c19ec5be8b636&account_id=personal",
+        "apk_sha256": "554af07bb126630bbc3c9539585fcaf942b903036672c777696594680c16052e",
+        "evidence_sha256": "72f75189c97705cbecdb041e4fe6b0ae9e635e8ffdff177f2a99aee33a0202da",
+        "artifacts": {
+          "api23": 14728791071,
+          "api35": 14727554315,
+          "build35": 14727988065
+        },
+        "android": {
+          "api23": {
+            "cachewrites": {
+              "passed": true,
+              "assertions": 29
+            },
+            "catalogscreen": {
+              "passed": true,
+              "assertions": 46
+            }
+          },
+          "api35": {
+            "cachewrites": {
+              "passed": true,
+              "assertions": 29
+            },
+            "catalogscreen": {
+              "passed": true,
+              "assertions": 46
+            }
+          }
+        },
+        "summary": "На API 23 и 35 прошли cachewrites (29) и catalogscreen (46). Проверены действия каталога, возврат на карту из настроек, чтение прежних кешей и нулевой сетевой трафик закрытых источников. Android Lint — 0 ошибок и 121 предупреждение. Аудит APK прошёл, разрешение только INTERNET."
+      }
+    },
+    "editor_draft_and_text": {
+      "commit": "671a49f00f05fa20e23495fc68e577fa8c40726d",
+      "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45243852282",
+      "signer_comparison": "security/map-editor-2026-11-23/reference-signer-comparison.json",
+      "static_ui": "security/map-editor-2026-11-23/reference-screen-controls.json",
+      "tested_commit": "5427d4b77ab5163bc8f6422293308e9cf81b3219",
+      "build_artifact": 14853851195,
+      "qa_apk": "https://chatgpt.com/library?file_id=libfile_40bbfe1c9370819197fec1743d437e92&account_id=personal",
+      "qa_apk_sha256": "0c46ff0740c96879dc48d8543f2920dba0251c76d2c147598344a241b4ccb6d8",
+      "archive": "https://chatgpt.com/library?file_id=libfile_dce6763cf76c8191bdfe77bcc8c1fe70&account_id=personal",
+      "archive_sha256": "6d0de115ae0608869f82e11554952cc73a7264d19119dad1bad207a48ce5ba5a",
+      "android_ci": [
+        {
+          "api": 23,
+          "artifact": 14852104967,
+          "verified_files": 64,
+          "scenarios": {
+            "markerlifecycle": {
+              "passed": true,
+              "assertions": 63
+            },
+            "markerlifecyclereopen": {
+              "passed": true,
+              "assertions": 55
+            }
+          },
+          "sha256": "4ffc2dcdb1dc0b6653ed803237ad611f0620c7ff64cd155620edd54555314f22",
+          "job_conclusion": "success"
+        },
+        {
+          "api": 35,
+          "artifact": 14853876159,
+          "verified_files": 64,
+          "scenarios": {
+            "markerlifecycle": {
+              "passed": true,
+              "assertions": 63
+            },
+            "markerlifecyclereopen": {
+              "passed": true,
+              "assertions": 55
+            }
+          },
+          "sha256": "9f66521f1ed670dc7951c243584816a77bc387a1f09f2bec532d4d1354e0a409",
+          "job_conclusion": "success"
+        }
+      ],
+      "android_17": {
+        "status": "BLOCKED_PACKAGE_SERVICE",
+        "retry_ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45247768818",
+        "diagnostics": "security/map-editor-2026-11-23/api37-environment.json",
+        "tested_commit": "8e083aeb1d82054654de433e72128c402e062e95",
+        "scenarios_started": false,
+        "reason": "The emulator completed boot and resolved the Android framework package. Package service returned Broken pipe during setup, before instrumentation scenarios."
+      },
+      "lint": {
+        "errors": 0,
+        "warnings": 122
+      },
+      "privacy_permissions": [
+        "android.permission.INTERNET"
+      ]
+    },
+    "functional_core_transfer_formats": {
+      "application_code": "ea254da5fbf2e8c0733f203e8afbfe5705578f23",
+      "transfer": {
+        "source_sha": "0f7e8d0f44022fd9aed40369832291f6c9c30592",
+        "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45696533101",
+        "android": [
+          {
+            "api": 23,
+            "artifact": 15060693427,
+            "sha256": "e83f80afb02a03bcac3b915c8c2e37c08a78fff12f2adf96a11d6c60b28035d7",
+            "verified_files": 34,
+            "scenarios": {
+              "clipboard": {
+                "passed": true,
+                "assertions": 145
+              },
+              "clipboardreopen": {
+                "passed": true,
+                "assertions": 49
+              }
+            }
+          },
+          {
+            "api": 35,
+            "artifact": 15060833526,
+            "sha256": "581a1d36c2074c1975873a4e682f5ad99b348d49224998aca09a884c38ab86d4",
+            "verified_files": 34,
+            "scenarios": {
+              "clipboard": {
+                "passed": true,
+                "assertions": 145
+              },
+              "clipboardreopen": {
+                "passed": true,
+                "assertions": 49
+              }
+            }
+          }
+        ],
+        "windows_px": {
+          "23": [
+            320,
+            640
+          ],
+          "35": [
+            720,
+            900
+          ]
+        },
+        "notes": "This older clipboard profile includes the format assertions that were later split out."
+      },
+      "exchange": {
+        "source_sha": "ea254da5fbf2e8c0733f203e8afbfe5705578f23",
+        "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45696960561",
+        "android": [
+          {
+            "api": 23,
+            "artifact": 15060118506,
+            "sha256": "a635c85d71d165401102e39245d3184014e641ba3db38ec9181a781e6f296e24",
+            "verified_files": 12,
+            "scenarios": {
+              "objectformats": {
+                "passed": true,
+                "assertions": 12
+              },
+              "objectformatsreopen": {
+                "passed": true,
+                "assertions": 12
+              }
+            }
+          },
+          {
+            "api": 35,
+            "artifact": 15061806983,
+            "sha256": "717477da5223ccd6239a4df1452f33d0f6aa038c9833c1df9ce843a595f509a4",
+            "verified_files": 12,
+            "scenarios": {
+              "objectformats": {
+                "passed": true,
+                "assertions": 12
+              },
+              "objectformatsreopen": {
+                "passed": true,
+                "assertions": 12
+              }
+            }
+          }
+        ]
+      },
+      "android_17": {
+        "status": "PASSED",
+        "source_sha": "7d74e62ff0f8ab780833b2e1292ce7d8427f9ac1",
+        "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45697512876",
+        "checks": {
+          "api": 37,
+          "artifact": 15061059068,
+          "sha256": "50aff8425a7f375d62198421110bd535597ae1d21b7abb13e0755a899229dc84",
+          "verified_files": 43,
+          "scenarios": {
+            "clipboard": {
+              "passed": true,
+              "assertions": 133
+            },
+            "clipboardreopen": {
+              "passed": true,
+              "assertions": 41
+            },
+            "objectformats": {
+              "passed": true,
+              "assertions": 12
+            },
+            "objectformatsreopen": {
+              "passed": true,
+              "assertions": 12
+            }
+          }
+        },
+        "diagnostics": "security/functional-core-2026-11-25/api37-emulator.json"
+      },
+      "qa_apk": "https://chatgpt.com/library?file_id=libfile_6c348040847481919b13c8c74908b4dc&account_id=personal",
+      "qa_apk_sha256": "b1a59c6075b1b3a26187b07605335d6a682078267d5ca6d129c063d8fc5cbc82",
+      "build_artifact": 15061737054,
+      "archive": "https://chatgpt.com/library?file_id=libfile_2766ce331d448191b4fcd1ee347fbc66&account_id=personal",
+      "archive_sha256": "fc193d04693a3bd230d6be9cb18a1175686cb68ce102512025714e94e5daa35c",
+      "lint": {
+        "errors": 0,
+        "warnings": 122
+      },
+      "permissions": [
+        "android.permission.INTERNET"
+      ],
+      "reference_parity": "not accepted",
+      "physical_fold5": "not tested"
+    },
+    "icon_library_and_ozi": {
+      "icons": {
+        "source_sha": "41a9f8ab7174da16ea68225ff4f013abcfc4516a",
+        "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45702567695",
+        "android": [
+          {
+            "api": 23,
+            "artifact": 15063852924,
+            "sha256": "45c775b6f4cc0e6d10a81389e961a785a42e3cd4607a708caa4c49f42c9ddee1",
+            "verified_files": 10,
+            "scenarios": {
+              "iconlibrary": {
+                "passed": true,
+                "assertions": 32
+              },
+              "ozidata": {
+                "passed": true,
+                "assertions": 5
+              }
+            }
+          },
+          {
+            "api": 35,
+            "artifact": 15063338601,
+            "sha256": "ffbda63e451f97f185c2076bc0b923946e577274df79d4c5793e0d475d4f92f2",
+            "verified_files": 10,
+            "scenarios": {
+              "iconlibrary": {
+                "passed": true,
+                "assertions": 32
+              },
+              "ozidata": {
+                "passed": true,
+                "assertions": 5
+              }
+            }
+          },
+          {
+            "api": 37,
+            "artifact": 15063867106,
+            "sha256": "0dbceebccd27374ba9eb887530aa026f210446334b4465295c92ebe15efba862",
+            "verified_files": 10,
+            "scenarios": {
+              "iconlibrary": {
+                "passed": true,
+                "assertions": 32
+              },
+              "ozidata": {
+                "passed": true,
+                "assertions": 5
+              }
+            }
+          }
+        ]
+      },
+      "ozf2": {
+        "source_sha": "37320b0920f223b63ef5c3c13d9ca95764bbe0e8",
+        "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45703116101",
+        "android": [
+          {
+            "api": 23,
+            "artifact": 15064730569,
+            "sha256": "5350975b6fa4b5699691b6aa0f946c50f6dff554cbf0312958385ad09fab3bf0",
+            "verified_files": 5,
+            "scenarios": {
+              "ozf2": {
+                "passed": true,
+                "assertions": 10
+              }
+            }
+          },
+          {
+            "api": 35,
+            "artifact": 15063473948,
+            "sha256": "0c968a735019539a72ed489d2ca65a849f2c5dd79c39d87ce83dc2e73353f7ca",
+            "verified_files": 5,
+            "scenarios": {
+              "ozf2": {
+                "passed": true,
+                "assertions": 10
+              }
+            }
+          },
+          {
+            "api": 37,
+            "artifact": 15064426893,
+            "sha256": "c71a907755a8bee3c6cf62aa126c4f29a3edbcbc91d9e123bf6e3e5cd7f07081",
+            "verified_files": 5,
+            "scenarios": {
+              "ozf2": {
+                "passed": true,
+                "assertions": 10
+              }
+            }
+          }
+        ]
+      },
+      "qa_apk": "https://chatgpt.com/library?file_id=libfile_393cfebbd8f081919d73ec0feb710efd&account_id=personal",
+      "qa_apk_sha256": "8d608b56b04bf2b3393fbd83bbfa72e96e4786fec9e53025f4ab40690277f8cf",
+      "archive": "https://chatgpt.com/library?file_id=libfile_8bcc967f9ef48191a48cba74fa3ddd7b&account_id=personal",
+      "archive_sha256": "071dfbe6d27ed3ba9c30c471e4e7976dbdb507b69bcec7a01529a216dd3ace17",
+      "qa_build_artifact": 15064795779,
+      "lint": {
+        "errors": 0,
+        "warnings": 122
+      },
+      "permissions": [
+        "android.permission.INTERNET"
+      ],
+      "static_comparison": "security/reference-gaps-2026-11-26/static.json"
+    },
+    "preliminary_acceptance": {
+      "source_sha": "5b7915b4523fa3dbac30534ee91fdb6dd83e093e",
+      "ci_run": 45722360572,
+      "base_source_sha": "5d7f7d1433d93838d9e7c5d155baa41f92aa07d1",
+      "base_ci_run": 45707989761,
+      "earlier_complete_ci_run": 45707187711,
+      "apk_sha256": "d349b2af1c52f1d03939d996b266113a107e7a54d358743798681c7dc64350c4",
+      "permissions": [
+        "android.permission.INTERNET"
+      ],
+      "lint_errors": 0,
+      "archive_sha256": "9e3e7960eb77cab92e39bb7eda03c940ef9f3576e7c80866b7659a7f69df18ab",
+      "qa_apk": "https://chatgpt.com/library?file_id=libfile_c22d4e67cecc81919b7d2b59d14117a7&account_id=personal",
+      "archive_url": "https://chatgpt.com/library?file_id=libfile_067a34d92b248191ad6e1d154e0a8ddc&account_id=personal",
+      "artifacts": {
+        "resume": {
+          "23": 15073196147,
+          "35": 15072772905,
+          "37": 15073196274
+        },
+        "build35": 15072557509
+      },
+      "baseline_artifacts": [
+        {
+          "id": 15066837664,
+          "path": "rk-acceptance-final/head-coverage-23.zip",
+          "sha256": "2964c7b61e6b5fe05a02b06b86026d4266910d1e3831b52ccce45dadc5c65677"
+        },
+        {
+          "id": 15067555201,
+          "path": "rk-acceptance-final/head-coverage-35.zip",
+          "sha256": "35ddff0b5cb090bd6ee391bafc724e5a568daebe8b9cbe0b1332579f529bca35"
+        },
+        {
+          "id": 15065464883,
+          "path": "rk-acceptance-final/head-coverage-37.zip",
+          "sha256": "2a0440c39a686378c80f27496eb81d347eb9510ea5decc91f06b9cc86828d729"
+        }
+      ],
+      "coverage_by_api": [
+        {
+          "api": 23,
+          "screens_captured": 13,
+          "resumed_checks": 34,
+          "resumed_passed": true
+        },
+        {
+          "api": 35,
+          "screens_captured": 13,
+          "resumed_checks": 34,
+          "resumed_passed": true
+        },
+        {
+          "api": 37,
+          "screens_captured": 13,
+          "resumed_checks": 34,
+          "resumed_passed": true
+        }
+      ],
+      "evidence": "security/preliminary-acceptance-2026-11-26/results.json",
+      "report": "FINAL_ACCEPTANCE.md"
+    },
+    "map_window_update": {
+      "source_sha": "fd5ed2f8907d7e6aa0885dc32e49db49df1c3201",
+      "ci_run": 45726430853,
+      "modes": [
+        "launcher",
+        "coordinates"
+      ],
+      "api_results": {
+        "23": {
+          "launcher": 204,
+          "coordinates": 52
+        },
+        "35": {
+          "launcher": 204,
+          "coordinates": 52
+        },
+        "37": {
+          "launcher": 204,
+          "coordinates": 52
+        }
+      },
+      "apk_sha256": "da7e89a834833f65f08c8b6d1245e97717af09710ec2e80e57b53d47a1e4b17b",
+      "lint_errors": 0,
+      "permissions": [
+        "android.permission.INTERNET"
+      ],
+      "local_attachment_screen": {
+        "api": 23,
+        "mode": "acceptance-resume",
+        "assertions": 34,
+        "apk_sha256": "73266b68b741a93a7d46e5f6015dd35197a471c8533999034bb7b10565515b6e"
+      },
+      "artifacts": [
+        {
+          "id": 15074882634,
+          "sha256": "a9454996432b105576794ea5a1bf58aef40aa2386c6d13ca748060eaf50c45d6"
+        },
+        {
+          "id": 15074553421,
+          "sha256": "6bf63be28260f002e8f96d559ed4cf18ad9b7231f5e58304b8bc60f4e241c61a"
+        },
+        {
+          "id": 15074284120,
+          "sha256": "8248024511018966c0022df431b5ec6215a60503ebcd0934931352e9cfae6b5e"
+        },
+        {
+          "id": 15074797202,
+          "sha256": "8cace96a2b219eb6ee5ee60812f286be5a97f85d9d71fa529b16a38aea9da0f9"
+        }
+      ],
+      "ci_url": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45726430853",
+      "qa_apk": "https://chatgpt.com/library?file_id=libfile_04848819a63881919a90c85811afb2d2&account_id=personal",
+      "evidence_archive": "https://chatgpt.com/library?file_id=libfile_fb77d08843848191a5be360e51dbbed0&account_id=personal"
+    },
+    "reference_display_controls": {
+      "source_sha": "796723f1a2152bccd0948d8a438552302f9647b7",
+      "ci_run": 45729310081,
+      "coordinates": {
+        "23": 68,
+        "35": 68,
+        "37": 68
+      },
+      "apk_sha256": "2ea538f1b44e022859f5e538e357bcf78da780441c95fbdc75cb5c81b19a709a",
+      "lint_errors": 0,
+      "permissions": [
+        "android.permission.INTERNET"
+      ],
+      "qa_apk": "https://chatgpt.com/library?file_id=libfile_baa76c5ac91c8191a22ac91ea5bd1012&account_id=personal",
+      "evidence_archive": "https://chatgpt.com/library?file_id=libfile_e114924d8c088191897cdaf02a7b81d6&account_id=personal",
+      "artifacts": [
+        {
+          "id": 15076715290,
+          "sha256": "976469f7e1f26dcd5f078126d75e5b4c7aa97318e591fe09304334d1f1a34a6f"
+        },
+        {
+          "id": 15076391032,
+          "sha256": "7a41be99e88b196a2c5daea3a3a54123175f2cbc02dbb9fe9abc8b87fbde8fe3"
+        },
+        {
+          "id": 15075927313,
+          "sha256": "f88a41ba906f06fcf7dddc07863f1967559c1b90ad34323fd1fb199678bb9ae3"
+        },
+        {
+          "id": 15076131977,
+          "sha256": "08d6cf89cdc632809a44a886cace61bed16d5616c887aa6fd3fc1a40868aa363"
+        }
+      ],
+      "reference_resource_index": "security/reference-gaps-2026-11-26/ui-surface.json",
+      "placement_in_original_confirmed": false
+    },
+    "reference_ui_catalog_links": {
+      "source": "security/reference-gaps-2026-11-26/ui-surface.json",
+      "scope": "Сопоставление кода со строками ресурсов. Связь с функцией не подтверждает визуальную или динамическую идентичность.",
+      "closure_triage": {
+        "basis": "Известные пробелы кода закрыты в подтверждённом локальном объёме. Сравнение эталонного поведения, физическая проверка и автоматизированные испытания приводятся отдельно. Четыре исходно заблокированных контракта остаются отдельной группой.",
+        "confirmed_code_gaps": 0,
+        "acceptance_only": 27,
+        "other_verification_or_contract": 12,
+        "groups": {
+          "missing_code": [],
+          "incomplete_functionality": [],
+          "visual_review": [
+            "settings_canvas_infobox_style_title",
+            "settings_landmarks_display_borders_title",
+            "settings_landmarks_display_shadows_title",
+            "settings_canvas_grids_title",
+            "settings_landmarks_display_size_title",
+            "settings_landmarks_display_color_title",
+            "maps_submenu_show_storage_coverage"
+          ],
+          "insufficient_tests": [
+            "settings_canvas_multitouch_pitch_title",
+            "settings_technical_disable_keyguard_title",
+            "geolocation_submenu_barometer",
+            "settings_display_pressures_title",
+            "orientation_submenu_status",
+            "settings_technical_path_title"
+          ],
+          "reference_contract": [
+            "landmarks_submenu_display_target_information",
+            "landmarks_submenu_display_target_line",
+            "settings_landmarks_display_target_color_title",
+            "settings_landmarks_preprocess_title"
+          ],
+          "acceptance_when_reference_available": [
+            "settings_canvas_hres_map_title",
+            "settings_canvas_multitouch_rotate_title",
+            "settings_display_reference_north_title",
+            "settings_display_areas_title",
+            "settings_display_slopes_title",
+            "settings_display_distances_title",
+            "settings_display_bearings_title",
+            "orientation_submenu_rotate",
+            "core_submenu_print_map",
+            "orientation_submenu_compass_on_map",
+            "settings_orientation_heading_display_type_title",
+            "core_submenu_display_grid",
+            "core_submenu_display_secondary_grid",
+            "core_submenu_display_radius_ruler",
+            "core_submenu_night_mode",
+            "core_submenu_lock_screen",
+            "settings_technical_confirm_exit_title",
+            "settings_canvas_long_press_map_title",
+            "settings_canvas_zoom_type_title",
+            "settings_canvas_multitouch_zoom_title"
+          ],
+          "local_scope_reference_review": [
+            "landmarks_submenu_control_time",
+            "settings_landmarks_display_tracks_style_title"
+          ]
+        }
+      },
+      "linked": {
+        "settings_technical_hide_status_bar_title": "Меню → Опции → Экран карты → Скрыть строку состояния",
+        "settings_technical_hide_navigation_bar_title": "Меню → Опции → Экран карты → Режим погружения",
+        "settings_technical_screen_on_title": "Меню → Опции → Экран карты → Экран всегда включён",
+        "core_submenu_title_display": "Меню → Информеры",
+        "core_submenu_hide_menu": "Переключатель нижней панели",
+        "core_submenu_screen_center_coordinates": "Табло и Меню → Информеры",
+        "geolocation_submenu_title": "Файловый менеджер",
+        "geolocation_submenu_geolocation": "Файловый менеджер → Объекты проекта и Меню → Проекты",
+        "landmarks_submenu_title": "Метки",
+        "landmarks_submenu_browse": "Метки → Все метки",
+        "landmarks_submenu_create": "Метки → Новая метка",
+        "landmarks_submenu_display_labels": "Меню → Информеры → Названия меток",
+        "maps_submenu_title": "Карты",
+        "maps_submenu_available_maps": "Карты → Доступные карты",
+        "maps_submenu_displayed_maps": "Карты → Карты на экране",
+        "maps_submenu_area_downloader": "Карты → Сохранить участок карты",
+        "maps_submenu_display_name": "Меню → Информеры → Название карты",
+        "maps_submenu_display_scale_bar": "Меню → Информеры → Масштабная линейка",
+        "maps_submenu_only_use_local_storage": "Карты → Использовать только сохранённый кэш карты",
+        "maps_submenu_favorites_title": "Карты → Избранные карты и наборы карт",
+        "orientation_submenu_title": "Ориентирование",
+        "orientation_submenu_compass": "Ориентирование → Компас",
+        "settings_display_location_title": "Настройки координат → Основной формат",
+        "settings_display_location_secondary_title": "Настройки координат → Дополнительный формат",
+        "core_submenu_title_options": "Меню → Опции: координаты, настройки кэша и информеры",
+        "landmarks_submenu_displayed_landmarks": "Метки → Метки на экране → карточка видимого объекта",
+        "maps_submenu_display_scale_value": "Карты → Масштаб карты: численный масштаб по центру и плотности экрана"
+      },
+      "partial": {
+        "landmarks_submenu_display_target_information": "Расстояние от центра карты до вручную выбранной точки проекта.",
+        "landmarks_submenu_display_target_line": "Переключаемая линия от центра карты до точки цели.",
+        "settings_landmarks_display_target_color_title": "Локальная палитра для точки и линии. Оформление эталона требует проверки.",
+        "settings_landmarks_preprocess_title": "Выключаемая фильтрация одиночных выбросов при отображении GPX и временных геометрий KML. Алгоритм эталона требует сверки.",
+        "landmarks_submenu_control_time": "Действие Метки → Время движения по треку открывает статистику выбранного видимого GPX или KML, включая покрытие временными отсчётами. Эталонное управление временем движения требует сверки.",
+        "settings_canvas_multitouch_pitch_title": "Перспективный вид: наклон вертикальным жестом двумя пальцами.",
+        "settings_canvas_hres_map_title": "Опции: уровень тайла меняется в пределах подложки и лимита запросов без сдвига карты.",
+        "settings_canvas_multitouch_rotate_title": "Поворот карты двумя пальцами с масштабированием вокруг опорной точки.",
+        "settings_technical_disable_keyguard_title": "Экран карты: показ текущего окна при блокировке по явному выбору, без отключения системного замка.",
+        "settings_canvas_infobox_style_title": "Размер и фон статус-панелей, включая цель и индикаторы тайлов. Стандартный светло-голубой фон и тёмный текст сверены с сохранённой палитрой; динамическая сверка открыта.",
+        "settings_landmarks_display_borders_title": "Включает обводку встроенных точечных символов.",
+        "settings_landmarks_display_shadows_title": "Добавляет локальную тень под значками меток.",
+        "settings_display_reference_north_title": "Магнитный, истинный и координатный север. Поправки вычисляются по центру карты.",
+        "settings_display_areas_title": "Формат площади применяется к карточке области, включая вычитание отверстий.",
+        "settings_display_slopes_title": "Формат уклона применяется к подъёму и спуску в профиле DEM.",
+        "settings_display_distances_title": "Форматы линейки, DEM, высоты карточек точек и расстояния до цели. Сверка точного оформления ожидает эталона.",
+        "settings_display_bearings_title": "Опции: градусы, грады, тысячные и румбы для магнитного курса.",
+        "geolocation_submenu_barometer": "Ориентирование: локальное давление и калибровка по введённой высоте.",
+        "settings_display_pressures_title": "Барометр: гПа, миллиметры или дюймы ртутного столба.",
+        "orientation_submenu_rotate": "Ориентирование: поворот карты по магнитному курсу с преобразованием жестов.",
+        "core_submenu_print_map": "Меню: снимок области карты в PNG через явный Android-выбор места сохранения.",
+        "orientation_submenu_compass_on_map": "Ориентирование → Показать компас: магнитный север и азимут без геолокации.",
+        "orientation_submenu_status": "Ориентирование → Статус компаса: данные и калибровка.",
+        "settings_orientation_heading_display_type_title": "Ориентирование → Курс по компасу: стрелка, азимут или оба.",
+        "core_submenu_display_grid": "Информеры: подписанная сетка выбранного основного формата, UTM/MGRS в зоне центра.",
+        "settings_canvas_grids_title": "Опции → Вид координатных сеток: плотность, стиль и подписи вспомогательных линий.",
+        "core_submenu_display_secondary_grid": "Информеры: независимая дополнительная сетка по выбранному формату.",
+        "core_submenu_display_radius_ruler": "Информеры: круговая линейка со сферическими расстояниями от центра.",
+        "core_submenu_night_mode": "Меню: ночное затемнение растра с сохранением читаемости объектов.",
+        "core_submenu_lock_screen": "Меню: блокирует жесты, масштабирование, переход по координатам и центрирование DEM.",
+        "settings_technical_confirm_exit_title": "Опции → Экран карты → Подтверждать выход.",
+        "maps_submenu_show_storage_coverage": "Индикаторы видимой области различают тайлы на диске, готовые только в памяти, ожидающие и недоступные. Геометрия карты и сетевой режим сохраняются.",
+        "settings_technical_path_title": "Выбор каталога тайлов приложения или доступного съёмного тома в области приложения на API 30 и выше. Старые тайлы остаются на месте; отключённый том не подменяется. Нужен физический тест.",
+        "settings_canvas_long_press_map_title": "Выбор контекстного меню или режима только карты, возврат долгим нажатием или кнопкой Назад. Сверка с эталоном открыта.",
+        "settings_canvas_zoom_type_title": "Кнопки или слайдер, опции громкости, округления и удержания кнопок для детализации. Быстрые двойные касания различают одну и две точки. Визуальная сверка и пороги эталона открыты.",
+        "settings_canvas_multitouch_zoom_title": "Настройка включает или отключает масштабирование пальцами, включая совмещённый жест поворота. Эталонный прогон недоступен.",
+        "settings_landmarks_display_size_title": "Глобальный размер встроенных и SVG-значков и ширины линий. Индивидуальные пропорции KML сохраняются. Сверка эталона открыта.",
+        "settings_landmarks_display_color_title": "Сохраняемый цвет по умолчанию для встроенных меток и линий; явные цвета KML и исходное оформление SVG сохраняются. Палитра эталона требует сверки.",
+        "settings_landmarks_display_tracks_style_title": "Опциональные границы времени сохранённых GPX и KML и подписи именованных точек GPX. Формат специализированных событий оригинала требует сверки."
+      },
+      "privacy_exclusions": [
+        "geolocation_submenu_dashboard",
+        "geolocation_submenu_display_information",
+        "geolocation_submenu_display_location_line",
+        "geolocation_submenu_rotate",
+        "geolocation_submenu_tracker",
+        "geolocation_submenu_tracker_information",
+        "settings_geolocation_auto_activate_explorer_mode_title",
+        "settings_geolocation_course_display_type_title",
+        "settings_geolocation_disable_in_back_title",
+        "settings_geolocation_egm96_adjustment_title",
+        "settings_geolocation_previous_locations_title",
+        "settings_geolocation_relock_location_title",
+        "settings_tracker_ask_for_activity_title",
+        "settings_tracker_dash_mode_title",
+        "settings_tracker_reset_stats_on_new_segment_title",
+        "settings_tracker_signal_warnings_title"
+      ],
+      "open_by_domain": {
+        "core": [],
+        "geolocation": [],
+        "landmarks": [
+          "landmarks_submenu_control_time"
+        ],
+        "maps": [
+          "maps_submenu_correct_china_shift"
+        ],
+        "orientation": [],
+        "settings": [
+          "settings_landmarks_preprocess_title"
+        ]
+      }
+    },
+    "reference_menu_and_files_ci": {
+      "commit": "7129d63c477c58cdfd594883cdd748f29b5608ca",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45731372742",
+      "api23": {
+        "passed": [
+          "managerfilters",
+          "managerfiltersreopen"
+        ],
+        "failed": [
+          "launcher"
+        ]
+      },
+      "api35": {
+        "passed": [
+          "launcher",
+          "managerfilters",
+          "managerfiltersreopen"
+        ]
+      },
+      "api37": {
+        "passed": [
+          "launcher",
+          "managerfilters",
+          "managerfiltersreopen"
+        ]
+      }
+    },
+    "reference_compass_rotation": {
+      "code_commit": "28e1e49",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45901732636",
+      "scenario": "mapcompass",
+      "passed_api": [23, 35]
+    },
+    "reference_barometer": {
+      "code_commit": "718ef9d",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45902645502",
+      "scenario": "barometer",
+      "passed_api": [23, 35]
+    },
+    "reference_measurement_units": {
+      "code_commit": "0467b2a",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45903965348",
+      "scenario": "displayunits",
+      "passed_api": [23, 35]
+    },
+    "reference_north": {
+      "code_commit": "a3ebc3e",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45904878416",
+      "scenario": "northreference",
+      "passed_api": [23, 35]
+    },
+    "reference_map_twist_appearance": {
+      "code_commit": "7ac5a8d",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45913235998",
+      "scenario": "maptwist mapappearance",
+      "passed_api": [23, 35]
+    },
+    "reference_raster_detail": {
+      "code_commit": "667217f8caa49fd5506d71440c62cc84d5aac9a1",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45913559047",
+      "scenario": "tiledetail",
+      "passed_api": [23, 35]
+    },
+    "reference_map_snapshot": {
+      "code_commit": "c441ea05033ad20e27a1727df5dbb9f417e41831",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45898954501",
+      "mapsnapshot_passed_api": [23, 35]
+    },
+    "reference_map_compass": {
+      "code_commit": "3b82f4693061ac71bd3ba6a045044526a07c8784",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45896177693",
+      "mapcompass_passed_api": [23, 35]
+    },
+    "reference_grid_appearance": {
+      "code_commit": "ee108c284cf62ace758f7355adb44e9ac1e6a230",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45894785999",
+      "gridstyle_passed_api": [23, 35, 37]
+    },
+    "reference_grid_overlays": {
+      "code_commit": "5e0703067811abecb64ba29d93c8ba950e848abc",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45893700531",
+      "coordinates_passed_api": [23, 35, 37]
+    },
+    "reference_point_ungroup": {
+      "reference": "landmarks_context_menu_split_points",
+      "scope": "Отдельные объекты из набора Point с сохранением идентификаторов точек.",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45895265502",
+      "retest": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45898240175",
+      "passed_api": [23, 35]
+    },
+    "reference_line_split": {
+      "reference": "landmarks_context_menu_split_here",
+      "scope": "Одиночный LineString, внутренняя вершина, два объекта в той же папке.",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45894524536",
+      "passed_api": [23, 35]
+    },
+    "manager_display_modes": {
+      "code_commit": "00ed9f89fbb4db58bc8195d660c644b335c23abd",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45881157237",
+      "scenarios": ["launcher", "managerfilters", "managerfiltersreopen"],
+      "passed_api": [23, 35, 37]
+    },
+    "map_lock_geographic_grid": {
+      "code_commit": "c71303c4238f8856d977de34c2a40fd9f1acedf2",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45886047905",
+      "coordinates_passed_api": [23, 35, 37]
+    },
+    "map_screen_window_options": {
+      "code_commit": "6a60f20a4995563211f43d63dd3b42acdd9feed8",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45882516970",
+      "coordinates_passed_api": [23, 37],
+      "api35_retest": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45886047905"
+    },
+    "object_listing_html_headings": {
+      "scope": "Поиск по описаниям KML в менеджере объектов сохраняет границы текста в HTML-заголовках.",
+      "jvm_assertions": 101,
+      "android_retest": "PENDING"
+    },
+    "reference_workspace_ci": {
+      "application_commit": "404c1ed52f94fb3bc5e2920ae3f1f0a36ec29213",
+      "test_commit": "1441321ac7f4056b31e8964a77b179f169566fc8",
+      "run": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45858591505",
+      "launcher_passed_api": [
+        23,
+        35
+      ],
+      "local_api23_launcher_assertions": 226,
+      "qa_apk_sha256": "b2f5c111d418ee4cf0b3f3bfaed57f9fdb8a9f137c03df43b088ca0ace5e6ca4",
+      "qa_apk": "https://chatgpt.com/library?file_id=libfile_ccbaedfc6e548191b4ea246f38f85bb2&account_id=personal"
+    }
+  },
+  "status_values": [
+    "NOT_INSPECTED",
+    "STATIC_ONLY",
+    "DYNAMIC_VERIFIED",
+    "MISMATCH",
+    "FIXED_UNVERIFIED",
+    "VERIFIED",
+    "BLOCKED"
+  ],
+  "entries": [
+    {
+      "id": "MAP-01",
+      "screen": "Главная карта",
+      "function": "Покрытие обзорной карты при первом открытии",
+      "reference_behavior": "Полноэкранная картографическая область в утверждённом задании",
+      "current_behavior": "Первый запуск пустого проекта заполняет высоту обзорным растром. При восстановлении z=2 координаты и зум сохранены, вне мира однотонный фон.",
+      "evidence_source": [
+        "launcher, кадры первого открытия и сохранённого зума",
+        "https://chatgpt.com/library?file_id=libfile_46f8c388a9288191ae241f300901bd31&account_id=personal"
+      ],
+      "visual_difference": "Сетка вне покрытия убрана. При сохранённом z=2 на высоком окне остаются поля за пределами проекции.",
+      "functional_difference": "Ограничения проекции и восстановление камеры подтверждены на проверенных размерах. Сравнение фактической подложки эталона блокировано.",
+      "priority": "P0",
+      "status": "DYNAMIC_VERIFIED",
+      "fixing_commit": "7526eedbb89e13b051c6b17610a5e4e49f5275e5",
+      "retest": "API 23 локально 183 проверки при 480×800 и 184 при 480×1360. На высоком окне начальный z=2.3309169, восстановленный z=2.",
+      "qa_verification": {
+        "status": "DYNAMIC_VERIFIED",
+        "scope": "Начальный обзор и восстановление камеры с проверкой отрисовки.",
+        "evidence": "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+      },
+      "reference_parity": {
+        "status": "BLOCKED",
+        "scope": "Реакция viewport и повторное открытие закрыты диалогом целостности."
+      }
+    },
+    {
+      "id": "MAP-02",
+      "screen": "Главная карта",
+      "function": "Нижняя сворачиваемая панель",
+      "reference_behavior": "В предыдущем запуске эталона наблюдались пять инструментов слева внизу.",
+      "current_behavior": "Пять инструментов с собственными контурными значками, отдельное сворачивание. Поиск открывается через «Метки». Видимые кнопки уменьшены, области нажатия 48 dp сохранены. На узком экране ряд инструментов прокручивается, переключатель закреплён. При 320 dp видны все пять действий. Переключатель сворачивания над рядом освобождает место для кнопок.",
+      "evidence_source": [
+        "Измерения 480×800, 160 dpi",
+        "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955422002"
+      ],
+      "visual_difference": "Прежняя высота панели составляла 56 dp. По замечанию Fold5 высота уменьшена до 48 dp, видимая плашка каждой кнопки имеет отступы. Пусковой кадр эталона сохраняется как историческое измерение.",
+      "functional_difference": "Работа инструментов QA проверена. Скрытые состояния эталона требуют наблюдения.",
+      "priority": "P0",
+      "status": "DYNAMIC_VERIFIED",
+      "fixing_commit": "c01709d05b57d82673b9f51e474efbe82c38b0cd",
+      "retest": "API 23 — launcher 183, coordinates 51, maplayers 342, maplayersreopen 78. API 35 — launcher 183, coordinates 51, maplayers 343, maplayersreopen 78.",
+      "qa_verification": {
+        "status": "DYNAMIC_VERIFIED",
+        "scope": "Каждый из пяти инструментов, сворачивание, поиск, сенсорные зоны от 48 dp.",
+        "evidence": "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+      },
+      "reference_parity": {
+        "status": "BLOCKED",
+        "scope": "Пусковой кадр показывает пять инструментов. Их нажатия и закрытые состояния недоступны.",
+        "visual_status": "MISMATCH"
+      }
+    },
+    {
+      "id": "MAP-03",
+      "screen": "Главная карта",
+      "function": "Координаты, высота, линейка, прицел и зум",
+      "reference_behavior": "Доступный кадр эталона показал линейку слева вверху, прицел и две кнопки масштаба справа. Полное табло закрыто системным состоянием приложения.",
+      "current_behavior": "Координаты и линейка оформлены в палитре панели. Прицел стал кольцевым, кнопки зума сохраняют зоны 48×48 dp. Нижняя кнопка масштаба выровнена по панели инструментов. Подпись подложки отделена от зон нажатий. Уменьшены шрифт и отступы, сокращены повторяющиеся названия систем, компактнее отрисована линейка. Точность координат сохраняется. Прицел увеличен, полосы системы согласованы с панелями.",
+      "evidence_source": [
+        "Пусковой кадр v26.1, QA launcher и coordinates",
+        "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44952501428",
+        "https://chatgpt.com/library?file_id=libfile_2119bbf51ae08191b89b6cad92cef85d&account_id=personal",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955998395"
+      ],
+      "visual_difference": "Сохранены доступные признаки пускового кадра. Оформление, метки и набор полей эталона видны частично.",
+      "functional_difference": "Полная работа координатного табло и вариантов масштаба в эталоне за диалогом недоступна.",
+      "priority": "P0",
+      "status": "MISMATCH",
+      "fixing_commit": "b235f2d8f61455fdd81e4803d6b4f06cb83d862b",
+      "retest": "Целевой launcher для 528b793. API 23 — 196 проверок, API 35 — 196 проверок.",
+      "qa_verification": {
+        "status": "DYNAMIC_VERIFIED",
+        "scope": "Форматы координат и их восстановление, линейка и обе кнопки зума.",
+        "evidence": "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+      },
+      "reference_parity": {
+        "status": "BLOCKED",
+        "scope": "Поведение кнопок и полное табло закрыты диалогом целостности.",
+        "visual_status": "MISMATCH"
+      }
+    },
+    {
+      "id": "MENU-01",
+      "screen": "Меню",
+      "function": "Доступные действия, переходы, долгое нажатие",
+      "reference_behavior": "Состав и последовательность эталона недоступны.",
+      "current_behavior": "Фактические переходы «Меню», «Карты», «Метки», «Файловый менеджер», «Ориентирование» и поиск проверены. Открытое меню перестраивается при сужении окна и располагается над кнопками.",
+      "evidence_source": [
+        "Кадры, XML и журнал нажатий",
+        "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+      ],
+      "visual_difference": "Сверка меню заблокирована.",
+      "functional_difference": "Полное соответствие действий неизвестно.",
+      "priority": "P0",
+      "status": "BLOCKED",
+      "fixing_commit": null,
+      "retest": "API 23 — launcher 183, coordinates 51, maplayers 342, maplayersreopen 78. API 35 — launcher 183, coordinates 51, maplayers 343, maplayersreopen 78.",
+      "qa_verification": {
+        "status": "DYNAMIC_VERIFIED",
+        "scope": "Утверждения launcher подтверждают переходы и открытие найденного объекта.",
+        "evidence": "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+      },
+      "reference_parity": {
+        "status": "BLOCKED",
+        "scope": "Набор и порядок пунктов, переходы и долгие нажатия эталона недоступны."
+      }
+    },
+    {
+      "id": "LAYERS-01",
+      "screen": "Карты и слои",
+      "function": "Каталог, слои, кеш, порядок, прозрачность и офлайн-карты",
+      "reference_behavior": "Порядок, исходные источники, форматы и области проверяются в эталоне.",
+      "current_behavior": "Проверены выбор источников из каталога, видимость, непрозрачность, порядок, возврат на локальный MBTiles и восстановление после force-stop. При сбое DNS встроенные слои ESRI используют второй адрес того же сервиса. 43 из 54 разовых проб дали растровый тайл. Для 12 слоёв ESRI байты совпали на двух хостах.",
+      "evidence_source": [
+        "maplayers, maplayersreopen, кадры, XML и журнал",
+        "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44955719634"
+      ],
+      "visual_difference": "Парный снимок менеджера слоёв v26.1 отсутствует.",
+      "functional_difference": "Композиция QA проверена на синтетических источниках и локальном растре. Реакция менеджера эталона закрыта.",
+      "priority": "P1",
+      "status": "DYNAMIC_VERIFIED",
+      "fixing_commit": "53419cc00ec53bbe12898b56d97cc2bc5174e667",
+      "retest": "API 23 — launcher 183, coordinates 51, maplayers 342, maplayersreopen 78. API 35 — launcher 183, coordinates 51, maplayers 343, maplayersreopen 78.",
+      "qa_verification": {
+        "status": "DYNAMIC_VERIFIED",
+        "scope": "Проверены выбор источников из каталога, видимость, непрозрачность, порядок, возврат на локальный MBTiles и восстановление после force-stop.",
+        "evidence": "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal"
+      },
+      "reference_parity": {
+        "status": "BLOCKED",
+        "scope": "Менеджер слоёв эталона закрыт диалогом целостности."
+      }
+    },
+    {
+      "id": "POINTS-01",
+      "screen": "Метки",
+      "function": "Создание, название, описание, координаты, копирование и удаление",
+      "reference_behavior": "Полный цикл карточки эталона неизвестен.",
+      "current_behavior": "Создание и правка названия, координат и описания подтверждены после force-stop и импорта KMZ.",
+      "evidence_source": [
+        "launcher; clipboard; clipboardreopen",
+        "markerlifecycle",
+        "markerlifecyclereopen",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Открыта сверка карточки эталона.",
+      "priority": "P1",
+      "status": "DYNAMIC_VERIFIED",
+      "fixing_commit": null,
+      "retest": "Целевые сценарии прошли на API 23 и 35."
+    },
+    {
+      "id": "ROUTE-01",
+      "screen": "Маршруты и области",
+      "function": "Создание, изменение и сохранение геометрии",
+      "reference_behavior": "Полный набор операций эталона неизвестен.",
+      "current_behavior": "Редактирование поддержанных геометрий KML и черновики.",
+      "evidence_source": [
+        "migration/IMPLEMENTATION_PLAN.md; geometrymap"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Дополнительные операции и состояния требуют проверки.",
+      "priority": "P1",
+      "status": "STATIC_ONLY",
+      "fixing_commit": null,
+      "retest": "Базовые сценарии прошли."
+    },
+    {
+      "id": "OBJECTS-01",
+      "screen": "Менеджер объектов",
+      "function": "Выбор, поиск, фильтры и массовые операции",
+      "reference_behavior": "Требуется наблюдение экранов и переходов эталона.",
+      "current_behavior": "Проверены поиск, фильтры, сортировка, массовый выбор, перемещение и удаление, сохранение данных после force-stop. Добавлены список и текстовый предпросмотр, контекстный вход в редактор точек. Целевой CI прошёл на API 23/35/37.",
+      "evidence_source": [
+        "migration/IMPLEMENTATION_PLAN.md; objectmanager",
+        "objectmanager",
+        "objectmanagerreopen",
+        "managerfilters",
+        "managerfiltersreopen",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Требуется сверка действий и экранов эталона.",
+      "priority": "P1",
+      "status": "DYNAMIC_VERIFIED",
+      "fixing_commit": null,
+      "retest": "Целевые сценарии прошли на API 23 и 35."
+    },
+    {
+      "id": "FILES-01",
+      "screen": "Менеджер файлов",
+      "function": "Штатный выбор и рабочий режим менеджера",
+      "reference_behavior": "Эталонная структура и переключение между режимами неизвестны.",
+      "current_behavior": "Проверены операции менеджеров проекта и объектов, экспорт и импорт с тестовым ответом на системный выбор файлов. Добавлены режимы списка и текстового предпросмотра, переход в мультивыбор текущей папки и контекстное редактирование точек. Целевой CI прошёл на API 23/35/37.",
+      "evidence_source": [
+        "migration/IMPLEMENTATION_PLAN.md; clipboard",
+        "objectmanager",
+        "clipboard",
+        "markerlifecyclereopen",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Открыта сверка обоих режимов с эталоном.",
+      "priority": "P1",
+      "status": "BLOCKED",
+      "fixing_commit": null,
+      "retest": "Целевые сценарии прошли на API 23 и 35."
+    },
+    {
+      "id": "FOLDER-01",
+      "screen": "Папки и группы",
+      "function": "Структура, перенос между проектами и сохранение",
+      "reference_behavior": "Семантика папок и групп в эталоне недоступна.",
+      "current_behavior": "Проверены создание и переименование папок, перенос внутри проекта и между проектами с вложениями.",
+      "evidence_source": [
+        "CODEX_NEXT.md; clipboard и clipboardreopen",
+        "objectmanager",
+        "objectmanagerreopen",
+        "clipboard",
+        "clipboardreopen",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Сверка типов групп и действий эталона открыта.",
+      "priority": "P1",
+      "status": "DYNAMIC_VERIFIED",
+      "fixing_commit": null,
+      "retest": "Целевые сценарии прошли на API 23 и 35."
+    },
+    {
+      "id": "GEOM-01",
+      "screen": "Редактор геометрии",
+      "function": "Ручное редактирование точек, вершин и колец",
+      "reference_behavior": "Состояния и действия эталона неизвестны.",
+      "current_behavior": "Редактор геометрии, перетаскивание, отмена и сохранение черновика.",
+      "evidence_source": [
+        "migration/IMPLEMENTATION_PLAN.md; geometryedit"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Полная топология и дополнительные действия требуют проверки.",
+      "priority": "P1",
+      "status": "STATIC_ONLY",
+      "fixing_commit": null,
+      "retest": "Базовые сценарии прошли."
+    },
+    {
+      "id": "SVG-01",
+      "screen": "SVG и стили",
+      "function": "Значок, цвет, оформление, масштаб и экспорт",
+      "reference_behavior": "Полный набор библиотек и состояний эталона не подтверждён.",
+      "current_behavior": "Проверены назначение своего SVG, сохранение после force-stop и перенос SVG в KMZ.",
+      "evidence_source": [
+        "CODEX_NEXT.md; svg",
+        "markerlifecycle",
+        "markerlifecyclereopen",
+        "clipboard",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Полная библиотека и цикл всех свойств требуют сверки.",
+      "priority": "P1",
+      "status": "DYNAMIC_VERIFIED",
+      "fixing_commit": null,
+      "retest": "Целевые сценарии прошли на API 23 и 35."
+    },
+    {
+      "id": "MEDIA-01",
+      "screen": "Вложения",
+      "function": "Фото, видео, аудио, заметки, привязка и удаление",
+      "reference_behavior": "Карточки и параметры эталона не наблюдались.",
+      "current_behavior": "Проверена привязка фото и сохранность его байтов после force-stop, переноса и повторного импорта KMZ.",
+      "evidence_source": [
+        "CODEX_NEXT.md; clipboardreopen",
+        "markerlifecycle",
+        "markerlifecyclereopen",
+        "objectmanager",
+        "clipboardreopen",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Открыта проверка остальных типов вложений и сверка с эталоном.",
+      "priority": "P1",
+      "status": "DYNAMIC_VERIFIED",
+      "fixing_commit": null,
+      "retest": "Целевые сценарии прошли на API 23 и 35."
+    },
+    {
+      "id": "IO-01",
+      "screen": "Импорт и экспорт",
+      "function": "KML/KMZ, GPX, GeoJSON и обмен по явному действию",
+      "reference_behavior": "Полный список и устройства импорта эталона не подтверждены.",
+      "current_behavior": "Проверены экспорт и импорт KMZ со сверкой данных, SVG и фото. Ранее проверены GPX и GeoJSON.",
+      "evidence_source": [
+        "CODEX_NEXT.md; clipboardreopen; архив проверки форматов",
+        "markerlifecyclereopen",
+        "clipboardreopen",
+        "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/44917814738"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Импорт во внешние навигаторы и все состояния SAF остаются открыты.",
+      "priority": "P1",
+      "status": "DYNAMIC_VERIFIED",
+      "fixing_commit": null,
+      "retest": "Целевые сценарии прошли на API 23 и 35."
+    },
+    {
+      "id": "SET-01",
+      "screen": "Настройки",
+      "function": "Настройки, компас, хранение и приватность",
+      "reference_behavior": "Доступность настроек эталона неизвестна. Ограничения приватности заданы владельцем.",
+      "current_behavior": "Настройки карты и координат сохраняются, компас отделён от геолокации.",
+      "evidence_source": [
+        "AGENTS.md; migration/requirements.json; coordinates"
+      ],
+      "visual_difference": "Парного снимка нет.",
+      "functional_difference": "Полный перечень настроек и поведение компаса на Fold5 открыты.",
+      "priority": "P2",
+      "status": "STATIC_ONLY",
+      "fixing_commit": null,
+      "retest": "Базовый CI и статическая проверка приватности."
+    },
+    {
+      "id": "REL-01",
+      "screen": "Приёмка",
+      "function": "Установка, миграция, независимость и Fold5",
+      "reference_behavior": "Прямое самостоятельное обновление эталона не подтверждено.",
+      "current_behavior": "Независимый QA APK имеет другой идентификатор и одноразовую подпись.",
+      "evidence_source": [
+        "AGENTS.md; migration/requirements.json; CI"
+      ],
+      "visual_difference": "Физический Fold5 не предоставлен.",
+      "functional_difference": "Миграция и пользовательская приёмка открыты.",
+      "priority": "P0",
+      "status": "BLOCKED",
+      "fixing_commit": null,
+      "retest": "NOT_RUN"
+    }
+  ],
+  "blocked_requirements": [
+    {
+      "id": "REF-ACCESS",
+      "scope": "Меню и остальные состояния",
+      "reason": "Повторный запуск неизменённого эталона остановился на диалоге целостности. Сохранены снимок, дерево UI и logcat."
+    },
+    {
+      "id": "REF-SCREENS",
+      "scope": "13 экранов",
+      "reason": "Обязательные разделы внесены в реестр. Полный набор парных снимков отсутствует."
+    },
+    {
+      "id": "FOLD",
+      "scope": "Samsung Galaxy Z Fold5",
+      "reason": "Физическая проверка и миграция требуют отдельной приёмки."
+    },
+    {
+      "id": "VENDORS",
+      "scope": "OsmAnd, Organic Maps и Locus Map",
+      "reason": "GDAL открыл образцы; независимый импорт в трёх приложениях не подтверждён."
+    }
+  ],
+  "repository_requirements": [
+    {
+      "id": "ui-map",
+      "title": "Главный экран карты, все панели, значки и управление",
+      "entries": [
+        "MAP-01",
+        "MAP-02",
+        "MAP-03"
+      ]
+    },
+    {
+      "id": "ui-menus",
+      "title": "Все меню, вкладки, диалоги и настройки",
+      "entries": [
+        "MENU-01"
+      ]
+    },
+    {
+      "id": "catalog",
+      "title": "54 онлайн-источника, 3 набора и 7 групп",
+      "entries": [
+        "LAYERS-01"
+      ]
+    },
+    {
+      "id": "layers",
+      "title": "Менеджер карт, наборов и слоёв",
+      "entries": [
+        "LAYERS-01"
+      ]
+    },
+    {
+      "id": "offline-formats",
+      "title": "Все ранее поддержанные офлайн-форматы",
+      "entries": [
+        "LAYERS-01",
+        "IO-01"
+      ]
+    },
+    {
+      "id": "cache",
+      "title": "Полный механизм кеша и скачивания областей",
+      "entries": [
+        "LAYERS-01"
+      ]
+    },
+    {
+      "id": "cache-export",
+      "title": "Перенос сохранённых карт одним файлом",
+      "entries": [
+        "LAYERS-01",
+        "IO-01"
+      ]
+    },
+    {
+      "id": "points",
+      "title": "Все действия с метками и карточкой метки",
+      "entries": [
+        "POINTS-01"
+      ]
+    },
+    {
+      "id": "geometry",
+      "title": "Маршруты, области, треки и рисунки",
+      "entries": [
+        "ROUTE-01",
+        "GEOM-01"
+      ]
+    },
+    {
+      "id": "manager",
+      "title": "Файловый менеджер объектов, папок и групп",
+      "entries": [
+        "OBJECTS-01",
+        "FILES-01",
+        "FOLDER-01"
+      ]
+    },
+    {
+      "id": "symbols",
+      "title": "Значки, SVG, цвета, подписи и собственные библиотеки",
+      "entries": [
+        "SVG-01"
+      ]
+    },
+    {
+      "id": "media",
+      "title": "Фото, видео, аудио и текстовые вложения",
+      "entries": [
+        "MEDIA-01"
+      ]
+    },
+    {
+      "id": "import-export",
+      "title": "Все форматы импорта и экспорта объектов",
+      "entries": [
+        "IO-01"
+      ]
+    },
+    {
+      "id": "filters",
+      "title": "Поиск, фильтры и видимость объектов",
+      "entries": [
+        "OBJECTS-01"
+      ]
+    },
+    {
+      "id": "bluetooth",
+      "title": "Передача файлов и объектов по Bluetooth",
+      "entries": [
+        "IO-01"
+      ]
+    },
+    {
+      "id": "coordinates",
+      "title": "Координатные системы, сетки и измерения",
+      "entries": [
+        "MAP-03"
+      ]
+    },
+    {
+      "id": "dem",
+      "title": "DEM, высоты, рельеф и связанные инструменты",
+      "entries": [
+        "MAP-03",
+        "LAYERS-01"
+      ]
+    },
+    {
+      "id": "compass",
+      "title": "Компас и остальные разрешённые датчики",
+      "entries": [
+        "SET-01"
+      ]
+    },
+    {
+      "id": "settings",
+      "title": "Все сохранённые настройки и локальное хранение",
+      "entries": [
+        "SET-01"
+      ]
+    },
+    {
+      "id": "migration",
+      "title": "Обновление 26.1 без удаления и потери данных",
+      "entries": [
+        "REL-01"
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": "Согласованные ограничения приватности",
+      "entries": [
+        "SET-01",
+        "REL-01"
+      ]
+    },
+    {
+      "id": "independence",
+      "title": "Самостоятельная реализация и воспроизводимая сборка",
+      "entries": [
+        "REL-01"
+      ]
+    },
+    {
+      "id": "stability",
+      "title": "Стабильность, minSdk 23 и проверка на устройствах",
+      "entries": [
+        "MAP-01",
+        "MAP-02",
+        "REL-01"
+      ]
+    }
+  ],
+  "screen_review": {
+    "index_source": "https://chatgpt.com/library?file_id=libfile_45650a1dbc3081918ef2632b51a29b8b&account_id=personal",
+    "reference_evidence": "https://chatgpt.com/library?file_id=libfile_b81ff868c1f88191a17fcd904a9414ac&account_id=personal",
+    "entries": [
+      {
+        "screen": "Рабочий стол / карта",
+        "matrix_ids": [
+          "MAP-01",
+          "MAP-03"
+        ],
+        "implementation": "LocalMapActivity, LocalMapView",
+        "reference_visibility": "Пусковой кадр",
+        "finding": "На кадре 480×800 центры «+» и «−» около y=665 и y=723. Кнопки перенесены к нижнему краю, подпись карты отведена влево. Динамика карты эталона за диалогом целостности. По Fold5 увеличен контрастный прицел, системные полосы приведены к цвету панелей. Сетевой сбой открывается по отдельному индикатору в углу."
+      },
+      {
+        "screen": "Панель координат",
+        "matrix_ids": [
+          "MAP-03"
+        ],
+        "implementation": "coordinateOptions, center",
+        "reference_visibility": "Фрагмент пускового кадра",
+        "finding": "Виден только фрагмент плашки и масштабная линейка. Основной и дополнительный форматы, высота и сворачивание подтверждены в независимой сборке. Уменьшены шрифт и отступы, сокращены повторяющиеся названия систем, компактнее отрисована линейка. Точность координат сохраняется."
+      },
+      {
+        "screen": "Панель инструментов",
+        "matrix_ids": [
+          "MAP-02"
+        ],
+        "implementation": "LocalMapActivity.show, sizeDock",
+        "reference_visibility": "Пусковой кадр",
+        "finding": "Видны пять инструментов. Порядок сопоставлен по кадру, прокрутка и отдельный переключатель проверяются в QA. Действия оригинала недоступны. Видимые кнопки уменьшены, области нажатия 48 dp сохранены. На узком экране ряд инструментов прокручивается, переключатель закреплён."
+      },
+      {
+        "screen": "Меню",
+        "matrix_ids": [
+          "MENU-01"
+        ],
+        "implementation": "mainMenu, mapsMenu, marksMenu, orientationMenu",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Доступны QA-переходы пяти инструментов. Пункты и порядок эталона открыты для сверки."
+      },
+      {
+        "screen": "Слои",
+        "matrix_ids": [
+          "LAYERS-01"
+        ],
+        "implementation": "MapLayersActivity",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Управление видимостью, непрозрачностью и порядком подтверждено сценариями maplayers и maplayersreopen."
+      },
+      {
+        "screen": "Карты и источники",
+        "matrix_ids": [
+          "LAYERS-01"
+        ],
+        "implementation": "MapCatalogActivity, OnlineMapActivity",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "QA проверил переходы к каталогу, выбор подложки и возврат к MBTiles. Нужна сверка структуры каталога эталона. При сбое DNS встроенные слои ESRI используют второй адрес того же сервиса. 43 из 54 разовых проб дали растровый тайл. Для 12 слоёв ESRI байты совпали на двух хостах. Каталог и настройки кеша используют утверждённую синюю палитру. Названия проверены по строкам эталона. USGS Contours использует официальный рабочий адрес, закрытые источники показывают сохранённый кеш."
+      },
+      {
+        "screen": "Объекты / встроенный режим",
+        "matrix_ids": [
+          "OBJECTS-01"
+        ],
+        "implementation": "ObjectManagerActivity",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Групповые операции, поиск, фильтры и восстановление покрыты objectmanager и managerfilters."
+      },
+      {
+        "screen": "Файловый менеджер",
+        "matrix_ids": [
+          "FILES-01",
+          "FOLDER-01"
+        ],
+        "implementation": "ProjectsActivity, ObjectManagerActivity",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Штатный список проектов и межпроектные переносы покрыты objectmanager и clipboard. Требуется сравнение режимов и переходов."
+      },
+      {
+        "screen": "Карточка объекта",
+        "matrix_ids": [
+          "POINTS-01",
+          "MEDIA-01"
+        ],
+        "implementation": "LocalMapActivity.picked, AttachmentsActivity",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Открытие карточки и привязка фото подтверждены markerlifecycle и markerlifecyclereopen. Добавлен локальный предпросмотр UTF-8 и хранение исходных байтов .txt в KMZ."
+      },
+      {
+        "screen": "Редактор точки и значков",
+        "matrix_ids": [
+          "POINTS-01",
+          "SVG-01"
+        ],
+        "implementation": "LocalMapActivity.editObject, ObjectManagerActivity",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Правка названия, координат, описания и SVG подтверждена после перезапуска и импорта KMZ. Черновик формы восстанавливается после пересоздания Activity при совпадении исходного объекта."
+      },
+      {
+        "screen": "Маршруты и области",
+        "matrix_ids": [
+          "ROUTE-01",
+          "GEOM-01"
+        ],
+        "implementation": "GeometryEditorActivity, LocalMapActivity.startDrawing",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Рисование на карте, редактор вершин и черновики есть в независимой реализации. Сопоставление меню и полного цикла открыто."
+      },
+      {
+        "screen": "Импорт / экспорт",
+        "matrix_ids": [
+          "IO-01"
+        ],
+        "implementation": "ProjectsActivity, FormatExportActivity",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Архив QA подтверждает повторный импорт KMZ с SVG и фото. Параметры и порядок экранов эталона открыты для сверки."
+      },
+      {
+        "screen": "Настройки и офлайн-карты",
+        "matrix_ids": [
+          "SET-01",
+          "LAYERS-01"
+        ],
+        "implementation": "display, CacheExportActivity, CompositionDownloadActivity, DemActivity",
+        "reference_visibility": "Закрыто диалогом целостности",
+        "finding": "Настройки отображения и локальный кеш реализованы. Требуются сверка параметров эталона и проверка компаса на Fold5. Каталог и настройки кеша используют утверждённую синюю палитру. Названия проверены по строкам эталона. USGS Contours использует официальный рабочий адрес, закрытые источники показывают сохранённый кеш."
+      }
+    ]
+  }
+}

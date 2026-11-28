@@ -1,0 +1,29 @@
+{
+  "source": "8d268078aec0f0b45924fe888e11fa28ff0fe4dd",
+  "run": 43146921585,
+  "conclusion": "SUCCESS",
+  "api23": {
+    "job": 130947068956,
+    "passed": 46,
+    "records": 46,
+    "offlineformats": 748,
+    "managerrotation": 379
+  },
+  "api35": {
+    "job": 130947068920,
+    "passed": 46,
+    "records": 46,
+    "offlineformats": 748,
+    "managerrotation": 373
+  },
+  "jvm": "success35/82806/BMP754/Ozi66/Geo432/host27/source78/548classes",
+  "scope": "Ozi explicit pair and Confirm import PNG/JPEG/BMP24/BMP32; global project/CAS/cancel/reopen/Arimo/actions; BMP stride/padding/top-bottom/highbyte opaque; rotation/shear/literal native pixels/NoData/unsupported layouts/limits; shared converter and renderer",
+  "data": "KML/assets/source/old target/other project/network0 plus HGT/MBTiles/cache/profile/restart/geometry guards really PASS; MANAGER_LAUNCH owner/replaced/firstDestroyed/portrait on both",
+  "archives": "sourceSHA/outer/inner/all550+554 member hashes verified",
+  "images_viewed": 16,
+  "visual_scope": "all12 current GeoTIFF/OziPNG/BMP prompt+saved frames plus4 profile/HGT restart; remaining extracted PNG not claimed viewed, no full reference acceptance",
+  "observation_api23_bmp_prompt": "prior PNG CAS rejection Toast remains below dialog; new BMP prompt and both actions are unobscured. Correct source filename qa_ozi.bmp; not a BMP precondition error.",
+  "transport": "same kernel boot guard before/after native; one actual API35 device-offline pull recovery in geometrynewholeguards, sameBoot=true/retry1/return0/13 files 0skipped; no instrumentation retry. API23 no recovery event. Original failed runs retained separately.",
+  "gif": "not included, uncommitted next WIP",
+  "acceptance": "open; all23 IDs separate implementation/acceptance, accepted0, release gate25 unchanged; official lint gap not PASS"
+}

@@ -1,0 +1,78 @@
+package org.rabochaya.projects;
+import android.app.*;import android.os.Bundle;import android.graphics.*;import android.media.MediaPlayer;import android.widget.*;import java.io.*;import java.util.concurrent.*;
+/** Private in-app media preview: no shared URI, external viewer or network. */
+public final class MediaPlaybackActivity extends Activity {
+ private LinearLayout root;private TextView status;private VideoView video;private MediaPlayer audio;private Bitmap bitmap;private File temporary;private volatile boolean disposed;private boolean foreground,prepared,resumePlayback=true;
+ private int playbackPosition,textPosition;
+ private ScrollView textScroll;
+ private final ExecutorService worker=Executors.newSingleThreadExecutor();
+ protected void onCreate(Bundle state){super.onCreate(state);if(state!=null){playbackPosition=state.getInt("playback_position");textPosition=state.getInt("text_position");resumePlayback=state.getBoolean("resume_playback",true);}root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(0xff232d1d);WorkspaceUi.systemBars(this);setContentView(root);status=new TextView(this);status.setTypeface(WorkspaceUi.font(this));status.setTextColor(MapHud.INK);status.setPadding(12,12,12,12);status.setText("Открытие локального вложения…");root.addView(status);Button back=new Button(this);back.setText("Назад");back.setTypeface(WorkspaceUi.font(this));back.setTextColor(WorkspaceUi.TEXT);back.setBackground(WorkspaceUi.panel(this));back.setOnClickListener(v->finish());root.addView(back);load();}
+ private void load(){worker.execute(()->{ProjectStore store=null;try{
+  store=new ProjectStore(this);KmlProject p=store.load(getIntent().getLongExtra("project",-1));org.w3c.dom.Element f=p.byId(getIntent().getStringExtra("feature"));if(f==null)throw new IOException("Объект удалён");MediaLinks.Item found=null;for(MediaLinks.Item item:MediaLinks.list(f))if(item.id.equals(getIntent().getStringExtra("attachment")))found=item;if(found==null)throw new IOException("Вложение удалено");final MediaLinks.Item item=found;byte[] bytes=p.assets.get(MediaLinks.path(p,item.href));if(bytes==null)throw new IOException("Файл вложения отсутствует");
+  if(item.mime.startsWith("image/")){
+   BitmapFactory.Options options=new BitmapFactory.Options();options.inJustDecodeBounds=true;BitmapFactory.decodeByteArray(bytes,0,bytes.length,options);if(options.outWidth<1||options.outHeight<1||options.outWidth>16384||options.outHeight>16384)throw new IOException("Изображение не поддерживается или слишком велико");options.inJustDecodeBounds=false;options.inSampleSize=1;while(options.outWidth/options.inSampleSize>1024||options.outHeight/options.inSampleSize>1024)options.inSampleSize*=2;options.inPreferredConfig=Bitmap.Config.RGB_565;final Bitmap image=BitmapFactory.decodeByteArray(bytes,0,bytes.length,options);if(image==null)throw new IOException("Не удалось декодировать изображение");runOnUiThread(()->{if(disposed){image.recycle();return;}bitmap=image;ImageView view=new ImageView(this);view.setImageBitmap(image);view.setScaleType(ImageView.ScaleType.FIT_CENTER);view.setContentDescription("Локальное фото: "+item.name);root.addView(view,new LinearLayout.LayoutParams(-1,0,1));status.setText("Фото готово: "+item.name);});
+  }else if("text/plain".equals(item.mime)){
+   openText(item,bytes);
+  }else if(item.mime.startsWith("audio/")||item.mime.startsWith("video/")){
+   File file=File.createTempFile("rk-private-preview-",".media",getCacheDir());try{try(FileOutputStream out=new FileOutputStream(file)){out.write(bytes);out.getFD().sync();}if(disposed){file.delete();return;}}catch(Exception e){file.delete();throw e;}
+   runOnUiThread(()->{if(disposed){file.delete();return;}temporary=file;play(item);});
+  }else throw new IOException("Просмотр этого формата не поддерживается; файл сохраняется в KMZ");
+ }catch(final Exception e){runOnUiThread(()->{if(!disposed)status.setText("Не удалось открыть: "+e.getMessage());});}finally{if(store!=null)store.close();}});}
+ private void openText(MediaLinks.Item item,byte[] bytes)throws IOException{
+  java.nio.charset.CharsetDecoder decoder=java.nio.charset.StandardCharsets.UTF_8.newDecoder();
+  char[] preview=new char[32768];
+  int used=0;
+  boolean truncated;
+  try(Reader reader=new InputStreamReader(new ByteArrayInputStream(bytes),decoder)){
+   int count;
+   while(used<preview.length&&(count=reader.read(preview,used,preview.length-used))!=-1)used+=count;
+   truncated=reader.read()!=-1;
+  }catch(java.nio.charset.CharacterCodingException invalid){
+   throw new IOException("Для просмотра текста нужна кодировка UTF-8",invalid);
+  }
+  if(truncated&&used>0&&Character.isHighSurrogate(preview[used-1]))used--;
+  String text=new String(preview,0,used);
+  runOnUiThread(()->{
+   if(disposed)return;
+   TextView content=new TextView(this);
+   content.setTypeface(WorkspaceUi.font(this));
+   content.setTextColor(MapHud.INK);
+   int inset=WorkspaceUi.dp(this,12);
+   content.setPadding(inset,inset,inset,inset);
+   content.setTextIsSelectable(true);
+   content.setText(text);
+   ScrollView scroll=new ScrollView(this);
+   scroll.addView(content);
+   textScroll=scroll;
+  root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
+  if(textPosition>0)scroll.post(()->{if(!disposed)scroll.scrollTo(0,textPosition);});
+   status.setText((truncated?"Начало текста: ":"Текст готов: ")+item.name);
+  });
+ }
+ private void play(MediaLinks.Item item){
+  if(item.mime.startsWith("video/")){video=new VideoView(this);root.addView(video,new LinearLayout.LayoutParams(-1,0,1));MediaController controls=new MediaController(this);controls.setAnchorView(video);video.setMediaController(controls);video.setOnPreparedListener(p->{if(!disposed){status.setText("Видео готово: "+item.name);prepared=true;video.seekTo(playbackPosition);if(foreground&&resumePlayback)video.start();}});video.setOnErrorListener((p,what,extra)->{status.setText("Не удалось воспроизвести видео: "+what+"/"+extra);return true;});video.setVideoPath(temporary.getAbsolutePath());}
+  else {try{audio=new MediaPlayer();audio.setDataSource(temporary.getAbsolutePath());audio.setOnPreparedListener(p->{if(!disposed){status.setText("Аудио готово: "+item.name);prepared=true;p.seekTo(playbackPosition);if(foreground&&resumePlayback)p.start();}});audio.setOnErrorListener((p,what,extra)->{status.setText("Не удалось воспроизвести аудио: "+what+"/"+extra);return true;});Button toggle=new Button(this);toggle.setText("Воспроизвести / пауза");toggle.setTextColor(0xff202020);toggle.setBackgroundColor(0xffe8ece3);toggle.setOnClickListener(v->{if(audio!=null)try{if(audio.isPlaying())audio.pause();else audio.start();}catch(IllegalStateException e){status.setText("Дождитесь подготовки аудио");}});root.addView(toggle);audio.prepareAsync();}catch(Exception e){status.setText("Не удалось открыть аудио: "+e.getMessage());}}
+ }
+ private void rememberPlayback(){
+  if(!prepared||!foreground)return;
+  if(video!=null){playbackPosition=video.getCurrentPosition();resumePlayback=video.isPlaying();}
+  else if(audio!=null)try{playbackPosition=audio.getCurrentPosition();resumePlayback=audio.isPlaying();}
+  catch(IllegalStateException ignored){}
+ }
+ protected void onSaveInstanceState(Bundle state){
+  rememberPlayback();
+  state.putInt("playback_position",playbackPosition);
+  state.putInt("text_position",textScroll==null?textPosition:textScroll.getScrollY());
+  state.putBoolean("resume_playback",resumePlayback);
+  super.onSaveInstanceState(state);
+ }
+ protected void onResume(){
+  super.onResume();foreground=true;
+  if(prepared&&resumePlayback){
+   if(video!=null)video.start();
+   else if(audio!=null)try{audio.start();}catch(IllegalStateException ignored){}
+  }
+ }
+ protected void onPause(){rememberPlayback();foreground=false;if(video!=null)video.pause();if(audio!=null)try{if(audio.isPlaying())audio.pause();}catch(IllegalStateException ignored){}super.onPause();}
+ protected void onDestroy(){disposed=true;if(bitmap!=null){bitmap.recycle();bitmap=null;}if(video!=null)video.stopPlayback();if(audio!=null){audio.release();audio=null;}if(temporary!=null)temporary.delete();worker.shutdown();super.onDestroy();}
+}

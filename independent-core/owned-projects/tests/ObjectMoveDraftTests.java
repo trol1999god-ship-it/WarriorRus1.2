@@ -1,0 +1,19 @@
+import org.rabochaya.projects.*;import org.w3c.dom.*;import javax.xml.parsers.*;import java.io.*;import java.util.*;
+public final class ObjectMoveDraftTests {
+ static int checks;static void check(boolean v){checks++;if(!v)throw new AssertionError("move draft "+checks);}
+ static void bad(Runnable r){boolean rejected=false;try{r.run();}catch(IllegalArgumentException e){rejected=true;}check(rejected);}
+ public static void main(String[] args)throws Exception{
+  DocumentBuilderFactory f=DocumentBuilderFactory.newInstance();f.setNamespaceAware(true);Element root=f.newDocumentBuilder().parse(new ByteArrayInputStream("<Document xmlns='http://www.opengis.net/kml/2.2'><Folder><name>Target</name><Placemark><name>Nested</name></Placemark></Folder><Placemark><name>Point</name></Placemark><Placemark><name>Other</name></Placemark></Document>".getBytes("UTF-8"))).getDocumentElement();String token=ObjectTree.token(root);List<ObjectTree.Row> rows=ObjectTree.rows(root);ObjectMoveDraft d=ObjectMoveDraft.capture(7,token,"session-a",rows,Arrays.asList("1","2"),"0","Root / Target",1);
+  check(d.restore(7,root,"session-a").equals(Arrays.asList("1","2")));check(d.destination.equals("0")&&d.label.equals("Root / Target")&&d.outside==1);check(d.token.equals(token));check(d.restore(8,root,"session-a").isEmpty());check(d.restore(7,root,"session-b").isEmpty());check(d.restore(7,root,null).isEmpty());check(d.restore(7,null,"session-a").isEmpty());check(ObjectTree.token(root).equals(token));
+  int[] indices=d.indices();indices[0]=999;check(d.restore(7,root,"session-a").size()==2);int[] input={2};ObjectMoveDraft defensive=new ObjectMoveDraft(7,token,"session-a",input,"0","Target",0);input[0]=999;check(defensive.restore(7,root,"session-a").equals(Arrays.asList("1")));
+  for(String target:new String[]{"1","999","0/0"})check(ObjectMoveDraft.capture(7,token,"session-a",rows,Arrays.asList("1"),target,"Target",0).restore(7,root,"session-a").isEmpty());
+  check(ObjectMoveDraft.capture(7,token,"session-a",rows,Arrays.asList("0"),"0","Self",0).restore(7,root,"session-a").isEmpty());check(ObjectMoveDraft.capture(7,token,"session-a",rows,Arrays.asList("0"),"0/0","Child",0).restore(7,root,"session-a").isEmpty());check(ObjectMoveDraft.capture(7,token,"session-a",rows,Arrays.asList("0/0"),"","Root",0).restore(7,root,"session-a").equals(Arrays.asList("0/0")));
+  bad(()->ObjectMoveDraft.capture(7,token,"session-a",rows,Arrays.asList("bad"),"0","Target",0));
+  for(int[] invalid:new int[][]{{},{-1},{10000},{2,2}})bad(()->new ObjectMoveDraft(7,token,"s",invalid,"0","Target",0));
+  bad(()->new ObjectMoveDraft(0,token,"s",new int[]{2},"0","Target",0));bad(()->new ObjectMoveDraft(7,null,"s",new int[]{2},"0","Target",0));bad(()->new ObjectMoveDraft(7,"new-token","s",new int[]{2},"0","Target",0));bad(()->new ObjectMoveDraft(7,token,"",new int[]{2},"0","Target",0));bad(()->new ObjectMoveDraft(7,token,"s",new int[]{2},"../0","Target",0));bad(()->new ObjectMoveDraft(7,token,"s",new int[]{2},"0","Target",2));bad(()->new ObjectMoveDraft(7,token,"s",new int[]{2},"0","",0));
+  Element deep=(Element)root.cloneNode(true);ObjectTree.createFolder(deep,"0",token,"Child folder");String deepToken=ObjectTree.token(deep);check(ObjectMoveDraft.capture(7,deepToken,"s",ObjectTree.rows(deep),Arrays.asList("0"),"0/1","Descendant folder",0).restore(7,deep,"s").isEmpty());check(ObjectMoveDraft.capture(7,token,"s",rows,Arrays.asList("0","0/0"),"","Root",1).restore(7,root,"s").equals(Arrays.asList("0")));
+  bad(()->new ObjectMoveDraft(7,token,"s",new int[10001],"0","Target",0));bad(()->new ObjectMoveDraft(7,token,"s",new int[]{2},"0","x".repeat(40001),0));
+  root.insertBefore(ObjectTree.resolve(root,"2"),ObjectTree.resolve(root,"1"));check(d.restore(7,root,"session-a").isEmpty());check(d.token.equals(token));
+  System.out.println("PASS ObjectMoveDraft: "+checks+" assertions");
+ }
+}

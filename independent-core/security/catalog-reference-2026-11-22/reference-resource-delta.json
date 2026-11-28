@@ -1,0 +1,116 @@
+{
+  "reference": {
+    "sha256": "5ac3c7091cecae66942cdffee7c91ca0eb96be5eae902e85b0d6d9920643c142",
+    "dex_count": 1,
+    "native_abis": [],
+    "xml_layout_names": [
+      "res/layout/notification_media_cancel_action.xml",
+      "res/layout/preference_widget_checkbox.xml",
+      "res/layout/design_menu_item_action_area.xml",
+      "res/layout/support_simple_spinner_dropdown_item.xml",
+      "res/layout/design_layout_tab_icon.xml",
+      "res/layout/design_navigation_item_separator.xml",
+      "res/layout/abc_popup_menu_item_layout.xml",
+      "res/layout/abc_list_menu_item_radio.xml",
+      "res/layout/design_navigation_menu_item.xml",
+      "res/layout/preference_list_fragment.xml",
+      "res/layout/notification_media_action.xml",
+      "res/layout/design_layout_tab_text.xml",
+      "res/layout/design_navigation_menu.xml",
+      "res/layout/abc_activity_chooser_view_list_item.xml",
+      "res/layout/abc_list_menu_item_layout.xml",
+      "res/layout/design_navigation_item_subheader.xml",
+      "res/layout/abc_action_bar_title_item.xml",
+      "res/layout/preference_category.xml",
+      "res/layout/abc_action_bar_view_list_nav_layout.xml",
+      "res/layout/abc_action_bar_up_container.xml",
+      "res/layout/abc_screen_simple_overlay_action_mode.xml",
+      "res/layout/design_navigation_item_header.xml",
+      "res/layout/abc_action_menu_layout.xml",
+      "res/layout/abc_expanded_menu_layout.xml",
+      "res/layout/preference_widget_switch_compat.xml",
+      "res/layout/abc_list_menu_item_checkbox.xml",
+      "res/layout/abc_search_dropdown_item_icons_2line.xml",
+      "res/layout/abc_screen_content_include.xml",
+      "res/layout/design_navigation_item.xml",
+      "res/layout/abc_list_menu_item_icon.xml",
+      "res/layout/abc_action_menu_item_layout.xml",
+      "res/layout/preference_recyclerview.xml",
+      "res/layout/abc_action_mode_bar.xml",
+      "res/layout/abc_activity_chooser_view.xml",
+      "res/layout/abc_screen_simple.xml",
+      "res/layout/abc_action_mode_close_item_material.xml",
+      "res/layout/design_layout_snackbar.xml",
+      "res/layout/select_dialog_item_material.xml"
+    ],
+    "screen_class_names": {
+      "LocalMapActivity": [
+        "Lorg/rabochaya/projects/LocalMapActivity;"
+      ],
+      "MapsActivity": [
+        "Llocal/private/maps/MapsActivity;"
+      ],
+      "ProjectsActivity": [
+        "Lorg/rabochaya/projects/ProjectsActivity;"
+      ],
+      "ObjectManagerActivity": [],
+      "MapCatalogActivity": [],
+      "OnlineMapActivity": [
+        "Lorg/rabochaya/projects/OnlineMapActivity;"
+      ],
+      "MapLayersActivity": [],
+      "AttachmentsActivity": [
+        "Lorg/rabochaya/projects/AttachmentsActivity;"
+      ],
+      "GeometryEditorActivity": [],
+      "CompassActivity": [
+        "Lorg/rabochaya/projects/CompassActivity;"
+      ],
+      "FormatExportActivity": [],
+      "CacheExportActivity": []
+    }
+  },
+  "independent_previous_qa": {
+    "sha256": "750ef357625d89f6c4771222391d6b7b3ef22b7aafe0ebf7d5304cd427206045",
+    "dex_count": 1,
+    "native_abis": [],
+    "xml_layout_names": [],
+    "screen_class_names": {
+      "LocalMapActivity": [
+        "Lorg/rabochaya/projects/LocalMapActivity;"
+      ],
+      "MapsActivity": [],
+      "ProjectsActivity": [
+        "Lorg/rabochaya/projects/ProjectsActivity;"
+      ],
+      "ObjectManagerActivity": [
+        "Lorg/rabochaya/projects/ObjectManagerActivity;"
+      ],
+      "MapCatalogActivity": [
+        "Lorg/rabochaya/projects/MapCatalogActivity;"
+      ],
+      "OnlineMapActivity": [
+        "Lorg/rabochaya/projects/OnlineMapActivity;"
+      ],
+      "MapLayersActivity": [
+        "Lorg/rabochaya/projects/MapLayersActivity;"
+      ],
+      "AttachmentsActivity": [
+        "Lorg/rabochaya/projects/AttachmentsActivity;"
+      ],
+      "GeometryEditorActivity": [
+        "Lorg/rabochaya/projects/GeometryEditorActivity;"
+      ],
+      "CompassActivity": [
+        "Lorg/rabochaya/projects/CompassActivity;"
+      ],
+      "FormatExportActivity": [
+        "Lorg/rabochaya/projects/FormatExportActivity;"
+      ],
+      "CacheExportActivity": [
+        "Lorg/rabochaya/projects/CacheExportActivity;"
+      ]
+    }
+  },
+  "comparison_scope": "DEX class names and packaged XML only. Class name correspondence neither identifies complete screen behavior nor establishes visual equivalence."
+}

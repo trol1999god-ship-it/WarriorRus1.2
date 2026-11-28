@@ -1,0 +1,18 @@
+{
+  "repository": "OSGeo/gdal",
+  "commit": "9bb42f5a7b13e9bd1b0991ec0140b71343576e04",
+  "files": {
+    "oziSrsSpec": {
+      "sha": "74ca49a2ce03ab3127ec7f0256aeddd89c4b65dd",
+      "url": "https://github.com/OSGeo/gdal/blob/9bb42f5a7b13e9bd1b0991ec0140b71343576e04/ogr/ogr_srs_ozi.cpp"
+    },
+    "oziDriverCurrent": {
+      "sha": "baaa4be9f8644203f0db382ff2be6b10ef5627c3",
+      "url": "https://github.com/OSGeo/gdal/blob/9bb42f5a7b13e9bd1b0991ec0140b71343576e04/frmts/map/mapdataset.cpp"
+    },
+    "gdalMiscOzi": {
+      "sha": "8052713688144b29661473038a6fc0eb827a0cf3",
+      "url": "https://github.com/OSGeo/gdal/blob/9bb42f5a7b13e9bd1b0991ec0140b71343576e04/gcore/gdal_misc.cpp"
+    }
+  }
+}

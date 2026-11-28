@@ -1,0 +1,57 @@
+{
+  "api": 37,
+  "image": "system-images;android-37.0;google_apis;x86_64",
+  "attempts": [
+    {
+      "run_id": 45243852282,
+      "job_id": 137937136686,
+      "phase": "emulator_boot",
+      "result": "timeout before app installation",
+      "excerpt": [
+        "2026-11-23T19:02:44.5885755Z INFO         | Android emulator version 37.3.10.0 (build_id 16970787) (CL:N/A)",
+        "2026-11-23T19:02:44.5887535Z INFO         | Found systemPath /usr/local/lib/android/sdk/system-images/android-37.0/google_apis/x86_64/",
+        "2026-11-23T19:02:44.8997002Z ERROR        | Unable to connect to adb daemon on port: 5037",
+        "2026-11-23T19:12:57.0613278Z ##[error]Timeout waiting for emulator to boot.",
+        "2026-11-23T19:12:59.1100080Z Android scenarios failed before creating results."
+      ]
+    },
+    {
+      "run_id": 45246225027,
+      "job_id": 137944033754,
+      "phase": "package_installation",
+      "result": "emulator booted, Android refused installation because of insufficient internal space",
+      "excerpt": [
+        "2026-11-23T19:12:39.9730892Z * daemon started successfully",
+        "2026-11-23T19:14:31.3521234Z [   45.148697] init: processing action (sys.boot_completed=1) from (/system/etc/init/hw/init.rc:1237)",
+        "2026-11-23T19:14:34.8081219Z adb: failed to install /home/runner/work/_temp/rk-qa/app.apk: ",
+        "2026-11-23T19:14:34.8137770Z android.os.ParcelableException: java.io.IOException: Requested internal only, but not enough space",
+        "2026-11-23T19:14:34.8161564Z Caused by: java.io.IOException: Requested internal only, but not enough space"
+      ]
+    },
+    {
+      "run_id": 45247040425,
+      "job_id": 137946835441,
+      "phase": "instrumentation_installation",
+      "result": "fresh Android boot; application installed; Android package service returned Broken pipe during instrumentation APK installation",
+      "excerpt": [
+        "disk.dataPartition.size=6144M\\",
+        "2026-11-23T19:18:43.1045438Z INFO         | Boot completed in 38960 ms",
+        "2026-11-23T19:18:48.3422864Z adb: failed to install /home/runner/work/_temp/rk-qa/tests.apk: cmd: Failure calling service package: Broken pipe (32)"
+      ]
+    },
+    {
+      "run_id": 45247768818,
+      "job_id": 137949369430,
+      "phase": "package_installation",
+      "result": "emulator reported boot complete and pm path android returned a framework package; package service returned Broken pipe during APK installation",
+      "excerpt": [
+        "2026-11-23T19:23:21.6394319Z INFO         | Boot completed in 54106 ms",
+        "2026-11-23T19:23:44.2444174Z package:/system/framework/framework-res.apk",
+        "2026-11-23T19:23:44.4964651Z INSTALL application and instrumentation",
+        "2026-11-23T19:23:48.0393977Z cmd: Failure calling service package: Broken pipe (32)",
+        "2026-11-23T19:23:48.0426364Z ##[error]The process '/usr/bin/sh' failed with exit code 1",
+        "2026-11-23T19:23:50.0221001Z Android scenarios failed before creating results."
+      ]
+    }
+  ]
+}

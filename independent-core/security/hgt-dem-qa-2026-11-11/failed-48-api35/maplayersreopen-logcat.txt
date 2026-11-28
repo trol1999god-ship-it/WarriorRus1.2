@@ -1,0 +1,1178 @@
+--------- beginning of system
+11-11 11:31:45.731   918   977 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#812) android.os.BinderProxy@54c0510@0
+--------- beginning of main
+11-11 11:31:45.736 13956 13956 W HWUI    : Unknown dataspace 0
+11-11 11:31:45.737  1153  1743 D EGL_emulation: app_time_stats: avg=99.09ms min=15.03ms max=1906.62ms count=23
+11-11 11:31:45.737   569   588 V WindowManager: Finish Transition (#812): created at 11-11 11:31:45.671 collect-started=0.012ms request-sent=3.031ms started=12.409ms ready=14.728ms sent=45.762ms finished=66.274ms
+11-11 11:31:45.738   918   977 V WindowManagerShell: Track 0 became idle
+11-11 11:31:45.738   918   977 V WindowManagerShell: All active transition animations finished
+11-11 11:31:45.741   569  1009 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 11:31:45.741   569  1009 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 11:31:45.749  1153  1153 D VRI[NexusLauncherActivity]: visibilityChanged oldVisibility=true newVisibility=false
+11-11 11:31:45.752   569  1854 D CoreBackPreview: Window{16a83e3 u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@59f8955, mPriority=0, mIsAnimationCallback=false}
+11-11 11:31:45.758 13956 13973 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+11-11 11:31:45.763  1153  1153 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=7}
+11-11 11:31:45.764 13956 13973 I EGL_emulation: Opening libGLESv2_emulation.so
+11-11 11:31:45.771   918  1052 D EGL_emulation: app_time_stats: avg=553.17ms min=2.06ms max=4191.24ms count=8
+11-11 11:31:45.783 13956 13973 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+11-11 11:31:45.797  1153  1743 D EGL_emulation: app_time_stats: avg=120.72ms min=9.63ms max=1900.35ms count=19
+11-11 11:31:45.805   153   153 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-11 11:31:45.805 13956 13973 I Gralloc4: mapper 4.x is not supported
+--------- beginning of kernel
+11-11 11:31:45.957     0     0 I servicemanager: Caller(pid=13956,uid=10209,sid=u:r:untrusted_app_32:s0:c209,c256,c512,c768) Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest. No alternative instances declared in VINTF.
+11-11 11:31:45.961 13956 13960 I rabochaya.karta: Compiler allocated 4219KB to compile void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+11-11 11:31:46.073   569   588 W ziparchive: Unable to open '/data/app/~~Eqa2xQFxbQefD1xXWwiN9Q==/org.rabochaya.karta-h0Ze5Fe1sAofkRulg4gWtw==/base.dm': No such file or directory
+11-11 11:31:46.074   569   588 I ActivityTaskManager: Displayed org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity for user 0: +402ms
+11-11 11:31:46.081   918  1013 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@3236628
+11-11 11:31:46.081   569  1009 D CoreBackPreview: Window{8e3b7f3 u0 Splash Screen org.rabochaya.karta EXITING}: Setting back callback null
+11-11 11:31:46.081   569  1009 W InputManager-JNI: Input channel object '8e3b7f3 Splash Screen org.rabochaya.karta (client)' was disposed without first being removed with the input manager!
+11-11 11:31:46.097  1153  1153 D BaseDepthController: setSurface:
+11-11 11:31:46.097  1153  1153 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+11-11 11:31:46.097  1153  1153 D BaseDepthController: 	mSurface: null
+11-11 11:31:46.097  1153  1153 D BaseDepthController: mSurface is null and mCurrentBlur is: 0
+11-11 11:31:46.097  1153  1153 D StateManager: goToState - fromState: Normal, toState: Normal, partial trace:
+11-11 11:31:46.097  1153  1153 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 31f9979659277bb965985aff1272c33e3c3c9e755b77166d20a2465454178f2c:4)
+11-11 11:31:46.097  1153  1153 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 31f9979659277bb965985aff1272c33e3c3c9e755b77166d20a2465454178f2c:1)
+11-11 11:31:46.097  1153  1153 D StateManager: 	at com.android.launcher3.statemanager.StatefulActivity.onStop(go/retraceme 31f9979659277bb965985aff1272c33e3c3c9e755b77166d20a2465454178f2c:34)
+11-11 11:31:46.097  1153  1153 D StatsLog: LAUNCHER_ONSTOP
+11-11 11:31:46.097   569  1872 I AppWidgetServiceImpl: setAppWidgetHidden() 0
+11-11 11:31:46.097  1153  1153 D StatsLog: LAUNCHER_GOOGLE_SEARCH_RESTORE_LIST_SIZE_AFTER_ACTIVITY_RESTART
+11-11 11:31:46.098   365   365 I netd    : tetherGetStats() -> {[]} <0.55ms>
+11-11 11:31:46.100  1153  1876 D OneSearchSuggestProvider: Shut down the binder channel
+11-11 11:31:46.103  1153  6378 I IPCThreadState: oneway function results for code 2 on binder at 0x7e6192a1c650 will be dropped but finished with status UNKNOWN_TRANSACTION
+11-11 11:31:46.103  1524  2697 I IPCThreadState: oneway function results for code 2 on binder at 0x7e6192a52ec0 will be dropped but finished with status UNKNOWN_TRANSACTION
+11-11 11:31:46.208 13956 13960 I rabochaya.karta: Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+11-11 11:31:46.440   569   689 D CompatChangeReporter: Compat change id reported: 214016041; UID 10209; state: ENABLED
+11-11 11:31:46.441   569   689 I ImeTracker: org.rabochaya.karta:3e6462b: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+11-11 11:31:46.441   569   689 I ImeTracker: org.rabochaya.karta:3e6462b: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-11 11:31:46.442  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+11-11 11:31:46.442  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+11-11 11:31:46.442  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=org.rabochaya.karta, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-11 11:31:46.442  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 11:31:46.442  1327  1327 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+11-11 11:31:46.443   569  1009 W PackageConfigPersister: App-specific configuration not found for packageName: org.rabochaya.karta and userId: 0
+11-11 11:31:46.784   569  2758 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+11-11 11:31:47.030 13956 13984 I HWUI    : Davey! duration=900ms; Flags=0, FrameTimelineVsyncId=705299, IntendedVsync=2127735102296, Vsync=2128068435616, InputEventId=0, HandleInputStart=2128070692598, AnimationStart=2128070693740, PerformTraversalsStart=2128070694641, DrawStart=2128074805546, FrameDeadline=2127751768962, FrameInterval=2128070565459, FrameStartTime=16666666, SyncQueued=2128076743093, SyncStart=2128076797744, IssueDrawCommandsStart=2128076844534, SwapBuffers=2128531935559, FrameCompleted=2128635278458, DequeueBufferDuration=2253, QueueBufferDuration=161831, GpuCompleted=2128635278458, SwapBuffersCompleted=2128619161795, DisplayPresentTime=0, CommandSubmissionCompleted=2128531935559, 
+11-11 11:31:47.042 13956 13969 I UiAutomation: Initialized for user 0 on display 0
+11-11 11:31:47.072   569  1009 D AccessibilityManagerService: changeCurrentUserForTestAutomationIfNeededLocked(0): ignoring because device doesn't support visible background users
+11-11 11:31:47.073   569  1009 I UiAutomationManager: Registering UiTestAutomationService (id=com.android.server.accessibility/UiAutomation, flags=0x0) when called by user 0
+11-11 11:31:47.076   569  1009 W MagnificationConnectionManager: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-11 11:31:47.077   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:47.077   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:47.077   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:47.078   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:47.078   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:47.078   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:47.078   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:47.078   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:47.078   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:47.079   569   569 D BatterySaverPolicy: accessibility changed to true, updating policy.
+11-11 11:31:47.086 13956 13986 V UiAutomation: Init UiAutomation@5c9b084[id=46, displayId=0, flags=0]
+11-11 11:31:47.102  1524  1840 I A       : NGA disabled since it's running Panthera and at least one a11y feature is on.
+11-11 11:31:47.102  1524  1840 I A       : (REDACTED) Nga state changed to %s
+11-11 11:31:47.102  1524  1840 I A       : (REDACTED) isTngActive=%s
+11-11 11:31:47.104  1430  1864 I A       : (REDACTED) Nga on-device enabled based on TNG:MA active state: %b
+11-11 11:31:47.104  1430  1864 I A       : (REDACTED) Nga on-device enabled based on TNG:MA active state: %b
+11-11 11:31:47.104  1430  1864 I A       : Unsubscribed to apa or classic variant change.
+11-11 11:31:47.112  1412  2105 I AiAiEcho: Settings changed for uri: content://settings/secure/accessibility_enabled
+11-11 11:31:47.112  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:31:47.112  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:31:47.112  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:31:47.112  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:31:47.112  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:31:47.112  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:31:47.112  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-11 11:31:47.113   918   918 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-11 11:31:47.114  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:31:47.114  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:31:47.114  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:31:47.114  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:31:47.114  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:31:47.114  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:31:47.114  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-11 11:31:47.121  1153  1153 D SsBaseTemplateCard: No text view can be set up
+11-11 11:31:47.121  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:31:47.122  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:31:47.122  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:31:47.122  1153  1153 I SsBaseTemplateCard: Secondary card pane is null
+11-11 11:31:48.623   569  1873 D WindowManager: captureDisplay
+11-11 11:31:48.700   431   860 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 11:31:48.703   569  1873 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 11:31:48.709   569  1009 D CoreBackPreview: Window{e75543b u0 PopupWindow:e4fad49}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@a7e2922, mPriority=0, mIsAnimationCallback=false}
+11-11 11:31:48.746  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+11-11 11:31:48.746  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+11-11 11:31:48.746  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=org.rabochaya.karta, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-11 11:31:48.747  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 11:31:48.747  1327  1327 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+11-11 11:31:48.747   569  1873 W PackageConfigPersister: App-specific configuration not found for packageName: org.rabochaya.karta and userId: 0
+11-11 11:31:48.861   431   538 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 11:31:49.314 13956 13956 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@540487c
+11-11 11:31:49.314   569  1854 D CoreBackPreview: Window{e75543b u0 PopupWindow:e4fad49}: Setting back callback null
+11-11 11:31:49.315   431   860 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 11:31:49.315   569  1009 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 11:31:49.317   569  1009 W InputManager-JNI: Input channel object 'e75543b PopupWindow:e4fad49 (client)' was disposed without first being removed with the input manager!
+11-11 11:31:49.318   569  1009 E WindowManager: Unknown window type: 1000
+11-11 11:31:49.321   569  1854 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_OVERRIDE
+11-11 11:31:49.321   569  1854 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_FULLSCREEN_OVERRIDE
+11-11 11:31:49.321   569  1854 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_ORIENTATION_OVERRIDE
+11-11 11:31:49.321   569  1854 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10209, packageName = null, attributionTag = null, token = android.os.Binder@e454c84, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+11-11 11:31:49.321   569  1854 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_RESIZEABLE_ACTIVITY_OVERRIDES
+11-11 11:31:49.321   569  1854 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+11-11 11:31:49.324   569  1854 I ActivityTaskManager: START u0 {cmp=org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity (has extras)} with LAUNCH_MULTIPLE from uid 10209 (BAL_ALLOW_VISIBLE_WINDOW) result code=0
+11-11 11:31:49.324   918   977 V WindowManagerShell: Transition requested (#813): android.os.BinderProxy@625ae9c TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=209 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity } baseActivity=ComponentInfo{org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity} topActivity=ComponentInfo{org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity} origActivity=null realActivity=ComponentInfo{org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity} numActivities=2 lastActiveTime=2130967 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@1e710a5} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{b128c7a org.rabochaya.projects.MapLayersActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=320 topActivityLetterboxHeight=640 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 813 }
+11-11 11:31:49.330   569   591 V WindowManager: Unknown focus tokens, dropping reportFocusChanged
+11-11 11:31:49.332   569  1009 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ENABLE_FAKE_FOCUS
+11-11 11:31:49.337   431   538 D AudioFlinger: mixer(0x780de65418e0) throttle end: throttle time(36)
+11-11 11:31:49.358   435   435 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+11-11 11:31:49.369   569  1854 D CoreBackPreview: Window{c192a59 u0 org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@d5d74cc, mPriority=0, mIsAnimationCallback=false}
+11-11 11:31:49.375 13956 13956 D AutofillManager: notifyViewReadyInner:1073741824
+11-11 11:31:49.376 13956 13956 D AutofillManager: notifyViewReadyInner:1073741825
+11-11 11:31:49.540   431   538 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 11:31:49.611   569   588 I ActivityTaskManager: Displayed org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity for user 0: +287ms
+11-11 11:31:49.612   918  2626 V WindowManagerShell: onTransitionReady(transaction=2443836445909)
+11-11 11:31:49.612   569   588 V WindowManager: Sent Transition (#813) createdAt=11-11 11:31:49.321 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=209 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity } baseActivity=ComponentInfo{org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity} topActivity=ComponentInfo{org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity} origActivity=null realActivity=ComponentInfo{org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity} numActivities=2 lastActiveTime=2130967 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{97c326b Task{afb0298 #209 type=standard A=10209:org.rabochaya.karta}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{7039164 org.rabochaya.projects.MapLayersActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=320 topActivityLetterboxHeight=640 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 813 }
+11-11 11:31:49.612   569   588 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+11-11 11:31:49.613   569   588 V WindowManager:     info={id=813 t=OPEN f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[
+11-11 11:31:49.613   569   588 V WindowManager:         {null m=OPEN f=FILLS_TASK leash=Surface(name=ActivityRecord{a165607 u0 org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity)/@0x8070af6 sb=Rect(0, 0 - 0, 0) eb=Rect(0, 0 - 320, 640) d=-1->0 r=-1->0:-1 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity},
+11-11 11:31:49.613   569   588 V WindowManager:         {null m=TO_BACK f=FILLS_TASK leash=Surface(name=ActivityRecord{cb9347b u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0xe14cb91 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}
+11-11 11:31:49.613   569   588 V WindowManager:     ]}
+11-11 11:31:49.617   918   977 V WindowManagerShell: onTransitionReady (#813) android.os.BinderProxy@625ae9c: {id=813 t=OPEN f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=OPEN f=FILLS_TASK leash=Surface(name=ActivityRecord{a165607 u0 org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity)/@0xe0f2c2b sb=Rect(0, 0 - 0, 0) eb=Rect(0, 0 - 320, 640) d=-1->0 r=-1->0:-1 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity},{null m=TO_BACK f=FILLS_TASK leash=Surface(name=ActivityRecord{cb9347b u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0x2d1888 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}]}
+11-11 11:31:49.617   569  1873 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 11:31:49.617   918   977 V WindowManagerShell: Playing animation for (#813) android.os.BinderProxy@625ae9c@0
+11-11 11:31:49.617   918   977 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@31e155
+11-11 11:31:49.617   918   977 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@4a3076a
+11-11 11:31:49.617   918   977 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@ba8a45b
+11-11 11:31:49.617   918   977 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@243e4f8
+11-11 11:31:49.617   918   977 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@67c3dd1
+11-11 11:31:49.617   918   977 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+11-11 11:31:49.617   918   977 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@e623036
+11-11 11:31:49.617   918   977 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@a432b37
+11-11 11:31:49.617   918   977 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=813 t=OPEN f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=OPEN f=FILLS_TASK leash=Surface(name=ActivityRecord{a165607 u0 org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity)/@0xe0f2c2b sb=Rect(0, 0 - 0, 0) eb=Rect(0, 0 - 320, 640) d=-1->0 r=-1->0:-1 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity},{null m=TO_BACK f=FILLS_TASK leash=Surface(name=ActivityRecord{cb9347b u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0x2d1888 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}]}
+11-11 11:31:49.617   918   977 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[OPEN,TO_FRONT] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@7787968, appThread = android.app.IApplicationThread$Stub$Proxy@1b99181, debugName = OverlaySwipeBack }}
+11-11 11:31:49.617   918   977 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@11e7226, appThread = android.app.IApplicationThread$Stub$Proxy@225e67, debugName = LauncherToDream }}
+11-11 11:31:49.617   918   977 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@20fc414, appThread = android.app.IApplicationThread$Stub$Proxy@9ecc4bd, debugName = QuickstepLaunchHome }}
+11-11 11:31:49.617   918   977 V WindowManagerShell:  Delegate animation for (#813) to null
+11-11 11:31:49.617   918   977 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultTransitionHandler@863100e
+11-11 11:31:49.617   918   977 V WindowManagerShell: start default transition animation, info = {id=813 t=OPEN f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=OPEN f=FILLS_TASK leash=Surface(name=ActivityRecord{a165607 u0 org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity)/@0xe0f2c2b sb=Rect(0, 0 - 0, 0) eb=Rect(0, 0 - 320, 640) d=-1->0 r=-1->0:-1 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity},{null m=TO_BACK f=FILLS_TASK leash=Surface(name=ActivityRecord{cb9347b u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0x2d1888 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}]}
+11-11 11:31:49.618   918   977 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@cd7af5d animAttr=0x5 type=OPEN isEntrance=false
+11-11 11:31:49.623   918   977 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@ede881e animAttr=0x4 type=OPEN isEntrance=true
+11-11 11:31:49.632   918   977 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@863100e
+11-11 11:31:49.642   918   977 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#813) android.os.BinderProxy@625ae9c@0
+11-11 11:31:49.644   569   588 V WindowManager: Finish Transition (#813): created at 11-11 11:31:49.321 collect-started=0.032ms request-sent=2.617ms started=3.63ms ready=11.462ms sent=286.312ms finished=322.734ms
+11-11 11:31:49.646   918   977 V WindowManagerShell: Track 0 became idle
+11-11 11:31:49.646   918   977 V WindowManagerShell: All active transition animations finished
+11-11 11:31:49.646   569  1854 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 11:31:49.647   569   689 I ImeTracker: org.rabochaya.karta:59376282: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+11-11 11:31:49.647   569   689 I ImeTracker: org.rabochaya.karta:59376282: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-11 11:31:49.647   569  1009 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 11:31:49.648  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+11-11 11:31:49.649  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+11-11 11:31:49.649  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=org.rabochaya.karta, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-11 11:31:49.649  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 11:31:49.649  1327  1327 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+11-11 11:31:49.649   569  1854 W PackageConfigPersister: App-specific configuration not found for packageName: org.rabochaya.karta and userId: 0
+11-11 11:31:49.662 13956 13956 D VRI[LocalMapActivity]: visibilityChanged oldVisibility=true newVisibility=false
+11-11 11:31:50.977 13956 13973 D EGL_emulation: app_time_stats: avg=342.77ms min=10.59ms max=1297.47ms count=4
+11-11 11:31:51.431   569  1854 D WindowManager: captureDisplay
+11-11 11:31:51.464   918   977 V WindowManagerShell: Transition requested (#814): android.os.BinderProxy@c9bb3b8 TransitionRequestInfo { type = CLOSE, triggerTask = null, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 814 }
+11-11 11:31:51.466   569  1873 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_OVERRIDE
+11-11 11:31:51.466   569  1873 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_FULLSCREEN_OVERRIDE
+11-11 11:31:51.466   569  1873 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_ORIENTATION_OVERRIDE
+11-11 11:31:51.466   569  1873 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10209, packageName = null, attributionTag = null, token = android.os.Binder@e454c84, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+11-11 11:31:51.466   569  1873 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_RESIZEABLE_ACTIVITY_OVERRIDES
+11-11 11:31:51.466   569  1873 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+11-11 11:31:51.467   569  1873 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity (has extras)} with LAUNCH_MULTIPLE from uid 10209 (BAL_ALLOW_VISIBLE_WINDOW) result code=0
+11-11 11:31:51.469   569  1873 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ENABLE_FAKE_FOCUS
+11-11 11:31:51.475   435   435 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+11-11 11:31:51.479 13956 13956 D AutofillManager: Fill dialog is enabled:false, hints=[password, passwordAuto, creditCardNumber, creditCardSecurityCode, creditCardExpirationDate]
+11-11 11:31:51.510   569  1873 D CoreBackPreview: Window{46ebb01 u0 org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@a201b94, mPriority=0, mIsAnimationCallback=false}
+11-11 11:31:51.524 13956 13956 D AutofillManager: notifyViewReadyInner:1073741824
+11-11 11:31:51.524 13956 13956 D AutofillManager: notifyViewReadyInner:1073741825
+11-11 11:31:51.524 13956 13956 D AutofillManager: notifyViewReadyInner:1073741826
+11-11 11:31:51.525 13956 13956 D AutofillManager: notifyViewReadyInner:1073741827
+11-11 11:31:51.525 13956 13956 D AutofillManager: notifyViewReadyInner:1073741828
+11-11 11:31:51.546   918  2626 V WindowManagerShell: onTransitionReady(transaction=2443836445933)
+11-11 11:31:51.546   918   977 V WindowManagerShell: onTransitionReady (#814) android.os.BinderProxy@c9bb3b8: {id=814 t=CLOSE f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=OPEN f=FILLS_TASK leash=Surface(name=ActivityRecord{f8da8fc u0 org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity)/@0x75dc591 sb=Rect(0, 0 - 0, 0) eb=Rect(0, 0 - 320, 640) d=-1->0 r=-1->0:-1 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity},{null m=CLOSE f=FILLS_TASK leash=Surface(name=ActivityRecord{a165607 u0 org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity)/@0x4457cf6 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity}]}
+11-11 11:31:51.547   918   977 V WindowManagerShell: Playing animation for (#814) android.os.BinderProxy@c9bb3b8@0
+11-11 11:31:51.547   918   977 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@31e155
+11-11 11:31:51.547   918   977 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@4a3076a
+11-11 11:31:51.547   918   977 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@ba8a45b
+11-11 11:31:51.547   918   977 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@243e4f8
+11-11 11:31:51.547   918   977 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@67c3dd1
+11-11 11:31:51.547   918   977 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+11-11 11:31:51.547   918   977 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@e623036
+11-11 11:31:51.547   918   977 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@a432b37
+11-11 11:31:51.547   918   977 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=814 t=CLOSE f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=OPEN f=FILLS_TASK leash=Surface(name=ActivityRecord{f8da8fc u0 org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity)/@0x75dc591 sb=Rect(0, 0 - 0, 0) eb=Rect(0, 0 - 320, 640) d=-1->0 r=-1->0:-1 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity},{null m=CLOSE f=FILLS_TASK leash=Surface(name=ActivityRecord{a165607 u0 org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity)/@0x4457cf6 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity}]}
+11-11 11:31:51.547   918   977 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[OPEN,TO_FRONT] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@7787968, appThread = android.app.IApplicationThread$Stub$Proxy@1b99181, debugName = OverlaySwipeBack }}
+11-11 11:31:51.547   918   977 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@11e7226, appThread = android.app.IApplicationThread$Stub$Proxy@225e67, debugName = LauncherToDream }}
+11-11 11:31:51.547   918   977 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@20fc414, appThread = android.app.IApplicationThread$Stub$Proxy@9ecc4bd, debugName = QuickstepLaunchHome }}
+11-11 11:31:51.547   918   977 V WindowManagerShell:  Delegate animation for (#814) to null
+11-11 11:31:51.547   918   977 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultTransitionHandler@863100e
+11-11 11:31:51.547   918   977 V WindowManagerShell: start default transition animation, info = {id=814 t=CLOSE f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=OPEN f=FILLS_TASK leash=Surface(name=ActivityRecord{f8da8fc u0 org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity)/@0x75dc591 sb=Rect(0, 0 - 0, 0) eb=Rect(0, 0 - 320, 640) d=-1->0 r=-1->0:-1 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity},{null m=CLOSE f=FILLS_TASK leash=Surface(name=ActivityRecord{a165607 u0 org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity)/@0x4457cf6 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity}]}
+11-11 11:31:51.547   918   977 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@80829cd animAttr=0x7 type=CLOSE isEntrance=false
+11-11 11:31:51.550   569   588 I ActivityTaskManager: Displayed org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity for user 0: +80ms
+11-11 11:31:51.550   569   588 V WindowManager: Sent Transition (#814) createdAt=11-11 11:31:51.464 via request=TransitionRequestInfo { type = CLOSE, triggerTask = null, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 814 }
+11-11 11:31:51.550   569   588 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+11-11 11:31:51.550   569   588 V WindowManager:     info={id=814 t=CLOSE f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[
+11-11 11:31:51.550   569   588 V WindowManager:         {null m=OPEN f=FILLS_TASK leash=Surface(name=ActivityRecord{f8da8fc u0 org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity)/@0x326c939 sb=Rect(0, 0 - 0, 0) eb=Rect(0, 0 - 320, 640) d=-1->0 r=-1->0:-1 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity},
+11-11 11:31:51.550   569   588 V WindowManager:         {null m=CLOSE f=FILLS_TASK leash=Surface(name=ActivityRecord{a165607 u0 org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity)/@0x8070af6 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity}
+11-11 11:31:51.550   569   588 V WindowManager:     ]}
+11-11 11:31:51.551   569  1873 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 11:31:51.558   918   977 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@c4b34ce animAttr=0x6 type=CLOSE isEntrance=true
+11-11 11:31:51.580   569   689 I ImeTracker: org.rabochaya.karta:a30361df: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+11-11 11:31:51.581   569   689 I ImeTracker: org.rabochaya.karta:a30361df: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-11 11:31:51.582  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+11-11 11:31:51.583  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+11-11 11:31:51.583  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=org.rabochaya.karta, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-11 11:31:51.583  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 11:31:51.583  1327  1327 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+11-11 11:31:51.583   569  1009 W PackageConfigPersister: App-specific configuration not found for packageName: org.rabochaya.karta and userId: 0
+11-11 11:31:51.586   918   977 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@863100e
+11-11 11:31:51.587   918   977 W Looper  : Slow dispatch took 40ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda0@769cfda m=0
+11-11 11:31:51.592   918   977 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#814) android.os.BinderProxy@c9bb3b8@0
+11-11 11:31:51.593   569   588 V WindowManager: Finish Transition (#814): created at 11-11 11:31:51.464 collect-started=0.024ms request-sent=0.125ms started=1.453ms ready=6.386ms sent=82.46ms finished=128.814ms
+11-11 11:31:51.595   918   977 V WindowManagerShell: Track 0 became idle
+11-11 11:31:51.595   918   977 V WindowManagerShell: All active transition animations finished
+11-11 11:31:51.596   569  1873 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 11:31:51.596   569  1873 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 11:31:51.612 13956 13956 D VRI[MapLayersActivity]: visibilityChanged oldVisibility=true newVisibility=false
+11-11 11:31:51.617 13956 13956 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@a762f7e
+11-11 11:31:51.617   569  1009 D CoreBackPreview: Window{c192a59 u0 org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity}: Setting back callback null
+11-11 11:31:51.619   569  1009 W InputManager-JNI: Input channel object 'c192a59 org.rabochaya.karta/org.rabochaya.projects.MapLayersActivity (client)' was disposed without first being removed with the input manager!
+11-11 11:31:51.652 13956 13956 D AutofillManager: notifyViewReadyInner:1073741824
+11-11 11:31:51.653   431   860 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 11:31:51.654   569  1873 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 11:31:51.875   431   538 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 11:31:52.259   431   860 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 11:31:52.259   569  1009 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 11:31:52.487   431   538 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 11:31:52.646  1430  1966 I BistoHotwordHelper: (REDACTED) getHotwordActive::active query: %s, watch: %s, devices connected: %s
+11-11 11:31:52.825   569  2758 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+11-11 11:31:53.127 13956 13973 D EGL_emulation: app_time_stats: avg=158.80ms min=12.16ms max=616.81ms count=10
+11-11 11:31:54.543 13956 13973 D EGL_emulation: app_time_stats: avg=83.29ms min=15.01ms max=1016.64ms count=17
+11-11 11:31:54.999   569  1873 W MagnificationConnectionManager: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-11 11:31:54.999   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:54.999   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:54.999   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:54.999  1412  2105 I AiAiEcho: Settings changed for uri: content://settings/secure/accessibility_enabled
+11-11 11:31:55.000  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:31:55.000   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:55.000   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:55.000   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:55.002  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:31:55.002  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:31:55.002  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:31:55.002  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:31:55.002  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:31:55.002  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:31:55.002  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:31:55.002  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:31:55.002  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:31:55.002  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:31:55.002  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:31:55.002  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-11 11:31:55.003   918   918 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-11 11:31:55.003  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-11 11:31:55.004  1153  1153 D SsBaseTemplateCard: No text view can be set up
+11-11 11:31:55.004  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:31:55.004  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:31:55.004  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:31:55.004  1153  1153 I SsBaseTemplateCard: Secondary card pane is null
+11-11 11:31:55.022   569  1873 V AutofillSession: Primary service component name: ComponentInfo{com.google.android.gms/com.google.android.gms.autofill.service.AutofillService}, secondary service component name: ComponentInfo{com.android.credentialmanager/com.android.credentialmanager.autofill.CredentialAutofillService}
+11-11 11:31:55.022   569  1873 V SecondaryProviderHandler: Creating a secondary provider handler with component name, ComponentInfo{com.android.credentialmanager/com.android.credentialmanager.autofill.CredentialAutofillService}
+11-11 11:31:55.022   569  1873 D RequestId: nextId(): requestId = 1108
+11-11 11:31:55.022   569  1873 I AppsFilter: interaction: PackageSetting{c219a14 org.rabochaya.karta/10209} -> PackageSetting{6a8cfe3 com.google.android.inputmethod.latin/10154} BLOCKED
+11-11 11:31:55.022   569  1873 W FillRequestEventLogger: Couldn't find packageName: com.google.android.inputmethod.latin
+11-11 11:31:55.023   569   569 D AutofillInlineSuggestionsRequestSession: onCreateInlineSuggestionsRequestLocked called: 1073741827@1389665198
+11-11 11:31:55.024   569  1872 D AutofillInlineSuggestionsRequestSession: onInlineSuggestionsSessionInvalidated() called.
+11-11 11:31:55.024 13956 13956 I ImeTracker: org.rabochaya.karta:b82833a7: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+11-11 11:31:55.026 13956 13956 D InputMethodManager: showSoftInput() view=android.widget.EditText{f8c1a7e VFED..CL. .F....ID 0,403-296,451 aid=1073741827} flags=1 reason=SHOW_SOFT_INPUT
+11-11 11:31:55.028  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+11-11 11:31:55.030  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+11-11 11:31:55.031   569  1873 D AutofillInlineSuggestionsRequestSession: onInlineSuggestionsRequest() received: InlineSuggestionsRequest { maxSuggestionCount = 9, inlinePresentationSpecs = [InlinePresentationSpec { minSize = 34x38, maxSize = 240x38, style = Bundle[mParcelledData.dataSize=2844] }, InlinePresentationSpec { minSize = 34x38, maxSize = 240x38, style = Bundle[mParcelledData.dataSize=2844] }, InlinePresentationSpec { minSize = 34x38, maxSize = 240x38, style = Bundle[mParcelledData.dataSize=2844] }, InlinePresentationSpec { minSize = 34x38, maxSize = 240x38, style = Bundle[mParcelledData.dataSize=2844] }, InlinePresentationSpec { minSize = 34x38, maxSize = 240x38, style = Bundle[mParcelledData.dataSize=2844] }, InlinePresentationSpec { minSize = 34x38, maxSize = 240x38, style = Bundle[mParcelledData.dataSize=2844] }, InlinePresentationSpec { minSize = 34x38, maxSize = 240x38, style = Bundle[mParcelledData.dataSize=2844] }, InlinePresentationSpec { minSize = 34x38, maxSize = 240x38, style = Bundle[mParcelledData.dataSize=2844] }, InlinePresentationSpec { minSize = 34x38, maxSize = 240x38, style = Bundle[mParcelledData.dataSize=2844] }], hostPackageName = com.google.android.inputmethod.latin, supportedLocales = [en_US], extras = Bundle[EMPTY_PARCEL], hostInputToken = android.os.BinderProxy@163b633, hostDisplayId = 0, inlineTooltipPresentationSpec = null }
+11-11 11:31:55.033  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=org.rabochaya.karta, inputType=3002, inputTypeString=Number, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=8000005, privateImeOptions=null, actionName=NEXT, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=3000, label=null, fieldId=-1, fieldName=null, extras=Bundle[mParcelledData.dataSize=168], hintText=null, hintLocales=[]}}, false)
+11-11 11:31:55.033  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 11:31:55.033  1327  1327 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-number, number
+11-11 11:31:55.034   569  1872 W PackageConfigPersister: App-specific configuration not found for packageName: org.rabochaya.karta and userId: 0
+11-11 11:31:55.034  1327  1327 I HardKeyTracker: HardKeyTracker.unregisterKeySequence():183 Unregister key sequence lnk{labelResId=2132019800, callback=gnd@41fbad7, lastModifier=0, keyCodes=[57, 57], actions=[1, 0]}
+11-11 11:31:55.034  1327  1327 I HardKeyTracker: HardKeyTracker.unregisterKeySequence():183 Unregister key sequence lnk{labelResId=0, callback=gnd@9a425e2, lastModifier=0, keyCodes=[58, 58], actions=[1, 0]}
+11-11 11:31:55.035 13956 13956 I AssistStructure: Flattened final assist data: 4712 bytes, containing 1 windows, 26 views
+11-11 11:31:55.035   569  1873 D AutofillSession: createPendingIntent for request 1108
+11-11 11:31:55.035  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.onStartInputView():2098 onStartInputView(EditorInfo{EditorInfo{packageName=org.rabochaya.karta, inputType=3002, inputTypeString=Number, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=8000005, privateImeOptions=null, actionName=NEXT, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=3000, label=null, fieldId=-1, fieldName=null, extras=Bundle[{androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true}], hintText=null, hintLocales=[]}}, false)
+11-11 11:31:55.036  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 11:31:55.036  1327  1327 I KeyboardHeightUtil: KeyboardHeightUtil.getOemKeyboardHeightRatio():206 systemKeyboardHeightRatio:1.000000.
+11-11 11:31:55.036   569  1873 D ContentCapturePerUserService: Notified activity assist data for activity: Token{7b5eb85 ActivityRecord{f8da8fc u0 org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity t209}} without a session Id
+11-11 11:31:55.037  1327  1327 I KeyboardWrapper: KeyboardWrapper.activateKeyboard():575 activateKeyboard(): type=prime, status=0, imeDef=ktt{stringId=number, language=und-Latn-x-number, languageTag=und-Latn-x-number, processedConditions={}, className=com.google.android.libraries.inputmethod.ime.DummyIme, label=2132018692, keyEventInterpreter=null, inlineComposing=true, autoCapital=false, announceAutoSelectedCandidate=false, statusIcon=0, primeKeyboardType=SOFT, indicatorIcon=0, indicatorLabel=null, displayAppCompletions=false, extraValues=ktl{}, processors=kvl@a2c7464, unacceptableMetaKeys=4098, languageSpecificSettings=0, asciiCapable=false, alwaysShowSuggestions=false, useAsciiPasswordKeyboard=false, secondaryIme=null, keyboardGroupDef=kut@2bfe293, phenotypeFlagId=0, localizationLanguageTag=null, supportsInlineSuggestion=false, supportsAccessPoints=false}
+11-11 11:31:55.037  1327  1327 I KeyboardManager: KeyboardManager.requestKeyboard():234 Creating keyboard prime, imeId=number, cacheKey=theme_border_stylesheet_noshadow_gsans_pillkey_silkpopup_hover_light_phone_navredesign
+11-11 11:31:55.037  1327  1327 I KeyboardWrapper: KeyboardWrapper.onKeyboardReady():239 onKeyboardReady(): type=prime(prime), kb=com.google.android.apps.inputmethod.latin.keyboard.LatinNumberKeyboard@f8ba40d
+11-11 11:31:55.037  1327  1327 I KeyboardWrapper: KeyboardWrapper.doActivateKeyboard():606 doActivateKeyboard(): prime
+11-11 11:31:55.038  1327  1327 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 82 height for app when ime window height:592, header height:38 and isFullscreenMode:false, so the max keyboard body height is:472
+11-11 11:31:55.038  1327  1327 W Keyboard: Keyboard.getKeyboardViewHelper():574 null helper is returned: keyboardDef=kuo{processedConditions={language=en-US, show_suggestions=true, device=phone, expressions=normal}, globalConditions={global_theme_key=theme_border_stylesheet_noshadow_gsans_pillkey_silkpopup_hover_light_phone_navredesign, global_locale=en_US, global_density_dpi=160, global_orientation=1}, className=.latin.keyboard.LatinNumberKeyboard, resourceIds=[#0x7f1708be], initialStates=0, keyboardViewDefs=[kvb{direction=LOCALE, id=#0x7f0b014d, isScalable=false, layoutId=#0x7f0e05a0, type=HEADER, touchable=true, defaultShow=false}, kvb{direction=null, id=#0x7f0b014d, isScalable=true, layoutId=#0x7f0e05f4, type=BODY, touchable=true, defaultShow=true}], persistentStates=0, persistentStatesPrefKey=null, popupBubbleLayoutId=#0x7f0e068d, recentKeyLayoutId=0, recentKeyPopupLayoutId=0, recentKeyType=null, rememberRecentKey=NONE, sessionStates=0}, type=FLOATING_CANDIDATES, helpersCreated=[kib@cbb2134, kib@2032b5d, null, null], context.getResources().getConfiguration(): {1.0 310mcc260mnc [en_US] ldltr sw320dp w320dp h640dp 160dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 320, 640) mAppBounds=Rect(0, 0 - 320, 640) mMaxBounds=Rect(0, 0 - 320, 640) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.2 s.20 fontWeightAdjustment=0}
+11-11 11:31:55.038  1327  1327 W Keyboard: Keyboard.getKeyboardViewHelper():574 null helper is returned: keyboardDef=kuo{processedConditions={language=en-US, show_suggestions=true, device=phone, expressions=normal}, globalConditions={global_theme_key=theme_border_stylesheet_noshadow_gsans_pillkey_silkpopup_hover_light_phone_navredesign, global_locale=en_US, global_density_dpi=160, global_orientation=1}, className=.latin.keyboard.LatinNumberKeyboard, resourceIds=[#0x7f1708be], initialStates=0, keyboardViewDefs=[kvb{direction=LOCALE, id=#0x7f0b014d, isScalable=false, layoutId=#0x7f0e05a0, type=HEADER, touchable=true, defaultShow=false}, kvb{direction=null, id=#0x7f0b014d, isScalable=true, layoutId=#0x7f0e05f4, type=BODY, touchable=true, defaultShow=true}], persistentStates=0, persistentStatesPrefKey=null, popupBubbleLayoutId=#0x7f0e068d, recentKeyLayoutId=0, recentKeyPopupLayoutId=0, recentKeyType=null, rememberRecentKey=NONE, sessionStates=0}, type=WIDGET, helpersCreated=[kib@cbb2134, kib@2032b5d, null, null], context.getResources().getConfiguration(): {1.0 310mcc260mnc [en_US] ldltr sw320dp w320dp h640dp 160dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 320, 640) mAppBounds=Rect(0, 0 - 320, 640) mMaxBounds=Rect(0, 0 - 320, 640) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.2 s.20 fontWeightAdjustment=0}
+11-11 11:31:55.039  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.startInputIfInputViewStarted():3728 startInputIfInputViewStarted(): default prime
+11-11 11:31:55.039  1327  1327 I KeyboardModeManager: KeyboardModeManager.setInputViewKeyboardViewHolderProvider():625 setInputView() : supportsOneHandedMode=true supportsSplitMode=true
+11-11 11:31:55.039  1327  1327 I NormalModeController: NormalModeController.getKeyboardBodyViewHolderPaddingBottom():104 currentPrimeKeyboardType:SOFT systemPaddingBottom:-1
+11-11 11:31:55.039  1327  1327 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 82 height for app when ime window height:592, header height:38 and isFullscreenMode:false, so the max keyboard body height is:472
+11-11 11:31:55.039  1327  1327 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 82 height for app when ime window height:592, header height:38 and isFullscreenMode:false, so the max keyboard body height is:472
+11-11 11:31:55.039  1327  1327 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 82 height for app when ime window height:592, header height:38 and isFullscreenMode:false, so the max keyboard body height is:472
+11-11 11:31:55.039  1327  1327 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 82 height for app when ime window height:592, header height:38 and isFullscreenMode:false, so the max keyboard body height is:472
+11-11 11:31:55.039  1327  1327 I NormalModeController: NormalModeController.getKeyboardBodyViewHolderPaddingBottom():104 currentPrimeKeyboardType:SOFT systemPaddingBottom:-1
+11-11 11:31:55.039  1327  1327 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 82 height for app when ime window height:592, header height:38 and isFullscreenMode:false, so the max keyboard body height is:472
+11-11 11:31:55.039  1327  1327 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 82 height for app when ime window height:592, header height:38 and isFullscreenMode:false, so the max keyboard body height is:472
+11-11 11:31:55.039  1327  1327 I KeyboardModeManager: KeyboardModeManager.setInputViewKeyboardViewHolderProvider():613 setInputView() : supportsOneHandedMode=true, supportSplitMode=true
+11-11 11:31:55.040  1327  1327 I NewLanguagePromptExtension: NewLanguagePromptExtension.onActivate():195 Not activated NewLanguagePromptExtension: not a normal text input box.
+11-11 11:31:55.040  1327  1327 I AccessoryInputModeManager: AccessoryInputModeManager.onModeStarted():308 Accessory input mode started: null
+11-11 11:31:55.040  1327  1327 W SupplementaryKeyboardsWrapper: SupplementaryKeyboardsWrapper.deactivateKeyboard():159 keyboard accessory_candidates_consumer is not activated before!
+11-11 11:31:55.041  1327  1327 I CrowdsourceExtension: CrowdsourceExtension.checkIfDefaultBrowserIsAllowed():110 Failed to get default browser. The default browser may be deactived.
+11-11 11:31:55.041  1327  1327 I CurrentMicStatusHolder: CurrentMicStatusHolder.onStartInputView():81 Current Mic status = {MicIconHidden-PasswordOrNumberOrDateInputType,}
+11-11 11:31:55.043  1386  1386 D BoundBrokerSvc: onBind: Intent { act=com.google.android.mdd.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+11-11 11:31:55.043  1386  1386 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.mdd.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+11-11 11:31:55.043   569   569 W FillRequestEventLogger: Shouldn't be logging AutofillFillRequestReported again for same event
+11-11 11:31:55.044   569   569 W FillResponseEventLogger: Shouldn't be logging AutofillFillRequestReported again for same event
+11-11 11:31:55.044   569   569 D AutofillSession: clearPendingIntentLocked
+11-11 11:31:55.045   569   569 D AutofillInlineSuggestionsRequestSession: onInlineSuggestionsResponseLocked called for:1073741827@1389665198
+11-11 11:31:55.045   569   569 D AutofillInlineSuggestionsRequestSession: maybeNotifyFillUiEventLoked(): hasSuggestionToShow=false, mPreviousHasNonPinSuggestionShow=false
+11-11 11:31:55.046   569   569 D AutofillInlineSuggestionsRequestSession: Send inline response: 0
+11-11 11:31:55.046  3888  3888 V InlineSuggestionRenderService: handleDestroySuggestionViews called for 0:1389665198
+11-11 11:31:55.047   365   365 I netd    : tetherGetStats() -> {[]} <0.31ms>
+11-11 11:31:55.049   569   589 D AutofillUI: destroySaveUiUiThread(): already destroyed
+11-11 11:31:55.050  1327  1327 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 82 height for app when ime window height:592, header height:38 and isFullscreenMode:false, so the max keyboard body height is:472
+11-11 11:31:55.050  1327  1327 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113 
+11-11 11:31:55.050  1327  1327 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 24 - 320, 640), insets=Rect(0, 0 - 0, 24), densityDpi=160, smallestScreenWidthDp=320, displayWidth=320, displayHeight=640, xdpi=160.0, ydpi=160.0}; DisplayMetrics{density=1.0, width=320, height=640, scaledDensity=1.0, xdpi=160.0, ydpi=160.0}
+11-11 11:31:55.051  1207  1218 I IPCThreadState: oneway function results for code 1 on binder at 0x7e6192a0daa0 will be dropped but finished with status UNKNOWN_TRANSACTION and reply parcel size 80
+11-11 11:31:55.062  1327  1327 I GoogleInputMethodService: GoogleInputMethodService$1.onKeyboardViewShown():494 onKeyboardViewShown: keyboardType=prime, keyboardViewType=BODY keyboardView=com.google.android.libraries.inputmethod.widgets.SoftKeyboardView{91535c3 V.E...... ........ 0,0-320,197}
+11-11 11:31:55.062  1327  1327 I NewLanguagePromptExtension: NewLanguagePromptExtension$1.onKeyboardViewShown():94 Not show new language banner: not prime keyboard, or the extension not activated.
+11-11 11:31:55.062  1327  1327 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113 
+11-11 11:31:55.062  1327  1327 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 24 - 320, 640), insets=Rect(0, 0 - 0, 24), densityDpi=160, smallestScreenWidthDp=320, displayWidth=320, displayHeight=640, xdpi=160.0, ydpi=160.0}; DisplayMetrics{density=1.0, width=320, height=640, scaledDensity=1.0, xdpi=160.0, ydpi=160.0}
+11-11 11:31:55.062  1327  1327 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113 
+11-11 11:31:55.062  1327  1327 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 24 - 320, 640), insets=Rect(0, 0 - 0, 24), densityDpi=160, smallestScreenWidthDp=320, displayWidth=320, displayHeight=640, xdpi=160.0, ydpi=160.0}; DisplayMetrics{density=1.0, width=320, height=640, scaledDensity=1.0, xdpi=160.0, ydpi=160.0}
+11-11 11:31:55.062 13956 13956 D InsetsController: show(ime(), fromIme=true)
+11-11 11:31:55.064 13956 14010 W InteractionJankMonitor: Initializing without READ_DEVICE_CONFIG permission. enabled=true, interval=1, missedFrameThreshold=3, frameTimeThreshold=64, package=org.rabochaya.karta
+11-11 11:31:55.067   918   977 D WindowManagerShell: onKeepClearAreasChanged: restricted={}, unrestricted={Rect(0, 419 - 320, 616)}
+11-11 11:31:55.067  1386  1386 D BoundBrokerSvc: onBind: Intent { act=com.google.firebase.dynamiclinks.service.START pkg=com.google.android.gms }
+11-11 11:31:55.067  1386  1386 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.firebase.dynamiclinks.service.START pkg=com.google.android.gms }
+11-11 11:31:55.099 13956 13956 I ImeTracker: org.rabochaya.karta:b82833a7: onShown
+11-11 11:31:55.209  1153  1743 D EGL_emulation: app_time_stats: avg=412.32ms min=0.64ms max=8914.27ms count=22
+11-11 11:31:55.356   374  1436 D android.hardware.audio@7.1-impl.ranchu: threadLoop: entering standby, frames: 81941632
+11-11 11:31:55.843 13956 13973 D EGL_emulation: app_time_stats: avg=162.57ms min=16.65ms max=426.55ms count=8
+11-11 11:31:56.102 13956 13961 W rabochaya.karta: Cleared Reference was only reachable from finalizer (only reported once)
+11-11 11:31:56.631   569  1873 D WindowManager: captureDisplay
+11-11 11:31:56.661   431   860 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 11:31:56.662   569  1491 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 11:31:56.708   431   538 D AudioFlinger: mixer(0x780de65418e0) throttle end: throttle time(33)
+11-11 11:31:56.822   431   538 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 11:31:57.043 13956 13973 D EGL_emulation: app_time_stats: avg=57.09ms min=15.35ms max=447.38ms count=21
+11-11 11:31:57.273 13956 13956 D AutofillManager: notifyViewReadyInner:1073741824
+11-11 11:31:57.274   431   860 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+11-11 11:31:57.274   569  1854 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+11-11 11:31:57.502   431   538 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+11-11 11:31:57.874   569  1491 W MagnificationConnectionManager: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-11 11:31:57.874   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:57.875   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:57.875   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:57.875   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:57.875   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:57.875   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:31:57.883   918   977 V WindowManagerShell: Transition requested (#815): android.os.BinderProxy@6ea3501 TransitionRequestInfo { type = CLOSE, triggerTask = null, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 815 }
+11-11 11:31:57.908   435   435 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+11-11 11:31:57.918   918  2278 V WindowManagerShell: onTransitionReady(transaction=2443836445957)
+11-11 11:31:57.918   918   977 V WindowManagerShell: onTransitionReady (#815) android.os.BinderProxy@6ea3501: {id=815 t=CLOSE f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=CLOSE f=FILLS_TASK leash=Surface(name=ActivityRecord{f8da8fc u0 org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity)/@0xda50fa6 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity},{null m=TO_FRONT f=FILLS_TASK leash=Surface(name=ActivityRecord{cb9347b u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0xa706de7 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}]}
+11-11 11:31:57.918   918   977 V WindowManagerShell: Playing animation for (#815) android.os.BinderProxy@6ea3501@0
+11-11 11:31:57.918   918   977 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@31e155
+11-11 11:31:57.918   918   977 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@4a3076a
+11-11 11:31:57.918   918   977 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@ba8a45b
+11-11 11:31:57.918   918   977 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@243e4f8
+11-11 11:31:57.918   918   977 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@67c3dd1
+11-11 11:31:57.918   918   977 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+11-11 11:31:57.918   918   977 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@e623036
+11-11 11:31:57.918   918   977 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@a432b37
+11-11 11:31:57.918   918   977 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=815 t=CLOSE f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=CLOSE f=FILLS_TASK leash=Surface(name=ActivityRecord{f8da8fc u0 org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity)/@0xda50fa6 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity},{null m=TO_FRONT f=FILLS_TASK leash=Surface(name=ActivityRecord{cb9347b u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0xa706de7 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}]}
+11-11 11:31:57.918   918   977 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[OPEN,TO_FRONT] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@7787968, appThread = android.app.IApplicationThread$Stub$Proxy@1b99181, debugName = OverlaySwipeBack }}
+11-11 11:31:57.918   918   977 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@11e7226, appThread = android.app.IApplicationThread$Stub$Proxy@225e67, debugName = LauncherToDream }}
+11-11 11:31:57.918   918   977 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@20fc414, appThread = android.app.IApplicationThread$Stub$Proxy@9ecc4bd, debugName = QuickstepLaunchHome }}
+11-11 11:31:57.918   918   977 V WindowManagerShell:  Delegate animation for (#815) to null
+11-11 11:31:57.918   918   977 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultTransitionHandler@863100e
+11-11 11:31:57.918   918   977 V WindowManagerShell: start default transition animation, info = {id=815 t=CLOSE f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[{null m=CLOSE f=FILLS_TASK leash=Surface(name=ActivityRecord{f8da8fc u0 org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity)/@0xda50fa6 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity},{null m=TO_FRONT f=FILLS_TASK leash=Surface(name=ActivityRecord{cb9347b u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0xa706de7 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}]}
+11-11 11:31:57.919   918   977 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@844203d animAttr=0x6 type=CLOSE isEntrance=true
+11-11 11:31:57.919   918   977 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@3028032 animAttr=0x7 type=CLOSE isEntrance=false
+11-11 11:31:57.920   569   588 V WindowManager: Sent Transition (#815) createdAt=11-11 11:31:57.883 via request=TransitionRequestInfo { type = CLOSE, triggerTask = null, pipTask = null, remoteTransition = null, displayChange = null, flags = 0, debugId = 815 }
+11-11 11:31:57.922   569   588 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+11-11 11:31:57.922   569   588 V WindowManager:     info={id=815 t=CLOSE f=0x0 trk=0 opt={t=FROM_STYLE} r=[0@Point(0, 0)] c=[
+11-11 11:31:57.922   569   588 V WindowManager:         {null m=CLOSE f=FILLS_TASK leash=Surface(name=ActivityRecord{f8da8fc u0 org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity)/@0x326c939 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity},
+11-11 11:31:57.922   569   588 V WindowManager:         {null m=TO_FRONT f=FILLS_TASK leash=Surface(name=ActivityRecord{cb9347b u0 org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity)/@0xe14cb91 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0 bc=fffafafa component=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}
+11-11 11:31:57.922   569   588 V WindowManager:     ]}
+11-11 11:31:57.929   569  1854 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 11:31:57.939   569  1491 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_OVERRIDE
+11-11 11:31:57.939   569  1491 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_FULLSCREEN_OVERRIDE
+11-11 11:31:57.939   569  1491 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_ORIENTATION_OVERRIDE
+11-11 11:31:57.940   569  1491 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10209, packageName = null, attributionTag = null, token = android.os.Binder@e454c84, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+11-11 11:31:57.940   569  1491 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_RESIZEABLE_ACTIVITY_OVERRIDES
+11-11 11:31:57.940   569  1491 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+11-11 11:31:57.942   918  1753 D KeyguardService: setOccluded(false)
+11-11 11:31:57.942   569  1491 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity (has extras)} with LAUNCH_MULTIPLE from uid 10209 (BAL_ALLOW_VISIBLE_WINDOW) result code=3
+11-11 11:31:57.942   918  1753 D KeyguardViewMediator: setOccluded(false)
+11-11 11:31:57.943   918   918 D KeyguardViewMediator: handleSetOccluded(false)
+11-11 11:31:57.943   918   918 D KeyguardViewMediator: KeyguardViewMediator queue processing message: SET_OCCLUDED
+11-11 11:31:57.952   569   689 I ImeTracker: org.rabochaya.karta:f8df3265: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+11-11 11:31:57.956  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.onFinishInputView():2393 
+11-11 11:31:57.964 13956 13956 D InsetsController: hide(ime(), fromIme=true)
+11-11 11:31:57.965 13956 13956 W RemoteInputConnectionImpl: requestCursorUpdates on inactive InputConnection
+11-11 11:31:57.967  1327  1327 W TooltipLifecycleManager: TooltipLifecycleManager.dismissTooltips():152 Tooltip with id spell_check_add_to_dictionary not found in tooltipManager.
+11-11 11:31:57.969  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157 
+11-11 11:31:57.969  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+11-11 11:31:57.969  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=org.rabochaya.karta, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+11-11 11:31:57.970  1327  1327 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+11-11 11:31:57.970  1327  1327 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+11-11 11:31:57.970   569  1872 W PackageConfigPersister: App-specific configuration not found for packageName: org.rabochaya.karta and userId: 0
+11-11 11:31:57.970  1327  1327 I HardKeyTracker: HardKeyTracker.registerKeySequence():139 Register key sequence lnk{labelResId=2132019800, callback=gnd@50791db, lastModifier=0, keyCodes=[57, 57], actions=[1, 0]}
+11-11 11:31:57.970  1327  1327 I HardKeyTracker: HardKeyTracker.registerKeySequence():139 Register key sequence lnk{labelResId=0, callback=gnd@c6a1bb6, lastModifier=0, keyCodes=[58, 58], actions=[1, 0]}
+11-11 11:31:57.970  1327  1327 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113 
+11-11 11:31:57.970  1327  1327 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 24 - 320, 640), insets=Rect(0, 0 - 0, 24), densityDpi=160, smallestScreenWidthDp=320, displayWidth=320, displayHeight=640, xdpi=160.0, ydpi=160.0}; DisplayMetrics{density=1.0, width=320, height=640, scaledDensity=1.0, xdpi=160.0, ydpi=160.0}
+11-11 11:31:57.972   918   977 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@863100e
+11-11 11:31:57.972   918   977 W Looper  : Slow dispatch took 55ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda0@a16cb2c m=0
+11-11 11:31:57.972   918   977 D WindowManagerShell: onActivityRestartAttempt: ComponentInfo{org.rabochaya.karta/org.rabochaya.projects.LocalMapActivity}
+11-11 11:31:57.973   918   977 D WindowManagerShell: onKeepClearAreasChanged: restricted={}, unrestricted={}
+11-11 11:31:57.973   365   365 I netd    : tetherGetStats() -> {[]} <0.29ms>
+11-11 11:31:57.975   918   977 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#815) android.os.BinderProxy@6ea3501@0
+11-11 11:31:57.978   918   977 V WindowManagerShell: Track 0 became idle
+11-11 11:31:57.978   918   977 V WindowManagerShell: All active transition animations finished
+11-11 11:31:57.979   569   588 V WindowManager: Finish Transition (#815): created at 11-11 11:31:57.883 collect-started=0.015ms request-sent=0.045ms started=0.791ms ready=2.226ms sent=34.349ms finished=94.562ms
+11-11 11:31:57.988   569  1854 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 11:31:57.988   569  1872 W UserManagerService: Requested status bar icon for non-badged user 0
+11-11 11:31:57.990 13956 13956 D AutofillManager: notifyViewReadyInner:1073741829
+11-11 11:31:57.990 13956 13956 D AutofillManager: notifyViewReadyInner:1073741830
+11-11 11:31:57.998 13956 13956 D VRI[CompositionDownloadActivity]: visibilityChanged oldVisibility=true newVisibility=false
+11-11 11:31:58.000 13956 13956 D AutofillManager: onActivityFinishing(): calling cancelLocked()
+11-11 11:31:58.000 13956 13956 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@dc30a34
+11-11 11:31:58.001   569  1872 D CoreBackPreview: Window{46ebb01 u0 org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity}: Setting back callback null
+11-11 11:31:58.003 13956 13956 I ImeTracker: org.rabochaya.karta:f8df3265: onCancelled at PHASE_CLIENT_ANIMATION_CANCEL
+11-11 11:31:58.003 13956 13956 I ImeTracker: org.rabochaya.karta:d3a433af: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT_ON_ANIMATION_STATE_CHANGED fromUser false
+11-11 11:31:58.003 13956 13956 I ImeTracker: org.rabochaya.karta:d3a433af: onFailed at PHASE_CLIENT_VIEW_SERVED
+11-11 11:31:58.004   569  1854 W InputManager-JNI: Input channel object '46ebb01 org.rabochaya.karta/org.rabochaya.projects.CompositionDownloadActivity (client)' was disposed without first being removed with the input manager!
+11-11 11:31:58.007 13956 13956 I ImeTracker: org.rabochaya.karta:f8df3265: onHidden
+11-11 11:31:58.008   569  1854 I ImeTracker: org.rabochaya.karta:f8df3265: setFinished on previously finished token at PHASE_NOT_SET with STATUS_SUCCESS
+11-11 11:31:58.013  7152  7167 W Bugle   : TextClassifierLibManagerImpl: Reclaiming memory at level: 40
+11-11 11:31:58.028  1153  1743 D EGL_emulation: app_time_stats: avg=352.36ms min=14.88ms max=2700.01ms count=8
+11-11 11:31:59.207   569   588 I GnssLocationProvider: WakeLock acquired by handleDownloadPsdsData()
+11-11 11:31:59.207   569 14022 E GnssPsdsDownloader: No Long-Term PSDS servers were specified in the GnssConfiguration
+11-11 11:32:00.027  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:32:00.027  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:32:00.027  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:32:00.027  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:32:00.027  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:32:00.027  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:32:00.027  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:32:00.027  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:32:00.027  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:32:00.027  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:32:00.027  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:32:00.027  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:32:00.027  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-11 11:32:00.027  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-11 11:32:00.028  1153  1153 D SsBaseTemplateCard: No text view can be set up
+11-11 11:32:00.028  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:32:00.028  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:32:00.028  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:32:00.028  1153  1153 I SsBaseTemplateCard: Secondary card pane is null
+11-11 11:32:00.031   918  1052 D EGL_emulation: app_time_stats: avg=3564.82ms min=16.78ms max=13898.34ms count=4
+11-11 11:32:00.041   918   918 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-11 11:32:00.160  1386  1386 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.feedback.internal.IFeedbackService dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+11-11 11:32:00.205   365   365 I netd    : tetherGetStats() -> {[]} <0.34ms>
+11-11 11:32:00.369   374  1436 D android.hardware.audio@7.1-impl.ranchu: threadLoop: entering standby, frames: 82122240
+11-11 11:32:01.007   569  2758 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+11-11 11:32:04.099  1207  1218 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:32:04.099  1207  1218 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:32:04.099   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:32:04.099   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:32:04.100  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:32:04.100  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:32:04.102  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:32:05.161  1524  2066 I WorkerManager: dispose()
+11-11 11:32:05.161  1524  2066 W A       : (REDACTED) Queue length for executor %s is now %d. Perhaps some tasks are too long, or the pool is too small.
+11-11 11:32:05.184   569   670 D ActivityManager: freezing 1524 com.google.android.googlequicksearchbox:search
+11-11 11:32:05.185   569   670 D ActivityManager: freezing 3654 com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0
+11-11 11:32:05.232   569   839 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+11-11 11:32:05.232   569   839 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+11-11 11:32:05.232   569   839 D InetDiagMessage: Destroyed live tcp sockets for uids={99000} in 1ms
+11-11 11:32:05.346 13956 13956 E FrameTracker: force finish cuj, time out: J<IME_INSETS_SHOW_ANIMATION::0@0@org.rabochaya.karta>
+11-11 11:32:05.346 13956 13956 W FrameTracker: Missed SF frame:PREDICTION_ERROR, 706376, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@0@org.rabochaya.karta>
+11-11 11:32:08.251 13956 13956 E FrameTracker: force finish cuj, time out: J<IME_INSETS_HIDE_ANIMATION::1@0@org.rabochaya.karta>
+11-11 11:32:10.097  1386  1386 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.mdd.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+11-11 11:32:10.109  1386  1386 D BoundBrokerSvc: onUnbind: Intent { act=com.google.firebase.dynamiclinks.service.START pkg=com.google.android.gms }
+11-11 11:32:10.162  1386  1394 W gle.android.gms: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~Eqa2xQFxbQefD1xXWwiN9Q==/org.rabochaya.karta-h0Ze5Fe1sAofkRulg4gWtw==/base.apk' with 1 weak references
+11-11 11:32:16.779  1207  2208 I ActivityScheduler: nextTriggerTime: 2240285, in 81863ms, detectorType: 39, FULL_TYPE alarmWindowMillis: 80000
+11-11 11:32:16.779  1207  2208 W SystemServiceRegistry: No service published for: wifirtt
+11-11 11:32:17.564   569   647 D WifiNl80211Manager: Scan result ready event
+11-11 11:32:17.564   569   647 D WifiNative: Scan result ready event
+11-11 11:32:17.567   569   830 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+11-11 11:32:17.570  1207 13836 W GLSUser : [DeviceKeyStore] Cannot load key: Device key file not found.
+11-11 11:32:17.571   569   647 D ActivityManager: sync unfroze 2577 com.google.android.gms.unstable for 6
+11-11 11:32:17.599   569  1872 D FileUtils: Rounded bytes from 2593193984 to 4000000000
+11-11 11:32:17.602  2577  2674 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+11-11 11:32:17.602  2577  2674 W libc    : Access denied finding property "service.adb.tls.port"
+11-11 11:32:17.605   365 14026 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+11-11 11:32:17.606  2577  2674 D TrafficStats: tagSocket(118) with statsTag=0x1809, statsUid=-1
+11-11 11:32:17.600  2577  2577 W binder:2577_3: type=1400 audit(0.0:77): avc:  denied  { read } for  name="u:object_r:system_adbd_prop:s0" dev="tmpfs" ino=318 scontext=u:r:gmscore_app:s0:c512,c768 tcontext=u:object_r:system_adbd_prop:s0 tclass=file permissive=0 app=com.google.android.gms
+11-11 11:32:17.600  2577  2577 W binder:2577_3: type=1400 audit(0.0:78): avc:  denied  { read } for  name="u:object_r:adbd_prop:s0" dev="tmpfs" ino=63 scontext=u:r:gmscore_app:s0:c512,c768 tcontext=u:object_r:adbd_prop:s0 tclass=file permissive=0 app=com.google.android.gms
+11-11 11:32:17.613  1207 13836 W GmsUrlRequestImpl: Content-Type header is overwritten.
+11-11 11:32:17.614   365 14027 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+11-11 11:32:17.614   365 14028 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+11-11 11:32:17.614   365 14029 I resolv  : res_nmkquery: (QUERY, IN, A)
+11-11 11:32:17.614   365 14028 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0x7e45d6cd98d0
+11-11 11:32:17.614   365 14028 I resolv  : doQuery: rcode=0, ancount=8, return value=264
+11-11 11:32:17.614   365 14029 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0x7e45b6cd6110
+11-11 11:32:17.614   365 14029 I resolv  : doQuery: rcode=0, ancount=8, return value=168
+11-11 11:32:17.616  1207  2323 D TrafficStats: tagSocket(225) with statsTag=0x401, statsUid=10143
+11-11 11:32:17.650  1207 13836 W GLSUser : [AppCertManager] Exception while requesting key: 
+11-11 11:32:17.650  1207 13836 W GLSUser : java.util.concurrent.ExecutionException: bpcw: Parse Proto Exception with response code 400
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at etvr.s(:com.google.android.gms@242335041@24.23.35 (190800-646585959):21)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at etvr.get(:com.google.android.gms@242335041@24.23.35 (190800-646585959):10)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at yfw.b(:com.google.android.gms@242335041@24.23.35 (190800-646585959):477)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at yfu.a(:com.google.android.gms@242335041@24.23.35 (190800-646585959):70)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at yfq.a(:com.google.android.gms@242335041@24.23.35 (190800-646585959):3)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at yfs.a(:com.google.android.gms@242335041@24.23.35 (190800-646585959):58)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at yfs.b(:com.google.android.gms@242335041@24.23.35 (190800-646585959):21)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at anaw.m(:com.google.android.gms@242335041@24.23.35 (190800-646585959):13)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at anbi.g(:com.google.android.gms@242335041@24.23.35 (190800-646585959):11)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at efkz.b(:com.google.android.gms@242335041@24.23.35 (190800-646585959):39)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at efkr.a(:com.google.android.gms@242335041@24.23.35 (190800-646585959):274)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at ehaz.call(:com.google.android.gms@242335041@24.23.35 (190800-646585959):1026)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at angs.c(:com.google.android.gms@242335041@24.23.35 (190800-646585959):50)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at angs.run(:com.google.android.gms@242335041@24.23.35 (190800-646585959):76)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at anmg.run(:com.google.android.gms@242335041@24.23.35 (190800-646585959):8)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at java.lang.Thread.run(Thread.java:1012)
+11-11 11:32:17.650  1207 13836 W GLSUser : Caused by: bpcw: Parse Proto Exception with response code 400
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at bpdw.b(:com.google.android.gms@242335041@24.23.35 (190800-646585959):80)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at bpgb.e(:com.google.android.gms@242335041@24.23.35 (190800-646585959):17)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at bpgp.onSucceeded(:com.google.android.gms@242335041@24.23.35 (190800-646585959):7)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at m.mw.onSucceeded(:com.google.android.gms.dynamite_cronetdynamite@242335041@24.23.35 (190800-0):3)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at m.lt.run(:com.google.android.gms.dynamite_cronetdynamite@242335041@24.23.35 (190800-0):25)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	... 6 more
+11-11 11:32:17.650  1207 13836 W GLSUser : Caused by: fkhe: Protocol message contained an invalid tag (zero).
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at fkea.k(:com.google.android.gms@242335041@24.23.35 (190800-646585959):39)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at fkid.c(:com.google.android.gms@242335041@24.23.35 (190800-646585959):309)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at fkid.i(:com.google.android.gms@242335041@24.23.35 (190800-646585959):8)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at fkgi.fe(:com.google.android.gms@242335041@24.23.35 (190800-646585959):25)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at fkgc.g(:com.google.android.gms@242335041@24.23.35 (190800-646585959):3)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at fkdw.e(:com.google.android.gms@242335041@24.23.35 (190800-646585959):1)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at fkdw.d(:com.google.android.gms@242335041@24.23.35 (190800-646585959):3)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at fkdw.p(:com.google.android.gms@242335041@24.23.35 (190800-646585959):1)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at bpdw.g(:com.google.android.gms@242335041@24.23.35 (190800-646585959):68)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	at bpdw.b(:com.google.android.gms@242335041@24.23.35 (190800-646585959):11)
+11-11 11:32:17.650  1207 13836 W GLSUser : 	... 10 more
+11-11 11:32:17.650  1207 13836 W GLSUser : [DeviceKeyStore] Cannot load key: Device key file not found.
+11-11 11:32:17.652  1207 14025 D TrafficStats: tagSocket(235) with statsTag=0x34000609, statsUid=10138
+11-11 11:32:17.656  1207 14025 W Conscrypt: Could not set socket write timeout: java.net.SocketException: Socket closed
+11-11 11:32:17.656  1207 14025 W Conscrypt: 	at com.google.android.gms.org.conscrypt.Platform.setSocketWriteTimeout(:com.google.android.gms@242335041@24.23.35 (190800-646585959):204)
+11-11 11:32:17.656  1207 14025 W Conscrypt: 	at com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(:com.google.android.gms@242335041@24.23.35 (190800-646585959):4)
+11-11 11:32:17.677  1207 14025 W Conscrypt: Could not set socket write timeout: java.net.SocketException: Socket closed
+11-11 11:32:17.677  1207 14025 W Conscrypt: 	at com.google.android.gms.org.conscrypt.Platform.setSocketWriteTimeout(:com.google.android.gms@242335041@24.23.35 (190800-646585959):204)
+11-11 11:32:17.677  1207 14025 W Conscrypt: 	at com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(:com.google.android.gms@242335041@24.23.35 (190800-646585959):4)
+11-11 11:32:17.713  1207 13836 W GlsClientGrpc: Voilatile gRPC failure INVALID_ARGUMENT: Application credential header not valid. Please fix the client to pass a valid application credential header. [CONTEXT service_id=6 ]
+11-11 11:32:17.713  1207 13836 W GlsClientGrpc: gbzz: INVALID_ARGUMENT: Application credential header not valid. Please fix the client to pass a valid application credential header.
+11-11 11:32:17.713  1207 13836 W GlsClientGrpc: 	at gbzy.h(:com.google.android.gms@242335041@24.23.35 (190800-646585959):3)
+11-11 11:32:17.713  1207 13836 W GlsClientGrpc: 	at anbi.u(:com.google.android.gms@242335041@24.23.35 (190800-646585959):29)
+11-11 11:32:17.713  1207 13836 W GlsClientGrpc: 	at anbi.g(:com.google.android.gms@242335041@24.23.35 (190800-646585959):97)
+11-11 11:32:17.713  1207 13836 W GlsClientGrpc: 	at efkz.b(:com.google.android.gms@242335041@24.23.35 (190800-646585959):39)
+11-11 11:32:17.713  1207 13836 W GlsClientGrpc: 	at efkr.a(:com.google.android.gms@242335041@24.23.35 (190800-646585959):274)
+11-11 11:32:17.713  1207 13836 W GlsClientGrpc: 	at ehaz.call(:com.google.android.gms@242335041@24.23.35 (190800-646585959):1026)
+11-11 11:32:17.713  1207 13836 W GlsClientGrpc: 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+11-11 11:32:17.713  1207 13836 W GlsClientGrpc: 	at angs.c(:com.google.android.gms@242335041@24.23.35 (190800-646585959):50)
+11-11 11:32:17.713  1207 13836 W GlsClientGrpc: 	at angs.run(:com.google.android.gms@242335041@24.23.35 (190800-646585959):76)
+11-11 11:32:17.713  1207 13836 W GlsClientGrpc: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+11-11 11:32:17.713  1207 13836 W GlsClientGrpc: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+11-11 11:32:17.713  1207 13836 W GlsClientGrpc: 	at anmg.run(:com.google.android.gms@242335041@24.23.35 (190800-646585959):8)
+11-11 11:32:17.713  1207 13836 W GlsClientGrpc: 	at java.lang.Thread.run(Thread.java:1012)
+11-11 11:32:17.714  1207  2208 W AlarmManager: alarm window unlikely to be respected [CONTEXT service_id=231 ]
+11-11 11:32:17.714  1207  2208 W AlarmManager: java.lang.IllegalArgumentException: alarm "NetworkLocationLocator" has short window length
+11-11 11:32:17.714  1207  2208 W AlarmManager: 	at boaw.b(:com.google.android.gms@242335041@24.23.35 (190800-646585959):52)
+11-11 11:32:17.714  1207  2208 W AlarmManager: 	at ehbk.f(:com.google.android.gms@242335041@24.23.35 (190800-646585959):119)
+11-11 11:32:17.714  1207  2208 W AlarmManager: 	at egxu.q(:com.google.android.gms@242335041@24.23.35 (190800-646585959):107)
+11-11 11:32:17.714  1207  2208 W AlarmManager: 	at egxu.e(:com.google.android.gms@242335041@24.23.35 (190800-646585959):27)
+11-11 11:32:17.714  1207  2208 W AlarmManager: 	at egxq.apply(:com.google.android.gms@242335041@24.23.35 (190800-646585959):19)
+11-11 11:32:17.714  1207  2208 W AlarmManager: 	at etvw.d(:com.google.android.gms@242335041@24.23.35 (190800-646585959):3)
+11-11 11:32:17.714  1207  2208 W AlarmManager: 	at etvx.run(:com.google.android.gms@242335041@24.23.35 (190800-646585959):42)
+11-11 11:32:17.714  1207  2208 W AlarmManager: 	at android.os.Handler.handleCallback(Handler.java:959)
+11-11 11:32:17.714  1207  2208 W AlarmManager: 	at android.os.Handler.dispatchMessage(Handler.java:100)
+11-11 11:32:17.714  1207  2208 W AlarmManager: 	at bphk.nR(:com.google.android.gms@242335041@24.23.35 (190800-646585959):1)
+11-11 11:32:17.714  1207  2208 W AlarmManager: 	at bphk.dispatchMessage(:com.google.android.gms@242335041@24.23.35 (190800-646585959):138)
+11-11 11:32:17.714  1207  2208 W AlarmManager: 	at android.os.Looper.loopOnce(Looper.java:232)
+11-11 11:32:17.714  1207  2208 W AlarmManager: 	at android.os.Looper.loop(Looper.java:317)
+11-11 11:32:17.714  1207  2208 W AlarmManager: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+11-11 11:32:17.715  1207  2208 I ActivityScheduler: nextTriggerTime: 2240285, in 80927ms, detectorType: 39, FULL_TYPE alarmWindowMillis: 80000
+11-11 11:32:19.117   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:32:19.117   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:32:19.117   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:32:19.118  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:32:19.119  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:32:19.120  1207  1218 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:32:19.120  1207  1218 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:32:19.122  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:32:20.122   569   670 D ActivityManager: freezing 1386 com.google.android.gms
+11-11 11:32:26.643   918  1052 D EGL_emulation: app_time_stats: avg=26612.42ms min=26612.42ms max=26612.42ms count=1
+11-11 11:32:28.594     0     0 W healthd : battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+11-11 11:32:32.624   569   670 D ActivityManager: freezing 2577 com.google.android.gms.unstable
+11-11 11:32:44.961   365   365 I netd    : tetherGetStats() -> {[]} <0.34ms>
+11-11 11:32:52.647  1430  1802 I BistoHotwordHelper: (REDACTED) getHotwordActive::active query: %s, watch: %s, devices connected: %s
+11-11 11:32:55.165   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:32:55.165   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:32:55.165   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:32:55.165   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:32:55.165   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:32:55.165   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:32:55.165   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:32:55.165   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:32:55.168  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:32:55.168  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:32:55.169  1207  1218 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:32:55.169  1207  1218 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:32:55.171  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:32:56.643   918  1052 D EGL_emulation: app_time_stats: avg=29999.77ms min=29999.77ms max=29999.77ms count=1
+11-11 11:33:00.011  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:33:00.011  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:33:00.011  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:33:00.011  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:33:00.011  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:33:00.011  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:33:00.011  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:33:00.011  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:33:00.011  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:33:00.011  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:33:00.011  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:33:00.011  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:33:00.013  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-11 11:33:00.013  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-11 11:33:00.014  1153  1153 D SsBaseTemplateCard: No text view can be set up
+11-11 11:33:00.014  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:33:00.014  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:33:00.014  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:33:00.014  1153  1153 I SsBaseTemplateCard: Secondary card pane is null
+11-11 11:33:00.015   918  1052 D EGL_emulation: app_time_stats: avg=3371.64ms min=3371.64ms max=3371.64ms count=1
+11-11 11:33:00.025   918   918 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-11 11:33:00.181   365   365 I netd    : tetherGetStats() -> {[]} <0.33ms>
+11-11 11:33:28.209   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:33:28.210   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:33:28.210   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:33:28.210   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:33:28.210   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:33:28.211  1207  1219 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:33:28.211  1207  1219 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:33:28.211  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:33:28.211   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:33:28.211   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:33:28.211   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:33:28.212  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:33:28.214  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:33:28.594     0     0 W healthd : battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+11-11 11:33:41.203   365 14036 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+11-11 11:33:41.203   365 14038 I resolv  : res_nmkquery: (QUERY, IN, A)
+11-11 11:33:41.203   365 14038 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0x7e45b6cd4f30
+11-11 11:33:41.203   365 14038 I resolv  : doQuery: rcode=0, ancount=8, return value=181
+11-11 11:33:41.203   365 14037 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+11-11 11:33:41.203   365 14037 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0x7e45d6cdc810
+11-11 11:33:41.203   365 14037 I resolv  : doQuery: rcode=0, ancount=8, return value=277
+11-11 11:33:43.229   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:33:43.229   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:33:43.229   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:33:43.229   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:33:43.229   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:33:43.230   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:33:43.230   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:33:43.230   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:33:43.231  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:33:43.232  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:33:43.233  1207  1218 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:33:43.233  1207  1218 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:33:43.234  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:33:45.113   365   365 I netd    : tetherGetStats() -> {[]} <0.27ms>
+11-11 11:33:52.646  1430  1802 I BistoHotwordHelper: (REDACTED) getHotwordActive::active query: %s, watch: %s, devices connected: %s
+11-11 11:34:00.011  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:34:00.011  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:34:00.011  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:34:00.011  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:34:00.011  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:34:00.011  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:34:00.011  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:34:00.011  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:34:00.011  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:34:00.011  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:34:00.011  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:34:00.011  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:34:00.011  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-11 11:34:00.011  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-11 11:34:00.012  1153  1153 D SsBaseTemplateCard: No text view can be set up
+11-11 11:34:00.012  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:34:00.012  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:34:00.012  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:34:00.013  1153  1153 I SsBaseTemplateCard: Secondary card pane is null
+11-11 11:34:00.015   918  1052 D EGL_emulation: app_time_stats: avg=60000.90ms min=60000.90ms max=60000.90ms count=1
+11-11 11:34:00.025   918   918 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-11 11:34:00.169   365   365 I netd    : tetherGetStats() -> {[]} <0.32ms>
+11-11 11:34:10.908   569  1872 D WifiNl80211Manager: Scan result ready event
+11-11 11:34:10.908   569  1872 D WifiNative: Scan result ready event
+11-11 11:34:10.910   569   830 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+11-11 11:34:13.271   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:34:13.271   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:34:13.271   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:34:13.271   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:34:13.271   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:34:13.273   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:34:13.273   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:34:13.273   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:34:13.273  1207  1578 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:34:13.273  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:34:13.274  1207  1578 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:34:13.274  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:34:13.276  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:34:28.594     0     0 W healthd : battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+11-11 11:34:36.643   918  1052 D EGL_emulation: app_time_stats: avg=36627.50ms min=36627.50ms max=36627.50ms count=1
+11-11 11:34:43.312   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:34:43.313   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:34:43.313   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:34:43.313   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:34:43.313   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:34:43.313   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:34:43.313   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:34:43.314   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:34:43.314  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:34:43.314  1207  1578 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:34:43.314  1207  1578 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:34:43.314  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:34:43.316  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:34:52.646  1430  1803 I BistoHotwordHelper: (REDACTED) getHotwordActive::active query: %s, watch: %s, devices connected: %s
+11-11 11:34:56.576  1207 14039 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.stats.PlatformStatsCollectorService started execution. cause:4 exec_start_elapsed_seconds: 2318 [CONTEXT service_id=218 ]
+11-11 11:34:56.580  1207  1228 I .gms.persistent: Waiting for a blocking GC ProfileSaver
+11-11 11:34:56.585  1207 14040 I PlatformStatsUtil: canLog says can't log [CONTEXT service_id=254 ]
+11-11 11:34:56.588  1207 13453 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.stats.PlatformStatsCollectorService finished executing. cause:4 result: 1 elapsed_millis: 20 uptime_millis: 20 exec_start_elapsed_seconds: 2318 [CONTEXT service_id=218 ]
+11-11 11:34:56.604   569  1854 D ActivityManager: sync unfroze 1386 com.google.android.gms for 4
+11-11 11:34:56.609  1386  1386 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.semanticlocationhistory.deidentifieddata.storevisits.StoreVisitsProcessingService.ACTION_TASK_READY dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsInternalBoundBrokerService }
+11-11 11:34:56.609  1386  1386 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.semanticlocationhistory.deidentifieddata.storevisits.StoreVisitsProcessingService.ACTION_TASK_READY dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsInternalBoundBrokerService }
+11-11 11:34:56.613  1386  1386 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.common.BIND_SHARED_PREFS pkg=com.google.android.gms }
+11-11 11:34:56.613  1386  1386 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.semanticlocationhistory.deidentifieddata.uploads.BatchDeidentifiedDataUploadService.ACTION_TASK_READY dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsInternalBoundBrokerService }
+11-11 11:34:56.613  1386  1386 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.semanticlocationhistory.deidentifieddata.uploads.BatchDeidentifiedDataUploadService.ACTION_TASK_READY dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsInternalBoundBrokerService }
+11-11 11:34:56.615  1207 14042 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.semanticlocationhistory.deidentifieddata.storevisits.StoreVisitsProcessingService started execution. cause:5 exec_start_elapsed_seconds: 2318 [CONTEXT service_id=218 ]
+11-11 11:34:56.620  1207  1228 I .gms.persistent: WaitForGcToComplete blocked ProfileSaver on Background for 39.940ms
+11-11 11:34:56.622  1207 14042 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.semanticlocationhistory.deidentifieddata.uploads.BatchDeidentifiedDataUploadService started execution. cause:5 exec_start_elapsed_seconds: 2318 [CONTEXT service_id=218 ]
+11-11 11:34:56.632  1386  4976 D nativeloader: Load /product/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk!/lib/x86_64/libgeller_jni_lite_lib.so using ns product-clns-9 from class loader (caller=/product/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk!classes3.dex): ok
+11-11 11:34:56.643  1386  3054 D nativeloader: Load /product/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk!/lib/x86_64/libleveldbjni.so using ns product-clns-9 from class loader (caller=/product/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk!classes3.dex): ok
+11-11 11:34:56.646   569  1872 W ProcessStats: Tracking association SourceState{8cc337b com.google.android.gms.persistent/10143 ImpBg #18748} whose proc state 6 is better than process ProcessState{a1cd572 com.google.android.gms/10143 pkg=com.google.android.gms} proc state 14 (16 skipped)
+11-11 11:34:56.653  1386  1386 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.semanticlocationhistory.deidentifieddata.uploads.BatchDeidentifiedDataUploadService.ACTION_TASK_READY dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsInternalBoundBrokerService }
+11-11 11:34:56.654  1207 13453 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.semanticlocationhistory.deidentifieddata.uploads.BatchDeidentifiedDataUploadService finished executing. cause:5 result: 1 elapsed_millis: 45 uptime_millis: 45 exec_start_elapsed_seconds: 2318 [CONTEXT service_id=218 ]
+11-11 11:34:56.656  1386  1386 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.semanticlocationhistory.deidentifieddata.storevisits.StoreVisitsProcessingService.ACTION_TASK_READY dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsInternalBoundBrokerService }
+11-11 11:34:56.658  1207 13453 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.semanticlocationhistory.deidentifieddata.storevisits.StoreVisitsProcessingService finished executing. cause:5 result: 1 elapsed_millis: 55 uptime_millis: 55 exec_start_elapsed_seconds: 2318 [CONTEXT service_id=218 ]
+11-11 11:34:56.663  1386  1386 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.semanticlocationhistory.federated.regionfetcher.RegionMddDownloadScheduleService.ACTION_TASK_READY dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsInternalBoundBrokerService }
+11-11 11:34:56.664  1386  1386 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.semanticlocationhistory.federated.regionfetcher.RegionMddDownloadScheduleService.ACTION_TASK_READY dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsInternalBoundBrokerService }
+11-11 11:34:56.665  1207 14042 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.semanticlocationhistory.federated.regionfetcher.RegionMddDownloadScheduleService started execution. cause:5 exec_start_elapsed_seconds: 2318 [CONTEXT service_id=218 ]
+11-11 11:34:56.665  1386  4976 I LocationHistory: Account-level location setting is turned off. [CONTEXT service_id=314 ]
+11-11 11:34:56.670  1386  1386 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.semanticlocationhistory.federated.regionfetcher.RegionMddDownloadScheduleService.ACTION_TASK_READY dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsInternalBoundBrokerService }
+11-11 11:34:56.670  1207 13453 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.semanticlocationhistory.federated.regionfetcher.RegionMddDownloadScheduleService finished executing. cause:5 result: 2 elapsed_millis: 9 uptime_millis: 9 exec_start_elapsed_seconds: 2318 [CONTEXT service_id=218 ]
+11-11 11:34:56.673  1207 13453 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.mdisync.service.MdiSyncBackgroundTaskService started execution. cause:5 exec_start_elapsed_seconds: 2318 [CONTEXT service_id=218 ]
+11-11 11:34:56.674  1386  3054 I MdiSyncModule: Dispatching task '2_PERIODIC'...
+11-11 11:34:56.674  1386  3054 I MdiSyncModule: Running singleton-scoped task '2 PERIODIC (2_PERIODIC)'...
+11-11 11:34:56.682  1386  3054 I MdiSyncModule: Singleton-scoped task '2 PERIODIC (2_PERIODIC)' finished with result '0'!
+11-11 11:34:56.682  1386  3054 I MdiSyncModule: Task '2 PERIODIC (2_PERIODIC)' finished with result '0'!
+11-11 11:34:56.683  1207 14042 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.mdisync.service.MdiSyncBackgroundTaskService finished executing. cause:5 result: 1 elapsed_millis: 16 uptime_millis: 16 exec_start_elapsed_seconds: 2318 [CONTEXT service_id=218 ]
+11-11 11:34:59.183   569  1854 W AppOps  : Noting op not finished: uid 10143 pkg com.google.android.gms code 79 startTime of in progress event=1794395078525
+11-11 11:34:59.184   569  1854 W AppOps  : Noting op not finished: uid 10143 pkg com.google.android.gms code 113 startTime of in progress event=1794395078525
+11-11 11:34:59.185   569   598 D ActivityManager: sync unfroze 2577 com.google.android.gms.unstable for 10
+11-11 11:34:59.186   569   598 D ActivityManager: sync unfroze 3323 com.google.android.gms.ui for 10
+11-11 11:34:59.187   569  1854 W AppOps  : Noting op not finished: uid 10143 pkg com.google.android.gms code 113 startTime of in progress event=1794395078525
+11-11 11:34:59.189  1207  2208 I ActivityScheduler: nextTriggerTime: 2558932, in 238099ms, detectorType: 39, FULL_TYPE alarmWindowMillis: 80000
+11-11 11:35:00.010  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:35:00.010  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:35:00.010  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:35:00.010  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:35:00.010  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:35:00.010  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:35:00.010  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:35:00.010  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:35:00.010  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:35:00.010  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:35:00.010  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:35:00.010  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:35:00.010  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-11 11:35:00.010  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-11 11:35:00.011  1153  1153 D SsBaseTemplateCard: No text view can be set up
+11-11 11:35:00.011  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:35:00.011  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:35:00.011  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:35:00.011  1153  1153 I SsBaseTemplateCard: Secondary card pane is null
+11-11 11:35:00.026   918   918 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-11 11:35:00.030   918  1052 D EGL_emulation: app_time_stats: avg=23386.97ms min=23386.97ms max=23386.97ms count=1
+11-11 11:35:03.701  1207 14042 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.tapandpay.gcmtask.TapAndPayGcmTaskService started execution. cause:4 exec_start_elapsed_seconds: 2325 [CONTEXT service_id=218 ]
+11-11 11:35:03.702  1207 14040 W TapAndPay: NfcAdapter is null while obtaining CardEmulation instance. [CONTEXT service_id=79 ]
+11-11 11:35:03.702  1207 14040 W TapAndPay: java.lang.NullPointerException: NfcAdapter is null
+11-11 11:35:03.702  1207 14040 W TapAndPay: 	at android.nfc.cardemulation.CardEmulation.getInstance(CardEmulation.java:170)
+11-11 11:35:03.702  1207 14040 W TapAndPay: 	at dhwn.<init>(:com.google.android.gms@242335041@24.23.35 (190800-646585959):15)
+11-11 11:35:03.702  1207 14040 W TapAndPay: 	at com.google.android.gms.tapandpay.hce.task.TapAndPayAidRegistrationTaskOperation.a(:com.google.android.gms@242335041@24.23.35 (190800-646585959):50)
+11-11 11:35:03.702  1207 14040 W TapAndPay: 	at com.google.android.gms.tapandpay.gcmtask.TapAndPayGcmTaskChimeraService.a(:com.google.android.gms@242335041@24.23.35 (190800-646585959):32)
+11-11 11:35:03.702  1207 14040 W TapAndPay: 	at bpjj.call(:com.google.android.gms@242335041@24.23.35 (190800-646585959):32)
+11-11 11:35:03.702  1207 14040 W TapAndPay: 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+11-11 11:35:03.702  1207 14040 W TapAndPay: 	at angs.c(:com.google.android.gms@242335041@24.23.35 (190800-646585959):50)
+11-11 11:35:03.702  1207 14040 W TapAndPay: 	at angs.run(:com.google.android.gms@242335041@24.23.35 (190800-646585959):76)
+11-11 11:35:03.702  1207 14040 W TapAndPay: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+11-11 11:35:03.702  1207 14040 W TapAndPay: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+11-11 11:35:03.702  1207 14040 W TapAndPay: 	at anmg.run(:com.google.android.gms@242335041@24.23.35 (190800-646585959):8)
+11-11 11:35:03.702  1207 14040 W TapAndPay: 	at java.lang.Thread.run(Thread.java:1012)
+11-11 11:35:03.704  1207 13453 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.tapandpay.gcmtask.TapAndPayGcmTaskService finished executing. cause:4 result: 3 elapsed_millis: 5 uptime_millis: 5 exec_start_elapsed_seconds: 2325 [CONTEXT service_id=218 ]
+11-11 11:35:03.711  1207 14040 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.auth.account.be.legacy.AuthCronService started execution. cause:5 exec_start_elapsed_seconds: 2325 [CONTEXT service_id=218 ]
+11-11 11:35:03.727   569  1854 D FileUtils: Rounded bytes from 2593193984 to 4000000000
+11-11 11:35:03.729  2577  7643 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+11-11 11:35:03.729  2577  7643 W libc    : Access denied finding property "service.adb.tls.port"
+11-11 11:35:03.733   365 14051 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+11-11 11:35:03.733  2577  7643 D TrafficStats: tagSocket(118) with statsTag=0x1809, statsUid=-1
+11-11 11:35:03.728  2577  2577 W binder:2577_C: type=1400 audit(0.0:79): avc:  denied  { read } for  name="u:object_r:system_adbd_prop:s0" dev="tmpfs" ino=318 scontext=u:r:gmscore_app:s0:c512,c768 tcontext=u:object_r:system_adbd_prop:s0 tclass=file permissive=0 app=com.google.android.gms
+11-11 11:35:03.728  2577  2577 W binder:2577_C: type=1400 audit(0.0:80): avc:  denied  { read } for  name="u:object_r:adbd_prop:s0" dev="tmpfs" ino=63 scontext=u:r:gmscore_app:s0:c512,c768 tcontext=u:object_r:adbd_prop:s0 tclass=file permissive=0 app=com.google.android.gms
+11-11 11:35:03.741  1207  1836 W GmsUrlRequestImpl: Content-Type header is overwritten.
+11-11 11:35:03.741   365 14052 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+11-11 11:35:03.742   365 14053 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+11-11 11:35:03.742   365 14054 I resolv  : res_nmkquery: (QUERY, IN, A)
+11-11 11:35:03.749   365 14053 I resolv  : res_nsend: used send_dg 264 terrno: 0
+11-11 11:35:03.749   365 14053 I resolv  : doQuery: rcode=0, ancount=8, return value=264
+11-11 11:35:03.750   365 14054 I resolv  : res_nsend: used send_dg 168 terrno: 0
+11-11 11:35:03.750   365 14054 I resolv  : doQuery: rcode=0, ancount=8, return value=168
+11-11 11:35:03.751  1207  2323 D TrafficStats: tagSocket(249) with statsTag=0x401, statsUid=10143
+11-11 11:35:03.782  1207  1836 W GLSUser : [AppCertManager] Exception while requesting key: 
+11-11 11:35:03.782  1207  1836 W GLSUser : java.util.concurrent.ExecutionException: bpcw: Parse Proto Exception with response code 400
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at etvr.s(:com.google.android.gms@242335041@24.23.35 (190800-646585959):21)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at etvr.get(:com.google.android.gms@242335041@24.23.35 (190800-646585959):10)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at yfw.b(:com.google.android.gms@242335041@24.23.35 (190800-646585959):477)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at yfu.b(:com.google.android.gms@242335041@24.23.35 (190800-646585959):31)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at yfp.a(:com.google.android.gms@242335041@24.23.35 (190800-646585959):1)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at yfs.a(:com.google.android.gms@242335041@24.23.35 (190800-646585959):58)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at uou.call(:com.google.android.gms@242335041@24.23.35 (190800-646585959):56)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at angs.c(:com.google.android.gms@242335041@24.23.35 (190800-646585959):50)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at angs.run(:com.google.android.gms@242335041@24.23.35 (190800-646585959):76)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at anmg.run(:com.google.android.gms@242335041@24.23.35 (190800-646585959):8)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at java.lang.Thread.run(Thread.java:1012)
+11-11 11:35:03.782  1207  1836 W GLSUser : Caused by: bpcw: Parse Proto Exception with response code 400
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at bpdw.b(:com.google.android.gms@242335041@24.23.35 (190800-646585959):80)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at bpgb.e(:com.google.android.gms@242335041@24.23.35 (190800-646585959):17)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at bpgp.onSucceeded(:com.google.android.gms@242335041@24.23.35 (190800-646585959):7)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at m.mw.onSucceeded(:com.google.android.gms.dynamite_cronetdynamite@242335041@24.23.35 (190800-0):3)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at m.lt.run(:com.google.android.gms.dynamite_cronetdynamite@242335041@24.23.35 (190800-0):25)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	... 6 more
+11-11 11:35:03.782  1207  1836 W GLSUser : Caused by: fkhe: Protocol message contained an invalid tag (zero).
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at fkea.k(:com.google.android.gms@242335041@24.23.35 (190800-646585959):39)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at fkid.c(:com.google.android.gms@242335041@24.23.35 (190800-646585959):309)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at fkid.i(:com.google.android.gms@242335041@24.23.35 (190800-646585959):8)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at fkgi.fe(:com.google.android.gms@242335041@24.23.35 (190800-646585959):25)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at fkgc.g(:com.google.android.gms@242335041@24.23.35 (190800-646585959):3)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at fkdw.e(:com.google.android.gms@242335041@24.23.35 (190800-646585959):1)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at fkdw.d(:com.google.android.gms@242335041@24.23.35 (190800-646585959):3)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at fkdw.p(:com.google.android.gms@242335041@24.23.35 (190800-646585959):1)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at bpdw.g(:com.google.android.gms@242335041@24.23.35 (190800-646585959):68)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	at bpdw.b(:com.google.android.gms@242335041@24.23.35 (190800-646585959):11)
+11-11 11:35:03.782  1207  1836 W GLSUser : 	... 10 more
+11-11 11:35:03.786  1207 14042 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.auth.account.be.legacy.AuthCronService finished executing. cause:5 result: 3 elapsed_millis: 76 uptime_millis: 76 exec_start_elapsed_seconds: 2325 [CONTEXT service_id=218 ]
+11-11 11:35:04.340   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:35:04.340   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:35:04.341   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:35:04.342  1207  1578 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:35:04.343  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:35:04.343  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:35:04.343  1207  1578 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:35:04.345  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:35:06.643   918  1052 D EGL_emulation: app_time_stats: avg=6612.56ms min=6612.56ms max=6612.56ms count=1
+11-11 11:35:10.349   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:35:10.349   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:35:10.349   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:35:10.350  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:35:10.351  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:35:10.352  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:35:10.353  1207  2383 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:35:10.353  1207  2383 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:35:28.594     0     0 W healthd : battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+11-11 11:35:29.207   569   670 D ActivityManager: freezing 2577 com.google.android.gms.unstable
+11-11 11:35:29.208   569   670 D ActivityManager: freezing 1386 com.google.android.gms
+11-11 11:35:29.208   569   670 D ActivityManager: freezing 3323 com.google.android.gms.ui
+11-11 11:35:43.394   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:35:43.395   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:35:43.395   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:35:43.395   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:35:43.395   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:35:43.396   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:35:43.396  1207  2383 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:35:43.396  1207  2383 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:35:43.396   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:35:43.396  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:35:43.396   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:35:43.397  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:35:43.399  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:35:45.245  1023  2223 D ApfFilter: (wlan0): Adding RA fe80::2 -> ff02::1 1800s fec0::/64 86400s/14400s 
+11-11 11:35:52.647  1430  1966 I BistoHotwordHelper: (REDACTED) getHotwordActive::active query: %s, watch: %s, devices connected: %s
+11-11 11:36:00.027  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:36:00.027  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:36:00.027  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:36:00.027  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:36:00.027  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:36:00.027  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:36:00.027  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:36:00.027  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:36:00.027  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:36:00.027  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:36:00.027  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:36:00.027  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:36:00.028  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:36:00.028  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:36:00.028  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:36:00.028  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:36:00.028  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:36:00.028  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:36:00.028  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:36:00.028  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:36:00.028  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:36:00.028  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:36:00.028  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:36:00.028  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:36:00.028  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-11 11:36:00.028  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-11 11:36:00.029  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-11 11:36:00.029  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-11 11:36:00.029  1153  1153 D SsBaseTemplateCard: No text view can be set up
+11-11 11:36:00.029  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:36:00.029  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:36:00.029  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:36:00.029  1153  1153 I SsBaseTemplateCard: Secondary card pane is null
+11-11 11:36:00.029  1153  1153 D SsBaseTemplateCard: No text view can be set up
+11-11 11:36:00.029  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:36:00.029  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:36:00.029  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:36:00.029  1153  1153 I SsBaseTemplateCard: Secondary card pane is null
+11-11 11:36:00.032   918  1052 D EGL_emulation: app_time_stats: avg=53389.73ms min=53389.73ms max=53389.73ms count=1
+11-11 11:36:00.041   918   918 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-11 11:36:00.041   918   918 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-11 11:36:13.432   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:13.432   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:13.432   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:13.432   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:13.432   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:13.433   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:13.433   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:13.433   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:13.434  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:36:13.434  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:36:13.435  1207  1578 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:36:13.435  1207  1578 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:36:13.437  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:36:17.725   365 14056 I resolv  : GetAddrInfoHandler::run: {100 786532 100 983140 10143 0}
+11-11 11:36:17.725   365 14057 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+11-11 11:36:17.725   365 14058 I resolv  : res_nmkquery: (QUERY, IN, A)
+11-11 11:36:17.732   365 14057 I resolv  : res_nsend: used send_dg 269 terrno: 0
+11-11 11:36:17.732   365 14057 I resolv  : doQuery: rcode=0, ancount=8, return value=269
+11-11 11:36:17.732   365 14058 I resolv  : res_nsend: used send_dg 173 terrno: 0
+11-11 11:36:17.732   365 14058 I resolv  : doQuery: rcode=0, ancount=8, return value=173
+11-11 11:36:19.441   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:19.441   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:19.441   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:19.441   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:19.441   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:19.442   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:19.442   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:19.442   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:19.443  1207  1578 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:36:19.443  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:36:19.444  1207  1578 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:36:19.444  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:36:19.446  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:36:27.774   918   918 D ZenModeController: Added callback class com.android.systemui.qs.tiles.DndTile$3
+11-11 11:36:27.775   918   918 D ZenModeController: Removed callback class com.android.systemui.qs.tiles.DndTile$3
+11-11 11:36:27.779   918  1043 I QuickAccessWalletTile: QAW service is unavailable, recreating the wallet client.
+11-11 11:36:27.780   918  1043 D ControlsListingControllerImpl: Subscribing callback, service count: 0
+11-11 11:36:27.780   918  1043 D ControlsListingControllerImpl: Unsubscribing callback
+11-11 11:36:28.594     0     0 W healthd : battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+11-11 11:36:38.024   569   662 I UsageStatsService: User[0] Flushing usage stats to disk
+11-11 11:36:46.643   918  1052 D EGL_emulation: app_time_stats: avg=46610.58ms min=46610.58ms max=46610.58ms count=1
+11-11 11:36:50.908   569  1872 D WifiNl80211Manager: Scan result ready event
+11-11 11:36:50.908   569  1872 D WifiNative: Scan result ready event
+11-11 11:36:50.910   569   830 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+11-11 11:36:52.483   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:52.483   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:52.483   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:52.484   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:52.484   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:52.484   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:52.484   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:52.485  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:36:52.485   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:36:52.485  1207  1578 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:36:52.486  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:36:52.487  1207  1578 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:36:52.487  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:36:52.646  1430  1803 I BistoHotwordHelper: (REDACTED) getHotwordActive::active query: %s, watch: %s, devices connected: %s
+11-11 11:37:00.010  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:37:00.010  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:37:00.010  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:37:00.010  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:37:00.010  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:37:00.011  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:37:00.011  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:37:00.011  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:37:00.011  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:37:00.011  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:37:00.011  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:37:00.011  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:37:00.011  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-11 11:37:00.011  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-11 11:37:00.011  1153  1153 D SsBaseTemplateCard: No text view can be set up
+11-11 11:37:00.011  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:37:00.011  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:37:00.011  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:37:00.011  1153  1153 I SsBaseTemplateCard: Secondary card pane is null
+11-11 11:37:00.014   918  1052 D EGL_emulation: app_time_stats: avg=13371.14ms min=13371.14ms max=13371.14ms count=1
+11-11 11:37:00.025   918   918 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-11 11:37:16.659   918  1052 D EGL_emulation: app_time_stats: avg=16645.16ms min=16645.16ms max=16645.16ms count=1
+11-11 11:37:24.106  1327  1813 I PhenotypeProcessReaper: Memory state is: 200
+11-11 11:37:25.526   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:37:25.526   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:37:25.526   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:37:25.526   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:37:25.526   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:37:25.526   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:37:25.526   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:37:25.526   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:37:25.528  1207  1578 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:37:25.528  1207  1578 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:37:25.528  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:37:25.528  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:37:25.530  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:37:28.594     0     0 W healthd : battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+11-11 11:37:34.123   569   647 D TelephonyManager: requestModemActivityInfo: Sending result to app: ModemActivityInfo{ mTimestamp=2475766 mSleepTimeMs=0 mIdleTimeMs=2475759 mActivityStatsTechSpecificInfo=[{mRat=UNKNOWN,mFrequencyRange=UNKNOWN,mTxTimeMs[]=[0, 0, 0, 0, 0],mRxTimeMs=0}]}
+11-11 11:37:34.137   365   365 I netd    : tetherGetStats() -> {[]} <0.37ms>
+11-11 11:37:52.413   365   365 I netd    : tetherGetStats() -> {[]} <0.30ms>
+11-11 11:37:52.646  1430  1966 I BistoHotwordHelper: (REDACTED) getHotwordActive::active query: %s, watch: %s, devices connected: %s
+11-11 11:37:55.568   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:37:55.568   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:37:55.568   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:37:55.568   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:37:55.568   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:37:55.569   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:37:55.569  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:37:55.569   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:37:55.569   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:37:55.569  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:37:55.570  1207  1578 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:37:55.571  1207  1578 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:37:55.572  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:37:55.581  3538  3543 W s.messaging:rcs: Reducing the number of considered missed Gc histogram windows from 101 to 100
+11-11 11:38:00.010  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:38:00.010  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:38:00.010  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:38:00.010  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:38:00.011  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:38:00.011  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:38:00.011  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:38:00.011  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:38:00.011  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:38:00.011  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:38:00.011  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:38:00.011  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:38:00.011  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-11 11:38:00.012  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-11 11:38:00.012  1153  1153 D SsBaseTemplateCard: No text view can be set up
+11-11 11:38:00.012  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:38:00.012  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:38:00.012  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:38:00.012  1153  1153 I SsBaseTemplateCard: Secondary card pane is null
+11-11 11:38:00.027   918   918 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-11 11:38:00.031   918  1052 D EGL_emulation: app_time_stats: avg=43371.34ms min=43371.34ms max=43371.34ms count=1
+11-11 11:38:07.445   365   365 I netd    : tetherGetStats() -> {[]} <0.39ms>
+11-11 11:38:25.610   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:38:25.611   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:38:25.611   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:38:25.611   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:38:25.611   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:38:25.612  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:38:25.613   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:38:25.613   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:38:25.613   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:38:25.613  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:38:25.614  1207  1578 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:38:25.614  1207  1578 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:38:25.615  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:38:28.594     0     0 W healthd : battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+11-11 11:38:37.964  1207 14024 I AlarmManager: setExactAndAllowWhileIdle [name: GCM_HB_ALARM type: 2 triggerAtMillis: 3159607]
+11-11 11:38:37.964  1207 14024 I AlarmManager: setExactAndAllowWhileIdle [name: GCM_HB_ALARM type: 2 triggerAtMillis: 3159608]
+11-11 11:38:52.413   365   365 I netd    : tetherGetStats() -> {[]} <0.33ms>
+11-11 11:38:52.646  1430  1803 I BistoHotwordHelper: (REDACTED) getHotwordActive::active query: %s, watch: %s, devices connected: %s
+11-11 11:38:56.660   918  1052 D EGL_emulation: app_time_stats: avg=56628.82ms min=56628.82ms max=56628.82ms count=1
+11-11 11:39:00.010  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:39:00.010  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:39:00.010  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:39:00.010  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:39:00.010  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:39:00.010  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:39:00.010  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:39:00.010  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:39:00.010  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:39:00.010  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:39:00.010  1412  1662 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+11-11 11:39:00.010  1412  1662 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+11-11 11:39:00.010  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-11 11:39:00.010  1412  1662 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-11 11:39:00.011  1153  1153 D SsBaseTemplateCard: No text view can be set up
+11-11 11:39:00.011  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:39:00.011  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:39:00.011  1153  1153 D SsBaseTemplateCard: Passed-in item info is null
+11-11 11:39:00.012  1153  1153 I SsBaseTemplateCard: Secondary card pane is null
+11-11 11:39:00.026   918   918 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-11 11:39:00.030   918  1052 D EGL_emulation: app_time_stats: avg=3369.83ms min=3369.83ms max=3369.83ms count=1
+11-11 11:39:07.461   365   365 I netd    : tetherGetStats() -> {[]} <0.33ms>
+11-11 11:39:16.681   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:16.681   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:16.681   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:16.681   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:16.681   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:16.681   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:16.681   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:16.681   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:16.681  1207  1219 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:39:16.681  1207  1219 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:39:16.682  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:39:16.682  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:39:16.684  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:39:26.660   918  1052 D EGL_emulation: app_time_stats: avg=26629.97ms min=26629.97ms max=26629.97ms count=1
+11-11 11:39:28.594     0     0 W healthd : battery l=100 v=5000 t=25.0 h=2 st=2 c=900000 fc=3000000 cc=10 chg=a
+11-11 11:39:30.912   569  1009 D WifiNl80211Manager: Scan result ready event
+11-11 11:39:30.912   569  1009 D WifiNative: Scan result ready event
+11-11 11:39:30.914   569   830 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+11-11 11:39:31.699   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:31.699   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:31.699   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:31.699   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:31.699   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:31.700   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:31.700   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:31.700   569   839 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:31.701  3538  3590 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[a29b83b6-52aa]>Handler" thread_id=59 ]
+11-11 11:39:31.701  1207  1219 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+11-11 11:39:31.701  1207  1219 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+11-11 11:39:31.702  3538  3591 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+11-11 11:39:31.704  3538  3590 I BugleRcsEngine: No RCS Configuration was found in Bugle for simID: redacted-pii:sim_id[chars:20,last3:897] [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=59 ]
+11-11 11:39:45.455 13956 13986 V UiAutomation: Init UiAutomation@5c9b084[id=-1, displayId=0, flags=0]
+11-11 11:39:45.456   569   647 W MagnificationConnectionManager: requestConnection duplicated request: connect=false, mConnectionState=DISCONNECTED
+11-11 11:39:45.456   569   647 V UiAutomationManager: UiAutomation service owner died
+11-11 11:39:45.456   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:45.456   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:45.456   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:45.456   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:45.456   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:45.456   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:45.456   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:45.457   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:45.457   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:45.457   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:45.457   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:45.457   569   569 W IPCThreadState: Sending oneway calls to frozen process.
+11-11 11:39:45.457   569   569 D BatterySaverPolicy: accessibility changed to false, updating policy.
+11-11 11:39:45.460  1412  2079 I AiAiEcho: Settings changed for uri: content://settings/secure/accessibility_enabled
+11-11 11:39:45.461  1412  1662 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+11-11 11:39:45.461  1412  1662 I AiAiEcho: EchoTargets: 
+11-11 11:39:45.461  1412  1662 I AiAiEcho: Filtered by AiAi flag check: 
+11-11 11:39:45.461  1412  1662 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]

@@ -1,0 +1,21 @@
+{
+  "commit": "e5e0e5618b9c7747935005f9a6f123f7ae42c845",
+  "run": 42020440809,
+  "result": "success",
+  "api23_job": 127221764336,
+  "api35_job": 127221764405,
+  "jvm_job": 127221555080,
+  "scenarios_per_api": 44,
+  "close_assertions_per_api": 563,
+  "managerforms23": 482,
+  "managerforms35": 473,
+  "jvm_suites": 27,
+  "jvm_assertions": 81416,
+  "host_tests": 16,
+  "png_sha_verified": 32,
+  "png_visually_reviewed": 32,
+  "release_gate": false,
+  "gate_blockers": 25,
+  "accepted_requirements": 0,
+  "scope": "existing valid part; native missing-part close unchanged; full migration not accepted"
+}

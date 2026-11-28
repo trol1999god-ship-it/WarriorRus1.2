@@ -1,0 +1,10 @@
+{
+  "apk_sha256": "5ac3c7091cecae66942cdffee7c91ca0eb96be5eae902e85b0d6d9920643c142",
+  "apk_certificate_subject": "CN=Rabochaya Karta Review",
+  "apk_certificate_sha256": "3edcb1aabed67020aff5b124ee8ba1e9bd4121674d33b15198eb334e2959efa7",
+  "log_entry": "[Core] ** Silent Warning ** cca.doesHaveValidSignature(): No matching found!",
+  "evidence_archive_sha256": "2d2cd0a1d45844bb7a0f0577152aa78cddbb5defcedcfcfa2dd99b6917b7faa1",
+  "evidence_archive_member": "saved-reference/logcat.txt",
+  "evidence_timestamp": "2026-11-21 17:15:57",
+  "observation": "The bundled check rejected the observed signer. The APK is byte-identical to the previously recorded reference. The log does not identify an accepted signer."
+}

@@ -1,0 +1,48 @@
+{
+  "code": "97d6fa45f2de9f86013c88bd9c4728040c4a3a10",
+  "ci": 42995231822,
+  "attempt": 1,
+  "ci_conclusion": "success",
+  "qualification": "functional assertions passed; visual button defect confirmed; stage not accepted",
+  "accepted": false,
+  "frames_sha256_verified": 32,
+  "frames_actually_viewed": 32,
+  "visual_defect": "action buttons compressed to approximately10px on both APIs; API23 screenshot has real IME, API35 frame without keyboard also clipped",
+  "candidate_fix": "explicit48dp action row targets plus physical visible/text guards; not runtime verified yet",
+  "apis": {
+    "23": {
+      "job": 130437703947,
+      "modes_pass": 46,
+      "maplayers_assertions": 142,
+      "maplayersreopen_assertions": 37,
+      "managerforms_assertions": 482,
+      "log_sha256": "ce36a5001f4f656a8a3a6fd529850a10606967c9606dc97c9aaa28a93faa3935",
+      "png_manifest": "final-api23/frames.json",
+      "strict_guards_passed": [
+        "layer choice/Cancel/plan16",
+        "partial foreground pause",
+        "stale-CAS/foreign/replaced/selected-layer-change refusal",
+        "actual force-stop/explicit missing-only resume",
+        "complete-job zero HTTP",
+        "KML/assets/cache/other-project retention"
+      ]
+    },
+    "35": {
+      "job": 130437703955,
+      "modes_pass": 46,
+      "maplayers_assertions": 141,
+      "maplayersreopen_assertions": 37,
+      "managerforms_assertions": 473,
+      "log_sha256": "2259fa5c68d00cfd064c71c072c101708b8358e9a76dbbd45a05dfbeb09a8d64",
+      "png_manifest": "final-api35/frames.json",
+      "strict_guards_passed": [
+        "layer choice/Cancel/plan16",
+        "partial foreground pause",
+        "stale-CAS/foreign/replaced/selected-layer-change refusal",
+        "actual force-stop/explicit missing-only resume",
+        "complete-job zero HTTP",
+        "KML/assets/cache/other-project retention"
+      ]
+    }
+  }
+}

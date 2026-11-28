@@ -1,0 +1,24 @@
+{
+  "api": "35",
+  "source_sha": "b11f6b635707010dfd5869a058245faf7338ecdb",
+  "run_id": "44296647517",
+  "outer_path": "/workspace/attachments/d3d0966e-da13-451f-bf4e-a9679a66d0ae/b11-14427420978.zip",
+  "outer_sha256": "bd345494e46d433343ee25a7847ace4e3fdffe45a6542488de366bdb01174d78",
+  "inner_sha256": "318e4cee8b661085d5bea0cbd73beb6b009eee93fad17b0c6532cebeea9fa024",
+  "all_member_hashes_verified": true,
+  "members": 567,
+  "records": 46,
+  "passed": 46,
+  "failed_or_skipped": [],
+  "frames": 38,
+  "visual_review": "7 scoped original PNG actually reviewed; inherited copies excluded; not all frames",
+  "scoped_original_png_viewed": [
+    "offlineformats/map_mvisual-kml-component-error.png",
+    "offlineformats/map_mvisual-kml-component-editor.png",
+    "offlineformats/map_mvisual-kml-components-reopen.png",
+    "offlineformats/map_mvisual-kml-components.png",
+    "maplayers/map_mvisual-layers-preset-name.png",
+    "maplayers/map_mvisual-layers-preset-list.png",
+    "maplayersreopen/map_mvisual-layers-restarted-manager.png"
+  ]
+}

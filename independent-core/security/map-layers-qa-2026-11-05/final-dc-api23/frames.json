@@ -1,0 +1,34 @@
+[
+  {
+    "name": "map_mvisual-layers-composed.png",
+    "sha256": "936ec2970222e9b5f4faed08d109cbf568bd643334101838d93f3f244a2ec369"
+  },
+  {
+    "name": "map_mvisual-layers-final.png",
+    "sha256": "8b6aa81b7e969aef8aac056b8ec2cf10c1536f9c9b08f0a03e2b7eeae8908663"
+  },
+  {
+    "name": "map_mvisual-layers-manager.png",
+    "sha256": "10dab6a8a44d1cfab460d89cb38fbd210a80ce2a812b3d4e9f0045853e1cc345"
+  },
+  {
+    "name": "map_mvisual-layers-opacity-after.png",
+    "sha256": "10dab6a8a44d1cfab460d89cb38fbd210a80ce2a812b3d4e9f0045853e1cc345"
+  },
+  {
+    "name": "map_mvisual-layers-opacity-before.png",
+    "sha256": "a608bb1c728e2ad24339739076b4de079395b8add00faef376011b23fce11121"
+  },
+  {
+    "name": "map_mvisual-layers-reordered.png",
+    "sha256": "0dbb36fa1d786676557b7445738000efe7171a3497b926914c47e16e0b53ced3"
+  },
+  {
+    "name": "map_mvisual-layers-restarted-manager.png",
+    "sha256": "b6049cedab05f8fb91975d1d5547001124711bce42a8a20affa808e5097991cf"
+  },
+  {
+    "name": "map_mvisual-layers-restarted.png",
+    "sha256": "4897a0aa39617fac1750fdb7123074269d0a1972b89f4300d0d3420b6b0800ae"
+  }
+]

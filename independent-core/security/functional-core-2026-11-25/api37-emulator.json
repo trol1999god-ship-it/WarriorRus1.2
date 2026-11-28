@@ -1,0 +1,36 @@
+{
+  "initial_run": 45696533101,
+  "api37_job": 139495681176,
+  "phase": "instrumentation startup",
+  "evidence": [
+    "11-25 20:40:34.195  5023  5023 F DEBUG   : Page size: 16384 bytes",
+    "11-25 20:40:34.195  5023  5023 F DEBUG   : Executable: /system/bin/surfaceflinger",
+    "11-25 20:40:34.195  5023  5023 F DEBUG   : Abort message: 'Assertion failed: !rcEnc->featureInfo()->hasReadColorBufferDma'",
+    "11-25 20:40:34.196  5023  5023 F DEBUG   :       #03 pc 0000000000005adf  /vendor/lib64/hw/mapper.ranchu.so ((anonymous namespace)::GoldfishMapper::readFromHost(cb_handle_t const&) const+543) (BuildId: 7b353e53a651ae1223cbe45b0946e22b)"
+  ],
+  "upstream_issue": "https://github.com/ReactiveCircus/android-emulator-runner/issues/482",
+  "retry_run": 45697512876,
+  "retry_image": "system-images;android-37.0;google_apis;x86_64",
+  "retry_sdk_command_line_tools": "22.0",
+  "retry_graphics_backend": "software",
+  "retry_conclusion": "PASSED",
+  "retry_evidence_artifact": 15061059068,
+  "retry_scenarios": {
+    "clipboard": {
+      "passed": true,
+      "assertions": 133
+    },
+    "clipboardreopen": {
+      "passed": true,
+      "assertions": 41
+    },
+    "objectformats": {
+      "passed": true,
+      "assertions": 12
+    },
+    "objectformatsreopen": {
+      "passed": true,
+      "assertions": 12
+    }
+  }
+}

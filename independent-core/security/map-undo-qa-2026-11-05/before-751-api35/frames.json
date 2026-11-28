@@ -1,0 +1,26 @@
+[
+  {
+    "name": "map_mvisual-map-undo-after-land.png",
+    "sha256": "0fbe7832db1951b8fb13a5effd939fbe1d7715ac1e6824d73748232eebc01466"
+  },
+  {
+    "name": "map_mvisual-map-undo-after-return.png",
+    "sha256": "1b6524bdb1d69492b89584326220248e8f86596f4e80218c0158d3c123b8c011"
+  },
+  {
+    "name": "map_mvisual-map-undo-before-land.png",
+    "sha256": "7d34e3c438dc51f45146da6c511b437488a1017afb562bd06b1557c822e39f38"
+  },
+  {
+    "name": "map_mvisual-map-undo-before-return.png",
+    "sha256": "5c6fbd2c0b6c1cdd9d63d8564e7946feda983acf8f90f305e477a88b7174fd8f"
+  },
+  {
+    "name": "map_mvisual-map-undo-cancel-close.png",
+    "sha256": "00a83819f21002674518da56477356244d823d5bd177ff55d3c77450db5eb40a"
+  },
+  {
+    "name": "map_mvisual-map-undo-saved.png",
+    "sha256": "afa718cc648137dd487237b7329efe94f1c22b57997489fe1d37743fb4b756ee"
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "name": "map_mvisual-map-undo-after-land.png",
+    "sha256": "4894219701223c4fbf2376b796423a375607744bdb47a6e887d635fd7fd0c9cc"
+  },
+  {
+    "name": "map_mvisual-map-undo-after-return.png",
+    "sha256": "9b0fc38f1d0693f92a8cf3ff9374b1fcb4ae4622f654452335d48bdec8096072"
+  },
+  {
+    "name": "map_mvisual-map-undo-before-land.png",
+    "sha256": "023113ae011683a9fdc826b8f2a2cca1c380ef3e44d8c987782b5c51c4a871b5"
+  },
+  {
+    "name": "map_mvisual-map-undo-before-return.png",
+    "sha256": "c88d9327ed44e21715cb626593a0e241e87f8876acc9fe3f46f5572794f5da2f"
+  },
+  {
+    "name": "map_mvisual-map-undo-cancel-close.png",
+    "sha256": "0e41cfb7e65311a257201a6103bfe99bde622cad9fa84382e58b036fbf45b33c"
+  },
+  {
+    "name": "map_mvisual-map-undo-foreign-feature.png",
+    "sha256": "bca97848d4186329e2775b283bfd5b54afff7d9008f46dc771611bcfd8a8e199"
+  },
+  {
+    "name": "map_mvisual-map-undo-foreign-key.png",
+    "sha256": "58df7dbcb9732f751e87655a9d554cc57bb2dca71fe129c01d6f0828e01c9ba0"
+  },
+  {
+    "name": "map_mvisual-map-undo-foreign-project.png",
+    "sha256": "e5ae26fb1c1b4904afacfeef2399d0cfb07443cc1b105c491cccb6a15f95adef"
+  },
+  {
+    "name": "map_mvisual-map-undo-main-changed.png",
+    "sha256": "3f76580956127b2ba18a5ccd59f05eb499e70c0a0e3750eb721bcf70f6c621b9"
+  },
+  {
+    "name": "map_mvisual-map-undo-multi-after-undo.png",
+    "sha256": "0e41cfb7e65311a257201a6103bfe99bde622cad9fa84382e58b036fbf45b33c"
+  },
+  {
+    "name": "map_mvisual-map-undo-multi-before-undo.png",
+    "sha256": "5522f2a5ff9203f9f97e50412d09dc1247f4cb5199df814c8a8e32f6ae4a8d90"
+  },
+  {
+    "name": "map_mvisual-map-undo-saved.png",
+    "sha256": "d955a740698ebce99a0146a080421db25e2b1cb961e55f545e2cf115d8f38f91"
+  },
+  {
+    "name": "map_mvisual-map-undo-stale-after.png",
+    "sha256": "8e65baa58c755a8f57e614004d0ca3ff9ad9a88c614f90a7d19738224fb9a850"
+  },
+  {
+    "name": "map_mvisual-map-undo-stale-before.png",
+    "sha256": "13b9f800d03dfb8203288259267f7d6fe79aff939d98c4ef2fd07ded3ff2a9ca"
+  },
+  {
+    "name": "map_mvisual-map-undo-undone-land.png",
+    "sha256": "4689cedd347559c25381818f1def98c1ee62eaa94e28d6df5217d8485307c8ea"
+  },
+  {
+    "name": "map_mvisual-map-undo-undone-return.png",
+    "sha256": "0e41cfb7e65311a257201a6103bfe99bde622cad9fa84382e58b036fbf45b33c"
+  }
+]

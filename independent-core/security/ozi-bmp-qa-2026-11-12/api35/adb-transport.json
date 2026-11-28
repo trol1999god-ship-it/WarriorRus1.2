@@ -1,0 +1,15 @@
+[
+  {
+    "mode": "geometrynewholeguards",
+    "command": [
+      "pull",
+      "/sdcard/Android/data/org.rabochaya.karta/files",
+      "/home/runner/work/_temp/rk-results/geometrynewholeguards"
+    ],
+    "retry": 1,
+    "same_boot": true,
+    "first_rejection": "adb: error: failed to get feature set: device offline\n",
+    "retry_returncode": 0,
+    "retry_output": "/sdcard/Android/data/org.rabochaya.karta/files/: 13 files pulled, 0 skipped. 9.1 MB/s (555017 bytes in 0.058s)\n"
+  }
+]

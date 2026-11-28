@@ -1,0 +1,744 @@
+[
+  {
+    "name": "chooser-before",
+    "visibleFrame": "[0,24][320,640]",
+    "orientation": 1,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Перенести в папку",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[40, 242, 240, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 279, 288, 48]",
+        "visible": true,
+        "visibleBounds": "[16,71][304,119]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта / QA_ROTATE_FOLDER",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 327, 288, 48]",
+        "visible": true,
+        "visibleBounds": "[16,119][304,167]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[208, 387, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[208,179][292,227]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "chooser-cancel",
+    "visibleFrame": "[0,24][640,320]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Перенести в папку",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[152, 82, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][376,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 119, 384, 48]",
+        "visible": true,
+        "visibleBounds": "[16,71][400,119]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта / QA_ROTATE_FOLDER",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 167, 384, 48]",
+        "visible": true,
+        "visibleBounds": "[16,119][400,167]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[416, 227, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[304,179][388,227]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "chooser-return",
+    "visibleFrame": "[0,24][320,640]",
+    "orientation": 1,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Перенести в папку",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[40, 242, 240, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 279, 288, 48]",
+        "visible": true,
+        "visibleBounds": "[16,71][304,119]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта / QA_ROTATE_FOLDER",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 327, 288, 48]",
+        "visible": true,
+        "visibleBounds": "[16,119][304,167]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[208, 387, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[208,179][292,227]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "chooser-choice-cancel",
+    "visibleFrame": "[0,24][640,320]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Перенести в папку",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[152, 82, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][376,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 119, 384, 48]",
+        "visible": true,
+        "visibleBounds": "[16,71][400,119]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта / QA_ROTATE_FOLDER",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 167, 384, 48]",
+        "visible": true,
+        "visibleBounds": "[16,119][400,167]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[416, 227, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[304,179][388,227]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "chooser-save",
+    "visibleFrame": "[0,24][640,320]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Перенести в папку",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[152, 82, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][376,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 119, 384, 48]",
+        "visible": true,
+        "visibleBounds": "[16,71][400,119]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта / QA_ROTATE_FOLDER",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 167, 384, 48]",
+        "visible": true,
+        "visibleBounds": "[16,119][400,167]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[416, 227, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[304,179][388,227]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "chooser-confirm-return",
+    "visibleFrame": "[0,24][320,640]",
+    "orientation": 1,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Перенести выбранные объекты (2, вне списка: 1) в «Корень проекта / QA_ROTATE_FOLDER»? Видимость будет зависеть от новой папки.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 258, 288, 109]",
+        "visible": true,
+        "visibleBounds": "[16,34][304,143]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[99, 371, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[99,147][183,195]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Перенести",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[183, 371, 109, 48]",
+        "visible": true,
+        "visibleBounds": "[183,147][292,195]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "chooser-saved",
+    "visibleFrame": "[0,24][320,640]",
+    "orientation": 1,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Объекты проекта",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 36, 296, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][308,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта · показано: 0",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 67, 296, 21]",
+        "visible": true,
+        "visibleBounds": "[12,67][308,88]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Название: «QA_ROTATE_POINT». Все типы · Любая видимость · Эта папка · Исходный порядок",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 88, 296, 37]",
+        "visible": true,
+        "visibleBounds": "[12,88][308,125]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Выбрано: 0 · вне списка: 0",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 125, 296, 21]",
+        "visible": true,
+        "visibleBounds": "[12,125][308,146]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Изменения сохранены",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 146, 296, 21]",
+        "visible": true,
+        "visibleBounds": "[12,146][308,167]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Поиск и фильтры",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 167, 296, 48]",
+        "visible": true,
+        "visibleBounds": "[12,167][308,215]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Даты KML",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 215, 296, 48]",
+        "visible": true,
+        "visibleBounds": "[12,215][308,263]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Вверх",
+        "foreground": "#3a000000",
+        "arimo": true,
+        "bounds": "[12, 263, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[12,263][100,311]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[100, 263, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[100,263][188,311]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[188, 263, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[188,263][276,311]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Проекты, импорт и экспорт",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 580, 296, 48]",
+        "visible": true,
+        "visibleBounds": "[12,580][308,628]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "chooser-stale-before",
+    "visibleFrame": "[0,24][640,320]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Перенести в папку",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[152, 100, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][376,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Проект изменился. Выбор папки заблокирован. Отмените диалог и повторите выбор объектов. Выбрано: 2, вне списка: 1.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 147, 384, 58]",
+        "visible": true,
+        "visibleBounds": "[16,81][400,139]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[416, 209, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[304,143][388,191]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "chooser-stale-after",
+    "visibleFrame": "[0,24][640,320]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Перенести в папку",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[152, 82, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][376,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 119, 384, 48]",
+        "visible": true,
+        "visibleBounds": "[16,71][400,119]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта / QA_ROTATE_FOLDER",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 167, 384, 48]",
+        "visible": true,
+        "visibleBounds": "[16,119][400,167]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[416, 227, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[304,179][388,227]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "chooser-rejected",
+    "visibleFrame": "[0,24][640,320]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Проект изменился. Перечитайте список и повторите выбор",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 132, 384, 41]",
+        "visible": true,
+        "visibleBounds": "[16,34][400,75]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Понятно",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[405, 177, 95, 48]",
+        "visible": true,
+        "visibleBounds": "[293,79][388,127]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "chooser-stale-after-return",
+    "visibleFrame": "[0,24][320,640]",
+    "orientation": 1,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Проект изменился. Перенос заблокирован. Отмените подтверждение и повторите выбор.\n\nПеренести выбранные объекты (2, вне списка: 1) в «Корень проекта / QA_ROTATE_",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 216, 288, 194]",
+        "visible": true,
+        "visibleBounds": "[16,34][304,228]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[99, 414, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[99,232][183,280]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Перенести",
+        "foreground": "#24000000",
+        "arimo": true,
+        "bounds": "[183, 414, 109, 48]",
+        "visible": true,
+        "visibleBounds": "[183,232][292,280]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "chooser-foreign",
+    "visibleFrame": "[0,24][640,320]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Объекты проекта",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 36, 616, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][628,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Корень проекта · показано: 3",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 67, 616, 21]",
+        "visible": true,
+        "visibleBounds": "[12,67][628,88]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Все типы · Любая видимость · Эта папка · Исходный порядок",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 88, 616, 21]",
+        "visible": true,
+        "visibleBounds": "[12,88][628,109]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Выбрано: 0 · вне списка: 0",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 88, 616, 21]",
+        "visible": true,
+        "visibleBounds": "[12,88][628,109]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Выбор папки другого проекта или процесса не восстановлен",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 109, 616, 21]",
+        "visible": true,
+        "visibleBounds": "[12,109][628,116]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Поиск и фильтры",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 130, 616, 48]",
+        "visible": false,
+        "visibleBounds": "[0,94][616,142]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Даты KML",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 178, 616, 48]",
+        "visible": false,
+        "visibleBounds": "[0,142][616,190]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Вверх",
+        "foreground": "#3a000000",
+        "arimo": true,
+        "bounds": "[12, 116, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[12,116][100,164]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[100, 116, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[100,116][188,164]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[188, 116, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[188,116][276,164]",
+        "fullyVisible": true
+      },
+      {
+        "class": "CheckBox",
+        "text": "QA_ROTATE_FOLDER\nПапки и группы",
+        "foreground": "#ff000000",
+        "arimo": true,
+        "bounds": "[12, 169, 528, 37]",
+        "visible": true,
+        "visibleBounds": "[12,169][540,206]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Открыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[540, 164, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[540,164][628,212]",
+        "fullyVisible": true
+      },
+      {
+        "class": "CheckBox",
+        "text": "QA_ROTATE_POINT\nМетки",
+        "foreground": "#ff000000",
+        "arimo": true,
+        "bounds": "[12, 213, 616, 37]",
+        "visible": true,
+        "visibleBounds": "[12,213][628,250]",
+        "fullyVisible": true
+      },
+      {
+        "class": "CheckBox",
+        "text": "QA_ROTATE_OTHER\nМетки",
+        "foreground": "#ff000000",
+        "arimo": true,
+        "bounds": "[12, 251, 616, 37]",
+        "visible": true,
+        "visibleBounds": "[12,251][628,260]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Проекты, импорт и экспорт",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 260, 616, 48]",
+        "visible": true,
+        "visibleBounds": "[12,260][628,308]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  }
+]

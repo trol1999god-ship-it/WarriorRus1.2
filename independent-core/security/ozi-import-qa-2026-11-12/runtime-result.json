@@ -1,0 +1,35 @@
+{
+  "source": "fbc64ea14ddc009e74a3ed1856885698a21d2865",
+  "run": 43139985094,
+  "conclusion": "failure; NOT full green",
+  "jvm": "success34/82052/Ozi66/Geo432/host20/source77",
+  "api23": {
+    "job": 130924523781,
+    "conclusion": "success",
+    "records": 46,
+    "passed": 46,
+    "offlineformats": 581
+  },
+  "api35": {
+    "job": 130924523754,
+    "conclusion": "failure",
+    "records": 46,
+    "passed": 41,
+    "offlineformats_native": 581,
+    "offlineformats_record": "failed: pull device offline after native PASS",
+    "unexecuted_transport_failures": [
+      "cachewrites",
+      "coordinates",
+      "managerpasteconfirm",
+      "managerchooser"
+    ]
+  },
+  "scope": "Explicit real map-menu/document-picker request with synthetic selected pair; Version2.2 UTF8 WGS84 affine PNG/JPEG import; literal pixels/bounds/native zoom/transparent footprint/Cancel/refusals/source exact; region LRU64/16MiB and close; UI CAS preserves another-window replacement; Arimo/actions/reopen/KML/assets/otherproject/request0",
+  "old_guards": "GeoTIFF391 retained; managerrotation/forms/geometrymap/reopen/layers/profile/HGT/data really passed both, mandatory MANAGER_LAUNCH replacement/project/firstDestroyed/portrait present",
+  "artifacts": "source/outer/inner/all548+538 member hashes verified",
+  "visual_scope": "12 current images actually opened: all4 new Ozi prompt/saved,4 GeoTIFF,4 profile/manual centre restart; other extracted PNG are NOT claimed viewed",
+  "api35_recovery": "4 offlineformats frames pulled into cachewrites after its pre-instrumentation offline failure. Original paths retained; NOT success of either failed record. Same run source/native581 established.",
+  "runtime_bmp": "not included; next local candidate only",
+  "next": "Bounded same-boot transport recovery for idempotent preparation/reads only; no instrumentation retry, no skip success, partial pull backup, fresh output guard. Then changed BMP+driver full46 both APIs; not blind rerun fbc.",
+  "acceptance": "open; accepted0/release gate unchanged"
+}

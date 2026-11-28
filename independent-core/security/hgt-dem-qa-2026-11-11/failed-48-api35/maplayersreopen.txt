@@ -1,0 +1,1 @@
+Command '['/usr/local/lib/android/sdk/platform-tools/adb', '-s', 'emulator-5554', 'shell', 'am', 'instrument', '-w', '-r', '-e', 'mode', 'maplayersreopen', '-e', 'sha', '5cd084d7c75ce68840e2ba769c0a4ee6dd1da4c8c0c3534f8270bf529b5f0300', '-e', 'version', '27', '-e', 'debug_qa', 'true', 'org.rabochaya.maptests/org.rabochaya.maptests.MapAndroidChecks']' timed out after 480 seconds

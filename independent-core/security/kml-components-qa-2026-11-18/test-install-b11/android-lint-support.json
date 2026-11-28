@@ -1,0 +1,8 @@
+{
+  "tool": "official Android lint",
+  "executed": false,
+  "passed": null,
+  "sdk_launcher_present": true,
+  "reason": "NonGradle Java/smali/resource build has no validated Android lint project adapter; custom privacy audit is separate, not lint",
+  "remaining": "Integrate official lint with the real manifest/source/resource/compile classpath and record its actual report before claiming lint coverage"
+}

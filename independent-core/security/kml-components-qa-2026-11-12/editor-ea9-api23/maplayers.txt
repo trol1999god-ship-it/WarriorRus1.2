@@ -1,0 +1,30 @@
+INSTRUMENTATION_STATUS: stream=START maplayers
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MAP_LAYERS_VISUAL opacity-before
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MAP_LAYERS_GESTURE {"source":4098,"geometry":"[290.0, 160.0, 459.0, 100.0, 292.0, 48.0]","widgetProgress":45,"modelOpacity":45}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MAP_LAYERS_VISUAL opacity-after
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MAP_LAYERS_VISUAL manager
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MAP_LAYERS_VISUAL composed
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=MAP_LAYERS_VISUAL reordered
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=FAIL
+java.lang.AssertionError: soft keyboard window never appeared
+	at org.rabochaya.maptests.ManagerVisualChecks.keyboard(ManagerVisualChecks.java:58)
+	at org.rabochaya.maptests.CompositionPresetChecks.run(CompositionPresetChecks.java:15)
+	at org.rabochaya.maptests.MapLayersChecks.run(MapLayersChecks.java:26)
+	at org.rabochaya.maptests.MapAndroidChecks.onStart(MapAndroidChecks.java:10)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:1879)
+
+INSTRUMENTATION_CODE: 0

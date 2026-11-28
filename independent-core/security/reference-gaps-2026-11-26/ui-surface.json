@@ -1,0 +1,121 @@
+{
+  "reference": {
+    "sha256": "5ac3c7091cecae66942cdffee7c91ca0eb96be5eae902e85b0d6d9920643c142",
+    "backup_same_sha256": true
+  },
+  "method": "Read-only export of packaged resources. IDs do not establish visibility, ordering or interaction.",
+  "observed_startup": "security/fold-feedback-2026-11-22/reference-integrity.json",
+  "runtime_status": "Known package starts into the map and is blocked by its signature check; no newly observed reference transitions.",
+  "resource_layout_counts": {
+    "layout": 56,
+    "layout-sw600dp": 1
+  },
+  "ru_string_count": 874,
+  "submenu_and_settings_ids": {
+    "core": [
+      "core_submenu_title_display",
+      "core_submenu_title_options",
+      "core_submenu_hide_menu",
+      "core_submenu_lock_screen",
+      "core_submenu_print_map",
+      "core_submenu_screen_center_coordinates",
+      "core_submenu_display_grid",
+      "core_submenu_display_secondary_grid",
+      "core_submenu_display_radius_ruler",
+      "core_submenu_night_mode"
+    ],
+    "geolocation": [
+      "geolocation_submenu_title",
+      "geolocation_submenu_dashboard",
+      "geolocation_submenu_geolocation",
+      "geolocation_submenu_tracker",
+      "geolocation_submenu_barometer",
+      "geolocation_submenu_rotate",
+      "geolocation_submenu_display_location_line",
+      "geolocation_submenu_display_information",
+      "geolocation_submenu_tracker_information"
+    ],
+    "landmarks": [
+      "landmarks_submenu_title",
+      "landmarks_submenu_browse",
+      "landmarks_submenu_create",
+      "landmarks_submenu_displayed_landmarks",
+      "landmarks_submenu_control_time",
+      "landmarks_submenu_display_target_information",
+      "landmarks_submenu_display_target_line",
+      "landmarks_submenu_display_labels"
+    ],
+    "maps": [
+      "maps_submenu_title",
+      "maps_submenu_available_maps",
+      "maps_submenu_displayed_maps",
+      "maps_submenu_area_downloader",
+      "maps_submenu_display_name",
+      "maps_submenu_display_scale_value",
+      "maps_submenu_display_scale_bar",
+      "maps_submenu_only_use_local_storage",
+      "maps_submenu_show_storage_coverage",
+      "maps_submenu_correct_china_shift",
+      "maps_submenu_favorites_title"
+    ],
+    "orientation": [
+      "orientation_submenu_title",
+      "orientation_submenu_compass",
+      "orientation_submenu_rotate",
+      "orientation_submenu_compass_on_map",
+      "orientation_submenu_status"
+    ],
+    "settings": [
+      "settings_display_distances_title",
+      "settings_display_location_title",
+      "settings_display_location_secondary_title",
+      "settings_display_areas_title",
+      "settings_display_bearings_title",
+      "settings_display_slopes_title",
+      "settings_display_pressures_title",
+      "settings_display_reference_north_title",
+      "settings_technical_hide_status_bar_title",
+      "settings_technical_hide_navigation_bar_title",
+      "settings_technical_screen_on_title",
+      "settings_technical_disable_keyguard_title",
+      "settings_technical_confirm_exit_title",
+      "settings_technical_path_title",
+      "settings_canvas_infobox_style_title",
+      "settings_canvas_long_press_map_title",
+      "settings_canvas_zoom_type_title",
+      "settings_canvas_grids_title",
+      "settings_canvas_multitouch_zoom_title",
+      "settings_canvas_multitouch_rotate_title",
+      "settings_canvas_multitouch_pitch_title",
+      "settings_canvas_hres_map_title",
+      "settings_landmarks_display_size_title",
+      "settings_landmarks_display_color_title",
+      "settings_landmarks_display_target_color_title",
+      "settings_landmarks_display_tracks_style_title",
+      "settings_landmarks_display_borders_title",
+      "settings_landmarks_display_shadows_title",
+      "settings_landmarks_preprocess_title",
+      "settings_geolocation_relock_location_title",
+      "settings_geolocation_auto_activate_explorer_mode_title",
+      "settings_geolocation_previous_locations_title",
+      "settings_geolocation_course_display_type_title",
+      "settings_geolocation_disable_in_back_title",
+      "settings_geolocation_egm96_adjustment_title",
+      "settings_orientation_heading_display_type_title",
+      "settings_tracker_signal_warnings_title",
+      "settings_tracker_ask_for_activity_title",
+      "settings_tracker_reset_stats_on_new_segment_title",
+      "settings_tracker_dash_mode_title"
+    ]
+  },
+  "independent_core_changes": {
+    "maps_submenu_display_scale_bar": {
+      "label": "Масштабная линейка",
+      "entry": "Меню → Отображение"
+    },
+    "landmarks_submenu_display_labels": {
+      "label": "Названия меток",
+      "entry": "Меню → Отображение"
+    }
+  }
+}

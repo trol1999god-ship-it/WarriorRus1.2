@@ -1,0 +1,111 @@
+{
+  "icons": {
+    "source_sha": "41a9f8ab7174da16ea68225ff4f013abcfc4516a",
+    "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45702567695",
+    "android": [
+      {
+        "api": 23,
+        "artifact": 15063852924,
+        "sha256": "45c775b6f4cc0e6d10a81389e961a785a42e3cd4607a708caa4c49f42c9ddee1",
+        "verified_files": 10,
+        "scenarios": {
+          "iconlibrary": {
+            "passed": true,
+            "assertions": 32
+          },
+          "ozidata": {
+            "passed": true,
+            "assertions": 5
+          }
+        }
+      },
+      {
+        "api": 35,
+        "artifact": 15063338601,
+        "sha256": "ffbda63e451f97f185c2076bc0b923946e577274df79d4c5793e0d475d4f92f2",
+        "verified_files": 10,
+        "scenarios": {
+          "iconlibrary": {
+            "passed": true,
+            "assertions": 32
+          },
+          "ozidata": {
+            "passed": true,
+            "assertions": 5
+          }
+        }
+      },
+      {
+        "api": 37,
+        "artifact": 15063867106,
+        "sha256": "0dbceebccd27374ba9eb887530aa026f210446334b4465295c92ebe15efba862",
+        "verified_files": 10,
+        "scenarios": {
+          "iconlibrary": {
+            "passed": true,
+            "assertions": 32
+          },
+          "ozidata": {
+            "passed": true,
+            "assertions": 5
+          }
+        }
+      }
+    ]
+  },
+  "ozf2": {
+    "source_sha": "37320b0920f223b63ef5c3c13d9ca95764bbe0e8",
+    "ci": "https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/45703116101",
+    "android": [
+      {
+        "api": 23,
+        "artifact": 15064730569,
+        "sha256": "5350975b6fa4b5699691b6aa0f946c50f6dff554cbf0312958385ad09fab3bf0",
+        "verified_files": 5,
+        "scenarios": {
+          "ozf2": {
+            "passed": true,
+            "assertions": 10
+          }
+        }
+      },
+      {
+        "api": 35,
+        "artifact": 15063473948,
+        "sha256": "0c968a735019539a72ed489d2ca65a849f2c5dd79c39d87ce83dc2e73353f7ca",
+        "verified_files": 5,
+        "scenarios": {
+          "ozf2": {
+            "passed": true,
+            "assertions": 10
+          }
+        }
+      },
+      {
+        "api": 37,
+        "artifact": 15064426893,
+        "sha256": "c71a907755a8bee3c6cf62aa126c4f29a3edbcbc91d9e123bf6e3e5cd7f07081",
+        "verified_files": 5,
+        "scenarios": {
+          "ozf2": {
+            "passed": true,
+            "assertions": 10
+          }
+        }
+      }
+    ]
+  },
+  "qa_apk": "https://chatgpt.com/library?file_id=libfile_393cfebbd8f081919d73ec0feb710efd&account_id=personal",
+  "qa_apk_sha256": "8d608b56b04bf2b3393fbd83bbfa72e96e4786fec9e53025f4ab40690277f8cf",
+  "archive": "https://chatgpt.com/library?file_id=libfile_8bcc967f9ef48191a48cba74fa3ddd7b&account_id=personal",
+  "archive_sha256": "071dfbe6d27ed3ba9c30c471e4e7976dbdb507b69bcec7a01529a216dd3ace17",
+  "qa_build_artifact": 15064795779,
+  "lint": {
+    "errors": 0,
+    "warnings": 122
+  },
+  "permissions": [
+    "android.permission.INTERNET"
+  ],
+  "static_comparison": "security/reference-gaps-2026-11-26/static.json"
+}

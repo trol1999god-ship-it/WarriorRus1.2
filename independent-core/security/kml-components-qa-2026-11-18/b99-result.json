@@ -1,0 +1,38 @@
+{
+  "source_sha": "b99f9e637aa80523162c63e0103f89af0b5acc70",
+  "run_id": 44287853086,
+  "overall": "FAILURE, 45/46 both APIs; only offlineformats fails; no skips",
+  "jobs": {
+    "23": 134745452435,
+    "35": 134745452398
+  },
+  "verified_members": {
+    "23": 564,
+    "35": 567
+  },
+  "named_sets": {
+    "implementation": "0a031db + IME prerequisites b99",
+    "maplayers_assertions": {
+      "23": 331,
+      "35": 330
+    },
+    "reopen_assertions": {
+      "23": 77,
+      "35": 77
+    },
+    "result": "Save/Cancel/duplicate/DeleteCancel/staleLibrary/staleComposition/Apply/foreign/deletedOwner and real force-stop library/revision/data PASS both. Scoped runtime verified; not full requirement acceptance"
+  },
+  "kml_editor": {
+    "result": "FAIL after invalid-input/real IME/Arimo/button bounds guards; real Cancel touch intercepted while error popup covers row",
+    "same_cause_independently_observed_both_api": true,
+    "boundary": "subsequent valid Save/reset/stale/final editor data guards NOT executed; no full editor acceptance",
+    "evidence": "fresh error and missing-text PNG both API show popup over Save/Cancel; active tree remains editor with corrected unsaved ff00ffff"
+  },
+  "images_actually_reviewed": {
+    "23": 6,
+    "35": 6
+  },
+  "inherited_images": "preset name/list copied into maplayersreopen artifact are inherited from maplayers, NOT fresh reopen evidence",
+  "transport": "no failed artifact pull in this run; readonly recovery not claimed exercised",
+  "acceptance": "all23 remain open; release gate unchanged"
+}

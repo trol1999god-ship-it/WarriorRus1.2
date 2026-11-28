@@ -1,0 +1,15 @@
+{
+  "source": "91cbee8749cdb0d297e95a6dd4f1db805519f853",
+  "run": 41162028421,
+  "jobs": {
+    "23": 124421524157,
+    "35": 124421524195
+  },
+  "result": "Both: 30 passed; managerpasteconfirm failed only foreign project view root assertion. All sixteen ordinary paste cases passed.",
+  "reviewed": [
+    "both APIs: pastecopy-foreign, delete-cancel, pastecut-cancel",
+    "both APIs: pastecopy-replace-before"
+  ],
+  "not_full_visual_acceptance": true,
+  "confirmed_cause": "onCreate restored folder/token from foreign Bundle without checking project; same XML token preserved source folder and overwrote own view prefs."
+}

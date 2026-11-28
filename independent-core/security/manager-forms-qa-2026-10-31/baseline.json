@@ -1,0 +1,11 @@
+{
+  "source": "9e7229485ab926ab5ec7f2705e69e3f2b025f8b8",
+  "run": 41136878460,
+  "api23_job": 124341521632,
+  "api35_retry_job": 124347828329,
+  "result": "expected baseline failure: raw form lost after destroyed/recreate; API35 portrait IME clips native stacked buttons",
+  "reviewed_png": 8,
+  "initial_api35_job": 124341521627,
+  "initial_api35_result": "Pixel Launcher ANR; not app-state evidence",
+  "fix_android_status": "pending"
+}

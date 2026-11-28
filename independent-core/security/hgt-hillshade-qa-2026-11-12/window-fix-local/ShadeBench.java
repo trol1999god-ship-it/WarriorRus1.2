@@ -1,0 +1,7 @@
+import org.rabochaya.projects.*;import java.io.*;import java.lang.management.ManagementFactory;
+public class ShadeBench {
+ public static void main(String[] args)throws Exception{File dir=new File(args[0]);dir.mkdirs();File raw=new File(dir,"N10E005.hgt"),owned=new File(dir,"own.rkdem");if(!owned.exists()){try(DataOutputStream out=new DataOutputStream(new BufferedOutputStream(new FileOutputStream(raw)))){for(int y=0;y<=1200;y++)for(int x=0;x<=1200;x++)out.writeShort(x==500&&y==500?Short.MIN_VALUE:20*Math.min(x,1200-x));}HgtRaster.prepare(raw,raw.getName(),owned,7);}com.sun.management.ThreadMXBean bean=(com.sun.management.ThreadMXBean)ManagementFactory.getThreadMXBean();long tid=Thread.currentThread().getId(),allocation=bean.getThreadAllocatedBytes(tid),start=System.nanoTime(),hash=0xcbf29ce484222325L,pixels=0;
+ try(HgtHillshade shade=new HgtHillshade(owned,7)){for(int z=0;z<=11;z++){int n=1<<z;int l=(int)Math.floor(MapMath.x(5)*n),r=(int)Math.ceil(MapMath.x(6)*n)-1,t=(int)Math.floor(MapMath.y(11)*n),b=(int)Math.ceil(MapMath.y(10)*n)-1;for(int y=t;y<=b;y++)for(int x=l;x<=r;x++)for(int py=0;py<256;py++){double lat=MapMath.lat((y+(py+.5)/256)/n);for(int px=0;px<256;px++){int color=shade.color((x+(px+.5)/256)/n*360-180,lat);hash=(hash^(color&0xffffffffL))*0x100000001b3L;pixels++;}}}}
+ System.out.println("pixels="+pixels+" fnv64="+Long.toUnsignedString(hash,16)+" seconds="+(System.nanoTime()-start)/1e9+" threadAllocatedBytes="+(bean.getThreadAllocatedBytes(tid)-allocation));
+ }
+}

@@ -1,0 +1,262 @@
+﻿2026-11-12T14:10:54.0094307Z Current runner version: '2.338.2'
+2026-11-12T14:10:54.0120501Z ##[group]Runner Image Provisioner
+2026-11-12T14:10:54.0121445Z Hosted Compute Agent
+2026-11-12T14:10:54.0122127Z Version: 20261028.624
+2026-11-12T14:10:54.0122797Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-12T14:10:54.0124042Z Build Date: 2026-10-28T21:51:42Z
+2026-11-12T14:10:54.0124809Z Worker ID: {ba19f7f0-2467-4091-bed4-158f3b98127e}
+2026-11-12T14:10:54.0125618Z Region: northcentralus
+2026-11-12T14:10:54.0126263Z Cloud: Azure
+2026-11-12T14:10:54.0127068Z ##[endgroup]
+2026-11-12T14:10:54.0128710Z ##[group]Operating System
+2026-11-12T14:10:54.0129412Z Ubuntu
+2026-11-12T14:10:54.0129947Z 22.04.5
+2026-11-12T14:10:54.0130576Z LTS
+2026-11-12T14:10:54.0131138Z ##[endgroup]
+2026-11-12T14:10:54.0131761Z ##[group]Runner Image
+2026-11-12T14:10:54.0132471Z Image: ubuntu-22.04
+2026-11-12T14:10:54.0133035Z Version: 20261101.347.1
+2026-11-12T14:10:54.0134437Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20261101.347/images/ubuntu/Ubuntu2204-Readme.md
+2026-11-12T14:10:54.0136142Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20261101.347
+2026-11-12T14:10:54.0137483Z ##[endgroup]
+2026-11-12T14:10:54.0138687Z ##[group]GITHUB_TOKEN Permissions
+2026-11-12T14:10:54.0141232Z Contents: read
+2026-11-12T14:10:54.0142336Z Metadata: read
+2026-11-12T14:10:54.0143510Z ##[endgroup]
+2026-11-12T14:10:54.0146493Z Secret source: Actions
+2026-11-12T14:10:54.0148587Z Cache mode: write
+2026-11-12T14:10:54.0150320Z Prepare workflow directory
+2026-11-12T14:10:54.0628301Z Prepare all required actions
+2026-11-12T14:10:54.0700239Z Getting action download info
+2026-11-12T14:10:54.3257567Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-12T14:10:54.5254948Z Download action repository 'actions/setup-java@v4' (SHA:cf277c60eb25467037889841efdb72551f06f6c3)
+2026-11-12T14:10:54.8904530Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-12T14:10:55.1822164Z Complete job name: jvm
+2026-11-12T14:10:55.2787259Z ##[group]Run actions/checkout@v4
+2026-11-12T14:10:55.2788271Z with:
+2026-11-12T14:10:55.2788768Z   persist-credentials: false
+2026-11-12T14:10:55.2789393Z   repository: trol1999god-ship-it/WarriorRus1.2
+2026-11-12T14:10:55.2794078Z   token: ***
+2026-11-12T14:10:55.2794553Z   ssh-strict: true
+2026-11-12T14:10:55.2795024Z   ssh-user: git
+2026-11-12T14:10:55.2795476Z   clean: true
+2026-11-12T14:10:55.2795949Z   sparse-checkout-cone-mode: true
+2026-11-12T14:10:55.2796512Z   fetch-depth: 1
+2026-11-12T14:10:55.2797176Z   fetch-tags: false
+2026-11-12T14:10:55.2797666Z   show-progress: true
+2026-11-12T14:10:55.2798149Z   lfs: false
+2026-11-12T14:10:55.2798598Z   submodules: false
+2026-11-12T14:10:55.2799091Z   set-safe-directory: true
+2026-11-12T14:10:55.2799633Z   allow-unsafe-pr-checkout: false
+2026-11-12T14:10:55.2800514Z ##[endgroup]
+2026-11-12T14:10:55.5485340Z Syncing repository: trol1999god-ship-it/WarriorRus1.2
+2026-11-12T14:10:55.5488750Z ##[group]Getting Git version info
+2026-11-12T14:10:55.5490115Z Working directory is '/home/runner/work/WarriorRus1.2/WarriorRus1.2'
+2026-11-12T14:10:55.5491877Z [command]/usr/bin/git version
+2026-11-12T14:10:55.5595228Z git version 2.56.0
+2026-11-12T14:10:55.5622440Z ##[endgroup]
+2026-11-12T14:10:55.5640650Z Temporarily overriding HOME='/home/runner/work/_temp/93d6a8e1-ca2e-41a2-8ba6-ca08e0531ff0' before making global git config changes
+2026-11-12T14:10:55.5645347Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-12T14:10:55.5649695Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/WarriorRus1.2/WarriorRus1.2
+2026-11-12T14:10:55.5702578Z Deleting the contents of '/home/runner/work/WarriorRus1.2/WarriorRus1.2'
+2026-11-12T14:10:55.5711055Z ##[group]Initializing the repository
+2026-11-12T14:10:55.5715362Z [command]/usr/bin/git init /home/runner/work/WarriorRus1.2/WarriorRus1.2
+2026-11-12T14:10:55.5843551Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-12T14:10:55.5848261Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-12T14:10:55.5852148Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-12T14:10:55.5855356Z hint: call:
+2026-11-12T14:10:55.5857370Z hint:
+2026-11-12T14:10:55.5859811Z hint: 	git config --global init.defaultBranch <name>
+2026-11-12T14:10:55.5862518Z hint:
+2026-11-12T14:10:55.5865351Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-12T14:10:55.5869346Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-12T14:10:55.5872399Z hint:
+2026-11-12T14:10:55.5873659Z hint: 	git branch -m <name>
+2026-11-12T14:10:55.5874954Z hint:
+2026-11-12T14:10:55.5876651Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-12T14:10:55.5879816Z Initialized empty Git repository in /home/runner/work/WarriorRus1.2/WarriorRus1.2/.git/
+2026-11-12T14:10:55.5886053Z [command]/usr/bin/git remote add origin https://github.com/trol1999god-ship-it/WarriorRus1.2
+2026-11-12T14:10:55.5929472Z ##[endgroup]
+2026-11-12T14:10:55.5932237Z ##[group]Disabling automatic garbage collection
+2026-11-12T14:10:55.5934371Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-12T14:10:55.5999850Z ##[endgroup]
+2026-11-12T14:10:55.6014341Z ##[group]Setting up auth
+2026-11-12T14:10:55.6017845Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-12T14:10:55.6031523Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-12T14:10:55.6495792Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-12T14:10:55.6539860Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-12T14:10:55.6810510Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-12T14:10:55.6856289Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-12T14:10:55.7135672Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-12T14:10:55.7186712Z ##[endgroup]
+2026-11-12T14:10:55.7189972Z ##[group]Fetching the repository
+2026-11-12T14:10:55.7201628Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +a7f789a0b52c0512aff20bf263ec257acbbfc134:refs/remotes/origin/codex/independent-core-auto
+2026-11-12T14:10:59.6034629Z From https://github.com/trol1999god-ship-it/WarriorRus1.2
+2026-11-12T14:10:59.6037214Z  * [new ref]         a7f789a0b52c0512aff20bf263ec257acbbfc134 -> origin/codex/independent-core-auto
+2026-11-12T14:10:59.6040626Z ##[endgroup]
+2026-11-12T14:10:59.6041437Z ##[group]Determining the checkout info
+2026-11-12T14:10:59.6043187Z ##[endgroup]
+2026-11-12T14:10:59.6049376Z [command]/usr/bin/git sparse-checkout disable
+2026-11-12T14:10:59.6103937Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-12T14:10:59.6162586Z ##[group]Checking out the ref
+2026-11-12T14:10:59.6166781Z [command]/usr/bin/git checkout --progress --force -B codex/independent-core-auto refs/remotes/origin/codex/independent-core-auto
+2026-11-12T14:11:00.2208740Z Switched to a new branch 'codex/independent-core-auto'
+2026-11-12T14:11:00.2209755Z branch 'codex/independent-core-auto' set up to track 'origin/codex/independent-core-auto'.
+2026-11-12T14:11:00.2251007Z ##[endgroup]
+2026-11-12T14:11:00.2307271Z [command]/usr/bin/git log -1 --format=%H
+2026-11-12T14:11:00.2339981Z a7f789a0b52c0512aff20bf263ec257acbbfc134
+2026-11-12T14:11:00.2352752Z ##[group]Removing auth
+2026-11-12T14:11:00.2358170Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-12T14:11:00.2399511Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-12T14:11:00.2675321Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-12T14:11:00.2709380Z http.https://github.com/.extraheader
+2026-11-12T14:11:00.2717907Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-12T14:11:00.2760516Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-12T14:11:00.3029154Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-12T14:11:00.3070020Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-12T14:11:00.3344187Z ##[endgroup]
+2026-11-12T14:11:00.3648648Z ##[group]Run actions/setup-java@v4
+2026-11-12T14:11:00.3648998Z with:
+2026-11-12T14:11:00.3649219Z   distribution: temurin
+2026-11-12T14:11:00.3649441Z   java-version: 17
+2026-11-12T14:11:00.3649650Z   java-package: jdk
+2026-11-12T14:11:00.3649894Z   check-latest: false
+2026-11-12T14:11:00.3650148Z   server-id: github
+2026-11-12T14:11:00.3650361Z   server-username: GITHUB_ACTOR
+2026-11-12T14:11:00.3650611Z   server-password: GITHUB_TOKEN
+2026-11-12T14:11:00.3650856Z   overwrite-settings: true
+2026-11-12T14:11:00.3651083Z   job-status: success
+2026-11-12T14:11:00.3653607Z   token: ***
+2026-11-12T14:11:00.3653821Z ##[endgroup]
+2026-11-12T14:11:00.5614486Z ##[warning]setup-java v4 is deprecated and will no longer receive updates. Please migrate to actions/setup-java@v5.
+2026-11-12T14:11:00.5622425Z ##[group]Installed distributions
+2026-11-12T14:11:00.5777058Z Resolved Java 17.0.21+9 from tool-cache
+2026-11-12T14:11:00.5789192Z (node:2121) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-12T14:11:00.5790295Z Setting Java 17.0.21+9 as the default
+2026-11-12T14:11:00.5791042Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-12T14:11:00.5793727Z Creating toolchains.xml for JDK version 17 from temurin
+2026-11-12T14:11:00.5871853Z Writing to /home/runner/.m2/toolchains.xml
+2026-11-12T14:11:00.5872366Z 
+2026-11-12T14:11:00.5872941Z Java configuration:
+2026-11-12T14:11:00.5873332Z   Distribution: temurin
+2026-11-12T14:11:00.5873712Z   Version: 17.0.21+9
+2026-11-12T14:11:00.5874251Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T14:11:00.5874786Z 
+2026-11-12T14:11:00.5875246Z ##[endgroup]
+2026-11-12T14:11:00.5896600Z Creating settings.xml with server-id: github
+2026-11-12T14:11:00.5926176Z Writing to /home/runner/.m2/settings.xml
+2026-11-12T14:11:00.6121693Z ##[group]Run python3 ci/test_run_android_checks.py
+2026-11-12T14:11:00.6122378Z [36;1mpython3 ci/test_run_android_checks.py[0m
+2026-11-12T14:11:00.6233997Z shell: /usr/bin/bash -e {0}
+2026-11-12T14:11:00.6234336Z env:
+2026-11-12T14:11:00.6234681Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T14:11:00.6235199Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T14:11:00.6235581Z ##[endgroup]
+2026-11-12T14:11:11.0306324Z ...............................
+2026-11-12T14:11:11.0307176Z ----------------------------------------------------------------------
+2026-11-12T14:11:11.0307820Z Ran 31 tests in 10.312s
+2026-11-12T14:11:11.0308063Z 
+2026-11-12T14:11:11.0308197Z OK
+2026-11-12T14:11:11.0427722Z ##[group]Run python3 security/privacy_audit.py --report "$RUNNER_TEMP/source-privacy.json"
+2026-11-12T14:11:11.0428451Z [36;1mpython3 security/privacy_audit.py --report "$RUNNER_TEMP/source-privacy.json"[0m
+2026-11-12T14:11:11.0492586Z shell: /usr/bin/bash -e {0}
+2026-11-12T14:11:11.0492833Z env:
+2026-11-12T14:11:11.0493142Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T14:11:11.0493669Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T14:11:11.0494069Z ##[endgroup]
+2026-11-12T14:11:11.1061449Z {"kind": "custom scoped privacy audit; not Android lint", "passed": true, "source_files": 83, "permissions": ["android.permission.INTERNET"], "apk_checked": false, "checks": ["production manifest", "source network entry points", "GET-only no-output tile transport", "forbidden SDK/API references", "DEX SDK strings and native inventory when APK supplied"], "limits": ["not a complete dynamic data-flow proof", "local-storage and object/attachment retention also require existing runtime scenarios", "Android lint and physical-device acceptance separate"], "failures": []}
+2026-11-12T14:11:11.1137604Z ##[group]Run python3 owned-projects/verify_jvm.py
+2026-11-12T14:11:11.1138049Z [36;1mpython3 owned-projects/verify_jvm.py[0m
+2026-11-12T14:11:11.1201005Z shell: /usr/bin/bash -e {0}
+2026-11-12T14:11:11.1201248Z env:
+2026-11-12T14:11:11.1201550Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T14:11:11.1202055Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T14:11:11.1202428Z ##[endgroup]
+2026-11-12T14:11:29.9302868Z PASS KML component editing: 34 assertions
+2026-11-12T14:11:29.9303438Z PASS KML component style: 33 assertions
+2026-11-12T14:11:29.9303948Z PASS HGT hillshade: 114 assertions
+2026-11-12T14:11:29.9304250Z GIF indexed/LZW: 323 assertions passed
+2026-11-12T14:11:29.9304758Z BMP: 754 assertions passed
+2026-11-12T14:11:29.9305106Z Ozi: 73 assertions passed
+2026-11-12T14:11:29.9305453Z PASS DEM profile: 23 assertions
+2026-11-12T14:11:29.9305836Z PASS HGT DEM: 38 assertions
+2026-11-12T14:11:29.9306326Z PASS GeoTIFF/transform: 432 assertions
+2026-11-12T14:11:29.9307120Z PASS CompositionDownloadJob: 35 assertions
+2026-11-12T14:11:29.9307604Z PASS RasterExportFile: 9 assertions
+2026-11-12T14:11:29.9308015Z PASS MapComposition: 33 assertions
+2026-11-12T14:11:29.9308422Z PASS GeometryCloseDraft: 29 assertions
+2026-11-12T14:11:29.9308890Z PASS GeometryPartChoiceDraft: 32 assertions
+2026-11-12T14:11:29.9309397Z PASS GeometryMapUndoDraft: 32 assertions
+2026-11-12T14:11:29.9309939Z PASS GeometryConfirmationDraft: 64 assertions
+2026-11-12T14:11:29.9310482Z PASS VertexEditDraft: 69 assertions
+2026-11-12T14:11:29.9310979Z PASS ObjectConfirmationDraft: 60 assertions
+2026-11-12T14:11:29.9311490Z PASS ObjectMoveDraft: 34 assertions
+2026-11-12T14:11:29.9311968Z PASS ObjectFormDraft: 32 assertions
+2026-11-12T14:11:29.9312449Z PASS ObjectSelectionState: 20 assertions
+2026-11-12T14:11:29.9312953Z PASS ObjectEditorDraft: 30 assertions
+2026-11-12T14:11:29.9313419Z PASS KmlXml: 31 assertions
+2026-11-12T14:11:29.9313894Z PASS ObjectDescription: 169 assertions
+2026-11-12T14:11:29.9314400Z PASS KmlTimeFilter: 100 assertions
+2026-11-12T14:11:29.9314876Z PASS ObjectVisibility: 56 assertions
+2026-11-12T14:11:29.9315344Z PASS ObjectListing: 100 assertions
+2026-11-12T14:11:29.9315820Z PASS ObjectClipboard/Copy: 63 assertions
+2026-11-12T14:11:29.9316312Z PASS ObjectTree: 56 assertions
+2026-11-12T14:11:29.9316767Z PASS GeometryMapState: 52 assertions
+2026-11-12T14:11:29.9317582Z PASS GeometryVertices: 36 assertions
+2026-11-12T14:11:29.9318073Z PASS GeometryCoordinates: 26 assertions
+2026-11-12T14:11:29.9318625Z PASS GeometryEdits/Draft: 50 assertions
+2026-11-12T14:11:29.9319218Z PASS Coordinates: 71120 assertions
+2026-11-12T14:11:29.9319694Z PASS MapMath: 1828 assertions
+2026-11-12T14:11:29.9320141Z PASS MapHitTest: 37 assertions
+2026-11-12T14:11:29.9320580Z PASS CompassMath: 19 assertions
+2026-11-12T14:11:29.9321039Z PASS: 7225 tile region/source assertions
+2026-11-12T14:11:29.9321502Z PASS UiText: 46 assertions
+2026-11-12T14:11:29.9452784Z ##[group]Run actions/upload-artifact@v4
+2026-11-12T14:11:29.9453296Z with:
+2026-11-12T14:11:29.9453520Z   name: independent-unit-source-quality
+2026-11-12T14:11:29.9454002Z   path: /home/runner/work/_temp/source-privacy.json
+independent-core/security/jvm-current.json
+
+2026-11-12T14:11:29.9454474Z   if-no-files-found: warn
+2026-11-12T14:11:29.9454712Z   retention-days: 7
+2026-11-12T14:11:29.9454918Z   compression-level: 6
+2026-11-12T14:11:29.9455128Z   overwrite: false
+2026-11-12T14:11:29.9455338Z   include-hidden-files: false
+2026-11-12T14:11:29.9455569Z env:
+2026-11-12T14:11:29.9455865Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T14:11:29.9456355Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-12T14:11:29.9456728Z ##[endgroup]
+2026-11-12T14:11:30.1408321Z (node:3324) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-12T14:11:30.1448048Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-12T14:11:30.1467884Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-11-12T14:11:30.1471057Z The least common ancestor is /home/runner/work. This will be the root directory of the artifact
+2026-11-12T14:11:30.1472108Z With the provided path, there will be 2 files uploaded
+2026-11-12T14:11:30.1478995Z Artifact name is valid!
+2026-11-12T14:11:30.1479914Z Root directory input is valid!
+2026-11-12T14:11:30.3917275Z Beginning upload of artifact content to blob storage
+2026-11-12T14:11:30.4136307Z (node:3324) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-12T14:11:30.5333572Z Uploaded bytes 1470
+2026-11-12T14:11:30.5717420Z Finished uploading artifact content to blob storage!
+2026-11-12T14:11:30.5719791Z SHA256 digest of uploaded artifact zip is d2e4c9ccaca297603ce30b822ad072d4141cd3c5cd091bd76839c9eb35e356e9
+2026-11-12T14:11:30.5721981Z Finalizing artifact upload
+2026-11-12T14:11:30.9497872Z Artifact independent-unit-source-quality.zip successfully finalized. Artifact ID 13950409368
+2026-11-12T14:11:30.9499489Z Artifact independent-unit-source-quality has been successfully uploaded! Final size is 1470 bytes. Artifact ID is 13950409368
+2026-11-12T14:11:30.9506222Z Artifact download URL: https://github.com/trol1999god-ship-it/WarriorRus1.2/actions/runs/43234511518/artifacts/13950409368
+2026-11-12T14:11:30.9708451Z Post job cleanup.
+2026-11-12T14:11:31.1171463Z (node:3336) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-12T14:11:31.1172411Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-12T14:11:31.1365058Z Post job cleanup.
+2026-11-12T14:11:31.2344888Z [command]/usr/bin/git version
+2026-11-12T14:11:31.2392233Z git version 2.56.0
+2026-11-12T14:11:31.2435482Z Temporarily overriding HOME='/home/runner/work/_temp/3cc79a6c-4932-4537-94f7-5743e33fefb9' before making global git config changes
+2026-11-12T14:11:31.2437727Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-12T14:11:31.2442011Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/WarriorRus1.2/WarriorRus1.2
+2026-11-12T14:11:31.2495451Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-12T14:11:31.2538549Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-12T14:11:31.2940219Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-12T14:11:31.3010728Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-12T14:11:31.3439724Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-12T14:11:31.3492318Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-12T14:11:31.3939259Z Cleaning up orphan processes
+2026-11-12T14:11:31.4340797Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "map_mvisual-newhole-guard-delete-main-changed.png",
+    "sha256": "f2f539ca89af445d7727db05c7dbd52e69529b1f022d5e22df929739dea3c416"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-delete-stale-after.png",
+    "sha256": "12f9c095caca3b97a8dfb937f9aac9ac2f0d03bf4794cff995a357d25e9c9829"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-delete-stale-before.png",
+    "sha256": "12f9c095caca3b97a8dfb937f9aac9ac2f0d03bf4794cff995a357d25e9c9829"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-foreign-feature.png",
+    "sha256": "167688d4bfabba578c4409c327c64148cb2e897853b6f350fa42f60b22f8971e"
+  },
+  {
+    "name": "map_mvisual-newhole-guard-foreign-project.png",
+    "sha256": "dda60ffacbb055975379dd98500ad525b07aa2e57fb3a4590e8467d767712f72"
+  }
+]

@@ -1,0 +1,113 @@
+import org.rabochaya.projects.GeometryEdits;
+import org.rabochaya.projects.GeometryCoordinates;
+import org.rabochaya.projects.GeometryDraft;
+import javax.xml.parsers.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.*;
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
+
+public final class GeometryEditsTests {
+ static int checks;
+ static void check(boolean value,String message){if(!value)throw new AssertionError(message);checks++;}
+ static final String XML="<k:kml xmlns:k='http://www.opengis.net/kml/2.2' xmlns:gx='http://www.google.com/kml/ext/2.2' xmlns:x='urn:foreign'><k:Document><k:Placemark id='keep-id'><k:name>Keep name</k:name><k:description><![CDATA[Note <img src='attachments/a.jpg'/>]]></k:description><k:styleUrl>#keep-style</k:styleUrl><k:ExtendedData><x:Polygon><x:coordinates>KEEP FOREIGN</x:coordinates></x:Polygon></k:ExtendedData><k:MultiGeometry id='multi'><k:LineString id='route'><k:altitudeMode>absolute</k:altitudeMode><k:extrude>1</k:extrude><k:tessellate>1</k:tessellate><k:coordinates>10,20,30 11,21,40</k:coordinates></k:LineString><k:Polygon id='area'><k:altitudeMode>relativeToGround</k:altitudeMode><k:outerBoundaryIs id='outer'><k:LinearRing><k:coordinates>0,0 10,0 10,10 0,0</k:coordinates></k:LinearRing></k:outerBoundaryIs><k:innerBoundaryIs id='hole'><k:LinearRing><k:coordinates>1,1,7 2,1,8 2,2,9 1,1,7</k:coordinates></k:LinearRing></k:innerBoundaryIs></k:Polygon><k:MultiGeometry><k:Point id='nested'><k:coordinates>55,66,77</k:coordinates></k:Point></k:MultiGeometry><gx:Track><k:when>2026-01-01T00:00:00Z</k:when><gx:coord>1 2 3</gx:coord></gx:Track><k:Model id='keep-model'><k:Link><k:href>models/a.dae</k:href></k:Link></k:Model></k:MultiGeometry></k:Placemark></k:Document></k:kml>";
+ static Document parse(String text)throws Exception{DocumentBuilderFactory f=DocumentBuilderFactory.newInstance();f.setNamespaceAware(true);f.setFeature("http://apache.org/xml/features/disallow-doctype-decl",true);return f.newDocumentBuilder().parse(new ByteArrayInputStream(text.getBytes("UTF-8")));}
+ static Element feature(Document doc){return (Element)doc.getElementsByTagNameNS("*","Placemark").item(0);}
+ static String xml(Node node)throws Exception{StringWriter out=new StringWriter();Transformer t=TransformerFactory.newInstance().newTransformer();t.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION,"yes");t.transform(new DOMSource(node),new StreamResult(out));return out.toString();}
+ static Element named(Document doc,String tag){NodeList values=doc.getElementsByTagNameNS("http://www.opengis.net/kml/2.2",tag);if(values.getLength()==0)values=doc.getElementsByTagNameNS("*",tag);return (Element)values.item(0);}
+ static void invalid(Element feature,GeometryEdits.Part p,String text)throws Exception{String before=xml(feature);try{GeometryEdits.replace(feature,p.key,p.token,text);throw new AssertionError("accepted invalid input");}catch(IllegalArgumentException expected){checks++;}check(xml(feature).equals(before),"invalid input is atomic");}
+ static void mergeSegments()throws Exception{
+  Document d=parse("<kml><Document><Placemark id='a'><LineString id='first'><coordinates>1,2 3,4</coordinates></LineString></Placemark>"
+      +"<Placemark id='b'><Point id='second'><coordinates>5,6</coordinates></Point></Placemark></Document></kml>");
+  Element a=feature(d),b=(Element)d.getElementsByTagName("Placemark").item(1);
+  String before=xml(d);
+  String ta=GeometryEdits.parts(a).get(0).token,tb=GeometryEdits.parts(b).get(0).token;
+  java.lang.reflect.Method merge=GeometryEdits.class.getDeclaredMethod("mergedTrack",Element.class,Element.class,String.class,String.class);
+  merge.setAccessible(true);
+  Element merged=(Element)merge.invoke(null,a,b,ta,tb);
+  check(before.equals(xml(d)),"merge candidate does not edit sources");
+  List<GeometryEdits.Part> p=GeometryEdits.parts(merged);
+  check(p.size()==2&&p.get(0).text.startsWith("2 1")&&p.get(1).text.equals("6 5"),"merge keeps order and boundaries");
+  check(!merged.getAttribute("id").equals("a")&&!xml(merged).contains("id=\"second\""),"merge allocates fresh IDs");
+ }
+ static void splitSegments()throws Exception{
+  Document doc=parse("<kml><Document><Placemark id='track'><MultiGeometry id='segments'>"
+      +"<LineString id='first'><coordinates>1,2 3,4</coordinates></LineString>"
+      +"<Point id='second'><coordinates>5,6</coordinates></Point>"
+      +"<LineString id='third'><coordinates>7,8 9,10</coordinates></LineString>"
+      +"</MultiGeometry></Placemark></Document></kml>");
+  Element track=feature(doc);
+  List<GeometryEdits.Part> parts=GeometryEdits.parts(track);
+  String before=xml(doc);
+  try{GeometryEdits.splitTrackSegments(track,parts.get(0).key,parts.get(0).token);throw new AssertionError("first segment");}
+  catch(IllegalArgumentException expected){check(before.equals(xml(doc)),"invalid split is atomic");}
+  Element following=GeometryEdits.splitTrackSegments(track,parts.get(1).key,parts.get(1).token);
+  check(GeometryEdits.parts(track).size()==1&&GeometryEdits.parts(following).size()==2,"segments move at boundary");
+  check(named(doc,"Point").getAttribute("id").equals("second")&&following.getPreviousSibling()==track
+      &&!following.getAttribute("id").equals(track.getAttribute("id")),"moved segment keeps identity and folder");
+  try{GeometryEdits.splitTrackSegments(following,parts.get(2).key,parts.get(2).token);throw new AssertionError("stale segments");}
+  catch(IllegalStateException expected){checks++;}
+ }
+ static void splitStandaloneLine()throws Exception{
+  Document doc=parse("<kml><Document><Placemark id='route'><name>Маршрут</name><description>attachments/a.jpg</description>"
+    +"<Style id='style'><LineStyle><color>ff00ff00</color></LineStyle></Style><styleUrl>#style</styleUrl>"
+    +"<LineString id='line'><altitudeMode>absolute</altitudeMode><coordinates>10,20,1 11,21,2 12,22,3</coordinates></LineString>"
+    +"</Placemark></Document></kml>");
+  Element route=feature(doc); GeometryEdits.Part part=GeometryEdits.parts(route).get(0);
+  String original=xml(doc);
+  try{GeometryEdits.splitLine(route,part.key,part.token,0);throw new AssertionError("endpoint");}
+  catch(IllegalArgumentException expected){check(xml(doc).equals(original),"failed split leaves DOM unchanged");}
+  Element second=GeometryEdits.splitLine(route,part.key,part.token,1);
+  check(route.getNextSibling()==second,"second object remains in the original folder");
+  check(!route.getAttribute("id").equals(second.getAttribute("id")),"second object has an independent id");
+  check(GeometryEdits.parts(route).get(0).text.equals("20 10 1\n21 11 2"),"first line retains altitude and cut vertex");
+  check(GeometryEdits.parts(second).get(0).text.equals("21 11 2\n22 12 3"),"second line retains altitude and cut vertex");
+  check(xml(second).contains("attachments/a.jpg")&&xml(second).contains("absolute"),"metadata survives the split");
+  String newStyle=((Element)second.getElementsByTagName("Style").item(0)).getAttribute("id");
+  check(second.getElementsByTagName("styleUrl").item(0).getTextContent().equals("#"+newStyle),"cloned style reference follows new id");
+  check(!GeometryEdits.canSplitLine(feature(parse(XML))),"mixed geometry stays outside split operation");
+ }
+ public static void main(String[] args)throws Exception{
+  splitStandaloneLine();
+  splitSegments();
+  mergeSegments();
+  Document splitGroup=parse("<kml><Document><Placemark id='group'><description>Примечание</description>"
+    +"<MultiGeometry id='multi'><Point id='P1'><coordinates>1,2,3</coordinates></Point>"
+    +"<Point id='P2'><coordinates>4,5,6</coordinates></Point></MultiGeometry></Placemark></Document></kml>");
+  Element firstPointGroup=feature(splitGroup);
+  String groupToken=GeometryEdits.parts(firstPointGroup).get(0).token;
+  check(GeometryEdits.ungroupPoints(firstPointGroup,groupToken)==2,"ungroup creates one object per point");
+  Element following=(Element)firstPointGroup.getNextSibling();
+  check(!following.getAttribute("id").equals("group"),"ungroup allocates independent placemark id");
+  check(((Element)following.getElementsByTagName("Point").item(0)).getAttribute("id").equals("P2"),
+    "moving grouped points keeps their original ids");
+  check(xml(following).contains("Примечание")&&GeometryEdits.parts(following).get(0).text.equals("5 4 6"),
+    "ungroup retains shared metadata and point altitude");
+  Document doc=parse(XML);Element f=feature(doc);List<GeometryEdits.Part> parts=GeometryEdits.parts(f);check(parts.size()==4,"route, outer, inner and nested point only");GeometryEdits.Part route=parts.get(0),outer=parts.get(1),hole=parts.get(2),point=parts.get(3);check(route.key.equals("0.0")&&outer.key.equals("0.1/outer")&&hole.hole&&point.key.equals("0.2.0"),"stable geometry paths");check(route.text.equals("20 10 30\n21 11 40"),"editor axes and altitudes");
+  String description=xml(named(doc,"description")),extended=xml(named(doc,"ExtendedData")),polygon=xml(named(doc,"Polygon")),track=xml(named(doc,"Track")),model=xml(named(doc,"Model"));
+  invalid(f,route,"NaN 0\n1 2");invalid(f,route,"91 0\n1 2");invalid(f,route,"0 0");invalid(f,outer,"0 0\n0 0\n1 1");invalid(f,outer,"0 0\n-0 0\n0 -0");invalid(f,outer,"90 1\n90 2\n90 3");invalid(f,outer,"0 180\n0 -180\n1 1");
+  GeometryEdits.replace(f,route.key,route.token,"22 32 42\n23 33 43\n24 34 44");check(named(doc,"coordinates").getTextContent().equals("32.0,22.0,42.0 33.0,23.0,43.0 34.0,24.0,44.0"),"route replacement");check(named(doc,"LineString").getAttribute("id").equals("route")&&named(doc,"altitudeMode").getTextContent().equals("absolute"),"route properties and IDs preserved");check(xml(named(doc,"description")).equals(description)&&xml(named(doc,"ExtendedData")).equals(extended)&&xml(named(doc,"Polygon")).equals(polygon)&&xml(named(doc,"Track")).equals(track)&&xml(named(doc,"Model")).equals(model),"unselected data preserved exactly");check(f.getAttribute("id").equals("keep-id")&&named(doc,"styleUrl").getTextContent().equals("#keep-style"),"feature identity and style preserved");
+  String committed=xml(f);try{GeometryEdits.replace(f,route.key,route.token,"1 2\n3 4");throw new AssertionError("stale token accepted");}catch(IllegalStateException expected){checks++;}check(xml(f).equals(committed),"stale save does not overwrite newer geometry");
+  parts=GeometryEdits.parts(f);hole=parts.get(2);String outerBefore=xml(named(doc,"outerBoundaryIs"));GeometryEdits.replace(f,hole.key,hole.token,"3 3 5\n3 4 6\n4 4 7");check(xml(named(doc,"outerBoundaryIs")).equals(outerBefore),"editing a hole keeps outer ring");check(named(doc,"innerBoundaryIs").getAttribute("id").equals("hole"),"hole ID retained");check(GeometryEdits.parts(f).get(2).text.split("\\n").length==4,"hole explicitly closed");
+  outer=GeometryEdits.parts(f).get(1);String before=xml(f);try{GeometryEdits.removeHole(f,outer.key,outer.token);throw new AssertionError("removed outer");}catch(IllegalArgumentException expected){checks++;}check(xml(f).equals(before),"outer cannot be removed as hole");
+  GeometryEdits.addHole(f,outer.key,outer.token,"5 5\n5 6\n6 6");check(GeometryEdits.parts(f).size()==5,"new hole appended without flattening");check(xml(named(doc,"outerBoundaryIs")).equals(outerBefore),"adding hole leaves outer untouched");parts=GeometryEdits.parts(f);GeometryEdits.Part added=parts.get(3);check(added.hole&&added.key.equals("0.1/inner/1"),"new hole address");GeometryEdits.removeHole(f,added.key,added.token);check(GeometryEdits.parts(f).size()==4&&named(doc,"innerBoundaryIs").getAttribute("id").equals("hole"),"only selected hole removed");
+  route=GeometryEdits.parts(f).get(0);named(doc,"name").setTextContent("Concurrent metadata");GeometryEdits.replace(f,route.key,route.token,"0 0\n1 1");check(named(doc,"name").getTextContent().equals("Concurrent metadata"),"metadata changes are preserved and do not cause a geometry conflict");
+  // Whole document roundtrip must not break a saved geometry address/token.
+  route=GeometryEdits.parts(f).get(0);Document reopened=parse(xml(doc));GeometryEdits.replace(feature(reopened),route.key,route.token,"2 3\n4 5");check(GeometryEdits.parts(feature(reopened)).get(0).text.startsWith("2.0 3.0"),"token survives XML roundtrip");
+  for(String ns:new String[]{"","http://earth.google.com/kml/2.1","http://www.opengis.net/kml/2.2"}){Document d=parse("<Placemark"+(ns.isEmpty()?"":" xmlns='"+ns+"'")+"><Polygon><outerBoundaryIs><LinearRing><coordinates>0,0 1,0 1,1 0,0</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>");Element root=d.getDocumentElement();GeometryEdits.Part part=GeometryEdits.parts(root).get(0);GeometryEdits.addHole(root,part.key,part.token,"0.1 0.1\n0.1 0.2\n0.2 0.2");check(GeometryEdits.parts(root).size()==2,"legacy/namespace-free KML handled");check(root.getElementsByTagNameNS(ns.isEmpty()?null:ns,"innerBoundaryIs").getLength()==1,"namespace preserved");}
+  draftTests();System.out.println("PASS GeometryEdits/Draft: "+checks+" assertions");
+ }
+ static void draftTests()throws Exception{
+  Path directory=Files.createTempDirectory("rk-geometry-draft-");File dir=directory.toFile();String token=String.join("",Collections.nCopies(64,"a"));String hostile="../feature/with?symbols/Ю";
+  try{
+   GeometryDraft draft=new GeometryDraft("0.1/inner/0",token,"0 0\n1 1\n2 1",true);draft.save(dir,7,hostile);GeometryDraft loaded=GeometryDraft.load(dir,7,hostile);check(loaded.text.equals(draft.text)&&loaded.key.equals(draft.key)&&loaded.addingHole,"draft complete roundtrip");check(dir.list().length==1&&dir.list()[0].startsWith("g_7_"),"feature ID never used as path");check(GeometryDraft.load(dir,8,hostile)==null,"project drafts isolated");
+   new GeometryDraft("0",token,"New text",false).save(dir,7,hostile);check(GeometryDraft.load(dir,7,hostile).text.equals("New text"),"atomic replacement of prior draft");File target=dir.listFiles()[0];byte[] bytes=Files.readAllBytes(target.toPath());bytes[bytes.length-1]^=1;Files.write(target.toPath(),bytes);try{GeometryDraft.load(dir,7,hostile);throw new AssertionError("corruption accepted");}catch(IOException expected){checks++;}check(target.exists()&&Arrays.equals(bytes,Files.readAllBytes(target.toPath())),"damaged draft retained");
+   GeometryDraft.delete(dir,7,hostile);check(GeometryDraft.load(dir,7,hostile)==null,"explicit draft deletion");
+   StringBuilder large=new StringBuilder();for(int i=0;i<499999;i++)large.append('1');new GeometryDraft("1",token,large.toString(),false).save(dir,7,hostile);check(GeometryDraft.load(dir,7,hostile).text.length()==499999,"large draft not put in Android Bundle");GeometryDraft.delete(dir,7,hostile);
+   File notDirectory=new File(dir,"blocked");Files.write(notDirectory.toPath(),new byte[]{1});try{draft.save(notDirectory,7,hostile);throw new AssertionError("unwritable draft accepted");}catch(IOException expected){checks++;}check(Arrays.equals(Files.readAllBytes(notDirectory.toPath()),new byte[]{1}),"failed write preserves existing file");
+  }finally{try(java.util.stream.Stream<Path> files=Files.walk(directory)){for(Path path:(Iterable<Path>)files.sorted(Comparator.reverseOrder())::iterator)Files.deleteIfExists(path);}}
+ }
+}

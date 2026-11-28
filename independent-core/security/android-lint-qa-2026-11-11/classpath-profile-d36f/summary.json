@@ -1,0 +1,27 @@
+{
+  "tool": "official SDK lint9.4.0-rc01",
+  "executed": true,
+  "passed": false,
+  "exit_code": 1,
+  "source_ref": "d36f15f4e606fcad310a59cc25ba7940bbfbc205",
+  "source_count": 73,
+  "overlay_classfiles": 137,
+  "classfile_tree_sha256": "816491826e5ba1ec451d3389a188e27729b76b28cf576d874715c5aa1be16c35",
+  "no_classfiles_error_resolved": true,
+  "errors": [
+    {
+      "id": "MissingClass",
+      "severity": "Error",
+      "message": "Class referenced in the manifest, `org.rabochaya.projects.ProjectsActivity`, was not found in the project or the libraries"
+    },
+    {
+      "id": "HardcodedDebugMode",
+      "severity": "Fatal",
+      "message": "Avoid hardcoding the debug mode; leaving it out allows debug and release builds to automatically assign one"
+    }
+  ],
+  "warnings": 108,
+  "scope": "read-only local probe; actual Java overlay classfiles, existing compile-only ABI for resolution; no smali body analysis, no workflow changes, not full lint coverage",
+  "production_changed": false,
+  "accepted": false
+}

@@ -1,0 +1,15 @@
+{
+  "api": "23",
+  "source_sha": "ca888b5e02c10828377f4d8ea4f610652810a52b",
+  "run_id": "43225977674",
+  "outer_path": "/workspace/attachments/c6e9dc31-ce03-42b2-8716-7f7ddeeca017/kml-renderer-ca888-api23.zip",
+  "outer_sha256": "748564a73299ff8fcbe6dba0d22e9f1b98261b37c3d551d8c9798dacd1734597",
+  "inner_sha256": "0391b44114fb303d63af7def97585fe797f30908416b27dff32ed0b8945ef9de",
+  "all_member_hashes_verified": true,
+  "members": 558,
+  "records": 46,
+  "passed": 46,
+  "failed_or_skipped": [],
+  "frames": 34,
+  "visual_review": "pending actual view_image"
+}

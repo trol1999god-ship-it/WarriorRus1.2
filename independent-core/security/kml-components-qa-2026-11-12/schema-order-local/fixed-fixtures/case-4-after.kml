@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><kml xmlns="http://www.opengis.net/kml/2.2"><Document><Placemark id="p"><name>QA</name><Style><IconStyle><color>ff0000ff</color><colorMode>normal</colorMode><scale>2</scale><Icon><href>icons/test.svg</href></Icon></IconStyle></Style><LineString><coordinates>10,20 11,21</coordinates></LineString></Placemark></Document></kml>

@@ -1,0 +1,767 @@
+[
+  {
+    "name": "confirm-pastecopy-cancel",
+    "visibleFrame": "[0,24][640,296]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Создать копии из буфера?",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[152, 60, 336, 27]",
+        "visible": true,
+        "visibleBounds": "[40,34][376,61]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Объектов и папок с содержимым: 2. Вставить в открытую папку? Видимость будет зависеть от неё. Имена и ссылки на файлы вложений сохранятся; идентификаторы копий ",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 95, 384, 126]",
+        "visible": true,
+        "visibleBounds": "[16,69][400,195]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[319, 225, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[207,199][291,247]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Вставить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[403, 225, 97, 48]",
+        "visible": true,
+        "visibleBounds": "[291,199][388,247]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "confirm-pastecopy-return",
+    "visibleFrame": "[0,24][320,616]",
+    "orientation": 1,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Создать копии из буфера?",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[40, 203, 240, 27]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,61]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Объектов и папок с содержимым: 2. Вставить в открытую папку? Видимость будет зависеть от неё. Имена и ссылки на файлы вложений сохранятся; идентификаторы копий ",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 238, 288, 160]",
+        "visible": true,
+        "visibleBounds": "[16,69][304,229]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[111, 402, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[111,233][195,281]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Вставить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[195, 402, 97, 48]",
+        "visible": true,
+        "visibleBounds": "[195,233][292,281]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "confirm-pastecopy-confirm",
+    "visibleFrame": "[0,24][640,296]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Создать копии из буфера?",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[152, 60, 336, 27]",
+        "visible": true,
+        "visibleBounds": "[40,34][376,61]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Объектов и папок с содержимым: 2. Вставить в открытую папку? Видимость будет зависеть от неё. Имена и ссылки на файлы вложений сохранятся; идентификаторы копий ",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 95, 384, 126]",
+        "visible": true,
+        "visibleBounds": "[16,69][400,195]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[319, 225, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[207,199][291,247]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Вставить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[403, 225, 97, 48]",
+        "visible": true,
+        "visibleBounds": "[291,199][388,247]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "confirm-pastecopy-stale-before",
+    "visibleFrame": "[0,24][640,296]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Создать копии из буфера?",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[152, 58, 336, 27]",
+        "visible": true,
+        "visibleBounds": "[40,34][376,61]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Проект или буфер изменился либо недоступен. Действие заблокировано. Отмените подтверждение и повторите выбор.\n\nОбъектов и папок с содержимым: 2. Вставить в откр",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 93, 384, 211]",
+        "visible": true,
+        "visibleBounds": "[16,69][400,200]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[319, 228, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[207,204][291,252]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Вставить",
+        "foreground": "#28000000",
+        "arimo": true,
+        "bounds": "[403, 228, 97, 48]",
+        "visible": true,
+        "visibleBounds": "[291,204][388,252]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "confirm-pastecopy-rejected-stale-after",
+    "visibleFrame": "[0,24][640,296]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Проект изменился после заполнения буфера. Повторите выбор и копирование или вырезание",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 112, 384, 58]",
+        "visible": true,
+        "visibleBounds": "[16,34][400,92]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Понятно",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[405, 174, 95, 48]",
+        "visible": true,
+        "visibleBounds": "[293,96][388,144]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "confirm-pastecopy-replace-before",
+    "visibleFrame": "[0,24][640,296]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Создать копии из буфера?",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[152, 58, 336, 27]",
+        "visible": true,
+        "visibleBounds": "[40,34][376,61]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Проект или буфер изменился либо недоступен. Действие заблокировано. Отмените подтверждение и повторите выбор.\n\nОбъектов и папок с содержимым: 2. Вставить в откр",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 93, 384, 211]",
+        "visible": true,
+        "visibleBounds": "[16,69][400,200]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[319, 228, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[207,204][291,252]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Вставить",
+        "foreground": "#28000000",
+        "arimo": true,
+        "bounds": "[403, 228, 97, 48]",
+        "visible": true,
+        "visibleBounds": "[291,204][388,252]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "confirm-pastecopy-rejected-replace-after",
+    "visibleFrame": "[0,24][640,296]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Буфер изменился. Откройте вставку повторно",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 120, 384, 41]",
+        "visible": true,
+        "visibleBounds": "[16,34][400,75]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Понятно",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[405, 165, 95, 48]",
+        "visible": true,
+        "visibleBounds": "[293,79][388,127]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "confirm-pastecut-cancel",
+    "visibleFrame": "[0,24][640,296]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Перенести из буфера?",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[152, 68, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][376,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Объектов и папок с содержимым: 2. Вставить в открытую папку? Видимость будет зависеть от неё. Исходные объекты будут перенесены после подтверждения. Назначение:",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 105, 384, 109]",
+        "visible": true,
+        "visibleBounds": "[16,71][400,180]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[319, 218, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[207,184][291,232]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Вставить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[403, 218, 97, 48]",
+        "visible": true,
+        "visibleBounds": "[291,184][388,232]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "confirm-pastecut-return",
+    "visibleFrame": "[0,24][320,616]",
+    "orientation": 1,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Перенести из буфера?",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[40, 202, 240, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][280,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Объектов и папок с содержимым: 2. Вставить в открытую папку? Видимость будет зависеть от неё. Исходные объекты будут перенесены после подтверждения. Назначение:",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 239, 288, 160]",
+        "visible": true,
+        "visibleBounds": "[16,71][304,231]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[111, 403, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[111,235][195,283]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Вставить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[195, 403, 97, 48]",
+        "visible": true,
+        "visibleBounds": "[195,235][292,283]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "confirm-pastecut-confirm",
+    "visibleFrame": "[0,24][640,296]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Перенести из буфера?",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[152, 68, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][376,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Объектов и папок с содержимым: 2. Вставить в открытую папку? Видимость будет зависеть от неё. Исходные объекты будут перенесены после подтверждения. Назначение:",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 105, 384, 109]",
+        "visible": true,
+        "visibleBounds": "[16,71][400,180]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[319, 218, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[207,184][291,232]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Вставить",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[403, 218, 97, 48]",
+        "visible": true,
+        "visibleBounds": "[291,184][388,232]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "confirm-pastecut-stale-before",
+    "visibleFrame": "[0,24][640,296]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Перенести из буфера?",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[152, 58, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][376,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Проект или буфер изменился либо недоступен. Действие заблокировано. Отмените подтверждение и повторите выбор.\n\nОбъектов и папок с содержимым: 2. Вставить в откр",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 95, 384, 194]",
+        "visible": true,
+        "visibleBounds": "[16,71][400,200]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[319, 228, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[207,204][291,252]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Вставить",
+        "foreground": "#28000000",
+        "arimo": true,
+        "bounds": "[403, 228, 97, 48]",
+        "visible": true,
+        "visibleBounds": "[291,204][388,252]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "confirm-pastecut-rejected-stale-after",
+    "visibleFrame": "[0,24][640,296]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Проект изменился после заполнения буфера. Повторите выбор и копирование или вырезание",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 112, 384, 58]",
+        "visible": true,
+        "visibleBounds": "[16,34][400,92]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Понятно",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[405, 174, 95, 48]",
+        "visible": true,
+        "visibleBounds": "[293,96][388,144]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "confirm-pastecut-replace-before",
+    "visibleFrame": "[0,24][640,296]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "DialogTitle",
+        "text": "Перенести из буфера?",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[152, 58, 336, 29]",
+        "visible": true,
+        "visibleBounds": "[40,34][376,63]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Проект или буфер изменился либо недоступен. Действие заблокировано. Отмените подтверждение и повторите выбор.\n\nОбъектов и папок с содержимым: 2. Вставить в откр",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 95, 384, 194]",
+        "visible": true,
+        "visibleBounds": "[16,71][400,200]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[319, 228, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[207,204][291,252]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Вставить",
+        "foreground": "#28000000",
+        "arimo": true,
+        "bounds": "[403, 228, 97, 48]",
+        "visible": true,
+        "visibleBounds": "[291,204][388,252]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "confirm-pastecut-rejected-replace-after",
+    "visibleFrame": "[0,24][640,296]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Буфер изменился. Откройте вставку повторно",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 120, 384, 41]",
+        "visible": true,
+        "visibleBounds": "[16,34][400,75]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Понятно",
+        "foreground": "#ff008577",
+        "arimo": true,
+        "bounds": "[405, 165, 95, 48]",
+        "visible": true,
+        "visibleBounds": "[293,79][388,127]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  },
+  {
+    "name": "confirm-pastecopy-foreign",
+    "visibleFrame": "[0,24][640,296]",
+    "orientation": 2,
+    "nightMask": 16,
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Объекты проекта",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 36, 616, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][628,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "QA_ROTATE_FOLDER · показано: 1",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 67, 616, 21]",
+        "visible": true,
+        "visibleBounds": "[12,67][628,88]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Все типы · Любая видимость · Эта папка · Исходный порядок",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 84, 616, 19]",
+        "visible": true,
+        "visibleBounds": "[12,84][628,92]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Выбрано: 0 · вне списка: 0",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 88, 616, 21]",
+        "visible": true,
+        "visibleBounds": "[12,88][628,92]",
+        "fullyVisible": false
+      },
+      {
+        "class": "TextView",
+        "text": "Подтверждение другого проекта или процесса не восстановлено",
+        "foreground": "#8a000000",
+        "arimo": true,
+        "bounds": "[12, 109, 616, 21]",
+        "visible": false,
+        "visibleBounds": "[0,73][616,94]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Поиск и фильтры",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 130, 616, 48]",
+        "visible": false,
+        "visibleBounds": "[0,94][616,142]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Даты KML",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 178, 616, 48]",
+        "visible": false,
+        "visibleBounds": "[0,142][616,190]",
+        "fullyVisible": false
+      },
+      {
+        "class": "Button",
+        "text": "Вверх",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 92, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[12,92][100,140]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[100, 92, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[100,92][188,140]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[188, 92, 88, 48]",
+        "visible": true,
+        "visibleBounds": "[188,92][276,140]",
+        "fullyVisible": true
+      },
+      {
+        "class": "CheckBox",
+        "text": "QA_ROTATE_NESTED\nМетки",
+        "foreground": "#ff000000",
+        "arimo": true,
+        "bounds": "[12, 140, 616, 37]",
+        "visible": true,
+        "visibleBounds": "[12,140][628,177]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Проекты, импорт и экспорт",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 236, 616, 48]",
+        "visible": true,
+        "visibleBounds": "[12,236][628,284]",
+        "fullyVisible": true
+      }
+    ],
+    "imeWindows": [],
+    "keyboardRequested": false,
+    "keyboardObserved": false
+  }
+]

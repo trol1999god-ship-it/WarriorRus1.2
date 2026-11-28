@@ -1,0 +1,66 @@
+[
+  {
+    "name": "map_mvisual-vertex-insert-hole-after-before.png",
+    "sha256": "9ff7bcc842273ee81db235cc558c63c45728eb3b638679896613359e583199de"
+  },
+  {
+    "name": "map_mvisual-vertex-insert-hole-after-cancelled.png",
+    "sha256": "8155dd8edb527b7e45463dac441026fa19a91126fe05b8cc4e187f3955607db1"
+  },
+  {
+    "name": "map_mvisual-vertex-insert-hole-after-land.png",
+    "sha256": "8e5cf42962f6ccfc1ebad64c08407c92c69373aba1d2c69e6435c97a4e2d6cd4"
+  },
+  {
+    "name": "map_mvisual-vertex-insert-hole-after-return.png",
+    "sha256": "6f5e283126af76300a09c9cc6af54dbb92b4ea08e7435d890ac688b6fdadb3b6"
+  },
+  {
+    "name": "map_mvisual-vertex-insert-hole-before-applied.png",
+    "sha256": "26cb884c1c7eb4c6e9c0d61fd5f2625ecd6c86fa7f59f3a69de15dcb9b8da7ec"
+  },
+  {
+    "name": "map_mvisual-vertex-insert-hole-before-before.png",
+    "sha256": "d79e2b1ff107db46d388f9f9c9d56c2b403b90571e55cfed4b6ae3e1bb7db450"
+  },
+  {
+    "name": "map_mvisual-vertex-insert-hole-before-land.png",
+    "sha256": "8e5cf42962f6ccfc1ebad64c08407c92c69373aba1d2c69e6435c97a4e2d6cd4"
+  },
+  {
+    "name": "map_mvisual-vertex-insert-hole-before-return.png",
+    "sha256": "d79e2b1ff107db46d388f9f9c9d56c2b403b90571e55cfed4b6ae3e1bb7db450"
+  },
+  {
+    "name": "map_mvisual-vertex-insert-line-after-applied.png",
+    "sha256": "26e56738f38bec8cb50c0239987b645076a36d61a0d6e354bc98b1bd2edec852"
+  },
+  {
+    "name": "map_mvisual-vertex-insert-line-after-before.png",
+    "sha256": "e8b90e08fe9859e7b139af2b313bc61b1aa2f14c616389412ffe5b2a7b682af2"
+  },
+  {
+    "name": "map_mvisual-vertex-insert-line-after-land.png",
+    "sha256": "d0a66cb1f75c2264914b708ef1698e5048bb668f1e1824234fb6a7745495381c"
+  },
+  {
+    "name": "map_mvisual-vertex-insert-line-after-return.png",
+    "sha256": "e8b90e08fe9859e7b139af2b313bc61b1aa2f14c616389412ffe5b2a7b682af2"
+  },
+  {
+    "name": "map_mvisual-vertex-insert-line-before-before.png",
+    "sha256": "c3b034467e5c99e35e5b5eb8ae617619d56fab03f9fdea464d8010504c1f342d"
+  },
+  {
+    "name": "map_mvisual-vertex-insert-line-before-cancelled.png",
+    "sha256": "bc4947c498b7c40625a659f0d3e03ed74f1ccbea57ebaa21712c4c32391a991c"
+  },
+  {
+    "name": "map_mvisual-vertex-insert-line-before-land.png",
+    "sha256": "2a7857570ec03093122fb514e19c7de0bf92bad58555ce17cfa14550a2dc52e4"
+  },
+  {
+    "name": "map_mvisual-vertex-insert-line-before-return.png",
+    "sha256": "c3b034467e5c99e35e5b5eb8ae617619d56fab03f9fdea464d8010504c1f342d"
+  }
+]

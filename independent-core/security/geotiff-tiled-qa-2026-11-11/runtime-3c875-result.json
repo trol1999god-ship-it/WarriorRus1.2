@@ -1,0 +1,56 @@
+{
+  "code": "3c87557aca59d52d105770b724e493ecfbeac208",
+  "run": 43107394886,
+  "ci_conclusion": "failure",
+  "jvm": "success33/81769/Geo215/host20",
+  "apis": {
+    "23": {
+      "job": 130814459051,
+      "full_records": 46,
+      "passed": 46,
+      "not_passed": [],
+      "offlineformats_assertions": 200,
+      "maplayers_assertions": 274,
+      "maplayersreopen_assertions": 66,
+      "geometrymap_and_reopen_passed": true,
+      "archive_sha256": "969a9e5962ab7127e400e242fa7b6ae791bfa978dc7d090663104228eacea815",
+      "inner_zip_sha256": "a62e0026ef30fa1a5d03270d95030269379a72d923de8ae7bea951cdaf11d636",
+      "all_member_sha_verified": 546,
+      "new_png_sha_verified_and_actually_viewed": 16
+    },
+    "35": {
+      "job": 130814459075,
+      "full_records": 46,
+      "passed": 45,
+      "not_passed": [
+        {
+          "mode": "managerrotation",
+          "passed": false,
+          "seconds": 66.01
+        }
+      ],
+      "offlineformats_assertions": 200,
+      "maplayers_assertions": 275,
+      "maplayersreopen_assertions": 66,
+      "geometrymap_and_reopen_passed": true,
+      "archive_sha256": "d0896a4c392273fdbe9a20a47580d05cc6f885bc810dfe24d07309412ab5368f",
+      "inner_zip_sha256": "0dd047b258f2ef410746d6fb758e9c1ade34203c35c68762ec81cf29a0dee8b7",
+      "all_member_sha_verified": 538,
+      "new_png_sha_verified_and_actually_viewed": 16
+    }
+  },
+  "tiled_native_scoped_verified_both": true,
+  "full_stage_ci_green": false,
+  "runtime_scope": "II/MM controls in JVM; native EPSG4326/3857 raw/Deflate8/32946/predictor1/2 cross-tile literal pixels/NoData/Cancel/sparse/invalid padding checksum/old MBTiles/source/KML/assets/otherproject guards. Profile+HGT/cache guards pass both.",
+  "failure": "API35 managerrotation only: geometryReady timed out during third scenario launch after name cancel/save passed.",
+  "confirmed_timeline": "ObjectManager START and landscape->portrait relaunch during launch are recorded in observed_launch_timeline; geometryReady waits original reference before rotate/adoption. Old disposed callbacks deliberately do not clear busy. Runtime verification of helper fix remains pending.",
+  "fix_candidate": "ManagerVisualChecks.launch uses existing portrait rotate/adoption before readiness, exact project and destroyed-first guards; existing managerrotation keeps preceding landscape to force regression and requires launchReplacements>0. SDK23 compiled; runtime not yet checked.",
+  "accepted": false,
+  "observed_launch_timeline": [
+    "11-11 22:08:03.176   566  1804 D CoreBackPreview: Window{d19da2b u0 org.rabochaya.karta/org.rabochaya.projects.ObjectManagerActivity}: Setting back callback null",
+    "11-11 22:08:03.807   566  1533 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=org.rabochaya.karta/org.rabochaya.projects.ObjectManagerActivity (has extras)} with LAUNCH_MULTIPLE from uid 10209 (BAL_ALLOW_VISIBLE_WINDOW) result code=0",
+    "11-11 22:08:03.994   566  1519 D CoreBackPreview: Window{dbbbbaa u0 org.rabochaya.karta/org.rabochaya.projects.ObjectManagerActivity}: Setting back callback null",
+    "11-11 22:08:04.044   566  1519 I WindowManager: finishDrawing of relaunch: Window{c30ed74 u0 org.rabochaya.karta/org.rabochaya.projects.ObjectManagerActivity} 69ms",
+    "11-11 22:08:04.047   566  1519 D CoreBackPreview: Window{ba80196 u0 org.rabochaya.karta/org.rabochaya.projects.ObjectManagerActivity}: Setting back callback null"
+  ]
+}

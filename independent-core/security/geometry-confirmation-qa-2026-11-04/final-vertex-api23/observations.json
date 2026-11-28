@@ -1,0 +1,806 @@
+[
+  {
+    "kind": "vertex",
+    "stage": "before",
+    "present": true,
+    "key": "0",
+    "token": "4ee6c756fc8f1f207d959594f5dc56fd05a212272c554aea1cc0d5eed9ab5ec9",
+    "main": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "project": 1,
+    "feature": "point",
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Удалить вершину 2 из текущего ввода?",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 292, 288, 41]",
+        "visible": true,
+        "visibleBounds": "[16,34][304,75]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[121, 337, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[121,79][205,127]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Удалить",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[205, 337, 87, 48]",
+        "visible": true,
+        "visibleBounds": "[205,79][292,127]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "kind": "vertex",
+    "stage": "after",
+    "present": true,
+    "key": "0",
+    "token": "4ee6c756fc8f1f207d959594f5dc56fd05a212272c554aea1cc0d5eed9ab5ec9",
+    "main": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "project": 1,
+    "feature": "point",
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Удалить вершину 2 из текущего ввода?",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 138, 384, 24]",
+        "visible": true,
+        "visibleBounds": "[16,34][400,58]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[329, 172, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[217,68][301,116]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Удалить",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[413, 172, 87, 48]",
+        "visible": true,
+        "visibleBounds": "[301,68][388,116]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "kind": "vertex",
+    "stage": "cancel-return",
+    "present": true,
+    "key": "0",
+    "token": "4ee6c756fc8f1f207d959594f5dc56fd05a212272c554aea1cc0d5eed9ab5ec9",
+    "main": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "project": 1,
+    "feature": "point",
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Удалить вершину 2 из текущего ввода?",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[16, 292, 288, 41]",
+        "visible": true,
+        "visibleBounds": "[16,34][304,75]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[121, 337, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[121,79][205,127]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Удалить",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[205, 337, 87, 48]",
+        "visible": true,
+        "visibleBounds": "[205,79][292,127]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "kind": "vertex",
+    "stage": "confirm",
+    "present": true,
+    "key": "0",
+    "token": "4ee6c756fc8f1f207d959594f5dc56fd05a212272c554aea1cc0d5eed9ab5ec9",
+    "main": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "project": 2,
+    "feature": "point",
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Удалить вершину 2 из текущего ввода?",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 138, 384, 24]",
+        "visible": true,
+        "visibleBounds": "[16,34][400,58]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[329, 172, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[217,68][301,116]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Удалить",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[413, 172, 87, 48]",
+        "visible": true,
+        "visibleBounds": "[301,68][388,116]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "kind": "vertex",
+    "stage": "before-save",
+    "present": false,
+    "key": "0",
+    "token": "4ee6c756fc8f1f207d959594f5dc56fd05a212272c554aea1cc0d5eed9ab5ec9",
+    "main": "20.5 10.5 30.5\n22.5 12.5 32.5",
+    "project": 2,
+    "feature": "point",
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Координаты и контуры",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 36, 616, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][628,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия 0 · LineString",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 67, 592, 24]",
+        "visible": true,
+        "visibleBounds": "[12,67][604,91]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "WGS 84: широта долгота [высота], одна вершина в строке",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 91, 616, 18]",
+        "visible": true,
+        "visibleBounds": "[12,91][628,109]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Редактировать на карте",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 109, 616, 48]",
+        "visible": true,
+        "visibleBounds": "[12,109][628,157]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "20.5 10.5 30.5\n22.5 12.5 32.5",
+        "foreground": "#ff202020",
+        "arimo": true,
+        "bounds": "[12, 157, 616, 79]",
+        "visible": true,
+        "visibleBounds": "[12,157][628,236]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Вершины изменены во вводе. Для записи объекта нажмите «Сохранить»",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 236, 616, 18]",
+        "visible": true,
+        "visibleBounds": "[12,236][628,254]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 254, 205, 54]",
+        "visible": true,
+        "visibleBounds": "[12,254][217,308]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[217, 254, 205, 54]",
+        "visible": true,
+        "visibleBounds": "[217,254][422,308]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[422, 254, 206, 54]",
+        "visible": true,
+        "visibleBounds": "[422,254][628,308]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "kind": "vertex",
+    "stage": "saved",
+    "present": false,
+    "key": "0",
+    "token": "d976259c4428d514f358772a56414480241153c348f95c9e452e1a6a957a2169",
+    "main": "20.5 10.5 30.5\n22.5 12.5 32.5",
+    "project": 2,
+    "feature": "point",
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Координаты и контуры",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 36, 616, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][628,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия 0 · LineString",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 67, 592, 24]",
+        "visible": true,
+        "visibleBounds": "[12,67][604,91]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "WGS 84: широта долгота [высота], одна вершина в строке",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 91, 616, 18]",
+        "visible": true,
+        "visibleBounds": "[12,91][628,109]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Редактировать на карте",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 109, 616, 48]",
+        "visible": true,
+        "visibleBounds": "[12,109][628,157]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "20.5 10.5 30.5\n22.5 12.5 32.5",
+        "foreground": "#ff202020",
+        "arimo": true,
+        "bounds": "[12, 157, 616, 79]",
+        "visible": true,
+        "visibleBounds": "[12,157][628,236]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия 0 · LineString",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 236, 616, 18]",
+        "visible": true,
+        "visibleBounds": "[12,236][628,254]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 254, 205, 54]",
+        "visible": true,
+        "visibleBounds": "[12,254][217,308]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[217, 254, 205, 54]",
+        "visible": true,
+        "visibleBounds": "[217,254][422,308]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[422, 254, 206, 54]",
+        "visible": true,
+        "visibleBounds": "[422,254][628,308]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "kind": "vertex",
+    "stage": "stale-before",
+    "present": true,
+    "key": "0",
+    "token": "4ee6c756fc8f1f207d959594f5dc56fd05a212272c554aea1cc0d5eed9ab5ec9",
+    "main": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "project": 3,
+    "feature": "point",
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Удалить вершину 2 из текущего ввода?\n\nГеометрия или исходный ввод изменились. Подтверждение заблокировано; отмените его и выберите действие заново.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 107, 384, 92]",
+        "visible": true,
+        "visibleBounds": "[16,34][400,126]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[329, 203, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[217,130][301,178]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Удалить",
+        "foreground": "#24000000",
+        "arimo": true,
+        "bounds": "[413, 203, 87, 48]",
+        "visible": true,
+        "visibleBounds": "[301,130][388,178]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "kind": "vertex",
+    "stage": "stale-after",
+    "present": true,
+    "key": "0",
+    "token": "4ee6c756fc8f1f207d959594f5dc56fd05a212272c554aea1cc0d5eed9ab5ec9",
+    "main": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5",
+    "project": 4,
+    "feature": "point",
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Удалить вершину 2 из текущего ввода?\n\nГеометрия изменилась или объект удалён. Подтверждение заблокировано.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 115, 384, 75]",
+        "visible": true,
+        "visibleBounds": "[16,34][400,109]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[329, 194, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[217,113][301,161]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Удалить",
+        "foreground": "#24000000",
+        "arimo": true,
+        "bounds": "[413, 194, 87, 48]",
+        "visible": true,
+        "visibleBounds": "[301,113][388,161]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "kind": "vertex",
+    "stage": "main-changed",
+    "present": true,
+    "key": "0",
+    "token": "4ee6c756fc8f1f207d959594f5dc56fd05a212272c554aea1cc0d5eed9ab5ec9",
+    "main": "20.5 10.5 30.5\n21.5 11.5 31.5\n22.5 12.5 32.5\n3 3 90",
+    "project": 5,
+    "feature": "point",
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Удалить вершину 2 из текущего ввода?\n\nГеометрия или исходный ввод изменились. Подтверждение заблокировано.",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[128, 115, 384, 75]",
+        "visible": true,
+        "visibleBounds": "[16,34][400,109]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Отмена",
+        "foreground": "#ff009688",
+        "arimo": true,
+        "bounds": "[329, 194, 84, 48]",
+        "visible": true,
+        "visibleBounds": "[217,113][301,161]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Удалить",
+        "foreground": "#24000000",
+        "arimo": true,
+        "bounds": "[413, 194, 87, 48]",
+        "visible": true,
+        "visibleBounds": "[301,113][388,161]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "kind": "vertex",
+    "stage": "stale-save",
+    "present": false,
+    "key": "0",
+    "token": "4ee6c756fc8f1f207d959594f5dc56fd05a212272c554aea1cc0d5eed9ab5ec9",
+    "main": "20.5 10.5 30.5\n22.5 12.5 32.5",
+    "project": 6,
+    "feature": "point",
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Координаты и контуры",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 36, 616, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][628,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия 0 · LineString",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 67, 592, 24]",
+        "visible": true,
+        "visibleBounds": "[12,67][604,91]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "WGS 84: широта долгота [высота], одна вершина в строке",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 91, 616, 18]",
+        "visible": true,
+        "visibleBounds": "[12,91][628,109]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Редактировать на карте",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 109, 616, 48]",
+        "visible": true,
+        "visibleBounds": "[12,109][628,157]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "20.5 10.5 30.5\n22.5 12.5 32.5",
+        "foreground": "#ff202020",
+        "arimo": true,
+        "bounds": "[12, 157, 616, 65]",
+        "visible": true,
+        "visibleBounds": "[12,157][628,222]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Не удалось сохранить: Геометрия изменилась. Закройте редактор и откройте актуальный объект; ввод сохранён в черновике",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 222, 616, 32]",
+        "visible": true,
+        "visibleBounds": "[12,222][628,254]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 254, 205, 54]",
+        "visible": true,
+        "visibleBounds": "[12,254][217,308]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[217, 254, 205, 54]",
+        "visible": true,
+        "visibleBounds": "[217,254][422,308]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[422, 254, 206, 54]",
+        "visible": true,
+        "visibleBounds": "[422,254][628,308]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "kind": "vertex",
+    "stage": "foreign-project",
+    "present": false,
+    "key": "0",
+    "token": "4ee6c756fc8f1f207d959594f5dc56fd05a212272c554aea1cc0d5eed9ab5ec9",
+    "main": "20 10 30\n21 11 31\n22 12 32",
+    "project": 8,
+    "feature": "point",
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Координаты и контуры",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 36, 616, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][628,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия 0 · LineString",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 67, 592, 24]",
+        "visible": true,
+        "visibleBounds": "[12,67][604,91]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "WGS 84: широта долгота [высота], одна вершина в строке",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 91, 616, 18]",
+        "visible": true,
+        "visibleBounds": "[12,91][628,109]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Редактировать на карте",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 109, 616, 48]",
+        "visible": true,
+        "visibleBounds": "[12,109][628,157]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "20 10 30\n21 11 31\n22 12 32",
+        "foreground": "#ff202020",
+        "arimo": true,
+        "bounds": "[12, 157, 616, 79]",
+        "visible": true,
+        "visibleBounds": "[12,157][628,236]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Подтверждение другого объекта или процесса не восстановлено",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 236, 616, 18]",
+        "visible": true,
+        "visibleBounds": "[12,236][628,254]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 254, 205, 54]",
+        "visible": true,
+        "visibleBounds": "[12,254][217,308]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[217, 254, 205, 54]",
+        "visible": true,
+        "visibleBounds": "[217,254][422,308]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[422, 254, 206, 54]",
+        "visible": true,
+        "visibleBounds": "[422,254][628,308]",
+        "fullyVisible": true
+      }
+    ]
+  },
+  {
+    "kind": "vertex",
+    "stage": "foreign-feature",
+    "present": false,
+    "key": "0",
+    "token": "652e2d7db07cfaecf57b554c80b8715517837253f1014e13b16c5bdd804908a0",
+    "main": "22 12 32",
+    "project": 9,
+    "feature": "other",
+    "texts": [
+      {
+        "class": "TextView",
+        "text": "Координаты и контуры",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 36, 616, 31]",
+        "visible": true,
+        "visibleBounds": "[12,36][628,67]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Геометрия 0 · Point",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 67, 592, 24]",
+        "visible": true,
+        "visibleBounds": "[12,67][604,91]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "WGS 84: широта долгота [высота], одна вершина в строке",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 91, 616, 18]",
+        "visible": true,
+        "visibleBounds": "[12,91][628,109]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Редактировать на карте",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 109, 616, 48]",
+        "visible": true,
+        "visibleBounds": "[12,109][628,157]",
+        "fullyVisible": true
+      },
+      {
+        "class": "EditText",
+        "text": "22 12 32",
+        "foreground": "#ff202020",
+        "arimo": true,
+        "bounds": "[12, 157, 616, 79]",
+        "visible": true,
+        "visibleBounds": "[12,157][628,236]",
+        "fullyVisible": true
+      },
+      {
+        "class": "TextView",
+        "text": "Подтверждение другого объекта или процесса не восстановлено",
+        "foreground": "#ffffffff",
+        "arimo": true,
+        "bounds": "[12, 236, 616, 18]",
+        "visible": true,
+        "visibleBounds": "[12,236][628,254]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Сохранить",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[12, 254, 205, 54]",
+        "visible": true,
+        "visibleBounds": "[12,254][217,308]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Действия",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[217, 254, 205, 54]",
+        "visible": true,
+        "visibleBounds": "[217,254][422,308]",
+        "fullyVisible": true
+      },
+      {
+        "class": "Button",
+        "text": "Закрыть",
+        "foreground": "#de000000",
+        "arimo": true,
+        "bounds": "[422, 254, 206, 54]",
+        "visible": true,
+        "visibleBounds": "[422,254][628,308]",
+        "fullyVisible": true
+      }
+    ]
+  }
+]

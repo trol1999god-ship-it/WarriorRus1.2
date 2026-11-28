@@ -1,0 +1,146 @@
+[
+  {
+    "source": "ESRI_WORLD_IMAGERY",
+    "path": "/ArcGIS/rest/services/World_Imagery/MapServer/tile/6/22/34",
+    "services": {
+      "status": 0,
+      "sha256": "955bfb52df5694c6f746de0b8de057a0ea1d8a49c84d2815629754932b99499a"
+    },
+    "server": {
+      "status": 0,
+      "sha256": "955bfb52df5694c6f746de0b8de057a0ea1d8a49c84d2815629754932b99499a"
+    }
+  },
+  {
+    "source": "ESRI_WORLD_TOPO",
+    "path": "/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/6/22/34",
+    "services": {
+      "status": 0,
+      "sha256": "8caffa71108b621e1825e0e19278f06be7d1f26e9eb6a7e714cc8bba0eb5ded1"
+    },
+    "server": {
+      "status": 0,
+      "sha256": "8caffa71108b621e1825e0e19278f06be7d1f26e9eb6a7e714cc8bba0eb5ded1"
+    }
+  },
+  {
+    "source": "ESRI_WORLD_STREETS",
+    "path": "/ArcGIS/rest/services/World_Street_Map/MapServer/tile/6/22/34",
+    "services": {
+      "status": 0,
+      "sha256": "338f01394570ff77d23035a6f18ec11ff8dd9ba1ddfe1c9a1025a2e6c5ba409e"
+    },
+    "server": {
+      "status": 0,
+      "sha256": "338f01394570ff77d23035a6f18ec11ff8dd9ba1ddfe1c9a1025a2e6c5ba409e"
+    }
+  },
+  {
+    "source": "ESRI_NATGEO",
+    "path": "/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/6/22/34",
+    "services": {
+      "status": 0,
+      "sha256": "a6ae3cb7d0eaeb84f48687f8b70342df6bdd38fa74d2fc33b40e7999f3d8120b"
+    },
+    "server": {
+      "status": 0,
+      "sha256": "a6ae3cb7d0eaeb84f48687f8b70342df6bdd38fa74d2fc33b40e7999f3d8120b"
+    }
+  },
+  {
+    "source": "ESRI_TERRAIN",
+    "path": "/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/6/22/34",
+    "services": {
+      "status": 0,
+      "sha256": "b70b43746ebadf1ecfa81be020bc311ff77bb8120bf1124bd77c0ee079a9900f"
+    },
+    "server": {
+      "status": 0,
+      "sha256": "b70b43746ebadf1ecfa81be020bc311ff77bb8120bf1124bd77c0ee079a9900f"
+    }
+  },
+  {
+    "source": "ESRI_SHADED_RELIEF",
+    "path": "/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/6/22/34",
+    "services": {
+      "status": 0,
+      "sha256": "14321626e9abbb2301f2dbf3a464630361713cd5ee9348230b1f492ae9117c35"
+    },
+    "server": {
+      "status": 0,
+      "sha256": "14321626e9abbb2301f2dbf3a464630361713cd5ee9348230b1f492ae9117c35"
+    }
+  },
+  {
+    "source": "ESRI_PHYSICAL",
+    "path": "/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/6/22/34",
+    "services": {
+      "status": 0,
+      "sha256": "d200b494484d470fb6de5dccaba32b3f45a3e0f0231c369f6bfbb5ee4fc5e39b"
+    },
+    "server": {
+      "status": 0,
+      "sha256": "d200b494484d470fb6de5dccaba32b3f45a3e0f0231c369f6bfbb5ee4fc5e39b"
+    }
+  },
+  {
+    "source": "ESRI_OCEAN",
+    "path": "/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/6/22/34",
+    "services": {
+      "status": 0,
+      "sha256": "5f07fc4dd6d9171e75ce05d8b96e3b3afd945bfe4f943a01f8dbc0936cdfe174"
+    },
+    "server": {
+      "status": 0,
+      "sha256": "5f07fc4dd6d9171e75ce05d8b96e3b3afd945bfe4f943a01f8dbc0936cdfe174"
+    }
+  },
+  {
+    "source": "ESRI_LIGHT_GRAY",
+    "path": "/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/6/22/34",
+    "services": {
+      "status": 0,
+      "sha256": "7a42d31c8332baba15b66aeb0ff6fc5a3c8f284d6597d68bddd35332f0b113cc"
+    },
+    "server": {
+      "status": 0,
+      "sha256": "7a42d31c8332baba15b66aeb0ff6fc5a3c8f284d6597d68bddd35332f0b113cc"
+    }
+  },
+  {
+    "source": "ESRI_PLACES_LAYER",
+    "path": "/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/6/22/34",
+    "services": {
+      "status": 0,
+      "sha256": "79a0d7f42a625a5b5d772e623d34bc44879a0a78d0d90a36033706785ce8d054"
+    },
+    "server": {
+      "status": 0,
+      "sha256": "79a0d7f42a625a5b5d772e623d34bc44879a0a78d0d90a36033706785ce8d054"
+    }
+  },
+  {
+    "source": "ESRI_ROADS_LAYER",
+    "path": "/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/6/22/34",
+    "services": {
+      "status": 0,
+      "sha256": "7857f8bbb16432f528c46358a4c684b4ec2f509d368067f8596d3730388c0daa"
+    },
+    "server": {
+      "status": 0,
+      "sha256": "7857f8bbb16432f528c46358a4c684b4ec2f509d368067f8596d3730388c0daa"
+    }
+  },
+  {
+    "source": "ESRI_REFERENCE_LAYER",
+    "path": "/ArcGIS/rest/services/Reference/World_Reference_Overlay/MapServer/tile/6/22/34",
+    "services": {
+      "status": 0,
+      "sha256": "cd4d046e02bcce4e54ecb3dc65e92a415b59fd142fc5b277cd464867746bcb56"
+    },
+    "server": {
+      "status": 0,
+      "sha256": "cd4d046e02bcce4e54ecb3dc65e92a415b59fd142fc5b277cd464867746bcb56"
+    }
+  }
+]

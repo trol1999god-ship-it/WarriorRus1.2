@@ -1,0 +1,66 @@
+[
+  {
+    "name": "map_mvisual-geometry-close-after-land.png",
+    "sha256": "65ae36c779485065e2cb14fe74150059b691a75d63429db8864fc8a0faddfb98"
+  },
+  {
+    "name": "map_mvisual-geometry-close-after-return.png",
+    "sha256": "fbb68b1b85ff2d47cc7b2025131933d186de3f05d2d2b5e99b715f02c0a0bdba"
+  },
+  {
+    "name": "map_mvisual-geometry-close-before-land.png",
+    "sha256": "ce3af4a1d31777ee25fe22282c92794055bded0ad91736a6e70b814fbaa76434"
+  },
+  {
+    "name": "map_mvisual-geometry-close-before-return.png",
+    "sha256": "65ae36c779485065e2cb14fe74150059b691a75d63429db8864fc8a0faddfb98"
+  },
+  {
+    "name": "map_mvisual-geometry-close-cancel-ghost.png",
+    "sha256": "6bf69b8d29757b8d19d18addd11cefae4b383ced931cf83d5f737c105ebb0727"
+  },
+  {
+    "name": "map_mvisual-geometry-close-cancelled.png",
+    "sha256": "b9223432e4af2bb34c3b3fb0dc4364481f46be27713cb310b6cbada20d45e33b"
+  },
+  {
+    "name": "map_mvisual-geometry-close-discarded-reopened.png",
+    "sha256": "454eec75885ddbea7d8de91976ab275bbc9f42ae57d8fabb81c4c45329bb04f0"
+  },
+  {
+    "name": "map_mvisual-geometry-close-foreign-feature.png",
+    "sha256": "694da9d61e449ea9c66b2d045fb0acd7298b632de420fd9b550b2b9844cf5eb7"
+  },
+  {
+    "name": "map_mvisual-geometry-close-foreign-project.png",
+    "sha256": "b2d0d539f0e1d5c5f1457e72ae40b73eda3c0f14146c3f42c429352c9182c801"
+  },
+  {
+    "name": "map_mvisual-geometry-close-main-changed.png",
+    "sha256": "5613906e18fb4ba0065eb1fa705075bdb359eaa6040312728bcf8c8bf5762d87"
+  },
+  {
+    "name": "map_mvisual-geometry-close-main-saved.png",
+    "sha256": "99803d00ff674bf68190ed71c81280ac30dae5b3308746077ddfe7a698f8e132"
+  },
+  {
+    "name": "map_mvisual-geometry-close-replacement-discard.png",
+    "sha256": "65907cce11b68a539f519be5b96dcab5e821d1f09f99601be7de500f4254096b"
+  },
+  {
+    "name": "map_mvisual-geometry-close-replacement-save.png",
+    "sha256": "65907cce11b68a539f519be5b96dcab5e821d1f09f99601be7de500f4254096b"
+  },
+  {
+    "name": "map_mvisual-geometry-close-saved-draft-reopened.png",
+    "sha256": "4d560cf447c74026f082a36d12eff5d8ba7f229fae9f3647153e7f5a506c1f47"
+  },
+  {
+    "name": "map_mvisual-geometry-close-stale-after.png",
+    "sha256": "8e5beba5c0b080c736b1c8de4d5791987a681189d111bf79b1aa2b1b0be8b448"
+  },
+  {
+    "name": "map_mvisual-geometry-close-stale-before.png",
+    "sha256": "b2a345abb920bf02d583b7d48932d3fcf7f43e80ad5a3e99e3bdd2b8434d691f"
+  }
+]

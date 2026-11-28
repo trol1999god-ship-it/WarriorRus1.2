@@ -1,0 +1,26 @@
+[
+  {
+    "name": "map_mvisual-layers-composed.png",
+    "sha256": "7b2afae5839b4bfad93b2258c5334c6215b4d6baa98da4034aa201f88f3f9984"
+  },
+  {
+    "name": "map_mvisual-layers-final.png",
+    "sha256": "ba658129e8b23a3928207d08409508e622171e7096b33bba41a39b6636e3443f"
+  },
+  {
+    "name": "map_mvisual-layers-manager.png",
+    "sha256": "18f92f403a4cc0e35035a9027e53e38ea33575dea48b3108179120a30df271fa"
+  },
+  {
+    "name": "map_mvisual-layers-reordered.png",
+    "sha256": "78212be916759274c575ea14e2fe462d435001ec806e1ab1ef380b22cbeb07f9"
+  },
+  {
+    "name": "map_mvisual-layers-restarted-manager.png",
+    "sha256": "956832a38b3ab04e32cd5e1d88858538fafe4f57f372a17d4cf6666b7441133a"
+  },
+  {
+    "name": "map_mvisual-layers-restarted.png",
+    "sha256": "ba658129e8b23a3928207d08409508e622171e7096b33bba41a39b6636e3443f"
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "map_mvisual-composition-export-before.png": "186c9cc65b3e18b64e327ac64b744c2713a90de6dfa4ebea4d13e2d57ab1c26c",
+  "map_mvisual-composition-export-saved.png": "2ad93690ab540ca74f71384dcb62d250ac8ca70a0e3c0b4a92479b37f522457c",
+  "map_mvisual-composition-zoom-output.png": "0659cbdf1e82c4ba08dfd52951115ff373678ad40e57dc5a5e4f1cee908f2e1e",
+  "map_mvisual-composition-zoom-source.png": "c9a2fa4778253282e5800cc7fe43a8075d4365b7677a507d83421bef46cc1502",
+  "map_mvisual-cachejob-complete.png": "bb32775c6f9280ba6ec97f7ee8b58383baa4a487bda9980f959b9b03cb2512fe",
+  "map_mvisual-cachejob-form.png": "f1764a8afc5162da82dd72b87639090c92a0e16cbe09624cc13b624eedc5831a",
+  "map_mvisual-cachejob-paused.png": "cf6451b7d7935b17074289c553fe27f1c55429590b66b29c2bd0b7b95c5eb0d0",
+  "map_mvisual-cachejob-stale.png": "568bb0b613f1030bfc1caccec4fcc78e388b867422aa106a4e5a8428ca70695c",
+  "map_mvisual-layers-composed.png": "e851ec4a1d746d2bd48ba4dd8a71bcde38be4f24bc52bb4d1aff4393fbaad6f1",
+  "map_mvisual-layers-final.png": "f8ec5842840b7e2bbe1121c6c69e342fed491c22d3ac3844b2d92bfd86cb6013",
+  "map_mvisual-layers-manager.png": "0e55b828883f6fcbd44ebff2b6a101f4d67b208df3cc6c8372ef3bfad20e6739",
+  "map_mvisual-layers-opacity-after.png": "0e55b828883f6fcbd44ebff2b6a101f4d67b208df3cc6c8372ef3bfad20e6739",
+  "map_mvisual-layers-opacity-before.png": "7ca5f7790bee9e0f8ba923aab406f21a7b100820097ae141806652dcd95ce939",
+  "map_mvisual-layers-reordered.png": "1ecf4d6e5c3552d5510b6301e4d4c92b4cb0193dbd397baf6065c6a4cdb28d8d",
+  "map_mvisual-layers-restarted-manager.png": "46c4b0b12589e10ecb2c991e39f8db42963811b2150a9ec1873871b6ff067ff4",
+  "map_mvisual-layers-restarted.png": "5ca8888cd553ef9a66db5cda4efcea712c147d9a025d137923adffc1df7ef552"
+}

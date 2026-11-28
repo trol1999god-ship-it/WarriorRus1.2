@@ -1,0 +1,239 @@
+{
+  "sha256": {
+    "reference": "5ac3c7091cecae66942cdffee7c91ca0eb96be5eae902e85b0d6d9920643c142",
+    "previous_qa": "b1a59c6075b1b3a26187b07605335d6a682078267d5ca6d129c063d8fc5cbc82"
+  },
+  "inventory": {
+    "reference": {
+      "file_count": 4534,
+      "class_defs": 5936,
+      "icon_assets": {
+        ".svg": 1533,
+        ".png": 3
+      },
+      "raw": {
+        ".svg": 1569,
+        ".aqx": 7,
+        ".der": 1,
+        ".wav": 10,
+        ".zip": 1
+      }
+    },
+    "previous_qa": {
+      "file_count": 116,
+      "class_defs": 635,
+      "icon_assets": {},
+      "raw": {}
+    },
+    "reference_sounds": [
+      "sound_prox_3.wav",
+      "sound_signal_fixed.wav",
+      "sound_signal_lost.wav",
+      "sound_in_1.wav",
+      "sound_prox_1.wav",
+      "sound_in_2.wav",
+      "sound_prox_2.wav",
+      "sound_out_2.wav",
+      "sound_out_1.wav",
+      "sound_out_3.wav"
+    ],
+    "other_raw_items": [
+      "maps_builtin_bing.aqx",
+      "key.der",
+      "maps_builtin_soviet_private.aqx",
+      "maps_builtin_esri_community.aqx",
+      "maps_builtin_google.aqx",
+      "cn_offset.zip",
+      "maps_builtin_usgs.aqx",
+      "maps_builtin_yandex.aqx",
+      "maps_builtin_osm.aqx"
+    ],
+    "raw_svg_with_identical_asset_copy": 1533,
+    "built_in_files_edited": false,
+    "extra_raw_svg_count": 36,
+    "extra_svg_examples": [
+      "icon_transp_train.svg",
+      "icon_transp_airplane.svg",
+      "icon_sport_skateboarding.svg",
+      "icon_sport_sailing.svg"
+    ],
+    "cn_offset_archive_members": [
+      "cn_offset.dat"
+    ],
+    "sound_purpose_inferred_from_names_and_reference_strings": "GPS signal and proximity/zone notifications"
+  },
+  "screen_comparison": [
+    {
+      "screen": "Рабочий стол / карта",
+      "reference_string_ids": [
+        "core_button_zoom"
+      ],
+      "observed_reference_strings": {
+        "core_button_zoom": "Масштаб"
+      },
+      "qa_entry": "LocalMapActivity",
+      "qa_actions": "Кнопки масштаба",
+      "live_reference_behavior_verified": false
+    },
+    {
+      "screen": "Панель координат",
+      "reference_string_ids": [
+        "core_submenu_screen_center_coordinates"
+      ],
+      "observed_reference_strings": {
+        "core_submenu_screen_center_coordinates": "Координаты центра экрана"
+      },
+      "qa_entry": "LocalMapActivity",
+      "qa_actions": "Координаты центра и выбор форматов",
+      "live_reference_behavior_verified": false
+    },
+    {
+      "screen": "Панель инструментов",
+      "reference_string_ids": [
+        "core_button_browse"
+      ],
+      "observed_reference_strings": {
+        "core_button_browse": "Открыть"
+      },
+      "qa_entry": "LocalMapActivity",
+      "qa_actions": "Нижняя панель и сворачивание",
+      "live_reference_behavior_verified": false
+    },
+    {
+      "screen": "Меню",
+      "reference_string_ids": [
+        "core_button_import",
+        "core_button_export_as"
+      ],
+      "observed_reference_strings": {
+        "core_button_import": "Импортировать",
+        "core_button_export_as": "Экспортировать как"
+      },
+      "qa_entry": "LocalMapActivity",
+      "qa_actions": "Карта, метки, поиск, проекты",
+      "live_reference_behavior_verified": false
+    },
+    {
+      "screen": "Слои",
+      "reference_string_ids": [
+        "maps_submenu_displayed_maps"
+      ],
+      "observed_reference_strings": {
+        "maps_submenu_displayed_maps": "Карты на экране"
+      },
+      "qa_entry": "MapLayersActivity",
+      "qa_actions": "Порядок, непрозрачность, видимость",
+      "live_reference_behavior_verified": false
+    },
+    {
+      "screen": "Карты и источники",
+      "reference_string_ids": [
+        "maps_submenu_favorites_title"
+      ],
+      "observed_reference_strings": {
+        "maps_submenu_favorites_title": "Избранные карты и наборы карт"
+      },
+      "qa_entry": "MapCatalogActivity",
+      "qa_actions": "Каталог и подложки",
+      "live_reference_behavior_verified": false
+    },
+    {
+      "screen": "Объекты / встроенный режим",
+      "reference_string_ids": [
+        "landmarks_submenu_browse"
+      ],
+      "observed_reference_strings": {
+        "landmarks_submenu_browse": "Все метки"
+      },
+      "qa_entry": "ObjectManagerActivity",
+      "qa_actions": "Выбор, фильтры, действия",
+      "live_reference_behavior_verified": false
+    },
+    {
+      "screen": "Файловый менеджер",
+      "reference_string_ids": [
+        "core_explorer_address_device",
+        "core_explorer_address_downloads"
+      ],
+      "observed_reference_strings": {
+        "core_explorer_address_device": "Устройство",
+        "core_explorer_address_downloads": "Мои загрузки"
+      },
+      "qa_entry": "ProjectsActivity",
+      "qa_actions": "Проекты и системный выбор файлов",
+      "live_reference_behavior_verified": false
+    },
+    {
+      "screen": "Карточка объекта",
+      "reference_string_ids": [
+        "landmarks_explorer_name_waypoint"
+      ],
+      "observed_reference_strings": {
+        "landmarks_explorer_name_waypoint": "Путевая точка"
+      },
+      "qa_entry": "LocalMapActivity",
+      "qa_actions": "Координаты, контуры, вложения",
+      "live_reference_behavior_verified": false
+    },
+    {
+      "screen": "Редактор точки и значков",
+      "reference_string_ids": [
+        "core_button_edit_color"
+      ],
+      "observed_reference_strings": {
+        "core_button_edit_color": "Изменить цвет"
+      },
+      "qa_entry": "UserIconDialogs",
+      "qa_actions": "Импорт, категории, предпросмотр и выбор SVG",
+      "live_reference_behavior_verified": false
+    },
+    {
+      "screen": "Маршруты и области",
+      "reference_string_ids": [
+        "landmarks_create_route_desc",
+        "landmarks_create_area_desc"
+      ],
+      "observed_reference_strings": {
+        "landmarks_create_route_desc": "Проложить маршрут на карте по заданным точкам.",
+        "landmarks_create_area_desc": "Начертить область на карте."
+      },
+      "qa_entry": "LocalMapActivity",
+      "qa_actions": "Создание, рисование и правка",
+      "live_reference_behavior_verified": false
+    },
+    {
+      "screen": "Импорт / экспорт",
+      "reference_string_ids": [
+        "core_button_import",
+        "core_button_export_as"
+      ],
+      "observed_reference_strings": {
+        "core_button_import": "Импортировать",
+        "core_button_export_as": "Экспортировать как"
+      },
+      "qa_entry": "ObjectExchange",
+      "qa_actions": "KML/KMZ, GPX, GeoJSON, WPT и PLT",
+      "live_reference_behavior_verified": false
+    },
+    {
+      "screen": "Настройки и офлайн-карты",
+      "reference_string_ids": [
+        "maps_onboard_import_folder_name"
+      ],
+      "observed_reference_strings": {
+        "maps_onboard_import_folder_name": "Импортированные карты"
+      },
+      "qa_entry": "LocalMapActivity",
+      "qa_actions": "MBTiles и импорт пары MAP с изображением",
+      "live_reference_behavior_verified": false
+    }
+  ],
+  "size_guards": {
+    "attachment_bytes": 8388608,
+    "project_bytes": 33554432,
+    "mbtiles_bytes": 2147483648,
+    "ozi_image_bytes": 536870912,
+    "reference_equivalent_limit_verified": false,
+    "reason": "Project reads and KMZ export materialize payloads in memory. Raster import has separate input, pixel and output budgets."
+  }
+}

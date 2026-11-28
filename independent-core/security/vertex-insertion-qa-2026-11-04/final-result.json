@@ -1,0 +1,35 @@
+{
+  "source": "e28d4d47173c48d6309d3eafd0316dcf6c791bd0",
+  "production_source": "1fc6b8f2448247990967a287b732980dcd4d7197",
+  "run": 41859261415,
+  "conclusion": "success",
+  "jobs": {
+    "23": 126676483848,
+    "35": 126676483545,
+    "jvm": 126676226022
+  },
+  "modes_each": 37,
+  "insertion_assertions_each": 357,
+  "jvm_suites": 24,
+  "jvm_assertions": 81315,
+  "driver_tests": 12,
+  "final_png_sha_verified_and_actually_reviewed": 32,
+  "production_changed": false,
+  "cases": [
+    "before/after at index1 in nonzero MultiGeometry part0.1 and second inner0.1/inner/1",
+    "both actual destroyed/recreate rotations with real IME, raw/selection1..3/error and physical field/buttons guards",
+    "original project/feature/process/key/token/main stamp/operation/index",
+    "Cancel retains dirty main and exact original KML/assets, no ghost modal after subsequent recreation",
+    "Apply changes only main UI, separate Save changes addressed coordinates only; other geometry/rings/style/media preserved"
+  ],
+  "limitations": [
+    "Only selected insertion variants and fixtures; no full geometry/topology/reference acceptance",
+    "Same-process restoration, no process-death restoration acceptance",
+    "Portrait and landscape title/context labels may be clipped while edited line and explicit actions remain accessible",
+    "New unsaved inner-ring addingHole scenario not executed yet",
+    "Physical device/Android16/migration/main certificate/full acceptance remain open"
+  ],
+  "release_gate_allowed": false,
+  "release_gate_blockers": 25,
+  "accepted_requirements": 0
+}

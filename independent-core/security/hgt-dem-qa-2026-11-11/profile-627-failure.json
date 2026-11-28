@@ -1,0 +1,23 @@
+{
+  "code": "62794e48ded352aa0a6e2831b9c4823e1eea1c86",
+  "run": 43055495746,
+  "api23_job": 130643950042,
+  "api35_job": 130643950034,
+  "result": "failure",
+  "passed_modes_each": 44,
+  "failed": "maplayers: profile has physical scroll viewport",
+  "skipped": "maplayersreopen: preceding fixture failed; not success",
+  "observed": "Both actual new profile PNGs show full graph/Close; preceding strict full-graph/Arimo guards passed, then touchScroll checked a different ScrollView selected by first-descendant search",
+  "confirmed_helper_cause": "Unrestricted find(root,ScrollView) is not constrained to graph ancestor. Actual graph is fully visible at180dp while selected rect fails80x80, so it cannot be its scroll ancestor. Native AlertDialog also has an internal message ScrollView. Select nearest graph ancestor instead, emit both bounds/visibility, keep all guards/touch events.",
+  "production_profile_fix_for_this_failure": false,
+  "frames_sha_verified_per_api": 12,
+  "profile_png_viewed_each": true,
+  "remaining_not_exercised": [
+    "actual scroll",
+    "Close raw/cursor",
+    "foreign/stale/mainChanged",
+    "explicitMainSave",
+    "DEM cold restart"
+  ],
+  "accepted": false
+}

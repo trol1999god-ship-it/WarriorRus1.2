@@ -1,0 +1,44 @@
+[
+  {
+    "api": 23,
+    "original_native": 1094,
+    "original_run_failure": "strict evidence name cp1251 contains digits",
+    "original_names_rejected": true,
+    "renamed_copy_frames": 10,
+    "same_strict_emit_decode": "PASS",
+    "guards": "unchanged16/2MiB/name/SHA/PNG signature",
+    "names": [
+      "map_mvisual-geotiff-import-prompt.png",
+      "map_mvisual-geotiff-import-saved.png",
+      "map_mvisual-ozi-bmp-import-prompt.png",
+      "map_mvisual-ozi-bmp-import-saved.png",
+      "map_mvisual-ozi-gif-import-prompt.png",
+      "map_mvisual-ozi-gif-import-saved.png",
+      "map_mvisual-ozi-import-prompt.png",
+      "map_mvisual-ozi-import-saved.png",
+      "map_mvisual-ozi-windows-import-prompt.png",
+      "map_mvisual-ozi-windows-import-saved.png"
+    ]
+  },
+  {
+    "api": 35,
+    "original_native": 1094,
+    "original_run_failure": "strict evidence name cp1251 contains digits",
+    "original_names_rejected": true,
+    "renamed_copy_frames": 10,
+    "same_strict_emit_decode": "PASS",
+    "guards": "unchanged16/2MiB/name/SHA/PNG signature",
+    "names": [
+      "map_mvisual-geotiff-import-prompt.png",
+      "map_mvisual-geotiff-import-saved.png",
+      "map_mvisual-ozi-bmp-import-prompt.png",
+      "map_mvisual-ozi-bmp-import-saved.png",
+      "map_mvisual-ozi-gif-import-prompt.png",
+      "map_mvisual-ozi-gif-import-saved.png",
+      "map_mvisual-ozi-import-prompt.png",
+      "map_mvisual-ozi-import-saved.png",
+      "map_mvisual-ozi-windows-import-prompt.png",
+      "map_mvisual-ozi-windows-import-saved.png"
+    ]
+  }
+]

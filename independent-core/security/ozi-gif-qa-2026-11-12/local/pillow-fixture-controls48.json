@@ -1,0 +1,56 @@
+{
+  "kind": "independent host fixture decoder, NOT Android runtime",
+  "pillow": "12.3.0",
+  "fixtures": [
+    {
+      "file": "control-false-false-false.gif",
+      "sha256": "976414c19fc343a64aea3d7dde4f084bde06d5984dcc85849082959166901282",
+      "rgba_sha256": "58419e5d1c0a11b0b7288a61111d6a173b7823e0c79f93d685be4225388df1f3",
+      "bytes": 1525
+    },
+    {
+      "file": "control-false-false-true.gif",
+      "sha256": "8148a1fdce40d1b10b0fa8121ce7942f77672e190a48ba031ddf987816685bea",
+      "rgba_sha256": "2da07734c48ec55754775716f4ab110f49723938f7329e8eb039bb612f7461dd",
+      "bytes": 1533
+    },
+    {
+      "file": "control-false-true-false.gif",
+      "sha256": "a15f22657a7d8fe25fe4b97d03026ec19ec4fb74294868dd4b69ebb6fb8669b4",
+      "rgba_sha256": "58419e5d1c0a11b0b7288a61111d6a173b7823e0c79f93d685be4225388df1f3",
+      "bytes": 1525
+    },
+    {
+      "file": "control-false-true-true.gif",
+      "sha256": "a99e2f8af56e267b0d1e190a7ad8d837d98ec941c495e04f4acd370c74b01003",
+      "rgba_sha256": "2da07734c48ec55754775716f4ab110f49723938f7329e8eb039bb612f7461dd",
+      "bytes": 1533
+    },
+    {
+      "file": "control-true-false-false.gif",
+      "sha256": "7b55d7a0372f93b8185618a6193ba66cd72eb6a1ede20f32e5f5ef9840c977e9",
+      "rgba_sha256": "58419e5d1c0a11b0b7288a61111d6a173b7823e0c79f93d685be4225388df1f3",
+      "bytes": 1525
+    },
+    {
+      "file": "control-true-false-true.gif",
+      "sha256": "4d98aafef78481505753e6e0f5e1eb890ba58851344c7e026f5a11d65a593ba9",
+      "rgba_sha256": "2da07734c48ec55754775716f4ab110f49723938f7329e8eb039bb612f7461dd",
+      "bytes": 1533
+    },
+    {
+      "file": "control-true-true-false.gif",
+      "sha256": "b6be0ab33701493871884b1dfb9530076083a44e76d8d2d7b675eda41f908347",
+      "rgba_sha256": "58419e5d1c0a11b0b7288a61111d6a173b7823e0c79f93d685be4225388df1f3",
+      "bytes": 1525
+    },
+    {
+      "file": "control-true-true-true.gif",
+      "sha256": "040e300524f1e7805474fbe8bc0e400765d167b401638c0ef5147c4404150ab7",
+      "rgba_sha256": "2da07734c48ec55754775716f4ab110f49723938f7329e8eb039bb612f7461dd",
+      "bytes": 1533
+    }
+  ],
+  "literal_pixel_checks": 48,
+  "global_local_interlace_equivalence": true
+}
